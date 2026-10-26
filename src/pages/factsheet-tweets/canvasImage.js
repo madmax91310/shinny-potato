@@ -113,7 +113,7 @@ export function logoSupport(ctx, image, name, x, y, size) {
     // A white mark keeps its native colour on a dark insert; never recolour it.
     const dark = image.dataset?.support === 'dark'
     if (dark) { ctx.beginPath(); ctx.roundRect(x + 4, y + 4, size - 8, size - 8, size * .19); ctx.fillStyle = '#123c70'; ctx.fill() }
-    const factor = Math.min(/\.(png|avif|webp)(?:[?#]|$)/.test(image.src) ? 1 : Infinity, (size - 18) / image.width, (size - 18) / image.height)
+    const factor = Math.min(/\.(png|jpe?g|avif|webp|gif)(?:[?#]|$)/.test(image.src) ? 1 : Infinity, (size - 18) / image.width, (size - 18) / image.height)
     const w = image.width * factor, h = image.height * factor
     ctx.drawImage(image, x + (size - w) / 2, y + (size - h) / 2, w, h)
   } else {

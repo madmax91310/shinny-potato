@@ -113,6 +113,15 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.alrajhibank.com.sa/en",
+      "status": 200,
+      "finalUrl": "https://www.alrajhibank.com.sa/en",
+      "title": "Personal | Alrajhi Bank",
+      "htmlSha256": "9fc89eca4545ef325877f14a502cc599e27b872ad4a2659a3c9f6dc76eb23658"
     }
   ],
   "alibaba": [
@@ -245,6 +254,40 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 1
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.berkshirehathaway.com/",
+      "status": 200,
+      "finalUrl": "https://www.berkshirehathaway.com/",
+      "title": "BERKSHIRE HATHAWAY INC.",
+      "htmlSha256": "aac72df2352584c547bd149addaa08dea4befeffc5f86d42fba9a09343c996c9"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.berkshirehathaway.com/",
+      "status": 200,
+      "finalUrl": "https://www.berkshirehathaway.com/",
+      "title": "BERKSHIRE HATHAWAY INC.",
+      "htmlSha256": "440c39aed444fcf9eedf22b186544a05e7ec3db4ab5463c9171672dfcca58224"
+    },
+    {
+      "method": "final-official-html-review",
+      "url": "https://www.berkshirehathaway.com/",
+      "status": 200,
+      "checkedAt": "2026-10-26",
+      "sha256": "4b2bf79f111701d5515bcdc074999acf9d71b663de20af20ff469edc72b3dcfa",
+      "result": "Corporate heading is HTML text. Only image is geicoimg.gif (GEICO subsidiary); rejected."
+    },
+    {
+      "method": "official-investor-report-cover-review",
+      "url": "https://www.berkshirehathaway.com/2025ar/2025ar.pdf",
+      "status": 200,
+      "checkedAt": "2026-10-26",
+      "sha256": "777a62551d4542ce62671df66c218247a398ecb0e66aaa8a5410daeb49b67fbf",
+      "result": "First two pages inspected with pdfimages -f 1 -l 2 -list: no embedded images. Corporate name is typeset text; no standalone logo identified. No logo recreated from fonts."
     }
   ],
   "bharti-airtel": [
@@ -567,6 +610,69 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.chevron.com/",
+      "status": 403,
+      "finalUrl": "https://www.chevron.com/",
+      "title": "Service unavailable",
+      "htmlSha256": "56eff2bc0a836007fa748fd358439e3797a6da03dcfc396f08d2617d49031383"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.chevron.com/newsroom",
+      "status": 403,
+      "finalUrl": "https://www.chevron.com/newsroom",
+      "title": "Service unavailable",
+      "htmlSha256": "b97ffa941ed0ddcfc4d25e95ad7c1393ab6ac4de8778a5ad366093cc189a5b9a"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.chevron.com/newsroom/media-resources",
+      "status": 403,
+      "finalUrl": "https://www.chevron.com/newsroom/media-resources",
+      "title": "Service unavailable",
+      "htmlSha256": "72d0ec765ce679d10efe2732f6f8f96c54ab9ad068ab500ac3d800119c8fc561"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://chevroncorp.gcs-web.com/",
+      "status": 403,
+      "finalUrl": "https://chevroncorp.gcs-web.com/",
+      "title": "Access Denied",
+      "htmlSha256": "fdca73a62d8932fa62c10bc2c885e7b87a86296006d953350f0f8349c59a885d"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.sec.gov/Archives/edgar/data/93410/000119312526145617/d77994ddef14a.htm",
+      "status": 403,
+      "finalUrl": "https://www.sec.gov/Archives/edgar/data/93410/000119312526145617/d77994ddef14a.htm",
+      "title": "SEC.gov | Your Request Originates from an Undeclared Automated Tool",
+      "htmlSha256": "46ac93df38ea21c9a720148da2a967609716b1d1dd7157df1abaaef0ff8ed8f2"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.chevronbrand.com/",
+      "status": 200,
+      "finalUrl": "https://www.chevronbrand.com/site/login",
+      "title": "Chevron Brand Center - Site Login",
+      "htmlSha256": "35ce917a8f3f4bbce1063592bda9aa63d51f44876c84fc25cb44c1c0defabd75"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.chevronlubricants.com/en_us/home.html",
+      "status": 200,
+      "finalUrl": "https://www.chevronlubricants.com/",
+      "title": "Premium Lubricants and Coolants | Chevron Lubricants (US)",
+      "htmlSha256": "7ea56ccb2023063466c02d5be6243ad40f628223150ec26b42c254d0a864bb23"
     }
   ],
   "china-construction-bank": [
@@ -617,6 +723,33 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://en.ccb.com/",
+      "status": 200,
+      "finalUrl": "https://en.ccb.com/eng/home/index.shtml",
+      "title": "Welcome to China Construction Bank Web Site !",
+      "htmlSha256": "685d122ac8dbd2727b30a6d80c9f60a6c2091419dffc030188094e82dde1973c"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://member3.ccb.com/en/newccbtoday/v3/corporateculture/ccbculture.html?ptId=3",
+      "status": 200,
+      "finalUrl": "https://member3.ccb.com/en/newccbtoday/v3/corporateculture/ccbculture.html?ptId=3",
+      "title": "Today's CCB",
+      "htmlSha256": "d3baf280fc3f60f8e2955dcce4b9ae61dc5391bf23b9e6428c6bcece2f9a6b69"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.ccb.com/en/home/indexv3.html",
+      "status": 200,
+      "finalUrl": "https://www.ccb.com/eng/home/index.shtml",
+      "title": "Welcome to China Construction Bank Web Site !",
+      "htmlSha256": "fae841d4695900fb3e8122522a26bbb6fbe8a0450d22f6bc6d42bb3106698ac6"
     }
   ],
   "china-merchants-bank": [
@@ -817,6 +950,33 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.goldfields.com/media-contacts.php",
+      "status": 200,
+      "finalUrl": "https://www.goldfields.com/media-contacts.php",
+      "title": "Media contacts | INVESTORS AND MEDIA | Gold Fields",
+      "htmlSha256": "e5965834534616e21fa3925b67876a0fce2a2e415dc4ab2529b3047bb1f6b076"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.goldfields.com/",
+      "status": 200,
+      "finalUrl": "https://www.goldfields.com/",
+      "title": "Home | Gold Fields",
+      "htmlSha256": "e429c8d178416cfd773fc22d9dae40c2a37409f3c76f3909ecb590bcb5ffc4a2"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.goldfields.com/",
+      "status": 200,
+      "finalUrl": "https://www.goldfields.com/",
+      "title": "Home | Gold Fields",
+      "htmlSha256": "1891723a64c5e5a53d350c8c60b0ae7ed1d13486e2d2382362af34e9ae2b280e"
     }
   ],
   "gs-holdings": [
@@ -931,6 +1091,60 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.hdfc.bank.in/news-room",
+      "status": 403,
+      "finalUrl": "https://www.hdfc.bank.in/news-room",
+      "title": "ERROR: The request could not be satisfied",
+      "htmlSha256": "07dd446efa839a66fd1e0663699dad586a3f53c58e44ff8af140cb39cbf1eff1"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.hdfcbank.com/",
+      "status": 403,
+      "finalUrl": "https://www.hdfc.bank.in/",
+      "title": "ERROR: The request could not be satisfied",
+      "htmlSha256": "c8228bc558f7d70df5f4a741611fa24c08b6712e8e50af55065648d66837914c"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.hdfcbank.com/personal/about-us",
+      "status": 403,
+      "finalUrl": "https://www.hdfc.bank.in/about-us",
+      "title": "ERROR: The request could not be satisfied",
+      "htmlSha256": "2e53ff69355838240514af3c200adeed421d9a33e38dc4ce5696a793376f062b"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.hdfc.bank.in/news-room",
+      "status": 403,
+      "finalUrl": "https://www.hdfc.bank.in/news-room",
+      "title": "ERROR: The request could not be satisfied",
+      "htmlSha256": "33cfe6233ab2897113b8d9fdf827aaf474c9989834323fbded0f6008a33b5767"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.hdfcbank.com/personal/about-us/investor-relations",
+      "status": 403,
+      "finalUrl": "https://www.hdfc.bank.in/about-us/investor-relations",
+      "title": "ERROR: The request could not be satisfied",
+      "htmlSha256": "41525670064a9df7d7e6784ca8fd0720636cdaa39572f357ea751cf47af6c4b5"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.hdfc.bank.in/",
+      "status": 403,
+      "finalUrl": "https://www.hdfc.bank.in/",
+      "title": "ERROR: The request could not be satisfied",
+      "htmlSha256": "65b0388d67f2ad50709c1378ad0dcf34bfe0d93c0177e45d79ba46842152fc07"
     }
   ],
   "highwoods": [
@@ -1045,6 +1259,24 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 3
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.icbc-ltd.com/en/",
+      "status": 404,
+      "finalUrl": "https://www.icbc-ltd.com/",
+      "title": "中国工商银行股份有限公司网站",
+      "htmlSha256": "3620e83a05f11215f9df126d1c15dd8e03debb282a341ba549e47b4a037e4dfa"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.icbc.com.cn/en/",
+      "status": 404,
+      "finalUrl": "https://www.icbc.com.cn/",
+      "title": "中国工商银行中国网站",
+      "htmlSha256": "66397ded23af456c5f61f189cfe74ea3feffbe284e64296ff2f545ceea8ab6a7"
     }
   ],
   "illumina": [
@@ -1125,6 +1357,60 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 1
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.moutaichina.com/",
+      "status": 200,
+      "finalUrl": "https://www.moutaichina.com/",
+      "title": "入网口",
+      "htmlSha256": "b30a4eaf1bec4ebe38b586b32beeaa45e96fb8346d24f7fd602c2153bb68bb8f"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.moutaichina.com/maotai/gutai/",
+      "status": 404,
+      "finalUrl": "https://www.moutaichina.com/maotai/gutai/",
+      "title": "404 - 页面不存在",
+      "htmlSha256": "824e028d2a843f02c3154d77ae3f88ab56f5979dda954de42773e0022006b58a"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.moutaichina.com/maotaigufen/",
+      "status": 404,
+      "finalUrl": "https://www.moutaichina.com/maotaigufen/",
+      "title": "404 - 页面不存在",
+      "htmlSha256": "824e028d2a843f02c3154d77ae3f88ab56f5979dda954de42773e0022006b58a"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.moutaichina.com/maotaigufen/gywm/gsjs/index.html",
+      "status": 404,
+      "finalUrl": "https://www.moutaichina.com/maotaigufen/gywm/gsjs/index.html",
+      "title": "404 - 页面不存在",
+      "htmlSha256": "824e028d2a843f02c3154d77ae3f88ab56f5979dda954de42773e0022006b58a"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.moutai.com.cn/mtgf/qygk/gsjj/index.html",
+      "status": 200,
+      "finalUrl": "https://www.moutai.com.cn/mtgf/qygk/gsjj/index.html",
+      "title": "公司简介",
+      "htmlSha256": "9a04c754c40a811c1c80f8189f9977542c0df777a8b8ebef896beacbaeb03dbb"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.moutai.com.cn/mtgf/",
+      "status": 200,
+      "finalUrl": "https://www.moutai.com.cn/mtgf/",
+      "title": "入网口",
+      "htmlSha256": "a68f81516702425cd372bc3a9a35a4880fc9beb962e2789fe48e0dd77daadde2"
     }
   ],
   "mastercard": [
@@ -1359,6 +1645,85 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.investidores.nu/en/",
+      "status": 200,
+      "finalUrl": "https://nu.com/en/investors",
+      "title": "Home - Nubank IR",
+      "htmlSha256": "d47deb7da223977663ad8065af81b7be5e9b97ed08570981957386bac11e0d22"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://international.nubank.com.br/",
+      "status": 200,
+      "finalUrl": "https://nu.com/en/about",
+      "title": "About Nu: Leading Digital Bank in Latin America",
+      "htmlSha256": "c6bfad6c5a55ead317027bbbcbcb8e5ee4f408595f3068059b17fa33592033ef"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://nu.com/en/newsroom",
+      "status": 200,
+      "finalUrl": "https://nu.com/en/newsroom",
+      "title": "Nu Newsroom: Official News and Information",
+      "htmlSha256": "b2b10306e62bbe6b53014256def9d45b2ecc9f2f2f8f40221471c59365b3fc64"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://nu.com/en/",
+      "status": 200,
+      "finalUrl": "https://nu.com/en/about",
+      "title": "About Nu: Leading Digital Bank in Latin America",
+      "htmlSha256": "036c62d40e433473fe82fa7c010667ee02122e2932d4143abba1327dbb5207d9"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://nu.com/en/newsroom/press-kit",
+      "status": 200,
+      "finalUrl": "https://nu.com/en/newsroom/press-kit",
+      "title": "Nu: Press Kit, Official Photos and Logo",
+      "htmlSha256": "43d2a2b67e75ff71f26308a67afc9ec14ebdc3957c0b475704281ce173709164"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://drive.google.com/drive/folders/1wpBwhtjYsFOWC9hjCQgZHY0E1k-69aA8?usp=drive_link",
+      "status": 200,
+      "finalUrl": "https://drive.google.com/drive/folders/1wpBwhtjYsFOWC9hjCQgZHY0E1k-69aA8",
+      "title": "02. Brand Assets - Google Drive",
+      "htmlSha256": "b6be5f591cc62ab3a063cddec22484fa038c23b280897fc294f507c46e843164"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://nu.com/en/newsroom",
+      "status": 200,
+      "finalUrl": "https://nu.com/en/newsroom",
+      "title": "Nu Newsroom: Official News and Information",
+      "htmlSha256": "e28f0f50a847b86e75d48ed8379af4da1d5b4213bbc5d7c6357c2bec2684b279"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://drive.google.com/drive/folders/1wpBwhtjYsFOWC9hjCQgZHY0E1k-69aA8?usp=drive_link",
+      "status": 200,
+      "finalUrl": "https://drive.google.com/drive/folders/1wpBwhtjYsFOWC9hjCQgZHY0E1k-69aA8",
+      "title": "02. Brand Assets - Google Drive",
+      "htmlSha256": "c8cb7c8b7f655d532d4a717c2ee0c6610381e729962d374c2c47b6c89c66d52b"
+    },
+    {
+      "method": "final-official-source-review",
+      "url": "https://nu.com/en/newsroom/press-kit",
+      "status": 200,
+      "checkedAt": "2026-10-26",
+      "result": "Official issuer asset fetched, decoded and visually reviewed; provenance in local source manifest."
     }
   ],
   "omv": [
@@ -1411,6 +1776,48 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 2
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.prologis.com/",
+      "status": 403,
+      "finalUrl": "https://www.prologis.com/",
+      "title": "Just a moment...",
+      "htmlSha256": "77d5935144de13c0ad58d8e193655217ac5282f651b10ba65b1960aa98be4a69"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://ir.prologis.com/logo.png",
+      "error": "HTTP 404"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://ir.prologis.com/",
+      "status": 200,
+      "finalUrl": "https://ir.prologis.com/",
+      "title": "Prologis, Inc. (PLD)",
+      "htmlSha256": "a4b9b0f02603c11989fe1771a24d71267e64d31efc761f3b7634ed67634c7972"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://ir.prologis.com/overview/default.aspx",
+      "status": 404,
+      "finalUrl": "https://ir.prologis.com/overview/default.aspx",
+      "title": "Page Not Found :: Prologis, Inc. (PLD)",
+      "htmlSha256": "5a1176259f9e90367c5d525cd5589b28c80f0d6945feccd7f4e8792497af82ae"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.prologis.com/about/news-press-releases/media-center",
+      "status": 403,
+      "finalUrl": "https://www.prologis.com/about/news-press-releases/media-center",
+      "title": "Just a moment...",
+      "htmlSha256": "6090982635c1160cc0883965c3008cf1d82ae37f32d87bc84a7ffa8f4fb7b2fb"
     }
   ],
   "roche": [
@@ -1501,6 +1908,51 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.shell.com/",
+      "status": 200,
+      "finalUrl": "https://www.shell.com/",
+      "title": "Shell Global",
+      "htmlSha256": "04de4d915a938abc37ad738118eaf35acda9bef1d2a4ad767e6297801e5b1bec"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.shell.com/media.html",
+      "status": 404,
+      "finalUrl": "https://www.shell.com/media.html",
+      "title": "Error page | Shell Global",
+      "htmlSha256": "b756e229927d58cc6bbe5ff125187c15ab144a6fc3553b33922619c6953d5b4c"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.shell.com/",
+      "status": 200,
+      "finalUrl": "https://www.shell.com/",
+      "title": "Shell Global",
+      "htmlSha256": "7ab4efb521dbcbe30a40f27210c420d4dffe85d5d6d82ee2f7107a1cbae08c18"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://brandcentral.shell.com/en_us.html",
+      "status": 200,
+      "finalUrl": "https://brandcentral.shell.com/en_us.html",
+      "title": "Brand Central",
+      "htmlSha256": "18bec5557a94540f619195ac188712a4fa2c33c6f343c7cae615bcbbf6303918"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.shell.com/what-we-do.html",
+      "status": 200,
+      "finalUrl": "https://www.shell.com/what-we-do.html",
+      "title": "What we do | Shell Global",
+      "htmlSha256": "405f2e785ea0a11b3066bf52ab3829a2894d0cc478e44ea3e4b227aba38e965e"
     }
   ],
   "siemens-energy": [
@@ -1567,6 +2019,36 @@
       "sha256": "0f80982d38c2a148e2de11fd478c121eee90c91271a692fddb23c4ed891fa755",
       "partial": false,
       "candidatesFound": 2
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.skhynix.com/",
+      "status": 200,
+      "finalUrl": "https://www.skhynix.com/",
+      "title": "SK hynix",
+      "htmlSha256": "e4890671eeee7395c7df7c5b315be63b760a4d88265024fcb6e28f0aaf02b575"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://news.skhynix.com/",
+      "status": 200,
+      "finalUrl": "https://news.skhynix.com/en/",
+      "title": "SK hynix Newsroom",
+      "htmlSha256": "d287182cf91e0bc940cd4217db7cfb962433e0225d62c307171181d05c380743"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.skhynix.com/",
+      "error": "Page.goto: Timeout 25000ms exceeded."
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.skhynix.com/eng/company/UI-FR-CP1601/",
+      "error": "Page.goto: Timeout 25000ms exceeded."
     }
   ],
   "sk-square": [
@@ -1817,6 +2299,15 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 2
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.tel.com/",
+      "status": 200,
+      "finalUrl": "https://www.tel.com/",
+      "title": "Tokyo Electron Ltd.",
+      "htmlSha256": "9ac47a8d68cb35a3fbb823e8898415fcc79644005ee5a9d1d53358c01af83185"
     }
   ],
   "totalenergies": [
@@ -2467,6 +2958,42 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.zj-innolight.com/cn",
+      "status": 200,
+      "finalUrl": "https://www.zj-innolight.com/cn",
+      "title": "中际旭创",
+      "htmlSha256": "ea0520dc2b836475753dc4d31759521ffc300f5a2c46ee08ed46af7d28247b95"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.zj-innolight.com/cn/about.html",
+      "status": 200,
+      "finalUrl": "https://www.zj-innolight.com/cn/about.html",
+      "title": "关于我们-中际旭创",
+      "htmlSha256": "6f33f2a47550e4c83420cf2caa01e923998a5d8dbe4340b3ee2ad189ab9a3a96"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.zjinnolight.com/",
+      "status": 200,
+      "finalUrl": "https://forsale.godaddy.com/forsale/www.zjinnolight.com?utm_source=TDFS_BINNS2&utm_medium=parkedpages&utm_campaign=x_corp_tdfs-binns2_base&traffic_type=TDFS_BINNS2&traffic_id=binns2&",
+      "title": "Access Denied",
+      "htmlSha256": "ac49a38a6dfc2d77131e163453074c1ea21d498a64fdac4afdf36a7a280c5baf"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.zjxc.com/",
+      "status": 404,
+      "finalUrl": "https://www.zjxc.com/",
+      "title": "404 Not Found",
+      "htmlSha256": "0828655d573976c0b01f9761fef2d089899540fbc32ea4fe23a3aed6994f8274"
     }
   ],
   "aep": [
@@ -2533,6 +3060,76 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.americantower.com/",
+      "status": 403,
+      "finalUrl": "https://www.americantower.com/",
+      "title": "Attention Required! | Cloudflare",
+      "htmlSha256": "0d3e852f5aabf3ce8b2f89cfdcbb29d85693173d699a65cb620cd42e38290871"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://americantower.gcs-web.com/",
+      "status": 403,
+      "finalUrl": "https://americantower.gcs-web.com/",
+      "title": "Access Denied",
+      "htmlSha256": "619be5e378f01f9254b6965912f278b8d7acaa1a8c5d24fd411d60edb5ce7c50"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.americantower.com/us/company/press-room/",
+      "status": 403,
+      "finalUrl": "https://www.americantower.com/us/company/press-room/",
+      "title": "Attention Required! | Cloudflare",
+      "htmlSha256": "a9f4bc4fcd296777a34f16c0d9c2148628be4323086d50c5aeb08c6935218b48"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.americantower.com/company",
+      "status": 403,
+      "finalUrl": "https://www.americantower.com/company",
+      "title": "Attention Required! | Cloudflare",
+      "htmlSha256": "ab12df835162c5bc167f21093777f2a519a4058ca06c68987cb04e3bcb0d74b2"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.sec.gov/Archives/edgar/data/1053507/000105350726000088/amt-20260406.htm",
+      "status": 403,
+      "finalUrl": "https://www.sec.gov/Archives/edgar/data/1053507/000105350726000088/amt-20260406.htm",
+      "title": "SEC.gov | Your Request Originates from an Undeclared Automated Tool",
+      "htmlSha256": "363a46dc515cb0ae92a97f6656aa2b02da256fb1a2402b20f70197e72f80a2b8"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://americantower.gcs-web.com/press-releases",
+      "status": 403,
+      "finalUrl": "https://americantower.gcs-web.com/press-releases",
+      "title": "Access Denied",
+      "htmlSha256": "81107506cb6829f3124af2914f7b23c9c8d4f6c499db8adc8bb9ee3d7a1cfa0e"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.americantower.com/us/company/press-room/press-releases/",
+      "status": 403,
+      "finalUrl": "https://www.americantower.com/us/company/press-room/press-releases/",
+      "title": "Attention Required! | Cloudflare",
+      "htmlSha256": "253ccf1eafd8fc0734d94491d73df3cb5bf13c9a3a164959f4c6347fee03a2c0"
+    },
+    {
+      "method": "final-official-source-review",
+      "url": "https://americantower.gcs-web.com/news-releases/news-release-details/american-tower-corporation-reports-second-quarter-2026-financial",
+      "status": 200,
+      "checkedAt": "2026-10-26",
+      "result": "Official issuer asset fetched, decoded and visually reviewed; provenance in local source manifest."
     }
   ],
   "astrazeneca": [
@@ -2745,6 +3342,33 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.bajajfinserv.in/finance-digital-annual-report-fy26/index.html",
+      "status": 200,
+      "finalUrl": "https://www.bajajfinserv.in/finance-digital-annual-report-fy26/index.html",
+      "title": "Bajaj Finance Limited - Annual Report 2025-26",
+      "htmlSha256": "abae4e157336f001ce1976ea28cf173492325fe249c01379eb47e47b4404b449"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.aboutbajajfinserv.com/finance-about-us",
+      "status": 403,
+      "finalUrl": "https://www.aboutbajajfinserv.com/finance-about-us",
+      "title": "Access Denied",
+      "htmlSha256": "1a61f9bd760584a3bed843a0e72e8939ed6062ad65c1d437989ed1e43574f45d"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.bajajfinserv.in/finance",
+      "status": 200,
+      "finalUrl": "https://www.bajajfinserv.in/myaccount/",
+      "title": "Bajaj Finserv: Loans, Cards, Insurance, Investments, Payments and more",
+      "htmlSha256": "c408bd1c044b5639e6bd1fea20c8961412e285c9a5f5bc1c871fe09b32bdfc3f"
     }
   ],
   "brightspring": [
@@ -2835,6 +3459,24 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.cpkcr.com/en",
+      "status": 200,
+      "finalUrl": "https://www.cpkcr.com/en",
+      "title": "",
+      "htmlSha256": "f78e43475e9502ae8626e31a655f0401e576edba1d9b149f980055b574c9ee5e"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.cpkcr.com/en/media",
+      "status": 200,
+      "finalUrl": "https://www.cpkcr.com/en/media",
+      "title": "",
+      "htmlSha256": "f78e43475e9502ae8626e31a655f0401e576edba1d9b149f980055b574c9ee5e"
     }
   ],
   "caretrust": [
@@ -3033,6 +3675,15 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.cognizant.com/us/en",
+      "status": 200,
+      "finalUrl": "https://www.cognizant.com/us/en",
+      "title": "AI Builders Bridging the Gap from AI to Impact | Cognizant",
+      "htmlSha256": "c78639d20dda74cf14397d280915897245df5fdda757f74c358f32a1ee8d312f"
     }
   ],
   "comcast": [
@@ -3209,6 +3860,51 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.deere.com/en/",
+      "status": 403,
+      "finalUrl": "https://www.deere.com/en/",
+      "title": "ERROR: The request could not be satisfied",
+      "htmlSha256": "b6118fffdcff5268dfcd6d5214bf1da5404575ac3ad2f36577c9e822f3f8f424"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://about.deere.com/en-us",
+      "status": 403,
+      "finalUrl": "https://www.deere.com/en-us",
+      "title": "ERROR: The request could not be satisfied",
+      "htmlSha256": "47294d645f6333c7de2962a3d2d8c8d62b7d0969ef7ddcb7f5cdea477f7b9ef4"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://investor.deere.com/",
+      "status": 200,
+      "finalUrl": "https://investor.deere.com/home/default.aspx",
+      "title": "John Deere - Investor Relations",
+      "htmlSha256": "f0d838b8db215769bc27b0254f44bcabdd3208edca3166580634aa9a49be41a1"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://about.deere.com/en-us/our-company/brand",
+      "status": 403,
+      "finalUrl": "https://www.deere.com/en-us",
+      "title": "ERROR: The request could not be satisfied",
+      "htmlSha256": "420b1a48637f5d99d50d0ee25189fac5af64b3ce1d158dd644d01024b371af3d"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.deere.com/en/our-company/news-and-announcements/",
+      "status": 403,
+      "finalUrl": "https://www.deere.com/en/our-company/news-and-announcements/",
+      "title": "ERROR: The request could not be satisfied",
+      "htmlSha256": "a6ad0770a8ea8dbaaf8f3e93a576da3d68bf3725603f61c5541d0f29ae98499b"
     }
   ],
   "delta-electronics": [
@@ -3263,6 +3959,24 @@
       "sha256": "77b750d29dedfc54463c565638a305e1c32fbb5eb8b9cd24fe48ce8458d5497a",
       "partial": false,
       "candidatesFound": 3
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.telekom.com/en",
+      "status": 200,
+      "finalUrl": "https://www.telekom.com/en",
+      "title": "Home | Deutsche Telekom",
+      "htmlSha256": "dd7c7eba55a45558a43dbd8403e3b095a75ee89c1baf2a70755886e5815ede3d"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.telekom.com/en/media",
+      "status": 200,
+      "finalUrl": "https://www.telekom.com/en/newsroom",
+      "title": "Newsroom | Deutsche Telekom",
+      "htmlSha256": "e383e7cebea2baa134992860cbbe65879b2991f8b5db7f13884dd83b64b7c8ea"
     }
   ],
   "dominion": [
@@ -3313,6 +4027,15 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 11
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.dominionenergy.com/",
+      "status": 200,
+      "finalUrl": "https://www.dominionenergy.com/",
+      "title": "Home | Dominion Energy",
+      "htmlSha256": "e76775a44b469d25d474d2a0af6bd5ad687c81bdb9728be9a49ee95bc9ecb8e2"
     }
   ],
   "ecolab": [
@@ -3629,6 +4352,15 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.intuitive.com/en-us/",
+      "status": 200,
+      "finalUrl": "https://www.intuitive.com/en-us",
+      "title": "Intuitive | Maker of Da Vinci & Ion Robotic Systems",
+      "htmlSha256": "7178e8a24a7f8d918a527292cfe67b981cc2912a7915996ab01fa6fe354088bb"
     }
   ],
   "iron-mountain": [
@@ -3681,6 +4413,24 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.kbfg.com/eng/about/corporate/ci.htm",
+      "status": 200,
+      "finalUrl": "https://www.kbfg.com/eng/about/corporate/ci.htm",
+      "title": "KB Financial Group CI | Corporate Identity | About Us -",
+      "htmlSha256": "078d583e6774f981cee5996a298a6e6eaf1b12d0e4da7fe2a996dc410c67e79f"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.kbfg.com/Eng/index.jsp",
+      "status": 404,
+      "finalUrl": "https://www.kbfg.com/Eng/index.jsp",
+      "title": "error | KB금융지주",
+      "htmlSha256": "073c46a616f8304cfffe091df2f24b4bc6426107d2ff8591cc897f9982cbf8bf"
     }
   ],
   "kotak": [
@@ -3821,6 +4571,24 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 2
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.mt.com/us/en/home/your-partner-in-precision/brand-evolution.html",
+      "status": 403,
+      "finalUrl": "https://www.mt.com/us/en/home/your-partner-in-precision/brand-evolution.html",
+      "title": "METTLER TOLEDO - 403 Forbidden",
+      "htmlSha256": "51b7914eb6dc966e6bacba11b54ffc6b9c70ed4431c221cb8699dbcefbe92636"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.mt.com/us/en/home.html",
+      "status": 403,
+      "finalUrl": "https://www.mt.com/us/en/home.html",
+      "title": "METTLER TOLEDO - 403 Forbidden",
+      "htmlSha256": "2afac3209dd58b3f1be58021d8a768bba53aedbacf782f6672235fd85854245a"
     }
   ],
   "mizuho": [
@@ -4041,6 +4809,15 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.motorolasolutions.com/en_us.html",
+      "status": 200,
+      "finalUrl": "https://www.motorolasolutions.com/en_us.html",
+      "title": "A leader in safety & security technology | Motorola Solutions",
+      "htmlSha256": "63ea9e6dfbb6a6003099d3fb32d01be11a9ef32458512f896049c152550777c4"
     }
   ],
   "national-grid": [
@@ -4167,6 +4944,15 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 1
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.ptc.com/en",
+      "status": 200,
+      "finalUrl": "https://www.ptc.com/en",
+      "title": "Global Leader in Product Lifecycle Management Software | PTC",
+      "htmlSha256": "887ec552e15bd5f9f32c38984d757b6a3eb82a386a9b992f10f8f9d5b7c5074e"
     }
   ],
   "public-storage": [
@@ -4485,6 +5271,24 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.sanofi.com/en",
+      "status": 200,
+      "finalUrl": "https://www.sanofi.com/en",
+      "title": "R&D-Driven and AI-Powered Biopharmaceutical Company | Sanofi",
+      "htmlSha256": "8d9d839f3ef52e5bc83287b828abf6df4f36ed71ebb55876b301789a5c1776eb"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.sanofi.com/en/media-room",
+      "status": 200,
+      "finalUrl": "https://www.sanofi.com/en/media-room",
+      "title": "Media, press releases, news and media resources",
+      "htmlSha256": "67a694ef1ac85158ed1ad5dd8a0169938fadee6c7a7fee40bd46d77a36f3a83d"
     }
   ],
   "sempra": [
@@ -4523,6 +5327,79 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.sempra.com/",
+      "status": 403,
+      "finalUrl": "https://www.sempra.com/",
+      "title": "Just a moment...",
+      "htmlSha256": "f7d467fc79c31212a1abec34fc91b48d5f9ed3cbbcb9f2ff785010ca1e672735"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.sempra.com/themes/semprab/logo.svg",
+      "error": "HTTP 403"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://investor.sempra.com/",
+      "status": 403,
+      "finalUrl": "https://investor.sempra.com/",
+      "title": "Access Denied",
+      "htmlSha256": "2f5ac3777d438475e8ab2599f40a94d4c37dd9b2b06250cd13da58357fd59a91"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.sempra.com/newsroom/media-resources",
+      "status": 403,
+      "finalUrl": "https://www.sempra.com/newsroom/media-resources",
+      "title": "Just a moment...",
+      "htmlSha256": "14f24b391171157bcfd0779dcb6dd68f1c9f789ce5f8f25afe651db9cc829f19"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.sempra.com/",
+      "status": 403,
+      "finalUrl": "https://www.sempra.com/",
+      "title": "Just a moment...",
+      "htmlSha256": "5ce005b39232fbb581472cdd156e4c4aa523e3d244fd801974c5f3a0f4faec27"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.sempra.com/themes/semprab/logo.svg",
+      "error": "HTTP 403"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://sempra.gcs-web.com/",
+      "status": 403,
+      "finalUrl": "https://sempra.gcs-web.com/",
+      "title": "Access Denied",
+      "htmlSha256": "6c422e52ed76b74603ea566370f5499a1819792d29254dda882e11b784a757e0"
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.prnewswire.com/news/Sempra/",
+      "status": 502,
+      "finalUrl": "https://www.prnewswire.com/news/Sempra/",
+      "title": "Access Denied",
+      "htmlSha256": "1067b3068bdf3b6da2e4bbeb8810a83399069453da7a230a87c6e6fc8bec32ec"
+    },
+    {
+      "method": "final-official-source-review",
+      "url": "https://sempra.gcs-web.com/",
+      "status": 200,
+      "checkedAt": "2026-10-26",
+      "result": "Official issuer asset fetched, decoded and visually reviewed; provenance in local source manifest."
     }
   ],
   "shinhan": [
@@ -4711,6 +5588,15 @@
       "sha256": null,
       "partial": false,
       "candidatesFound": 0
+    },
+    {
+      "method": "isolated-github-browser",
+      "checkedAt": "2026-10-26",
+      "url": "https://www.spacex.com/",
+      "status": 200,
+      "finalUrl": "https://www.spacex.com/",
+      "title": "SpaceX",
+      "htmlSha256": "9a44bb93938f360578cc0fb5e37af46c139b99eb108fa5099e936b99701335e8"
     }
   ],
   "thermo-fisher": [

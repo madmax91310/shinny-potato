@@ -1,0 +1,139 @@
+{
+  "checkedAt": "2026-10-26T12:54:58.021728+00:00",
+  "baseMaster": "21671ca1e756820404552c99313ca5e5c754dd79",
+  "coverage": {
+    "companies": 203,
+    "previousLogos": 70,
+    "added": 132,
+    "logos": 202,
+    "initials": 1,
+    "primaryCompanies": 116,
+    "primaryLogos": 115
+  },
+  "sourceFilesChangedOutsideLogoScope": false,
+  "checks": {
+    "npmVerifyFactsheetTweets": "passed",
+    "npmTestIndexConcentration": "passed",
+    "npmLint": "passed; existing repository warnings",
+    "npmBuild": "passed; route budgets and published coverage audits included",
+    "logoRegistryHashesAndSelfContainedSvg": "passed",
+    "contactSheets": {
+      "logos": 132,
+      "sizes": [
+        122,
+        68
+      ],
+      "decodedAndNonempty": true,
+      "visuallyInspected": true
+    },
+    "mainRenders": {
+      "indices": 55,
+      "includingSyntheticCases": 65,
+      "variantCurrencyRenders": 175,
+      "decodedLogos": 202,
+      "overflows": 0,
+      "textLogoOverlaps": 0
+    },
+    "logoFailures": [
+      {
+        "mode": "missing",
+        "elapsed": 111.5,
+        "recovered": true
+      },
+      {
+        "mode": "corrupt",
+        "elapsed": 868.7000000011176,
+        "recovered": true
+      },
+      {
+        "mode": "zero-size",
+        "elapsed": 130.5,
+        "recovered": true
+      },
+      {
+        "mode": "delayed",
+        "elapsed": 1100.4000000003725,
+        "recovered": true
+      },
+      {
+        "mode": "timeout",
+        "elapsed": 5106,
+        "recovered": true
+      }
+    ],
+    "qualifiedTop10Renders": 34,
+    "compiledUi": {
+      "desktop": true,
+      "iphone13Emulated": true,
+      "realDownloads": 6,
+      "previewPngByteEquality": true,
+      "rapidSelectionWithDelayedLogo": true,
+      "currency": "EUR",
+      "unhandledErrors": 0
+    },
+    "beforeAfter": [
+      {
+        "id": "nasdaq-pea",
+        "mode": "main",
+        "labelsUnchanged": true,
+        "changed": 6448,
+        "outside": 0
+      },
+      {
+        "id": "sp500-pea",
+        "mode": "main",
+        "labelsUnchanged": true,
+        "changed": 0,
+        "outside": 0
+      },
+      {
+        "id": "cac40",
+        "mode": "main",
+        "labelsUnchanged": true,
+        "changed": 4255,
+        "outside": 0
+      },
+      {
+        "id": "world",
+        "mode": "main",
+        "labelsUnchanged": true,
+        "changed": 0,
+        "outside": 0
+      },
+      {
+        "id": "msci-em-latin-america-selection",
+        "mode": "main",
+        "labelsUnchanged": true,
+        "changed": 36494,
+        "outside": 0
+      },
+      {
+        "id": "msci-world-enhanced-value",
+        "mode": "main",
+        "labelsUnchanged": true,
+        "changed": 11863,
+        "outside": 0
+      },
+      {
+        "id": "nasdaq-pea",
+        "mode": "top10",
+        "labelsUnchanged": true,
+        "changed": 5463,
+        "outside": 0
+      },
+      {
+        "id": "world",
+        "mode": "top10",
+        "labelsUnchanged": true,
+        "changed": 2395,
+        "outside": 0
+      }
+    ]
+  },
+  "delivery": {
+    "pullRequest": "pending",
+    "pages": "pending",
+    "publicBuildInfo": "pending",
+    "publicPngDownloads": "pending"
+  }
+}

@@ -29,7 +29,7 @@ export async function verifyReliefLogos(browser, base) {
     CanvasRenderingContext2D.prototype.fillText=function(t,x,y,...args){
       const m=this.measureText(t);labels.push(String(t));boxes.push({text:String(t),l:x-m.actualBoundingBoxLeft,r:x+m.actualBoundingBoxRight,t:y-m.actualBoundingBoxAscent,b:y+m.actualBoundingBoxDescent,color:this.fillStyle});return original.call(this,t,x,y,...args)
     }
-    CanvasRenderingContext2D.prototype.drawImage=function(image,x,y,w,h,...args){if(image.src&&!image.src.includes('/index-flags/')&&Math.abs(w/h-image.width/image.height)>1e-6)throw new Error('Distorted logo '+image.src);if(/\.(png|avif|webp)(?:[?#]|$)/.test(image.src??'')&&(w>image.width+.01||h>image.height+.01))throw new Error('Upscaled raster '+image.src);if(image.src&&!image.src.includes('/index-flags/'))imageBoxes.push({l:x,r:x+w,t:y,b:y+h,file:image.src});return drawImage.call(this,image,x,y,w,h,...args)}
+    CanvasRenderingContext2D.prototype.drawImage=function(image,x,y,w,h,...args){if(image.src&&!image.src.includes('/index-flags/')&&Math.abs(w/h-image.width/image.height)>1e-6)throw new Error('Distorted logo '+image.src);if(/\.(png|jpe?g|avif|webp|gif)(?:[?#]|$)/.test(image.src??'')&&(w>image.width+.01||h>image.height+.01))throw new Error('Upscaled raster '+image.src);if(image.src&&!image.src.includes('/index-flags/'))imageBoxes.push({l:x,r:x+w,t:y,b:y+h,file:image.src});return drawImage.call(this,image,x,y,w,h,...args)}
     try{
       for(const s of SHEETS)for(const variant of ['native',...factsheetVariants(s)]){
         const version=factsheetInVariant(s,variant)

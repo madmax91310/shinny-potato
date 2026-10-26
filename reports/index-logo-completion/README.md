@@ -1,6 +1,6 @@
-# Complément des logos des indices — chantier en cours
+# Complément des logos des indices
 
-Base : `master` `93affb1d012ec8fede186784c4887dd7e486bc41`, après #971. Branche locale : `feat/index-company-logo-completion`. Les PR concurrentes #974 et #976 ont été examinées avant modification. Leurs refactorisations et collectes financières restent hors périmètre.
+Base initiale : `master` `93affb1d012ec8fede186784c4887dd7e486bc41`, après #971. Les 22 évolutions indépendantes jusqu’à `21671ca1e756820404552c99313ca5e5c754dd79` ont ensuite été intégrées, dont #974 et #976 ; le recensement a été régénéré et reste à 203 entreprises / 560 apparitions. Branche : `feat/index-company-logo-completion`. Les PR concurrentes #974 et #976 ont été examinées avant modification. Leurs refactorisations et collectes financières restent hors périmètre. Les PR ouvertes #977 et #978 ont également été contrôlées : leurs fichiers de collecte et d’historique DCA sont préservés.
 
 Le rendu validé est conservé : ivoire, pêche, lavande, turquoise et relief. La mention « bleu glacier » a été explicitement écartée par l’utilisateur. Aucune composition, pondération, performance, conversion, qualification ou collecte n’est modifiée.
 
@@ -11,24 +11,28 @@ Le [recensement initial réel](before.json) a été recalculé depuis les donné
 | Mesure | Avant | État local actuel |
 |---|---:|---:|
 | Entreprises distinctes | 203 | 203 |
-| Logos locaux disponibles | 70 | 174 |
-| Ajouts de ce chantier | — | 104 |
-| Entreprises en initiales | 133 | 29 |
+| Logos locaux disponibles | 70 | 202 |
+| Ajouts de ce chantier | — | 132 |
+| Entreprises en initiales | 133 | 1 |
 | Entreprises des fiches principales | 116 | 116 |
-| Logos dans les fiches principales | 51 | 102 |
-| Initiales dans les fiches principales | 65 | 14 |
+| Logos dans les fiches principales | 51 | 115 |
+| Initiales dans les fiches principales | 65 | 1 |
 
-Les 70 fichiers de départ comprennent les 48 réutilisations et les 22 ajouts de #971 ; ces 22 ne sont pas recomptés dans les 104 ajouts actuels. Le [bilan détaillé](logo-coverage.json), le [CSV](logo-coverage.csv), la [liste des ajouts](added.json) et les [provenances](../../public/asset-art/index-logos/sources.json) permettent de vérifier les compteurs.
+Les 70 fichiers de départ comprennent les 48 réutilisations et les 22 ajouts de #971 ; ces 22 ne sont pas recomptés dans les 132 ajouts actuels. Le [bilan détaillé](logo-coverage.json), le [CSV](logo-coverage.csv), la [liste des ajouts](added.json) et les [provenances](../../public/asset-art/index-logos/sources.json) permettent de vérifier les compteurs.
 
 Le raccordement explicite contient désormais 184 ISIN issus des positions déjà affichables, avec leurs preuves dans les apparitions du recensement. Le nouvel alias exact `Micron Technology Inc.` est synchronisé avec l’identité Micron existante : il ne crée pas une entreprise supplémentaire. Le générateur privilégie les ISIN vérifiés et refuse un conflit nom/identifiant. Les classes Alphabet et Samsung conservent leur identité commune de marque et leurs traitements financiers préexistants ; les autres entreprises Samsung restent séparées.
 
 ## Recherche et limites encore ouvertes
 
-Les **133 entreprises initialement manquantes** ont toutes été examinées. Le [journal des sources](source-research.json) distingue pages, CSS, navigateur, réponses HTTP et candidats ; un candidat n’est jamais compté comme couvert. Les [29 dossiers ouverts](unresolved.json) donnent pour chaque entreprise les identifiants, sa priorité, les sources effectivement interrogées, les réponses, le défaut constaté et les pistes officielles restantes.
+Les **133 entreprises initialement manquantes** ont toutes été examinées : **132 logos officiels ajoutés**, un seul cas conservé en initiales. Le [journal des sources](source-research.json), le [bilan de recherche exhaustif](research-complete.json) et les [preuves complémentaires](remote-source-research.json) distinguent pages, CSS, navigateur, réponses HTTP et candidats rejetés. Un candidat n’est jamais compté comme couvert.
 
-Depuis environ 11:44 UTC le 26 octobre 2026, le proxy de l’environnement renvoie HTTP 503 (`remote connection failure`, `cloudflare_https_tunnel`) sur tous les nouveaux accès, y compris GitHub. L’état de l’environnement annonce pourtant un réseau unrestricted/enforced et connecté. Les tentatives Git et HTTP reproduisent cette panne. Elle empêche de finir plusieurs téléchargements officiels, de pousser la branche et de livrer en production. **Ce n’est pas une preuve que les 29 logos sont introuvables ; le chantier n’est pas terminé.**
+[Berkshire Hathaway](unresolved.json) reste en initiales. La page corporate affiche son nom en texte HTML ; son seul fichier image représente GEICO, une filiale. Les deux premières pages du rapport annuel officiel 2025 ne contiennent pas d’images intégrées (`pdfimages -f 1 -l 2 -list`). Aucun fichier de marque officiel autonome exploitable n’a été identifié dans les sources consultées. Aucune typographie reconstruite, vectorisation tierce ou marque de Berkshire Hathaway HomeServices n’a été substituée. Le dossier conserve les URL, empreintes et constats ; il ne prétend pas prouver l’absence d’un logo partout.
 
-Des ressources ont été volontairement rejetées : Nu (44 × 24 px, pixellisé), le bandeau SK Hynix Newsroom (illisible à la taille réelle), le SVG Deutsche Telekom dépendant encore d’un sprite distant, un candidat photo Alibaba, des logos de filiales proposés sur les sites Berkshire/Unipol et des logos de clients de Cisco/Motorola. Aucun logo de maison mère n’est automatiquement substitué à une filiale.
+Une panne temporaire du proxy a empêché les téléchargements du terminal vers 11:44–12:34 UTC. La recherche a continué sur une branche GitHub isolée, avec contrôle TLS conservé et revue humaine des candidats ; aucun de ces scripts de collecte temporaires n’est ajouté à la branche produit. Après rétablissement, les derniers fichiers ont été récupérés et `master` actualisé. Les cas accessibles n’ont pas été abandonnés à cause de cette panne.
+
+Des candidats ont été rejetés puis remplacés : Nu (PNG RI de 44 × 24 px → PNG officiel de 1722 × 937 px du kit presse), le bandeau SK Hynix Newsroom (→ marque du pied de page corporate), le symbole Deutsche Telekom distant (→ SVG autonome extrait du sprite officiel), une photo Alibaba (→ marque du bandeau), des marques de clients de Cisco/Motorola et celles de filiales sur les pages Berkshire/Unipol. Aucun logo de maison mère n’est automatiquement substitué à celui d’une filiale.
+
+Le logo American Tower provient du fichier fourni par l’émetteur dans son propre communiqué officiel Business Wire ; l’identifiant du communiqué est lié depuis ses RI. Il ne provient pas d’un catalogue de logos. Pour Chevron, le groupe vectoriel complet de la marque corporate est extrait sans changer ses tracés de l’en-tête officiel Brand Center ; son intitulé de portail séparé est exclu. Les marges blanches extérieures du JPEG Sanofi sont recadrées sans changer les pixels conservés. Ces transformations et leurs empreintes d’origine sont explicites dans le manifeste.
 
 Les changements de nom Everpure et Vivmark ont été contrôlés sur les publications des sociétés :
 
@@ -46,11 +50,11 @@ Le chargement attend maintenant `decode()` et des dimensions non nulles. Une err
 
 ## Preuves visuelles
 
-Les [104 marques contrôlées](visual-checks.json) sont décodées et non vides. Les six planches montrent chacune les **deux supports réellement utilisés**, de 122 px et 68 px :
+Les [132 marques contrôlées](visual-checks.json) sont décodées et non vides. Les sept planches montrent chacune les **deux supports réellement utilisés**, de 122 px et 68 px :
 
-[1](previews/logos-1.png) · [2](previews/logos-2.png) · [3](previews/logos-3.png) · [4](previews/logos-4.png) · [5](previews/logos-5.png) · [6](previews/logos-6.png).
+[1](previews/logos-1.png) · [2](previews/logos-2.png) · [3](previews/logos-3.png) · [4](previews/logos-4.png) · [5](previews/logos-5.png) · [6](previews/logos-6.png) · [7](previews/logos-7.png).
 
-Les [huit comparaisons avant/après](render-comparison.json) utilisent les mêmes données et le même moteur, avec le registre de départ puis le registre actuel. Textes, positions et pixels hors supports de logos sont strictement identiques.
+Les PNG de preuve sont compressés sans perte ; les [empreintes des pixels conservés](png-proof-integrity.json) en attestent. Les [huit comparaisons avant/après](render-comparison.json) utilisent les mêmes données et le même moteur, avec le registre de départ puis le registre actuel. Textes, positions et pixels hors supports de logos sont strictement identiques.
 
 | Exemple | Avant | Après |
 |---|---|---|
@@ -73,4 +77,4 @@ Les [huit comparaisons avant/après](render-comparison.json) utilisent les même
 - `node scripts/compare-index-logo-rendering.mjs` : PNG avant/après et comparaison pixel/textes hors logos.
 - `node scripts/playwright-index-relief.mjs` : application compilée, parcours ordinateur/iPhone, changement rapide avec logo retardé, devises et égalité binaire aperçu/téléchargement.
 
-Les statuts effectivement obtenus figurent dans [validation.json](validation.json). La PR, la fusion, le déploiement Pages, `build-info.json` public et le téléchargement sur le site public restent à effectuer après rétablissement du réseau et résolution des cas accessibles restants. Aucun déploiement de ce chantier n’est annoncé.
+Les statuts effectivement obtenus figurent dans [validation.json](validation.json). La PR, la fusion puis les vérifications Pages / `build-info.json` / téléchargements publics sont consignées au fur et à mesure dans le même bilan de validation.

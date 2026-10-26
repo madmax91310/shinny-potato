@@ -554,5 +554,96 @@
         "htmlSha256": "405f2e785ea0a11b3066bf52ab3829a2894d0cc478e44ea3e4b227aba38e965e"
       }
     ]
+  },
+  {
+    "id": "hdfc",
+    "asset": {
+      "file": "hdfc-asset-0.png",
+      "source": "https://s7ap1.scene7.com/is/image/hdfcbankPWS/HDFC-logo?fmt=png-alpha",
+      "sha256": "65344dbe7ac5a49f940195ff75bc00d8c3354557cbed1c5f1eebdf7987c4e40c",
+      "bytes": 7606
+    },
+    "attempts": []
+  },
+  {
+    "id": "gold-fields",
+    "asset": {
+      "context": "<img src=\"images/gold-fields-logo.svg\" class=\"desktop\"> <a href=\"index.php\"><img src=\"images/gold-fields-logo.svg\" class=\"desktop\"><img src=\"images/icon-logo-mobile.png\" class=\"mobile\"></a> <div class=\"logo\">\n<a href=\"index.php\"><img src=\"images/gold-fields-logo.svg\" class=\"desktop\"><img src=\"images/icon-logo-mobile.png\" class=\"mobile\"></a>\n</div> <header>\n\n<style>\n.careers-bg{background:#C8A064}\n.careers-bg a{color:#fff}\n</style>\n\n<div class=\"logo\">\n<a href=\"index.php\"><img src=\"images/gold-fields-logo.svg\" class=\"desktop\"><img src=\"images/icon-logo-mobile.png\" class=\"mobile\"></a>\n</div>\n<div",
+      "url": "https://www.goldfields.com/images/gold-fields-logo.svg",
+      "file": "gold-fields-0-2.svg",
+      "page": "https://www.goldfields.com/",
+      "sha256": "99756840c10e36d543fcc8a66eec3e99240c20598978d6cdefb37f8a61c8ec30",
+      "bytes": 21387
+    },
+    "attempts": [
+      {
+        "url": "https://www.goldfields.com/",
+        "status": 200,
+        "finalUrl": "https://www.goldfields.com/",
+        "title": "Home | Gold Fields",
+        "htmlSha256": "1891723a64c5e5a53d350c8c60b0ae7ed1d13486e2d2382362af34e9ae2b280e"
+      }
+    ]
+  },
+  {
+    "id": "kweichow-moutai",
+    "asset": {
+      "context": "<img src=\"/uiFramework/commonResource/image/2024070813271024600.png\"> <div class=\"mt_logo clearfix\"> \n  <img src=\"/uiFramework/commonResource/image/2024070813271024600.png\"> \n  <p><span>—</span>&nbsp;&nbsp;&nbsp;欢迎光临&nbsp;&nbsp;&nbsp;<span>—</span></p> \n </div> <div class=\"mt_nr clearfix\" opentype=\"page\"> \n <div class=\"mt_logo clearfix\"> \n  <img src=\"/uiFramework/commonResource/image/2024070813271024600.png\"> \n  <p><span>—</span>&nbsp;&nbsp;&nbsp;欢迎光临&nbsp;&nbsp;&nbsp;<span>—</span></p> \n </div> \n <div class=\"mt_text clearfix\"> \n  <p>在浏览网页之前，为践行社会理性饮酒倡导，保证 <div>\n   \n\n\n<div class=\"mt_nr clearfi",
+      "url": "https://www.moutaichina.com/uiFramework/commonResource/image/2024070813271024600.png",
+      "file": "kweichow-moutai-0-0.png",
+      "page": "https://www.moutaichina.com/",
+      "sha256": "50f0d2d2caf1290415fdbc801e98b0a712ea876bd1832e614e57b162592483ca",
+      "bytes": 6731
+    },
+    "attempts": [
+      {
+        "url": "https://www.moutaichina.com/",
+        "status": 200,
+        "finalUrl": "https://www.moutaichina.com/",
+        "title": "入网口",
+        "htmlSha256": "b30a4eaf1bec4ebe38b586b32beeaa45e96fb8346d24f7fd602c2153bb68bb8f"
+      },
+      {
+        "url": "https://www.moutaichina.com/maotai/gutai/",
+        "status": 404,
+        "finalUrl": "https://www.moutaichina.com/maotai/gutai/",
+        "title": "404 - 页面不存在",
+        "htmlSha256": "824e028d2a843f02c3154d77ae3f88ab56f5979dda954de42773e0022006b58a"
+      }
+    ]
+  },
+  {
+    "id": "chevron",
+    "asset": {
+      "context": "<img src=\"/images/logo_brand_center.svg\"> <a href=\"/site/login\"><img src=\"/images/logo_brand_center.svg\"></a> <div class=\"logo\">\n              <a href=\"/site/login\"><img src=\"/images/logo_brand_center.svg\"></a>\n            </div> <div class=\"inner fc\">\n            <div class=\"logo\">\n              <a href=\"/site/login\"><img src=\"/images/logo_brand_center.svg\"></a>\n            </div>\n            <span class=\"clear\"></span>\n        </div> <div class=\"header col-1\">\n        <div class=\"inner fc\">\n            <div class=\"logo\">\n              <a href=\"/site/login\"><img src=\"/images/logo_brand_center",
+      "url": "https://www.chevronbrand.com/images/logo_brand_center.svg",
+      "file": "chevron-1-0.svg",
+      "page": "https://www.chevronbrand.com/site/login",
+      "sha256": "9263fa7c14639e0afd3bfa31667b47af25112dc48e13e961f6bdc39516d58ee2",
+      "bytes": 15424
+    },
+    "attempts": [
+      {
+        "url": "https://www.sec.gov/Archives/edgar/data/93410/000119312526145617/d77994ddef14a.htm",
+        "status": 403,
+        "finalUrl": "https://www.sec.gov/Archives/edgar/data/93410/000119312526145617/d77994ddef14a.htm",
+        "title": "SEC.gov | Your Request Originates from an Undeclared Automated Tool",
+        "htmlSha256": "46ac93df38ea21c9a720148da2a967609716b1d1dd7157df1abaaef0ff8ed8f2"
+      },
+      {
+        "url": "https://www.chevronbrand.com/",
+        "status": 200,
+        "finalUrl": "https://www.chevronbrand.com/site/login",
+        "title": "Chevron Brand Center - Site Login",
+        "htmlSha256": "35ce917a8f3f4bbce1063592bda9aa63d51f44876c84fc25cb44c1c0defabd75"
+      },
+      {
+        "url": "https://www.chevronlubricants.com/en_us/home.html",
+        "status": 200,
+        "finalUrl": "https://www.chevronlubricants.com/",
+        "title": "Premium Lubricants and Coolants | Chevron Lubricants (US)",
+        "htmlSha256": "7ea56ccb2023063466c02d5be6243ad40f628223150ec26b42c254d0a864bb23"
+      }
+    ]
   }
 ]

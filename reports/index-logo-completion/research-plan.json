@@ -1,20 +1,17 @@
 {
   "10x-genomics": {
-    "pages": [
-      "https://www.10xgenomics.com/",
-      "https://investors.10xgenomics.com/"
-    ],
     "priority": "main",
     "names": [
       "10X GENOMICS INC-CLASS A"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.10xgenomics.com/",
+      "https://investors.10xgenomics.com/"
+    ],
+    "verifiedOfficialPage": "https://investors.10xgenomics.com/overview/default.aspx"
   },
   "abbvie": {
-    "pages": [
-      "https://www.abbvie.com/",
-      "https://news.abbvie.com/"
-    ],
     "priority": "main",
     "names": [
       "ABBVIE",
@@ -22,12 +19,14 @@
     ],
     "securities": [
       "US00287Y1091"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.abbvie.com/",
+      "https://news.abbvie.com/"
+    ],
+    "verifiedOfficialPage": "https://news.abbvie.com/"
   },
   "ageas": {
-    "pages": [
-      "https://www.ageas.com/"
-    ],
     "priority": "main",
     "names": [
       "AGEAS",
@@ -35,23 +34,24 @@
     ],
     "securities": [
       "BE0974264930"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.ageas.com/"
+    ],
+    "verifiedOfficialPage": "https://www.ageas.com/en"
   },
   "al-rajhi": {
-    "pages": [
-      "https://www.alrajhibank.com.sa/en"
-    ],
     "priority": "main",
     "names": [
       "AL RAJHI BANKING & INV"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.alrajhibank.com.sa/en"
+    ],
+    "verifiedOfficialPage": "https://www.alrajhibank.com.sa/en"
   },
   "alibaba": {
-    "pages": [
-      "https://www.alibabagroup.com/en-US/",
-      "https://www.alibabagroup.com/en-US/media-library"
-    ],
     "priority": "main",
     "names": [
       "ALIBABA GRP HLDG (HK)",
@@ -60,13 +60,14 @@
     ],
     "securities": [
       "KYG017191142"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.alibabagroup.com/en-US/",
+      "https://www.alibabagroup.com/en-US/media-library"
+    ],
+    "verifiedOfficialPage": "https://www.alibabagroup.com/en-US/media-library"
   },
   "alphabet": {
-    "pages": [
-      "https://abc.xyz/",
-      "https://abc.xyz/investor/"
-    ],
     "priority": "main",
     "names": [
       "ALPHABET A",
@@ -76,46 +77,51 @@
     "securities": [
       "US02079K3059",
       "US02079K1079"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://abc.xyz/",
+      "https://abc.xyz/investor/"
+    ],
+    "verifiedOfficialPage": "https://abc.xyz/"
   },
   "amgen": {
-    "pages": [
-      "https://www.amgen.com/",
-      "https://www.amgen.com/newsroom"
-    ],
     "priority": "main",
     "names": [
       "AMGEN INC"
     ],
     "securities": [
       "US0311621009"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.amgen.com/",
+      "https://www.amgen.com/newsroom"
+    ],
+    "verifiedOfficialPage": "https://www.amgen.com/"
   },
   "anglogold": {
-    "pages": [
-      "https://www.anglogoldashanti.com/"
-    ],
     "priority": "main",
     "names": [
       "ANGLOGOLD ASHANTI"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.anglogoldashanti.com/"
+    ],
+    "verifiedOfficialPage": "https://www.anglogoldashanti.com/"
   },
   "banorte": {
-    "pages": [
-      "https://www.banorte.com/",
-      "https://investors.banorte.com/"
-    ],
     "priority": "main",
     "names": [
       "GRUPO FIN BANORTE O"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.banorte.com/",
+      "https://investors.banorte.com/"
+    ],
+    "verifiedOfficialPage": "https://www.banorte.com/"
   },
   "berkshire": {
-    "pages": [
-      "https://www.berkshirehathaway.com/"
-    ],
     "priority": "main",
     "names": [
       "BERKSHIRE HATHAWAY B",
@@ -123,13 +129,12 @@
     ],
     "securities": [
       "US0846707026"
+    ],
+    "initialCandidatePages": [
+      "https://www.berkshirehathaway.com/"
     ]
   },
   "bharti-airtel": {
-    "pages": [
-      "https://www.airtel.com/",
-      "https://www.bharti.com/"
-    ],
     "priority": "main",
     "names": [
       "BHARTI AIRTEL",
@@ -137,24 +142,26 @@
     ],
     "securities": [
       "INE397D01024"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.airtel.com/",
+      "https://www.bharti.com/"
+    ],
+    "verifiedOfficialPage": "https://www.airtel.in/b2b/global-connectivity-solutions"
   },
   "bradesco": {
-    "pages": [
-      "https://banco.bradesco/",
-      "https://www.bradescori.com.br/en/"
-    ],
     "priority": "main",
     "names": [
       "BANCO BRADESCO PN"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://banco.bradesco/",
+      "https://www.bradescori.com.br/en/"
+    ],
+    "verifiedOfficialPage": "https://www.bradescori.com.br/en/"
   },
   "caterpillar": {
-    "pages": [
-      "https://www.caterpillar.com/",
-      "https://www.caterpillar.com/en/news/media-information.html"
-    ],
     "priority": "main",
     "names": [
       "CATERPILLAR",
@@ -162,23 +169,25 @@
     ],
     "securities": [
       "US1491231015"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.caterpillar.com/",
+      "https://www.caterpillar.com/en/news/media-information.html"
+    ],
+    "verifiedOfficialPage": "https://www.caterpillar.com/"
   },
   "catl": {
-    "pages": [
-      "https://www.catl.com/en/"
-    ],
     "priority": "main",
     "names": [
       "CONTEMPORARY AMP A(HK-C)"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.catl.com/en/"
+    ],
+    "verifiedOfficialPage": "https://www.catl.com/en/"
   },
   "chevron": {
-    "pages": [
-      "https://www.chevron.com/",
-      "https://www.chevron.com/newsroom"
-    ],
     "priority": "main",
     "names": [
       "CHEVRON",
@@ -187,13 +196,14 @@
     ],
     "securities": [
       "US1667641005"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.chevron.com/",
+      "https://www.chevron.com/newsroom"
+    ],
+    "verifiedOfficialPage": "https://www.chevronbrand.com/site/login"
   },
   "china-construction-bank": {
-    "pages": [
-      "https://en.ccb.com/",
-      "https://www.ccb.com/en/home/indexv3.html"
-    ],
     "priority": "main",
     "names": [
       "CHINA CONSTRUCTION BK H",
@@ -203,24 +213,26 @@
     "securities": [
       "CNE1000002H1",
       "CNE100000742"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://en.ccb.com/",
+      "https://www.ccb.com/en/home/indexv3.html"
+    ],
+    "verifiedOfficialPage": "https://member3.ccb.com/en/newccbtoday/v3/corporateculture/ccbculture.html?ptId=3"
   },
   "china-merchants-bank": {
-    "pages": [
-      "https://english.cmbchina.com/",
-      "https://www.cmbchina.com/"
-    ],
     "priority": "main",
     "names": [
       "CHINA MERCH BK A (HK-C)"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://english.cmbchina.com/",
+      "https://www.cmbchina.com/"
+    ],
+    "verifiedOfficialPage": "https://www.cmbchina.com/"
   },
   "cisco": {
-    "pages": [
-      "https://www.cisco.com/",
-      "https://newsroom.cisco.com/"
-    ],
     "priority": "main",
     "names": [
       "CISCO SYSTEMS",
@@ -229,34 +241,38 @@
     ],
     "securities": [
       "US17275R1023"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.cisco.com/",
+      "https://newsroom.cisco.com/"
+    ],
+    "verifiedOfficialPage": "https://newsroom.cisco.com/c/r/newsroom/en/us/index.html"
   },
   "credicorp": {
-    "pages": [
-      "https://www.grupocredicorp.com/",
-      "https://credicorp.gcs-web.com/"
-    ],
     "priority": "main",
     "names": [
       "CREDICORP"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.grupocredicorp.com/",
+      "https://credicorp.gcs-web.com/"
+    ],
+    "verifiedOfficialPage": "https://grupocredicorp.com/"
   },
   "crowdstrike": {
-    "pages": [
-      "https://www.crowdstrike.com/en-us/",
-      "https://ir.crowdstrike.com/"
-    ],
     "priority": "main",
     "names": [
       "CROWDSTRIKE HOLDINGS INC - A"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.crowdstrike.com/en-us/",
+      "https://ir.crowdstrike.com/"
+    ],
+    "verifiedOfficialPage": "https://www.crowdstrike.com/en-us/"
   },
   "digital-realty": {
-    "pages": [
-      "https://www.digitalrealty.com/"
-    ],
     "priority": "main",
     "names": [
       "DIGITAL REALTY TRUST REIT",
@@ -264,26 +280,27 @@
     ],
     "securities": [
       "US2538681030"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.digitalrealty.com/"
+    ],
+    "verifiedOfficialPage": "https://www.digitalrealty.com/"
   },
   "duke-energy": {
-    "pages": [
-      "https://www.duke-energy.com/",
-      "https://news.duke-energy.com/"
-    ],
     "priority": "main",
     "names": [
       "DUKE ENERGY CORP"
     ],
     "securities": [
       "US26441C2044"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.duke-energy.com/",
+      "https://news.duke-energy.com/"
+    ],
+    "verifiedOfficialPage": "https://news.duke-energy.com/"
   },
   "equinix": {
-    "pages": [
-      "https://www.equinix.com/",
-      "https://www.equinix.com/newsroom"
-    ],
     "priority": "main",
     "names": [
       "EQUINIX REIT",
@@ -291,66 +308,72 @@
     ],
     "securities": [
       "US29444U7000"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.equinix.com/",
+      "https://www.equinix.com/newsroom"
+    ],
+    "verifiedOfficialPage": "https://www.equinix.com/"
   },
   "everpure": {
-    "pages": [
-      "https://www.everpuredata.com/",
-      "https://www.purestorage.com/"
-    ],
     "priority": "main",
     "names": [
       "EVERPURE INC-A"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.everpuredata.com/",
+      "https://www.purestorage.com/"
+    ],
+    "verifiedOfficialPage": "https://www.everpuredata.com/"
   },
   "fast-retailing": {
-    "pages": [
-      "https://www.fastretailing.com/eng/"
-    ],
     "priority": "main",
     "names": [
       "FAST RETAILING CO., LTD."
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.fastretailing.com/eng/"
+    ],
+    "verifiedOfficialPage": "https://www.fastretailing.com/eng/"
   },
   "gold-fields": {
-    "pages": [
-      "https://www.goldfields.com/"
-    ],
     "priority": "main",
     "names": [
       "GOLD FIELDS"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.goldfields.com/"
+    ],
+    "verifiedOfficialPage": "https://www.goldfields.com/"
   },
   "gs-holdings": {
-    "pages": [
-      "https://www.gs.co.kr/en/",
-      "https://www.gs.co.kr/"
-    ],
     "priority": "main",
     "names": [
       "GS Holdings Corp"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.gs.co.kr/en/",
+      "https://www.gs.co.kr/"
+    ],
+    "verifiedOfficialPage": "https://www.gs.co.kr/en/"
   },
   "guardant": {
-    "pages": [
-      "https://guardanthealth.com/",
-      "https://investors.guardanthealth.com/"
-    ],
     "priority": "main",
     "names": [
       "GUARDANT HEALTH"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://guardanthealth.com/",
+      "https://investors.guardanthealth.com/"
+    ],
+    "verifiedOfficialPage": "https://guardanthealth.com/"
   },
   "hdfc": {
-    "pages": [
-      "https://www.hdfcbank.com/",
-      "https://www.hdfcbank.com/personal/about-us"
-    ],
     "priority": "main",
     "names": [
       "HDFC BANK",
@@ -358,37 +381,40 @@
     ],
     "securities": [
       "INE040A01034"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.hdfcbank.com/",
+      "https://www.hdfcbank.com/personal/about-us"
+    ],
+    "verifiedOfficialPage": "https://www.hdfc.bank.in/news-room"
   },
   "highwoods": {
-    "pages": [
-      "https://www.highwoods.com/",
-      "https://investors.highwoods.com/"
-    ],
     "priority": "main",
     "names": [
       "Highwoods Properties"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.highwoods.com/",
+      "https://investors.highwoods.com/"
+    ],
+    "verifiedOfficialPage": "https://www.highwoods.com/"
   },
   "home-depot": {
-    "pages": [
-      "https://corporate.homedepot.com/",
-      "https://ir.homedepot.com/"
-    ],
     "priority": "main",
     "names": [
       "HOME DEPOT"
     ],
     "securities": [
       "US4370761029"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://corporate.homedepot.com/",
+      "https://ir.homedepot.com/"
+    ],
+    "verifiedOfficialPage": "https://corporate.homedepot.com/"
   },
   "icbc": {
-    "pages": [
-      "https://www.icbc-ltd.com/en/",
-      "https://www.icbc.com.cn/en/"
-    ],
     "priority": "main",
     "names": [
       "ICBC",
@@ -398,37 +424,40 @@
     "securities": [
       "CNE1000003G1",
       "CNE000001P37"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.icbc-ltd.com/en/",
+      "https://www.icbc.com.cn/en/"
+    ],
+    "verifiedOfficialPage": "https://www.icbc.com.cn/"
   },
   "illumina": {
-    "pages": [
-      "https://www.illumina.com/",
-      "https://www.illumina.com/company/news-center/media-library.html"
-    ],
     "priority": "main",
     "names": [
       "ILLUMINA INC"
     ],
     "securities": [
       "US4523271090"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.illumina.com/",
+      "https://www.illumina.com/company/news-center/media-library.html"
+    ],
+    "verifiedOfficialPage": "https://www.illumina.com/"
   },
   "itau": {
-    "pages": [
-      "https://www.itau.com.br/",
-      "https://www.itau.com.br/relacoes-com-investidores/en/"
-    ],
     "priority": "main",
     "names": [
       "ITAU UNIBANCO PN"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.itau.com.br/",
+      "https://www.itau.com.br/relacoes-com-investidores/en/"
+    ],
+    "verifiedOfficialPage": "https://www.itau.com.br/"
   },
   "jfrog": {
-    "pages": [
-      "https://jfrog.com/",
-      "https://investors.jfrog.com/"
-    ],
     "priority": "main",
     "names": [
       "JFROG LTD",
@@ -436,24 +465,26 @@
     ],
     "securities": [
       "IL0011684185"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://jfrog.com/",
+      "https://investors.jfrog.com/"
+    ],
+    "verifiedOfficialPage": "https://jfrog.com/"
   },
   "kweichow-moutai": {
-    "pages": [
-      "https://www.moutaichina.com/",
-      "https://www.moutaichina.com/maotai/gutai/"
-    ],
     "priority": "main",
     "names": [
       "KWEICHOW MOUTAI A (HK-C)"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.moutaichina.com/",
+      "https://www.moutaichina.com/maotai/gutai/"
+    ],
+    "verifiedOfficialPage": "https://www.moutaichina.com/"
   },
   "mastercard": {
-    "pages": [
-      "https://www.mastercard.com/us/en.html",
-      "https://www.mastercard.com/brandcenter/en/home.html"
-    ],
     "priority": "main",
     "names": [
       "MASTERCARD A",
@@ -461,13 +492,14 @@
     ],
     "securities": [
       "US57636Q1040"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.mastercard.com/us/en.html",
+      "https://www.mastercard.com/brandcenter/en/home.html"
+    ],
+    "verifiedOfficialPage": "https://www.mastercard.com/brandcenter/us/en/home.html.html"
   },
   "micron": {
-    "pages": [
-      "https://www.micron.com/",
-      "https://investors.micron.com/"
-    ],
     "priority": "main",
     "names": [
       "MICRON TECHNOLOGY",
@@ -476,12 +508,14 @@
     ],
     "securities": [
       "US5951121038"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.micron.com/",
+      "https://investors.micron.com/"
+    ],
+    "verifiedOfficialPage": "https://www.micron.com/"
   },
   "mitsubishi-ufj": {
-    "pages": [
-      "https://www.mufg.jp/english/"
-    ],
     "priority": "main",
     "names": [
       "MITSUBISHI UFJ FIN",
@@ -490,13 +524,13 @@
     ],
     "securities": [
       "JP3902900004"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.mufg.jp/english/"
+    ],
+    "verifiedOfficialPage": "https://www.mufg.jp/english/"
   },
   "moderna": {
-    "pages": [
-      "https://www.modernatx.com/",
-      "https://investors.modernatx.com/"
-    ],
     "priority": "main",
     "names": [
       "MODERNA",
@@ -504,12 +538,14 @@
     ],
     "securities": [
       "US60770K1079"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.modernatx.com/",
+      "https://investors.modernatx.com/"
+    ],
+    "verifiedOfficialPage": "https://www.modernatx.com/"
   },
   "moog": {
-    "pages": [
-      "https://www.moog.com/"
-    ],
     "priority": "main",
     "names": [
       "MOOG INC-CL A",
@@ -517,34 +553,36 @@
     ],
     "securities": [
       "US6153942023"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.moog.com/"
+    ],
+    "verifiedOfficialPage": "https://www.moog.com/"
   },
   "naspers": {
-    "pages": [
-      "https://www.naspers.com/"
-    ],
     "priority": "main",
     "names": [
       "NASPERS N"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.naspers.com/"
+    ],
+    "verifiedOfficialPage": "https://www.naspers.com/"
   },
   "netflix": {
-    "pages": [
-      "https://about.netflix.com/en",
-      "https://brand.netflix.com/en/assets/logos/"
-    ],
     "priority": "main",
     "names": [
       "NETFLIX"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://about.netflix.com/en",
+      "https://brand.netflix.com/en/assets/logos/"
+    ],
+    "verifiedOfficialPage": "https://about.netflix.com/en"
   },
   "newmont": {
-    "pages": [
-      "https://www.newmont.com/",
-      "https://www.newmont.com/investors/"
-    ],
     "priority": "main",
     "names": [
       "NEWMONT",
@@ -552,23 +590,26 @@
     ],
     "securities": [
       "US6516391066"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.newmont.com/",
+      "https://www.newmont.com/investors/"
+    ],
+    "verifiedOfficialPage": "https://www.newmont.com/home/default.aspx"
   },
   "nu": {
-    "pages": [
-      "https://www.investidores.nu/en/",
-      "https://international.nubank.com.br/"
-    ],
     "priority": "main",
     "names": [
       "NU HOLDINGS A"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.investidores.nu/en/",
+      "https://international.nubank.com.br/"
+    ],
+    "verifiedOfficialPage": "https://nu.com/en/newsroom/press-kit"
   },
   "omv": {
-    "pages": [
-      "https://www.omv.com/en/"
-    ],
     "priority": "main",
     "names": [
       "OMV AG",
@@ -576,12 +617,13 @@
     ],
     "securities": [
       "AT0000743059"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.omv.com/en/"
+    ],
+    "verifiedOfficialPage": "https://www.omv.com/en"
   },
   "prologis": {
-    "pages": [
-      "https://www.prologis.com/"
-    ],
     "priority": "main",
     "names": [
       "PROLOGIS REIT",
@@ -589,13 +631,13 @@
     ],
     "securities": [
       "US74340W1036"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.prologis.com/"
+    ],
+    "verifiedOfficialPage": "https://ir.prologis.com/"
   },
   "roche": {
-    "pages": [
-      "https://www.roche.com/",
-      "https://www.roche.com/media"
-    ],
     "priority": "main",
     "names": [
       "ROCHE HLDG AG-GENUSS CHF",
@@ -605,50 +647,54 @@
     "securities": [
       "CH1499059983",
       "CH0012032113"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.roche.com/",
+      "https://www.roche.com/media"
+    ],
+    "verifiedOfficialPage": "https://www.roche.com/"
   },
   "rtx": {
-    "pages": [
-      "https://www.rtx.com/"
-    ],
     "priority": "main",
     "names": [
       "RTX"
     ],
     "securities": [
       "US75513E1010"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.rtx.com/"
+    ],
+    "verifiedOfficialPage": "https://www.rtx.com/"
   },
   "shell": {
-    "pages": [
-      "https://www.shell.com/",
-      "https://www.shell.com/media.html"
-    ],
     "priority": "main",
     "names": [
       "SHELL"
     ],
     "securities": [
       "GB00BP6MXD84"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.shell.com/",
+      "https://www.shell.com/media.html"
+    ],
+    "verifiedOfficialPage": "https://www.shell.com/"
   },
   "siemens-energy": {
-    "pages": [
-      "https://www.siemens-energy.com/global/en.html"
-    ],
     "priority": "main",
     "names": [
       "SIEMENS ENERGY AG"
     ],
     "securities": [
       "DE000ENER6Y0"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.siemens-energy.com/global/en.html"
+    ],
+    "verifiedOfficialPage": "https://www.siemens-energy.com/global/en/home.html"
   },
   "simon-property": {
-    "pages": [
-      "https://www.simon.com/",
-      "https://investors.simon.com/"
-    ],
     "priority": "main",
     "names": [
       "SIMON PROPERTY GROUP REIT INC",
@@ -656,13 +702,14 @@
     ],
     "securities": [
       "US8288061091"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.simon.com/",
+      "https://investors.simon.com/"
+    ],
+    "verifiedOfficialPage": "https://investors.simon.com/"
   },
   "sk-hynix": {
-    "pages": [
-      "https://www.skhynix.com/",
-      "https://news.skhynix.com/"
-    ],
     "priority": "main",
     "names": [
       "SK HYNIX",
@@ -670,12 +717,14 @@
     ],
     "securities": [
       "KR7000660001"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.skhynix.com/",
+      "https://news.skhynix.com/"
+    ],
+    "verifiedOfficialPage": "https://news.skhynix.com/en/"
   },
   "sk-square": {
-    "pages": [
-      "https://www.sksquare.com/eng/"
-    ],
     "priority": "main",
     "names": [
       "SK SQUARE",
@@ -683,12 +732,13 @@
     ],
     "securities": [
       "KR7402340004"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.sksquare.com/eng/"
+    ],
+    "verifiedOfficialPage": "https://www.sksquare.com/eng/index.do"
   },
   "sumitomo-mitsui": {
-    "pages": [
-      "https://www.smfg.co.jp/english/"
-    ],
     "priority": "main",
     "names": [
       "SUMITOMO MITSUI FINAN",
@@ -697,13 +747,13 @@
     ],
     "securities": [
       "JP3890350006"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.smfg.co.jp/english/"
+    ],
+    "verifiedOfficialPage": "https://www.smfg.co.jp/english/"
   },
   "teleperformance": {
-    "pages": [
-      "https://www.tp.com/en-us/",
-      "https://www.teleperformance.com/en-us/"
-    ],
     "priority": "main",
     "names": [
       "Teleperformance",
@@ -711,23 +761,26 @@
     ],
     "securities": [
       "FR0000051807"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.tp.com/en-us/",
+      "https://www.teleperformance.com/en-us/"
+    ],
+    "verifiedOfficialPage": "https://www.tp.com/en-us/"
   },
   "tenet": {
-    "pages": [
-      "https://www.tenethealth.com/",
-      "https://investor.tenethealth.com/"
-    ],
     "priority": "main",
     "names": [
       "TENET HEALTHCARE CORP"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.tenethealth.com/",
+      "https://investor.tenethealth.com/"
+    ],
+    "verifiedOfficialPage": "https://investor.tenethealth.com/home/default.aspx"
   },
   "tokyo-electron": {
-    "pages": [
-      "https://www.tel.com/"
-    ],
     "priority": "main",
     "names": [
       "TOKYO ELECTRON",
@@ -735,13 +788,13 @@
     ],
     "securities": [
       "JP3571400005"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.tel.com/"
+    ],
+    "verifiedOfficialPage": "https://www.tel.com/"
   },
   "totalenergies": {
-    "pages": [
-      "https://totalenergies.com/",
-      "https://totalenergies.com/media"
-    ],
     "priority": "main",
     "names": [
       "TOTALENERGIES",
@@ -749,13 +802,14 @@
     ],
     "securities": [
       "FR0000120271"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://totalenergies.com/",
+      "https://totalenergies.com/media"
+    ],
+    "verifiedOfficialPage": "https://totalenergies.com/"
   },
   "toyota": {
-    "pages": [
-      "https://global.toyota/en/",
-      "https://global.toyota/en/album/images/"
-    ],
     "priority": "main",
     "names": [
       "TOYOTA MOTOR",
@@ -763,13 +817,14 @@
     ],
     "securities": [
       "JP3633400001"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://global.toyota/en/",
+      "https://global.toyota/en/album/images/"
+    ],
+    "verifiedOfficialPage": "https://global.toyota/en/"
   },
   "twist": {
-    "pages": [
-      "https://www.twistbioscience.com/",
-      "https://investors.twistbioscience.com/"
-    ],
     "priority": "main",
     "names": [
       "TWIST BIOSCIENCE CORP",
@@ -777,13 +832,14 @@
     ],
     "securities": [
       "US90184D1000"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.twistbioscience.com/",
+      "https://investors.twistbioscience.com/"
+    ],
+    "verifiedOfficialPage": "https://investors.twistbioscience.com/"
   },
   "unipol": {
-    "pages": [
-      "https://www.unipol.com/en",
-      "https://www.unipol.it/en"
-    ],
     "priority": "main",
     "names": [
       "UNIPOL ASSICURAZIONI SPA",
@@ -791,13 +847,14 @@
     ],
     "securities": [
       "IT0004810054"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.unipol.com/en",
+      "https://www.unipol.it/en"
+    ],
+    "verifiedOfficialPage": "https://www.unipol.com/en"
   },
   "verizon": {
-    "pages": [
-      "https://www.verizon.com/about/",
-      "https://www.verizon.com/about/news/media-resources"
-    ],
     "priority": "main",
     "names": [
       "VERIZON COMMUNICATIONS",
@@ -806,135 +863,146 @@
     ],
     "securities": [
       "US92343V1044"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.verizon.com/about/",
+      "https://www.verizon.com/about/news/media-resources"
+    ],
+    "verifiedOfficialPage": "https://www.verizon.com/about/"
   },
   "viatris": {
-    "pages": [
-      "https://www.viatris.com/en",
-      "https://newsroom.viatris.com/"
-    ],
     "priority": "main",
     "names": [
       "VIATRIS"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.viatris.com/en",
+      "https://newsroom.viatris.com/"
+    ],
+    "verifiedOfficialPage": "https://www.viatris.com/en"
   },
   "zhongji": {
-    "pages": [
-      "https://www.zjinnolight.com/",
-      "https://www.zjxc.com/"
-    ],
     "priority": "main",
     "names": [
       "ZHONGJI INNO A(HK-C)"
     ],
-    "securities": []
+    "securities": [],
+    "initialCandidatePages": [
+      "https://www.zjinnolight.com/",
+      "https://www.zjxc.com/"
+    ],
+    "verifiedOfficialPage": "https://www.zj-innolight.com/cn"
   },
   "aep": {
-    "pages": [
-      "https://www.aep.com/"
-    ],
     "priority": "top10",
     "names": [
       "AMERICAN ELECTRIC POWER INC"
     ],
     "securities": [
       "US0255371017"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.aep.com/"
+    ],
+    "verifiedOfficialPage": "https://www.aep.com/"
   },
   "agnico-eagle": {
-    "pages": [
-      "https://www.agnicoeagle.com/English/Home/default.aspx"
-    ],
     "priority": "top10",
     "names": [
       "AGNICO EAGLE MINES"
     ],
     "securities": [
       "CA0084741085"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.agnicoeagle.com/English/Home/default.aspx"
+    ],
+    "verifiedOfficialPage": "https://www.agnicoeagle.com/English/Home/default.aspx"
   },
   "american-tower": {
-    "pages": [
-      "https://www.americantower.com/"
-    ],
     "priority": "top10",
     "names": [
       "AMERICAN TOWER REIT"
     ],
     "securities": [
       "US03027X1000"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.americantower.com/"
+    ],
+    "verifiedOfficialPage": "https://www.businesswire.com/news/home/20260728080275/en/American-Tower-Corporation-Reports-Second-Quarter-2026-Financial-Results"
   },
   "astrazeneca": {
-    "pages": [
-      "https://www.astrazeneca.com/",
-      "https://www.astrazeneca.com/media-centre/image-library.html"
-    ],
     "priority": "top10",
     "names": [
       "ASTRAZENECA PLC"
     ],
     "securities": [
       "GB0009895292"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.astrazeneca.com/",
+      "https://www.astrazeneca.com/media-centre/image-library.html"
+    ],
+    "verifiedOfficialPage": "https://www.astrazeneca.com/"
   },
   "att": {
-    "pages": [
-      "https://about.att.com/",
-      "https://about.att.com/pages/corporate_profile"
-    ],
     "priority": "top10",
     "names": [
       "AT&T"
     ],
     "securities": [
       "US00206R1023"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://about.att.com/",
+      "https://about.att.com/pages/corporate_profile"
+    ],
+    "verifiedOfficialPage": "https://about.att.com/"
   },
   "axis-bank": {
-    "pages": [
-      "https://www.axisbank.com/"
-    ],
     "priority": "top10",
     "names": [
       "AXIS BANK"
     ],
     "securities": [
       "INE238A01034"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.axisbank.com/"
+    ],
+    "verifiedOfficialPage": "https://www.axis.bank.in/"
   },
   "bajaj-finance": {
-    "pages": [
-      "https://www.bajajfinserv.in/finance",
-      "https://www.aboutbajajfinserv.com/finance-about-us"
-    ],
     "priority": "top10",
     "names": [
       "BAJAJ FINANCE LTD"
     ],
     "securities": [
       "INE296A01032"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.bajajfinserv.in/finance",
+      "https://www.aboutbajajfinserv.com/finance-about-us"
+    ],
+    "verifiedOfficialPage": "https://www.bajajfinserv.in/finance-digital-annual-report-fy26/index.html"
   },
   "brightspring": {
-    "pages": [
-      "https://www.brightspringhealth.com/",
-      "https://ir.brightspringhealth.com/"
-    ],
     "priority": "top10",
     "names": [
       "BrightSpring Health Services Inc."
     ],
     "securities": [
       "US10950A1060"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.brightspringhealth.com/",
+      "https://ir.brightspringhealth.com/"
+    ],
+    "verifiedOfficialPage": "https://www.brightspringhealth.com/"
   },
   "broadcom": {
-    "pages": [
-      "https://www.broadcom.com/",
-      "https://investors.broadcom.com/"
-    ],
     "priority": "top10",
     "names": [
       "BROADCOM INC",
@@ -943,111 +1011,121 @@
     ],
     "securities": [
       "US11135F1012"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.broadcom.com/",
+      "https://investors.broadcom.com/"
+    ],
+    "verifiedOfficialPage": "https://investors.broadcom.com/"
   },
   "canadian-pacific": {
-    "pages": [
-      "https://www.cpkcr.com/en",
-      "https://www.cpkcr.com/en/media"
-    ],
     "priority": "top10",
     "names": [
       "CANADIAN PACIFIC KANSAS CITY"
     ],
     "securities": [
       "CA13646K1084"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.cpkcr.com/en",
+      "https://www.cpkcr.com/en/media"
+    ],
+    "verifiedOfficialPage": "https://www.cpkcr.com/en"
   },
   "caretrust": {
-    "pages": [
-      "https://www.caretrustreit.com/"
-    ],
     "priority": "top10",
     "names": [
       "CareTrust REIT Inc."
     ],
     "securities": [
       "US14174T1079"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.caretrustreit.com/"
+    ],
+    "verifiedOfficialPage": "https://www.caretrustreit.com/"
   },
   "celltrion": {
-    "pages": [
-      "https://www.celltrion.com/en-us/"
-    ],
     "priority": "top10",
     "names": [
       "CELLTRION"
     ],
     "securities": [
       "KR7068270008"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.celltrion.com/en-us/"
+    ],
+    "verifiedOfficialPage": "https://www.celltrion.com/en-us/"
   },
   "cognizant": {
-    "pages": [
-      "https://www.cognizant.com/us/en"
-    ],
     "priority": "top10",
     "names": [
       "COGNIZANT TECHNOLOGY SOLUTIONS CLA"
     ],
     "securities": [
       "US1924461023"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.cognizant.com/us/en"
+    ],
+    "verifiedOfficialPage": "https://www.cognizant.com/us/en"
   },
   "comcast": {
-    "pages": [
-      "https://corporate.comcast.com/",
-      "https://corporate.comcast.com/press/media-downloads"
-    ],
     "priority": "top10",
     "names": [
       "COMCAST CLASS A"
     ],
     "securities": [
       "US20030N1019"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://corporate.comcast.com/",
+      "https://corporate.comcast.com/press/media-downloads"
+    ],
+    "verifiedOfficialPage": "https://corporate.comcast.com/"
   },
   "constellation-energy": {
-    "pages": [
-      "https://www.constellationenergy.com/"
-    ],
     "priority": "top10",
     "names": [
       "CONSTELLATION ENERGY CORP"
     ],
     "securities": [
       "US21037T1097"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.constellationenergy.com/"
+    ],
+    "verifiedOfficialPage": "https://www.constellationenergy.com/"
   },
   "csx": {
-    "pages": [
-      "https://www.csx.com/"
-    ],
     "priority": "top10",
     "names": [
       "CSX"
     ],
     "securities": [
       "US1264081035"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.csx.com/"
+    ],
+    "verifiedOfficialPage": "https://www.csx.com/"
   },
   "deere": {
-    "pages": [
-      "https://www.deere.com/en/",
-      "https://about.deere.com/en-us"
-    ],
     "priority": "top10",
     "names": [
       "DEERE"
     ],
     "securities": [
       "US2441991054"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.deere.com/en/",
+      "https://about.deere.com/en-us"
+    ],
+    "verifiedOfficialPage": "https://investor.deere.com/home/default.aspx"
   },
   "delta-electronics": {
-    "pages": [
-      "https://www.deltaww.com/en-US/index"
-    ],
     "priority": "top10",
     "names": [
       "Delta Electronics Inc",
@@ -1055,162 +1133,175 @@
     ],
     "securities": [
       "TW0002308004"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.deltaww.com/en-US/index"
+    ],
+    "verifiedOfficialPage": "https://www.deltaww.com/en-US/index"
   },
   "deutsche-bank": {
-    "pages": [
-      "https://www.db.com/",
-      "https://www.db.com/news/"
-    ],
     "priority": "top10",
     "names": [
       "DEUTSCHE BANK NAMEN"
     ],
     "securities": [
       "DE0005140008"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.db.com/",
+      "https://www.db.com/news/"
+    ],
+    "verifiedOfficialPage": "https://www.db.com/"
   },
   "deutsche-telekom": {
-    "pages": [
-      "https://www.telekom.com/en",
-      "https://www.telekom.com/en/media"
-    ],
     "priority": "top10",
     "names": [
       "DEUTSCHE TELEKOM NAM (XETRA)"
     ],
     "securities": [
       "DE0005557508"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.telekom.com/en",
+      "https://www.telekom.com/en/media"
+    ],
+    "verifiedOfficialPage": "https://www.telekom.com/en"
   },
   "dominion": {
-    "pages": [
-      "https://www.dominionenergy.com/"
-    ],
     "priority": "top10",
     "names": [
       "DOMINION ENERGY"
     ],
     "securities": [
       "US25746U1097"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.dominionenergy.com/"
+    ],
+    "verifiedOfficialPage": "https://www.dominionenergy.com/"
   },
   "ecolab": {
-    "pages": [
-      "https://www.ecolab.com/"
-    ],
     "priority": "top10",
     "names": [
       "ECOLAB"
     ],
     "securities": [
       "US2788651006"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.ecolab.com/"
+    ],
+    "verifiedOfficialPage": "https://www.ecolab.com/en-us"
   },
   "extra-space": {
-    "pages": [
-      "https://www.extraspace.com/",
-      "https://ir.extraspace.com/"
-    ],
     "priority": "top10",
     "names": [
       "EXTRA SPACE STORAGE REIT"
     ],
     "securities": [
       "US30225T1025"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.extraspace.com/",
+      "https://ir.extraspace.com/"
+    ],
+    "verifiedOfficialPage": "https://ir.extraspace.com/overview/default.aspx"
   },
   "freeport": {
-    "pages": [
-      "https://www.fcx.com/"
-    ],
     "priority": "top10",
     "names": [
       "FREEPORT MCMORAN INC"
     ],
     "securities": [
       "US35671D8570"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.fcx.com/"
+    ],
+    "verifiedOfficialPage": "https://www.fcx.com/"
   },
   "gartner": {
-    "pages": [
-      "https://www.gartner.com/en",
-      "https://www.gartner.com/en/newsroom"
-    ],
     "priority": "top10",
     "names": [
       "GARTNER"
     ],
     "securities": [
       "US3666511072"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.gartner.com/en",
+      "https://www.gartner.com/en/newsroom"
+    ],
+    "verifiedOfficialPage": "https://www.gartner.com/en"
   },
   "glaukos": {
-    "pages": [
-      "https://www.glaukos.com/"
-    ],
     "priority": "top10",
     "names": [
       "Glaukos Corp"
     ],
     "securities": [
       "US3773221029"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.glaukos.com/"
+    ],
+    "verifiedOfficialPage": "https://www.glaukos.com/"
   },
   "hana-financial": {
-    "pages": [
-      "https://www.hanafn.com/en/main/index.do"
-    ],
     "priority": "top10",
     "names": [
       "HANA FINANCIAL GROUP"
     ],
     "securities": [
       "KR7086790003"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.hanafn.com/en/main/index.do"
+    ],
+    "verifiedOfficialPage": "https://www.hanafn.com/en/main/index.do"
   },
   "hannover-re": {
-    "pages": [
-      "https://www.hannover-re.com/en/"
-    ],
     "priority": "top10",
     "names": [
       "Hannover Rueck SE"
     ],
     "securities": [
       "DE0008402215"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.hannover-re.com/en/"
+    ],
+    "verifiedOfficialPage": "https://www.hannover-re.com/en/"
   },
   "hasbro": {
-    "pages": [
-      "https://corporate.hasbro.com/",
-      "https://investor.hasbro.com/"
-    ],
     "priority": "top10",
     "names": [
       "HASBRO"
     ],
     "securities": [
       "US4180561072"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://corporate.hasbro.com/",
+      "https://investor.hasbro.com/"
+    ],
+    "verifiedOfficialPage": "https://investor.hasbro.com/"
   },
   "hpe": {
-    "pages": [
-      "https://www.hpe.com/us/en/home.html",
-      "https://www.hpe.com/us/en/about/brand.html"
-    ],
     "priority": "top10",
     "names": [
       "HEWLETT PACKARD ENTERPRISE"
     ],
     "securities": [
       "US42824C1099"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.hpe.com/us/en/home.html",
+      "https://www.hpe.com/us/en/about/brand.html"
+    ],
+    "verifiedOfficialPage": "https://www.hpe.com/us/en/home.html"
   },
   "hyundai": {
-    "pages": [
-      "https://www.hyundai.com/worldwide/en/"
-    ],
     "priority": "top10",
     "names": [
       "Hyundai Motor"
@@ -1219,293 +1310,316 @@
       "KR7005380001",
       "KR7005382007",
       "KR7005381009"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.hyundai.com/worldwide/en/"
+    ],
+    "verifiedOfficialPage": "https://www.hyundai.com/worldwide/en"
   },
   "infineon": {
-    "pages": [
-      "https://www.infineon.com/"
-    ],
     "priority": "top10",
     "names": [
       "INFINEON TECHNOLOGIES AG"
     ],
     "securities": [
       "DE0006231004"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.infineon.com/"
+    ],
+    "verifiedOfficialPage": "https://www.infineon.com/"
   },
   "infosys": {
-    "pages": [
-      "https://www.infosys.com/"
-    ],
     "priority": "top10",
     "names": [
       "INFOSYS"
     ],
     "securities": [
       "INE009A01021"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.infosys.com/"
+    ],
+    "verifiedOfficialPage": "https://www.infosys.com/"
   },
   "interdigital": {
-    "pages": [
-      "https://www.interdigital.com/"
-    ],
     "priority": "top10",
     "names": [
       "InterDigital Inc."
     ],
     "securities": [
       "US45867G1013"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.interdigital.com/"
+    ],
+    "verifiedOfficialPage": "https://www.interdigital.com/"
   },
   "intuitive-surgical": {
-    "pages": [
-      "https://www.intuitive.com/en-us/"
-    ],
     "priority": "top10",
     "names": [
       "INTUITIVE SURGICAL"
     ],
     "securities": [
       "US46120E6023"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.intuitive.com/en-us/"
+    ],
+    "verifiedOfficialPage": "https://www.intuitive.com/en-us"
   },
   "iron-mountain": {
-    "pages": [
-      "https://www.ironmountain.com/"
-    ],
     "priority": "top10",
     "names": [
       "IRON MOUNTAIN INC"
     ],
     "securities": [
       "US46284V1017"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.ironmountain.com/"
+    ],
+    "verifiedOfficialPage": "https://www.ironmountain.com/"
   },
   "kb-financial": {
-    "pages": [
-      "https://www.kbfg.com/Eng/index.jsp"
-    ],
     "priority": "top10",
     "names": [
       "KB FINANCIAL GROUP"
     ],
     "securities": [
       "KR7105560007"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.kbfg.com/Eng/index.jsp"
+    ],
+    "verifiedOfficialPage": "https://www.kbfg.com/eng/about/corporate/ci.htm"
   },
   "kotak": {
-    "pages": [
-      "https://www.kotak.com/en/home.html"
-    ],
     "priority": "top10",
     "names": [
       "KOTAK MAHINDRA BANK LTD"
     ],
     "securities": [
       "INE237A01036"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.kotak.com/en/home.html"
+    ],
+    "verifiedOfficialPage": "https://www.kotak.bank.in/en/home.html"
   },
   "larsen-toubro": {
-    "pages": [
-      "https://www.larsentoubro.com/"
-    ],
     "priority": "top10",
     "names": [
       "LARSEN AND TOUBRO LTD"
     ],
     "securities": [
       "INE018A01030"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.larsentoubro.com/"
+    ],
+    "verifiedOfficialPage": "https://www.larsentoubro.com/"
   },
   "mahindra": {
-    "pages": [
-      "https://www.mahindra.com/"
-    ],
     "priority": "top10",
     "names": [
       "MAHINDRA AND MAHINDRA LTD"
     ],
     "securities": [
       "INE101A01026"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.mahindra.com/"
+    ],
+    "verifiedOfficialPage": "https://www.mahindra.com/"
   },
   "mettler-toledo": {
-    "pages": [
-      "https://www.mt.com/us/en/home.html"
-    ],
     "priority": "top10",
     "names": [
       "METTLER TOLEDO"
     ],
     "securities": [
       "US5926881054"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.mt.com/us/en/home.html"
+    ],
+    "verifiedOfficialPage": "https://www.mt.com/us/en/home/your-partner-in-precision/brand-evolution.html"
   },
   "mizuho": {
-    "pages": [
-      "https://www.mizuho-fg.co.jp/english/"
-    ],
     "priority": "top10",
     "names": [
       "MIZUHO FINANCIAL GROUP"
     ],
     "securities": [
       "JP3885780001"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.mizuho-fg.co.jp/english/"
+    ],
+    "verifiedOfficialPage": "https://www.mizuhogroup.com/emea/media-relations"
   },
   "motorola-solutions": {
-    "pages": [
-      "https://www.motorolasolutions.com/en_us.html"
-    ],
     "priority": "top10",
     "names": [
       "MOTOROLA SOLUTIONS INC"
     ],
     "securities": [
       "US6200763075"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.motorolasolutions.com/en_us.html"
+    ],
+    "verifiedOfficialPage": "https://www.motorolasolutions.com/en_us.html"
   },
   "national-grid": {
-    "pages": [
-      "https://www.nationalgrid.com/"
-    ],
     "priority": "top10",
     "names": [
       "NATIONAL GRID PLC"
     ],
     "securities": [
       "GB00BDR05C01"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.nationalgrid.com/"
+    ],
+    "verifiedOfficialPage": "https://www.nationalgrid.com/"
   },
   "nn-group": {
-    "pages": [
-      "https://www.nn-group.com/home.htm"
-    ],
     "priority": "top10",
     "names": [
       "NN Group N.V."
     ],
     "securities": [
       "NL0010773842"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.nn-group.com/home.htm"
+    ],
+    "verifiedOfficialPage": "https://www.nn-group.com/"
   },
   "ptc": {
-    "pages": [
-      "https://www.ptc.com/en"
-    ],
     "priority": "top10",
     "names": [
       "PTC"
     ],
     "securities": [
       "US69370C1009"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.ptc.com/en"
+    ],
+    "verifiedOfficialPage": "https://www.ptc.com/en"
   },
   "public-storage": {
-    "pages": [
-      "https://www.publicstorage.com/",
-      "https://investors.publicstorage.com/"
-    ],
     "priority": "top10",
     "names": [
       "PUBLIC STORAGE REIT"
     ],
     "securities": [
       "US74460D1090"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.publicstorage.com/",
+      "https://investors.publicstorage.com/"
+    ],
+    "verifiedOfficialPage": "https://www.publicstorage.com/"
   },
   "realty-income": {
-    "pages": [
-      "https://www.realtyincome.com/"
-    ],
     "priority": "top10",
     "names": [
       "REALTY INCOME REIT"
     ],
     "securities": [
       "US7561091049"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.realtyincome.com/"
+    ],
+    "verifiedOfficialPage": "https://www.realtyincome.com/"
   },
   "recruit": {
-    "pages": [
-      "https://recruit-holdings.com/en/"
-    ],
     "priority": "top10",
     "names": [
       "RECRUIT HOLDINGS LTD"
     ],
     "securities": [
       "JP3970300004"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://recruit-holdings.com/en/"
+    ],
+    "verifiedOfficialPage": "https://recruit-holdings.com/en/"
   },
   "revvity": {
-    "pages": [
-      "https://www.revvity.com/",
-      "https://ir.revvity.com/"
-    ],
     "priority": "top10",
     "names": [
       "REVVITY"
     ],
     "securities": [
       "US7140461093"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.revvity.com/",
+      "https://ir.revvity.com/"
+    ],
+    "verifiedOfficialPage": "https://www.revvity.com/fr-en"
   },
   "royal-bank-canada": {
-    "pages": [
-      "https://www.rbc.com/",
-      "https://www.rbc.com/newsroom/"
-    ],
     "priority": "top10",
     "names": [
       "ROYAL BANK OF CANADA"
     ],
     "securities": [
       "CA7800871021"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.rbc.com/",
+      "https://www.rbc.com/newsroom/"
+    ],
+    "verifiedOfficialPage": "https://www.rbc.com/newsroom/"
   },
   "ryman": {
-    "pages": [
-      "https://www.rymanhp.com/",
-      "https://ir.rymanhp.com/"
-    ],
     "priority": "top10",
     "names": [
       "Ryman Hospitality Properties Inc."
     ],
     "securities": [
       "US78377T1079"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.rymanhp.com/",
+      "https://ir.rymanhp.com/"
+    ],
+    "verifiedOfficialPage": "https://ir.rymanhp.com/"
   },
   "samsung-electromechanics": {
-    "pages": [
-      "https://www.samsungsem.com/global/index.do"
-    ],
     "priority": "top10",
     "names": [
       "SAMSUNG ELECTRO MECHANICS LTD"
     ],
     "securities": [
       "KR7009150004"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.samsungsem.com/global/index.do"
+    ],
+    "verifiedOfficialPage": "https://www.samsungsem.com/global/index.do"
   },
   "samsung-sdi": {
-    "pages": [
-      "https://www.samsungsdi.com/"
-    ],
     "priority": "top10",
     "names": [
       "SAMSUNG SDI LTD"
     ],
     "securities": [
       "KR7006400006"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.samsungsdi.com/"
+    ],
+    "verifiedOfficialPage": "https://www.samsungsdi.com/"
   },
   "sanofi": {
-    "pages": [
-      "https://www.sanofi.com/en",
-      "https://www.sanofi.com/en/media-room"
-    ],
     "priority": "top10",
     "names": [
       "SANOFI - PARIS",
@@ -1513,168 +1627,186 @@
     ],
     "securities": [
       "FR0000120578"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.sanofi.com/en",
+      "https://www.sanofi.com/en/media-room"
+    ],
+    "verifiedOfficialPage": "https://www.sanofi.com/en"
   },
   "sempra": {
-    "pages": [
-      "https://www.sempra.com/"
-    ],
     "priority": "top10",
     "names": [
       "SEMPRA"
     ],
     "securities": [
       "US8168511090"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.sempra.com/"
+    ],
+    "verifiedOfficialPage": "https://sempra.gcs-web.com/"
   },
   "shinhan": {
-    "pages": [
-      "https://www.shinhangroup.com/en/"
-    ],
     "priority": "top10",
     "names": [
       "SHINHAN FINANCIAL GROUP"
     ],
     "securities": [
       "KR7055550008"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.shinhangroup.com/en/"
+    ],
+    "verifiedOfficialPage": "https://www.shinhangroup.com/en/main"
   },
   "sm-energy": {
-    "pages": [
-      "https://www.sm-energy.com/",
-      "https://sm-energy.com/"
-    ],
     "priority": "top10",
     "names": [
       "SM Energy Company"
     ],
     "securities": [
       "US78454L1008"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.sm-energy.com/",
+      "https://sm-energy.com/"
+    ],
+    "verifiedOfficialPage": "https://www.sm-energy.com/"
   },
   "sony": {
-    "pages": [
-      "https://www.sony.com/en/",
-      "https://www.sony.com/en/SonyInfo/IR/"
-    ],
     "priority": "top10",
     "names": [
       "SONY GROUP"
     ],
     "securities": [
       "JP3435000009"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.sony.com/en/",
+      "https://www.sony.com/en/SonyInfo/IR/"
+    ],
+    "verifiedOfficialPage": "https://www.sony.com/en/"
   },
   "spacex": {
-    "pages": [
-      "https://www.spacex.com/"
-    ],
     "priority": "top10",
     "names": [
       "SPACE EXPLORATION TECHNOLOGIES COR"
     ],
     "securities": [
       "US84615Q1031"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.spacex.com/"
+    ],
+    "verifiedOfficialPage": "https://www.spacex.com/"
   },
   "thermo-fisher": {
-    "pages": [
-      "https://corporate.thermofisher.com/us/en/index.html"
-    ],
     "priority": "top10",
     "names": [
       "THERMO FISHER SCIENTIFIC"
     ],
     "securities": [
       "US8835561023"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://corporate.thermofisher.com/us/en/index.html"
+    ],
+    "verifiedOfficialPage": "https://corporate.thermofisher.com/us/en/index.html"
   },
   "tjx": {
-    "pages": [
-      "https://www.tjx.com/"
-    ],
     "priority": "top10",
     "names": [
       "TJX"
     ],
     "securities": [
       "US8725401090"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.tjx.com/"
+    ],
+    "verifiedOfficialPage": "https://www.tjx.com/"
   },
   "travelers": {
-    "pages": [
-      "https://www.travelers.com/",
-      "https://investor.travelers.com/"
-    ],
     "priority": "top10",
     "names": [
       "TRAVELERS COMPANIES"
     ],
     "securities": [
       "US89417E1091"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.travelers.com/",
+      "https://investor.travelers.com/"
+    ],
+    "verifiedOfficialPage": "https://www.travelers.com/"
   },
   "umb": {
-    "pages": [
-      "https://www.umb.com/",
-      "https://investorrelations.umb.com/"
-    ],
     "priority": "top10",
     "names": [
       "UMB Financial Corporation"
     ],
     "securities": [
       "US9027881088"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.umb.com/",
+      "https://investorrelations.umb.com/"
+    ],
+    "verifiedOfficialPage": "https://www.umb.com/"
   },
   "upm": {
-    "pages": [
-      "https://www.upm.com/"
-    ],
     "priority": "top10",
     "names": [
       "UPM-Kymmene Oyj"
     ],
     "securities": [
       "FI0009005987"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.upm.com/"
+    ],
+    "verifiedOfficialPage": "https://www.upm.com/"
   },
   "ventas": {
-    "pages": [
-      "https://www.ventasreit.com/"
-    ],
     "priority": "top10",
     "names": [
       "VENTAS REIT"
     ],
     "securities": [
       "US92276F1003"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.ventasreit.com/"
+    ],
+    "verifiedOfficialPage": "https://www.ventasreit.com/"
   },
   "vivmark": {
-    "pages": [
-      "https://www.vivmark.com/",
-      "https://www.equityapartments.com/",
-      "https://investors.equityapartments.com/"
-    ],
     "priority": "top10",
     "names": [
       "VIVMARK RESIDENTIAL"
     ],
     "securities": [
       "US29476L1070"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.vivmark.com/",
+      "https://www.equityapartments.com/",
+      "https://investors.equityapartments.com/"
+    ],
+    "verifiedOfficialPage": "https://investors.vivmarkresidential.com/"
   },
   "williams": {
-    "pages": [
-      "https://www.williams.com/"
-    ],
     "priority": "top10",
     "names": [
       "WILLIAMS"
     ],
     "securities": [
       "US9694571004"
-    ]
+    ],
+    "initialCandidatePages": [
+      "https://www.williams.com/"
+    ],
+    "verifiedOfficialPage": "https://www.williams.com/"
   }
 }
