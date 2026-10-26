@@ -48,7 +48,9 @@ ni une découverte automatique ni un délai de production.
 Les critères représentent des usages différents du fait, pas une multiplication du nombre
 de chiffres. Ni marque, partenariat XTB, « record », « choc », taille de tableau ou nombre
 brut de reprises n’apporte de points. Seuils éditoriaux conservés : priorité 65, majeur 85 ;
-ils ne remplacent jamais la fiabilité ni la matière suffisante. Au maximum deux sujets d’un
+ils ne remplacent jamais la fiabilité ni la matière suffisante. La sélection « maintenant »
+requiert aussi une publication de moins de sept jours ou un développement/une échéance
+proche documenté ; les autres exploitables restent consultables sans remplir les places. Au maximum deux sujets d’un
 même domaine et une promotion dans la sélection, une même exposition évite les doublons.
 Tous les autres exploitables restent consultables, recherchables et filtrables.
 
@@ -143,7 +145,7 @@ La supervision technique conserve incidents, essais, preuves et échecs dans le 
 « Données à revoir ». Elle cesse les commentaires à chaque nouvelle tentative/rétablissement
 local. Notification seulement pour une nouvelle panne critique ou extension significative :
 flux global illisible ≥1 h ; producteur Radar global en échec ≥2 h ; publication entière
-bloquée ≥6 h ; au moins deux familles prioritaires indisponibles ≥2 h. Rappels espacés d’au moins
+bloquée ≥6 h ; au moins deux familles prioritaires affectées ≥2 h. Rappels espacés d’au moins
 24 h, reçu durable et récupération après perte de réponse. Le déploiement de la politique
 initialise les anciens incidents sans rafale. Les détails HTTP seuls ne créent pas une nouvelle alerte.
 

@@ -147,3 +147,5 @@ assert.equal(publicationSelection([{...candidate,migratedEditorial:true}],{now:f
 
 assert.match(publicationMaterial(salary,now).angle,/2\s*238|2 238/,'The distribution angle uses the extracted threshold')
 assert.ok(publicationMaterial(fee,now).angle.includes(fee.beforeText)&&publicationMaterial(fee,now).angle.includes(fee.afterText),'A change angle keeps both proven values, without inventing a cost')
+
+assert.equal(assess({...candidate,publishedAt:'2026-10-15',originalPublishedAt:null},now).priority,false,'An old study without a new development stays accessible without filling publish-now slots')

@@ -101,7 +101,8 @@ export function editorialAssessment(event, now = Date.now(), rules = SCORE_RULES
   ]
   const criteria=raw.map(([key,points,reason,unknown])=>({key,points:Math.round(points*rules[key]/SCORE_RULES[key]),maximum:rules[key],reason,unknown}))
   const score=criteria.reduce((sum,row)=>sum+row.points,0)
-  const priority=quality.usable&&state==='ready'&&material.status==='sufficient'&&score>=rules.priority
+  const current=Number.isFinite(age)&&age>=0&&(age<=7||material.attention.signals.some(s=>['deadline','development','independent'].includes(s.kind)))
+  const priority=current&&quality.usable&&state==='ready'&&material.status==='sufficient'&&score>=rules.priority
   return {score,criteria,qualification,material,reliability:quality,state,type,priority,major:priority&&material.rapidEligible&&score>=rules.major&&Number.isFinite(age)&&age>=0&&age<=2}
 }
 export const editorialScore = (event, now) => editorialAssessment(event, now).score
