@@ -13,7 +13,7 @@ console.log('Closed PR cleanup cannot cancel master, publications, forks, other 
 const deploy=readFileSync(new URL('../.github/workflows/deploy-pages.yml',import.meta.url),'utf8')
 assert.match(deploy,/group: pages-validation-v4-.*github\.ref/)
 for(const name of ['deploy','deploy-fallback']){
- const publication=deploy.split('\n  '+name+':\n')[1]
+ const publication=deploy.split('\n  '+name+':\n')[1]?.split(/\n  [a-z][a-z0-9-]*:\n/)[0]
  assert(publication,`${name}: publication lane remains declared`)
  assert.match(publication,/group: pages-production\s+cancel-in-progress: false/,`${name}: old and new gate generations must share the same uncancellable publication lock`)
 }
