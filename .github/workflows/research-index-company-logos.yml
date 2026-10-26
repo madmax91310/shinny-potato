@@ -15,6 +15,7 @@ jobs:
           python-version: '3.12'
       - run: pip install playwright
       - run: playwright install chromium --with-deps
+      - run: python logo-research-bundle-master.py
       - run: python logo-research-collect.py
       - name: Preserve candidates for human review only
         run: |

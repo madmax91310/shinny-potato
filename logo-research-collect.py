@@ -14,7 +14,7 @@ async def run():
      try:
       response=await page.goto(url,wait_until='domcontentloaded',timeout=25000);await page.wait_for_timeout(3000)
       attempt.update(status=response.status if response else None,finalUrl=page.url,title=await page.title(),htmlSha256=digest((await page.content()).encode()))
-      candidates=await page.evaluate('''()=>{const all=[];function walk(root){for(const el of root.querySelectorAll('*')){all.push(el);if(el.shadowRoot)walk(el.shadowRoot)}}walk(document);const out=[];for(const el of all){const tag=el.tagName.toLowerCase();if(!['svg','img','a','span','div'].includes(tag))continue;const ancestors=[el];let a=el.parentElement;for(let n=0;a&&n<4;n++,a=a.parentElement)ancestors.push(a);const context=ancestors.map(a=>a.outerHTML.slice(0,300)).join(' ');const likely=/logo|logotype|brandmark|header-brand|main_logo|nav__branding/i.test(context);if(!likely)continue;const r={context:context.slice(0,600)};if(tag==='img'){r.url=el.currentSrc||el.src;if(r.url)out.push(r)}else if(tag==='svg'){r.original=el.outerHTML;const clone=el.cloneNode(true);[el,...el.querySelectorAll('*')].forEach((node,n)=>{const dest=[clone,...clone.querySelectorAll('*')][n],style=getComputedStyle(node);for(const k of ['fill','stroke','color','stop-color','fill-rule','stroke-width','opacity'])dest.style.setProperty(k,style.getPropertyValue(k))});r.svg=clone.outerHTML;out.push(r)}else{for(const pseudo of [null,'::before','::after']){const style=getComputedStyle(el,pseudo);for(const prop of ['backgroundImage','maskImage'])if(style[prop].startsWith('url(')){r.url=style[prop].slice(5,-2);r.cssProperty=prop;out.push({...r})}}}}return out.slice(0,35)}''')
+      candidates=await page.evaluate('''()=>{const all=[];function walk(root){for(const el of root.querySelectorAll('*')){all.push(el);if(el.shadowRoot)walk(el.shadowRoot)}}walk(document);const out=[];for(const el of all){const tag=el.tagName.toLowerCase();if(!['svg','img','a','span','div'].includes(tag))continue;const ancestors=[el];let a=el.parentElement;for(let n=0;a&&n<4;n++,a=a.parentElement)ancestors.push(a);const context=ancestors.map(a=>a.outerHTML.slice(0,300)).join(' ');const likely=/logo|logotype|brandmark|header-brand|main_logo|nav__branding/i.test(context)||location.hostname==='www.sec.gov'&&tag==='img';if(!likely)continue;const r={context:context.slice(0,600)};if(tag==='img'){r.url=el.currentSrc||el.src;if(r.url)out.push(r)}else if(tag==='svg'){r.original=el.outerHTML;const clone=el.cloneNode(true);[el,...el.querySelectorAll('*')].forEach((node,n)=>{const dest=[clone,...clone.querySelectorAll('*')][n],style=getComputedStyle(node);for(const k of ['fill','stroke','color','stop-color','fill-rule','stroke-width','opacity'])dest.style.setProperty(k,style.getPropertyValue(k))});r.svg=clone.outerHTML;out.push(r)}else{for(const pseudo of [null,'::before','::after']){const style=getComputedStyle(el,pseudo);for(const prop of ['backgroundImage','maskImage'])if(style[prop].startsWith('url(')){r.url=style[prop].slice(5,-2);r.cssProperty=prop;out.push({...r})}}}}return out.slice(0,35)}''')
       for i,c in enumerate(candidates):
        try:
         if c.get('svg'):data=c.pop('svg').encode();c['originalSha256']=digest(c.pop('original').encode());ext='svg';c['inlineComputed']=True
@@ -22,20 +22,32 @@ async def run():
          if c.get('url','').startswith('data:image/'):
           import base64
           prefix,body=c['url'].split(',',1);data=base64.b64decode(body)if';base64'in prefix else urllib.parse.unquote_to_bytes(body);c['embeddedDataSha256']=digest(data);c['url']='[embedded official page image]';ext='svg'if b'<svg'in data[:2000]else'png'
-          filename=f'{id}-{n}-{i}.{ext}';(ROOT/filename).write_bytes(data);report['assets'].append({**c,'file':filename,'page':page.url,'sha256':digest(data),'bytes':len(data)});continue
+          filename=f'{id}-{n}-{i}.{ext}';(ROOT/filename).write_bytes(data);report['assets'].append({**c,'file':filename,'page':attempt.get('finalUrl',url),'sha256':digest(data),'bytes':len(data)});continue
          if not c.get('url','').startswith('https://'):continue
-         r=await context.request.get(c['url'],timeout=20000);data=await r.body();assert r.status==200,f'HTTP {r.status}'
+         try:
+          r=await context.request.get(c['url'],timeout=20000);data=await r.body();assert r.status==200,f'HTTP {r.status}'
+         except Exception:
+          assetpage=await context.new_page()
+          try:
+           r=await assetpage.goto(c['url'],wait_until='domcontentloaded',timeout=25000);data=await r.body();assert r.status==200,f'HTTP {r.status}'
+          finally:await assetpage.close()
          ct=r.headers.get('content-type','');ext='svg'if b'<svg'in data[:2000]else'png'if data.startswith(b'\x89PNG')else'jpg'if data[:2]==b'\xff\xd8'else'webp'if data[:4]==b'RIFF'else None
          if not ext:continue
         if len(data)>2_000_000:continue
-        filename=f'{id}-{n}-{i}.{ext}';(ROOT/filename).write_bytes(data);report['assets'].append({**c,'file':filename,'page':page.url,'sha256':digest(data),'bytes':len(data)})
-       except Exception as e:report['assets'].append({**c,'page':page.url,'error':str(e)})
+        filename=f'{id}-{n}-{i}.{ext}';(ROOT/filename).write_bytes(data);report['assets'].append({**c,'file':filename,'page':attempt.get('finalUrl',url),'sha256':digest(data),'bytes':len(data)})
+       except Exception as e:report['assets'].append({**c,'page':attempt.get('finalUrl',url),'error':str(e)})
      except Exception as e:attempt['error']=str(e).split('\n')[0]
      finally:await page.close()
     # Explicitly reviewed official asset/ZIP sources, independent of page rendering.
     for n,url in enumerate(plan.get('assets',[])):
      try:
-      r=await context.request.get(url,timeout=25000);data=await r.body();assert r.status==200,f'HTTP {r.status}'
+      try:
+       r=await context.request.get(url,timeout=25000);data=await r.body();assert r.status==200,f'HTTP {r.status}'
+      except Exception:
+       assetpage=await context.new_page()
+       try:
+        r=await assetpage.goto(url,wait_until='domcontentloaded',timeout=25000);data=await r.body();assert r.status==200,f'HTTP {r.status}'
+       finally:await assetpage.close()
       if data.startswith(b'PK'):
        for i,name in enumerate(zipfile.ZipFile(io.BytesIO(data)).namelist()):
         if not name.lower().endswith(('.png','.svg'))or name.startswith('__MACOSX'):continue
@@ -43,7 +55,7 @@ async def run():
         if len(b)>2_000_000:continue
         fn=f'{id}-zip-{i}'+Path(name).suffix.lower();(ROOT/fn).write_bytes(b);report['assets'].append({'file':fn,'source':url,'archiveMember':name,'sha256':digest(b),'bytes':len(b)})
       else:
-       ext='svg'if b'<svg'in data[:2000]else'png'if data.startswith(b'\x89PNG')else'jpg'if data[:2]==b'\xff\xd8'else None
+       ext='svg'if b'<svg'in data[:2000]else'png'if data.startswith(b'\x89PNG')else'jpg'if data[:2]==b'\xff\xd8'else'webp'if data[:4]==b'RIFF'else None
        if ext:
         fn=f'{id}-asset-{n}.{ext}';(ROOT/fn).write_bytes(data);report['assets'].append({'file':fn,'source':url,'sha256':digest(data),'bytes':len(data)})
      except Exception as e:report['attempts'].append({'url':url,'error':str(e)})
