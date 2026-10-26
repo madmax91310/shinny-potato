@@ -5,61 +5,61 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-26T09:46:05.433Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0,
-        "attemptedAt": "2026-10-26T09:46:05.435Z"
+        "attemptedAt": "2026-10-26T10:04:57.010Z"
       },
       {
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-26T09:46:05.433Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
         "status": "ok",
         "articles": 10,
         "relevant": 3,
-        "attemptedAt": "2026-10-26T09:46:05.436Z"
+        "attemptedAt": "2026-10-26T10:04:57.011Z"
       },
       {
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-26T09:46:05.433Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0,
-        "attemptedAt": "2026-10-26T09:46:05.436Z"
+        "attemptedAt": "2026-10-26T10:04:57.012Z"
       },
       {
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-26T09:46:05.433Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0,
-        "attemptedAt": "2026-10-26T09:46:05.437Z"
+        "attemptedAt": "2026-10-26T10:04:57.013Z"
       },
       {
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-26T09:46:05.433Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
         "status": "ok",
         "articles": 12,
         "relevant": 1,
-        "attemptedAt": "2026-10-26T09:46:05.437Z"
+        "attemptedAt": "2026-10-26T10:04:57.014Z"
       },
       {
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-26T09:46:05.433Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
         "status": "ok",
         "articles": 7,
         "relevant": 0,
-        "attemptedAt": "2026-10-26T09:46:05.441Z"
+        "attemptedAt": "2026-10-26T10:04:57.015Z"
       }
     ],
     "items": [
@@ -121,6 +121,66 @@
         "tool": null,
         "reason": "Épargne et placements : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
         "angle": "Assurance vie en unités de compte : les actions et les fonds obligataires datés ont le vent en poupe — Quelles conditions changent pour les détenteurs de cette épargne ?",
+        "backfill": false
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-24f4de3a24025a0642dc",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Placement : pourquoi ouvrir une assurance vie chez Hello bank ! quand on est jeune",
+        "value": {
+          "title": "Placement : pourquoi ouvrir une assurance vie chez Hello bank ! quand on est jeune",
+          "summary": "Contrairement aux idées reçues, l'ouverture d'un contrat d'assurance vie est possible à tout âge . Prise tôt, par exemple au moment de l'entrée dans la vie active, cette décision présente même de nombreux avantages. Alors, pourquoi ouvrir une assurance vie auprès de la banque en ligne Hello bank ! lorsque l'on est jeune ? Voici pourquoi il peut être intéressant d'opter pour le contrat Hello ! à 18, 20, 25 ou 30 ans. Vous pensez être trop jeune pour ouvrir un contrat d'assurance vie ? Chez Hello bank ! , l'ouverture d'un tel placement est possible dès 18 ans pour toute personne physique . Et ouvrir une assurance vie lorsque l'on est jeune présente un avantage de taille : on peut commencer à a",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.moneyvox.fr/assurance-vie/actualites/110959/placement-pourquoi-ouvrir-une-assurance-vie-chez-hello-bank-quand-on-est-jeune",
+        "publicationId": "https://www.moneyvox.fr/assurance-vie/actualites/110959/placement-pourquoi-ouvrir-une-assurance-vie-chez-hello-bank-quand-on-est-jeune",
+        "publisher": "MoneyVox · actualités",
+        "publishedInstant": "2026-10-26T10:35:09+01:00",
+        "publishedAt": "2026-10-26",
+        "period": "2026-10-26",
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/assurance-vie/actualites/110959/placement-pourquoi-ouvrir-une-assurance-vie-chez-hello-bank-quand-on-est-jeune",
+        "populationScope": "Contrairement aux idées reçues, l'ouverture d'un contrat d'assurance vie est possible à tout âge .",
+        "analysisContribution": false,
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": null,
+          "audience": "unknown",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Population non documentée : aucun nombre de personnes déduit."
+          ]
+        },
+        "topic": "epargne",
+        "topicLabel": "Épargne et placements",
+        "summary": "Contrairement aux idées reçues, l'ouverture d'un contrat d'assurance vie est possible à tout âge . Prise tôt, par exemple au moment de l'entrée dans la vie active, cette décision présente même de nombreux avantages. Alors, pourquoi ouvrir une assurance vie auprès de la banque en ligne Hello bank ! lorsque l'on est jeune ? Voici pourquoi il peut être intéressant d'opter pour le contrat Hello ! à 18, 20, 25 ou 30 ans. Vous pensez être trop jeune pour ouvrir un contrat d'assurance vie ? Chez Hello bank ! , l'ouverture d'un tel placement est possible dès 18 ans pour toute personne physique . Et ouvrir une assurance vie lorsque l'on est jeune présente un avantage de taille : on peut commencer à a",
+        "status": "Annonce publiée",
+        "evidenceLevel": "journalistic",
+        "sources": [
+          {
+            "url": "https://www.moneyvox.fr/assurance-vie/actualites/110959/placement-pourquoi-ouvrir-une-assurance-vie-chez-hello-bank-quand-on-est-jeune",
+            "role": "journalistic",
+            "label": "MoneyVox · actualités"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "98d1ca07954325b791c4a2d535aa57947380bc81c06bc64ddbffd4b4c96e2d27",
+          "excerpt": "Contrairement aux idées reçues, l'ouverture d'un contrat d'assurance vie est possible à tout âge . Prise tôt, par exemple au moment de l'entrée dans la vie active, cette décision présente même de nombreux avantages. Alors, pourquoi ouvrir une assurance vie auprès de la banque en ligne Hello bank ! lorsque l'on est jeune ? Voici pourquoi il peut être intéressant d'opter pour le contrat Hello ! à 18, 20, 25 ou 30 ans. Vous pensez être trop jeune pour ouvrir un contrat d'assurance vie ? Chez Hello bank ! , l'ouverture d'un tel placement est possible dès 18 ans pour toute personne physique . Et ouvrir une assurance vie lorsque l'on est jeune présente un avantage de taille : on peut commencer à a",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Épargne et placements : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+        "angle": "Placement : pourquoi ouvrir une assurance vie chez Hello bank ! quand on est jeune — Quelles conditions changent pour les détenteurs de cette épargne ?",
         "backfill": false
       },
       {
@@ -2296,7 +2356,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-21",
-        "checkedAt": "2026-10-26T09:46:05.433Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
         "evidence": {
           "sourceHash": "447df7d50199119cd99beaa41f3566603822e9a349706019c2062555fcba3ae0",
@@ -2569,7 +2629,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-26T09:46:05.433Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "evidence": {
           "sourceHash": "00f277e111e376a479989c41e0a199d0355d43aa096977c07bccbbbe6af50af7",
@@ -2603,7 +2663,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-26T09:46:05.433Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "evidence": {
           "sourceHash": "86807bbf7a0482fd6eac53a9ee415275400b30c62837734d2702f0d206e0c1b2",
@@ -3330,7 +3390,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-26T09:46:05.433Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "evidence": {
           "sourceHash": "da5945b332a70816d0a1cdaf9121d0e58f2e49437e364abf7a6dbab3e7d8b29b",
@@ -7435,94 +7495,14 @@
         "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
         "angle": "L'AMF met en garde le public sur l'offre frauduleuse d'investissement en Forex ou crypto-actifs d’Immediate Connect — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
         "backfill": true
-      },
-      {
-        "family": "pouvoir-achat",
-        "entity": "publication-13240a0ee71eceb58307",
-        "field": "announcement",
-        "fieldLabel": "Actualité des particuliers",
-        "label": "L'AMF et l'ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés",
-        "value": {
-          "title": "L'AMF et l'ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés",
-          "summary": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites identifiés comme proposant des investissements sur le marché des changes non régulé (Forex) et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
-          "status": "Annonce publiée"
-        },
-        "sourceUrl": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-10",
-        "publicationId": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-10",
-        "publisher": "AMF · communiqués",
-        "publishedInstant": "2023-04-06T10:00:05+02:00",
-        "publishedAt": "2023-04-06",
-        "period": "2023-04-06",
-        "checkedAt": "2026-10-26T05:30:24.457Z",
-        "scope": "Annonce AMF · communiqués · https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-10",
-        "populationScope": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites identifiés comme proposant des investissements sur le marché des changes non régulé (Forex) et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
-        "analysisContribution": false,
-        "qualification": {
-          "version": 1,
-          "nature": "documented-announcement",
-          "label": "Annonce documentée",
-          "population": null,
-          "audience": "household",
-          "impact": "documented",
-          "reasons": [
-            "Annonce documentée",
-            "Population non documentée : aucun nombre de personnes déduit."
-          ]
-        },
-        "topic": "securite",
-        "topicLabel": "Sécurité de l’argent",
-        "summary": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites identifiés comme proposant des investissements sur le marché des changes non régulé (Forex) et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
-        "status": "Annonce publiée",
-        "evidenceLevel": "official",
-        "sources": [
-          {
-            "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-10",
-            "role": "official",
-            "label": "AMF · communiqués"
-          },
-          {
-            "url": "https://www.amf-france.org/sites/institutionnel/files/pdf/70208/fr/L%27AMF_et_l%27ACPR_mettent_en_garde_le_public_contre_les_activites_de_plusieurs_acteurs_qui_proposent_en_France_des_investissements_sur_le_Forex_et_sur_des_produits_derives_sur_crypto-actifs_sans_y_etre_autorises.pdf",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
-          },
-          {
-            "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-noires-et-mises-en-garde",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
-          },
-          {
-            "url": "https://acpr.banque-france.fr/",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
-          },
-          {
-            "url": "https://www.amf-france.org",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
-          }
-        ],
-        "factType": "consumer-announcement",
-        "referencePeriod": null,
-        "evidence": {
-          "sourceHash": "ecca01e0bf165462a5cd923a6fb87096cd50d002e052788f035a7c77228a6507",
-          "excerpt": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites identifiés comme proposant des investissements sur le marché des changes non régulé (Forex) et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
-          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
-        },
-        "discovery": true,
-        "rule": "announcement",
-        "maxAgeDays": 400,
-        "tool": null,
-        "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
-        "angle": "L'AMF et l'ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
-        "backfill": true
       }
     ]
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-26T09:46:52.293Z",
-  "sourceRevision": "37f08939e8f08d0633d579de30214b8176653e93",
-  "observationCount": 7708,
+  "checkedAt": "2026-10-26T10:05:24.916Z",
+  "sourceRevision": "2f47f3fb776df59ddcc1ce5ed9f35c71b88a74dc",
+  "observationCount": 7709,
   "coverage": {
     "etf": 384,
     "indices": 52,
@@ -7532,9 +7512,9 @@
     "assurance": 7,
     "investisseurs": 28,
     "economie": 136,
-    "pouvoir-achat": 151
+    "pouvoir-achat": 152
   },
-  "newSignalCount": 0,
+  "newSignalCount": 1,
   "errors": [
     {
       "family": "pouvoir-achat",
@@ -7545,11 +7525,6 @@
       "family": "etf",
       "entity": "WisdomTree · communiqués européens",
       "reason": "HTTP 403"
-    },
-    {
-      "family": "etf",
-      "entity": "HANetf · communiqués UCITS",
-      "reason": "Liste officielle HANetf vide ou format modifié"
     },
     {
       "family": "economie",
@@ -7653,6 +7628,134 @@
     }
   ],
   "events": [
+    {
+      "topic": "epargne",
+      "topicLabel": "Épargne et placements",
+      "publisher": "MoneyVox · actualités",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "Contrairement aux idées reçues, l'ouverture d'un contrat d'assurance vie est possible à tout âge . Prise tôt, par exemple au moment de l'entrée dans la vie active, cette décision présente même de nombreux avantages. Alors, pourquoi ouvrir une assurance vie auprès de la banque en ligne Hello bank ! lorsque l'on est jeune ? Voici pourquoi il peut être intéressant d'opter pour le contrat Hello ! à 18, 20, 25 ou 30 ans. Vous pensez être trop jeune pour ouvrir un contrat d'assurance vie ? Chez Hello bank ! , l'ouverture d'un tel placement est possible dès 18 ans pour toute personne physique . Et ouvrir une assurance vie lorsque l'on est jeune présente un avantage de taille : on peut commencer à a",
+      "publishedAt": "2026-10-26",
+      "publicationId": "https://www.moneyvox.fr/assurance-vie/actualites/110959/placement-pourquoi-ouvrir-une-assurance-vie-chez-hello-bank-quand-on-est-jeune",
+      "evidence": {
+        "sourceHash": "98d1ca07954325b791c4a2d535aa57947380bc81c06bc64ddbffd4b4c96e2d27",
+        "excerpt": "Contrairement aux idées reçues, l'ouverture d'un contrat d'assurance vie est possible à tout âge . Prise tôt, par exemple au moment de l'entrée dans la vie active, cette décision présente même de nombreux avantages. Alors, pourquoi ouvrir une assurance vie auprès de la banque en ligne Hello bank ! lorsque l'on est jeune ? Voici pourquoi il peut être intéressant d'opter pour le contrat Hello ! à 18, 20, 25 ou 30 ans. Vous pensez être trop jeune pour ouvrir un contrat d'assurance vie ? Chez Hello bank ! , l'ouverture d'un tel placement est possible dès 18 ans pour toute personne physique . Et ouvrir une assurance vie lorsque l'on est jeune présente un avantage de taille : on peut commencer à a",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "qualification": {
+        "version": 1,
+        "nature": "documented-announcement",
+        "label": "Annonce documentée",
+        "population": null,
+        "audience": "unknown",
+        "impact": "documented",
+        "reasons": [
+          "Annonce documentée",
+          "Population non documentée : aucun nombre de personnes déduit."
+        ]
+      },
+      "referencePeriod": null,
+      "populationScope": "Contrairement aux idées reçues, l'ouverture d'un contrat d'assurance vie est possible à tout âge .",
+      "evidenceLevel": "journalistic",
+      "sources": [
+        {
+          "url": "https://www.moneyvox.fr/assurance-vie/actualites/110959/placement-pourquoi-ouvrir-une-assurance-vie-chez-hello-bank-quand-on-est-jeune",
+          "role": "journalistic",
+          "label": "MoneyVox · actualités"
+        }
+      ],
+      "backfill": false,
+      "id": "601386f9993117bc1baa84fd",
+      "family": "pouvoir-achat",
+      "entity": "publication-24f4de3a24025a0642dc",
+      "label": "Placement : pourquoi ouvrir une assurance vie chez Hello bank ! quand on est jeune",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Placement : pourquoi ouvrir une assurance vie chez Hello bank ! quand on est jeune",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-26T10:05:24.916Z",
+      "before": null,
+      "after": {
+        "title": "Placement : pourquoi ouvrir une assurance vie chez Hello bank ! quand on est jeune",
+        "summary": "Contrairement aux idées reçues, l'ouverture d'un contrat d'assurance vie est possible à tout âge . Prise tôt, par exemple au moment de l'entrée dans la vie active, cette décision présente même de nombreux avantages. Alors, pourquoi ouvrir une assurance vie auprès de la banque en ligne Hello bank ! lorsque l'on est jeune ? Voici pourquoi il peut être intéressant d'opter pour le contrat Hello ! à 18, 20, 25 ou 30 ans. Vous pensez être trop jeune pour ouvrir un contrat d'assurance vie ? Chez Hello bank ! , l'ouverture d'un tel placement est possible dès 18 ans pour toute personne physique . Et ouvrir une assurance vie lorsque l'on est jeune présente un avantage de taille : on peut commencer à a",
+        "status": "Annonce publiée"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Placement : pourquoi ouvrir une assurance vie chez Hello bank ! quand on est jeune · summary : Contrairement aux idées reçues, l'ouverture d'un contrat d'assurance vie est possible à tout âge . Prise tôt, par exemple au moment de l'entrée dans la vie active, cette décision présente même de nombreux avantages. Alors, pourquoi ouvrir une assurance vie auprès de la banque en ligne Hello bank ! lorsque l'on est jeune ? Voici pourquoi il peut être intéressant d'opter pour le contrat Hello ! à 18, 20, 25 ou 30 ans. Vous pensez être trop jeune pour ouvrir un contrat d'assurance vie ? Chez Hello bank ! , l'ouverture d'un tel placement est possible dès 18 ans pour toute personne physique . Et ouvrir une assurance vie lorsque l'on est jeune présente un avantage de taille : on peut commencer à a · status : Annonce publiée",
+      "beforePeriod": null,
+      "period": "2026-10-26",
+      "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/assurance-vie/actualites/110959/placement-pourquoi-ouvrir-une-assurance-vie-chez-hello-bank-quand-on-est-jeune",
+      "unit": "",
+      "sourceUrl": "https://www.moneyvox.fr/assurance-vie/actualites/110959/placement-pourquoi-ouvrir-une-assurance-vie-chez-hello-bank-quand-on-est-jeune",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-26T10:04:57.016Z",
+      "tool": null,
+      "angle": "Placement : pourquoi ouvrir une assurance vie chez Hello bank ! quand on est jeune — Quelles conditions changent pour les détenteurs de cette épargne ?",
+      "draft": "Placement : pourquoi ouvrir une assurance vie chez Hello bank ! quand on est jeune\n\nContrairement aux idées reçues, l'ouverture d'un contrat d'assurance vie est possible à tout âge . Prise tôt, par exemple au moment de l'entrée dans la vie active, cette décision présente même de nombreux avantages. Alors, pourquoi ouvrir une assurance vie auprès de la banque en ligne Hello bank ! lorsque l'on est jeune ? Voici pourquoi il peut être intéressant d'opter pour le contrat Hello ! à 18, 20, 25 ou 30 ans. Vous pensez être trop jeune pour ouvrir un contrat d'assurance vie ? Chez Hello bank ! , l'ouverture d'un tel placement est possible dès 18 ans pour toute personne physique . Et ouvrir une assurance vie lorsque l'on est jeune présente un avantage de taille : on peut commencer à a\n\nPublication : 2026-10-26 · Annonce publiée\nContrairement aux idées reçues, l'ouverture d'un contrat d'assurance vie est possible à tout âge .\n\nSource : https://www.moneyvox.fr/assurance-vie/actualites/110959/placement-pourquoi-ouvrir-une-assurance-vie-chez-hello-bank-quand-on-est-jeune",
+      "reason": "Épargne et placements : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 87,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 21,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Public limité au produit ou au placement ; effectif inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Conditions concrètes de l’épargne"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 11,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+          },
+          {
+            "key": "freshness",
+            "points": 10,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-26"
+          }
+        ],
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": "Contrairement aux idées reçues, l'ouverture d'un contrat d'assurance vie est possible à tout âge .",
+          "audience": "unknown",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Contrairement aux idées reçues, l'ouverture d'un contrat d'assurance vie est possible à tout âge ."
+          ]
+        },
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": true
+      }
+    },
     {
       "topic": "energie",
       "topicLabel": "Électricité et gaz",
@@ -20461,20 +20564,22 @@
         "type": "launch",
         "stage": "launched",
         "label": "Lancement déclaré par l’émetteur",
-        "evidence": "Sprott and HANetf launch first pure-play rare earths ex-China UCITS ETF"
+        "evidence": "Sprott and HANetf launch first pure-play rare earths ex-China UCITS ETF",
+        "bodyEvidence": "HANetf, Europe’s first and leading white-label UCITS ETF and ETC platform, is delighted to announce the launch of Sprott Rare Earths Ex-China UCITS ETF (ticker: REXC)."
       },
       "calendarEvidence": null,
       "evidence": {
+        "method": "Corps du communiqué HTML officiel ; associations limitées aux paragraphes et lignes prouvés.",
         "excerpt": "HANetf, Europe’s first and leading white-label UCITS ETF and ETC platform, is delighted to announce the launch of Sprott Rare Earths Ex-China UCITS ETF (ticker: REXC).",
-        "sourceHash": "491eeedb18dbd3393710af831a2ffece8249d90c3235875dfed4f3b7132b1cf7"
+        "sourceHash": "81656af7ac767b9f89d673ac1cd20070079867f68dfe03216dc0699aaf207b15"
       },
       "publicationId": "https://hanetf.com/press-releases/sprott-and-hanetf-launch-first-pure-play-rare-earths-ex-china-ucits-etf",
       "publishedAt": "2026-09-23",
       "publisher": "HANetf · communiqués UCITS",
       "backfill": true,
       "documentUrl": "https://hanetf.com/press-releases/sprott-and-hanetf-launch-first-pure-play-rare-earths-ex-china-ucits-etf",
-      "documentCheckedAt": "2026-10-24T18:51:01.302Z",
-      "documentHash": "491eeedb18dbd3393710af831a2ffece8249d90c3235875dfed4f3b7132b1cf7",
+      "documentCheckedAt": "2026-10-26T10:04:57.016Z",
+      "documentHash": "81656af7ac767b9f89d673ac1cd20070079867f68dfe03216dc0699aaf207b15",
       "id": "d0ace0a68b1589ef071ff70b",
       "family": "etf",
       "entity": "publication-79cdf1b9d8865c7759f3",
@@ -20565,7 +20670,16 @@
           "role": "official",
           "label": "HANetf · communiqués UCITS"
         }
-      ]
+      ],
+      "extraction": {
+        "version": 3,
+        "status": "complete",
+        "relevantRows": 0,
+        "parsedRows": 0,
+        "unparsedRows": [],
+        "excludedRows": [],
+        "reason": null
+      }
     },
     {
       "housing": {
@@ -23487,20 +23601,22 @@
         "type": "announcement",
         "stage": "announced",
         "label": "Nouvelle offre annoncée par l’émetteur",
-        "evidence": "HANetf, Europe’s first and leading white-label UCITS ETF and ETC platform, [1] is delighted to announce the launch of Trading Central Quant U.S. 50 Equity Index UCITS ETF (ticker: TCQU) and Trading Central Quant Global 50 Equity Index UCITS ETF (ticker: TCQW) ."
+        "evidence": "HANetf, Europe’s first and leading white-label UCITS ETF and ETC platform, [1] is delighted to announce the launch of Trading Central Quant U.S. 50 Equity Index UCITS ETF (ticker: TCQU) and Trading Central Quant Global 50 Equity Index UCITS ETF (ticker: TCQW) .",
+        "bodyEvidence": "“We are delighted to partner again with Trading Central on the launch of these two new ETFs. Alain and the Trading Central team bring deep and proven expertise. With more than $23 trillion in assets under management (AUM) globally, and flows into European ETFs up more than 15% over the last quarter, ETFs are fast becoming the default vehicle for investors globally. [2] The Trading Central Quant U.S. 50 Equity Index UCITS ETF (ticker: TCQU) and Trading Central Quant Global 50 Equity Index UCITS ETF (ticker: TCQW) allow European investors to gain access to this market alongside Trading Central’s proprietary rating system which is supported by more than 27 years of research, which has been successfully applied to a number of products in North America.”"
       },
       "calendarEvidence": null,
       "evidence": {
+        "method": "Corps du communiqué HTML officiel ; associations limitées aux paragraphes et lignes prouvés.",
         "excerpt": "HANetf, Europe’s first and leading white-label UCITS ETF and ETC platform, [1] is delighted to announce the launch of Trading Central Quant U.S. 50 Equity Index UCITS ETF (ticker: TCQU) and Trading Central Quant Global 50 Equity Index UCITS ETF (ticker: TCQW) .",
-        "sourceHash": "d5856dee3b1ecbbb7620d85db6a27693c48e45b86182e4372f864642740f93ab"
+        "sourceHash": "d952773bf137b9aa2361e7edc12fdee3942d1551aefac6ce578e1eb3b4df61fb"
       },
       "publicationId": "https://hanetf.com/press-releases/trading-central-expand-ucits-range-with-two-more-quantamental-equally-weighted-ucits-etfs",
       "publishedAt": "2026-10-13",
       "publisher": "HANetf · communiqués UCITS",
       "backfill": true,
       "documentUrl": "https://hanetf.com/press-releases/trading-central-expand-ucits-range-with-two-more-quantamental-equally-weighted-ucits-etfs",
-      "documentCheckedAt": "2026-10-24T17:28:09.310Z",
-      "documentHash": "d5856dee3b1ecbbb7620d85db6a27693c48e45b86182e4372f864642740f93ab",
+      "documentCheckedAt": "2026-10-26T10:04:57.016Z",
+      "documentHash": "d952773bf137b9aa2361e7edc12fdee3942d1551aefac6ce578e1eb3b4df61fb",
       "id": "2222c77487e0eef0a6e2aafa",
       "family": "etf",
       "entity": "publication-35fabdeb36fabcc0c803",
@@ -23591,7 +23707,16 @@
           "role": "official",
           "label": "HANetf · communiqués UCITS"
         }
-      ]
+      ],
+      "extraction": {
+        "version": 3,
+        "status": "complete",
+        "relevantRows": 0,
+        "parsedRows": 0,
+        "unparsedRows": [],
+        "excludedRows": [],
+        "reason": null
+      }
     },
     {
       "housing": {
@@ -30432,16 +30557,17 @@
       "announcementEvidence": null,
       "calendarEvidence": null,
       "evidence": {
+        "method": "Corps du communiqué HTML officiel ; associations limitées aux paragraphes et lignes prouvés.",
         "excerpt": "",
-        "sourceHash": "fd415d4c66aa52a32252cb57491ee51cd843f3f483d0fb049d633aaff7d8279a"
+        "sourceHash": "672d8a91a99f4f14a49a6be120cd292a9a2f643667d6b34208e75d02410bd133"
       },
       "publicationId": "https://hanetf.com/press-releases/yieldmax-semiconductor-option-income-ucits-etf-moves-to-weekly-distributions-as-demand-for-frequent-income-grows",
       "publishedAt": "2026-10-01",
       "publisher": "HANetf · communiqués UCITS",
       "backfill": true,
       "documentUrl": "https://hanetf.com/press-releases/yieldmax-semiconductor-option-income-ucits-etf-moves-to-weekly-distributions-as-demand-for-frequent-income-grows",
-      "documentCheckedAt": "2026-10-24T17:49:58.618Z",
-      "documentHash": "fd415d4c66aa52a32252cb57491ee51cd843f3f483d0fb049d633aaff7d8279a",
+      "documentCheckedAt": "2026-10-26T10:04:57.016Z",
+      "documentHash": "672d8a91a99f4f14a49a6be120cd292a9a2f643667d6b34208e75d02410bd133",
       "id": "33c912299218d7edf405526c",
       "family": "etf",
       "entity": "publication-b1c15a65ff41975a7a86",
@@ -30532,7 +30658,16 @@
           "role": "official",
           "label": "HANetf · communiqués UCITS"
         }
-      ]
+      ],
+      "extraction": {
+        "version": 3,
+        "status": "complete",
+        "relevantRows": 0,
+        "parsedRows": 0,
+        "unparsedRows": [],
+        "excludedRows": [],
+        "reason": null
+      }
     },
     {
       "launchDetails": {},
@@ -91416,160 +91551,6 @@
       "discoveryVersion": 3
     },
     {
-      "id": "bourse-direct-news",
-      "name": "Bourse Direct",
-      "url": "https://groupe.boursedirect.fr/feed",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-26T09:19:54.480Z",
-      "discovered": 10,
-      "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
-      "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
-      "checkedAt": "2026-10-26T09:19:54.454Z",
-      "lastSuccessAt": "2026-10-26T09:19:54.454Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-26T09:49:54.454Z",
-      "queue": {
-        "pending": 0,
-        "done": 5,
-        "error": 0,
-        "rejected": 5,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-26T05:30:24.457Z",
-      "archiveWarning": null,
-      "silentBaselines": 0
-    },
-    {
-      "id": "energie-info",
-      "name": "Médiateur national de l’énergie",
-      "url": "https://www.energie-info.fr/feed/",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-26T09:19:54.481Z",
-      "discovered": 10,
-      "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
-      "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
-      "checkedAt": "2026-10-26T09:19:54.454Z",
-      "lastSuccessAt": "2026-10-26T09:19:54.454Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-26T09:49:54.454Z",
-      "queue": {
-        "pending": 0,
-        "done": 8,
-        "error": 0,
-        "rejected": 2,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-26T05:30:24.457Z",
-      "silentBaselines": 0
-    },
-    {
-      "id": "afg",
-      "name": "AFG · épargne salariale",
-      "url": "https://www.afg.asso.fr/fr/feed/",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-26T09:19:54.482Z",
-      "discovered": 10,
-      "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
-      "lastModified": null,
-      "checkedAt": "2026-10-26T09:19:54.454Z",
-      "lastSuccessAt": "2026-10-26T09:19:54.454Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-26T09:49:54.454Z",
-      "queue": {
-        "pending": 1,
-        "done": 2,
-        "error": 0,
-        "rejected": 8,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T21:35:24.713Z",
-      "silentBaselines": 0
-    },
-    {
-      "id": "amf-alerts",
-      "name": "AMF · communiqués",
-      "url": "https://www.amf-france.org/fr/flux-rss/display/28",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-26T09:19:54.483Z",
-      "discovered": 196,
-      "etag": "\"1793005754-gzip\"",
-      "lastModified": "Mon, 26 Oct 2026 09:09:14 GMT",
-      "checkedAt": "2026-10-26T09:19:54.454Z",
-      "lastSuccessAt": "2026-10-26T09:19:54.454Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-26T09:49:54.454Z",
-      "queue": {
-        "pending": 79,
-        "done": 80,
-        "error": 1,
-        "rejected": 40,
-        "partial": 0
-      },
-      "extractionStatus": "error",
-      "lastExtractionSuccessAt": "2026-10-26T09:46:05.442Z",
-      "archiveWarning": null,
-      "silentBaselines": 0
-    },
-    {
-      "id": "moneyvox",
-      "name": "MoneyVox · actualités",
-      "url": "https://www.moneyvox.fr/actu/rss.php",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-26T09:19:54.484Z",
-      "discovered": 60,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-26T09:19:54.454Z",
-      "lastSuccessAt": "2026-10-26T09:19:54.454Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-26T09:49:54.454Z",
-      "queue": {
-        "pending": 0,
-        "done": 31,
-        "error": 0,
-        "rejected": 45,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-26T05:30:24.457Z",
-      "archiveWarning": null,
-      "silentBaselines": 0
-    },
-    {
-      "id": "boursobank-news",
-      "name": "BoursoBank Groupe · communiqués",
-      "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
-      "method": "consumer-links",
-      "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
-      "attemptedAt": "2026-10-26T09:19:54.484Z",
-      "discovered": 12,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-26T09:19:54.454Z",
-      "lastSuccessAt": "2026-10-26T09:19:54.454Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-26T09:49:54.454Z",
-      "queue": {
-        "pending": 0,
-        "done": 5,
-        "error": 0,
-        "rejected": 7,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T22:12:38.605Z",
-      "archiveWarning": null,
-      "silentBaselines": 0
-    },
-    {
       "id": "bnp-bank",
       "name": "BNP Paribas · groupe",
       "url": "https://group.bnpparibas/rss/news/communique-de-presse",
@@ -92069,7 +92050,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-26T09:46:05.437Z",
+      "attemptedAt": "2026-10-26T10:04:57.014Z",
       "discovered": 12,
       "etag": "\"1793006398-gzip\"",
       "lastModified": "Mon, 26 Oct 2026 09:19:58 GMT",
@@ -92168,12 +92149,62 @@
       "silentBaselines": 0
     },
     {
+      "id": "afg",
+      "name": "AFG · épargne salariale",
+      "url": "https://www.afg.asso.fr/fr/feed/",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-26T10:04:57.045Z",
+      "discovered": 10,
+      "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
+      "lastModified": null,
+      "checkedAt": "2026-10-26T10:04:57.016Z",
+      "lastSuccessAt": "2026-10-26T10:04:57.016Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-26T10:34:57.016Z",
+      "queue": {
+        "pending": 1,
+        "done": 2,
+        "error": 0,
+        "rejected": 8,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T21:35:24.713Z",
+      "silentBaselines": 0
+    },
+    {
+      "id": "energie-info",
+      "name": "Médiateur national de l’énergie",
+      "url": "https://www.energie-info.fr/feed/",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-26T10:04:57.044Z",
+      "discovered": 10,
+      "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
+      "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
+      "checkedAt": "2026-10-26T10:04:57.016Z",
+      "lastSuccessAt": "2026-10-26T10:04:57.016Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-26T10:34:57.016Z",
+      "queue": {
+        "pending": 0,
+        "done": 8,
+        "error": 0,
+        "rejected": 2,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-26T05:30:24.457Z",
+      "silentBaselines": 0
+    },
+    {
       "id": "revolut-news",
       "name": "Revolut · annonces concernant la France",
       "url": "https://www.revolut.com/news/",
       "method": "consumer-links",
       "depth": "Première page mondiale officielle, filtrée sur une portée française explicite ; couverture partielle, annonces étrangères écartées",
-      "attemptedAt": "2026-10-26T09:46:05.455Z",
+      "attemptedAt": "2026-10-26T10:04:57.048Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -92194,7 +92225,7 @@
       "url": "https://www.wisdomtree.com/fr/press-room",
       "method": "links",
       "depth": "Archive rendue par le serveur, sans pagination supposée",
-      "attemptedAt": "2026-10-26T09:46:05.457Z",
+      "attemptedAt": "2026-10-26T10:04:57.050Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -92210,32 +92241,30 @@
       "failureKind": "access-denied"
     },
     {
-      "id": "hanetf",
-      "name": "HANetf · communiqués UCITS",
-      "url": "https://hanetf.com/press-releases/",
-      "method": "extra-links",
-      "depth": "Communiqués rendus par le site, indépendants du catalogue",
-      "attemptedAt": "2026-10-26T09:46:05.456Z",
-      "discovered": 9,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-26T08:07:50.717Z",
-      "lastSuccessAt": "2026-10-26T08:07:50.717Z",
-      "status": "error",
-      "nextCheckAt": "2026-10-26T09:07:50.717Z",
+      "id": "amf-alerts",
+      "name": "AMF · communiqués",
+      "url": "https://www.amf-france.org/fr/flux-rss/display/28",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-26T10:04:57.046Z",
+      "discovered": 196,
+      "etag": "\"1793005754-gzip\"",
+      "lastModified": "Mon, 26 Oct 2026 09:09:14 GMT",
+      "checkedAt": "2026-10-26T10:04:57.016Z",
+      "lastSuccessAt": "2026-10-26T10:04:57.016Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-26T10:34:57.016Z",
       "queue": {
-        "pending": 0,
-        "done": 9,
-        "error": 0,
-        "rejected": 0,
+        "pending": 79,
+        "done": 80,
+        "error": 1,
+        "rejected": 40,
         "partial": 0
       },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T18:28:16.158Z",
+      "extractionStatus": "error",
+      "lastExtractionSuccessAt": "2026-10-26T09:46:05.442Z",
       "archiveWarning": null,
-      "silentBaselines": 0,
-      "error": "Liste officielle HANetf vide ou format modifié",
-      "failureKind": "structure-changed"
+      "silentBaselines": 0
     },
     {
       "id": "dares",
@@ -92243,7 +92272,7 @@
       "url": "https://dares.travail-emploi.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-26T09:46:05.458Z",
+      "attemptedAt": "2026-10-26T10:04:57.051Z",
       "status": "error",
       "error": "Accès refusé ou page anti-robot, même si HTTP 200",
       "queue": {
@@ -92259,12 +92288,38 @@
       "failureKind": "access-denied"
     },
     {
+      "id": "boursobank-news",
+      "name": "BoursoBank Groupe · communiqués",
+      "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
+      "method": "consumer-links",
+      "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
+      "attemptedAt": "2026-10-26T10:04:57.047Z",
+      "discovered": 12,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-26T10:04:57.016Z",
+      "lastSuccessAt": "2026-10-26T10:04:57.016Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-26T10:34:57.016Z",
+      "queue": {
+        "pending": 0,
+        "done": 5,
+        "error": 0,
+        "rejected": 7,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T22:12:38.605Z",
+      "archiveWarning": null,
+      "silentBaselines": 0
+    },
+    {
       "id": "drees",
       "name": "DREES",
       "url": "https://drees.solidarites-sante.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-26T09:46:05.457Z",
+      "attemptedAt": "2026-10-26T10:04:57.050Z",
       "discovered": 3,
       "etag": null,
       "lastModified": "Sun, 25 Oct 2026 00:17:08 GMT",
@@ -92286,88 +92341,167 @@
       "failureKind": "temporary-unavailable"
     },
     {
+      "id": "moneyvox",
+      "name": "MoneyVox · actualités",
+      "url": "https://www.moneyvox.fr/actu/rss.php",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-26T10:04:57.046Z",
+      "discovered": 60,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-26T10:04:57.016Z",
+      "lastSuccessAt": "2026-10-26T10:04:57.016Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-26T10:34:57.016Z",
+      "queue": {
+        "pending": 0,
+        "done": 32,
+        "error": 0,
+        "rejected": 45,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-26T10:04:57.016Z",
+      "archiveWarning": null,
+      "silentBaselines": 0
+    },
+    {
+      "id": "bourse-direct-news",
+      "name": "Bourse Direct",
+      "url": "https://groupe.boursedirect.fr/feed",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-26T10:04:57.043Z",
+      "discovered": 10,
+      "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
+      "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
+      "checkedAt": "2026-10-26T10:04:57.016Z",
+      "lastSuccessAt": "2026-10-26T10:04:57.016Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-26T10:34:57.016Z",
+      "queue": {
+        "pending": 0,
+        "done": 5,
+        "error": 0,
+        "rejected": 5,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-26T05:30:24.457Z",
+      "archiveWarning": null,
+      "silentBaselines": 0
+    },
+    {
+      "id": "hanetf",
+      "name": "HANetf · communiqués UCITS",
+      "url": "https://hanetf.com/press_releases-sitemap.xml",
+      "method": "extra-hanetf-sitemap",
+      "depth": "24 URL anglaises les plus récemment modifiées du sitemap officiel ; lastmod ne date pas la publication, vérifiée dans chaque communiqué",
+      "attemptedAt": "2026-10-26T10:04:57.049Z",
+      "discovered": 24,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-26T10:04:57.016Z",
+      "lastSuccessAt": "2026-10-26T10:04:57.016Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-26T11:04:57.016Z",
+      "queue": {
+        "pending": 21,
+        "done": 3,
+        "error": 0,
+        "rejected": 0,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-26T10:04:57.016Z",
+      "archiveWarning": null,
+      "silentBaselines": 0,
+      "discoveryVersion": 2
+    },
+    {
       "id": "Communiqués Vanguard",
       "name": "Communiqués Vanguard",
       "url": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
       "status": "ok",
-      "checkedAt": "2026-10-26T09:46:05.431Z",
-      "lastSuccessAt": "2026-10-26T09:46:05.431Z",
+      "checkedAt": "2026-10-26T10:04:57.005Z",
+      "lastSuccessAt": "2026-10-26T10:04:57.005Z",
       "discovered": 2,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle",
-      "attemptedAt": "2026-10-26T09:46:05.431Z"
+      "attemptedAt": "2026-10-26T10:04:57.005Z"
     },
     {
       "id": "Communiqués Global X Europe",
       "name": "Communiqués Global X Europe",
       "url": "https://globalxetfs.eu/news",
       "status": "ok",
-      "checkedAt": "2026-10-26T09:46:05.431Z",
-      "lastSuccessAt": "2026-10-26T09:46:05.431Z",
+      "checkedAt": "2026-10-26T10:04:57.005Z",
+      "lastSuccessAt": "2026-10-26T10:04:57.005Z",
       "discovered": 4,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle",
-      "attemptedAt": "2026-10-26T09:46:05.432Z"
+      "attemptedAt": "2026-10-26T10:04:57.007Z"
     },
     {
       "id": "service-public",
       "name": "Service Public",
       "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-      "checkedAt": "2026-10-26T09:46:05.433Z",
+      "checkedAt": "2026-10-26T10:04:57.008Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0,
-      "attemptedAt": "2026-10-26T09:46:05.435Z"
+      "attemptedAt": "2026-10-26T10:04:57.010Z"
     },
     {
       "id": "bercy",
       "name": "Ministère de l’Économie",
       "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-      "checkedAt": "2026-10-26T09:46:05.433Z",
+      "checkedAt": "2026-10-26T10:04:57.008Z",
       "status": "ok",
       "articles": 10,
       "relevant": 3,
-      "attemptedAt": "2026-10-26T09:46:05.436Z"
+      "attemptedAt": "2026-10-26T10:04:57.011Z"
     },
     {
       "id": "vie-publique-actualites",
       "name": "Vie publique · actualités",
       "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-      "checkedAt": "2026-10-26T09:46:05.433Z",
+      "checkedAt": "2026-10-26T10:04:57.008Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0,
-      "attemptedAt": "2026-10-26T09:46:05.436Z"
+      "attemptedAt": "2026-10-26T10:04:57.012Z"
     },
     {
       "id": "vie-publique-lois",
       "name": "Vie publique · lois",
       "url": "https://www.vie-publique.fr/lois-feeds.xml",
-      "checkedAt": "2026-10-26T09:46:05.433Z",
+      "checkedAt": "2026-10-26T10:04:57.008Z",
       "status": "ok",
       "articles": 100,
       "relevant": 0,
-      "attemptedAt": "2026-10-26T09:46:05.437Z"
+      "attemptedAt": "2026-10-26T10:04:57.013Z"
     },
     {
       "id": "banque-france-credit",
       "name": "Banque de France · crédits aux particuliers",
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "checkedAt": "2026-10-26T09:46:05.433Z",
+      "checkedAt": "2026-10-26T10:04:57.008Z",
       "status": "ok",
       "articles": 12,
       "relevant": 1,
-      "attemptedAt": "2026-10-26T09:46:05.437Z"
+      "attemptedAt": "2026-10-26T10:04:57.014Z"
     },
     {
       "id": "cre-prix",
       "name": "CRE · prix de l’énergie",
       "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-      "checkedAt": "2026-10-26T09:46:05.433Z",
+      "checkedAt": "2026-10-26T10:04:57.008Z",
       "status": "ok",
       "articles": 7,
       "relevant": 0,
-      "attemptedAt": "2026-10-26T09:46:05.441Z"
+      "attemptedAt": "2026-10-26T10:04:57.015Z"
     },
     {
       "id": "ishares",
@@ -92574,24 +92708,24 @@
   },
   "metrics": {
     "collection": {
-      "requests": 10,
-      "bytes": 374579,
-      "notModified": 0,
+      "requests": 16,
+      "bytes": 2216742,
+      "notModified": 3,
       "attemptedDocuments": 4,
       "queue": {
         "admitted": 4,
         "attempted": 4,
         "capacity": 4,
-        "p90DocumentMs": 14533,
-        "recentEligible": 0,
-        "recentFirstAttempted": 0,
+        "p90DocumentMs": 14594,
+        "recentEligible": 1,
+        "recentFirstAttempted": 1,
         "recentDeferred": 0,
-        "pending": 145,
-        "oldestWaitHours": 40.298925555555556,
+        "pending": 166,
+        "oldestWaitHours": 40.61325166666666,
         "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
       },
-      "durationMs": 44512,
-      "checkedAt": "2026-10-26T09:46:05.442Z"
+      "durationMs": 25358,
+      "checkedAt": "2026-10-26T10:04:57.016Z"
     },
     "publicationDelays": [
       {
@@ -93334,30 +93468,30 @@
       },
       {
         "url": "https://hanetf.com/press-releases/trading-central-expand-ucits-range-with-two-more-quantamental-equally-weighted-ucits-etfs",
-        "publicationInstant": null,
-        "publicationToDetectionHours": null,
-        "detectionToFirstAttemptHours": null,
+        "publicationInstant": "2026-10-13T08:20:02.000Z",
+        "publicationToDetectionHours": 273.1353638888889,
+        "detectionToFirstAttemptHours": 0,
         "detectionToAvailabilityHours": 0,
         "recoveryHours": null,
-        "publicationPrecision": "jour ou date inconnue ; délai horaire non calculé"
+        "publicationPrecision": "instant prouvé"
       },
       {
         "url": "https://hanetf.com/press-releases/yieldmax-discloses-latest-distribution-rates-for-its-european-products-highlighting-the-covered-call-strategys-income-potential-october-2026",
-        "publicationInstant": null,
-        "publicationToDetectionHours": null,
+        "publicationInstant": "2026-10-08T12:39:57.000Z",
+        "publicationToDetectionHours": 388.80341944444444,
         "detectionToFirstAttemptHours": null,
         "detectionToAvailabilityHours": 2.1778233333333334,
         "recoveryHours": null,
-        "publicationPrecision": "jour ou date inconnue ; délai horaire non calculé"
+        "publicationPrecision": "instant prouvé"
       },
       {
         "url": "https://hanetf.com/press-releases/yieldmax-semiconductor-option-income-ucits-etf-moves-to-weekly-distributions-as-demand-for-frequent-income-grows",
-        "publicationInstant": null,
-        "publicationToDetectionHours": null,
-        "detectionToFirstAttemptHours": null,
+        "publicationInstant": "2026-10-01T15:30:29.000Z",
+        "publicationToDetectionHours": 553.9611972222223,
+        "detectionToFirstAttemptHours": 0.36369666666666667,
         "detectionToAvailabilityHours": 0.36369666666666667,
         "recoveryHours": null,
-        "publicationPrecision": "jour ou date inconnue ; délai horaire non calculé"
+        "publicationPrecision": "instant prouvé"
       },
       {
         "url": "https://hanetf.com/press-releases/hanetf-launches-worlds-first-currency-hedged-bitcoin-etcs-allowing-investors-to-gain-bitcoin-exposure-without-us-dollar-risk",
@@ -93379,12 +93513,12 @@
       },
       {
         "url": "https://hanetf.com/press-releases/sprott-and-hanetf-launch-first-pure-play-rare-earths-ex-china-ucits-etf",
-        "publicationInstant": null,
-        "publicationToDetectionHours": null,
-        "detectionToFirstAttemptHours": null,
+        "publicationInstant": "2026-09-23T16:55:03.000Z",
+        "publicationToDetectionHours": 744.5517527777778,
+        "detectionToFirstAttemptHours": 1.381108888888889,
         "detectionToAvailabilityHours": 1.381108888888889,
         "recoveryHours": null,
-        "publicationPrecision": "jour ou date inconnue ; délai horaire non calculé"
+        "publicationPrecision": "instant prouvé"
       },
       {
         "url": "https://hanetf.com/press-releases/human-rights-screened-high-dividend-etf-surpasses-100-million-aum-in-first-four-months",
@@ -93406,12 +93540,12 @@
       },
       {
         "url": "https://hanetf.com/press-releases/infrastructure-capital-expands-european-etf-range-with-launch-of-sp-500-option-income-etf",
-        "publicationInstant": null,
-        "publicationToDetectionHours": null,
+        "publicationInstant": "2026-09-17T11:12:39.000Z",
+        "publicationToDetectionHours": 894.2584194444445,
         "detectionToFirstAttemptHours": null,
         "detectionToAvailabilityHours": 14.7567575,
         "recoveryHours": null,
-        "publicationPrecision": "jour ou date inconnue ; délai horaire non calculé"
+        "publicationPrecision": "instant prouvé"
       },
       {
         "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-en-ile-de-france-de-mai-juillet-2026",
@@ -96265,10 +96399,19 @@
         "detectionToAvailabilityHours": 0,
         "recoveryHours": null,
         "publicationPrecision": "instant prouvé"
+      },
+      {
+        "url": "https://www.moneyvox.fr/assurance-vie/actualites/110959/placement-pourquoi-ouvrir-une-assurance-vie-chez-hello-bank-quand-on-est-jeune",
+        "publicationInstant": "2026-10-26T09:35:09.000Z",
+        "publicationToDetectionHours": 0.4966711111111111,
+        "detectionToFirstAttemptHours": 0,
+        "detectionToAvailabilityHours": 0,
+        "recoveryHours": null,
+        "publicationPrecision": "instant prouvé"
       }
     ],
     "classification": {
-      "ready": 110,
+      "ready": 111,
       "watch": 45,
       "secondary": 366
     },
@@ -96294,9 +96437,9 @@
         }
       ],
       "lastProducer": {
-        "eventName": "workflow_run",
-        "runId": "40301972709",
-        "observedAt": "2026-10-26T09:46:53.348Z"
+        "eventName": "push",
+        "runId": "40304496177",
+        "observedAt": "2026-10-26T10:05:26.194Z"
       },
       "lastScheduledRun": {
         "runId": "40220749965",
@@ -96605,6 +96748,24 @@
         "pending": 145,
         "oldestWaitHours": 40.298925555555556,
         "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
+      },
+      {
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "eventName": "push",
+        "runId": "40304496177",
+        "requests": 16,
+        "bytes": 2216742,
+        "durationMs": 25358,
+        "admitted": 4,
+        "attempted": 4,
+        "capacity": 4,
+        "p90DocumentMs": 14594,
+        "recentEligible": 1,
+        "recentFirstAttempted": 1,
+        "recentDeferred": 0,
+        "pending": 166,
+        "oldestWaitHours": 40.61325166666666,
+        "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
       }
     ]
   },
@@ -96613,66 +96774,122 @@
   "contractResults": {
     "successes": [
       {
+        "id": "radar-source:afg",
+        "sourceUrl": "https://www.afg.asso.fr/fr/feed/",
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "attemptedAt": "2026-10-26T10:04:57.045Z",
+        "status": "unchanged-verified",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:energie-info",
+        "sourceUrl": "https://www.energie-info.fr/feed/",
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "attemptedAt": "2026-10-26T10:04:57.044Z",
+        "status": "unchanged-verified",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:amf-alerts",
+        "sourceUrl": "https://www.amf-france.org/fr/flux-rss/display/28",
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "attemptedAt": "2026-10-26T10:04:57.046Z",
+        "status": "unchanged-verified",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:boursobank-news",
+        "sourceUrl": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "attemptedAt": "2026-10-26T10:04:57.047Z",
+        "status": "succeeded",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:moneyvox",
+        "sourceUrl": "https://www.moneyvox.fr/actu/rss.php",
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "attemptedAt": "2026-10-26T10:04:57.046Z",
+        "status": "succeeded",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:bourse-direct-news",
+        "sourceUrl": "https://groupe.boursedirect.fr/feed",
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "attemptedAt": "2026-10-26T10:04:57.043Z",
+        "status": "succeeded",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:hanetf",
+        "sourceUrl": "https://hanetf.com/press_releases-sitemap.xml",
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "attemptedAt": "2026-10-26T10:04:57.049Z",
+        "status": "succeeded",
+        "sourceAttempted": true
+      },
+      {
         "id": "radar-source:Communiqués Vanguard",
         "sourceUrl": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
-        "checkedAt": "2026-10-26T09:46:05.431Z",
-        "attemptedAt": "2026-10-26T09:46:05.431Z",
+        "checkedAt": "2026-10-26T10:04:57.005Z",
+        "attemptedAt": "2026-10-26T10:04:57.005Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:Communiqués Global X Europe",
         "sourceUrl": "https://globalxetfs.eu/news",
-        "checkedAt": "2026-10-26T09:46:05.431Z",
-        "attemptedAt": "2026-10-26T09:46:05.432Z",
+        "checkedAt": "2026-10-26T10:04:57.005Z",
+        "attemptedAt": "2026-10-26T10:04:57.007Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:service-public",
         "sourceUrl": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-26T09:46:05.433Z",
-        "attemptedAt": "2026-10-26T09:46:05.435Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
+        "attemptedAt": "2026-10-26T10:04:57.010Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:bercy",
         "sourceUrl": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-26T09:46:05.433Z",
-        "attemptedAt": "2026-10-26T09:46:05.436Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
+        "attemptedAt": "2026-10-26T10:04:57.011Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:vie-publique-actualites",
         "sourceUrl": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-26T09:46:05.433Z",
-        "attemptedAt": "2026-10-26T09:46:05.436Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
+        "attemptedAt": "2026-10-26T10:04:57.012Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:vie-publique-lois",
         "sourceUrl": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-26T09:46:05.433Z",
-        "attemptedAt": "2026-10-26T09:46:05.437Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
+        "attemptedAt": "2026-10-26T10:04:57.013Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:banque-france-credit",
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-26T09:46:05.433Z",
-        "attemptedAt": "2026-10-26T09:46:05.437Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
+        "attemptedAt": "2026-10-26T10:04:57.014Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:cre-prix",
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-26T09:46:05.433Z",
-        "attemptedAt": "2026-10-26T09:46:05.441Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
+        "attemptedAt": "2026-10-26T10:04:57.015Z",
         "status": "succeeded",
         "sourceAttempted": true
       }
@@ -96681,29 +96898,21 @@
       {
         "id": "radar-source:revolut-news",
         "sourceUrl": "https://www.revolut.com/news/",
-        "attemptedAt": "2026-10-26T09:46:05.455Z",
+        "attemptedAt": "2026-10-26T10:04:57.048Z",
         "error": "HTTP 403",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:wisdomtree",
         "sourceUrl": "https://www.wisdomtree.com/fr/press-room",
-        "attemptedAt": "2026-10-26T09:46:05.457Z",
+        "attemptedAt": "2026-10-26T10:04:57.050Z",
         "error": "HTTP 403",
-        "sourceAttempted": true
-      },
-      {
-        "id": "radar-source:hanetf",
-        "sourceUrl": "https://hanetf.com/press-releases/",
-        "checkedAt": "2026-10-26T08:07:50.717Z",
-        "attemptedAt": "2026-10-26T09:46:05.456Z",
-        "error": "Liste officielle HANetf vide ou format modifié",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:dares",
         "sourceUrl": "https://dares.travail-emploi.gouv.fr/",
-        "attemptedAt": "2026-10-26T09:46:05.458Z",
+        "attemptedAt": "2026-10-26T10:04:57.051Z",
         "error": "Accès refusé ou page anti-robot, même si HTTP 200",
         "sourceAttempted": true
       },
@@ -96711,7 +96920,7 @@
         "id": "radar-source:drees",
         "sourceUrl": "https://drees.solidarites-sante.gouv.fr/",
         "checkedAt": "2026-10-25T00:25:11.059Z",
-        "attemptedAt": "2026-10-26T09:46:05.457Z",
+        "attemptedAt": "2026-10-26T10:04:57.050Z",
         "error": "fetch failed",
         "sourceAttempted": true
       }
@@ -96765,54 +96974,6 @@
       "status": "waiting",
       "sourceAttempted": false,
       "reason": "Prochain contrôle différé jusqu’au 2026-10-26T10:19:54.454Z"
-    },
-    {
-      "id": "radar-source:bourse-direct-news",
-      "sourceUrl": "https://groupe.boursedirect.fr/feed",
-      "checkedAt": "2026-10-26T09:19:54.454Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-26T09:49:54.454Z"
-    },
-    {
-      "id": "radar-source:energie-info",
-      "sourceUrl": "https://www.energie-info.fr/feed/",
-      "checkedAt": "2026-10-26T09:19:54.454Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-26T09:49:54.454Z"
-    },
-    {
-      "id": "radar-source:afg",
-      "sourceUrl": "https://www.afg.asso.fr/fr/feed/",
-      "checkedAt": "2026-10-26T09:19:54.454Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-26T09:49:54.454Z"
-    },
-    {
-      "id": "radar-source:amf-alerts",
-      "sourceUrl": "https://www.amf-france.org/fr/flux-rss/display/28",
-      "checkedAt": "2026-10-26T09:19:54.454Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-26T09:49:54.454Z"
-    },
-    {
-      "id": "radar-source:moneyvox",
-      "sourceUrl": "https://www.moneyvox.fr/actu/rss.php",
-      "checkedAt": "2026-10-26T09:19:54.454Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-26T09:49:54.454Z"
-    },
-    {
-      "id": "radar-source:boursobank-news",
-      "sourceUrl": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
-      "checkedAt": "2026-10-26T09:19:54.454Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-26T09:49:54.454Z"
     },
     {
       "id": "radar-source:bnp-bank",
@@ -96970,7 +97131,7 @@
       "id": "radar-source:bdf-credit",
       "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "checkedAt": "2026-10-26T09:19:54.454Z",
-      "attemptedAt": "2026-10-26T09:46:05.437Z",
+      "attemptedAt": "2026-10-26T10:04:57.014Z",
       "status": "waiting",
       "sourceAttempted": false,
       "reason": "Prochain contrôle différé jusqu’au 2026-10-26T10:19:54.454Z"
@@ -97347,7 +97508,7 @@
           "fields": [
             "official publication listing"
           ],
-          "sourceUrl": "https://hanetf.com/press-releases/",
+          "sourceUrl": "https://hanetf.com/press_releases-sitemap.xml",
           "selected": true
         },
         {
@@ -97678,13 +97839,13 @@
       "mode": "full",
       "emptyReason": null,
       "retainNativeFailuresOnly": true,
-      "declaredAt": "2026-10-26T09:46:02.112048+00:00",
-      "nonce": "dad553ee-3e08-4478-b0ba-4b84fbb574db",
-      "codeSha": "37f08939e8f08d0633d579de30214b8176653e93",
+      "declaredAt": "2026-10-26T10:04:53.417040+00:00",
+      "nonce": "8bcaf0c4-e05d-4cc8-a849-358bad464e4f",
+      "codeSha": "2f47f3fb776df59ddcc1ce5ed9f35c71b88a74dc",
       "durablePlan": true,
-      "runId": "40301972709",
+      "runId": "40304496177",
       "attempt": "1",
-      "sha256": "cd65411ac3de179a738b0079485c7324e023a06cd30d0339d5cd2d20049cc103"
+      "sha256": "172bdbe405b4d64ef58980a5cc9d065920377e8bddcdd931a37e3d6c83062a70"
     },
     "scope": {
       "kind": "editorial-radar-sources",
@@ -98049,7 +98210,7 @@
           "fields": [
             "official publication listing"
           ],
-          "sourceUrl": "https://hanetf.com/press-releases/",
+          "sourceUrl": "https://hanetf.com/press_releases-sitemap.xml",
           "selected": true
         },
         {
@@ -98378,9 +98539,15 @@
         }
       ],
       "emptyReason": null,
-      "declaredAt": "2026-10-26T09:46:02.112048+00:00",
-      "planSha256": "cd65411ac3de179a738b0079485c7324e023a06cd30d0339d5cd2d20049cc103",
+      "declaredAt": "2026-10-26T10:04:53.417040+00:00",
+      "planSha256": "172bdbe405b4d64ef58980a5cc9d065920377e8bddcdd931a37e3d6c83062a70",
       "attemptedIds": [
+        "radar-source:bourse-direct-news",
+        "radar-source:energie-info",
+        "radar-source:afg",
+        "radar-source:amf-alerts",
+        "radar-source:moneyvox",
+        "radar-source:boursobank-news",
         "radar-source:revolut-news",
         "radar-source:hanetf",
         "radar-source:wisdomtree",
@@ -98397,6 +98564,12 @@
       ],
       "attemptUnknownIds": [],
       "networkRequestedIds": [
+        "radar-source:bourse-direct-news",
+        "radar-source:energie-info",
+        "radar-source:afg",
+        "radar-source:amf-alerts",
+        "radar-source:moneyvox",
+        "radar-source:boursobank-news",
         "radar-source:revolut-news",
         "radar-source:hanetf",
         "radar-source:wisdomtree",
@@ -98412,10 +98585,10 @@
         "radar-source:Communiqués Global X Europe"
       ],
       "networkAttemptUnknownIds": [],
-      "runId": "40301972709",
+      "runId": "40304496177",
       "attempt": "1",
       "selectionReason": null,
-      "nonce": "dad553ee-3e08-4478-b0ba-4b84fbb574db"
+      "nonce": "8bcaf0c4-e05d-4cc8-a849-358bad464e4f"
     },
     "outcomes": [
       {
@@ -98510,11 +98683,11 @@
         ],
         "sourceUrl": "https://groupe.boursedirect.fr/feed",
         "selected": true,
-        "checkedAt": "2026-10-26T09:19:54.454Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-26T09:49:54.454Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "attemptedAt": "2026-10-26T10:04:57.043Z",
+        "status": "succeeded",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:energie-info",
@@ -98524,11 +98697,11 @@
         ],
         "sourceUrl": "https://www.energie-info.fr/feed/",
         "selected": true,
-        "checkedAt": "2026-10-26T09:19:54.454Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-26T09:49:54.454Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "attemptedAt": "2026-10-26T10:04:57.044Z",
+        "status": "unchanged-verified",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:afg",
@@ -98538,11 +98711,11 @@
         ],
         "sourceUrl": "https://www.afg.asso.fr/fr/feed/",
         "selected": true,
-        "checkedAt": "2026-10-26T09:19:54.454Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-26T09:49:54.454Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "attemptedAt": "2026-10-26T10:04:57.045Z",
+        "status": "unchanged-verified",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:amf-alerts",
@@ -98552,11 +98725,11 @@
         ],
         "sourceUrl": "https://www.amf-france.org/fr/flux-rss/display/28",
         "selected": true,
-        "checkedAt": "2026-10-26T09:19:54.454Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-26T09:49:54.454Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "attemptedAt": "2026-10-26T10:04:57.046Z",
+        "status": "unchanged-verified",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:moneyvox",
@@ -98566,11 +98739,11 @@
         ],
         "sourceUrl": "https://www.moneyvox.fr/actu/rss.php",
         "selected": true,
-        "checkedAt": "2026-10-26T09:19:54.454Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-26T09:49:54.454Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "attemptedAt": "2026-10-26T10:04:57.046Z",
+        "status": "succeeded",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:boursobank-news",
@@ -98580,11 +98753,11 @@
         ],
         "sourceUrl": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
         "selected": true,
-        "checkedAt": "2026-10-26T09:19:54.454Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-26T09:49:54.454Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "attemptedAt": "2026-10-26T10:04:57.047Z",
+        "status": "succeeded",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:revolut-news",
@@ -98594,7 +98767,7 @@
         ],
         "sourceUrl": "https://www.revolut.com/news/",
         "selected": true,
-        "attemptedAt": "2026-10-26T09:46:05.455Z",
+        "attemptedAt": "2026-10-26T10:04:57.048Z",
         "error": "HTTP 403",
         "sourceAttempted": true,
         "status": "failed",
@@ -98774,13 +98947,12 @@
         "fields": [
           "official publication listing"
         ],
-        "sourceUrl": "https://hanetf.com/press-releases/",
+        "sourceUrl": "https://hanetf.com/press_releases-sitemap.xml",
         "selected": true,
-        "checkedAt": "2026-10-26T08:07:50.717Z",
-        "attemptedAt": "2026-10-26T09:46:05.456Z",
-        "error": "Liste officielle HANetf vide ou format modifié",
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "attemptedAt": "2026-10-26T10:04:57.049Z",
+        "status": "succeeded",
         "sourceAttempted": true,
-        "status": "failed",
         "operationAttempted": true
       },
       {
@@ -98889,7 +99061,7 @@
         ],
         "sourceUrl": "https://www.wisdomtree.com/fr/press-room",
         "selected": true,
-        "attemptedAt": "2026-10-26T09:46:05.457Z",
+        "attemptedAt": "2026-10-26T10:04:57.050Z",
         "error": "HTTP 403",
         "sourceAttempted": true,
         "status": "failed",
@@ -98904,7 +99076,7 @@
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
         "selected": true,
         "checkedAt": "2026-10-26T09:19:54.454Z",
-        "attemptedAt": "2026-10-26T09:46:05.437Z",
+        "attemptedAt": "2026-10-26T10:04:57.014Z",
         "status": "waiting",
         "sourceAttempted": false,
         "reason": "Prochain contrôle différé jusqu’au 2026-10-26T10:19:54.454Z",
@@ -98961,7 +99133,7 @@
         "sourceUrl": "https://drees.solidarites-sante.gouv.fr/",
         "selected": true,
         "checkedAt": "2026-10-25T00:25:11.059Z",
-        "attemptedAt": "2026-10-26T09:46:05.457Z",
+        "attemptedAt": "2026-10-26T10:04:57.050Z",
         "error": "fetch failed",
         "sourceAttempted": true,
         "status": "failed",
@@ -98975,7 +99147,7 @@
         ],
         "sourceUrl": "https://dares.travail-emploi.gouv.fr/",
         "selected": true,
-        "attemptedAt": "2026-10-26T09:46:05.458Z",
+        "attemptedAt": "2026-10-26T10:04:57.051Z",
         "error": "Accès refusé ou page anti-robot, même si HTTP 200",
         "sourceAttempted": true,
         "status": "failed",
@@ -98989,8 +99161,8 @@
         ],
         "sourceUrl": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
         "selected": true,
-        "checkedAt": "2026-10-26T09:46:05.433Z",
-        "attemptedAt": "2026-10-26T09:46:05.435Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
+        "attemptedAt": "2026-10-26T10:04:57.010Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -99003,8 +99175,8 @@
         ],
         "sourceUrl": "https://www.economie.gouv.fr/rss/toutesactualites",
         "selected": true,
-        "checkedAt": "2026-10-26T09:46:05.433Z",
-        "attemptedAt": "2026-10-26T09:46:05.436Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
+        "attemptedAt": "2026-10-26T10:04:57.011Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -99017,8 +99189,8 @@
         ],
         "sourceUrl": "https://www.vie-publique.fr/actualites-feeds.xml",
         "selected": true,
-        "checkedAt": "2026-10-26T09:46:05.433Z",
-        "attemptedAt": "2026-10-26T09:46:05.436Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
+        "attemptedAt": "2026-10-26T10:04:57.012Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -99031,8 +99203,8 @@
         ],
         "sourceUrl": "https://www.vie-publique.fr/lois-feeds.xml",
         "selected": true,
-        "checkedAt": "2026-10-26T09:46:05.433Z",
-        "attemptedAt": "2026-10-26T09:46:05.437Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
+        "attemptedAt": "2026-10-26T10:04:57.013Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -99045,8 +99217,8 @@
         ],
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
         "selected": true,
-        "checkedAt": "2026-10-26T09:46:05.433Z",
-        "attemptedAt": "2026-10-26T09:46:05.437Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
+        "attemptedAt": "2026-10-26T10:04:57.014Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -99059,8 +99231,8 @@
         ],
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse.html",
         "selected": true,
-        "checkedAt": "2026-10-26T09:46:05.433Z",
-        "attemptedAt": "2026-10-26T09:46:05.441Z",
+        "checkedAt": "2026-10-26T10:04:57.008Z",
+        "attemptedAt": "2026-10-26T10:04:57.015Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -99266,8 +99438,8 @@
         ],
         "sourceUrl": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
         "selected": true,
-        "checkedAt": "2026-10-26T09:46:05.431Z",
-        "attemptedAt": "2026-10-26T09:46:05.431Z",
+        "checkedAt": "2026-10-26T10:04:57.005Z",
+        "attemptedAt": "2026-10-26T10:04:57.005Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -99280,8 +99452,8 @@
         ],
         "sourceUrl": "https://globalxetfs.eu/news",
         "selected": true,
-        "checkedAt": "2026-10-26T09:46:05.431Z",
-        "attemptedAt": "2026-10-26T09:46:05.432Z",
+        "checkedAt": "2026-10-26T10:04:57.005Z",
+        "attemptedAt": "2026-10-26T10:04:57.007Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -99301,7 +99473,7 @@
         "id": "radar:etf",
         "name": "Radar · etf",
         "field": "Sources du radar",
-        "error": "HTTP 403 ; Liste officielle HANetf vide ou format modifié",
+        "error": "HTTP 403",
         "phase": "validation",
         "sourceAttempted": false
       },
@@ -99314,13 +99486,5 @@
         "sourceAttempted": false
       }
     ]
-  },
-  "notifications": {
-    "checkedAt": "2026-10-26T09:47:06.506Z",
-    "mode": "major",
-    "sent": 0,
-    "pending": 0,
-    "status": "ok",
-    "recovered": 0
   }
 }
