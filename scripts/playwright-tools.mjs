@@ -849,15 +849,16 @@ async function testMarketFacts(page) {
       || tweet !== expected || /^💬/m.test(tweet)) badCount++;
   }
   // Un cycle aléatoire complet ne doit proposer ni fiche retirée ni répétition.
+  await page.reload({ waitUntil: 'networkidle' });
+  const narratives = MARKET_FACTS.filter(fact => fact.kind !== 'measured-reference');
   const seen = new Set([await select.getAttribute('data-value')]);
-  // La lecture exhaustive ci-dessus a épuisé la session : le premier tirage ouvre un nouveau cycle.
-  for (let i = 0; i < count - 1; i++) {
+  for (let i = 0; i < narratives.length - 1; i++) {
     await page.getByRole('button', { name: '🔄 Histoire aléatoire' }).click();
     const id = await select.getAttribute('data-value');
-    if (seen.has(id) || !MARKET_FACTS.some(fact => fact.id === id)) badCount++;
+    if (seen.has(id) || !narratives.some(fact => fact.id === id)) badCount++;
     seen.add(id);
   }
-  record("Faits marquants des marchés", badCount === 0, `${count} récits : sélection, cycle aléatoire, textes, copie et sources ; ${badCount} échec(s)`);
+  record("Histoires de marchés", badCount === 0, `${count} contenus : sélection, cycle de ${narratives.length} récits, textes, copie et sources ; ${badCount} échec(s)`);
 }
 
 async function testTweetBank(page) {
