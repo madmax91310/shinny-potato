@@ -1,15 +1,15 @@
-import { drawObsidianAsset, drawObsidianBackdrop, loadInvestmentEditorialArt } from './editorialArt.js'
+import { drawMetricIcon, drawSignatureLeaves, drawObsidianAsset, drawObsidianBackdrop, loadInvestmentEditorialArt } from './editorialArt.js'
 import { ensureCalculatorAsset } from '../../data/calculator-history.js'
 import { ASSETS, INCONSISTENT_MONTHLY_DATA_IDS, MONTHS_FULL, SPARSE_MONTHLY_DATA_IDS } from '../../data/calculator-history.js'
 import { fmtEUR, fmtPct, pct, ymIndex } from './lib.js'
 
 const W = 1600, H = 2040
 const INK = '#fff5df', MUTED = '#c8c3b8', GOLD = '#edc46c', RED = '#ff8b84', MINT = '#a9e6c3'
-function text(ctx, value, x, y, size, { width = 1460, color = INK, align = 'left', weight = 700, maxHeight = Infinity, top = null } = {}) {
+function text(ctx, value, x, y, size, { width = 1460, color = INK, align = 'left', weight = 700, maxHeight = Infinity, top = null, display = false } = {}) {
   ctx.textBaseline = 'alphabetic'; ctx.textAlign = align; ctx.fillStyle = color
   let fitted = size
   do {
-    ctx.font = weight + ' ' + fitted + 'px Arial, sans-serif'
+    ctx.font = display ? `400 ${fitted}px InvestmentDisplay, Arial, sans-serif` : weight + ' ' + fitted + 'px Arial, sans-serif'
     const m = ctx.measureText(value)
     if (m.width <= width && m.actualBoundingBoxAscent + m.actualBoundingBoxDescent <= maxHeight) break
     fitted--
@@ -56,16 +56,16 @@ export function annualInvestmentCapital(state, d) {
 }
 
 function title(ctx, label) {
-  let size = 82, lines, ascent, descent, step
+  let size = 94, lines, ascent, descent, step
   do {
-    ctx.font = '800 ' + size + 'px Arial, sans-serif'
+    ctx.font = '400 ' + size + 'px InvestmentDisplay, Arial, sans-serif'
     lines = ['']
     for (const word of label.split(/\s+/)) {
       // Preserve even a long unbroken custom label, wrapping rather than clipping.
       const fragments = []
       let fragment = ''
       for (const letter of word) {
-        if (fragment && ctx.measureText(fragment + letter).width > 940) {
+        if (fragment && ctx.measureText(fragment + letter).width > 900) {
           fragments.push(fragment); fragment = ''
         }
         fragment += letter
@@ -73,7 +73,7 @@ function title(ctx, label) {
       if (fragment) fragments.push(fragment)
       for (let i = 0; i < fragments.length; i++) {
         const next = (lines.at(-1) + (i ? '' : ' ') + fragments[i]).trim()
-        if (lines.at(-1) && (i || ctx.measureText(next).width > 940)) lines.push(fragments[i])
+        if (lines.at(-1) && (i || ctx.measureText(next).width > 900)) lines.push(fragments[i])
         else lines[lines.length - 1] = next
       }
     }
@@ -81,28 +81,28 @@ function title(ctx, label) {
     ascent = Math.max(...metrics.map(m => m.actualBoundingBoxAscent))
     descent = Math.max(...metrics.map(m => m.actualBoundingBoxDescent))
     step = ascent + descent + 12
-    if (lines.length * step - 12 <= 204) break
+    if (lines.length * step - 12 <= 145) break
     size--
   } while (size > 18)
   // The title occupies a measured box between the mode and the dates. Accents
   // and descenders share one line height, including when they occur on different lines.
-  lines.forEach((line, i) => text(ctx, line, 70, 282 + ascent + i * step, size,
-    { width: 940, weight: 800 }))
+  lines.forEach((line, i) => text(ctx, line, 70, 340 + ascent + i * step, size,
+    { width: 900, display: true }))
 }
 
 function chart(ctx, state, d, currency, kind) {
   const annual = kind !== 'monthly', rows = annual ? annualInvestmentCapital(state, d) : null
   const values = annual ? rows.map(p => p.value) : d.result.series
-  const left = 215, right = 1500, top = 870, bottom = 1635
+  const left = 195, right = 1380, top = 920, bottom = 1510
   const peak = Math.max(1, ...values, ...d.result.invested)
   const magnitude = 10 ** Math.floor(Math.log10(peak / 2))
-  const maximum = Math.ceil(peak * 1.12 / magnitude) * magnitude
+  const maximum = Math.ceil(peak * 1.18 / magnitude) * magnitude
   const py = v => bottom - v / maximum * (bottom - top)
   const px = i => left + (values.length <= 1 ? .5 : i / (values.length - 1)) * (right - left)
   const color = d.result.finalValue < d.result.totalInvested ? RED : GOLD
   if (annual) {
     text(ctx, kind === 'endpoints' ? 'Départ → valeur finale' : rows.every(p => p.date.endsWith('-12')) ? 'Capital en fin d’année' : 'Capital aux dates observées',
-      70, 800, 29, { width: 1000, color: MUTED, weight: 400 })
+      70, 900, 29, { width: 1000, color: MUTED, weight: 400 })
   }
   for (let i = 0; i <= 2; i++) {
     const value = maximum * i / 2, y = py(value)
@@ -135,15 +135,25 @@ function chart(ctx, state, d, currency, kind) {
       fill.addColorStop(1, '#edc46c00'); ctx.fillStyle = fill; ctx.fill()
     }
     const plot = (series, stroke, dashed = false) => {
-      ctx.save(); ctx.strokeStyle = stroke; ctx.lineWidth = dashed ? 3 : 6
+      ctx.save(); ctx.strokeStyle = stroke; ctx.lineWidth = dashed ? 3 : 7
       ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.setLineDash(dashed ? [12, 10] : [])
       ctx.beginPath()
       series.forEach((v, i) => i ? ctx.lineTo(px(i), py(v)) : ctx.moveTo(px(i), py(v)))
       ctx.stroke(); ctx.restore()
     }
     if (d.effectiveMode === 'dca') plot(d.result.invested, '#e5e0d2', true)
-    plot(values, color)
+    ctx.save(); ctx.shadowColor = color + '66'; ctx.shadowBlur = 12
+    plot(values, color); ctx.restore()
     ctx.fillStyle = color; ctx.beginPath(); ctx.arc(px(values.length - 1), py(values.at(-1)), 8, 0, Math.PI * 2); ctx.fill()
+    if (values.length > 1) {
+      const finalY = py(values.at(-1)), investedY = py(d.result.totalInvested)
+      text(ctx, money(d.result.finalValue, currency), 1405, finalY + 9, 30,
+        { width: 135, align: 'left', color, display: true })
+      if (d.effectiveMode === 'dca' && Math.abs(finalY - investedY) >= 65) {
+        text(ctx, money(d.result.totalInvested, currency), 1405, investedY + 9, 28,
+          { width: 135, align: 'left', color: MUTED, display: true })
+      }
+    }
     if (values.length === 1) text(ctx, prettyMonth(d.endYm), (left + right) / 2, bottom + 42, 30,
       { width: 600, align: 'center', color: MUTED, weight: 400 })
     else {
@@ -152,12 +162,12 @@ function chart(ctx, state, d, currency, kind) {
     }
   }
   // Legend stays below the plot; it cannot collide with the last capital point.
-  ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(505, 1720); ctx.lineTo(560, 1720); ctx.stroke()
-  text(ctx, 'Capital', 580, 1730, 28, { width: 250, color: MUTED, weight: 400 })
+  ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(505, 1630); ctx.lineTo(560, 1630); ctx.stroke()
+  text(ctx, 'Capital', 580, 1640, 28, { width: 250, color: MUTED, weight: 400 })
   if (d.effectiveMode === 'dca' && !annual) {
     ctx.strokeStyle = '#e5e0d2'; ctx.lineWidth = 3; ctx.setLineDash([12, 10])
-    ctx.beginPath(); ctx.moveTo(890, 1720); ctx.lineTo(945, 1720); ctx.stroke(); ctx.setLineDash([])
-    text(ctx, 'Versements', 965, 1730, 28, { width: 400, color: MUTED, weight: 400 })
+    ctx.beginPath(); ctx.moveTo(890, 1630); ctx.lineTo(945, 1630); ctx.stroke(); ctx.setLineDash([])
+    text(ctx, 'Versements', 965, 1640, 28, { width: 400, color: MUTED, weight: 400 })
   }
 }
 
@@ -170,38 +180,54 @@ export async function renderInvestmentImage(state, d) {
   const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = H
   const ctx = canvas.getContext('2d')
   drawObsidianBackdrop(ctx, W, H)
-  drawObsidianAsset(ctx, art, 1080, 70, 450, 370)
+  drawObsidianAsset(ctx, art, 950, 30, 630, 650)
   const dca = d.effectiveMode === 'dca', gain = d.result.finalValue - d.result.totalInvested
-  text(ctx, money(d.amount, currency), 70, 185, 170, { width: 940, maxHeight: 140, top: 45, weight: 900 })
-  text(ctx, dca ? 'par mois dans' : 'investis dans', 70, 250, 51, { width: 940, weight: 700 })
-  title(ctx, investmentImageLabel(asset?.label || state.customLabel || 'cet actif'))
-  text(ctx, prettyMonth(d.startYm) + ' → ' + prettyMonth(d.endYm), 70, 525, 36,
+  text(ctx, money(d.amount, currency), 70, 315, 278, { width: 900, maxHeight: 245, top: 70, display: true })
+  const label = investmentImageLabel(asset?.label || state.customLabel || 'cet actif')
+  const target = state.assetId === 'or' ? 'dans l’or' : `sur ${label}`
+  title(ctx, `${dca ? 'par mois' : 'investis'} ${target}`)
+  text(ctx, prettyMonth(d.startYm) + ' → ' + prettyMonth(d.endYm), 70, 535, 39,
     { width: 1460, color: MUTED, weight: 400 })
-  text(ctx, 'Capital final', 70, 600, 47, { width: 1400 })
-  const face = ctx.createLinearGradient(0, 610, 0, 745)
-  face.addColorStop(0, '#fff6d6'); face.addColorStop(.45, '#f3d98c'); face.addColorStop(1, '#ce983f')
-  text(ctx, money(d.result.finalValue, currency), 70, 755, 188,
-    { width: 1460, maxHeight: 135, top: 630, color: gain < 0 ? RED : face, weight: 900 })
+  text(ctx, 'Capital final', 70, 615, 53, { width: 1400 })
+  const face = ctx.createLinearGradient(0, 645, 0, 845)
+  face.addColorStop(0, '#fff6d6'); face.addColorStop(.35, '#fff0b0'); face.addColorStop(.6, '#eac15f'); face.addColorStop(1, '#ce983f')
+  ctx.save(); ctx.shadowColor = gain < 0 ? '#ff8b8430' : '#eeb83e38'; ctx.shadowBlur = 24
+  text(ctx, money(d.result.finalValue, currency), 70, 850, 265,
+    { width: 1460, maxHeight: 215, top: 650, color: gain < 0 ? RED : face, display: true })
+  ctx.restore()
   chart(ctx, state, d, currency, investmentChartKind(state, d))
-  ctx.save(); ctx.shadowColor = '#00000080'; ctx.shadowBlur = 26; ctx.shadowOffsetY = 12
-  const rail = ctx.createLinearGradient(0, 1780, 0, 1945)
-  rail.addColorStop(0, '#24211d'); rail.addColorStop(.5, '#161618'); rail.addColorStop(1, '#101113')
-  ctx.fillStyle = rail; ctx.beginPath(); ctx.roundRect(50, 1780, 1500, 165, 34); ctx.fill()
-  ctx.shadowBlur = 0; ctx.shadowOffsetY = 0; ctx.strokeStyle = '#bd9551'; ctx.lineWidth = 2; ctx.stroke(); ctx.restore()
+  ctx.save()
+  const rail = ctx.createLinearGradient(0, 1710, 0, 1925)
+  rail.addColorStop(0, '#252015'); rail.addColorStop(.2, '#141313'); rail.addColorStop(1, '#0a0b0c')
+  ctx.fillStyle = rail; ctx.beginPath(); ctx.roundRect(45, 1710, 1510, 215, 44); ctx.fill()
+  ctx.shadowColor = '#edbb59'; ctx.shadowBlur = 18
+  ctx.strokeStyle = '#e6bf76'; ctx.lineWidth = 3; ctx.stroke(); ctx.restore()
+  // Short light streaks, as in the approved frame. Never behind the numbers.
+  for (const [x, y] of [[340, 1710], [1270, 1925]]) {
+    const gleam = ctx.createRadialGradient(x, y, 0, x, y, 120)
+    gleam.addColorStop(0, '#fff4c0'); gleam.addColorStop(.15, '#f7d48a99'); gleam.addColorStop(1, '#edc46c00')
+    ctx.fillStyle = gleam; ctx.fillRect(x - 120, y - 6, 240, 12)
+  }
   const facts = [
     { label: 'Investi', value: money(d.result.totalInvested, currency), color: INK },
     { label: gain < 0 ? 'Perte' : 'Gain', value: (gain > 0 ? '+' : gain < 0 ? '−' : '') + money(Math.abs(gain), currency), color: gain < 0 ? RED : GOLD },
     { label: 'Performance', value: fmtPct(pct(d.result.finalValue, d.result.totalInvested)), color: gain < 0 ? RED : MINT },
   ]
   facts.forEach((fact, i) => {
-    const x = 90 + i * 500
-    text(ctx, fact.label, x, 1835, 32, { width: 420, color: MUTED, weight: 400 })
-    text(ctx, fact.value, x, 1910, 62, { width: 420, maxHeight: 56, color: fact.color, weight: 800 })
+    const x = 80 + i * 500
+    drawMetricIcon(ctx, i, x, 1790, i === 2 ? fact.color : GOLD, gain < 0)
+    text(ctx, fact.label, x + 105, 1792, 35, { width: 355, color: MUTED, weight: 400 })
+    text(ctx, fact.value, x + 105, 1880, 76, { width: 355, maxHeight: 72, color: fact.color, display: true })
     if (i) {
-      ctx.strokeStyle = '#bd955145'; ctx.lineWidth = 1
-      ctx.beginPath(); ctx.moveTo(x - 40, 1810); ctx.lineTo(x - 40, 1920); ctx.stroke()
+      ctx.strokeStyle = '#bd955155'; ctx.lineWidth = 2
+      ctx.beginPath(); ctx.moveTo(x - 25, 1750); ctx.lineTo(x - 25, 1890); ctx.stroke()
     }
   })
-  text(ctx, 'Épargnant Libre', W / 2, 2010, 39, { width: 1200, align: 'center', color: GOLD, weight: 700 })
+  // Center the complete signature, including the leaf symbol.
+  ctx.font = '700 48px Arial, sans-serif'
+  const brandWidth = ctx.measureText('Épargnant Libre').width
+  const brandX = (W - brandWidth - 100) / 2
+  drawSignatureLeaves(ctx, brandX, 1950)
+  text(ctx, 'Épargnant Libre', brandX + 100, 2010, 48, { width: brandWidth + 2, color: GOLD, weight: 700 })
   return canvas
 }

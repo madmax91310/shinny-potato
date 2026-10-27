@@ -85,6 +85,17 @@ try {
       return d
     }
     try {
+      // Exact scenario of the approved reference, with actual calculator values.
+      const goldReference = { ...stateFor('or', 'dca'), amountRaw: '500', startYear: 2018, startMonth: 1 }
+      await check('gold-reference-2018', goldReference, true)
+      if (!labels.includes('par mois dans l’or')) throw new Error('Gold headline must remain a compact sentence')
+      if (!document.fonts.check('40px InvestmentDisplay')) throw new Error('Poster display font missing')
+      boxes = []; labels = []
+      const first = await renderInvestmentImage(goldReference, derive(goldReference))
+      boxes = []; labels = []
+      const second = await renderInvestmentImage(goldReference, derive(goldReference))
+      if (first.toDataURL() !== second.toDataURL()) throw new Error('Texture changed between identical exports')
+      boxes = []; labels = []
       await check('header-gbp', stateFor('diageo'), true)
       await check('header-accented-title', stateFor('euroGovShort', 'dca'), true)
       for (const id of ASSET_ORDER) for (const mode of ['lump', 'dca']) await check(`${id}-${mode}`, stateFor(id, mode), mode === 'lump' && ['apple', 'microsoft', 'msciWorld', 'or', 'tesla', 'asml', 'msciEurope', 'msciIndia', 'msciWorldQuality', 'msciWorldValue', 'russell2000'].includes(id))
