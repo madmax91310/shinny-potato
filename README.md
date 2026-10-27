@@ -13,10 +13,14 @@ Le comparateur d’indices reste un moteur interne sans route publique. Les mote
 conservés et les liens de compatibilité sont distingués des outils accessibles.
 
 
-## Idées de classements
+## Idées de publications
 
-`/idees-classements` conserve les 51 sujets fournis dans six catégories. Recherche
-par mots-clés, filtre de catégorie et copie du titre exact, avec sélection manuelle
+`/idees-classements` conserve intégralement les 51 classements fournis dans six catégories
+et ajoute 48 sujets grand public avec un angle par sujet : logement, épargne, salaire,
+dépenses, famille et patrimoine. Les filtres Tout / Classements / Argent au quotidien
+et les catégories permettent de retrouver les deux collections. La recherche porte
+aussi sur les angles. Copie du titre exact pour les classements, du sujet et de son
+angle pour les nouvelles idées, avec sélection manuelle
 si le presse-papiers est indisponible. C’est un pense-bête éditorial : les recherches,
 les classements et la rédaction restent manuels. La liste est indépendante des
 registres financiers, des collecteurs et de la banque de tweets. L’année 2025 du
