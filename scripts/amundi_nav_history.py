@@ -27,7 +27,15 @@ def parse(body, source, now):
     if facts['CURRENCY'] != source['navCurrency'] or product['currencies']['CURRENCY'] != facts['CURRENCY']:
         raise ValueError('Wrong Amundi NAV currency')
     # Historical cash distributions require a separately qualified reinvestment path.
-    if facts['DISTRIBUTION_POLICY'] != 'Capitalisation':
+    income_index=source.get('navHistoryKind')=='official-income-reinvested-index'
+    if source.get('navHistoryKind') not in (None,'official-income-reinvested-index'):
+        raise ValueError('Unqualified Amundi NAV history convention')
+    if income_index:
+        if (facts['DISTRIBUTION_POLICY']!='Distribution'
+                or source.get('anniversaryNavKind')!='official-price-excluding-distributions'
+                or not source.get('anniversaryCashDates')):
+            raise ValueError('Distributing Amundi share needs explicit income-index and cash/price qualification')
+    elif facts['DISTRIBUTION_POLICY'] != 'Capitalisation':
         raise ValueError('Amundi NAV requires explicitly accumulating share')
     inception = dt.date.fromisoformat(facts['LAUNCH_DATE'])
     if inception > dt.date.fromisoformat(source['periodStart'] + '-01'):
@@ -82,15 +90,26 @@ def parse(body, source, now):
     factor=nav[anchor]/adjusted[anchor]
     normalized={day:value*factor for day,value in adjusted.items()}
     normalized[anchor]=nav[anchor]
-    return normalized, years, {'shareInception': inception.isoformat(),
+    income_proof={}
+    if income_index:
+        prices,cash=anniversary_price_history(body,source,now,normalized)
+        unit_errors=[abs(prices[day]/nav[day]-1) for day in prices]
+        if not unit_errors or any(error>1e-6 for error in unit_errors):
+            raise ValueError('Amundi income/price units not corroborated by all declared historical cash factors')
+        income_proof={'incomeReinvestmentQualification':{
+            'declaredPolicy':facts['DISTRIBUTION_POLICY'],'cashChecks':cash['anniversaryCashChecks'],
+            'dailyUnitChecks':len(unit_errors),'maxRelativeUnitError':max(unit_errors),
+            'method':'Official adjusted income series, every published cash factor and each raw NAV checked; no cash added a second time'},
+            'anniversaryDeferredCashDates':cash['anniversaryDeferredCashDates']}
+    return normalized, years, {**income_proof,'shareInception': inception.isoformat(),
                             'scaleProof': {'anchorDate':anchor,'officialPerShareNav':nav[anchor],
                                            'sourceAdjustedLevel':adjusted[anchor],'factor':factor,
                                            'method':'Official adjusted performance series scaled to the same-date exact-share NAV; current share units, not a raw historical quote'},
-                            'controlledFields': ['ISIN','CURRENCY','LAUNCH_DATE','DISTRIBUTION_POLICY','officialNav','countervalorisedAdjustedNAV','navCurrency','shareCalendarPerformance'],
+                            'controlledFields': ['ISIN','CURRENCY','LAUNCH_DATE','DISTRIBUTION_POLICY','officialNav','countervalorisedAdjustedNAV','navCurrency','shareCalendarPerformance']+(['dividendAmount','dividendCurrency'] if income_index else []),
                             'controlledInstrument': source['isin'],
                             'requestedStart': source['periodStart']+'-01',
                             'controlledCalendarYears': sorted(years),
-                            'incomeTreatment': 'Capitalisation',
+                            'incomeTreatment': facts['DISTRIBUTION_POLICY'],
                             'navIndicator': 'countervalorisedAdjustedNAV',
                             'historicalCurrencyIndicator': 'navCurrency',
                             'latestRawNav': max(nav), 'latestAdjustedNav': max(adjusted),
@@ -106,7 +125,7 @@ def anniversary_price_history(body,source,now,normalized_nav):
     cutoff=max(normalized_nav);start=source['periodStart']+'-01';filtered=copy.deepcopy(body);dates={};deferred=[]
     for key in ['dividendAmount','dividendCurrency']:
         fields=[h for h in filtered['products'][0]['historics']if h['indicator']==key]
-        if len(fields)!=1:raise ValueError('Missing Amundi anniversary distribution field: '+key)
+        if len(fields)!=1 or not isinstance(fields[0].get('historicalData'),list):raise ValueError('Missing Amundi anniversary distribution history: '+key)
         keep=[]
         for row in fields[0]['historicalData']:
             stamp=row['date']

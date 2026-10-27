@@ -15299,6 +15299,53 @@
       "identityFrom": "2020-10-27",
       "dwsIdentityBasis": "share-class-launch",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium"
+    },
+    {
+      "id": "etfCH0454664001Nav",
+      "isin": "CH0454664001",
+      "label": "21Shares Bitcoin ETP · VL",
+      "instrumentType": "ETP",
+      "consumerScope": "catalog",
+      "currency": "EUR",
+      "periodStart": "2019-03",
+      "precision": 8,
+      "collectAnniversary": true,
+      "parser": "official-nav",
+      "field": "nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "method": "Valeur liquidative officielle de la part exacte en USD, nette des frais et déjà ajustée du split 14:1 ; rendements mensuels émetteur recoupés ; conversion BCE EUR explicite ; ancienne cotation distincte préservée",
+      "navProvider": "21shares",
+      "navCurrency": "USD",
+      "sourceUrl": "https://api.primary.21shares.com/api/product_valuation_history/ABTC"
+    },
+    {
+      "id": "etfLU1737652823Nav",
+      "isin": "LU1737652823",
+      "label": "Amundi FTSE EPRA NAREIT Global UCITS ETF · VL",
+      "instrumentType": "ETF",
+      "consumerScope": "catalog",
+      "currency": "EUR",
+      "periodStart": "2019-01",
+      "precision": 8,
+      "collectAnniversary": true,
+      "parser": "official-nav",
+      "field": "nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "method": "Série officielle Amundi de la part exacte, distributions réinvesties et frais inclus ; chaque distribution et les unités quotidiennes recoupées avec la NAV ; prix anniversaire distinct hors distributions ; ancienne cotation conservée",
+      "navProvider": "amundi",
+      "navCurrency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "navHistoryKind": "official-income-reinvested-index",
+      "anniversaryNavKind": "official-price-excluding-distributions",
+      "anniversaryCashDates": [
+        "2019-11-25",
+        "2020-11-25",
+        "2021-11-16",
+        "2022-11-08",
+        "2023-12-12",
+        "2024-12-10",
+        "2025-12-09"
+      ]
     }
   ]
 }

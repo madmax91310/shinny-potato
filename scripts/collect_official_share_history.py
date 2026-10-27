@@ -229,6 +229,33 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         nav=ssga_nav(document(url),isin,native,now)
         years=record['performance']['years'];credit='State Street'
         calendar_proof={'incomeTreatment':'Accumulation','sourceNavUrl':url}
+    elif kind=='21shares':
+        from collect_product_calendars import abtc_calendar, issuer_json
+        base=source['sourceUrl'].rsplit('/api/',1)[0]
+        if base not in ('https://api.primary.21shares.com','https://api.secondary.21shares.com'):
+            raise ValueError('Unqualified 21Shares official API origin')
+        endpoints=[base+'/api/'+name+'/ABTC' for name in
+                   ('product_details','product_valuation_history','product_performance_metrics')]
+        # Reuse the exact-share monthly oracle, including the documented 14:1
+        # split guard. Never add another split/dividend adjustment to this NAV.
+        product,history,metrics=[issuer_json(document(url)) for url in endpoints]
+        performance=abtc_calendar(product,history,metrics,
+            {'isin':isin,'currency':native},now,endpoints[1])
+        nav={row['valuation_date']:row['nav_per_share'] for row in history['data']}
+        years=performance['years'];credit='21Shares'
+        calendar_proof={'shareInception':product['data']['inception_date'],
+            'incomeTreatment':'Issuer exact ETP NAV; monthly published returns checked',
+            'splitAdjustment':'14:1 on 2021-04-12 already reflected; no additional adjustment',
+            'validationSources':endpoints,'monthlyOracle':performance['method'],
+            'controlledInstrument':isin,'requestedStart':source['periodStart']+'-01',
+            'controlledCalendarYears':sorted(years),
+            'controlledFields':['product_details.details.isin','product_details.ticker',
+                'product_details.currency.short_name','product_details.inception_date',
+                'product_details.valuation_date','product_details.nav_per_unit',
+                'product_valuation_history.valuation_date','product_valuation_history.nav_per_share',
+                'product_valuation_history.fiat_denominator','product_valuation_history.index:split-check-only',
+                'product_performance_metrics.performance_monthly','product_performance_metrics.performance_details'],
+            'historicFxQualification':'Existing validated monthly ECB observations; not a new historic ECB source consultation'}
     elif kind=='wisdomtree':
         identity=wisdomtree_identity(document(source['sourceUrl']).decode(),isin)
         if identity['fundCurrency']!=native or identity['useOfIncome']!='N/A':raise ValueError('Commodity currency/income changed')
@@ -373,7 +400,17 @@ def main():
         archive={}
         for row in results:
             id=row['id'];config,current,levels,evidence=targets[id]
-            old=current[id];record=row['record']
+            record=row['record'];old=current.get(id)
+            configured=next(s for s in config['series'] if s['id']==id)
+            if (configured['isin'],configured['currency'])!=(record['isin'],record['currency']):
+                raise ValueError('Wrong configured identity/currency')
+            if old is None:
+                # Only a declared, independently validated NAV lane may be new.
+                # Existing quote ids/records are never removed or overwritten here.
+                if (configured['parser']!='official-nav' or record['parser']!='official-nav'
+                        or not record.get('calendarProof',{}).get('checks')):
+                    raise ValueError('New official NAV lane lacks configuration or financial qualification')
+                continue
             if old['isin']!=record['isin'] or old['currency']!=record['currency']:
                 raise ValueError('Wrong replacement identity/currency')
             if old['parser']!='official-nav':

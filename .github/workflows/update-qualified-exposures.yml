@@ -101,6 +101,8 @@ jobs:
           node-version: 24
       - run: pip install beautifulsoup4==4.15.0 xlrd==2.0.2
       - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_qualified_aum_retention.py'
+      - run: node scripts/test-qualified-aum-retention.mjs
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - name: Install browser for public issuer API fallback
         run: npx playwright install --with-deps chromium
