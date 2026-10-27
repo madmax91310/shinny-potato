@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import { mkdir } from 'node:fs/promises'
 import { chromium } from 'playwright'
+import { expect } from 'playwright/test'
 import { HOME_TOOLS } from '../src/tools.js'
 import { checkCobaltHome } from './check-cobalt-home.mjs'
 
@@ -41,7 +42,9 @@ try {
   assert.equal(await favorite.getAttribute('aria-pressed'),'true')
   await favorite.focus()
   await page.keyboard.press('Enter')
-  assert.equal(await favorite.evaluate(node => node === document.activeElement),true)
+  // The application restores focus in requestAnimationFrame after regrouping.
+  // Assert the same real focus condition after that render, not before it.
+  await expect(favorite).toBeFocused()
   await page.reload({waitUntil:'networkidle'})
   assert.equal(await favorite.getAttribute('aria-pressed'),'false')
   await page.getByRole('button',{name:'Calendrier',exact:true}).click()
