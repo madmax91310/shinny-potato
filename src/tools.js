@@ -4,9 +4,9 @@ import { INVESTORS } from './data/investor-roster.js'
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
 // Les couleurs historiques servent aux contenus exportés ; l’accueil emploie des icônes sobres.
 export const TOOLS = [
-  { to: '/idees-classements', title: 'Idées de classements',
+  { to: '/idees-classements', title: 'Idées de publications',
     icon: '📝', accent: '#2458d3',
-    description: 'Un pense-bête de sujets à rechercher et à rédiger toi-même. Catégories, recherche et copie du titre.', status: 'disponible' },
+    description: 'Tes classements et des sujets d’argent au quotidien, avec leurs angles. Recherche, catégories et copie pour écrire toi-même.', status: 'disponible' },
   { to: '/hey-grok', title: 'Hey @Grok',
     icon: '💬', accent: '#2458d3',
     description: 'Des questions concrètes à copier ou adapter pour @grok. Nouvelle sélection, favoris, historique et questions personnelles.', status: 'disponible' },
@@ -161,7 +161,7 @@ export const TOOLS = [
 ].map(tool => ({ ...tool, navLabel: tool.title, publicationDay: publicationLabel(tool.to) || tool.publicationDay }))
 
 const TOOL_SUMMARIES = {
-  '/idees-classements': 'Des sujets de classements à retrouver et à copier pour tes publications.',
+  '/idees-classements': 'Classements, épargne, logement et vie quotidienne : des sujets et des angles pour tes publications.',
   '/hey-grok': 'Choisis une question concrète, adapte-la ou crée la tienne.',
   '/classements-performances': 'Les gagnants par année ou sur une période commune, avec une image à publier.',
   '/le-dca-de': 'Portefeuille manuel, expositions et profils DCA, avec un visuel à exporter.',

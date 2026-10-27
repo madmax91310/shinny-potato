@@ -1,6 +1,7 @@
 .ranking-ideas { max-width: 1000px; margin: 0 auto; color: #182c4c; }
 .ranking-ideas * { box-sizing: border-box; }
 .ri-intro { color: #526581; margin: 12px 0 24px; }
+.ri-kind { margin-bottom: 20px; }
 .ri-controls { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 310px); gap: 14px; }
 .ri-controls > div, .ri-controls > label, .ri-manual { display: grid; gap: 7px; min-width: 0; font-size: .88rem; color: #415775; }
 .ri-controls input, .ri-category-picker, .ri-manual textarea { min-width: 0; width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #bdcde9; border-radius: 10px; background: white; color: #182c4c; font: inherit; font-size: 16px; }
@@ -14,6 +15,10 @@
 .ri-category li { display: flex; align-items: center; gap: 16px; padding: 12px 16px; }
 .ri-category li + li { border-top: 1px solid #e4ecfc; }
 .ri-category li > span { flex: 1; min-width: 0; overflow-wrap: anywhere; line-height: 1.6; }
+.ri-idea { flex: 1; min-width: 0; overflow-wrap: anywhere; line-height: 1.55; }
+.ri-idea strong { font-size: 1rem; font-weight: 650; }
+.ri-idea p { margin: 6px 0 0; color: #526581; font-size: .9rem; }
+.ri-angle-label { font-weight: 600; color: #415775; }
 .ranking-ideas .workspace-button { flex-shrink: 0; min-height: 44px; }
 .ri-manual textarea { min-height: 100px; margin-bottom: 18px; }
 .ri-empty { padding: 24px 0; }
