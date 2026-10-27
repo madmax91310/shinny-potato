@@ -57,6 +57,8 @@ jobs:
       - name: Producer result contract v1
         run: python -m unittest discover -s scripts -p 'test_producer_report_contract.py'
       - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_qualified_aum_retention.py'
+      - run: node scripts/test-qualified-aum-retention.mjs
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
       - name: "Collect observations: qualified"
         id: qualified

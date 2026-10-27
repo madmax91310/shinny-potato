@@ -95,6 +95,38 @@ def retain_listing_evidence(archive, records, required_ids=None):
   result[isin]=list(rows.values())
  return result
 
+def newer_compatible_aum(preferred, candidate):
+ """Select only a genuinely later observation of the same financial amount.
+
+ Existing captures retain every timestamp. Same-date contradictions, scope and
+ currency differences are not resolved by retrieval time or registry order.
+ """
+ if not preferred:return copy.deepcopy(candidate)
+ if not candidate:return copy.deepcopy(preferred)
+ compatible=all(preferred.get(k)==candidate.get(k) for k in ('scope','currency'))
+ if (compatible and preferred.get('scope') in ('fund','share-class')
+     and re.fullmatch(r'\d{4}-\d{2}-\d{2}',candidate.get('asOf',''))
+     and (candidate['asOf']>preferred.get('asOf','')
+          or (candidate['asOf']==preferred.get('asOf') and candidate.get('amount')==preferred.get('amount')
+              and candidate.get('checkedAt','')>preferred.get('checkedAt','')))):
+  return copy.deepcopy(candidate)
+ return copy.deepcopy(preferred)
+
+def retain_existing_records(shared, qualified):
+ """Join saved observations without certifying a new source consultation."""
+ current=copy.deepcopy(shared);old=copy.deepcopy(qualified)
+ for record in old.values():
+  isin=record['isin'];saved=record['automatedRecord']
+  active=current.setdefault(isin,copy.deepcopy(saved))
+  if active.get('currency')!=saved.get('currency') or active.get('productId')!=saved.get('productId'):
+   raise ValueError('Stored exact-share identity/currency conflict')
+  a,b=saved.get('aum'),active.get('aum')
+  chosen=newer_compatible_aum(a,b)
+  if chosen:saved['aum']=chosen
+  chosen=newer_compatible_aum(b,a)
+  if chosen:active['aum']=chosen
+ return current,old
+
 def main():
  p=argparse.ArgumentParser();p.add_argument('--apply',action='store_true');p.add_argument('--output',type=Path,required=True);p.add_argument('--only',nargs='+');args=p.parse_args()
  configs=json.loads((ROOT/'scripts/qualified-exposure-sources.json').read_text())['instruments'];now=dt.datetime.now(UTC)
@@ -109,7 +141,7 @@ def main():
   listing_path=ROOT/'src/data/qualified-listing-records.json';listing_archive=json.loads(listing_path.read_text())if listing_path.exists()else{}
   history_sources=json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']+json.loads((ROOT/'scripts/non-bond-monthly-sources.json').read_text())['series']
   required_listing_ids={source['listingEvidenceId'] for source in history_sources if source.get('listingEvidenceId')}
-  current=json.loads((ROOT/'src/data/automated-etf.json').read_text());current.update({r['isin']:r['automatedRecord']for r in old.values()});valid=[]
+  current,old=retain_existing_records(json.loads((ROOT/'src/data/automated-etf.json').read_text()),old);valid=[]
   for r in report['records']:
    previous=old.get(r['id']);
    if previous and (previous['isin']!=r['isin']or previous['currency']!=r['currency']):raise ValueError('Share identity changed')
@@ -122,9 +154,10 @@ def main():
     current=merged;r['automatedRecord']=merged[r['isin']];old[r['id']]=r;valid.append(r)
    except (ValueError,KeyError,TypeError)as e:report['excluded'].append({'id':r['id'],'isin':r['isin'],'error':str(e)})
   report['records']=valid
+  current,old=retain_existing_records(current,old)
   write_json_atomic(path,old)
   write_json_atomic(listing_path,listing_archive)
-  write_json_atomic(ROOT/'src/data/automated-etf.json',{k:v for k,v in current.items()if k not in {r['isin']for r in old.values()}})
+  write_json_atomic(ROOT/'src/data/automated-etf.json',current)
  active=json.loads((ROOT/'src/data/qualified-exposure-etfs.json').read_text())if (ROOT/'src/data/qualified-exposure-etfs.json').exists()else{}
  for row in report['excluded']:row['active']=row['id']in active
  write_json_atomic(args.output,report)
