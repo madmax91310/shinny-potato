@@ -117,7 +117,7 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
   rows.push({id:r.id,type,name:r.name,field,label:field,present:!!value,archived,state:archived?'archived':waiting?'waiting-publication':value?fieldState(evidence,now,{...freshness(annual?'product.annual':'product.default'),effectiveDate:field==='price',requireObservation:annual||field==='snapshot'}):'missing',checkedAt:evidence.checkedAt,asOf:observationDate(evidence),...(field==='price'?{effectiveAt:value?.asOf??null}:{}),sourceUrl:value?.sourceUrl??r.sourceUrl});
  }
  const summary=Object.fromEntries(Object.keys(names).map(field=>{const values=rows.filter(r=>r.type==='instrument'&&r.field===field);return [field,{label:names[field],total:values.length,applicable:values.filter(r=>r.state!=='not-applicable').length,present:values.filter(r=>r.present).length,states:values.reduce((a,r)=>(a[r.state]=(a[r.state]??0)+1,a),{})}]}));
- return {checkedAt:now,summary,rows};
+ return {schemaVersion:1,checkedAt:now,summary,rows};
 }
 export function writeAssetFieldReport() {
  const r=buildAssetFieldReport();mkdirSync('public/data',{recursive:true});
