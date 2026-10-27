@@ -55,7 +55,9 @@ export function drawObsidianAsset(ctx, art, x, y, width, height) {
   const image = art.cutout || art.mark || art.scene || art.background
   if (!image) return
   ctx.save()
-  if (art.cutout || art.mark) {
+  if (art.mark && !art.cutout) {
+    drawMetallicMask(ctx, image, x + 30, y + 40, width - 60, height - 80)
+  } else if (art.cutout) {
     const ratio = Math.min(width / image.width, height / image.height)
     const w = image.width * ratio, h = image.height * ratio
     ctx.shadowColor = '#e8ae4140'; ctx.shadowBlur = 40
@@ -76,6 +78,28 @@ export function drawObsidianAsset(ctx, art, x, y, width, height) {
     ctx.drawImage(layer, x, y)
   }
   ctx.restore()
+}
+
+// The catalogue marks are monochrome alpha masks (not coloured issuer logos).
+// Light their exact silhouettes so a black SVG cannot disappear on black.
+function drawMetallicMask(ctx, image, x, y, width, height) {
+  const mask = document.createElement('canvas'); mask.width = width; mask.height = height
+  const c = mask.getContext('2d'), ratio = Math.min(width / image.width, height / image.height)
+  const w = image.width * ratio, h = image.height * ratio
+  c.drawImage(image, (width - w) / 2, (height - h) / 2, w, h)
+  const tint = (stops) => {
+    const layer = document.createElement('canvas'); layer.width = width; layer.height = height
+    const l = layer.getContext('2d'); l.drawImage(mask, 0, 0); l.globalCompositeOperation = 'source-in'
+    const gradient = l.createLinearGradient(0, 0, width, height)
+    stops.forEach(([at, color]) => gradient.addColorStop(at, color))
+    l.fillStyle = gradient; l.fillRect(0, 0, width, height)
+    return layer
+  }
+  const edge = tint([[0, '#fff1af'], [.45, '#916119'], [1, '#e7b24d']])
+  const face = tint([[0, '#fff5be'], [.22, '#c49136'], [.42, '#ffe5a0'], [.46, '#9e702a'], [.72, '#efc76b'], [1, '#80511a']])
+  ctx.save(); ctx.shadowColor = '#e0aa4555'; ctx.shadowBlur = 35
+  for (let depth = 12; depth > 0; depth -= 2) ctx.drawImage(edge, x + depth, y + depth)
+  ctx.shadowBlur = 0; ctx.drawImage(face, x, y); ctx.restore()
 }
 
 export function drawMetricIcon(ctx, kind, x, y, color, loss = false) {
