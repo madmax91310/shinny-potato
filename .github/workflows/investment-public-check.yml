@@ -1,0 +1,40 @@
+name: Verify investment public export
+
+on:
+  push:
+    branches: ['verify/investment-obsidian-public']
+
+permissions:
+  contents: read
+
+jobs:
+  public-check:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - name: Use the installed Chrome or install Chromium
+        run: |
+          qa_chrome_bin="$(command -v google-chrome || command -v google-chrome-stable || true)"
+          if [ -n "$qa_chrome_bin" ]; then
+            printf 'PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=%s\n' "$qa_chrome_bin" >> "$GITHUB_ENV"
+          else
+            npx playwright install --with-deps chromium
+          fi
+      - run: node scripts/playwright-investment-public-obsidian.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: investment-public-proof
+          path: test-artifacts/investment-public
+          retention-days: 14
+          if-no-files-found: ignore
