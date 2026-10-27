@@ -56,22 +56,38 @@ export function annualInvestmentCapital(state, d) {
 }
 
 function title(ctx, label) {
-  let size = 82, lines
+  let size = 82, lines, ascent, descent, step
   do {
     ctx.font = '800 ' + size + 'px Arial, sans-serif'
     lines = ['']
     for (const word of label.split(/\s+/)) {
-      const next = (lines.at(-1) + ' ' + word).trim()
-      if (lines.at(-1) && ctx.measureText(next).width > 940) lines.push(word)
-      else lines[lines.length - 1] = next
+      // Preserve even a long unbroken custom label, wrapping rather than clipping.
+      const fragments = []
+      let fragment = ''
+      for (const letter of word) {
+        if (fragment && ctx.measureText(fragment + letter).width > 940) {
+          fragments.push(fragment); fragment = ''
+        }
+        fragment += letter
+      }
+      if (fragment) fragments.push(fragment)
+      for (let i = 0; i < fragments.length; i++) {
+        const next = (lines.at(-1) + (i ? '' : ' ') + fragments[i]).trim()
+        if (lines.at(-1) && (i || ctx.measureText(next).width > 940)) lines.push(fragments[i])
+        else lines[lines.length - 1] = next
+      }
     }
-    if (lines.length <= 2 && lines.every(line => ctx.measureText(line).width <= 940)) break
+    const metrics = lines.map(line => ctx.measureText(line))
+    ascent = Math.max(...metrics.map(m => m.actualBoundingBoxAscent))
+    descent = Math.max(...metrics.map(m => m.actualBoundingBoxDescent))
+    step = ascent + descent + 12
+    if (lines.length * step - 12 <= 204) break
     size--
-  } while (size > 38)
-  // Extremely long custom labels wrap fully rather than silently losing words.
-  const step = Math.min(size + 14, 170 / lines.length)
-  lines.forEach((line, i) => text(ctx, line, 70, 330 + i * step, size,
-    { width: 940, maxHeight: step - 8, weight: 800 }))
+  } while (size > 18)
+  // The title occupies a measured box between the mode and the dates. Accents
+  // and descenders share one line height, including when they occur on different lines.
+  lines.forEach((line, i) => text(ctx, line, 70, 282 + ascent + i * step, size,
+    { width: 940, weight: 800 }))
 }
 
 function chart(ctx, state, d, currency, kind) {
