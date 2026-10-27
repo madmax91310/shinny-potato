@@ -1,0 +1,11 @@
+import fs from 'node:fs'
+const path=new URL('../',import.meta.url),read=p=>fs.readFileSync(new URL(p,path),'utf8')
+const discovery=read('worker/discovery.js').replace(/^export /gm,'')
+const names=[...read('worker/discovery.js').matchAll(/export (?:function|const) (\w+)/g)].map(x=>x[1])
+const page=read('worker/page.js').replace('export default','const PAGE =')
+const catalog=read('worker/catalog.js').replace('export default','const CATALOG =')
+const worker=read('worker/index.js').replace(/^import .+\n/gm,'')
+fs.rmSync(new URL('dist',path),{recursive:true,force:true});fs.mkdirSync(new URL('dist/server',path),{recursive:true});fs.mkdirSync(new URL('dist/.openai',path),{recursive:true})
+fs.writeFileSync(new URL('dist/server/index.js',path),discovery+'\nconst Discovery={'+names.join(',')+'};\n'+page+'\n'+catalog+'\n'+worker)
+fs.copyFileSync(new URL('.openai/hosting.json',path),new URL('dist/.openai/hosting.json',path))
+console.log('Single-module Worker built with canonical discovery helpers and archive snapshot.')
