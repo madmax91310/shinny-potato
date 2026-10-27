@@ -9,6 +9,9 @@ class Clock(dt.datetime):
 class ListingRetention(unittest.TestCase):
  def setUp(self):
   self.previous=copy.deepcopy(json.loads((ROOT/'src/data/automated-instrument-metadata.json').read_text())[ISIN]['listings'])
+  # This scenario starts with older receipts, independently of daily collections.
+  self.previous['checkedAt']='2026-10-26'
+  for listing in self.previous['value']:listing['checkedAt']='2026-10-26'
   self.paris=next(x for x in self.previous['value']if x['mic']=='XPAR')
   self.london=next(x for x in self.previous['value']if x['mic']=='XLON')
   self.observed={**self.previous,'checkedAt':'2026-10-27','value':[{**self.paris,'checkedAt':'2026-10-27','sha256':'a'*64}]}
