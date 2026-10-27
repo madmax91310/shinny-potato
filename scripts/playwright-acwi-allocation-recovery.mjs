@@ -11,7 +11,9 @@ const reference=Object.values(references).find(r=>r.isin===isin)
 for(const field of ['countries','sectors']){
  assert(source[field].rows.length>5)
  if(source[field].unidentifiedSecurityCount>0)assert.equal(source[field].overlapQualified,false)
- assert(Math.abs(source[field].rows.reduce((n,r)=>n+r.weightPct,0)-source[field].portfolioWeightPct)<1e-5)
+ const total=source[field].rows.reduce((n,r)=>n+r.weightPct,0)
+ assert(Number.isFinite(total)&&Math.abs(total-100)<=.5,'Published allocation must cover the fund within issuer rounding')
+ if(Number.isFinite(source[field].portfolioWeightPct))assert(Math.abs(total-source[field].portfolioWeightPct)<1e-5)
  // A newer qualified equity-holdings snapshot has its own date and scope.
  // It must not be forced back to the older all-position NAV observation.
  const expected=equityCharts?.[field]??source[field]
