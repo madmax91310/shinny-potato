@@ -1,10 +1,10 @@
 # Inventaire de l’automatisation des données
 
-Généré le 2026-10-24T15:16:04.072Z.
+Généré le 2026-10-27T07:33:56.283Z.
 
 Inventaire du code et des observations enregistrées. Modes des fichiers déduits uniquement des chemins explicitement publiés par les workflows et de leurs imports. Les champs de catalogue restent à qualification individuelle : aucun workflow, nom de fichier, source accessible ou date de génération ne garantit une actualisation réussie. Les lignes de couverture conservent les dates et états propres des observations. Les modules non référencés au catalogue restent listés séparément.
 
-282 modules de données ; 4544 champs du catalogue ; 4274 lignes de couverture détaillée.
+292 modules de données ; 4547 champs du catalogue ; 4274 lignes de couverture détaillée.
 
 PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 
@@ -13,7 +13,7 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | Famille | Fiches |
 |---|---:|
 | reference | 11 |
-| series | 726 |
+| series | 729 |
 | insurance | 7 |
 | actor | 11 |
 | scpi | 8 |
@@ -30,6 +30,7 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | Module | Mode | Workflows en amont | Consommateurs directs ou indirects |
 |---|---|---|---:|
 | src/data/allocation-cases.js | mixed-or-derived | .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 5 |
+| src/data/allowed-media.js | manual-or-editorial |  | 0 |
 | src/data/anniversary-index-history.json | scheduled-output | .github/workflows/update-publication-observations.yml | 49 |
 | src/data/anniversary-levels.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-non-bond-expansion.yml | 12 |
 | src/data/anniversary-levels.json | scheduled-output | .github/workflows/update-market-monthly.yml, .github/workflows/update-publication-observations.yml | 12 |
@@ -56,17 +57,17 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | src/data/automated-monthly.json | scheduled-output | .github/workflows/update-market-monthly.yml | 49 |
 | src/data/automated-portfolio-funds.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-instrument-metadata.yml | 29 |
 | src/data/automated-practical-sheets.json | scheduled-output | .github/workflows/update-practical-sheets.yml | 4 |
-| src/data/automated-presentation-actors.json | scheduled-output | .github/workflows/update-presentation-actors.yml | 7 |
+| src/data/automated-presentation-actors.json | scheduled-output | .github/workflows/update-presentation-actors.yml | 8 |
 | src/data/automated-regulatory.json | scheduled-output | .github/workflows/update-regulatory-data.yml | 21 |
 | src/data/automated-scpi.json | scheduled-output | .github/workflows/update-scpi.yml | 4 |
-| src/data/automation-workflows.json | manual-or-editorial |  | 3 |
+| src/data/automation-workflows.json | manual-or-editorial |  | 5 |
 | src/data/benchmark-changes.js | manual-or-editorial |  | 79 |
 | src/data/benchmark-changes.json | manual-or-editorial |  | 79 |
 | src/data/bitcoin-yahoo-monthly.json | scheduled-output | .github/workflows/update-bitcoin-monthly.yml | 49 |
 | src/data/bond-exposure-cases.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-market-monthly.yml | 3 |
 | src/data/broker-tariffs.js | mixed-or-derived | .github/workflows/update-regulatory-data.yml | 8 |
-| src/data/calculator-history.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml | 12 |
-| src/data/calendar-fx.js | mixed-or-derived | .github/workflows/update-market-monthly.yml | 47 |
+| src/data/calculator-history.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml | 10 |
+| src/data/calendar-fx.js | mixed-or-derived | .github/workflows/update-market-monthly.yml | 60 |
 | src/data/catalog-browser.js | manual-or-editorial |  | 1 |
 | src/data/catalog-search.js | manual-or-editorial |  | 3 |
 | src/data/catalog.js | mixed-or-derived | .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-practical-sheets.yml, .github/workflows/update-regulatory-data.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-gold-monthly.yml, .github/workflows/update-inflation.yml, .github/workflows/update-insurance.yml, .github/workflows/update-scpi.yml, .github/workflows/update-presentation-actors.yml | 2 |
@@ -88,12 +89,12 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | src/data/duel-assets.js | mixed-or-derived | .github/workflows/update-qualified-exposures.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-economic-data.yml | 9 |
 | src/data/dynamic-data-consumers.json | manual-or-editorial |  | 0 |
 | src/data/economic-data.js | mixed-or-derived | .github/workflows/update-economic-data.yml | 86 |
-| src/data/editorial-calendar.js | manual-or-editorial |  | 34 |
+| src/data/editorial-calendar.js | manual-or-editorial |  | 36 |
 | src/data/editorial-cases.js | mixed-or-derived | .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/update-qualified-exposures.yml | 3 |
 | src/data/envelope-fees.js | mixed-or-derived | .github/workflows/update-insurance.yml | 3 |
 | src/data/equity-candidates.json | manual-or-editorial |  | 0 |
 | src/data/equity-duel-returns.json | scheduled-output | .github/workflows/update-market-monthly.yml | 29 |
-| src/data/equity-history-identities.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml | 23 |
+| src/data/equity-history-identities.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml | 22 |
 | src/data/equity-history-links.json | scheduled-output | .github/workflows/update-market-monthly.yml | 94 |
 | src/data/etf-cards.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-market-monthly.yml | 57 |
 | src/data/etf-completeness.json | manual-or-editorial |  | 2 |
@@ -118,15 +119,15 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | src/data/financial-history-restrictions.json | manual-or-editorial |  | 39 |
 | src/data/financial-lexicon.js | mixed-or-derived | .github/workflows/update-economic-data.yml, .github/workflows/update-regulatory-data.yml | 16 |
 | src/data/financial-source-repairs.json | manual-or-editorial |  | 29 |
-| src/data/french-characteristics.js | manual-or-editorial |  | 97 |
+| src/data/french-characteristics.js | manual-or-editorial |  | 104 |
 | src/data/freshness-policy.json | manual-or-editorial |  | 76 |
 | src/data/global-equities.json | manual-or-editorial |  | 94 |
 | src/data/history-browser.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml | 9 |
-| src/data/history-currency.js | mixed-or-derived | .github/workflows/update-market-monthly.yml | 19 |
+| src/data/history-currency.js | mixed-or-derived | .github/workflows/update-market-monthly.yml | 46 |
 | src/data/history-parameters.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml | 27 |
 | src/data/history-selection.js | manual-or-editorial |  | 16 |
 | src/data/history-statistics.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml | 2 |
-| src/data/history-visual-identities.js | manual-or-editorial |  | 23 |
+| src/data/history-visual-identities.js | manual-or-editorial |  | 22 |
 | src/data/history-window-quality.js | manual-or-editorial |  | 39 |
 | src/data/history-window-restrictions.json | manual-or-editorial |  | 39 |
 | src/data/household-editorial.js | manual-or-editorial |  | 7 |
@@ -149,6 +150,7 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | src/data/index-exposure-additions.js | manual-or-editorial |  | 10 |
 | src/data/index-facts.js | mixed-or-derived | .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 10 |
 | src/data/index-factsheets.js | mixed-or-derived | .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 4 |
+| src/data/index-history-conventions.js | manual-or-editorial |  | 25 |
 | src/data/index-history-identities.js | manual-or-editorial |  | 49 |
 | src/data/index-returns.js | mixed-or-derived | .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 5 |
 | src/data/index-source-review.js | manual-or-editorial |  | 10 |
@@ -169,7 +171,7 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | src/data/insurance.js | mixed-or-derived | .github/workflows/update-insurance.yml | 6 |
 | src/data/investment-presets.js | manual-or-editorial |  | 52 |
 | src/data/investor-profiles.js | manual-or-editorial |  | 4 |
-| src/data/investor-roster.js | manual-or-editorial |  | 37 |
+| src/data/investor-roster.js | manual-or-editorial |  | 39 |
 | src/data/lifestrategy.js | mixed-or-derived | .github/workflows/update-lifestrategy.yml | 82 |
 | src/data/lifestrategy.json | scheduled-output | .github/workflows/update-lifestrategy.yml | 82 |
 | src/data/maintenance-links.js | manual-or-editorial |  | 2 |
@@ -179,7 +181,7 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | src/data/market-story-selection.js | manual-or-editorial |  | 4 |
 | src/data/monthly-automation.js | mixed-or-derived | .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-market-monthly.yml | 49 |
 | src/data/monthly-duel-returns.json | scheduled-output | .github/workflows/update-market-monthly.yml | 53 |
-| src/data/monthly-fx.json | scheduled-output | .github/workflows/update-market-monthly.yml | 64 |
+| src/data/monthly-fx.json | scheduled-output | .github/workflows/update-market-monthly.yml | 77 |
 | src/data/monthly-history-additions.js | manual-or-editorial |  | 49 |
 | src/data/msci-history.js | manual-or-editorial |  | 49 |
 | src/data/new-index-returns.js | manual-or-editorial |  | 5 |
@@ -189,7 +191,7 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | src/data/non-bond-levels.json | scheduled-output | .github/workflows/update-non-bond-expansion.yml | 12 |
 | src/data/non-bond-monthly-records.json | scheduled-output | .github/workflows/update-non-bond-expansion.yml | 49 |
 | src/data/non-bond-qualified-records.json | scheduled-output | .github/workflows/update-non-bond-expansion.yml | 82 |
-| src/data/official-performance-currencies.json | scheduled-output | .github/workflows/collect-etf-pilot.yml | 22 |
+| src/data/official-performance-currencies.json | scheduled-output | .github/workflows/collect-etf-pilot.yml | 23 |
 | src/data/pea-group-status.js | manual-or-editorial |  | 2 |
 | src/data/pea-sector-completion.js | manual-or-editorial |  | 73 |
 | src/data/pel-rates.js | mixed-or-derived | .github/workflows/update-regulatory-data.yml | 2 |
@@ -205,7 +207,7 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | src/data/practical-sheet-topics.js | manual-or-editorial |  | 5 |
 | src/data/practical-source-data.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 2 |
 | src/data/preferred-instrument-tickers.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml | 38 |
-| src/data/presentation-actors.js | mixed-or-derived | .github/workflows/update-presentation-actors.yml | 7 |
+| src/data/presentation-actors.js | mixed-or-derived | .github/workflows/update-presentation-actors.yml | 8 |
 | src/data/presentation-etf-additions.js | manual-or-editorial |  | 75 |
 | src/data/presentation-etf-expansion.js | manual-or-editorial |  | 57 |
 | src/data/property-infrastructure-additions.js | manual-or-editorial |  | 10 |
@@ -221,10 +223,10 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | src/data/ranking-annual.json | scheduled-output | .github/workflows/update-market-monthly.yml | 7 |
 | src/data/ranking-ftse.json | scheduled-output | .github/workflows/update-market-monthly.yml | 7 |
 | src/data/ranking-histories.json | scheduled-output | .github/workflows/update-market-monthly.yml | 49 |
-| src/data/ranking-index-annual.json | scheduled-output | .github/workflows/update-market-monthly.yml | 9 |
+| src/data/ranking-index-annual.json | scheduled-output | .github/workflows/update-market-monthly.yml | 10 |
 | src/data/regulatory-data.js | mixed-or-derived | .github/workflows/update-regulatory-data.yml | 21 |
 | src/data/resource-selections.js | manual-or-editorial |  | 28 |
-| src/data/retired-automations.json | manual-or-editorial |  | 4 |
+| src/data/retired-automations.json | manual-or-editorial |  | 6 |
 | src/data/reusable-data-contracts.js | manual-or-editorial |  | 5 |
 | src/data/review-catalog.js | mixed-or-derived | .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-practical-sheets.yml, .github/workflows/update-regulatory-data.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-gold-monthly.yml, .github/workflows/update-inflation.yml, .github/workflows/update-insurance.yml, .github/workflows/update-scpi.yml, .github/workflows/update-presentation-actors.yml | 2 |
 | src/data/review-projection.js | manual-or-editorial |  | 2 |
@@ -233,7 +235,7 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | src/data/routing-presentation-facts.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml | 73 |
 | src/data/routing-presentations.js | manual-or-editorial |  | 73 |
 | src/data/scpi.js | mixed-or-derived | .github/workflows/update-scpi.yml | 4 |
-| src/data/search-text.js | manual-or-editorial |  | 64 |
+| src/data/search-text.js | manual-or-editorial |  | 69 |
 | src/data/security-identifier-observations.json | scheduled-output | .github/workflows/update-qualified-exposures.yml | 1 |
 | src/data/shared-index-history.js | mixed-or-derived | .github/workflows/update-publication-observations.yml | 49 |
 | src/data/shared-listing-identities.json | scheduled-output | .github/workflows/update-market-monthly.yml | 2 |
@@ -291,12 +293,19 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | src/pages/dca-profiles/holdings-manifest.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 8 |
 | src/pages/dca-profiles/holdings.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 1 |
 | src/pages/etf-sheets/data.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-market-monthly.yml | 1 |
+| src/pages/factsheet-tweets/companyLogoAliases.json | manual-or-editorial |  | 0 |
+| src/pages/factsheet-tweets/companyLogoRegistry.json | manual-or-editorial |  | 3 |
+| src/pages/factsheet-tweets/countryFlags.json | manual-or-editorial |  | 3 |
 | src/pages/factsheet-tweets/data.js | mixed-or-derived | .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 2 |
 | src/pages/fee-impact/data.js | manual-or-editorial |  | 4 |
+| src/pages/hey-grok/data.js | manual-or-editorial |  | 8 |
 | src/pages/investment-calculator/data.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml | 1 |
 | src/pages/investor-portfolio/data.js | manual-or-editorial |  | 4 |
 | src/pages/lexique-financier/data.js | mixed-or-derived | .github/workflows/update-economic-data.yml, .github/workflows/update-regulatory-data.yml | 1 |
+| src/pages/market-facts/additions-20261026.json | manual-or-editorial |  | 2 |
 | src/pages/market-facts/data.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml | 2 |
+| src/pages/market-facts/reviewed-legacy.json | manual-or-editorial |  | 2 |
+| src/pages/market-facts/stories.json | manual-or-editorial |  | 2 |
 | src/pages/performance-rankings/data.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml | 7 |
 | src/pages/performance-rankings/engine.js | manual-or-editorial |  | 13 |
 | src/pages/portfolio-duels/data.js | manual-or-editorial |  | 2 |
@@ -305,16 +314,17 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | src/pages/portfolio-generator/theses.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 10 |
 | src/pages/practical-sheets/data.js | manual-or-editorial |  | 3 |
 | src/pages/purchasing-power/data.js | mixed-or-derived | .github/workflows/update-publication-observations.yml | 1 |
+| src/pages/ranking-ideas/data.js | manual-or-editorial |  | 2 |
 | src/pages/tweet-bank/data.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 3 |
 | src/pages/tweet-bank/market-stories.json | manual-or-editorial |  | 5 |
 | src/pages/tweet-midi/data/dilemmes-data.json | manual-or-editorial |  | 5 |
 | src/pages/tweet-midi/engine.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/collect-etf-pilot.yml | 19 |
-| src/pages/tweet-midi/officialAnniversaryLogos.json | manual-or-editorial |  | 18 |
+| src/pages/tweet-midi/officialAnniversaryLogos.json | manual-or-editorial |  | 17 |
 | src/pages/wealth-simulator/data.js | mixed-or-derived | .github/workflows/update-economic-data.yml, .github/workflows/update-regulatory-data.yml | 2 |
 
 ## Qualification et raccordements
 
-109 raccordements demandent une action. Les états bruts de couverture restent conservés : une composition actions hors périmètre n’est pas une nouvelle donnée collectée.
+120 raccordements demandent une action. Les états bruts de couverture restent conservés : une composition actions hors périmètre n’est pas une nouvelle donnée collectée.
 
 | Nature des champs | Nombre |
 |---|---:|
@@ -322,19 +332,19 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | live | 2579 |
 | unavailable | 14 |
 | archive | 169 |
-| history | 1039 |
+| history | 1042 |
 | simulation | 12 |
 | editorial | 44 |
 
 | État de raccordement | Nombre |
 |---|---:|
-| current | 4021 |
+| current | 4010 |
 | not-applicable | 102 |
 | tracked-index-needed | 30 |
 | outside-equity-scope | 43 |
 | waiting-first-year | 13 |
 | collection-error | 4 |
-| check-overdue | 14 |
+| check-overdue | 25 |
 | connector-needed | 26 |
 | not-published | 18 |
 | unqualified | 14 |
