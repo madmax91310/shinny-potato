@@ -25,6 +25,7 @@ const plans = {
     node('build-review-reconciliation.mjs'), node('audit-asset-tool-routing.mjs', '--write'),
     node('report-shared-market-data.mjs'), node('data-automation-inventory.mjs', '--write'),
     node('build-data-review-inbox.mjs'),
+    node('build-tweet-bank-catalog.mjs'),
     ['python3', 'scripts/data_publication.py', 'manifest', '--output', 'public/data/publication-manifest.json'],
   ],
 }
