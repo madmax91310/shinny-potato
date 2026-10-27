@@ -407,7 +407,7 @@
       "active": true
     }
   ],
-  "checkedAt": "2026-10-26",
+  "checkedAt": "2026-10-27",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
   "instruments": 261,
   "covered": {
@@ -1093,9 +1093,9 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-26",
+      "checkedAt": "2026-10-27",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "b91520bf5ec7ff6be430c1930840211c9996778720d368918d9ac6758ed4fc4d",
+      "sha256": "fb5381f162ea47bdebe084a5b76dda236df4e557ce7a8f6553c97136a099eff0",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1155,7 +1155,7 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-26",
+      "checkedAt": "2026-10-27",
       "asOf": "2026-09-30",
       "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
       "sha256": "43ac17cfbd6ff218e06494094aa3b80b00c93549cf8f22fb1a5544afab9907e4",
@@ -1829,9 +1829,9 @@
       "configured": true,
       "status": "not-published",
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
-      "checkedAt": "2026-10-26",
+      "checkedAt": "2026-10-27",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "6d5da7c911019ae4f5fa75db11695b6228a0c66c58c349356df09d09dfe174af",
+      "sha256": "eb0f58e84d4476065745f85fe119d7938b17c51d75e8a888b6b89a1a8fa16a17",
       "evidence": [
         "Performance History",
         "USD Accumulating",
@@ -1879,9 +1879,9 @@
       "configured": true,
       "status": "not-published",
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
-      "checkedAt": "2026-10-26",
+      "checkedAt": "2026-10-27",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "6d5da7c911019ae4f5fa75db11695b6228a0c66c58c349356df09d09dfe174af",
+      "sha256": "eb0f58e84d4476065745f85fe119d7938b17c51d75e8a888b6b89a1a8fa16a17",
       "evidence": []
     },
     {
@@ -1893,9 +1893,9 @@
       "configured": true,
       "status": "unqualified",
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
-      "checkedAt": "2026-10-26",
+      "checkedAt": "2026-10-27",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "6d5da7c911019ae4f5fa75db11695b6228a0c66c58c349356df09d09dfe174af",
+      "sha256": "eb0f58e84d4476065745f85fe119d7938b17c51d75e8a888b6b89a1a8fa16a17",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 30 Sep 2026",
@@ -1934,9 +1934,9 @@
       "configured": true,
       "status": "source-conflict",
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, MSFT, NVDA, TSLA.",
-      "checkedAt": "2026-10-26",
+      "checkedAt": "2026-10-27",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "6d5da7c911019ae4f5fa75db11695b6228a0c66c58c349356df09d09dfe174af",
+      "sha256": "eb0f58e84d4476065745f85fe119d7938b17c51d75e8a888b6b89a1a8fa16a17",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 23 Oct 2026",
