@@ -66,8 +66,10 @@ jobs:
       cancel-in-progress: false
       queue: max
     runs-on: ubuntu-latest
-    # A concurrent data commit requires a second exhaustive financial validation.
-    timeout-minutes: 90
+    # Keep the initial validation and all three bounded commit attempts intact.
+    # Each exhaustive financial validation takes about 40 minutes; another writer
+    # may advance master during validation (observed in run 40494982858).
+    timeout-minutes: 180
     permissions:
       contents: write
     outputs:
