@@ -1,0 +1,16 @@
+{
+  "failedProductionRun": 40483935988,
+  "collectionBase": "7f84c36596da3a6c887aa3975892fd6723d721d3",
+  "upstream": "9771c7f3a526a693fd4cf16eee147d12d370aeb5",
+  "rebaseSucceeded": true,
+  "recordingBlockedBy": [
+    ".github/workflows/investment-image-check.yml",
+    "scripts/test-export-copy.mjs",
+    "scripts/test-investment-emerald.mjs",
+    "src/pages/investment-calculator/editorialArt.js",
+    "src/pages/investment-calculator/imageExport.js"
+  ],
+  "dependencyFinding": "Downstream image renderers and read-only isolated CI are not imported by market acquisition. Data registries never import these pages. Source/config/FX/engine changes still require recollection.",
+  "validationRequired": "Existing prepare-market-projections and financial revalidation mandatory on actual rebased tree; push blocked on any failure.",
+  "proofLevel": "22 isolated real Git races and actual production path rejection reproduced; ordinary retry/publication after fix still required."
+}

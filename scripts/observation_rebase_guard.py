@@ -11,8 +11,8 @@ INDEPENDENT = {
 # Its new validated registry requires regeneration + financial checks; publication
 # observations do collect from it and must still recollect after any change.
 MARKET_PROJECTION_INPUTS = {'src/data/worldbank-gold-monthly.json'}
-# These exact Radar readers, their test and coverage note are not acquisition
-# inputs of the market producer (incident 40178244234 after #945). Its prepare
+# These exact downstream readers are not market acquisition inputs (Radar
+# incident 40178244234 after #945; investment image incident40483935988). Its prepare
 # and validation hooks still rebuild projections and check the combined tree.
 # Do not generalise this to collector code, configurations or other producers.
 MARKET_READER_ONLY_CHANGES = {
@@ -20,6 +20,14 @@ MARKET_READER_ONLY_CHANGES = {
     'scripts/lib/radar-consumer.mjs',
     'scripts/lib/radar-publications.mjs',
     'scripts/test-radar-coverage.mjs',
+    # #998 changed only the downstream investment PNG renderer and its isolated
+    # read-only CI. The market acquisition chain never imports these modules.
+    # Rebuild/financial validation of the combined tree remains mandatory.
+    '.github/workflows/investment-image-check.yml',
+    'scripts/test-export-copy.mjs',
+    'scripts/test-investment-emerald.mjs',
+    'src/pages/investment-calculator/editorialArt.js',
+    'src/pages/investment-calculator/imageExport.js',
 }
 # The ETF acquisition chain and its baseline do not read insurance products.
 # Coverage reports/build do: regenerate and validate those on the merged tree.

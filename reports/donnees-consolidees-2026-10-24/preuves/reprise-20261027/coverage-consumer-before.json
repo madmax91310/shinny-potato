@@ -1,0 +1,14 @@
+{
+  "publicCode": "7f84c36596da3a6c887aa3975892fd6723d721d3",
+  "publicData": "eee8888eb1d07497df8ab03a79e3b1a5c508e8b0",
+  "source": "https://madmax91310.github.io/shinny-potato/data/asset-field-coverage.json",
+  "producerRows": 4274,
+  "producerSchemaVersion": null,
+  "consumerExportExaminedFields": null,
+  "incident": {
+    "id": "health:coverage",
+    "cause": "asset-field-coverage.json : Version de rapport inconnue. Dernier bilan connu conservé s’il existe ; cette lecture ne certifie aucune source."
+  },
+  "sourceProof": "public comparison/review browser run27oct; manifest coverage blob3eafda4d08492ce4b234b013f5609f9ee66e5ce7",
+  "repair": "Declare schemaVersion1 at producer; retain strict reader and all values, dates, thresholds and row identities."
+}
