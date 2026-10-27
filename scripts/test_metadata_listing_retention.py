@@ -8,7 +8,12 @@ class Clock(dt.datetime):
  def now(cls,tz=None):return cls(2026,10,27,12,tzinfo=dt.timezone.utc)
 class ListingRetention(unittest.TestCase):
  def setUp(self):
-  self.previous=copy.deepcopy(json.loads((ROOT/'src/data/automated-instrument-metadata.json').read_text())[ISIN]['listings'])
+  # Fixed scenario, not the live registry: successful collections must be free
+  # to renew real receipts without changing this partial-failure regression.
+  self.previous={'checkedAt':'2026-10-26','sourceUrl':'https://example.test/issuer','value':[
+   {'ticker':'HEAL','mic':'XPAR','currency':'EUR','symbol':'HEAL.PA','sourceUrl':'https://example.test/paris','checkedAt':'2026-10-26','sha256':'1'*64},
+   {'ticker':'HEAL','mic':'XLON','currency':'USD','symbol':'HEAL.L','sourceUrl':'https://example.test/london','checkedAt':'2026-10-26','sha256':'2'*64},
+  ]}
   # This scenario starts with older receipts, independently of daily collections.
   self.previous['checkedAt']='2026-10-26'
   for listing in self.previous['value']:listing['checkedAt']='2026-10-26'
@@ -28,6 +33,12 @@ class ListingRetention(unittest.TestCase):
   reversed_old={**self.previous,'value':list(reversed(self.previous['value']))};reversed_new={**observed,'value':list(reversed(observed['value']))}
   self.assertEqual(merge_field_observation('listings',self.previous,observed),merge_field_observation('listings',reversed_old,reversed_new))
   self.assertEqual(merge_field_observation('domicile',{'checkedAt':'2026-10-26','value':'IE'},{'checkedAt':'2026-10-27','value':'IE'}),{'checkedAt':'2026-10-27','value':'IE'})
+ def test_two_london_currencies_keep_their_individual_receipts(self):
+  sterling={**self.london,'ticker':'DRDR','currency':'GBP','symbol':'DRDR.L','sha256':'3'*64}
+  previous={**self.previous,'value':[*self.previous['value'],sterling]}
+  result=merge_field_observation('listings',previous,self.observed)
+  london={(row['ticker'],row['currency']):row for row in result['value']if row['mic']=='XLON'}
+  self.assertEqual(london,{('HEAL','USD'):self.london,('DRDR','GBP'):sterling})
  def test_ordinary_entrypoint_keeps_london_after_partial_observation_and_subsequent_failure(self):
   with tempfile.TemporaryDirectory()as temp:
    root=Path(temp);(root/'scripts').mkdir();(root/'src/data').mkdir(parents=True)
