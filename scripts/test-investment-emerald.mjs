@@ -51,7 +51,6 @@ try {
     CanvasRenderingContext2D.prototype.fillText = function(value, x, y, ...rest) {
       const m = this.measureText(value), box = { text: value, l: x - m.actualBoundingBoxLeft, r: x + m.actualBoundingBoxRight, t: y - m.actualBoundingBoxAscent, b: y + m.actualBoundingBoxDescent }
       if (box.l < 0 || box.r > this.canvas.width || box.t < 0 || box.b > this.canvas.height) throw new Error(`Clipped ${current}: ${value}`)
-      if ((box.b < 1240 || box.t > 1870) && box.r > 820) throw new Error(`Text enters the right illustration ${current}: ${value}`)
       for (const prior of boxes) if (Math.min(box.r, prior.r) - Math.max(box.l, prior.l) > 1 && Math.min(box.b, prior.b) - Math.max(box.t, prior.t) > 1) throw new Error(`Overlap ${current}: ${prior.text} / ${value}`)
       boxes.push(box); labels.push(String(value)); return original.call(this, value, x, y, ...rest)
     }
@@ -72,21 +71,29 @@ try {
     const check = async (name, state, keep = false, qualifiedCalculation = null) => {
       boxes = []; labels = []; current = name
       const d = qualifiedCalculation ?? derive(state), before = JSON.stringify(d), canvas = await renderInvestmentImage(state, d)
-      const currency = d.isCustom ? 'EUR' : ASSETS[state.assetId].currency
+      const currency = d.currency ?? (d.isCustom ? 'EUR' : ASSETS[state.assetId].currency)
       if (canvas.width !== 1600 || canvas.height !== 2040) throw new Error('Export must follow the approved portrait poster')
       if (JSON.stringify(d) !== before) throw new Error('Changed calculation')
       if (!labels.includes(fmtEUR(d.result.finalValue, currency)) || !labels.includes(fmtPct(pct(d.result.finalValue, d.result.totalInvested)))) throw new Error('Wrong capital or return')
-      if (!labels.includes(`En ${currency}`) && !labels.some(label => label.startsWith(`En ${currency} ·`))) throw new Error('Wrong currency')
-      if (labels.filter(label => label === '@Epargnantlibre').length !== 1) throw new Error('Signature must appear once')
-      if (d.effectiveMode === 'dca' && !labels.some(label => label.startsWith('TOTAL VERSÉ'))) throw new Error('Lost monthly contributions')
-      for (const credit of (ASSETS[state.assetId]?.sourceCredit || '').replace(' · Calculs Épargnant Libre', '').split('\n').filter(Boolean)) if (!labels.join(' ').replace(/\s+/g, ' ').includes(credit.replace(/\s+/g, ' '))) throw new Error('Missing source credit')
-      if (!labels.includes('Pas un conseil financier')) throw new Error('Wrong footer')
-      if (d.effectiveMode === 'dca' && !labels.includes(`${d.result.finalValue < d.result.totalInvested ? 'Perte' : 'Gain'} sur les sommes versées`)) throw new Error('Missing monthly return label')
+      if (labels.filter(label => label === 'Épargnant Libre').length !== 1) throw new Error('Signature must appear once')
+      if (!labels.includes('Investi') || !labels.includes(fmtEUR(d.result.totalInvested, currency))) throw new Error('Lost investment amount')
+      if (!labels.includes('Performance') || !labels.includes(d.result.finalValue < d.result.totalInvested ? 'Perte' : 'Gain')) throw new Error('Lost result labels')
+      if (labels.some(label => /moyenne mensuelle|TOTAL VERSÉ|MENSUEL|Pas un conseil financier|Source\s*:|https?:|@Epargnantlibre/.test(label))) throw new Error('Technical footer or annotation reintroduced')
+      const pixel = canvas.getContext('2d').getImageData(0, 1000, 1, 1).data
+      if (pixel[0] > 50 || pixel[1] > 50 || pixel[2] > 50) throw new Error('Expected the selected obsidian background')
       if (keep) await window.saveInvestmentSample({ name, png: canvas.toDataURL(), labels })
       return d
     }
     try {
       for (const id of ASSET_ORDER) for (const mode of ['lump', 'dca']) await check(`${id}-${mode}`, stateFor(id, mode), mode === 'lump' && ['apple', 'microsoft', 'msciWorld', 'or', 'tesla', 'asml', 'msciEurope', 'msciIndia', 'msciWorldQuality', 'msciWorldValue', 'russell2000'].includes(id))
+      // Currency presentation and exact identities must survive the new layout.
+      for (const id of ['or', 'msciWorld', 'apple']) for (const currency of ['EUR', 'USD']) {
+        await check(id + '-' + currency, { ...stateFor(id, 'dca'), currency }, true)
+      }
+      await check('long-custom-label', { assetId: 'custom', mode: 'lump', amountRaw: '1000',
+        startYear: 2020, startMonth: 1, customStart: '100', customEnd: '160',
+        customLabel: 'Mon placement personnalisé avec un nom volontairement très long pour vérifier le retour à la ligne sans perte du libellé',
+        overridePriceRaw: '' }, true)
       const override = { ...stateFor('apple'), overridePriceRaw: '10' }
       await check('loss-manual-price', override, true)
       if (labels.some(label => label.includes('Prix final saisi'))) throw new Error('Manual-price label must not appear in the image')

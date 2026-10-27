@@ -1,18 +1,29 @@
-import { drawEditorialCollage, drawEditorialPaper, loadInvestmentEditorialArt } from './editorialArt.js'
+import { drawObsidianAsset, drawObsidianBackdrop, loadInvestmentEditorialArt } from './editorialArt.js'
 import { ensureCalculatorAsset } from '../../data/calculator-history.js'
 import { ASSETS, INCONSISTENT_MONTHLY_DATA_IDS, MONTHS_FULL, SPARSE_MONTHLY_DATA_IDS } from '../../data/calculator-history.js'
 import { fmtEUR, fmtPct, pct, ymIndex } from './lib.js'
 
-const W = 1600, INK = '#171b16', MUTED = '#526057', GREEN = '#174c3c', RED = '#ad3d2b', GOLD = '#cf5937', GRID = '#d6d2c5'
-function text(ctx, value, x, y, size, { width = 1460, color = INK, align = 'left', weight = 700, family = 'Arial, sans-serif', maxHeight = Infinity } = {}) {
+const W = 1600, H = 2040
+const INK = '#fff5df', MUTED = '#c8c3b8', GOLD = '#edc46c', RED = '#ff8b84', MINT = '#a9e6c3'
+function text(ctx, value, x, y, size, { width = 1460, color = INK, align = 'left', weight = 700, maxHeight = Infinity } = {}) {
   ctx.textBaseline = 'alphabetic'; ctx.textAlign = align; ctx.fillStyle = color
   let fitted = size
-  do { ctx.font = `${weight} ${fitted}px ${family}`; const m = ctx.measureText(value); if (m.width <= width && m.actualBoundingBoxAscent + m.actualBoundingBoxDescent <= maxHeight) break; fitted-- } while (fitted > 12)
+  do {
+    ctx.font = weight + ' ' + fitted + 'px Arial, sans-serif'
+    const m = ctx.measureText(value)
+    if (m.width <= width && m.actualBoundingBoxAscent + m.actualBoundingBoxDescent <= maxHeight) break
+    fitted--
+  } while (fitted > 12)
   ctx.fillText(value, x, y)
 }
-const prettyMonth = ym => `${MONTHS_FULL[Number(ym.slice(5, 7)) - 1]} ${ym.slice(0, 4)}`
+const prettyMonth = ym => MONTHS_FULL[Number(ym.slice(5, 7)) - 1] + ' ' + ym.slice(0, 4)
 const money = (value, currency) => fmtEUR(value, currency)
 
+// Omit the measurement annotation, while preserving product, share and hedge
+// identifiers. Full conventions and attribution remain in the app and tweet.
+export function investmentImageLabel(label) {
+  return label.replace(/\s*\((?:once(?:,\s*moyenne mensuelle)?|moyenne mensuelle)\)/gi, '').trim()
+}
 export function investmentChartKind(state, d) {
   if (d.isCustom) return 'endpoints'
   if (SPARSE_MONTHLY_DATA_IDS.has(state.assetId) || INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)) return 'annual'
@@ -43,117 +54,138 @@ export function annualInvestmentCapital(state, d) {
   }
   return [...selected.values()].sort((a, b) => a.date.localeCompare(b.date))
 }
+
 function title(ctx, label) {
-  const words = label.split(/\s+/), lines = ['']
-  ctx.font = '900 232px Georgia, serif'
-  for (const word of words) {
-    const i = lines.length - 1, next = `${lines[i]} ${word}`.trim()
-    if (ctx.measureText(next).width > 730 && i === 0 && lines[i]) lines.push(word)
-    else lines[i] = next
-  }
-  lines.forEach((line, i) => text(ctx, line, 65, (lines.length === 1 ? 680 : 620) + i * 180, lines.length === 1 ? 252 : 155,
-    { width: 730, family: 'Georgia, serif', weight: 900, maxHeight: lines.length === 1 ? 230 : 135 }))
+  let size = 82, lines
+  do {
+    ctx.font = '800 ' + size + 'px Arial, sans-serif'
+    lines = ['']
+    for (const word of label.split(/\s+/)) {
+      const next = (lines.at(-1) + ' ' + word).trim()
+      if (lines.at(-1) && ctx.measureText(next).width > 940) lines.push(word)
+      else lines[lines.length - 1] = next
+    }
+    if (lines.length <= 2 && lines.every(line => ctx.measureText(line).width <= 940)) break
+    size--
+  } while (size > 38)
+  // Extremely long custom labels wrap fully rather than silently losing words.
+  const step = Math.min(size + 14, 170 / lines.length)
+  lines.forEach((line, i) => text(ctx, line, 70, 330 + i * step, size,
+    { width: 940, maxHeight: step - 8, weight: 800 }))
 }
+
 function chart(ctx, state, d, currency, kind) {
   const annual = kind !== 'monthly', rows = annual ? annualInvestmentCapital(state, d) : null
   const values = annual ? rows.map(p => p.value) : d.result.series
-  const left = 195, right = 1515, top = 1330, bottom = 1780
+  const left = 215, right = 1500, top = 870, bottom = 1635
   const peak = Math.max(1, ...values, ...d.result.invested)
   const magnitude = 10 ** Math.floor(Math.log10(peak / 2))
-  const maximum = Math.ceil(peak * 1.08 / magnitude) * magnitude
+  const maximum = Math.ceil(peak * 1.12 / magnitude) * magnitude
   const py = v => bottom - v / maximum * (bottom - top)
   const px = i => left + (values.length <= 1 ? .5 : i / (values.length - 1)) * (right - left)
-  if (annual) text(ctx, kind === 'endpoints' ? 'Départ → valeur finale' : rows.every(p => p.date.endsWith('-12')) ? 'Capital en fin d’année' : 'Capital aux dates observées', 350, 1295, 26, { width: 1100 })
-  if (d.effectiveMode === 'dca' && !annual) {
-    ctx.strokeStyle = GOLD; ctx.lineWidth = 2; ctx.setLineDash([8, 7]); ctx.beginPath(); ctx.moveTo(1095, 1286); ctx.lineTo(1125, 1286); ctx.stroke(); ctx.setLineDash([])
-    text(ctx, 'Versements cumulés', 1135, 1295, 20, { width: 380, color: MUTED, weight: 400 })
+  const color = d.result.finalValue < d.result.totalInvested ? RED : GOLD
+  if (annual) {
+    text(ctx, kind === 'endpoints' ? 'Départ → valeur finale' : rows.every(p => p.date.endsWith('-12')) ? 'Capital en fin d’année' : 'Capital aux dates observées',
+      70, 800, 29, { width: 1000, color: MUTED, weight: 400 })
   }
   for (let i = 0; i <= 2; i++) {
     const value = maximum * i / 2, y = py(value)
-    ctx.strokeStyle = GRID; ctx.lineWidth = i ? 1 : 2; ctx.beginPath(); ctx.moveTo(left, y); ctx.lineTo(right, y); ctx.stroke()
-    text(ctx, money(value, currency), left - 18, y + 7, 21, { width: 150, align: 'right', color: MUTED, weight: 400 })
+    ctx.strokeStyle = '#ffffff20'; ctx.lineWidth = i ? 1 : 2
+    ctx.beginPath(); ctx.moveTo(left, y); ctx.lineTo(right, y); ctx.stroke()
+    text(ctx, money(value, currency), left - 24, y + 9, 26,
+      { width: 165, align: 'right', color: MUTED, weight: 400 })
   }
   if (annual) {
     const cell = (right - left) / Math.max(1, rows.length), bar = Math.min(118, cell * .58)
     rows.forEach((p, i) => {
       const x = left + cell * (i + .5), y = py(p.value)
-      ctx.fillStyle = i === rows.length - 1 ? GOLD : GREEN; ctx.fillRect(x - bar / 2, y, bar, bottom - y)
-      text(ctx, money(p.value, currency), x, y - 14, 24, { width: cell - 8, align: 'center' })
-      // Actual observation date, never a December fabricated from a July point.
-      text(ctx, rows.length > 10 ? p.date.slice(0, 4) : p.date.split('-').reverse().join('/'), x, bottom + 34, 23, { width: cell - 5, align: 'center' })
+      const fill = ctx.createLinearGradient(0, y, 0, bottom)
+      fill.addColorStop(0, i === rows.length - 1 ? color : '#cfae70')
+      fill.addColorStop(1, '#76613b')
+      ctx.fillStyle = fill; ctx.fillRect(x - bar / 2, y, bar, bottom - y)
+      // Values and dates are the real observed points, with no interpolated curve.
+      if (rows.length <= 10 || i === rows.length - 1) text(ctx, money(p.value, currency), x, y - 18, 25, { width: rows.length <= 10 ? cell - 8 : 240, align: rows.length <= 10 ? 'center' : 'right' })
+      if (rows.length <= 10 || i === rows.length - 1 || i % Math.ceil(rows.length / 8) === 0) text(ctx, rows.length > 10 ? p.date.slice(0, 4) : p.date.split('-').reverse().join('/'),
+        x, bottom + 42, 25, { width: cell - 5, align: 'center', color: MUTED, weight: 400 })
     })
   } else {
     const points = values.map((v, i) => [px(i), py(v)])
     if (points.length > 1) {
-      ctx.beginPath(); ctx.moveTo(left, bottom); points.forEach(([x, y]) => ctx.lineTo(x, y)); ctx.lineTo(points.at(-1)[0], bottom); ctx.closePath()
-      const fill = ctx.createLinearGradient(0, top, 0, bottom); fill.addColorStop(0, '#174c3c30'); fill.addColorStop(1, '#174c3c00'); ctx.fillStyle = fill; ctx.fill()
+      ctx.beginPath(); ctx.moveTo(left, bottom)
+      points.forEach(([x, y]) => ctx.lineTo(x, y))
+      ctx.lineTo(points.at(-1)[0], bottom); ctx.closePath()
+      const fill = ctx.createLinearGradient(0, top, 0, bottom)
+      fill.addColorStop(0, color === RED ? '#ff8b8445' : '#edc46c55')
+      fill.addColorStop(1, '#edc46c00'); ctx.fillStyle = fill; ctx.fill()
     }
-    function plot(series, color, dashed = false) {
-      ctx.strokeStyle = color; ctx.lineWidth = dashed ? 2.5 : 4; ctx.setLineDash(dashed ? [8, 7] : [])
-      ctx.beginPath(); series.forEach((v, i) => i ? ctx.lineTo(px(i), py(v)) : ctx.moveTo(px(i), py(v))); ctx.stroke(); ctx.setLineDash([])
+    const plot = (series, stroke, dashed = false) => {
+      ctx.save(); ctx.strokeStyle = stroke; ctx.lineWidth = dashed ? 3 : 6
+      ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.setLineDash(dashed ? [12, 10] : [])
+      ctx.beginPath()
+      series.forEach((v, i) => i ? ctx.lineTo(px(i), py(v)) : ctx.moveTo(px(i), py(v)))
+      ctx.stroke(); ctx.restore()
     }
-    if (d.effectiveMode === 'dca') plot(d.result.invested, GOLD, true)
-    plot(values, d.result.finalValue < d.result.totalInvested ? RED : GREEN)
-    ctx.fillStyle = GOLD; ctx.beginPath(); ctx.arc(px(values.length - 1), py(values.at(-1)), 6, 0, Math.PI * 2); ctx.fill()
-    if (values.length === 1) text(ctx, prettyMonth(d.endYm), (left + right) / 2, bottom + 34, 25, { width: 600, align: 'center' })
+    if (d.effectiveMode === 'dca') plot(d.result.invested, '#e5e0d2', true)
+    plot(values, color)
+    ctx.fillStyle = color; ctx.beginPath(); ctx.arc(px(values.length - 1), py(values.at(-1)), 8, 0, Math.PI * 2); ctx.fill()
+    if (values.length === 1) text(ctx, prettyMonth(d.endYm), (left + right) / 2, bottom + 42, 30,
+      { width: 600, align: 'center', color: MUTED, weight: 400 })
     else {
-      text(ctx, prettyMonth(d.startYm), left, bottom + 34, 25, { width: 620 })
-      text(ctx, prettyMonth(d.endYm), right, bottom + 34, 25, { width: 620, align: 'right' })
+      text(ctx, prettyMonth(d.startYm), left, bottom + 42, 30, { width: 620, color: MUTED, weight: 400 })
+      text(ctx, prettyMonth(d.endYm), right, bottom + 42, 30, { width: 620, align: 'right', color: MUTED, weight: 400 })
     }
   }
+  // Legend stays below the plot; it cannot collide with the last capital point.
+  ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(505, 1720); ctx.lineTo(560, 1720); ctx.stroke()
+  text(ctx, 'Capital', 580, 1730, 28, { width: 250, color: MUTED, weight: 400 })
+  if (d.effectiveMode === 'dca' && !annual) {
+    ctx.strokeStyle = '#e5e0d2'; ctx.lineWidth = 3; ctx.setLineDash([12, 10])
+    ctx.beginPath(); ctx.moveTo(890, 1720); ctx.lineTo(945, 1720); ctx.stroke(); ctx.setLineDash([])
+    text(ctx, 'Versements', 965, 1730, 28, { width: 400, color: MUTED, weight: 400 })
+  }
 }
+
 export async function renderInvestmentImage(state, d) {
-  if(state.assetId!=='custom') await ensureCalculatorAsset(state.assetId)
-  const asset = d.isCustom ? null : d.asset ?? ASSETS[state.assetId], currency = d.currency ?? asset?.currency ?? 'EUR'
+  if (state.assetId !== 'custom') await ensureCalculatorAsset(state.assetId)
+  const asset = d.isCustom ? null : d.asset ?? ASSETS[state.assetId]
+  const currency = d.currency ?? asset?.currency ?? 'EUR'
   const art = await loadInvestmentEditorialArt(state.assetId)
   await document.fonts.ready
-  const credits = (asset?.sourceCredit || '').replace(' · Calculs Épargnant Libre', '').split('\n').filter(Boolean)
-  const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = 2040
-  const ctx = canvas.getContext('2d'); drawEditorialPaper(ctx, art); drawEditorialCollage(ctx, art)
+  const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = H
+  const ctx = canvas.getContext('2d')
+  drawObsidianBackdrop(ctx, W, H)
+  drawObsidianAsset(ctx, art, 1080, 70, 450, 370)
   const dca = d.effectiveMode === 'dca', gain = d.result.finalValue - d.result.totalInvested
-  const condensed = { weight: 400, family: 'InvestmentCondensed, Impact, sans-serif' }
-  text(ctx, money(d.amount, currency), 65, 330, 310, { ...condensed, width: 730, maxHeight: 290 })
-  text(ctx, dca ? 'investis chaque mois dans' : 'investis dans', 65, 425, 73, { width: 730, weight: 900 })
-  title(ctx, asset?.label || state.customLabel || 'cet actif')
-  text(ctx, `${prettyMonth(d.startYm)} → ${prettyMonth(d.endYm)}`, 65, 875, 39, { width: 730, family: 'Georgia, serif', weight: 400 })
-  ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(65, 902); ctx.lineTo(795, 902); ctx.stroke()
-  if (dca) text(ctx, `TOTAL VERSÉ : ${money(d.result.totalInvested, currency)}`, 65, 943, 28, { width: 730, color: MUTED })
-  text(ctx, 'Capital final', 65, 1005, 39, { width: 420 })
-  text(ctx, money(d.result.finalValue, currency), 65, 1190, 220, { ...condensed, width: 420, color: gain < 0 ? RED : GREEN, maxHeight: 160 })
-  ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(530, 970); ctx.lineTo(530, 1220); ctx.stroke()
-  text(ctx, gain < 0 ? 'Perte' : 'Gain', 565, 1005, 35, { width: 230 })
-  text(ctx, money(Math.abs(gain), currency), 565, 1090, 112, { ...condensed, width: 230, maxHeight: 75, color: gain < 0 ? RED : GREEN })
-  text(ctx, dca ? `${gain < 0 ? 'Perte' : 'Gain'} sur les sommes versées` : 'Performance', 565, 1140, 31, { width: 230 })
-  text(ctx, fmtPct(pct(d.result.finalValue, d.result.totalInvested)), 565, 1210, 103, { ...condensed, width: 230, maxHeight: 65, color: gain < 0 ? RED : GREEN })
-  ctx.save(); ctx.shadowColor = '#30281835'; ctx.shadowBlur = 24; ctx.shadowOffsetY = 9
-  ctx.fillStyle = '#fff8e9'; ctx.beginPath(); ctx.roundRect(45, 1240, 1510, 630, 40); ctx.fill(); ctx.restore()
-  const kind = investmentChartKind(state, d)
-  // The reference's coral label is restored; the plot still follows the actual
-  // observed grain and never invents monthly points for annual histories.
-  ctx.fillStyle = GOLD; ctx.fillRect(85, 1260, kind === 'monthly' ? 235 : 210, 49)
-  text(ctx, kind === 'monthly' ? 'MENSUEL' : kind === 'annual' ? 'ANNUEL' : 'DÉPART / FIN', 105, 1297, 32,
-    { width: kind === 'endpoints' ? 170 : 200, color: '#fffaf0' })
-  chart(ctx, state, d, currency, kind)
-  text(ctx, '@Epargnantlibre', 65, 1903, 35, { width: 650, family: 'Georgia, serif', weight: 400 })
-  ctx.strokeStyle = GOLD; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(75, 1919); ctx.lineTo(555, 1911); ctx.stroke()
-  const details = [`En ${currency}`, asset?.returnNote, state.assetId === 'silver' ? 'Futures COMEX continus · hors frais et roulement' : null].filter(Boolean).join(' · ')
-  const footer = [details, ...credits, 'Pas un conseil financier']
-  let footerSize = 18, footerLines
-  do {
-    ctx.font = `400 ${footerSize}px Arial, sans-serif`
-    footerLines = footer.flatMap(value => {
-      const lines = ['']
-      for (const word of value.split(/\s+/)) {
-        const next = `${lines.at(-1)} ${word}`.trim()
-        if (lines.at(-1) && ctx.measureText(next).width > 730) lines.push(word)
-        else lines[lines.length - 1] = next
-      }
-      return lines
-    })
-    if (footerLines.length * (footerSize + 4) <= 90 || footerSize <= 10) break
-    footerSize--
-  } while (true)
-  footerLines.forEach((line, i) => text(ctx, line, 65, 1940 + i * (footerSize + 4), footerSize,
-    { width: 730, color: MUTED, weight: 400 }))
+  text(ctx, money(d.amount, currency), 70, 185, 170, { width: 940, maxHeight: 150, weight: 900 })
+  text(ctx, dca ? 'par mois dans' : 'investis dans', 70, 250, 51, { width: 940, weight: 700 })
+  title(ctx, investmentImageLabel(asset?.label || state.customLabel || 'cet actif'))
+  text(ctx, prettyMonth(d.startYm) + ' → ' + prettyMonth(d.endYm), 70, 525, 36,
+    { width: 1460, color: MUTED, weight: 400 })
+  text(ctx, 'Capital final', 70, 600, 47, { width: 1400 })
+  const face = ctx.createLinearGradient(0, 610, 0, 745)
+  face.addColorStop(0, '#fff6d6'); face.addColorStop(.45, '#f3d98c'); face.addColorStop(1, '#ce983f')
+  text(ctx, money(d.result.finalValue, currency), 70, 755, 188,
+    { width: 1460, maxHeight: 145, color: gain < 0 ? RED : face, weight: 900 })
+  chart(ctx, state, d, currency, investmentChartKind(state, d))
+  ctx.save(); ctx.shadowColor = '#00000080'; ctx.shadowBlur = 26; ctx.shadowOffsetY = 12
+  const rail = ctx.createLinearGradient(0, 1780, 0, 1945)
+  rail.addColorStop(0, '#24211d'); rail.addColorStop(.5, '#161618'); rail.addColorStop(1, '#101113')
+  ctx.fillStyle = rail; ctx.beginPath(); ctx.roundRect(50, 1780, 1500, 165, 34); ctx.fill()
+  ctx.shadowBlur = 0; ctx.shadowOffsetY = 0; ctx.strokeStyle = '#bd9551'; ctx.lineWidth = 2; ctx.stroke(); ctx.restore()
+  const facts = [
+    { label: 'Investi', value: money(d.result.totalInvested, currency), color: INK },
+    { label: gain < 0 ? 'Perte' : 'Gain', value: (gain > 0 ? '+' : gain < 0 ? '−' : '') + money(Math.abs(gain), currency), color: gain < 0 ? RED : GOLD },
+    { label: 'Performance', value: fmtPct(pct(d.result.finalValue, d.result.totalInvested)), color: gain < 0 ? RED : MINT },
+  ]
+  facts.forEach((fact, i) => {
+    const x = 90 + i * 500
+    text(ctx, fact.label, x, 1835, 32, { width: 420, color: MUTED, weight: 400 })
+    text(ctx, fact.value, x, 1910, 62, { width: 420, maxHeight: 56, color: fact.color, weight: 800 })
+    if (i) {
+      ctx.strokeStyle = '#bd955145'; ctx.lineWidth = 1
+      ctx.beginPath(); ctx.moveTo(x - 40, 1810); ctx.lineTo(x - 40, 1920); ctx.stroke()
+    }
+  })
+  text(ctx, 'Épargnant Libre', W / 2, 2010, 39, { width: 1200, align: 'center', color: GOLD, weight: 700 })
   return canvas
 }
