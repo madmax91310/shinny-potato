@@ -28,6 +28,14 @@ MARKET_READER_ONLY_CHANGES = {
     'scripts/test-investment-emerald.mjs',
     'src/pages/investment-calculator/editorialArt.js',
     'src/pages/investment-calculator/imageExport.js',
+    # Actual refusal40532881822: these consumer regressions and practical
+    # documentary receipts are not inputs of monthly/ranking acquisition.
+    # Their latest tree must still pass projection + financial validation.
+    'scripts/playwright-acwi-allocation-recovery.mjs',
+    'scripts/test_metadata_listing_retention.py',
+    'src/data/automated-practical-sheets.json',
+    # Exact render-only resource introduced by concurrent PR1009.
+    'public/asset-art/investment-obsidian/gold.webp',
 }
 # The ETF acquisition chain and its baseline do not read insurance products.
 # Coverage reports/build do: regenerate and validate those on the merged tree.

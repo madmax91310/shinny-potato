@@ -22,6 +22,10 @@ class ObservationRebaseTests(unittest.TestCase):
                      'scripts/test-investment-emerald.mjs',
                      'src/pages/investment-calculator/editorialArt.js',
                      'src/pages/investment-calculator/imageExport.js',
+                     'scripts/playwright-acwi-allocation-recovery.mjs',
+                     'scripts/test_metadata_listing_retention.py',
+                     'src/data/automated-practical-sheets.json',
+                     'public/asset-art/investment-obsidian/gold.webp',
                      'src/pages/investment-calculator/lib.js', 'src/data/monthly-fx.json']:
             p = self.f.local / name
             p.parent.mkdir(parents=True, exist_ok=True)
@@ -123,6 +127,33 @@ class ObservationRebaseTests(unittest.TestCase):
         self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
         for path in paths:
             self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'concurrent update')
+
+    def test_current_consumer_and_document_race_revalidates_the_combined_tree(self):
+        paths = ['scripts/playwright-acwi-allocation-recovery.mjs',
+                 'scripts/test_metadata_listing_retention.py',
+                 'src/data/automated-practical-sheets.json',
+                 'public/asset-art/investment-obsidian/gold.webp']
+        for path in paths:
+            self.f.advance_remote(path)
+        validation = ' && '.join(f'test "$(cat {shlex.quote(path)})" = "concurrent update"' for path in paths)
+        result = self.publish('market', validation)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
+        for path in paths:
+            self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'concurrent update')
+
+    def test_practical_receipts_never_bypass_failed_financial_revalidation(self):
+        self.assert_refused('src/data/automated-practical-sheets.json', 'market', 'false')
+
+    def test_practical_independence_is_not_assumed_for_other_collectors(self):
+        self.assert_refused('src/data/automated-practical-sheets.json', 'publication')
+
+    def test_consumer_change_does_not_hide_a_changed_acquisition_configuration(self):
+        self.f.advance_remote('scripts/test_metadata_listing_retention.py')
+        self.assert_refused('scripts/monthly-automation.json', 'market')
+
+    def test_exact_render_asset_does_not_allow_other_public_files(self):
+        self.assert_refused('public/asset-art/investment-obsidian/unqualified.webp', 'market')
 
     def test_image_change_never_bypasses_failed_financial_revalidation(self):
         self.assert_refused('src/pages/investment-calculator/imageExport.js', 'market', 'false')
