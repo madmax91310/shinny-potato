@@ -246,7 +246,16 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         calendar_proof={'shareInception':product['data']['inception_date'],
             'incomeTreatment':'Issuer exact ETP NAV; monthly published returns checked',
             'splitAdjustment':'14:1 on 2021-04-12 already reflected; no additional adjustment',
-            'validationSources':endpoints,'monthlyOracle':performance['method']}
+            'validationSources':endpoints,'monthlyOracle':performance['method'],
+            'controlledInstrument':isin,'requestedStart':source['periodStart']+'-01',
+            'controlledCalendarYears':sorted(years),
+            'controlledFields':['product_details.details.isin','product_details.ticker',
+                'product_details.currency.short_name','product_details.inception_date',
+                'product_details.valuation_date','product_details.nav_per_unit',
+                'product_valuation_history.valuation_date','product_valuation_history.nav_per_share',
+                'product_valuation_history.fiat_denominator','product_valuation_history.index:split-check-only',
+                'product_performance_metrics.performance_monthly','product_performance_metrics.performance_details'],
+            'historicFxQualification':'Existing validated monthly ECB observations; not a new historic ECB source consultation'}
     elif kind=='wisdomtree':
         identity=wisdomtree_identity(document(source['sourceUrl']).decode(),isin)
         if identity['fundCurrency']!=native or identity['useOfIncome']!='N/A':raise ValueError('Commodity currency/income changed')

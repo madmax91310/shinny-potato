@@ -11210,6 +11210,26 @@
     "checkedAt": "2026-10-27",
     "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
     "maxAgeDays": 7,
-    "sha256": "b5b8e0dca00d0e96ac6a89499fb3a20882f86d0d4c7ce94ad505fb71737f210c"
+    "sha256": "936df80681b658a78d90e2220c8374031f5d401f32d5c0dbd527dae34041d8bf"
+  },
+  "etfLU1737652823Nav": {
+    "value": 55.0459,
+    "asOf": "2026-10-23",
+    "currency": "EUR",
+    "isin": "LU1737652823",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 55.0459,
+    "nativeCurrency": "EUR",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "sourceUrls": [
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    ],
+    "checkedAt": "2026-10-27",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "50eccea911102366b56155773d74ccd8bdd3544e14429ef554daddb587006f94"
   }
 }
