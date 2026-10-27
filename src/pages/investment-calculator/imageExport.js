@@ -5,7 +5,7 @@ import { fmtEUR, fmtPct, pct, ymIndex } from './lib.js'
 
 const W = 1600, H = 2040
 const INK = '#fff5df', MUTED = '#c8c3b8', GOLD = '#edc46c', RED = '#ff8b84', MINT = '#a9e6c3'
-function text(ctx, value, x, y, size, { width = 1460, color = INK, align = 'left', weight = 700, maxHeight = Infinity } = {}) {
+function text(ctx, value, x, y, size, { width = 1460, color = INK, align = 'left', weight = 700, maxHeight = Infinity, top = null } = {}) {
   ctx.textBaseline = 'alphabetic'; ctx.textAlign = align; ctx.fillStyle = color
   let fitted = size
   do {
@@ -14,7 +14,7 @@ function text(ctx, value, x, y, size, { width = 1460, color = INK, align = 'left
     if (m.width <= width && m.actualBoundingBoxAscent + m.actualBoundingBoxDescent <= maxHeight) break
     fitted--
   } while (fitted > 12)
-  ctx.fillText(value, x, y)
+  ctx.fillText(value, x, top === null ? y : top + ctx.measureText(value).actualBoundingBoxAscent)
 }
 const prettyMonth = ym => MONTHS_FULL[Number(ym.slice(5, 7)) - 1] + ' ' + ym.slice(0, 4)
 const money = (value, currency) => fmtEUR(value, currency)
@@ -172,7 +172,7 @@ export async function renderInvestmentImage(state, d) {
   drawObsidianBackdrop(ctx, W, H)
   drawObsidianAsset(ctx, art, 1080, 70, 450, 370)
   const dca = d.effectiveMode === 'dca', gain = d.result.finalValue - d.result.totalInvested
-  text(ctx, money(d.amount, currency), 70, 185, 170, { width: 940, maxHeight: 150, weight: 900 })
+  text(ctx, money(d.amount, currency), 70, 185, 170, { width: 940, maxHeight: 140, top: 45, weight: 900 })
   text(ctx, dca ? 'par mois dans' : 'investis dans', 70, 250, 51, { width: 940, weight: 700 })
   title(ctx, investmentImageLabel(asset?.label || state.customLabel || 'cet actif'))
   text(ctx, prettyMonth(d.startYm) + ' → ' + prettyMonth(d.endYm), 70, 525, 36,
@@ -181,7 +181,7 @@ export async function renderInvestmentImage(state, d) {
   const face = ctx.createLinearGradient(0, 610, 0, 745)
   face.addColorStop(0, '#fff6d6'); face.addColorStop(.45, '#f3d98c'); face.addColorStop(1, '#ce983f')
   text(ctx, money(d.result.finalValue, currency), 70, 755, 188,
-    { width: 1460, maxHeight: 145, color: gain < 0 ? RED : face, weight: 900 })
+    { width: 1460, maxHeight: 135, top: 630, color: gain < 0 ? RED : face, weight: 900 })
   chart(ctx, state, d, currency, investmentChartKind(state, d))
   ctx.save(); ctx.shadowColor = '#00000080'; ctx.shadowBlur = 26; ctx.shadowOffsetY = 12
   const rail = ctx.createLinearGradient(0, 1780, 0, 1945)

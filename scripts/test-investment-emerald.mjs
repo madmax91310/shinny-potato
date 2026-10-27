@@ -85,6 +85,8 @@ try {
       return d
     }
     try {
+      await check('header-gbp', stateFor('diageo'), true)
+      await check('header-accented-title', stateFor('euroGovShort', 'dca'), true)
       for (const id of ASSET_ORDER) for (const mode of ['lump', 'dca']) await check(`${id}-${mode}`, stateFor(id, mode), mode === 'lump' && ['apple', 'microsoft', 'msciWorld', 'or', 'tesla', 'asml', 'msciEurope', 'msciIndia', 'msciWorldQuality', 'msciWorldValue', 'russell2000'].includes(id))
       // Currency presentation and exact identities must survive the new layout.
       for (const id of ['or', 'msciWorld', 'apple']) for (const currency of ['EUR', 'USD']) {
