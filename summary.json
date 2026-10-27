@@ -1,13 +1,17 @@
 {
   "schemaVersion": 1,
   "policyVersion": 3,
-  "checkedAt": "2026-10-27T15:11:12.682Z",
-  "sourceRevision": "76b86f8cf28d61cebce8ffb81e941391cdb39555",
+  "checkedAt": "2026-10-27T16:44:37.339Z",
+  "sourceRevision": "c30937bc1a36880da0b4e62ab85ca82719149e5c",
   "groups": [
     [
       "9977149042677757b663c372",
       "0d02d80eb57568918b943369",
       "4a8cf33092c21057405eb5ce"
+    ],
+    [
+      "0a30a257f0aa1658d99ac853",
+      "22d8b63197db9d3157a47a6c"
     ],
     [
       "bb576b829e8754e551983d69"
@@ -97,6 +101,26 @@
       "score": 76,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "to": "/radar-editorial?subject=bb576b829e8754e551983d69"
+    },
+    {
+      "id": "0a30a257f0aa1658d99ac853",
+      "eventIds": [
+        "0a30a257f0aa1658d99ac853",
+        "22d8b63197db9d3157a47a6c"
+      ],
+      "readEventIds": [
+        "0a30a257f0aa1658d99ac853",
+        "22d8b63197db9d3157a47a6c"
+      ],
+      "title": "Xtrackers MSCI World Materials UCITS ETF : poids du pays ireland, 11,178 % → 2,817 %",
+      "mainFact": "Xtrackers MSCI World Materials UCITS ETF : 2,817 %",
+      "publishedAt": null,
+      "observedAt": "2026-10-27",
+      "whyNow": "Changement constaté entre deux contrôles depuis moins de 48 h ; date d’annonce inconnue.",
+      "reason": "Exposition modifiée ; aucun achat ni flux déduit",
+      "score": 76,
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
+      "to": "/radar-editorial?subject=0a30a257f0aa1658d99ac853"
     },
     {
       "id": "94b9fc0a0f7af602687a4f78",
