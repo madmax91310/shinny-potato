@@ -2,7 +2,7 @@ name: Verify investment public export
 
 on:
   push:
-    branches: ['verify/investment-obsidian-public']
+    branches: ['verify/investment-gold-faithful-public']
 
 permissions:
   contents: read
@@ -10,7 +10,7 @@ permissions:
 jobs:
   public-check:
     runs-on: ubuntu-26.04
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-node@v7.0.0
@@ -31,6 +31,9 @@ jobs:
             npx playwright install --with-deps chromium
           fi
       - run: node scripts/playwright-investment-public-obsidian.mjs
+        env:
+          EXPECTED_CODE_SHA: f726f534dbd5f1e026012adfe535fef825a7ee4f
+          GITHUB_TOKEN: ${{ github.token }}
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
