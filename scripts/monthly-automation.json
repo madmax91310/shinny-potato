@@ -15299,6 +15299,24 @@
       "identityFrom": "2020-10-27",
       "dwsIdentityBasis": "share-class-launch",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium"
+    },
+    {
+      "id": "etfCH0454664001Nav",
+      "isin": "CH0454664001",
+      "label": "21Shares Bitcoin ETP · VL",
+      "instrumentType": "ETP",
+      "consumerScope": "catalog",
+      "currency": "EUR",
+      "periodStart": "2019-03",
+      "precision": 8,
+      "collectAnniversary": true,
+      "parser": "official-nav",
+      "field": "nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "method": "Valeur liquidative officielle de la part exacte en USD, nette des frais et déjà ajustée du split 14:1 ; rendements mensuels émetteur recoupés ; conversion BCE EUR explicite ; ancienne cotation distincte préservée",
+      "navProvider": "21shares",
+      "navCurrency": "USD",
+      "sourceUrl": "https://api.primary.21shares.com/api/product_valuation_history/ABTC"
     }
   ]
 }

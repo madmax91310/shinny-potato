@@ -90,6 +90,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: python -m pip install beautifulsoup4
       - run: python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'
+      - run: python -m unittest discover -s scripts -p 'test_abtc_nav_history.py'
       - run: python -m unittest discover -s scripts -p 'test_amundi_nav_history.py'
       - run: python -m unittest discover -s scripts -p 'test_amundi_anniversary_prices.py'
       - run: python -m unittest discover -s scripts -p 'test_blackrock_income_history.py'

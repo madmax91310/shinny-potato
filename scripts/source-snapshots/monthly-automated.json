@@ -533178,5 +533178,1691 @@
       "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download?startDate=2020-10-27&endDate=2026-10-26&includeTax=false": "2753fb6339d7ef3fb8132a9c2f20ffec0430aacfd6ad84cc8c901e3f37408f1e",
       "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "b1938e96c2032834aa57181c4135542f780c32262bcf44b363dcd53e38c911d5"
     }
+  },
+  "etfCH0454664001Nav": {
+    "id": "etfCH0454664001Nav",
+    "isin": "CH0454664001",
+    "label": "21Shares Bitcoin ETP · VL",
+    "instrumentType": "ETP",
+    "consumerScope": "catalog",
+    "currency": "EUR",
+    "periodStart": "2019-03",
+    "precision": 8,
+    "collectAnniversary": true,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "Valeur liquidative officielle de la part exacte en USD, nette des frais et déjà ajustée du split 14:1 ; rendements mensuels émetteur recoupés ; conversion BCE EUR explicite ; ancienne cotation distincte préservée",
+    "navProvider": "21shares",
+    "navCurrency": "USD",
+    "sourceUrl": "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
+    "points": [
+      [
+        "2019-03",
+        1.35469515
+      ],
+      [
+        "2019-04",
+        1.76412908
+      ],
+      [
+        "2019-05",
+        2.80154246
+      ],
+      [
+        "2019-06",
+        3.81282953
+      ],
+      [
+        "2019-07",
+        3.29477177
+      ],
+      [
+        "2019-08",
+        3.19409206
+      ],
+      [
+        "2019-09",
+        2.76793094
+      ],
+      [
+        "2019-10",
+        3.03119957
+      ],
+      [
+        "2019-11",
+        2.42760881
+      ],
+      [
+        "2019-12",
+        2.37582339
+      ],
+      [
+        "2020-01",
+        3.06369888
+      ],
+      [
+        "2020-02",
+        2.87510249
+      ],
+      [
+        "2020-03",
+        2.14311793
+      ],
+      [
+        "2020-04",
+        2.9523722
+      ],
+      [
+        "2020-05",
+        3.06842672
+      ],
+      [
+        "2020-06",
+        2.95499196
+      ],
+      [
+        "2020-07",
+        3.41407833
+      ],
+      [
+        "2020-08",
+        3.54187605
+      ],
+      [
+        "2020-09",
+        3.30799453
+      ],
+      [
+        "2020-10",
+        4.1502821
+      ],
+      [
+        "2020-11",
+        5.78964942
+      ],
+      [
+        "2020-12",
+        8.21937902
+      ],
+      [
+        "2021-01",
+        10.94924192
+      ],
+      [
+        "2021-02",
+        14.04422077
+      ],
+      [
+        "2021-03",
+        17.94029851
+      ],
+      [
+        "2021-04",
+        16.54444628
+      ],
+      [
+        "2021-05",
+        10.70076223
+      ],
+      [
+        "2021-06",
+        10.36940424
+      ],
+      [
+        "2021-07",
+        11.66680683
+      ],
+      [
+        "2021-08",
+        14.17863782
+      ],
+      [
+        "2021-09",
+        13.19803092
+      ],
+      [
+        "2021-10",
+        18.62601975
+      ],
+      [
+        "2021-11",
+        17.95564552
+      ],
+      [
+        "2021-12",
+        14.69539114
+      ],
+      [
+        "2022-01",
+        11.92721406
+      ],
+      [
+        "2022-02",
+        12.84936155
+      ],
+      [
+        "2022-03",
+        14.80407171
+      ],
+      [
+        "2022-04",
+        12.9886148
+      ],
+      [
+        "2022-05",
+        10.37711192
+      ],
+      [
+        "2022-06",
+        6.44651969
+      ],
+      [
+        "2022-07",
+        8.25652089
+      ],
+      [
+        "2022-08",
+        7.028
+      ],
+      [
+        "2022-09",
+        7.16454657
+      ],
+      [
+        "2022-10",
+        7.17671979
+      ],
+      [
+        "2022-11",
+        5.66114109
+      ],
+      [
+        "2022-12",
+        5.39752485
+      ],
+      [
+        "2023-01",
+        7.41622819
+      ],
+      [
+        "2023-02",
+        7.68904793
+      ],
+      [
+        "2023-03",
+        9.09057471
+      ],
+      [
+        "2023-04",
+        9.17675986
+      ],
+      [
+        "2023-05",
+        8.75315922
+      ],
+      [
+        "2023-06",
+        9.55733481
+      ],
+      [
+        "2023-07",
+        9.16719586
+      ],
+      [
+        "2023-08",
+        8.61336032
+      ],
+      [
+        "2023-09",
+        8.73702096
+      ],
+      [
+        "2023-10",
+        11.09614841
+      ],
+      [
+        "2023-11",
+        11.81136218
+      ],
+      [
+        "2023-12",
+        13.12036199
+      ],
+      [
+        "2024-01",
+        13.69567223
+      ],
+      [
+        "2024-02",
+        19.8337336
+      ],
+      [
+        "2024-03",
+        22.52613079
+      ],
+      [
+        "2024-04",
+        19.48217951
+      ],
+      [
+        "2024-05",
+        21.16476226
+      ],
+      [
+        "2024-06",
+        19.33769267
+      ],
+      [
+        "2024-07",
+        20.8450314
+      ],
+      [
+        "2024-08",
+        17.89302787
+      ],
+      [
+        "2024-09",
+        19.30153626
+      ],
+      [
+        "2024-10",
+        21.95460393
+      ],
+      [
+        "2024-11",
+        31.42207915
+      ],
+      [
+        "2024-12",
+        29.88834344
+      ],
+      [
+        "2025-01",
+        34.23458097
+      ],
+      [
+        "2025-02",
+        27.18759005
+      ],
+      [
+        "2025-03",
+        25.97688396
+      ],
+      [
+        "2025-04",
+        27.6980568
+      ],
+      [
+        "2025-05",
+        31.18969927
+      ],
+      [
+        "2025-06",
+        30.55546075
+      ],
+      [
+        "2025-07",
+        34.48540975
+      ],
+      [
+        "2025-08",
+        31.0370561
+      ],
+      [
+        "2025-09",
+        32.33029555
+      ],
+      [
+        "2025-10",
+        31.79937684
+      ],
+      [
+        "2025-11",
+        26.60816185
+      ],
+      [
+        "2025-12",
+        25.18042553
+      ],
+      [
+        "2026-01",
+        23.07492239
+      ],
+      [
+        "2026-02",
+        18.58703939
+      ],
+      [
+        "2026-03",
+        19.38163159
+      ],
+      [
+        "2026-04",
+        21.59887199
+      ],
+      [
+        "2026-05",
+        20.66815527
+      ],
+      [
+        "2026-06",
+        17.03615938
+      ],
+      [
+        "2026-07",
+        17.99303439
+      ],
+      [
+        "2026-08",
+        22.19127285
+      ],
+      [
+        "2026-09",
+        24.3126376
+      ]
+    ],
+    "anniversaryPoints": [
+      [
+        "2019-03",
+        1.35469515
+      ],
+      [
+        "2019-04",
+        1.76412908
+      ],
+      [
+        "2019-05",
+        2.80154246
+      ],
+      [
+        "2019-06",
+        3.81282953
+      ],
+      [
+        "2019-07",
+        3.29477177
+      ],
+      [
+        "2019-08",
+        3.19409206
+      ],
+      [
+        "2019-09",
+        2.76793094
+      ],
+      [
+        "2019-10",
+        3.03119957
+      ],
+      [
+        "2019-11",
+        2.42760881
+      ],
+      [
+        "2019-12",
+        2.37582339
+      ],
+      [
+        "2020-01",
+        3.06369888
+      ],
+      [
+        "2020-02",
+        2.87510249
+      ],
+      [
+        "2020-03",
+        2.14311793
+      ],
+      [
+        "2020-04",
+        2.9523722
+      ],
+      [
+        "2020-05",
+        3.06842672
+      ],
+      [
+        "2020-06",
+        2.95499196
+      ],
+      [
+        "2020-07",
+        3.41407833
+      ],
+      [
+        "2020-08",
+        3.54187605
+      ],
+      [
+        "2020-09",
+        3.30799453
+      ],
+      [
+        "2020-10",
+        4.1502821
+      ],
+      [
+        "2020-11",
+        5.78964942
+      ],
+      [
+        "2020-12",
+        8.21937902
+      ],
+      [
+        "2021-01",
+        10.94924192
+      ],
+      [
+        "2021-02",
+        14.04422077
+      ],
+      [
+        "2021-03",
+        17.94029851
+      ],
+      [
+        "2021-04",
+        16.54444628
+      ],
+      [
+        "2021-05",
+        10.70076223
+      ],
+      [
+        "2021-06",
+        10.36940424
+      ],
+      [
+        "2021-07",
+        11.66680683
+      ],
+      [
+        "2021-08",
+        14.17863782
+      ],
+      [
+        "2021-09",
+        13.19803092
+      ],
+      [
+        "2021-10",
+        18.62601975
+      ],
+      [
+        "2021-11",
+        17.95564552
+      ],
+      [
+        "2021-12",
+        14.69539114
+      ],
+      [
+        "2022-01",
+        11.92721406
+      ],
+      [
+        "2022-02",
+        12.84936155
+      ],
+      [
+        "2022-03",
+        14.80407171
+      ],
+      [
+        "2022-04",
+        12.9886148
+      ],
+      [
+        "2022-05",
+        10.37711192
+      ],
+      [
+        "2022-06",
+        6.44651969
+      ],
+      [
+        "2022-07",
+        8.25652089
+      ],
+      [
+        "2022-08",
+        7.028
+      ],
+      [
+        "2022-09",
+        7.16454657
+      ],
+      [
+        "2022-10",
+        7.17671979
+      ],
+      [
+        "2022-11",
+        5.66114109
+      ],
+      [
+        "2022-12",
+        5.39752485
+      ],
+      [
+        "2023-01",
+        7.41622819
+      ],
+      [
+        "2023-02",
+        7.68904793
+      ],
+      [
+        "2023-03",
+        9.09057471
+      ],
+      [
+        "2023-04",
+        9.17675986
+      ],
+      [
+        "2023-05",
+        8.75315922
+      ],
+      [
+        "2023-06",
+        9.55733481
+      ],
+      [
+        "2023-07",
+        9.16719586
+      ],
+      [
+        "2023-08",
+        8.61336032
+      ],
+      [
+        "2023-09",
+        8.73702096
+      ],
+      [
+        "2023-10",
+        11.09614841
+      ],
+      [
+        "2023-11",
+        11.81136218
+      ],
+      [
+        "2023-12",
+        13.12036199
+      ],
+      [
+        "2024-01",
+        13.69567223
+      ],
+      [
+        "2024-02",
+        19.8337336
+      ],
+      [
+        "2024-03",
+        22.52613079
+      ],
+      [
+        "2024-04",
+        19.48217951
+      ],
+      [
+        "2024-05",
+        21.16476226
+      ],
+      [
+        "2024-06",
+        19.33769267
+      ],
+      [
+        "2024-07",
+        20.8450314
+      ],
+      [
+        "2024-08",
+        17.89302787
+      ],
+      [
+        "2024-09",
+        19.30153626
+      ],
+      [
+        "2024-10",
+        21.95460393
+      ],
+      [
+        "2024-11",
+        31.42207915
+      ],
+      [
+        "2024-12",
+        29.88834344
+      ],
+      [
+        "2025-01",
+        34.23458097
+      ],
+      [
+        "2025-02",
+        27.18759005
+      ],
+      [
+        "2025-03",
+        25.97688396
+      ],
+      [
+        "2025-04",
+        27.6980568
+      ],
+      [
+        "2025-05",
+        31.18969927
+      ],
+      [
+        "2025-06",
+        30.55546075
+      ],
+      [
+        "2025-07",
+        34.48540975
+      ],
+      [
+        "2025-08",
+        31.0370561
+      ],
+      [
+        "2025-09",
+        32.33029555
+      ],
+      [
+        "2025-10",
+        31.79937684
+      ],
+      [
+        "2025-11",
+        26.60816185
+      ],
+      [
+        "2025-12",
+        25.18042553
+      ],
+      [
+        "2026-01",
+        23.07492239
+      ],
+      [
+        "2026-02",
+        18.58703939
+      ],
+      [
+        "2026-03",
+        19.38163159
+      ],
+      [
+        "2026-04",
+        21.59887199
+      ],
+      [
+        "2026-05",
+        20.66815527
+      ],
+      [
+        "2026-06",
+        17.03615938
+      ],
+      [
+        "2026-07",
+        17.99303439
+      ],
+      [
+        "2026-08",
+        22.19127285
+      ],
+      [
+        "2026-09",
+        24.3126376
+      ]
+    ],
+    "checkedAt": "2026-10-27",
+    "periodEnd": "2026-09",
+    "sourceUrls": [
+      "https://api.primary.21shares.com/api/product_details/ABTC",
+      "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
+      "https://api.primary.21shares.com/api/product_performance_metrics/ABTC",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "sourceCredit": "21Shares",
+    "latestLevel": {
+      "value": 23.636038612799425,
+      "asOf": "2026-10-26",
+      "currency": "EUR",
+      "isin": "CH0454664001",
+      "parser": "official-nav",
+      "valuationBasis": "fund-nav-total-return",
+      "nativeValue": 26.444,
+      "nativeCurrency": "USD",
+      "fxAsOf": "2026-10-26",
+      "fxFactor": 0.893814801573114,
+      "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+      "sourceUrls": [
+        "https://api.primary.21shares.com/api/product_details/ABTC",
+        "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
+        "https://api.primary.21shares.com/api/product_performance_metrics/ABTC",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "checkedAt": "2026-10-27",
+      "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+      "maxAgeDays": 7,
+      "sha256": "b5b8e0dca00d0e96ac6a89499fb3a20882f86d0d4c7ce94ad505fb71737f210c"
+    },
+    "nativeValuationCurrency": "USD",
+    "lastOfficialValuation": "2026-10-26",
+    "financialConvention": "exact-share accumulated net NAV; no exchange-price claim",
+    "calendarProof": {
+      "shareInception": "2019-02-25",
+      "incomeTreatment": "Issuer exact ETP NAV; monthly published returns checked",
+      "splitAdjustment": "14:1 on 2021-04-12 already reflected; no additional adjustment",
+      "validationSources": [
+        "https://api.primary.21shares.com/api/product_details/ABTC",
+        "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
+        "https://api.primary.21shares.com/api/product_performance_metrics/ABTC"
+      ],
+      "monthlyOracle": "calendar-year exact ETP USD NAV return, net of fees, issuer-adjusted for share splits; monthly issuer returns cross-checked; derived from rounded issuer NAV levels",
+      "checks": [
+        {
+          "year": 2020,
+          "start": "2019-12-30",
+          "end": "2020-12-30",
+          "startValue": 2.669,
+          "endValue": 10.086,
+          "dailyDerived": 277.8943424503559,
+          "published": 277.89,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2021,
+          "start": "2020-12-30",
+          "end": "2021-12-30",
+          "startValue": 10.086,
+          "endValue": 16.644,
+          "dailyDerived": 65.0208209399167,
+          "published": 65.02,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2022,
+          "start": "2021-12-30",
+          "end": "2022-12-30",
+          "startValue": 16.644,
+          "endValue": 5.757,
+          "dailyDerived": -65.41095890410959,
+          "published": -65.41,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 5.757,
+          "endValue": 14.498,
+          "dailyDerived": 151.83255167622028,
+          "published": 151.83,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-30",
+          "startValue": 14.498,
+          "endValue": 31.051,
+          "dailyDerived": 114.174368878466,
+          "published": 114.17,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-30",
+          "end": "2025-12-30",
+          "startValue": 31.051,
+          "endValue": 29.587,
+          "dailyDerived": -4.714823999227069,
+          "published": -4.71,
+          "publishedDecimalPlaces": 2
+        }
+      ]
+    },
+    "proofRows": [
+      {
+        "date": "2019-03-29",
+        "nav": 1.522,
+        "navCurrency": "USD",
+        "value": 1.3546951490876726,
+        "currency": "EUR",
+        "fxAsOf": "2019-03-29",
+        "fxFactor": 0.8900756564307967
+      },
+      {
+        "date": "2019-04-30",
+        "nav": 1.979,
+        "navCurrency": "USD",
+        "value": 1.764129078267071,
+        "currency": "EUR",
+        "fxAsOf": "2019-04-30",
+        "fxFactor": 0.8914244963451596
+      },
+      {
+        "date": "2019-05-31",
+        "nav": 3.124,
+        "navCurrency": "USD",
+        "value": 2.801542462559412,
+        "currency": "EUR",
+        "fxAsOf": "2019-05-31",
+        "fxFactor": 0.896780557797507
+      },
+      {
+        "date": "2019-06-28",
+        "nav": 4.339,
+        "navCurrency": "USD",
+        "value": 3.8128295254833047,
+        "currency": "EUR",
+        "fxAsOf": "2019-06-28",
+        "fxFactor": 0.8787346221441126
+      },
+      {
+        "date": "2019-07-31",
+        "nav": 3.674,
+        "navCurrency": "USD",
+        "value": 3.2947717693480407,
+        "currency": "EUR",
+        "fxAsOf": "2019-07-31",
+        "fxFactor": 0.896780557797507
+      },
+      {
+        "date": "2019-08-30",
+        "nav": 3.525,
+        "navCurrency": "USD",
+        "value": 3.1940920623414284,
+        "currency": "EUR",
+        "fxAsOf": "2019-08-30",
+        "fxFactor": 0.9061254077564336
+      },
+      {
+        "date": "2019-09-30",
+        "nav": 3.014,
+        "navCurrency": "USD",
+        "value": 2.767930939480209,
+        "currency": "EUR",
+        "fxAsOf": "2019-09-30",
+        "fxFactor": 0.918357975939021
+      },
+      {
+        "date": "2019-10-31",
+        "nav": 3.381,
+        "navCurrency": "USD",
+        "value": 3.031199569661108,
+        "currency": "EUR",
+        "fxAsOf": "2019-10-31",
+        "fxFactor": 0.8965393580778197
+      },
+      {
+        "date": "2019-11-27",
+        "nav": 2.666,
+        "navCurrency": "USD",
+        "value": 2.427608814423602,
+        "currency": "EUR",
+        "fxAsOf": "2019-11-29",
+        "fxFactor": 0.9105809506465125
+      },
+      {
+        "date": "2019-12-30",
+        "nav": 2.669,
+        "navCurrency": "USD",
+        "value": 2.375823393270429,
+        "currency": "EUR",
+        "fxAsOf": "2019-12-31",
+        "fxFactor": 0.8901548869503294
+      },
+      {
+        "date": "2020-01-31",
+        "nav": 3.386,
+        "navCurrency": "USD",
+        "value": 3.063698878031126,
+        "currency": "EUR",
+        "fxAsOf": "2020-01-31",
+        "fxFactor": 0.9048136083966704
+      },
+      {
+        "date": "2020-02-28",
+        "nav": 3.156,
+        "navCurrency": "USD",
+        "value": 2.875102487018311,
+        "currency": "EUR",
+        "fxAsOf": "2020-02-28",
+        "fxFactor": 0.9109957183201239
+      },
+      {
+        "date": "2020-03-31",
+        "nav": 2.348,
+        "navCurrency": "USD",
+        "value": 2.1431179262504565,
+        "currency": "EUR",
+        "fxAsOf": "2020-03-31",
+        "fxFactor": 0.9127418765972983
+      },
+      {
+        "date": "2020-04-30",
+        "nav": 3.211,
+        "navCurrency": "USD",
+        "value": 2.9523721956601694,
+        "currency": "EUR",
+        "fxAsOf": "2020-04-30",
+        "fxFactor": 0.9194556822361163
+      },
+      {
+        "date": "2020-05-29",
+        "nav": 3.417,
+        "navCurrency": "USD",
+        "value": 3.068426724137931,
+        "currency": "EUR",
+        "fxAsOf": "2020-05-29",
+        "fxFactor": 0.8979885057471265
+      },
+      {
+        "date": "2020-06-30",
+        "nav": 3.309,
+        "navCurrency": "USD",
+        "value": 2.9549919628505092,
+        "currency": "EUR",
+        "fxAsOf": "2020-06-30",
+        "fxFactor": 0.8930166101089481
+      },
+      {
+        "date": "2020-07-31",
+        "nav": 4.045,
+        "navCurrency": "USD",
+        "value": 3.414078325455773,
+        "currency": "EUR",
+        "fxAsOf": "2020-07-31",
+        "fxFactor": 0.8440243079000674
+      },
+      {
+        "date": "2020-08-31",
+        "nav": 4.229,
+        "navCurrency": "USD",
+        "value": 3.541876046901173,
+        "currency": "EUR",
+        "fxAsOf": "2020-08-31",
+        "fxFactor": 0.8375209380234506
+      },
+      {
+        "date": "2020-09-30",
+        "nav": 3.873,
+        "navCurrency": "USD",
+        "value": 3.3079945336522036,
+        "currency": "EUR",
+        "fxAsOf": "2020-09-30",
+        "fxFactor": 0.8541168431841476
+      },
+      {
+        "date": "2020-10-30",
+        "nav": 4.855,
+        "navCurrency": "USD",
+        "value": 4.15028209950419,
+        "currency": "EUR",
+        "fxAsOf": "2020-10-30",
+        "fxFactor": 0.8548469823901522
+      },
+      {
+        "date": "2020-11-30",
+        "nav": 6.936,
+        "navCurrency": "USD",
+        "value": 5.789649415692821,
+        "currency": "EUR",
+        "fxAsOf": "2020-11-30",
+        "fxFactor": 0.8347245409015025
+      },
+      {
+        "date": "2020-12-30",
+        "nav": 10.086,
+        "navCurrency": "USD",
+        "value": 8.219379023714447,
+        "currency": "EUR",
+        "fxAsOf": "2020-12-31",
+        "fxFactor": 0.8149295085975062
+      },
+      {
+        "date": "2021-01-29",
+        "nav": 13.288,
+        "navCurrency": "USD",
+        "value": 10.94924192485168,
+        "currency": "EUR",
+        "fxAsOf": "2021-01-29",
+        "fxFactor": 0.8239947264337508
+      },
+      {
+        "date": "2021-02-26",
+        "nav": 17.023,
+        "navCurrency": "USD",
+        "value": 14.044220773863543,
+        "currency": "EUR",
+        "fxAsOf": "2021-02-26",
+        "fxFactor": 0.8250144377526607
+      },
+      {
+        "date": "2021-03-31",
+        "nav": 21.035,
+        "navCurrency": "USD",
+        "value": 17.940298507462686,
+        "currency": "EUR",
+        "fxAsOf": "2021-03-31",
+        "fxFactor": 0.8528784648187633
+      },
+      {
+        "date": "2021-04-30",
+        "nav": 19.989,
+        "navCurrency": "USD",
+        "value": 16.54444628372786,
+        "currency": "EUR",
+        "fxAsOf": "2021-04-30",
+        "fxFactor": 0.8276775368316505
+      },
+      {
+        "date": "2021-05-28",
+        "nav": 13.056,
+        "navCurrency": "USD",
+        "value": 10.700762232603886,
+        "currency": "EUR",
+        "fxAsOf": "2021-05-31",
+        "fxFactor": 0.8196049504139006
+      },
+      {
+        "date": "2021-06-30",
+        "nav": 12.323,
+        "navCurrency": "USD",
+        "value": 10.369404240996298,
+        "currency": "EUR",
+        "fxAsOf": "2021-06-30",
+        "fxFactor": 0.841467519353753
+      },
+      {
+        "date": "2021-07-30",
+        "nav": 13.873,
+        "navCurrency": "USD",
+        "value": 11.66680682869397,
+        "currency": "EUR",
+        "fxAsOf": "2021-07-30",
+        "fxFactor": 0.8409721638213775
+      },
+      {
+        "date": "2021-08-31",
+        "nav": 16.779,
+        "navCurrency": "USD",
+        "value": 14.178637823221228,
+        "currency": "EUR",
+        "fxAsOf": "2021-08-31",
+        "fxFactor": 0.8450228156160217
+      },
+      {
+        "date": "2021-09-30",
+        "nav": 15.282,
+        "navCurrency": "USD",
+        "value": 13.198030918041283,
+        "currency": "EUR",
+        "fxAsOf": "2021-09-30",
+        "fxFactor": 0.8636324380343726
+      },
+      {
+        "date": "2021-10-29",
+        "nav": 21.69,
+        "navCurrency": "USD",
+        "value": 18.62601975096608,
+        "currency": "EUR",
+        "fxAsOf": "2021-10-29",
+        "fxFactor": 0.8587376556462
+      },
+      {
+        "date": "2021-11-30",
+        "nav": 20.403,
+        "navCurrency": "USD",
+        "value": 17.955645516148902,
+        "currency": "EUR",
+        "fxAsOf": "2021-11-30",
+        "fxFactor": 0.8800492827598345
+      },
+      {
+        "date": "2021-12-30",
+        "nav": 16.644,
+        "navCurrency": "USD",
+        "value": 14.695391135440577,
+        "currency": "EUR",
+        "fxAsOf": "2021-12-31",
+        "fxFactor": 0.8829242450997704
+      },
+      {
+        "date": "2022-01-31",
+        "nav": 13.306,
+        "navCurrency": "USD",
+        "value": 11.927214055216924,
+        "currency": "EUR",
+        "fxAsOf": "2022-01-31",
+        "fxFactor": 0.8963786303334529
+      },
+      {
+        "date": "2022-02-28",
+        "nav": 14.39,
+        "navCurrency": "USD",
+        "value": 12.849361550138406,
+        "currency": "EUR",
+        "fxAsOf": "2022-02-28",
+        "fxFactor": 0.892936869363336
+      },
+      {
+        "date": "2022-03-31",
+        "nav": 16.434,
+        "navCurrency": "USD",
+        "value": 14.804071705251777,
+        "currency": "EUR",
+        "fxAsOf": "2022-03-31",
+        "fxFactor": 0.9008197459688315
+      },
+      {
+        "date": "2022-04-29",
+        "nav": 13.69,
+        "navCurrency": "USD",
+        "value": 12.988614800759013,
+        "currency": "EUR",
+        "fxAsOf": "2022-04-29",
+        "fxFactor": 0.9487666034155597
+      },
+      {
+        "date": "2022-05-31",
+        "nav": 11.117,
+        "navCurrency": "USD",
+        "value": 10.37711192009708,
+        "currency": "EUR",
+        "fxAsOf": "2022-05-31",
+        "fxFactor": 0.9334453467749464
+      },
+      {
+        "date": "2022-06-30",
+        "nav": 6.696,
+        "navCurrency": "USD",
+        "value": 6.446519688071628,
+        "currency": "EUR",
+        "fxAsOf": "2022-06-30",
+        "fxFactor": 0.962741888899586
+      },
+      {
+        "date": "2022-07-29",
+        "nav": 8.42,
+        "navCurrency": "USD",
+        "value": 8.256520886448323,
+        "currency": "EUR",
+        "fxAsOf": "2022-07-29",
+        "fxFactor": 0.9805844283192783
+      },
+      {
+        "date": "2022-08-31",
+        "nav": 7.028,
+        "navCurrency": "USD",
+        "value": 7.028,
+        "currency": "EUR",
+        "fxAsOf": "2022-08-31",
+        "fxFactor": 1.0
+      },
+      {
+        "date": "2022-09-30",
+        "nav": 6.984,
+        "navCurrency": "USD",
+        "value": 7.164546573656136,
+        "currency": "EUR",
+        "fxAsOf": "2022-09-30",
+        "fxFactor": 1.0258514567090686
+      },
+      {
+        "date": "2022-10-31",
+        "nav": 7.115,
+        "navCurrency": "USD",
+        "value": 7.176719790195683,
+        "currency": "EUR",
+        "fxAsOf": "2022-10-31",
+        "fxFactor": 1.0086746015735324
+      },
+      {
+        "date": "2022-11-30",
+        "nav": 5.874,
+        "navCurrency": "USD",
+        "value": 5.661141094834233,
+        "currency": "EUR",
+        "fxAsOf": "2022-11-30",
+        "fxFactor": 0.9637625289128758
+      },
+      {
+        "date": "2022-12-30",
+        "nav": 5.757,
+        "navCurrency": "USD",
+        "value": 5.397524845302831,
+        "currency": "EUR",
+        "fxAsOf": "2022-12-30",
+        "fxFactor": 0.9375585974123383
+      },
+      {
+        "date": "2023-01-31",
+        "nav": 8.034,
+        "navCurrency": "USD",
+        "value": 7.416228191636667,
+        "currency": "EUR",
+        "fxAsOf": "2023-01-31",
+        "fxFactor": 0.9231053263177329
+      },
+      {
+        "date": "2023-02-28",
+        "nav": 8.165,
+        "navCurrency": "USD",
+        "value": 7.689047932950371,
+        "currency": "EUR",
+        "fxAsOf": "2023-02-28",
+        "fxFactor": 0.9417082587814295
+      },
+      {
+        "date": "2023-03-31",
+        "nav": 9.886,
+        "navCurrency": "USD",
+        "value": 9.090574712643678,
+        "currency": "EUR",
+        "fxAsOf": "2023-03-31",
+        "fxFactor": 0.9195402298850576
+      },
+      {
+        "date": "2023-04-28",
+        "nav": 10.077,
+        "navCurrency": "USD",
+        "value": 9.176759857936435,
+        "currency": "EUR",
+        "fxAsOf": "2023-04-28",
+        "fxFactor": 0.9106638739641197
+      },
+      {
+        "date": "2023-05-31",
+        "nav": 9.351,
+        "navCurrency": "USD",
+        "value": 8.753159224936816,
+        "currency": "EUR",
+        "fxAsOf": "2023-05-31",
+        "fxFactor": 0.9360666479453337
+      },
+      {
+        "date": "2023-06-30",
+        "nav": 10.385,
+        "navCurrency": "USD",
+        "value": 9.557334805816307,
+        "currency": "EUR",
+        "fxAsOf": "2023-06-30",
+        "fxFactor": 0.9203018590097551
+      },
+      {
+        "date": "2023-07-31",
+        "nav": 10.105,
+        "navCurrency": "USD",
+        "value": 9.167195863195138,
+        "currency": "EUR",
+        "fxAsOf": "2023-07-31",
+        "fxFactor": 0.9071940488070398
+      },
+      {
+        "date": "2023-08-31",
+        "nav": 9.361,
+        "navCurrency": "USD",
+        "value": 8.61336032388664,
+        "currency": "EUR",
+        "fxAsOf": "2023-08-31",
+        "fxFactor": 0.9201324990798675
+      },
+      {
+        "date": "2023-09-29",
+        "nav": 9.256,
+        "navCurrency": "USD",
+        "value": 8.737020955257695,
+        "currency": "EUR",
+        "fxAsOf": "2023-09-29",
+        "fxFactor": 0.943930526713234
+      },
+      {
+        "date": "2023-10-31",
+        "nav": 11.783,
+        "navCurrency": "USD",
+        "value": 11.096148413221583,
+        "currency": "EUR",
+        "fxAsOf": "2023-10-31",
+        "fxFactor": 0.9417082587814295
+      },
+      {
+        "date": "2023-11-30",
+        "nav": 12.911,
+        "navCurrency": "USD",
+        "value": 11.811362180953253,
+        "currency": "EUR",
+        "fxAsOf": "2023-11-30",
+        "fxFactor": 0.9148293843198244
+      },
+      {
+        "date": "2023-12-29",
+        "nav": 14.498,
+        "navCurrency": "USD",
+        "value": 13.120361990950226,
+        "currency": "EUR",
+        "fxAsOf": "2023-12-29",
+        "fxFactor": 0.9049773755656109
+      },
+      {
+        "date": "2024-01-31",
+        "nav": 14.842,
+        "navCurrency": "USD",
+        "value": 13.695672234013102,
+        "currency": "EUR",
+        "fxAsOf": "2024-01-31",
+        "fxFactor": 0.9227646027498384
+      },
+      {
+        "date": "2024-02-29",
+        "nav": 21.472,
+        "navCurrency": "USD",
+        "value": 19.833733604285978,
+        "currency": "EUR",
+        "fxAsOf": "2024-02-29",
+        "fxFactor": 0.9237021984112322
+      },
+      {
+        "date": "2024-03-28",
+        "nav": 24.353,
+        "navCurrency": "USD",
+        "value": 22.52613079271113,
+        "currency": "EUR",
+        "fxAsOf": "2024-03-28",
+        "fxFactor": 0.9249838127832763
+      },
+      {
+        "date": "2024-04-30",
+        "nav": 20.881,
+        "navCurrency": "USD",
+        "value": 19.482179511102817,
+        "currency": "EUR",
+        "fxAsOf": "2024-04-30",
+        "fxFactor": 0.9330098899048329
+      },
+      {
+        "date": "2024-05-31",
+        "nav": 22.968,
+        "navCurrency": "USD",
+        "value": 21.164762255805382,
+        "currency": "EUR",
+        "fxAsOf": "2024-05-31",
+        "fxFactor": 0.9214891264283082
+      },
+      {
+        "date": "2024-06-28",
+        "nav": 20.701,
+        "navCurrency": "USD",
+        "value": 19.337692666978047,
+        "currency": "EUR",
+        "fxAsOf": "2024-06-28",
+        "fxFactor": 0.9341429238673516
+      },
+      {
+        "date": "2024-07-31",
+        "nav": 22.571,
+        "navCurrency": "USD",
+        "value": 20.845031400073882,
+        "currency": "EUR",
+        "fxAsOf": "2024-07-31",
+        "fxFactor": 0.9235315847801995
+      },
+      {
+        "date": "2024-08-30",
+        "nav": 19.838,
+        "navCurrency": "USD",
+        "value": 17.89302787047894,
+        "currency": "EUR",
+        "fxAsOf": "2024-08-30",
+        "fxFactor": 0.9019572472264814
+      },
+      {
+        "date": "2024-09-30",
+        "nav": 21.61,
+        "navCurrency": "USD",
+        "value": 19.301536262951057,
+        "currency": "EUR",
+        "fxAsOf": "2024-09-30",
+        "fxFactor": 0.8931761343336907
+      },
+      {
+        "date": "2024-10-31",
+        "nav": 23.891,
+        "navCurrency": "USD",
+        "value": 21.954603933100532,
+        "currency": "EUR",
+        "fxAsOf": "2024-10-31",
+        "fxFactor": 0.9189487226612755
+      },
+      {
+        "date": "2024-11-29",
+        "nav": 33.188,
+        "navCurrency": "USD",
+        "value": 31.42207915167582,
+        "currency": "EUR",
+        "fxAsOf": "2024-11-29",
+        "fxFactor": 0.946790380609733
+      },
+      {
+        "date": "2024-12-30",
+        "nav": 31.051,
+        "navCurrency": "USD",
+        "value": 29.88834344017711,
+        "currency": "EUR",
+        "fxAsOf": "2024-12-31",
+        "fxFactor": 0.9625565501973241
+      },
+      {
+        "date": "2025-01-31",
+        "nav": 35.58,
+        "navCurrency": "USD",
+        "value": 34.234580967959204,
+        "currency": "EUR",
+        "fxAsOf": "2025-01-31",
+        "fxFactor": 0.9621860867891852
+      },
+      {
+        "date": "2025-02-28",
+        "nav": 28.305,
+        "navCurrency": "USD",
+        "value": 27.187590048986653,
+        "currency": "EUR",
+        "fxAsOf": "2025-02-28",
+        "fxFactor": 0.9605225242531938
+      },
+      {
+        "date": "2025-03-31",
+        "nav": 28.094,
+        "navCurrency": "USD",
+        "value": 25.976883957466484,
+        "currency": "EUR",
+        "fxAsOf": "2025-03-31",
+        "fxFactor": 0.9246417013407305
+      },
+      {
+        "date": "2025-04-30",
+        "nav": 31.501,
+        "navCurrency": "USD",
+        "value": 27.69805680119582,
+        "currency": "EUR",
+        "fxAsOf": "2025-04-30",
+        "fxFactor": 0.8792754770069463
+      },
+      {
+        "date": "2025-05-30",
+        "nav": 35.366,
+        "navCurrency": "USD",
+        "value": 31.189699268013054,
+        "currency": "EUR",
+        "fxAsOf": "2025-05-30",
+        "fxFactor": 0.8819119851838787
+      },
+      {
+        "date": "2025-06-30",
+        "nav": 35.811,
+        "navCurrency": "USD",
+        "value": 30.555460750853243,
+        "currency": "EUR",
+        "fxAsOf": "2025-06-30",
+        "fxFactor": 0.8532423208191127
+      },
+      {
+        "date": "2025-07-31",
+        "nav": 39.472,
+        "navCurrency": "USD",
+        "value": 34.48540975013105,
+        "currency": "EUR",
+        "fxAsOf": "2025-07-31",
+        "fxFactor": 0.8736676568233444
+      },
+      {
+        "date": "2025-08-29",
+        "nav": 36.183,
+        "navCurrency": "USD",
+        "value": 31.037056098816265,
+        "currency": "EUR",
+        "fxAsOf": "2025-08-29",
+        "fxFactor": 0.857780065191285
+      },
+      {
+        "date": "2025-09-30",
+        "nav": 37.959,
+        "navCurrency": "USD",
+        "value": 32.33029554552424,
+        "currency": "EUR",
+        "fxAsOf": "2025-09-30",
+        "fxFactor": 0.8517162081594414
+      },
+      {
+        "date": "2025-10-31",
+        "nav": 36.741,
+        "navCurrency": "USD",
+        "value": 31.79937683918989,
+        "currency": "EUR",
+        "fxAsOf": "2025-10-31",
+        "fxFactor": 0.8655011251514627
+      },
+      {
+        "date": "2025-11-28",
+        "nav": 30.775,
+        "navCurrency": "USD",
+        "value": 26.608161853709145,
+        "currency": "EUR",
+        "fxAsOf": "2025-11-28",
+        "fxFactor": 0.8646031471554556
+      },
+      {
+        "date": "2025-12-30",
+        "nav": 29.587,
+        "navCurrency": "USD",
+        "value": 25.180425531914892,
+        "currency": "EUR",
+        "fxAsOf": "2025-12-31",
+        "fxFactor": 0.851063829787234
+      },
+      {
+        "date": "2026-01-30",
+        "nav": 27.503,
+        "navCurrency": "USD",
+        "value": 23.074922392818188,
+        "currency": "EUR",
+        "fxAsOf": "2026-01-30",
+        "fxFactor": 0.8389965601141035
+      },
+      {
+        "date": "2026-02-27",
+        "nav": 21.942,
+        "navCurrency": "USD",
+        "value": 18.587039390088943,
+        "currency": "EUR",
+        "fxAsOf": "2026-02-27",
+        "fxFactor": 0.847098686997035
+      },
+      {
+        "date": "2026-03-31",
+        "nav": 22.285,
+        "navCurrency": "USD",
+        "value": 19.38163158810228,
+        "currency": "EUR",
+        "fxAsOf": "2026-03-31",
+        "fxFactor": 0.8697164724299878
+      },
+      {
+        "date": "2026-04-30",
+        "nav": 25.275,
+        "navCurrency": "USD",
+        "value": 21.598871987694412,
+        "currency": "EUR",
+        "fxAsOf": "2026-04-30",
+        "fxFactor": 0.8545547769612033
+      },
+      {
+        "date": "2026-05-29",
+        "nav": 24.066,
+        "navCurrency": "USD",
+        "value": 20.668155273102023,
+        "currency": "EUR",
+        "fxAsOf": "2026-05-29",
+        "fxFactor": 0.8588114050154585
+      },
+      {
+        "date": "2026-06-30",
+        "nav": 19.411,
+        "navCurrency": "USD",
+        "value": 17.036159382130947,
+        "currency": "EUR",
+        "fxAsOf": "2026-06-30",
+        "fxFactor": 0.8776549060909251
+      },
+      {
+        "date": "2026-07-31",
+        "nav": 20.665,
+        "navCurrency": "USD",
+        "value": 17.99303439268611,
+        "currency": "EUR",
+        "fxAsOf": "2026-07-31",
+        "fxFactor": 0.8707009142359599
+      },
+      {
+        "date": "2026-08-31",
+        "nav": 25.733,
+        "navCurrency": "USD",
+        "value": 22.191272852707833,
+        "currency": "EUR",
+        "fxAsOf": "2026-08-31",
+        "fxFactor": 0.8623663332183512
+      },
+      {
+        "date": "2026-09-30",
+        "nav": 27.607,
+        "navCurrency": "USD",
+        "value": 24.31263760457948,
+        "currency": "EUR",
+        "fxAsOf": "2026-09-30",
+        "fxFactor": 0.8806693086745927
+      }
+    ],
+    "responseSha256": "b5b8e0dca00d0e96ac6a89499fb3a20882f86d0d4c7ce94ad505fb71737f210c",
+    "rawSourceHashes": {
+      "https://api.primary.21shares.com/api/product_details/ABTC": "4893fceaa558476ffa5ca536c91bb3e1bfe53308f24a2c3e65ebf9e45957acc1",
+      "https://api.primary.21shares.com/api/product_valuation_history/ABTC": "e34ccf421a42ad882e0fe3c3972e80aa2c30293d9650194aaa5df116dc065ec1",
+      "https://api.primary.21shares.com/api/product_performance_metrics/ABTC": "6accf28b81a911af998c59806a4260954bd8531efc3f714aa4b94706adc350e2",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "b1938e96c2032834aa57181c4135542f780c32262bcf44b363dcd53e38c911d5"
+    }
   }
 }
