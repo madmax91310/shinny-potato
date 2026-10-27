@@ -23,6 +23,7 @@ proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-2
 proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/reprise-20261026/nav-independent-identities.json')).series)
 proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/reprise-20261026/nikkei-github-40364575719/nav.json')).series)
 proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/reprise-20261027/abtc-nav-local.json')).series)
+proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/reprise-20261027/reit-nav-local.json')).series)
 for(const s of sources){
  const a=ASSETS[s.id],r=proofs.find(r=>r.id===s.id).record
  assert(ASSET_ORDER.includes(s.id)&&MARKET_ASSETS.some(a=>a.id===s.id)&&ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===s.id))
