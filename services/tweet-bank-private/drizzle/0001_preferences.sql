@@ -1,0 +1,1 @@
+CREATE TABLE tweet_preferences (owner TEXT NOT NULL, tweet_id TEXT NOT NULL, favorite INTEGER NOT NULL DEFAULT 0, last_published TEXT NOT NULL DEFAULT '', version INTEGER NOT NULL DEFAULT 1, updated_at TEXT NOT NULL, PRIMARY KEY(owner,tweet_id));
