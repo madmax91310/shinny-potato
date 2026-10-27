@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "predev": "npm run generate:dev",
-    "prebuild": "npm run audit:architecture && node scripts/test-dca-usage-storage.mjs && node scripts/test-radar-read-state.mjs && node scripts/test-hey-grok.mjs && node scripts/test-tweet-bank-storage.mjs && node scripts/test-export-resources.mjs && node scripts/test-etf-presentation-quality.mjs && npm run generate:app && node scripts/build-tweet-bank-catalog.mjs",
+    "prebuild": "npm run audit:architecture && node scripts/test-dca-usage-storage.mjs && node scripts/test-radar-read-state.mjs && node scripts/test-hey-grok.mjs && node scripts/test-tweet-bank-storage.mjs && node scripts/test-export-resources.mjs && node scripts/test-etf-presentation-quality.mjs && node scripts/test-published-data-integrity.mjs && npm run generate:app",
     "dev": "vite",
-    "build": "vite build && node scripts/audit-route-bundles.mjs && node scripts/audit-published-coverage.mjs",
+    "build": "vite build && node scripts/audit-route-bundles.mjs && node scripts/audit-published-coverage.mjs && node scripts/audit-published-data.mjs",
     "lint": "oxlint",
     "test:tweet-bank-storage:browser": "node scripts/playwright-tweet-bank-storage.mjs",
     "test:tweet-bank-storage": "node scripts/test-tweet-bank-storage.mjs",

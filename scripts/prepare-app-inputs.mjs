@@ -20,6 +20,8 @@ const plans = {
   dev: [...projections, ...linksAndDuels, node('build-tool-links.mjs'), node('build-data-review-inbox.mjs')],
   build: [
     ...projections, node('report-exposure-coverage.mjs'), ...linksAndDuels,
+    // All public producers must finish before inventory and the final manifest.
+    node('build-tweet-bank-catalog.mjs'),
     node('build-app-inventory.mjs'), node('build-tool-links.mjs'),
     node('build-automation-targets.mjs'), node('report-asset-fields.mjs', '--write'),
     node('build-review-reconciliation.mjs'), node('audit-asset-tool-routing.mjs', '--write'),
