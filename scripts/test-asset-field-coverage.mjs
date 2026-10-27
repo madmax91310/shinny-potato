@@ -3,6 +3,7 @@ import UNDERLIERS from '../src/data/vanguard-equity-underliers.json' with {type:
 import assert from 'node:assert/strict';
 import {scpiWaitingForPublication,fieldState,buildAssetFieldReport,completeHoldingsEvidence} from './report-asset-fields.mjs';
 import {applyAutomatedCharacteristics} from '../src/data/automated-characteristics.js';
+import {buildInbox} from '../src/pages/data-review/review-inbox.js';
 assert.equal(fieldState({checkedAt:'2026-10-16',asOf:'2026-01-01'},'2026-10-16'),'publication-old');
 assert.equal(fieldState({checkedAt:'2026-10-01',asOf:'2026-09-30'},'2026-10-16'),'check-overdue');
 assert.equal(fieldState({checkedAt:'2026-10-17'},'2026-10-16'),'invalid-date');
@@ -16,6 +17,12 @@ for(const [raw,expected] of [['Optimised','Physical (Optimised sampling)'],['Phy
  assert.equal(facts.replicationMethod,expected);assert.equal(facts.currencyHedge,true);
 }
 const r=buildAssetFieldReport('2026-10-16');assert(r.rows.length>2000);
+// The public reader requires a versioned report before accepting any rows.
+// Exercise the real producer, not a versioned test-only response.
+const published=JSON.parse(JSON.stringify(r));
+assert.equal(published.schemaVersion,1,'Coverage must declare the version accepted by Données à revoir');
+assert(published.rows.every(row=>typeof row.id==='string'));
+assert.equal(buildInbox({coverage:published}).examinedFields,r.rows.length);
 // Composition-only underliers remain inventoried; unused TER is non-applicable.
 const monitored=new Set([...Object.keys(AUTOMATED_ETF),...Object.keys(UNDERLIERS)]);
 assert.equal(r.summary.ter.total,monitored.size);

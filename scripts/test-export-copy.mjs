@@ -38,9 +38,9 @@ try {
       // Le DCA approuvé est un raster complet : sa signature est déjà dans les pixels.
       const branded = words.filter(word => /[ée]pargnant.?libre/i.test(word))
       if (name.startsWith('investment-')) {
-        // Approved editorial collage has no masthead and exactly one account signature.
+        // The approved obsidian export keeps exactly one brand signature.
         if (branded.length !== 1 || words.includes('ÉPARGNANT LIBRE')
-          || words.filter(word => word === '@Epargnantlibre').length !== 1) throw new Error(`${name}: expected no masthead and one signature`)
+          || words.filter(word => word === 'Épargnant Libre').length !== 1) throw new Error(`${name}: expected no masthead and one signature`)
       } else if (name !== 'lexique-dca' && branded.length !== 1) throw new Error(`${name}: signature must appear once`)
       await window.saveExportCopy({ name, text, png: !name.startsWith('etf-') || records.length === 0 ? png : null })
       records.push(name)
@@ -94,7 +94,7 @@ try {
     for (const assetId of ['bitcoin', 'cac40']) {
       await ensureCalculatorAsset(assetId)
       const state = {assetId, mode:'lump', amountRaw:'1000', startYear:2020,startMonth:1,overridePriceRaw:''}
-      await check(`investment-${assetId}`, () => renderInvestmentImage(state,derive(state)), (_,text) => !/ET SI TU AVAIS INVESTI|Clôture de décembre à clôture de décembre|Évolution historique ·/.test(text) && text.includes('Pas un conseil financier'))
+      await check(`investment-${assetId}`, () => renderInvestmentImage(state,derive(state)), (_,text) => !/ET SI TU AVAIS INVESTI|Clôture de décembre à clôture de décembre|Évolution historique ·/.test(text) && text.includes('Épargnant Libre') && !/moyenne mensuelle|Pas un conseil financier|Source\s*:|https?:/.test(text))
     }
     const { renderPurchasingPowerImage } = await module('pages/tweet-midi/purchasingPowerImage.js')
     await check('purchasing-power', () => renderPurchasingPowerImage({mode:'brut',amount:1000,startYear:2020}), (_, text) => !text.includes('/  POUVOIR'))

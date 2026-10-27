@@ -17,7 +17,12 @@ class ObservationRebaseTests(unittest.TestCase):
                      'src/data/automated-etf-monthly.json', 'src/data/worldbank-gold-monthly.json', 'scripts/collect_scpi.py',
                      'docs/editorial-radar-couverture-2026-10-25.md', 'scripts/lib/radar-consumer.mjs',
                      'scripts/lib/radar-publications.mjs', 'scripts/test-radar-coverage.mjs',
-                     'scripts/refresh_monthly_history.py', 'scripts/monthly-automation.json']:
+                     'scripts/refresh_monthly_history.py', 'scripts/monthly-automation.json',
+                     '.github/workflows/investment-image-check.yml', 'scripts/test-export-copy.mjs',
+                     'scripts/test-investment-emerald.mjs',
+                     'src/pages/investment-calculator/editorialArt.js',
+                     'src/pages/investment-calculator/imageExport.js',
+                     'src/pages/investment-calculator/lib.js', 'src/data/monthly-fx.json']:
             p = self.f.local / name
             p.parent.mkdir(parents=True, exist_ok=True)
             p.write_text('original\n')
@@ -104,6 +109,36 @@ class ObservationRebaseTests(unittest.TestCase):
         self.assertNotIn('Collection inputs may have changed', result.stderr)
         self.assertEqual(self.f.git(self.f.remote, 'rev-parse', 'master'), before)
         self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'original')
+
+    def test_image_only_race_preserves_latest_renderer_and_validated_observations(self):
+        paths = ['.github/workflows/investment-image-check.yml', 'scripts/test-export-copy.mjs',
+                 'scripts/test-investment-emerald.mjs',
+                 'src/pages/investment-calculator/editorialArt.js',
+                 'src/pages/investment-calculator/imageExport.js']
+        for path in paths:
+            self.f.advance_remote(path)
+        validation = ' && '.join(f'test "$(cat {shlex.quote(path)})" = "concurrent update"' for path in paths)
+        result = self.publish('market', validation)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
+        for path in paths:
+            self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'concurrent update')
+
+    def test_image_change_never_bypasses_failed_financial_revalidation(self):
+        self.assert_refused('src/pages/investment-calculator/imageExport.js', 'market', 'false')
+
+    def test_image_independence_is_not_assumed_for_other_producers(self):
+        self.assert_refused('src/pages/investment-calculator/imageExport.js', 'publication')
+
+    def test_calculator_engine_change_still_requires_market_recollection(self):
+        self.assert_refused('src/pages/investment-calculator/lib.js', 'market')
+
+    def test_image_change_does_not_hide_a_concurrent_collection_input_change(self):
+        self.f.advance_remote('src/pages/investment-calculator/imageExport.js')
+        self.assert_refused('scripts/monthly-automation.json', 'market')
+
+    def test_fx_change_still_requires_market_recollection(self):
+        self.assert_refused('src/data/monthly-fx.json', 'market')
 
     def test_reader_independence_is_not_assumed_for_other_collectors(self):
         self.assert_refused('scripts/lib/radar-consumer.mjs', 'publication')

@@ -1,0 +1,44 @@
+name: Investment image regression
+
+on:
+  pull_request:
+    paths:
+      - 'src/pages/investment-calculator/imageExport.js'
+      - 'src/pages/investment-calculator/editorialArt.js'
+      - 'scripts/test-investment-emerald.mjs'
+      - '.github/workflows/investment-image-check.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: investment-image-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  image-check:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run generate:dev
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/test-investment-emerald.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: investment-obsidian-examples
+          path: test-artifacts/investment-emerald
+          retention-days: 14
+          if-no-files-found: ignore
