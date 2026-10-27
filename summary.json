@@ -1,13 +1,16 @@
 {
   "schemaVersion": 1,
   "policyVersion": 3,
-  "checkedAt": "2026-10-27T14:24:43.497Z",
-  "sourceRevision": "e7f177aaa34227afcc0edbb893ecdbe660f8fd65",
+  "checkedAt": "2026-10-27T15:11:12.682Z",
+  "sourceRevision": "76b86f8cf28d61cebce8ffb81e941391cdb39555",
   "groups": [
     [
       "9977149042677757b663c372",
       "0d02d80eb57568918b943369",
       "4a8cf33092c21057405eb5ce"
+    ],
+    [
+      "bb576b829e8754e551983d69"
     ],
     [
       "0d187d45c594e092c6c7fda8",
@@ -68,14 +71,33 @@
       "474c0982a4920e7fc07cf033"
     ],
     [
-      "c9cebce04dba3424dd0cc4fd",
-      "df3353c94904e82ea32fbc3c"
+      "86ed97f69edea161f1bd101a",
+      "212876bc3bf09afbb18fed13"
     ],
     [
-      "212876bc3bf09afbb18fed13"
+      "c9cebce04dba3424dd0cc4fd",
+      "df3353c94904e82ea32fbc3c"
     ]
   ],
   "selection": [
+    {
+      "id": "bb576b829e8754e551983d69",
+      "eventIds": [
+        "bb576b829e8754e551983d69"
+      ],
+      "readEventIds": [
+        "bb576b829e8754e551983d69"
+      ],
+      "title": "iShares Listed Private Equity UCITS ETF : poids du secteur cash and/or derivatives, 0,52 % → 100 %",
+      "mainFact": "iShares Listed Private Equity UCITS ETF : 100 %",
+      "publishedAt": null,
+      "observedAt": "2026-10-27",
+      "whyNow": "Changement constaté entre deux contrôles depuis moins de 48 h ; date d’annonce inconnue.",
+      "reason": "Exposition modifiée ; aucun achat ni flux déduit",
+      "score": 76,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "to": "/radar-editorial?subject=bb576b829e8754e551983d69"
+    },
     {
       "id": "94b9fc0a0f7af602687a4f78",
       "eventIds": [
