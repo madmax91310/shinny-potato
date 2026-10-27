@@ -11,7 +11,16 @@ const reference=Object.values(references).find(r=>r.isin===isin)
 for(const field of ['countries','sectors']){
  assert(source[field].rows.length>5)
  if(source[field].unidentifiedSecurityCount>0)assert.equal(source[field].overlapQualified,false)
- assert(Math.abs(source[field].rows.reduce((n,r)=>n+r.weightPct,0)-source[field].portfolioWeightPct)<1e-5)
+ if(Object.hasOwn(source[field],'portfolioWeightPct')){
+  // Whole-fund holdings fallback: retain its signed coverage and identity checks.
+  assert(Number.isFinite(source[field].portfolioWeightPct))
+  assert(Math.abs(source[field].rows.reduce((n,r)=>n+r.weightPct,0)-source[field].portfolioWeightPct)<1e-5)
+ }else{
+  // A successful issuer table does not carry holdings-fallback metadata.
+  assert.equal(source[field].sourceComponent,field==='countries'?'exposureBreakdowns.geography.countries':'exposureBreakdowns.sector')
+  assert(source[field].rows.every(r=>r.name&&Number.isFinite(r.weightPct)))
+  assert(/^\d{4}-\d{2}-\d{2}$/.test(source[field].asOf))
+ }
  // A newer qualified equity-holdings snapshot has its own date and scope.
  // It must not be forced back to the older all-position NAV observation.
  const expected=equityCharts?.[field]??source[field]
