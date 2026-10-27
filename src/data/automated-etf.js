@@ -1,3 +1,4 @@
+import {newerCompatibleAum} from './aum-observations.js';
 import {withInstrumentMetadata} from './instrument-metadata.js';
 import expansionRecords from './exposure-etf-expansion-records.json' with { type:'json' };
 import nonBondRecords from './non-bond-etf-records.json' with { type:'json' };
@@ -7,6 +8,14 @@ import { withCurrentStrategyYears } from './benchmark-changes.js';
 import baseRecords from './automated-etf.json' with { type: 'json' };
 import { QUALIFIED_AUTOMATED_RECORDS } from './qualified-exposure-sheets.js';
 const records = Object.fromEntries(Object.entries({ ...expansionRecords, ...baseRecords, ...nonBondRecords, ...QUALIFIED_AUTOMATED_RECORDS, ...LIFESTRATEGY_RECORDS }).map(([isin,record])=>[isin,withInstrumentMetadata(isin,record.performance ? { ...record, performance: withCurrentStrategyYears(isin, record.performance) } : record)]));
+// Registries describe different capabilities. An older specialized record must
+// not hide a later observation of the same exact-share AUM from the main reader.
+for (const [isin, record] of Object.entries(records)) {
+ for (const registry of [expansionRecords,baseRecords,nonBondRecords,QUALIFIED_AUTOMATED_RECORDS,LIFESTRATEGY_RECORDS]) {
+  const candidate=registry[isin]?.aum
+  if (candidate) record.aum=newerCompatibleAum(record.aum,candidate)
+ }
+}
 export const AUTOMATED_ETF = records;
 export const AUTOMATED_AUM = Object.fromEntries(Object.entries(records).filter(([, r]) => r.aum).map(([isin, r]) => {
   const a = r.aum;
