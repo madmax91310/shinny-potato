@@ -93,7 +93,7 @@ function title(ctx, label) {
 function chart(ctx, state, d, currency, kind) {
   const annual = kind !== 'monthly', rows = annual ? annualInvestmentCapital(state, d) : null
   const values = annual ? rows.map(p => p.value) : d.result.series
-  const left = 195, right = 1500, top = 920, bottom = 1510
+  const left = 195, right = 1380, top = 920, bottom = 1510
   const peak = Math.max(1, ...values, ...d.result.invested)
   const magnitude = 10 ** Math.floor(Math.log10(peak / 2))
   const maximum = Math.ceil(peak * 1.18 / magnitude) * magnitude
@@ -147,11 +147,11 @@ function chart(ctx, state, d, currency, kind) {
     ctx.fillStyle = color; ctx.beginPath(); ctx.arc(px(values.length - 1), py(values.at(-1)), 8, 0, Math.PI * 2); ctx.fill()
     if (values.length > 1) {
       const finalY = py(values.at(-1)), investedY = py(d.result.totalInvested)
-      text(ctx, money(d.result.finalValue, currency), 1490, finalY - 30, 30,
-        { width: 330, align: 'right', color, display: true })
+      text(ctx, money(d.result.finalValue, currency), 1405, finalY + 9, 30,
+        { width: 135, align: 'left', color, display: true })
       if (d.effectiveMode === 'dca' && Math.abs(finalY - investedY) >= 65) {
-        text(ctx, money(d.result.totalInvested, currency), 1490, investedY - 30, 28,
-          { width: 330, align: 'right', color: MUTED, display: true })
+        text(ctx, money(d.result.totalInvested, currency), 1405, investedY + 9, 28,
+          { width: 135, align: 'left', color: MUTED, display: true })
       }
     }
     if (values.length === 1) text(ctx, prettyMonth(d.endYm), (left + right) / 2, bottom + 42, 30,
