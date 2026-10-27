@@ -3,11 +3,19 @@ on:
   pull_request:
     paths:
       - 'services/tweet-bank-private/**'
+      - 'src/lib/tweet-discovery.js'
+      - 'src/pages/tweet-bank/**'
+      - 'scripts/build-tweet-bank-catalog.mjs'
+      - 'scripts/test-tweet-discovery.mjs'
       - '.github/workflows/test-tweet-bank-private.yml'
   push:
     branches: [master]
     paths:
       - 'services/tweet-bank-private/**'
+      - 'src/lib/tweet-discovery.js'
+      - 'src/pages/tweet-bank/**'
+      - 'scripts/build-tweet-bank-catalog.mjs'
+      - 'scripts/test-tweet-discovery.mjs'
       - '.github/workflows/test-tweet-bank-private.yml'
 permissions:
   contents: read
@@ -22,5 +30,9 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
+      - run: node scripts/build-tweet-bank-catalog.mjs --snapshot
+        working-directory: .
       - run: npm test
       - run: npm run build
+      - run: node scripts/test-tweet-discovery.mjs
+        working-directory: .

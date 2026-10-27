@@ -267,12 +267,12 @@ export default function App() {
 
       <section className="tb-cloud" aria-label="Mes tweets synchronisés">
         <div>
-          <h2>Mes tweets, sur téléphone et PC</h2>
-          <p>Ajoute tes propres textes dans ton espace privé. Retrouve-les avec le même compte ChatGPT sur tes appareils.</p>
+          <h2>Toute ta banque, sur téléphone et PC</h2>
+          <p>Recherche tes archives et tes propres tweets dans une même vue. Thèmes, favoris et filtres sont synchronisés avec le même compte ChatGPT.</p>
         </div>
         <div className="tb-cloud-actions">
           <a href="https://epargnant-libre-mes-tweets.vvairat.chatgpt.site/?new=1">＋ Ajouter un tweet</a>
-          <a href="https://epargnant-libre-mes-tweets.vvairat.chatgpt.site/">Voir mes tweets</a>
+          <a href="https://epargnant-libre-mes-tweets.vvairat.chatgpt.site/">Ouvrir la banque complète</a>
         </div>
       </section>
 
@@ -297,7 +297,8 @@ export default function App() {
       <div className="tb-controls">
         <input
           className="tb-search"
-          type="text"
+          type="search"
+          aria-label="Rechercher dans les archives"
           placeholder="Rechercher un mot, un chiffre, un thème…"
           value={filters.search}
           onChange={(e) => set({ search: e.target.value })}

@@ -1,3 +1,4 @@
+import { matchesTweet } from '../../lib/tweet-discovery.js'
 import { contentValidity, bankToday } from './validity.js'
 // Logique pure de la Banque de tweets — filtre/tri/cooldown, testable sans React. La persistance
 // (localStorage) vit dans App.jsx, pas ici : lire/écrire le navigateur n'est pas une fonction pure.
@@ -35,8 +36,7 @@ export function filterAndSortTweets(tweets, lastPub, filters) {
     if (filters.format && filters.format !== "Tous" && !(t.formats || []).includes(filters.format)) return false
     if (filters.hideCooldown && isInCooldown(lastPub[t.id])) return false
     if (filters.search && filters.search.trim()) {
-      const q = filters.search.trim().toLowerCase()
-      if (!t.text.toLowerCase().includes(q)) return false
+      if (!matchesTweet(t, filters.search)) return false
     }
     return true
   })
