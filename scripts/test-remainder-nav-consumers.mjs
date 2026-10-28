@@ -31,6 +31,7 @@ for(const s of sources){
  const a=ASSETS[s.id],r=proofs.find(r=>r.id===s.id).record
  assert(ASSET_ORDER.includes(s.id)&&MARKET_ASSETS.some(a=>a.id===s.id)&&(s.collectAnniversary===false?!ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===s.id):ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===s.id)))
  assert.equal(RANKING_ASSETS[s.id].basis,'fund-nav-total-return');assert.equal(commonCoverage([RANKING_ASSETS[s.id],{...RANKING_ASSETS[s.id],id:'same-nav-fixture'}]).basis,'fund-nav-total-return');assert.equal(basisLabel(RANKING_ASSETS[s.id].basis),'Valeurs liquidatives · revenus réinvestis');
+ assert(a.icon,`The existing share visual identity is required for PNG export: ${s.id}`)
  assert.equal(a.isin,s.isin);assert.equal(a.historyConvention,'fund-nav-total-return');assert(!a.ticker&&!a.mic)
  let start=s.periodStart
  if(!qualifyHistoryWindow(a,start,a.points.at(-1).date).qualified){
