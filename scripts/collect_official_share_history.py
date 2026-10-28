@@ -304,6 +304,11 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         if performance['currency']!=native or performance['basis']!='fund':raise ValueError('WisdomTree shared calendar convention changed')
         calendar_proof={'calendarRegistry':registry,'calendarRegistryPerformanceHash':hashlib.sha256(json.dumps(performance,sort_keys=True,separators=(',',':')).encode()).hexdigest(),'controlledInstrument':isin,'controlledFields':['ISIN','wtClassID','fundCurrency','useOfIncome','historical-data-export.NAV','historical-data-export.Date','calendarRegistry.performance'],'requestedStart':source['periodStart']+'-01','controlledCalendarYears':sorted(performance['years']),'publicProduct':{k:identity.get(k)for k in ['ISIN','wtClassID','fundCurrency','useOfIncome','inceptionDt','NAV_Date']},'calendarSource':{k:performance.get(k)for k in ['sourceUrl','sha256','asOf','checkedAt','method']},'calendarSourceConsultedByThisCollector':False,'navHistoryTransport':source.get('navHistoryTransport','nav-modal-json'),**({'actualNavTransport':export_transport}if export_body is not None else{})}
         years=performance['years']
+    elif kind=='bnp':
+        from bnp_nav_history import endpoints as bnp_endpoints,parse as bnp_parse
+        identity_url,nav_url,monthly_url=bnp_endpoints(source)
+        nav,years,calendar_precision,calendar_proof=bnp_parse(data(identity_url),data(nav_url),data(monthly_url),source,now)
+        identity_from=source['identityFrom'];credit='BNP Paribas Asset Management'
     elif kind=='landg':
         from landg_nav_history import identity as landg_identity,parse as landg_parse,product_page as landg_page
         catalogue=data(source['catalogueUrl'])

@@ -4,6 +4,7 @@ const NON_BOND_HISTORY_IDENTITIES = Object.fromEntries(config.instruments.filter
 const LANDG_AI_IDENTITY={icon:'🧠',scene:'chip',title:'INTELLIGENCE ARTIFICIELLE',ticker:'AIAI'}
 export const ETF_HISTORY_IDENTITIES = {
  ...automaticIdentities,
+ etfFR0011550185Nav:{...automaticIdentities.etfFR0011550185},
  etfIE00BK5BCD43Nav:{...LANDG_AI_IDENTITY},
  etfIE00BK5BCH80Nav:{...automaticIdentities.etfIE00BK5BCH80},
  etfGB00B15KXQ89Nav:{...(automaticIdentities.etfGB00B15KXQ89??NON_BOND_HISTORY_IDENTITIES.etfGB00B15KXQ89)},

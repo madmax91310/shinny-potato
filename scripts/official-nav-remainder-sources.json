@@ -752,5 +752,25 @@
     "catalogueUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
     "shareClassId": 5185,
     "identityFrom": "2020-11-11"
+  },
+  {
+    "id": "etfFR0011550185Nav",
+    "isin": "FR0011550185",
+    "label": "BNP Paribas Easy S&P 500 EUR C · VL",
+    "instrumentType": "ETF",
+    "consumerScope": "catalog",
+    "currency": "EUR",
+    "periodStart": "2019-12",
+    "precision": 8,
+    "collectAnniversary": false,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "Valeur liquidative officielle de la part exacte EUR C capitalisante, nette des frais ; aucune cotation ni autre part substituée ; historique avant décembre2019 non admis",
+    "navProvider": "bnp",
+    "navCurrency": "EUR",
+    "sourceUrl": "https://api.bnpparibas-am.com/push/fundsheet/IP_FR-IND/FRE/FRA/FR0011550185",
+    "shareClassId": 14258,
+    "identityFrom": "2013-09-16"
   }
 ]
