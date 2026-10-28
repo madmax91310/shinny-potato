@@ -48,7 +48,9 @@ jobs:
       group: publication-observations-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
       cancel-in-progress: false
       queue: max
-    runs-on: ubuntu-26.04
+    # Match the ordinary market producer: FRED XNDX succeeded there in40752601140.
+    # The newer image timed out on all three public FRED document routes.
+    runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
       contents: write

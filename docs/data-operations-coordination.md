@@ -118,3 +118,5 @@ Complément d’enregistrement du même lot XNDX : refus40743703455 reproduit ap
 
 
 Preuve FRED du même rattrapage : les exports graph CSV (filtré puis complet) échouent par délai réseau depuis GitHub, malgré leur succès local ; ces échecs sont conservés. La table publique officielle `/data/NASDAQXNDX` est une voie distincte, avec métadonnées explicites et7214observations exactement concordantes au CSV capturé. Le lecteur vérifie l’identité XNDX/émetteur/fréquence/unité, les deux sections de données, la plage annoncée et la date réelle de publication. Seule la séance manquante est qualifiée, pas tout l’historique. Cette voie doit être exercée dans GitHub avant toute annonce de rétablissement.
+
+Rapprochement du réseau FRED : le producteur mensuel ordinaire40752601140 valide nasdaq100 sur son environnement ubuntu-latest (même série et transport commun), alors que les essais quotidiens ubuntu26.04 expirent sur CSV filtré, CSV complet et table publique. Le job de publication est aligné sur cet environnement connu, sans contournement d’accès ni changement de valeur ou seuil. Le succès doit être démontré, et ne prouve pas à lui seul une cause réseau générale.
