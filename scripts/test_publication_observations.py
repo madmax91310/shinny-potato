@@ -122,7 +122,8 @@ class PublicationTests(unittest.TestCase):
         raw={window:json.loads((ROOT/f'scripts/fixtures/publication/xndx-recovery-20261028-yahoo{window}.json').read_text())for window in ['5d','1d']}
         def collect(c,n):return collect_level(c,n,json_fetch=lambda url:copy.deepcopy(raw['5d'if 'range=5d'in url else'1d']))
         old={'value':35781.52734375,'asOf':'2026-10-26','checkedAt':'2026-10-27T11:44:28.010154+00:00','parser':'yahoo','symbol':'^XNDX','currency':'USD','variant':'TOTAL','quoteMethod':'supported-xndx-ranges','sourceHashes':{url:'a'*64 for url in XNDX_URLS}}
-        fred=(ROOT/'scripts/fixtures/publication/xndx-recovery-20261028-fred.csv').read_bytes()
+        import gzip
+        fred=gzip.decompress((ROOT/'scripts/fixtures/publication/xndx-recovery-20261028-fred-full.csv.gz').read_bytes())
         return config,now,collect,old,fred
 
     def test_xndx_missed_close_recovered_from_dated_independent_series_and_idempotent(self):
@@ -134,7 +135,7 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(value['previousCloseDateEvidence']['value'],36243.92)
         self.assertEqual(value['previousCloseDateEvidence']['asOf'],value['asOf'])
         self.assertEqual(value['previousCloseDateEvidence']['seriesId'],'NASDAQXNDX')
-        self.assertEqual(value['checkedAt'],now.isoformat());self.assertIn('id=NASDAQXNDX',calls[0]);self.assertIn('coed=2026-10-27',calls[0])
+        self.assertEqual(value['checkedAt'],now.isoformat());self.assertIn('id=NASDAQXNDX',calls[0]);self.assertEqual(calls[0],'https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX')
         self.assertNotEqual(value['value'],36373.625,'An unfinished current quote is never used')
         self.assertEqual(len(value['sourceHashes']),2);self.assertTrue(all(h!='a'*64 for h in value['sourceHashes'].values()))
         repeated,report=refresh_levels(updated,now,collect,selected=[config],date_fetch=lambda _:self.fail('Already qualified previous session needs no FRED retry'))
@@ -167,7 +168,7 @@ class PublicationTests(unittest.TestCase):
             now=dt.datetime.fromisoformat(session+'T16:00:00+00:00')
             def collect(*_):raise PublicationPending({'session':session,'previousClose':200.002,'sourceHashes':{url:'b'*64 for url in XNDX_URLS}})
             def fetch(url):
-                self.assertIn('coed='+expected,url)
+                self.assertEqual(url,'https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX')
                 return ('observation_date,NASDAQXNDX\n'+expected+',200.00\n').encode()
             updated,report=refresh_levels({'nasdaq100':{**old,'asOf':prior,'checkedAt':prior+'T22:00:00+00:00'}},now,collect,selected=[config],date_fetch=fetch)
             self.assertFalse(report['errors']);self.assertEqual(updated['nasdaq100']['asOf'],expected)
