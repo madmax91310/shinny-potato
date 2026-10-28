@@ -111,7 +111,12 @@ def iroko_portfolio(rows,today):
 
 def remake_portfolio(text,date,url,pages):
     compact=re.sub(r'\s+',' ',text)
-    buildings=int(required(r'pour la diversification : (\d+) immeubles',compact)[1])
+    old=re.search(r'pour la diversification : (\d+) immeubles',compact)
+    if old:buildings=int(old[1])
+    else:
+        table=required(r'Patrimoine Au (\d{2}/\d{2}/\d{4}) (\d+) [\d ]+m2 [\d .,]+ M€ Immeubles Surface totale des immeubles Valeur des immeubles',compact)
+        if dt.datetime.strptime(table[1],'%d/%m/%Y').date().isoformat()!=date:raise ValueError('Remake property count and portfolio date disagree')
+        buildings=int(table[2])
     values=[]
     for page in pages:
         for label in page['words']:
@@ -122,7 +127,17 @@ def remake_portfolio(text,date,url,pages):
                 if candidates:values.append(number(min(candidates,key=lambda w:heading['y']-w['y'])['text']))
     if not values or len(set(values))!=1:raise ValueError('Missing/ambiguous Remake financial occupancy')
     occupancy=values[0]
-    required(r'Locaux occupés sous franchise',text)
+    if not re.search(r'Locaux\s+occupés\s+sous\s+franchise',text):
+        # T3 2026 has an adjacent column interleaved by pdftotext. Bind the
+        # wrapped phrase spatially on the page instead of reading across it.
+        clusters=[]
+        for page in pages:
+            for anchor in page['words']:
+                if anchor['text']!='Locaux':continue
+                row=[w for w in page['words']if abs(w['y']-anchor['y'])<2 and anchor['x']<=w['x']<=anchor['x']+130]
+                following=[w for w in page['words']if w['text']=='franchise'and abs(w['x']-anchor['x'])<5 and 0<w['y']-anchor['y']<20]
+                if [w['text']for w in sorted(row,key=lambda w:w['x'])][:3]==['Locaux','occupés','sous']and len(following)==1:clusters.append(anchor)
+        if len(clusters)!=1:raise ValueError('Remake occupied-under-rent-free basis missing or ambiguous')
     return {'buildings':{'value':buildings,'asOf':date,'sourceUrl':url,'label':'Immeubles'},
             'occupancy':{'value':occupancy,'asOf':date,'sourceUrl':url,'label':'Taux d’occupation financier','basis':'Inclut les locaux sous franchise de loyer ; distinct du taux physique. Le nombre de baux n’est pas un nombre de locataires.'}}
 
@@ -186,7 +201,7 @@ def parse_remake(html, text, bulletin_url, today):
     minimum = required(r'minimum de souscription est fixé à.{0,150}?(\d+) part[s]?, soit ([\d ,]+)€', compact)
     fee = number(required(r'Commission de gestion annuelle.*?(\d+(?:[,.]\d+)?)%.*?TTC', compact).group(1))
     required(r'Commission de souscription\s+0%', compact)
-    exit_fee = number(required(r'commission est prélevée pour les parts détenues depuis moins de (\d+) ans.*?(\d+)%\s+TTC', compact).group(2))
+    exit_fee = number(required(r'commission est prélevée pour les parts détenues depuis moins de (\d+) ans.*?(\d+(?:[,.]\d+)?)\s*%\s+TTC', compact).group(2))
     exit_years = int(required(r'parts détenues depuis moins de (\d+) ans', compact).group(1))
     required(r'Premier jour du quatrième mois', compact)
     required(r'Distribution mensuelle', compact)
@@ -213,7 +228,7 @@ def remake_bulletin(html, today):
         url=urllib.parse.urljoin(REMAKE,a['href']);parsed=urllib.parse.urlsplit(url)
         if parsed.scheme!='https' or parsed.netloc!='www.remake.fr' or parsed.query or parsed.fragment:continue
         old=re.search(r'remake-live-bulletin-information-(\d{2})-(\d{2})-(\d{4})\.pdf$',parsed.path,re.I)
-        new=re.search(r'/REMAKELIVE_BT([1-4])_(20\d{2})\.pdf$',parsed.path,re.I)
+        new=re.search(r'/REMAKELIVE_BT([1-4])_(20\d{2})\.pdf$',parsed.path,re.I)or re.search(r'/REMAKE_LIVE_BT_T([1-4])-(20\d{2})\.pdf$',parsed.path,re.I)
         if old:
             day,month,year=map(int,old.groups());stamp=dt.date(year,month,day);expected=None
         elif new:

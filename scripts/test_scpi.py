@@ -142,4 +142,42 @@ class ScpiTests(unittest.TestCase):
         with self.assertRaises(ValueError): parse_iroko_conditions(text,'Ticket d’entrée Dès 5 000 € Versement des revenus potentiels Mensuel')
         with self.assertRaises(ValueError): split_chart('const chartLabels = ["France"]; const chartValues = [50,50];')
 
+"""Regression against the two newly published official T3 2026 layouts."""
+import copy,datetime as dt,gzip,json,pathlib,unittest
+from collect_iroko_snapshot import parse_snapshot
+from collect_scpi import remake_bulletin,parse_remake,remake_portfolio,validate
+F=pathlib.Path(__file__).with_name('fixtures')/'scpi';NOW=dt.date(2026,10,28)
+def read(name):return gzip.decompress((F/(name+'.gz')).read_bytes()).decode()
+class QuarterlyLayouts(unittest.TestCase):
+ def iroko(self,text=None,pages=None):return parse_snapshot(text or read('iroko-t3-2026.txt'),pages or json.loads(read('iroko-t3-2026-bbox.json')),NOW)
+ def test_iroko_exact_portfolio_date_not_document_validity(self):
+  r=self.iroko();self.assertEqual(r['asOf'],'2026-09-30');self.assertEqual(len(r['countries']),8);self.assertEqual(len(r['sectors']),5);self.assertEqual(next(v['value']for v in r['countries']if v['label']=='France'),27.7);self.assertEqual(next(v['value']for v in r['sectors']if v['label']=='Entrepôts et Logistique'),8.7);self.assertAlmostEqual(sum(v['value']for v in r['sectors']),100)
+ def test_iroko_missing_conflicting_future_or_wrong_period_refused(self):
+  text=read('iroko-t3-2026.txt')
+  for bad in [text.replace('Données du portefeuille Iroko Zen au','Validité du document au'),text+' Données du portefeuille Iroko Zen au 30/06/2026',text.replace('30/09/2026','30/09/2027'),text.replace('troisième trimestre 2026','quatrième trimestre 2026'),text.replace('30/09/2026','01/10/2026')]:
+   with self.assertRaises(ValueError):self.iroko(text=bad)
+ def test_iroko_unknown_labels_and_unbalanced_weights_do_not_get_normalised(self):
+  original=json.loads(read('iroko-t3-2026-bbox.json'))
+  for before,after in [('Italie','Autriche'),('27,7','37,7'),('Logistique','Autre')]:
+   pages=copy.deepcopy(original);changed=False
+   for p in pages:
+    for w in p['words']:
+     if w['text']==before:w['text']=after;changed=True
+   self.assertTrue(changed)
+   with self.assertRaises(ValueError):self.iroko(pages=pages)
+ def remake(self):
+  html,text=read('remake-t3-2026.html'),read('remake-t3-2026.txt');url,expected=remake_bulletin(html,NOW);r=validate(parse_remake(html,text,url,NOW),NOW);self.assertEqual(r['snapshot']['asOf'],expected);return r,text,json.loads(read('remake-t3-2026-bbox.json'))
+ def test_remake_current_link_fee_and_dated_property_table(self):
+  r,text,pages=self.remake();self.assertEqual(r['snapshot']['asOf'],'2026-09-30');self.assertIn('REMAKE_LIVE_BT_T3-2026.pdf',r['price']['sourceUrl']);self.assertIn('5 % TTC',r['conditions']['exit']);p=remake_portfolio(text,r['snapshot']['asOf'],r['price']['sourceUrl'],pages);self.assertEqual(p['buildings']['value'],78);self.assertEqual(p['occupancy']['value'],98.81);self.assertIn('franchise',p['occupancy']['basis'])
+ def test_remake_property_count_cannot_borrow_another_snapshot(self):
+  r,text,pages=self.remake()
+  with self.assertRaisesRegex(ValueError,'date disagree'):remake_portfolio(text,'2026-06-30',r['price']['sourceUrl'],pages)
+ def test_remake_wrapped_rent_free_basis_remains_required(self):
+  r,text,pages=self.remake()
+  for p in pages:
+   for w in p['words']:
+    if w['text']=='franchise':w['text']='other'
+  with self.assertRaisesRegex(ValueError,'rent-free'):remake_portfolio(text,r['snapshot']['asOf'],r['price']['sourceUrl'],pages)
+
+
 if __name__ == '__main__': unittest.main()
