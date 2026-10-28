@@ -1,5 +1,7 @@
 """Latest completed-session levels using each historical series' exact currency and variant."""
 import argparse
+import csv
+import io
 import datetime as dt
 import hashlib
 import json
@@ -164,6 +166,43 @@ def xndx_supported_ranges(config,now,fetch):
     if observations[0]!=observations[1]:reject('Supported XNDX windows disagree')
     return observations[0][0],observations[0][1],XNDX_URLS[0],{'sources':proofs}
 
+def xndx_dated_previous_close(config, old, evidence, expected, now, fetch):
+    """Recover a missed close only with an independently dated SAME XNDX series.
+
+    Yahoo's forming candle remains excluded. The two identical previous-close
+    references provide the value; FRED dates and corroborates it at Yahoo's
+    existing priceHint=2 precision. No expected date is assigned to a quote
+    merely because the exchange calendar says it should exist.
+    """
+    if (config.get('id'),config.get('symbol'),config.get('seriesId'),config.get('currency'),config.get('variant')) != ('nasdaq100','^XNDX','NASDAQXNDX','USD','TOTAL'):
+        reject('Wrong independent XNDX date-confirmation identity')
+    if old.get('asOf','') >= expected:reject('No older XNDX close eligible for dated recovery')
+    if old.get('checkedAt')and dt.datetime.fromisoformat(old['checkedAt'].replace('Z','+00:00'))>now:reject('Retained XNDX proof is future-dated')
+    start=(dt.date.fromisoformat(expected)-dt.timedelta(days=10)).isoformat()
+    url='https://fred.stlouisfed.org/graph/fredgraph.csv?'+urlencode({'id':'NASDAQXNDX','cosd':start,'coed':expected})
+    body=fetch(url)
+    if not isinstance(body,bytes)or len(body)>100_000:reject('Invalid bounded FRED XNDX response')
+    reader=csv.DictReader(io.StringIO(body.decode('utf-8-sig')))
+    if reader.fieldnames!=['observation_date','NASDAQXNDX']:reject('Wrong FRED XNDX series or CSV structure')
+    points={};previous=None
+    for row in reader:
+        if None in row:reject('Unexpected FRED XNDX column')
+        day=row['observation_date'];dt.date.fromisoformat(day)
+        if not start<=day<=expected or (previous is not None and day<=previous):reject('Out-of-window, duplicated or unordered FRED XNDX date')
+        previous=day
+        if row['NASDAQXNDX']not in ['', '.']:points[day]=number(float(row['NASDAQXNDX']))
+    if expected not in points:reject('FRED has not published the exact preceding XNDX session')
+    value=number(evidence['previousClose'])
+    if abs(points[expected]-value)>.005:reject('Dated FRED XNDX close and both Yahoo references disagree')
+    date_proof={'sourceUrl':url,'seriesId':'NASDAQXNDX','currency':'USD','variant':'TOTAL','asOf':expected,'value':points[expected],
+                'sha256':hashlib.sha256(body).hexdigest(),'checkedAt':now.isoformat(),'comparisonPrecision':'Yahoo priceHint=2; existing half-cent bound unchanged'}
+    proof={'sources':evidence['sourceHashes'],'datedPreviousClose':date_proof}
+    return {**old,'value':value,'asOf':expected,'maxAgeDays':7,'sourceUrl':XNDX_URLS[0],'sourceUrls':list(XNDX_URLS),
+            'sourceHashes':evidence['sourceHashes'],'sha256':hashlib.sha256(json.dumps(proof,sort_keys=True,allow_nan=False).encode()).hexdigest(),
+            'previousCloseDateEvidence':date_proof,'observationPath':'supported-ranges-previous-close-with-independent-date',
+            'method':'Clôture XNDX Total Return USD, dividendes bruts réinvestis ; previousClose concordant sur deux hôtes Yahoo et date recoupée avec FRED NASDAQXNDX'}
+
+
 def xndx_source_upgrade(identifier,old,record):
     if identifier!='nasdaq100' or not old:return False
     convention=lambda r:tuple(r.get(k)for k in ('parser','symbol','currency','variant'))
@@ -175,9 +214,10 @@ def xndx_source_upgrade(identifier,old,record):
             and all(re.fullmatch(r'[a-f0-9]{64}',v or '')for v in sources.values()))
 
 
-def refresh(current, now, collect=collect_one, selected=None):
+def refresh(current, now, collect=collect_one, selected=None, date_fetch=download):
     merged=current.copy();successes=[];errors=[];waiting=[];derived=[];outcomes=[]
     requested=configurations() if selected is None else selected
+    requested_by_id={c['id']:c for c in requested}
     def report():
         for error in errors:
             prior=current.get(error['id'].removeprefix('anniversary-'),{})
@@ -199,17 +239,22 @@ def refresh(current, now, collect=collect_one, selected=None):
                     if not calendar.is_session(session):reject('XNDX unfinished quote is not an exchange session')
                     expected=calendar.previous_session(session).date().isoformat()
                     old=merged.get(id_,{})
-                    if (id_!='nasdaq100' or old.get('asOf')!=expected or old.get('symbol')!='^XNDX'
+                    if (id_!='nasdaq100' or old.get('symbol')!='^XNDX'
                         or old.get('parser')!='yahoo' or old.get('currency')!='USD' or old.get('variant')!='TOTAL'
                         or old.get('quoteMethod')!='supported-xndx-ranges'
                         or set(old.get('sourceHashes',{}))!=set(XNDX_URLS)
-                        or any(not re.fullmatch(r'[a-f0-9]{64}',h or '')for h in old['sourceHashes'].values())
-                        or abs(number(old.get('value'))-error.evidence['previousClose'])>.005):
-                        reject('Retained XNDX close is stale, unqualified or disagrees with the previous-close reference')
-                    waiting.append({'id':'anniversary-'+id_,'status':'waiting-publication','lastAttemptAt':now.isoformat(),
-                        'retainedAsOf':old['asOf'],'reason':str(error),'evidence':error.evidence})
-                except Exception as e:errors.append({'id':'anniversary-'+id_,'error':str(e)})
-                continue
+                        or any(not re.fullmatch(r'[a-f0-9]{64}',h or '')for h in old['sourceHashes'].values())):
+                        reject('Retained XNDX identity or original qualification is absent')
+                    if old.get('asOf')==expected:
+                        if abs(number(old.get('value'))-error.evidence['previousClose'])>.005:
+                            reject('Retained XNDX close disagrees with the previous-close reference')
+                        waiting.append({'id':'anniversary-'+id_,'status':'waiting-publication','lastAttemptAt':now.isoformat(),
+                            'retainedAsOf':old['asOf'],'reason':str(error),'evidence':error.evidence})
+                        continue
+                    record=xndx_dated_previous_close(requested_by_id[id_],old,error.evidence,expected,now,date_fetch)
+                    error=None
+                except Exception as e:
+                    errors.append({'id':'anniversary-'+id_,'error':str(e)});continue
             if error:errors.append({'id':'anniversary-'+id_,'error':error});continue
             old=merged.get(id_)
             # Older equity/index observations predate exact-identity metadata.
@@ -223,7 +268,8 @@ def refresh(current, now, collect=collect_one, selected=None):
             if old and (record['asOf'] < old['asOf'] or convention_changed):
                 errors.append({'id':'anniversary-'+id_,'error':'Régression de date ou changement de convention'});continue
             merged[id_]={**record,'checkedAt':now.isoformat()}
-            successes.append({'id':'anniversary-'+id_,'checkedAt':now.isoformat(),'asOf':record['asOf'],'sourceUrl':record.get('sourceUrl'),'responseSha256':record.get('sha256')})
+            successes.append({'id':'anniversary-'+id_,'checkedAt':now.isoformat(),'asOf':record['asOf'],'sourceUrl':record.get('sourceUrl'),'responseSha256':record.get('sha256'),
+                **({'qualificationPath':record['observationPath'],'dateEvidence':record['previousCloseDateEvidence']}if record.get('observationPath')=='supported-ranges-previous-close-with-independent-date'else{})})
             outcomes.append({**successes[-1],'status':'unchanged-verified'if old and old.get('value')==record['value']and old.get('asOf')==record['asOf']else'succeeded','sourceAttempted':True})
     # Gold retains its World Bank monthly average convention, never gold futures/spot.
     try:
