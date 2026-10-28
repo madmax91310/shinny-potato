@@ -104,7 +104,8 @@ def configurations():
             sourceUrl='https://www.vaneck.com/DK/en/investments/mining-etf/',
             factsheetUrl='https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf'),
         'etfGB00B15KXQ89':dict(navProvider='wisdomtree',navCurrency='USD',
-            sourceUrl='https://www.wisdomtree.com/ie/products/commodities/wisdomtree-copper'),
+            sourceUrl='https://www.wisdomtree.com/ie/products/commodities/wisdomtree-copper',
+            navHistoryTransport='official-xlsx-post',wisdomClassId=1000073),
     }
     result = []
     for id in IDS:
@@ -265,12 +266,30 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
                 'product_performance_metrics.performance_monthly','product_performance_metrics.performance_details'],
             'historicFxQualification':'Existing validated monthly ECB observations; not a new historic ECB source consultation'}
     elif kind=='wisdomtree':
-        identity=wisdomtree_identity(document(source['sourceUrl']).decode(),isin)
+        export_body=None
+        if source.get('navHistoryTransport')=='official-xlsx-post':
+            from wisdomtree_nav_export import download as export_download,payload as export_payload,parse as export_parse
+            url=f"https://www.wisdomtree.com/api/fund-history/{source['wisdomClassId']}/historical-data-export"
+            request=export_payload(source,now)
+            try:export_body=export_download(url,request)
+            except Exception as error:raise ValueError('Official NAV XLSX POST failed at '+url+': '+str(error))from error
+            urls.append(url);hashes[url]=hashlib.sha256(export_body).hexdigest()
+            if capture:
+                capture.mkdir(parents=True,exist_ok=True)
+                (capture/(hashes[url]+'.xlsx.gz')).write_bytes(gzip.compress(export_body))
+                (capture/(hashes[url]+'.request.json')).write_text(json.dumps(request,indent=2)+'\n')
+        try:identity=wisdomtree_identity(document(source['sourceUrl']).decode(),isin)
+        except Exception as error:raise ValueError('Official share identity failed at '+source['sourceUrl']+': '+str(error))from error
         if identity['fundCurrency']!=native or identity['useOfIncome']!='N/A':raise ValueError('Commodity currency/income changed')
-        url=f"https://www.wisdomtree.com/api/fund-history/{identity['wtClassID']}?view=navHistoryModal"
-        nav=wisdomtree_nav(data(url),now);credit='WisdomTree'
-        calendar_proof={'publicProduct':{k:identity.get(k)for k in ['ISIN','wtClassID','fundCurrency','useOfIncome','inceptionDt','NAV_Date']}}
-        years=json.loads((ROOT/'src/data/automated-etf.json').read_text())[isin]['performance']['years']
+        if export_body is not None:nav=export_parse(export_body,identity,source,now)
+        else:
+            url=f"https://www.wisdomtree.com/api/fund-history/{identity['wtClassID']}?view=navHistoryModal"
+            nav=wisdomtree_nav(data(url),now)
+        credit='WisdomTree'
+        performance=json.loads((ROOT/'src/data/automated-etf.json').read_text())[isin]['performance']
+        if performance['currency']!=native or performance['basis']!='fund':raise ValueError('WisdomTree shared calendar convention changed')
+        calendar_proof={'publicProduct':{k:identity.get(k)for k in ['ISIN','wtClassID','fundCurrency','useOfIncome','inceptionDt','NAV_Date']},'calendarSource':{k:performance.get(k)for k in ['sourceUrl','sha256','asOf','checkedAt','method']},'calendarSourceConsultedByThisCollector':False,'navHistoryTransport':source.get('navHistoryTransport','nav-modal-json')}
+        years=performance['years']
     elif kind=='vaneck':
         title=source.get('navTitle') or ('VanEck S&P Global Mining UCITS ETF - GDIG' if isin=='IE00BDFBTQ78' else None)
         if not title:raise ValueError('Unregistered VanEck exact NAV context')

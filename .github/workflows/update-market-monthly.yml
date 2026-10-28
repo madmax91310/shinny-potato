@@ -98,6 +98,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_amundi_anniversary_prices.py'
       - run: python -m unittest discover -s scripts -p 'test_blackrock_income_history.py'
       - run: python -m unittest discover -s scripts -p 'test_dws_income_history.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_nav_export.py'
       - run: node scripts/test-dws-income-consumers.mjs
       - run: node scripts/test-income-nav-consumers.mjs
       - run: python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'
@@ -110,6 +111,10 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_market_transport.py'
       - run: node scripts/test-nasdaq-total-return.mjs
       - run: python -m unittest discover -s scripts -p 'test_data_automation.py'
+      - name: Qualify new official Copper XLSX route without writing observations
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        run: python scripts/collect_official_share_history.py --only etfGB00B15KXQ89 --output "$RUNNER_TEMP/copper-export-observation.json" --capture-dir "$RUNNER_TEMP/copper-export-sources"
       - run: python -m unittest discover -s scripts -p 'test_qualified_listings.py'
       - name: Refresh exact issuer listing tables
         id: listings
@@ -205,6 +210,8 @@ jobs:
           name: monthly-market-observation
           path: |
             ${{ runner.temp }}/monthly-observation.json
+            ${{ runner.temp }}/copper-export-observation.json
+            ${{ runner.temp }}/copper-export-sources/
             ${{ runner.temp }}/derived-index-observation.json
             ${{ runner.temp }}/derived-index-observation.contract-plan.json
             ${{ runner.temp }}/listing-observation.json
