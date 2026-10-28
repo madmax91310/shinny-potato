@@ -25,7 +25,10 @@ export async function fetchRadar(signal) {
   const response = await fetch(RADAR_URL, { cache: 'no-store', signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(15000)]) : AbortSignal.timeout(15000) })
   if (!response.ok) throw new Error(response.status === 404 ? 'Le premier relevé du radar est en préparation.' : 'Le radar est momentanément indisponible.')
   const feed = validateFeed(await response.json())
-  const [{readableNews},{readableSignal}]=await Promise.all([import('./readableNews.js'),import('./presentation.js')])
-  return { ...feed, events: feed.events.map(readableNews).map(readableSignal), ...(feed.purchasingPower ? { purchasingPower: { ...feed.purchasingPower, items: feed.purchasingPower.items.map(readableNews) } } : {}) }
+  const [{readableNews},{readableSignal},{publicationSelection,recentEditorial},{editorialExclusion},{publicationMaterial}]=await Promise.all([import('./readableNews.js'),import('./presentation.js'),import('../../lib/radar-editorial.js'),import('../../lib/radar-policy.js'),import('../../lib/radar-material.js')])
+  const events=feed.events.map(readableNews).map(readableSignal).filter(e=>!e.editorialExcluded&&!editorialExclusion(e))
+  const selection=publicationSelection(events)
+  for(const group of selection.groups){group.recent=recentEditorial(group.event);group.facts=group.events.flatMap(e=>{const material=publicationMaterial(e);return material.status==='sufficient'?material.facts:[]})}
+  return { ...feed, events,selection, ...(feed.purchasingPower ? { purchasingPower: { ...feed.purchasingPower, items: feed.purchasingPower.items.map(readableNews).filter(item=>!editorialExclusion(item)) } } : {}) }
 }
 export function staleFeed(feed, now = Date.now()) { return !feed || now - Date.parse(feed.checkedAt) > 36 * 3600000 }

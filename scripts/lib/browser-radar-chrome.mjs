@@ -1,3 +1,4 @@
+import {RADAR_POLICY_VERSION} from '../../src/lib/radar-overview.js'
 import assert from 'node:assert/strict'
 
 // Navigation data is not an export resource. Stub exactly this GET/fetch API
@@ -8,6 +9,6 @@ export const isRadarChromeRequest=request=>request.url()===url&&request.method()
 export async function mockRadarChrome(pageOrContext) {
   await pageOrContext.route(url,route=>{
     assert.ok(isRadarChromeRequest(route.request()),'Only the navigation JSON fetch is mocked; images/scripts are export resources')
-    return route.fulfill({contentType:'application/json',body:JSON.stringify({schemaVersion:1,policyVersion:3,checkedAt:new Date().toISOString(),groups:[],selection:[]})})
+    return route.fulfill({contentType:'application/json',body:JSON.stringify({schemaVersion:1,policyVersion:RADAR_POLICY_VERSION,checkedAt:new Date().toISOString(),groups:[],selection:[]})})
   })
 }

@@ -1,3 +1,4 @@
+import {compositionEventIssue,importantComposition,compositionDossierKey} from './radar-composition.js'
 import {investorFilingType,etfAnnouncement} from './radar-fact-types.js'
 export {investorFilingType,etfAnnouncement} from './radar-fact-types.js'
 import { qualifyRadarFact, publicationTime } from './radar-qualification.js'
@@ -13,6 +14,8 @@ const normal = value => String(value ?? '').normalize('NFD').replace(/\p{Diacrit
 
 function evidenceState(event, now = Date.now()) {
   if (editorialExclusion(event) || event.editorialExcluded) return 'excluded'
+  if (compositionEventIssue(event)) return 'watch'
+  if (['market-commentary','institutional-communication'].includes(qualifyRadarFact(event).nature)) return 'secondary'
   if (['professional-survey','forecast'].includes(qualifyRadarFact(event).nature)) return 'watch'
   if (event.supersededBy) return 'secondary'
   if (event.factType === 'consumer-announcement' && event.topic === 'carburants') {
@@ -33,7 +36,7 @@ function evidenceState(event, now = Date.now()) {
   }
   if (event.factType === 'statistical-publication') return event.publishedAt && event.evidence?.excerpt && event.evidence?.sourceHash ? 'ready' : 'watch'
   if (event.family === 'economie' && event.publishedAt && event.unit && event.evidence?.sourceHash && event.kind !== 'new' && event.beforePeriod !== event.period) return 'ready'
-  if (['etf', 'indices'].includes(event.family) && /^(top10|countries:|sectors:)/.test(field) && event.kind !== 'new' && event.beforePeriod !== event.period && typeof event.before === 'number' && typeof event.after === 'number' && Math.abs(event.after-event.before) >= 5 && !/other|autres|non ventile/i.test(normal(field))) return 'ready'
+  if (['etf', 'indices'].includes(event.family) && /^(top10|countries:|sectors:)/.test(field) && event.kind !== 'new' && event.beforePeriod !== event.period && typeof event.before === 'number' && typeof event.after === 'number' && importantComposition(event)) return 'ready'
   // A newly connected catalogue record is never a product launch or a change.
   if (event.kind === 'new' && event.family !== 'pouvoir-achat') return 'secondary'
   if (event.family === 'pouvoir-achat') {
@@ -69,6 +72,8 @@ export function factType(event) {
 }
 export function reliability(event, now = Date.now()) {
   const reasons = []
+  const compositionProblem=compositionEventIssue(event)
+  if(compositionProblem)reasons.push(compositionProblem)
   const exclusion = editorialExclusion(event)
   if (exclusion) reasons.push(exclusion)
   if (event.factType === 'consumer-announcement') reasons.push(...consumerQuality(event,now))
@@ -108,6 +113,7 @@ export function editorialAssessment(event, now = Date.now(), rules = SCORE_RULES
 export const editorialScore = (event, now) => editorialAssessment(event, now).score
 export function publicationKey(event) {
   if (event.correctionOf) return JSON.stringify(['correction',event.correctionOf,event.id])
+  if (event.compositionEventKey) return event.compositionEventKey
   if (event.eventKey) return event.eventKey
   if (event.publicationId) return JSON.stringify([event.family, event.publicationId, event.publishedAt ?? event.period])
   return JSON.stringify([event.family, event.entity, event.period])
@@ -120,7 +126,7 @@ export function groupSignals(events, now = Date.now(), {notification=false}={}) 
   for (const event of events) {
     const state = editorialState(event,now)
     const sameDatedStudy=event.publicationId && event.referencePeriod && ['statistical-publication','publication-watch'].includes(event.factType) && !event.correctionOf
-    const dossier=notification ? null : (event.dossierKey ?? (dossierKeys.has(publicationKey(event))?publicationKey(event):null) ?? (sameDatedStudy ? publicationKey(studies.get(studyId(event))??event) : null))
+    const dossier=compositionDossierKey(event) ?? (notification ? null : (event.dossierKey ?? (dossierKeys.has(publicationKey(event))?publicationKey(event):null) ?? (sameDatedStudy ? publicationKey(studies.get(studyId(event))??event) : null)))
     const key=JSON.stringify([dossier ?? publicationKey(event),dossier ? 'dossier' : state])
     if (!groups.has(key)) groups.set(key, { id: key, state, event, events: [] })
     groups.get(key).events.push(event)
@@ -130,7 +136,9 @@ export function groupSignals(events, now = Date.now(), {notification=false}={}) 
     group.events.sort((a,b)=>(Number(b.entity==='salary-median')-Number(a.entity==='salary-median'))||Number(editorialState(b,now)==='ready')-Number(editorialState(a,now)==='ready')||Number(official(b))-Number(official(a))||editorialScore(b,now)-editorialScore(a,now)||b.detectedAt.localeCompare(a.detectedAt)||a.id.localeCompare(b.id))
     let event=group.events[0]
     const relatedStages=event.relatedStages??[]
-    return { ...group, event, state:editorialState(event,now), assessment: editorialAssessment(event, now),readIds:group.events.filter(e=>!event.publicationId||e.publicationId===event.publicationId).map(e=>e.id), relatedStages }
+    const assessment=editorialAssessment(event,now),pending=group.events.map(compositionEventIssue).find(Boolean)
+    if(pending){assessment.state='watch';assessment.priority=false;assessment.major=false;assessment.reliability={usable:false,reasons:[...new Set([...assessment.reliability.reasons,pending])]};assessment.material={...assessment.material,status:'verify',angle:null,question:null,missing:[...new Set([...assessment.material.missing,pending])]}}
+    return { ...group, event, state:assessment.state, assessment,readIds:group.events.filter(e=>!event.publicationId||e.publicationId===event.publicationId).map(e=>e.id), relatedStages }
   }).sort((a,b) => b.assessment.score-a.assessment.score || b.event.detectedAt.localeCompare(a.event.detectedAt) || a.id.localeCompare(b.id))
 }
 const eventExposure = event => event.exposureKey ?? event.launchDetails?.index ?? (event.products?.length === 1 ? event.products[0].index : null)

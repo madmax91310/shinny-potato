@@ -4,7 +4,7 @@ export const normalizeEditorial = value => String(value ?? '').normalize('NFD').
 export const RADAR_TOPICS = {
   banques: 'Banques et services', frais: 'Frais bancaires', credit: 'Crédit immobilier et PTZ', immobilier: 'Marché immobilier', location: 'Règles de location', statistiques: 'Statistiques des ménages', epargne: 'Épargne et placements', etf: 'ETF', energie: 'Électricité et gaz', carburants: 'Carburants', securite: 'Sécurité de l’argent', travail: 'Épargne salariale et salaires',
 }
-const excluded = /\bimpots?\b|fiscali|\btaxes?\b|taxe fonciere|prelevement a la source|loi de finances|budget 20\d\d|\bplf(?:ss)?\b|prestations? sociales?|allocations?|\bapl\b|\brsa\b|prime d activite|aides? au logement|cheque energie|maprimerenov|aides? sociales?|bourses? (?:etudiant|scolaire)|pensions? de retraite|revalorisation des retraites/
+const excluded = /\bimpots?\b|fiscali|\btaxes?\b|taxe fonciere|prelevement a la source|loi de finances|budget 20\d\d|\bplf(?:ss)?\b|prestations? sociales?|allocations?|\bapl\b|\brsa\b|prime d activite|aides? au logement|cheque energie|maprimerenov|aides? sociales?|aide carburant|bourses? (?:etudiant|scolaire)|pensions? de retraite|revalorisation des retraites/
 export function editorialExclusion(event) {
   const title = normalizeEditorial(event.label ?? event.title ?? event.value?.title)
   // The principal subject controls scope. Incidental taxes/benefits in a

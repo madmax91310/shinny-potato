@@ -5,7 +5,9 @@ import { notificationState, notifyRadar, recentSignals, TRACKER_MARKER, RECENT_D
 const repo = 'madmax91310/shinny-potato', now = new Date('2026-10-09T15:00:00Z')
 const row = { family: 'indices', entity: 'russell-1000', label: 'Russell 1000', field: 'sectors:Tech', fieldLabel: 'Poids de la technologie', value: 30, threshold: 2, unit: '%', scope: 'Indice Russell 1000', period: '2026-09-30', checkedAt: '2026-10-08', publishedAt:'2026-10-08',sourceUrl: 'https://www.lseg.com/index-factsheet', tool: '/tweets-factsheets' }
 const initial = advanceRadar(null, [row], { now })
-const changed = advanceRadar(initial.state, [{ ...row, value: 35, period: '2026-10-08' }], { now })
+const changed = advanceRadar(initial.state, [{ ...row, value: 45, period: '2026-10-08' }], { now })
+// A structural 15-point move exercises delivery. Ordinary 5-point drift stays secondary.
+assert.equal((await notifyRadar({events:advanceRadar(initial.state,[{...row,value:35,period:'2026-10-08'}],{now}).newEvents,ledger:{schemaVersion:1,editorialVersion:3,acknowledged:[]},api:async()=>{throw Error('Ordinary drift must not call GitHub')},repo,now})).sent,0)
 const event = changed.newEvents[0]
 const ledger = notificationState(initial.state, null, now)
 const bot = { login: 'github-actions[bot]' }
@@ -69,13 +71,13 @@ assert.ok(tracker.body.includes(TRACKER_MARKER))
 for (const pattern of [/Russell 1000/, /Autre indice/, /editorial-radar-event:/, /radar-data\/state\.json/]) assert.match(tracker.body, pattern)
 assert.equal(server.posted[1].length, 1, 'Un seul commentaire pour le lot')
 const announcement = server.posted[1][0].body
-for (const pattern of [/@madmax91310/, /30 %/, /35 %/, /2026-09-30/, /2026-10-08/, /https:\/\/www.lseg.com\/index-factsheet/, /editorial-radar-event:/]) assert.match(announcement, pattern)
+for (const pattern of [/@madmax91310/, /30 %/, /45 %/, /2026-09-30/, /2026-10-08/, /https:\/\/www.lseg.com\/index-factsheet/, /editorial-radar-event:/]) assert.match(announcement, pattern)
 const repeated = mock(); assert.equal((await send([event, second], result.ledger, repeated)).sent, 0); assert.equal(repeated.calls.length, 0)
 assert.deepEqual(ledger.acknowledged, [], 'Le registre précédent reste intact')
 
 // Failed sends remain pending even if the next run has no newEvents.
 await assert.rejects(send(changed.state.events, ledger, mock({ failPost: true })), /503/)
-const unchanged = advanceRadar(changed.state, [{ ...row, value: 35, period: '2026-10-08' }], { now })
+const unchanged = advanceRadar(changed.state, [{ ...row, value: 45, period: '2026-10-08' }], { now })
 assert.equal(unchanged.newEvents.length, 0)
 assert.equal((await send(unchanged.state.events, ledger, mock())).sent, 1)
 
@@ -160,7 +162,7 @@ assert.equal((await send([huge, second], ledger, mock({ issues: hugeServer.creat
   const nothing = mock()
   await notifyRadar({ events: [event, second], ledger: result.ledger, api: nothing.api, repo, now: later, maintain: true })
   assert.equal(nothing.created.length, 0, 'Aucune issue créée sans signal récent')
-  const fresh = { ...event, id: 'c'.repeat(24),before:event.after,after:40,beforeText:'35 %',afterText:'40 %',beforePeriod:event.period,period:later.toISOString().slice(0,10),publishedAt:later.toISOString().slice(0,10),detectedAt: later.toISOString() }
+  const fresh = { ...event, id: 'c'.repeat(24),before:event.after,after:55,beforeText:'45 %',afterText:'55 %',beforePeriod:event.period,period:later.toISOString().slice(0,10),publishedAt:later.toISOString().slice(0,10),detectedAt: later.toISOString() }
   const reopened = mock({ issues: [maintained.tracker()] })
   const reopenResult = await notifyRadar({ events: [event, second, fresh], ledger: result.ledger, api: reopened.api, repo, now: later, maintain: true })
   assert.equal(reopenResult.sent, 1)

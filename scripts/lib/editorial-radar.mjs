@@ -1,3 +1,7 @@
+import {unpackRadarState} from './radar-state-codec.mjs'
+import {radarValue} from '../../src/lib/radar-format.js'
+import {reviewCompositions} from './radar-composition-review.mjs'
+import {comparisonIssue} from '../../src/lib/radar-composition.js'
 import { compatibleHousing } from '../../src/lib/radar-housing.js'
 import { editorialExclusion,editorialTopic,RADAR_TOPICS } from '../../src/lib/radar-policy.js'
 import { migrateHouseholdEvents } from './radar-households.mjs'
@@ -42,7 +46,7 @@ export function meaningful(before, after) {
 }
 const number = value => value.toLocaleString('fr-FR', { maximumFractionDigits: 3 })
 export function displayValue(value, unit = '') {
-  if (typeof value === 'number') return `${number(value)}${unit ? ` ${unit}` : ''}`
+  if (typeof value === 'number') return radarValue(value,unit)
   if (typeof value === 'boolean') return value ? 'Oui' : 'Non'
   if (Array.isArray(value)) return value.slice(0, 10).map(item => typeof item === 'string' ? item : item.ticker ? `${item.ticker}${item.changePct === null ? '' : ` (${number(item.changePct)} % d’actions)`}` : stable(item)).join(' · ')
   if (value?.positions) return `${value.positions.length} positions · ${displayValue(value.positions)}${value.exits?.length ? ` · Sorties : ${value.exits.join(', ')}` : ''}`
@@ -55,7 +59,7 @@ function makeEvent(before, after, detectedAt, kind = 'change') {
   const beforeText = before ? displayValue(before.value, after.unit) : 'Pas encore suivi'
   const afterText = displayValue(after.value, after.unit)
   const purchasing = after.family === 'pouvoir-achat'
-  const metadata = purchasing ? Object.fromEntries(['topic', 'topicLabel', 'publisher', 'status', 'statusEvidence', 'summary', 'publishedAt', 'publicationId', 'evidence', 'factType'].map(key => [key, after[key] ?? ''])) : Object.fromEntries(['sourceDeclaredPublicationDate', 'publicationDateNote', 'housing', 'qualification', 'extraction', 'dossierKey', 'relationship', 'productDossiers', 'supportingCalendarEvidence', 'exposureKey', 'launchDetails', 'products', 'announcementEvidence', 'calendarEvidence', 'evidence', 'publicationId', 'publishedAt', 'referencePeriod', 'population', 'populationScope', 'topic', 'summary', 'publisher', 'factType', 'backfill', 'documentUrl', 'documentCheckedAt', 'documentHash'].filter(key => after[key] !== undefined).map(key => [key, after[key]]))
+  const metadata = purchasing ? Object.fromEntries(['topic', 'topicLabel', 'publisher', 'status', 'statusEvidence', 'summary', 'publishedAt', 'publicationId', 'evidence', 'factType'].map(key => [key, after[key] ?? ''])) : Object.fromEntries(['compositionEvidence', 'compositionEventKey', 'sourceDeclaredPublicationDate', 'publicationDateNote', 'housing', 'qualification', 'extraction', 'dossierKey', 'relationship', 'productDossiers', 'supportingCalendarEvidence', 'exposureKey', 'launchDetails', 'products', 'announcementEvidence', 'calendarEvidence', 'evidence', 'publicationId', 'publishedAt', 'referencePeriod', 'population', 'populationScope', 'topic', 'summary', 'publisher', 'factType', 'backfill', 'documentUrl', 'documentCheckedAt', 'documentHash'].filter(key => after[key] !== undefined).map(key => [key, after[key]]))
   for (const key of ['originalPublishedAt','independenceKey','analysisContribution','dossierKey','relationship','productDossiers','qualification','extraction','supportingDocuments','supportingCalendarEvidence','changeEvidence','housing','announcedProductCount','conditions','correctionPublishedAt','referencePeriod','populationScope','evidenceLevel','sources','effectiveAt','promotionEndsAt','eventKey','correctionOf','backfill']) if (after[key] !== undefined) metadata[key] = after[key]
   if(before && kind!=='new' && !isPublication && !after.factType && before.scope===after.scope && (before.unit??'')===(after.unit??'') && typeof before.value===typeof after.value && ['number','boolean'].includes(typeof after.value) && before.value!==after.value && /^(ter|pea|fee|rate|profile:|top10|countries:|sectors:)/.test(after.field) && (!datedEtfSnapshot(after)||before.period!==after.period))metadata.financialChangeEvidence={version:1,scope:after.scope,unit:after.unit??'',before:before.value,after:after.value,beforeCheckedAt:before.checkedAt,observedAt:after.checkedAt,beforeSourceUrl:before.sourceUrl,sourceUrl:after.sourceUrl,beforeHash:digest(before),afterHash:digest(after)}
   if (after.parserMigration) metadata.migratedEditorial=true
@@ -79,6 +83,7 @@ export function shouldRefreshRadar(previous, { eventName, sourceRevision, now = 
   return !Number.isFinite(elapsed) || elapsed < 0 || elapsed >= 15 * 60000
 }
 export function advanceRadar(previous, observations, { now = new Date(), sourceRevision = '', errors = [], purchasingSources = [], verifiedCompositions = [], compositionVerificationFailures = [] } = {}) {
+  previous=unpackRadarState(previous)
   if (previous && (previous.schemaVersion !== 1 || !previous.current || !previous.anchors || !Array.isArray(previous.events))) throw new Error('Historique radar invalide : conservation du fichier précédent.')
   const stamp = now.toISOString(), state = previous ? structuredClone(previous) : { schemaVersion: 1, initializedAt: stamp, current: {}, anchors: {}, events: [] }
   // Retire the removed legislative category from existing items and alert retries.
@@ -95,11 +100,12 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
   // feed and from notification retries, including alerts predating this guard.
   for (const event of state.events) if (datedEtfSnapshot(event) && event.beforePeriod === event.period && event.kind === 'change') event.status = 'source-conflict'
   const entities = new Set(Object.values(state.current).map(o => `${o.family}:${o.entity}`))
-  const valid = observations.filter(o => !editorialExclusion(o)).filter(publishablePurchasingNews).filter(o => {
+  let valid = observations.filter(o => !editorialExclusion(o)).filter(publishablePurchasingNews).filter(o => {
     if (validObservation(o, now)) return true
     issues.push({ family: o?.family ?? 'radar', entity: o?.entity ?? '', reason: `Observation non exploitable : ${o?.fieldLabel ?? o?.field ?? 'champ inconnu'}.` })
     return false
   })
+  valid = reviewCompositions(state, valid, stamp, issues, observationKey)
   // Only an explicitly complete, validated allocation proves an omitted group
   // has zero weight. A partial/missing collection must never erase a value.
   const allocations = new Map()
@@ -186,6 +192,13 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
       state.anchors[key] = after
       continue
     }
+    const incompatible = comparisonIssue(before, after)
+    if (incompatible) {
+      state.comparisonReviews ??= {}
+      state.comparisonReviews[key] = { reason: incompatible, before, after, recordedAt: stamp }
+      state.anchors[key] = after
+      continue
+    }
     if (!meaningful(before, after)) continue
     const event = makeEvent(before, after, stamp)
     if (replicationField(after)) event.normalization = { version: 1, before: normalizedReplication(before.value, before.sourceUrl), after: normalizedReplication(after.value, after.sourceUrl) }
@@ -197,7 +210,7 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
   // ids, detection dates, evidence, or notification/read receipts.
   for (const event of [...newEvents, ...state.events]) Object.assign(event, readableInvestorFiling(event))
   migrateHouseholdEvents([...newEvents, ...state.events], valid)
-  for (const event of [...newEvents, ...state.events]) { event.factType = factType(event); event.title = factualTitle(event); event.editorial = editorialAssessment(event, +now) }
+  for (const event of [...newEvents, ...state.events]) { if(typeof event.before==='number')event.beforeText=displayValue(event.before,event.unit);if(typeof event.after==='number')event.afterText=displayValue(event.after,event.unit);event.factType = factType(event); event.title = factualTitle(event); event.editorial = editorialAssessment(event, +now) }
   state.events = [...newEvents, ...state.events].sort((a, b) => b.detectedAt.localeCompare(a.detectedAt) || a.id.localeCompare(b.id))
   // A later revision can invalidate an already emitted cross-period movement.
   // Keep its audit record, but never publish/retry a signal whose baseline or
@@ -208,11 +221,11 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
     [event.beforePeriod, event.period].some(period => disputed.has(`${observationKey(event)}:${period}`))) {
     event.status = 'source-conflict'
   }
-  const publishableNewEvents = newEvents.filter(event => !['source-conflict', 'wording-only'].includes(event.status))
+  const publishableNewEvents = newEvents.filter(event => event.observationStatus !== 'pending' && !['source-conflict', 'wording-only'].includes(event.status))
   // Enrich an existing announcement without inventing a second launch alert.
   for (const row of valid.filter(row => row.family === 'etf' && row.field === 'announcement' && row.launchDetails)) {
     for (const event of state.events.filter(event => event.entity === row.entity && event.period === row.period && event.label === row.label)) {
-      for (const key of ['sourceDeclaredPublicationDate', 'publicationDateNote', 'housing', 'qualification', 'extraction', 'dossierKey', 'relationship', 'productDossiers', 'supportingCalendarEvidence', 'exposureKey', 'launchDetails', 'products', 'announcementEvidence', 'calendarEvidence', 'evidence', 'publicationId', 'publishedAt', 'referencePeriod', 'population', 'populationScope', 'topic', 'summary', 'publisher', 'factType', 'backfill', 'documentUrl', 'documentCheckedAt', 'documentHash']) event[key] = row[key]
+      for (const key of ['compositionEvidence', 'compositionEventKey', 'sourceDeclaredPublicationDate', 'publicationDateNote', 'housing', 'qualification', 'extraction', 'dossierKey', 'relationship', 'productDossiers', 'supportingCalendarEvidence', 'exposureKey', 'launchDetails', 'products', 'announcementEvidence', 'calendarEvidence', 'evidence', 'publicationId', 'publishedAt', 'referencePeriod', 'population', 'populationScope', 'topic', 'summary', 'publisher', 'factType', 'backfill', 'documentUrl', 'documentCheckedAt', 'documentHash']) event[key] = row[key]
     }
   }
   for(const row of valid.filter(row=>row.discovery && row.parserMigration))for(const event of state.events)if(event.entity===row.entity && event.publicationId===row.publicationId && !event.correctionOf){
@@ -250,6 +263,7 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
   const counts = Object.fromEntries(Object.keys(FAMILIES).map(family => [family, new Set(valid.filter(o => o.family === family).map(o => o.entity)).size]))
   // All history stays in the state branch. The public feed is bounded.
   const purchasingItems = Object.values(state.current).filter(o => o.family === 'pouvoir-achat').sort((a, b) => b.period.localeCompare(a.period) || a.label.localeCompare(b.label)).slice(0, 120)
-  const feed = { purchasingPower: { sources: purchasingSources, items: purchasingItems }, schemaVersion: 1, initializedAt: state.initializedAt, checkedAt: stamp, sourceRevision, observationCount: valid.length, coverage: counts, newSignalCount: publishableNewEvents.length, errors: issues, events: state.events.filter(event => !event.editorialExcluded && !editorialExclusion(event) && !['source-conflict', 'wording-only'].includes(event.status) && editorialState(event) !== 'secondary').concat(state.events.filter(event => !event.editorialExcluded && !editorialExclusion(event) && !['source-conflict', 'wording-only'].includes(event.status) && editorialState(event) === 'secondary').slice(0, 500)), thresholds: { compositionPoints: 2, aumRelativePct: 20, occupancyPoints: 2 }, calendar: valid.filter(row => row.effectiveAt).map(row => ({ id: row.publicationId, title: row.label, date: row.effectiveAt, status: 'Entrée en vigueur annoncée', sourceUrl: row.sourceUrl, publishedAt: row.publishedAt, checkedAt: row.checkedAt, note: 'Date annoncée ; ne prouve pas une nouvelle publication ni son application effective.' })), scopeNote: 'Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.' }
+  const observationReviews=Object.values(state.compositionReviews??{}).map(r=>({id:r.id,reason:r.reason,firstSeenAt:r.firstSeenAt,lastAttemptAt:r.lastAttemptAt,resolvedAt:r.resolvedAt??null,entity:r.observations?.[0]?.entity??r.observation?.entity,period:r.observations?.[0]?.period??r.observation?.period,sourceUrl:r.observations?.[0]?.sourceUrl??r.observation?.sourceUrl}))
+  const feed = { observationReviews, purchasingPower: { sources: purchasingSources, items: purchasingItems }, schemaVersion: 1, initializedAt: state.initializedAt, checkedAt: stamp, sourceRevision, observationCount: valid.length, coverage: counts, newSignalCount: publishableNewEvents.length, errors: issues, events: state.events.filter(event => !event.editorialExcluded && !editorialExclusion(event) && !['source-conflict', 'wording-only'].includes(event.status) && editorialState(event) !== 'secondary').concat(state.events.filter(event => !event.editorialExcluded && !editorialExclusion(event) && !['source-conflict', 'wording-only'].includes(event.status) && editorialState(event) === 'secondary').slice(0, 500)), thresholds: { compositionPoints: 2, aumRelativePct: 20, occupancyPoints: 2 }, calendar: valid.filter(row => row.effectiveAt).map(row => ({ id: row.publicationId, title: row.label, date: row.effectiveAt, status: 'Entrée en vigueur annoncée', sourceUrl: row.sourceUrl, publishedAt: row.publishedAt, checkedAt: row.checkedAt, note: 'Date annoncée ; ne prouve pas une nouvelle publication ni son application effective.' })), scopeNote: 'Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.' }
   return { state, feed, newEvents: publishableNewEvents }
 }
