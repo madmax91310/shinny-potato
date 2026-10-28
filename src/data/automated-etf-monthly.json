@@ -204869,7 +204869,7 @@
       "checkedAt": "2026-10-28",
       "method": "Série de performance officielle de la part exacte 2D couverte en EUR, nette des frais et dividendes réinvestis ; aucun dividende ajouté, aucune cotation de marché remplacée ; pas de qualification des prix historiques",
       "maxAgeDays": 7,
-      "sha256": "c941ecd35162b3e088b9e74eaaafde97eb3b55cadf35f4cae910f5441cbf3113"
+      "sha256": "02858b0e5319b400bdfeaea09a1068dce302fcba505cbeef102233f87f0f9ce9"
     },
     "nativeValuationCurrency": "EUR",
     "lastOfficialValuation": "2026-10-27",
@@ -205635,6 +205635,16 @@
         "chartLevel": 106.177529,
         "officialCurrentNav": 96.2366
       },
+      "requestedStart": "2018-12-01",
+      "controlledCalendarYears": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
       "controlledInstrument": "LU1875395870",
       "controlledFields": [
         "ISIN",
@@ -205722,10 +205732,10 @@
         }
       ]
     },
-    "responseSha256": "c941ecd35162b3e088b9e74eaaafde97eb3b55cadf35f4cae910f5441cbf3113",
+    "responseSha256": "02858b0e5319b400bdfeaea09a1068dce302fcba505cbeef102233f87f0f9ce9",
     "rawSourceHashes": {
-      "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/pdpMetaTagsTealium": "4b125c4763b9b9ba866f46678eaf924a4ab7e81904d9cf623743053b1ba03d9a",
-      "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/historicaldata/download?startDate=2018-11-06&endDate=2026-10-28&includeTax=false": "d6dcb6026e718bd2fb853951839c45aad97d4beee933b07fc324f6223c15f3f0",
+      "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/pdpMetaTagsTealium": "050d54a640efc2f16878f61c499277085d29a55c466d001477dae63841d72a0d",
+      "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/historicaldata/download?startDate=2018-11-06&endDate=2026-10-28&includeTax=false": "072c2ea55d111a10bc3de36cc622b37923f15ae0bb459073c79f1be274b9cda3",
       "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/performancechart": "5c99d8f5dcbbb837bc25ccd77f6189268c5f17930f27735f76f89a54837f7283"
     }
   },
@@ -208319,12 +208329,14 @@
       "checkedAt": "2026-10-28",
       "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
       "maxAgeDays": 7,
-      "sha256": "e564bd82e0d0afd3a93ec802d9acfd981350d67595e2a7e0cb143ad0cd754d45"
+      "sha256": "7212baaca9cd5c8e94234d57543bf2e3b9a9a15baa17a56a9511b075cd263a69"
     },
     "nativeValuationCurrency": "USD",
     "lastOfficialValuation": "2026-10-27",
     "financialConvention": "exact-share accumulated net NAV; no exchange-price claim",
     "calendarProof": {
+      "controlledInstrument": "IE00BK5BCD43",
+      "requestedStart": "2019-07-02",
       "identityFrom": "2019-07-02",
       "shareClassId": 4516,
       "nativeCurrency": "USD",
@@ -208372,6 +208384,14 @@
         "currency": "USD"
       },
       "cashAddedByApplication": false,
+      "controlledCalendarYears": [
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
       "checks": [
         {
           "year": 2020,
@@ -208435,10 +208455,10 @@
         }
       ]
     },
-    "responseSha256": "e564bd82e0d0afd3a93ec802d9acfd981350d67595e2a7e0cb143ad0cd754d45",
+    "responseSha256": "7212baaca9cd5c8e94234d57543bf2e3b9a9a15baa17a56a9511b075cd263a69",
     "rawSourceHashes": {
       "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1": "20d1267ec4f6c962c75650d03b1af38ed520124d0d754e4f0c9e8311ca82a56a",
-      "https://fundcentres.landg.com/en/uk/institutional/fund-centre/ETF/Artificial-Intelligence/IE00BK5BCD43/": "7ae7986d2e27d0fa12973926a0fe358989c44b787ee3d5f1870cc4e1f128ca86",
+      "https://fundcentres.landg.com/en/uk/institutional/fund-centre/ETF/Artificial-Intelligence/IE00BK5BCD43/": "cb529d2487016d77959ba02a1c29fb205f52b720d9d5efcf1900d771536f0403",
       "https://fundcentres.landg.com/srp/api/price-history/4516?pricetype_id=84&pricetype_id=87": "0c4db6404655e8929f4ce9c321b2ceb4d65b8ff9b04d498758a41cf15d82d5e8"
     }
   },
@@ -208777,12 +208797,14 @@
       "checkedAt": "2026-10-28",
       "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
       "maxAgeDays": 7,
-      "sha256": "d100d3fd38579a3c4da1a052013594e59dfe0727f7fd47e4958bd2e048b7d333"
+      "sha256": "3dec5a606186ae96839078e94a1c17a7fa3c98014d0d91b0217a9b15f8462e42"
     },
     "nativeValuationCurrency": "USD",
     "lastOfficialValuation": "2026-10-27",
     "financialConvention": "exact-share accumulated net NAV; no exchange-price claim",
     "calendarProof": {
+      "controlledInstrument": "IE00BK5BCH80",
+      "requestedStart": "2020-11-11",
       "identityFrom": "2020-11-11",
       "shareClassId": 5185,
       "nativeCurrency": "USD",
@@ -208814,6 +208836,13 @@
         "currency": "USD"
       },
       "cashAddedByApplication": false,
+      "controlledCalendarYears": [
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
       "checks": [
         {
           "year": 2021,
@@ -208867,10 +208896,10 @@
         }
       ]
     },
-    "responseSha256": "d100d3fd38579a3c4da1a052013594e59dfe0727f7fd47e4958bd2e048b7d333",
+    "responseSha256": "3dec5a606186ae96839078e94a1c17a7fa3c98014d0d91b0217a9b15f8462e42",
     "rawSourceHashes": {
       "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1": "20d1267ec4f6c962c75650d03b1af38ed520124d0d754e4f0c9e8311ca82a56a",
-      "https://fundcentres.landg.com/en/uk/institutional/fund-centre/ETF/Clean-Energy/IE00BK5BCH80/": "36a1d0c8afd15382ca4011f594c21fe86c70407ebe4c5e963cd205b807e95210",
+      "https://fundcentres.landg.com/en/uk/institutional/fund-centre/ETF/Clean-Energy/IE00BK5BCH80/": "c5b11b2cbbe6c3c4d87e6245788f7a916e873dd5d36956edad967b91117d0d02",
       "https://fundcentres.landg.com/srp/api/price-history/5185?pricetype_id=84&pricetype_id=87": "0b8970d8a1222bd2f50a157bb2546045063f53bfd44b6d368dd78c9da96ccacf"
     }
   }

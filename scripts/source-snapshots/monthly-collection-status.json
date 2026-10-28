@@ -4019,6 +4019,44 @@
       "checkedAt": "2026-10-27T12:54:57.668248+00:00",
       "periodEnd": "2026-09",
       "responseSha256": "50eccea911102366b56155773d74ccd8bdd3544e14429ef554daddb587006f94"
+    },
+    "etfLU1875395870Nav": {
+      "status": "validated",
+      "checkedAt": "2026-10-28T21:06:49.098541+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "02858b0e5319b400bdfeaea09a1068dce302fcba505cbeef102233f87f0f9ce9"
+    },
+    "etfGB00B15KXQ89Nav": {
+      "status": "failed",
+      "checkedAt": "2026-10-28T21:06:49.098541+00:00",
+      "reason": "Official NAV XLSX POST failed at https://www.wisdomtree.com/api/fund-history/1000073/historical-data-export: Official same-origin browser export failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-history.mjs:11\n if(!response?.ok()||new URL(page.url()).origin!==url.origin||new URL(page.url()).pathname.split('/').at(-1)!==pageUrl.pathname.split('/').at(-1))throw Error('Official identity page unavailable: '+response?.status())\n                                                                                                                                                        ^\n\nError: Official identity page unavailable: 403\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-history.mjs:11:153\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n\nNode.js v20.20.2\n"
+    },
+    "etc_brent_crude_oilNav": {
+      "status": "failed",
+      "checkedAt": "2026-10-28T21:06:49.098541+00:00",
+      "reason": "Official NAV XLSX POST failed at https://www.wisdomtree.com/api/fund-history/1000279/historical-data-export: Official same-origin browser export failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-history.mjs:11\n if(!response?.ok()||new URL(page.url()).origin!==url.origin||new URL(page.url()).pathname.split('/').at(-1)!==pageUrl.pathname.split('/').at(-1))throw Error('Official identity page unavailable: '+response?.status())\n                                                                                                                                                        ^\n\nError: Official identity page unavailable: 403\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-history.mjs:11:153\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n\nNode.js v20.20.2\n"
+    },
+    "etc_wti_crude_oilNav": {
+      "status": "failed",
+      "checkedAt": "2026-10-28T21:06:49.098541+00:00",
+      "reason": "Official NAV XLSX POST failed at https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export: Official same-origin browser export failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-history.mjs:11\n if(!response?.ok()||new URL(page.url()).origin!==url.origin||new URL(page.url()).pathname.split('/').at(-1)!==pageUrl.pathname.split('/').at(-1))throw Error('Official identity page unavailable: '+response?.status())\n                                                                                                                                                        ^\n\nError: Official identity page unavailable: 403\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-history.mjs:11:153\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n\nNode.js v20.20.2\n"
+    },
+    "etc_coffeeNav": {
+      "status": "failed",
+      "checkedAt": "2026-10-28T21:06:49.098541+00:00",
+      "reason": "Official NAV XLSX POST failed at https://www.wisdomtree.com/api/fund-history/1000072/historical-data-export: Official same-origin browser export failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-history.mjs:11\n if(!response?.ok()||new URL(page.url()).origin!==url.origin||new URL(page.url()).pathname.split('/').at(-1)!==pageUrl.pathname.split('/').at(-1))throw Error('Official identity page unavailable: '+response?.status())\n                                                                                                                                                        ^\n\nError: Official identity page unavailable: 403\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-history.mjs:11:153\n\nNode.js v20.20.2\n"
+    },
+    "etfIE00BK5BCD43Nav": {
+      "status": "validated",
+      "checkedAt": "2026-10-28T21:06:49.098541+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "7212baaca9cd5c8e94234d57543bf2e3b9a9a15baa17a56a9511b075cd263a69"
+    },
+    "etfIE00BK5BCH80Nav": {
+      "status": "validated",
+      "checkedAt": "2026-10-28T21:06:49.098541+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "3dec5a606186ae96839078e94a1c17a7fa3c98014d0d91b0217a9b15f8462e42"
     }
   }
 }
