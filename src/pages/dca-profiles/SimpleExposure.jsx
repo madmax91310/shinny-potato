@@ -19,8 +19,9 @@ export default function SimpleExposure({isin}){
  const [lines,setLines]=useState(()=>confirmLines(saved?.lines.map(l=>({...l,weight:l.weight===null?NaN:l.weight}))||[])),[field,setField]=useState(saved?.field||'all')
  const [saveError,setSaveError]=useState(false)
  const [exposureLimit,setExposureLimit]=useState(saved?.exposureLimit||4),[showAnalysis,setShowAnalysis]=useState(false),[showCompanies,setShowCompanies]=useState(saved?.showCompanies===true)
- useEffect(()=>{setSaveError(!writePreference(draftKey,{lines,field,exposureLimit,showCompanies},validDraft))},[lines,field,exposureLimit,showCompanies])
- const profile={id:'expositions',name:'',scope:'Portefeuille investi',imageOnly:true,lines,exposureLimit,showCompanies}
+ const [analysisView,setAnalysisView]=useState(saved?.analysisView)
+ useEffect(()=>{setSaveError(!writePreference(draftKey,{lines,field,exposureLimit,showCompanies,analysisView},validDraft))},[lines,field,exposureLimit,showCompanies,analysisView])
+ const profile={id:'expositions',name:'',scope:'Portefeuille investi',imageOnly:true,lines,exposureLimit,showCompanies,analysisView}
  const records=useSelectedRecords(lines.map(line=>line.asset),exposureRecords)
  const analysis=analyzeProfile(profile)
  const total=profile.lines.reduce((sum,line)=>sum+(Number.isFinite(line.weight)?line.weight:0),0)
@@ -34,7 +35,7 @@ export default function SimpleExposure({isin}){
    <section className="dca-simple-card" aria-label="Composer les expositions">
     <AllocationEditor lines={lines} onChange={setLines}/>
     <ImageOptions field={field} onFieldChange={setField} limit={exposureLimit} onLimitChange={setExposureLimit} showCompanies={showCompanies} onCompaniesChange={setShowCompanies}/>
-    <Portfolios profile={profile} field={field} onLoad={item=>{setLines(confirmLines(item.profile.lines));setExposureLimit(item.profile.exposureLimit||4);setField(item.field);setShowCompanies(item.profile.showCompanies===true)}}/>
+    <Portfolios profile={profile} field={field} onLoad={item=>{setLines(confirmLines(item.profile.lines));setExposureLimit(item.profile.exposureLimit||4);setField(item.field);setShowCompanies(item.profile.showCompanies===true);setAnalysisView(item.profile.analysisView)}}/>
    </section>
    <ImageExport image={image} reason={reason} filename="epargnant-libre-expositions.png" alt="Répartition et expositions du portefeuille">
     {records.error&&<button className="dca-secondary" onClick={records.retry}>Réessayer les données</button>}
@@ -62,7 +63,7 @@ export default function SimpleExposure({isin}){
       {!!v.excludedAssets.length&&<p>Hors de ce donut : {v.excludedAssets.map(r=>`${r.name} (${pct(r.weight)} du portefeuille)`).join(', ')}.</p>}
      </section>})}
     </details>}
-   {showAnalysis&&<Suspense fallback={<p role="status">Chargement de l’analyse…</p>}><Analytics profile={profile} analysis={analysis}/></Suspense>}
+   {showAnalysis&&<Suspense fallback={<p role="status">Chargement de l’analyse…</p>}><Analytics profile={profile} analysis={analysis} onViewChange={setAnalysisView}/></Suspense>}
   </details>}
  </div>
 }
