@@ -410,3 +410,6 @@
 .pg-method-summary { color: var(--ui-muted, #626a7a); font-size: .8rem; line-height: 1.5; }
 
 .pg-history-links { font-size: 0.75rem; overflow-wrap: anywhere; }
+
+.pg-model-explanation ul { margin: 0; padding-left: 20px; font-size: 0.84rem; line-height: 1.6; color: var(--ink-dim); }
+.pg-model-explanation a { overflow-wrap: anywhere; }
