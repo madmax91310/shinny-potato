@@ -1,5 +1,6 @@
 """Allow revalidation only across explicitly independent financial outputs."""
 import argparse
+import json
 import subprocess
 
 INDEPENDENT = {
@@ -54,11 +55,57 @@ ALLOWED = {
 }
 
 
+# These registries also supply the official calendars used by the independent
+# WisdomTree NAV qualifier. AUM-only publications remain independent; changing
+# a used calendar, convention or identity requires fresh acquisition.
+MARKET_CALENDAR_REGISTRIES = {
+    'src/data/automated-etf.json', 'src/data/non-bond-etf-records.json',
+}
+
+def git_json(ref, path):
+    return json.loads(subprocess.check_output(['git', 'show', f'{ref}:{path}'], text=True))
+
+
+def calendar_inputs_unchanged(base, upstream, path):
+    config = git_json(base, 'scripts/monthly-automation.json')
+    series = config['series']
+    if not isinstance(series, list):
+        raise ValueError('Invalid calendar acquisition configuration')
+    consumers = [s for s in series if s.get('parser') == 'official-nav'
+                 and s.get('calendarRegistry') == path]
+    if not consumers:
+        return True  # Legacy collectors do not acquire from this registry.
+    before, after = git_json(base, path), git_json(upstream, path)
+    def signature(registry, isin):
+        row = registry[isin]
+        performance = row['performance']
+        if not isinstance(performance.get('years'), dict) or not performance['years']:
+            raise ValueError('Missing calendar acquisition values')
+        # Proof/control timestamps and hashes are not financial inputs. Keep
+        # the original receipt dated as acquired; never borrow a newer check.
+        return {key: row.get(key) for key in ('productId', 'currency')} | {
+            'performance': {k: v for k, v in performance.items()
+                            if k not in ('checkedAt', 'asOf', 'sha256')}
+        }
+    return all(signature(before, s['isin']) == signature(after, s['isin'])
+               for s in consumers)
+
+
 def check(kind, base, upstream):
     paths = subprocess.check_output(
         ['git', 'diff', '--name-only', '--no-renames', '-z', base, upstream],
         text=True).split('\0')
-    blocked = sorted(p for p in paths if p and p not in ALLOWED[kind])
+    blocked = []
+    for path in filter(None, paths):
+        if path not in ALLOWED[kind]:
+            blocked.append(path)
+        elif kind == 'market' and path in MARKET_CALENDAR_REGISTRIES:
+            try:
+                if not calendar_inputs_unchanged(base, upstream, path):
+                    blocked.append(path)
+            except (KeyError, TypeError, ValueError, subprocess.CalledProcessError):
+                blocked.append(path)  # Unknown acquisition dependencies fail closed.
+    blocked.sort()
     if blocked:
         raise ValueError('Collection inputs may have changed; recollect from master: ' + ', '.join(blocked))
     return sorted(p for p in paths if p)

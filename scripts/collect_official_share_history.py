@@ -104,7 +104,8 @@ def configurations():
             sourceUrl='https://www.vaneck.com/DK/en/investments/mining-etf/',
             factsheetUrl='https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf'),
         'etfGB00B15KXQ89':dict(navProvider='wisdomtree',navCurrency='USD',
-            sourceUrl='https://www.wisdomtree.com/ie/products/commodities/wisdomtree-copper'),
+            sourceUrl='https://www.wisdomtree.com/ie/products/commodities/wisdomtree-copper',
+            navHistoryTransport='official-xlsx-post',wisdomClassId=1000073),
     }
     result = []
     for id in IDS:
@@ -137,10 +138,19 @@ def daily_nav_fx_factor(native, currency, latest, body):
     return day.isoformat(),rates[day][currency]/rates[day][native]
 
 
+_LANDG_CATALOGUE_LOCK=threading.Lock()
+@functools.lru_cache(maxsize=8)
+def _landg_catalogue(fetch,url):
+    # One source consultation shared by exact-share qualifications in this
+    # process, never a persisted cache presented as a new source control.
+    return fetch(url)
+
+
 def collect_one(source, now, json_fetch=get_json, document_fetch=download, capture=None):
     urls, hashes = [], {}
-    def document(url):
-        if url==VANECK_CHART_URL:
+    def document(url, supplied=None):
+        if supplied is not None:body=supplied
+        elif url==VANECK_CHART_URL:
             # A single shared request even when the monthly producer collects
             # several UCITS funds concurrently. Cache lasts only this process.
             with _VANECK_CHART_LOCK:body=_vaneck_chart_body(document_fetch)
@@ -151,7 +161,10 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
             (capture/(hashes[url]+'.bin.gz')).write_bytes(gzip.compress(body))
         return body
     def data(url):
-        value=json_fetch(url);body=json.dumps(value,sort_keys=True,separators=(',',':')).encode()
+        if source.get('navProvider')=='landg'and url==source.get('catalogueUrl'):
+            with _LANDG_CATALOGUE_LOCK:value=_landg_catalogue(json_fetch,url)
+        else:value=json_fetch(url)
+        body=json.dumps(value,sort_keys=True,separators=(',',':')).encode()
         urls.append(url);hashes[url]=hashlib.sha256(body).hexdigest()
         if capture:
             capture.mkdir(parents=True,exist_ok=True)
@@ -197,22 +210,30 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     elif kind=='dws':
         from collect_dws_etf import parse_product
         body=data(source['sourceUrl']);facts=parse_product(body,{'isin':isin,'currency':native,'sourceUrl':source['sourceUrl']},now)
-        if facts['distribution']!='Capitalizing':raise ValueError('DWS NAV reinvestment not qualified')
-        policy=source.get('dwsIdentityBasis')
-        if policy not in (None,'share-class-launch'):raise ValueError('Unqualified DWS identity policy')
-        if policy=='share-class-launch':
-            if not identity_from or facts['characteristics'].get('inceptionDate')!=identity_from or source['periodStart']<identity_from[:7]:
-                raise ValueError('DWS exact share launch identity changed')
-            start=identity_from
-        else:start='2015-06-26'
-        url=source['sourceUrl'].rsplit('/',1)[0]+'/historicaldata/download?'+urllib.parse.urlencode({'startDate':start,'endDate':now.date().isoformat(),'includeTax':'false'})
-        nav=dws_nav(document(url),isin,native,now);years=facts['performance']['years'];credit='DWS Xtrackers'
-        if policy=='share-class-launch':
-            calendar_proof={'identityFrom':identity_from,'identityBasis':policy,'incomeTreatment':facts['distribution']}
+        if source.get('navHistoryKind')=='official-income-reinvested-chart':
+            from dws_income_history import qualify
+            url=source['sourceUrl'].rsplit('/',1)[0]+'/historicaldata/download?'+urllib.parse.urlencode({'startDate':source['identityFrom'],'endDate':now.date().isoformat(),'includeTax':'false'})
+            raw_nav=dws_nav(document(url),isin,native,now)
+            chart=data(source['sourceUrl'].rsplit('/',1)[0]+'/performancechart')
+            nav,calendar_proof=qualify(body,chart,facts,source,raw_nav,now)
+            years=facts['performance']['years'];credit='DWS Xtrackers'
         else:
-            notes=' '.join(t.get('text','') for tab in body['pdpResult']['pageSections']['performanceSection']['performanceTables']['tabs'] if tab['header']=='Calendar year' for t in tab.get('disclaimerHtml',[]))
-            if '26 June 2015' not in notes or 'Luxembourg' not in notes:raise ValueError('DWS merger identity evidence changed')
-            calendar_proof={'identityFrom':identity_from,'mergerNote':notes}
+            if facts['distribution']!='Capitalizing':raise ValueError('DWS NAV reinvestment not qualified')
+            policy=source.get('dwsIdentityBasis')
+            if policy not in (None,'share-class-launch'):raise ValueError('Unqualified DWS identity policy')
+            if policy=='share-class-launch':
+                if not identity_from or facts['characteristics'].get('inceptionDate')!=identity_from or source['periodStart']<identity_from[:7]:
+                    raise ValueError('DWS exact share launch identity changed')
+                start=identity_from
+            else:start='2015-06-26'
+            url=source['sourceUrl'].rsplit('/',1)[0]+'/historicaldata/download?'+urllib.parse.urlencode({'startDate':start,'endDate':now.date().isoformat(),'includeTax':'false'})
+            nav=dws_nav(document(url),isin,native,now);years=facts['performance']['years'];credit='DWS Xtrackers'
+            if policy=='share-class-launch':
+                calendar_proof={'identityFrom':identity_from,'identityBasis':policy,'incomeTreatment':facts['distribution']}
+            else:
+                notes=' '.join(t.get('text','') for tab in body['pdpResult']['pageSections']['performanceSection']['performanceTables']['tabs'] if tab['header']=='Calendar year' for t in tab.get('disclaimerHtml',[]))
+                if '26 June 2015' not in notes or 'Luxembourg' not in notes:raise ValueError('DWS merger identity evidence changed')
+                calendar_proof={'identityFrom':identity_from,'mergerNote':notes}
     elif kind=='ssga':
         from collect_ssga_etf import Inputs, parse_page
         page=document(source['sourceUrl']).decode(); parsed=Inputs(); parsed.feed(page)
@@ -257,12 +278,39 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
                 'product_performance_metrics.performance_monthly','product_performance_metrics.performance_details'],
             'historicFxQualification':'Existing validated monthly ECB observations; not a new historic ECB source consultation'}
     elif kind=='wisdomtree':
-        identity=wisdomtree_identity(document(source['sourceUrl']).decode(),isin)
+        export_body=None
+        if source.get('navHistoryTransport')=='official-xlsx-post':
+            from wisdomtree_nav_export import download_with_identity as export_download,payload as export_payload,parse as export_parse
+            url=f"https://www.wisdomtree.com/api/fund-history/{source['wisdomClassId']}/historical-data-export"
+            request=export_payload(source,now)
+            try:export_body,export_identity_body,export_transport=export_download(url,request,source['sourceUrl'])
+            except Exception as error:raise ValueError('Official NAV XLSX POST failed at '+url+': '+str(error))from error
+            urls.append(url);hashes[url]=hashlib.sha256(export_body).hexdigest()
+            if capture:
+                capture.mkdir(parents=True,exist_ok=True)
+                (capture/(hashes[url]+'.xlsx.gz')).write_bytes(gzip.compress(export_body))
+                (capture/(hashes[url]+'.request.json')).write_text(json.dumps(request,indent=2)+'\n')
+        try:identity=wisdomtree_identity(document(source['sourceUrl'],supplied=export_identity_body if export_body is not None else None).decode(),isin)
+        except Exception as error:raise ValueError('Official share identity failed at '+source['sourceUrl']+': '+str(error))from error
         if identity['fundCurrency']!=native or identity['useOfIncome']!='N/A':raise ValueError('Commodity currency/income changed')
-        url=f"https://www.wisdomtree.com/api/fund-history/{identity['wtClassID']}?view=navHistoryModal"
-        nav=wisdomtree_nav(data(url),now);credit='WisdomTree'
-        calendar_proof={'publicProduct':{k:identity.get(k)for k in ['ISIN','wtClassID','fundCurrency','useOfIncome','inceptionDt','NAV_Date']}}
-        years=json.loads((ROOT/'src/data/automated-etf.json').read_text())[isin]['performance']['years']
+        if export_body is not None:nav=export_parse(export_body,identity,source,now)
+        else:
+            url=f"https://www.wisdomtree.com/api/fund-history/{identity['wtClassID']}?view=navHistoryModal"
+            nav=wisdomtree_nav(data(url),now)
+        credit='WisdomTree'
+        registry=source.get('calendarRegistry','src/data/automated-etf.json')
+        if registry not in ['src/data/automated-etf.json','src/data/non-bond-etf-records.json','src/data/exposure-etf-expansion-records.json']:raise ValueError('Unqualified WisdomTree calendar registry')
+        performance=json.loads((ROOT/registry).read_text())[isin]['performance']
+        if performance['currency']!=native or performance['basis']!='fund':raise ValueError('WisdomTree shared calendar convention changed')
+        calendar_proof={'calendarRegistry':registry,'calendarRegistryPerformanceHash':hashlib.sha256(json.dumps(performance,sort_keys=True,separators=(',',':')).encode()).hexdigest(),'controlledInstrument':isin,'controlledFields':['ISIN','wtClassID','fundCurrency','useOfIncome','historical-data-export.NAV','historical-data-export.Date','calendarRegistry.performance'],'requestedStart':source['periodStart']+'-01','controlledCalendarYears':sorted(performance['years']),'publicProduct':{k:identity.get(k)for k in ['ISIN','wtClassID','fundCurrency','useOfIncome','inceptionDt','NAV_Date']},'calendarSource':{k:performance.get(k)for k in ['sourceUrl','sha256','asOf','checkedAt','method']},'calendarSourceConsultedByThisCollector':False,'navHistoryTransport':source.get('navHistoryTransport','nav-modal-json'),**({'actualNavTransport':export_transport}if export_body is not None else{})}
+        years=performance['years']
+    elif kind=='landg':
+        from landg_nav_history import identity as landg_identity,parse as landg_parse,product_page as landg_page
+        catalogue=data(source['catalogueUrl'])
+        page=(landg_page(source['sourceUrl'])if document_fetch is download else document_fetch(source['sourceUrl']))
+        url,facts,calendar_proof=landg_identity(document(source['sourceUrl'],supplied=page),catalogue,source,now)
+        nav,calendar_proof=landg_parse(document(url),source,catalogue,calendar_proof,now)
+        years=facts['performance']['years'];identity_from=source['identityFrom'];credit='L&G'
     elif kind=='vaneck':
         title=source.get('navTitle') or ('VanEck S&P Global Mining UCITS ETF - GDIG' if isin=='IE00BDFBTQ78' else None)
         if not title:raise ValueError('Unregistered VanEck exact NAV context')
@@ -323,7 +371,14 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
                 item.update(qualified=False,reason=str(error))
             outside.append(item)
         if outside:calendar_proof['outsideSuppliedWindowChecks']=outside
-    checks=calendar_checks(checked_nav,years,calendar_precision,now,identity_from)
+    if source.get('returnWindowQualification')=='corroborated-calendars':
+        if kind!='wisdomtree'or source.get('navHistoryTransport')!='official-xlsx-post':raise ValueError('Unqualified partial return-window policy')
+        from wisdomtree_nav_export import qualify_return_windows
+        checks,withheld=qualify_return_windows(checked_nav,performance,source,now)
+        calendar_proof['historyUnqualifiedReturnWindows']=withheld
+        calendar_proof['qualifiedCalendarYears']=[c['year']for c in checks]
+        calendar_proof['qualificationScope']='Only independent corroborated return intervals; unresolved official daily/calendar differences remain refused. No price interpolation or threshold change.'
+    else:checks=calendar_checks(checked_nav,years,calendar_precision,now,identity_from)
     fx=json.loads((ROOT/'src/data/monthly-fx.json').read_text())
     points,proof_rows=monthly(nav,native,source['currency'],source['periodStart'],now,fx)
     points=[[d,math.floor(v*10**source['precision']+.5)/10**source['precision']]for d,v in points]
@@ -352,32 +407,42 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
        'fxAsOf':fx_date,'fxFactor':factor,'sourceUrl':urls[0],'sourceUrls':urls,'checkedAt':now.date().isoformat(),
        'method':'Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire'if anniversary_nav else source['method']if source.get('navHistoryKind')else'Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire',
        'maxAgeDays':daily_policy['dataDays'],'sha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest()}
-    result={**source,'points':points,'anniversaryPoints':anniversary_points,**({'anniversaryValuationBasis':'fund-nav-price','anniversaryVariant':'Valeurs liquidatives publiées · hors distributions'}if anniversary_nav else{}),'checkedAt':now.date().isoformat(),
+    observation_hashes={**hashes,**({'cachedCalendarPerformance':calendar_proof['calendarRegistryPerformanceHash']}if 'calendarRegistryPerformanceHash'in calendar_proof else{})}
+    result={**source,'points':points,**({'anniversaryPoints':anniversary_points}if source.get('collectAnniversary') is not False else {'anniversaryAvailable':False}),**({'anniversaryValuationBasis':'fund-nav-price','anniversaryVariant':'Valeurs liquidatives publiées · hors distributions'}if anniversary_nav else{}),'checkedAt':now.date().isoformat(),
             'periodEnd':points[-1][0],'sourceUrls':urls,'sourceCredit':credit,
             'latestLevel':latest_level,'nativeValuationCurrency':native,'lastOfficialValuation':max(nav),
             'financialConvention':('exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim'if source.get('navHistoryKind')else'exact-share accumulated net NAV; no exchange-price claim'),
             'calendarProof':{**calendar_proof,'checks':checks},
-            **({key:calendar_proof[key]for key in ['historyExcludedMonths','anniversaryExcludedMonths']if key in calendar_proof}),
+            **({key:calendar_proof[key]for key in ['historyExcludedMonths','anniversaryExcludedMonths','historyUnqualifiedReturnWindows']if key in calendar_proof}),
             'proofRows':proof_rows,
-            'responseSha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest(),
+            'responseSha256':hashlib.sha256(json.dumps(observation_hashes,sort_keys=True).encode()).hexdigest(),
             'rawSourceHashes':hashes}
     return result
 
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--only',nargs='+',choices=[s['id'] for s in configurations()])
+    selection=parser.add_mutually_exclusive_group()
+    selection.add_argument('--only',nargs='+',choices=[s['id'] for s in configurations()])
     parser.add_argument('--capture-dir',type=pathlib.Path)
+    selection.add_argument('--missing-source-controls',action='store_true',help='Only configured official NAV identities without an ordinary monthly source-control record')
     parser.add_argument('--output',type=pathlib.Path,required=True)
     parser.add_argument('--apply',action='store_true')
     parser.add_argument('--migrate-quote-records',action='store_true',help='One-off reviewed migration; archive original quotes/configurations')
     args=parser.parse_args();now=dt.datetime.now(UTC);results=[]
     sources=[s for s in configurations()if not args.only or s['id']in args.only]
+    if args.missing_source_controls:
+        registered={r['id']:r for r in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']}
+        observed=json.loads((ROOT/'scripts/source-snapshots/monthly-collection-status.json').read_text()).get('series',{})
+        sources=[s for s in sources if registered.get(s['id'],{}).get('parser')=='official-nav'and s['id']not in observed]
     scope={'requestedIds':args.only or [s['id']for s in sources],'expectedIds':[s['id']for s in sources]}
+    if args.missing_source_controls:
+        scope['selection']='configured-official-nav-without-ordinary-source-control'
+        if not sources:scope['emptyReason']='No newly configured identity lacks an ordinary source-control record; existing failures are not retried or resolved by this check.'
     for source in sources:
         try:
             record=collect_one(source,now,capture=args.capture_dir)
-            results.append({'id':source['id'],'status':'validated','record':record})
+            results.append({'id':source['id'],'status':'validated','record':record,**({'usageState':'partial','usageLimits':{'historyUnqualifiedReturnWindows':record['historyUnqualifiedReturnWindows']}}if record.get('historyUnqualifiedReturnWindows')else{})})
             print(source['id'],'validated',len(record['points']),'months',flush=True)
         except Exception as error:
             results.append({'id':source['id'],'status':'failed','reason':str(error)})
@@ -426,7 +491,9 @@ def main():
         for row in results:
             id=row['id'];config,current,levels,evidence=targets[id]
             current[id]={k:v for k,v in row['record'].items()if k!='proofRows'}
-            levels[id]=row['record']['latestLevel'];evidence[id]=row['record']
+
+            if row['record'].get('collectAnniversary') is not False:levels[id]=row['record']['latestLevel']
+            evidence[id]=row['record']
             config['series']=[next(s for s in sources if s['id']==id)if s['id']==id else s for s in config['series']]
         for paths,values in loaded:
             for path,value in zip(paths,values):write_json_atomic(ROOT/path,value)

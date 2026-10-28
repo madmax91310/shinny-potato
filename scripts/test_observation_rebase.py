@@ -1,5 +1,6 @@
 """Real isolated Git races: only independent financial publications may rebase."""
 import pathlib
+import json
 import shlex
 import sys
 import unittest
@@ -40,6 +41,47 @@ class ObservationRebaseTests(unittest.TestCase):
         command = (f'{shlex.quote(sys.executable)} {shlex.quote(str(GUARD))} '
                    f'--kind {kind} --base "$VALIDATED_DATA_ORIGINAL_BASE" --upstream HEAD^ && {validation}')
         return self.f.publish({'VALIDATED_DATA_CHECK': command})
+
+    def calendar_race(self, change):
+        path = 'src/data/automated-etf.json'
+        config = {'series': [{'id': 'copperNav', 'parser': 'official-nav',
+                             'isin': 'GB00B15KXQ89', 'calendarRegistry': path}]}
+        row = {'productId': 'GB00B15KXQ89', 'currency': 'USD', 'aum': 100,
+               'performance': {'currency': 'USD', 'basis': 'NAV',
+                               'years': {'2024': 12.3}, 'sourceUrl': 'official',
+                               'method': 'reinvested', 'checkedAt': '2026-10-27'}}
+        for name, data in [('scripts/monthly-automation.json', config),
+                           (path, {'GB00B15KXQ89': row})]:
+            (self.f.local / name).write_text(json.dumps(data))
+        self.f.git(self.f.local, 'add', path, 'scripts/monthly-automation.json')
+        self.f.git(self.f.local, 'commit', '-m', 'calendar acquisition inputs')
+        self.f.git(self.f.local, 'push', 'origin', 'master')
+        self.f.git(self.f.other, 'pull', '--ff-only')
+        change(row)
+        (self.f.other / path).write_text(json.dumps({'GB00B15KXQ89': row}))
+        self.f.git(self.f.other, 'add', path)
+        self.f.git(self.f.other, 'commit', '-m', 'concurrent ETF observation')
+        self.f.git(self.f.other, 'push', 'origin', 'master')
+        return self.publish('market')
+
+    def test_market_aum_only_change_preserves_calendar_receipt(self):
+        result = self.calendar_race(lambda row: row.update(aum=200))
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_market_control_date_only_does_not_borrow_new_proof(self):
+        result = self.calendar_race(lambda row: row['performance'].update(checkedAt='2026-10-28'))
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_market_changed_used_calendar_requires_recollection(self):
+        result = self.calendar_race(lambda row: row['performance']['years'].update({'2024': 14.3}))
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('Collection inputs may have changed', result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'original')
+
+    def test_market_changed_calendar_convention_requires_recollection(self):
+        result = self.calendar_race(lambda row: row['performance'].update(currency='EUR'))
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('Collection inputs may have changed', result.stderr)
 
     def test_insurance_race_preserves_both_validated_outputs(self):
         self.f.advance_remote('src/data/automated-insurance.json')

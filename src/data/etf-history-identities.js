@@ -1,11 +1,19 @@
 import automaticIdentities from './auto-history-identities.json' with {type:'json'}
 import config from '../../scripts/non-bond-expansion-sources.json' with { type: 'json' }
 const NON_BOND_HISTORY_IDENTITIES = Object.fromEntries(config.instruments.filter(r=>r.historyEnabled!==false).map(r=>[r.historyId,{icon:r.icon,scene:r.scene,title:r.title,ticker:r.preferredSymbol.split('.')[0],instrumentType:r.instrumentType||'ETF'}]))
+const LANDG_AI_IDENTITY={icon:'🧠',scene:'chip',title:'INTELLIGENCE ARTIFICIELLE',ticker:'AIAI'}
 export const ETF_HISTORY_IDENTITIES = {
  ...automaticIdentities,
+ etfIE00BK5BCD43Nav:{...LANDG_AI_IDENTITY},
+ etfIE00BK5BCH80Nav:{...automaticIdentities.etfIE00BK5BCH80},
+ etfGB00B15KXQ89Nav:{...(automaticIdentities.etfGB00B15KXQ89??NON_BOND_HISTORY_IDENTITIES.etfGB00B15KXQ89)},
+ etc_brent_crude_oilNav:{...(automaticIdentities.etc_brent_crude_oil??NON_BOND_HISTORY_IDENTITIES.etc_brent_crude_oil)},
+ etc_wti_crude_oilNav:{...(automaticIdentities.etc_wti_crude_oil??NON_BOND_HISTORY_IDENTITIES.etc_wti_crude_oil)},
+ etc_coffeeNav:{...(automaticIdentities.etc_coffee??NON_BOND_HISTORY_IDENTITIES.etc_coffee)},
  // Independent NAV choices reuse the existing share artwork, never its quote history.
  etfFR0010342592Nav:{...automaticIdentities.etfFR0010342592},
  etfFR0007054358Nav:{...automaticIdentities.etfFR0007054358},
+ etfLU1875395870Nav:{...automaticIdentities.etfLU1875395870},
  etfLU2196470426Nav:{...automaticIdentities.etfLU2196470426},
  etfCH0454664001Nav:{...automaticIdentities.etfCH0454664001},
  etfLU1737652823Nav:{...automaticIdentities.etfLU1737652823},
@@ -16,7 +24,7 @@ export const ETF_HISTORY_IDENTITIES = {
  etfWorldMaterialsDws:{icon:'🪨',scene:'industry',title:'MATERIAUX MONDIAUX',ticker:'XDWM'},
  etfAmundiWater:{icon:'💧',scene:'world',title:'EAU',ticker:'WAT'},
  etfAmundiLuxury:{icon:'💎',scene:'world',title:'LUXE',ticker:'GLUX'},
- etfLgArtificialIntelligence:{icon:'🧠',scene:'chip',title:'INTELLIGENCE ARTIFICIELLE',ticker:'AIAI'},
+ etfLgArtificialIntelligence:LANDG_AI_IDENTITY,
  etfLgBattery:{icon:'🔋',scene:'industry',title:'BATTERIES',ticker:'BATT'},
  etfWorldTech:{icon:'💻',scene:'chip',title:'TECHNOLOGIE MONDIALE',ticker:'WITS'},
  etfAiBigData:{icon:'🧠',scene:'chip',title:'IA ET BIG DATA',ticker:'XAIX'},
