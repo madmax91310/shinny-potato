@@ -1,5 +1,7 @@
 # Données à revoir — fiabilisation du 28 octobre 2026
 
+**Dernière intégration :** voir [le complément e641](integration-e641/COMPLEMENT.md) pour le relevé courant **3 507→3 071**, les preuves et la correction CI. Le corps ci-dessous conserve son périmètre historique reproductible.
+
 Le candidat corrige les liaisons de preuves, le classement des données présentes, des clôtures historiques ciblées et la lisibilité du centre de suivi. **Il reste 2 993 points à traiter dans le rejeu comparable. Ce nombre n'est ni zéro panne ni une mesure de données absentes.** Aucun collecteur fournisseur n'est annoncé réparé par ce lot de supervision. Aucune fusion ni aucun déploiement n'est autorisé par la dernière demande.
 
 ## Périmètre et état initial reproductible

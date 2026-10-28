@@ -2,9 +2,13 @@ import assert from 'node:assert/strict'
 import './test-review-reliability-report.mjs'
 import fs from 'node:fs'
 import {reviewInboxProjection} from './build-data-review-inbox.mjs'
+import {buildDataAutomationInventory} from './data-automation-inventory.mjs'
+import {buildAssetFieldReport} from './report-asset-fields.mjs'
 import {buildInbox,monitorHealth,projectionHealth,monitorExecutionHealth,inboxDiagnostic}from '../src/pages/data-review/review-inbox.js'
 const read=p=>JSON.parse(fs.readFileSync(p))
-const inventory=read('public/data/data-automation-inventory.json'),coverage=read('public/data/asset-field-coverage.json'),financial=read('public/data/financial-reconciliation.json')
+// CI executes this before prebuild. Committed projections may belong to older
+// generators; exercise the current generators without writing shared fixtures.
+const inventory=buildDataAutomationInventory(),coverage=buildAssetFieldReport(),financial=read('public/data/financial-reconciliation.json')
 const status={schemaVersion:1,workflows:{},monitoring:{schemaVersion:1,checkedAt:'2026-10-24T12:00:00Z',active:{},resolved:[]}}
 const now=Date.parse('2026-10-24T12:30:00Z'),args={status,inventory,coverage,financial,now}
 const result=buildInbox(args),signals=result.issues.flatMap(r=>r.signals)
