@@ -710,5 +710,47 @@
       2024,
       2025
     ]
+  },
+  {
+    "id": "etfIE00BK5BCD43Nav",
+    "isin": "IE00BK5BCD43",
+    "label": "L&G Artificial Intelligence UCITS ETF USD Acc · VL",
+    "instrumentType": "ETF",
+    "consumerScope": "catalog",
+    "currency": "USD",
+    "periodStart": "2019-07",
+    "precision": 8,
+    "collectAnniversary": false,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "Valeur liquidative officielle de la part exacte USD Acc, revenus capitalisés et frais inclus ; aucune assimilation à une cotation ; conversion mensuelle BCE explicite si nécessaire",
+    "navProvider": "landg",
+    "navCurrency": "USD",
+    "sourceUrl": "https://fundcentres.landg.com/en/uk/institutional/fund-centre/ETF/Artificial-Intelligence/IE00BK5BCD43/",
+    "catalogueUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+    "shareClassId": 4516,
+    "identityFrom": "2019-07-02"
+  },
+  {
+    "id": "etfIE00BK5BCH80Nav",
+    "isin": "IE00BK5BCH80",
+    "label": "L&G Clean Energy UCITS ETF USD Acc · VL",
+    "instrumentType": "ETF",
+    "consumerScope": "catalog",
+    "currency": "USD",
+    "periodStart": "2020-11",
+    "precision": 8,
+    "collectAnniversary": false,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "Valeur liquidative officielle de la part exacte USD Acc, revenus capitalisés et frais inclus ; aucune assimilation à une cotation ; conversion mensuelle BCE explicite si nécessaire",
+    "navProvider": "landg",
+    "navCurrency": "USD",
+    "sourceUrl": "https://fundcentres.landg.com/en/uk/institutional/fund-centre/ETF/Clean-Energy/IE00BK5BCH80/",
+    "catalogueUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+    "shareClassId": 5185,
+    "identityFrom": "2020-11-11"
   }
 ]

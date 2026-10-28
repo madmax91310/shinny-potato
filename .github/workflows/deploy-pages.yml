@@ -351,6 +351,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_dws_share_nav.py'
       - run: python -m unittest discover -s scripts -p 'test_dws_income_history.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_nav_export.py'
+      - run: python -m unittest discover -s scripts -p 'test_landg_nav_history.py'
       - run: python -m unittest discover -s scripts -p 'test_initial_diagnostics.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
       - run: python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'
@@ -495,7 +496,7 @@ jobs:
         if: matrix.shard == 1
       - run: node scripts/playwright-remainder-nav.mjs
         env:
-          TEST_NAV_IDS: etfFR0007054358Nav,etfLU1875395870Nav,etfGB00B15KXQ89Nav,etc_brent_crude_oilNav,etc_wti_crude_oilNav,etc_coffeeNav
+          TEST_NAV_IDS: etfFR0007054358Nav,etfIE00BK5BCD43Nav,etfIE00BK5BCH80Nav,etfLU1875395870Nav,etfGB00B15KXQ89Nav,etc_brent_crude_oilNav,etc_wti_crude_oilNav,etc_coffeeNav
         if: matrix.shard == 1
       - run: node scripts/playwright-official-nav.mjs
         if: matrix.shard == 0

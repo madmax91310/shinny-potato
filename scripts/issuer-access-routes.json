@@ -38,5 +38,12 @@
     "discoveryHost": "www.analizy.pl",
     "documentHost": "dokumenty.analizy.pl",
     "note": "BNP-authored exact-share factsheets are discovered from a public document mirror (analizy.pl); the mirror is disclosed in every field's provenance and its page metrics are never used (see collect_bnp_etf.py)."
+  },
+  "landg": {
+    "catalogue": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+    "priceHistory": "https://fundcentres.landg.com/srp/api/price-history/{shareClassId}?pricetype_id=84&pricetype_id=87",
+    "qualification": "Exact embedded shareClassId/ISIN/USD Acc/launch and NAV header; full CSV bound to the same-date current catalogue NAV, all completed annual calendars checked. Exclude issuer pre-launch rows, never infer a launch from the first CSV row.",
+    "access": "Public fund-centre export linked by the publisher client. A generic HTTP200 catalogue without static-data is not a share identity. Use the exact direct document route without a cookie-jar regional redirect.",
+    "reuse": "Existing publisher conditions apply; HTTP access is not a licence; reuse authorisation not independently verified."
   }
 }

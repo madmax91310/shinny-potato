@@ -138,6 +138,14 @@ def daily_nav_fx_factor(native, currency, latest, body):
     return day.isoformat(),rates[day][currency]/rates[day][native]
 
 
+_LANDG_CATALOGUE_LOCK=threading.Lock()
+@functools.lru_cache(maxsize=8)
+def _landg_catalogue(fetch,url):
+    # One source consultation shared by exact-share qualifications in this
+    # process, never a persisted cache presented as a new source control.
+    return fetch(url)
+
+
 def collect_one(source, now, json_fetch=get_json, document_fetch=download, capture=None):
     urls, hashes = [], {}
     def document(url, supplied=None):
@@ -153,7 +161,10 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
             (capture/(hashes[url]+'.bin.gz')).write_bytes(gzip.compress(body))
         return body
     def data(url):
-        value=json_fetch(url);body=json.dumps(value,sort_keys=True,separators=(',',':')).encode()
+        if source.get('navProvider')=='landg'and url==source.get('catalogueUrl'):
+            with _LANDG_CATALOGUE_LOCK:value=_landg_catalogue(json_fetch,url)
+        else:value=json_fetch(url)
+        body=json.dumps(value,sort_keys=True,separators=(',',':')).encode()
         urls.append(url);hashes[url]=hashlib.sha256(body).hexdigest()
         if capture:
             capture.mkdir(parents=True,exist_ok=True)
@@ -293,6 +304,13 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         if performance['currency']!=native or performance['basis']!='fund':raise ValueError('WisdomTree shared calendar convention changed')
         calendar_proof={'calendarRegistry':registry,'calendarRegistryPerformanceHash':hashlib.sha256(json.dumps(performance,sort_keys=True,separators=(',',':')).encode()).hexdigest(),'controlledInstrument':isin,'controlledFields':['ISIN','wtClassID','fundCurrency','useOfIncome','historical-data-export.NAV','historical-data-export.Date','calendarRegistry.performance'],'requestedStart':source['periodStart']+'-01','controlledCalendarYears':sorted(performance['years']),'publicProduct':{k:identity.get(k)for k in ['ISIN','wtClassID','fundCurrency','useOfIncome','inceptionDt','NAV_Date']},'calendarSource':{k:performance.get(k)for k in ['sourceUrl','sha256','asOf','checkedAt','method']},'calendarSourceConsultedByThisCollector':False,'navHistoryTransport':source.get('navHistoryTransport','nav-modal-json'),**({'actualNavTransport':export_transport}if export_body is not None else{})}
         years=performance['years']
+    elif kind=='landg':
+        from landg_nav_history import identity as landg_identity,parse as landg_parse,product_page as landg_page
+        catalogue=data(source['catalogueUrl'])
+        page=(landg_page(source['sourceUrl'])if document_fetch is download else document_fetch(source['sourceUrl']))
+        url,facts,calendar_proof=landg_identity(document(source['sourceUrl'],supplied=page),catalogue,source,now)
+        nav,calendar_proof=landg_parse(document(url),source,catalogue,calendar_proof,now)
+        years=facts['performance']['years'];identity_from=source['identityFrom'];credit='L&G'
     elif kind=='vaneck':
         title=source.get('navTitle') or ('VanEck S&P Global Mining UCITS ETF - GDIG' if isin=='IE00BDFBTQ78' else None)
         if not title:raise ValueError('Unregistered VanEck exact NAV context')
