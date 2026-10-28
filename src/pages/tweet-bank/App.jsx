@@ -1,6 +1,7 @@
 import { notifyPublication } from '../../design-system/publicationActions.js'
 import { contentValidity, renderBankCopy, bankToday, reviewPolicy } from './validity.js'
 import { forwardRef, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { TWEETS, MONTHS, CATEGORIES, FORMATS, GOLD_CATEGORIES, COOLDOWN_DAYS } from './data'
 import { filterAndSortTweets, countAvailable, publicationBadge, todayStr } from './lib'
 import PageHeader from '../../design-system/PageHeader'
@@ -205,6 +206,8 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
 }
 
 export default function App() {
+  const [searchParams] = useSearchParams()
+  const requestedCategory = searchParams.get('category')
   const [today, setToday] = useState(bankToday)
   useEffect(() => { const timer = setInterval(() => setToday(bankToday()), 60_000); return () => clearInterval(timer) }, [])
   const [lastPub, setLastPub, datesError] = useBankRecord(LAST_PUBLICATION_KEY)
@@ -212,7 +215,7 @@ export default function App() {
   function changeDraft(id, value) { setDrafts(previous => { const next = { ...previous }; if (value) next[id] = value; else delete next[id]; return next }) }
   const [filters, setFilters] = useState({
     month: null,
-    category: null,
+    category: CATEGORIES.includes(requestedCategory) ? requestedCategory : null,
     format: null,
     search: '',
     hideCooldown: false,
@@ -221,6 +224,9 @@ export default function App() {
 
 
   const set = (patch) => setFilters((f) => ({ ...f, ...patch }))
+  useEffect(() => {
+    setFilters(previous => ({ ...previous, category: CATEGORIES.includes(requestedCategory) ? requestedCategory : null }))
+  }, [requestedCategory])
 
   const list = useMemo(
     () =>
