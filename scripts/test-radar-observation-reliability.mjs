@@ -1,3 +1,4 @@
+import {qualifyRadarFact} from '../src/lib/radar-qualification.js'
 import assert from 'node:assert/strict'
 import {readFileSync} from 'node:fs'
 import {advanceRadar,observationKey} from './lib/editorial-radar.mjs'
@@ -74,3 +75,6 @@ const rawPending={...legacy,compositionEventKey:'shared-photograph'},otherFact={
 assert.equal(groupSignals([rawPending,otherFact],+now)[0].state,'watch','One unqualified line holds the entire same photograph')
 assert.equal(planNotifications([rawPending,otherFact],{schemaVersion:1,editorialVersion:3,acknowledged:[]},now,'major').events.length,0)
 assert.equal(groupSignals([accepted.newEvents[0],{...accepted.newEvents[0],id:'f'.repeat(24),correctionOf:accepted.newEvents[0].id,correctionPublishedAt:now.toISOString()}],+now).length,2,'A correction is distinct from the original snapshot')
+
+assert.equal(qualifyRadarFact({factType:'statistical-publication',label:'Résultats trimestriels des salaires du privé'}).nature,'observed-statistic')
+assert.notEqual(qualifyRadarFact({label:'Résultats trimestriels : la banque supprime ses frais de courtage',summary:'La suppression concerne tous les clients particuliers.'}).nature,'institutional-communication')
