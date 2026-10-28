@@ -2,7 +2,6 @@
 import datetime as dt
 import re
 from zoneinfo import ZoneInfo
-from bs4 import BeautifulSoup
 from data_automation import get_text,number,reject
 
 URL='https://fred.stlouisfed.org/data/NASDAQXNDX'
@@ -12,6 +11,9 @@ def download(url):
     return get_text(url,('text/html',),max_bytes=2_000_000).encode('utf-8')
 
 def parse(body,now):
+    # Yahoo-only qualification imports the shared collector without HTML extras.
+    # The real FRED reader still requires its declared production dependency.
+    from bs4 import BeautifulSoup
     if not isinstance(body,bytes)or not body or len(body)>2_000_000:reject('Invalid bounded FRED XNDX document')
     soup=BeautifulSoup(body.decode('utf-8-sig'),'html.parser')
     tables=soup.select('table[aria-label="metadata - NASDAQ-100 Total Return"]')

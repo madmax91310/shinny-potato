@@ -1,9 +1,16 @@
 import unittest
 from unittest.mock import patch
 import datetime as dt
+import pathlib
+import subprocess
+import sys
 from qualify_monthly_candidates import qualify
 from refresh_monthly_history import yahoo_chart
 class Qualification(unittest.TestCase):
+ def test_yahoo_qualification_import_does_not_require_unused_html_parser(self):
+  code="import sys;sys.path.insert(0,"+repr(str(pathlib.Path(__file__).parent.resolve()))+");import refresh_anniversary_levels;assert 'bs4' not in sys.modules"
+  result=subprocess.run([sys.executable,'-S','-c',code],capture_output=True,text=True)
+  self.assertEqual(result.returncode,0,result.stderr)
  def test_identity_and_first_partial_month(self):
   source=dict(symbol='TEST.L',currency='USD',isin='IE000TEST000',id='test')
   meta=dict(symbol='TEST.L',currency='USD',instrumentType='ETF',firstTradeDate=int(dt.datetime(2024,3,15,tzinfo=dt.timezone.utc).timestamp()))
