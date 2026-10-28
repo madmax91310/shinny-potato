@@ -1,7 +1,5 @@
 """Latest completed-session levels using each historical series' exact currency and variant."""
 import argparse
-import csv
-import io
 import datetime as dt
 import hashlib
 import json
@@ -10,7 +8,8 @@ import re
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import quote, urlencode
 from zoneinfo import ZoneInfo
-from data_automation import UTC, get_json, get_text, number, reject, write_json_atomic
+from data_automation import UTC, get_json, number, reject, write_json_atomic
+from fred_xndx_document import URL as FRED_XNDX_URL,download as xndx_fred_date_bytes,parse as parse_fred_xndx_document
 from market_transport import chart_response
 from issuer_documents import download
 from refresh_monthly_history import yahoo_chart, msci_rows, get_msci_json
@@ -168,10 +167,6 @@ def xndx_supported_ranges(config,now,fetch):
     if observations[0]!=observations[1]:reject('Supported XNDX windows disagree')
     return observations[0][0],observations[0][1],XNDX_URLS[0],{'sources':proofs}
 
-def xndx_fred_date_bytes(url):
-    # Same typed, bounded transport already exercised by monthly FRED XNDX.
-    return get_text(url,('text/csv','application/csv','text/plain'),max_bytes=2_000_000).encode('utf-8')
-
 
 def xndx_dated_previous_close(config, old, evidence, expected, now, fetch):
     """Recover a missed close only with an independently dated SAME XNDX series.
@@ -186,29 +181,19 @@ def xndx_dated_previous_close(config, old, evidence, expected, now, fetch):
     if old.get('asOf','') >= expected:reject('No older XNDX close eligible for dated recovery')
     if old.get('checkedAt')and dt.datetime.fromisoformat(old['checkedAt'].replace('Z','+00:00'))>now:reject('Retained XNDX proof is future-dated')
     start=(dt.date.fromisoformat(expected)-dt.timedelta(days=10)).isoformat()
-    # Reuse the ordinary monthly producer's existing full-series endpoint.
-    # Its dynamically filtered date URLs time out from GitHub; the successful
-    # full response certifies only the exact preceding session below.
-    url='https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX'
+    url=FRED_XNDX_URL
     try:body=fetch(url)
-    except Exception as error:raise ValueError(f'Dated FRED XNDX request failed at {url}: {error}')from error
-    if not isinstance(body,bytes)or len(body)>2_000_000:reject('Invalid bounded FRED XNDX response')
-    reader=csv.DictReader(io.StringIO(body.decode('utf-8-sig')))
-    if reader.fieldnames!=['observation_date','NASDAQXNDX']:reject('Wrong FRED XNDX series or CSV structure')
-    points={};previous=None
-    for row in reader:
-        if None in row:reject('Unexpected FRED XNDX column')
-        day=row['observation_date'];dt.date.fromisoformat(day)
-        if day>expected or (previous is not None and day<=previous):reject('Future, duplicated or unordered FRED XNDX date')
-        previous=day
-        if row['NASDAQXNDX']not in ['', '.']:
-            value=number(float(row['NASDAQXNDX']))
-            if day>=start:points[day]=value
+    except Exception as error:raise ValueError(f'Dated FRED XNDX document request failed at {url}: {error}')from error
+    rows,metadata=parse_fred_xndx_document(body,now)
+    points={}
+    for day,value in rows:
+        if day>expected:reject('FRED document contains a later session than the one being corroborated')
+        if value not in ['', '.']and day>=start:points[day]=number(float(value))
     if expected not in points:reject('FRED has not published the exact preceding XNDX session')
     value=number(evidence['previousClose'])
     if abs(points[expected]-value)>.005:reject('Dated FRED XNDX close and both Yahoo references disagree')
     date_proof={'sourceUrl':url,'seriesId':'NASDAQXNDX','currency':'USD','variant':'TOTAL','asOf':expected,'value':points[expected],
-                'sha256':hashlib.sha256(body).hexdigest(),'checkedAt':now.isoformat(),'comparisonPrecision':'Yahoo priceHint=2; existing half-cent bound unchanged','controlledSession':expected,'sourceRange':'Full existing FRED series fetched; only the exact previous session corroborated, no history admission'}
+                'sha256':hashlib.sha256(body).hexdigest(),'checkedAt':now.isoformat(),'publisherUpdated':metadata['Last Updated'],'sourceDateRange':metadata['Date Range'],'comparisonPrecision':'Yahoo priceHint=2; existing half-cent bound unchanged','controlledSession':expected,'sourceRange':'Official public data table; only the exact previous session corroborated, no history admission'}
     proof={'sources':evidence['sourceHashes'],'datedPreviousClose':date_proof}
     return {**old,'value':value,'asOf':expected,'maxAgeDays':7,'sourceUrl':XNDX_URLS[0],'sourceUrls':list(XNDX_URLS),
             'sourceHashes':evidence['sourceHashes'],'sha256':hashlib.sha256(json.dumps(proof,sort_keys=True,allow_nan=False).encode()).hexdigest(),
