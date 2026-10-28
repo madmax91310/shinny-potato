@@ -3,16 +3,16 @@ import { loadExposureCatalog } from './records.js'
 import { references, pct } from './engine.js'
 import { exposureDisplay } from './exposure.js'
 import catalogue from './catalog.json' with {type:'json'}
-import { loadHoldings } from './holdings-loader.js'
+import { loadHoldingsState } from './holdings-loader.js'
 import { catalogCoverage, sharedPositions } from './verification.js'
-export default function Verification({profile,analysis}){
+export default function Verification({profile,analysis,onHoldingsChange}){
  const [query,setQuery]=useState(''),[onlyMissing,setOnlyMissing]=useState(false),[pairLimit,setPairLimit]=useState(20)
  const [catalogOpen,setCatalogOpen]=useState(false),[catalog,setCatalog]=useState([]),[catalogError,setCatalogError]=useState(false),[catalogRetry,setCatalogRetry]=useState(0)
  useEffect(()=>{if(!catalogOpen)return;let active=true;setCatalogError(false);loadExposureCatalog().then(refs=>{if(active)setCatalog(catalogCoverage(refs))}).catch(()=>{if(active)setCatalogError(true)});return()=>{active=false}},[catalogOpen,catalogRetry])
  const [holdings,setHoldings]=useState({}),[loading,setLoading]=useState(true),[loadError,setLoadError]=useState(false)
  const [retry,setRetry]=useState(0)
  const assets=profile.lines.map(l=>l.asset).sort().join('|')
- useEffect(()=>{let active=true;setLoading(true);setHoldings({});setLoadError(false);loadHoldings(assets.split('|')).then(data=>{if(active)setHoldings(data)}).catch(()=>{if(active){setHoldings({});setLoadError(true)}}).finally(()=>{if(active)setLoading(false)});return ()=>{active=false}},[assets,retry])
+ useEffect(()=>{let active=true;setLoading(true);setHoldings({});setLoadError(false);loadHoldingsState(assets.split('|')).then(({holdings,failedAssets})=>{if(active){setHoldings(holdings);setLoadError(failedAssets.length>0);if(retry)onHoldingsChange()}}).catch(()=>{if(active){setHoldings({});setLoadError(true)}}).finally(()=>{if(active)setLoading(false)});return ()=>{active=false}},[assets,retry,onHoldingsChange])
  const shared=useMemo(()=>sharedPositions(profile.lines,references,new Date(),holdings),[profile.lines,holdings])
  const complete=catalog.filter(r=>r.countries.coverage>=99.5&&r.sectors.coverage>=99.5).length
  const filtered=catalog.filter(r=>(!onlyMissing||r.countries.coverage<99.5||r.sectors.coverage<99.5)&&`${r.name} ${r.isin} ${r.tickers?.join(' ')}`.toLowerCase().includes(query.toLowerCase()))
@@ -30,7 +30,7 @@ export default function Verification({profile,analysis}){
  </section>)}</div>)}
  </details>
  <details><summary>Positions communes entre ETF et actions</summary>
- {loading&&<p role="status">Chargement des compositions complètes…</p>}{loadError&&<p role="alert">Impossible de charger les compositions. <button onClick={()=>setRetry(n=>n+1)}>Réessayer</button></p>}
+ {loading&&<p role="status">Chargement des compositions complètes…</p>}{loadError&&<p role="alert">{Object.keys(holdings).length?'Certaines compositions sont indisponibles ; les autres restent affichées.':'Impossible de charger les compositions.'} <button onClick={()=>setRetry(n=>n+1)}>Réessayer</button></p>}
  <p>Comparaison des entreprises par identifiants vérifiés ; les titres restent détaillés par ISIN. Les listes de principales positions sont partielles : aucun taux global de chevauchement n’est calculé à partir d’un top 10. Les poids additionnés concernent uniquement les deux supports comparés.</p>
  {!shared.pairs.length&&<p>Aucune paire ne dispose actuellement de positions identifiées avec des dates et des périmètres compatibles.</p>}
  {shared.pairs.slice(0,pairLimit).map((pair,i)=><details key={i}><summary>{pair.left} / {pair.right} · {pair.common.length} positions communes</summary><h3>{pair.left} / {pair.right}</h3><p>Positions identifiées : {pair.identifiedCoverage.map(pct).join(' / ')} de chaque support.{pair.full?` Chevauchement des entreprises des listes complètes : ${pct(pair.overlap)}.`:' Listes partielles : le reste du portefeuille n’est pas comparé.'}</p>

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { renderDcaImage } from './image.js'
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 
@@ -9,6 +9,7 @@ export function useImageExport(profile, field, enabled) {
   const key = JSON.stringify([imageProfile, field])
   const [result, setResult] = useState(null)
   const [attempt, setAttempt] = useState(0)
+  const retry = useCallback(() => setAttempt(n => n + 1), [])
   const request = useMemo(() => ({key, enabled, attempt}), [key, enabled, attempt])
   useEffect(() => {
     if (!enabled) return
@@ -33,7 +34,7 @@ export function useImageExport(profile, field, enabled) {
   const current = enabled && result?.request === request ? result : null
   return {
     url: current?.url || '', error: current?.error || '', busy: enabled && !current,
-    retry: () => setAttempt(n => n + 1),
+    retry,
     download(filename) {
       if (!current?.url) throw new Error('Image en cours de préparation.')
       const link = document.createElement('a')
