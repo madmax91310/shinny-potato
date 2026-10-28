@@ -79,13 +79,14 @@ function fullPortfolio(ctx,p,a){
  text(ctx,'Répartition des actifs',70,190,595,40,C.ivory,700,'DcaEditorial')
  const holdings=allocationRows(p.lines)
  const crowded=holdings.length>4
- if(!p.imageOnly){text(ctx,`Le DCA de ${p.name}`,70,245,595,28,C.ivory,700,'DcaEditorial');text(ctx,`${euro(a.monthly)} investis par mois`,70,282,595,25,C.yellow)}
- const cy=crowded?435:p.imageOnly?469:490,r=crowded?120:p.imageOnly?230:185
+ // Keep identity and monthly contributions in the tweet; reserve this panel for holdings.
+ const lift=p.imageOnly?0:90
+ const cy=(crowded?435:p.imageOnly?469:490)-lift,r=crowded?120:p.imageOnly?230:185
  ring(ctx,holdings,368,cy,r,r*.67)
  centered(ctx,'100 %',368,cy+12,r*1.7,crowded?42:64)
  centered(ctx,'du portefeuille',368,cy+48,r*1.55,crowded?18:26,C.muted,400)
- const percentages=integerPercentages(holdings),top=crowded?575:holdings.length===4?725:775
- const gap=Math.min(62,(915-top)/Math.max(holdings.length-1,1)),size=crowded?19:holdings.length===4?23:28
+ const percentages=integerPercentages(holdings),top=(crowded?575:holdings.length===4?725:775)-lift
+ const gap=Math.min(62,(915-top)/Math.max(holdings.length-1,1)),size=crowded?(p.imageOnly?19:23):holdings.length===4?23:28
  holdings.forEach((row,i)=>{
   const y=top+i*gap
   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(83,y-9,7,0,Math.PI*2);ctx.fill()
