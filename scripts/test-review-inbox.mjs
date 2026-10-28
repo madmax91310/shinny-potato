@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import './test-review-reliability-report.mjs'
 import fs from 'node:fs'
 import {reviewInboxProjection} from './build-data-review-inbox.mjs'
 import {buildInbox,monitorHealth,projectionHealth,monitorExecutionHealth,inboxDiagnostic}from '../src/pages/data-review/review-inbox.js'
@@ -15,6 +16,7 @@ for(const r of coverage.rows)if(r.state==='not-applicable')assert(signals.some(s
 assert(!monitorHealth({...status,monitoring:null},now).ok)
 assert(!monitorHealth({...status,monitoring:{...status.monitoring,checkedAt:'2026-10-20'}},now).ok)
 assert(!monitorHealth({...status,monitoring:{...status.monitoring,active:[]}},now).ok)
+assert(!monitorHealth({...status,reportArchiveSchemaVersion:99},now).ok,'Unknown archive formats cannot produce reassuring supervision')
 assert(buildInbox({...args,failures:{financial:'Rapport illisible'}}).issues.some(r=>r.id==='health:financial'))
 assert(result.issues.some(r=>r.id.startsWith('coverage:')&&r.kind==='qualification'))
 assert.equal(monitorExecutionHealth({workflow_runs:[{id:1,head_branch:'master',event:'schedule',status:'completed',conclusion:'success'}]}),null)
@@ -51,3 +53,7 @@ assert.equal(selfModel({...selfRecord,resolvedAt:'2026-10-24T11:00:00Z',resoluti
 assert(buildInbox({...args,status:{...status,monitorSelf:{schemaVersion:1,failures:{bad:{failedChecks:{x:null}}}}}}).issues.some(r=>r.id==='health:self-history:bad'))
 
 assert.equal(selfModel({...selfRecord,qualificationPending:true}).kind,'qualification')
+
+const malformedProducer=buildInbox({...args,status:{...status,workflows:{'update-bitcoin-monthly.yml':{reportEvidenceHistory:[null],legacyReportCoverage:{wrong:'shape'}}}}})
+assert(malformedProducer.issues.some(r=>r.id==='legacy-coverage:update-bitcoin-monthly.yml:0'),'An unreadable producer contract stays visible without stopping financial or consumer diagnostics')
+assert(malformedProducer.issues.some(r=>r.signals.some(s=>s.id.startsWith('financial:'))))

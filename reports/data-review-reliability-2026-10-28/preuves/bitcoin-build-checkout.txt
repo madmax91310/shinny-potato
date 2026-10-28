@@ -1,0 +1,4 @@
+2026-10-08T13:58:55.4481983Z ##[endgroup]
+2026-10-08T13:58:55.4535110Z [command]/usr/bin/git log -1 --format=%H
+2026-10-08T13:58:55.4563148Z 3976ea40d5c12e4fd7e27af63bdf064bbe3f88cd
+2026-10-08T13:58:55.4798763Z ##[group]Run echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"

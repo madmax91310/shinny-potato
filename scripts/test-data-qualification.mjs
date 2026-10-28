@@ -1,3 +1,4 @@
+import {metadataFieldAttempt} from './report-asset-fields.mjs'
 import assert from 'node:assert/strict'
 import {fieldQualification,registryQualification,qualifyCoverage} from './lib/data-qualification.mjs'
 import {buildDataAutomationInventory} from './data-automation-inventory.mjs'
@@ -38,3 +39,7 @@ assert.equal(failedPartial.unidentifiedWeightPct,1.49)
 
 assert.equal(registryQualification({path:'src/data/evidence-freshness.js',mode:'manual-or-editorial'}).reviewedAt,'2026-10-23')
 assert.equal(registryQualification({path:'src/data/annual-window.js',mode:'manual-or-editorial'}).reviewedAt,'2026-10-20','Classifying a new module must not redate already reviewed modules')
+
+const scoped={checkedAt:'2026-10-28',fields:{pea:{lastAttemptAt:'2026-10-27'}}}
+assert.equal(metadataFieldAttempt(scoped,'pea'),'2026-10-27')
+assert.equal(metadataFieldAttempt(scoped,'listings'),null,'A PEA retry never renews the listing attempt clock')

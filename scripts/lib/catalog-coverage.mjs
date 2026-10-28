@@ -1,4 +1,5 @@
 import {coverageKey} from './data-qualification.mjs'
+import {monthlyFingerprint} from './monthly-certificate.mjs'
 
 // Bind a catalogue facade to the qualified observation it actually exposes.
 // Labels, file schedules and an ISIN alone cannot certify another convention.
@@ -10,9 +11,11 @@ export function catalogCoverage(field,record,coverageMap,etfs){
   if(field.registry!=='src/data/market-history.js'||field.label!=='Série historique'||!value?.points?.length)return null
   candidate=candidate??(value.isin?coverageMap.get(`${value.isin}:monthly`):null)
   const sources=new Set(evidence.sourceUrls??[])
-  if(!candidate||candidate.currency!==value.currency||candidate.method!==value.method
-      ||candidate.periodStart!==value.periodStart||candidate.periodEnd!==value.periodEnd
-      ||!sources.has(candidate.sourceUrl))return null
+  const method=value.method??evidence.method,periodStart=value.periodStart??evidence.periodStart,periodEnd=value.periodEnd??evidence.periodEnd
+  if(!candidate||candidate.currency!==value.currency||candidate.method!==method
+      ||candidate.periodStart!==periodStart||candidate.periodEnd!==periodEnd
+      ||![candidate.sourceUrl,...(candidate.sourceUrls??[])].some(url=>sources.has(url))
+      ||Object.hasOwn(candidate,'seriesFingerprint')&&(!candidate.seriesFingerprint||candidate.seriesFingerprint!==monthlyFingerprint({...value,method})))return null
   return candidate
  }
  if(candidate)return candidate

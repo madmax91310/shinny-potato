@@ -21,7 +21,9 @@ import urllib.request
 from automation_contracts import owns_failure, RETIREMENT_REASON
 from automation_monitoring import evaluate_monitoring, sync_monitoring_issue, timestamp, restore_history
 from github_automation_transport import request_json, unseen_completed_runs
-from automation_status_storage import pack_report_scopes,encode_status
+from automation_history_coverage import recover_skipped_history_gaps
+from automation_legacy_phases import CONTRACTS as LEGACY_PHASE_CONTRACTS, qualify_legacy_phases
+from automation_status_storage import pack_report_scopes,encode_status,expand_report_archives
 from automation_monitor_self import observe_monitor_history
 from automation_recovery import plan_recovery, persist_and_dispatch, recovery_reason
 
@@ -925,13 +927,13 @@ def update_status(state, run, jobs, reports=None):
         named = [a.get('title', '')[len('Échec '):] + ' — ' + str(a.get('message', ''))[:200]
                  for a in job.get('annotations', []) if str(a.get('title', '')).startswith('Échec ')]
         for step in (job.get('steps') or []):
-            if step.get('conclusion') in ('failure', 'timed_out'):
+            if step.get('conclusion') in ('failure', 'timed_out', 'cancelled'):
                 failures.append({'job': job['name'], 'step': step['name'], **({'checks': named[:3]} if named else {})})
     refresh_jobs = [job for job in jobs if (job['name'] == REGISTRY[workflow]['collectionJob'] or job['name'].startswith(REGISTRY[workflow]['collectionJob'] + ' ('))]
     steps = [step for job in refresh_jobs for step in (job.get('steps') or [])]
     def phase_status(names):
         selected = [step for step in steps if step.get('name') in names]
-        if any(step.get('conclusion') in ('failure', 'timed_out') for step in selected):
+        if any(step.get('conclusion') in ('failure', 'timed_out', 'cancelled') for step in selected):
             return 'failure'
         if any(step.get('conclusion') == 'success' for step in selected):
             return 'success'
@@ -1013,12 +1015,12 @@ def checkout_snapshot(log):
     return matches[0] if len(matches) == 1 else None
 
 
-def legacy_publication_receipt(repo, jobs, api):
+def legacy_publication_receipt(repo, jobs, api, producer=None, source_sha=None, read_log=None):
     builds = [j for j in jobs if j['name'] == 'deploy / build']
     if len(builds) != 1:
         return None
     try:
-        log = subprocess.run(['gh', 'api', f'repos/{repo}/actions/jobs/{builds[0]["id"]}/logs'],
+        log = read_log(builds[0]['id']) if read_log else subprocess.run(['gh', 'api', f'repos/{repo}/actions/jobs/{builds[0]["id"]}/logs'],
                              check=True, capture_output=True, text=True, timeout=45).stdout
         sha = checkout_snapshot(log[:500_000])
         if not sha:
@@ -1030,7 +1032,14 @@ def legacy_publication_receipt(repo, jobs, api):
                  and (r['path'].startswith(('src/data/', 'scripts/source-snapshots/', 'public/data/'))
                       or r['path'].startswith('src/pages/') and r['path'].endswith('.json'))
                  and r['path'] != 'public/data/publication-manifest.json'}
-        return {'schemaVersion': 1, 'commit': sha, 'files': files, 'evidenceJobId': builds[0]['id']}
+        contract=LEGACY_PHASE_CONTRACTS.get(source_sha,{})
+        scope={}
+        if contract.get('workflow')==producer:
+            if sha!=source_sha:return None  # This reviewed old run committed no newer data snapshot.
+            if not set(contract['outputs'])<=set(files):return None
+            files={path:files[path]for path in contract['outputs']}
+            scope={'producer':producer,'sourceSha':source_sha,'kind':'reviewed-historical-producer-outputs'}
+        return {'schemaVersion': 1, 'commit': sha, 'files': files, 'evidenceJobId': builds[0]['id'],**({'producerScope':scope}if scope else{})}
     except (subprocess.SubprocessError, urllib.error.URLError, ValueError, KeyError):
         return None
 
@@ -1066,6 +1075,40 @@ def reconcile_publication(state, build, manifest, compare):
             row['publicationEvidence'] = {'kind':'matching-public-source-fingerprints','checkedAt':dt.datetime.now(dt.timezone.utc).isoformat(),'publishedAt':build['builtAt'],'codeSha':build['sha'],'dataSha':build.get('dataSha',build['sha']),'receiptCommit':receipt['commit'],'fileCount':len(files)}
             row['publishedCodeSha'] = build['sha']
             row['publishedDataSha'] = build.get('dataSha', build['sha'])
+        else:
+            matched={name:sha for name,sha in files.items()if manifest.get('files',{}).get(name)==sha}
+            if not matched:
+                row.pop('partialPublicationEvidence',None)
+                continue
+            row['partialPublicationEvidence']={'kind':'partial-matching-public-source-fingerprints',
+                'checkedAt':dt.datetime.now(dt.timezone.utc).isoformat(),'matchedFiles':matched,
+                'unconfirmedFiles':sorted(set(files)-set(matched)),'receiptCommit':receipt['commit'],
+                'note':'Les fichiers identiques sont démontrés publiés ; les fichiers modifiés restent à rapprocher. Aucun succès global déduit.'}
+    return result
+
+
+def qualify_consumer_bindings(context, manifest):
+    """Certify publication of an existing exact field binding, not a fresh poll."""
+    result = copy.deepcopy(context)
+    files = manifest.get('files', {}) if isinstance(manifest, dict) and manifest.get('schemaVersion') == 1 else {}
+    if not isinstance(files, dict):files={}
+    checks=result.get('consumerBindingChecks', {})
+    if not isinstance(checks, dict):
+        result['consumerBindingChecks']={}
+        result['consumerBindingErrors']={'contract':'Contrat des preuves de consommation invalide ; aucune résolution déduite.'}
+        return result
+    for subject, proof in list(checks.items()):
+        if not isinstance(subject,str) or not isinstance(proof,dict):
+            result.setdefault('consumerBindingErrors',{})[str(subject)]='Preuve de consommation illisible ; autres champs conservés.'
+            del checks[subject]
+            continue
+        expected = proof.get('sourceFiles', {})
+        proof['publishedFilesVerified'] = bool(proof.get('kind') == 'verified-existing-field-binding'
+            and proof.get('subject') == subject and subject.startswith('gap:usage:')
+            and proof.get('field') == 'monthly' and isinstance(proof.get('seriesFingerprint'),str) and re.fullmatch('[a-f0-9]{64}', proof['seriesFingerprint'])
+            and isinstance(expected, dict) and expected
+            and all(isinstance(path,str) and path.startswith('src/data/') and isinstance(digest,str) and re.fullmatch('[a-f0-9]{40}', digest)
+                    and files.get(path) == digest for path, digest in expected.items()))
     return result
 
 
@@ -1095,7 +1138,8 @@ def decode_json_file(api, file):
     content = file.get('content') if file.get('encoding') == 'base64' else None
     if not content:
         content = api(f"/git/blobs/{file['sha']}")['content']
-    return json.loads(base64.b64decode(content))
+    decoded = json.loads(base64.b64decode(content))
+    return expand_report_archives(decoded) if file.get('path', PATH) == PATH and isinstance(decoded, dict) and isinstance(decoded.get('workflows'), dict) else decoded
 
 
 def read_large_file(api, path, ref):
@@ -1188,7 +1232,7 @@ def main():
             state.setdefault('observerErrors', {}).pop('runs:'+workflow,None)
             old_id=state.get('workflows',{}).get(workflow,{}).get('runId',0)
             if len(candidates)==30 and old_id and min(r['id']for r in candidates)>old_id:
-                state.setdefault('observerErrors', {})['history-window:'+workflow]={'cause':'Intervalle historique non couvert par les 30 derniers runs API ; reprise historique requise. Dernier run observé : '+str(old_id)}
+                state.setdefault('observerErrors', {}).setdefault('history-window:'+workflow,{'cause':'Intervalle historique non couvert par les 30 derniers runs API ; reprise historique requise. Dernier run observé : '+str(old_id),'anchorRunId':old_id,'throughAt':dt.datetime.now(dt.timezone.utc).isoformat()})
             if args.monitor_only:
                 runs.extend(unseen_completed_runs(candidates, state.get('workflows', {}).get(workflow, {})))
                 continue
@@ -1206,6 +1250,13 @@ def main():
         require_event = json.loads(args.event.read_text())
         runs = [require_event['workflow_run']]
     runs.extend(terminal_runs)
+    for workflow,row in state.get('workflows',{}).items():
+        if row.get('headSha')in LEGACY_PHASE_CONTRACTS and not row.get('legacyPhaseEvidence'):
+            try:
+                legacy=api(f'/actions/runs/{row["runId"]}/attempts/{row.get("attempt",1)}')
+                runs.append({**legacy,'_phaseRetry':True})
+            except (OSError,ValueError,KeyError,TypeError)as error:
+                state.setdefault('observerErrors',{})['phase-proof:'+workflow]={'cause':'Contrat de phase historique non relisible : '+str(error)[:250]}
     runs=list({(r['id'],r.get('run_attempt',1)):r for r in runs}.values())
     pending_proofs = [(failure.get('lastProofReadAt',''),workflow,key,failure) for workflow,row in state.get('workflows',{}).items() if workflow in REPORT_ARTIFACTS for key,failure in row.get('proofFailures',{}).items() if failure.get('runId')]
     for _, workflow, key, failure in sorted(pending_proofs,key=lambda r:r[0])[:4]:
@@ -1217,6 +1268,7 @@ def main():
             runs.append({**retry,'_proofRetry':True})
         except (urllib.error.URLError,ValueError,KeyError) as error:
             state.setdefault('observerErrors',{})['proof-retry:'+workflow]={'cause':'Relecture historique impossible : '+str(error)[:250]}
+    state=recover_skipped_history_gaps(state,api,dt.datetime.now(dt.timezone.utc).isoformat())
     publication_history = []
     for run in sorted(runs, key=lambda r: (r['id'], r.get('run_attempt', 1))):
         workflow = run['path'].split('/')[-1]
@@ -1242,6 +1294,14 @@ def main():
                         job['annotations'] = []
             reports = reports_for_run(run,jobs)
             workflow = run['path'].split('/')[-1]
+            if run.get('_phaseRetry'):
+                producers=[job for job in jobs if job.get('name')==REGISTRY[workflow]['collectionJob']]
+                if len(producers)!=1:raise ValueError('Job historique de collecte ambigu')
+                log=subprocess.run(['gh','api',f'repos/{repo}/actions/jobs/{producers[0]["id"]}/logs'],check=True,capture_output=True,text=True,timeout=45).stdout
+                source_sha=checkout_snapshot(log[:500_000])
+                state=qualify_legacy_phases(state,run,jobs,source_sha,dt.datetime.now(dt.timezone.utc).isoformat())
+                if not state['workflows'][workflow].get('legacyPhaseEvidence'):raise ValueError('Code ou étapes du contrat historique non confirmés')
+                state.setdefault('observerErrors',{}).pop('phase-proof:'+workflow,None)
             if run.get('_proofRetry') or run['id']<previous_run.get('runId',0):
                 state = merge_proof_retry(state,run,reports)
                 state.setdefault('observerErrors',{}).pop('proof-retry:'+workflow,None)
@@ -1264,7 +1324,7 @@ def main():
                             row['publicationEvidenceError'] = 'Publication receipt unavailable: ' + type(error).__name__
                             print(f'Run {run["id"]}: {row["publicationEvidenceError"]}; other collectors remain observable.')
             if row.get('runId') == run['id'] and not row.get('publicationReceipt') and row.get('recordingStatus') == 'success':
-                receipt = legacy_publication_receipt(repo, jobs, api)
+                receipt = legacy_publication_receipt(repo, jobs, api,producer=workflow,source_sha=row.get('headSha'))
                 if receipt:
                     row['publicationReceipt'] = receipt
             if row.get('publicationStatus') == 'success' and not qualified_receipt(row.get('publicationReceipt')):
@@ -1290,6 +1350,7 @@ def main():
     except (OSError, ValueError, TypeError) as error:
         state.setdefault('observerErrors', {})['history'] = {'cause': 'Archive historique non lisible : ' + str(error)[:300]}
     state = include_configured_workflows(state)
+    public_manifest = None
     try:
         owner, project = repo.split('/')
         public = f'https://{owner}.github.io/{project}/'
@@ -1305,6 +1366,7 @@ def main():
         public_build, public_manifest = published('build-info.json'), published('data/publication-manifest.json')
         state = reconcile_publication(state, public_build, public_manifest, compare)
     except (urllib.error.HTTPError, urllib.error.URLError, ValueError, KeyError, TypeError, TimeoutError) as error:
+        public_manifest = None
         state.setdefault('observerErrors', {})['publication'] = {'cause': 'Publication non vérifiable : ' + str(error)[:300]}
     else:
         state.setdefault('observerErrors', {}).pop('publication', None)
@@ -1317,6 +1379,11 @@ def main():
                 'sourceUrls': [public + 'data/data-review-inbox.json'], 'attemptedAt': dt.datetime.now(dt.timezone.utc).isoformat()}
     try:
         context = json.loads(subprocess.run(['node', 'scripts/build-monitoring-context.mjs'], check=True, capture_output=True, text=True, timeout=120).stdout)
+        context = qualify_consumer_bindings(context, public_manifest)
+        for key in list(state.setdefault('observerErrors',{})):
+            if key.startswith('consumer-binding:'):state['observerErrors'].pop(key)
+        for key,cause in context.get('consumerBindingErrors',{}).items():
+            state['observerErrors']['consumer-binding:'+key]={'cause':cause}
         state.setdefault('observerErrors', {}).pop('context', None)
     except (subprocess.SubprocessError, ValueError) as error:
         state.setdefault('observerErrors', {})['context'] = {'cause': 'Projection de surveillance indisponible : ' + str(error)[:300]}

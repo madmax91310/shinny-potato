@@ -1,3 +1,4 @@
+import {closureRequirement} from './review-causes.js'
 import {missingProducerReports} from './automation.js'
 import registry from '../../data/automation-workflows.json' with {type:'json'}
 import retired from '../../data/retired-automations.json' with {type:'json'}
@@ -27,6 +28,7 @@ export function decodeReviewProjection(inventory){
  return {...inventory,consumerUsage,fieldStrings:undefined,assets:inventory.assets.map(a=>({...a,fields:a.fields.map(f=>Object.fromEntries(Object.entries(f).map(([k,v])=>[k,decode(v)])))}))}
 }
 export function monitorHealth(status,now=Date.now()){
+ if(status?.reportArchiveSchemaVersion!=null&&status.reportArchiveSchemaVersion!==1||status?.reportScopeSchemaVersion!=null&&status.reportScopeSchemaVersion!==1)return {ok:false,reason:'Encodage des preuves du moniteur inconnu ; les dernières données restent conservées, leur bilan historique doit être qualifié.'}
  const m=status?.monitoring
  if(status?.schemaVersion!==1||!status.workflows||Array.isArray(status.workflows)||!m||m.schemaVersion!==1||!m.active||Array.isArray(m.active)||typeof m.active!=='object'||!Array.isArray(m.resolved)||m.resolved.some(r=>!r||typeof r.id!=='string')||m.retired!=null&&(!Array.isArray(m.retired)||m.retired.some(r=>!r||typeof r.id!=='string'))||Object.values(m.active).some(r=>!r||typeof r.id!=='string'||typeof r.name!=='string'||!Array.isArray(r.tools??[])))return {ok:false,reason:'Moniteur absent ou invalide : l’absence d’alerte ne démontre aucun succès.'}
  const age=now-Date.parse(m.checkedAt)
@@ -40,6 +42,13 @@ export function issueKind(state){
  if(['collection-error','source-conflict','invalid-date','future-date','publication-old','check-overdue'].includes(state))return'failure'
  return'qualification'
 }
+export function usageIssueKind(field,state){
+ if(state!=='blocked')return 'qualification'
+ // A blocked contract does not demonstrate that its value is absent.
+ if(field.present===false)return 'connection'
+ if(field.actionState)return issueKind(field.actionState)
+ return 'qualification'
+}
 const phase=kind=>({connection:'Raccordement',qualification:'Qualification',waiting:'Calendrier',editorial:'Revue éditoriale',monitoring:'Surveillance'}[kind]??'Donnée / collecte')
 export function buildInbox({status,inventory,coverage,financial,review,failures={},now=Date.now()}){
  inventory=decodeReviewProjection(inventory)
@@ -52,7 +61,7 @@ export function buildInbox({status,inventory,coverage,financial,review,failures=
  for(const[id,c]of Object.entries(registry)){
   if(missingProducerReports(c,status?.workflows?.[id]))add({id:'coverage:'+id,name:c.name,field:'Contrat de remontée individuelle',kind:'qualification',cause:'Ce producteur ne fournit pas de rapport individuel contractuel ; la couverture de chaque champ reste à démontrer.',tools:c.tools,workflow:id})
   const w=status?.workflows?.[id]
-  for(const [n,cause]of (w?.legacyReportCoverage??[]).entries())add({id:'legacy-coverage:'+id+':'+n,name:c.name,field:'Contrat de l’ancienne exécution',kind:'qualification',cause,tools:c.tools,workflow:id,runUrl:w.runUrl})
+  for(const [n,cause]of (Array.isArray(w?.legacyReportCoverage)?w.legacyReportCoverage:w?.legacyReportCoverage?["Contrat historique illisible ; autres producteurs conservés."]:[]).entries())add({id:'legacy-coverage:'+id+':'+n,name:c.name,field:'Contrat de l’ancienne exécution',kind:'qualification',cause,tools:c.tools,workflow:id,runUrl:w.runUrl})
   if(status&&(!w||!Number.isFinite(Date.parse(w.completedAt))))add({id:'unobserved:'+id,name:c.name,field:'Exécution',kind:'monitoring',cause:'Aucune exécution terminée démontrée par ce bilan.',tools:c.tools,workflow:id})
  }
  const self=status?.monitorSelf
@@ -84,11 +93,14 @@ export function buildInbox({status,inventory,coverage,financial,review,failures=
  for(const r of status?.monitoring?.retired??[])if(r&&typeof r.id==='string')add({...r,id:'retired:'+r.id+':'+r.retiredAt,kind:'not-applicable',stage:'Retrait de périmètre',field:r.field??'Champ retiré',cause:r.retirementReason??'Retrait enregistré ; aucune réparation déduite'})
  for(const r of inventory?.backlog??[])add({id:'connection:'+r.type+':'+r.id+':'+r.field,key:`${r.type}:${r.id}:${r.field}`,name:r.name,asset:r.id,field:r.label??r.field,kind:issueKind(r.actionState),cause:r.reason??r.nextAction,action:r.nextAction,asOf:r.asOf,checkedAt:r.checkedAt,attemptedAt:r.lastAttemptAt,lastSuccessAt:r.lastSuccessAt,tools:consumerTools.get(`${r.id}:coverage:${r.field}`)??r.tools??[],sourceUrls:[r.sourceUrl,...(r.configuredSourceUrls??[])].filter(Boolean),scope:r.scope,currency:r.currency,method:r.method})
  for(const r of coverage?.rows??[]){if(normal.has(r.state))continue;add({id:'coverage:'+r.type+':'+r.id+':'+r.field,key:`${r.type}:${r.id}:${r.field}`,name:r.name,asset:r.id,field:r.label??r.field,kind:issueKind(r.state),cause:r.reason??r.diagnostic?.reason??r.state,asOf:r.asOf,checkedAt:r.checkedAt,tools:consumerTools.get(`${r.id}:coverage:${r.field}`)??r.tools??[],sourceUrls:r.sourceUrl?[r.sourceUrl]:[],scope:r.scope,currency:r.currency})}
- const fieldMap=new Map([...(inventory?.assets??[]),...(inventory?.consumerUsage?.externalAssets??[])].flatMap(a=>(a.fields??[]).map(f=>[`${a.id}:${f.key}`,{...f,name:a.name}])) )
+ const fieldMap=new Map([...(inventory?.assets??[]),...(inventory?.consumerUsage?.externalAssets??[])].flatMap(a=>(a.fields??[]).map(f=>[`${a.id}:${f.key}`,{...f,name:a.name,assetType:a.type}])) )
+ const coverageMap=new Map((coverage?.rows??[]).map(r=>[r.id+':'+r.field,r]))
  for(const tool of inventory?.consumerUsage?.tools??[])for(const r of tool.rows??[]){
   if(!r.required||r.state==='connected'||r.state==='not-required')continue
   const f=fieldMap.get(`${r.id}:${r.key}`)??{}
-  add({id:`usage:${tool.path}:${r.id}:${r.key}`,key:`usage:${r.id}:${r.key}`,name:f.name??r.id,asset:r.id,field:f.label??r.key,kind:r.state==='blocked'?'connection':'qualification',stage:'Consommation',cause:f.reason??f.action??'Contrat d’usage requis non confirmé',action:f.nextAction,tools:[tool.name??tool.path],asOf:f.asOf,checkedAt:f.checkedAt,sourceUrls:f.sourceUrls??[],scope:f.scope,currency:f.currency})
+  const ref=f.coverageReference??(r.key.startsWith('coverage:')?{id:r.id,field:r.key.slice(9)}:null),source=ref&&coverageMap.get(ref.id+':'+ref.field)
+  const same=source&&source.checkedAt===f.checkedAt&&(!f.asOf||source.asOf===f.asOf)
+  add({id:`usage:${tool.path}:${r.id}:${r.key}`,key:same?`${source.type}:${source.id}:${source.field}`:`usage:${r.id}:${r.key}`,name:f.name??r.id,asset:r.id,field:f.label??r.key,kind:usageIssueKind(f,r.state),stage:'Consommation',cause:f.reason??f.nextAction??f.action??'Contrat d’usage requis non confirmé',qualificationBlock:f.qualificationBlock??'consumer-contract-unconfirmed',present:f.present,action:f.nextAction,tools:[tool.name??tool.path],asOf:f.asOf??f.periodEnd,checkedAt:f.checkedAt,attemptedAt:f.lastAttemptAt,lastSuccessAt:f.lastSuccessAt,sourceUrls:f.sourceUrls??[],scope:f.scope,currency:f.currency,method:f.method})
  }
  for(const r of financial?.rows??[])if(r.open||r.residualOpen)add({id:'financial:'+r.id,name:r.name,asset:r.isin,field:'Rapprochement financier '+r.year,kind:'qualification',stage:'Calcul',cause:r.reason,action:r.missingPiece,impact:r.currentConsumer?.secured,tools:['Calculateur','Performance depuis','Classements','Duels'],sourceUrls:[...(r.sourceUrls??[]),r.proof,r.resolutionEvidence].filter(Boolean),asOf:String(r.year),to:'/donnees-a-revoir'})
  for(const r of review?.items??[])add({id:'editorial:'+r.id,name:r.name,field:r.field,kind:'editorial',cause:r.reason,checkedAt:r.checkedAt,asOf:r.metadata?.asOf,tools:r.tools,sourceUrls:r.urls,action:r.nextReviewAt?'Prochaine revue : '+r.nextReviewAt:null,to:r.to})
@@ -99,7 +111,7 @@ export function buildInbox({status,inventory,coverage,financial,review,failures=
  return{issues,health,signals:rows.length,examinedFields:coverage?.rows?.length??null,requiredUsages:inventory?.consumerUsage?.summary?.required??inventory?.summary?.consumerUsage?.required??null,workflows:Object.keys(registry).length}
 }
 export function inboxDiagnostic(row){
- return row.signals.map(r=>[`Incident : ${r.id}`,`Actif : ${r.name} · ${r.asset??r.dataId??'identifiant non documenté'}`,`Champ : ${r.field}`,`Classe : ${ISSUE_KINDS[r.kind]}`,`Étape : ${r.stage}`,`Cause : ${r.cause??'Non documentée'}`,`Impact : ${r.impact??'Le signal concerne ce champ et ses usages déclarés ; les autres capacités restent distinctes.'}`,`Outils déclarant ce champ : ${r.tools.join(', ')||'Non documentés'}`,`Périmètre du collecteur : ${(r.collectorTools??[]).join(', ')||'Non documenté'}`,`Dernière donnée valide : ${r.asOf??'Non documentée'}`,`Dernier contrôle réussi : ${r.lastSuccessAt??r.checkedAt??'Non documenté'}`,`Dernière tentative : ${r.attemptedAt??'Non documentée'}`,`Fin de l’exécution rapportée : ${r.completedAt??'Non documentée'}`,`Reprise : ${r.recovery?.status??'Intervention / contrôle du producteur nécessaire'}`,`Action : ${r.action??'Consulter la source et l’exécution ; aucune résolution sans preuve.'}`,`Sources : ${r.sourceUrls.join(' ; ')||'Non documentées'}`,`Exécution : ${r.runUrl??'Non documentée'}`,`Preuve du rapport : ${JSON.stringify(r.evidence??r.resolutionEvidence??null)}`,`Champs du groupe : ${JSON.stringify(r.members??[])}`,`Historique des tentatives : ${JSON.stringify(r.observations??[])}`].join('\n')).join('\n\n')
+ return row.signals.map(r=>[`Incident : ${r.id}`,`Actif : ${r.name} · ${r.asset??r.dataId??'identifiant non documenté'}`,`Champ : ${r.field}`,`Classe : ${ISSUE_KINDS[r.kind]}`,`Étape : ${r.stage}`,`Cause : ${r.cause??'Non documentée'}`,`Impact : ${r.impact??'Le signal concerne ce champ et ses usages déclarés ; les autres capacités restent distinctes.'}`,`Outils déclarant ce champ : ${r.tools.join(', ')||'Non documentés'}`,`Périmètre du collecteur : ${(r.collectorTools??[]).join(', ')||'Non documenté'}`,`Dernière donnée valide : ${r.asOf??'Non documentée'}`,`Dernier contrôle réussi : ${r.lastSuccessAt??r.checkedAt??'Non documenté'}`,`Dernière tentative : ${r.attemptedAt??'Non documentée'}`,`Fin de l’exécution rapportée : ${r.completedAt??'Non documentée'}`,`Reprise : ${r.recovery?.status??'Intervention / contrôle du producteur nécessaire'}`,`Condition de qualification : ${r.qualificationBlock??'Voir la cause ciblée'}`,`Preuve pour clôturer : ${closureRequirement(r)}`,`Action : ${r.action??'Consulter la source et l’exécution ; aucune résolution sans preuve.'}`,`Sources : ${r.sourceUrls.join(' ; ')||'Non documentées'}`,`Exécution : ${r.runUrl??'Non documentée'}`,`Preuve du rapport : ${JSON.stringify(r.evidence??r.resolutionEvidence??null)}`,`Champs du groupe : ${JSON.stringify(r.members??[])}`,`Historique des tentatives : ${JSON.stringify(r.observations??[])}`].join('\n')).join('\n\n')
 }
 
 export const MONITOR_RUNS_URL='https://api.github.com/repos/madmax91310/shinny-potato/actions/workflows/automation-status.yml/runs?branch=master&status=completed&per_page=10'
