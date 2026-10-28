@@ -27,6 +27,10 @@ class ObservationRebaseTests(unittest.TestCase):
                      'scripts/test_metadata_listing_retention.py',
                      'src/data/automated-practical-sheets.json',
                      'public/asset-art/investment-obsidian/gold.webp',
+                     'public/data/investors/ackman.json',
+                     'public/data/investors/review-metadata.json',
+                     'public/data/investors/other.json',
+                     'src/pages/hey-grok/App.css',
                      'src/pages/investment-calculator/lib.js', 'src/data/monthly-fx.json']:
             p = self.f.local / name
             p.parent.mkdir(parents=True, exist_ok=True)
@@ -215,6 +219,30 @@ class ObservationRebaseTests(unittest.TestCase):
 
     def test_reader_independence_is_not_assumed_for_other_collectors(self):
         self.assert_refused('scripts/lib/radar-consumer.mjs', 'publication')
+
+    def test_actual_13f_and_grok_race_revalidates_combined_tree(self):
+        for path in ['public/data/investors/ackman.json','public/data/investors/review-metadata.json','src/pages/hey-grok/App.css']:
+            self.f.advance_remote(path)
+        result=self.publish('market', "test -f validated.json")
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'validated update')
+        for path in ['public/data/investors/ackman.json','public/data/investors/review-metadata.json','src/pages/hey-grok/App.css']:
+            self.assertNotEqual(self.f.git(self.f.remote,'show','master:'+path),'original')
+
+    def test_13f_and_grok_changes_never_bypass_failed_revalidation(self):
+        self.f.advance_remote('public/data/investors/ackman.json')
+        self.assert_refused('src/pages/hey-grok/App.css','market','false')
+
+    def test_13f_and_grok_changes_do_not_hide_changed_fx(self):
+        self.f.advance_remote('public/data/investors/ackman.json')
+        self.f.advance_remote('src/pages/hey-grok/App.css')
+        self.assert_refused('src/data/monthly-fx.json','market')
+
+    def test_no_general_investor_or_other_producer_exception(self):
+        self.assert_refused('public/data/investors/other.json','market')
+
+    def test_13f_independence_is_not_assumed_for_other_producers(self):
+        self.assert_refused('public/data/investors/ackman.json','publication')
 
     def test_market_collector_change_still_requires_recollection(self):
         self.assert_refused('scripts/refresh_monthly_history.py', 'market')

@@ -37,6 +37,13 @@ MARKET_READER_ONLY_CHANGES = {
     'src/data/automated-practical-sheets.json',
     # Exact render-only resource introduced by concurrent PR1009.
     'public/asset-art/investment-obsidian/gold.webp',
+    # Actual refusal40743703455: 13F presentation outputs and an isolated
+    # non-financial UI stylesheet are not read by market acquisition/baselines.
+    # No directory glob: every other investor file/CSS remains unqualified.
+    # Rebase still rebuilds projections and reruns the full financial controls.
+    'public/data/investors/ackman.json',
+    'public/data/investors/review-metadata.json',
+    'src/pages/hey-grok/App.css',
 }
 # The ETF acquisition chain and its baseline do not read insurance products.
 # Coverage reports/build do: regenerate and validate those on the merged tree.
