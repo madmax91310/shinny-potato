@@ -10,7 +10,7 @@ import re
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import quote, urlencode
 from zoneinfo import ZoneInfo
-from data_automation import UTC, get_json, number, reject, write_json_atomic
+from data_automation import UTC, get_json, get_text, number, reject, write_json_atomic
 from market_transport import chart_response
 from issuer_documents import download
 from refresh_monthly_history import yahoo_chart, msci_rows, get_msci_json
@@ -119,7 +119,9 @@ def xndx_supported_ranges(config,now,fetch):
     if (config.get('symbol'),config.get('currency'),config.get('variant'))!=('^XNDX','USD','TOTAL'):reject('Wrong XNDX convention')
     observations=[];proofs={};pending=[]
     for url,window in zip(XNDX_URLS,['5d','1d']):
-        data=fetch(url);rows,zone=yahoo_chart(data,config,'1d')
+        try:data=fetch(url)
+        except Exception as error:raise ValueError(f'XNDX supported-range request failed at {url}: {error}')from error
+        rows,zone=yahoo_chart(data,config,'1d')
         payload=data['chart']['result'][0];meta=payload['meta']
         if (meta.get('instrumentType'),meta.get('longName'),meta.get('range'))!=('INDEX','NASDAQ-100 Total Return',window):reject('Wrong XNDX index or supported range')
         today=now.astimezone(ZoneInfo(zone)).date()
@@ -166,6 +168,11 @@ def xndx_supported_ranges(config,now,fetch):
     if observations[0]!=observations[1]:reject('Supported XNDX windows disagree')
     return observations[0][0],observations[0][1],XNDX_URLS[0],{'sources':proofs}
 
+def xndx_fred_date_bytes(url):
+    # Same typed, bounded transport already exercised by monthly FRED XNDX.
+    return get_text(url,('text/csv','application/csv','text/plain'),max_bytes=100_000).encode('utf-8')
+
+
 def xndx_dated_previous_close(config, old, evidence, expected, now, fetch):
     """Recover a missed close only with an independently dated SAME XNDX series.
 
@@ -180,7 +187,8 @@ def xndx_dated_previous_close(config, old, evidence, expected, now, fetch):
     if old.get('checkedAt')and dt.datetime.fromisoformat(old['checkedAt'].replace('Z','+00:00'))>now:reject('Retained XNDX proof is future-dated')
     start=(dt.date.fromisoformat(expected)-dt.timedelta(days=10)).isoformat()
     url='https://fred.stlouisfed.org/graph/fredgraph.csv?'+urlencode({'id':'NASDAQXNDX','cosd':start,'coed':expected})
-    body=fetch(url)
+    try:body=fetch(url)
+    except Exception as error:raise ValueError(f'Dated FRED XNDX request failed at {url}: {error}')from error
     if not isinstance(body,bytes)or len(body)>100_000:reject('Invalid bounded FRED XNDX response')
     reader=csv.DictReader(io.StringIO(body.decode('utf-8-sig')))
     if reader.fieldnames!=['observation_date','NASDAQXNDX']:reject('Wrong FRED XNDX series or CSV structure')
@@ -214,7 +222,7 @@ def xndx_source_upgrade(identifier,old,record):
             and all(re.fullmatch(r'[a-f0-9]{64}',v or '')for v in sources.values()))
 
 
-def refresh(current, now, collect=collect_one, selected=None, date_fetch=download):
+def refresh(current, now, collect=collect_one, selected=None, date_fetch=xndx_fred_date_bytes):
     merged=current.copy();successes=[];errors=[];waiting=[];derived=[];outcomes=[]
     requested=configurations() if selected is None else selected
     requested_by_id={c['id']:c for c in requested}
