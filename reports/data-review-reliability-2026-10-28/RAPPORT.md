@@ -1,6 +1,6 @@
 # Données à revoir — fiabilisation du 28 octobre 2026
 
-Le candidat corrige les liaisons de preuves, le classement des données présentes, des clôtures historiques ciblées et la lisibilité du centre de suivi. **Il reste 2 108 points à traiter dans le rejeu comparable. Ce nombre n'est ni zéro panne ni une mesure de données absentes.** Aucun collecteur fournisseur n'est annoncé réparé par ce lot de supervision. Aucune fusion ni aucun déploiement n'est autorisé par la dernière demande.
+Le candidat corrige les liaisons de preuves, le classement des données présentes, des clôtures historiques ciblées et la lisibilité du centre de suivi. **Il reste 2 993 points à traiter dans le rejeu comparable. Ce nombre n'est ni zéro panne ni une mesure de données absentes.** Aucun collecteur fournisseur n'est annoncé réparé par ce lot de supervision. Aucune fusion ni aucun déploiement n'est autorisé par la dernière demande.
 
 ## Périmètre et état initial reproductible
 
@@ -8,31 +8,31 @@ Consignes : `CLAUDE.md`, référence `docs/claude/audit-application-2026-10-18.m
 
 Capture publique du 28 octobre à **15:14:17.582393 UTC** : code `79c7245a146c759c872d1e3601c591c894366c2b`, données `7c54f55d10a05ba2a9a0fbb54daf72e9da5cc72c`, voie validated-data, construction 15:10:46. Les octets, URL et empreintes sont conservés dans `preuves/capture-initiale/`. L'état publié donne alors **3 430 points, 3 094 qualifications, 182 raccordements, 151 pannes/anomalies et 3 lacunes de surveillance**. Les nombres 3 095/150 du précédent relevé ne sont donc pas figés dans un test.
 
-Base initiale `0e73de84a8d6049992075e446fbdf376b000c6cc`. Après examen des travaux concurrents, les corrections Générateur #1013 et Radar #1014 sont intégrées par rebase sur **`9a7b862110042ebc75c08ebacf3c53b2933c82ca`**. #1012 possède les voies NAV et leurs calculs ; #1015 possède le transport du radar. Leurs collecteurs, moteurs et visuels ne sont pas modifiés. Seul appendice partagé : `docs/data-operations-coordination.md`.
+Base initiale `0e73de84a8d6049992075e446fbdf376b000c6cc`. Après examen des travaux concurrents, les corrections Générateur #1013 et Radar #1014 sont intégrées par rebase sur **`9a7b862110042ebc75c08ebacf3c53b2933c82ca`**. #1012 possède les voies NAV et leurs calculs ; #1015 possède le transport du radar. Le correctif #1015 a ensuite été fusionné par son chantier et master **5d4aff93** intégré à la branche ; la suite Radar et le build combinés passent. Leurs collecteurs, moteurs et visuels ne sont pas modifiés par nos corrections. Seul appendice partagé : `docs/data-operations-coordination.md`.
 
 Une deuxième recette publique ordinateur/mobile a chargé les quatre vrais documents sans substitution : **3 492 points** avec le moniteur du **28 octobre 16:58:45.671992 UTC**, code public `d771f2d30588d3157804c28d37986900a9465d7a`. Répartition : 3 094 qualifications, 183 raccordements, 150 anomalies, 65 lacunes/diagnostics de surveillance. Les **72 nouveaux signalements** sont conservés : **62 comptes rendus Radar interrompus du run 40725300073**, **deux erreurs de composition** (`IE000NDWFGA5` : cellule numérique vide ; `IE00B441G979` : portefeuille non long-only) et **huit contrats d’usage de positions intégrales à qualifier**. Le détail est consigné dans `nouveaux-signaux-publics.csv`, Le transport Radar est possédé par #1015 ; les autres points restent attribués à leur producteur. La différence entre signaux et points explique que ce décompte ne se soustrait pas directement à 3 492. Ce relevé mouvant n'est pas soustrait au rejeu comparable.
 
-Le bilan principal compare master 9a7b8621 et le candidat avec les **mêmes entrées et la même horloge d'évaluation, 16:29:09.081135 UTC**. Cette horloge de rejeu ne modifie aucune observation, date de collecte ou règle de fraîcheur. Le résultat 3 431 diffère du relevé public 3 430 parce que les registres et le code master sont plus récents. Le bilan de la première base est conservé séparément dans `initial-master/`.
+Le bilan principal compare master 9a7b8621 et le candidat avec les **mêmes entrées et la même horloge d'évaluation, 16:29:09.081135 UTC**. Cette horloge de rejeu ne modifie aucune observation, date de collecte ou règle de fraîcheur. Le résultat 3 431 diffère du relevé public 3 430 parce que les registres et le code master sont plus récents. Le bilan intermédiaire de la première base, antérieur à la correction des qualifications historiques, est conservé séparément dans `initial-master/`.
 
 ## Comptage
 
 | Classe | Master comparable | Candidat |
 |---|---:|---:|
-| Points à traiter | 3 431 | 2 108 |
-| Qualifications manquantes | 3 094 | 1 881 |
+| Points à traiter | 3 431 | 2 993 |
+| Qualifications manquantes | 3 094 | 2 766 |
 | Données nécessaires non raccordées | 183 | 73 |
 | Pannes ou anomalies | 151 | 152 |
 | Surveillance non démontrée | 3 | 2 |
-| Historique et résolutions | 1 147 | 1 149 |
+| Historique et résolutions prouvées | 1 147 | 164 |
 | Attentes normales | 17 | 17 |
 | Revues éditoriales | 784 | 784 |
-| Non applicables et archives | 280 | 280 |
+| Non applicables et archives | 280 | 380 |
 
 Les 152 pannes incluent une reclassification depuis la consommation : la réduction d'un autre compteur ne constitue pas une réparation de source. Tous les **10 853 signalements initiaux** sont rapprochés : **8 241 conservés, 2 610 liaisons exactes démontrées, 2 résolutions historiques ciblées, zéro disparition inexpliquée et zéro nouveau signalement** dans ce rejeu. Voir `suivi-avant-apres.csv` et `suivi-signaux.json.gz` pour les preuves attachées ; `points-ouverts.csv` donne chaque réserve, son action, ses sources, ses dates et ses outils déclarés.
 
 Définitions : un champ est une observation ou une série sous contrat ; un usage est le couple de ce champ et d'un outil déclaré ; un signalement est une entrée issue d'un rapport ; un point réunit les signalements du même champ quand leur preuve correspond ; une cause commune exige un même producteur, run, tentative et étape ou rapport ; un épisode historique demeure distinct de la réparation actuelle.
 
-L'ancien regroupement en 537 « causes » fusionnait notamment des messages/URL semblables après effacement des dates. Il ne prouvait pas une cause commune. Les **2 108 groupes prudents** du candidat ne sont pas comparables à ces 537 groupes. Les points non reliés par une preuve restent séparés, consultables et paginés.
+L'ancien regroupement en 537 « causes » fusionnait notamment des messages/URL semblables après effacement des dates. Il ne prouvait pas une cause commune. Les **2 993 groupes prudents** du candidat ne sont pas comparables à ces 537 groupes. Les points non reliés par une preuve restent séparés, consultables et paginés.
 
 Les dénominateurs sont distincts : **4 275 certificats de couverture**, **4 556 champs catalogue**, **27 974 usages requis déclarés sur 23 outils**, **24 producteurs/contrôles et le moniteur lui-même**. La suppression de 74 doubles représentations du même certificat fait passer 28 048 usages à 27 974, sans supprimer de champ, actif ou consommateur. L'affectation d'un actif à un outil reste une déclaration lorsqu'aucune liaison précise de champ n'est prouvée ; elle ne démontre pas que tous ses calculs consomment ce champ.
 
@@ -47,15 +47,17 @@ Les dénominateurs sont distincts : **4 275 certificats de couverture**, **4 556
 - **Échec historique du moniteur 40213617352.** La lecture complète des jobs démontre l'interruption de `Initialise current statuses` dans un job en échec. Le succès de la **même étape**, run 40395077280 du 26 octobre 20:26:47, qualifie sa reprise. Ce n'était pas une panne avant toute étape. Les autres épisodes sont conservés.
 - **Bitcoin historique.** Contrat limité au code historique exact `3976ea40…`, ses étapes et ses trois sorties. Validation et enregistrement sont démontrés ; deux fichiers sont identiques aux fichiers publiés. `automated-indices.json` diffère : publication globale toujours non démontrée, noms des fichiers et preuve partielle affichés. Aucune réussite source actuelle ni disponibilité des autres indices déduite.
 - **Stockage historique sans perte.** Seuls les grands tableaux historiques sont compressés avec SHA-256, longueur décodée et cardinalités ; incidents actifs, horloges et périmètres restent préservés. Le véritable état passe de 77 607 493 à 60 829 012 octets après compactage des périmètres puis archives, avec restitution identique. Une archive ou un producteur illisible ouvre son incident sans interrompre les autres.
-- **Interface.** Regroupement sur preuve, condition de clôture par classe, dénominateurs explicites, dates et action exploitables. Export JSON complet avec définitions des périmètres de preuve ; recherche, copie de secours et pagination restent accessibles sur mobile et ordinateur. Un moniteur absent, ancien ou invalide ne donne pas un écran rassurant.
+- **Interface.** Regroupement sur preuve, condition de clôture par classe, dénominateurs explicites, dates et action exploitables. Export JSON complet avec définitions des périmètres de preuve ; recherche, copie de secours et pagination restent accessibles sur mobile et ordinateur. Un moniteur absent, ancien ou invalide ne donne pas un écran rassurant. Les preuves historiques inconnues ou mal formées restent en qualification ; le certificat de liaison publié a également son contrat de lecture testé.
 
 ## Réserves conservées
 
-- **1 881 qualifications** : 1 305 à la consommation, 488 en qualification source, 79 financières, 8 d'enregistrement et 1 d'historique du moniteur. Le certificat exact des autres familles (notamment documents, SCPI, paramètres, métriques, fonds/indices) n'est pas déduit de la disponibilité d'une URL, d'un workflow ou de la présence d'un actif dans un outil. Le détail de la comparaison manquante est conservé par champ.
+- **2 766 qualifications** : 1 305 à la consommation, 488 en qualification source, 79 financières, 8 d'enregistrement, 1 d'historique du moniteur et **885 qualifications historiques**. Le certificat exact des autres familles (notamment documents, SCPI, paramètres, métriques, fonds/indices) n'est pas déduit de la disponibilité d'une URL, d'un workflow ou de la présence d'un actif dans un outil. Le détail de la comparaison manquante est conservé par champ.
 - **73 raccordements** : sources à qualifier, documents contractuels propres au support, périmètres économiques complets et quelques valeurs réellement absentes. Une allocation d'indice n'est pas remplacée par un fonds de substitution. Les tarifs manuels sont distincts d'une alimentation automatisée.
 - **152 pannes/anomalies** : contrôles échus, erreurs de transport et contradictions datées restent actifs tant que le producteur ne prouve pas leur résolution ciblée. Les contradictions du Radar relèvent du chantier concurrent ; ce lot ne choisit aucune valeur à sa place. Les échecs fournisseur WisdomTree et les reprises NAV appartiennent à #1012 ; sa CI fournisseur rouge n'est pas déclarée verte ici.
 - **Deux lacunes de surveillance** : publication Bitcoin partiellement rapprochée ; artefact Radar du run **40131317914** réellement absent (API zéro artefact, log de dépôt « No files found … feed.json »). Un autre rapport ou une exécution verte ultérieure ne remplace pas ces pièces. La couverture du moniteur antérieure à sa fenêtre initiale de lecture reste également explicitement non démontrée dans sa qualification historique.
 - **79 cas financiers ouverts/résiduels sur 90** sont conservés. Les garde-fous refusent 41 fenêtres de cotations ajustées et préservent 38 cas NAV indépendants. Aucun seuil financier modifié, aucune inconnue passée à zéro, aucune prolongation ou renormalisation.
+
+Le dernier contrôle a identifié **979 enregistrements archivés sans preuve de résolution jointe**, ainsi que quelques preuves de format insuffisant. Ils ne restent plus affichés comme des résolutions acquises : **885 points de qualification historique** sont ajoutés au compteur actif et **100 points d’outils retirés** sont classés hors périmètre (certaines représentations se recoupent). Les historiques avec preuve restent séparés ; aucune panne actuelle n'est déduite de cette qualification historique. Le bilan intermédiaire de 2 108 points, avant cette correction, ne décrit plus le candidat final.
 
 Ces réserves sont des travaux ouverts, pas toutes des dépendances externes insolubles. Le lot améliore la fiabilité du diagnostic ; il ne prétend pas achever tous les contrats de l'application ni prouver tous les parcours de tous les consommateurs.
 
@@ -69,7 +71,7 @@ Ces réserves sont des travaux ouverts, pas toutes des dépendances externes ins
 - Chromium ordinateur/mobile : recherche au-delà de la première page, filtres, regroupement démontré, pagination imbriquée, copie avec repli, export intégral, moniteur absent/invalide/périmé/réseau, projection incohérente puis reprise.
 - Parcours réels et **15 PNG** : deux fiches Or, IBKR, DCA, secteurs ETF, cessation Tudigo, avec textes et données communes.
 
-Les réponses GitHub et le rejeu sont dans `preuves/` ; ils sont **en lecture seule**. La validation du futur code par le producteur ordinaire sur master ne peut pas être revendiquée avant fusion autorisée. La recette du candidat avec le véritable état capturé/rejoué affiche bien **2 108 points**, conserve les **79 cas financiers**, exporte les **416 définitions de périmètre** avec zéro référence manquante, sur les deux tailles d'écran et sans erreur JavaScript. Les empreintes des PNG réellement générés sont dans `preuves/exports-png.json` ; les images restent aussi disponibles dans les artefacts locaux de recette. Les résultats et captures sont dans `preuves/browser-real-candidate/` ; la recette publique dans `preuves/browser-public/`.
+Les réponses GitHub et le rejeu sont dans `preuves/` ; ils sont **en lecture seule**. La validation du futur code par le producteur ordinaire sur master ne peut pas être revendiquée avant fusion autorisée. La recette du candidat avec le véritable état capturé/rejoué affiche bien **2 993 points**, conserve les **79 cas financiers**, exporte les **416 définitions de périmètre** avec zéro référence manquante, sur les deux tailles d'écran et sans erreur JavaScript. Les empreintes des PNG réellement générés sont dans `preuves/exports-png.json` ; les images restent aussi disponibles dans les artefacts locaux de recette. Les résultats et captures sont dans `preuves/browser-real-candidate/` ; la recette publique dans `preuves/browser-public/`.
 
 La CI de PR doit être consultée séparément pour son résultat exact. Aucun run volontairement défaillant n'est provoqué en production.
 

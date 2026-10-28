@@ -1,4 +1,4 @@
-import {closureRequirement} from './review-causes.js'
+import {closureRequirement,historicalResolutionProof} from './review-causes.js'
 import {missingProducerReports} from './automation.js'
 import registry from '../../data/automation-workflows.json' with {type:'json'}
 import retired from '../../data/retired-automations.json' with {type:'json'}
@@ -89,7 +89,13 @@ export function buildInbox({status,inventory,coverage,financial,review,failures=
   const usageKey=match?`${match[2]}:coverage:${match[3]}`:metadata?`${metadata[1]}:coverage:${metadata[2]}`:holdings?`${holdings[1]}:coverage:completeHoldings`:null
   add({...r,members:r.members??r.attemptedDataIds,impactQualified:consumerTools.has(usageKey),impact:consumerTools.has(usageKey)?r.impact:'Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.',tools:consumerTools.get(usageKey)??r.tools,collectorTools:r.tools,kind,stage:r.kind==='publication'?'Publication':/Commit validated|Enregistrement/i.test(r.cause??'')?'Enregistrement':r.kind==='checks'?(/build|projection|génér/i.test(r.cause??'')?'Génération':'Validation'):phase(kind),key:match?`${match[1]}:${match[2]}:${match[3]}`:r.id.startsWith('field:gap:usage:')?r.id.slice('field:gap:'.length):metadata?`instrument:${metadata[1]}:${metadata[2]}`:holdings?`instrument:${holdings[1]}:completeHoldings`:r.id,attemptedAt:r.attemptedAt,recovery:status?.recovery?.[r.workflow]})
  }
- for(const r of status?.monitoring?.resolved??[])if(r&&typeof r.id==='string')add({...r,id:'history:'+r.id+':'+r.resolvedAt,kind:'history',field:r.field??'Champ historique',stage:'Historique',cause:(r.resolutionEvidence?'Résolution documentée':'Retour enregistré ; preuve historique à qualifier')+' · '+r.resolvedAt+' · '+r.cause})
+ for(const r of status?.monitoring?.resolved??[])if(r&&typeof r.id==='string'){
+  const withdrawal=retired.workflows[r.workflow]
+  const proven=historicalResolutionProof(r,now)
+  add({...r,id:'history:'+r.id+':'+r.resolvedAt,kind:withdrawal?'not-applicable':proven?'history':'qualification',field:r.field??'Champ historique',stage:withdrawal?'Retrait de périmètre':proven?'Historique':'Qualification historique',
+   cause:(withdrawal?'Retrait de périmètre ; aucune réparation déduite : '+withdrawal.reason:proven?'Résolution documentée':'Résolution historique non démontrée ; épisode conservé, sans panne actuelle déduite')+' · '+r.resolvedAt+' · '+r.cause,
+   ...(!withdrawal&&!proven?{qualificationBlock:'historical-resolution-unproven',impact:'La clôture de cet épisode ancien ne dispose pas de preuve exploitable ; cela ne démontre pas une panne actuelle de ses données.',action:'Rapprocher la reprise du même champ, de la même période et de la même étape, ou documenter un retrait de périmètre. Un succès global ultérieur ne suffit pas.'}:{})})
+ }
  for(const r of status?.monitoring?.retired??[])if(r&&typeof r.id==='string')add({...r,id:'retired:'+r.id+':'+r.retiredAt,kind:'not-applicable',stage:'Retrait de périmètre',field:r.field??'Champ retiré',cause:r.retirementReason??'Retrait enregistré ; aucune réparation déduite'})
  for(const r of inventory?.backlog??[])add({id:'connection:'+r.type+':'+r.id+':'+r.field,key:`${r.type}:${r.id}:${r.field}`,name:r.name,asset:r.id,field:r.label??r.field,kind:issueKind(r.actionState),cause:r.reason??r.nextAction,action:r.nextAction,asOf:r.asOf,checkedAt:r.checkedAt,attemptedAt:r.lastAttemptAt,lastSuccessAt:r.lastSuccessAt,tools:consumerTools.get(`${r.id}:coverage:${r.field}`)??r.tools??[],sourceUrls:[r.sourceUrl,...(r.configuredSourceUrls??[])].filter(Boolean),scope:r.scope,currency:r.currency,method:r.method})
  for(const r of coverage?.rows??[]){if(normal.has(r.state))continue;add({id:'coverage:'+r.type+':'+r.id+':'+r.field,key:`${r.type}:${r.id}:${r.field}`,name:r.name,asset:r.id,field:r.label??r.field,kind:issueKind(r.state),cause:r.reason??r.diagnostic?.reason??r.state,asOf:r.asOf,checkedAt:r.checkedAt,tools:consumerTools.get(`${r.id}:coverage:${r.field}`)??r.tools??[],sourceUrls:r.sourceUrl?[r.sourceUrl]:[],scope:r.scope,currency:r.currency})}

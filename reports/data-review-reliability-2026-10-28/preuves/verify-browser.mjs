@@ -2,8 +2,8 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import zlib from 'node:zlib'
 import{createHash}from'node:crypto'
-import {chromium} from '/workspace/shinny-potato-review-20261028/node_modules/playwright/index.mjs'
-import {choose} from '/workspace/shinny-potato-review-20261028/scripts/card-selection.mjs'
+import {chromium} from 'playwright'
+import {choose} from '../../../scripts/card-selection.mjs'
 const base=process.env.REVIEW_PUBLIC_BASE??'https://madmax91310.github.io/shinny-potato'
 const output=process.env.REVIEW_PUBLIC_OUTPUT??'/workspace/scratch/review-public';fs.mkdirSync(output,{recursive:true})
 const browser=await chromium.launch({headless:true}),results=[]

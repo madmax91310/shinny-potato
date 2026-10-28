@@ -57,3 +57,8 @@ assert.equal(selfModel({...selfRecord,qualificationPending:true}).kind,'qualific
 const malformedProducer=buildInbox({...args,status:{...status,workflows:{'update-bitcoin-monthly.yml':{reportEvidenceHistory:[null],legacyReportCoverage:{wrong:'shape'}}}}})
 assert(malformedProducer.issues.some(r=>r.id==='legacy-coverage:update-bitcoin-monthly.yml:0'),'An unreadable producer contract stays visible without stopping financial or consumer diagnostics')
 assert(malformedProducer.issues.some(r=>r.signals.some(s=>s.id.startsWith('financial:'))))
+
+const archived=r=>buildInbox({...args,status:{...status,monitoring:{...status.monitoring,resolved:[{id:'old',name:'Old',field:'Field',cause:'Past failure',resolvedAt:'2026-10-23T12:00:00Z',...r}]}}}).issues.find(r=>r.id==='history:old:2026-10-23T12:00:00Z')
+for(const proof of [null,{},[], 'green',{unknown:true},{kind:'unknown',checkedAt:'2026-10-23'}])assert.equal(archived({resolutionEvidence:proof}).kind,'qualification','An archived episode without a usable proof remains actionable qualification')
+assert.equal(archived({resolutionEvidence:{kind:'matching-public-source-fingerprints',checkedAt:'2026-10-23T12:00:00Z',receiptCommit:'a'.repeat(40),codeSha:'b'.repeat(40),dataSha:'c'.repeat(40),fileCount:1}}).kind,'history')
+assert.equal(archived({workflow:'update-ai-portfolios.yml'}).kind,'not-applicable','Removal of a retired tool is not a repair or a reactivated data requirement')

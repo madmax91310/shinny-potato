@@ -22,3 +22,26 @@ export function closureRequirement(row){
  if(row.kind==='qualification')return 'Identité, convention, période, preuve du champ et usage exact rapprochés ; chaque réserve indiquée doit être levée.'
  return 'Contrôle ciblé réussi après la panne, sur le même actif, champ, période et étape ; dernières données conservées jusque-là.'
 }
+
+export function historicalResolutionProof(row,now){
+ const p=row.resolutionEvidence,validDate=v=>Number.isFinite(Date.parse(v))&&Date.parse(v)<=now,sha=(v,n)=>typeof v==='string'&&new RegExp('^[a-f0-9]{'+n+'}$').test(v),url=v=>typeof v==='string'&&/^https:\/\//.test(v)
+ if(!p||typeof p!=='object'||Array.isArray(p)||!validDate(row.resolvedAt))return false
+ const evidence=p.evidence??p
+ if(p.kind){
+  if(!validDate(p.checkedAt))return false
+  switch(p.kind){
+   case 'verified-existing-field-binding':return p.publishedFilesVerified===true&&p.subject===row.id.replace(/^field:/,'')&&sha(p.seriesFingerprint,64)&&url(p.sourceUrl)&&p.sourceFiles&&Object.keys(p.sourceFiles).length>0&&Object.values(p.sourceFiles).every(v=>sha(v,40))
+   case 'verified-source-revision':return p.evidenceVerified===true&&p.status==='confirmed'&&sha(p.sourceHash,64)&&url(p.sourceUrl)
+   case 'matching-public-source-fingerprints':return sha(p.receiptCommit,40)&&sha(p.codeSha,40)&&sha(p.dataSha,40)&&Number.isInteger(p.fileCount)&&p.fileCount>0
+   case 'matching-public-inventory-projection':return sha(p.inventoryBlobSha,40)&&sha(p.codeSha,40)
+   case 'explicit-public-artifact-check':return url(p.runUrl)
+   case 'observer-or-heartbeat-recovered':return p.scope===row.id
+   case 'fully-enumerated-skipped-interval':return p.complete===true&&p.eligibleMissing===0&&Number.isInteger(p.anchorRunId)&&Array.isArray(p.enumerationSha256)&&p.enumerationSha256.length>0&&p.enumerationSha256.every(v=>sha(v,64))
+   default:return false
+  }
+ }
+ if(typeof evidence.file==='string'&&sha(evidence.sha256,64))return true
+ if(url(p.runUrl)&&validDate(p.completedAt)&&Array.isArray(p.checks)&&p.checks.length>0&&p.checks.every(c=>c&&typeof c.job==='string'&&typeof c.step==='string'))return true
+ if(row.id.startsWith('history:')){const periods=[...(row.missingPeriods??[]),...(row.invalidPeriods??[])];return validDate(p.checkedAt)&&typeof p.asOf==='string'&&['currency','method'].every(k=>!row[k]||row[k]===p[k])&&(row.id.endsWith(':delay')?p.asOf>(row.asOf??''):periods.length>0&&Array.isArray(p.restoredPeriods)&&periods.every(v=>p.restoredPeriods.includes(v)))}
+ return /^(field|calendar):/.test(row.id)&&validDate(p.checkedAt)&&url(p.sourceUrl)&&typeof p.asOf==='string'
+}

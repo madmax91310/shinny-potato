@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import {connectConsumerFields} from './lib/consumer-field-evidence.mjs'
-import {groupReviewIssues,closureRequirement} from '../src/pages/data-review/review-causes.js'
+import {groupReviewIssues,closureRequirement,historicalResolutionProof} from '../src/pages/data-review/review-causes.js'
 import {usageIssueKind} from '../src/pages/data-review/review-inbox.js'
 const id='IE000TEST0001',url='https://issuer.example/exact-share',checkedAt='2026-10-21',asOf='2026-09-30'
 const observation={family:'etf',entity:id,field:'aum',value:123,sourceUrl:url,checkedAt,period:asOf,unit:'EUR',scope:`${id} · share-class · EUR`}
@@ -38,3 +38,9 @@ assert.equal(groupReviewIssues([{...failed,runId:null},{...failed,id:'two',runId
 assert.equal(groupReviewIssues([{...failed,failedSteps:[null]},{...failed,id:'two',failedSteps:{length:1}}]).size,2,'Malformed proof rows cannot stop the other diagnostics')
 assert.match(closureRequirement({kind:'connection'}),/publiée/)
 console.log('Exact consumer field evidence, dates, scope, currency, partials, failures, false/unknown values and proven cause grouping passed.')
+
+const bindingProof={kind:'verified-existing-field-binding',subject:'gap:usage:fund:monthly',checkedAt,sourceUrl:url,publishedFilesVerified:true,sourceFiles:{'source.json':'a'.repeat(40)},seriesFingerprint:'b'.repeat(64)}
+const closed={id:'field:gap:usage:fund:monthly',resolvedAt:'2026-10-23',resolutionEvidence:bindingProof}
+assert(historicalResolutionProof(closed,Date.parse('2026-10-24')))
+assert(!historicalResolutionProof({...closed,resolutionEvidence:{...bindingProof,publishedFilesVerified:false}},Date.parse('2026-10-24')))
+assert(!historicalResolutionProof({...closed,id:'field:other'},Date.parse('2026-10-24')))
