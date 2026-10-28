@@ -28,6 +28,29 @@ class NavExport(unittest.TestCase):
   with self.assertRaisesRegex(ValueError,'disagreement'):calendar_checks(p,{'2022':17.51},2,NOW)
  def test_post_declares_selected_series_and_exact_window(self):
   p=payload(self.source,NOW);self.assertEqual(p['fromDate'],'2017-12-01');self.assertTrue(p['includeNav']);self.assertFalse(p['includeAum']);self.assertEqual(p['toDate'],'2026-10-28')
+class BrowserTransport(unittest.TestCase):
+ def test_direct_source_needs_no_browser(self):
+  from wisdomtree_nav_export import download_with_identity
+  with patch('wisdomtree_nav_export.download',return_value=b'workbook'),patch('wisdomtree_nav_export.subprocess.run')as browser:
+   self.assertEqual(download_with_identity('url',{},'page'),(b'workbook',None,'official-xlsx-post'));browser.assert_not_called()
+ def test_403_browser_keeps_same_source_and_actual_identity(self):
+  import urllib.error,json,base64,subprocess
+  from wisdomtree_nav_export import download_with_identity
+  result={'status':200,'url':'url','identityUrl':'page','body':base64.b64encode(b'workbook').decode(),'identityBody':base64.b64encode(b'actual html').decode()}
+  with patch('wisdomtree_nav_export.download',side_effect=urllib.error.HTTPError('url',403,'denied',None,None)),patch('wisdomtree_nav_export.subprocess.run',return_value=subprocess.CompletedProcess([],0,json.dumps(result).encode(),b'')):
+   self.assertEqual(download_with_identity('url',{},'page'),(b'workbook',b'actual html','publisher-same-origin-browser-export'))
+ def test_failure_never_uses_a_cached_export(self):
+  import urllib.error,subprocess
+  from wisdomtree_nav_export import download_with_identity
+  with patch('wisdomtree_nav_export.download',side_effect=urllib.error.HTTPError('url',403,'denied',None,None)),patch('wisdomtree_nav_export.subprocess.run',return_value=subprocess.CompletedProcess([],1,b'',b'Official identity page unavailable: 403')),self.assertRaisesRegex(ValueError,'browser export failed'):
+   download_with_identity('url',{},'page')
+ def test_other_errors_do_not_retry_in_a_browser(self):
+  import urllib.error
+  from wisdomtree_nav_export import download_with_identity
+  with patch('wisdomtree_nav_export.download',side_effect=urllib.error.HTTPError('url',503,'unavailable',None,None)),patch('wisdomtree_nav_export.subprocess.run')as browser,self.assertRaises(urllib.error.HTTPError):
+   download_with_identity('url',{},'page')
+  browser.assert_not_called()
+
 class ReturnWindows(unittest.TestCase):
  def test_same_threshold_and_independent_years(self):
   from wisdomtree_nav_export import qualify_return_windows

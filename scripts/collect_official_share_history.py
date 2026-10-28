@@ -140,8 +140,9 @@ def daily_nav_fx_factor(native, currency, latest, body):
 
 def collect_one(source, now, json_fetch=get_json, document_fetch=download, capture=None):
     urls, hashes = [], {}
-    def document(url):
-        if url==VANECK_CHART_URL:
+    def document(url, supplied=None):
+        if supplied is not None:body=supplied
+        elif url==VANECK_CHART_URL:
             # A single shared request even when the monthly producer collects
             # several UCITS funds concurrently. Cache lasts only this process.
             with _VANECK_CHART_LOCK:body=_vaneck_chart_body(document_fetch)
@@ -268,17 +269,17 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     elif kind=='wisdomtree':
         export_body=None
         if source.get('navHistoryTransport')=='official-xlsx-post':
-            from wisdomtree_nav_export import download as export_download,payload as export_payload,parse as export_parse
+            from wisdomtree_nav_export import download_with_identity as export_download,payload as export_payload,parse as export_parse
             url=f"https://www.wisdomtree.com/api/fund-history/{source['wisdomClassId']}/historical-data-export"
             request=export_payload(source,now)
-            try:export_body=export_download(url,request)
+            try:export_body,export_identity_body,export_transport=export_download(url,request,source['sourceUrl'])
             except Exception as error:raise ValueError('Official NAV XLSX POST failed at '+url+': '+str(error))from error
             urls.append(url);hashes[url]=hashlib.sha256(export_body).hexdigest()
             if capture:
                 capture.mkdir(parents=True,exist_ok=True)
                 (capture/(hashes[url]+'.xlsx.gz')).write_bytes(gzip.compress(export_body))
                 (capture/(hashes[url]+'.request.json')).write_text(json.dumps(request,indent=2)+'\n')
-        try:identity=wisdomtree_identity(document(source['sourceUrl']).decode(),isin)
+        try:identity=wisdomtree_identity(document(source['sourceUrl'],supplied=export_identity_body if export_body is not None else None).decode(),isin)
         except Exception as error:raise ValueError('Official share identity failed at '+source['sourceUrl']+': '+str(error))from error
         if identity['fundCurrency']!=native or identity['useOfIncome']!='N/A':raise ValueError('Commodity currency/income changed')
         if export_body is not None:nav=export_parse(export_body,identity,source,now)
@@ -290,7 +291,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         if registry not in ['src/data/automated-etf.json','src/data/non-bond-etf-records.json','src/data/exposure-etf-expansion-records.json']:raise ValueError('Unqualified WisdomTree calendar registry')
         performance=json.loads((ROOT/registry).read_text())[isin]['performance']
         if performance['currency']!=native or performance['basis']!='fund':raise ValueError('WisdomTree shared calendar convention changed')
-        calendar_proof={'calendarRegistry':registry,'calendarRegistryPerformanceHash':hashlib.sha256(json.dumps(performance,sort_keys=True,separators=(',',':')).encode()).hexdigest(),'controlledInstrument':isin,'controlledFields':['ISIN','wtClassID','fundCurrency','useOfIncome','historical-data-export.NAV','historical-data-export.Date','calendarRegistry.performance'],'requestedStart':source['periodStart']+'-01','controlledCalendarYears':sorted(performance['years']),'publicProduct':{k:identity.get(k)for k in ['ISIN','wtClassID','fundCurrency','useOfIncome','inceptionDt','NAV_Date']},'calendarSource':{k:performance.get(k)for k in ['sourceUrl','sha256','asOf','checkedAt','method']},'calendarSourceConsultedByThisCollector':False,'navHistoryTransport':source.get('navHistoryTransport','nav-modal-json')}
+        calendar_proof={'calendarRegistry':registry,'calendarRegistryPerformanceHash':hashlib.sha256(json.dumps(performance,sort_keys=True,separators=(',',':')).encode()).hexdigest(),'controlledInstrument':isin,'controlledFields':['ISIN','wtClassID','fundCurrency','useOfIncome','historical-data-export.NAV','historical-data-export.Date','calendarRegistry.performance'],'requestedStart':source['periodStart']+'-01','controlledCalendarYears':sorted(performance['years']),'publicProduct':{k:identity.get(k)for k in ['ISIN','wtClassID','fundCurrency','useOfIncome','inceptionDt','NAV_Date']},'calendarSource':{k:performance.get(k)for k in ['sourceUrl','sha256','asOf','checkedAt','method']},'calendarSourceConsultedByThisCollector':False,'navHistoryTransport':source.get('navHistoryTransport','nav-modal-json'),**({'actualNavTransport':export_transport}if export_body is not None else{})}
         years=performance['years']
     elif kind=='vaneck':
         title=source.get('navTitle') or ('VanEck S&P Global Mining UCITS ETF - GDIG' if isin=='IE00BDFBTQ78' else None)

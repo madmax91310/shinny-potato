@@ -3,7 +3,8 @@
 This transport is distinct from the NAV-modal JSON endpoint. A successful POST
 alone does not qualify the product, its income treatment, or any consumer.
 """
-import json,urllib.request,re
+import json,urllib.request,urllib.error,re
+import base64,pathlib,subprocess
 from issuer_nav_history import xlsx_rows,dated
 
 def payload(source,now):
@@ -16,6 +17,26 @@ def download(url,data):
   body=response.read(2_000_001)
   if len(body)>2_000_000:raise ValueError('NAV export exceeds bounded response size')
   return body
+
+def download_with_identity(url,data,source_url):
+ """A normal browser may initialise the public publisher session after a 403.
+
+ Both responses remain fresh source observations. Browser failure stays failure;
+ no cache, previously archived workbook or other host is used as a fallback.
+ """
+ try:return download(url,data),None,'official-xlsx-post'
+ except urllib.error.HTTPError as error:
+  if error.code!=403:raise
+ script=pathlib.Path(__file__).with_name('download-wisdomtree-history.mjs')
+ result=subprocess.run(['node',str(script),url,source_url,json.dumps(data)],capture_output=True,timeout=85)
+ if result.returncode:raise ValueError('Official same-origin browser export failed: '+result.stderr.decode(errors='replace')[-1500:])
+ if len(result.stdout)>14_000_000:raise ValueError('Official browser response exceeds bound')
+ result=json.loads(result.stdout)
+ if result['status']!=200 or result['url']!=url or result['identityUrl']!=source_url:raise ValueError('Official browser source binding changed')
+ body=base64.b64decode(result['body'],validate=True);identity=base64.b64decode(result['identityBody'],validate=True)
+ if len(body)>2_000_000 or len(identity)>8_000_000:raise ValueError('Official browser response exceeds bound')
+ return body,identity,'publisher-same-origin-browser-export'
+
 
 def parse(body,identity,source,now):
  rows=xlsx_rows(body);id=str(identity['wtClassID'])
