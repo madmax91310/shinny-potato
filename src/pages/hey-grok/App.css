@@ -2,6 +2,7 @@
 .hg-scope { --ui-accent: #2458d3; --ui-accent-soft: #eaf0ff; color: #182c4c; max-width: 1100px; margin: 0 auto; }
 .hg-scope *, .hg-dialog * { box-sizing: border-box; }
 .hg-scope .workspace-page-header { padding: 12px; margin-bottom: 12px; }
+.hg-scope .workspace-page-schedule { margin: 4px 0 0; padding: 2px 6px; }
 .hg-nav { display: flex; gap: 4px; padding: 4px; border-radius: 12px; background: #e4ecfc; margin: 12px 0; }
 .hg-nav button { flex: 1; min-height: 44px; border: 0; border-radius: 8px; background: transparent; color: #415775; font: inherit; font-size: .88rem; font-weight: 650; cursor: pointer; }
 .hg-nav button[aria-current] { background: white; color: #1948b6; box-shadow: 0 1px 4px #193d8020; }
