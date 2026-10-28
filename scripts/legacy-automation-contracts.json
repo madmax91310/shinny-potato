@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "contracts": {
+    "3976ea40d5c12e4fd7e27af63bdf064bbe3f88cd": {
+      "workflow": "update-bitcoin-monthly.yml",
+      "job": "refresh",
+      "collectionSteps": [
+        "Run python scripts/update_bitcoin_monthly.py --output \"$RUNNER_TEMP/observation.json\" --apply",
+        "Run python scripts/refresh_index_sources.py --only-derived --output \"$RUNNER_TEMP/derived-index-observation.json\" --apply"
+      ],
+      "validationSteps": [
+        "Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'",
+        "Run python -m unittest discover -s scripts -p 'test_index_extensions.py'",
+        "Run npm run audit:index-facts",
+        "Run node scripts/test-automated-indices.mjs",
+        "Run npm run audit:etf-annual-performance",
+        "Run npm run audit:etf-consistency",
+        "Run npm run audit:calculator-series",
+        "Run node scripts/test-comparison-etf-details.mjs",
+        "Run npm run build"
+      ],
+      "recordingSteps": ["Commit validated active data"],
+      "outputs": ["src/data/automated-indices.json", "src/data/bitcoin-yahoo-monthly.json", "scripts/source-snapshots/bitcoin-automated.json"],
+      "referenceRun": 37788601032,
+      "referenceSourceJob": 113349694453,
+      "referenceBuildJob": 113349972218
+    }
+  }
+}

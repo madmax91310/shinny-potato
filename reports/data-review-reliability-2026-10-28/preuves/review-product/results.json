@@ -1,0 +1,18 @@
+{
+  "desktop": true,
+  "mobile": true,
+  "all181Accessible": true,
+  "diagnosticFallback": true,
+  "allFilteredExported": true,
+  "sharedProofScopesExported": true,
+  "monitorFaults": [
+    "absent",
+    "invalid",
+    "stale",
+    "network"
+  ],
+  "invalidCoverage": true,
+  "staleConsumerProjection": true,
+  "recovery": true,
+  "pageErrors": []
+}

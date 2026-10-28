@@ -11,6 +11,11 @@ for(const width of [390,1440]){
   await page.goto(base+'donnees-a-revoir',{waitUntil:'networkidle'})
   const monitor=page.getByRole('region',{name:'Surveillance des données',exact:true})
   await monitor.getByText('2 point(s) à examiner',{exact:false}).waitFor()
+  await monitor.getByText('2 cause(s) pour 2 incident(s)',{exact:false}).waitFor()
+  // Matching messages are not proof. A producer attempt and the same failed
+  // step establish the shared intervention, without merging unknown causes.
+  for(const key of ['a','b'])Object.assign(monitoring.active[key],{runId:123,attempt:1,failedSteps:[{job:'refresh',step:'Read shared FX response'}]})
+  await page.reload({waitUntil:'networkidle'})
   await monitor.getByText('1 cause(s) pour 2 incident(s)',{exact:false}).waitFor()
   await monitor.getByRole('heading',{name:'Fixture A',exact:true}).waitFor()
   assert.equal(await monitor.getByRole('heading',{name:'Comptes retirés',exact:true}).count(),0)

@@ -1,0 +1,167 @@
+{
+  "verifiedAt": "2026-10-28T16:29:09.081135+00:00",
+  "readOnly": true,
+  "historyGap": {
+    "kind": "fully-enumerated-skipped-interval",
+    "checkedAt": "2026-10-28T16:29:09.081135+00:00",
+    "workflow": "update-editorial-radar.yml",
+    "anchorRunId": 40198351233,
+    "fromCreatedAt": "2026-10-25T13:36:05Z",
+    "throughAt": "2026-10-25T14:32:27.426088+00:00",
+    "totalRuns": 51,
+    "ignoredRunIds": [
+      40199365651,
+      40199388526,
+      40199391462,
+      40199412563,
+      40199503307,
+      40199528677,
+      40199531879,
+      40199547466,
+      40199547936,
+      40199573781,
+      40199599808,
+      40199602687,
+      40199686266,
+      40199689345,
+      40199725446,
+      40199759168,
+      40199761307,
+      40199891837,
+      40199914749,
+      40200245301,
+      40200255560,
+      40200279218,
+      40200318532,
+      40200322561,
+      40200326987,
+      40200349577,
+      40200382359,
+      40200480764,
+      40200496593,
+      40200505875,
+      40200560296,
+      40200591546,
+      40200594277,
+      40200594595,
+      40200645927,
+      40200674001,
+      40200687526,
+      40200769766,
+      40200817630,
+      40201199854,
+      40202523159,
+      40202528350,
+      40202537205,
+      40202544229,
+      40202544348,
+      40202546798,
+      40202556430,
+      40202565059,
+      40202582677,
+      40202653388
+    ],
+    "enumerationSha256": [
+      "d322ae64db40371e131577ad5d02cf00699056873b892c37c639782a89e18ec8"
+    ],
+    "complete": true,
+    "eligibleMissing": 0
+  },
+  "monitorStartupEpisode": {
+    "runId": 40213617352,
+    "attempt": 1,
+    "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40213617352",
+    "completedAt": "2026-10-25T17:04:27Z",
+    "firstObservedAt": "2026-10-25T17:31:35.432676+00:00",
+    "failedChecks": {
+      "publish:Initialise current statuses": {
+        "step": "Initialise current statuses",
+        "failedAt": "2026-10-25T17:04:24Z"
+      }
+    },
+    "qualificationPending": false,
+    "diagnostic": "Étape interrompue dans un job en échec : Initialise current statuses",
+    "resolvedAt": "2026-10-26T20:26:47Z",
+    "resolutionEvidence": {
+      "kind": "matching-ordinary-monitor-steps",
+      "checks": [
+        {
+          "kind": "ordinary-monitor-step",
+          "runId": 40395077280,
+          "attempt": 1,
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40395077280",
+          "step": "Initialise current statuses",
+          "checkedAt": "2026-10-26T20:26:47Z"
+        }
+      ]
+    }
+  },
+  "bitcoinPhases": {
+    "kind": "exact-historical-phase-contract",
+    "sourceSha": "3976ea40d5c12e4fd7e27af63bdf064bbe3f88cd",
+    "runId": 37788601032,
+    "attempt": 1,
+    "qualifiedAt": "2026-10-28T16:29:09.081135+00:00",
+    "phases": {
+      "validation": {
+        "steps": [
+          "Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'",
+          "Run python -m unittest discover -s scripts -p 'test_index_extensions.py'",
+          "Run npm run audit:index-facts",
+          "Run node scripts/test-automated-indices.mjs",
+          "Run npm run audit:etf-annual-performance",
+          "Run npm run audit:etf-consistency",
+          "Run npm run audit:calculator-series",
+          "Run node scripts/test-comparison-etf-details.mjs",
+          "Run npm run build"
+        ],
+        "jobId": 113349694453,
+        "completedAt": "2026-10-08T13:58:41Z"
+      },
+      "recording": {
+        "steps": [
+          "Commit validated active data"
+        ],
+        "jobId": 113349694453,
+        "completedAt": "2026-10-08T13:58:42Z"
+      }
+    },
+    "contractSha256": "234710c162dda7051d2e3161b1e16589097f4e48eae1826c440e3bde541b842b"
+  },
+  "bitcoinReceipt": {
+    "schemaVersion": 1,
+    "commit": "3976ea40d5c12e4fd7e27af63bdf064bbe3f88cd",
+    "files": {
+      "src/data/automated-indices.json": "b7212138c34d74670f7f8b29ba15b3fd4e826a58",
+      "src/data/bitcoin-yahoo-monthly.json": "326a7ac2f8c06f75e772dd2d56f02a2fe1f119da",
+      "scripts/source-snapshots/bitcoin-automated.json": "7c88dc2fc9186abade8f9d188c33d59d38ad560c"
+    },
+    "evidenceJobId": 113349972218,
+    "producerScope": {
+      "producer": "update-bitcoin-monthly.yml",
+      "sourceSha": "3976ea40d5c12e4fd7e27af63bdf064bbe3f88cd",
+      "kind": "reviewed-historical-producer-outputs"
+    }
+  },
+  "bitcoinPublication": {
+    "kind": "partial-matching-public-source-fingerprints",
+    "checkedAt": "2026-10-28T16:29:23.509568+00:00",
+    "matchedFiles": {
+      "src/data/bitcoin-yahoo-monthly.json": "326a7ac2f8c06f75e772dd2d56f02a2fe1f119da",
+      "scripts/source-snapshots/bitcoin-automated.json": "7c88dc2fc9186abade8f9d188c33d59d38ad560c"
+    },
+    "unconfirmedFiles": [
+      "src/data/automated-indices.json"
+    ],
+    "receiptCommit": "3976ea40d5c12e4fd7e27af63bdf064bbe3f88cd",
+    "note": "Les fichiers identiques sont démontrés publiés ; les fichiers modifiés restent à rapprocher. Aucun succès global déduit."
+  },
+  "apiReads": [
+    "/actions/runs/40198351233",
+    "/actions/workflows/update-editorial-radar.yml/runs?branch=master&status=completed&created=2026-10-25T13%3A36%3A05Z..2026-10-25T14%3A32%3A27Z&per_page=100&page=1",
+    "/actions/workflows/automation-status.yml/runs?branch=master&status=completed&per_page=100",
+    "/actions/runs/40725583232/attempts/1/jobs?per_page=100",
+    "/actions/runs/40213617352/attempts/1/jobs?per_page=100",
+    "/git/trees/3976ea40d5c12e4fd7e27af63bdf064bbe3f88cd?recursive=1"
+  ]
+}

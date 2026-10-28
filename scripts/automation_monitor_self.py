@@ -41,12 +41,20 @@ def observe_monitor_history(state,api,repo,now,read_job_log=None):
                 failed={};successes={};diagnostics=[]
                 for job in jobs:
                     if job.get('name')!='publish':continue
+                    if job.get('conclusion')in('failure','timed_out') and job.get('steps')==[]:
+                        # Explicit empty steps prove a failure before any data work.
+                        # A later successful publish job proves this same startup,
+                        # not a collection, validation or persistence operation.
+                        failed['workflow:start']={'step':'Initialisation du workflow','failedAt':job.get('completed_at')or run['updated_at']}
+                        diagnostics.append('Job publish en échec avant toute étape ; aucune panne de collecte déduite.')
                     for step in job.get('steps')or[]:
                         signature='publish:'+step['name'];date=step.get('completed_at')or job.get('completed_at')or run.get('updated_at')
                         if not timestamp(date)or timestamp(date)>timestamp(now):raise ValueError('Date d’étape du moniteur invalide')
                         proof={'kind':'ordinary-monitor-step','runId':run['id'],'attempt':run.get('run_attempt',1),'runUrl':run['html_url'],'step':step['name'],'checkedAt':date}
                         if step.get('conclusion')=='success':successes[signature]=proof
-                        elif step.get('conclusion')in('failure','timed_out'):failed[signature]={'step':step['name'],'failedAt':date}
+                        elif step.get('conclusion')in('failure','timed_out') or step.get('conclusion')=='cancelled' and job.get('conclusion')in('failure','timed_out'):
+                            failed[signature]={'step':step['name'],'failedAt':date}
+                            if step.get('conclusion')=='cancelled':diagnostics.append('Étape interrompue dans un job en échec : '+step['name'])
                     if job.get('conclusion')in('failure','timed_out')and read_job_log and log_reads<2 and time.monotonic()<deadline:
                         try:
                             log_reads+=1

@@ -3,7 +3,7 @@ import retired from '../../data/retired-automations.json' with {type:'json'}
 export const AUTOMATION_STATUS_URL = 'https://raw.githubusercontent.com/madmax91310/shinny-potato/automation-status/automation-status.json'
 
 export function missingProducerReports(config, row) {
-  const observed = new Set((row?.reportEvidenceHistory ?? []).filter(e => e.producerContract === config?.reportContract && e.scopeExplicit && e.scopePlanVerified).map(e => e.file))
+  const observed = new Set((Array.isArray(row?.reportEvidenceHistory)?row.reportEvidenceHistory:[]).filter(e => e&&e.producerContract === config?.reportContract && e.scopeExplicit && e.scopePlanVerified).map(e => e.file))
   return config?.reportCoverage === 'job-only' || Boolean(config?.reportContract && config.reportFiles?.some(file => !observed.has(file)))
 }
 
