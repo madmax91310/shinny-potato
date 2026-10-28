@@ -1,0 +1,39 @@
+{
+  "discoveredFrom": "Official BNP public Fundsheet JS apiCallNavGraph, apiCallFundsheet and allSeg[0] individual profile; no professional declaration",
+  "files": [
+    {
+      "name": "page.html",
+      "sha256": "a93f3cdbfb5e14ea744cd31d0143e9ee4ca3749ce5f8511dc9a96914e02cfa8e",
+      "bytes": 381768
+    },
+    {
+      "name": "page-fr.html",
+      "sha256": "63207ed509687d85e60faa84dbbf32df626e2c797bb2805a48527e9b8aca7cba",
+      "bytes": 360939
+    },
+    {
+      "name": "fundsheet.js",
+      "sha256": "69723bc88d5102a6976ce5c1f7f07841c362e22a41d3c3bc5fb7bd0a672bb616",
+      "bytes": 3683984
+    },
+    {
+      "name": "daily-nav.json",
+      "sha256": "106bdfcf44d6e5e2a3721a05f1bd0e785eecfc8bb4fe916adfe6c7bd3a8d633d",
+      "bytes": 225887
+    },
+    {
+      "name": "fundsheet.json",
+      "sha256": "bc059ebc9f75b38bc85d600e27081083fc5d6c633bffe039fc5da12f25279f8b",
+      "bytes": 52660
+    },
+    {
+      "name": "monthly-candidate.json",
+      "bytes": 10978,
+      "sha256": "824f600643f0ce0457cb33017d14f47d3e8311882dd50630a510a82f11a86aef"
+    }
+  ],
+  "currentUsageScope": "FR0011550185,EUR C Capitalisation,2019-12 onward only; old quotes unchanged; no anniversary or automatic role",
+  "limits": "Source public HTTP success does not establish a reuse licence. Issuer UI hides NAV graph; API NAV type, current exact-share anchor and annual dates verified independently. Pre-Dec2019 financial continuity not admitted.",
+  "monthlyScope": "Granularity month was tested on the discovered official API; all82 closed monthly dates and values exactly match final daily NAV. It is not treated as an average or a price series.",
+  "liveQualification": "collecte-locale.json.gz and collection.json.gz contain the fresh three-API qualification and source hashes; compressed raw fixtures are the canonical JSON responses ingested by the collector."
+}
