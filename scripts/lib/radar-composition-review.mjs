@@ -39,6 +39,7 @@ export function reviewCompositions(state,observations,stamp,issues,keyOf) {
     if(reason) {
       const id=hash([key,sample.period,evidence?.sourceHash??sample.sourceHash,rows.map(r=>[r.field,r.value])])
       const review=state.compositionReviews[id]??={id,reason,firstSeenAt:stamp,observations:rows}
+      if(review.resolvedAt){review.resolutions??=[];review.resolutions.push(review.resolvedAt);delete review.resolvedAt}
       review.lastAttemptAt=stamp
       for(const row of rows)for(const records of [state.current,state.anchors]){const prior=records[keyOf(row)];if(prior&&prior.period===row.period&&prior.value===row.value&&!confirmedComposition(prior.compositionEvidence))delete records[keyOf(row)]}
       issues.push({family:sample.family,entity:sample.entity,reason:`Composition en attente : ${reason}`,reviewId:id})

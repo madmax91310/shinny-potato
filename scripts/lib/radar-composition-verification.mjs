@@ -4,6 +4,7 @@ import {compositionEvidence} from './radar-composition-evidence.mjs'
 const hash=value=>createHash('sha256').update(value).digest('hex')
 const date=value=>{const text=String(value??'');return /^\d{8}$/.test(text)?`${text.slice(0,4)}-${text.slice(4,6)}-${text.slice(6)}`:null}
 const point=(points,key)=>points?.[key]?.value
+function applyVerifiedRows(observations,template,rows){if(!rows?.length||rows[0].period<template.period)return;for(let i=observations.length-1;i>=0;i--)if(observations[i].entity===template.entity&&observations[i].scope===template.scope&&observations[i].field.startsWith('sectors:'))observations.splice(i,1);observations.push(...structuredClone(rows))}
 const allowed=url=>{try{const u=new URL(url);return u.protocol==='https:'&&u.hostname==='www.blackrock.com'&&u.pathname.includes('/product-data/api/')&&u.pathname.endsWith('/get-product-data')}catch{return false}}
 // Independent, same-date full-position evidence. Signed NAV weights remain exact;
 // no clipping, scaling, or inference from a top ten or an index portfolio.
@@ -51,22 +52,22 @@ export async function qualifyCompositionCandidates(observations,previous,{now=ne
  }
  let requests=0,cachedCount=0,deferred=0,networkBytes=0
  for(const [key,row]of [...candidates].sort(([a],[b])=>String(entries[a]?.attemptedAt??'').localeCompare(String(entries[b]?.attemptedAt??'')))){
-  const cached=entries[key],fingerprint=hash(JSON.stringify([row.period,row.compositionEvidence?.sourceHash??row.sourceHash,row.value]))
-  if(cached?.fingerprint===fingerprint&&+now-Date.parse(cached.attemptedAt)<3600000){cachedCount++;continue}
+  const cached=entries[key],fingerprint=hash(JSON.stringify([row.sourceUrl,row.period,row.compositionEvidence?.sourceHash??row.sourceHash,row.value]))
+  if(cached?.fingerprint===fingerprint&&+now-Date.parse(cached.attemptedAt)<3600000){cachedCount++;if(cached.status==='confirmed'||cached.status==='observed')applyVerifiedRows(observations,row,cached.lastValidRows);continue}
   if(requests>=budget){deferred++;continue}
   requests++;const started=performance.now();const entry={fingerprint,attemptedAt:now.toISOString(),sourceUrl:row.sourceUrl,identity:row.entity}
   try{
    const headers={Accept:'application/json',...(cached?.etag?{'If-None-Match':cached.etag}:{}),...(cached?.lastModified?{'If-Modified-Since':cached.lastModified}:{})}
    const response=await fetchImpl(row.sourceUrl,{headers,signal:AbortSignal.timeout(12000),redirect:'error'})
    entry.httpStatus=response.status
-   if(response.status===304){entries[key]={...cached,...entry};continue}
+   if(response.status===304){entries[key]={...cached,...entry};if(cached.status==='confirmed'||cached.status==='observed')applyVerifiedRows(observations,row,cached.lastValidRows);continue}
    if(!response.ok)throw Error(`HTTP ${response.status}`)
    if(Number(response.headers.get('content-length'))>8000000)throw Error('Réponse de qualification trop volumineuse')
    const raw=await response.text();networkBytes+=Buffer.byteLength(raw);if(Buffer.byteLength(raw)>8000000)throw Error('Réponse de qualification trop volumineuse')
    const checked=verifyBlackRockAllocation(JSON.parse(raw),row,hash(raw),now.toISOString())
-   entries[key]={...entry,status:checked.status,reason:checked.reason,evidence:checked.evidence,etag:response.headers.get('etag'),lastModified:response.headers.get('last-modified')}
+   entries[key]={...entry,...(cached?.lastValidRows?{lastValidRows:cached.lastValidRows}:{}),...(checked.status!=='pending'?{lastValidRows:checked.rows}:{}),status:checked.status,reason:checked.reason,evidence:checked.evidence,etag:response.headers.get('etag'),lastModified:response.headers.get('last-modified')}
    // Only corroborated or structurally usable snapshots enter the normal guard.
-   if(checked.status!=='pending'&&checked.rows[0].period>=row.period){for(let i=observations.length-1;i>=0;i--)if(observations[i].entity===row.entity&&observations[i].scope===row.scope&&observations[i].field.startsWith('sectors:'))observations.splice(i,1);observations.push(...checked.rows)}
+   if(checked.status!=='pending')applyVerifiedRows(observations,row,checked.rows)
    if(checked.status==='pending')errors.push({family:'etf',entity:row.entity,reason:`Qualification complémentaire : ${checked.reason}`})
   }catch(error){entries[key]={...cached,...entry,status:'error',reason:error.message};errors.push({family:'etf',entity:row.entity,reason:`Qualification complémentaire en panne : ${error.message}. Dernière référence conservée.`})}
   finally{if(entries[key])entries[key].durationMs=Math.round(performance.now()-started)}

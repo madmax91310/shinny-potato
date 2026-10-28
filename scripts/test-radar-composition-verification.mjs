@@ -37,3 +37,10 @@ const bounded=await qualifyCompositionCandidates(crowded,null,{now,fetchImpl})
 assert.equal(bounded.metrics.requests,2);assert.equal(bounded.metrics.deferred,1)
 const following=await qualifyCompositionCandidates(crowded,{compositionVerification:bounded},{now,fetchImpl})
 assert.equal(following.metrics.requests,1,'Oldest never-attempted candidate progresses before cached retries')
+
+const validRows=[{...template}],validFetch=async()=>new Response(JSON.stringify(cash),{status:200,headers:{etag:'confirmed'}})
+const good=await qualifyCompositionCandidates(validRows,null,{now,fetchImpl:validFetch})
+assert.equal(Object.values(good.entries)[0].status,'confirmed')
+const confirmedAt=validRows[0].checkedAt,again=[{...template}]
+await qualifyCompositionCandidates(again,{compositionVerification:good},{now:new Date(+now+3600000),fetchImpl:async()=>new Response(null,{status:304})})
+assert(again[0].compositionEvidence.confirmation);assert.equal(again[0].checkedAt,confirmedAt,'304 reuses exact qualified evidence without rejuvenating its date')
