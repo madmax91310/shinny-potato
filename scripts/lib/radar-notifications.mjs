@@ -1,3 +1,4 @@
+import {compositionEventIssue,compositionDossierKey} from '../../src/lib/radar-composition.js'
 import {publicationTime} from '../../src/lib/radar-qualification.js'
 import { editorialExclusion } from '../../src/lib/radar-policy.js'
 import { replicationWordingEvent } from '../../src/lib/replication-method.js'
@@ -33,8 +34,10 @@ export function notificationState(previous, ledger, now = new Date()) {
 // Signals worth a notification: thresholds applied, contradictions and harmless
 // revalidations of a dated snapshot excluded, duplicates collapsed.
 export function notifiableEvents(events) {
+  const blocked=new Set(events.filter(compositionEventIssue).map(compositionDossierKey).filter(Boolean))
   const seen = new Set()
   return events.filter(event => {
+    if (blocked.has(compositionDossierKey(event))) return false
     if (editorialExclusion(event) || event.editorialExcluded || event.supersededBy) return false
     if (!EVENT_ID.test(event.id)) throw new Error('Identifiant de signal invalide.')
     if (replicationWordingEvent(event) || event.status === 'wording-only') return false

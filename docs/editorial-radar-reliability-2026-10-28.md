@@ -1,6 +1,6 @@
 # Radar : qualification des compositions et traitement éditorial — 28 octobre 2026
 
-Base : master `d1b00c36`. Consignes `CLAUDE.md`, référence d’audit du 18 octobre,
+Base initiale : master `d1b00c36`, puis recalage sur `d771f2d3` en conservant les nouvelles observations financières. Consignes `CLAUDE.md`, référence d’audit du 18 octobre,
 contrat Radar et politique éditoriale du 26 octobre relus. PR ouvertes au contrôle final :
 #1012 (historiques DWS) et #1013 (modèles de portefeuilles), sans fichier commun.
 Leurs collecteurs, données, seuils et outils restent hors de ce lot. Aucun envoi de
@@ -50,7 +50,7 @@ ponctuelle en lecture seule, pas une exécution planifiée ou un changement de r
   Des parts différentes ne sont regroupées qu’avec une preuve explicite d’allocation
   commune indépendante de la part, un identifiant de fonds et un contenu identique.
   Un indice ou un nom commun ne suffisent pas. Les registres actuels sans cette preuve
-  gardent leurs parts distinctes. Corrections et annonces distinctes restent séparées.
+  gardent leurs parts distinctes. Corrections et annonces distinctes restent séparées. Une ligne non qualifiée met en attente le dossier de cette même photographie, y compris dans le planificateur de notifications.
 - Détection financière à **2 points inchangée**. Pour l’intérêt éditorial d’une composition,
   une variation ordinaire reste secondaire ; mise en avant possible à partir de 10 points
   ou lors du franchissement de la majorité/concentration de 50 %, avec qualification préalable.

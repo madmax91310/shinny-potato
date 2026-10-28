@@ -1,4 +1,4 @@
-import {compositionEventIssue,importantComposition} from './radar-composition.js'
+import {compositionEventIssue,importantComposition,compositionDossierKey} from './radar-composition.js'
 import {investorFilingType,etfAnnouncement} from './radar-fact-types.js'
 export {investorFilingType,etfAnnouncement} from './radar-fact-types.js'
 import { qualifyRadarFact, publicationTime } from './radar-qualification.js'
@@ -126,8 +126,7 @@ export function groupSignals(events, now = Date.now(), {notification=false}={}) 
   for (const event of events) {
     const state = editorialState(event,now)
     const sameDatedStudy=event.publicationId && event.referencePeriod && ['statistical-publication','publication-watch'].includes(event.factType) && !event.correctionOf
-    const legacyComposition=/^(countries|sectors):/.test(event.field??'')&&!event.correctionOf?JSON.stringify([event.entity,event.scope,event.period,event.beforePeriod,event.sourceUrl]):null
-    const dossier=event.compositionEventKey ?? legacyComposition ?? (notification ? null : (event.dossierKey ?? (dossierKeys.has(publicationKey(event))?publicationKey(event):null) ?? (sameDatedStudy ? publicationKey(studies.get(studyId(event))??event) : null)))
+    const dossier=compositionDossierKey(event) ?? (notification ? null : (event.dossierKey ?? (dossierKeys.has(publicationKey(event))?publicationKey(event):null) ?? (sameDatedStudy ? publicationKey(studies.get(studyId(event))??event) : null)))
     const key=JSON.stringify([dossier ?? publicationKey(event),dossier ? 'dossier' : state])
     if (!groups.has(key)) groups.set(key, { id: key, state, event, events: [] })
     groups.get(key).events.push(event)
@@ -137,7 +136,9 @@ export function groupSignals(events, now = Date.now(), {notification=false}={}) 
     group.events.sort((a,b)=>(Number(b.entity==='salary-median')-Number(a.entity==='salary-median'))||Number(editorialState(b,now)==='ready')-Number(editorialState(a,now)==='ready')||Number(official(b))-Number(official(a))||editorialScore(b,now)-editorialScore(a,now)||b.detectedAt.localeCompare(a.detectedAt)||a.id.localeCompare(b.id))
     let event=group.events[0]
     const relatedStages=event.relatedStages??[]
-    return { ...group, event, state:editorialState(event,now), assessment: editorialAssessment(event, now),readIds:group.events.filter(e=>!event.publicationId||e.publicationId===event.publicationId).map(e=>e.id), relatedStages }
+    const assessment=editorialAssessment(event,now),pending=group.events.map(compositionEventIssue).find(Boolean)
+    if(pending){assessment.state='watch';assessment.priority=false;assessment.major=false;assessment.reliability={usable:false,reasons:[...new Set([...assessment.reliability.reasons,pending])]};assessment.material={...assessment.material,status:'verify',angle:null,question:null,missing:[...new Set([...assessment.material.missing,pending])]}}
+    return { ...group, event, state:assessment.state, assessment,readIds:group.events.filter(e=>!event.publicationId||e.publicationId===event.publicationId).map(e=>e.id), relatedStages }
   }).sort((a,b) => b.assessment.score-a.assessment.score || b.event.detectedAt.localeCompare(a.event.detectedAt) || a.id.localeCompare(b.id))
 }
 const eventExposure = event => event.exposureKey ?? event.launchDetails?.index ?? (event.products?.length === 1 ? event.products[0].index : null)

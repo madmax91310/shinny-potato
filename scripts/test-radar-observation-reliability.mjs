@@ -69,3 +69,8 @@ const common={asOf:'2026-10-26',sharedFundId:'official-fund-id',sharedFundEviden
 const snap=legitimate[0].compositionEvidence
 assert.equal(compositionEventKey(common,snap,'sectors','PART-A','fund'),compositionEventKey(common,snap,'sectors','PART-B','fund'))
 assert.notEqual(compositionEventKey({...common,sharedFundEvidence:null},snap,'sectors','PART-A','fund'),compositionEventKey(common,snap,'sectors','PART-B','fund'),'A matching name/index without fund proof never merges shares')
+
+const rawPending={...legacy,compositionEventKey:'shared-photograph'},otherFact={...accepted.newEvents[0],id:'e'.repeat(24),compositionEventKey:'shared-photograph',field:'sectors:Financials',before:15,after:25,compositionEvidence:undefined}
+assert.equal(groupSignals([rawPending,otherFact],+now)[0].state,'watch','One unqualified line holds the entire same photograph')
+assert.equal(planNotifications([rawPending,otherFact],{schemaVersion:1,editorialVersion:3,acknowledged:[]},now,'major').events.length,0)
+assert.equal(groupSignals([accepted.newEvents[0],{...accepted.newEvents[0],id:'f'.repeat(24),correctionOf:accepted.newEvents[0].id,correctionPublishedAt:now.toISOString()}],+now).length,2,'A correction is distinct from the original snapshot')

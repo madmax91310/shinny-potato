@@ -39,3 +39,5 @@ export function compositionEventIssue(event) {
 // Detection remains at two points. Editorial prominence requires a documented
 // structural move (10 points), or crossing the majority/concentration threshold.
 export function importantComposition(event){if(!compositionField(event)||residualCategory(event.field)||event.beforePeriod===event.period||typeof event.before!=='number'||typeof event.after!=='number')return false;return Math.abs(event.after-event.before)>=10 || Math.min(event.before,event.after)<50&&Math.max(event.before,event.after)>=50}
+
+export function compositionDossierKey(event){return compositionField(event)&&!event.correctionOf?(event.compositionEventKey??JSON.stringify([event.entity,event.scope,event.field.split(':')[0],event.period,event.beforePeriod,event.sourceUrl])):null}
