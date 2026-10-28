@@ -3,7 +3,7 @@
 This transport is distinct from the NAV-modal JSON endpoint. A successful POST
 alone does not qualify the product, its income treatment, or any consumer.
 """
-import json,urllib.request,urllib.error,re
+import json,urllib.request,urllib.error,urllib.parse,re
 import base64,pathlib,subprocess
 from issuer_nav_history import xlsx_rows,dated
 
@@ -32,7 +32,8 @@ def download_with_identity(url,data,source_url):
  if result.returncode:raise ValueError('Official same-origin browser export failed: '+result.stderr.decode(errors='replace')[-1500:])
  if len(result.stdout)>14_000_000:raise ValueError('Official browser response exceeds bound')
  result=json.loads(result.stdout)
- if result['status']!=200 or result['url']!=url or result['identityUrl']!=source_url:raise ValueError('Official browser source binding changed')
+ resolved=urllib.parse.urlsplit(result['identityUrl']);requested=urllib.parse.urlsplit(source_url)
+ if result['status']!=200 or result['url']!=url or (resolved.scheme,resolved.netloc,resolved.path.rsplit('/',1)[-1])!=(requested.scheme,requested.netloc,requested.path.rsplit('/',1)[-1]):raise ValueError('Official browser source binding changed')
  body=base64.b64decode(result['body'],validate=True);identity=base64.b64decode(result['identityBody'],validate=True)
  if len(body)>2_000_000 or len(identity)>8_000_000:raise ValueError('Official browser response exceeds bound')
  return body,identity,'publisher-same-origin-browser-export'
