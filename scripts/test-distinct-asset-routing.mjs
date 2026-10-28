@@ -56,8 +56,14 @@ assert(Object.keys(perf).length>=3&&Object.values(perf).every(Number.isFinite))
 const projected=read('src/data/monthly-duel-returns.json')
 const records={...read('src/data/automated-etf-monthly.json'),...read('src/data/non-bond-monthly-records.json')}
 for(const [isin,p] of Object.entries(projected)) {
- const r=Object.values(records).find(r=>r.isin===isin&&r.consumerScope==='catalog'&&r.currency===p.currency)
- assert(r && sources.some(s=>s.id===r.id||s.isin===isin),isin)
+ // A share can have both an exchange-price history and an independent NAV.
+ // Bind this price-only projection to its exact acquisition receipt, not the
+ // first same-ISIN series. Never force exchange and NAV returns to equality.
+ const candidates=Object.values(records).filter(r=>r.isin===isin&&r.consumerScope==='catalog'&&r.currency===p.currency&&r.field==='adjclose'&&r.listingEvidenceId===p.listingEvidenceId&&r.responseSha256===p.responseSha256)
+ assert.equal(candidates.length,1,`Exact price receipt ${isin}`)
+ const r=candidates[0]
+ assert.equal(p.basis,'market-price',isin)
+ assert(sources.some(s=>s.id===r.id),isin)
  assert.deepEqual(p.years,monthlyCalendarReturns(r),isin)
 }
 for(const isin of ['IE000L2SA8K5','IE0003R87OG3','IE0008UEVOE0','IE000SNLFDR7','IE0007Y8Y157'])
