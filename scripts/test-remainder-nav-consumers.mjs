@@ -24,15 +24,20 @@ proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-2
 proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/reprise-20261026/nikkei-github-40364575719/nav.json')).series)
 proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/reprise-20261027/abtc-nav-local.json')).series)
 proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/reprise-20261027/reit-nav-local.json')).series)
+proofs.push(...JSON.parse((await import('node:zlib')).gunzipSync(fs.readFileSync('scripts/fixtures/dws-income/collection.json.gz'))).series)
+proofs.push(...JSON.parse((await import('node:zlib')).gunzipSync(fs.readFileSync('scripts/fixtures/wisdomtree-export/qualified-collection.json.gz'))).series)
+proofs.push(...JSON.parse((await import('node:zlib')).gunzipSync(fs.readFileSync('scripts/fixtures/landg-history/collection.json.gz'))).series)
 for(const s of sources){
  const a=ASSETS[s.id],r=proofs.find(r=>r.id===s.id).record
- assert(ASSET_ORDER.includes(s.id)&&MARKET_ASSETS.some(a=>a.id===s.id)&&ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===s.id))
+ assert(ASSET_ORDER.includes(s.id)&&MARKET_ASSETS.some(a=>a.id===s.id)&&(s.collectAnniversary===false?!ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===s.id):ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===s.id)))
  assert.equal(RANKING_ASSETS[s.id].basis,'fund-nav-total-return');assert.equal(commonCoverage([RANKING_ASSETS[s.id],{...RANKING_ASSETS[s.id],id:'same-nav-fixture'}]).basis,'fund-nav-total-return');assert.equal(basisLabel(RANKING_ASSETS[s.id].basis),'Valeurs liquidatives · revenus réinvestis');
+ assert(a.icon,`The existing share visual identity is required for PNG export: ${s.id}`)
  assert.equal(a.isin,s.isin);assert.equal(a.historyConvention,'fund-nav-total-return');assert(!a.ticker&&!a.mic)
  let start=s.periodStart
  if(!qualifyHistoryWindow(a,start,a.points.at(-1).date).qualified){
   assert.throws(()=>derive({assetId:s.id,amountRaw:'100',startYear:Number(start.slice(0,4)),startMonth:Number(start.slice(5)),mode:'lump',overridePriceRaw:''}))
-  const last=[...a.historyExcludedMonths].sort().at(-1),date=new Date(last+'-01T00:00:00Z');date.setUTCMonth(date.getUTCMonth()+1);start=date.toISOString().slice(0,7)
+  if(a.historyUnqualifiedReturnWindows?.length)start=a.historyUnqualifiedReturnWindows.map(w=>w.end).sort().at(-1)
+  else {const last=[...a.historyExcludedMonths].sort().at(-1),date=new Date(last+'-01T00:00:00Z');date.setUTCMonth(date.getUTCMonth()+1);start=date.toISOString().slice(0,7)}
  }
  for(const mode of ['lump','dca']){
   const state={assetId:s.id,amountRaw:'100',startYear:Number(start.slice(0,4)),startMonth:Number(start.slice(5)),mode,overridePriceRaw:''}
@@ -50,6 +55,7 @@ for(const s of sources){
  assert(getAnnualReturns(s.id,2025).length)
  // The archived qualification is a lower bound, not a clock for a newer NAV.
  // Never backdate today's source to make an older receipt appear current.
+ if(s.collectAnniversary===false){assert.equal(resolveAnniversaryLevel(s.id,''),null);continue}
  const published=LEVELS[s.id]
  assert(published&&published.asOf>=r.latestLevel.asOf,'Current NAV must preserve the qualified baseline date')
  assert(published.asOf<=new Date().toISOString().slice(0,10),'A published NAV cannot be future-dated')

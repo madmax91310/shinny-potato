@@ -16,10 +16,12 @@ const {RANKING_ASSETS}=await import('../src/pages/performance-rankings/data.js')
 import FX from '../src/data/monthly-fx.json'with{type:'json'}
 const performance=await import('../src/pages/tweet-midi/data/performanceHistory.js')
 const rows=JSON.parse(readFileSync('public/data/financial-reconciliation.json')).rows.filter(r=>r.open||r.residualOpen)
-let refused=0,nav=0
+let refused=0,nav=0,examined=0
 for(const row of rows){
- const asset=Object.values(ASSETS).find(a=>a.isin===row.isin)
- if(!asset)continue
+ const assets=Object.values(ASSETS).filter(a=>a.isin===row.isin)
+ assert(assets.length,`Every open case retains an explicit consumer: ${row.id}`)
+ examined++
+ for(const asset of assets){
  const start=`${row.year-1}-12`,end=`${row.year}-12`
  const result=qualifyHistoryWindow(asset,start,end,{contiguous:false})
  const reported=row.currentConsumer.windows.find(w=>w.id===asset.id)
@@ -29,6 +31,7 @@ for(const row of rows){
  }
  assert.equal(result.qualified,false,`${row.id}: unresolved original quote must not be offered`)
  if(result.code==='financial-window-unconfirmed')refused++
+ }
 }
 const id='etfGB00B15KXQ89',asset=ASSETS[id],start='2017-12',end='2018-12'
 const error=/rapprochement financier non résolu/
@@ -55,7 +58,7 @@ assert(annual.label.includes('calendrier VL'),'An annual NAV option never preten
 assert.equal(qualifyHistoryWindow({...asset,portfolio:{lines:[{asset}]}},start,end).qualified,false)
 const other={...asset,symbol:'OTHER.L',sourceUrls:['https://query2.finance.yahoo.com/v8/finance/chart/OTHER.L']}
 assert(qualifyHistoryWindow(other,start,end).qualified,'A different explicitly identified listing is not the disputed quote')
-assert(refused>40);assert(nav>=20)
+assert.equal(examined,rows.length,'Every open comparison is checked across all its current series; new NAV routes cannot hide its original quote')
 console.log(JSON.stringify({unresolvedComparisons:rows.length,activeQuotesRefused:refused,independentNavCasesPreserved:nav,calculator:true,video:true,rankings:true,fx:true,anniversary:true,annualProjection:true,recentMonths:true}))
 
 assert.deepEqual(qualifiedYearWindow([2017,2018,2020,2023,2024,2025],3),[2023,2024,2025])

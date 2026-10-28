@@ -61,6 +61,11 @@ export function historyAlerts(today, entities = [], checks = {}) {
       currency: record.currency ?? null, method: record.method ?? record.variant ?? null }
     if (cadence === 'monthly' && record.id) base.to = entities.find(row => row.aliases?.includes(`history:${record.id}`))?.to ?? base.to
     checks[id] = {...base, periods:periods.filter(([,v])=>Number.isFinite(v)&&(cadence!=='monthly'||v>0)).map(([d])=>String(d)), responseSha256:record.responseSha256??record.sha256??null}
+    for(const window of record.historyUnqualifiedReturnWindows??[]){
+      alerts.push({...base,id:`${id}:return-window:${window.start}:${window.end}`,kind:'history',unqualifiedReturnWindow:window,
+        cause:window.reason,qualificationScope:'Rendements sur (début,fin] ; les périodes indépendamment corroborées restent utilisables.'})
+    }
+    if(record.historyUnqualifiedReturnWindows?.length)checks[id].unqualifiedReturnWindows=record.historyUnqualifiedReturnWindows
     const unqualified=record.historyExcludedMonths??[]
     if(unqualified.length){
       checks[id].periods=checks[id].periods.filter(period=>!unqualified.includes(period))

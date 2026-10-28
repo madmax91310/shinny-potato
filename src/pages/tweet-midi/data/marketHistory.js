@@ -57,6 +57,7 @@ export function getAssetAvailableYears(assetId) {
 // interpolatePrice accepterait une date antérieure et renverrait par défaut le premier point brut
 // — potentiellement une des valeurs "NON VÉRIFIÉES" de LVMH).
 export function getHistoricalPrice(assetId, ym) {
+  if(ASSETS[assetId]?.anniversaryAvailable===false)throw Error('Prix historique hors distributions non qualifié pour cet actif');
   const minDate = getAssetMinDate(assetId);
   const clampedYm = ymIndex(ym) < ymIndex(minDate) ? minDate : ym;
   if(ASSETS[assetId].anniversaryExcludedMonths?.includes(clampedYm))throw Error(`Valeur liquidative historique non qualifiée pour ${clampedYm}`);
