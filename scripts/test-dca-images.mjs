@@ -56,7 +56,10 @@ try {
       const canvas=await renderDcaImage(profile,field)
       if(field==='all'&&!labels.includes('Répartition des actifs'))throw Error('Missing allocation donut')
       if(labels.some(l=>/fictif|simulé|inventé|polémique|controversial|problématique|risqué|provocateur|undefined|\bNaN\b/i.test(l)))throw Error(profile.id+' unwanted text')
-      if(!labels.includes(['both','all'].includes(field)?`Le DCA de ${profile.name}`:profile.name)||labels.filter(l=>l==='Épargnant Libre').length!==1)throw Error('Identity: '+profile.id)
+      if(field==='all'){
+        if(labels.some(l=>l===`Le DCA de ${profile.name}`||/investis par mois/.test(l)))throw Error('Redundant allocation identity: '+profile.id)
+      }else if(!labels.includes(field==='both'?`Le DCA de ${profile.name}`:profile.name))throw Error('Identity: '+profile.id)
+      if(labels.filter(l=>l==='Épargnant Libre').length!==1)throw Error('Brand: '+profile.id)
       for(const line of profile.lines)if(profile.lines.length<=8&&field!=='both'&&!labels.join(' ').includes(line.label))throw Error('Allocation missing: '+profile.id)
       output.push({id:profile.id+'-'+field,labels:[...labels],png:['julien','alexandre','patrick','arthur','laurent','helene','eight-lines','fifty-lines','zero-dca','karim-approved','debate-lucas','debate-ilyes','debate-lina','debate-adam','debate-jeanbaptiste','debate-matthias'].includes(profile.id)?canvas.toDataURL():null})
     }
