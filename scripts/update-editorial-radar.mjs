@@ -1,4 +1,4 @@
-import {packRadarState} from './lib/radar-state-codec.mjs'
+import {radarStateContent} from './lib/radar-state-codec.mjs'
 import {compositionEvidence,compositionEventKey} from './lib/radar-composition-evidence.mjs'
 import {makeRadarOverview} from '../src/lib/radar-overview.js'
 import {publicationSelection} from '../src/lib/radar-editorial.js'
@@ -130,7 +130,7 @@ export async function run({ statePath, outputDir, now = new Date(), sourceRevisi
   await mkdir(outputDir, { recursive: true })
   for (const [name, value] of [['state.json', result.state], ['feed.json', result.feed], ['summary.json',makeRadarOverview(result.feed,publicationSelection(result.feed.events,{now:+now}))]]) {
     const path = resolve(outputDir, name)
-    await writeFile(`${path}.tmp`, `${JSON.stringify(name==='state.json'?packRadarState(value):value, null, 2)}\n`)
+    await writeFile(`${path}.tmp`, name==='state.json'?radarStateContent(value):`${JSON.stringify(value, null, 2)}\n`)
     await rename(`${path}.tmp`, path)
   }
   console.log(`Radar : ${result.feed.observationCount} observations, ${result.newEvents.length} nouveaux signaux, ${result.feed.errors.length} réserves.`)

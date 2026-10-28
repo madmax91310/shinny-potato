@@ -1,4 +1,4 @@
-import {packRadarState,unpackRadarState} from './lib/radar-state-codec.mjs'
+import {radarStateContent,unpackRadarState} from './lib/radar-state-codec.mjs'
 import {qualifyCompositionCandidates} from './lib/radar-composition-verification.mjs'
 import { radarToolActions } from './lib/radar-tool-actions.mjs'
 import { publicationSelection } from '../src/lib/radar-editorial.js'
@@ -48,7 +48,8 @@ async function api(path, method = 'GET', body, allow404 = false) {
     if (allow404 && response.status === 404) return null
     if (response.ok) return response.status === 204 ? null : response.json()
     if (method === 'GET' && response.status >= 500 && attempt < 2) { await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1))); continue }
-    throw new Error(`Publication radar refusée (${response.status}) : ${method} ${path}`)
+    const detail=await response.json().catch(()=>null)
+    throw new Error(`Publication radar refusée (${response.status}) : ${method} ${path}${typeof detail?.message==='string'?' · '+detail.message.slice(0,300):''}`)
   }
 }
 const branch = 'radar-data'
@@ -144,7 +145,7 @@ if (refresh) {
     tree.push({ path: `dws-snapshots/${proof.sourceHash}.json`, mode: '100644', type: 'blob', sha: blob.sha })
   }
   for (const [path, content] of [['state.json', result.state], ['feed.json', result.feed], ['summary.json', makeRadarOverview(result.feed,publicationSelection(result.feed.events))], ['notifications.json', ledger]]) {
-    const blob = await api('git/blobs', 'POST', { content: `${JSON.stringify(path==='state.json'?packRadarState(content):content, null, 2)}\n`, encoding: 'utf-8' })
+    const blob = await api('git/blobs', 'POST', { content: path==='state.json'?radarStateContent(content):`${JSON.stringify(content, null, 2)}\n`, encoding: 'utf-8' })
     tree.push({ path, mode: '100644', type: 'blob', sha: blob.sha })
   }
   nextTree = await api('git/trees', 'POST', { base_tree: commit.tree.sha, tree })

@@ -35,3 +35,7 @@ export function packRadarState(input){
  state.compositionEvidenceEncoding=1;state.compositionEvidencePool=pool
  return state
 }
+
+// The REST request escapes JSON a second time. Persist machine state compactly
+// so whitespace cannot exceed GitHub's request-body limit; values stay exact.
+export function radarStateContent(input){return JSON.stringify(packRadarState(input))+'\n'}
