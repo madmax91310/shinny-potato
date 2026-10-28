@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import {packRadarState,unpackRadarState} from './lib/radar-state-codec.mjs'
+import {packRadarState,unpackRadarState,radarStateContent} from './lib/radar-state-codec.mjs'
 import {advanceRadar} from './lib/editorial-radar.mjs'
 const now=new Date('2026-10-28T15:00:00Z'),evidence={version:1,identity:'fund',basis:'fund',currency:'USD',unit:'%',asOf:'2026-10-26',sourceHash:'a'.repeat(64),method:'Published NAV allocation',categories:[{name:'Financials',weightPct:99.5},{name:'Cash',weightPct:.5}],rowCount:2,categoryCount:2,total:100,onlyResidual:false,weightConvention:'net-asset-value'}
 const row={family:'etf',entity:'fund',field:'sectors:Financials',fieldLabel:'Poids du secteur Finance',label:'ETF',value:99.5,period:evidence.asOf,checkedAt:now.toISOString(),scope:'Exact fund',sourceUrl:'https://www.ishares.com/fund',unit:'%',compositionEvidence:evidence}
@@ -19,3 +19,10 @@ const many={...plain,current:Object.fromEntries(Array.from({length:300},(_,i)=>[
 assert(Buffer.byteLength(JSON.stringify(packRadarState(many)))<Buffer.byteLength(JSON.stringify(many))*.8,'Repeated proofs have bounded storage without removing any observation')
 assert.deepEqual(plain,unpackRadarState(packed),'Input objects were not mutated')
 console.log('Radar state storage: lossless restart, unchanged legacy history/queues, nested reviews, deduplicated evidence, idempotence and rejection of missing/altered/unknown proofs passed.')
+
+const compact=radarStateContent(many),pretty=JSON.stringify(packRadarState(many),null,2)+'\n'
+assert.deepEqual(JSON.parse(compact),packRadarState(many))
+assert.deepEqual(unpackRadarState(JSON.parse(compact)),many,'Compact persistence preserves every value and proof')
+const request=content=>JSON.stringify({content,encoding:'utf-8'})
+assert(Buffer.byteLength(request(compact))<Buffer.byteLength(request(pretty))*.95,'Measure the actual escaped REST envelope, not only the JSON file')
+assert.equal(compact.split('\n').length,2,'Only the final newline is literal; text/source newlines remain escaped and intact')
