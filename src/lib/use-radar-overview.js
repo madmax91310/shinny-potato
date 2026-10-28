@@ -1,3 +1,4 @@
+import {EDITORIAL_EVENT} from './radar-workflow-state.js'
 import { useSyncExternalStore } from 'react'
 import { validateRadarOverview } from './radar-overview.js'
 import { READ_EVENT,cacheSignalGroups } from './radar-read-state.js'
@@ -26,14 +27,14 @@ const focus=()=>{if(document.visibilityState==='visible')refreshRadarOverview()}
 function subscribe(listener) {
   listeners.add(listener)
   if(listeners.size===1){
-    window.addEventListener(READ_EVENT,changed);window.addEventListener('storage',changed);window.addEventListener('focus',focus)
+    window.addEventListener(EDITORIAL_EVENT,changed);window.addEventListener(READ_EVENT,changed);window.addEventListener('storage',changed);window.addEventListener('focus',focus)
     document.addEventListener('visibilitychange',focus)
     timer=setInterval(focus,300000)
     if(!state.data||state.status==='error')refreshRadarOverview()
   }
   return()=>{
     listeners.delete(listener)
-    if(!listeners.size){clearInterval(timer);window.removeEventListener(READ_EVENT,changed);window.removeEventListener('storage',changed);window.removeEventListener('focus',focus);document.removeEventListener('visibilitychange',focus)}
+    if(!listeners.size){clearInterval(timer);window.removeEventListener(EDITORIAL_EVENT,changed);window.removeEventListener(READ_EVENT,changed);window.removeEventListener('storage',changed);window.removeEventListener('focus',focus);document.removeEventListener('visibilitychange',focus)}
   }
 }
 export default function useRadarOverview(){return useSyncExternalStore(subscribe,()=>state,()=>state)}

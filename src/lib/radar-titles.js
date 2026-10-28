@@ -1,3 +1,4 @@
+import {frenchCharacteristic} from '../data/french-characteristics.js'
 import {investorFilingType,etfAnnouncement} from './radar-fact-types.js'
 export function readableInvestorFiling(event) {
   const type = investorFilingType(event)
@@ -17,13 +18,15 @@ export function factualTitle(event) {
   if (filing === 'revision') return `${event.label} : relevé révisé pour la même période · ${event.period}`
   if (filing === 'unknown') return `${event.label} : période de déclaration à vérifier`
   if (!event.label || !event.fieldLabel) return event.title
+  const category=/^(countries|sectors):(.+)$/.exec(event.field??'')
+  const fieldLabel=category?`${category[1]==='countries'?'Poids du pays':'Poids du secteur'} ${frenchCharacteristic(category[2])}`:event.fieldLabel
   if (event.family === 'etf' && event.field === 'announcement') {
     const announcement = event.announcementEvidence ?? etfAnnouncement(event.label)
     return announcement ? `${announcement.label} : ${event.label}` : `Communiqué : ${event.label}`
   }
   if (event.family === 'pouvoir-achat') return event.label
   if (event.kind === 'new') return `${event.label} : nouvelle donnée suivie`
-  if (event.kind === 'publication') return `${event.label} : ${event.fieldLabel} · ${event.period}`
-  if (['number', 'boolean', 'string'].includes(typeof event.before) && ['number', 'boolean', 'string'].includes(typeof event.after)) return `${event.label} : ${event.fieldLabel.toLocaleLowerCase('fr-FR')}, ${event.beforeText} → ${event.afterText}`
-  return `${event.label} : ${event.fieldLabel.toLocaleLowerCase('fr-FR')} modifiés`
+  if (event.kind === 'publication') return `${event.label} : ${fieldLabel} · ${event.period}`
+  if (['number', 'boolean', 'string'].includes(typeof event.before) && ['number', 'boolean', 'string'].includes(typeof event.after)) return `${event.label} : ${fieldLabel.replace(/^./,c=>c.toLocaleLowerCase('fr-FR'))}, ${event.beforeText} → ${event.afterText}`
+  return `${event.label} : ${fieldLabel.replace(/^./,c=>c.toLocaleLowerCase('fr-FR'))} modifiés`
 }

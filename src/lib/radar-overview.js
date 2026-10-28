@@ -1,6 +1,6 @@
 // Small projection of the existing feed, not a second editorial store. Produced
 // with the same ranking as the Radar; never contains technical incidents.
-export const RADAR_POLICY_VERSION = 3
+export const RADAR_POLICY_VERSION = 4
 export function overviewSubject(group) {
   const event=group.event,material=group.assessment.material
   return {id:event.id,eventIds:group.events.map(e=>e.id),readEventIds:group.readIds,title:event.title,mainFact:material.mainFact,
@@ -21,7 +21,7 @@ export function validateRadarOverview(value) {
   }
   return value
 }
-export function overviewUnread(overview,read=[]) {
-  const seen=new Set(read)
-  return overview.groups.filter(group=>group.some(id=>!seen.has(id))).length
+export function overviewUnread(overview,read=[],processed=[]) {
+  const seen=new Set(read),done=new Set(processed)
+  return overview.groups.filter(group=>!group.some(id=>done.has(id))&&group.some(id=>!seen.has(id))).length
 }

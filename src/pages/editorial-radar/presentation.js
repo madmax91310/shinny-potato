@@ -1,7 +1,10 @@
+import {radarValue} from '../../lib/radar-format.js'
 import { frenchCharacteristic } from '../../data/french-characteristics.js'
 import { factualTitle, readableInvestorFiling } from '../../lib/radar-editorial.js'
 export function readableSignal(event) {
   event = readableInvestorFiling(event)
+  if(typeof event.before==='number')event={...event,beforeText:radarValue(event.before,event.unit)}
+  if(typeof event.after==='number')event={...event,afterText:radarValue(event.after,event.unit)}
   const title = factualTitle(event).replace(/(poids du (?:pays|secteur) )(.+?)(,| en mouvement)/i, (_,prefix,label,end) => prefix+frenchCharacteristic(label)+end)
   const composition = /poids du (pays|secteur) (.+?) en mouvement/i.exec(title)
   const angle = composition

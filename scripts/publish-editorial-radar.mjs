@@ -1,3 +1,4 @@
+import {qualifyCompositionCandidates} from './lib/radar-composition-verification.mjs'
 import { radarToolActions } from './lib/radar-tool-actions.mjs'
 import { publicationSelection } from '../src/lib/radar-editorial.js'
 import { makeRadarOverview } from '../src/lib/radar-overview.js'
@@ -95,6 +96,8 @@ if (refresh) {
     } catch (error) { verification.errors.push({ family: 'etf', entity: 'DWS', reason: `Vérification lourde en échec : ${error.message}` }) }
   }
   errors.push(...verification.errors)
+  const compositionVerification=await qualifyCompositionCandidates(observations,previous,{fetchImpl:sourceFetch})
+  errors.push(...compositionVerification.errors)
   result = advanceRadar(previous, observations, { sourceRevision: process.env.RADAR_SOURCE_SHA ?? '', errors, purchasingSources: purchasing.sources,
     verifiedCompositions: verification.verified.map(({ canonicalBody: _canonicalBody, ...proof }) => proof),
     compositionVerificationFailures: verification.errors.map(error => error.entity) })
@@ -104,6 +107,7 @@ if (refresh) {
   }
   for(const event of result.state.events)event.toolActions=radarToolActions(event)
   for(const event of result.feed.events)event.toolActions=radarToolActions(event)
+  result.state.compositionVerification=compositionVerification
   result.state.publications = publications.state
   result.state.purchasingCache = purchasing.cache
   result.state.documentQueue = launches.queue

@@ -1,0 +1,86 @@
+{
+  "checkedAt": "2026-10-28T15:15:25.703Z",
+  "mode": "Read-only live qualification plus local replay; no production write or notification",
+  "sourceRevision": "d1b00c36778a2b30bc4f0317a10109d0771188b0",
+  "verification": {
+    "entries": {
+      "IE00B1TXHL60IE00B1TXHL60 · fund · sectors": {
+        "fingerprint": "f7c4101a985f5a784bf66c281a9085c23c6814ed79f2e1e045e4a59a71b9c50a",
+        "attemptedAt": "2026-10-28T15:15:25.703Z",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "identity": "IE00B1TXHL60",
+        "httpStatus": 200,
+        "status": "pending",
+        "reason": "Dates incompatibles : ventilation 2026-10-26, positions 2026-10-27",
+        "evidence": {
+          "identity": "IE00B1TXHL60",
+          "allocationDate": "2026-10-26",
+          "positionsDate": "2026-10-27",
+          "sourceHash": "64291c5558a239ae48687b1c0bc83b807ff29ef6929e126939aceb165a84bf43",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+        },
+        "etag": "W/\"2a678986\"",
+        "lastModified": null
+      }
+    },
+    "errors": [
+      {
+        "family": "etf",
+        "entity": "IE00B1TXHL60",
+        "reason": "Qualification complémentaire : Dates incompatibles : ventilation 2026-10-26, positions 2026-10-27"
+      }
+    ],
+    "metrics": {
+      "candidates": 1,
+      "requests": 1,
+      "cached": 0,
+      "deferred": 0,
+      "budget": 2
+    }
+  },
+  "elapsedMs": 4310.093309999999,
+  "newEvents": 0,
+  "secondPassNewEvents": 0,
+  "held": [
+    {
+      "id": "bb576b829e8754e551983d69",
+      "entity": "IE00B1TXHL60",
+      "before": 0.52,
+      "after": 100,
+      "detectedAt": "2026-10-27T15:11:12.682Z"
+    },
+    {
+      "id": "92c149c7f963461e7a2c92de",
+      "entity": "IE00B1TXHL60",
+      "before": 0.5,
+      "after": 100,
+      "detectedAt": "2026-10-16T18:16:50.288Z"
+    },
+    {
+      "id": "65ebba5ff08921220e4fffb0",
+      "entity": "IE00B1TXHL60",
+      "before": 100,
+      "after": 0.5,
+      "detectedAt": "2026-10-15T05:32:46.090Z"
+    }
+  ],
+  "selected": [
+    {
+      "title": "Cotation annoncée par Deutsche Börse : New ETF and ETP Listings on October 28, 2026, on Deutsche Börse",
+      "score": 66
+    }
+  ],
+  "restored": [
+    {
+      "value": 0.52,
+      "period": "2026-10-23",
+      "checkedAt": "2026-10-27"
+    },
+    {
+      "value": 0.52,
+      "period": "2026-10-23",
+      "checkedAt": "2026-10-25",
+      "recoveredFromEvent": "bb576b829e8754e551983d69"
+    }
+  ]
+}
