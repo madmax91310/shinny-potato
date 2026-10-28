@@ -83,6 +83,7 @@ def qualify(body, chart, facts, source, raw_nav, now):
     return normalized,{'monthlyShareUnitChecks':unit_checks,'dailyQualificationLimit':{'admittedForArbitraryDailyPurchase':False,'unqualifiedDailyUnitDates':daily_unqualified},'scaleProof':{'anchorDate':asof,'officialPerShareNav':raw_nav[asof],'sourceIncomeIndex':points[asof],'factor':factor},'identityFrom':inception,'incomeTreatment':facts['distribution'],'sourceChartConvention':note,
         'officialIncomeReinvestedChartChecks':checks,'officialPublishedCashEvents':events,
         'currentShareNavAnchor':{'asOf':asof,'chartLevel':points[asof],'officialCurrentNav':raw_nav[asof]},
+        'requestedStart':max(source['periodStart']+'-01',inception),'controlledCalendarYears':sorted(str(c['year'])for c in checks),
         'controlledInstrument':isin,'controlledFields':['ISIN','Share class currency','Share class launch date','performanceChart.disclaimerHtml','performancechart.seriesConfiguration','performancechart.values','Calendar year.Total return','Dividends.Ex Day','Dividends.Dividend per Share'],
         'cashTreatment':'Issuer performance already includes reinvestment; application adds no cash. Historical chart levels are not qualified as exchange prices or raw historical NAV.',
         'dailyContinuity':'Null fund rows remain missing; qualified only for available full monthly ends, not arbitrary-day investment or price-only anniversaries'}
