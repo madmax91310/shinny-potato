@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "policyVersion": 3,
-  "checkedAt": "2026-10-28T15:46:43.057Z",
-  "sourceRevision": "d771f2d30588d3157804c28d37986900a9465d7a",
+  "policyVersion": 4,
+  "checkedAt": "2026-10-28T17:09:12.082Z",
+  "sourceRevision": "5d4aff935332561c94f281fefa69760c43e3d7dd",
   "groups": [
     [
       "9977149042677757b663c372",
@@ -13,21 +13,8 @@
       "a5a866406f228d98eb239dd7"
     ],
     [
-      "2a531b263fc7de231588d323",
-      "d95dc9b78293fe74a8d60694"
-    ],
-    [
-      "bb576b829e8754e551983d69"
-    ],
-    [
       "0d187d45c594e092c6c7fda8",
       "c0b2d90d5b2819ce40a2b19f"
-    ],
-    [
-      "bee9dccfefd7b5b45dfdcec5"
-    ],
-    [
-      "94b9fc0a0f7af602687a4f78"
     ],
     [
       "77bab75a53620c163abedaa8"
@@ -96,80 +83,6 @@
     ]
   ],
   "selection": [
-    {
-      "id": "2a531b263fc7de231588d323",
-      "eventIds": [
-        "2a531b263fc7de231588d323",
-        "d95dc9b78293fe74a8d60694"
-      ],
-      "readEventIds": [
-        "2a531b263fc7de231588d323",
-        "d95dc9b78293fe74a8d60694"
-      ],
-      "title": "Amundi PEA Amérique Latine (MSCI Emerging Latin America Selection) UCITS ETF : poids du pays mexico, 30,153 % → 36,456 %",
-      "mainFact": "Amundi PEA Amérique Latine (MSCI Emerging Latin America Selection) UCITS ETF : 36,456 %",
-      "publishedAt": null,
-      "observedAt": "2026-10-28",
-      "whyNow": "Changement constaté entre deux contrôles depuis moins de 48 h ; date d’annonce inconnue.",
-      "reason": "Arbitrage lié à une condition financière prouvée",
-      "score": 81,
-      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-      "to": "/radar-editorial?subject=2a531b263fc7de231588d323"
-    },
-    {
-      "id": "bb576b829e8754e551983d69",
-      "eventIds": [
-        "bb576b829e8754e551983d69"
-      ],
-      "readEventIds": [
-        "bb576b829e8754e551983d69"
-      ],
-      "title": "iShares Listed Private Equity UCITS ETF : poids du secteur cash and/or derivatives, 0,52 % → 100 %",
-      "mainFact": "iShares Listed Private Equity UCITS ETF : 100 %",
-      "publishedAt": null,
-      "observedAt": "2026-10-27",
-      "whyNow": "Changement constaté entre deux contrôles depuis moins de 48 h ; date d’annonce inconnue.",
-      "reason": "Exposition modifiée ; aucun achat ni flux déduit",
-      "score": 76,
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "to": "/radar-editorial?subject=bb576b829e8754e551983d69"
-    },
-    {
-      "id": "94b9fc0a0f7af602687a4f78",
-      "eventIds": [
-        "94b9fc0a0f7af602687a4f78"
-      ],
-      "readEventIds": [
-        "94b9fc0a0f7af602687a4f78"
-      ],
-      "title": "La Bourse de Paris attendue en baisse à l'ouverture : les enjeux du mardi 27 octobre",
-      "mainFact": "Le contrat à terme sur le CAC 40 reculait de 0,39% une quarantaine de minutes avant l'ouverture de la séance.",
-      "publishedAt": "2026-10-27",
-      "observedAt": null,
-      "whyNow": "Publication originale ou changement documenté depuis moins de 48 h.",
-      "reason": "Arbitrage lié à une condition financière prouvée",
-      "score": 71,
-      "sourceUrl": "https://www.moneyvox.fr/bourse/actualites/110990/la-bourse-de-paris-attendue-en-baisse-a-ouverture-les-enjeux-du-mardi-27-octobre",
-      "to": "/radar-editorial?subject=94b9fc0a0f7af602687a4f78"
-    },
-    {
-      "id": "bee9dccfefd7b5b45dfdcec5",
-      "eventIds": [
-        "bee9dccfefd7b5b45dfdcec5"
-      ],
-      "readEventIds": [
-        "bee9dccfefd7b5b45dfdcec5"
-      ],
-      "title": "La nouvelle aide carburant de 100 euros peut être réclamée dès ce 27 octobre : mode d'emploi",
-      "mainFact": "Le revenu fiscal de référence par part en 2024 ne doit désormais pas dépasser 22 770 euros (contre 16 880 euros pour la précédente vague).",
-      "publishedAt": "2026-10-27",
-      "observedAt": null,
-      "whyNow": "Publication originale ou changement documenté depuis moins de 48 h.",
-      "reason": "Arbitrage lié à une condition financière prouvée",
-      "score": 71,
-      "sourceUrl": "https://www.moneyvox.fr/votre-argent/actualites/110996/la-nouvelle-aide-carburant-de-100-euros-peut-etre-reclamee-des-ce-27-octobre-mode-emploi",
-      "to": "/radar-editorial?subject=bee9dccfefd7b5b45dfdcec5"
-    },
     {
       "id": "77bab75a53620c163abedaa8",
       "eventIds": [
