@@ -1,13 +1,17 @@
 {
   "schemaVersion": 1,
   "policyVersion": 3,
-  "checkedAt": "2026-10-28T01:42:01.817Z",
-  "sourceRevision": "47658d931263f6fbb051dbc8285275fab7266b40",
+  "checkedAt": "2026-10-28T07:36:43.135Z",
+  "sourceRevision": "5a72764f464ab12b54b062860c155506c1e11f54",
   "groups": [
     [
       "9977149042677757b663c372",
       "0d02d80eb57568918b943369",
       "4a8cf33092c21057405eb5ce"
+    ],
+    [
+      "2a531b263fc7de231588d323",
+      "d95dc9b78293fe74a8d60694"
     ],
     [
       "bb576b829e8754e551983d69"
@@ -41,6 +45,9 @@
       "bdd2709d791b13345414bb06"
     ],
     [
+      "6f0d1ee09c2a21fdb314e137"
+    ],
+    [
       "dcb0175fda10ddbc7b89337b"
     ],
     [
@@ -68,6 +75,26 @@
     ]
   ],
   "selection": [
+    {
+      "id": "2a531b263fc7de231588d323",
+      "eventIds": [
+        "2a531b263fc7de231588d323",
+        "d95dc9b78293fe74a8d60694"
+      ],
+      "readEventIds": [
+        "2a531b263fc7de231588d323",
+        "d95dc9b78293fe74a8d60694"
+      ],
+      "title": "Amundi PEA Amérique Latine (MSCI Emerging Latin America Selection) UCITS ETF : poids du pays mexico, 30,153 % → 36,456 %",
+      "mainFact": "Amundi PEA Amérique Latine (MSCI Emerging Latin America Selection) UCITS ETF : 36,456 %",
+      "publishedAt": null,
+      "observedAt": "2026-10-28",
+      "whyNow": "Changement constaté entre deux contrôles depuis moins de 48 h ; date d’annonce inconnue.",
+      "reason": "Arbitrage lié à une condition financière prouvée",
+      "score": 81,
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "to": "/radar-editorial?subject=2a531b263fc7de231588d323"
+    },
     {
       "id": "bb576b829e8754e551983d69",
       "eventIds": [
