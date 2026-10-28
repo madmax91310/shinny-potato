@@ -106,13 +106,99 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(len(report['waiting'][0]['evidence']['sourceHashes']),2)
         for defect in [{'asOf':'2026-10-21'},{'value':35395},{'variant':'PRICE'},{'sourceHashes':{}}]:
             previous={'nasdaq100':{**old,**defect}}
-            retained,failed=refresh_levels(previous,now,lambda c,n:collect_level(c,n,json_fetch=fetch),selected=[config])
+            retained,failed=refresh_levels(previous,now,lambda c,n:collect_level(c,n,json_fetch=fetch),selected=[config],date_fetch=lambda _: (_ for _ in ()).throw(OSError('isolated source unavailable')))
             self.assertEqual(retained,previous)
             self.assertTrue(failed['errors'])
             self.assertEqual(failed['waiting'],[])
         # Once a close is due, a provider still returning a forming candle is a failure.
         late=dt.datetime(2026,10,23,21,tzinfo=UTC)
         with self.assertRaises(ValueError):collect_level(config,late,json_fetch=fetch)
+
+
+    def xndx_recovery_case(self):
+        from refresh_anniversary_levels import XNDX_URLS
+        config=next(c for c in configurations()if c['id']=='nasdaq100')
+        now=dt.datetime(2026,10,28,19,3,2,tzinfo=UTC)
+        raw={window:json.loads((ROOT/f'scripts/fixtures/publication/xndx-recovery-20261028-yahoo{window}.json').read_text())for window in ['5d','1d']}
+        def collect(c,n):return collect_level(c,n,json_fetch=lambda url:copy.deepcopy(raw['5d'if 'range=5d'in url else'1d']))
+        old={'value':35781.52734375,'asOf':'2026-10-26','checkedAt':'2026-10-27T11:44:28.010154+00:00','parser':'yahoo','symbol':'^XNDX','currency':'USD','variant':'TOTAL','quoteMethod':'supported-xndx-ranges','sourceHashes':{url:'a'*64 for url in XNDX_URLS}}
+        import gzip
+        fred=gzip.decompress((ROOT/'scripts/fixtures/publication/xndx-recovery-20261028-fred-table.html.gz').read_bytes())
+        return config,now,collect,old,fred
+
+    def test_xndx_missed_close_recovered_from_dated_independent_series_and_idempotent(self):
+        config,now,collect,old,fred=self.xndx_recovery_case();calls=[]
+        def fetch(url):calls.append(url);return fred
+        updated,report=refresh_levels({'nasdaq100':old},now,collect,selected=[config],date_fetch=fetch)
+        self.assertFalse(report['errors']);self.assertEqual(report['outcomes'][0]['status'],'succeeded')
+        value=updated['nasdaq100'];self.assertEqual(value['asOf'],'2026-10-27');self.assertEqual(value['value'],36243.918)
+        self.assertEqual(value['previousCloseDateEvidence']['value'],36243.92)
+        self.assertEqual(value['previousCloseDateEvidence']['asOf'],value['asOf'])
+        self.assertEqual(value['previousCloseDateEvidence']['seriesId'],'NASDAQXNDX')
+        self.assertEqual(value['checkedAt'],now.isoformat());self.assertEqual(calls[0],'https://fred.stlouisfed.org/data/NASDAQXNDX')
+        self.assertNotEqual(value['value'],36373.625,'An unfinished current quote is never used')
+        self.assertEqual(len(value['sourceHashes']),2);self.assertTrue(all(h!='a'*64 for h in value['sourceHashes'].values()))
+        repeated,report=refresh_levels(updated,now,collect,selected=[config],date_fetch=lambda _:self.fail('Already qualified previous session needs no FRED retry'))
+        self.assertEqual(repeated,updated);self.assertFalse(report['successes']);self.assertEqual(len(report['waiting']),1)
+
+    def test_xndx_dated_recovery_never_invents_date_identity_or_source_success(self):
+        config,now,collect,old,fred=self.xndx_recovery_case()
+        failures=[b'',fred.replace(b'NASDAQXNDX',b'NASDAQ100'),fred.replace(b'#2026-10-27|36243.92',b'#2026-10-27|36243.93'),
+                  fred.replace(b'#2026-10-27|36243.92',b'#2026-10-27|.'),fred.replace(b'2026-10-27',b'2026-10-28'),
+                  fred.replace(b'36243.92',b'NaN'),fred.replace(b'#2026-10-27|36243.92',b'#2026-10-27|36243.92\n#2026-10-27|36243.92'),
+                  b'<html>HTTP200 login</html>',fred.replace(b'>Daily<',b'>Monthly<'),
+                  fred.replace(b'>Nasdaq, Inc.<',b'>Other Provider<'),fred.replace(b'/Index/Overview/XNDX',b'/Index/Overview/NDX'),
+                  fred.replace(b'1999-03-04 to 2026-10-27',b'1999-03-04 to 2026-10-26')]
+        for body in failures:
+            with self.subTest(body=body[-70:]):
+                updated,report=refresh_levels({'nasdaq100':old},now,collect,selected=[config],date_fetch=lambda _,b=body:b)
+                self.assertEqual(updated,{'nasdaq100':old});self.assertFalse(report['successes']);self.assertEqual(report['outcomes'][0]['status'],'failed')
+                self.assertEqual(report['outcomes'][0]['lastSuccessAt'],old['checkedAt']);self.assertEqual(report['outcomes'][0]['asOf'],old['asOf'])
+        for defect in [{'currency':'EUR'},{'variant':'PRICE'},{'sourceHashes':{}},{'asOf':'2026-10-28'},{'asOf':'2026-10-27','value':36200}]:
+            prior={'nasdaq100':{**old,**defect}}
+            updated,report=refresh_levels(prior,now,collect,selected=[config],date_fetch=lambda _:fred)
+            self.assertEqual(updated,prior);self.assertTrue(report['errors'])
+        # A failed fallback does not prevent a distinct validated source from being kept.
+        def sources(c,n):return collect(c,n)if c['id']=='nasdaq100'else{'value':100,'asOf':'2026-10-27','currency':'EUR','parser':'example'}
+        updated,report=refresh_levels({'nasdaq100':old},now,sources,selected=[config,{'id':'other'}],date_fetch=lambda _:(_ for _ in()).throw(OSError('network down')))
+        self.assertEqual(updated['nasdaq100'],old);self.assertEqual(updated['other']['value'],100)
+        self.assertEqual(len(report['errors']),1);self.assertEqual(len(report['successes']),1)
+
+    def test_xndx_dated_recovery_exchange_holiday_and_year_boundary(self):
+        from refresh_anniversary_levels import PublicationPending,XNDX_URLS
+        config,_,_,old,_=self.xndx_recovery_case()
+        for session,expected,prior in [('2026-10-26','2026-10-23','2026-10-22'),('2027-01-04','2026-12-31','2026-12-30')]:
+            now=dt.datetime.fromisoformat(session+'T16:00:00+00:00')
+            def collect(*_):raise PublicationPending({'session':session,'previousClose':200.002,'sourceHashes':{url:'b'*64 for url in XNDX_URLS}})
+            def fetch(url):
+                from bs4 import BeautifulSoup
+                from zoneinfo import ZoneInfo
+                import gzip
+                self.assertEqual(url,'https://fred.stlouisfed.org/data/NASDAQXNDX')
+                source=gzip.decompress((ROOT/'scripts/fixtures/publication/xndx-recovery-20261028-fred-table.html.gz').read_bytes())
+                soup=BeautifulSoup(source,'html.parser')
+                zone=dt.datetime.fromisoformat(expected+'T12:00:00').replace(tzinfo=ZoneInfo('America/Chicago')).tzname()
+                for tr in soup.select('table[aria-label="metadata - NASDAQ-100 Total Return"] tr'):
+                    label=tr.th.get_text(strip=True)
+                    if label=='Date Range':tr.td.string=expected+' to '+expected
+                    if label=='Last Updated':tr.td.string=expected+' 12:00 PM '+zone
+                tbody=soup.select_one('#data-table-observations tbody');tbody.clear()
+                tbody.append(BeautifulSoup('<tr><th>'+expected+'</th><td>200.00</td></tr>','html.parser').tr)
+                soup.select_one('#extra-rows').clear()
+                return str(soup).encode()
+            updated,report=refresh_levels({'nasdaq100':{**old,'asOf':prior,'checkedAt':prior+'T22:00:00+00:00'}},now,collect,selected=[config],date_fetch=fetch)
+            self.assertFalse(report['errors']);self.assertEqual(updated['nasdaq100']['asOf'],expected)
+
+    def test_xndx_official_table_and_existing_csv_agree_on_every_published_row(self):
+        import gzip,csv,io
+        from fred_xndx_document import parse
+        folder=ROOT/'scripts/fixtures/publication'
+        raw=gzip.decompress((folder/'xndx-recovery-20261028-fred-table.html.gz').read_bytes())
+        table,meta=parse(raw,dt.datetime(2026,10,28,19,3,2,tzinfo=UTC))
+        csv_rows=list(csv.reader(io.StringIO(gzip.decompress((folder/'xndx-recovery-20261028-fred-full.csv.gz').read_bytes()).decode())))[1:]
+        normalise=lambda rows:[(d,None if v in['','.']else float(v))for d,v in rows]
+        self.assertEqual(normalise(table),normalise(csv_rows));self.assertEqual(len(table),7214)
+        self.assertEqual(meta['Source'],'Nasdaq, Inc.');self.assertEqual(table[-1],('2026-10-27','36243.92'))
 
     def test_xndx_supported_ranges_and_completed_session(self):
         from refresh_anniversary_levels import XNDX_URLS
