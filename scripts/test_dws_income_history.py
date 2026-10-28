@@ -1,5 +1,5 @@
 """Archived official inputs; mutations are isolated, never provider validations."""
-import copy,datetime as dt,gzip,json,pathlib,unittest
+import copy,datetime as dt,gzip,json,pathlib,unittest,hashlib
 from issuer_nav_history import dws_nav
 from collect_dws_etf import parse_product
 from collect_official_share_history import collect_one,configurations
@@ -9,6 +9,11 @@ class DwsIncome(unittest.TestCase):
  def setUp(self):
   self.body=json.loads(gzip.decompress((F/'product.json.gz').read_bytes()));self.chart=json.loads(gzip.decompress((F/'chart.json.gz').read_bytes()));self.raw=gzip.decompress((F/'history.xlsx.gz').read_bytes());self.source=copy.deepcopy(next(s for s in configurations()if s['id']=='etfLU1875395870Nav'));self.nav=dws_nav(self.raw,self.source['isin'],'EUR',NOW);self.facts=parse_product(self.body,{'isin':self.source['isin'],'currency':'EUR'},NOW)
  def go(self):return qualify(self.body,self.chart,self.facts,self.source,self.nav,NOW)
+ def test_archived_receipt_binds_all_three_actual_inputs(self):
+  report=json.loads(gzip.decompress((F/'collection.json.gz').read_bytes()))['series'][0]['record']
+  for url,digest in report['rawSourceHashes'].items():
+   file='history.xlsx.gz'if'historicaldata/download'in url else'chart.json.gz'if url.endswith('/performancechart')else'product.json.gz'
+   self.assertEqual(hashlib.sha256(gzip.decompress((F/file).read_bytes())).hexdigest(),digest)
  def test_exact_share_all_years_cash_and_month_ends(self):
   points,p=self.go();self.assertEqual([r['year']for r in p['officialIncomeReinvestedChartChecks']],list(range(2019,2026)));self.assertEqual(len(p['officialPublishedCashEvents']),12);self.assertEqual(len(p['monthlyShareUnitChecks']),94);self.assertEqual(points[max(points)],self.nav[max(self.nav)]);self.assertTrue(all(not x['cashAddedByApplication']for x in p['officialPublishedCashEvents']));self.assertEqual([x['date']for x in p['dailyQualificationLimit']['unqualifiedDailyUnitDates']],['2026-05-11']);self.assertFalse(p['dailyQualificationLimit']['admittedForArbitraryDailyPurchase'])
  def test_no_double_cash_or_repeated_adjustment(self):

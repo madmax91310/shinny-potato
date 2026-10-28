@@ -51,6 +51,7 @@ def reconcile(initial_rows,originals,public_rows,active_rows,monitor):
   elif mechanism:state='étape technique rétablie ; ancien périmètre restant à qualifier'if qualification else'étape technique rétablie ; trace historique conservée'
   elif conflict:state='conflit financier ou documentaire actif'
   elif overdue:state='contrôle source en retard ; valeur erronée non déduite'
+  elif source_kind=='history':state='historique conservé ; pas de panne active déduite'
   elif failure:state='échec actif de collecte, validation ou publication'
   elif qualification:state='qualification encore manquante ; pas assimilée à une panne active'
   elif history:state='historique conservé ; résolution non déduite sans preuve'
