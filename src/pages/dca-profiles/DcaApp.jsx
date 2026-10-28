@@ -49,6 +49,8 @@ export default function DcaApp(){
  const setFilter=(key,value)=>setFilters({...filters,[key]:value})
  function update(next){setProfile({...next,approved:false});setDraft(buildTweetText(next));setFeedback('')}
  function edit(patch){update({...profile,...patch})}
+ function editImage(patch){setProfile(current=>({...current,...patch,approved:false}))}
+ function changeImageField(next){setField(next);editImage({})}
  function select(next){if(!next)return;setPortfolioReset(n=>n+1);if(preparedPicker.current)preparedPicker.current.open=false;update(structuredClone(next));seen.current.add(next.id)}
  function changeSelection(selection){
   const nextFilters={...filters,selection}
@@ -92,7 +94,7 @@ export default function DcaApp(){
    </div></details>
    <AllocationEditor lines={profile.lines} onChange={lines=>edit({lines})} dca={!profile.imageOnly}/>
    {!profile.imageOnly&&<p className="dca-note">Versements : {euro(profile.lines.reduce((s,l)=>s+(Number.isFinite(l.amount)?l.amount:0),0))} / mois</p>}
-   <ImageOptions field={field} onFieldChange={setField} limit={profile.exposureLimit||4} onLimitChange={exposureLimit=>edit({exposureLimit})} showCompanies={profile.showCompanies===true} onCompaniesChange={showCompanies=>edit({showCompanies})}/>
+   <ImageOptions field={field} onFieldChange={changeImageField} limit={profile.exposureLimit||4} onLimitChange={exposureLimit=>editImage({exposureLimit})} showCompanies={profile.showCompanies===true} onCompaniesChange={showCompanies=>editImage({showCompanies})}/>
    <details><summary>Détails du portefeuille</summary>
     <label>Périmètre<ChoicePicker aria-label="Périmètre du portefeuille" value={profile.scope} onChange={e=>edit({scope:e.target.value})}>{PROFILE_SCOPES.map(s=><option key={s} value={s}>{s}</option>)}</ChoicePicker></label>
     <label><input type="checkbox" checked={!!profile.imageOnly} onChange={e=>{edit({imageOnly:e.target.checked});if(e.target.checked)setField('all')}}/>Répartition uniquement — sans nom ni montants</label>
@@ -113,6 +115,6 @@ export default function DcaApp(){
    </section>
   </div>
  </div>
- {!a.errors.length&&<details className="dca-analysis-drawer" onToggle={e=>setShowAnalysis(e.currentTarget.open)}><summary>Voir l’analyse détaillée</summary>{showAnalysis&&<Suspense fallback={<p role="status">Chargement de l’analyse…</p>}><Analytics profile={profile} analysis={a}/></Suspense>}</details>}
+ {!a.errors.length&&<details className="dca-analysis-drawer" onToggle={e=>setShowAnalysis(e.currentTarget.open)}><summary>Voir l’analyse détaillée</summary>{showAnalysis&&<Suspense fallback={<p role="status">Chargement de l’analyse…</p>}><Analytics profile={profile} analysis={a} onViewChange={analysisView=>editImage({analysisView})}/></Suspense>}</details>}
  </div>
 }
