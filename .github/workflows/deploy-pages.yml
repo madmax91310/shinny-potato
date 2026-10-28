@@ -368,6 +368,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_document_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+      - run: python -m unittest discover -s scripts -p 'test_globalx_sections.py'
       - run: python -m unittest discover -s scripts -p 'test_qyld_qualification.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_lifestrategy.py'

@@ -158,18 +158,27 @@ def qualify_qyld(page, share, now, digest):
 
 def globalx(text, share, now):
     page=Page(text); tokens=page.tokens
-    starts=[i for i,t in enumerate(tokens[:-1]) if t=='Key Information' and tokens[i+1].startswith('As of ')]
-    start=only(starts,'Global X dated key-information block')
-    # The issuer can omit the Distributions subsection while publishing exact
-    # dated identity, TER and fund AUM. Both known following section headings
-    # delimit those fields; never borrow facts from later performance/classes.
-    boundaries=[(tokens.index(label,start+1),label) for label in ('Distributions','Regulatory') if label in tokens[start+1:]]
-    if not boundaries:reject('Unqualified Global X key-information boundary')
-    end,boundary=min(boundaries)
-    block='\n'.join(tokens[start:end])
+    from globalx_sections import fact_sections
+    sections = fact_sections(text, Page)
+    if sections is not None:
+        facts, trading = sections
+        block = '\n'.join(facts)
+        identity_block = '\n'.join(trading)
+        boundary = 'semantic-sections'
+    else:
+        starts=[i for i,t in enumerate(tokens[:-1]) if t=='Key Information' and tokens[i+1].startswith('As of ')]
+        start=only(starts,'Global X dated key-information block')
+        # The issuer can omit the Distributions subsection while publishing exact
+        # dated identity, TER and fund AUM. Both known following section headings
+        # delimit those fields; never borrow facts from later performance/classes.
+        boundaries=[(tokens.index(label,start+1),label) for label in ('Distributions','Regulatory') if label in tokens[start+1:]]
+        if not boundaries:reject('Unqualified Global X key-information boundary')
+        end,boundary=min(boundaries)
+        block='\n'.join(tokens[start:end])
+        identity_block = block
     # Responsive markup may repeat the same trading identity. Conflicting
     # identities still fail; identical repeated labels are one observation.
-    identities = list(dict.fromkeys(re.findall(r'Primary ISIN\n([^\n]+)',block)))
+    identities = list(dict.fromkeys(re.findall(r'Primary ISIN\n([^\n]+)',identity_block)))
     if not identities:
         # Streaming HTML can omit the trading identity while serving key facts.
         # Retry another public route; never apply figures without the exact ISIN.
