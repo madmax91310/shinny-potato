@@ -379,6 +379,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         calendar_proof['qualifiedCalendarYears']=[c['year']for c in checks]
         calendar_proof['qualificationScope']='Only independent corroborated return intervals; unresolved official daily/calendar differences remain refused. No price interpolation or threshold change.'
     else:checks=calendar_checks(checked_nav,years,calendar_precision,now,identity_from)
+    if kind=='landg':calendar_proof['controlledCalendarYears']=sorted(str(c['year'])for c in checks)
     fx=json.loads((ROOT/'src/data/monthly-fx.json').read_text())
     points,proof_rows=monthly(nav,native,source['currency'],source['periodStart'],now,fx)
     points=[[d,math.floor(v*10**source['precision']+.5)/10**source['precision']]for d,v in points]

@@ -351,6 +351,16 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
     def one(source):
         try:
             result=collect(source,now)
+            scope=result.get('calendarProof')or{}
+            if scope.get('controlledFields') or source.get('navProvider')=='landg' or source.get('navHistoryKind')=='official-income-reinvested-chart':
+                required=['controlledInstrument','controlledFields','requestedStart','controlledCalendarYears']
+                missing=[key for key in required if key not in scope]
+                if missing:reject('Missing mandatory source-control scope: '+', '.join(missing))
+                if (not scope['controlledFields']or not isinstance(scope['controlledFields'],list)or any(not isinstance(v,str)or not v.strip()for v in scope['controlledFields'])
+                        or scope['controlledInstrument']!=(source.get('isin')or source['id'])
+                        or not isinstance(scope['controlledCalendarYears'],list)):
+                    reject('Invalid exact source-control scope')
+                dt.date.fromisoformat(scope['requestedStart'])
             old=baseline.get(source['id'])
             prior=current.get(source['id'])
             # The isolated non-bond producer has a company-only baseline. A
@@ -461,7 +471,8 @@ def main():
         if observation['status']=='validated':
             result=observation['evidence']
             if (evidence.get(observation['id'],{}).get('responseSha256') != observation['record']['responseSha256'] or
-                    evidence.get(observation['id'],{}).get('checkedAt') != result.get('checkedAt')):
+                    evidence.get(observation['id'],{}).get('checkedAt') != result.get('checkedAt') or
+                    evidence.get(observation['id'],{}).get('calendarProof') != result.get('calendarProof')):
                 # Persist proof for the active version, not a subsequent unchanged check.
                 if result['responseSha256']==observation['record']['responseSha256']:
                     evidence[observation['id']]={k:v for k,v in result.items() if k not in ['rawResponse','points','anniversaryPoints']}

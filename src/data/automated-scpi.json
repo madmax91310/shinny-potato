@@ -6,73 +6,69 @@
       "sourceUrl": "https://www.iroko.eu/scpi/zen",
       "checkedAt": "2026-10-28",
       "snapshot": {
-        "asOf": "2026-06-30",
-        "checkedAt": "2026-10-26",
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-10-28",
         "countries": [
           {
             "label": "France",
-            "value": 27.3
+            "value": 27.7
           },
           {
             "label": "Royaume-Uni",
-            "value": 26.7
+            "value": 26.9
           },
           {
             "label": "Espagne",
-            "value": 15.6
+            "value": 14.5
           },
           {
             "label": "Pays-Bas",
-            "value": 10.5
+            "value": 9.4
           },
           {
             "label": "Irlande",
-            "value": 9.7
+            "value": 10.3
           },
           {
             "label": "Allemagne",
-            "value": 7.2
+            "value": 8.5
           },
           {
             "label": "Belgique",
-            "value": 2.2
+            "value": 2.0
           },
           {
             "label": "Italie",
-            "value": 0.8
+            "value": 0.7
           }
         ],
         "sectors": [
           {
+            "label": "Commerces",
+            "value": 35.5
+          },
+          {
             "label": "Bureaux",
-            "value": 31.6
+            "value": 32.7
           },
           {
             "label": "Locaux d’activité",
-            "value": 11.6
+            "value": 11.2
           },
           {
             "label": "Santé, hôtellerie, autre",
-            "value": 10.6
+            "value": 11.9
           },
           {
-            "label": "Entrepôts",
-            "value": 7.7
-          },
-          {
-            "label": "Logistique",
-            "value": 2.2
-          },
-          {
-            "label": "Commerces",
-            "value": 36.3
+            "label": "Entrepôts et Logistique",
+            "value": 8.7
           }
         ],
         "sourceUrls": [
           "https://iroko-documents.s3.eu-west-3.amazonaws.com/Iroko_Zen_bulletin_trimestriel.pdf"
         ],
-        "dateNote": "Bulletin trimestriel : date du patrimoine conservée, distincte de la période de validité du document. Répartition en valeur d’expertise hors droits.",
-        "sha256": "db540be39c6920c8d1c9196ffadb98f2785381f47ac7368ea4421fef7e2ef9bf"
+        "dateNote": "Date explicite des données du portefeuille ; distincte de la validité du bulletin. Valeur d’expertise hors droits ; entrepôts et logistique publiés comme catégorie commune.",
+        "sha256": "6b42208fa4c104879d5cb025a5d46e7fdc79a370c7200fe9b8bc0ed8fe7caae1"
       },
       "annual": {
         "years": [
@@ -257,7 +253,7 @@
       "sourceUrl": "https://www.remake.fr/remake-live",
       "checkedAt": "2026-10-28",
       "snapshot": {
-        "asOf": "2026-06-30",
+        "asOf": "2026-09-30",
         "countries": [
           {
             "label": "Royaume-Uni",
@@ -344,7 +340,7 @@
         ],
         "sourceUrls": [
           "https://www.remake.fr/remake-live",
-          "https://www.remake.fr/wp-content/uploads/2026/08/REMAKELIVE_BT2_2026.pdf"
+          "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf"
         ]
       },
       "annual": {
@@ -371,31 +367,31 @@
       },
       "price": {
         "value": 204.0,
-        "asOf": "2026-06-30",
-        "sourceUrl": "https://www.remake.fr/wp-content/uploads/2026/08/REMAKELIVE_BT2_2026.pdf"
+        "asOf": "2026-09-30",
+        "sourceUrl": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf"
       },
       "conditions": {
         "minimum": 204.0,
         "enjoyment": "Premier jour du 4e mois suivant celui de la souscription.",
         "frequency": "mensuels",
         "subscriptionFee": 0,
-        "managementFee": 18.0,
+        "managementFee": 0.0,
         "managementBasis": "produits locatifs HT et autres produits encaissés",
         "exit": "5 % TTC du montant remboursé avant 5 ans, sauf exceptions prévues dans la note.",
         "otherFees": "5 % TTC du prix net vendeur pour les acquisitions et 5 % TTC du montant TTC des travaux.",
-        "sourceUrl": "https://www.remake.fr/wp-content/uploads/2026/08/REMAKELIVE_BT2_2026.pdf"
+        "sourceUrl": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf"
       },
       "portfolio": {
         "buildings": {
-          "value": 77,
-          "asOf": "2026-06-30",
-          "sourceUrl": "https://www.remake.fr/wp-content/uploads/2026/08/REMAKELIVE_BT2_2026.pdf",
+          "value": 78,
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
           "label": "Immeubles"
         },
         "occupancy": {
-          "value": 98.93,
-          "asOf": "2026-06-30",
-          "sourceUrl": "https://www.remake.fr/wp-content/uploads/2026/08/REMAKELIVE_BT2_2026.pdf",
+          "value": 98.81,
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
           "label": "Taux d’occupation financier",
           "basis": "Inclut les locaux sous franchise de loyer ; distinct du taux physique. Le nombre de baux n’est pas un nombre de locataires."
         }
@@ -415,25 +411,23 @@
             "value": 204.0
           },
           {
-            "asOf": "2026-06-30",
+            "asOf": "2026-09-30",
             "value": 204.0
           }
         ],
         "sourceUrls": [
           "https://www.remake.fr/wp-content/uploads/2026/08/Rapport-Annuel-Remake-Live-2025-1.pdf",
-          "https://www.remake.fr/wp-content/uploads/2026/08/REMAKELIVE_BT2_2026.pdf"
+          "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf"
         ],
         "dateNote": "Prix au 31 décembre du rapport actuellement lié sur la page officielle (exercice 2025), puis prix du bulletin courant. Aucune année intermédiaire non publiée n’est ajoutée."
       },
       "collectionStatus": {
-        "status": "failed",
+        "status": "success",
         "lastAttemptAt": "2026-10-28",
         "lastAccessSuccessAt": "2026-10-28",
-        "internalReviewDue": "2026-11-14",
+        "internalReviewDue": "2027-02-14",
         "issuerPublicationDeadline": null,
-        "deadlineBasis": "internal-monitoring-policy",
-        "accessStatus": "success",
-        "reason": "Published current bulletin verified; awaiting the next edition linked by the issuer"
+        "deadlineBasis": "internal-monitoring-policy"
       }
     },
     {
