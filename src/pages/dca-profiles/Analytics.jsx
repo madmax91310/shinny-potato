@@ -1,31 +1,31 @@
 import {useEffect,useMemo,useState} from 'react'
 import {references,pct,euro} from './engine.js'
 import {loadHoldings} from './holdings-loader.js'
-import {portfolioAnalytics,flowAllocation,allocationAfterContributions,compareExposures} from './analytics.js'
+import {portfolioAnalytics,analysisView,analyzedLines,selectConcentrationGroup,concentrationGroupKey,compareExposures} from './analytics.js'
 import {exposureDisplay} from './exposure.js'
 import Verification from './Verification.jsx'
 const titleScope=scope=>scope==='index'?'Indices suivis':scope==='equity'?'Titres en direct':'Positions publiées'
 const delta=n=>`${n>0?'+':''}${n.toLocaleString('fr-FR',{maximumFractionDigits:2})} pts`
-export default function Analytics({profile,analysis}) {
- const [mode,setMode]=useState('held'),[capital,setCapital]=useState('10000'),[months,setMonths]=useState('12')
+export default function Analytics({profile,analysis,onViewChange}) {
+ const view=analysisView(profile),{mode,capital,months}=view
+ const setView=patch=>onViewChange({...view,...patch})
  const [baseline,setBaseline]=useState(null),[query,setQuery]=useState(''),[limit,setLimit]=useState(20)
- const [state,setState]=useState({key:'',holdings:{},error:false}),[retry,setRetry]=useState(0),[selectedGroup,setSelectedGroup]=useState(0)
+ const [state,setState]=useState({key:'',holdings:{},error:false}),[retry,setRetry]=useState(0)
  const requested=[...new Set([...profile.lines,...(baseline||[])].map(l=>l.asset))].sort().join('|')
  useEffect(()=>{let active=true;setState({key:'',holdings:{},error:false});loadHoldings(requested.split('|')).then(holdings=>{if(active)setState({key:requested,holdings,error:false})}).catch(()=>{if(active)setState({key:requested,holdings:{},error:true})});return()=>{active=false}},[requested,retry])
  const loading=state.key!==requested
  let simulationError=''
- let lines=profile.lines
- if(mode==='flows')lines=flowAllocation(profile.lines)
- if(mode==='future')try{lines=allocationAfterContributions(profile.lines,Number(capital),Number(months))}catch(e){simulationError=e.message;lines=[]}
+ let lines
+ try{lines=analyzedLines(profile)}catch(e){simulationError=e.message;lines=[]}
  const result=useMemo(()=>portfolioAnalytics(lines,references,loading?{}:state.holdings),[lines,state.holdings,loading])
  const before=useMemo(()=>baseline?portfolioAnalytics(baseline,references,loading?{}:state.holdings):null,[baseline,state.holdings,loading])
- const group=result.groups[Math.min(selectedGroup,Math.max(0,result.groups.length-1))]
+ const group=selectConcentrationGroup(result.groups,view.groupKey)
  const rows=(group?.rows||[]).filter(r=>(r.name+' '+r.isin).toLowerCase().includes(query.toLowerCase()))
  const monthly=profile.lines.reduce((s,l)=>s+(Number.isFinite(l.amount)?l.amount:0),0)
  return <section id="dca-analysis" tabIndex={-1} className="dca-analysis" aria-label="Analyse du portefeuille">
  <div className="dca-analysis-heading"><div><span className="dca-eyebrow">SOUS LES LIGNES DU PORTEFEUILLE</span><h2>Ce que tu détiens vraiment</h2><p>Expositions, titres communs et poids cumulé des détentions directes et indirectes.</p></div><span className="dca-live-badge">{profile.lines.length} positions</span></div>
- <div className="dca-analysis-tabs" aria-label="Allocation analysée">{[['held','Portefeuille actuel'],['flows','Versements mensuels'],['future','Après les versements']].map(([id,label])=><button key={id} aria-pressed={mode===id} onClick={()=>{setMode(id);setSelectedGroup(0)}} disabled={profile.imageOnly&&id!=='held'}>{label}</button>)}</div>
- {mode==='future'&&<div className="dca-simulation"><div className="dca-fields"><label>Capital actuel (€)<input aria-label="Capital actuel pour les versements" type="number" min="1" value={capital} onChange={e=>setCapital(e.target.value)}/></label><label>Nombre de mois<input aria-label="Durée des versements en mois" type="number" min="1" max="120" step="1" value={months} onChange={e=>setMonths(e.target.value)}/></label></div><p>Avec {euro(monthly)} par mois. Calcul à cours constants, sans rendement, frais ni fiscalité ; compositions des fonds maintenues à leur dernière observation. Ce n’est pas une prévision.</p></div>}
+ <div className="dca-analysis-tabs" aria-label="Allocation analysée">{[['held','Portefeuille actuel'],['flows','Versements mensuels'],['future','Après les versements']].map(([id,label])=><button key={id} aria-pressed={mode===id} onClick={()=>setView({mode:id,groupKey:''})} disabled={profile.imageOnly&&id!=='held'}>{label}</button>)}</div>
+ {mode==='future'&&<div className="dca-simulation"><div className="dca-fields"><label>Capital actuel (€)<input aria-label="Capital actuel pour les versements" type="number" min="1" value={capital} onChange={e=>setView({capital:e.target.value})}/></label><label>Nombre de mois<input aria-label="Durée des versements en mois" type="number" min="1" max="120" step="1" value={months} onChange={e=>setView({months:e.target.value})}/></label></div><p>Avec {euro(monthly)} par mois. Calcul à cours constants, sans rendement, frais ni fiscalité ; compositions des fonds maintenues à leur dernière observation. Ce n’est pas une prévision.</p></div>}
  {simulationError&&<p role="alert">{simulationError}</p>}
  {!lines.length&&!simulationError&&<p>Aucun versement mensuel à analyser.</p>}
  {!!lines.length&&<>
@@ -33,7 +33,7 @@ export default function Analytics({profile,analysis}) {
  {loading&&<p role="status">Chargement de l’analyse des détentions…</p>}{state.error&&<p role="alert">Les compositions n’ont pas pu être chargées. <button onClick={()=>setRetry(n=>n+1)}>Relancer l’analyse</button></p>}
  <details className="dca-analysis-detail"><summary>Concentration et poids cumulés</summary>
  <p>Chaque titre est rapproché par ISIN. Les ADR et classes d’actions restent distincts. Les chiffres portent sur l’allocation sélectionnée ci-dessus.</p>
- {result.groups.length>1&&<div className="dca-analysis-tabs" aria-label="Périmètre des détentions">{result.groups.map((g,i)=><button key={i} aria-pressed={group===g} onClick={()=>setSelectedGroup(i)}>{titleScope(g.scope)} · {g.oldest} → {g.asOf}</button>)}</div>}
+ {result.groups.length>1&&<div className="dca-analysis-tabs" aria-label="Périmètre des détentions">{result.groups.map(g=><button key={concentrationGroupKey(g)} aria-pressed={group===g} onClick={()=>setView({groupKey:concentrationGroupKey(g)})}>{titleScope(g.scope)} · {g.oldest} → {g.asOf}</button>)}</div>}
  {group&&!loading&&<><div className="dca-concentration"><div><span>5 premiers titres</span><strong>{pct(group.top5)}</strong></div><div><span>10 premiers titres</span><strong>{pct(group.top10)}</strong></div><p>{group.complete?'Couverture complète des titres identifiés.':'Concentration observée sur la part identifiée ; des détentions manquantes peuvent augmenter ces poids.'}<br/>{group.oldest} → {group.asOf} · {pct(group.coverage)} identifiés sur {pct(group.portfolioWeight)} analysés.</p></div>
  <label>Rechercher un titre ou un ISIN<input type="search" value={query} onChange={e=>{setQuery(e.target.value);setLimit(20)}} placeholder="Microsoft, US…"/></label>
  <div className="dca-security-list">{rows.slice(0,limit).map(r=><details key={r.isin}><summary><span>{r.name}<small>{r.isin} · {r.contributions.length} support{r.contributions.length>1?'s':''}</small></span><span className="dca-security-weight">{pct(r.weight)}<span className="dca-weight-bar" style={{'--weight':`${Math.min(100,r.weight)}%`}}/></span></summary><p>En direct : {pct(r.direct)} · Via les fonds : {pct(r.indirect)}</p>{r.contributions.map(c=><p key={c.asset}>{c.label} : {pct(c.weight)} · <a href={c.sourceUrl} target="_blank" rel="noreferrer">{c.asOf}</a></p>)}</details>)}</div>

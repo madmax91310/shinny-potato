@@ -29,6 +29,7 @@ function P(list) {
 
 export const BASELINE_ASSETS = {
   bitcoin: {
+    ...BITCOIN_MONTHLY,
     historyConvention: 'spot-close',
     // Mise à jour du 02/10/2026 : Yahoo BTC-USD, champ close, clôture du 30/09/2026.
     // Source : https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo

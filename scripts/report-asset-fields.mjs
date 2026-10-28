@@ -1,4 +1,5 @@
 import {INSTRUMENT_LISTINGS_BY_ISIN} from '../src/data/instrument-listings.js';
+import {monthlyFingerprint} from './lib/monthly-certificate.mjs';
 import {PEA_REVIEWS_BY_ISIN} from '../src/data/instrument-pea.js';
 import {fieldDiagnostic,FIELD_TOOLS} from './lib/field-diagnostics.mjs';
 import {ASSETS} from '../src/data/market-history.js';
@@ -12,6 +13,7 @@ const read=p=>JSON.parse(readFileSync(new URL('../'+p,import.meta.url)));
 import POLICY from '../src/data/freshness-policy.json' with {type:'json'}
 // Thresholds come from the single freshness policy; never hard-code a number here.
 export function freshness(key){const p=POLICY.fields[key];if(!p)throw new Error(`Unknown freshness policy: ${key}`);return {checkDays:p.checkDays,dataDays:p.dataDays}}
+export const metadataFieldAttempt=(status,field)=>status?.fields?.[field]?.lastAttemptAt??null;
 export function etfFreshnessKey(field){
  if(field==='monthly')return 'etf.monthly';if(field==='ter')return 'etf.ter';if(field==='performance')return 'etf.performance'
  for(const key of ['etf.staticCharacteristic','etf.characteristic'])if(POLICY.fields[key].fields.includes(field))return key
@@ -64,7 +66,12 @@ export function scpiWaitingForPublication(record,now,field='snapshot') {
 }
 export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) {
  const gaps=buildGapInventory({now}), gapMap=new Map(gaps.gaps.map(r=>[`${r.id}:${r.field}`,r]));
- const monthly={...read('src/data/automated-monthly.json'),...read('src/data/automated-etf-monthly.json'),...read('src/data/non-bond-monthly-records.json')};
+ const monthly={},monthlySources={};
+ for(const path of ['src/data/automated-monthly.json','src/data/automated-etf-monthly.json','src/data/non-bond-monthly-records.json'])for(const [id,value]of Object.entries(read(path))){monthly[id]=value;monthlySources[id]=path;}
+ const bitcoin=read('src/data/bitcoin-yahoo-monthly.json');
+ if(bitcoin.provider==='Yahoo Finance'&&bitcoin.symbol==='BTC-USD'&&bitcoin.currency==='USD'){
+  monthly.bitcoin=bitcoin;monthlySources.bitcoin='src/data/bitcoin-yahoo-monthly.json';
+ }
  for(const [id,r] of Object.entries(monthly))if(!r.isin&&ASSETS[id]?.isin)monthly[id]={...r,isin:ASSETS[id].isin};
  const compositionOnly=read('src/data/vanguard-equity-underliers.json');
  const completeHoldings=read('src/data/dca-complete-holdings.json'),holdingsStatus=read('src/data/dca-holdings-status.json'),metadataStatus=read('src/data/instrument-metadata-status.json');
@@ -98,9 +105,9 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
    const observed=field==='monthly'?value?.periodEnd:field==='performance'?completeCalendarYears(item.id,value?.years,now).at(-1)?.toString():value?.asOf;
    const configured=field==='completeHoldings'?!!holdingsSources[item.id]:meta?true:field==='monthly'?!!value:true;
    const diagnostic=field==='completeHoldings'&&holdingsStatus[item.id]?.status==='failed'?{code:'retained-source-failure',reason:holdingsStatus[item.id].error}:fieldDiagnostic({field,present,state,status:meta?metadataStatus[item.id]:null,gap,configured});
-   rows.push({diagnostic,tools:onlyComposition?['dca-profiles']:(FIELD_TOOLS[field]??['etf-sheets']),automationConfigured:configured,...(meta?{lastAttempt:metadataStatus[item.id]?.checkedAt??null,sourceUrls:metadataSources.get(item.id)??[]}:{}),id:item.id,name:item.name,type:'instrument',field,label:names[field],state,present,checkedAt:present?value.checkedAt??null:null,asOf:observed??null,sourceUrl:present?(value.sourceUrl??value.sourceUrls?.[0]??record.sourceUrl):gap?.sourceUrl??null,reason:diagnostic.reason??gap?.reason??(field==='monthly'&&!present?(qualification[item.id]?.reason??'Cotation exacte et historique mensuel complet à qualifier automatiquement lorsqu’une cotation documentée est disponible.'):null),
+   rows.push({diagnostic,tools:onlyComposition?['dca-profiles']:(FIELD_TOOLS[field]??['etf-sheets']),automationConfigured:configured,...(meta?{lastAttempt:metadataFieldAttempt(metadataStatus[item.id],field),sourceUrls:metadataSources.get(item.id)??[]}:{}),id:item.id,name:item.name,type:'instrument',field,label:names[field],state,present,checkedAt:present?value.checkedAt??null:null,asOf:observed??null,sourceUrl:present?(value.sourceUrl??value.sourceUrls?.[0]??record.sourceUrl):gap?.sourceUrl??null,reason:diagnostic.reason??gap?.reason??(field==='monthly'&&!present?(qualification[item.id]?.reason??'Cotation exacte et historique mensuel complet à qualifier automatiquement lorsqu’une cotation documentée est disponible.'):null),
      ...(field==='completeHoldings'&&value?{basis:value.basis,scope:value.scope,unidentifiedWeightPct:value.unidentifiedWeightPct,unidentifiedSecurityCount:value.unidentifiedSecurityCount}:{}),
-     ...(field==='monthly'&&value?{currency:value.currency,periodStart:value.periodStart,periodEnd:value.periodEnd,method:value.method}:{}),
+     ...(field==='monthly'&&value?{currency:value.currency,periodStart:value.periodStart,periodEnd:value.periodEnd,method:value.method,seriesFingerprint:monthlyFingerprint(value),sourceRegistry:monthlySources[Object.keys(monthly).find(key=>monthly[key]===value)],sourceUrl:value.sourceUrls?.[0]??value.sourceUrl??null,sourceUrls:[...new Set([value.sourceUrl,...(value.sourceUrls??[])].filter(Boolean))]}:{}),
      ...(field==='performance'&&record.performance?.months?{archivedMonthlyReturns:Object.keys(record.performance.months).length}:{})});
   }
  }
@@ -109,7 +116,7 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
   const value=r[field];if(!value)continue;
   rows.push({id,type:'index',name:r.name??id,field,label:field==='facts'?'Composition indice':'Performances indice',present:true,state:fieldState({...value,checkedAt:value.checkedAt??value.source?.checkedAt??r.checkedAt},now,freshness(field==='returns'?'index.returns':'index.facts')),checkedAt:value.checkedAt??value.source?.checkedAt??r.checkedAt??null,asOf:value.asOf??null,sourceUrl:value.sourceUrl??value.source?.url??r.sourceUrl??null});
  }
- for(const [id,r] of Object.entries(monthly).filter(([,r])=>r.consumerScope!=='catalog'))rows.push({id,type:r.consumerScope==='equity'||ASSETS[id]?.instrumentType==='EQUITY'?'equity':'series',name:r.label??id,field:'monthly',label:'Historique mensuel',present:true,state:fieldState(r,now,{...freshness('series.monthly'),requireObservation:true}),checkedAt:r.checkedAt,asOf:r.periodEnd,sourceUrl:r.sourceUrls?.[0],currency:r.currency});
+ for(const [id,r] of Object.entries(monthly).filter(([,r])=>r.consumerScope!=='catalog'))rows.push({id,type:r.consumerScope==='equity'||ASSETS[id]?.instrumentType==='EQUITY'?'equity':'series',name:r.label??id,field:'monthly',label:'Historique mensuel',present:true,state:fieldState(r,now,{...freshness('series.monthly'),requireObservation:true}),checkedAt:r.checkedAt,asOf:r.periodEnd,sourceUrl:r.sourceUrls?.[0]??r.sourceUrl,currency:r.currency,periodStart:r.periodStart,periodEnd:r.periodEnd,method:r.method,seriesFingerprint:monthlyFingerprint(r),sourceRegistry:monthlySources[id],sourceUrls:[...new Set([r.sourceUrl,...(r.sourceUrls??[])].filter(Boolean))]});
  for(const type of ['scpi','insurance'])for(const r of read(`src/data/automated-${type}.json`).records)for(const field of (type==='scpi'?['annual','price','conditions','snapshot','portfolio']:['fees','access','euroFunds'])) {
   const value=r[field],evidence=productFieldEvidence(value,r,field),annual=POLICY.fields['product.annual'].fields.includes(field);
   const archived=r.availability?.status==='superseded';

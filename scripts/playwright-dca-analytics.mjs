@@ -12,6 +12,27 @@ try{
  page.on('pageerror',e=>errors.push(e.message))
  await page.goto(base+'le-dca-de')
   await page.getByRole('button',{name:'Le DCA d’un abonné',exact:true}).click()
+ // Image-only edits preserve custom text and revoke participant approval.
+ const custom='Texte personnel à conserver pendant les réglages d’image'
+ await page.locator('#dca-draft').fill(custom)
+ await page.getByText('Personnaliser l’image',{exact:true}).filter({visible:true}).click()
+ await page.getByRole('group',{name:'Catégories par donut',exact:true}).locator('[data-option][data-value="6"]').click()
+ assert.equal(await page.locator('#dca-draft').inputValue(),custom)
+ await page.getByRole('checkbox',{name:'Ajouter le top 10 des entreprises',exact:true}).check()
+ assert.equal(await page.locator('#dca-draft').inputValue(),custom)
+ await page.getByRole('checkbox',{name:'Ajouter le top 10 des entreprises',exact:true}).uncheck()
+ await page.getByRole('button',{name:'Créer une participation',exact:true}).click()
+ const consent=page.getByRole('checkbox',{name:'La personne a validé',exact:false})
+ for(const field of ['countries','sectors','both','all','overlap']){
+  await consent.check()
+  await page.getByRole('group',{name:'Donuts de l’image',exact:true}).locator(`[data-option][data-value="${field}"]`).click()
+  assert.equal(await consent.isChecked(),false,'A changed image needs a new approval')
+ }
+ await page.locator('#dca-draft').fill(custom)
+ await consent.check()
+ await page.getByRole('group',{name:'Catégories par donut',exact:true}).locator('[data-option][data-value="4"]').click()
+ assert.equal(await consent.isChecked(),false)
+ assert.equal(await page.locator('#dca-draft').inputValue(),custom)
  await page.getByText('Voir l’analyse détaillée',{exact:true}).filter({visible:true}).click()
  await page.getByRole('heading',{name:'Ce que tu détiens vraiment',exact:true}).waitFor()
  await page.getByText('Chargement de l’analyse des détentions…',{exact:true}).waitFor({state:'hidden'})
@@ -28,7 +49,8 @@ try{
  await panel.getByText('Comparer deux allocations',{exact:true}).click()
  await panel.getByRole('button',{name:'Garder cette allocation comme référence',exact:true}).click()
  await panel.getByRole('button',{name:'Versements mensuels',exact:true}).click()
- assert((await panel.locator('.dca-diff-table').count())>0)
+ assert.equal(await panel.locator('.dca-diff-table').count(),0,'Mixed source conventions are not certified as comparable')
+ assert((await panel.getByText('Les dates ou les méthodes ne permettent pas de comparer ces ventilations.',{exact:true}).count())>0)
  await panel.getByRole('button',{name:'Portefeuille actuel',exact:true}).click()
  const images=await page.evaluate(async()=>{
   const {renderDcaImage}=await import('/shinny-potato/src/pages/dca-profiles/image.js')
@@ -56,6 +78,60 @@ try{
   await page.getByText('Voir l’analyse détaillée',{exact:true}).filter({visible:true}).click()
   assert.equal(await page.locator('#dca-draft').inputValue(),'Brouillon conservé pendant le parcours')
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1))
+ }
+ // Trace the canvas behind the actual preview URL, rather than testing an
+ // independent render that could conceal a different UI selection.
+ await page.addInitScript(()=>{
+  const fill=CanvasRenderingContext2D.prototype.fillText,toBlob=HTMLCanvasElement.prototype.toBlob,create=URL.createObjectURL
+  const labels=new WeakMap();window.dcaPreviewLabels={}
+  CanvasRenderingContext2D.prototype.fillText=function(value,...args){(this.canvas.dcaLabels??=[]).push(String(value));return fill.call(this,value,...args)}
+  HTMLCanvasElement.prototype.toBlob=function(callback,...args){const drawn=[...(this.dcaLabels||[])];return toBlob.call(this,blob=>{if(blob)labels.set(blob,drawn);callback(blob)},...args)}
+  URL.createObjectURL=function(blob){const url=create.call(this,blob);if(labels.has(blob))window.dcaPreviewLabels[url]=labels.get(blob);return url}
+ })
+ const fixtureDate=new Date().toISOString().slice(0,10)
+ await page.route(/\/holdings-\d+\.json/,route=>/[?&](import|url)([=&]|$)/.test(route.request().url())?route.continue():route.fulfill({json:{
+  world:{asOf:fixtureDate,basis:'fund',sourceUrl:'https://example.com/fund',complete:true,rows:[{isin:'US0378331005',name:'Apple',weightPct:100}]},
+  FR001400ZGO4:{asOf:fixtureDate,basis:'index',sourceUrl:'https://example.com/index',complete:true,rows:[{isin:'US5949181045',name:'Microsoft',weightPct:100}]},
+ }}))
+ for(const imageOnly of [false,true]){
+  await page.evaluate(async imageOnly=>{
+   const {references}=await import('/shinny-potato/src/pages/dca-profiles/engine.js')
+   const profile={id:'browser-consistency',name:'Test',mode:'participant',scope:'Portefeuille investi',imageOnly,
+    lines:[['world',90,100],['FR001400ZGO4',10,900]].map(([asset,weight,amount])=>({asset,weight,amount,isin:references[asset].isin,label:references[asset].name}))}
+   localStorage.setItem('el-dca-draft-v1',JSON.stringify({profile,draft:'Texte préservé',field:'overlap'}))
+   localStorage.setItem('epargnant-publication:v1:simple-exposure-draft',JSON.stringify({lines:profile.lines,field:'overlap',exposureLimit:4}))
+  },imageOnly)
+  await page.goto(base+'le-dca-de'+(imageOnly?'':'?mode=dca'))
+  await page.getByText('Voir l’analyse détaillée',{exact:true}).filter({visible:true}).click()
+  const current=page.getByRole('region',{name:'Analyse du portefeuille',exact:true})
+  await current.getByText('Concentration et poids cumulés',{exact:true}).click()
+  await current.locator('.dca-security-list details').first().waitFor()
+  const scope=current.locator('[aria-label="Périmètre des détentions"]')
+  assert(await scope.getByRole('button',{name:/Positions publiées/}).getAttribute('aria-pressed')==='true','Largest covered scope is the default on screen')
+  async function assertPreview(expected,scopeLabel){
+   await page.locator('.dca-simple-preview:visible img').waitFor()
+   const drawn=await page.locator('.dca-simple-preview:visible img').evaluate(img=>window.dcaPreviewLabels[img.src])
+   assert(drawn?.includes(expected),`Actual preview contains ${expected}`)
+   assert(drawn.includes(scopeLabel),'Actual preview uses the selected scope')
+   assert((await current.locator('.dca-concentration').innerText()).includes(expected),'Screen uses the same weights')
+  }
+  await assertPreview('90 %','Périmètre : positions publiées')
+  await scope.getByRole('button',{name:/Indices suivis/}).click()
+  await assertPreview('10 %','Périmètre : indices suivis')
+  if(!imageOnly){
+   await current.getByRole('button',{name:'Versements mensuels',exact:true}).click()
+   await assertPreview('90 %','Périmètre : indices suivis')
+   await current.getByRole('button',{name:'Après les versements',exact:true}).click()
+   await page.getByLabel('Capital actuel pour les versements',{exact:true}).fill('1000')
+   await page.getByLabel('Durée des versements en mois',{exact:true}).fill('1')
+   await assertPreview('50 %','Périmètre : positions publiées')
+   assert.equal(await page.locator('#dca-draft').inputValue(),'Texte préservé')
+  }
+  await page.reload()
+  await page.getByText('Voir l’analyse détaillée',{exact:true}).filter({visible:true}).click()
+  await current.getByText('Concentration et poids cumulés',{exact:true}).click()
+  await current.locator('.dca-security-list details').first().waitFor()
+  await assertPreview(imageOnly?'10 %':'50 %',imageOnly?'Périmètre : indices suivis':'Périmètre : positions publiées')
  }
  await page.getByRole('link',{name:'← Tous les outils',exact:true}).click()
  const homeCard=page.locator('.workspace-tool-card[href$="/le-dca-de"]')

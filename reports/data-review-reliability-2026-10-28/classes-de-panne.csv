@@ -1,0 +1,9 @@
+classe,preuve_executee,niveau,non_demontre
+Succès ciblé / résultat partiel / cache / sans changement,ProductContracts.test_every_registered_producer_and_fault_class + test_pipeline_classes_for_every_applicable_producer,140 tests Python,Reprise source ordinaire de chaque collecteur non redéclenchée
+Rapport absent / expiré / inconnu / erreur de lecture,ProductContracts.test_bad_readers_are_isolated_and_never_report_success + test_artifact_absence_expiry_and_step_not_attempted,isolé avec lecteurs réels,Ancien artefact radar 40131317914 absent ; reste ouvert
+Panne réseau / périmé / conflit / champ absent,ProductContracts.test_every_registered_producer_and_fault_class,signal injecté au réducteur réel,Ne qualifie pas le parseur de chaque fournisseur
+Validation / génération / commit / publication,ProductContracts.test_pipeline_classes_for_every_applicable_producer,jobs isolés selon contrat,Pas de panne provoquée en production
+Absence / panne / format invalide / vieillissement du moniteur,playwright-review-product.mjs + ProductContracts.test_monitor_self_history_requires_matching_steps_and_survives_outage,Chromium ordinateur/mobile et réducteur,Couverture historique antérieure à la fenêtre initiale non démontrée
+Archive corrompue / lecture producteur invalide,test_automation_archives.py + test-review-inbox.mjs,archives SHA256/cardinalités et isolation,Historique non effacé
+Récupération ciblée / ancien épisode,test_automation_history_coverage.py + test_automation_legacy_phases.py + supervision-replay-proof.json,API GitHub réelle en lecture seule,Pas une exécution du futur publieur sur master
+Raccordement consommateur / conventions / export,test-consumer-field-evidence.mjs + test-catalog-coverage.mjs + test-monthly-consumers.mjs + playwright-data-review-recovery.mjs,valeurs exactes/707 historiques/15 PNG,Tous les contrats consommateurs résiduels ne sont pas prouvés

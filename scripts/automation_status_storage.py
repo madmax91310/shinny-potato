@@ -6,8 +6,95 @@ errors and historical episodes stay where they were; only identical scopes share
 one record in this same status document.
 """
 import base64
+import gzip
 import hashlib
 import json
+import zlib
+
+MAX_ARCHIVE_BYTES = 8 * 1024 * 1024
+
+
+def archive_results(entry):
+    """Compress only archived result arrays; all operational clocks stay plain."""
+    if 'resultArchive' in entry:
+        restore_results(entry)  # Validate an existing archive, never trust its marker.
+        return entry
+    payload = {k: entry[k] for k in ('successes', 'errors') if k in entry}
+    if not payload:
+        return entry
+    if any(not isinstance(v, list) for v in payload.values()):
+        raise ValueError('Résultats historiques invalides')
+    body = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode()
+    if len(body) < 4096:
+        return entry
+    if len(body) > MAX_ARCHIVE_BYTES:
+        raise ValueError('Résultats historiques au-delà du contrat de lecture')
+    return {**{k: v for k, v in entry.items() if k not in payload}, 'resultArchive': {
+        'encoding': 'gzip+base64', 'sha256': hashlib.sha256(body).hexdigest(),
+        'decodedBytes': len(body), 'counts': {k: len(v) for k, v in payload.items()},
+        'data': base64.b64encode(gzip.compress(body, compresslevel=6, mtime=0)).decode()}}
+
+
+def restore_results(entry):
+    archive = entry.get('resultArchive')
+    if archive is None:
+        return entry
+    if any(k in entry for k in ('successes', 'errors')) or not isinstance(archive, dict) or archive.get('encoding') != 'gzip+base64':
+        raise ValueError('Encodage des résultats historiques invalide')
+    try:
+        decoder = zlib.decompressobj(16 + zlib.MAX_WBITS)
+        body = decoder.decompress(base64.b64decode(archive['data'], validate=True), MAX_ARCHIVE_BYTES + 1)
+        if len(body) > MAX_ARCHIVE_BYTES or not decoder.eof or decoder.unused_data:
+            raise ValueError('Archive historique trop grande ou incomplète')
+        payload = json.loads(body)
+        if (len(body) != archive.get('decodedBytes') or hashlib.sha256(body).hexdigest() != archive.get('sha256')
+                or not isinstance(payload, dict) or not payload or set(payload) - {'successes', 'errors'}
+                or any(not isinstance(v, list) for v in payload.values())
+                or {k: len(v) for k, v in payload.items()} != archive.get('counts')):
+            raise ValueError('Empreinte ou cardinalité de l’archive historique incorrecte')
+    except (KeyError, TypeError, zlib.error, ValueError) as error:
+        raise ValueError('Archive de résultats historiques illisible') from error
+    return {**{k: v for k, v in entry.items() if k != 'resultArchive'}, **payload}
+
+
+def transform_report_archives(state, transform):
+    version = state.get('reportArchiveSchemaVersion', 1)
+    if version != 1:
+        raise ValueError('Version des archives de rapports inconnue')
+    result = dict(state)
+    result['workflows'] = {}
+    errors = dict(state.get('observerErrors', {}))
+    for name, row in state.get('workflows', {}).items():
+        if not isinstance(row, dict):
+            result['workflows'][name] = row
+            continue
+        target = dict(row)
+        for key in ('reportEvidenceHistory', 'reportResultHistory'):
+            if key not in row:continue
+            if not isinstance(row[key], list):
+                errors[f'archive:{name}:{key}'] = {'cause':'Liste des archives de rapports invalide ; preuve historique non démontrée.'}
+                continue
+            errors.pop(f'archive:{name}:{key}', None)
+            target[key] = []
+            for index, entry in enumerate(row[key]):
+                error_key = f'archive:{name}:{key}:{index}'
+                try:
+                    value = transform(entry)
+                except (ValueError, TypeError, AttributeError) as error:
+                    value = entry  # Preserve the exact evidence, without calling it valid.
+                    errors[error_key] = {'cause': 'Archive du rapport non qualifiée : '+str(error)[:250]}
+                else:
+                    errors.pop(error_key, None)
+                target[key].append(value)
+        result['workflows'][name] = target
+    if errors or 'observerErrors' in state:result['observerErrors'] = errors
+    return result
+
+
+def expand_report_archives(state):
+    result = transform_report_archives(state, restore_results)
+    result.pop('reportArchiveSchemaVersion', None)
+    return result
 
 
 def scope_key(value):
@@ -15,6 +102,10 @@ def scope_key(value):
 
 
 def pack_report_scopes(state):
+    state = transform_report_archives(state, archive_results)
+    if any('resultArchive' in entry for row in state.get('workflows', {}).values()
+           for key in ('reportEvidenceHistory', 'reportResultHistory') if isinstance(row, dict) and isinstance(row.get(key, []), list) for entry in row.get(key, []) if isinstance(entry, dict)):
+        state['reportArchiveSchemaVersion'] = 1
     registry=dict(state.get('reportScopes',{}))
     if state.get('reportScopeSchemaVersion',1)!=1 or any(not isinstance(v,dict)or scope_key(v)!=k for k,v in registry.items()):
         raise ValueError('Registre des périmètres de preuve invalide')

@@ -1,0 +1,77 @@
+{
+  "before": {
+    "capturedAt": "2026-10-28T15:14:17.582393+00:00",
+    "evaluationAt": "2026-10-28T16:29:09.081135+00:00",
+    "issues": 5659,
+    "signals": 10861,
+    "actionable": 3431,
+    "trackingGroups": 3431,
+    "provenCommonInterventions": 0,
+    "byKind": {
+      "monitoring": 3,
+      "failure": 151,
+      "qualification": 3094,
+      "connection": 183,
+      "editorial": 784,
+      "waiting": 17,
+      "not-applicable": 280,
+      "history": 1147
+    },
+    "coverageFields": 4274,
+    "catalogFields": 4556,
+    "usage": {
+      "tools": 23,
+      "usages": 31771,
+      "required": 28048,
+      "connected": 20445,
+      "blocked": 1099,
+      "unconfirmed": 6504,
+      "unmapped": 0
+    },
+    "health": {
+      "ok": true,
+      "reason": "Dernier contrôle du moniteur : 2026-10-28T15:13:47.003390+00:00"
+    }
+  },
+  "after": {
+    "capturedAt": "2026-10-28T15:14:17.582393+00:00",
+    "evaluationAt": "2026-10-28T16:29:09.081135+00:00",
+    "issues": 4341,
+    "signals": 8249,
+    "actionable": 2111,
+    "trackingGroups": 2111,
+    "provenCommonInterventions": 0,
+    "byKind": {
+      "monitoring": 2,
+      "failure": 152,
+      "qualification": 1884,
+      "connection": 73,
+      "editorial": 784,
+      "waiting": 17,
+      "not-applicable": 280,
+      "history": 1149
+    },
+    "coverageFields": 4275,
+    "catalogFields": 4556,
+    "usage": {
+      "tools": 23,
+      "usages": 31697,
+      "required": 27974,
+      "connected": 22983,
+      "blocked": 1099,
+      "unconfirmed": 3892,
+      "unmapped": 0
+    },
+    "health": {
+      "ok": true,
+      "reason": "Dernier contrôle du moniteur : 2026-10-28T16:29:09.081135+00:00"
+    }
+  },
+  "signalsBefore": 10861,
+  "retained": 8247,
+  "justifiedBindings": 2612,
+  "targetedResolutions": 2,
+  "unaccounted": 0,
+  "newSignals": [],
+  "productionChanged": false
+}

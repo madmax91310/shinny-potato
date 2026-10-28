@@ -1,9 +1,14 @@
 import assert from 'node:assert/strict'
+import './test-review-reliability-report.mjs'
 import fs from 'node:fs'
 import {reviewInboxProjection} from './build-data-review-inbox.mjs'
+import {buildDataAutomationInventory} from './data-automation-inventory.mjs'
+import {buildAssetFieldReport} from './report-asset-fields.mjs'
 import {buildInbox,monitorHealth,projectionHealth,monitorExecutionHealth,inboxDiagnostic}from '../src/pages/data-review/review-inbox.js'
 const read=p=>JSON.parse(fs.readFileSync(p))
-const inventory=read('public/data/data-automation-inventory.json'),coverage=read('public/data/asset-field-coverage.json'),financial=read('public/data/financial-reconciliation.json')
+// CI executes this before prebuild. Committed projections may belong to older
+// generators; exercise the current generators without writing shared fixtures.
+const inventory=buildDataAutomationInventory(),coverage=buildAssetFieldReport(),financial=read('public/data/financial-reconciliation.json')
 const status={schemaVersion:1,workflows:{},monitoring:{schemaVersion:1,checkedAt:'2026-10-24T12:00:00Z',active:{},resolved:[]}}
 const now=Date.parse('2026-10-24T12:30:00Z'),args={status,inventory,coverage,financial,now}
 const result=buildInbox(args),signals=result.issues.flatMap(r=>r.signals)
@@ -15,6 +20,7 @@ for(const r of coverage.rows)if(r.state==='not-applicable')assert(signals.some(s
 assert(!monitorHealth({...status,monitoring:null},now).ok)
 assert(!monitorHealth({...status,monitoring:{...status.monitoring,checkedAt:'2026-10-20'}},now).ok)
 assert(!monitorHealth({...status,monitoring:{...status.monitoring,active:[]}},now).ok)
+assert(!monitorHealth({...status,reportArchiveSchemaVersion:99},now).ok,'Unknown archive formats cannot produce reassuring supervision')
 assert(buildInbox({...args,failures:{financial:'Rapport illisible'}}).issues.some(r=>r.id==='health:financial'))
 assert(result.issues.some(r=>r.id.startsWith('coverage:')&&r.kind==='qualification'))
 assert.equal(monitorExecutionHealth({workflow_runs:[{id:1,head_branch:'master',event:'schedule',status:'completed',conclusion:'success'}]}),null)
@@ -51,3 +57,12 @@ assert.equal(selfModel({...selfRecord,resolvedAt:'2026-10-24T11:00:00Z',resoluti
 assert(buildInbox({...args,status:{...status,monitorSelf:{schemaVersion:1,failures:{bad:{failedChecks:{x:null}}}}}}).issues.some(r=>r.id==='health:self-history:bad'))
 
 assert.equal(selfModel({...selfRecord,qualificationPending:true}).kind,'qualification')
+
+const malformedProducer=buildInbox({...args,status:{...status,workflows:{'update-bitcoin-monthly.yml':{reportEvidenceHistory:[null],legacyReportCoverage:{wrong:'shape'}}}}})
+assert(malformedProducer.issues.some(r=>r.id==='legacy-coverage:update-bitcoin-monthly.yml:0'),'An unreadable producer contract stays visible without stopping financial or consumer diagnostics')
+assert(malformedProducer.issues.some(r=>r.signals.some(s=>s.id.startsWith('financial:'))))
+
+const archived=r=>buildInbox({...args,status:{...status,monitoring:{...status.monitoring,resolved:[{id:'old',name:'Old',field:'Field',cause:'Past failure',resolvedAt:'2026-10-23T12:00:00Z',...r}]}}}).issues.find(r=>r.id==='history:old:2026-10-23T12:00:00Z')
+for(const proof of [null,{},[], 'green',{unknown:true},{kind:'unknown',checkedAt:'2026-10-23'}])assert.equal(archived({resolutionEvidence:proof}).kind,'qualification','An archived episode without a usable proof remains actionable qualification')
+assert.equal(archived({resolutionEvidence:{kind:'matching-public-source-fingerprints',checkedAt:'2026-10-23T12:00:00Z',receiptCommit:'a'.repeat(40),codeSha:'b'.repeat(40),dataSha:'c'.repeat(40),fileCount:1}}).kind,'history')
+assert.equal(archived({workflow:'update-ai-portfolios.yml'}).kind,'not-applicable','Removal of a retired tool is not a repair or a reactivated data requirement')

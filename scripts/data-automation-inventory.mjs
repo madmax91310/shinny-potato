@@ -9,6 +9,8 @@ import {catalogCoverage} from './lib/catalog-coverage.mjs'
 import {assetAutomation,assetAutomationCsv} from './lib/asset-automation.mjs'
 import {consumerUsage} from './lib/consumer-usage.mjs'
 import {externalConsumerAssets} from './lib/external-consumer-assets.mjs'
+import {connectConsumerFields} from './lib/consumer-field-evidence.mjs'
+import {collectObservationsSync} from './update-editorial-radar.mjs'
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
 import { marketCalendarPerformance } from '../src/data/market-calendar-performance.js'
 import exposureSleeves from '../src/data/exposure-sleeves.json' with {type:'json'}
@@ -119,11 +121,12 @@ export function buildDataAutomationInventory(){
   const matchingCoverage=catalogCoverage(field,record,coverageMap,AUTOMATED_ETF)
   return {id:record.id,type:record.type,name:record.name,field:field.label,fieldIndex:index,registry:field.registry,
    consumers:record.consumers.filter(c=>c.path!=='/impact-frais'||['Identité','Frais annuels (%)'].includes(field.label)),mode:registry?.mode??'unmapped',upstreamWorkflows:registry?.upstreamWorkflows??[],
-   qualification:'source-configuration-only',nature,
+   qualification:'source-configuration-only',nature,valuePresent:field.value!==null&&field.value!==undefined&&(!Array.isArray(field.value)||field.value.length>0),
    coverageReference:matchingCoverage?{id:matchingCoverage.id,field:matchingCoverage.field,state:matchingCoverage.state,checkedAt:matchingCoverage.checkedAt}:null,
    provenanceGap:['live','history'].includes(nature.kind)&&(!evidence.sourceUrls?.length||!evidence.checkedAt),
    sourceStatus:evidence.sourceStatus??null,numericPaths:numericPaths(field.value),
    sourceConditions:(evidence.sourceUrls??[]).map(sourceConditions),sourceUrls:evidence.sourceUrls??[],checkedAt:evidence.checkedAt??null,asOf:evidence.asOf??null,
+   periodStart:evidence.periodStart??field.value?.periodStart??null,periodEnd:evidence.periodEnd??field.value?.periodEnd??null,
    currency:evidence.currency??null,scope:evidence.scope??null,method:evidence.method??null,
    requiresConnection:(['live','history'].includes(nature.kind)&&(registry?.mode==='manual-or-editorial'||nature.manual))||!!field.qualificationMissing,
    missingReason:field.qualificationMissing||null,
@@ -177,7 +180,7 @@ export function buildDataAutomationInventory(){
  const certification=assetAutomation(report)
  report.summary.priorityMarkets=priorityMarkets
  report.assets=certification.assets;report.summary.assetAutomation=certification.summary
- const externalAssets=externalConsumerAssets(workflows,report.generatedAt)
+ const externalAssets=connectConsumerFields(externalConsumerAssets(workflows,report.generatedAt),{observations:collectObservationsSync().observations,connections,etfs:AUTOMATED_ETF,metadata})
  const allConsumerAssets=[...report.assets,...externalAssets].map(asset=>({...asset,fields:asset.fields.map(field=>({...field,consumers:[...(field.consumers??[]),{path:'/bibliotheque-donnees'}]}))}))
  report.consumerUsage={...consumerUsage(allConsumerAssets),externalAssets}
  report.summary.consumerUsage=report.consumerUsage.summary

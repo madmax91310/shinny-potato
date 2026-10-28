@@ -9,7 +9,7 @@ from pathlib import Path
 import tempfile
 import unittest
 from publish_automation_status import (REGISTRY, REPORT_CONTRACTS, artifact_reports, normalize_report,
-    read_report_safely, update_status, reconcile_publication, attempt_artifacts, merge_proof_retry, radar_resolution_evidence, qualified_receipt, review_projection_evidence, observe_running_workflows, include_configured_workflows)
+    read_report_safely, update_status, reconcile_publication, attempt_artifacts, merge_proof_retry, radar_resolution_evidence, qualified_receipt, review_projection_evidence, observe_running_workflows, include_configured_workflows, qualify_consumer_bindings)
 from automation_monitoring import evaluate_monitoring, restore_history
 from automation_status_storage import pack_report_scopes,expand_report_scopes,encode_status
 from automation_monitor_self import observe_monitor_history
@@ -28,6 +28,57 @@ def jobs(workflow, failure=None):
         {'name':n,'conclusion':'failure' if failure==n else 'success'} for n in names]}]
 
 class ProductContracts(unittest.TestCase):
+    def test_monitor_failure_before_first_step_is_qualified_and_recovered_by_startup(self):
+        run={'id':1,'head_branch':'master','status':'completed','event':'schedule','conclusion':'failure',
+             'updated_at':'2026-10-24T10:00:00Z','html_url':'https://github.com/test/repo/actions/runs/1'}
+        def api(path):
+            if '/jobs?'not in path:return {'workflow_runs':[run]}
+            return {'jobs':[{'name':'publish','conclusion':'failure','steps':[],'completed_at':run['updated_at']}]}
+        success={'kind':'ordinary-monitor-step','step':'Initialisation du workflow','runId':2,'attempt':1,
+                 'runUrl':'https://github.com/test/repo/actions/runs/2','checkedAt':'2026-10-24T11:00:00Z'}
+        initial={'monitorSelf':{'schemaVersion':1,'failures':{},'successes':{'workflow:start':success},'successRuns':{}}}
+        result=observe_monitor_history(initial,api,'test/repo',NOW)['monitorSelf']['failures']['1:1']
+        self.assertFalse(result['qualificationPending']);self.assertEqual(result['resolvedAt'],success['checkedAt'])
+        self.assertEqual(result['failedChecks']['workflow:start']['failedAt'],run['updated_at'])
+        self.assertEqual(result['resolutionEvidence']['checks'],[success])
+
+    def test_interrupted_step_in_failed_job_needs_same_step_recovery(self):
+        run={'id':1,'head_branch':'master','status':'completed','event':'push','conclusion':'failure',
+             'updated_at':'2026-10-24T10:00:00Z','html_url':'https://github.com/test/repo/actions/runs/1'}
+        def api(path):
+            if '/jobs?'not in path:return {'workflow_runs':[run]}
+            return {'jobs':[{'name':'publish','conclusion':'failure','steps':[{'name':'Initialise current statuses','conclusion':'cancelled','completed_at':run['updated_at']}]}]}
+        success={'kind':'ordinary-monitor-step','step':'Initialise current statuses','runId':2,'attempt':1,
+                 'runUrl':'https://github.com/test/repo/actions/runs/2','checkedAt':'2026-10-24T11:00:00Z'}
+        initial={'monitorSelf':{'schemaVersion':1,'failures':{},'successes':{'publish:Initialise current statuses':success},'successRuns':{}}}
+        recovered=observe_monitor_history(initial,api,'test/repo',NOW)['monitorSelf']['failures']['1:1']
+        self.assertFalse(recovered['qualificationPending']);self.assertEqual(recovered['resolutionEvidence']['checks'],[success])
+        initial['monitorSelf']['successes']={'publish:Other step':success}
+        self.assertNotIn('resolvedAt',observe_monitor_history(initial,api,'test/repo',NOW)['monitorSelf']['failures']['1:1'])
+
+    def test_existing_binding_resolution_requires_exact_public_source_bytes(self):
+        subject='gap:usage:history:fund:catalog:0';key='field:'+subject
+        proof={'kind':'verified-existing-field-binding','subject':subject,'checkedAt':'2026-10-23T10:00:00Z',
+            'sourceUrl':'https://issuer.example/exact','seriesFingerprint':'a'*64,'field':'monthly',
+            'sourceFiles':{'src/data/automated-monthly.json':'b'*40}}
+        previous={key:{'id':key,'name':'Exact series','kind':'review','category':'automation-proof-missing',
+            'firstSeenAt':'2026-10-23T12:00:00Z','checkedAt':proof['checkedAt'],'tools':[]}}
+        state={'schemaVersion':1,'workflows':{},'monitoring':{'schemaVersion':1,'active':previous,'resolved':[],'events':[],'revision':1}}
+        context={**CTX,'consumerBindingChecks':{subject:proof}}
+        for manifest in [None,{'schemaVersion':1,'files':{}},{'schemaVersion':1,'files':{'src/data/automated-monthly.json':'c'*40}}]:
+            pending=evaluate_monitoring(state,qualify_consumer_bindings(context,manifest),{},now=NOW)
+            self.assertIn(key,pending['active'])
+        verified=qualify_consumer_bindings(context,{'schemaVersion':1,'files':proof['sourceFiles']})
+        done=evaluate_monitoring(state,verified,{},now=NOW)
+        self.assertNotIn(key,done['active']);self.assertEqual(done['resolved'][0]['resolutionEvidence']['checkedAt'],proof['checkedAt'])
+        # Repairing documentation with the same source date is not a new poll.
+        self.assertEqual(done['resolved'][0]['resolutionEvidence']['kind'],'verified-existing-field-binding')
+        state['monitoring']['active'][key]['kind']='collection'
+        self.assertIn(key,evaluate_monitoring(state,verified,{},now=NOW)['active'])
+        malformed=qualify_consumer_bindings({**context,'consumerBindingChecks':{subject:None,'good':proof}},None)
+        self.assertIn(subject,malformed['consumerBindingErrors']);self.assertIn('good',malformed['consumerBindingChecks'])
+        self.assertFalse(malformed['consumerBindingChecks']['good']['publishedFilesVerified'])
+
     def test_shared_report_scopes_are_lossless_small_and_keep_every_field(self):
         ids=['exact-field:'+str(i)for i in range(700)]
         scope={'kind':'targeted','expectedIds':ids,'requestedIds':ids,'networkRequestedIds':ids[:400]}

@@ -56,9 +56,13 @@ export function assetAutomation(inventory,now=inventory.generatedAt){
   const consumers=[...new Map([...(connection?.tools??[]),...(field.consumers??[])].map(c=>[consumerPath(c),typeof c==='string'?{path:consumerPath(c)}:c])).values()]
   add(field.id,field.type,field.name,{key:`catalog:${field.fieldIndex}`,label:field.field,state,kind,registry:field.registry,
    checkedAt:field.checkedAt,asOf:field.asOf,sourceUrls:field.sourceUrls,consumers,coverageReference:field.coverageReference??null,
+   periodStart:field.periodStart??null,periodEnd:field.periodEnd??null,lastAttemptAt:connection?.lastAttemptAt??null,lastSuccessAt:connection?.lastSuccessAt??field.checkedAt??null,
    currency:field.currency??null,scope:field.scope,method:field.method,
    workflows:scheduled.map(path=>({path,name:workflows.get(path).name,crons:workflows.get(path).crons})),
    reason:connection?.reason??field.missingReason??field.action,
+   present:field.valuePresent??null,actionState:connection?.actionState??null,
+   ...(state==='connected'&&coverage?.field==='monthly'&&connection?.seriesFingerprint?{qualificationEvidence:{kind:'exact-consumed-series-v1',sourceIdentity:coverage.id,field:'monthly',sourceRegistry:connection.sourceRegistry,seriesFingerprint:connection.seriesFingerprint,checkedAt:connection.checkedAt,asOf:connection.asOf,currency:connection.currency,method:connection.method,sourceUrl:connection.sourceUrl}}:{}),
+   qualificationBlock:connection?.requiresAction?connection.actionState:field.provenanceGap?'provenance-incomplete':field.requiresConnection?'collector-binding-missing':state==='blocked'?'field-check-required':state==='qualification-needed'?'field-certificate-missing':state==='scheduled-evidence'?'source-cycle-proof-missing':null,
    nextAction:connection?.nextAction??(state==='qualification-needed'?'Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.':field.action)})
  }
  for(const row of inventory.connections){
@@ -67,7 +71,7 @@ export function assetAutomation(inventory,now=inventory.generatedAt){
   // The row itself establishes configuration; no unrelated producer is attached.
   add(existing,row.type,row.name,{key:`coverage:${row.field}`,label:row.label??row.field,
    state:row.requiresAction?'blocked':PASSIVE.has(row.actionState)?'not-required':row.actionState==='current'&&row.automationConfigured&&row.sourceUrl&&row.checkedAt&&row.checkedAt.slice(0,10)<=now.slice(0,10)?'connected':'qualification-needed',
-   kind:'coverage',checkedAt:row.checkedAt,asOf:row.asOf,sourceUrls:[...new Set([row.sourceUrl,...(row.configuredSourceUrls??[])].filter(Boolean))],
+   kind:'coverage',present:row.present,actionState:row.actionState,qualificationBlock:row.requiresAction?row.actionState:null,checkedAt:row.checkedAt,asOf:row.asOf,sourceUrls:[...new Set([row.sourceUrl,...(row.configuredSourceUrls??[])].filter(Boolean))],
    consumers:row.tools??[],workflows:[],automationConfigured:row.automationConfigured===true,
    reason:row.reason,nextAction:row.nextAction,sourceAccess:row.sourceAccess??null,sourceDiscovery:row.sourceDiscovery??null})
  }

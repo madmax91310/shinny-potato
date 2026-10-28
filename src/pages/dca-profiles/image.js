@@ -2,7 +2,7 @@ import { exposureRecords } from './records.js'
 import { exposureView } from './exposure.js'
 import { analyzeProfile, prepareProfile, euro, pct, references } from './engine.js'
 import { incomeLabel } from './lib.js'
-import { portfolioAnalytics } from './analytics.js'
+import { portfolioAnalytics, analyzedLines, analysisView, selectConcentrationGroup } from './analytics.js'
 const C={navy:'#071d36',ivory:'#fff4df',yellow:'#ffd342',muted:'#9eb7d2',panel:'#0d263e'}
 const colors=['#ffd342','#3899ff','#63dfbd','#bd9eff','#ff9b70','#b7ce6e','#ec99cd','#aec8df']
 export function allocationRows(lines){
@@ -112,13 +112,12 @@ function fullPortfolio(ctx,p,a){
 async function overlapPortfolio(ctx,p){
  const {loadHoldings}=await import('./holdings-loader.js')
  const holdings=await loadHoldings(p.lines.map(l=>l.asset))
- const result=portfolioAnalytics(p.lines,references,holdings)
- const groups=[...result.groups].sort((a,b)=>b.coverage-a.coverage)
- const g=groups[0]
+ const view=analysisView(p),result=portfolioAnalytics(analyzedLines(p),references,holdings)
+ const g=selectConcentrationGroup(result.groups,view.groupKey)
  centered(ctx,'Épargnant Libre',800,80,1480,49)
  panel(ctx,35,125,485,815);panel(ctx,545,125,1020,815)
  text(ctx,'Sous les ETF',70,190,415,44,C.ivory,700,'DcaEditorial')
- text(ctx,p.imageOnly?'Le portefeuille en détail':`Le portefeuille de ${p.name}`,70,238,415,25,C.muted,400)
+ text(ctx,view.mode==='flows'?`Versements mensuels de ${p.name}`:view.mode==='future'?`Après les versements · ${p.name}`:p.imageOnly?'Le portefeuille en détail':`Le portefeuille de ${p.name}`,70,238,415,25,C.muted,400)
  text(ctx,'PART IDENTIFIÉE',70,320,415,21,C.muted)
  text(ctx,pct(g?.coverage||0),65,413,425,85,C.yellow,700,'DcaEditorial')
  text(ctx,`${g?.identified||0} titres identifiés`,70,458,415,26,C.ivory,400)

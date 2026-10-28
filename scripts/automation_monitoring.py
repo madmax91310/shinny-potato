@@ -82,6 +82,13 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
         if not observations or observations[-1] != current_evidence:
             observations.append(current_evidence)
         active[key] = {**row, 'id': key, 'firstSeenAt': prior.get('firstSeenAt', now), 'lastSeenAt': now, 'observations': observations}
+    raw_workflows=state.get('workflows',{})
+    if not isinstance(raw_workflows,dict):
+        add('monitor:workflow-format',{'kind':'monitoring','name':'Lecture des producteurs','field':'Contrat du moniteur','tools':['Données à revoir'],'cause':'Registre des producteurs invalide ; aucun succès déduit.'})
+        raw_workflows={}
+    workflows={name:row if isinstance(row,dict)else{}for name,row in raw_workflows.items()}
+    for name,row in raw_workflows.items():
+        if not isinstance(row,dict):add('monitor:workflow-format:'+name,{'kind':'monitoring','name':'Lecture du producteur '+name,'field':'Contrat du moniteur','tools':['Données à revoir'],'cause':'État individuel illisible ; autres producteurs conservés.'})
     for observer, failure in state.get('observerErrors', {}).items():
         add('monitor:' + observer, {**failure, 'kind': 'monitoring', 'name': 'Surveillance · ' + observer,
             'field': 'Observabilité', 'tools': ['Données à revoir'], 'cause': failure['cause'], 'to': '/donnees-a-revoir'})
@@ -90,14 +97,18 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             if key.startswith(('calendar:', 'history:', 'field:')):
                 add(key, row)
     for workflow, config in registry.items():
-        row = state.get('workflows', {}).get(workflow, {})
+        row = workflows.get(workflow, {})
         tools = config.get('tools', [])
         base = {'name': config['name'], 'tools': tools, 'impactScope': 'collector', 'workflow': workflow, 'runUrl': row.get('runUrl'), 'to': '/donnees-a-revoir', 'lastSuccessAt': row.get('lastCollectionSuccessAt'),
                 'completedAt':row.get('completedAt'),'sourcePhaseCompletedAt':row.get('sourcePhaseCompletedAt'),'runId':row.get('runId'),'attempt':row.get('attempt'),'attemptedDataIds':row.get('attemptedDataIds',[])}
         availability = state.get('workflowAvailability', {}).get(workflow, {})
         if availability.get('state') and availability['state'] != 'active':
             add('disabled:' + workflow, {**base, 'kind': 'unobserved', 'field': 'Activation de l’automatisation', 'cause': 'Automatisation indisponible : ' + availability['state']})
-        observed_contracts={e.get('file')for e in row.get('reportEvidenceHistory',[]) if e.get('producerContract')==config.get('reportContract') and e.get('scopeExplicit') and e.get('scopePlanVerified')}
+        history=row.get('reportEvidenceHistory',[])
+        if not isinstance(history,list)or any(not isinstance(e,dict)for e in history):
+            add('monitor:report-history:'+workflow,{**base,'kind':'monitoring','field':'Archives de rapports','cause':'Archive de rapport illisible ; qualification historique non démontrée, autres producteurs conservés.'})
+        history=[e for e in history if isinstance(e,dict)]if isinstance(history,list)else[]
+        observed_contracts={e.get('file')for e in history if e.get('producerContract')==config.get('reportContract') and e.get('scopeExplicit') and e.get('scopePlanVerified')}
         missing_contracts=set(config.get('reportFiles',[]))-observed_contracts
         if config.get('reportCoverage') == 'job-only' or config.get('reportContract') and missing_contracts:
             add('coverage:' + workflow, {**base, 'kind': 'qualification', 'field': 'Contrat de remontée individuelle', 'cause': ('Contrats individuels pas encore observés : '+', '.join(sorted(missing_contracts))+'. ' if missing_contracts else '')+'Ce producteur ne fournit pas de rapport individuel contractuel. Le succès du job ne démontre pas la couverture de chaque champ.', 'to': '/donnees-a-revoir'})
@@ -132,7 +143,10 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
                 'field': failure.get('field') or ('Composition' if identifier.endswith('-composition') else 'Performances' if identifier.endswith('-returns') else 'Champs du collecteur'),
                 'dataId': identifier})
         if row.get('publicationStatus') == 'unverified':
-            add('evidence:' + workflow, {**base, 'kind':'monitoring', 'field':'Preuve de publication', 'cause':'Déploiement achevé sans contrôle explicite de l’artefact public ; livraison non certifiée.'})
+            partial=row.get('partialPublicationEvidence')
+            add('evidence:' + workflow, {**base, 'kind':'monitoring', 'field':'Preuve de publication',
+                'cause':('Publication partiellement démontrée : '+str(len(partial.get('matchedFiles',{})))+' fichier(s) identique(s) ; reste à rapprocher : '+', '.join(partial.get('unconfirmedFiles',[]))+'. Aucune indisponibilité des autres fichiers déduite.')if partial else'Déploiement achevé sans contrôle explicite de l’artefact public ; livraison non certifiée.',
+                **({'evidence':partial,'action':'Rapprocher les champs et conventions des fichiers modifiés ; conserver la preuve des fichiers déjà publiés.'}if partial else{})})
         if row.get('publicationEvidenceError'):
             add('evidence:' + workflow, {**base, 'kind': 'monitoring', 'field': 'Preuve de publication', 'cause': row['publicationEvidenceError']})
         validation_steps = set(config.get('validationSteps', []))
@@ -216,16 +230,26 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
     def retired_reason(row):
         if row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES:return REMOVED_SCOPE_REASON
         if row.get('workflow') in RETIRED_WORKFLOWS:return RETIRED_WORKFLOWS[row['workflow']]['reason']
-        withdrawal = state.get('workflows', {}).get(row.get('workflow'), {}).get('retiredDataFailures', {}).get(row.get('dataId'))
+        withdrawal = workflows.get(row.get('workflow'), {}).get('retiredDataFailures', {}).get(row.get('dataId'))
         if withdrawal:return withdrawal.get('retirementReason', 'Périmètre retiré ; aucune réparation déduite')
         if row.get('dataId') and not owns_failure(registry.get(row.get('workflow'),{}),row['dataId']):return RETIREMENT_REASON
         return None
     def retirement_status(row):
-        withdrawal = state.get('workflows', {}).get(row.get('workflow'), {}).get('retiredDataFailures', {}).get(row.get('dataId'), {})
+        withdrawal = workflows.get(row.get('workflow'), {}).get('retiredDataFailures', {}).get(row.get('dataId'), {})
         if withdrawal.get('retirementStatus'):return withdrawal['retirementStatus']
         return 'scope-removed' if row.get('workflow') in RETIRED_WORKFLOWS or row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES else 'retired-attribution'
     def resolution_proof(key, row):
-        workflow = state.get('workflows', {}).get(row.get('workflow'), {})
+        workflow = workflows.get(row.get('workflow'), {})
+        if key.startswith('monitor:history-window:'):
+            proof=state.get('observerChecks',{}).get(key.removeprefix('monitor:'),{})
+            checked=timestamp(proof.get('checkedAt'))
+            anchor=re.search(r'Dernier run observé : (\d+)',row.get('cause',''))
+            through=timestamp(proof.get('throughAt'))
+            return proof if (proof.get('kind')=='fully-enumerated-skipped-interval'and proof.get('complete')is True
+                and proof.get('workflow')==key.removeprefix('monitor:history-window:')
+                and anchor and proof.get('anchorRunId')==int(anchor.group(1))
+                and proof.get('eligibleMissing')==0 and proof.get('enumerationSha256')and checked and through
+                and through<=checked<=current)else None
         if key == 'monitor:review-projection':
             proof = state.get('observerChecks', {}).get('review-projection')
             checked = timestamp(proof.get('checkedAt')) if proof else None
@@ -245,7 +269,7 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             return proof if checked and checked <= current and (not failed_at or checked > failed_at) else None
         if key.startswith('scope:'):
             filename = row.get('evidence', {}).get('file')
-            return next((r for r in reversed(workflow.get('reportEvidenceHistory', [])) if r.get('file') == filename and r.get('scopeExplicit')), None)
+            return next((r for r in reversed(workflow.get('reportEvidenceHistory')if isinstance(workflow.get('reportEvidenceHistory'),list)else[]) if isinstance(r,dict)and r.get('file') == filename and r.get('scopeExplicit')), None)
         if key.startswith('history:'):
             identifier = key.removeprefix('history:').rsplit(':', 1)[0]
             proof = context.get('historyChecks', {}).get(identifier)
@@ -255,6 +279,15 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             if key.endswith(':delay') and (not proof.get('asOf') or proof['asOf'] <= (row.get('asOf') or '')):return None
             return {**{k:v for k,v in proof.items() if k != 'periods'}, 'restoredPeriods': sorted(needed)}
         if key.startswith(('field:', 'calendar:')):
+            if key.startswith('field:gap:usage:') and row.get('kind')=='review' and row.get('category')=='automation-proof-missing':
+                subject=key.removeprefix('field:')
+                binding=context.get('consumerBindingChecks',{}).get(subject,{})
+                checked=timestamp(binding.get('checkedAt'))
+                if (binding.get('kind')=='verified-existing-field-binding' and binding.get('subject')==subject
+                        and binding.get('publishedFilesVerified') is True and binding.get('sourceFiles')
+                        and binding.get('sourceUrl') and binding.get('seriesFingerprint')
+                        and checked and checked<=current):
+                    return binding
             if key.startswith('field:'):
                 proof = context.get('fieldChecks', {}).get(key.removeprefix('field:'))
             else:
@@ -298,7 +331,7 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
                 'proofStatus': 'resolution-unproven', 'action': 'Dernier incident connu conservé : obtenir une preuve ciblée de résolution ou de retrait du périmètre.'})
     retired = [{**row, 'retiredAt': now, 'retirementReason': retired_reason(row),
                 'retirementStatus': retirement_status(row),
-                'retirementEvidence': state.get('workflows', {}).get(row.get('workflow'), {}).get('retiredDataFailures', {}).get(row.get('dataId'), {}).get('retirementEvidence')}
+                'retirementEvidence': workflows.get(row.get('workflow'), {}).get('retiredDataFailures', {}).get(row.get('dataId'), {}).get('retirementEvidence')}
                for key, row in old.items() if key not in active and retired_reason(row)]
     resolved = [{**row, 'resolvedAt': now, 'resolutionEvidence': proofs.get(key)} for key, row in old.items()
                 if key not in active and not retired_reason(row)]

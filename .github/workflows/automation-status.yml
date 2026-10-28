@@ -64,7 +64,9 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: automation-failure-status
+  # PR validation is read-only and must not wait behind production publishers.
+  # Keep the production lock identical to protect already running writers.
+  group: ${{ github.event_name == 'pull_request' && format('automation-failure-status-pr-{0}', github.event.pull_request.number) || 'automation-failure-status' }}
   cancel-in-progress: false
   queue: max
 jobs:

@@ -1,3 +1,4 @@
+import './test-consumer-field-evidence.mjs'
 import assert from 'node:assert/strict'
 import {consumerUsage} from './lib/consumer-usage.mjs'
 import {groupIncidents,incidentPresentations} from '../src/pages/data-review/incident-priority.js'
@@ -10,10 +11,11 @@ assert.equal(result.summary.usages,2,'Aliases of the same tool must not duplicat
 assert.equal(result.summary.required,1,'Editorial parameters are not market observations')
 assert.equal(result.summary.blocked,1,'An uncollected price cannot disappear from the usage report')
 assert.equal(consumerUsage([{id:'A',fields:[{...field,consumers:['unknown-tool']}]}]).summary.unmapped,1)
-const rows=[{id:'a',workflow:'x',field:'Cours',kind:'collection',cause:'HTTP 403: issuer.example',tools:['A']},{id:'b',workflow:'x',field:'Cours',kind:'collection',cause:'HTTP 403: issuer.example',tools:['B']}]
+const steps=[{job:'collect',step:'Read shared response'}]
+const rows=[{runId:1,failedSteps:steps,id:'a',workflow:'x',field:'Cours',kind:'collection',cause:'HTTP 403: issuer.example',tools:['A']},{runId:1,failedSteps:steps,id:'b',workflow:'x',field:'Cours',kind:'collection',cause:'HTTP 403: issuer.example',tools:['B']}]
 assert.equal(groupIncidents(rows).length,1)
 assert.deepEqual(groupIncidents(rows)[0].tools,['A','B'])
-assert.equal(groupIncidents([...rows,{...rows[0],id:'c',cause:'HTTP 403: other.example'}]).length,2,'Different issuer failures remain separate')
+assert.equal(groupIncidents([...rows,{...rows[0],id:'c',runId:2,cause:'HTTP 403: other.example'}]).length,2,'Different producer attempts remain separate')
 const report=buildDataAutomationInventory()
 assert(hasPhysicalPortfolio('Optimised','Physical (Optimised sampling)',{issuer:'ssga'}))
 assert(!hasPhysicalPortfolio('Optimised','Unknown',{issuer:'ssga'}))
