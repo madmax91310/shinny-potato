@@ -1,3 +1,4 @@
+import {unpackRadarState} from './radar-state-codec.mjs'
 import {radarValue} from '../../src/lib/radar-format.js'
 import {reviewCompositions} from './radar-composition-review.mjs'
 import {comparisonIssue} from '../../src/lib/radar-composition.js'
@@ -82,6 +83,7 @@ export function shouldRefreshRadar(previous, { eventName, sourceRevision, now = 
   return !Number.isFinite(elapsed) || elapsed < 0 || elapsed >= 15 * 60000
 }
 export function advanceRadar(previous, observations, { now = new Date(), sourceRevision = '', errors = [], purchasingSources = [], verifiedCompositions = [], compositionVerificationFailures = [] } = {}) {
+  previous=unpackRadarState(previous)
   if (previous && (previous.schemaVersion !== 1 || !previous.current || !previous.anchors || !Array.isArray(previous.events))) throw new Error('Historique radar invalide : conservation du fichier précédent.')
   const stamp = now.toISOString(), state = previous ? structuredClone(previous) : { schemaVersion: 1, initializedAt: stamp, current: {}, anchors: {}, events: [] }
   // Retire the removed legislative category from existing items and alert retries.

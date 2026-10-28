@@ -118,3 +118,20 @@ Captures de la recette locale finale (rejeu daté, pas la version de production)
 ![Observation en attente sur mobile](images/radar-reliability-2026-10-28/pending-mobile.png)
 
 ![Sujet écarté distinct de la lecture](images/radar-reliability-2026-10-28/discarded-mobile.png)
+
+## Contrôle de livraison : taille de l’état
+
+La vérification avant fusion a mesuré **81 345 311 octets** pour l’état du rejeu sérialisé
+avec les preuves recopiées dans les catégories, ancres et revues de migration. Le stockage
+est désormais dédupliqué par empreinte SHA-256 : **49 722 357 octets**, 390 preuves distinctes,
+avec restitution intégrale vérifiée sur le même état. Aucune observation, date, catégorie,
+file ou preuve supprimée. Le flux destiné à l’écran reste inchangé ; seul le fichier
+interne `state.json` utilise des références, résolues et contrôlées dès son chargement.
+Une référence absente, une empreinte altérée ou un encodage inconnu bloque la publication
+et conserve l’état précédent. Les anciens états sans encodage restent lisibles.
+
+[Mesure reproductible du rejeu](reports/radar-reliability-2026-10-28/storage.json).
+Tests : aller-retour complet, redémarrage ordinaire, historique et files, idempotence,
+réduction du stockage, preuves manquantes/altérées et encodage inconnu.
+La fusion et le déploiement ont été autorisés ensuite par l’utilisateur ; leur résultat
+réel sera consigné dans la PR après les contrôles de livraison.

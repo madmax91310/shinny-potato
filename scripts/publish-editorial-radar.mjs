@@ -1,3 +1,4 @@
+import {packRadarState,unpackRadarState} from './lib/radar-state-codec.mjs'
 import {qualifyCompositionCandidates} from './lib/radar-composition-verification.mjs'
 import { radarToolActions } from './lib/radar-tool-actions.mjs'
 import { publicationSelection } from '../src/lib/radar-editorial.js'
@@ -60,7 +61,7 @@ if (ref) {
   const stateFile = files.tree.find(file => file.path === 'state.json')
   if (!stateFile) throw new Error('La branche radar existe sans historique : initialisation silencieuse refusée.')
   const blob = await api(`git/blobs/${stateFile.sha}`)
-  previous = JSON.parse(Buffer.from(blob.content, 'base64').toString('utf8'))
+  previous = unpackRadarState(JSON.parse(Buffer.from(blob.content, 'base64').toString('utf8')))
   const feedFile = files.tree.find(file => file.path === 'feed.json')
   if (feedFile) {
     const feedBlob = await api(`git/blobs/${feedFile.sha}`)
@@ -143,7 +144,7 @@ if (refresh) {
     tree.push({ path: `dws-snapshots/${proof.sourceHash}.json`, mode: '100644', type: 'blob', sha: blob.sha })
   }
   for (const [path, content] of [['state.json', result.state], ['feed.json', result.feed], ['summary.json', makeRadarOverview(result.feed,publicationSelection(result.feed.events))], ['notifications.json', ledger]]) {
-    const blob = await api('git/blobs', 'POST', { content: `${JSON.stringify(content, null, 2)}\n`, encoding: 'utf-8' })
+    const blob = await api('git/blobs', 'POST', { content: `${JSON.stringify(path==='state.json'?packRadarState(content):content, null, 2)}\n`, encoding: 'utf-8' })
     tree.push({ path, mode: '100644', type: 'blob', sha: blob.sha })
   }
   nextTree = await api('git/trees', 'POST', { base_tree: commit.tree.sha, tree })
