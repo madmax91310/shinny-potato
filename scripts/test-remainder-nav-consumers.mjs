@@ -25,6 +25,7 @@ proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-2
 proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/reprise-20261027/abtc-nav-local.json')).series)
 proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/reprise-20261027/reit-nav-local.json')).series)
 proofs.push(...JSON.parse((await import('node:zlib')).gunzipSync(fs.readFileSync('scripts/fixtures/dws-income/collection.json.gz'))).series)
+proofs.push(...JSON.parse((await import('node:zlib')).gunzipSync(fs.readFileSync('scripts/fixtures/wisdomtree-export/qualified-collection.json.gz'))).series)
 for(const s of sources){
  const a=ASSETS[s.id],r=proofs.find(r=>r.id===s.id).record
  assert(ASSET_ORDER.includes(s.id)&&MARKET_ASSETS.some(a=>a.id===s.id)&&(s.collectAnniversary===false?!ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===s.id):ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===s.id)))
@@ -33,7 +34,8 @@ for(const s of sources){
  let start=s.periodStart
  if(!qualifyHistoryWindow(a,start,a.points.at(-1).date).qualified){
   assert.throws(()=>derive({assetId:s.id,amountRaw:'100',startYear:Number(start.slice(0,4)),startMonth:Number(start.slice(5)),mode:'lump',overridePriceRaw:''}))
-  const last=[...a.historyExcludedMonths].sort().at(-1),date=new Date(last+'-01T00:00:00Z');date.setUTCMonth(date.getUTCMonth()+1);start=date.toISOString().slice(0,7)
+  if(a.historyUnqualifiedReturnWindows?.length)start=a.historyUnqualifiedReturnWindows.map(w=>w.end).sort().at(-1)
+  else {const last=[...a.historyExcludedMonths].sort().at(-1),date=new Date(last+'-01T00:00:00Z');date.setUTCMonth(date.getUTCMonth()+1);start=date.toISOString().slice(0,7)}
  }
  for(const mode of ['lump','dca']){
   const state={assetId:s.id,amountRaw:'100',startYear:Number(start.slice(0,4)),startMonth:Number(start.slice(5)),mode,overridePriceRaw:''}

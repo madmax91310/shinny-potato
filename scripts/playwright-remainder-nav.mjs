@@ -22,6 +22,8 @@ try{
  for(const {id,collectAnniversary} of sources.filter(s=>!requested.length||requested.includes(s.id))){
   await page.goto(`${base}/calculateur-investissement?asset=${id}`,{waitUntil:'networkidle'})
   assert.equal(await page.getByRole('group',{name:'Choisir un actif',exact:true}).getAttribute('data-value'),id)
+  const lastUnqualified=(ASSETS[id].historyUnqualifiedReturnWindows??[]).map(w=>w.end).sort().at(-1)
+  if(lastUnqualified){await choose(page.getByRole('group',{name:'Année de départ',exact:true}),lastUnqualified.slice(0,4));await choose(page.getByRole('group',{name:'Mois de départ',exact:true}),String(Number(lastUnqualified.slice(5))))}
   await preview();assert((await page.locator('body').innerText()).includes(ASSETS[id].label))
   await png(id+'-lump',page.getByRole('button',{name:'📊 Télécharger une image',exact:true}))
   const editor=page.locator('.workspace-view-switch').getByRole('button',{name:'Réglages',exact:true});if(await editor.isVisible())await editor.click()

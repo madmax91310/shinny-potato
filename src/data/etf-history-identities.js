@@ -3,6 +3,10 @@ import config from '../../scripts/non-bond-expansion-sources.json' with { type: 
 const NON_BOND_HISTORY_IDENTITIES = Object.fromEntries(config.instruments.filter(r=>r.historyEnabled!==false).map(r=>[r.historyId,{icon:r.icon,scene:r.scene,title:r.title,ticker:r.preferredSymbol.split('.')[0],instrumentType:r.instrumentType||'ETF'}]))
 export const ETF_HISTORY_IDENTITIES = {
  ...automaticIdentities,
+ etfGB00B15KXQ89Nav:{...(automaticIdentities.etfGB00B15KXQ89??NON_BOND_HISTORY_IDENTITIES.etfGB00B15KXQ89)},
+ etc_brent_crude_oilNav:{...(automaticIdentities.etc_brent_crude_oil??NON_BOND_HISTORY_IDENTITIES.etc_brent_crude_oil)},
+ etc_wti_crude_oilNav:{...(automaticIdentities.etc_wti_crude_oil??NON_BOND_HISTORY_IDENTITIES.etc_wti_crude_oil)},
+ etc_coffeeNav:{...(automaticIdentities.etc_coffee??NON_BOND_HISTORY_IDENTITIES.etc_coffee)},
  // Independent NAV choices reuse the existing share artwork, never its quote history.
  etfFR0010342592Nav:{...automaticIdentities.etfFR0010342592},
  etfFR0007054358Nav:{...automaticIdentities.etfFR0007054358},

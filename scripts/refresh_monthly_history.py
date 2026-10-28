@@ -413,8 +413,8 @@ def monitoring_report(report):
         {key: row[key] for key in ('id', 'status', 'sourceState', 'reason') if key in row} |
         ({'periodEnd': row['record']['periodEnd'],
           'responseSha256': row['evidence'].get('responseSha256'),
-          **({'usageState':'partial','usageLimits':{key:row['record'][key]for key in ['historyExcludedMonths','anniversaryExcludedMonths']if row['record'].get(key)}}
-             if any(row['record'].get(key)for key in ['historyExcludedMonths','anniversaryExcludedMonths'])else{}),
+          **({'usageState':'partial','usageLimits':{key:row['record'][key]for key in ['historyExcludedMonths','anniversaryExcludedMonths','historyUnqualifiedReturnWindows']if row['record'].get(key)}}
+             if any(row['record'].get(key)for key in ['historyExcludedMonths','anniversaryExcludedMonths','historyUnqualifiedReturnWindows'])else{}),
           **({'controlScope':{key:row['evidence']['calendarProof'][key]for key in ['controlledInstrument','controlledFields','requestedStart','controlledCalendarYears']}}
              if row['evidence'].get('calendarProof',{}).get('controlledFields')else{})}
          if row['status'] == 'validated' else {})

@@ -29,3 +29,24 @@ def parse(body,identity,source,now):
  points=dated(selected,now)
  if any(day<source['periodStart']+'-01'for day in points):raise ValueError('NAV export ignored requested window')
  return points
+
+def qualify_return_windows(nav,performance,source,now):
+ """Keep each corroborated calendar; refuse overlapping uncorroborated returns.
+
+ No value or tolerance is changed. A refusal names a return interval (start,end],
+ not a corrupt price point shared with the independently checked following year.
+ """
+ from issuer_nav_history import calendar_checks,calendar_boundaries
+ checks=[];restrictions=[]
+ for year,value in sorted(performance['years'].items()):
+  year=int(year)
+  if year>=now.year or f'{year-1}-12'<source['periodStart']:continue
+  start,end=calendar_boundaries(nav,year)  # Missing bounds fail, never become a numeric disagreement.
+  try:checks.extend(calendar_checks(nav,{str(year):value},2,now))
+  except ValueError as error:
+   if not str(error).startswith('Official daily/annual convention disagreement:'):raise
+   actual=(nav[end]/nav[start]-1)*100
+   restrictions.append({'start':f'{year-1}-12','end':f'{year}-12','year':year,'reason':f"NAV quotidiennes et calendrier officiel non rapprochés pour {year} : {actual:.8f} % / {value} %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",'dailyDerived':actual,'published':value,'differencePp':actual-value,'startDate':start,'endDate':end,'startValue':nav[start],'endValue':nav[end],'currency':source['navCurrency']})
+ required=set(source['requiredQualifiedCalendarYears'])
+ if not required or not required.issubset({c['year']for c in checks}):raise ValueError('Requested independent return windows not qualified')
+ return checks,restrictions

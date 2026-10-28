@@ -28,4 +28,15 @@ class NavExport(unittest.TestCase):
   with self.assertRaisesRegex(ValueError,'disagreement'):calendar_checks(p,{'2022':17.51},2,NOW)
  def test_post_declares_selected_series_and_exact_window(self):
   p=payload(self.source,NOW);self.assertEqual(p['fromDate'],'2017-12-01');self.assertTrue(p['includeNav']);self.assertFalse(p['includeAum']);self.assertEqual(p['toDate'],'2026-10-28')
+class ReturnWindows(unittest.TestCase):
+ def test_same_threshold_and_independent_years(self):
+  from wisdomtree_nav_export import qualify_return_windows
+  nav={'2020-12-31':100,'2021-12-31':110,'2022-12-30':132,'2023-12-29':145.2}
+  source={'periodStart':'2020-12','navCurrency':'USD','requiredQualifiedCalendarYears':[2021,2023]}
+  checks,bad=qualify_return_windows(nav,{'years':{'2021':10,'2022':19.9,'2023':10}},source,NOW)
+  self.assertEqual([c['year']for c in checks],[2021,2023]);self.assertEqual([w['year']for w in bad],[2022]);self.assertEqual(bad[0]['start'],'2021-12');self.assertEqual(bad[0]['end'],'2022-12')
+  with self.assertRaises(ValueError):qualify_return_windows(nav,{'years':{'2021':10,'2022':19.9,'2023':10}},source|{'requiredQualifiedCalendarYears':[2022]},NOW)
+ def test_missing_complete_year_boundary_is_not_silenced(self):
+  from wisdomtree_nav_export import qualify_return_windows
+  with self.assertRaises(ValueError):qualify_return_windows({'2020-12-31':100,'2022-12-30':120},{'years':{'2021':10,'2022':10}},{'periodStart':'2020-12','navCurrency':'USD','requiredQualifiedCalendarYears':[2022]},NOW)
 if __name__=='__main__':unittest.main()

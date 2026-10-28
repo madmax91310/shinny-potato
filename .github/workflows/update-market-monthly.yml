@@ -59,6 +59,34 @@ on:
 permissions:
   contents: read
 jobs:
+  official-nav-source-controls:
+    # Read-only supplier qualification must not wait behind an older PR's long
+    # financial/render validation. It neither writes registries nor publishes.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install beautifulsoup4
+      - name: Qualify only configured NAV identities missing ordinary source controls
+        id: collect
+        continue-on-error: true
+        run: python scripts/collect_official_share_history.py --missing-source-controls --output "$RUNNER_TEMP/new-nav-controls.json" --capture-dir "$RUNNER_TEMP/new-nav-control-sources"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: new-nav-source-controls
+          path: |
+            ${{ runner.temp }}/new-nav-controls.json
+            ${{ runner.temp }}/new-nav-control-sources/
+          if-no-files-found: error
+          retention-days: 35
+      - name: Preserve a failed qualification after its evidence upload
+        if: always()
+        run: test "${{ steps.collect.outcome }}" = 'success'
   refresh:
     concurrency:
       # Serialize writers of automated-indices.json; keep PR validations independent.
@@ -100,6 +128,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_dws_income_history.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_nav_export.py'
       - run: node scripts/test-dws-income-consumers.mjs
+      - run: node scripts/test-qualified-return-windows.mjs
+      - run: node scripts/test-wisdomtree-nav-consumers.mjs
       - run: node scripts/test-income-nav-consumers.mjs
       - run: python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
@@ -111,10 +141,6 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_market_transport.py'
       - run: node scripts/test-nasdaq-total-return.mjs
       - run: python -m unittest discover -s scripts -p 'test_data_automation.py'
-      - name: Qualify new official Copper XLSX route without writing observations
-        if: github.event_name == 'pull_request'
-        continue-on-error: true
-        run: python scripts/collect_official_share_history.py --only etfGB00B15KXQ89 --output "$RUNNER_TEMP/copper-export-observation.json" --capture-dir "$RUNNER_TEMP/copper-export-sources"
       - run: python -m unittest discover -s scripts -p 'test_qualified_listings.py'
       - name: Refresh exact issuer listing tables
         id: listings
@@ -145,7 +171,7 @@ jobs:
       - run: node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/baseline.json"
         if: inputs.listings_only != true
       - name: "Collect observations: collect"
-        if: inputs.listings_only != true
+        if: github.event_name != 'pull_request' && inputs.listings_only != true
         id: collect
         continue-on-error: true
         env:
@@ -210,8 +236,6 @@ jobs:
           name: monthly-market-observation
           path: |
             ${{ runner.temp }}/monthly-observation.json
-            ${{ runner.temp }}/copper-export-observation.json
-            ${{ runner.temp }}/copper-export-sources/
             ${{ runner.temp }}/derived-index-observation.json
             ${{ runner.temp }}/derived-index-observation.contract-plan.json
             ${{ runner.temp }}/listing-observation.json

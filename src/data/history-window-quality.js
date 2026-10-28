@@ -23,6 +23,12 @@ export function qualifyHistoryWindow(asset, start, end, { contiguous = true } = 
   }
   const unqualified=asset.historyExcludedMonths?.find(month=>start<=month&&month<=end)
   if(unqualified)return {qualified:false,code:'issuer-components-unreconciled',reason:`Composants officiels non rapprochés pour ${unqualified} ; seules les fenêtres utilisant ce mois sont refusées.`}
+  const returnWindows=asset.historyUnqualifiedReturnWindows??[]
+  if(!Array.isArray(returnWindows)||returnWindows.some(w=>!w||!/^\d{4}-(0[1-9]|1[0-2])$/.test(w.start??'')||!/^\d{4}-(0[1-9]|1[0-2])$/.test(w.end??'')||w.start>=w.end||typeof w.reason!=='string'||!w.reason))return {qualified:false,code:'invalid-return-qualification',reason:'Contrat de qualification des rendements invalide.'}
+  // Return intervals share a valuation at their boundary, not a return.
+  // (Dec2021,Dec2022] does not refuse a separately corroborated 2021 or 2023.
+  const withheld=returnWindows.find(w=>start<w.end&&end>w.start)
+  if(withheld)return {qualified:false,code:'issuer-return-window-unconfirmed',reason:withheld.reason}
   const financial=unresolvedFinancialWindow(asset,start,end,convention)
   if(financial)return financial
   for(const rule of RESTRICTIONS){

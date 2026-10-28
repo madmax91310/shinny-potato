@@ -205728,5 +205728,2196 @@
       "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/historicaldata/download?startDate=2018-11-06&endDate=2026-10-28&includeTax=false": "d6dcb6026e718bd2fb853951839c45aad97d4beee933b07fc324f6223c15f3f0",
       "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/performancechart": "5c99d8f5dcbbb837bc25ccd77f6189268c5f17930f27735f76f89a54837f7283"
     }
+  },
+  "etfGB00B15KXQ89Nav": {
+    "id": "etfGB00B15KXQ89Nav",
+    "isin": "GB00B15KXQ89",
+    "label": "WisdomTree Copper · VL",
+    "instrumentType": "ETC",
+    "consumerScope": "catalog",
+    "currency": "USD",
+    "periodStart": "2015-01",
+    "precision": 8,
+    "collectAnniversary": false,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+    "navProvider": "wisdomtree",
+    "navCurrency": "USD",
+    "navHistoryTransport": "official-xlsx-post",
+    "wisdomClassId": 1000073,
+    "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-copper",
+    "calendarRegistry": "src/data/automated-etf.json",
+    "returnWindowQualification": "corroborated-calendars",
+    "requiredQualifiedCalendarYears": [
+      2018,
+      2019
+    ],
+    "points": [
+      [
+        "2015-01",
+        25.38587
+      ],
+      [
+        "2015-02",
+        27.37232
+      ],
+      [
+        "2015-03",
+        27.84341
+      ],
+      [
+        "2015-04",
+        29.28508
+      ],
+      [
+        "2015-05",
+        27.65636
+      ],
+      [
+        "2015-06",
+        26.44441
+      ],
+      [
+        "2015-07",
+        23.88024
+      ],
+      [
+        "2015-08",
+        23.61616
+      ],
+      [
+        "2015-09",
+        23.54775
+      ],
+      [
+        "2015-10",
+        23.29134
+      ],
+      [
+        "2015-11",
+        20.48233
+      ],
+      [
+        "2015-12",
+        21.33274
+      ],
+      [
+        "2016-01",
+        20.64157
+      ],
+      [
+        "2016-02",
+        21.2544
+      ],
+      [
+        "2016-03",
+        21.7446
+      ],
+      [
+        "2016-04",
+        22.64364
+      ],
+      [
+        "2016-05",
+        20.7677
+      ],
+      [
+        "2016-06",
+        21.69734
+      ],
+      [
+        "2016-07",
+        21.94283
+      ],
+      [
+        "2016-08",
+        20.39923
+      ],
+      [
+        "2016-09",
+        21.6926
+      ],
+      [
+        "2016-10",
+        21.62646
+      ],
+      [
+        "2016-11",
+        25.69714
+      ],
+      [
+        "2016-12",
+        24.43923
+      ],
+      [
+        "2017-01",
+        26.59321
+      ],
+      [
+        "2017-02",
+        26.31421
+      ],
+      [
+        "2017-03",
+        25.70851
+      ],
+      [
+        "2017-04",
+        25.11774
+      ],
+      [
+        "2017-05",
+        24.84514
+      ],
+      [
+        "2017-06",
+        25.98625
+      ],
+      [
+        "2017-07",
+        27.71473
+      ],
+      [
+        "2017-08",
+        29.48345
+      ],
+      [
+        "2017-09",
+        28.11696
+      ],
+      [
+        "2017-10",
+        29.50511
+      ],
+      [
+        "2017-11",
+        28.96409
+      ],
+      [
+        "2017-12",
+        31.20483
+      ],
+      [
+        "2018-01",
+        30.21823
+      ],
+      [
+        "2018-02",
+        29.44426
+      ],
+      [
+        "2018-03",
+        28.45323
+      ],
+      [
+        "2018-04",
+        28.74865
+      ],
+      [
+        "2018-05",
+        28.68158
+      ],
+      [
+        "2018-06",
+        27.60645
+      ],
+      [
+        "2018-07",
+        26.37286
+      ],
+      [
+        "2018-08",
+        24.7102
+      ],
+      [
+        "2018-09",
+        25.96929
+      ],
+      [
+        "2018-10",
+        24.64115
+      ],
+      [
+        "2018-11",
+        25.70218
+      ],
+      [
+        "2018-12",
+        24.28543
+      ],
+      [
+        "2019-01",
+        25.73298
+      ],
+      [
+        "2019-02",
+        27.20848
+      ],
+      [
+        "2019-03",
+        27.12795
+      ],
+      [
+        "2019-04",
+        26.79386
+      ],
+      [
+        "2019-05",
+        24.38795
+      ],
+      [
+        "2019-06",
+        25.08073
+      ],
+      [
+        "2019-07",
+        24.66508
+      ],
+      [
+        "2019-08",
+        23.55525
+      ],
+      [
+        "2019-09",
+        23.82258
+      ],
+      [
+        "2019-10",
+        24.38782
+      ],
+      [
+        "2019-11",
+        24.52177
+      ],
+      [
+        "2019-12",
+        25.78162
+      ],
+      [
+        "2020-01",
+        23.21073
+      ],
+      [
+        "2020-02",
+        23.36244
+      ],
+      [
+        "2020-03",
+        20.4846
+      ],
+      [
+        "2020-04",
+        21.41552
+      ],
+      [
+        "2020-05",
+        22.14342
+      ],
+      [
+        "2020-06",
+        24.75232
+      ],
+      [
+        "2020-07",
+        25.99586
+      ],
+      [
+        "2020-08",
+        27.13565
+      ],
+      [
+        "2020-09",
+        27.23131
+      ],
+      [
+        "2020-10",
+        27.3435
+      ],
+      [
+        "2020-11",
+        30.76061
+      ],
+      [
+        "2020-12",
+        31.45754
+      ],
+      [
+        "2021-01",
+        31.76529
+      ],
+      [
+        "2021-02",
+        36.52039
+      ],
+      [
+        "2021-03",
+        35.621
+      ],
+      [
+        "2021-04",
+        39.7424
+      ],
+      [
+        "2021-05",
+        41.57435
+      ],
+      [
+        "2021-06",
+        38.03156
+      ],
+      [
+        "2021-07",
+        39.71338
+      ],
+      [
+        "2021-08",
+        38.80662
+      ],
+      [
+        "2021-09",
+        36.23874
+      ],
+      [
+        "2021-10",
+        38.681
+      ],
+      [
+        "2021-11",
+        37.956
+      ],
+      [
+        "2021-12",
+        39.547
+      ],
+      [
+        "2022-01",
+        38.287
+      ],
+      [
+        "2022-02",
+        39.392
+      ],
+      [
+        "2022-03",
+        41.977
+      ],
+      [
+        "2022-04",
+        38.801
+      ],
+      [
+        "2022-05",
+        37.79
+      ],
+      [
+        "2022-06",
+        32.536
+      ],
+      [
+        "2022-07",
+        31.349
+      ],
+      [
+        "2022-08",
+        30.792
+      ],
+      [
+        "2022-09",
+        29.898
+      ],
+      [
+        "2022-10",
+        29.613
+      ],
+      [
+        "2022-11",
+        32.931
+      ],
+      [
+        "2022-12",
+        33.644
+      ],
+      [
+        "2023-01",
+        37.402
+      ],
+      [
+        "2023-02",
+        36.165
+      ],
+      [
+        "2023-03",
+        36.265
+      ],
+      [
+        "2023-04",
+        34.469
+      ],
+      [
+        "2023-05",
+        32.312
+      ],
+      [
+        "2023-06",
+        33.425
+      ],
+      [
+        "2023-07",
+        35.746
+      ],
+      [
+        "2023-08",
+        33.933
+      ],
+      [
+        "2023-09",
+        33.293
+      ],
+      [
+        "2023-10",
+        32.619
+      ],
+      [
+        "2023-11",
+        34.168
+      ],
+      [
+        "2023-12",
+        34.644
+      ],
+      [
+        "2024-01",
+        34.905
+      ],
+      [
+        "2024-02",
+        34.3
+      ],
+      [
+        "2024-03",
+        35.852
+      ],
+      [
+        "2024-04",
+        40.747
+      ],
+      [
+        "2024-05",
+        41.241
+      ],
+      [
+        "2024-06",
+        39.522
+      ],
+      [
+        "2024-07",
+        37.724
+      ],
+      [
+        "2024-08",
+        37.826
+      ],
+      [
+        "2024-09",
+        41.022
+      ],
+      [
+        "2024-10",
+        39.232
+      ],
+      [
+        "2024-11",
+        37.088
+      ],
+      [
+        "2024-12",
+        36.173
+      ],
+      [
+        "2025-01",
+        38.55
+      ],
+      [
+        "2025-02",
+        40.68
+      ],
+      [
+        "2025-03",
+        45.141
+      ],
+      [
+        "2025-04",
+        40.9735
+      ],
+      [
+        "2025-05",
+        41.699
+      ],
+      [
+        "2025-06",
+        44.9308
+      ],
+      [
+        "2025-07",
+        38.6046
+      ],
+      [
+        "2025-08",
+        40.2626
+      ],
+      [
+        "2025-09",
+        42.7036
+      ],
+      [
+        "2025-10",
+        44.8689
+      ],
+      [
+        "2025-11",
+        45.9394
+      ],
+      [
+        "2025-12",
+        49.6336
+      ],
+      [
+        "2026-01",
+        51.8523
+      ],
+      [
+        "2026-02",
+        52.6122
+      ],
+      [
+        "2026-03",
+        48.8476
+      ],
+      [
+        "2026-04",
+        51.6468
+      ],
+      [
+        "2026-05",
+        55.2828
+      ],
+      [
+        "2026-06",
+        53.7103
+      ],
+      [
+        "2026-07",
+        55.6569
+      ],
+      [
+        "2026-08",
+        56.6053
+      ],
+      [
+        "2026-09",
+        56.4111
+      ]
+    ],
+    "anniversaryAvailable": false,
+    "checkedAt": "2026-10-28",
+    "periodEnd": "2026-09",
+    "sourceUrls": [
+      "https://www.wisdomtree.com/api/fund-history/1000073/historical-data-export",
+      "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-copper"
+    ],
+    "sourceCredit": "WisdomTree",
+    "latestLevel": {
+      "value": 56.7964,
+      "asOf": "2026-10-27",
+      "currency": "USD",
+      "isin": "GB00B15KXQ89",
+      "parser": "official-nav",
+      "valuationBasis": "fund-nav-total-return",
+      "nativeValue": 56.7964,
+      "nativeCurrency": "USD",
+      "fxAsOf": null,
+      "fxFactor": 1,
+      "sourceUrl": "https://www.wisdomtree.com/api/fund-history/1000073/historical-data-export",
+      "sourceUrls": [
+        "https://www.wisdomtree.com/api/fund-history/1000073/historical-data-export",
+        "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-copper"
+      ],
+      "checkedAt": "2026-10-28",
+      "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+      "maxAgeDays": 7,
+      "sha256": "0f3f45fabf4748f074d576828d75321e285d6d924a83c5579e76304f9f9cfbd4"
+    },
+    "nativeValuationCurrency": "USD",
+    "lastOfficialValuation": "2026-10-27",
+    "financialConvention": "exact-share accumulated net NAV; no exchange-price claim",
+    "calendarProof": {
+      "calendarRegistry": "src/data/automated-etf.json",
+      "calendarRegistryPerformanceHash": "e6dd97258e42cac60e38305dbe754497e668c8638a0c92f9d38caa14f087d8cd",
+      "controlledInstrument": "GB00B15KXQ89",
+      "controlledFields": [
+        "ISIN",
+        "wtClassID",
+        "fundCurrency",
+        "useOfIncome",
+        "historical-data-export.NAV",
+        "historical-data-export.Date",
+        "calendarRegistry.performance"
+      ],
+      "requestedStart": "2015-01-01",
+      "controlledCalendarYears": [
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "publicProduct": {
+        "ISIN": "GB00B15KXQ89",
+        "wtClassID": 1000073,
+        "fundCurrency": "USD",
+        "useOfIncome": "N/A",
+        "inceptionDt": "2006-09-22T00:00:00.000Z",
+        "NAV_Date": "2026-10-22T00:00:00.000Z"
+      },
+      "calendarSource": {
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+        "sha256": "c89045facb7d2abef28fae55bf8e85684e926edfa9c3373b7fcb55d606c8cca0",
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-10-28",
+        "method": "calendar-year exact ETP NAV total return, net of fees"
+      },
+      "calendarSourceConsultedByThisCollector": false,
+      "navHistoryTransport": "official-xlsx-post",
+      "historyUnqualifiedReturnWindows": [],
+      "qualifiedCalendarYears": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "qualificationScope": "Only independent corroborated return intervals; unresolved official daily/calendar differences remain refused. No price interpolation or threshold change.",
+      "checks": [
+        {
+          "year": 2016,
+          "start": "2015-12-31",
+          "end": "2016-12-30",
+          "startValue": 21.33274,
+          "endValue": 24.43923,
+          "dailyDerived": 14.562076882763296,
+          "published": 14.56,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2017,
+          "start": "2016-12-30",
+          "end": "2017-12-29",
+          "startValue": 24.43923,
+          "endValue": 31.20483,
+          "dailyDerived": 27.683359909457074,
+          "published": 27.68,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2018,
+          "start": "2017-12-29",
+          "end": "2018-12-31",
+          "startValue": 31.20483,
+          "endValue": 24.28543,
+          "dailyDerived": -22.174131376456785,
+          "published": -22.17,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2019,
+          "start": "2018-12-31",
+          "end": "2019-12-31",
+          "startValue": 24.28543,
+          "endValue": 25.78162,
+          "dailyDerived": 6.1608544711788005,
+          "published": 6.16,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2020,
+          "start": "2019-12-31",
+          "end": "2020-12-31",
+          "startValue": 25.78162,
+          "endValue": 31.45754,
+          "dailyDerived": 22.015373742999866,
+          "published": 22.02,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2021,
+          "start": "2020-12-31",
+          "end": "2021-12-31",
+          "startValue": 31.45754,
+          "endValue": 39.547,
+          "dailyDerived": 25.715488242246522,
+          "published": 25.72,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2022,
+          "start": "2021-12-31",
+          "end": "2022-12-30",
+          "startValue": 39.547,
+          "endValue": 33.644,
+          "dailyDerived": -14.926543100614452,
+          "published": -14.93,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 33.644,
+          "endValue": 34.644,
+          "dailyDerived": 2.972298180953503,
+          "published": 2.97,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 34.644,
+          "endValue": 36.173,
+          "dailyDerived": 4.413462648654898,
+          "published": 4.41,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 36.173,
+          "endValue": 49.6336,
+          "dailyDerived": 37.21173250767147,
+          "published": 37.21,
+          "publishedDecimalPlaces": 2
+        }
+      ]
+    },
+    "historyUnqualifiedReturnWindows": [],
+    "responseSha256": "2b13da50df5d3dcb3dc4f2ef0f4935c61e6debe68b873ba57670a6087a71348e",
+    "rawSourceHashes": {
+      "https://www.wisdomtree.com/api/fund-history/1000073/historical-data-export": "5273f7724ea8bfaec1ed4ed591cec23d3cdf7cdd14e7e4d51cf94d5b9d90ba81",
+      "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-copper": "a969d1a4f3c550241bb530b10340557ad35a0a1a66d93cf7cc7ac62c9718c83f"
+    }
+  },
+  "etc_brent_crude_oilNav": {
+    "id": "etc_brent_crude_oilNav",
+    "isin": "JE00B78CGV99",
+    "label": "WisdomTree Brent Crude Oil · VL",
+    "instrumentType": "ETC",
+    "consumerScope": "catalog",
+    "currency": "USD",
+    "periodStart": "2020-12",
+    "precision": 8,
+    "collectAnniversary": false,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+    "navProvider": "wisdomtree",
+    "navCurrency": "USD",
+    "navHistoryTransport": "official-xlsx-post",
+    "wisdomClassId": 1000279,
+    "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-brent-crude-oil",
+    "calendarRegistry": "src/data/non-bond-etf-records.json",
+    "returnWindowQualification": "corroborated-calendars",
+    "requiredQualifiedCalendarYears": [
+      2021,
+      2023
+    ],
+    "points": [
+      [
+        "2020-12",
+        20.98566
+      ],
+      [
+        "2021-01",
+        22.29216
+      ],
+      [
+        "2021-02",
+        26.1809
+      ],
+      [
+        "2021-03",
+        25.80333
+      ],
+      [
+        "2021-04",
+        27.62439
+      ],
+      [
+        "2021-05",
+        28.48852
+      ],
+      [
+        "2021-06",
+        31.0812
+      ],
+      [
+        "2021-07",
+        31.70638
+      ],
+      [
+        "2021-08",
+        30.42368
+      ],
+      [
+        "2021-09",
+        33.50216
+      ],
+      [
+        "2021-10",
+        36.149
+      ],
+      [
+        "2021-11",
+        30.483
+      ],
+      [
+        "2021-12",
+        34.39
+      ],
+      [
+        "2022-01",
+        39.451
+      ],
+      [
+        "2022-02",
+        43.962
+      ],
+      [
+        "2022-03",
+        49.239
+      ],
+      [
+        "2022-04",
+        51.317
+      ],
+      [
+        "2022-05",
+        55.475
+      ],
+      [
+        "2022-06",
+        53.722
+      ],
+      [
+        "2022-07",
+        53.172
+      ],
+      [
+        "2022-08",
+        50.173
+      ],
+      [
+        "2022-09",
+        44.968
+      ],
+      [
+        "2022-10",
+        50.043
+      ],
+      [
+        "2022-11",
+        48.471
+      ],
+      [
+        "2022-12",
+        47.976
+      ],
+      [
+        "2023-01",
+        47.622
+      ],
+      [
+        "2023-02",
+        46.78
+      ],
+      [
+        "2023-03",
+        45.26
+      ],
+      [
+        "2023-04",
+        45.639
+      ],
+      [
+        "2023-05",
+        41.572
+      ],
+      [
+        "2023-06",
+        43.398
+      ],
+      [
+        "2023-07",
+        49.491
+      ],
+      [
+        "2023-08",
+        50.787
+      ],
+      [
+        "2023-09",
+        53.889
+      ],
+      [
+        "2023-10",
+        50.883
+      ],
+      [
+        "2023-11",
+        48.711
+      ],
+      [
+        "2023-12",
+        46.735
+      ],
+      [
+        "2024-01",
+        49.186
+      ],
+      [
+        "2024-02",
+        50.374
+      ],
+      [
+        "2024-03",
+        53.91
+      ],
+      [
+        "2024-04",
+        54.206
+      ],
+      [
+        "2024-05",
+        51.616
+      ],
+      [
+        "2024-06",
+        54.43
+      ],
+      [
+        "2024-07",
+        52.563
+      ],
+      [
+        "2024-08",
+        50.591
+      ],
+      [
+        "2024-09",
+        47.702
+      ],
+      [
+        "2024-10",
+        48.764
+      ],
+      [
+        "2024-11",
+        48.346
+      ],
+      [
+        "2024-12",
+        50.611
+      ],
+      [
+        "2025-01",
+        52.035
+      ],
+      [
+        "2025-02",
+        50.695
+      ],
+      [
+        "2025-03",
+        52.348
+      ],
+      [
+        "2025-04",
+        43.3254
+      ],
+      [
+        "2025-05",
+        44.7013
+      ],
+      [
+        "2025-06",
+        48.1958
+      ],
+      [
+        "2025-07",
+        52.7499
+      ],
+      [
+        "2025-08",
+        50.4047
+      ],
+      [
+        "2025-09",
+        49.6222
+      ],
+      [
+        "2025-10",
+        49.1117
+      ],
+      [
+        "2025-11",
+        47.4178
+      ],
+      [
+        "2025-12",
+        46.675
+      ],
+      [
+        "2026-01",
+        53.5378
+      ],
+      [
+        "2026-02",
+        56.9739
+      ],
+      [
+        "2026-03",
+        81.8385
+      ],
+      [
+        "2026-04",
+        94.1625
+      ],
+      [
+        "2026-05",
+        81.9706
+      ],
+      [
+        "2026-06",
+        67.2467
+      ],
+      [
+        "2026-07",
+        79.2785
+      ],
+      [
+        "2026-08",
+        82.7468
+      ],
+      [
+        "2026-09",
+        97.2762
+      ]
+    ],
+    "anniversaryAvailable": false,
+    "checkedAt": "2026-10-28",
+    "periodEnd": "2026-09",
+    "sourceUrls": [
+      "https://www.wisdomtree.com/api/fund-history/1000279/historical-data-export",
+      "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-brent-crude-oil"
+    ],
+    "sourceCredit": "WisdomTree",
+    "latestLevel": {
+      "value": 112.1647,
+      "asOf": "2026-10-27",
+      "currency": "USD",
+      "isin": "JE00B78CGV99",
+      "parser": "official-nav",
+      "valuationBasis": "fund-nav-total-return",
+      "nativeValue": 112.1647,
+      "nativeCurrency": "USD",
+      "fxAsOf": null,
+      "fxFactor": 1,
+      "sourceUrl": "https://www.wisdomtree.com/api/fund-history/1000279/historical-data-export",
+      "sourceUrls": [
+        "https://www.wisdomtree.com/api/fund-history/1000279/historical-data-export",
+        "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-brent-crude-oil"
+      ],
+      "checkedAt": "2026-10-28",
+      "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+      "maxAgeDays": 7,
+      "sha256": "524e3429f3b139139b2c1a60389142a9d4f943ffb028e7932402520a878c5ece"
+    },
+    "nativeValuationCurrency": "USD",
+    "lastOfficialValuation": "2026-10-27",
+    "financialConvention": "exact-share accumulated net NAV; no exchange-price claim",
+    "calendarProof": {
+      "calendarRegistry": "src/data/non-bond-etf-records.json",
+      "calendarRegistryPerformanceHash": "c522a2d36aec7cdf69ed1a9768087ff54133736785ec15209b33cca8514b532f",
+      "controlledInstrument": "JE00B78CGV99",
+      "controlledFields": [
+        "ISIN",
+        "wtClassID",
+        "fundCurrency",
+        "useOfIncome",
+        "historical-data-export.NAV",
+        "historical-data-export.Date",
+        "calendarRegistry.performance"
+      ],
+      "requestedStart": "2020-12-01",
+      "controlledCalendarYears": [
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "publicProduct": {
+        "ISIN": "JE00B78CGV99",
+        "wtClassID": 1000279,
+        "fundCurrency": "USD",
+        "useOfIncome": "N/A",
+        "inceptionDt": "2012-02-21T00:00:00.000Z",
+        "NAV_Date": "2026-10-22T00:00:00.000Z"
+      },
+      "calendarSource": {
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
+        "sha256": "bad551694b390ebb1f748f06ddc6df1d4a335a0894c9d4e69bcb5cb056c33bc9",
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-10-28",
+        "method": "calendar-year exact ETP NAV total return, net of fees"
+      },
+      "calendarSourceConsultedByThisCollector": false,
+      "navHistoryTransport": "official-xlsx-post",
+      "historyUnqualifiedReturnWindows": [
+        {
+          "start": "2021-12",
+          "end": "2022-12",
+          "year": 2022,
+          "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2022 : 39.50567025 % / 39.5 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+          "dailyDerived": 39.50567025298051,
+          "published": 39.5,
+          "differencePp": 0.005670252980507939,
+          "startDate": "2021-12-31",
+          "endDate": "2022-12-30",
+          "startValue": 34.39,
+          "endValue": 47.976,
+          "currency": "USD"
+        }
+      ],
+      "qualifiedCalendarYears": [
+        2021,
+        2023,
+        2024,
+        2025
+      ],
+      "qualificationScope": "Only independent corroborated return intervals; unresolved official daily/calendar differences remain refused. No price interpolation or threshold change.",
+      "checks": [
+        {
+          "year": 2021,
+          "start": "2020-12-31",
+          "end": "2021-12-31",
+          "startValue": 20.98566,
+          "endValue": 34.39,
+          "dailyDerived": 63.873807161652294,
+          "published": 63.87,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 47.976,
+          "endValue": 46.735,
+          "dailyDerived": -2.5867100216775074,
+          "published": -2.59,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 46.735,
+          "endValue": 50.611,
+          "dailyDerived": 8.293570129453286,
+          "published": 8.29,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 50.611,
+          "endValue": 46.675,
+          "dailyDerived": -7.776965481812259,
+          "published": -7.78,
+          "publishedDecimalPlaces": 2
+        }
+      ]
+    },
+    "historyUnqualifiedReturnWindows": [
+      {
+        "start": "2021-12",
+        "end": "2022-12",
+        "year": 2022,
+        "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2022 : 39.50567025 % / 39.5 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+        "dailyDerived": 39.50567025298051,
+        "published": 39.5,
+        "differencePp": 0.005670252980507939,
+        "startDate": "2021-12-31",
+        "endDate": "2022-12-30",
+        "startValue": 34.39,
+        "endValue": 47.976,
+        "currency": "USD"
+      }
+    ],
+    "responseSha256": "335aa0a00828e4857b4e012bcc35b982e60345df58dfeef56b5c1213ff490bb4",
+    "rawSourceHashes": {
+      "https://www.wisdomtree.com/api/fund-history/1000279/historical-data-export": "c2b9335376fd53c434bcdeb69761633b73e46b890f468a8a6904b90220b768d2",
+      "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-brent-crude-oil": "690fa6e107608981b78bd3f277834669f8d4d682ce65cbcf105be4cefb1e9299"
+    }
+  },
+  "etc_wti_crude_oilNav": {
+    "id": "etc_wti_crude_oilNav",
+    "isin": "GB00B15KXV33",
+    "label": "WisdomTree WTI Crude Oil · VL",
+    "instrumentType": "ETC",
+    "consumerScope": "catalog",
+    "currency": "USD",
+    "periodStart": "2020-12",
+    "precision": 8,
+    "collectAnniversary": false,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+    "navProvider": "wisdomtree",
+    "navCurrency": "USD",
+    "navHistoryTransport": "official-xlsx-post",
+    "wisdomClassId": 1000076,
+    "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil",
+    "calendarRegistry": "src/data/non-bond-etf-records.json",
+    "returnWindowQualification": "corroborated-calendars",
+    "requiredQualifiedCalendarYears": [
+      2023
+    ],
+    "points": [
+      [
+        "2020-12",
+        4.33264
+      ],
+      [
+        "2021-01",
+        4.62601
+      ],
+      [
+        "2021-02",
+        5.44608
+      ],
+      [
+        "2021-03",
+        5.3296
+      ],
+      [
+        "2021-04",
+        5.71829
+      ],
+      [
+        "2021-05",
+        5.9645
+      ],
+      [
+        "2021-06",
+        6.58396
+      ],
+      [
+        "2021-07",
+        6.72003
+      ],
+      [
+        "2021-08",
+        6.33746
+      ],
+      [
+        "2021-09",
+        6.95178
+      ],
+      [
+        "2021-10",
+        7.564
+      ],
+      [
+        "2021-11",
+        6.278
+      ],
+      [
+        "2021-12",
+        7.154
+      ],
+      [
+        "2022-01",
+        8.253
+      ],
+      [
+        "2022-02",
+        8.952
+      ],
+      [
+        "2022-03",
+        9.837
+      ],
+      [
+        "2022-04",
+        10.321
+      ],
+      [
+        "2022-05",
+        11.344
+      ],
+      [
+        "2022-06",
+        10.684
+      ],
+      [
+        "2022-07",
+        10.413
+      ],
+      [
+        "2022-08",
+        9.744
+      ],
+      [
+        "2022-09",
+        8.655
+      ],
+      [
+        "2022-10",
+        9.54
+      ],
+      [
+        "2022-11",
+        9.281
+      ],
+      [
+        "2022-12",
+        9.253
+      ],
+      [
+        "2023-01",
+        9.125
+      ],
+      [
+        "2023-02",
+        8.898
+      ],
+      [
+        "2023-03",
+        8.764
+      ],
+      [
+        "2023-04",
+        8.894
+      ],
+      [
+        "2023-05",
+        8.008
+      ],
+      [
+        "2023-06",
+        8.366
+      ],
+      [
+        "2023-07",
+        9.637
+      ],
+      [
+        "2023-08",
+        9.909
+      ],
+      [
+        "2023-09",
+        10.616
+      ],
+      [
+        "2023-10",
+        9.929
+      ],
+      [
+        "2023-11",
+        9.496
+      ],
+      [
+        "2023-12",
+        9.008
+      ],
+      [
+        "2024-01",
+        9.483
+      ],
+      [
+        "2024-02",
+        9.71
+      ],
+      [
+        "2024-03",
+        10.427
+      ],
+      [
+        "2024-04",
+        10.433
+      ],
+      [
+        "2024-05",
+        9.989
+      ],
+      [
+        "2024-06",
+        10.541
+      ],
+      [
+        "2024-07",
+        10.196
+      ],
+      [
+        "2024-08",
+        9.771
+      ],
+      [
+        "2024-09",
+        9.251
+      ],
+      [
+        "2024-10",
+        9.472
+      ],
+      [
+        "2024-11",
+        9.39
+      ],
+      [
+        "2024-12",
+        9.913
+      ],
+      [
+        "2025-01",
+        10.112
+      ],
+      [
+        "2025-02",
+        9.826
+      ],
+      [
+        "2025-03",
+        10.121
+      ],
+      [
+        "2025-04",
+        8.3151
+      ],
+      [
+        "2025-05",
+        8.6623
+      ],
+      [
+        "2025-06",
+        9.3588
+      ],
+      [
+        "2025-07",
+        10.1892
+      ],
+      [
+        "2025-08",
+        9.6137
+      ],
+      [
+        "2025-09",
+        9.4552
+      ],
+      [
+        "2025-10",
+        9.288
+      ],
+      [
+        "2025-11",
+        8.9774
+      ],
+      [
+        "2025-12",
+        8.8542
+      ],
+      [
+        "2026-01",
+        10.0216
+      ],
+      [
+        "2026-02",
+        10.4225
+      ],
+      [
+        "2026-03",
+        14.2241
+      ],
+      [
+        "2026-04",
+        15.9862
+      ],
+      [
+        "2026-05",
+        14.7665
+      ],
+      [
+        "2026-06",
+        12.5423
+      ],
+      [
+        "2026-07",
+        14.4878
+      ],
+      [
+        "2026-08",
+        15.0061
+      ],
+      [
+        "2026-09",
+        16.9494
+      ]
+    ],
+    "anniversaryAvailable": false,
+    "checkedAt": "2026-10-28",
+    "periodEnd": "2026-09",
+    "sourceUrls": [
+      "https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export",
+      "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil"
+    ],
+    "sourceCredit": "WisdomTree",
+    "latestLevel": {
+      "value": 19.0396,
+      "asOf": "2026-10-27",
+      "currency": "USD",
+      "isin": "GB00B15KXV33",
+      "parser": "official-nav",
+      "valuationBasis": "fund-nav-total-return",
+      "nativeValue": 19.0396,
+      "nativeCurrency": "USD",
+      "fxAsOf": null,
+      "fxFactor": 1,
+      "sourceUrl": "https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export",
+      "sourceUrls": [
+        "https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export",
+        "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil"
+      ],
+      "checkedAt": "2026-10-28",
+      "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+      "maxAgeDays": 7,
+      "sha256": "88e7f206219e9cbb9b7ee5209572a77ac01622ab40af7a6572ad60e131a2699f"
+    },
+    "nativeValuationCurrency": "USD",
+    "lastOfficialValuation": "2026-10-27",
+    "financialConvention": "exact-share accumulated net NAV; no exchange-price claim",
+    "calendarProof": {
+      "calendarRegistry": "src/data/non-bond-etf-records.json",
+      "calendarRegistryPerformanceHash": "57f14d73cd6a1f0a4cab762cb7a62aed203272c8c3d140b62fabf26a6779fce7",
+      "controlledInstrument": "GB00B15KXV33",
+      "controlledFields": [
+        "ISIN",
+        "wtClassID",
+        "fundCurrency",
+        "useOfIncome",
+        "historical-data-export.NAV",
+        "historical-data-export.Date",
+        "calendarRegistry.performance"
+      ],
+      "requestedStart": "2020-12-01",
+      "controlledCalendarYears": [
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "publicProduct": {
+        "ISIN": "GB00B15KXV33",
+        "wtClassID": 1000076,
+        "fundCurrency": "USD",
+        "useOfIncome": "N/A",
+        "inceptionDt": "2006-09-22T00:00:00.000Z",
+        "NAV_Date": "2026-10-22T00:00:00.000Z"
+      },
+      "calendarSource": {
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+        "sha256": "e8bbd5f4a33949849d608477bf4783f42bde72b10b5c98db2c83082ce59679a8",
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-10-28",
+        "method": "calendar-year exact ETP NAV total return, net of fees"
+      },
+      "calendarSourceConsultedByThisCollector": false,
+      "navHistoryTransport": "official-xlsx-post",
+      "historyUnqualifiedReturnWindows": [
+        {
+          "start": "2020-12",
+          "end": "2021-12",
+          "year": 2021,
+          "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2021 : 65.11872669 % / 65.13 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+          "dailyDerived": 65.11872668857788,
+          "published": 65.13,
+          "differencePp": -0.01127331142211574,
+          "startDate": "2020-12-31",
+          "endDate": "2021-12-31",
+          "startValue": 4.33264,
+          "endValue": 7.154,
+          "currency": "USD"
+        },
+        {
+          "start": "2021-12",
+          "end": "2022-12",
+          "year": 2022,
+          "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2022 : 29.34022924 % / 29.33 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+          "dailyDerived": 29.340229242381888,
+          "published": 29.33,
+          "differencePp": 0.010229242381889492,
+          "startDate": "2021-12-31",
+          "endDate": "2022-12-30",
+          "startValue": 7.154,
+          "endValue": 9.253,
+          "currency": "USD"
+        },
+        {
+          "start": "2023-12",
+          "end": "2024-12",
+          "year": 2024,
+          "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2024 : 10.04662522 % / 10.06 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+          "dailyDerived": 10.046625222024886,
+          "published": 10.06,
+          "differencePp": -0.013374777975114327,
+          "startDate": "2023-12-29",
+          "endDate": "2024-12-31",
+          "startValue": 9.008,
+          "endValue": 9.913,
+          "currency": "USD"
+        }
+      ],
+      "qualifiedCalendarYears": [
+        2023,
+        2025
+      ],
+      "qualificationScope": "Only independent corroborated return intervals; unresolved official daily/calendar differences remain refused. No price interpolation or threshold change.",
+      "checks": [
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 9.253,
+          "endValue": 9.008,
+          "dailyDerived": -2.64778990597645,
+          "published": -2.65,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 9.913,
+          "endValue": 8.8542,
+          "dailyDerived": -10.680924039140516,
+          "published": -10.68,
+          "publishedDecimalPlaces": 2
+        }
+      ]
+    },
+    "historyUnqualifiedReturnWindows": [
+      {
+        "start": "2020-12",
+        "end": "2021-12",
+        "year": 2021,
+        "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2021 : 65.11872669 % / 65.13 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+        "dailyDerived": 65.11872668857788,
+        "published": 65.13,
+        "differencePp": -0.01127331142211574,
+        "startDate": "2020-12-31",
+        "endDate": "2021-12-31",
+        "startValue": 4.33264,
+        "endValue": 7.154,
+        "currency": "USD"
+      },
+      {
+        "start": "2021-12",
+        "end": "2022-12",
+        "year": 2022,
+        "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2022 : 29.34022924 % / 29.33 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+        "dailyDerived": 29.340229242381888,
+        "published": 29.33,
+        "differencePp": 0.010229242381889492,
+        "startDate": "2021-12-31",
+        "endDate": "2022-12-30",
+        "startValue": 7.154,
+        "endValue": 9.253,
+        "currency": "USD"
+      },
+      {
+        "start": "2023-12",
+        "end": "2024-12",
+        "year": 2024,
+        "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2024 : 10.04662522 % / 10.06 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+        "dailyDerived": 10.046625222024886,
+        "published": 10.06,
+        "differencePp": -0.013374777975114327,
+        "startDate": "2023-12-29",
+        "endDate": "2024-12-31",
+        "startValue": 9.008,
+        "endValue": 9.913,
+        "currency": "USD"
+      }
+    ],
+    "responseSha256": "de098004c0cc2579b4173a2945b7da4016b4080806159f71557fb63a9e85c448",
+    "rawSourceHashes": {
+      "https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export": "82c42b5d648d89853b3692c03034b00533bdefcf8f8c274569ded0a11c3fb044",
+      "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil": "7146352c8c71899dac4f8498405e7b4829f6e5d21a7ffe66dc901fcf61e50a91"
+    }
+  },
+  "etc_coffeeNav": {
+    "id": "etc_coffeeNav",
+    "isin": "JE00BN7KB557",
+    "label": "WisdomTree Coffee · VL",
+    "instrumentType": "ETC",
+    "consumerScope": "catalog",
+    "currency": "USD",
+    "periodStart": "2021-12",
+    "precision": 8,
+    "collectAnniversary": false,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+    "navProvider": "wisdomtree",
+    "navCurrency": "USD",
+    "navHistoryTransport": "official-xlsx-post",
+    "wisdomClassId": 1000072,
+    "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-coffee",
+    "calendarRegistry": "src/data/non-bond-etf-records.json",
+    "returnWindowQualification": "corroborated-calendars",
+    "requiredQualifiedCalendarYears": [
+      2024,
+      2025
+    ],
+    "points": [
+      [
+        "2021-12",
+        31.027
+      ],
+      [
+        "2022-01",
+        32.246
+      ],
+      [
+        "2022-02",
+        31.878
+      ],
+      [
+        "2022-03",
+        30.958
+      ],
+      [
+        "2022-04",
+        30.36
+      ],
+      [
+        "2022-05",
+        31.579
+      ],
+      [
+        "2022-06",
+        31.418
+      ],
+      [
+        "2022-07",
+        29.647
+      ],
+      [
+        "2022-08",
+        32.729
+      ],
+      [
+        "2022-09",
+        30.866
+      ],
+      [
+        "2022-10",
+        24.794
+      ],
+      [
+        "2022-11",
+        24.173
+      ],
+      [
+        "2022-12",
+        23.851
+      ],
+      [
+        "2023-01",
+        25.99
+      ],
+      [
+        "2023-02",
+        26.703
+      ],
+      [
+        "2023-03",
+        24.472
+      ],
+      [
+        "2023-04",
+        26.979
+      ],
+      [
+        "2023-05",
+        25.99
+      ],
+      [
+        "2023-06",
+        23.713
+      ],
+      [
+        "2023-07",
+        24.633
+      ],
+      [
+        "2023-08",
+        23.276
+      ],
+      [
+        "2023-09",
+        22.08
+      ],
+      [
+        "2023-10",
+        25.369
+      ],
+      [
+        "2023-11",
+        28.686
+      ],
+      [
+        "2023-12",
+        29.347
+      ],
+      [
+        "2024-01",
+        30.35
+      ],
+      [
+        "2024-02",
+        29.551
+      ],
+      [
+        "2024-03",
+        30.379
+      ],
+      [
+        "2024-04",
+        35.294
+      ],
+      [
+        "2024-05",
+        36.363
+      ],
+      [
+        "2024-06",
+        37.136
+      ],
+      [
+        "2024-07",
+        37.666
+      ],
+      [
+        "2024-08",
+        40.938
+      ],
+      [
+        "2024-09",
+        45.475
+      ],
+      [
+        "2024-10",
+        41.514
+      ],
+      [
+        "2024-11",
+        53.934
+      ],
+      [
+        "2024-12",
+        54.375
+      ],
+      [
+        "2025-01",
+        64.436
+      ],
+      [
+        "2025-02",
+        65.317
+      ],
+      [
+        "2025-03",
+        66.659
+      ],
+      [
+        "2025-04",
+        70.9747
+      ],
+      [
+        "2025-05",
+        60.8195
+      ],
+      [
+        "2025-06",
+        53.7692
+      ],
+      [
+        "2025-07",
+        53.1496
+      ],
+      [
+        "2025-08",
+        71.0995
+      ],
+      [
+        "2025-09",
+        69.2028
+      ],
+      [
+        "2025-10",
+        72.5737
+      ],
+      [
+        "2025-11",
+        75.1971
+      ],
+      [
+        "2025-12",
+        68.9646
+      ],
+      [
+        "2026-01",
+        65.8348
+      ],
+      [
+        "2026-02",
+        56.5328
+      ],
+      [
+        "2026-03",
+        60.2043
+      ],
+      [
+        "2026-04",
+        58.6477
+      ],
+      [
+        "2026-05",
+        54.6572
+      ],
+      [
+        "2026-06",
+        62.1192
+      ],
+      [
+        "2026-07",
+        69.7525
+      ],
+      [
+        "2026-08",
+        69.9581
+      ],
+      [
+        "2026-09",
+        65.1489
+      ]
+    ],
+    "anniversaryAvailable": false,
+    "checkedAt": "2026-10-28",
+    "periodEnd": "2026-09",
+    "sourceUrls": [
+      "https://www.wisdomtree.com/api/fund-history/1000072/historical-data-export",
+      "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-coffee"
+    ],
+    "sourceCredit": "WisdomTree",
+    "latestLevel": {
+      "value": 65.9732,
+      "asOf": "2026-10-27",
+      "currency": "USD",
+      "isin": "JE00BN7KB557",
+      "parser": "official-nav",
+      "valuationBasis": "fund-nav-total-return",
+      "nativeValue": 65.9732,
+      "nativeCurrency": "USD",
+      "fxAsOf": null,
+      "fxFactor": 1,
+      "sourceUrl": "https://www.wisdomtree.com/api/fund-history/1000072/historical-data-export",
+      "sourceUrls": [
+        "https://www.wisdomtree.com/api/fund-history/1000072/historical-data-export",
+        "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-coffee"
+      ],
+      "checkedAt": "2026-10-28",
+      "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+      "maxAgeDays": 7,
+      "sha256": "71b0078b7f6e555009557bdbd73a65723db7cc105b6a959405bd7dd25205036d"
+    },
+    "nativeValuationCurrency": "USD",
+    "lastOfficialValuation": "2026-10-27",
+    "financialConvention": "exact-share accumulated net NAV; no exchange-price claim",
+    "calendarProof": {
+      "calendarRegistry": "src/data/non-bond-etf-records.json",
+      "calendarRegistryPerformanceHash": "5f9d65ff8859018ff6a55b76c384a4a416f0b822de9a4eca1cde15d406eb3ea3",
+      "controlledInstrument": "JE00BN7KB557",
+      "controlledFields": [
+        "ISIN",
+        "wtClassID",
+        "fundCurrency",
+        "useOfIncome",
+        "historical-data-export.NAV",
+        "historical-data-export.Date",
+        "calendarRegistry.performance"
+      ],
+      "requestedStart": "2021-12-01",
+      "controlledCalendarYears": [
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "publicProduct": {
+        "ISIN": "JE00BN7KB557",
+        "wtClassID": 1000072,
+        "fundCurrency": "USD",
+        "useOfIncome": "N/A",
+        "inceptionDt": "2006-09-22T00:00:00.000Z",
+        "NAV_Date": "2026-10-22T00:00:00.000Z"
+      },
+      "calendarSource": {
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
+        "sha256": "f0deee10717cc07e2d23608b6412cf32356173d5e30c61f08296948a3ddd7593",
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-10-28",
+        "method": "calendar-year exact ETP NAV total return, net of fees"
+      },
+      "calendarSourceConsultedByThisCollector": false,
+      "navHistoryTransport": "official-xlsx-post",
+      "historyUnqualifiedReturnWindows": [
+        {
+          "start": "2021-12",
+          "end": "2022-12",
+          "year": 2022,
+          "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2022 : -23.12824314 % / -23.12 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+          "dailyDerived": -23.12824314306895,
+          "published": -23.12,
+          "differencePp": -0.00824314306894891,
+          "startDate": "2021-12-31",
+          "endDate": "2022-12-30",
+          "startValue": 31.027,
+          "endValue": 23.851,
+          "currency": "USD"
+        },
+        {
+          "start": "2022-12",
+          "end": "2023-12",
+          "year": 2023,
+          "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2023 : 23.04305899 % / 23.02 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+          "dailyDerived": 23.043058991237263,
+          "published": 23.02,
+          "differencePp": 0.023058991237263626,
+          "startDate": "2022-12-30",
+          "endDate": "2023-12-29",
+          "startValue": 23.851,
+          "endValue": 29.347,
+          "currency": "USD"
+        }
+      ],
+      "qualifiedCalendarYears": [
+        2024,
+        2025
+      ],
+      "qualificationScope": "Only independent corroborated return intervals; unresolved official daily/calendar differences remain refused. No price interpolation or threshold change.",
+      "checks": [
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 29.347,
+          "endValue": 54.375,
+          "dailyDerived": 85.28299315091832,
+          "published": 85.28,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 54.375,
+          "endValue": 68.9646,
+          "dailyDerived": 26.83144827586208,
+          "published": 26.83,
+          "publishedDecimalPlaces": 2
+        }
+      ]
+    },
+    "historyUnqualifiedReturnWindows": [
+      {
+        "start": "2021-12",
+        "end": "2022-12",
+        "year": 2022,
+        "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2022 : -23.12824314 % / -23.12 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+        "dailyDerived": -23.12824314306895,
+        "published": -23.12,
+        "differencePp": -0.00824314306894891,
+        "startDate": "2021-12-31",
+        "endDate": "2022-12-30",
+        "startValue": 31.027,
+        "endValue": 23.851,
+        "currency": "USD"
+      },
+      {
+        "start": "2022-12",
+        "end": "2023-12",
+        "year": 2023,
+        "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2023 : 23.04305899 % / 23.02 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+        "dailyDerived": 23.043058991237263,
+        "published": 23.02,
+        "differencePp": 0.023058991237263626,
+        "startDate": "2022-12-30",
+        "endDate": "2023-12-29",
+        "startValue": 23.851,
+        "endValue": 29.347,
+        "currency": "USD"
+      }
+    ],
+    "responseSha256": "0a8c654199c6d12d84f2b3d88a61f7dd0a43bada791b9ae9f02fe9fcec9e09f1",
+    "rawSourceHashes": {
+      "https://www.wisdomtree.com/api/fund-history/1000072/historical-data-export": "d29c7d29ae4cce77a4aadae7afb864e73792ef2ba308266c1793270888a348a2",
+      "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-coffee": "43ac48bb052e67cbf500b02e075b78c2a9ccb6b83b4c0f512f8f45075b3784fa"
+    }
   }
 }
