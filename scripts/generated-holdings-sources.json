@@ -49,6 +49,21 @@
     "parser": "dws",
     "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium"
   },
+  "IE0008471009": {
+    "isin": "IE0008471009",
+    "name": "iShares Core EURO STOXX 50 UCITS ETF Dist",
+    "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+  },
+  "IE0008470928": {
+    "isin": "IE0008470928",
+    "name": "iShares STOXX Europe 50 UCITS ETF Dist",
+    "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251929&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+  },
+  "IE00B1YZSC51": {
+    "isin": "IE00B1YZSC51",
+    "name": "iShares Core MSCI Europe UCITS ETF Dist",
+    "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251860&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+  },
   "IE00B3XXRP09": {
     "isin": "IE00B3XXRP09",
     "name": "Vanguard S&P 500 UCITS ETF Distributing",
@@ -176,6 +191,11 @@
     "currency": "USD",
     "parser": "dws",
     "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium"
+  },
+  "DE0002635307": {
+    "isin": "DE0002635307",
+    "name": "iShares STOXX Europe 600 UCITS ETF Dist",
+    "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&includeConfig=true&excludeContent=true"
   },
   "FR0010524777": {
     "isin": "FR0010524777",
