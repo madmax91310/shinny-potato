@@ -14,6 +14,7 @@ try {
     const { ensurePortfolioAssets } = await import('/shinny-potato/src/data/portfolio-asset-loader.js')
     await ensurePortfolioAssets(ASSETS.map(asset => asset.id))
     const { buildManualPortfolio, generatePortfolio } = await import('/shinny-potato/src/pages/portfolio-generator/engine.js')
+    const { MODEL_FAMILIES, buildModelPortfolio } = await import('/shinny-potato/src/pages/portfolio-generator/modelPortfolios.js')
     const { computeYearlyPerf } = await import('/shinny-potato/src/pages/portfolio-generator/performance.js')
     const { renderPortfolioImage } = await import('/shinny-potato/src/pages/portfolio-generator/canvasImage.js')
     const { loadPortfolioBackground } = await import('/shinny-potato/src/pages/portfolio-generator/background.js')
@@ -71,6 +72,7 @@ try {
       count++
     }
     try {
+      for (const family of MODEL_FAMILIES) for (const preset of family.presets) check(`model-${family.id}-${preset.id}`, buildModelPortfolio(family.id, preset.id), ['ivy','swensen'].includes(family.id))
       const example = buildManualPortfolio([{id:'msci_world',pct:55},{id:'ftse_em_vanguard',pct:6},{id:'oblig_corp_vanguard',pct:39}], 'generaliste', [])
       check('selected-example', example, true)
       for (const asset of ASSETS) check(`single-${asset.id}`, buildManualPortfolio([{id:asset.id,pct:100}], 'generaliste', []))
