@@ -197,22 +197,30 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     elif kind=='dws':
         from collect_dws_etf import parse_product
         body=data(source['sourceUrl']);facts=parse_product(body,{'isin':isin,'currency':native,'sourceUrl':source['sourceUrl']},now)
-        if facts['distribution']!='Capitalizing':raise ValueError('DWS NAV reinvestment not qualified')
-        policy=source.get('dwsIdentityBasis')
-        if policy not in (None,'share-class-launch'):raise ValueError('Unqualified DWS identity policy')
-        if policy=='share-class-launch':
-            if not identity_from or facts['characteristics'].get('inceptionDate')!=identity_from or source['periodStart']<identity_from[:7]:
-                raise ValueError('DWS exact share launch identity changed')
-            start=identity_from
-        else:start='2015-06-26'
-        url=source['sourceUrl'].rsplit('/',1)[0]+'/historicaldata/download?'+urllib.parse.urlencode({'startDate':start,'endDate':now.date().isoformat(),'includeTax':'false'})
-        nav=dws_nav(document(url),isin,native,now);years=facts['performance']['years'];credit='DWS Xtrackers'
-        if policy=='share-class-launch':
-            calendar_proof={'identityFrom':identity_from,'identityBasis':policy,'incomeTreatment':facts['distribution']}
+        if source.get('navHistoryKind')=='official-income-reinvested-chart':
+            from dws_income_history import qualify
+            url=source['sourceUrl'].rsplit('/',1)[0]+'/historicaldata/download?'+urllib.parse.urlencode({'startDate':source['identityFrom'],'endDate':now.date().isoformat(),'includeTax':'false'})
+            raw_nav=dws_nav(document(url),isin,native,now)
+            chart=data(source['sourceUrl'].rsplit('/',1)[0]+'/performancechart')
+            nav,calendar_proof=qualify(body,chart,facts,source,raw_nav,now)
+            years=facts['performance']['years'];credit='DWS Xtrackers'
         else:
-            notes=' '.join(t.get('text','') for tab in body['pdpResult']['pageSections']['performanceSection']['performanceTables']['tabs'] if tab['header']=='Calendar year' for t in tab.get('disclaimerHtml',[]))
-            if '26 June 2015' not in notes or 'Luxembourg' not in notes:raise ValueError('DWS merger identity evidence changed')
-            calendar_proof={'identityFrom':identity_from,'mergerNote':notes}
+            if facts['distribution']!='Capitalizing':raise ValueError('DWS NAV reinvestment not qualified')
+            policy=source.get('dwsIdentityBasis')
+            if policy not in (None,'share-class-launch'):raise ValueError('Unqualified DWS identity policy')
+            if policy=='share-class-launch':
+                if not identity_from or facts['characteristics'].get('inceptionDate')!=identity_from or source['periodStart']<identity_from[:7]:
+                    raise ValueError('DWS exact share launch identity changed')
+                start=identity_from
+            else:start='2015-06-26'
+            url=source['sourceUrl'].rsplit('/',1)[0]+'/historicaldata/download?'+urllib.parse.urlencode({'startDate':start,'endDate':now.date().isoformat(),'includeTax':'false'})
+            nav=dws_nav(document(url),isin,native,now);years=facts['performance']['years'];credit='DWS Xtrackers'
+            if policy=='share-class-launch':
+                calendar_proof={'identityFrom':identity_from,'identityBasis':policy,'incomeTreatment':facts['distribution']}
+            else:
+                notes=' '.join(t.get('text','') for tab in body['pdpResult']['pageSections']['performanceSection']['performanceTables']['tabs'] if tab['header']=='Calendar year' for t in tab.get('disclaimerHtml',[]))
+                if '26 June 2015' not in notes or 'Luxembourg' not in notes:raise ValueError('DWS merger identity evidence changed')
+                calendar_proof={'identityFrom':identity_from,'mergerNote':notes}
     elif kind=='ssga':
         from collect_ssga_etf import Inputs, parse_page
         page=document(source['sourceUrl']).decode(); parsed=Inputs(); parsed.feed(page)
@@ -352,7 +360,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
        'fxAsOf':fx_date,'fxFactor':factor,'sourceUrl':urls[0],'sourceUrls':urls,'checkedAt':now.date().isoformat(),
        'method':'Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire'if anniversary_nav else source['method']if source.get('navHistoryKind')else'Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire',
        'maxAgeDays':daily_policy['dataDays'],'sha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest()}
-    result={**source,'points':points,'anniversaryPoints':anniversary_points,**({'anniversaryValuationBasis':'fund-nav-price','anniversaryVariant':'Valeurs liquidatives publiées · hors distributions'}if anniversary_nav else{}),'checkedAt':now.date().isoformat(),
+    result={**source,'points':points,**({'anniversaryPoints':anniversary_points}if source.get('collectAnniversary') is not False else {'anniversaryAvailable':False}),**({'anniversaryValuationBasis':'fund-nav-price','anniversaryVariant':'Valeurs liquidatives publiées · hors distributions'}if anniversary_nav else{}),'checkedAt':now.date().isoformat(),
             'periodEnd':points[-1][0],'sourceUrls':urls,'sourceCredit':credit,
             'latestLevel':latest_level,'nativeValuationCurrency':native,'lastOfficialValuation':max(nav),
             'financialConvention':('exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim'if source.get('navHistoryKind')else'exact-share accumulated net NAV; no exchange-price claim'),
@@ -426,7 +434,9 @@ def main():
         for row in results:
             id=row['id'];config,current,levels,evidence=targets[id]
             current[id]={k:v for k,v in row['record'].items()if k!='proofRows'}
-            levels[id]=row['record']['latestLevel'];evidence[id]=row['record']
+
+            if row['record'].get('collectAnniversary') is not False:levels[id]=row['record']['latestLevel']
+            evidence[id]=row['record']
             config['series']=[next(s for s in sources if s['id']==id)if s['id']==id else s for s in config['series']]
         for paths,values in loaded:
             for path,value in zip(paths,values):write_json_atomic(ROOT/path,value)

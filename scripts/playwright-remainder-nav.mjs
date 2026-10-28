@@ -19,7 +19,7 @@ try{
  async function png(id,button){const pending=page.waitForEvent('download');await button.click();const file=await pending;await file.saveAs(`${out}/${id}.png`);const b=await fs.readFile(`${out}/${id}.png`);assert.equal(b.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert(b.length>10000);results.push({id,bytes:b.length});console.log(id,'PNG valid')}
  async function preview(){const button=page.locator('.workspace-view-switch').getByRole('button',{name:'Aperçu',exact:true});if(await button.isVisible())await button.click()}
  const sources=JSON.parse(await fs.readFile('scripts/official-nav-remainder-sources.json','utf8'));assert(requested.every(id=>sources.some(s=>s.id===id)),'Unknown NAV scope')
- for(const {id} of sources.filter(s=>!requested.length||requested.includes(s.id))){
+ for(const {id,collectAnniversary} of sources.filter(s=>!requested.length||requested.includes(s.id))){
   await page.goto(`${base}/calculateur-investissement?asset=${id}`,{waitUntil:'networkidle'})
   assert.equal(await page.getByRole('group',{name:'Choisir un actif',exact:true}).getAttribute('data-value'),id)
   await preview();assert((await page.locator('body').innerText()).includes(ASSETS[id].label))
@@ -32,6 +32,7 @@ try{
   await choose(page.locator('#secondary-select'),'2025');await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
   assert((await page.locator('pre').innerText()).includes('VL'))
   await png(id+'-performance',page.getByRole('button',{name:/Télécharger.*image|Télécharger.*PNG/i}))
+  if(collectAnniversary===false)continue
   await page.goto(`${base}/tweet-midi`,{waitUntil:'networkidle'})
   await page.getByRole('button',{name:'Il y a X ans',exact:true}).click();await choose(page.locator('#subject-select'),id);await choose(page.locator('#secondary-select'),'1');await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
   const latest=resolveAnniversaryLevel(id,'');assert(latest)

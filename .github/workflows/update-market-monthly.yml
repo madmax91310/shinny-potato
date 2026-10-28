@@ -97,6 +97,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_amundi_distributing_nav.py'
       - run: python -m unittest discover -s scripts -p 'test_amundi_anniversary_prices.py'
       - run: python -m unittest discover -s scripts -p 'test_blackrock_income_history.py'
+      - run: python -m unittest discover -s scripts -p 'test_dws_income_history.py'
+      - run: node scripts/test-dws-income-consumers.mjs
       - run: node scripts/test-income-nav-consumers.mjs
       - run: python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'

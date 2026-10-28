@@ -15346,6 +15346,26 @@
         "2024-12-10",
         "2025-12-09"
       ]
+    },
+    {
+      "id": "etfLU1875395870Nav",
+      "isin": "LU1875395870",
+      "label": "Xtrackers Nikkei 225 2D EUR Hedged · VL réinvestie",
+      "instrumentType": "ETF",
+      "consumerScope": "catalog",
+      "currency": "EUR",
+      "periodStart": "2018-12",
+      "precision": 8,
+      "collectAnniversary": false,
+      "parser": "official-nav",
+      "field": "nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "method": "Série de performance officielle de la part exacte 2D couverte en EUR, nette des frais et dividendes réinvestis ; aucun dividende ajouté, aucune cotation de marché remplacée ; pas de qualification des prix historiques",
+      "navProvider": "dws",
+      "navCurrency": "EUR",
+      "identityFrom": "2018-11-06",
+      "navHistoryKind": "official-income-reinvested-chart",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/pdpMetaTagsTealium"
     }
   ]
 }

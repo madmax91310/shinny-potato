@@ -16,6 +16,7 @@ export function buildEtfMonthlyHistories(records = RECORDS) {
       ...(record.valuationBasis ? {valuationBasis:record.valuationBasis,historyConvention:record.valuationBasis} : {}),
       ...(record.anniversaryValuationBasis ? {anniversaryValuationBasis:record.anniversaryValuationBasis,anniversaryVariant:record.anniversaryVariant}:{}),
       ...(record.historyExcludedMonths?.length?{historyExcludedMonths:record.historyExcludedMonths}:{}),
+      ...(record.anniversaryAvailable===false?{anniversaryAvailable:false}:{}),
       ...(record.anniversaryExcludedMonths?.length?{anniversaryExcludedMonths:record.anniversaryExcludedMonths}:{}),
       periodStart: record.periodStart, periodEnd: record.periodEnd,
       checkedAt: record.checkedAt, method: record.method, sourceUrls: record.sourceUrls,
