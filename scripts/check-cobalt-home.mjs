@@ -36,19 +36,18 @@ export async function checkCobaltHome(page) {
     const panel = page.getByRole('tabpanel')
     assert.equal(await panel.getAttribute('data-day'), String(index))
     assert.equal(await panel.locator('.home-day-band h2').innerText(), day.day)
-    for (const period of ['midday','evening']) {
+    for (const period of ['morning','midday','evening']) {
       const slot = panel.locator(`[data-period="${period}"]`)
       assert.deepEqual(await slot.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => new URL(card.href).pathname.split('/').at(-1) + new URL(card.href).search)), day[period].map(entry => (entry.href ?? entry.path).slice(1)), `${day.day}: exact ${period} destinations`)
       assert.deepEqual(await slot.locator('.workspace-tool-card h2').allTextContents(), day[period].map(entry => entry.title ?? HOME_TOOLS.find(tool => tool.to === entry.path).title))
-      assert.deepEqual(await slot.locator('.workspace-publication-day').allTextContents(), day[period].map(entry => entry.note || `${day.day} ${period === 'midday' ? 'midi' : 'soir'}`))
+      assert.deepEqual(await slot.locator('.workspace-publication-day').allTextContents(), day[period].map(entry => entry.note || `${day.day} ${{morning:'matin',midday:'midi',evening:'soir'}[period]}`))
       assert.deepEqual(await slot.locator('.home-day-note').allTextContents(), day[`${period}Note`] ? [day[`${period}Note`]] : [])
       snapshot.push([index, period, day[period].map(entry => entry.path)])
     }
   }
   const today = new Intl.DateTimeFormat('fr-FR', {weekday:'long',timeZone:'Europe/Paris'}).format(new Date())
   assert.equal((await page.getByRole('tab').filter({has:page.locator('.home-today')}).innerText()).replace('•','').trim().toLowerCase(), page.viewportSize().width < 700 ? `${today.slice(0,3)}.` : today)
-  assert.equal(await page.locator('.home-calendar-intro').innerText(), 'Un format par créneau, le midi et le soir.')
-  assert.equal(await page.locator('.home-calendar').getByText(/alternance|alternative|facultatif|matin|récap/i).count(), 0)
+  assert.match(await page.locator('.home-calendar-intro').innerText(), /semaines A et B alternent/)
   await page.getByRole('button', {name:'Vue d’ensemble',exact:true}).click()
   return snapshot
 }

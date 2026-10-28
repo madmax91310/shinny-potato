@@ -30,13 +30,13 @@ try {
   // Keep the explicit approved schedule as well as comparing all registry notes,
   // titles and exact hrefs in the shared check.
   assert.deepEqual(snapshot, [
-    [0,'midday',['/performance-depuis']], [0,'evening',['/tweets-factsheets']],
-    [1,'midday',['/calculateur-investissement']], [1,'evening',['/le-dca-de']],
-    [2,'midday',['/classements-performances']], [2,'evening',['/comparatif-courtiers']],
-    [3,'midday',['/classements-performances']], [3,'evening',['/banque-tweets']],
-    [4,'midday',['/fiches-etf']], [4,'evening',[]],
-    [5,'midday',[]], [5,'evening',[]],
-    [6,'midday',['/portefeuilles-investisseurs']], [6,'evening',['/fiches-pratiques']],
+    [0,'morning',[]], [0,'midday',['/performance-depuis']], [0,'evening',['/tweets-factsheets','/generateur-portefeuilles']],
+    [1,'morning',[]], [1,'midday',['/classements-performances']], [1,'evening',['/le-dca-de']],
+    [2,'morning',[]], [2,'midday',['/calculateur-investissement']], [2,'evening',['/comparatif-courtiers','/hey-grok']],
+    [3,'morning',[]], [3,'midday',['/classements-performances']], [3,'evening',['/banque-tweets']],
+    [4,'morning',[]], [4,'midday',['/fiches-etf']], [4,'evening',[]],
+    [5,'morning',[]], [5,'midday',[]], [5,'evening',[]],
+    [6,'morning',['/il-y-a-x-ans']], [6,'midday',['/portefeuilles-investisseurs']], [6,'evening',['/fiches-pratiques','/faits-marquants-marches']],
   ])
   assert.equal(await page.getByRole('link', {name:/Vrai ou faux|Cas concrets|Comparateur indices|Dilemme/}).count(), 0)
   assert.equal(await page.locator('.workspace-tool-card[href$="/tweet-midi"]').count(), 0)

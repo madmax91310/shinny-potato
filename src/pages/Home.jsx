@@ -111,14 +111,14 @@ export default function Home() {
         return tools.length > 0 && <section key={group.id} className="home-panel" data-group={group.id} aria-labelledby={`home-group-${group.id}`}><div className="home-section-heading"><h2 id={`home-group-${group.id}`}>{group.title}</h2><span>{tools.length}</span></div>{list(tools)}</section>
       })}
     </div> : <div className="home-calendar">
-      <p className="home-calendar-intro">Un format par créneau, le midi et le soir.</p>
+      <p className="home-calendar-intro">Matin, midi et soir. Les formats des semaines A et B alternent : un seul est publié par créneau.</p>
       <div className="home-days" role="tablist" aria-label="Jour de la semaine">{EDITORIAL_WEEK.map(({ day }, index) => <button key={day} ref={node => { dayButtons.current[index] = node }} type="button" role="tab" id={`home-tab-${index}`} aria-controls={`home-day-${index}`} aria-selected={index === dayIndex} tabIndex={index === dayIndex ? 0 : -1} onClick={() => setDayIndex(index)} onKeyDown={event => {
         const next = event.key === 'Home' ? 0 : event.key === 'End' ? 6 : event.key === 'ArrowRight' ? (index + 1) % 7 : event.key === 'ArrowLeft' ? (index + 6) % 7 : null
         if (next !== null) { event.preventDefault(); setDayIndex(next); dayButtons.current[next].focus() }
       }}><span className="home-day-short" aria-hidden="true">{day.slice(0, 3)}.</span><span className="home-day-full">{day}</span>{day.toLowerCase() === today && <span className="home-today" aria-label="Aujourd’hui">•</span>}</button>)}</div>
       <section className="home-panel home-day" data-day={dayIndex} role="tabpanel" id={`home-day-${dayIndex}`} aria-labelledby={`home-tab-${dayIndex}`}>
         <div className="home-day-band"><h2>{selectedDay.day}</h2>{selectedDay.day.toLowerCase() === today && <span>Aujourd’hui</span>}</div>
-        {[['midday', 'Midi', selectedDay.midday], ['evening', 'Soir', selectedDay.evening]].map(([period, label, entries]) => <div className="home-period" data-period={period} key={period}>
+        {[['morning', 'Matin', selectedDay.morning], ['midday', 'Midi', selectedDay.midday], ['evening', 'Soir', selectedDay.evening]].map(([period, label, entries]) => <div className="home-period" data-period={period} key={period}>
           <h3>{label}</h3>
           {selectedDay[`${period}Note`] && <p className="home-day-note">{selectedDay[`${period}Note`]}</p>}
           {list(entries.map(entry => ({ ...HOME_TOOLS.find(tool => tool.to === entry.path), path: entry.path, ...(entry.title ? { title: entry.title } : {}), to: entry.href ?? entry.path, publicationDay: entry.note || `${selectedDay.day} ${label.toLowerCase()}` })))}
