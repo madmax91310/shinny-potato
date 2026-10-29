@@ -53,13 +53,56 @@ def validate_contract(contract):
     return contract
 
 
+def _complete_holdings_results(native):
+    """Bind explicit fresh outcomes to their bounded native source receipts.
+
+    `observations` is a dictionary here, not the older observation-list schema.
+    Never reinterpret a stored portfolio or an announced ID as a source check.
+    """
+    import re
+    if not isinstance(native.get('successes'),list) or not isinstance(native.get('errors'),list):
+        raise ValueError('Missing explicit complete-holdings results')
+    successes=[]
+    errors=list(native['errors'])
+    for row in native['successes']:
+        if not isinstance(row,dict) or not isinstance(row.get('id'),str):
+            raise ValueError('Invalid complete-holdings result identity')
+        identifier=row['id']
+        receipt=native['observations'].get(identifier.removeprefix('dca-holdings:'),{})
+        try:
+            if not identifier.startswith('dca-holdings:') or not isinstance(receipt,dict):
+                raise ValueError('Wrong bounded receipt identity')
+            if not re.fullmatch('[a-f0-9]{64}',receipt.get('sha256','')):
+                raise ValueError('Missing response fingerprint')
+            dt.datetime.fromisoformat(receipt['checkedAt'].replace('Z','+00:00'))
+            dt.date.fromisoformat(receipt['asOf'])
+            if not isinstance(receipt.get('sourceUrl'),str) or not receipt['sourceUrl'].startswith('https://') or receipt.get('sourceAttempted')is False:
+                raise ValueError('Source contact not demonstrated')
+        except (ValueError,KeyError,AttributeError,TypeError) as error:
+            errors.append({'id':identifier,'phase':'qualification','kind':'evidence-incomplete','sourceAttempted':None,
+                           'error':'Preuve individuelle des positions incomplète : '+str(error)})
+            continue
+        # The native payload retains pooled identity URLs. Do not attribute that
+        # global list to the financial observation of each individual fund.
+        fields=('checkedAt','asOf','sourceUrl','sha256','basis','scope','completeFile','rows',
+                'publishedEquityWeightPct','identifiedEquityWeightPct')
+        successes.append({**row,**{key:receipt[key]for key in fields if key in receipt},'sourceAttempted':True})
+    return {'successes':successes,'errors':errors}
+
+
 def finish(native, plan, *, completed=True):
     """Only native observed results count; expected work was frozen before execution."""
     from publish_automation_status import _normalize_report
     interruption_reason = None
     payload = {**native, '_collector': plan['reportStem']}
     try:
-        normalized = ({'successes':[{'id':'history:bitcoin-yahoo'}],'errors':[]} if plan['producer']=='update_bitcoin_monthly' and native.get('symbol')=='BTC-USD' and native.get('points') and native.get('checkedAt') else (native['contractResults'] if 'contractResults' in native else _normalize_report(payload))) if completed else {'successes': [], 'errors': []}
+        if not completed:normalized={'successes':[],'errors':[]}
+        elif plan['producer']=='update_bitcoin_monthly' and native.get('symbol')=='BTC-USD' and native.get('points') and native.get('checkedAt'):
+            normalized={'successes':[{'id':'history:bitcoin-yahoo'}],'errors':[]}
+        elif 'contractResults'in native:normalized=native['contractResults']
+        elif plan['producer']=='collect_dca_complete_holdings' and isinstance(native.get('observations'),dict):
+            normalized=_complete_holdings_results(native)
+        else:normalized=_normalize_report(payload)
         if not isinstance(normalized,dict):raise ValueError('Unknown native producer result shape')
     except (ValueError, TypeError, KeyError, AttributeError, IndexError) as error:
         normalized = {'successes': [], 'errors': []}

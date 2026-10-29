@@ -281,6 +281,9 @@ def report_shape(report):
     if isinstance(report.get('validated'), list) and isinstance(report.get('failed'), list): return 'listings'
     if isinstance(report.get('companies'), dict): return 'companies'
     if report.get('_collector') == 'dca-equities': return 'dca-equities'
+    if (report.get('_collector')=='dca-complete-holdings' and isinstance(report.get('observations'),dict)
+            and isinstance(report.get('successes'),list) and isinstance(report.get('errors'),list)):
+        return 'statuses'  # Bounded holding receipts are not broker/reference observations.
     if isinstance(report.get('managers'), list): return 'investors'
     if any(k in report for k in ('funds', 'qualified', 'monthly', 'levels')): return 'combined'
     if isinstance(report.get('records'), list): return 'holdings'
