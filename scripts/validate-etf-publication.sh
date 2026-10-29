@@ -22,6 +22,7 @@ if [[ "$mode" == prepare ]]; then
   exit 0
 fi
 node scripts/test-asset-field-coverage.mjs
+node scripts/test-field-diagnostics.mjs
 node scripts/test-automation-gap-inventory.mjs
 node scripts/test-priority-issuer-consumers.mjs
 npm run audit:data-review
