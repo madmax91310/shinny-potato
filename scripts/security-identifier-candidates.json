@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "method": "Lookup candidates only. Neither a name nor this registry assigns an identity. Every renewal requires independent SEDOL and ISIN queries agreeing on exact FIGI, share class and security type.",
+  "method": "Lookup hypotheses only; neither a name nor this registry assigns an identity. SEDOL candidates require independent SEDOL/ISIN queries agreeing on exact FIGI, share class and security type. FIGI candidates require an independent ISIN query returning the exact issuer listing FIGI.",
   "candidates": [
     {
       "sedol": "0336299",

@@ -382,4 +382,4 @@ def collect(share, now, fetch=download, post=mapping_request):
                        identitySourceHashes={key:o['sha256'] for key,o in shared.items()},
                        **identity,
                        sourceUrls=[url, document_url, API],
-                       identityMethod='Exact issuer listing FIGI matched to independent ISIN query; unknown identities retained')
+                       identityMethod='Exact issuer listing FIGI matched to independent ISIN query; pending CUSIP/CINS/SEDOL suffix requires two independent queries agreeing on FIGI, share class, type and published ticker; unknown identities retained')
