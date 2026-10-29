@@ -244,6 +244,8 @@ def collect_one(share, now):
             result=wisdomtree_factsheet(body,share,now)
             result['sourceAttempts']=[{'url':share['sourceUrl'],'reason':str(error)},
                                       {'url':share['factsheetUrl'],'status':'validated'}]
+            from wisdomtree_ranked_fields import augment_document
+            result=augment_document(result,share,now,body)
             return result
     elif share['parser']=='globalx-html':
         from urllib.parse import urlparse
