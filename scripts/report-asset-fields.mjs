@@ -8,6 +8,7 @@ import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {AUTOMATED_ETF} from '../src/data/automated-etf.js';
 import {DATA_CATALOG} from '../src/data/catalog.js';
+import {outsideEquityClassification} from './lib/dca-asset-scope.mjs';
 import {buildGapInventory,completeCalendarYears} from './automation-gap-inventory.mjs';
 const read=p=>JSON.parse(readFileSync(new URL('../'+p,import.meta.url)));
 import POLICY from '../src/data/freshness-policy.json' with {type:'json'}
@@ -87,6 +88,10 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10),{
   const onlyComposition=!AUTOMATED_ETF[item.id]&&!!compositionOnly[item.id];
   const record=AUTOMATED_ETF[item.id]??compositionOnly[item.id]??{};
   for(const field of Object.keys(names)) {
+   const outside=outsideEquityClassification(item.id,record.name??item.name);
+   if(field==='completeHoldings'&&outside) {
+    rows.push({id:item.id,name:item.name,type:'instrument',field,label:names[field],state:'not-applicable',present:false,checkedAt:null,asOf:null,sourceUrl:null,sourceUrls:[],automationConfigured:false,tools:['dca-profiles'],reason:`Positions d’entreprises hors périmètre de la vue entreprises : ${outside}. Les autres données et usages de cet instrument restent contrôlés.`});continue;
+   }
    if(onlyComposition&&!['countries','sectors','completeHoldings'].includes(field)) {
     rows.push({id:item.id,name:item.name,type:'instrument',field,label:names[field],state:'not-applicable',present:false,checkedAt:null,asOf:null,sourceUrl:null,sourceUrls:[],automationConfigured:false,tools:[],reason:'Sous-jacent de composition uniquement : cette capacité ne consomme pas ce champ.'});continue;
    }
