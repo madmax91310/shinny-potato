@@ -6,6 +6,7 @@ const TWEETS = ARCHIVED_TWEETS.map(curateTweet)
 const before = structuredClone(TWEETS)
 const grouped = groupTweetVariants(TWEETS)
 assert.deepEqual(TWEETS,before,'Grouping must not mutate or delete original records')
+assert(TWEETS.filter(t=>t.category==='Pédagogie').every(t=>t.sources?.length),'Every pedagogical text keeps its sources, including reclassified archives')
 assert.deepEqual(new Set(grouped.flatMap(t=>t.variants.map(v=>v.id))),new Set(TWEETS.map(t=>t.id)))
 for(const [id,category] of [[8,'Simulation & chiffres'],[14,'Simulation & chiffres'],[18,'Bilan patrimoine'],[39,'Pédagogie'],[41,'Simulation & chiffres']]) {
   assert.equal(TWEETS.find(t=>t.id===id).category,category)

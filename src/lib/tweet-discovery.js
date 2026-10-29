@@ -107,6 +107,7 @@ export function curateTweet(tweet) {
     title ||= ownTitles.find(([start]) => text.startsWith(start))?.[1]
   }
   return {...tweet, ...(title ? {title} : {}), category:categories[id] || tweet.category,
+    ...(id === '39' && !tweet.sources?.length ? {sources:[{label:'Méthodologie des indices MSCI',url:'https://www.msci.com/indexes/index-resources/index-methodology'}]} : {}),
     ...(id === '18' ? {formats:[...new Set([...(tweet.formats || []),'Bilan de la semaine'])]} : {}),
     ...(family ? {variantGroup:family[0], title:familyTitles[family[0]], variantPriority:family[1]} : {})}
 }
