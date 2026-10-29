@@ -1,8 +1,27 @@
-import copy,unittest
+import copy,unittest,gzip,json,hashlib,datetime as dt
+from pathlib import Path
+from collect_dca_complete_holdings import parse_complete
 from holdings_reconciliation import reconcile_positions
 import test_dca_complete_realestate as fixtures
 
 class NavReconciliation(unittest.TestCase):
+ def test_real_issuer_bodies_preserve_unknown_rights_and_signed_accounting(self):
+  root=Path(__file__).resolve().parents[1]/'reports/priority-compositions-2026-10-29'
+  probes=json.loads((root/'blackrock-probes.json').read_text())
+  for probe in probes:
+   with self.subTest(isin=probe['isin']):
+    raw=gzip.decompress((root/'source-bodies'/(probe['isin']+'.json.gz')).read_bytes())
+    self.assertEqual(hashlib.sha256(raw).hexdigest(),probe['sha256'])
+    body=json.loads(raw)
+    if probe['isin']=='IE00B441G979':
+     with self.assertRaisesRegex(ValueError,r'100\.762180.*net NAV 100\.000010'):
+      parse_complete(body,probe['isin'],probe['sourceUrl'],dt.datetime(2026,10,29,tzinfo=dt.timezone.utc))
+     continue
+    h,_=parse_complete(body,probe['isin'],probe['sourceUrl'],dt.datetime(2026,10,29,tzinfo=dt.timezone.utc))
+    p=h['navReconciliation'];self.assertAlmostEqual(p['selectedWeightPct'],probe['classTotals']['Equity'])
+    self.assertEqual(len(p['unidentifiedPositions']),len(probe['unknownEquity']))
+    self.assertAlmostEqual(p['publishedNetWeightPct'],sum(probe['classTotals'].values()))
+    self.assertFalse(p['normalizationApplied']);self.assertEqual(len(h['rows']),p['selectedRowCount'])
  def fixture(self):
   body=fixtures.CompleteRealEstate().body();p=body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
   extra={'isin':None,'issueName':'EUR hedge','holdingPercent':-.8,'assetClass':'Forwards','countryOfRisk':'-','sectorName':'-', 'ticker':'USD/EUR','marketCurrencyCode':'EUR','exchange':'-'}
