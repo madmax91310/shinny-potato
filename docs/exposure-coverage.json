@@ -1,35 +1,9 @@
 {
-  "checkedAt": "2026-10-28T15:09:48.679Z",
+  "checkedAt": "2026-10-29T13:04:24.019Z",
   "total": 672,
-  "outside": 41,
-  "complete": 630,
-  "gaps": [
-    {
-      "asset": "IE000XZSV718",
-      "isin": "IE000XZSV718",
-      "name": "SPDR S&P 500 UCITS ETF Acc",
-      "kind": "etf",
-      "provider": "State Street",
-      "countries": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Poids signés incompatibles avec un donut"
-        ],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 100,
-        "eligible": 100,
-        "outside": false,
-        "missing": 0,
-        "reasons": [],
-        "asOf": "2026-10-27"
-      }
-    }
-  ],
+  "outside": 43,
+  "complete": 629,
+  "gaps": [],
   "outsideAssets": [
     {
       "asset": "gold",
@@ -791,9 +765,55 @@
       }
     },
     {
+      "asset": "IE0008UEVOE0",
+      "isin": "IE0008UEVOE0",
+      "name": "iShares iBonds Dec 2028 Term € Corp UCITS ETF",
+      "kind": "etf",
+      "provider": "iShares",
+      "countries": {
+        "coverage": 0,
+        "eligible": 0,
+        "outside": true,
+        "missing": 0,
+        "reasons": [],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 0,
+        "eligible": 0,
+        "outside": true,
+        "missing": 0,
+        "reasons": [],
+        "asOf": null
+      }
+    },
+    {
       "asset": "IE00B4WXJG34",
       "isin": "IE00B4WXJG34",
       "name": "iShares € Govt Bond 5-7yr UCITS ETF EUR (Dist)",
+      "kind": "etf",
+      "provider": "iShares",
+      "countries": {
+        "coverage": 0,
+        "eligible": 0,
+        "outside": true,
+        "missing": 0,
+        "reasons": [],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 0,
+        "eligible": 0,
+        "outside": true,
+        "missing": 0,
+        "reasons": [],
+        "asOf": null
+      }
+    },
+    {
+      "asset": "IE000SNLFDR7",
+      "isin": "IE000SNLFDR7",
+      "name": "iShares iBonds Dec 2029 Term € Corp UCITS ETF",
       "kind": "etf",
       "provider": "iShares",
       "countries": {
