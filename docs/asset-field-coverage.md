@@ -15,7 +15,7 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 | Distribution | 258/261 | 258 | 0 | 0 |
 | Domicile | 258/261 | 258 | 0 | 0 |
 | Réplication | 258/261 | 258 | 0 | 0 |
-| Cotations | 258/261 | 255 | 3 | 0 |
+| Cotations | 258/261 | 258 | 0 | 0 |
 | Éligibilité PEA | 256/261 | 255 | 1 | 0 |
 | Couverture de change | 258/261 | 258 | 0 | 0 |
 
