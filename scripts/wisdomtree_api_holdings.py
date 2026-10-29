@@ -256,7 +256,7 @@ def collect(share, now, fetch=download, post=mapping_request):
         if error.code not in (403,408,429,500,502,503,504):raise
         if error.code!=403 or os.environ.get('WISDOMTREE_BROWSER_CAPTURE')!='1':
             raise IssuerApiUnavailable(f'Public issuer API unavailable: HTTP {error.code}') from error
-        result=subprocess.run(['node',str(ROOT/'scripts/capture-wisdomtree-api.mjs'),url],cwd=ROOT,capture_output=True,timeout=45)
+        result=subprocess.run(['node',str(ROOT/'scripts/capture-wisdomtree-api.mjs'),url],cwd=ROOT,capture_output=True,timeout=80)
         if result.returncode:
             raise IssuerApiUnavailable('Issuer API HTTP 403; public browser also failed: '+result.stderr.decode(errors='replace')[-700:])
         raw=result.stdout
