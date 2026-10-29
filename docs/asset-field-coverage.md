@@ -10,8 +10,8 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 | Performances annuelles | 239/262 | 239 | 0 | 0 |
 | Historique mensuel | 258/262 | 258 | 0 | 0 |
 | Pays | 233/262 | 227 | 6 | 0 |
-| Secteurs | 233/262 | 227 | 6 | 0 |
-| Principales positions | 235/262 | 229 | 6 | 0 |
+| Secteurs | 233/262 | 233 | 0 | 0 |
+| Principales positions | 235/262 | 235 | 0 | 0 |
 | Distribution | 259/262 | 259 | 0 | 0 |
 | Domicile | 259/262 | 259 | 0 | 0 |
 | Réplication | 259/262 | 259 | 0 | 0 |
