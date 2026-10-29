@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 # Exact share/class/listing identities corroborated by issuer pages and factsheets
 # on 2026-10-29. Only existing catalogue shares; no weights come from a proxy.
 CLASS_CONFIG = json.loads((ROOT/'scripts/wisdomtree-holdings-classes.json').read_text())
+API_IDENTITY_METHOD = json.loads((ROOT/'scripts/wisdomtree-identity-methods.json').read_text())['nativeApiV1']
 CLASSES = {isin:(r['classId'],r['fundTicker'],r['title']) for isin,r in CLASS_CONFIG.items()}
 # Literal cash/currency account labels observed in the issuer API, with no
 # security FIGI and no listing ticker. Unknown blank identities still fail.
@@ -376,6 +377,7 @@ def collect(share, now, fetch=download, post=mapping_request):
     return observation(rows, stamp, url, raw, allow_unidentified=True,
                        navReconciliation=reconciliation,
                        subjectIsin=share['isin'],scope='complete-equity-sleeve-with-published-cash',
+                       identityMethodCode=API_IDENTITY_METHOD,
                        captureMethod=capture_method,
                        excludedWeightPctByType={'Cash': cash}, identityObservations=[compact_observation(o) for o in observations if o not in shared.values()],
                        identityEvidenceRegistry='src/data/security-identifier-observations.json',

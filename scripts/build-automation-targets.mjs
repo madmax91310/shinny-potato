@@ -1,6 +1,6 @@
 import wisdomtreeClasses from './wisdomtree-holdings-classes.json' with {type:'json'}
 import {readFileSync,writeFileSync} from 'node:fs'
-import { wisdomtreeFactsheet, blackrockCharacteristicsEndpoint, wisdomtreeProductCandidates, qualifiedWisdomtreeRankingsRoute } from './issuer-routes.mjs'
+import { wisdomtreeFactsheet, blackrockCharacteristicsEndpoint, wisdomtreeProductCandidates, qualifiedWisdomtreeRankingsRoute, qualifiedWisdomtreeApiMethod } from './issuer-routes.mjs'
 import {AUTOMATED_ETF} from '../src/data/automated-etf.js'
 import {INSTRUMENTS_BY_ISIN} from '../src/data/instruments.js'
 import {getInstrumentListings} from '../src/data/instrument-listings.js'
@@ -83,7 +83,7 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  else if(share?.documentType==='wisdomtree-ucits'&&completeHoldings[isin]?.complete===true&&(
   (wisdomtreeProductCandidates(share.sourceUrl).includes(completeHoldings[isin]?.sourceUrl)&&completeHoldings[isin]?.identityMethod==='Exact SEDOL to ISIN; identity-source weights never imported') ||
   (wisdomtreeClasses[isin]?.currency===share.currency&&qualifiedWisdomtreeRankingsRoute(completeHoldings[isin]?.sourceUrl,wisdomtreeClasses[isin],completeHoldings[isin]?.qualifiedRankingListings)&&completeHoldings[isin]?.identitySourceUrl===wisdomtreeFactsheet(isin)&&/^[a-f0-9]{64}$/.test(completeHoldings[isin]?.identitySha256||'')&&completeHoldings[isin]?.identityMethod==='Exact SEDOL to ISIN; identity-source weights never imported') ||
-  (wisdomtreeClasses[isin]?.currency===share.currency&&completeHoldings[isin]?.sourceUrl===`https://www.wisdomtree.com/api/fund-holdings/${wisdomtreeClasses[isin].classId}`&&completeHoldings[isin]?.identitySourceUrl===wisdomtreeFactsheet(isin)&&/^[a-f0-9]{64}$/.test(completeHoldings[isin]?.identitySha256||'')&&completeHoldings[isin]?.identityMethod==='Exact issuer listing FIGI matched to independent ISIN query; unknown identities retained')
+  (wisdomtreeClasses[isin]?.currency===share.currency&&completeHoldings[isin]?.sourceUrl===`https://www.wisdomtree.com/api/fund-holdings/${wisdomtreeClasses[isin].classId}`&&completeHoldings[isin]?.identitySourceUrl===wisdomtreeFactsheet(isin)&&/^[a-f0-9]{64}$/.test(completeHoldings[isin]?.identitySha256||'')&&qualifiedWisdomtreeApiMethod(completeHoldings[isin]))
  ))holdings[isin]={isin,name,currency:share.currency,provider:share.provider,sourceUrl:share.sourceUrl,parser:'wisdomtree-complete'}
  else if(isin==='IE0003R87OG3')holdings[isin]={isin,name,currency:'USD',parser:'avantis-complete',
   sourceUrl:share.sourceUrl,

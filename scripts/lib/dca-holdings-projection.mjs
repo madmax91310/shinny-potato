@@ -6,7 +6,7 @@ export function isSyntheticReplication(name,replication='') {
 export function projectDcaHoldings(h,synthetic,sourceUrl) {
  if(!h||(synthetic&&h.basis!=='index'))return null
  const metadata=Object.fromEntries(['navReconciliation','subjectIsin','coverageProof','identityHistory','requestedListingTicker','qualifiedRankingListings','identityDiscoverySourceUrl','identityDiscoverySha256','checkedAt','sha256','method','scope','sourceUrls','index','indexId','approximation',
-  'identitySourceUrl','identitySha256','identityAsOf','identityMethod','identityEvidenceRegistry','identitySourceFailures',
+  'identitySourceUrl','identitySha256','identityAsOf','identityMethod','identityMethodCode','identityEvidenceRegistry','identitySourceFailures',
   'shareAsOf','shareSourceUrl','shareSha256','unidentifiedSecurityCount','unidentifiedWeightPct','excludedWeightPctByType']
   .filter(key=>h[key]!==undefined).map(key=>[key,h[key]]))
  return {...metadata,asOf:h.asOf,basis:h.basis||'fund',sourceUrl:h.sourceUrl||sourceUrl,
