@@ -1,4 +1,4 @@
-"""Daily exact-share refresh for the 35 requested exposure references.
+"""Daily exact-share refresh for the configured exposure references.
 
 Only dated, validated issuer observations enter the shared catalogue. A failed
 refresh preserves previous evidence and produces a failed workflow signal.

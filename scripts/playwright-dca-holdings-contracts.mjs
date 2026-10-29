@@ -23,6 +23,7 @@ try{
  await page.goto(base)
  mkdirSync('test-artifacts/dca-compositions',{recursive:true})
  for(const [id,allocation] of [
+  ['panx-profile',[['FR0013412269',53],['FR0011550185',33],['LU1681043599',7],['FR0011871110',1.5],['FR0013412012',2],['FR0013412020',1.5],['lvmh',1.5],['bnp',0.5]]],
   ['core',[['world',45],['sp500',35],['nasdaq',20]]],
   ['residual-identities',[['acwi',50],['small',50]]],
   ['nav-residual',[['emerging',60],['infrastructure',40]]],
@@ -86,5 +87,5 @@ try{
   }
  }
  assert.deepEqual(errors,[])
- console.log('Built site: 12 complete/partial/unidentified/inapplicable/native-index/mixed/reconciled portfolios, identical analysis/canvas/download, desktop and mobile verified.')
+ console.log('Built site: 13 complete/partial/unidentified/inapplicable/native-index/mixed/reconciled portfolios, identical analysis/canvas/download, desktop and mobile verified.')
 }finally{await browser?.close();server.kill()}
