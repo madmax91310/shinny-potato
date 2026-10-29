@@ -356,6 +356,7 @@ jobs:
       - run: node scripts/test-bnp-nav-consumers.mjs
       - run: python -m unittest discover -s scripts -p 'test_initial_diagnostics.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
+      - run: python -m unittest discover -s scripts -p 'test_monthly_split_comparison.py'
       - run: python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'
       - run: node scripts/test-nasdaq-total-return.mjs
       - run: python -m unittest discover -s scripts -p 'test_roadmap_assets.py'

@@ -6,6 +6,10 @@ on:
     - cron: '45 6 * * *'
   workflow_dispatch:
     inputs:
+      series:
+        description: 'Séries exactes à recollecter, séparées par des virgules ; vide = périmètre habituel'
+        type: string
+        default: ''
       listings_only:
         description: 'Vérifier uniquement les 21 identités communes, sans recollecter les historiques'
         type: boolean
@@ -25,6 +29,10 @@ on:
       - 'scripts/refresh_index_sources.py'
       - 'scripts/index-automation.json'
       - 'scripts/refresh_monthly_history.py'
+      - 'scripts/qualified_split_comparison.py'
+      - 'scripts/lib/split-comparison-proof.mjs'
+      - 'scripts/test-split-comparison-proof.mjs'
+      - 'scripts/fixtures/imie-split-2026/**'
       - 'scripts/qualified_distributions.py'
       - 'scripts/test_qualified_distributions.py'
       - 'scripts/issuer_nav_history.py'
@@ -58,6 +66,10 @@ on:
       - 'scripts/refresh_index_sources.py'
       - 'scripts/index-automation.json'
       - 'scripts/*monthly*'
+      - 'scripts/qualified_split_comparison.py'
+      - 'scripts/lib/split-comparison-proof.mjs'
+      - 'scripts/test-split-comparison-proof.mjs'
+      - 'scripts/fixtures/imie-split-2026/**'
       - 'scripts/data_automation.py'
       - 'scripts/test_data_automation.py'
       - 'src/data/*monthly*'
@@ -90,6 +102,18 @@ jobs:
         id: collect
         continue-on-error: true
         run: python scripts/collect_official_share_history.py --missing-source-controls --output "$RUNNER_TEMP/new-nav-controls.json" --capture-dir "$RUNNER_TEMP/new-nav-control-sources"
+      - name: Verify exact IMIE split comparison against current real sources
+        run: |
+          node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/imie-baseline.json"
+          python scripts/refresh_monthly_history.py --only etfImie --baseline "$RUNNER_TEMP/imie-baseline.json" --output "$RUNNER_TEMP/imie-source-control.json" --evidence-output "$RUNNER_TEMP/imie-source-evidence.json"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: imie-split-source-controls
+          path: |
+            ${{ runner.temp }}/imie-source-control.json
+            ${{ runner.temp }}/imie-source-evidence.json
+          if-no-files-found: error
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -153,6 +177,7 @@ jobs:
       - run: node scripts/test-income-nav-consumers.mjs
       - run: python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
+      - run: python -m unittest discover -s scripts -p 'test_monthly_split_comparison.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
       - run: python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'
       - run: python -m unittest discover -s scripts -p 'test_ranking_sources.py'
@@ -179,13 +204,13 @@ jobs:
       - run: node scripts/build-equity-history-links.mjs
         if: inputs.listings_only != true
       - name: Qualify missing equity histories
-        if: github.event_name != 'pull_request' && inputs.listings_only != true
+        if: github.event_name != 'pull_request' && inputs.listings_only != true && inputs.series == ''
         run: |
           node scripts/export-equity-candidates.mjs > "$RUNNER_TEMP/equity-candidates.json"
           python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/equity-candidates.json" --limit 12 --apply
           node scripts/build-equity-history-links.mjs
       - name: Qualify missing exact-share monthly histories
-        if: github.event_name != 'pull_request' && inputs.listings_only != true
+        if: github.event_name != 'pull_request' && inputs.listings_only != true && inputs.series == ''
         run: |
           node scripts/export-monthly-candidates.mjs > "$RUNNER_TEMP/monthly-candidates.json"
           python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/monthly-candidates.json" --limit 12 --apply
@@ -197,16 +222,22 @@ jobs:
         continue-on-error: true
         env:
           RETRY_FAILED: ${{ inputs.retry_failed == true || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
+          REQUESTED_SERIES: ${{ inputs.series }}
         run: |
           args=()
-          if [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
+          if [ -n "$REQUESTED_SERIES" ]; then
+            if [ "$RETRY_FAILED" = 'true' ]; then echo 'Sélection explicite incompatible avec retry_failed'; exit 1; fi
+            requested="${REQUESTED_SERIES//,/ }"
+            read -r -a selected <<< "$requested"
+            args+=(--only "${selected[@]}")
+          elif [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
           python scripts/refresh_monthly_history.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/monthly-observation.json" --apply "${args[@]}"
       - name: Refresh exact ranking histories and ECB conversion
         id: rankings
         if: github.event_name != 'pull_request' && inputs.listings_only != true
         continue-on-error: true
         env:
-          RETRY_FAILED: ${{ inputs.retry_failed == true || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
+          RETRY_FAILED: ${{ inputs.series != '' || inputs.retry_failed == true || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
           CROSS_FX_EVIDENCE_DIR: ${{ runner.temp }}/cross-fx-evidence
         run: |
           args=()

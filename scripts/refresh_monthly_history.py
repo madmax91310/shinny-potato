@@ -80,6 +80,8 @@ def yahoo_chart(body, config, interval):
 
 
 def collect_yahoo(config, now, fetch=get_json):
+    from qualified_split_comparison import qualify as qualify_split, comparison_value
+    split_notice=qualify_split(config,now)
     end = dt.datetime(now.year, now.month, 1, tzinfo=UTC)
     start = dt.datetime.strptime(config['periodStart'], '%Y-%m').replace(tzinfo=UTC)
     urls, raw = {}, {}
@@ -144,9 +146,11 @@ def collect_yahoo(config, now, fetch=get_json):
                 'period1':int((boundary-dt.timedelta(days=14 if key in sparse_ends else 7)).timestamp()),'period2':int(boundary.timestamp()),'interval':'1d','events':'div,splits'})
             response,url=chart_response(url,fetch);rows,tz=yahoo_chart(response,config,'1d')
             rows=[r for r in rows if r[0].strftime('%Y-%m')==key]
+            compared=[comparison_value(a,b,rows[-1][0],split_notice,rel_tol=(1e-7 if i==0 else 1e-6)) for i,(a,b) in enumerate(zip(rows[-1][1:],final[key][1:]))] if rows else []
             if (tz!=zone or not rows or rows[-1][0]!=final[key][0]
-                    or any(not math.isclose(a,b,rel_tol=(1e-7 if i==0 else 1e-6),abs_tol=1e-6) for i,(a,b) in enumerate(zip(rows[-1][1:],final[key][1:])))):reject(f'Independent month-end daily window disagrees: {key}, window {rows[-1] if rows else None}, full {final[key]}')
-            return key,{'url':url,'response':response,'close':rows[-1][1]}
+                    or any(not math.isclose(a[0],b,rel_tol=(1e-7 if i==0 else 1e-6),abs_tol=1e-6) for i,(a,b) in enumerate(zip(compared,final[key][1:])))):reject(f'Independent month-end daily window disagrees: {key}, window {rows[-1] if rows else None}, full {final[key]}')
+            return key,{'url':url,'response':response,'close':compared[0][0],
+                        **({'splitComparison':{'originalClose':rows[-1][1],'originalAdjustedClose':rows[-1][2],'ratio':split_notice['ratio'],'normalisedClose':compared[0][1],'normalisedAdjustedClose':compared[1][1]}} if any(a[1]for a in compared)else{})}
         keys=[k for k in expected if k in window_months or k in sparse_ends or k not in buckets]
         with ThreadPoolExecutor(max_workers=3) as pool:windows=dict(pool.map(window,keys))
         raw['monthEndWindows']={k:v['response'] for k,v in windows.items()}
@@ -154,6 +158,8 @@ def collect_yahoo(config, now, fetch=get_json):
         date, close, value = final[key]
         boundary = month_shift(dt.datetime.strptime(key, '%Y-%m').replace(tzinfo=UTC), 1).date()
         checked_close=windows[key]['close'] if key in windows else buckets[key]
+        original_checked_close=checked_close
+        checked_close,split_compared=comparison_value(checked_close,close,date,split_notice)
         sparse_verified = (key in sparse_ends and date.isoformat() == sparse_ends[key]
             and key in buckets and key in windows and (boundary-date).days <= 10
             and abs(close-buckets[key]) <= max(.02, close * 1e-7))
@@ -175,6 +181,8 @@ def collect_yahoo(config, now, fetch=get_json):
                            **({'rejectedMonthlyClose':buckets.get(key), 'verificationReason':'Registered historical candle discrepancy; exact daily month-end window agrees'} if key in window_months else {}),
                            **({'sparseMonthEndSession':date.isoformat(),'verificationReason':'Registered sparse quoted session agrees with monthly candle and independent daily window'} if sparse_verified else {}),
                            **({'windowClose':windows[key]['close'],'windowUrl':windows[key]['url']} if key in windows else {})})
+        if split_compared:proof_rows[-1]['splitComparison']={'originalComparisonClose':original_checked_close,'ratio':split_notice['ratio'],'sourceUrl':split_notice['sourceUrl']}
+        if key in windows and windows[key].get('splitComparison'):proof_rows[-1]['windowSplitComparison']=windows[key]['splitComparison']
     if not points:
         reject('No verified continuous month remains')
     qualification = ({'periodStart':points[0][0], 'qualificationCoverage':{
@@ -183,6 +191,10 @@ def collect_yahoo(config, now, fetch=get_json):
     }} if excluded else {})
     result = {**qualification, **({'verifiedDailyWindowMonths':sorted(window_months)} if window_months else {}), 'points': points, 'anniversaryPoints': anniversary, 'sourceUrls': list(urls.values())+[v['url'] for v in windows.values()],
             'timezone': zone, 'proofRows': proof_rows, 'rawResponse': raw}
+    if split_notice:
+        result['splitComparisonEvidence']=split_notice
+        result['sourceUrls'].append(split_notice['sourceUrl'])
+        raw['splitComparisonEvidence']=split_notice
     if config.get('distributionEvidence'):
         from qualified_distributions import reconcile_adjustments
         result=reconcile_adjustments(config,result,daily,now)
