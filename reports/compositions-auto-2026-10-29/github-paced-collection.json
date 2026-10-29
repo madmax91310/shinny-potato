@@ -1,0 +1,73 @@
+{
+  "runId": 40902183101,
+  "jobId": 123547184870,
+  "summary": "2026-10-29T15:32:35.0961043Z Complete holdings: 182/183; identified securities: 410; errors: {'IE00B441G979': 'Equity NAV weights 100.762180% exceed the existing 100.5% limit; cash/derivatives excluded, no renormalisation'}",
+  "observations": [
+    {
+      "asOf": "2026-10-23",
+      "basis": "fund",
+      "checkedAt": "2026-10-29T15:31:52.972103+00:00",
+      "identifiedEquityWeightPct": 99.9995,
+      "isin": "IE00BDVPNG13",
+      "publishedEquityWeightPct": 99.9995,
+      "rows": 58,
+      "sha256": "a33af63545114be25caa47d870a315a0447b80b9ae2267cdb0d89175a8ae297f",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB"
+    },
+    {
+      "asOf": "2026-10-23",
+      "basis": "fund",
+      "checkedAt": "2026-10-29T15:31:52.972103+00:00",
+      "identifiedEquityWeightPct": 92.7974,
+      "isin": "IE00BKLF1R75",
+      "publishedEquityWeightPct": 100.0004,
+      "rows": 111,
+      "sha256": "eaa0cb7e2da546de4cb54df7deddfb1f2ad63ff9505e661e01def8b64b4f4d31",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB"
+    },
+    {
+      "asOf": "2026-10-23",
+      "basis": "fund",
+      "checkedAt": "2026-10-29T15:31:52.972103+00:00",
+      "identifiedEquityWeightPct": 100,
+      "isin": "IE0002Y8CX98",
+      "publishedEquityWeightPct": 100,
+      "rows": 42,
+      "sha256": "4d6bd523f4d0eee0b85e0d322fd6b93901b0e608b076b5d90c7a423f1a63a16e",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB"
+    },
+    {
+      "asOf": "2026-10-23",
+      "basis": "fund",
+      "checkedAt": "2026-10-29T15:31:52.972103+00:00",
+      "identifiedEquityWeightPct": 100.00019999999999,
+      "isin": "IE000W8WMSL2",
+      "publishedEquityWeightPct": 100.00019999999999,
+      "rows": 47,
+      "sha256": "a6d8e1d89cbfa11848f750943f186fda20b7336b312c176cf4a30b0e6b26a2fe",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB"
+    },
+    {
+      "asOf": "2026-10-23",
+      "basis": "fund",
+      "checkedAt": "2026-10-29T15:31:52.972103+00:00",
+      "identifiedEquityWeightPct": 96.9954,
+      "isin": "IE00BZ56SW52",
+      "publishedEquityWeightPct": 99.9996,
+      "rows": 560,
+      "sha256": "96f0cca4506395b30023aef53748554878a39e18507d69553772194303179855",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB"
+    },
+    {
+      "asOf": "2026-10-23",
+      "basis": "fund",
+      "checkedAt": "2026-10-29T15:31:52.972103+00:00",
+      "identifiedEquityWeightPct": 99.9999,
+      "isin": "IE00BJGWQN72",
+      "publishedEquityWeightPct": 99.9999,
+      "rows": 64,
+      "sha256": "cec9cbf54d417ef9251e68cadc628e1614ea4ef0e2e6709be7d40677597fcfb1",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB"
+    }
+  ]
+}
