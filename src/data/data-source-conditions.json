@@ -414,7 +414,9 @@
       "termsUrl": null,
       "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
       "configurations": [
-        "scripts/broker_profile_sources.json"
+        "scripts/broker_profile_sources.json",
+        "scripts/broker_tariff_extensions.py",
+        "scripts/fortuneo_amundi_offer.py"
       ]
     },
     {
@@ -668,6 +670,18 @@
       "attribution": "Source : Banque mondiale, Pink Sheet · CC BY 4.0 · Calculs Épargnant Libre\nworldbank.org/commodities · creativecommons.org/licenses/by/4.0",
       "proof": "src/data/worldbank-gold-monthly.json",
       "reviewStatus": "Licence et attribution déjà consignées pour la série or Pink Sheet ; ne vaut pas pour toutes les données de ce domaine."
+    },
+    {
+      "id": "fortuneo-amundi-public-page-model",
+      "urls": [
+        "https://www.fortuneo.fr/bourse",
+        "https://www.fortuneo.fr/page-data/bourse/page-data.json"
+      ],
+      "access": "Public Gatsby page model requested by the ordinary official website; no login, private key or browser challenge bypass",
+      "scope": "Amundi selected ETF purchase campaign only; exact card and linked legal footnote, account scope, order bounds and explicit dates",
+      "reuseStatus": "unverified",
+      "license": null,
+      "note": "HTTP access is not a reuse licence. The eligible ETF selection is referenced; no blanket eligibility of all Amundi funds is inferred."
     }
   ]
 }

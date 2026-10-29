@@ -198,11 +198,14 @@ SUPPLEMENT_SOURCES={
  'bourso_transfer':('bourso','entrant','https://www.boursobank.com/aide-en-ligne/bourse/mobilite-bourse/question/proposez-vous-une-offre-en-cas-de-transfert-de-compte-bourse-53103659'),
  'bourso_minimum_order':('bourso','minimumOrder','https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf'),
  'fortuneo_transfer':('fortuneo','entrant','https://www.fortuneo.fr/faq/fortuneo-rembourse-t-il-les-frais-de-transfert-dun-compte-bourse'),
- 'fortuneo_amundi':('fortuneo','offerAmundi','https://www.fortuneo.fr/bourse'),
+ 'fortuneo_amundi':('fortuneo','offerAmundi','https://www.fortuneo.fr/page-data/bourse/page-data.json'),
  'saxo_offer':('saxo','offerPea','https://www.home.saxo/fr-fr/accounts/pea/terms-and-conditions'),
  'saxo_amundi':('saxo','offerAmundi','https://www.home.saxo/fr-fr/campaigns/amundi-etf'),
 }
 def parse_supplement(key,s,today):
+ if key=='fortuneo_amundi' and (s.lstrip().startswith('{') or getattr(s,'source_url',None)==SUPPLEMENT_SOURCES[key][2]):
+  from fortuneo_amundi_offer import parse as public_model
+  return public_model(s,today)
  if key=='bourso_minimum_order':
   broker,field,url=SUPPLEMENT_SOURCES[key]
   pages=[(i,p) for i,p in enumerate(s.split('\f'),1) if 'Conditions' in p and 'PEA 18-25 ans' in p and 'Boursomarkets' in p and re.search(r'ETF [–-] ETN [–-] ETC\s*\n\s*\(Paris,Amsterdam\)',p)]
@@ -243,7 +246,9 @@ def parse_supplement(key,s,today):
   meta['note']=f'Contrat daté {month} ; aucun jour de publication fourni. Clause de disponibilité, sans barème de frais PEA.'
   meta['method']='Contrat France, clause de transfert PEA ; disponibilité et exclusion explicites, sans qualification de frais'
   return broker,field,item({'available':1,'unlistedAccepted':0} if field=='entrant' else {'available':1},full,meta,'Trade Republic France ; transfert PEA ; frais non qualifiés')
- broker,field,url=SUPPLEMENT_SOURCES[key];s=BeautifulSoup(s,'html.parser').get_text(' ',strip=True).replace('\xa0',' ')
+ broker,field,url=SUPPLEMENT_SOURCES[key]
+ if key=='fortuneo_amundi':url='https://www.fortuneo.fr/bourse'  # Immutable legacy HTML fixtures; active collection uses JSON only.
+ s=BeautifulSoup(s,'html.parser').get_text(' ',strip=True).replace('\xa0',' ')
  meta=metadata(s,url,today);v={};end=None;start=None
  if key=='caidf_pea_transfer':
   require(s,'Plan d’Épargne en Actions','Le transfert du portefeuille est possible d’une banque à une autre et n’entraine pas la perte des 5 ans acquis ou en cours d’acquisition.')
