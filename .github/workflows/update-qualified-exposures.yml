@@ -117,7 +117,7 @@ jobs:
     # Read-only runtime qualification of the SAME producer. This does not
     # publish observations or introduce another financial collection chain.
     if: github.event_name == 'pull_request'
-    runs-on: macos-15
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7.0.1
@@ -128,9 +128,9 @@ jobs:
         with:
           node-version: 24
       - run: pip install beautifulsoup4==4.15.0 xlrd==2.0.2
-      - run: brew list poppler >/dev/null 2>&1 || brew install poppler
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: npm ci
-      - run: npx playwright install chromium
+      - run: npx playwright install --with-deps chromium
       - name: Qualify exact native books through the ordinary shared producer
         env:
           WISDOMTREE_BROWSER_CAPTURE: '1'
