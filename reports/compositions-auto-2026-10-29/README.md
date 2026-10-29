@@ -37,6 +37,7 @@ Les empreintes et tailles des documents réellement acquis figurent dans `source
 ## Validation exécutée
 
 - Tests Python WisdomTree : 54 ; découverte/renouvellement d'identifiants : 7 ; contrats TOPIX : 7 ; tests DCA Python : 20.
+- Contrats d'identité indépendante : huit tests. Leur double du flux de découverte a été raccordé à la nouvelle entrée partagée ; les assertions d'expiration, de renouvellement et de conservation sur panne restent identiques, sans requête réelle accidentelle avec une date simulée de 2028.
 - `npm run test:dca`, `npm run lint`, `npm run build` et contrôles de contrats d'indice natif exécutés. Aucun budget ni seuil réduit.
 - Les régressions couvrent les cas intégral, partiel, périmé, incompatible, tronqué, doublonné et en échec, la conservation datée, le raccordement des URL équivalentes et le refus des références Europe non qualifiées.
 - Chromium réel, site compilé : neuf portefeuilles (complets, partiels, sans identifiants, hors actions, indices natifs et bases mixtes), calculs du moteur comparés au texte de l'analyse et du canvas ; PNG téléchargé identique octet par octet à l'aperçu ; ordinateur 1 440 px et mobile 390 px. Recette DCA analytics distincte réussie (contributions, comparaisons, exports). Autre consommateur partagé : 34 compositions dans l'outil Indices, labels/géométrie, téléchargements réels, bascules rapides, indisponibilité et mobile vérifiés. Inspection visuelle du PNG TOPIX et de l'analyse Europe/PEA mobile effectuée.
