@@ -17,14 +17,8 @@ from security_identifier_observations import API, digest, candidate_name, candid
 ROOT = Path(__file__).resolve().parents[1]
 # Exact share/class/listing identities corroborated by issuer pages and factsheets
 # on 2026-10-29. Only existing catalogue shares; no weights come from a proxy.
-CLASSES = {
- 'IE00BJGWQN72': (3104137, 'WCLD LN', 'WisdomTree Cloud Computing UCITS ETF - USD Acc'),
- 'IE00BDVPNG13': (1123138, 'WTAI LN', 'WisdomTree Artificial Intelligence UCITS ETF - USD Acc'),
- 'IE0002Y8CX98': (57124746, 'WDEF LN', 'WisdomTree Europe Defence UCITS ETF - EUR Acc'),
- 'IE000W8WMSL2': (58690128, 'WQTM LN', 'WisdomTree Quantum Computing UCITS ETF - USD Acc'),
- 'IE00BKLF1R75': (7369317, 'VOLT LN', 'WisdomTree Battery Solutions UCITS ETF - USD Acc'),
- 'IE00BZ56SW52': (1000422, 'GGRA LN', 'WisdomTree Global Quality Dividend Growth UCITS ETF - USD Acc'),
-}
+CLASS_CONFIG = json.loads((ROOT/'scripts/wisdomtree-holdings-classes.json').read_text())
+CLASSES = {isin:(r['classId'],r['fundTicker'],r['title']) for isin,r in CLASS_CONFIG.items()}
 # Literal cash/currency account labels observed in the issuer API, with no
 # security FIGI and no listing ticker. Unknown blank identities still fail.
 CASH_LABELS = {'CASH W-O','KOREAN WON','HONG KONG DOLLAR','EURO INCOME A/C',
@@ -135,12 +129,10 @@ def parse(payload, share, now, mapping):
     return rows, stamps.pop(), cash
 
 
-def collect(share, now, fetch=download, post=mapping_request):
-    from collect_physical_holdings import observation
-    class_id, ticker, title = CLASSES[share['isin']]
-    currency = 'EUR' if share['isin']=='IE0002Y8CX98' else 'USD'
-    if share['currency'] != currency:
-        raise ValueError('Wrong API share currency')
+def qualify_share_document(share,now,fetch=download):
+    class_id,ticker,title=CLASSES[share['isin']]
+    currency=CLASS_CONFIG[share['isin']]['currency']
+    if share['currency']!=currency:raise ValueError('Wrong API share currency')
     document_url = f'https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/{share["isin"]}'
     document = fetch(document_url)
     text = pdf_text(document)
@@ -153,6 +145,14 @@ def collect(share, now, fetch=download, post=mapping_request):
     identity_date = document_date(re.search(r'Document Date:\s*(\d{2}/\d{2}/\d{4})', text)[1], now, max_age=limit)
     if (now.date()-dt.date.fromisoformat(identity_date)).days > limit:
         raise ValueError('Expired API fund identity document')
+    return {'identitySourceUrl':document_url,'identitySha256':proof(document),'identityAsOf':identity_date}
+
+
+def collect(share, now, fetch=download, post=mapping_request):
+    from collect_physical_holdings import observation
+    class_id,ticker,_=CLASSES[share['isin']]
+    identity=qualify_share_document(share,now,fetch)
+    document_url=identity['identitySourceUrl']
     url = f'https://www.wisdomtree.com/api/fund-holdings/{class_id}'
     capture_method='public-http-json'
     try:
@@ -194,7 +194,7 @@ def collect(share, now, fetch=download, post=mapping_request):
     priority={}
     for row in payload:
         if row.get('figi') in mapping:continue
-        for isin in candidate_isins(row.get('securityName',''),candidates_by_name)-already_tested:
+        for isin in candidate_isins(re.sub(r'-New$','',row.get('securityName',''),flags=re.I),candidates_by_name)-already_tested:
             priority[isin]=max(priority.get(isin,0),row.get('wgt',0))
     candidates=sorted(priority,key=lambda isin:(-priority[isin],isin))
     for start in range(0, min(len(candidates), 80), 10):
@@ -232,6 +232,6 @@ def collect(share, now, fetch=download, post=mapping_request):
                        excludedWeightPctByType={'Cash': cash}, identityObservations=[o for o in observations if o not in shared.values()],
                        identityEvidenceRegistry='src/data/security-identifier-observations.json',
                        identitySourceHashes={key:o['sha256'] for key,o in shared.items()},
-                       identitySourceUrl=document_url, identitySha256=proof(document), identityAsOf=identity_date,
+                       **identity,
                        sourceUrls=[url, document_url, API],
                        identityMethod='Exact issuer listing FIGI matched to independent ISIN query; unknown identities retained')

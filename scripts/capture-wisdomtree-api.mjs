@@ -1,10 +1,11 @@
+import classes from './wisdomtree-holdings-classes.json' with {type:'json'}
 import {chromium} from 'playwright'
 
 // Ordinary public browser navigation, without credentials or challenge solving.
 // A blocked response stays an incident; never treat HTML as a portfolio.
 const url=process.argv[2]
-if(url!=='https://www.wisdomtree.com/api/fund-holdings/3104137')throw Error('Unqualified issuer API URL')
-const browser=await chromium.launch({headless:true})
+if(!Object.values(classes).some(row=>url===`https://www.wisdomtree.com/api/fund-holdings/${row.classId}`))throw Error('Unqualified issuer API URL')
+const browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']}: {})})
 try{
  const page=await browser.newPage({locale:'en-GB'})
  const response=await page.goto(url,{waitUntil:'domcontentloaded',timeout:25000})

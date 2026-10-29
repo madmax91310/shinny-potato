@@ -10,6 +10,10 @@ on:
       - 'scripts/collect_physical_holdings.py'
       - 'scripts/collect_wisdomtree_holdings.py'
       - 'scripts/wisdomtree_api_holdings.py'
+      - 'scripts/wisdomtree-holdings-classes.json'
+      - 'scripts/test_wisdomtree_complete_api.py'
+      - 'scripts/test_wisdomtree_public_rankings.py'
+      - 'scripts/test_dca_holdings_retention.py'
       - 'scripts/capture-wisdomtree-api.mjs'
       - 'scripts/test_wisdomtree_api_holdings.py'
       - 'scripts/discover_holdings_sources.py'
@@ -49,6 +53,10 @@ on:
       - 'scripts/collect_physical_holdings.py'
       - 'scripts/collect_wisdomtree_holdings.py'
       - 'scripts/wisdomtree_api_holdings.py'
+      - 'scripts/wisdomtree-holdings-classes.json'
+      - 'scripts/test_wisdomtree_complete_api.py'
+      - 'scripts/test_wisdomtree_public_rankings.py'
+      - 'scripts/test_dca_holdings_retention.py'
       - 'scripts/capture-wisdomtree-api.mjs'
       - 'scripts/test_wisdomtree_api_holdings.py'
       - 'scripts/discover_holdings_sources.py'
@@ -122,7 +130,7 @@ jobs:
       - run: node scripts/test-issuer-product-routes.mjs
       - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py'
       - name: Validate public holdings API identities and complete weights
-        run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_complete_api.py' && python -m unittest discover -s scripts -p 'test_dca_holdings_retention.py'
+        run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_complete_api.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_public_rankings.py' && python -m unittest discover -s scripts -p 'test_dca_holdings_retention.py'
       - name: Refresh exact security identifier evidence
         id: identifiers
         continue-on-error: true

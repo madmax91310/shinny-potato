@@ -72,7 +72,8 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
         if not localized and re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',security or ''):
             securities.append({'isin':security,'name':name,'country':None if localized else country,'sector':None if localized else sector,'ticker':ticker,'currency':currency,'exchange':exchange})
     total=sum(r['weightPct'] for r in rows)
-    if not rows or total>100.5:raise ValueError('Non-long-only equity composition')
+    if not rows:raise ValueError('No physical equity composition')
+    if total>100.5:raise ValueError(f'Equity NAV weights {total:.6f}% exceed the existing 100.5% limit; cash/derivatives excluded, no renormalisation')
     record={'asOf':h['asOf'],'basis':'fund','sourceUrl':url,'complete':True,'rows':rows,'method':'Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation'}
     # Attributes and equity weights come from these exact dated holdings, never
     # the independently dated exposure tables or a later security lookup.
