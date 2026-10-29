@@ -263,7 +263,7 @@ export async function collectPublications(now = new Date(), request = fetch, pre
   const owners=new Map(sources.map(source=>[source.id,source]))
   const upgradeNeeded=item=>{
     const source=owners.get(item.source)
-    return source?.id==='credit-logement' || source?.id==='revolut-news' || source?.method==='offer-watch' || source?.id==='xetra' || (source?.family==='etf'||item.observation?.family==='etf') && item.observation && !item.observation.products?.length || item.observation?.evidenceLevel==='journalistic' || item.status==='rejected' && (source?.format || source?.method.startsWith('consumer-')) && !consumerRejection(item.title??'',item.description??'')
+    return source?.id==='bdf-debt' && ['error','partial','rejected'].includes(item.status) || source?.id==='credit-logement' || source?.id==='revolut-news' || source?.method==='offer-watch' || source?.id==='xetra' || (source?.family==='etf'||item.observation?.family==='etf') && item.observation && !item.observation.products?.length || item.observation?.evidenceLevel==='journalistic' || item.status==='rejected' && (source?.format || source?.method.startsWith('consumer-')) && !consumerRejection(item.title??'',item.description??'')
   }
   const parserDue=item=>upgradeNeeded(item) && owners.get(item.source)?.parserVersion && item.parserVersion!==owners.get(item.source).parserVersion && item.parserVersionAttempted!==owners.get(item.source).parserVersion
   const due = Object.entries(state.documents).filter(([, item]) => (!item.listingRejected || parserDue(item)) && (parserDue(item) || !item.nextAttemptAt || Date.parse(item.nextAttemptAt) <= +now))

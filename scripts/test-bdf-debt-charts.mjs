@@ -49,3 +49,42 @@ assert(result.observations.some(o=>o.sourceUrl===latest.url&&o.evidence.controll
 assert(result.errors.some(e=>e.entity===bad.url&&/bornes différentes/.test(e.reason)))
 assert(!result.observations.some(o=>o.sourceUrl===bad.url),'The inconsistent archive must remain unqualified')
 console.log('BDF debt: 11/12 actual documents qualified, inconsistent2023T2 retained; periods, axes, four series, null/partial/malformed responses and isolated producer errors verified.')
+
+// Production had ten pre-parser errors held until tomorrow. A version bump
+// must reach the queue selector, not merely annotate its source definition.
+const earlier=new Date(+now-3600000).toISOString(),future=new Date(+now+86400000).toISOString()
+const oldFailure=(row,status='error')=>({url:row.url,source:source.id,title:row.title,publishedAt:row.publishedAt,discoveredAt:earlier,attemptedAt:earlier,nextAttemptAt:future,attempts:7,status,error:'Résumé statistique chiffré absent : extraction à adapter'})
+const settled=manifest.responses.find(r=>r.url.endsWith('2022t4'))
+const documents=Object.fromEntries([latest,bad,settled].map(row=>[row.url,oldFailure(row)]))
+documents[settled.url].status='done';delete documents[settled.url].error
+const before={sources:{[source.id]:{id:source.id,status:'ok',checkedAt:earlier,lastSuccessAt:earlier,nextCheckAt:future}},documents}
+const requested=[]
+const controlledRequest=async(url,args)=>{
+ requested.push(url)
+ assert.equal(args.headers['If-None-Match'],undefined,'Parser migration must exercise the source, not a cached response')
+ assert([latest.url,bad.url].includes(url),'Already valid documents must not be replayed')
+ return new Response(url===latest.url?html:badHtml,{headers:{'content-type':'text/html'}})
+}
+const recovered=await collectPublications(now,controlledRequest,before,[source],2)
+assert.equal(recovered.metrics.attemptedDocuments,2)
+assert.deepEqual(new Set(requested),new Set([latest.url,bad.url]))
+assert.equal(recovered.state.documents[latest.url].status,'done')
+assert.equal(recovered.state.documents[latest.url].parserVersion,1)
+assert.equal(recovered.state.documents[latest.url].parserVersionAttempted,1)
+assert(recovered.state.documents[latest.url].recoveredAt)
+assert.equal(recovered.state.documents[bad.url].status,'error')
+assert.equal(recovered.state.documents[bad.url].parserVersionAttempted,1)
+assert(recovered.errors.some(e=>e.entity===bad.url&&/bornes différentes/.test(e.reason)))
+assert.deepEqual(recovered.state.documents[settled.url],before.documents[settled.url])
+assert.equal(before.documents[latest.url].status,'error','Input historical state is immutable')
+const again=await collectPublications(new Date(+now+1000),async()=>{throw Error('No immediate repeated attempt permitted')},recovered.state,[source],2)
+assert.equal(again.metrics.requests,0)
+assert.equal(again.state.documents[latest.url].observation.checkedAt,now.toISOString())
+assert(again.errors.some(e=>e.entity===bad.url),'A later targeted success must not clear the contradictory document')
+// A smaller ordinary budget preserves every unselected old failure for a later pass.
+const bounded=await collectPublications(now,controlledRequest,before,[source],1)
+assert.equal(bounded.metrics.attemptedDocuments,1)
+const untouched=Object.entries(bounded.state.documents).filter(([url,item])=>url!==settled.url&&!item.parserVersionAttempted)
+assert.equal(untouched.length,1)
+assert.equal(untouched[0][1].attemptedAt,earlier)
+console.log('BDF versioned recovery: future-backoff legacy failures requalified once within ordinary budget; valid history, failed periods, no-source-cache and unattempted identities preserved.')

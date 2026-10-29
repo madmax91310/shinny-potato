@@ -1,0 +1,611 @@
+{
+  "capturedAt": "2026-10-29T12:58:37.825Z",
+  "sourceMonitorCheckedAt": "2026-10-29T12:50:09Z",
+  "source": "https://raw.githubusercontent.com/madmax91310/shinny-potato/automation-status/automation-status.json",
+  "rows": [
+    {
+      "name": "WisdomTree Brent Crude Oil · VL",
+      "dataId": "JE00B78CGV99",
+      "field": "Historique mensuel",
+      "impactScope": "asset",
+      "tools": [
+        "Calculateur",
+        "Performance depuis",
+        "Qui a vraiment gagné ?"
+      ],
+      "sourceUrls": [
+        "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-brent-crude-oil",
+        "https://www.wisdomtree.com/api/fund-history/1000279/historical-data-export"
+      ],
+      "to": "/bibliotheque-donnees?id=history%3Aetc_brent_crude_oilNav",
+      "checkedAt": "2026-10-28",
+      "asOf": "2026-09",
+      "currency": "USD",
+      "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+      "id": "history:automated-etf-monthly:etc_brent_crude_oilNav:return-window:2021-12:2022-12",
+      "kind": "history",
+      "unqualifiedReturnWindow": {
+        "start": "2021-12",
+        "end": "2022-12",
+        "year": 2022,
+        "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2022 : 39.50567025 % / 39.5 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+        "dailyDerived": 39.50567025298051,
+        "published": 39.5,
+        "differencePp": 0.005670252980507939,
+        "startDate": "2021-12-31",
+        "endDate": "2022-12-30",
+        "startValue": 34.39,
+        "endValue": 47.976,
+        "currency": "USD"
+      },
+      "cause": "NAV quotidiennes et calendrier officiel non rapprochés pour 2022 : 39.50567025 % / 39.5 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+      "qualificationScope": "Rendements sur (début,fin] ; les périodes indépendamment corroborées restent utilisables.",
+      "lastSuccessAt": "2026-10-28",
+      "firstSeenAt": "2026-10-28T17:26:39.160176+00:00",
+      "lastSeenAt": "2026-10-29T11:52:02.967055+00:00",
+      "observations": [
+        {
+          "cause": "NAV quotidiennes et calendrier officiel non rapprochés pour 2022 : 39.50567025 % / 39.5 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+          "asOf": "2026-09",
+          "lastSuccessAt": "2026-10-28",
+          "sourceUrls": [
+            "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-brent-crude-oil",
+            "https://www.wisdomtree.com/api/fund-history/1000279/historical-data-export"
+          ]
+        }
+      ],
+      "originalKind": "history",
+      "proofStatus": "resolution-unproven",
+      "action": "Dernier incident connu conservé : obtenir une preuve ciblée de résolution ou de retrait du périmètre.",
+      "resolvedAt": "2026-10-29T11:53:42.288831+00:00",
+      "resolutionEvidence": {
+        "kind": "qualified-monthly-return-window",
+        "dataId": "JE00B78CGV99",
+        "currency": "USD",
+        "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+        "checkedAt": "2026-10-29",
+        "responseSha256": "20fcb5b65275ed984908d718f48926d550ace53d31127d661d28612fdcbc7116",
+        "window": {
+          "start": "2021-12",
+          "end": "2022-12",
+          "year": 2022,
+          "convention": "fund-nav-total-return",
+          "sourceRuntime": {
+            "runId": "40849049488",
+            "attempt": "1",
+            "event": "push",
+            "codeRevision": "bc838a4faa7fa879247ae4f66055f47d15533a63",
+            "kind": "github"
+          },
+          "sourceCheck": {
+            "year": 2022,
+            "start": "2021-12-31",
+            "end": "2022-12-30",
+            "startValue": 34.39022243456495,
+            "endValue": 47.97571435298103,
+            "dailyDerived": 39.50393733063373,
+            "published": 39.5,
+            "publishedDecimalPlaces": 2
+          }
+        }
+      }
+    },
+    {
+      "name": "WisdomTree WTI Crude Oil · VL",
+      "dataId": "GB00B15KXV33",
+      "field": "Historique mensuel",
+      "impactScope": "asset",
+      "tools": [
+        "Calculateur",
+        "Performance depuis",
+        "Qui a vraiment gagné ?"
+      ],
+      "sourceUrls": [
+        "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil",
+        "https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export"
+      ],
+      "to": "/bibliotheque-donnees?id=history%3Aetc_wti_crude_oilNav",
+      "checkedAt": "2026-10-28",
+      "asOf": "2026-09",
+      "currency": "USD",
+      "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+      "id": "history:automated-etf-monthly:etc_wti_crude_oilNav:return-window:2020-12:2021-12",
+      "kind": "history",
+      "unqualifiedReturnWindow": {
+        "start": "2020-12",
+        "end": "2021-12",
+        "year": 2021,
+        "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2021 : 65.11872669 % / 65.13 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+        "dailyDerived": 65.11872668857788,
+        "published": 65.13,
+        "differencePp": -0.01127331142211574,
+        "startDate": "2020-12-31",
+        "endDate": "2021-12-31",
+        "startValue": 4.33264,
+        "endValue": 7.154,
+        "currency": "USD"
+      },
+      "cause": "NAV quotidiennes et calendrier officiel non rapprochés pour 2021 : 65.11872669 % / 65.13 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+      "qualificationScope": "Rendements sur (début,fin] ; les périodes indépendamment corroborées restent utilisables.",
+      "lastSuccessAt": "2026-10-28",
+      "firstSeenAt": "2026-10-28T17:26:39.160176+00:00",
+      "lastSeenAt": "2026-10-29T11:52:02.967055+00:00",
+      "observations": [
+        {
+          "cause": "NAV quotidiennes et calendrier officiel non rapprochés pour 2021 : 65.11872669 % / 65.13 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+          "asOf": "2026-09",
+          "lastSuccessAt": "2026-10-28",
+          "sourceUrls": [
+            "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil",
+            "https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export"
+          ]
+        }
+      ],
+      "originalKind": "history",
+      "proofStatus": "resolution-unproven",
+      "action": "Dernier incident connu conservé : obtenir une preuve ciblée de résolution ou de retrait du périmètre.",
+      "resolvedAt": "2026-10-29T11:53:42.288831+00:00",
+      "resolutionEvidence": {
+        "kind": "qualified-monthly-return-window",
+        "dataId": "GB00B15KXV33",
+        "currency": "USD",
+        "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+        "checkedAt": "2026-10-29",
+        "responseSha256": "7bd77504612bf9c8b47ea5dd0cfd790f463959bc1a2c323f5ea8c9c5aaca0719",
+        "window": {
+          "start": "2020-12",
+          "end": "2021-12",
+          "year": 2021,
+          "convention": "fund-nav-total-return",
+          "sourceRuntime": {
+            "runId": "40849049488",
+            "attempt": "1",
+            "event": "push",
+            "codeRevision": "bc838a4faa7fa879247ae4f66055f47d15533a63",
+            "kind": "github"
+          },
+          "sourceCheck": {
+            "year": 2021,
+            "start": "2020-12-31",
+            "end": "2021-12-31",
+            "startValue": 4.332635493271483,
+            "endValue": 7.154402356154275,
+            "dailyDerived": 65.12818507961155,
+            "published": 65.13,
+            "publishedDecimalPlaces": 2
+          }
+        }
+      }
+    },
+    {
+      "name": "WisdomTree WTI Crude Oil · VL",
+      "dataId": "GB00B15KXV33",
+      "field": "Historique mensuel",
+      "impactScope": "asset",
+      "tools": [
+        "Calculateur",
+        "Performance depuis",
+        "Qui a vraiment gagné ?"
+      ],
+      "sourceUrls": [
+        "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil",
+        "https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export"
+      ],
+      "to": "/bibliotheque-donnees?id=history%3Aetc_wti_crude_oilNav",
+      "checkedAt": "2026-10-28",
+      "asOf": "2026-09",
+      "currency": "USD",
+      "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+      "id": "history:automated-etf-monthly:etc_wti_crude_oilNav:return-window:2021-12:2022-12",
+      "kind": "history",
+      "unqualifiedReturnWindow": {
+        "start": "2021-12",
+        "end": "2022-12",
+        "year": 2022,
+        "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2022 : 29.34022924 % / 29.33 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+        "dailyDerived": 29.340229242381888,
+        "published": 29.33,
+        "differencePp": 0.010229242381889492,
+        "startDate": "2021-12-31",
+        "endDate": "2022-12-30",
+        "startValue": 7.154,
+        "endValue": 9.253,
+        "currency": "USD"
+      },
+      "cause": "NAV quotidiennes et calendrier officiel non rapprochés pour 2022 : 29.34022924 % / 29.33 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+      "qualificationScope": "Rendements sur (début,fin] ; les périodes indépendamment corroborées restent utilisables.",
+      "lastSuccessAt": "2026-10-28",
+      "firstSeenAt": "2026-10-28T17:26:39.160176+00:00",
+      "lastSeenAt": "2026-10-29T11:52:02.967055+00:00",
+      "observations": [
+        {
+          "cause": "NAV quotidiennes et calendrier officiel non rapprochés pour 2022 : 29.34022924 % / 29.33 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+          "asOf": "2026-09",
+          "lastSuccessAt": "2026-10-28",
+          "sourceUrls": [
+            "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil",
+            "https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export"
+          ]
+        }
+      ],
+      "originalKind": "history",
+      "proofStatus": "resolution-unproven",
+      "action": "Dernier incident connu conservé : obtenir une preuve ciblée de résolution ou de retrait du périmètre.",
+      "resolvedAt": "2026-10-29T11:53:42.288831+00:00",
+      "resolutionEvidence": {
+        "kind": "qualified-monthly-return-window",
+        "dataId": "GB00B15KXV33",
+        "currency": "USD",
+        "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+        "checkedAt": "2026-10-29",
+        "responseSha256": "7bd77504612bf9c8b47ea5dd0cfd790f463959bc1a2c323f5ea8c9c5aaca0719",
+        "window": {
+          "start": "2021-12",
+          "end": "2022-12",
+          "year": 2022,
+          "convention": "fund-nav-total-return",
+          "sourceRuntime": {
+            "runId": "40849049488",
+            "attempt": "1",
+            "event": "push",
+            "codeRevision": "bc838a4faa7fa879247ae4f66055f47d15533a63",
+            "kind": "github"
+          },
+          "sourceCheck": {
+            "year": 2022,
+            "start": "2021-12-31",
+            "end": "2022-12-30",
+            "startValue": 7.154402356154275,
+            "endValue": 9.253010353294117,
+            "dailyDerived": 29.33309999450342,
+            "published": 29.33,
+            "publishedDecimalPlaces": 2
+          }
+        }
+      }
+    },
+    {
+      "name": "WisdomTree WTI Crude Oil · VL",
+      "dataId": "GB00B15KXV33",
+      "field": "Historique mensuel",
+      "impactScope": "asset",
+      "tools": [
+        "Calculateur",
+        "Performance depuis",
+        "Qui a vraiment gagné ?"
+      ],
+      "sourceUrls": [
+        "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil",
+        "https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export"
+      ],
+      "to": "/bibliotheque-donnees?id=history%3Aetc_wti_crude_oilNav",
+      "checkedAt": "2026-10-28",
+      "asOf": "2026-09",
+      "currency": "USD",
+      "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+      "id": "history:automated-etf-monthly:etc_wti_crude_oilNav:return-window:2023-12:2024-12",
+      "kind": "history",
+      "unqualifiedReturnWindow": {
+        "start": "2023-12",
+        "end": "2024-12",
+        "year": 2024,
+        "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2024 : 10.04662522 % / 10.06 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+        "dailyDerived": 10.046625222024886,
+        "published": 10.06,
+        "differencePp": -0.013374777975114327,
+        "startDate": "2023-12-29",
+        "endDate": "2024-12-31",
+        "startValue": 9.008,
+        "endValue": 9.913,
+        "currency": "USD"
+      },
+      "cause": "NAV quotidiennes et calendrier officiel non rapprochés pour 2024 : 10.04662522 % / 10.06 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+      "qualificationScope": "Rendements sur (début,fin] ; les périodes indépendamment corroborées restent utilisables.",
+      "lastSuccessAt": "2026-10-28",
+      "firstSeenAt": "2026-10-28T17:26:39.160176+00:00",
+      "lastSeenAt": "2026-10-29T11:52:02.967055+00:00",
+      "observations": [
+        {
+          "cause": "NAV quotidiennes et calendrier officiel non rapprochés pour 2024 : 10.04662522 % / 10.06 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+          "asOf": "2026-09",
+          "lastSuccessAt": "2026-10-28",
+          "sourceUrls": [
+            "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil",
+            "https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export"
+          ]
+        }
+      ],
+      "originalKind": "history",
+      "proofStatus": "resolution-unproven",
+      "action": "Dernier incident connu conservé : obtenir une preuve ciblée de résolution ou de retrait du périmètre.",
+      "resolvedAt": "2026-10-29T11:53:42.288831+00:00",
+      "resolutionEvidence": {
+        "kind": "qualified-monthly-return-window",
+        "dataId": "GB00B15KXV33",
+        "currency": "USD",
+        "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+        "checkedAt": "2026-10-29",
+        "responseSha256": "7bd77504612bf9c8b47ea5dd0cfd790f463959bc1a2c323f5ea8c9c5aaca0719",
+        "window": {
+          "start": "2023-12",
+          "end": "2024-12",
+          "year": 2024,
+          "convention": "fund-nav-total-return",
+          "sourceRuntime": {
+            "runId": "40849049488",
+            "attempt": "1",
+            "event": "push",
+            "codeRevision": "bc838a4faa7fa879247ae4f66055f47d15533a63",
+            "kind": "github"
+          },
+          "sourceCheck": {
+            "year": 2024,
+            "start": "2023-12-29",
+            "end": "2024-12-31",
+            "startValue": 9.007550129548841,
+            "endValue": 9.913338898208979,
+            "dailyDerived": 10.055883737896053,
+            "published": 10.06,
+            "publishedDecimalPlaces": 2
+          }
+        }
+      }
+    },
+    {
+      "name": "WisdomTree Coffee · VL",
+      "dataId": "JE00BN7KB557",
+      "field": "Historique mensuel",
+      "impactScope": "asset",
+      "tools": [
+        "Calculateur",
+        "Performance depuis",
+        "Qui a vraiment gagné ?"
+      ],
+      "sourceUrls": [
+        "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-coffee",
+        "https://www.wisdomtree.com/api/fund-history/1000072/historical-data-export"
+      ],
+      "to": "/bibliotheque-donnees?id=history%3Aetc_coffeeNav",
+      "checkedAt": "2026-10-28",
+      "asOf": "2026-09",
+      "currency": "USD",
+      "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+      "id": "history:automated-etf-monthly:etc_coffeeNav:return-window:2021-12:2022-12",
+      "kind": "history",
+      "unqualifiedReturnWindow": {
+        "start": "2021-12",
+        "end": "2022-12",
+        "year": 2022,
+        "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2022 : -23.12824314 % / -23.12 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+        "dailyDerived": -23.12824314306895,
+        "published": -23.12,
+        "differencePp": -0.00824314306894891,
+        "startDate": "2021-12-31",
+        "endDate": "2022-12-30",
+        "startValue": 31.027,
+        "endValue": 23.851,
+        "currency": "USD"
+      },
+      "cause": "NAV quotidiennes et calendrier officiel non rapprochés pour 2022 : -23.12824314 % / -23.12 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+      "qualificationScope": "Rendements sur (début,fin] ; les périodes indépendamment corroborées restent utilisables.",
+      "lastSuccessAt": "2026-10-28",
+      "firstSeenAt": "2026-10-28T17:26:39.160176+00:00",
+      "lastSeenAt": "2026-10-29T11:52:02.967055+00:00",
+      "observations": [
+        {
+          "cause": "NAV quotidiennes et calendrier officiel non rapprochés pour 2022 : -23.12824314 % / -23.12 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+          "asOf": "2026-09",
+          "lastSuccessAt": "2026-10-28",
+          "sourceUrls": [
+            "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-coffee",
+            "https://www.wisdomtree.com/api/fund-history/1000072/historical-data-export"
+          ]
+        }
+      ],
+      "originalKind": "history",
+      "proofStatus": "resolution-unproven",
+      "action": "Dernier incident connu conservé : obtenir une preuve ciblée de résolution ou de retrait du périmètre.",
+      "resolvedAt": "2026-10-29T11:53:42.288831+00:00",
+      "resolutionEvidence": {
+        "kind": "qualified-monthly-return-window",
+        "dataId": "JE00BN7KB557",
+        "currency": "USD",
+        "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+        "checkedAt": "2026-10-29",
+        "responseSha256": "e3b58f683c9e0f3a4834e08b40dc927d635ffa9a6b44bb36fd334a0535c39c31",
+        "window": {
+          "start": "2021-12",
+          "end": "2022-12",
+          "year": 2022,
+          "convention": "fund-nav-total-return",
+          "sourceRuntime": {
+            "runId": "40849049488",
+            "attempt": "1",
+            "event": "push",
+            "codeRevision": "bc838a4faa7fa879247ae4f66055f47d15533a63",
+            "kind": "github"
+          },
+          "sourceCheck": {
+            "year": 2022,
+            "start": "2021-12-31",
+            "end": "2022-12-30",
+            "startValue": 31.030000294997457,
+            "endValue": 23.856758087780744,
+            "dailyDerived": -23.117119365200768,
+            "published": -23.12,
+            "publishedDecimalPlaces": 2
+          }
+        }
+      }
+    },
+    {
+      "name": "WisdomTree Coffee · VL",
+      "dataId": "JE00BN7KB557",
+      "field": "Historique mensuel",
+      "impactScope": "asset",
+      "tools": [
+        "Calculateur",
+        "Performance depuis",
+        "Qui a vraiment gagné ?"
+      ],
+      "sourceUrls": [
+        "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-coffee",
+        "https://www.wisdomtree.com/api/fund-history/1000072/historical-data-export"
+      ],
+      "to": "/bibliotheque-donnees?id=history%3Aetc_coffeeNav",
+      "checkedAt": "2026-10-28",
+      "asOf": "2026-09",
+      "currency": "USD",
+      "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+      "id": "history:automated-etf-monthly:etc_coffeeNav:return-window:2022-12:2023-12",
+      "kind": "history",
+      "unqualifiedReturnWindow": {
+        "start": "2022-12",
+        "end": "2023-12",
+        "year": 2023,
+        "reason": "NAV quotidiennes et calendrier officiel non rapprochés pour 2023 : 23.04305899 % / 23.02 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+        "dailyDerived": 23.043058991237263,
+        "published": 23.02,
+        "differencePp": 0.023058991237263626,
+        "startDate": "2022-12-30",
+        "endDate": "2023-12-29",
+        "startValue": 23.851,
+        "endValue": 29.347,
+        "currency": "USD"
+      },
+      "cause": "NAV quotidiennes et calendrier officiel non rapprochés pour 2023 : 23.04305899 % / 23.02 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+      "qualificationScope": "Rendements sur (début,fin] ; les périodes indépendamment corroborées restent utilisables.",
+      "lastSuccessAt": "2026-10-28",
+      "firstSeenAt": "2026-10-28T17:26:39.160176+00:00",
+      "lastSeenAt": "2026-10-29T11:52:02.967055+00:00",
+      "observations": [
+        {
+          "cause": "NAV quotidiennes et calendrier officiel non rapprochés pour 2023 : 23.04305899 % / 23.02 %. Convention de rendement de cette fenêtre non qualifiée ; les fenêtres indépendamment corroborées sont conservées.",
+          "asOf": "2026-09",
+          "lastSuccessAt": "2026-10-28",
+          "sourceUrls": [
+            "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-coffee",
+            "https://www.wisdomtree.com/api/fund-history/1000072/historical-data-export"
+          ]
+        }
+      ],
+      "originalKind": "history",
+      "proofStatus": "resolution-unproven",
+      "action": "Dernier incident connu conservé : obtenir une preuve ciblée de résolution ou de retrait du périmètre.",
+      "resolvedAt": "2026-10-29T11:53:42.288831+00:00",
+      "resolutionEvidence": {
+        "kind": "qualified-monthly-return-window",
+        "dataId": "JE00BN7KB557",
+        "currency": "USD",
+        "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+        "checkedAt": "2026-10-29",
+        "responseSha256": "e3b58f683c9e0f3a4834e08b40dc927d635ffa9a6b44bb36fd334a0535c39c31",
+        "window": {
+          "start": "2022-12",
+          "end": "2023-12",
+          "year": 2023,
+          "convention": "fund-nav-total-return",
+          "sourceRuntime": {
+            "runId": "40849049488",
+            "attempt": "1",
+            "event": "push",
+            "codeRevision": "bc838a4faa7fa879247ae4f66055f47d15533a63",
+            "kind": "github"
+          },
+          "sourceCheck": {
+            "year": 2023,
+            "start": "2022-12-30",
+            "end": "2023-12-29",
+            "startValue": 23.856758087780744,
+            "endValue": 29.347490145900423,
+            "dailyDerived": 23.01541574893191,
+            "published": 23.02,
+            "publishedDecimalPlaces": 2
+          }
+        }
+      }
+    }
+  ],
+  "retained": [
+    {
+      "name": "Bitwise Physical Bitcoin ETP",
+      "tools": [
+        "Comparatif ETF",
+        "Duels de portefeuilles",
+        "Générateur de portefeuilles",
+        "Présentation ETF"
+      ],
+      "impactScope": "asset",
+      "sourceUrls": [
+        "https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/",
+        "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+        "https://bourse.fortuneo.fr/trackers/cours-bitetnxetcfixpar-BTCE-DE000A27Z304-23",
+        "https://www.justetf.com/en/etf-profile.html?isin=DE000A27Z304",
+        "https://www.slickcharts.com/currency/BTC/returns"
+      ],
+      "to": "/bibliotheque-donnees?id=DE000A27Z304",
+      "conflictId": "etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-27",
+      "kind": "conflict",
+      "field": "Encours",
+      "cause": "Valeur contradictoire pour la même période (2026-10-27) : Encours. Dernière observation conservée ; propositions archivées (etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-27).",
+      "id": "radar:9a978e4b08c86aff54faea23",
+      "firstSeenAt": "2026-10-28T07:35:21.067615+00:00",
+      "lastSeenAt": "2026-10-29T12:56:36.173828+00:00",
+      "observations": [
+        {
+          "cause": "Valeur contradictoire pour la même période (2026-10-27) : Encours. Dernière observation conservée ; propositions archivées (etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-27).",
+          "sourceUrls": [
+            "https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/",
+            "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+            "https://bourse.fortuneo.fr/trackers/cours-bitetnxetcfixpar-BTCE-DE000A27Z304-23",
+            "https://www.justetf.com/en/etf-profile.html?isin=DE000A27Z304",
+            "https://www.slickcharts.com/currency/BTC/returns"
+          ]
+        }
+      ],
+      "originalKind": "conflict",
+      "proofStatus": "resolution-unproven",
+      "action": "Dernier incident connu conservé : obtenir une preuve ciblée de résolution ou de retrait du périmètre."
+    },
+    {
+      "name": "Bitwise Physical Bitcoin ETP",
+      "tools": [
+        "Comparatif ETF",
+        "Duels de portefeuilles",
+        "Générateur de portefeuilles",
+        "Présentation ETF"
+      ],
+      "impactScope": "asset",
+      "sourceUrls": [
+        "https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/",
+        "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+        "https://bourse.fortuneo.fr/trackers/cours-bitetnxetcfixpar-BTCE-DE000A27Z304-23",
+        "https://www.justetf.com/en/etf-profile.html?isin=DE000A27Z304",
+        "https://www.slickcharts.com/currency/BTC/returns"
+      ],
+      "to": "/bibliotheque-donnees?id=DE000A27Z304",
+      "conflictId": "etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-26",
+      "kind": "conflict",
+      "field": "Encours",
+      "cause": "Valeur contradictoire pour la même période (2026-10-26) : Encours. Dernière observation conservée ; propositions archivées (etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-26).",
+      "id": "radar:ca85f89e0d5309b28a00b3a6",
+      "firstSeenAt": "2026-10-26T21:04:57.314907+00:00",
+      "lastSeenAt": "2026-10-29T12:56:36.173828+00:00",
+      "observations": [
+        {
+          "cause": "Valeur contradictoire pour la même période (2026-10-26) : Encours. Dernière observation conservée ; propositions archivées (etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-26).",
+          "sourceUrls": [
+            "https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/",
+            "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+            "https://bourse.fortuneo.fr/trackers/cours-bitetnxetcfixpar-BTCE-DE000A27Z304-23",
+            "https://www.justetf.com/en/etf-profile.html?isin=DE000A27Z304",
+            "https://www.slickcharts.com/currency/BTC/returns"
+          ]
+        }
+      ],
+      "originalKind": "conflict",
+      "proofStatus": "resolution-unproven",
+      "action": "Dernier incident connu conservé : obtenir une preuve ciblée de résolution ou de retrait du périmètre."
+    }
+  ]
+}
