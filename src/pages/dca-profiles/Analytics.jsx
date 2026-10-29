@@ -1,18 +1,19 @@
-import {useEffect,useMemo,useState} from 'react'
+import {useCallback,useEffect,useMemo,useState} from 'react'
 import {references,pct,euro} from './engine.js'
-import {loadHoldings} from './holdings-loader.js'
+import {loadHoldingsState} from './holdings-loader.js'
 import {portfolioAnalytics,analysisView,analyzedLines,selectConcentrationGroup,concentrationGroupKey,compareExposures} from './analytics.js'
 import {exposureDisplay} from './exposure.js'
 import Verification from './Verification.jsx'
 const titleScope=scope=>scope==='index'?'Indices suivis':scope==='equity'?'Titres en direct':'Positions publiées'
 const delta=n=>`${n>0?'+':''}${n.toLocaleString('fr-FR',{maximumFractionDigits:2})} pts`
-export default function Analytics({profile,analysis,onViewChange}) {
+export default function Analytics({profile,analysis,onViewChange,baseline,onBaselineChange:setBaseline,onHoldingsChange}) {
  const view=analysisView(profile),{mode,capital,months}=view
  const setView=patch=>onViewChange({...view,...patch})
- const [baseline,setBaseline]=useState(null),[query,setQuery]=useState(''),[limit,setLimit]=useState(20)
+ const [query,setQuery]=useState(''),[limit,setLimit]=useState(20)
  const [state,setState]=useState({key:'',holdings:{},error:false}),[retry,setRetry]=useState(0)
+ const refreshHoldings=useCallback(()=>setRetry(n=>n+1),[])
  const requested=[...new Set([...profile.lines,...(baseline||[])].map(l=>l.asset))].sort().join('|')
- useEffect(()=>{let active=true;setState({key:'',holdings:{},error:false});loadHoldings(requested.split('|')).then(holdings=>{if(active)setState({key:requested,holdings,error:false})}).catch(()=>{if(active)setState({key:requested,holdings:{},error:true})});return()=>{active=false}},[requested,retry])
+ useEffect(()=>{let active=true;setState({key:'',holdings:{},error:false});loadHoldingsState(requested.split('|')).then(({holdings,failedAssets})=>{if(active){setState({key:requested,holdings,error:failedAssets.length>0});if(retry)onHoldingsChange()}}).catch(()=>{if(active)setState({key:requested,holdings:{},error:true})});return()=>{active=false}},[requested,retry,onHoldingsChange])
  const loading=state.key!==requested
  let simulationError=''
  let lines
@@ -30,7 +31,7 @@ export default function Analytics({profile,analysis,onViewChange}) {
  {!lines.length&&!simulationError&&<p>Aucun versement mensuel à analyser.</p>}
  {!!lines.length&&<>
  <div className="dca-metrics">{['countries','sectors'].map(field=>{const x=result.exposures[field],d=exposureDisplay(x),lead=x.groups[0]?.rows[0];return <article key={field}><span>{field==='countries'?'Premier pays observé':'Premier secteur observé'}</span><strong>{lead?pct(lead.weight):'—'}</strong><b>{lead?.name||'Pas de ventilation'}</b><small>{pct(d.coverage)} ventilés · {pct(d.missing)} non ventilés</small></article>})}<article><span>Titres identifiés</span><strong>{loading?'…':group?.identified||0}</strong><b>{group?titleScope(group.scope):'Analyse en cours de qualification'}</b><small>{loading?'Chargement des compositions…':`${pct(group?.coverage||0)} du portefeuille identifié`}</small></article></div>
- {loading&&<p role="status">Chargement de l’analyse des détentions…</p>}{state.error&&<p role="alert">Les compositions n’ont pas pu être chargées. <button onClick={()=>setRetry(n=>n+1)}>Relancer l’analyse</button></p>}
+ {loading&&<p role="status">Chargement de l’analyse des détentions…</p>}{state.error&&<p role="alert">{Object.keys(state.holdings).length?'Certaines compositions sont indisponibles ; les autres restent affichées.':'Les compositions n’ont pas pu être chargées.'} <button onClick={()=>setRetry(n=>n+1)}>Relancer l’analyse</button></p>}
  <details className="dca-analysis-detail"><summary>Concentration et poids cumulés</summary>
  <p>Chaque titre est rapproché par ISIN. Les ADR et classes d’actions restent distincts. Les chiffres portent sur l’allocation sélectionnée ci-dessus.</p>
  {result.groups.length>1&&<div className="dca-analysis-tabs" aria-label="Périmètre des détentions">{result.groups.map(g=><button key={concentrationGroupKey(g)} aria-pressed={group===g} onClick={()=>setView({groupKey:concentrationGroupKey(g)})}>{titleScope(g.scope)} · {g.oldest} → {g.asOf}</button>)}</div>}
@@ -48,7 +49,7 @@ export default function Analytics({profile,analysis,onViewChange}) {
  <details className="dca-analysis-detail"><summary>Comparer deux allocations</summary><p>Garde une allocation comme référence, puis modifie les lignes ou les versements. Les écarts sont exprimés en points de pourcentage sur les ventilations compatibles.</p><div className="dca-buttons"><button className="dca-secondary" onClick={()=>setBaseline(structuredClone(lines))}>Garder cette allocation comme référence</button>{baseline&&<button className="dca-secondary" onClick={()=>setBaseline(null)}>Effacer la référence</button>}</div>
  {before&&['countries','sectors'].map(field=>{const c=compareExposures(before,result,field);return <section key={field}><h3>{field==='countries'?'Pays':'Secteurs'}</h3>{c.compatible?<><p>Couverture référence / sélection : {c.coverage.map(pct).join(' / ')}</p><div className="dca-diff-table"><div><b>Exposition</b><b>Référence</b><b>Sélection</b><b>Écart</b></div>{c.rows.slice(0,10).map(r=><div key={r.name}><span>{r.name}</span><span>{pct(r.before)}</span><span>{pct(r.after)}</span><strong>{delta(r.delta)}</strong></div>)}</div></>:<p>Les dates ou les méthodes ne permettent pas de comparer ces ventilations.</p>}</section>})}
  </details>
- <details className="dca-analysis-detail"><summary>Sources, couverture du catalogue et détail des comparaisons</summary><Verification profile={{...profile,lines}} analysis={{...analysis,countries:result.exposures.countries,sectors:result.exposures.sectors}}/></details>
+ <details className="dca-analysis-detail"><summary>Sources, couverture du catalogue et détail des comparaisons</summary><Verification profile={{...profile,lines}} analysis={{...analysis,countries:result.exposures.countries,sectors:result.exposures.sectors}} onHoldingsChange={refreshHoldings}/></details>
  </>}
  </section>
 }

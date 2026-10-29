@@ -3,7 +3,7 @@ import {dcaExposure} from '../src/pages/dca-profiles/exposure.js'
 import {donutData,integerPercentages} from '../src/pages/dca-profiles/image.js'
 import {PROFILES} from '../src/pages/dca-profiles/data.js'
 import {prepareProfile,analyzeProfile,references} from '../src/pages/dca-profiles/engine.js'
-import {validSaved, filterProfiles,searchAssets,readSaved,writeSaved,SAVED_KEY} from '../src/pages/dca-profiles/management.js'
+import {validSaved, filterProfiles,searchAssets,readSaved,readSavedState,writeSaved,SAVED_KEY} from '../src/pages/dca-profiles/management.js'
 import {selectDcaCountryObservation} from './select-dca-country-observation.mjs'
 const published={asOf:'2026-10-16',method:'Published geography'}
 const source={provider:'iShares',countriesRisk:{asOf:'2026-10-15',sourceUrl:'https://www.ishares.com/data',method:'Country of risk, all published holdings including cash/derivatives, no renormalisation',rows:[{name:'United States',weightPct:100}]}}
@@ -64,6 +64,24 @@ writeSaved(storage,[{...one,title:'Renommé'},two]);assert.equal(readSaved(stora
 writeSaved(storage,[two]);assert.equal(readSaved(storage).length,1)
 storage.setItem(SAVED_KEY,'broken');assert.throws(()=>readSaved(storage))
 assert.throws(()=>writeSaved(storage,Array.from({length:51},(_,i)=>({...one,id:String(i)}))))
+// One unreadable entry must not hide healthy portfolios; archive the exact raw
+// record before a subsequent save repairs the active collection.
+const damaged=JSON.stringify({version:2,items:[one,null,{...two,profile:{...two.profile,lines:[null]}},two,{...one,title:'Duplicate'}]})
+storage.setItem(SAVED_KEY,damaged)
+assert.deepEqual(readSaved(storage),[one,two])
+assert.equal(readSavedState(storage).rejected.length,3)
+writeSaved(storage,[{...one,title:'Mis à jour'},two])
+assert([...map].some(([key,value])=>key.startsWith(SAVED_KEY+'-recovery-')&&value===damaged))
+assert.equal(readSaved(storage)[0].title,'Mis à jour')
+storage.setItem(SAVED_KEY,'unreadable raw contents')
+writeSaved(storage,[two])
+assert.deepEqual(readSaved(storage),[two])
+assert([...map].some(([key,value])=>key.startsWith(SAVED_KEY+'-recovery-')&&value==='unreadable raw contents'))
+storage.setItem(SAVED_KEY,damaged)
+const blockedArchive={getItem:storage.getItem,setItem:(key,value)=>{if(key!==SAVED_KEY)throw Error('Quota');storage.setItem(key,value)}}
+assert.throws(()=>writeSaved(blockedArchive,[two]),/Quota/)
+assert.equal(storage.getItem(SAVED_KEY),damaged,'A failed archive must never erase the original')
+assert.throws(()=>readSaved({getItem:()=>{throw Error('Read denied')}},{recoverInvalidRoot:true}),/Read denied/,'A read denial never authorizes replacing existing saves')
 console.log('DCA upgrade: recency, compatibility, stocks, neutral assets, both donuts, filters and multiple saves verified.')
 
 const anonymous={...prepared[0],name:'',imageOnly:true}

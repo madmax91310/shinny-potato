@@ -19,16 +19,35 @@ export function filterProfiles(profiles,filters,used=[]){return profiles.filter(
 export function validSaved(record){
  try{return record&&typeof record.id==='string'&&record.id.length<=100&&typeof record.title==='string'&&record.title.length<=80&&typeof record.draft==='string'&&record.draft.length<=20000&&['countries','sectors','both','all','overlap'].includes(record.field)&&!validateProfile(record.profile).length}catch{return false}
 }
-export function readSaved(storage){
+export function readSavedState(storage,{recoverInvalidRoot=false}={}){
  const raw=storage.getItem(SAVED_KEY)
- if(!raw)return []
- const parsed=JSON.parse(raw)
- if(Array.isArray(parsed?.items))parsed.items=parsed.items.map(record=>({...record,profile:migrateProfile(record.profile)}))
- if(parsed.version!==2||!Array.isArray(parsed.items)||parsed.items.length>50||!parsed.items.every(validSaved)||new Set(parsed.items.map(x=>x.id)).size!==parsed.items.length)throw Error('Sauvegarde illisible ou incompatible.')
- return parsed.items
+ if(!raw)return {items:[],rejected:[]}
+ let parsed
+ try{
+  parsed=JSON.parse(raw)
+  if(parsed?.version!==2||!Array.isArray(parsed.items)||parsed.items.length>50)throw Error('Sauvegarde illisible ou incompatible.')
+ }catch(error){if(!recoverInvalidRoot)throw error;return {items:[],rejected:[raw]}}
+ const items=[],rejected=[],ids=new Set()
+ for(const record of parsed.items){
+  let item
+  try{item=record&&{...record,profile:migrateProfile(record.profile)}}catch{rejected.push(record);continue}
+  if(!validSaved(item)||ids.has(item.id)){rejected.push(record);continue}
+  ids.add(item.id);items.push(item)
+ }
+ return {items,rejected}
+}
+export const readSaved = (storage,options) => readSavedState(storage,options).items
+// Preserve the exact original before replacing an unreadable local record.
+// If the archive cannot be written, the active record must stay untouched.
+export function preserveLocalRecord(storage,key,raw){
+ if(raw!==null)storage.setItem(`${key}-recovery-${crypto.randomUUID()}`,raw)
 }
 export function writeSaved(storage,items){
  if(items.length>50)throw Error('La limite de 50 portefeuilles enregistrés est atteinte.')
- if(!items.every(validSaved))throw Error('Corrige le portefeuille avant de l’enregistrer.')
+ if(!items.every(validSaved)||new Set(items.map(item=>item.id)).size!==items.length)throw Error('Corrige le portefeuille avant de l’enregistrer.')
+ const raw=storage.getItem(SAVED_KEY)
+ let damaged=false
+ try{damaged=readSavedState(storage).rejected.length>0}catch{damaged=true}
+ if(damaged)preserveLocalRecord(storage,SAVED_KEY,raw)
  storage.setItem(SAVED_KEY,JSON.stringify({version:2,items}))
 }

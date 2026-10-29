@@ -20,6 +20,7 @@ export default function SimpleExposure({isin}){
  const [saveError,setSaveError]=useState(false)
  const [exposureLimit,setExposureLimit]=useState(saved?.exposureLimit||4),[showAnalysis,setShowAnalysis]=useState(false),[showCompanies,setShowCompanies]=useState(saved?.showCompanies===true)
  const [analysisView,setAnalysisView]=useState(saved?.analysisView)
+ const [baseline,setBaseline]=useState(null)
  useEffect(()=>{setSaveError(!writePreference(draftKey,{lines,field,exposureLimit,showCompanies,analysisView},validDraft))},[lines,field,exposureLimit,showCompanies,analysisView])
  const profile={id:'expositions',name:'',scope:'Portefeuille investi',imageOnly:true,lines,exposureLimit,showCompanies,analysisView}
  const records=useSelectedRecords(lines.map(line=>line.asset),exposureRecords)
@@ -63,7 +64,7 @@ export default function SimpleExposure({isin}){
       {!!v.excludedAssets.length&&<p>Hors de ce donut : {v.excludedAssets.map(r=>`${r.name} (${pct(r.weight)} du portefeuille)`).join(', ')}.</p>}
      </section>})}
     </details>}
-   {showAnalysis&&<Suspense fallback={<p role="status">Chargement de l’analyse…</p>}><Analytics profile={profile} analysis={analysis} onViewChange={setAnalysisView}/></Suspense>}
+   {showAnalysis&&<Suspense fallback={<p role="status">Chargement de l’analyse…</p>}><Analytics profile={profile} analysis={analysis} baseline={baseline} onBaselineChange={setBaseline} onHoldingsChange={image.retry} onViewChange={setAnalysisView}/></Suspense>}
   </details>}
  </div>
 }

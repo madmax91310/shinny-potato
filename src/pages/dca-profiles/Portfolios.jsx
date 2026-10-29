@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Button from '../../design-system/Button'
-import { readSaved, writeSaved } from './management.js'
+import { readSaved, readSavedState, writeSaved } from './management.js'
 import { validateProfile } from './engine.js'
 export default function Portfolios({profile, draft = '', field, onLoad, resetSignal = 0}) {
   const [items, setItems] = useState([]), [title, setTitle] = useState(''), [selected, setSelected] = useState(''), [feedback, setFeedback] = useState('')
@@ -9,12 +9,12 @@ export default function Portfolios({profile, draft = '', field, onLoad, resetSig
     const record = items.find(item => item.id === selected)
     if (record && record.profile.id !== profile.id) {setSelected('');setTitle('')}
   }, [profile.id, items, selected])
-  function refresh() { try { setItems(readSaved(localStorage)); setFeedback('') } catch { setFeedback('Sauvegardes illisibles. Les données existantes sont conservées.') } }
+  function refresh() { try { const state=readSavedState(localStorage); setItems(state.items); setFeedback(state.rejected.length ? 'Certaines sauvegardes sont illisibles. Les autres restent disponibles ; les données d’origine sont conservées.' : '') } catch { setItems([]); setFeedback('Sauvegardes illisibles. Les données existantes sont conservées.') } }
   function save(asCopy = false) {
     try {
       if (!title.trim()) throw Error('Donne un nom à la sauvegarde.')
       // Read immediately before writing: the other workspace may have saved meanwhile.
-      const previous = readSaved(localStorage)
+      const previous = readSaved(localStorage,{recoverInvalidRoot:true})
       const id = !asCopy && previous.some(x => x.id === selected) ? selected : crypto.randomUUID()
       const item = {id, title:title.trim(), profile:structuredClone(profile), draft, field}
       const next = previous.some(x => x.id === id) ? previous.map(x => x.id === id ? item : x) : [...previous, item]

@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useSelectedRecords } from '../../lib/use-selected-records.js'
 import { exposureRecords } from './records.js'
 import PageHeader from '../../design-system/PageHeader'
@@ -8,7 +8,7 @@ import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { ALL_PROFILES, ASSETS } from './data.js'
 import { buildTweetText, pickUnseenProfile } from './lib.js'
 import { MAX_POSITIONS, prepareProfile, analyzeProfile, PROFILE_SCOPES, references, euro, pct } from './engine.js'
-import { filterProfiles, profileSelection, migrateProfile } from './management.js'
+import { filterProfiles, profileSelection, migrateProfile, preserveLocalRecord } from './management.js'
 import { readUsageHistory, toggleUsageHistory } from './usage-history.js'
 import AllocationEditor, { confirmLines } from './AllocationEditor.jsx'
 import ImageExport from './ImageExport.jsx'
@@ -19,25 +19,34 @@ const Analytics = lazy(() => import('./Analytics.jsx'))
 const profiles=ALL_PROFILES.map(prepareProfile)
 const draftKey='el-dca-draft-v1'
 function initialDraft(){
+ let raw=null
  try {
-  const raw=localStorage.getItem(draftKey)
+  raw=localStorage.getItem(draftKey)
   if(!raw)return {profile:profiles[0],draft:buildTweetText(profiles[0]),field:'all'}
   const saved=JSON.parse(raw),p=migrateProfile(saved?.profile)
   if(!p||typeof p.id!=='string'||typeof p.name!=='string'||p.name.length>45||!PROFILE_SCOPES.includes(p.scope)||!Array.isArray(p.lines)||p.lines.length>MAX_POSITIONS||!p.lines.every(l=>l&&ASSETS[l.asset]&&typeof l.label==='string'&&l.label.length<=250&&(l.weight===null||Number.isFinite(l.weight))&&(p.imageOnly&&l.amount===undefined||l.amount===null||Number.isFinite(l.amount)))||typeof saved.draft!=='string'||saved.draft.length>20000)throw Error()
   return {...saved,profile:{...p,approved:false,lines:confirmLines(p.lines.map(l=>({...l,weight:l.weight===null?NaN:l.weight,amount:p.imageOnly&&!Number.isFinite(l.amount)?0:l.amount===null?NaN:l.amount})))},field:['all','both','countries','sectors','overlap'].includes(saved.field)?saved.field:'all'}
- }catch{return {profile:profiles[0],draft:buildTweetText(profiles[0]),field:'all',error:'L’ancien brouillon est illisible. Il est conservé sur cet appareil ; utilise une sauvegarde dans « Mes portefeuilles ».'}}
+ }catch{return {profile:profiles[0],draft:buildTweetText(profiles[0]),field:'all',damagedDraft:raw,error:'L’ancien brouillon est illisible. Il est conservé sur cet appareil.'}}
 }
 export default function DcaApp(){
  const [initial]=useState(initialDraft)
  const [profile,setProfile]=useState(initial.profile),[draft,setDraft]=useState(initial.draft),[field,setField]=useState(initial.field)
  const [feedback,setFeedback]=useState(''),[showAnalysis,setShowAnalysis]=useState(false),[portfolioReset,setPortfolioReset]=useState(0)
+ const [baseline,setBaseline]=useState(null),[draftError,setDraftError]=useState(initial.error)
+ const draftEdited=useRef(initial.draftEdited ?? initial.draft!==buildTweetText(initial.profile)),archivedDraft=useRef(false)
  const [filters,setFilters]=useState({selection:profileSelection(initial.profile),budget:'',lines:'',kind:'',unused:false})
  const [usage,setUsage]=useState(()=>readUsageHistory())
  const used=usage.ids
  const seen=useRef(new Set([profile.id])),preparedPicker=useRef(null)
  useEffect(()=>{
-  if(initial.error)return
-  try{localStorage.setItem(draftKey,JSON.stringify({profile,draft,field}))}catch{setFeedback('Le brouillon ne peut pas être enregistré sur cet appareil.')}
+  try{
+   if(initial.error&&!archivedDraft.current){
+    if(initial.damagedDraft===null||localStorage.getItem(draftKey)!==initial.damagedDraft)throw Error('Brouillon inaccessible ou modifié ailleurs')
+    preserveLocalRecord(localStorage,draftKey,initial.damagedDraft);archivedDraft.current=true
+   }
+   localStorage.setItem(draftKey,JSON.stringify({profile,draft,field,draftEdited:draftEdited.current}))
+   if(initial.error)setDraftError('L’ancien brouillon est conservé à part. Le nouveau brouillon est enregistré automatiquement.')
+  }catch{setFeedback('Le brouillon ne peut pas être enregistré sur cet appareil.')}
  },[profile,draft,field,initial.error])
  const records=useSelectedRecords(profile.lines.map(line=>line.asset),exposureRecords)
  const a=analyzeProfile(profile)
@@ -45,13 +54,14 @@ export default function DcaApp(){
  const totalHint=total<100?`Il manque ${pct(100-total)} dans l’allocation.`:`${pct(total-100)} en trop dans l’allocation.`
  const reason=!records.ready?(records.error?'Les expositions n’ont pas pu être chargées.':'Chargement des expositions…'):a.errors.map(error=>error.includes('totaliser 100')?totalHint:error).join(' ')
  const image=useImageExport(profile,field,!reason)
+ const refreshImage=useCallback(()=>{setProfile(current=>({...current,approved:false}));image.retry()},[image.retry])
  const filtered=filterProfiles(profiles,filters,used)
  const setFilter=(key,value)=>setFilters({...filters,[key]:value})
- function update(next){setProfile({...next,approved:false});setDraft(buildTweetText(next));setFeedback('')}
+ function update(next){setProfile({...next,approved:false});if(!draftEdited.current){const text=buildTweetText(next);if(text)setDraft(text)}setFeedback('')}
  function edit(patch){update({...profile,...patch})}
  function editImage(patch){setProfile(current=>({...current,...patch,approved:false}))}
  function changeImageField(next){setField(next);editImage({})}
- function select(next){if(!next)return;setPortfolioReset(n=>n+1);if(preparedPicker.current)preparedPicker.current.open=false;update(structuredClone(next));seen.current.add(next.id)}
+ function select(next){if(!next)return;setPortfolioReset(n=>n+1);if(preparedPicker.current)preparedPicker.current.open=false;draftEdited.current=false;update(structuredClone(next));seen.current.add(next.id)}
  function changeSelection(selection){
   const nextFilters={...filters,selection}
   setFilters(nextFilters)
@@ -67,7 +77,7 @@ export default function DcaApp(){
  async function copy(){try{await copyPublicationText(draft);setFeedback('Texte copié.')}catch{setFeedback('Copie impossible. Sélectionne le texte.')}}
  return <div className="dca-profiles-scope dca-simple">
  <PageHeader title="Le DCA d’un abonné" subtitle="Choisis un profil ou saisis une participation, puis récupère le texte et l’image."/>
- {initial.error&&<p role="alert">{initial.error}</p>}
+ {draftError&&<p role="alert">{draftError}</p>}
  {usage.error&&<p role="alert">{usage.error}</p>}
  <div className="dca-simple-grid">
   <section className="dca-simple-card" id="dca-compose" aria-label="Composer le DCA">
@@ -100,21 +110,21 @@ export default function DcaApp(){
     <label><input type="checkbox" checked={!!profile.imageOnly} onChange={e=>{edit({imageOnly:e.target.checked});if(e.target.checked)setField('all')}}/>Répartition uniquement — sans nom ni montants</label>
     {profile.scope==='PEA'&&profile.lines.some(l=>references[l.asset]?.pea!==true)&&<p className="dca-note">L’éligibilité PEA de certains supports n’est pas établie. Vérifie le périmètre choisi.</p>}
    </details>
-   <Portfolios resetSignal={portfolioReset} profile={profile} draft={draft} field={field} onLoad={item=>{setFilters(current=>({...current,selection:profileSelection(item.profile)}));setProfile({...item.profile,lines:confirmLines(item.profile.lines),approved:false});setDraft(item.draft);setField(item.field)}}/>
+   <Portfolios resetSignal={portfolioReset} profile={profile} draft={draft} field={field} onLoad={item=>{draftEdited.current=item.draft!==buildTweetText(item.profile);setFilters(current=>({...current,selection:profileSelection(item.profile)}));setProfile({...item.profile,lines:confirmLines(item.profile.lines),approved:false});setDraft(item.draft);setField(item.field)}}/>
   </section>
   <div className="dca-publication-column">
    <ImageExport image={image} reason={reason} filename={`dca-${profile.id}.png`} alt={profile.imageOnly?'Expositions du portefeuille':`Portefeuille et versements de ${profile.name}`}>
     {records.error&&<button className="dca-secondary" onClick={records.retry}>Réessayer les données</button>}
    </ImageExport>
    <section className="dca-simple-card dca-text-card">
-    <label htmlFor="dca-draft">Texte prêt à publier</label><textarea id="dca-draft" value={draft} onChange={e=>{setDraft(e.target.value);setProfile({...profile,approved:false})}}/>
-    <div className="dca-buttons"><Button onClick={copy} disabled={!draft.trim()}>Copier le texte</Button><Button variant="secondary" onClick={()=>{setDraft(buildTweetText(profile));setProfile({...profile,approved:false})}}>Rétablir le texte</Button></div>
+    <label htmlFor="dca-draft">Texte prêt à publier</label><textarea id="dca-draft" value={draft} onChange={e=>{draftEdited.current=true;setDraft(e.target.value);setProfile({...profile,approved:false})}}/>
+    <div className="dca-buttons"><Button onClick={copy} disabled={!draft.trim()}>Copier le texte</Button><Button variant="secondary" onClick={()=>{draftEdited.current=false;setDraft(buildTweetText(profile));setProfile({...profile,approved:false})}}>Rétablir le texte</Button></div>
     {profile.mode==='participant'&&<label className="dca-consent"><input type="checkbox" checked={!!profile.approved} onChange={e=>setProfile({...profile,approved:e.target.checked})}/>La personne a validé le texte, le visuel et les informations à publier.</label>}
     {profile.mode==='participant'&&!profile.approved&&<p className="dca-note">Brouillon à faire valider avant publication. Le téléchargement reste disponible.</p>}
     <p role="status" aria-live="polite">{feedback}</p>
    </section>
   </div>
  </div>
- {!a.errors.length&&<details className="dca-analysis-drawer" onToggle={e=>setShowAnalysis(e.currentTarget.open)}><summary>Voir l’analyse détaillée</summary>{showAnalysis&&<Suspense fallback={<p role="status">Chargement de l’analyse…</p>}><Analytics profile={profile} analysis={a} onViewChange={analysisView=>editImage({analysisView})}/></Suspense>}</details>}
+ {!a.errors.length&&<details className="dca-analysis-drawer" onToggle={e=>setShowAnalysis(e.currentTarget.open)}><summary>Voir l’analyse détaillée</summary>{showAnalysis&&<Suspense fallback={<p role="status">Chargement de l’analyse…</p>}><Analytics profile={profile} analysis={a} baseline={baseline} onBaselineChange={setBaseline} onHoldingsChange={refreshImage} onViewChange={analysisView=>editImage({analysisView})}/></Suspense>}</details>}
  </div>
 }
