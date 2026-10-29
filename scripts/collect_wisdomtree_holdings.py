@@ -103,6 +103,17 @@ def collect(share,now):
     from wisdomtree_api_holdings import CLASSES, IssuerApiUnavailable, collect as api_collect
     if share['isin'] not in CLASSES:
         return collect_rankings(share,now)
+    # Preserve the existing SEDOL-qualified full portfolio when it is available.
+    # The public API is an independently qualified fallback for the same share,
+    # not a source of identifiers inferred from rendered company names.
+    if share['isin']!='IE00BJGWQN72':
+        try:
+            return collect_rankings(share,now)
+        except ConnectionError:
+            pass
+        except ValueError as error:
+            if not str(error).startswith(('Unqualified SEDOL identities:','Incomplete independent identity evidence')):
+                raise
     try:
         return api_collect(share,now)
     except IssuerApiUnavailable as error:

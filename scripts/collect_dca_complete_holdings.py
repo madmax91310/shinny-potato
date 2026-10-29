@@ -73,7 +73,7 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
             securities.append({'isin':security,'name':name,'country':None if localized else country,'sector':None if localized else sector,'ticker':ticker,'currency':currency,'exchange':exchange})
     total=sum(r['weightPct'] for r in rows)
     if not rows or total>100.5:raise ValueError('Non-long-only equity composition')
-    record={'asOf':h['asOf'],'basis':'fund','sourceUrl':url,'complete':True,'rows':rows}
+    record={'asOf':h['asOf'],'basis':'fund','sourceUrl':url,'complete':True,'rows':rows,'method':'Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation'}
     # Attributes and equity weights come from these exact dated holdings, never
     # the independently dated exposure tables or a later security lookup.
     if classified and total <= 100:
@@ -158,7 +158,14 @@ def main():
         for isin in config:
             status[isin]=holdings_status(status.get(isin,{}),previous.get(isin,{}),fresh.get(isin),errors.get(isin),now)
         write_json_atomic(status_path,status)
-    write_json_atomic(args.output,{'updated':list(fresh),'successes':[{'id':'dca-holdings:'+isin} for isin in fresh],'errors':[{'id':'dca-holdings:'+isin,'field':'Composition complète','error':error} for isin,error in errors.items()]})
+    # Bounded proof in the ordinary producer artifact, including PR runs that
+    # deliberately do not commit or publish their acquired observations.
+    observations={isin:{**{key:h[key] for key in ['asOf','checkedAt','basis','scope','sourceUrl','sourceUrls','sha256','method','identitySourceUrl','identitySha256','identityAsOf','identityMethod'] if key in h},
+        'completeFile':h.get('complete') is True,'rows':len(h['rows']),
+        'publishedEquityWeightPct':sum(r['weightPct'] for r in h['rows']),
+        'identifiedEquityWeightPct':sum(r['weightPct'] for r in h['rows'] if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',r.get('isin') or ''))}
+        for isin,h in fresh.items()}
+    write_json_atomic(args.output,{'observations':observations,'updated':list(fresh),'successes':[{'id':'dca-holdings:'+isin} for isin in fresh],'errors':[{'id':'dca-holdings:'+isin,'field':'Composition complète','error':error} for isin,error in errors.items()]})
     print(f'Complete holdings: {len(fresh)}/{len(config)}; identified securities: {len(evidence)}; errors: {errors}')
     if errors:raise SystemExit(1)
 if __name__=='__main__':__import__('producer_report_contract').run('collect_dca_complete_holdings', main)
