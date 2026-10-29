@@ -1,5 +1,7 @@
 # Coordination des données — 24 octobre 2026
 
+Lot indépendant Europe600,29octobre après #1045 : réponse officielle exacte DE0002635307/productId251931 acquise, SHA conservé dans le suivi consolidé. Seul libellé nouveau non traduit : secteur « Sonstige », traduction explicite « Other ». Pays et identités restent inchangés. Le normaliseur conserve tous les poids et dates ; une étiquette inconnue continue de lever une erreur. Aucun fichier des PR ouvertes #1042 éditorial/#1031 GlobalX ni du lot #1047 frais/enregistrement modifié. Six tests du producteur passent ; le rejeu de la vraie réponse reste distinct de la collecte et publication GitHub encore à prouver.
+
 Supervision / Données à revoir : branche `fix/data-review-product-20261024`, base master `16a895e5` (#903, #924 et leurs données préservés).
 Possède `scripts/publish_automation_status.py`, `scripts/automation_monitoring.py`, les contrats de rapports et tests associés, `scripts/build-monitoring-context.mjs`, `src/pages/data-review/`, le branchement du moniteur et le suivi de recette. Prend aussi en charge les branchements des tests de supervision dans `.github/workflows/deploy-pages.yml` ; aucun changement des seuils ou voies de déploiement. Aucun collecteur, calendrier financier ou seuil de fraîcheur source modifié.
 
