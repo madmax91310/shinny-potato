@@ -138,5 +138,5 @@
 .tb-scope .tb-cloud-actions a { display:inline-flex; align-items:center; min-height:44px; padding:10px 15px; border:1px solid #6b93ef; border-radius:10px; background:#285cce; color:#fff; text-decoration:none; }
 .tb-scope .tb-cloud-actions a:last-child { background:transparent; }
 .tb-variant-picker { padding: 14px; border: 1px solid var(--border, #52688a); border-radius: 12px; margin-bottom: 8px; }
-.tb-variant-picker select { display: block; max-width: 100%; margin-top: 8px; font: inherit; color: inherit; background: var(--surface, #172741); padding: 8px; border-radius: 8px; }
+.tb-variant-picker .choice-picker { margin-top: 8px; }
 .tb-variant-picker p { margin: 8px 0 0; font-size: 13px; }

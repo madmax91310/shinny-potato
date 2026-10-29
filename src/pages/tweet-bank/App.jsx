@@ -6,6 +6,7 @@ import { TWEETS as ARCHIVED_TWEETS, MONTHS, CATEGORIES, FORMATS, GOLD_CATEGORIES
 import { filterAndSortTweets, countAvailable, publicationBadge, todayStr } from './lib'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import './tweet-bank.css'
 import { groupTweetVariants, curateTweet } from '../../lib/tweet-discovery.js'
 
@@ -218,9 +219,9 @@ function TweetVariantCard({ group, drafts, lastPub, ...props }) {
   const original = TWEETS.find(t => t.id === selected.id)
   return <section className="tb-variant-group">
     {group.variants.length > 1 && <div className="tb-variant-picker">
-      <label>Versions de ce tweet <select aria-label={`Versions : ${group.title}`} value={selected.id} onChange={e => setSelectedId(e.target.value)}>
+      <div>Versions de ce tweet <ChoicePicker aria-label={`Versions : ${group.title}`} value={selected.id} onChange={e => setSelectedId(e.target.value)}>
         {group.variants.map((t,i) => <option key={t.id} value={t.id}>{i === 0 ? 'Version de référence' : `Autre version ${i}`} · archive {String(t.id)}{lastPub[t.id] ? ` · publiée le ${lastPub[t.id]}` : ''}</option>)}
-      </select></label>
+      </ChoicePicker></div>
       {group.latestPublication && <p>Dernière publication du groupe : {group.latestPublication}</p>}
     </div>}
     <TweetCard {...props} tweet={original} draft={drafts[selected.id]} lastPublished={lastPub[selected.id]} />

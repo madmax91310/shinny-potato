@@ -16,6 +16,7 @@ import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js';
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js';
 import { sortedRows, sectorLabel } from '../src/pages/factsheet-tweets/editorial.js';
 import { TOOLS, HOME_TOOLS } from '../src/tools.js';
+import { curateTweet } from '../src/lib/tweet-discovery.js';
 import { checkCobaltHome } from './check-cobalt-home.mjs';
 import { ETFS } from '../src/data/etf-cards.js';
 import { instrumentOption } from '../src/data/asset-selection.js';
@@ -889,22 +890,23 @@ async function testTweetBank(page) {
   await savedCard.getByRole('button', {name:'Revenir au texte archivé'}).click();
   await page.getByRole('button', {name:'Pédagogie',exact:true}).click();
   const cards = page.locator('.tb-tweet');
-  ok &&= (await cards.count()) === CASES.length;
+  const pedagogy = TWEETS.map(curateTweet).filter(tweet => tweet.category === 'Pédagogie');
+  ok &&= (await cards.count()) === pedagogy.length;
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
     configurable:true, value:{writeText:async text => {window.__pedagogyCopied=text;}},
   }));
-  for (let i=0; i<CASES.length; i++) {
+  for (let i=0; i<pedagogy.length; i++) {
     const card=cards.nth(i);
     const actual=await card.locator('.tb-tweet-text').inputValue();
-    const item=CASES.find(item=>item.text===actual);
-    ok &&= Boolean(item) && (await card.locator('.tb-sources a').count()) === item.sources.length;
+    const item=pedagogy.find(item=>item.text===actual);
+    ok &&= Boolean(item?.sources?.length) && (await card.locator('.tb-sources a').count()) === item.sources.length;
     await card.locator('.tb-tweet-actions button').first().click();
     ok &&= (await page.evaluate(()=>window.__pedagogyCopied)) === actual;
   }
   await page.setViewportSize({width:390,height:844});
   ok &&= await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth);
   await page.setViewportSize({width:1280,height:720});
-  record("Banque de tweets", ok, `total: ${totalBefore}, cooldown et ${CASES.length} textes pédagogiques avec sources, copie fidèle et mobile`);
+  record("Banque de tweets", ok, `total: ${totalBefore}, cooldown et ${pedagogy.length} textes pédagogiques avec sources, copie fidèle et mobile`);
 }
 
 async function testFactsheetTweets(page) {
