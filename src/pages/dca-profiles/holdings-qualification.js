@@ -1,5 +1,6 @@
 import { qualifiedNativeIndexComposition } from '../../data/native-index-composition.js'
 import { EXPOSURE_MAX_AGE_DAYS } from './exposure.js'
+import { completeEquitySleeve } from '../../data/holdings-reconciliation.js'
 
 const securityId = value => /^[A-Z]{2}[A-Z0-9]{9}[0-9]$/.test(value || '')
 export function qualifyHoldings(h, line, reference, now = new Date()) {
@@ -27,7 +28,7 @@ export function qualifyHoldings(h, line, reference, now = new Date()) {
   const unidentifiedCoverage = h.rows.filter(row=>!securityId(row.isin)).reduce((sum,row)=>sum+row.weightPct,0)
   if (h.complete !== true || h.approximation === true) reasons.push('Liste partielle ; seules les positions publiées sont comparées.')
   if (h.rows.some(row=>!securityId(row.isin))) reasons.push('Certaines positions n’ont pas d’identifiant qualifié.')
-  if (sourceCoverage < 99.5) reasons.push('Le poids couvert est insuffisant pour une comparaison intégrale.')
+  if (sourceCoverage < 99.5 && !completeEquitySleeve(h,line.isin)) reasons.push('Le poids couvert est insuffisant pour une comparaison intégrale.')
   if (sourceCoverage > 100.00001) reasons.push('La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé.')
   return {valid:true,complete:reasons.length===0,reasons,sourceCoverage,identifiedCoverage,unidentifiedCoverage,residualWeight:100-sourceCoverage}
 }

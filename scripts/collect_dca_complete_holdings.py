@@ -150,7 +150,9 @@ def main():
                 if isinstance(error,HoldingsPerimeterError):rejected[isin]=error.diagnostic
                 continue
             h,securities=result
-            if previous.get(isin,{}).get('asOf','')>h['asOf']:errors[isin]='Date regression';continue
+            if previous.get(isin,{}).get('asOf','')>h['asOf']:
+                errors[isin]='Date regression'+('; access attempts: '+json.dumps(h['accessAttempts'])[:2400] if h.get('accessAttempts') else '')
+                continue
             fresh[isin]={**h,'checkedAt':now.isoformat()}
             for r in securities:
                 if r['isin'] not in wanted:continue

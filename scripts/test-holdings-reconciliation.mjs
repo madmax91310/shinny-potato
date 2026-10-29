@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import {holdingsReconciliationDetails,rejectedPerimeterDetails,accountingWeight} from '../src/data/holdings-reconciliation.js'
+import {holdingsReconciliationDetails,rejectedPerimeterDetails,accountingWeight,completeEquitySleeve} from '../src/data/holdings-reconciliation.js'
 import {projectDcaHoldings} from './lib/dca-holdings-projection.mjs'
 import {sharedPositions} from '../src/pages/dca-profiles/verification.js'
 import {connectNativeIndexCandidates} from './lib/native-index-source-candidates.mjs'
@@ -16,6 +16,20 @@ const before=sharedPositions([line],refs,new Date('2026-10-29'),{fund:{...h,navR
 const after=sharedPositions([line],refs,new Date('2026-10-29'),{fund:h})
 assert.deepEqual(after,before,'Accounting metadata cannot change math or complete-overlap admission')
 assert.equal(after.totals[0].complete,false,'Unknown CVR and insufficient coverage remain partial')
+const sleeve={...h,subjectIsin:line.isin,scope:'complete-equity-sleeve-with-published-cash',rows:[h.rows[0]],navReconciliation:{...h.navReconciliation,
+ sourceRowCount:2,selectedRowCount:1,excludedRowCount:1,selectedWeightPct:99.3,sourceWeightPctByType:{Equity:99.3,Cash:.7},excludedWeightPctByType:{Cash:.7},unidentifiedPositions:[]}}
+assert(completeEquitySleeve(sleeve,line.isin))
+const full=sharedPositions([line],refs,new Date('2026-10-29'),{fund:sleeve})
+assert.equal(full.totals[0].complete,true,'A proven complete equity sleeve can contain published cash')
+assert.equal(full.totals[0].coverage,99.3,'Original NAV weights are never normalized')
+for(const patch of [{subjectIsin:'OTHER'},{scope:undefined},{complete:false},{approximation:true},
+ {navReconciliation:{...sleeve.navReconciliation,excludedWeightPctByType:{Other:.7}}},
+ {navReconciliation:{...sleeve.navReconciliation,sourceWeightPctByType:{Equity:99.3,Forwards:.7},excludedWeightPctByType:{Forwards:.7}}},
+ {navReconciliation:{...sleeve.navReconciliation,normalizationApplied:true}}]){
+ const value={...sleeve,...patch}
+ if(patch.approximation)assert.equal(sharedPositions([line],refs,new Date('2026-10-29'),{fund:value}).totals[0].complete,false)
+ else assert.equal(completeEquitySleeve(value,line.isin),false)
+}
 for(const id of ['FR0011550193','FR0011871110','FR0011869304']){
  const original={id,field:'completeHoldings',actionState:'tracked-index-needed',configuredSourceUrls:[]}
  const c=connectNativeIndexCandidates(original)

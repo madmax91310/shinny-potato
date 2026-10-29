@@ -13,11 +13,13 @@ import urllib.request
 from pathlib import Path
 from issuer_documents import download, pdf_text, document_date, proof
 from security_identifier_observations import API, digest, candidate_name, candidate_isins
+from wisdomtree_identity_cache import expand_observation, compact_observation, lookup_key, recent_lookup_keys
 
 ROOT = Path(__file__).resolve().parents[1]
 # Exact share/class/listing identities corroborated by issuer pages and factsheets
 # on 2026-10-29. Only existing catalogue shares; no weights come from a proxy.
 CLASS_CONFIG = json.loads((ROOT/'scripts/wisdomtree-holdings-classes.json').read_text())
+API_IDENTITY_METHOD = json.loads((ROOT/'scripts/wisdomtree-identity-methods.json').read_text())['nativeApiV1']
 CLASSES = {isin:(r['classId'],r['fundTicker'],r['title']) for isin,r in CLASS_CONFIG.items()}
 # Literal cash/currency account labels observed in the issuer API, with no
 # security FIGI and no listing ticker. Unknown blank identities still fail.
@@ -28,6 +30,78 @@ CASH_LABELS = {'CASH W-O','KOREAN WON','HONG KONG DOLLAR','EURO INCOME A/C',
  'SINGAPORE DOLLAR','DANISH KRONE','POLISH ZLOTY','CZECHOSLOVAKIAN KORUNA'}
 _MAPPING_LOCK = threading.Lock()
 _LAST_MAPPING_REQUEST = 0.0
+
+
+def pending_identity(observation, now):
+    """Prove a publisher placeholder with two independent identifier queries.
+
+    Its suffix is a lookup hypothesis, never an ISIN inferred from a name.
+    The exact security FIGI, share class, type and published ticker must agree.
+    """
+    binding=observation.get('issuerPendingIdentity') or {}
+    token=binding.get('identifier','')
+    match=re.fullmatch(r'FIGI-PENDING-([A-Z0-9]{7}|[A-Z0-9]{9})',token)
+    jobs=observation.get('request',[]);responses=observation.get('response',[])
+    if not match or observation.get('sourceUrl')!=API or observation.get('sha256')!=digest(responses):
+        raise ValueError('Unbound pending identifier evidence')
+    days=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['etf.staticCharacteristic']['checkDays']
+    age=(now-dt.datetime.fromisoformat(observation['checkedAt'])).total_seconds()/86400
+    if not 0<=age<=days:raise ValueError('Expired pending identifier evidence')
+    suffix=match[1];kind=pending_namespace(suffix)
+    if (len(jobs)!=len(responses) or len(jobs)<2 or jobs[0]!={'idType':kind,'idValue':suffix}
+            or not binding.get('securityTicker') or not re.fullmatch(r'[a-f0-9]{64}',binding.get('sourceSha256',''))
+            or binding.get('sourceUrl') not in {f'https://www.wisdomtree.com/api/fund-holdings/{v[0]}' for v in CLASSES.values()}):
+        raise ValueError('Wrong publisher pending-identifier binding')
+    ticker=binding['securityTicker'].split()[0]
+    def exact(reply):
+        return {(r.get('figi'),r.get('shareClassFIGI'),r.get('securityType')) for r in reply.get('data',[])
+                if r.get('marketSector')=='Equity' and r.get('securityType') in ('Common Stock','ADR','NY Reg Shrs')
+                and r.get('ticker')==ticker
+                and re.fullmatch(r'BBG[A-Z0-9]{9}',r.get('figi')or'')
+                and re.fullmatch(r'BBG[A-Z0-9]{9}',r.get('shareClassFIGI')or'')}
+    source=exact(responses[0]);matches=set()
+    for job,reply in zip(jobs[1:],responses[1:]):
+        if job.get('idType')!='ID_ISIN' or not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',job.get('idValue','')):
+            raise ValueError('Invalid pending ISIN hypothesis')
+        if source&exact(reply):matches.add(job['idValue'])
+    if len(matches)!=1:raise ValueError('Missing or ambiguous pending identifier crosswalk')
+    return token,matches.pop()
+
+
+def pending_namespace(suffix):
+    # International CINS are not US CUSIPs. Both still require an independent
+    # identifier cross-query; this only selects the lookup namespace.
+    return 'ID_SEDOL' if len(suffix)==7 else ('ID_CINS' if suffix[0].isalpha() else 'ID_CUSIP')
+
+
+def collect_pending_proofs(payload, observations, candidates_by_name, now, url, raw, post):
+    result=[];attempts=0
+    fields=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']
+    renewal=max(0,fields['etf.staticCharacteristic']['checkDays']-fields['etf.default']['checkDays'])
+    for item in payload:
+        token=item.get('figi') or ''
+        if not re.fullmatch(r'FIGI-PENDING-([A-Z0-9]{7}|[A-Z0-9]{9})',token):continue
+        retained=[o for o in observations if o.get('issuerPendingIdentity',{}).get('identifier')==token
+                  and o['issuerPendingIdentity'].get('sourceUrl')==url
+                  and o['issuerPendingIdentity'].get('securityTicker')==item.get('securityTicker')]
+        if any((now-dt.datetime.fromisoformat(o['checkedAt'])).total_seconds()/86400<=renewal for o in retained):
+            result.extend(retained);continue
+        candidates=sorted(candidate_isins(re.sub(r'-New$','',item.get('securityName',''),flags=re.I),candidates_by_name))
+        if not candidates or len(candidates)>3 or attempts>=20:
+            result.extend(retained);continue
+        suffix=token.removeprefix('FIGI-PENDING-')
+        jobs=[{'idType':pending_namespace(suffix),'idValue':suffix},
+              *[{'idType':'ID_ISIN','idValue':value}for value in candidates]]
+        attempts+=1
+        response=post(jobs)
+        evidence={'sourceUrl':API,'checkedAt':now.isoformat(),'request':jobs,'response':response,'sha256':digest(response),
+                  'issuerPendingIdentity':{'identifier':token,'securityTicker':item['securityTicker'],
+                      'sourceUrl':url,'sourceSha256':proof(raw)}}
+        try:pending_identity(evidence,now)
+        except ValueError:
+            result.extend(retained);continue  # Failed renewal never re-dates valid evidence.
+        result.append(evidence)
+    return result
 
 
 class IssuerApiUnavailable(ConnectionError):
@@ -58,6 +132,8 @@ def identity_map(observations, now):
         age = (now - dt.datetime.fromisoformat(observation['checkedAt'])).total_seconds()/86400
         if not 0 <= age <= days:
             continue
+        if observation.get('issuerPendingIdentity'):
+            pending_identity(observation,now)
         jobs, responses = observation['request'], observation['response']
         if not isinstance(responses, list) or len(jobs) != len(responses):
             raise ValueError('Misaligned FIGI mapping proof')
@@ -66,6 +142,8 @@ def identity_map(observations, now):
                 raise ValueError('Failed independent identifier lookup; previous portfolio preserved')
             if job.get('idType') == 'ID_SEDOL' and re.fullmatch(r'[A-Z0-9]{7}',job.get('idValue','')):
                 continue  # The shared registry's candidate side never assigns an ISIN.
+            if observation.get('issuerPendingIdentity') and job.get('idType') in ('ID_CUSIP','ID_CINS'):
+                continue
             if job.get('idType') == 'ID_BB_GLOBAL' and re.fullmatch(r'BBG[A-Z0-9]{9}', job.get('idValue', '')):
                 listing_queries.append((job, response))
                 continue
@@ -99,11 +177,16 @@ def identity_map(observations, now):
     return result
 
 
-def parse(payload, share, now, mapping):
+def parse(payload, share, now, mapping, *, pending_observations=()):
     class_id, ticker, _ = CLASSES[share['isin']]
     if not isinstance(payload, list) or len(payload) < 11:
         raise ValueError('Incomplete WisdomTree API portfolio')
     rows, stamps, seen, total, cash = [], set(), set(), 0, 0
+    pending_map={}
+    for evidence in pending_observations:
+        token,isin=pending_identity(evidence,now)
+        if token in pending_map and pending_map[token]!=isin:raise ValueError('Contradictory pending security identity')
+        pending_map[token]=isin
     for item in payload:
         if item.get('wtClassID') != class_id or item.get('fundTicker') != ticker or item.get('assetGroup') != 'EQ':
             raise ValueError('Wrong WisdomTree API fund or asset group')
@@ -123,7 +206,10 @@ def parse(payload, share, now, mapping):
         if not (re.fullmatch(r'BBG[A-Z0-9]{9}', figi or '') or pending) or figi in seen or not item.get('securityName'):
             raise ValueError('Missing or duplicate API security FIGI')
         seen.add(figi)
-        rows.append({'isin': None if pending else mapping.get(figi), 'figi': figi, 'name': item['securityName'], 'weightPct': weight*100})
+        if pending and figi in pending_map:
+            bindings=[o['issuerPendingIdentity']for o in pending_observations if o['issuerPendingIdentity']['identifier']==figi]
+            if not any(b['securityTicker']==item['securityTicker'] and b['sourceUrl']==f'https://www.wisdomtree.com/api/fund-holdings/{class_id}' for b in bindings):raise ValueError('Pending issuer listing changed')
+        rows.append({'isin': pending_map.get(figi) if pending else mapping.get(figi), 'figi': figi, 'name': item['securityName'], 'weightPct': weight*100})
     if len(stamps) != 1 or abs(total-1) > .00001 or not any(row['isin'] for row in rows):
         raise ValueError('Incomplete/mixed-date API portfolio or missing identities')
     return rows, stamps.pop(), cash
@@ -171,7 +257,7 @@ def collect(share, now, fetch=download, post=mapping_request):
         if error.code not in (403,408,429,500,502,503,504):raise
         if error.code!=403 or os.environ.get('WISDOMTREE_BROWSER_CAPTURE')!='1':
             raise IssuerApiUnavailable(f'Public issuer API unavailable: HTTP {error.code}') from error
-        result=subprocess.run(['node',str(ROOT/'scripts/capture-wisdomtree-api.mjs'),url],cwd=ROOT,capture_output=True,timeout=45)
+        result=subprocess.run(['node',str(ROOT/'scripts/capture-wisdomtree-api.mjs'),url],cwd=ROOT,capture_output=True,timeout=80)
         if result.returncode:
             raise IssuerApiUnavailable('Issuer API HTTP 403; public browser also failed: '+result.stderr.decode(errors='replace')[-700:])
         raw=result.stdout
@@ -180,7 +266,7 @@ def collect(share, now, fetch=download, post=mapping_request):
         raise IssuerApiUnavailable('Public issuer API unavailable: '+str(error)) from error
     payload = json.loads(raw)
     previous = json.loads((ROOT/'src/data/dca-complete-holdings.json').read_text())
-    observations = previous.get(share['isin'], {}).get('identityObservations', [])
+    observations = [expand_observation(o)for o in previous.get(share['isin'], {}).get('identityObservations', [])]
     # Reuse independently acquired exact ISIN/FIGI evidence from the ordinary
     # identifier producer. Do not re-query or re-date it, nor match by a name.
     from security_identifier_observations import qualified_observations
@@ -192,7 +278,11 @@ def collect(share, now, fetch=download, post=mapping_request):
     mapping = identity_map(observations, now)
     max_age = json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['etf.staticCharacteristic']['checkDays']
     observations = [o for o in observations if 0 <= (now-dt.datetime.fromisoformat(o['checkedAt'])).total_seconds()/86400 <= max_age]
-    already_tested = {job['idValue'] for o in observations for job in o['request'] if job.get('idType')=='ID_ISIN' and not job.get('exchCode')}
+    check_days=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['etf.default']['checkDays']
+    renewal=max(0,max_age-check_days)
+    recent=recent_lookup_keys(observations,now,renewal,check_days)
+    current_mapping=identity_map([o for o in observations if (now-dt.datetime.fromisoformat(o['checkedAt'])).total_seconds()/86400<=renewal],now)
+    already_tested = {key[1] for key in recent if key[0]=='ID_ISIN' and key[2] is None}
     candidates_by_name={}
     for fund in previous.values():
         for row in fund.get('rows',[]):
@@ -200,12 +290,27 @@ def collect(share, now, fetch=download, post=mapping_request):
                 candidates_by_name.setdefault(candidate_name(row['name']),set()).add(row['isin'])
     # Names only propose candidates. The issuer's exact listing FIGI must be in
     # the response to an independent ID_ISIN request before assigning an ISIN.
+    lookup_names={}
+    for evidence in observations:
+        for job,reply in zip(evidence['request'],evidence['response']):
+            if job.get('idType')=='ID_BB_GLOBAL':
+                lookup_names[job['idValue']]=[r.get('name','')for r in reply.get('data',[])if r.get('figi')==job['idValue']]
     priority={}
     for row in payload:
-        if row.get('figi') in mapping:continue
-        for isin in candidate_isins(re.sub(r'-New$','',row.get('securityName',''),flags=re.I),candidates_by_name)-already_tested:
-            priority[isin]=max(priority.get(isin,0),row.get('wgt',0))
+        if row.get('figi') in current_mapping:continue
+        for name in [row.get('securityName',''),*lookup_names.get(row.get('figi'),[])]:
+            for isin in candidate_isins(re.sub(r'-New$','',name,flags=re.I),candidates_by_name)-already_tested:
+                priority[isin]=max(priority.get(isin,0),row.get('wgt',0))
     candidates=sorted(priority,key=lambda isin:(-priority[isin],isin))
+    # Sourced lookup seeds share the existing registry. They never assign an
+    # identity: an independent query must return the exact issuer FIGI again.
+    seeds=json.loads((ROOT/'scripts/security-identifier-candidates.json').read_text()).get('figiCandidates',[])
+    seeded=[]
+    for seed in seeds:
+        if not re.fullmatch(r'BBG[A-Z0-9]{9}',seed.get('figi','')) or not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',seed.get('isin','')) or not seed.get('sourceUrls'):
+            raise ValueError('Invalid FIGI lookup candidate registry')
+        if seed['figi'] in wanted_figis and seed['figi']not in current_mapping and seed['isin']not in already_tested:seeded.append(seed['isin'])
+    candidates=list(dict.fromkeys([*seeded,*candidates]))
     for start in range(0, min(len(candidates), 80), 10):
         # Share currency is not the underlying listing country. Query exact
         # ISINs globally; only the returned exact FIGI/share class can join.
@@ -216,8 +321,8 @@ def collect(share, now, fetch=download, post=mapping_request):
         identity_map([evidence], now)
         observations = [*observations, evidence]
     mapping = identity_map(observations, now)
-    queried_figis = {job['idValue'] for o in observations for job in o['request'] if job['idType']=='ID_BB_GLOBAL'}
-    missing_figis = sorted({r['figi'] for r in payload if re.fullmatch(r'BBG[A-Z0-9]{9}',r.get('figi')or'') and r['figi'] not in mapping and r['figi'] not in queried_figis})
+    queried_figis = {key[1]for key in recent if key[0]=='ID_BB_GLOBAL'}
+    missing_figis = sorted({r['figi'] for r in payload if re.fullmatch(r'BBG[A-Z0-9]{9}',r.get('figi')or'') and r['figi'] not in current_mapping and r['figi'] not in queried_figis})
     for start in range(0, min(len(missing_figis),80),10):
         jobs = [{'idType':'ID_BB_GLOBAL','idValue':value} for value in missing_figis[start:start+10]]
         response = post(jobs)
@@ -235,12 +340,48 @@ def collect(share, now, fetch=download, post=mapping_request):
         response=post(jobs)
         observations=[*observations,{'sourceUrl':API,'checkedAt':now.isoformat(),'request':jobs,'response':response,'sha256':digest(response)}]
     mapping = identity_map(observations, now)
-    rows, stamp, cash = parse(payload, share, now, mapping)
+    # A global query can omit a smaller venue. A matching share class only
+    # proposes another ISIN query, restricted to that observed venue. Assignment
+    # still requires the response to contain the issuer's exact security FIGI.
+    hypotheses={}
+    for evidence in observations:
+        for job,reply in zip(evidence['request'],evidence['response']):
+            if job.get('idType')=='ID_ISIN':
+                for r in reply.get('data',[]):
+                    if re.fullmatch(r'BBG[A-Z0-9]{9}',r.get('shareClassFIGI')or''):
+                        hypotheses.setdefault(r['shareClassFIGI'],set()).add(job['idValue'])
+    tested=recent_lookup_keys(observations,now,renewal,check_days)
+    targeted=set()
+    for evidence in observations:
+        for job,reply in zip(evidence['request'],evidence['response']):
+            if job.get('idType')!='ID_BB_GLOBAL' or job['idValue'] in current_mapping:continue
+            for r in reply.get('data',[]):
+                if r.get('figi')!=job['idValue'] or not re.fullmatch(r'[A-Z0-9]{2}',r.get('exchCode')or''):continue
+                for isin in hypotheses.get(r.get('shareClassFIGI'),[]):
+                    if lookup_key({'idType':'ID_ISIN','idValue':isin,'exchCode':r['exchCode'],'includeUnlistedEquities':True})not in tested:targeted.add((isin,r['exchCode']))
+    for start in range(0,min(len(targeted),20),10):
+        jobs=[{'idType':'ID_ISIN','idValue':isin,'exchCode':venue,'includeUnlistedEquities':True}for isin,venue in sorted(targeted)[start:start+10]]
+        response=post(jobs)
+        evidence={'sourceUrl':API,'checkedAt':now.isoformat(),'request':jobs,'response':response,'sha256':digest(response)}
+        identity_map([evidence],now)
+        observations.append(evidence)
+    mapping = identity_map(observations, now)
+    pending=collect_pending_proofs(payload,observations,candidates_by_name,now,url,raw,post)
+    observations=[o for o in observations if not o.get('issuerPendingIdentity')]+pending
+    rows, stamp, cash = parse(payload, share, now, mapping,pending_observations=pending)
+    from holdings_reconciliation import reconcile_positions
+    positions=[{'name':r['name'],'isin':r['isin'],'weightPct':r['weightPct'],'assetClass':'Equity'}for r in rows]
+    positions.extend({'name':r['securityName'],'weightPct':r['wgt']*100,'assetClass':'Cash'}for r in payload
+                     if r.get('figi') is None and r.get('securityTicker') is None and r.get('securityName') in CASH_LABELS)
+    reconciliation=reconcile_positions(positions,list(range(len(rows))),stamp)
     return observation(rows, stamp, url, raw, allow_unidentified=True,
+                       navReconciliation=reconciliation,
+                       subjectIsin=share['isin'],scope='complete-equity-sleeve-with-published-cash',
+                       identityMethodCode=API_IDENTITY_METHOD,
                        captureMethod=capture_method,
-                       excludedWeightPctByType={'Cash': cash}, identityObservations=[o for o in observations if o not in shared.values()],
+                       excludedWeightPctByType={'Cash': cash}, identityObservations=[compact_observation(o) for o in observations if o not in shared.values()],
                        identityEvidenceRegistry='src/data/security-identifier-observations.json',
                        identitySourceHashes={key:o['sha256'] for key,o in shared.items()},
                        **identity,
                        sourceUrls=[url, document_url, API],
-                       identityMethod='Exact issuer listing FIGI matched to independent ISIN query; unknown identities retained')
+                       identityMethod='Exact issuer listing FIGI matched to independent ISIN query; pending CUSIP/CINS/SEDOL suffix requires two independent queries agreeing on FIGI, share class, type and published ticker; unknown identities retained')

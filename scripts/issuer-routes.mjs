@@ -1,5 +1,11 @@
 // Issuer access routes shared by the Node collectors and builders (issuer-access-routes.json).
 import ROUTES from './issuer-access-routes.json' with { type: 'json' }
+import identityMethods from './wisdomtree-identity-methods.json' with { type: 'json' }
+
+export function qualifiedWisdomtreeApiMethod(record){
+ return record?.identityMethodCode===identityMethods.nativeApiV1 ||
+  (record?.identityMethodCode===undefined&&record?.identityMethod===identityMethods.legacyApiMethod)
+}
 
 export function wisdomtreeFactsheet(isin) {
   const route = ROUTES.wisdomtree

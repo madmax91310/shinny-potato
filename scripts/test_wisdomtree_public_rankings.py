@@ -85,7 +85,7 @@ class PublicRankings(unittest.TestCase):
 
  def test_same_share_alternate_listing_preserves_exact_fund_weights(self):
   isin='IE00BZ56SW52';payload=json.loads(gzip.decompress((FIX/(isin+'.rankings-gbpx.json.gz')).read_bytes()))
-  primary=load(isin);mapping={r['sedol']:r['isin']for r in json.loads((FIX.parents[2]/'src/data/dca-complete-holdings.json').read_text())[isin]['rows']if r.get('sedol')and r.get('isin')}
+  primary=load(isin);mapping={'2046251':'US0378331005'}  # Apple in the immutable issuer fixture; independent of live portfolios
   rows,stamp=parse_public_rankings(payload,{'isin':isin},NOW,mapping,'GGRG LN')
   original,date=parse_public_rankings(primary,{'isin':isin},NOW,mapping)
   self.assertEqual(rows,original);self.assertEqual(stamp,date)
@@ -96,7 +96,7 @@ class PublicRankings(unittest.TestCase):
   import urllib.error
   from wisdomtree_api_holdings import qualify_share_document
   isin='IE00BZ56SW52';payload=gzip.decompress((FIX/(isin+'.rankings-gbpx.json.gz')).read_bytes());doc=gzip.decompress((FIX/(isin+'.pdf.gz')).read_bytes());calls=[]
-  mapping={r['sedol']:r['isin']for r in json.loads((FIX.parents[2]/'src/data/dca-complete-holdings.json').read_text())[isin]['rows']if r.get('sedol')and r.get('isin')}
+  mapping={'2046251':'US0378331005'}  # Apple in the immutable issuer fixture; independent of live portfolios
   def fetch(url,**kwargs):
    calls.append(url)
    if '/pdr/'in url:return doc

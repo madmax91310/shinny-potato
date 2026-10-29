@@ -1,8 +1,12 @@
 import assert from 'node:assert/strict'
 import {readFileSync} from 'node:fs'
 import {execFileSync} from 'node:child_process'
-import {qualifiedWisdomtreeRankingsRoute} from './issuer-routes.mjs'
+import {qualifiedWisdomtreeRankingsRoute,qualifiedWisdomtreeApiMethod} from './issuer-routes.mjs'
 import classes from './wisdomtree-holdings-classes.json' with {type:'json'}
+import methods from './wisdomtree-identity-methods.json' with {type:'json'}
+assert(qualifiedWisdomtreeApiMethod({identityMethod:methods.legacyApiMethod}))
+assert(qualifiedWisdomtreeApiMethod({identityMethodCode:methods.nativeApiV1,identityMethod:'Reworded explanatory method'}))
+for(const value of [{},{identityMethod:'Unknown method'},{identityMethodCode:'unknown-v2',identityMethod:methods.legacyApiMethod}])assert(!qualifiedWisdomtreeApiMethod(value))
 // Regression of the real ordinary workflow sequence: discovery -> generator ->
 // declared producer plan. Previously only WCLD survived the generator.
 execFileSync(process.execPath,['scripts/build-automation-targets.mjs'],{stdio:'pipe'})

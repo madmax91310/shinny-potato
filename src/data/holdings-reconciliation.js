@@ -1,5 +1,5 @@
-// Accounting evidence is explanatory. It never changes overlap admission,
-// original weights, identity matching or the existing completeness thresholds.
+// Accounting evidence alone is explanatory. A separate explicit source-scope
+// contract below can prove closure of an entire equity sleeve with known cash.
 const sum=values=>values.reduce((s,v)=>s+v,0)
 const finite=value=>typeof value==='number'&&Number.isFinite(value)
 const close=(a,b)=>finite(a)&&finite(b)&&Math.abs(a-b)<1e-7
@@ -21,6 +21,22 @@ export function holdingsReconciliationDetails(h){
  return p
 }
 export const accountingWeight=value=>`${value.toLocaleString('fr-FR',{maximumFractionDigits:6})} %`
+
+// Completeness of the equity sleeve is distinct from its share of fund NAV.
+// This opt-in source contract requires every omitted position to be literal
+// published cash, with a closed dated book; derivatives/Other cannot qualify.
+// Original equity weights and the cash remainder are never scaled to 100%.
+export function completeEquitySleeve(h,subjectIsin) {
+ const p=holdingsReconciliationDetails(h)
+ if(h?.scope!=='complete-equity-sleeve-with-published-cash'||h.subjectIsin!==subjectIsin||h.approximation===true||!p
+  ||p.unidentifiedPositions.length||Math.abs(p.publishedNetWeightPct-100)>.00001
+  ||!close(p.sourceWeightPctByType.Equity,p.selectedWeightPct)
+  ||Object.keys(p.sourceWeightPctByType).some(k=>!['Equity','Cash'].includes(k))
+  ||Object.keys(p.excludedWeightPctByType).some(k=>k!=='Cash')
+  ||!close(p.excludedWeightPctByType.Cash,p.sourceWeightPctByType.Cash)
+  ||p.excludedWeightPctByType.Cash<0||p.selectedWeightPct<=0||p.selectedWeightPct>100)return false
+ return true
+}
 export const accountingClass=kind=>({Cash:'Liquidités','Money Market':'Supports monétaires','Cash Collateral and Margins':'Dépôts de garantie',FX:'Change',Futures:'Contrats à terme',Forwards:'Contrats à terme de change',Future:'Contrats à terme','FX Forward':'Contrats à terme de change','Mutual Fund':'Parts de fonds',Other:'Autres instruments'})[kind]||kind
 
 // A rejected observation is a separate source diagnostic. It cannot re-date or
