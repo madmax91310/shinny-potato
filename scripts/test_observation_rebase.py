@@ -99,6 +99,22 @@ class ObservationRebaseTests(unittest.TestCase):
         result=self.publish('indices');self.assertEqual(result.returncode,0,result.stderr)
         self.assertEqual(self.f.git(self.f.remote,'show','master:src/data/automated-scpi.json'),'concurrent update')
 
+    def test_etf_collection_revalidates_after_independent_scpi(self):
+        self.f.advance_remote('src/data/automated-scpi.json')
+        result=self.publish('etf');self.assertEqual(result.returncode,0,result.stderr)
+        self.assertEqual(self.f.git(self.f.remote,'show','master:src/data/automated-scpi.json'),'concurrent update')
+
+    def test_etf_scpi_race_never_bypasses_failed_financial_revalidation(self):
+        self.assert_refused('src/data/automated-scpi.json','etf',validation='false')
+
+    def test_etf_scpi_race_never_allows_competing_etf_observations(self):
+        self.f.advance_remote('src/data/automated-scpi.json')
+        self.assert_refused('src/data/automated-etf-monthly.json','etf')
+
+    def test_etf_scpi_race_never_allows_changed_source_code(self):
+        self.f.advance_remote('src/data/automated-scpi.json')
+        self.assert_refused('scripts/collect_scpi.py','etf')
+
     def test_index_collection_cannot_reuse_changed_collection_inputs(self):
         self.assert_refused('src/data/automated-etf-monthly.json','indices')
 

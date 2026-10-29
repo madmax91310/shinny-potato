@@ -16,6 +16,7 @@ PRIMARY = ['src/data/annual-fx.json', 'src/data/official-performance-currencies.
 DERIVED = ['docs/automation-coverage.md', 'docs/automation-gaps.md', 'docs/automation-gaps.json',
            'docs/asset-field-coverage.md', 'public/data/asset-field-coverage.json', 'docs/app-inventory.md']
 INSURANCE = 'src/data/automated-insurance.json'
+SCPI = 'src/data/automated-scpi.json'
 
 
 class EtfPublication(unittest.TestCase):
@@ -23,7 +24,7 @@ class EtfPublication(unittest.TestCase):
         self.f = harness.CommitValidatedData()
         self.f.setUp()
         self.addCleanup(self.f.doCleanups)
-        for name in PRIMARY + DERIVED + [INSURANCE, 'scripts/etf-pilot.json',
+        for name in PRIMARY + DERIVED + [INSURANCE, SCPI, 'scripts/etf-pilot.json',
                                          'scripts/collect_etf_pilot.py', 'src/data/instrument-returns.js']:
             p = self.f.local / name
             p.parent.mkdir(parents=True, exist_ok=True)
@@ -114,6 +115,34 @@ if command == 'npm run build' and os.environ.get('ETF_TEST_RACE'):
             self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'second insurance update')
         self.assertEqual((self.f.root / 'checks').read_text().count('npm run build'), 2)
 
+    def test_observed_scpi_collision_revalidates_exact_combined_tree(self):
+        self.env['ETF_TEST_INSURANCE'] = SCPI
+        self.f.advance_remote(SCPI)
+        result = self.publish()
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + SCPI), 'concurrent update')
+        for path in PRIMARY:
+            self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'collected ETF observation')
+        for path in DERIVED:
+            self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'concurrent update')
+        self.assertIn('npm run build', (self.f.root / 'checks').read_text())
+
+    def test_scpi_collision_never_bypasses_failed_financial_validation(self):
+        self.env['ETF_TEST_INSURANCE'] = SCPI
+        self.f.advance_remote(SCPI)
+        before = self.f.git(self.f.remote, 'rev-parse', 'master')
+        self.assert_refused(self.publish(ETF_TEST_FAIL='npm run audit:etf-annual-performance'), before)
+
+    def test_second_scpi_update_rebuilds_the_reports_again(self):
+        self.env['ETF_TEST_INSURANCE'] = SCPI
+        self.f.advance_remote(SCPI)
+        result = self.publish(ETF_TEST_RACE=str(self.f.root / 'race'))
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + SCPI), 'second insurance update')
+        for path in DERIVED:
+            self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'second insurance update')
+        self.assertEqual((self.f.root / 'checks').read_text().count('npm run build'), 2)
+
     def test_observed_collision_without_hooks_reproduces_original_refusal(self):
         self.f.advance_remote(INSURANCE)
         before = self.f.git(self.f.remote, 'rev-parse', 'master')
@@ -183,10 +212,12 @@ class AcquisitionIndependence(unittest.TestCase):
                 continue
             seen.add(path)
             self.assertNotEqual(path.name, 'automated-insurance.json')
+            self.assertNotEqual(path.name, 'automated-scpi.json')
             if path.suffix not in ['.js', '.mjs']:
                 continue
             text = path.read_text()
             self.assertNotIn('automated-insurance', text, str(path))
+            self.assertNotIn('automated-scpi', text, str(path))
             if path.suffix in ['.js', '.mjs']:
                 for relative in re.findall(r'''(?:from\s*|import\s*)['"](\.[^'"]+)['"]''', text):
                     pending.append(path.parent / relative)
@@ -203,6 +234,7 @@ class AcquisitionIndependence(unittest.TestCase):
             seen.add(path)
             text = path.read_text()
             self.assertNotIn('automated-insurance', text, str(path))
+            self.assertNotIn('automated-scpi', text, str(path))
             for node in ast.walk(ast.parse(text)):
                 names = [node.module] if isinstance(node, ast.ImportFrom) else [a.name for a in node.names] if isinstance(node, ast.Import) else []
                 for name in filter(None, names):
