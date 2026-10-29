@@ -18,7 +18,8 @@ DERIVED = ['docs/automation-coverage.md', 'docs/automation-gaps.md', 'docs/autom
 INSURANCE = 'src/data/automated-insurance.json'
 SCPI = 'src/data/automated-scpi.json'
 PUBLICATION_OUTPUTS = ['src/data/anniversary-levels.json','src/data/purchasing-power-observations.json']
-INDEPENDENT_OUTPUTS = [INSURANCE,SCPI,*PUBLICATION_OUTPUTS]
+REGULATORY_OUTPUTS = ['src/data/automated-broker-tariffs.json','src/data/automated-regulatory.json']
+INDEPENDENT_OUTPUTS = [INSURANCE,SCPI,*PUBLICATION_OUTPUTS,*REGULATORY_OUTPUTS]
 
 
 class EtfPublication(unittest.TestCase):
@@ -147,6 +148,12 @@ if command == 'npm run build' and os.environ.get('ETF_TEST_RACE'):
 
     def test_anniversary_publication_race_rebuilds_combined_reports(self):
         self.independent_publication_race(PUBLICATION_OUTPUTS[0])
+
+    def test_actual_broker_publication_after_c79_revalidates_combined_reports(self):
+        self.independent_publication_race(REGULATORY_OUTPUTS[0])
+
+    def test_independent_fiscal_publication_revalidates_combined_reports(self):
+        self.independent_publication_race(REGULATORY_OUTPUTS[1])
 
     def test_purchasing_power_publication_race_rebuilds_combined_reports(self):
         self.independent_publication_race(PUBLICATION_OUTPUTS[1])

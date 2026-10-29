@@ -8,6 +8,7 @@ import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {AUTOMATED_ETF} from '../src/data/automated-etf.js';
 import {DATA_CATALOG} from '../src/data/catalog.js';
+import {outsideEquityClassification} from './lib/dca-asset-scope.mjs';
 import {buildGapInventory,completeCalendarYears} from './automation-gap-inventory.mjs';
 const read=p=>JSON.parse(readFileSync(new URL('../'+p,import.meta.url)));
 import POLICY from '../src/data/freshness-policy.json' with {type:'json'}
@@ -64,7 +65,7 @@ export function scpiWaitingForPublication(record,now,field='snapshot') {
  const checked=dateStamp(wait?.lastAccessSuccessAt),day=dateStamp(now),due=dateStamp(reviewDue)
  return field==='snapshot'&&wait?.status==='waiting-publication'&&Number.isFinite(checked)&&Number.isFinite(day)&&Number.isFinite(due)&&day<=due&&checked<=day&&(day-checked)/86400000<=freshness('product.default').checkDays
 }
-export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) {
+export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10),{metadataSourceRecords=read('scripts/instrument-metadata-sources.json').instruments}={}) {
  const gaps=buildGapInventory({now}), gapMap=new Map(gaps.gaps.map(r=>[`${r.id}:${r.field}`,r]));
  const monthly={},monthlySources={};
  for(const path of ['src/data/automated-monthly.json','src/data/automated-etf-monthly.json','src/data/non-bond-monthly-records.json'])for(const [id,value]of Object.entries(read(path))){monthly[id]=value;monthlySources[id]=path;}
@@ -79,11 +80,18 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
  const names={completeHoldings:'Positions intégrales',ter:'Frais',aum:'Encours',performance:'Performances annuelles',monthly:'Historique mensuel',countries:'Pays',sectors:'Secteurs',holdings:'Principales positions',distribution:'Distribution',domicile:'Domicile',replicationMethod:'Réplication',listings:'Cotations',pea:'Éligibilité PEA',currencyHedge:'Couverture de change'};
  const rows=[...equityExposureGaps()];
  const qualification=read('scripts/source-snapshots/monthly-qualification-status.json');
- const metadataSources=new Map(read('scripts/instrument-metadata-sources.json').instruments.map(r=>[r.isin,r.urls]));
+ // Source discovery order is not financial evidence. The build regenerates this
+ // configuration; equivalent URL sets must produce the exact prepared report.
+ // Keep every URL, including additions/removals, and all dated observations.
+ const metadataSources=new Map(metadataSourceRecords.map(r=>[r.isin,[...r.urls].sort()]));
  for(const item of DATA_CATALOG.filter(r=>r.type==='instrument' && r.fields.find(f=>f.label==='Identité')?.value?.instrumentType!=='EQUITY')) {
   const onlyComposition=!AUTOMATED_ETF[item.id]&&!!compositionOnly[item.id];
   const record=AUTOMATED_ETF[item.id]??compositionOnly[item.id]??{};
   for(const field of Object.keys(names)) {
+   const outside=outsideEquityClassification(item.id,record.name??item.name);
+   if(field==='completeHoldings'&&outside) {
+    rows.push({id:item.id,name:item.name,type:'instrument',field,label:names[field],state:'not-applicable',present:false,checkedAt:null,asOf:null,sourceUrl:null,sourceUrls:[],automationConfigured:false,tools:['dca-profiles'],reason:`Positions d’entreprises hors périmètre de la vue entreprises : ${outside}. Les autres données et usages de cet instrument restent contrôlés.`});continue;
+   }
    if(onlyComposition&&!['countries','sectors','completeHoldings'].includes(field)) {
     rows.push({id:item.id,name:item.name,type:'instrument',field,label:names[field],state:'not-applicable',present:false,checkedAt:null,asOf:null,sourceUrl:null,sourceUrls:[],automationConfigured:false,tools:[],reason:'Sous-jacent de composition uniquement : cette capacité ne consomme pas ce champ.'});continue;
    }

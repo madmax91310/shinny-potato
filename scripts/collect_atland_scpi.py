@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from publication_periods import completed_year, latest_annual
 from collect_scpi import fetch, pdf_text, required, number
 from collect_corum import bbox_pages
-from collect_extended_scpi import document_links, latest, metric, counter, phrase, percentages, allocation
+from collect_extended_scpi import document_links, latest, metric, counter, phrase, percentages, allocation, bulletin_calendar
 
 PRODUCTS={'epargne-pierre':('Épargne Pierre','https://atland-voisin.com/scpi/epargne-pierre/')}
 
@@ -85,10 +85,12 @@ def parse_epargne(text,pages,annual,url,annual_url,today,product_html):
 
 def collect(id_,today):
     name,base=PRODUCTS[id_];html=fetch(base).decode();links=document_links(html,base)
-    url=latest(links,r'BPI(?P<quarter>[1-4])T(?P<year>\d{4})-EP-',today)
+    period_pattern=r'BPI(?P<quarter>[1-4])T(?P<year>\d{4})-EP-'
+    url=latest(links,period_pattern,today)
     annual_url,_=latest_annual(links,r'RA_Epargne_Pierre_(?P<year>20\d{2})_',today)
     data=fetch(url)
     result=parse_epargne(pdf_text(data),bbox_pages(data),pdf_text(fetch(annual_url)),url,annual_url,today,html)
     linked_year=int(required(r'RA_Epargne_Pierre_(20\d{2})_',annual_url)[1])
     if result['annual']['years'][-1]['year']!=linked_year:raise ValueError('Annual URL and published columns disagree')
+    result['snapshotPublication']=bulletin_calendar(url,period_pattern,result['snapshot']['asOf'])
     return {'id':id_,'name':name,'sourceUrl':base,'checkedAt':today.isoformat(),**result}

@@ -65,6 +65,8 @@ def fetch_content(url):
   return SourceDocument(read_answer(url),url)
  owners=[broker for broker in POLICIES if allowed(broker,url)]
  validator=(lambda target:any(allowed(broker,target) for broker in owners)) if owners else None
+ if url==SUPPLEMENT_SOURCES['fortuneo_amundi'][2]:
+  validator=lambda target:target==SUPPLEMENT_SOURCES['fortuneo_amundi'][2]
  raw,actual_url=download(url,url_validator=validator,return_source=True)
  # WordPress download pages expose a rotating, public link to the real PDF.
  if 'groupe.boursedirect.fr/download/' in url and not raw.startswith(b'%PDF'):

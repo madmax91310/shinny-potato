@@ -50,7 +50,8 @@ MARKET_READER_ONLY_CHANGES = {
 # Coverage reports/build do: regenerate and validate those on the merged tree.
 # Keep this narrower than INDEPENDENT; other outputs have not been qualified.
 ETF_INDEPENDENT = {'src/data/automated-insurance.json', 'src/data/automated-scpi.json',
-                   'src/data/anniversary-levels.json', 'src/data/purchasing-power-observations.json'}
+                   'src/data/anniversary-levels.json', 'src/data/purchasing-power-observations.json',
+                   'src/data/automated-broker-tariffs.json', 'src/data/automated-regulatory.json'}
 ALLOWED = {
     'etf': ETF_INDEPENDENT,
     'indices': INDEPENDENT | {'src/data/automated-scpi.json','src/data/worldbank-gold-monthly.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
