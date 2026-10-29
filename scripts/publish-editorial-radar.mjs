@@ -145,7 +145,8 @@ if (refresh) {
     tree.push({ path: `dws-snapshots/${proof.sourceHash}.json`, mode: '100644', type: 'blob', sha: blob.sha })
   }
   for (const [path, content] of [['state.json', result.state], ['feed.json', result.feed], ['summary.json', makeRadarOverview(result.feed,publicationSelection(result.feed.events))], ['notifications.json', ledger]]) {
-    const blob = await api('git/blobs', 'POST', { content: path==='state.json'?radarStateContent(content):`${JSON.stringify(content, null, 2)}\n`, encoding: 'utf-8' })
+    const stored=path==='state.json'?radarStateContent(content,metrics=>console.log('Radar state transport:',JSON.stringify(metrics))):`${JSON.stringify(content, null, 2)}\n`
+    const blob = await api('git/blobs', 'POST', { content: stored, encoding: 'utf-8' })
     tree.push({ path, mode: '100644', type: 'blob', sha: blob.sha })
   }
   nextTree = await api('git/trees', 'POST', { base_tree: commit.tree.sha, tree })

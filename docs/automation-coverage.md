@@ -1,4 +1,4 @@
-# Automatisation des données — état du 2026-10-28
+# Automatisation des données — état du 2026-10-29
 
 Inventaire courant par champ et motif : [détail des lacunes](automation-gaps.md), avec [version JSON](automation-gaps.json).
 
@@ -8,8 +8,8 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 
 | Domaine | Couverture active | Fréquence |
 |---|---|---|
-| Historiques mensuels des simulateurs | 731/731 séries ; 451 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
-| Parts ETF mensuelles raccordées | 263 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
+| Historiques mensuels des simulateurs | 732/732 séries ; 451 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
+| Parts ETF mensuelles raccordées | 264 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
 | ETF/ETC/ETP | 258/261 instruments, au moins un champ | Quotidienne |
 | Actions individuelles (secteur et pays) | 410/410 actions ; secteur GICS et pays de risque issus des compositions complètes iShares ; données du 2026-10-27 | Quotidienne ; une action sortie des fonds sources garde sa dernière classification datée |
 | Comparatif ETF | 245/245 parts raccordées dans 139 blocs ; 235 calendriers actifs, 11 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |

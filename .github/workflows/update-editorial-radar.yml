@@ -9,6 +9,9 @@ on:
       - '.github/workflows/update-editorial-radar.yml'
       - 'scripts/*editorial-radar.mjs'
       - 'scripts/lib/editorial-radar.mjs'
+      - 'scripts/lib/radar-state-codec.mjs'
+      - 'scripts/test-radar-state-codec.mjs'
+      - 'scripts/fixtures/radar-state-v1-reader.mjs'
       - 'scripts/lib/dws-reconciliation.mjs'
       - 'scripts/verify_dws_compositions.py'
       - 'scripts/test_dws_reconciliation.py'
@@ -78,6 +81,9 @@ on:
       - '.github/workflows/update-editorial-radar.yml'
       - 'scripts/*editorial-radar.mjs'
       - 'scripts/lib/editorial-radar.mjs'
+      - 'scripts/lib/radar-state-codec.mjs'
+      - 'scripts/test-radar-state-codec.mjs'
+      - 'scripts/fixtures/radar-state-v1-reader.mjs'
       - 'scripts/lib/dws-reconciliation.mjs'
       - 'scripts/verify_dws_compositions.py'
       - 'scripts/test_dws_reconciliation.py'
@@ -170,6 +176,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_dws_reconciliation.py'
       - run: node scripts/test-dws-reconciliation.mjs
       - run: node scripts/test-editorial-radar.mjs
+      - run: node scripts/test-radar-state-codec.mjs
       - run: node scripts/test-radar-editorial.mjs
       - run: node scripts/test-radar-publications.mjs
       - run: node scripts/test-radar-extensions.mjs
@@ -274,6 +281,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_dws_reconciliation.py'
       - run: node scripts/test-dws-reconciliation.mjs
       - run: node scripts/test-editorial-radar.mjs
+      - run: node scripts/test-radar-state-codec.mjs
       - run: node scripts/test-radar-editorial.mjs
       - run: node scripts/test-radar-publications.mjs
       - run: node scripts/test-radar-extensions.mjs

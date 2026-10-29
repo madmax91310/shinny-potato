@@ -11,17 +11,26 @@ def silver(text, share, now):
     if share['isin'] != 'IE000UL6CLP7' or share['currency'] != 'USD':
         reject('Wrong Silver Miners share configuration')
     tokens = Page(text).tokens
-    starts = [i for i, t in enumerate(tokens[:-1]) if t == 'Key Information' and tokens[i+1].startswith('As of ')]
-    if not starts:
-        raise ResponseFormatError('Incomplete Silver Miners HTML: dated key information missing')
-    start = only(starts, 'Silver Miners dated facts')
-    # End on the final required trading field, not a decorative section heading.
-    # Bound the search so another product or footer cannot fill a truncated block.
-    ends = [i for i in range(start + 2, min(len(tokens) - 1, start + 120)) if tokens[i] == 'Management Style']
-    if not ends:
-        raise ResponseFormatError('Incomplete Silver Miners HTML: trading details missing')
-    end = only(ends, 'Silver Miners management style') + 2
-    block = '\n'.join(tokens[start:end])
+    from globalx_sections import fact_sections
+    sections = fact_sections(text, Page)
+    if sections is not None:
+        facts, trading = sections
+        block = '\n'.join(facts + trading)
+        stamp = document_date(only([t.removeprefix('As of ') for t in facts
+                                    if t.startswith('As of ')], 'Silver Miners facts date'), now)
+    else:
+        starts = [i for i, t in enumerate(tokens[:-1]) if t == 'Key Information' and tokens[i+1].startswith('As of ')]
+        if not starts:
+            raise ResponseFormatError('Incomplete Silver Miners HTML: dated key information missing')
+        start = only(starts, 'Silver Miners dated facts')
+        # End on the final required trading field, not a decorative section heading.
+        # Bound the search so another product or footer cannot fill a truncated block.
+        ends = [i for i in range(start + 2, min(len(tokens) - 1, start + 120)) if tokens[i] == 'Management Style']
+        if not ends:
+            raise ResponseFormatError('Incomplete Silver Miners HTML: trading details missing')
+        end = only(ends, 'Silver Miners management style') + 2
+        block = '\n'.join(tokens[start:end])
+        stamp = document_date(tokens[start+1].removeprefix('As of '), now)
     identities = re.findall(r'Primary ISIN\n([A-Z0-9]{12})', block)
     if not identities:
         raise ResponseFormatError('Incomplete Silver Miners HTML: primary ISIN missing')
@@ -30,7 +39,6 @@ def silver(text, share, now):
     if 'USD Accumulating' not in '\n'.join(tokens) or 'Physical - Full Replication - Passively Managed Index Tracking' not in block:
         reject('Silver Miners income policy or replication changed')
     # Trading details have their own date; the fund assets use the key facts date.
-    stamp = document_date(tokens[start+1].removeprefix('As of '), now)
     ter = float(only(re.findall(r'Total Expense Ratio\n([\d.]+)\n%', block), 'Silver Miners fee'))
     if not 0 <= ter <= 5: reject('Invalid Silver Miners fee')
     amount, currency = money(only(re.findall(r'Fund AUM\n([^\n]+)', block), 'Silver Miners AUM'))

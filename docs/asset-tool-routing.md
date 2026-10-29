@@ -205,7 +205,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | iShares Global Timber & Forestry UCITS ETF | IE00B27YCF74 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares MSCI World Islamic UCITS ETF | IE00B27YCN58 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares J.P. Morgan $ EM Bond UCITS ETF USD (Dist) | IE00B2NPKV68 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
-| iShares S&P SmallCap 600 UCITS ETF | IE00B2QWCY14 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
+| iShares S&P SmallCap 600 UCITS ETF | IE00B2QWCY14 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares MSCI EM Small Cap UCITS ETF USD (Dist) | IE00B3F81G20 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | iShares Core € Corp Bond UCITS ETF (Dist) | IE00B3F81R35 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / — | — |
 | iShares € Govt Bond 0-1yr UCITS ETF EUR (Dist) | IE00B3FH7618 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / — | — |
@@ -370,7 +370,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Glencore | JE00B4T3BW64 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | WisdomTree Brent Crude Oil | JE00B78CGV99 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
 | WisdomTree Natural Gas | JE00BN7KB334 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
-| WisdomTree Coffee | JE00BN7KB557 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / — / Oui | — |
+| WisdomTree Coffee | JE00BN7KB557 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
 | WisdomTree Wheat | JE00BN7KB664 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
 | Advantest | JP3122400009 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Itochu | JP3143600009 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |

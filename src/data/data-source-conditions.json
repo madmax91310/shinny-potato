@@ -638,6 +638,19 @@
       "configurations": [
         "scripts/broker_profile_sources.json"
       ]
+    },
+    {
+      "host": "api.bnpparibas-am.com",
+      "access": "API officielle publique liée au site BNP, profil particulier IP_FR-IND/FRE/FRA et NAV quotidienne PRICE_NAV de FR0011550185 en EUR ; aucun statut professionnel déclaré",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "BNP Paribas Asset Management ; conditions propres à la réutilisation financière à vérifier",
+      "termsUrl": "https://www.bnpparibas-am.com/fr-fr/mentions-legales/",
+      "reviewStatus": "Lien de mentions légales réellement publié ; conditions de réutilisation non qualifiées. Un accès HTTP réussi ne constitue pas une licence. Le graphe NAV est masqué par la présentation émetteur ; API publique et exposition de la donnée financière distinguées.",
+      "configurations": [
+        "scripts/official-nav-remainder-sources.json",
+        "scripts/monthly-automation.json"
+      ]
     }
   ],
   "datasets": [
