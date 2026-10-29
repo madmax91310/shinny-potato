@@ -46,8 +46,7 @@ class ObservationRebaseTests(unittest.TestCase):
                    f'--kind {kind} --base "$VALIDATED_DATA_ORIGINAL_BASE" --upstream HEAD^ && {validation}')
         return self.f.publish({'VALIDATED_DATA_CHECK': command})
 
-    def calendar_race(self, change):
-        path = 'src/data/automated-etf.json'
+    def calendar_race(self, change, path='src/data/automated-etf.json'):
         config = {'series': [{'id': 'copperNav', 'parser': 'official-nav',
                              'isin': 'GB00B15KXQ89', 'calendarRegistry': path}]}
         row = {'productId': 'GB00B15KXQ89', 'currency': 'USD', 'aum': 100,
@@ -67,6 +66,25 @@ class ObservationRebaseTests(unittest.TestCase):
         self.f.git(self.f.other, 'commit', '-m', 'concurrent ETF observation')
         self.f.git(self.f.other, 'push', 'origin', 'master')
         return self.publish('market')
+
+    def test_new_wisdomtree_calendar_registry_aum_does_not_change_acquisition(self):
+        result=self.calendar_race(lambda row:row.update(aum=200),'src/data/exposure-etf-expansion-records.json')
+        self.assertEqual(result.returncode,0,result.stderr)
+
+    def test_new_wisdomtree_calendar_registry_check_does_not_borrow_a_source_success(self):
+        result=self.calendar_race(lambda row:row['performance'].update(checkedAt='2026-10-29'),'src/data/exposure-etf-expansion-records.json')
+        self.assertEqual(result.returncode,0,result.stderr)
+
+    def test_new_wisdomtree_calendar_registry_return_change_requires_recollection(self):
+        result=self.calendar_race(lambda row:row['performance']['years'].update({'2024':14.3}),'src/data/exposure-etf-expansion-records.json')
+        self.assertNotEqual(result.returncode,0)
+        self.assertIn('Collection inputs may have changed',result.stderr)
+        self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'original')
+
+    def test_new_wisdomtree_calendar_registry_currency_change_requires_recollection(self):
+        result=self.calendar_race(lambda row:row['performance'].update(currency='EUR'),'src/data/exposure-etf-expansion-records.json')
+        self.assertNotEqual(result.returncode,0)
+        self.assertIn('Collection inputs may have changed',result.stderr)
 
     def test_market_aum_only_change_preserves_calendar_receipt(self):
         result = self.calendar_race(lambda row: row.update(aum=200))
