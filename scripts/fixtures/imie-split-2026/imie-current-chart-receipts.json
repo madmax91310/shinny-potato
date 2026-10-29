@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://query2.finance.yahoo.com/v8/finance/chart/IMIE.PA?period1=1320105600&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-29T21:47:38.289675+00:00",
+    "sha256": "7c99514af1afb9f1eeb5ddaadb844f4a7d8acb866d960c5a08d47bd81cac4e49",
+    "serialization": "parsed response compact JSON, not raw HTTP bytes",
+    "file": "imie-current-chart-0.json.gz"
+  },
+  {
+    "url": "https://query2.finance.yahoo.com/v8/finance/chart/IMIE.PA?period1=1320105600&period2=1790812800&interval=1mo&events=div%2Csplits",
+    "checkedAt": "2026-10-29T21:47:38.502567+00:00",
+    "sha256": "8b9bfb9e155e598a0ed0eb28b24d9fbcafb73e0d9fdb1011d30af71ec5cdb599",
+    "serialization": "parsed response compact JSON, not raw HTTP bytes",
+    "file": "imie-current-chart-1.json.gz"
+  },
+  {
+    "url": "https://query2.finance.yahoo.com/v8/finance/chart/IMIE.PA?period1=1356393600&period2=1356998400&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-29T21:47:38.674567+00:00",
+    "sha256": "2620540426874344d19f374a67c99b30f992ae093232663fdfa2b295937703de",
+    "serialization": "parsed response compact JSON, not raw HTTP bytes",
+    "file": "imie-current-chart-2.json.gz"
+  },
+  {
+    "collectorError": "Monthly close differs from final daily session: 2011-11, session 2011-11-30, daily 1.9844000339508057, check 49.61000061035156"
+  }
+]

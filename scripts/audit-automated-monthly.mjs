@@ -1,4 +1,5 @@
 import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
+import {comparisonClose} from './lib/split-comparison-proof.mjs'
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { ASSETS } from '../src/data/market-history.js';
@@ -64,7 +65,7 @@ for (const [id, record] of Object.entries(records)) {
         assert(record.allowMissingMonthly || record.dailyWindowMonths?.includes(date) || record.verifiedDailyWindowMonths?.includes(date) || record.verifiedSparseMonthEnds?.[date]);
         assert(record.sourceUrls.includes(row.windowUrl));
       }
-      assert(Math.abs(row.close-(row.monthlyClose ?? row.windowClose))<=Math.max(.02,row.close*1e-7));
+      assert(Math.abs(row.close-comparisonClose(record,evidence[id],row))<=Math.max(.02,row.close*1e-7));
     }
     if (record.parser === 'msci') assert(Math.abs(row.value-row.monthlyValue)<=.0001);
     assert.deepEqual(asset.points[i], { date, price });
