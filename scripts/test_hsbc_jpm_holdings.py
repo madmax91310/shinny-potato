@@ -1,4 +1,6 @@
 import copy
+import gzip
+import hashlib
 import datetime as dt
 import json
 from pathlib import Path
@@ -51,5 +53,37 @@ class FullSources(unittest.TestCase):
         bad=self.jpm();bad['fundData']['dailyHoldings']['data'][0]['marketValuePercent']=10;cases.append(bad)
         for i,bad in enumerate(cases):
             with self.subTest(case=i),self.assertRaises(ValueError):parse(bad,NOW)
+
+class JpmIndependentSnapshots(unittest.TestCase):
+    def source(self):
+        body=gzip.decompress((FIX/'jpm-different-headline-20261029.json.gz').read_bytes())
+        self.assertEqual(hashlib.sha256(body).hexdigest(),'248c16af9b086154904d16aeadbd7bb5a6685148ccda0f93837226c8f693c032')
+        return json.loads(body)
+    def test_actual_positions_do_not_borrow_the_headline_date(self):
+        body=self.source();now=dt.datetime(2026,10,29,tzinfo=dt.timezone.utc)
+        self.assertEqual(body['fundData']['fundValuationDate'],'2026-10-28')
+        rows,stamp,excluded=parse(body,now)
+        self.assertEqual(stamp,'2026-10-29')
+        self.assertAlmostEqual(sum(r['weightPct']for r in rows+excluded),100,places=10)
+        self.assertEqual(parse(body,now),(rows,stamp,excluded))
+        self.assertEqual(body,self.source(),'No in-place date/value rewrite')
+    def test_positions_top_and_weight_guards_remain_independent(self):
+        now=dt.datetime(2026,10,29,tzinfo=dt.timezone.utc)
+        for change in ['position-date','top-date','market-value','weight','future-position-date']:
+            body=self.source();f=body['fundData']
+            if change=='position-date':f['dailyHoldingsAll']['data'][0]['navDate']='2026-10-28'
+            if change=='top-date':f['dailyHoldings']['effectiveDate']='2026-10-28'
+            if change=='market-value':f['dailyHoldingsAll']['data'][0]['marketValue']+=100000
+            if change=='weight':f['dailyHoldingsAll']['data'][0]['marketValuePercent']+=.01
+            if change=='future-position-date':f['dailyHoldingsAll']['effectiveDate']='2027-01-01'
+            with self.subTest(change=change),self.assertRaises(ValueError):parse(body,now)
+    def test_collection_preserves_separate_raw_clock(self):
+        from unittest.mock import patch
+        from jpm_holdings import collect,ISIN
+        raw=json.dumps(self.source()).encode()
+        with patch('jpm_holdings.download',return_value=raw):
+            result=collect({'isin':ISIN,'currency':'USD'},dt.datetime(2026,10,29,tzinfo=dt.timezone.utc))
+        self.assertEqual(result['asOf'],'2026-10-29')
+        self.assertEqual(result['snapshotDates'],{'holdings':'2026-10-29','headlineValuationRaw':'2026-10-28','headlineValuationUsedInCalculation':False})
 
 if __name__=='__main__':unittest.main()
