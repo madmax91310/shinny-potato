@@ -81,6 +81,7 @@ class OrdinaryBrowserTransport(unittest.TestCase):
   with patch('wisdomtree_performance_history.download',return_value=b'[]')as fetch,patch('wisdomtree_performance_history.subprocess.run')as browser:
    bodies,proof=acquire(s)
   self.assertEqual(list(bodies),urls(s));browser.assert_not_called()
+  self.assertTrue(all('/historical_performance/?entity='in u for u in bodies))
   self.assertEqual(proof['actualNavTransport'],'public-widget-http')
   self.assertTrue(all(c.kwargs['headers']['Origin']=='https://www.wisdomtree.com'for c in fetch.call_args_list))
  def test_only_a_403_gets_one_fresh_bounded_browser_attempt(self):

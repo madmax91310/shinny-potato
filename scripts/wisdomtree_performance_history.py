@@ -146,4 +146,4 @@ def urls(source):
     ticker = source['wisdomTicker']
     if not ticker.isalpha() or not ticker.isupper():
         raise ValueError('Invalid registered issuer ticker')
-    return [ORIGIN+'historical_performance?entity='+ticker+'&mode='+mode for mode in ('gro10k', 'tabular')]
+    return [ORIGIN+'historical_performance/?entity='+ticker+'&mode='+mode for mode in ('gro10k', 'tabular')]

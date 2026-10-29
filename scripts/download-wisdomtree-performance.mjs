@@ -10,9 +10,11 @@ try{
  const context=await browser.newContext({extraHTTPHeaders:{Origin:'https://www.wisdomtree.com',Referer:source.sourceUrl,Accept:'application/json'}})
  const page=await context.newPage(),results=[]
  for(const mode of ['gro10k','tabular']){
-  const url=`https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=${source.wisdomTicker}&mode=${mode}`
+  const url=`https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=${source.wisdomTicker}&mode=${mode}`
   const response=await page.goto(url,{waitUntil:'domcontentloaded',timeout:40000})
-  if(!response?.ok()||response.url()!==url||!response.headers()['content-type']?.includes('application/json'))throw Error(`Official browser performance unavailable: ${response?.status()} ${url}`)
+  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)
+  const contentType=response.headers()['content-type']??''
+  if(!/^(application\/json|text\/plain)(?:;|$)/i.test(contentType))throw Error(`Official browser performance content type unqualified: ${contentType}`)
   const body=await response.body()
   if(body.length>8_000_000)throw Error('Official browser performance exceeds bound')
   if(!Array.isArray(JSON.parse(body.toString('utf8'))))throw Error('Expected public issuer JSON array')

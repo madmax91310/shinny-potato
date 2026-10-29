@@ -9,3 +9,5 @@ Les niveaux NAV(TR) du graphique sont des niveaux de performance, pas un prix br
 La série fournie commence aux périodes déjà approuvées (Copper janvier2015 ; Brent/WTI décembre2020 ; Coffee décembre2021). Les observations précédentes du produit restent dans les preuves brutes mais sont exclues du résultat. En particulier, l’ancienneté du graphique Coffee ne prouve pas la continuité de l’ISIN actuel avant décembre2021.
 
 Les contrôles calendaires et seuils existants restent appliqués à chaque année. Les six refus de l’ancien export restent dans sa fixture et dans les tests de fenêtres ; ils ne peuvent être retirés de l’usage actif qu’après requalification individuelle de la nouvelle série.
+
+Le service redirige le chemin du client vers `/funddetails/historical_performance/` (barre finale). Le transport utilise uniquement cette URI canonique du même domaine, avec le même ticker et mode ; toute autre redirection reste refusée. JSON valide et identité financière restent obligatoires, y compris si le serveur publie le JSON en text/plain.
