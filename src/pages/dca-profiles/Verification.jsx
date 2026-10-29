@@ -36,7 +36,7 @@ export default function Verification({profile,analysis,onHoldingsChange}){
  {shared.pairs.slice(0,pairLimit).map((pair,i)=><details key={i}><summary>{pair.left} / {pair.right} · {pair.common.length} positions communes</summary><h3>{pair.left} / {pair.right}</h3><p>Positions identifiées : {pair.identifiedCoverage.map(pct).join(' / ')} de chaque support.{pair.full?` Chevauchement des entreprises des listes complètes : ${pct(pair.overlap)}.`:' Listes partielles : le reste du portefeuille n’est pas comparé.'}</p>
  {pair.common.length>30&&<p>Les 30 positions communes les plus pondérées sont affichées sur {pair.common.length}. Tous les titres entrent dans les calculs.</p>}
  {pair.common.length?pair.common.slice(0,30).map(row=><p key={row.isin}>{row.name} · {row.isin} : {pct(row.portfolioWeight)} du portefeuille via ces deux supports.</p>):<p>Aucune position commune identifiée dans ces listes. Cela ne prouve pas l’absence de chevauchement.</p>}
- {pair.sources.map((source,i)=><p key={i}><a href={source.url} target="_blank" rel="noreferrer">Source {i+1} ↗</a> · {source.asOf}</p>)}
+ {pair.sources.map((source,i)=><p key={i}><a href={source.url} target="_blank" rel="noreferrer">Source {i+1} ↗</a> · {source.asOf}{source.checkedAt&&` · Contrôlé le ${source.checkedAt.slice(0,10)}`}{source.basis==='index'&&' · Exposition de l’indice, pas détentions du fonds'}{source.method&&<><br/>{source.method}</>}</p>)}
  </details>)}
  {shared.pairs.length>pairLimit&&<button onClick={()=>setPairLimit(pairLimit+20)}>Afficher 20 autres comparaisons ({shared.pairs.length-pairLimit} restantes)</button>}
  {!!shared.unavailable.length&&<p>Sans liste exploitable : {shared.unavailable.join(' · ')}.</p>}

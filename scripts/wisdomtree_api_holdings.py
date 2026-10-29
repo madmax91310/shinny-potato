@@ -6,14 +6,28 @@ import math
 import os
 import re
 import subprocess
+import threading
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
 from issuer_documents import download, pdf_text, document_date, proof
-from security_identifier_observations import API, digest
+from security_identifier_observations import API, digest, candidate_name, candidate_isins
 
 ROOT = Path(__file__).resolve().parents[1]
-CLASSES = {'IE00BJGWQN72': (3104137, 'WCLD LN', 'WisdomTree Cloud Computing UCITS ETF - USD Acc')}
+# Exact share/class/listing identities corroborated by issuer pages and factsheets
+# on 2026-10-29. Only existing catalogue shares; no weights come from a proxy.
+CLASS_CONFIG = json.loads((ROOT/'scripts/wisdomtree-holdings-classes.json').read_text())
+CLASSES = {isin:(r['classId'],r['fundTicker'],r['title']) for isin,r in CLASS_CONFIG.items()}
+# Literal cash/currency account labels observed in the issuer API, with no
+# security FIGI and no listing ticker. Unknown blank identities still fail.
+CASH_LABELS = {'CASH W-O','KOREAN WON','HONG KONG DOLLAR','EURO INCOME A/C',
+ 'STERLING POUND','JAPANESE YEN','AUSTRALIAN DOLLAR','NORWEGIAN KRONE',
+ 'SOUTH TAIWAN DOLLAR','SWISS FRANC','CHINESE RENIMBI','CANADIAN DOLLAR',
+ 'SOUTH AFRICAN RAND','EURO','SWEDISH KRONA','INDONESIAN RUPIAH',
+ 'SINGAPORE DOLLAR','DANISH KRONE','POLISH ZLOTY','CZECHOSLOVAKIAN KORUNA'}
+_MAPPING_LOCK = threading.Lock()
+_LAST_MAPPING_REQUEST = 0.0
 
 
 class IssuerApiUnavailable(ConnectionError):
@@ -21,6 +35,14 @@ class IssuerApiUnavailable(ConnectionError):
 
 
 def mapping_request(jobs):
+    # The shared producer collects several funds concurrently. Respect the public
+    # crosswalk rate limit across threads, rather than per ETF.
+    global _LAST_MAPPING_REQUEST
+    with _MAPPING_LOCK:
+        pause = 3 - (time.monotonic() - _LAST_MAPPING_REQUEST)
+        if pause > 0:
+            time.sleep(pause)
+        _LAST_MAPPING_REQUEST = time.monotonic()
     request = urllib.request.Request(API, json.dumps(jobs).encode(), {
         'Content-Type': 'application/json', 'User-Agent': 'EpargnantLibre/1.0 (lepargnantlibre@gmail.com)'})
     with urllib.request.urlopen(request, timeout=25) as response:
@@ -42,6 +64,8 @@ def identity_map(observations, now):
         for job, response in zip(jobs, responses):
             if not isinstance(response,dict) or response.get('error'):
                 raise ValueError('Failed independent identifier lookup; previous portfolio preserved')
+            if job.get('idType') == 'ID_SEDOL' and re.fullmatch(r'[A-Z0-9]{7}',job.get('idValue','')):
+                continue  # The shared registry's candidate side never assigns an ISIN.
             if job.get('idType') == 'ID_BB_GLOBAL' and re.fullmatch(r'BBG[A-Z0-9]{9}', job.get('idValue', '')):
                 listing_queries.append((job, response))
                 continue
@@ -85,46 +109,55 @@ def parse(payload, share, now, mapping):
             raise ValueError('Wrong WisdomTree API fund or asset group')
         stamps.add(document_date(item['dt'][:10], now))
         weight = item['wgt']
-        if type(weight) not in (int, float) or not math.isfinite(weight) or not 0 <= weight <= 1:
+        is_cash = item.get('securityName') in CASH_LABELS and item.get('figi') is None and item.get('securityTicker') is None
+        if type(weight) not in (int, float) or not math.isfinite(weight) or not (-1 if is_cash else 0) <= weight <= 1:
             raise ValueError('Invalid API portfolio weight')
         if any(type(item.get(k)) not in (int,float) or not math.isfinite(item[k]) or abs(item[k]-1) > .00001 for k in ['checkSumWgtEntity','checkSumWgtAssetGroup']):
             raise ValueError('Unqualified API portfolio checksum')
         total += weight
-        if item.get('securityName') == 'CASH W-O' and item.get('figi') is None and item.get('securityTicker') is None:
+        if is_cash:
             cash += weight*100
             continue
         figi = item.get('figi')
-        if not re.fullmatch(r'BBG[A-Z0-9]{9}', figi or '') or figi in seen or not item.get('securityName'):
+        pending = bool(re.fullmatch(r'FIGI-PENDING-[A-Z0-9]{7,9}',figi or '') and item.get('securityTicker'))
+        if not (re.fullmatch(r'BBG[A-Z0-9]{9}', figi or '') or pending) or figi in seen or not item.get('securityName'):
             raise ValueError('Missing or duplicate API security FIGI')
         seen.add(figi)
-        rows.append({'isin': mapping.get(figi), 'figi': figi, 'name': item['securityName'], 'weightPct': weight*100})
+        rows.append({'isin': None if pending else mapping.get(figi), 'figi': figi, 'name': item['securityName'], 'weightPct': weight*100})
     if len(stamps) != 1 or abs(total-1) > .00001 or not any(row['isin'] for row in rows):
         raise ValueError('Incomplete/mixed-date API portfolio or missing identities')
     return rows, stamps.pop(), cash
 
 
-def collect(share, now, fetch=download, post=mapping_request):
-    from collect_physical_holdings import observation
-    class_id, ticker, title = CLASSES[share['isin']]
-    if share['currency'] != 'USD':
-        raise ValueError('Wrong API share currency')
+def qualify_share_document(share,now,fetch=download):
+    class_id,ticker,title=CLASSES[share['isin']]
+    currency=CLASS_CONFIG[share['isin']]['currency']
+    if share['currency']!=currency:raise ValueError('Wrong API share currency')
     document_url = f'https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/{share["isin"]}'
     document = fetch(document_url)
     text = pdf_text(document)
     if (share['isin'] not in text or title not in ' '.join(text.split())
-            or not re.search(r'Replication Method\s+Physical \(fully replicated\)', text)
-            or not re.search(r'Base Currency\s+USD\b', text)
-            or not re.search(r'WCLD\s+WCLD LN', text)):
+            or not re.search(r'Replication Method\s+Physical(?: \(fully replicated\)|,?\s+Fully Replicated)', text)
+            or not re.search(r'Base Currency\s+'+currency+r'\b', text)
+            or not re.search(r'\b'+re.escape(ticker.split()[0])+r'\s+'+re.escape(ticker)+r'\b', text)):
         raise ValueError('API fund identity not confirmed by official factsheet')
     limit = json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['etf.staticCharacteristic']['checkDays']
     identity_date = document_date(re.search(r'Document Date:\s*(\d{2}/\d{2}/\d{4})', text)[1], now, max_age=limit)
     if (now.date()-dt.date.fromisoformat(identity_date)).days > limit:
         raise ValueError('Expired API fund identity document')
+    return {'identitySourceUrl':document_url,'identitySha256':proof(document),'identityAsOf':identity_date}
+
+
+def collect(share, now, fetch=download, post=mapping_request):
+    from collect_physical_holdings import observation
+    class_id,ticker,_=CLASSES[share['isin']]
+    identity=qualify_share_document(share,now,fetch)
+    document_url=identity['identitySourceUrl']
     url = f'https://www.wisdomtree.com/api/fund-holdings/{class_id}'
     capture_method='public-http-json'
     try:
         raw = fetch(url, headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
-                                 'Accept':'application/json','Referer':'https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc'})
+                                 'Accept':'application/json','Referer':share.get('sourceUrl','https://www.wisdomtree.com/')})
     except urllib.error.HTTPError as error:
         if error.code not in (403,408,429,500,502,503,504):raise
         if error.code!=403 or os.environ.get('WISDOMTREE_BROWSER_CAPTURE')!='1':
@@ -139,21 +172,35 @@ def collect(share, now, fetch=download, post=mapping_request):
     payload = json.loads(raw)
     previous = json.loads((ROOT/'src/data/dca-complete-holdings.json').read_text())
     observations = previous.get(share['isin'], {}).get('identityObservations', [])
+    # Reuse independently acquired exact ISIN/FIGI evidence from the ordinary
+    # identifier producer. Do not re-query or re-date it, nor match by a name.
+    from security_identifier_observations import qualified_observations
+    registry=qualified_observations(now)
+    wanted_figis={r.get('figi') for r in payload}
+    shared={key:o for key,o in registry.items() if wanted_figis.intersection(identity_map([o],now))}
+    observations=[*observations,*shared.values()]
+
     mapping = identity_map(observations, now)
     max_age = json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['etf.staticCharacteristic']['checkDays']
     observations = [o for o in observations if 0 <= (now-dt.datetime.fromisoformat(o['checkedAt'])).total_seconds()/86400 <= max_age]
-    already_tested = {job['idValue'] for o in observations for job in o['request']}
+    already_tested = {job['idValue'] for o in observations for job in o['request'] if job.get('idType')=='ID_ISIN' and not job.get('exchCode')}
+    candidates_by_name={}
+    for fund in previous.values():
+        for row in fund.get('rows',[]):
+            if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',row.get('isin') or ''):
+                candidates_by_name.setdefault(candidate_name(row['name']),set()).add(row['isin'])
     # Names only propose candidates. The issuer's exact listing FIGI must be in
     # the response to an independent ID_ISIN request before assigning an ISIN.
-    names = {re.sub('[^A-Z0-9]', '', r.get('securityName', '').upper()) for r in payload if r.get('figi') not in mapping}
-    candidates = sorted({r['isin'] for fund in previous.values() for r in fund.get('rows', [])
-                         if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d', r.get('isin') or '')
-                         and r['isin'] not in already_tested
-                         and re.sub('[^A-Z0-9]', '', r['name'].upper()) in names})
+    priority={}
+    for row in payload:
+        if row.get('figi') in mapping:continue
+        for isin in candidate_isins(re.sub(r'-New$','',row.get('securityName',''),flags=re.I),candidates_by_name)-already_tested:
+            priority[isin]=max(priority.get(isin,0),row.get('wgt',0))
+    candidates=sorted(priority,key=lambda isin:(-priority[isin],isin))
     for start in range(0, min(len(candidates), 80), 10):
-        # This API exposes the US listings of this qualified fund. Restrict the
-        # identity response to that venue instead of storing worldwide aliases.
-        jobs = [{'idType':'ID_ISIN', 'idValue': value, 'exchCode':'US'} for value in candidates[start:start+10]]
+        # Share currency is not the underlying listing country. Query exact
+        # ISINs globally; only the returned exact FIGI/share class can join.
+        jobs = [{'idType':'ID_ISIN', 'idValue': value} for value in candidates[start:start+10]]
         response = post(jobs)
         evidence = {'sourceUrl': API, 'checkedAt': now.isoformat(), 'request': jobs,
                     'response': response, 'sha256': digest(response)}
@@ -168,12 +215,12 @@ def collect(share, now, fetch=download, post=mapping_request):
         evidence = {'sourceUrl':API,'checkedAt':now.isoformat(),'request':jobs,'response':response,'sha256':digest(response)}
         observations = [*observations,evidence]
     mapping = identity_map(observations, now)
-    unresolved_names = {re.sub('[^A-Z0-9]','',r.get('securityName','').upper()) for r in payload if r.get('figi') not in mapping}
+    unresolved_names = {candidate_name(r.get('securityName','')) for r in payload if r.get('figi') not in mapping}
     unrestricted_tested = {job['idValue'] for o in observations for job in o['request'] if job['idType']=='ID_ISIN' and not job.get('exchCode')}
     unrestricted = sorted({r['isin'] for fund in previous.values() for r in fund.get('rows',[])
                            if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',r.get('isin')or'')
                            and r['isin'] not in unrestricted_tested
-                           and re.sub('[^A-Z0-9]','',r['name'].upper()) in unresolved_names})
+                           and candidate_name(r['name']) in unresolved_names})
     for start in range(0,min(len(unrestricted),20),10):
         jobs=[{'idType':'ID_ISIN','idValue':value} for value in unrestricted[start:start+10]]
         response=post(jobs)
@@ -182,7 +229,9 @@ def collect(share, now, fetch=download, post=mapping_request):
     rows, stamp, cash = parse(payload, share, now, mapping)
     return observation(rows, stamp, url, raw, allow_unidentified=True,
                        captureMethod=capture_method,
-                       excludedWeightPctByType={'Cash': cash}, identityObservations=observations,
-                       identitySourceUrl=document_url, identitySha256=proof(document), identityAsOf=identity_date,
+                       excludedWeightPctByType={'Cash': cash}, identityObservations=[o for o in observations if o not in shared.values()],
+                       identityEvidenceRegistry='src/data/security-identifier-observations.json',
+                       identitySourceHashes={key:o['sha256'] for key,o in shared.items()},
+                       **identity,
                        sourceUrls=[url, document_url, API],
                        identityMethod='Exact issuer listing FIGI matched to independent ISIN query; unknown identities retained')

@@ -34,7 +34,8 @@ class Holdings(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError,'Incomplete weights'):parse(page(bad),SHARE,NOW,mapping,['2026-10-19'])
             bad=copy.deepcopy(data);bad['ranking'][0]['dt']='2026-10-18'
             with self.assertRaisesRegex(ValueError,'Mixed fund/date'):parse(page(bad),SHARE,NOW,mapping,['2026-10-19'])
-    def test_cloud_access_fallback_never_retries_a_financial_validation_failure(self):
+    @patch('collect_wisdomtree_holdings.collect_public_rankings',side_effect=ConnectionError('Public rankings transport unavailable'))
+    def test_cloud_access_fallback_never_retries_a_financial_validation_failure(self,_public):
         from collect_wisdomtree_holdings import collect
         from wisdomtree_api_holdings import IssuerApiUnavailable
         value={'complete':True,'asOf':'2026-10-19','rows':[{'isin':'US0000000001'}]}
