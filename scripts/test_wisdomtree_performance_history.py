@@ -66,7 +66,21 @@ class OfficialPerformance(unittest.TestCase):
   for patch in [{'isin':'GB0000000000'},{'currency':'EUR'},{'nav':0},{'date':'2026-10-29'}]:
    with self.assertRaises(ValueError):parse(g,t,s,{**a,**patch},NOW)
   def offline(_):raise TimeoutError('real source unavailable')
-  with self.assertRaises(TimeoutError):collect_one(s,NOW,document_fetch=offline)
+  with self.assertRaisesRegex(ValueError,'Official Dataspan NAV\(TR\) access failed') as failure:collect_one(s,NOW,document_fetch=offline)
+  self.assertIsInstance(failure.exception.__cause__,TimeoutError)
+ def test_public_widget_headers_are_not_applied_to_unrelated_documents(self):
+  from unittest.mock import patch
+  s=SOURCES[0]
+  def fetch(url,**kwargs):return fixture(s,'identity'if url==s['factsheetUrl']else'graph'if'mode=gro10k'in url else'tabular')
+  with patch('collect_official_share_history.download',side_effect=fetch)as source:
+   collect_one(s,NOW,document_fetch=source)
+  self.assertEqual(len(source.call_args_list),3)
+  for call in source.call_args_list:
+   if call.args[0]==s['factsheetUrl']:self.assertNotIn('headers',call.kwargs)
+   else:
+    self.assertEqual(call.kwargs['headers']['Origin'],'https://www.wisdomtree.com')
+    self.assertEqual(call.kwargs['headers']['Referer'],s['sourceUrl'])
+
  def test_pre_window_product_history_never_extends_current_security(self):
   s=next(s for s in SOURCES if s['wisdomTicker']=='COFF')
   g=json.loads(fixture(s,'graph'));t=json.loads(fixture(s,'tabular'));points,proof=parse(g,t,s,anchor_for(s),NOW)
