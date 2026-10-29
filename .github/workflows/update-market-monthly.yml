@@ -105,10 +105,8 @@ jobs:
     concurrency:
       # Serialize writers of automated-indices.json; keep PR validations independent.
       group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
-      # Only obsolete read-only PR validations may be superseded. Production
-      # retains its separate group, complete queue and all recording safeguards.
-      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
-      queue: ${{ github.event_name == 'pull_request' && 'single' || 'max' }}
+      cancel-in-progress: false
+      queue: max
     runs-on: ubuntu-latest
     # Keep the initial validation and all three bounded commit attempts intact.
     # Each exhaustive financial validation takes about 40 minutes; another writer
