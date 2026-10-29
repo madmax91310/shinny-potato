@@ -143,3 +143,6 @@ Lot WisdomTree29octobre, `fix/wisdomtree-public-performance-20261029`, base95afe
 
 Rapprochement du lot WisdomTree sur198ca8a après fusion#1026 : les corrections annuaire/SCPI et leurs tests sont conservés. Leurs fichiers producteurs ne sont pas repris par ce second lot ; le seul ajout partagé au workflow mensuel est la régression de la nouvelle voie WisdomTree. Attendre l’enregistrement du run ordinaire40837137875 avant de fusionner une nouvelle entrée d’acquisition mensuelle, pour ne pas invalider la collecte déjà en cours.
 
+
+
+Preuve du même lot WisdomTree : contrôle GitHub40839857667, artefact12882645892, quatre identités attendues et validées via l’URI canonique `/historical_performance/`. Trois tentatives précédentes ont conservé leurs403 ou leur dépendance PDF absente ; elles ne sont pas réécrites en succès. Les quatre observations réelles de ce run sont appliquées aux seuls registres NAV déjà déclarés, avec leurs dates/hashes et runtime pull_request. Tous les autres enregistrements sont inchangés. Cette qualification CI ne certifie pas un passage ordinaire ou planifié ; la production et la consommation publiques restent à vérifier après fusion. Le lecteur source et les seuils de contrôle ne changent pas pendant cette application.

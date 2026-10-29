@@ -462,7 +462,7 @@ def main():
     selection=parser.add_mutually_exclusive_group()
     selection.add_argument('--only',nargs='+',choices=[s['id'] for s in configurations()])
     parser.add_argument('--capture-dir',type=pathlib.Path)
-    selection.add_argument('--missing-source-controls',action='store_true',help='Only configured official NAV identities without an ordinary monthly source-control record')
+    selection.add_argument('--missing-source-controls',action='store_true',help='Only newly configured NAV identities or transports without a retained qualification record')
     parser.add_argument('--output',type=pathlib.Path,required=True)
     parser.add_argument('--apply',action='store_true')
     parser.add_argument('--migrate-quote-records',action='store_true',help='One-off reviewed migration; archive original quotes/configurations')
@@ -479,8 +479,8 @@ def main():
                   active.get(s['id'],{}).get('calendarProof',{}).get('navHistoryTransport')!=s['navHistoryTransport']))]
     scope={'requestedIds':args.only or [s['id']for s in sources],'expectedIds':[s['id']for s in sources]}
     if args.missing_source_controls:
-        scope['selection']='configured-official-nav-without-ordinary-source-control'
-        if not sources:scope['emptyReason']='No newly configured identity lacks an ordinary source-control record; existing failures are not retried or resolved by this check.'
+        scope['selection']='configured-official-nav-without-transport-qualification'
+        if not sources:scope['emptyReason']='No configured identity or changed transport lacks its recorded qualification; existing failures are not retried or resolved by this check. An empty scope proves no ordinary producer run.'
     for source in sources:
         try:
             record=collect_one(source,now,capture=args.capture_dir)
