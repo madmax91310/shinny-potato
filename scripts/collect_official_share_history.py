@@ -444,6 +444,16 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
        'fxAsOf':fx_date,'fxFactor':factor,'sourceUrl':urls[0],'sourceUrls':urls,'checkedAt':now.date().isoformat(),
        'method':'Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire'if anniversary_nav else calendar_proof['scaleProof']['method']if source.get('navHistoryTransport')=='official-dataspan-nav-tr'else source['method']if source.get('navHistoryKind')else'Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire',
        'maxAgeDays':daily_policy['dataDays'],'sha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest()}
+    if source.get('navHistoryTransport')=='official-dataspan-nav-tr':
+        # The fresh chart certifies returns, not a fresh per-share quote. Keep
+        # the immutable NAV anchor at its real original date and proof date.
+        # This also prevents a later split from becoming a fictitious live price.
+        anchor=calendar_proof['scaleProof']['anchor']
+        if native!=source['currency']:raise ValueError('Unqualified NAV unit-anchor currency conversion')
+        latest_level.update(value=anchor['nav'],nativeValue=anchor['nav'],asOf=anchor['date'],
+            checkedAt=anchor['sourceCheckedAt'],sourceUrl=anchor['sourceUrl'],sourceUrls=[anchor['sourceUrl']],
+            sha256=anchor['rawWorkbookSha256'],unitQualification='historical-reference-only',
+            method='Previously qualified exact-share NAV used only as an immutable scale anchor; not a new price consultation')
     observation_hashes={**hashes,**({'cachedCalendarPerformance':calendar_proof['calendarRegistryPerformanceHash']}if 'calendarRegistryPerformanceHash'in calendar_proof else{})}
     result={**source,'points':points,**({'anniversaryPoints':anniversary_points}if source.get('collectAnniversary') is not False else {'anniversaryAvailable':False}),**({'anniversaryValuationBasis':'fund-nav-price','anniversaryVariant':'Valeurs liquidatives publiées · hors distributions'}if anniversary_nav else{}),'checkedAt':now.date().isoformat(),
             'periodEnd':points[-1][0],'sourceUrls':urls,'sourceCredit':credit,

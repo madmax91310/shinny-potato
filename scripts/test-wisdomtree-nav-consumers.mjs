@@ -44,6 +44,8 @@ for(const {record:old} of archive.series){
   assert(alert);assert.equal(alert.unqualifiedReturnWindow.year,w.year);currentRefusals++
  }
  if(r.navHistoryTransport==='official-dataspan-nav-tr'){
+  assert.equal(a.levelUnit,'performance-points');assert.equal(a.allowPriceOverride,false)
+  assert.throws(()=>derive({assetId:r.id,startYear:Number(r.periodStart.slice(0,4)),startMonth:Number(r.periodStart.slice(5)),amountRaw:'100',mode:'lump',currency:'USD',overridePriceRaw:'100'}),/unités de performance/)
   assert.equal(r.calendarProof.navHistoryTransport,r.navHistoryTransport)
   assert(r.calendarProof.calendarSourceConsultedByThisCollector)
   assert.equal(r.calendarProof.scaleProof.anchor.isin,r.isin)

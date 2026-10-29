@@ -17,6 +17,8 @@ class OfficialPerformance(unittest.TestCase):
    self.assertTrue(r['calendarProof']['calendarSourceConsultedByThisCollector'])
    anchor=r['calendarProof']['scaleProof']['anchor']
    self.assertEqual(r['latestLevel']['nativeValue'],anchor['nav'])
+   self.assertEqual(r['latestLevel']['checkedAt'],anchor['sourceCheckedAt'])
+   self.assertEqual(r['latestLevel']['unitQualification'],'historical-reference-only')
    self.assertEqual(r['lastOfficialValuation'],anchor['date'])
    self.assertEqual(r['periodStart'],s['periodStart'])
    self.assertEqual(r['periodEnd'],'2026-09')
