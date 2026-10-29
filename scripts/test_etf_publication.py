@@ -17,6 +17,8 @@ DERIVED = ['docs/automation-coverage.md', 'docs/automation-gaps.md', 'docs/autom
            'docs/asset-field-coverage.md', 'public/data/asset-field-coverage.json', 'docs/app-inventory.md']
 INSURANCE = 'src/data/automated-insurance.json'
 SCPI = 'src/data/automated-scpi.json'
+PUBLICATION_OUTPUTS = ['src/data/anniversary-levels.json','src/data/purchasing-power-observations.json']
+INDEPENDENT_OUTPUTS = [INSURANCE,SCPI,*PUBLICATION_OUTPUTS]
 
 
 class EtfPublication(unittest.TestCase):
@@ -24,7 +26,7 @@ class EtfPublication(unittest.TestCase):
         self.f = harness.CommitValidatedData()
         self.f.setUp()
         self.addCleanup(self.f.doCleanups)
-        for name in PRIMARY + DERIVED + [INSURANCE, SCPI, 'scripts/etf-pilot.json',
+        for name in PRIMARY + DERIVED + INDEPENDENT_OUTPUTS + ['scripts/etf-pilot.json',
                                          'scripts/collect_etf_pilot.py', 'src/data/instrument-returns.js']:
             p = self.f.local / name
             p.parent.mkdir(parents=True, exist_ok=True)
@@ -143,6 +145,31 @@ if command == 'npm run build' and os.environ.get('ETF_TEST_RACE'):
             self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'second insurance update')
         self.assertEqual((self.f.root / 'checks').read_text().count('npm run build'), 2)
 
+    def test_anniversary_publication_race_rebuilds_combined_reports(self):
+        self.independent_publication_race(PUBLICATION_OUTPUTS[0])
+
+    def test_purchasing_power_publication_race_rebuilds_combined_reports(self):
+        self.independent_publication_race(PUBLICATION_OUTPUTS[1])
+
+    def independent_publication_race(self,path):
+        self.env['ETF_TEST_INSURANCE']=path
+        self.f.advance_remote(path)
+        result=self.publish()
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+        self.assertEqual(self.f.git(self.f.remote,'show','master:'+path),'concurrent update')
+        for field in PRIMARY:self.assertEqual(self.f.git(self.f.remote,'show','master:'+field),'collected ETF observation')
+        for field in DERIVED:self.assertEqual(self.f.git(self.f.remote,'show','master:'+field),'concurrent update')
+        self.assertIn('npm run build',(self.f.root/'checks').read_text())
+
+    def test_publication_race_never_bypasses_failed_financial_checks(self):
+        self.f.advance_remote(PUBLICATION_OUTPUTS[0])
+        before=self.f.git(self.f.remote,'rev-parse','master')
+        self.assert_refused(self.publish(ETF_TEST_FAIL='npm run audit:etf-annual-performance'),before)
+
+    def test_independent_publication_race_does_not_hide_changed_fx(self):
+        for path in PUBLICATION_OUTPUTS:self.f.advance_remote(path)
+        self.reject_upstream('src/data/annual-fx.json')
+
     def test_observed_collision_without_hooks_reproduces_original_refusal(self):
         self.f.advance_remote(INSURANCE)
         before = self.f.git(self.f.remote, 'rev-parse', 'master')
@@ -211,13 +238,11 @@ class AcquisitionIndependence(unittest.TestCase):
             if path in seen:
                 continue
             seen.add(path)
-            self.assertNotEqual(path.name, 'automated-insurance.json')
-            self.assertNotEqual(path.name, 'automated-scpi.json')
+            for forbidden in INDEPENDENT_OUTPUTS:self.assertNotEqual(path.name,Path(forbidden).name)
             if path.suffix not in ['.js', '.mjs']:
                 continue
             text = path.read_text()
-            self.assertNotIn('automated-insurance', text, str(path))
-            self.assertNotIn('automated-scpi', text, str(path))
+            for forbidden in INDEPENDENT_OUTPUTS:self.assertNotIn(Path(forbidden).stem,text,str(path))
             if path.suffix in ['.js', '.mjs']:
                 for relative in re.findall(r'''(?:from\s*|import\s*)['"](\.[^'"]+)['"]''', text):
                     pending.append(path.parent / relative)
@@ -233,8 +258,7 @@ class AcquisitionIndependence(unittest.TestCase):
                 continue
             seen.add(path)
             text = path.read_text()
-            self.assertNotIn('automated-insurance', text, str(path))
-            self.assertNotIn('automated-scpi', text, str(path))
+            for forbidden in INDEPENDENT_OUTPUTS:self.assertNotIn(Path(forbidden).stem,text,str(path))
             for node in ast.walk(ast.parse(text)):
                 names = [node.module] if isinstance(node, ast.ImportFrom) else [a.name for a in node.names] if isinstance(node, ast.Import) else []
                 for name in filter(None, names):

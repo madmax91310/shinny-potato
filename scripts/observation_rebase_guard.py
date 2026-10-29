@@ -45,14 +45,16 @@ MARKET_READER_ONLY_CHANGES = {
     'public/data/investors/review-metadata.json',
     'src/pages/hey-grok/App.css',
 }
-# The ETF acquisition chain and its baseline do not read insurance or SCPI.
+# The ETF acquisition chain and its baseline do not read these exact producer
+# outputs (SCPI race40834040536; publication race40849049401).
 # Coverage reports/build do: regenerate and validate those on the merged tree.
 # Keep this narrower than INDEPENDENT; other outputs have not been qualified.
-ETF_INDEPENDENT = {'src/data/automated-insurance.json', 'src/data/automated-scpi.json'}
+ETF_INDEPENDENT = {'src/data/automated-insurance.json', 'src/data/automated-scpi.json',
+                   'src/data/anniversary-levels.json', 'src/data/purchasing-power-observations.json'}
 ALLOWED = {
     'etf': ETF_INDEPENDENT,
     'indices': INDEPENDENT | {'src/data/automated-scpi.json','src/data/worldbank-gold-monthly.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
-    'market': INDEPENDENT | MARKET_PROJECTION_INPUTS | MARKET_READER_ONLY_CHANGES | {'src/data/automated-scpi.json','src/data/non-bond-monthly-records.json','src/data/non-bond-etf-records.json','src/data/non-bond-qualified-records.json','src/data/non-bond-levels.json','scripts/source-snapshots/non-bond-monthly-active.json','src/data/lifestrategy.json','src/data/automated-etf.json','src/data/automated-instrument-metadata.json','src/data/instrument-metadata-status.json','src/data/automated-presentation-actors.json','src/data/dca-complete-holdings.json','src/data/dca-holdings-status.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json'},
+    'market': INDEPENDENT | MARKET_PROJECTION_INPUTS | MARKET_READER_ONLY_CHANGES | {'src/data/automated-scpi.json','src/data/exposure-etf-expansion-records.json','src/data/non-bond-monthly-records.json','src/data/non-bond-etf-records.json','src/data/non-bond-qualified-records.json','src/data/non-bond-levels.json','scripts/source-snapshots/non-bond-monthly-active.json','src/data/lifestrategy.json','src/data/automated-etf.json','src/data/automated-instrument-metadata.json','src/data/instrument-metadata-status.json','src/data/automated-presentation-actors.json','src/data/dca-complete-holdings.json','src/data/dca-holdings-status.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json'},
     'insurance': {'src/data/worldbank-gold-monthly.json','src/data/automated-broker-tariffs.json','src/data/automated-regulatory.json','src/data/automated-scpi.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
     'scpi': INDEPENDENT | {'src/data/worldbank-gold-monthly.json','src/data/anniversary-levels.json',
                          'src/data/anniversary-index-history.json',
@@ -67,6 +69,7 @@ ALLOWED = {
 # a used calendar, convention or identity requires fresh acquisition.
 MARKET_CALENDAR_REGISTRIES = {
     'src/data/automated-etf.json', 'src/data/non-bond-etf-records.json',
+    'src/data/exposure-etf-expansion-records.json',
 }
 
 def git_json(ref, path):
