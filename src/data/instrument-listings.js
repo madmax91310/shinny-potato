@@ -10,7 +10,6 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Sous-ensemble documenté, pas une liste exhaustive des marchés disponibles.
 // currency est la devise de négociation, jamais celle du fonds par déduction.
 const BASE_LISTINGS = Object.freeze({
-  "FR0013412269": [{"ticker":"PANX","exchange":"Euronext Paris","mic":"XPAR","currency":"EUR","sourceUrl":"https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412269/FRA/FRA/INSTITUTIONNEL/ETF/20260930","checkedAt":"2026-10-29","evidenceId":"FR0013412269-XPAR-PANX-EUR"}],
   ...Object.fromEntries(PEA_SECTOR_COMPLETION.map(r => [r.isin, [r.listing]])),
   ...NON_BOND_LISTINGS,
   ...LIFESTRATEGY_LISTINGS,
