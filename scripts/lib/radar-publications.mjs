@@ -133,7 +133,11 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
   }
   const headline=listing.title??tag(html,'h1')
   const issuerRelay=/\bETF/i.test(headline) && (source.id==='credit-agricole-news' && /^Amundi\b/i.test(headline) || source.id==='bnp-bank' && /^BNP Paribas (?:Asset Management|AM)\b/i.test(headline))
-  if(source.method.startsWith('consumer-') && !issuerRelay) return parseConsumer(html,{...source,primaryHosts:PUBLICATION_SOURCES.filter(s=>s.evidenceLevel!=='journalistic').map(s=>s.host)},url,now,listing)
+  if(source.method.startsWith('consumer-') && !issuerRelay) {
+    const observation=parseConsumer(html,{...source,primaryHosts:PUBLICATION_SOURCES.filter(s=>s.evidenceLevel!=='journalistic').map(s=>s.host)},url,now,listing)
+    if(listing.publicationDateEvidence)observation.evidence={...observation.evidence,publicationDateEvidence:listing.publicationDateEvidence}
+    return observation
+  }
   if(source.requireUcits && !/\bUCITS\b/i.test(cleanText(html)))return {rejected:'Annonce sans statut UCITS documenté ; lancement américain non généralisé à la France',title:listing.title}
   if(issuerRelay)source={...source,family:'etf'}
   if(source.id==='dvf'){
@@ -236,6 +240,7 @@ export async function collectPublications(now = new Date(), request = fetch, pre
           report.archiveWarning=rows.archiveWarning??null
           report.discoveryFailures=rows.discoveryFailures??[]
           report.expectedListingItems=rows.expectedListingItems??rows.length
+          report.discoveryDateEvidence=rows.filter(row=>row.publicationDateEvidence).map(row=>({url:row.url,...row.publicationDateEvidence}))
           for (const row of rows) {
             const existing=state.documents[row.url]
             if(source.id==='hanetf' && !row.title)row.title=existing?.observation?.label??existing?.title

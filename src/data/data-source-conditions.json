@@ -656,6 +656,30 @@
         "scripts/official-nav-remainder-sources.json",
         "scripts/monthly-automation.json"
       ]
+    },
+    {
+      "host": "www.creditmutuel.fr",
+      "access": "Archive publique et article Crédit Mutuel Alliance Fédérale ; date abrégée corroborée uniquement par le cartouche du communiqué PDF officiellement lié",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "Crédit Mutuel Alliance Fédérale / CIC, selon le communiqué",
+      "termsUrl": null,
+      "reviewStatus": "Accès public observé ; conditions de réutilisation et mentions juridiques non vérifiées. Un HTTP réussi ne constitue pas une licence.",
+      "configurations": [
+        "scripts/lib/radar-coverage.mjs"
+      ]
+    },
+    {
+      "host": "cdnwmsi.e-i.com",
+      "access": "Uniquement PDF de communiqués sous /SITW/wm/global/1.0.0/corporate/communiques/, découvert par le lien Télécharger le communiqué du site Crédit Mutuel ; aucun nom de fichier utilisé comme date",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "Crédit Mutuel Alliance Fédérale / CIC, selon le communiqué",
+      "termsUrl": null,
+      "reviewStatus": "Accès public observé ; conditions de réutilisation et mentions juridiques non vérifiées. Un HTTP réussi ne constitue pas une licence.",
+      "configurations": [
+        "scripts/lib/radar-coverage.mjs"
+      ]
     }
   ],
   "datasets": [
