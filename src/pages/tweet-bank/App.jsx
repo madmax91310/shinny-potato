@@ -213,7 +213,7 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
 
 function TweetVariantCard({ group, drafts, lastPub, ...props }) {
   const [selectedId, setSelectedId] = useState(null)
-  const selected = group.variants.find(t => t.id === selectedId)
+  const selected = group.variants.find(t => String(t.id) === String(selectedId))
     || group.variants.find(t => drafts[t.id]) || group.variants[0]
   const original = TWEETS.find(t => t.id === selected.id)
   return <section className="tb-variant-group">
