@@ -66,25 +66,44 @@ class OfficialPerformance(unittest.TestCase):
   for patch in [{'isin':'GB0000000000'},{'currency':'EUR'},{'nav':0},{'date':'2026-10-29'}]:
    with self.assertRaises(ValueError):parse(g,t,s,{**a,**patch},NOW)
   def offline(_):raise TimeoutError('real source unavailable')
-  with self.assertRaisesRegex(ValueError,'Official Dataspan NAV\(TR\) access failed') as failure:collect_one(s,NOW,document_fetch=offline)
-  self.assertIsInstance(failure.exception.__cause__,TimeoutError)
- def test_public_widget_headers_are_not_applied_to_unrelated_documents(self):
-  from unittest.mock import patch
-  s=SOURCES[0]
-  def fetch(url,**kwargs):return fixture(s,'identity'if url==s['factsheetUrl']else'graph'if'mode=gro10k'in url else'tabular')
-  with patch('collect_official_share_history.download',side_effect=fetch)as source:
-   collect_one(s,NOW,document_fetch=source)
-  self.assertEqual(len(source.call_args_list),3)
-  for call in source.call_args_list:
-   if call.args[0]==s['factsheetUrl']:self.assertNotIn('headers',call.kwargs)
-   else:
-    self.assertEqual(call.kwargs['headers']['Origin'],'https://www.wisdomtree.com')
-    self.assertEqual(call.kwargs['headers']['Referer'],s['sourceUrl'])
-
+  with self.assertRaises(TimeoutError):collect_one(s,NOW,document_fetch=offline)
  def test_pre_window_product_history_never_extends_current_security(self):
   s=next(s for s in SOURCES if s['wisdomTicker']=='COFF')
   g=json.loads(fixture(s,'graph'));t=json.loads(fixture(s,'tabular'));points,proof=parse(g,t,s,anchor_for(s),NOW)
   self.assertGreater(proof['excludedPreWindowObservations'],0)
   self.assertEqual(min(points),'2021-12-01')
   self.assertEqual(proof['suppliedExactSecurityStart'],'2021-12-01')
+class OrdinaryBrowserTransport(unittest.TestCase):
+ def test_direct_success_and_origin_are_scoped_to_two_registered_endpoints(self):
+  from unittest.mock import patch
+  from wisdomtree_performance_history import acquire,urls
+  s=SOURCES[0]
+  with patch('wisdomtree_performance_history.download',return_value=b'[]')as fetch,patch('wisdomtree_performance_history.subprocess.run')as browser:
+   bodies,proof=acquire(s)
+  self.assertEqual(list(bodies),urls(s));browser.assert_not_called()
+  self.assertEqual(proof['actualNavTransport'],'public-widget-http')
+  self.assertTrue(all(c.kwargs['headers']['Origin']=='https://www.wisdomtree.com'for c in fetch.call_args_list))
+ def test_only_a_403_gets_one_fresh_bounded_browser_attempt(self):
+  from unittest.mock import patch
+  import urllib.error,subprocess,base64
+  from wisdomtree_performance_history import acquire,urls
+  s=SOURCES[0];endpoints=urls(s)
+  payload={'results':[{'url':u,'status':200,'body':base64.b64encode(b'[]').decode()}for u in endpoints]}
+  with patch('wisdomtree_performance_history.download',side_effect=urllib.error.HTTPError(endpoints[0],403,'denied',None,None)),patch('wisdomtree_performance_history.subprocess.run',return_value=subprocess.CompletedProcess([],0,json.dumps(payload).encode(),b''))as browser:
+   bodies,proof=acquire(s)
+  browser.assert_called_once();self.assertEqual(browser.call_args.kwargs['timeout'],100)
+  self.assertEqual(len(bodies),2);self.assertEqual(proof['accessAttempts'][0]['status'],'unavailable')
+  self.assertEqual(proof['actualNavTransport'],'ordinary-public-browser-json')
+  for status in [401,404,503]:
+   with patch('wisdomtree_performance_history.download',side_effect=urllib.error.HTTPError(endpoints[0],status,'failed',None,None)),patch('wisdomtree_performance_history.subprocess.run')as browser,self.assertRaises(urllib.error.HTTPError):acquire(s)
+   browser.assert_not_called()
+ def test_failure_wrong_source_and_partial_payload_never_reuse_fixtures(self):
+  from unittest.mock import patch
+  import urllib.error,subprocess,base64
+  from wisdomtree_performance_history import acquire,urls
+  s=SOURCES[0];endpoints=urls(s);error=urllib.error.HTTPError(endpoints[0],403,'denied',None,None)
+  for rows in [[],[{'url':u,'status':200,'body':base64.b64encode(b'[]').decode()}for u in endpoints[:1]],[{'url':'https://example.org','status':200,'body':'W10='}]*2]:
+   with patch('wisdomtree_performance_history.download',side_effect=error),patch('wisdomtree_performance_history.subprocess.run',return_value=subprocess.CompletedProcess([],0,json.dumps({'results':rows}).encode(),b'')),self.assertRaises(ValueError):acquire(s)
+  with patch('wisdomtree_performance_history.download',side_effect=error),patch('wisdomtree_performance_history.subprocess.run',return_value=subprocess.CompletedProcess([],1,b'',b'source403')),self.assertRaisesRegex(ValueError,'public browser performance failed'):acquire(s)
+
 if __name__=='__main__':unittest.main()

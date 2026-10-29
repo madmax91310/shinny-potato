@@ -8,11 +8,43 @@ import gzip
 import hashlib
 import json
 import math
+import base64
+import subprocess
+import urllib.error
 from pathlib import Path
 from issuer_nav_history import dated, xlsx_rows
+from issuer_documents import download
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = 'https://dataspanapi.wisdomtree.com/funddetails/'
+
+
+def acquire(source):
+    """One bounded browser fallback after an HTTP403, never after invalid data."""
+    endpoints=urls(source)
+    headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
+             'Accept':'application/json','Origin':'https://www.wisdomtree.com','Referer':source['sourceUrl']}
+    bodies={};attempts=[]
+    try:
+        for url in endpoints:
+            bodies[url]=download(url,headers=headers,max_bytes=8_000_000)
+            attempts.append({'url':url,'transport':'public-widget-http','status':'received'})
+        return bodies,{'actualNavTransport':'public-widget-http','accessAttempts':attempts}
+    except urllib.error.HTTPError as error:
+        if error.code!=403:raise
+        attempts.append({'url':url,'transport':'public-widget-http','status':'unavailable','error':'HTTP403'})
+    process=subprocess.run(['node',str(Path(__file__).with_name('download-wisdomtree-performance.mjs')),source['id']],
+                           capture_output=True,timeout=100)
+    if process.returncode:raise ValueError('Ordinary public browser performance failed: '+process.stderr.decode(errors='replace')[-1200:])
+    if len(process.stdout)>24_000_000:raise ValueError('Oversized browser performance response')
+    result=json.loads(process.stdout)
+    rows=result.get('results',[])
+    if len(rows)!=2 or [r.get('url')for r in rows]!=endpoints or any(r.get('status')!=200 for r in rows):
+        raise ValueError('Browser performance source scope changed')
+    bodies={r['url']:base64.b64decode(r['body'],validate=True)for r in rows}
+    if any(len(body)>8_000_000 for body in bodies.values()):raise ValueError('Oversized issuer performance payload')
+    return bodies,{'actualNavTransport':'ordinary-public-browser-json',
+                   'accessAttempts':attempts+[{'url':url,'transport':'ordinary-public-browser-json','status':'received'}for url in endpoints]}
 
 
 def anchor_for(source):
