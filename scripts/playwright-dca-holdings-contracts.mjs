@@ -5,6 +5,7 @@ import {readFileSync,mkdirSync} from 'node:fs'
 import {readFile as readBytes} from 'node:fs/promises'
 import {createHash} from 'node:crypto'
 import {references,pct} from '../src/pages/dca-profiles/engine.js'
+import {holdingsReconciliationDetails,accountingWeight} from '../src/data/holdings-reconciliation.js'
 import {portfolioAnalytics,selectConcentrationGroup} from '../src/pages/dca-profiles/analytics.js'
 const port=4374,base=`http://127.0.0.1:${port}/shinny-potato/`
 const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port',String(port)],{stdio:'ignore'})
@@ -23,6 +24,9 @@ try{
  mkdirSync('test-artifacts/dca-compositions',{recursive:true})
  for(const [id,allocation] of [
   ['core',[['world',45],['sp500',35],['nasdaq',20]]],
+  ['residual-identities',[['acwi',50],['small',50]]],
+  ['nav-residual',[['emerging',60],['infrastructure',40]]],
+  ['hedged-unsupported',[['IE00B441G979',60],['world',40]]],
   ['cloud',[['cloud',50],['sp500',50]]],
   ['new-issuer-portfolios',[['IE00BZ56SW52',50],['IE00BKLF1R75',50]]],
   ['neutral',[['world',60],['gold',20],['btc',10],['IE0008UEVOE0',10]]],
@@ -52,6 +56,18 @@ try{
   assert.equal(await panel.locator('.dca-pair-grid article').count(),expected.pairs.length)
   const pairs=await panel.locator('.dca-pair-grid article strong').allTextContents()
   assert.deepEqual(pairs.map(normalize),expected.pairs.map(p=>normalize(p.full?pct(p.overlap):'Partiel')))
+  const accounting=lines.map(line=>({line,proof:holdingsReconciliationDetails(holdings[line.asset])})).filter(x=>x.proof)
+  if(accounting.length){
+   await panel.locator('summary').filter({hasText:'Sources, couverture du catalogue et détail des comparaisons'}).click()
+   const source=page.getByRole('region',{name:'Vérification des expositions',exact:true})
+   await source.locator('summary').filter({hasText:'Positions retenues et solde hors périmètre'}).click()
+   for(const {line,proof}of accounting){
+    const item=source.locator('article').filter({has:page.getByText(line.label,{exact:true})})
+    await item.waitFor()
+    const text=normalize(await item.innerText())
+    for(const value of [accountingWeight(proof.selectedWeightPct),accountingWeight(proof.publishedNetWeightPct),...proof.unidentifiedPositions.map(r=>r.name)])assert(text.includes(normalize(value)),id+' accounting '+value)
+   }
+  }
   const image=page.getByRole('img',{name:'Répartition et expositions du portefeuille',exact:true})
   await image.waitFor();await image.evaluate(img=>img.decode())
   const painted=(await page.evaluate(()=>window.__painted)).map(normalize)
@@ -70,5 +86,5 @@ try{
   }
  }
  assert.deepEqual(errors,[])
- console.log('Built site: 9 complete/partial/unidentified/inapplicable/native-index/mixed portfolios, identical analysis/canvas/download, desktop and mobile verified.')
+ console.log('Built site: 12 complete/partial/unidentified/inapplicable/native-index/mixed/reconciled portfolios, identical analysis/canvas/download, desktop and mobile verified.')
 }finally{await browser?.close();server.kill()}

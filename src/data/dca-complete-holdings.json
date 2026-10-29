@@ -87925,6 +87925,36 @@
         "weightPct": 2e-05
       }
     ],
+    "navReconciliation": {
+      "schemaVersion": 1,
+      "asOf": "2026-10-28",
+      "sourceRowCount": 316,
+      "selectedRowCount": 271,
+      "excludedRowCount": 45,
+      "publishedNetWeightPct": 99.99999999999996,
+      "selectedWeightPct": 99.35594999999999,
+      "sourceWeightPctByType": {
+        "Equity": 99.35594999999995,
+        "Cash": 0.41493,
+        "Money Market": 0.1053,
+        "Other": 0.08706,
+        "Cash Collateral and Margins": 0.03676,
+        "FX": 0.0,
+        "Futures": 0.0
+      },
+      "excludedWeightPctByType": {
+        "Cash": 0.41493,
+        "Money Market": 0.1053,
+        "Other": 0.08706,
+        "Cash Collateral and Margins": 0.03676,
+        "Equity": 0.0,
+        "FX": 0.0,
+        "Futures": 0.0
+      },
+      "unidentifiedPositions": [],
+      "normalizationApplied": false,
+      "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+    },
     "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
     "compositionFacts": {
       "asOf": "2026-10-28",
@@ -88097,8 +88127,8 @@
         ]
       }
     },
-    "sha256": "e4ec8e97788e97c90975a0b54000efd7715729fdc783bbb55e5469c156ec1ba6",
-    "checkedAt": "2026-10-29T16:37:21.126526+00:00"
+    "sha256": "b558431bac0f22b6227140fc8a3e27c2367731c9899a97a7d9922a29b6073b8b",
+    "checkedAt": "2026-10-29T17:33:49.711519+00:00"
   },
   "IE00B1TXHL60": {
     "asOf": "2026-10-28",
@@ -211016,6 +211046,34 @@
         "weightPct": 0.00163
       }
     ],
+    "navReconciliation": {
+      "schemaVersion": 1,
+      "asOf": "2026-10-28",
+      "sourceRowCount": 1283,
+      "selectedRowCount": 1246,
+      "excludedRowCount": 37,
+      "publishedNetWeightPct": 99.99967000000007,
+      "selectedWeightPct": 99.53334,
+      "sourceWeightPctByType": {
+        "Equity": 99.53334000000007,
+        "Cash": 0.31693000000000005,
+        "Money Market": 0.12159,
+        "Cash Collateral and Margins": 0.02782,
+        "FX": -1e-05,
+        "Futures": 0.0
+      },
+      "excludedWeightPctByType": {
+        "Cash": 0.31693000000000005,
+        "Money Market": 0.12159,
+        "Cash Collateral and Margins": 0.02782,
+        "Equity": 0.0,
+        "FX": -1e-05,
+        "Futures": 0.0
+      },
+      "unidentifiedPositions": [],
+      "normalizationApplied": false,
+      "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+    },
     "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
     "compositionFacts": {
       "asOf": "2026-10-28",
@@ -211168,8 +211226,8 @@
         ]
       }
     },
-    "sha256": "787aadbea1959011c6392db07aabb6eb67afb01fdb8a41a55e73d2d962bbb702",
-    "checkedAt": "2026-10-29T16:37:21.126526+00:00"
+    "sha256": "96c5c802d03e7c3857f53b5a40b816cea38343c8a1a150f446d3b11a3e66b8d8",
+    "checkedAt": "2026-10-29T17:38:03.805051+00:00"
   },
   "IE00B4L5YX21": {
     "asOf": "2026-10-28",
@@ -221091,6 +221149,29 @@
         "weightPct": 0.11254
       }
     ],
+    "navReconciliation": {
+      "schemaVersion": 1,
+      "asOf": "2026-10-28",
+      "sourceRowCount": 107,
+      "selectedRowCount": 101,
+      "excludedRowCount": 6,
+      "publishedNetWeightPct": 100.00002999999997,
+      "selectedWeightPct": 99.96626,
+      "sourceWeightPctByType": {
+        "Equity": 99.96625999999996,
+        "Cash": 0.03256,
+        "Cash Collateral and Margins": 0.00121,
+        "Futures": 0.0
+      },
+      "excludedWeightPctByType": {
+        "Cash": 0.03256,
+        "Cash Collateral and Margins": 0.00121,
+        "Futures": 0.0
+      },
+      "unidentifiedPositions": [],
+      "normalizationApplied": false,
+      "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+    },
     "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
     "compositionFacts": {
       "asOf": "2026-10-28",
@@ -221171,8 +221252,8 @@
         ]
       }
     },
-    "sha256": "d00eb8381fd3d263589753f77ff7d1b01bce720498f57229f7468d8cf669eb19",
-    "checkedAt": "2026-10-29T16:37:21.126526+00:00"
+    "sha256": "f52f754ed038407c7142af7fb9c9aff48d1066a08181e74dcb458c00d4ae085c",
+    "checkedAt": "2026-10-29T17:38:03.805051+00:00"
   },
   "IE00B5BMR087": {
     "asOf": "2026-10-28",
@@ -223696,6 +223777,30 @@
         "weightPct": 0.00594
       }
     ],
+    "navReconciliation": {
+      "schemaVersion": 1,
+      "asOf": "2026-10-28",
+      "sourceRowCount": 510,
+      "selectedRowCount": 503,
+      "excludedRowCount": 7,
+      "publishedNetWeightPct": 99.99998999999991,
+      "selectedWeightPct": 99.86826,
+      "sourceWeightPctByType": {
+        "Equity": 99.8682599999999,
+        "Cash": 0.123,
+        "Cash Collateral and Margins": 0.00873,
+        "Futures": 0.0
+      },
+      "excludedWeightPctByType": {
+        "Cash": 0.123,
+        "Cash Collateral and Margins": 0.00873,
+        "Equity": 0.0,
+        "Futures": 0.0
+      },
+      "unidentifiedPositions": [],
+      "normalizationApplied": false,
+      "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+    },
     "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
     "compositionFacts": {
       "asOf": "2026-10-28",
@@ -223760,8 +223865,8 @@
         ]
       }
     },
-    "sha256": "75de8df78d038e57d12161d35b7faf32d932c4f7bb91838cd45975f230b63b99",
-    "checkedAt": "2026-10-29T16:37:21.126526+00:00"
+    "sha256": "62fc3cb75e17943143629992be1afa3bc96c37963d96704fbaed410887d50cfb",
+    "checkedAt": "2026-10-29T17:38:03.805051+00:00"
   },
   "IE00B5M1WJ87": {
     "asOf": "2026-10-28",
@@ -233308,6 +233413,42 @@
         "weightPct": 3e-05
       }
     ],
+    "navReconciliation": {
+      "schemaVersion": 1,
+      "asOf": "2026-10-28",
+      "sourceRowCount": 1739,
+      "selectedRowCount": 1648,
+      "excludedRowCount": 91,
+      "publishedNetWeightPct": 100.00023999999989,
+      "selectedWeightPct": 99.6372,
+      "sourceWeightPctByType": {
+        "Equity": 99.6371999999999,
+        "Money Market": 0.1449,
+        "Cash": 0.2002000000000001,
+        "Cash Collateral and Margins": 0.018029999999999997,
+        "FX": -9.000000000000002e-05,
+        "Futures": 0.0
+      },
+      "excludedWeightPctByType": {
+        "Money Market": 0.1449,
+        "Cash": 0.2002000000000001,
+        "Cash Collateral and Margins": 0.018029999999999997,
+        "Equity": 0.0,
+        "FX": -9.000000000000002e-05,
+        "Futures": 0.0
+      },
+      "unidentifiedPositions": [
+        {
+          "name": "SINOPAC FIN HOLDINGS CO LTD DUMMY",
+          "weightPct": 0.0001,
+          "ticker": "2684290D",
+          "exchange": "NO MARKET (E.G. UNLISTED)",
+          "currency": "TWD"
+        }
+      ],
+      "normalizationApplied": false,
+      "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+    },
     "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
     "compositionFacts": {
       "asOf": "2026-10-28",
@@ -233549,7 +233690,7 @@
       }
     },
     "sha256": "5c80b20bcb6da4665b410b5e41ee7bd1145920b3fa0f25003b6e2524e781741a",
-    "checkedAt": "2026-10-29T16:37:21.126526+00:00"
+    "checkedAt": "2026-10-29T17:33:49.711519+00:00"
   },
   "IE00B6YX5D40": {
     "asOf": "2026-10-28",
@@ -275394,9 +275535,45 @@
         "weightPct": 1e-05
       }
     ],
+    "navReconciliation": {
+      "schemaVersion": 1,
+      "asOf": "2026-10-28",
+      "sourceRowCount": 3596,
+      "selectedRowCount": 3567,
+      "excludedRowCount": 29,
+      "publishedNetWeightPct": 100.00005999999989,
+      "selectedWeightPct": 99.5143,
+      "sourceWeightPctByType": {
+        "Equity": 99.51429999999989,
+        "Cash": 0.3940600000000001,
+        "Money Market": 0.05026,
+        "Cash Collateral and Margins": 0.04141,
+        "FX": 3e-05,
+        "Futures": 0.0
+      },
+      "excludedWeightPctByType": {
+        "Cash": 0.3940600000000001,
+        "Money Market": 0.05026,
+        "Cash Collateral and Margins": 0.04141,
+        "FX": 3e-05,
+        "Equity": 0.0,
+        "Futures": 0.0
+      },
+      "unidentifiedPositions": [
+        {
+          "name": "AKERO THERAPEUTICS CVR",
+          "weightPct": 0.0003,
+          "ticker": "AKE",
+          "exchange": "NASDAQ",
+          "currency": "USD"
+        }
+      ],
+      "normalizationApplied": false,
+      "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+    },
     "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
     "sha256": "d2f8828f9ddfc1f9a93407f77311e899069bac35b119bf31ca4b2db748e1f480",
-    "checkedAt": "2026-10-29T16:37:21.126526+00:00"
+    "checkedAt": "2026-10-29T17:33:49.711519+00:00"
   },
   "IE00BFMXXD54": {
     "rows": [
@@ -344211,7 +344388,7 @@
       "EQ.WRT": 0
     },
     "pageCount": 3,
-    "checkedAt": "2026-10-29T16:37:21.126526+00:00"
+    "checkedAt": "2026-10-29T17:38:03.805051+00:00"
   },
   "IE00BK5BQV03": {
     "rows": [
@@ -539366,18 +539543,61 @@
           "sourceUrl": "https://download.dws.com/download?elib-assetguid=890b3c75b14d4c22be88765b92b21794",
           "sha256": "81b453539c4576b839df87613a2f66958e1e7c573eed22460cb1d76b476a24dc",
           "asOf": "2026-02-16",
-          "checkedAt": "2026-10-29T16:37:21.126526+00:00",
+          "checkedAt": "2026-10-29T17:38:03.805051+00:00",
           "method": "Exact Z-Class KID; short-term debt and money-market mandate; not direct equity or a cash deposit"
         }
       }
     ],
     "excludedNonEquityFundWeightPct": 0.03960831,
+    "navReconciliation": {
+      "schemaVersion": 1,
+      "asOf": "2026-10-28",
+      "sourceRowCount": 1219,
+      "selectedRowCount": 1191,
+      "excludedRowCount": 28,
+      "publishedNetWeightPct": 99.99999398000024,
+      "selectedWeightPct": 99.40857298,
+      "sourceWeightPctByType": {
+        "Equities": 98.43531721000024,
+        "Cash": 0.5518126900000001,
+        "Depository Receipts": 1.00931894,
+        "Preferred Stock": 0.0028835,
+        "Right": 0.00066164,
+        "Future": 0.0
+      },
+      "excludedWeightPctByType": {
+        "Cash": 0.5518126900000001,
+        "Equities": 0.03960831,
+        "Future": 0.0
+      },
+      "unidentifiedPositions": [
+        {
+          "name": "KANGMEI PHARMACEUTICAL CO",
+          "weightPct": 0.0
+        }
+      ],
+      "normalizationApplied": false,
+      "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference",
+      "qualifiedExcludedPositions": [
+        {
+          "isin": "IE00BYQNZ507",
+          "name": "Deutsche Managed Dollar Fund",
+          "weightPct": 0.03960831,
+          "sourceAssetClass": "Equities",
+          "kind": "non-equity-money-market-fund",
+          "sourceUrl": "https://download.dws.com/download?elib-assetguid=890b3c75b14d4c22be88765b92b21794",
+          "sha256": "81b453539c4576b839df87613a2f66958e1e7c573eed22460cb1d76b476a24dc",
+          "asOf": "2026-02-16",
+          "checkedAt": "2026-10-29T17:38:03.805051+00:00"
+        }
+      ]
+    },
     "method": "Complete physical securities; qualified non-equity money-market fund shares and net cash/derivatives excluded; original fund NAV weights, no renormalisation",
     "sourceUrls": [
       "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
       "https://download.dws.com/download?elib-assetguid=890b3c75b14d4c22be88765b92b21794"
     ],
-    "checkedAt": "2026-10-29T16:37:21.126526+00:00"
+    "checkedAt": "2026-10-29T17:38:03.805051+00:00"
   },
   "IE00BYTRR863": {
     "asOf": "2026-10-28",
@@ -597108,7 +597328,7 @@
         "weightPct": 1.2309
       },
       {
-        "isin": null,
+        "isin": "CNE100002714",
         "sedol": "BD76119",
         "name": "GUANGDONG DOWSTONE TECHNOL-A CNY 1.0000",
         "weightPct": 1.0886
@@ -597192,7 +597412,7 @@
         "weightPct": 0.7191000000000001
       },
       {
-        "isin": null,
+        "isin": "CNE100001112",
         "sedol": "BP3RJ05",
         "name": "BAOTAILONG NEW CNY 1.000000000",
         "weightPct": 0.6977
@@ -597240,7 +597460,7 @@
         "weightPct": 0.5746
       },
       {
-        "isin": null,
+        "isin": "CNE100000JJ7",
         "sedol": "BP91MC4",
         "name": "Hunan Zhongke Electric Co -A",
         "weightPct": 0.563
@@ -597252,19 +597472,19 @@
         "weightPct": 0.5519999999999999
       },
       {
-        "isin": null,
+        "isin": "CNE0000008F4",
         "sedol": "BP91MY6",
         "name": "Jilin Chemical Fibre Co-A",
         "weightPct": 0.5397
       },
       {
-        "isin": null,
+        "isin": "CNE100000023",
         "sedol": "BD5C960",
         "name": "SHENZHEN CLOU  CNY 1.000000000",
         "weightPct": 0.5397
       },
       {
-        "isin": null,
+        "isin": "US8336351056",
         "sedol": "2771122",
         "name": "Quimica Y Minera Chil-Sp Adr",
         "weightPct": 0.5352
@@ -597336,7 +597556,7 @@
         "weightPct": 0.43629999999999997
       },
       {
-        "isin": null,
+        "isin": "CNE100001YV9",
         "sedol": "BD76120",
         "name": "Fulin Precision Co Ltd-A",
         "weightPct": 0.4253
@@ -597348,7 +597568,7 @@
         "weightPct": 0.4234
       },
       {
-        "isin": null,
+        "isin": "CNE100003MS6",
         "sedol": "BK71FC2",
         "name": "NINGBO RONBAY NEW ENERGY T-A CNY 1.0000",
         "weightPct": 0.4151
@@ -597402,7 +597622,7 @@
         "weightPct": 0.3691
       },
       {
-        "isin": null,
+        "isin": "ID1000188303",
         "sedol": "BMBR1M2",
         "name": "MERDEKA BATTERY  IDR 100.000000000",
         "weightPct": 0.3524
@@ -597426,13 +597646,13 @@
         "weightPct": 0.34099999999999997
       },
       {
-        "isin": null,
+        "isin": "CNE000001F54",
         "sedol": "BTFRHB8",
         "name": "Pengxin International Mini-A",
         "weightPct": 0.33440000000000003
       },
       {
-        "isin": null,
+        "isin": "CNE100000064",
         "sedol": "BLC7SW3",
         "name": "XIANGTAN ELECT CNY 1.000000000",
         "weightPct": 0.3338
@@ -597462,7 +597682,7 @@
         "weightPct": 0.2993
       },
       {
-        "isin": null,
+        "isin": "CNE000001QC6",
         "sedol": "BD5C777",
         "name": "CANGZHOU MINGZ CNY 1.000000000",
         "weightPct": 0.299
@@ -597474,7 +597694,7 @@
         "weightPct": 0.2969
       },
       {
-        "isin": null,
+        "isin": "CNE100002Y09",
         "sedol": "BQ3RX55",
         "name": "Jiangsu Lopal Tech Group C-A",
         "weightPct": 0.2935
@@ -597504,7 +597724,7 @@
         "weightPct": 0.2825
       },
       {
-        "isin": null,
+        "isin": "CNE100005NY7",
         "sedol": "BS28Y61",
         "name": "Hubei Wanrun New Energy Te-A",
         "weightPct": 0.2783
@@ -597534,7 +597754,7 @@
         "weightPct": 0.2124
       },
       {
-        "isin": null,
+        "isin": "CNE000000S27",
         "sedol": "BD580M1",
         "name": "TIBET MINERAL  CNY 1.000000000",
         "weightPct": 0.212
@@ -597570,7 +597790,7 @@
         "weightPct": 0.1517
       },
       {
-        "isin": null,
+        "isin": "CNE1000006T7",
         "sedol": "BD73L54",
         "name": "GUANGZHOU ZHIG CNY 1.000000000",
         "weightPct": 0.1497
@@ -597582,7 +597802,7 @@
         "weightPct": 0.149
       },
       {
-        "isin": null,
+        "isin": "KYG8655K1094",
         "sedol": "B1XDJC7",
         "name": "Tianneng Power Intl Ltd",
         "weightPct": 0.1456
@@ -597630,8 +597850,8 @@
     "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB",
     "sha256": "eaa0cb7e2da546de4cb54df7deddfb1f2ad63ff9505e661e01def8b64b4f4d31",
     "method": "Complete issuer Fund ranking (rankClassificationID 1); original published pct weights, no renormalisation; sector/country/index groups excluded; identities independently matched by exact SEDOL; access listings are document-qualified routes for the same ISIN, no trading-currency conversion of fund weights",
-    "unidentifiedSecurityCount": 17,
-    "unidentifiedWeightPct": 7.203,
+    "unidentifiedSecurityCount": 0,
+    "unidentifiedWeightPct": 0,
     "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
     "identitySha256": "828e4fdc420e40c8455e1cbaefc5bba1094641ad4c41d7a71f3cf1da01dcbc46",
     "identityAsOf": "2026-09-30",
@@ -597766,7 +597986,28 @@
       "https://api.openfigi.com/v3/mapping#SEDOL=B0M7KJ7": "094c7b129484da481366f7881cc32049803c6b2b50d0d9b629b6a0f044426e3f",
       "https://api.openfigi.com/v3/mapping#SEDOL=BYWZZF0": "0273b64bbe4c8be131a1956640b69fa60d278e5cf0780d5cb86aa4ef859ac3d0",
       "https://api.openfigi.com/v3/mapping#SEDOL=B00ZQQ2": "07eee43d2d728d7a4d40bc6d73f93ea3c4d8fd7ad27dfb66c578689da4397ee8",
-      "https://api.openfigi.com/v3/mapping#SEDOL=5451302": "1fcf5cb476f65023ae0714e49bc69cf681876c9fa3d14a901b7545cd33374586"
+      "https://api.openfigi.com/v3/mapping#SEDOL=5451302": "1fcf5cb476f65023ae0714e49bc69cf681876c9fa3d14a901b7545cd33374586",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD76119": "6deb7f44da16dfa68bb08dfc056337e5e5181cdb2caafa87d5b264521a21e0b6",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP3RJ05": "847c8a90e4f23f5bd15199e115d59489ca2b3e2896fa86cea65121cb9ec26b62",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP91MC4": "b26a9ee439054d950b1f91a648b47f8e6d2afde41cd35ec185332097e3f08f33",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP91MY6": "672dca482fa238191921e03d0780c7e1f3a1098c55ef228e532ae11cc1ae2cb0",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD5C960": "29aa99c2fd1314b31718970d0e7cc04d281d3fe4d0974355d49a2234859ab0a8",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BK71FC2": "5fe50cbaf5f82d7400fe97e622454b54421e5fff57b4c2ca720eb5242e6692d0",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BMBR1M2": "62ad9c9afa573df08a714ff4f155ddfa5551036f61d21543e40c03f25404f433",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BTFRHB8": "11904d8e1d5771e2ceddcb374985d0d59886f6c3f46b42edb30593d2d9f98a64",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BLC7SW3": "3860efa57a9c735233a86e16b16ae485b9694e9f19a471b51539326b5993de7f",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD5C777": "bd5585d5f264ca39bc7e25e9b34b508b991f1c9b03fac1eae93c1b456b103cbc",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD580M1": "a01fcc6ebe7b94226a50197cd0425a4968b0b4b18d33b577cc001798a0afa489",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD73L54": "8c12457d43be50dced026d3df52e058547a6af6b14484df53271b492916cd227",
+      "https://api.openfigi.com/v3/mapping#SEDOL=2771122": "63c2fe81d04eda0772900dd17c44e8cefd29c726970246dc16e4cc0981bb3ef0",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD76120": "91be71df84c8f5b109de6c6b3fa23bdb1c59aafbeeea2cd54b112e5f349f3a53",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B1XDJC7": "dbcba9293e40d31f24e655d53a29f750546b912a918e3a1b6a33e7aebb699e95",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6296201": "faaf79e79307e78a62e3254575561b63c5a557e0a44a688126293e9bad293d88",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BLGJ610": "2854414187d953853ac1755ff309ca5e747a5344ad0fdd9278ca4840099d3dbf",
+      "https://api.openfigi.com/v3/mapping#SEDOL=5964640": "0235a36122d595ad2b804c610c2ab2c1e6506023a0986e83063f07b44b001dc7",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BSN5BP9": "e12f5c36192d931762a4e929494c5efd585bdf3e5c093e57c1f8165370be6f7a",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BQ3RX55": "077939658945098aa8a8be7a2ede336f2318cf5d0261067bd076773ff7d49bc8",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BS28Y61": "ebc4d6c767eba42b7d3731b5ec64f6ad3a6449ba93990b83d621dbd04303fe7b"
     },
     "identityAsOfDates": [
       "2026-10-28",
@@ -597936,7 +598177,28 @@
       "https://api.openfigi.com/v3/mapping#SEDOL=B0M7KJ7",
       "https://api.openfigi.com/v3/mapping#SEDOL=BYWZZF0",
       "https://api.openfigi.com/v3/mapping#SEDOL=B00ZQQ2",
-      "https://api.openfigi.com/v3/mapping#SEDOL=5451302"
+      "https://api.openfigi.com/v3/mapping#SEDOL=5451302",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD76119",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP3RJ05",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP91MC4",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP91MY6",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD5C960",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BK71FC2",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BMBR1M2",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BTFRHB8",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BLC7SW3",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD5C777",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD580M1",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD73L54",
+      "https://api.openfigi.com/v3/mapping#SEDOL=2771122",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD76120",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B1XDJC7",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6296201",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BLGJ610",
+      "https://api.openfigi.com/v3/mapping#SEDOL=5964640",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BSN5BP9",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BQ3RX55",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BS28Y61"
     ],
     "coverageProof": {
       "rankClassificationID": 1,
@@ -597945,7 +598207,7 @@
       "publishedWeightPct": 100.0004,
       "otherRankingGroupsExcluded": true
     },
-    "checkedAt": "2026-10-29T16:37:21.126526+00:00"
+    "checkedAt": "2026-10-29T17:33:49.711519+00:00"
   },
   "IE00BZ56SW52": {
     "rows": [
@@ -600236,7 +600498,7 @@
         "weightPct": 0.0287
       },
       {
-        "isin": null,
+        "isin": "AU000000APE3",
         "sedol": "6296201",
         "name": "AP Eagers Ltd",
         "weightPct": 0.028200000000000003
@@ -600482,7 +600744,7 @@
         "weightPct": 0.0218
       },
       {
-        "isin": null,
+        "isin": "US9345502036",
         "sedol": "BLGJ610",
         "name": "Warner Music Group Corp-Cl A",
         "weightPct": 0.021599999999999998
@@ -600500,7 +600762,7 @@
         "weightPct": 0.0215
       },
       {
-        "isin": null,
+        "isin": "FI0009007694",
         "sedol": "5964640",
         "name": "Sanoma OYJ",
         "weightPct": 0.0214
@@ -600542,7 +600804,7 @@
         "weightPct": 0.0207
       },
       {
-        "isin": null,
+        "isin": "JP3944640006",
         "sedol": "BSN5BP9",
         "name": "USEN-NEXT HOLDINGS CO LTD NPV",
         "weightPct": 0.0206
@@ -601316,8 +601578,8 @@
     "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
     "sha256": "96f0cca4506395b30023aef53748554878a39e18507d69553772194303179855",
     "method": "Complete issuer Fund ranking (rankClassificationID 1); original published pct weights, no renormalisation; sector/country/index groups excluded; identities independently matched by exact SEDOL; access listings are document-qualified routes for the same ISIN, no trading-currency conversion of fund weights",
-    "unidentifiedSecurityCount": 5,
-    "unidentifiedWeightPct": 2.9483,
+    "unidentifiedSecurityCount": 1,
+    "unidentifiedWeightPct": 2.8565,
     "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
     "identitySha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
     "identityAsOf": "2026-09-30",
@@ -601462,7 +601724,28 @@
       "https://api.openfigi.com/v3/mapping#SEDOL=B0M7KJ7": "094c7b129484da481366f7881cc32049803c6b2b50d0d9b629b6a0f044426e3f",
       "https://api.openfigi.com/v3/mapping#SEDOL=BYWZZF0": "0273b64bbe4c8be131a1956640b69fa60d278e5cf0780d5cb86aa4ef859ac3d0",
       "https://api.openfigi.com/v3/mapping#SEDOL=B00ZQQ2": "07eee43d2d728d7a4d40bc6d73f93ea3c4d8fd7ad27dfb66c578689da4397ee8",
-      "https://api.openfigi.com/v3/mapping#SEDOL=5451302": "1fcf5cb476f65023ae0714e49bc69cf681876c9fa3d14a901b7545cd33374586"
+      "https://api.openfigi.com/v3/mapping#SEDOL=5451302": "1fcf5cb476f65023ae0714e49bc69cf681876c9fa3d14a901b7545cd33374586",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD76119": "6deb7f44da16dfa68bb08dfc056337e5e5181cdb2caafa87d5b264521a21e0b6",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP3RJ05": "847c8a90e4f23f5bd15199e115d59489ca2b3e2896fa86cea65121cb9ec26b62",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP91MC4": "b26a9ee439054d950b1f91a648b47f8e6d2afde41cd35ec185332097e3f08f33",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP91MY6": "672dca482fa238191921e03d0780c7e1f3a1098c55ef228e532ae11cc1ae2cb0",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD5C960": "29aa99c2fd1314b31718970d0e7cc04d281d3fe4d0974355d49a2234859ab0a8",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BK71FC2": "5fe50cbaf5f82d7400fe97e622454b54421e5fff57b4c2ca720eb5242e6692d0",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BMBR1M2": "62ad9c9afa573df08a714ff4f155ddfa5551036f61d21543e40c03f25404f433",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BTFRHB8": "11904d8e1d5771e2ceddcb374985d0d59886f6c3f46b42edb30593d2d9f98a64",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BLC7SW3": "3860efa57a9c735233a86e16b16ae485b9694e9f19a471b51539326b5993de7f",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD5C777": "bd5585d5f264ca39bc7e25e9b34b508b991f1c9b03fac1eae93c1b456b103cbc",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD580M1": "a01fcc6ebe7b94226a50197cd0425a4968b0b4b18d33b577cc001798a0afa489",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD73L54": "8c12457d43be50dced026d3df52e058547a6af6b14484df53271b492916cd227",
+      "https://api.openfigi.com/v3/mapping#SEDOL=2771122": "63c2fe81d04eda0772900dd17c44e8cefd29c726970246dc16e4cc0981bb3ef0",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD76120": "91be71df84c8f5b109de6c6b3fa23bdb1c59aafbeeea2cd54b112e5f349f3a53",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B1XDJC7": "dbcba9293e40d31f24e655d53a29f750546b912a918e3a1b6a33e7aebb699e95",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6296201": "faaf79e79307e78a62e3254575561b63c5a557e0a44a688126293e9bad293d88",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BLGJ610": "2854414187d953853ac1755ff309ca5e747a5344ad0fdd9278ca4840099d3dbf",
+      "https://api.openfigi.com/v3/mapping#SEDOL=5964640": "0235a36122d595ad2b804c610c2ab2c1e6506023a0986e83063f07b44b001dc7",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BSN5BP9": "e12f5c36192d931762a4e929494c5efd585bdf3e5c093e57c1f8165370be6f7a",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BQ3RX55": "077939658945098aa8a8be7a2ede336f2318cf5d0261067bd076773ff7d49bc8",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BS28Y61": "ebc4d6c767eba42b7d3731b5ec64f6ad3a6449ba93990b83d621dbd04303fe7b"
     },
     "identityAsOfDates": [
       "2026-10-28",
@@ -601632,7 +601915,28 @@
       "https://api.openfigi.com/v3/mapping#SEDOL=B0M7KJ7",
       "https://api.openfigi.com/v3/mapping#SEDOL=BYWZZF0",
       "https://api.openfigi.com/v3/mapping#SEDOL=B00ZQQ2",
-      "https://api.openfigi.com/v3/mapping#SEDOL=5451302"
+      "https://api.openfigi.com/v3/mapping#SEDOL=5451302",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD76119",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP3RJ05",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP91MC4",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP91MY6",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD5C960",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BK71FC2",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BMBR1M2",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BTFRHB8",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BLC7SW3",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD5C777",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD580M1",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD73L54",
+      "https://api.openfigi.com/v3/mapping#SEDOL=2771122",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD76120",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B1XDJC7",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6296201",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BLGJ610",
+      "https://api.openfigi.com/v3/mapping#SEDOL=5964640",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BSN5BP9",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BQ3RX55",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BS28Y61"
     ],
     "coverageProof": {
       "rankClassificationID": 1,
@@ -601641,6 +601945,6 @@
       "publishedWeightPct": 99.9996,
       "otherRankingGroupsExcluded": true
     },
-    "checkedAt": "2026-10-29T16:37:21.126526+00:00"
+    "checkedAt": "2026-10-29T17:33:49.711519+00:00"
   }
 }
