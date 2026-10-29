@@ -20,7 +20,7 @@ for (const etf of ETFS) {
   rows[`annual-${etf.isin}`] = { id: `annual-${etf.isin}`, label: etf.name, shortLabel: etf.name.replace(/ UCITS ETF.*$/, '').replace(/^(?:iShares|Amundi|Vanguard|State Street SPDR|Xtrackers) /, ''),
     isin: etf.isin, instrumentType: /\bETC\b|WisdomTree (?:Brent|WTI|Natural|Coffee|Cocoa|Wheat)/.test(etf.name) ? 'ETC' : 'ETF',
     frequency: 'annual', basis: 'fund-nav', currency: record.currency, years,
-    group: `Calendriers annuels · ${etf.category ?? 'ETF'}`, pea: etf.pea === true,
+    group: `Calendriers annuels · ${etf.category ?? 'ETF'}`, pea: etf.pea ?? null,
     sourceUrls: [source], checkedAt: record.checkedAt, method: record.method,
   }
 }

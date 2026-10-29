@@ -6,6 +6,7 @@ import { isStock } from '../src/lib/is-stock.js'
 import { CATEGORIES, EXPOSURE_CATEGORIES, ANNUAL_PEA_CATEGORIES, RANKING_ASSETS, buildRankingAssets, derivedGroup } from '../src/pages/performance-rankings/data.js'
 import { lastCompleteYear } from '../src/data/annual-window.js'
 import {qualifyHistoryWindow}from '../src/data/history-window-quality.js'
+import { ETFS } from '../src/data/etf-cards.js'
 import { annualColumns, buildRanking, buildTweet, commonCoverage, monthAt, monthIndex, periodReturn, publicationRanking, rankRows, rollingRegularity } from '../src/pages/performance-rankings/engine.js'
 
 const make = (id, rate = .01, start = '2019-12', count = 85) => ({ id, label: id, currency: 'EUR', basis: 'adjusted', points: Array.from({ length: count }, (_, i) => ({ date: monthAt(monthIndex(start) + i), price: 100 * (1 + rate) ** i })) })
@@ -281,6 +282,15 @@ for (const category of EXPOSURE_CATEGORIES) {
 }
 const recent = [2, 1, 0].map(offset => lastCompleteYear() - offset)
 assert(ANNUAL_PEA_CATEGORIES.length >= 2)
+// The annual projection must retain the common registry's three-state tax status.
+// Unknown shares stay out of PEA selections without being labelled ineligible.
+const annualPeaSelection = new Set(ANNUAL_PEA_CATEGORIES.flatMap(category => category.ids))
+for (const record of Object.values(ANNUAL_ASSETS)) {
+  const share = ETFS.find(asset => asset.isin === record.isin)
+  if (!share) continue
+  assert.equal(record.pea, share.pea ?? null, `${record.isin}: retain the exact PEA qualification`)
+  if (share.pea == null) assert(!annualPeaSelection.has(record.id), `${record.isin}: unknown is not admitted to PEA`)
+}
 for (const category of ANNUAL_PEA_CATEGORIES) {
   assert(category.ids.length >= 2 && category.ids.length <= 6 && category.frequency === 'annual', category.id)
   for (const id of category.ids) {
