@@ -39,10 +39,12 @@ const definitions=[
     ['Dette en % du PIB (axe de gauche)','YAxis','% du PIB']]},
 ]
 export function bdfDebtCharts(html,title,publishedAt){
-  const period=title.match(/\b(20\d{2})[-\s]+[QT]([1-4])\b/)
+  const period=title.match(/\b(20\d{2})[-\s]*[QT]([1-4])\b/)
   if(!period)throw Error('Graphique BDF : trimestre de la publication absent')
   const end=new Date(Date.UTC(Number(period[1]),Number(period[2])*3,0)).toISOString().slice(0,10)
-  if(!publishedAt||end>publishedAt.slice(0,10))throw Error('Graphique BDF : période postérieure à la publication')
+  const publicationDay=typeof publishedAt==='string'?publishedAt.slice(0,10):''
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(publicationDay)||!Number.isFinite(Date.parse(publicationDay))||new Date(publicationDay).toISOString().slice(0,10)!==publicationDay)throw Error('Graphique BDF : date de publication invalide')
+  if(end>publicationDay)throw Error('Graphique BDF : période postérieure à la publication')
   const scripts=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)].map(m=>m[1]).filter(s=>/\.highcharts\s*\(/.test(s))
   if(scripts.length!==2)throw Error('Graphique BDF : deux graphiques complets attendus')
   const results=[],seen=new Set(),containers=[...html.matchAll(/<div\b[^>]*data-type=["']webstat-xml-container["'][^>]*>/gi)]
