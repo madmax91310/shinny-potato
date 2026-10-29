@@ -2,6 +2,8 @@ import registry from '../src/data/automation-workflows.json' with { type: 'json'
 import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
+import { gzipSync } from 'node:zlib'
+import { createHash } from 'node:crypto'
 const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4317','--strictPort'],{stdio:'ignore'})
 let browser
 try {
@@ -11,7 +13,10 @@ try {
  await page.route('https://api.github.com/**/actions/workflows/automation-status.yml/runs?**',r=>r.fulfill({json:{workflow_runs:[{id:1,head_branch:'master',event:'schedule',status:'completed',conclusion:'success'}]}}))
  const errors=[];page.on('pageerror',e=>errors.push(e.message))
  let status={schemaVersion:1,workflows:{economic:{name:'Données économiques',status:'success',completedAt:'2026-10-07T10:00:00Z',lastSuccessAt:'2026-10-01T10:00:00Z',runUrl:'https://github.com/madmax91310/shinny-potato/actions/runs/1',dataFailures:{wealth:{name:'Patrimoine des ménages',completedAt:'2026-10-07T10:00:00Z',runUrl:'https://github.com/madmax91310/shinny-potato/actions/runs/1'}}}}}
- await page.route('**/automation-status/automation-status.json',route=>route.fulfill({json:{monitoring:{schemaVersion:1,checkedAt:new Date().toISOString(),active:{},resolved:[]},...status}}))
+ await page.route('**/automation-status/automation-status.json',route=>{
+  const raw=Buffer.from(JSON.stringify({monitoring:{schemaVersion:1,checkedAt:new Date().toISOString(),active:{},resolved:[]},...status}))
+  return route.fulfill({json:{schemaVersion:2,monitorStorage:'gzip+base64-v1',decodedBytes:raw.length,sha256:createHash('sha256').update(raw).digest('hex'),data:gzipSync(raw).toString('base64')}})
+ })
  await page.goto('http://127.0.0.1:4317/shinny-potato/donnees-a-revoir',{waitUntil:'networkidle'})
  const shared=page.locator('details').filter({has:page.locator('summary',{hasText:'Actions, historiques et expositions'})})
  await shared.locator('summary').click()

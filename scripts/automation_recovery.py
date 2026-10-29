@@ -108,11 +108,11 @@ def dispatch_recovery(api, ledger, plans):
         entry['attempts'][-1].update(status=status, error=error)
 
 
-def persist_and_dispatch(api, path, payload, state, plans):
+def persist_and_dispatch(api, path, payload, state, plans, compressed=False):
     """The conditional status write is the transaction boundary before dispatch."""
     saved = write_status(api, path, payload)
     if plans:
         dispatch_recovery(api, state['recovery'], plans)
         payload = {**payload, 'sha': saved['content']['sha'],
-                   'content': encode_status(state)}
+                   'content': encode_status(state, compressed=compressed)}
         write_status(api, path, payload)

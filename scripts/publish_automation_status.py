@@ -23,7 +23,7 @@ from automation_monitoring import evaluate_monitoring, sync_monitoring_issue, ti
 from github_automation_transport import request_json, unseen_completed_runs
 from automation_history_coverage import recover_skipped_history_gaps
 from automation_legacy_phases import CONTRACTS as LEGACY_PHASE_CONTRACTS, qualify_legacy_phases
-from automation_status_storage import pack_report_scopes,encode_status,expand_report_archives
+from automation_status_storage import pack_report_scopes,encode_status,expand_report_archives,decode_status,reader_ready
 from automation_monitor_self import observe_monitor_history
 from automation_recovery import plan_recovery, persist_and_dispatch, recovery_reason
 
@@ -1139,6 +1139,8 @@ def decode_json_file(api, file):
     if not content:
         content = api(f"/git/blobs/{file['sha']}")['content']
     decoded = json.loads(base64.b64decode(content))
+    if file.get('path', PATH) == PATH:
+        decoded = decode_status(decoded)
     return expand_report_archives(decoded) if file.get('path', PATH) == PATH and isinstance(decoded, dict) and isinstance(decoded.get('workflows'), dict) else decoded
 
 
@@ -1431,11 +1433,13 @@ def main():
     state['monitoring'] = evaluate_monitoring(state, context, REGISTRY, dt.datetime.now(dt.timezone.utc).isoformat(), radar)
     state=pack_report_scopes(state)
     print('Stockage du moniteur : '+str(len(json.dumps(state,ensure_ascii=False).encode()))+' octets, '+str(len(state.get('reportScopes',{})))+' périmètres de preuve uniques ; aucun incident retiré.')
-    encoded = encode_status(state)
+    compressed = reader_ready(repo)
+    encoded = encode_status(state, compressed=compressed)
+    print('Transport du moniteur : '+('gzip vérifié, lecteur public disponible' if compressed else 'JSON historique, nouveau lecteur public non démontré'))
     payload = {'message': 'Update automation failure status', 'branch': BRANCH, 'content': encoded}
     if sha:
         payload['sha'] = sha
-    persist_and_dispatch(api, PATH, payload, state, recovery_plans)
+    persist_and_dispatch(api, PATH, payload, state, recovery_plans, compressed=compressed)
     # Persist incidents before notifying. Bot issue/comment receipts make retries idempotent.
     sync_monitoring_issue(state['monitoring'], api, repo)
     print(f'Statuts publiés : {len(state["workflows"])} automatisations')

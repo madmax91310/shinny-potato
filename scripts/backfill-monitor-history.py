@@ -1,5 +1,6 @@
 """Reconstruct the monitor's recorded history from immutable Git blobs, without writing production."""
 import argparse,datetime as dt,gzip,json,subprocess
+from automation_status_storage import decode_status
 from pathlib import Path
 
 def collect(ref):
@@ -8,7 +9,7 @@ def collect(ref):
  for number,commit in enumerate(reversed(commits)):
   try:
    raw=subprocess.check_output(['git','show',commit+':automation-status.json'],stderr=subprocess.DEVNULL)
-   state=json.loads(raw);monitor=state.get('monitoring',{})
+   state=decode_status(json.loads(raw));monitor=state.get('monitoring',{})
    for kind,table in tables.items():
     for row in monitor.get(kind,[]):
      key=(row.get('revision'),row.get('at'))if kind=='events'else(row.get('id'),row.get('resolvedAt'if kind=='resolved'else'retiredAt'))

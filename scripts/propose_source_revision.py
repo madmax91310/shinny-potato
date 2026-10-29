@@ -97,7 +97,8 @@ def main():
             return json.load(response)
     status = api('/contents/automation-status.json?ref=automation-status')
     state = json.loads(base64.b64decode(status['content'])) if status.get('content') else json.loads(base64.b64decode(api(f"/git/blobs/{status['sha']}")['content']))
-    opened = run(state, api, dt.date.today().isoformat())
+    from automation_status_storage import decode_status
+    opened = run(decode_status(state), api, dt.date.today().isoformat())
     print(f'Propositions de texte officiel : {len(opened)}', *opened, sep='\n')
 
 
