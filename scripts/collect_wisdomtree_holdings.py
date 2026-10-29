@@ -103,9 +103,19 @@ def parse(page,share,now,mapping,identity_dates,*,identity_observations=None):
 
 def collect(share,now):
     from wisdomtree_api_holdings import CLASSES, IssuerApiUnavailable, collect as api_collect
+    # These two existing shares expose a newer, full precision NAV book. A
+    # rounded ranking must not hide it. Only transport failure permits fallback;
+    # contradictory identity/date/weight evidence still fails closed.
+    api_error=None
+    if share['isin'] in ('IE00BZ56SW52','IE00BKLF1R75'):
+        try:return api_collect(share,now)
+        except IssuerApiUnavailable as error:api_error=error
     rankings_error=''
     if share['isin'] in CLASSES:
-        try:return collect_public_rankings(share,now)
+        try:
+            result=collect_public_rankings(share,now)
+            if api_error:result['accessAttempts']=[{'sourceUrl':f'https://www.wisdomtree.com/api/fund-holdings/{CLASSES[share["isin"]][0]}','status':'unavailable','error':str(api_error)[:800]},*result.get('accessAttempts',[])]
+            return result
         except (urllib.error.URLError,TimeoutError,ConnectionError) as error:
             rankings_error=f'Public Dataspan acquisition unavailable at {getattr(error, "url", "public issuer route")}: {error}; '
     if share['isin'] not in CLASSES:

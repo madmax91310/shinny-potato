@@ -3,7 +3,7 @@ import datetime as dt
 import unittest
 import urllib.error
 from unittest.mock import patch
-from wisdomtree_api_holdings import parse, identity_map
+from wisdomtree_api_holdings import parse, identity_map, pending_identity, collect_pending_proofs
 from security_identifier_observations import API, digest
 
 NOW=dt.datetime(2026,10,21,tzinfo=dt.timezone.utc)
@@ -16,6 +16,40 @@ def portfolio():
             for i in range(12)]
 
 class ApiHoldings(unittest.TestCase):
+    def test_pending_namespace_crosswalk_requires_exact_security_class_and_ticker(self):
+        for suffix,kind in [('748193208','ID_CUSIP'),('Y2925Z103','ID_CINS'),('BS28Y61','ID_SEDOL')]:
+            row={'figi':'BBG000000001','shareClassFIGI':'BBG000000002','ticker':'T0','marketSector':'Equity','securityType':'Common Stock'}
+            responses=[{'data':[copy.deepcopy(row)]},{'data':[copy.deepcopy(row)]}]
+            e={'sourceUrl':API,'checkedAt':NOW.isoformat(),'request':[{'idType':kind,'idValue':suffix},{'idType':'ID_ISIN','idValue':'US0000000001'}],
+               'response':responses,'sha256':digest(responses),'issuerPendingIdentity':{'identifier':'FIGI-PENDING-'+suffix,'securityTicker':'T0 US',
+               'sourceUrl':'https://www.wisdomtree.com/api/fund-holdings/3104137','sourceSha256':'a'*64}}
+            self.assertEqual(pending_identity(e,NOW),('FIGI-PENDING-'+suffix,'US0000000001'))
+            body=portfolio();body[0]['figi']='FIGI-PENDING-'+suffix
+            # Even an injected dictionary entry cannot assign a placeholder.
+            plain=parse(body,SHARE,NOW,{body[0]['figi']:'US0000000001',body[1]['figi']:'US0000000002'})[0]
+            self.assertIsNone(plain[0]['isin'])
+            resolved=parse(body,SHARE,NOW,{body[1]['figi']:'US0000000002'},pending_observations=[e])[0]
+            self.assertEqual(resolved[0]['isin'],'US0000000001')
+            for key,value in [('figi','BBG000000009'),('shareClassFIGI','BBG000000009'),('securityType','ADR'),('ticker','T1')]:
+                wrong=copy.deepcopy(e);wrong['response'][1]['data'][0][key]=value;wrong['sha256']=digest(wrong['response'])
+                with self.subTest(kind=kind,key=key),self.assertRaises(ValueError):pending_identity(wrong,NOW)
+            for patch in [{'checkedAt':'2020-01-01T00:00:00+00:00'},{'checkedAt':'2026-11-01T00:00:00+00:00'},{'sha256':'0'*64}]:
+                with self.assertRaises(ValueError):pending_identity({**e,**patch},NOW)
+            wrong=copy.deepcopy(e);wrong['issuerPendingIdentity']['sourceUrl']='https://www.wisdomtree.com/api/fund-holdings/7369317'
+            with self.assertRaises(ValueError):parse(body,SHARE,NOW,{body[1]['figi']:'US0000000002'},pending_observations=[wrong])
+
+    def test_preferred_precision_source_only_falls_back_on_acquisition_failure(self):
+        from collect_wisdomtree_holdings import collect
+        from wisdomtree_api_holdings import IssuerApiUnavailable
+        share={'isin':'IE00BKLF1R75'}
+        with patch('wisdomtree_api_holdings.collect',return_value={'asOf':'2026-10-28'}) as api,patch('collect_wisdomtree_holdings.collect_public_rankings') as rounded:
+            self.assertEqual(collect(share,NOW)['asOf'],'2026-10-28');api.assert_called_once();rounded.assert_not_called()
+        with patch('wisdomtree_api_holdings.collect',side_effect=ValueError('Wrong exact fund')),patch('collect_wisdomtree_holdings.collect_public_rankings') as rounded:
+            with self.assertRaises(ValueError):collect(share,NOW)
+            rounded.assert_not_called()
+        with patch('wisdomtree_api_holdings.collect',side_effect=IssuerApiUnavailable('503')),patch('collect_wisdomtree_holdings.collect_public_rankings',return_value={'asOf':'2026-10-23'}):
+            result=collect(share,NOW);self.assertEqual(result['asOf'],'2026-10-23');self.assertEqual(result['accessAttempts'][0]['status'],'unavailable')
+
     def test_unidentified_is_retained_never_inferred_from_name(self):
         body=portfolio()
         rows,date,cash=parse(body,SHARE,NOW,{'BBG000000000':'US0000000001'})
