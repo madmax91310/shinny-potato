@@ -4,10 +4,23 @@ import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
 import { INSTRUMENTS_BY_ISIN } from '../src/data/instruments.js'
 import { calendarEligibility } from './automation-gap-inventory.mjs'
 import { RANKING_ASSETS } from '../src/pages/performance-rankings/data.js'
+import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
 
 const read = name => JSON.parse(readFileSync(new URL(`../src/data/${name}.json`, import.meta.url)))
 const monthNumber = value => /^\d{4}-(0[1-9]|1[0-2])$/.test(String(value)) ? Number(value.slice(0, 4)) * 12 + Number(value.slice(5)) - 1 : null
 const monthLabel = value => `${Math.floor(value / 12)}-${String(value % 12 + 1).padStart(2, '0')}`
+
+// Positive, interval-specific evidence from the new ordinary issuer lane.
+// An absent restriction or an unchanged cache is never a recovery proof.
+export function qualifiedIssuerReturnWindows(record) {
+ const proof=record.calendarProof,runtime=proof?.sourceRuntime
+ if(proof?.navHistoryTransport!=='official-dataspan-nav-tr'||runtime?.kind!=='github'||!/^\d+$/.test(runtime.runId??'')||!['push','schedule','workflow_dispatch'].includes(runtime.event)||!/^\d+$/.test(runtime.attempt??'')||!record.responseSha256||!record.checkedAt)return []
+ return (proof.checks??[]).flatMap(check=>{
+  const start=check.start?.slice(0,7),end=check.end?.slice(0,7)
+  if(!Number.isInteger(check.year)||start!==`${check.year-1}-12`||end!==`${check.year}-12`||!Number.isFinite(check.dailyDerived)||!Number.isFinite(check.published)||!qualifyHistoryWindow(record,start,end).qualified)return []
+  return [{start,end,year:check.year,convention:record.valuationBasis,sourceRuntime:runtime,sourceCheck:check}]
+ })
+}
 
 // A monthly series is not the ISIN-wide annual calendar, fee or listing.
 // Resolve its actual consumers before falling back to a legacy identity.
@@ -61,6 +74,8 @@ export function historyAlerts(today, entities = [], checks = {}) {
       currency: record.currency ?? null, method: record.method ?? record.variant ?? null }
     if (cadence === 'monthly' && record.id) base.to = entities.find(row => row.aliases?.includes(`history:${record.id}`))?.to ?? base.to
     checks[id] = {...base, periods:periods.filter(([,v])=>Number.isFinite(v)&&(cadence!=='monthly'||v>0)).map(([d])=>String(d)), responseSha256:record.responseSha256??record.sha256??null}
+    const qualifiedReturnWindows=qualifiedIssuerReturnWindows(record)
+    if(qualifiedReturnWindows.length)checks[id].qualifiedReturnWindows=qualifiedReturnWindows
     for(const window of record.historyUnqualifiedReturnWindows??[]){
       alerts.push({...base,id:`${id}:return-window:${window.start}:${window.end}`,kind:'history',unqualifiedReturnWindow:window,
         cause:window.reason,qualificationScope:'Rendements sur (début,fin] ; les périodes indépendamment corroborées restent utilisables.'})

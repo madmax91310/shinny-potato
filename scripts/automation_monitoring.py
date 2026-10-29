@@ -257,6 +257,24 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             return proof if checked and checked <= current and (not failed_at or checked > failed_at) else None
         if row.get('proofId'):
             return workflow.get('proofChecks', {}).get(row['proofId'])
+        if key.startswith('history:') and ':return-window:' in key:
+            # This identity is a monthly consumer interval, not a workflow
+            # sourceChecks[dataId]. Preserve the old quotation independently.
+            identifier, _, interval = key.removeprefix('history:').partition(':return-window:')
+            match = re.fullmatch(r'(\d{4}-(?:0[1-9]|1[0-2])):(\d{4}-(?:0[1-9]|1[0-2]))', interval)
+            proof = context.get('historyChecks', {}).get(identifier, {})
+            checked = timestamp(proof.get('checkedAt'))
+            prior = timestamp(row.get('checkedAt'))
+            if not match or not checked or checked > current or prior and checked < prior:return None
+            if not proof.get('responseSha256') or any(row.get(f) != proof.get(f) for f in ('dataId','currency','method')):return None
+            for window in proof.get('qualifiedReturnWindows', []):
+                runtime = window.get('sourceRuntime', {})
+                if (window.get('start'),window.get('end')) != match.groups():continue
+                if window.get('convention') != 'fund-nav-total-return':continue
+                if runtime.get('kind') != 'github' or runtime.get('event') not in ('push','schedule','workflow_dispatch') or not str(runtime.get('runId','')).isdigit():continue
+                if not {window['start'],window['end']} <= set(proof.get('periods', [])):continue
+                return {'kind':'qualified-monthly-return-window', **{k:proof[k] for k in ('dataId','currency','method','checkedAt','responseSha256')}, 'window':window}
+            return None
         if row.get('dataId') and row.get('phase') in ('qualification','validation'):
             proof=workflow.get('validationChecks',{}).get(row['dataId'])
             checked=timestamp(proof.get('recordedAt')) if proof else None

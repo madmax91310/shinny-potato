@@ -12,6 +12,30 @@ def evaluate(state, context=CONTEXT, now=NOW, radar=None):
     return evaluate_monitoring(state, context, REGISTRY, now, {'errors': []} if radar is None else radar)
 
 class MonitoringTests(unittest.TestCase):
+    def test_exact_return_window_recovery_uses_ordinary_qualified_history_not_generic_source_success(self):
+        identifier='automated-etf-monthly:etc_wti_crude_oilNav'
+        key='history:'+identifier+':return-window:2020-12:2021-12'
+        row={'id':key.removeprefix('history:'),'name':'WTI NAV','kind':'history','dataId':'GB00B15KXV33','currency':'USD','method':'Exact share NAV TR','checkedAt':'2026-10-28','unqualifiedReturnWindow':{'start':'2020-12','end':'2021-12'},'cause':'Unqualified interval','tools':['Calculateur']}
+        neighbour={**row,'id':identifier+':return-window:2021-12:2022-12','unqualifiedReturnWindow':{'start':'2021-12','end':'2022-12'}}
+        first=evaluate(STATE,{**CONTEXT,'historyAlerts':[row,neighbour]},now='2026-10-29T10:00:00Z')
+        self.assertIn(key,first['active'])
+        window={'start':'2020-12','end':'2021-12','convention':'fund-nav-total-return','sourceRuntime':{'kind':'github','runId':'40849049488','attempt':'1','event':'push'}}
+        proof={k:row[k]for k in ('dataId','currency','method')}
+        proof.update(checkedAt='2026-10-29',responseSha256='a'*64,periods=['2020-12','2021-12'],qualifiedReturnWindows=[window])
+        state={**STATE,'monitoring':first}
+        def recover(value):
+            return evaluate(state,{**CONTEXT,'historyAlerts':[],'historyChecks':{identifier:value}},now='2026-10-29T12:00:00Z')
+        result=recover(proof)
+        self.assertNotIn(key,result['active'])
+        self.assertIn('history:'+neighbour['id'],result['active'],'A restored interval does not qualify another interval')
+        resolved=next(r for r in result['resolved']if r['id']==key)
+        self.assertEqual(resolved['resolutionEvidence']['kind'],'qualified-monthly-return-window')
+        mutations=[lambda p:p.pop('qualifiedReturnWindows'),lambda p:p.pop('responseSha256'),lambda p:p.update(checkedAt='2026-10-27'),lambda p:p.update(checkedAt='2026-10-30'),lambda p:p.update(currency='EUR'),lambda p:p.update(dataId='OTHER'),lambda p:p.update(method='Raw price'),lambda p:p.update(periods=['2021-12']),lambda p:p['qualifiedReturnWindows'][0].update(end='2022-12'),lambda p:p['qualifiedReturnWindows'][0].update(convention='price'),lambda p:p['qualifiedReturnWindows'][0]['sourceRuntime'].update(kind='local'),lambda p:p['qualifiedReturnWindows'][0]['sourceRuntime'].update(event='pull_request')]
+        for mutate in mutations:
+            bad=copy.deepcopy(proof);mutate(bad)
+            self.assertIn(key,recover(bad)['active'])
+        self.assertIn(key,recover({})['active'],'Disappearance is not a positive interval proof')
+
     def test_retired_tool_is_not_a_data_recovery_and_other_alerts_remain(self):
         state = copy.deepcopy(STATE)
         state['monitoring'] = {'active': {

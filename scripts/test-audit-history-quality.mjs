@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import './test-monthly-window-recovery.mjs'
 import {ASSETS} from '../src/data/market-history.js'
 import {AUTOMATED_ETF} from '../src/data/automated-etf.js'
 import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
