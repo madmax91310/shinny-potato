@@ -5,6 +5,8 @@ import json
 import math
 import re
 import urllib.error
+import threading
+import time
 from functools import lru_cache
 from pathlib import Path
 from bs4 import BeautifulSoup
@@ -173,8 +175,14 @@ def collect_rankings(share,now):
       sourceUrls=[share['sourceUrl'],*proofs],identityMethod='Exact SEDOL to ISIN; identity-source weights never imported')
 
 
-@lru_cache(maxsize=2)
+_IDENTITY_SNAPSHOT_LOCK=threading.Lock()
+
 def complete_identity_mapping(now):
+    # lru_cache alone allows concurrent misses to repeat all issuer downloads.
+    with _IDENTITY_SNAPSHOT_LOCK:return _cached_identity_mapping(now)
+
+@lru_cache(maxsize=2)
+def _cached_identity_mapping(now):
     mapping={};dates=[];proofs={}
     for expected,url in IDENTITIES:
         raw=identity_document(url);values,stamp=identities(raw,expected,now)
@@ -231,6 +239,41 @@ def parse_public_rankings(payload,share,now,mapping,listing_ticker=None):
     return rows,dates.pop()
 
 
+_RANKINGS_LOCK=threading.Lock()
+_RANKINGS_NEXT_AT=0.0
+_RANKINGS_CLOCK=time.monotonic
+_RANKINGS_SLEEP=time.sleep
+
+
+def acquire_public_rankings(url,fetch,headers):
+    """One bounded public feed, shared by concurrently collected exact shares.
+
+    Identical requests succeeded for five funds and intermittently failed for a
+    different sixth fund on GitHub. Pace the public service and back off instead
+    of multiplying parallel requests or accepting different financial content.
+    """
+    from issuer_routes import ROUTES
+    global _RANKINGS_NEXT_AT
+    route=ROUTES['wisdomtree']
+    interval=route['fundRankingsMinimumIntervalSeconds']
+    attempts=route['fundRankingsMaximumAttempts']
+    if not 1<=interval<=10 or type(attempts)is not int or not 1<=attempts<=3:
+        raise ValueError('Unbounded public rankings transport policy')
+    for attempt in range(attempts):
+        with _RANKINGS_LOCK:
+            pause=max(0,_RANKINGS_NEXT_AT-_RANKINGS_CLOCK())
+            if pause:_RANKINGS_SLEEP(pause)
+            _RANKINGS_NEXT_AT=_RANKINGS_CLOCK()+interval
+            try:
+                # download() normally has its own retries: disable them here so
+                # there is only this one bounded budget for the public feed.
+                return fetch(url,max_bytes=8_000_000,headers=headers,max_attempts=1)
+            except (urllib.error.URLError,TimeoutError,ConnectionError)as error:
+                if isinstance(error,urllib.error.HTTPError)and error.code not in (403,408,429,500,502,503,504):raise
+                if attempt==attempts-1:raise
+                _RANKINGS_NEXT_AT=max(_RANKINGS_NEXT_AT,_RANKINGS_CLOCK()+interval*2**(attempt+1))
+
+
 def collect_public_rankings(share,now,fetch=download):
     from urllib.parse import urlencode,quote
     from issuer_routes import ROUTES
@@ -244,7 +287,7 @@ def collect_public_rankings(share,now,fetch=download):
     for listing in listings:
         url=route['fundRankings']+'?'+urlencode({'ticker':listing['ticker'],'isoCode':'en-GB'},quote_via=quote)
         try:
-            raw=fetch(url,max_bytes=8_000_000,headers={**route['fundRankingsRequestHeaders'],'Referer':share.get('sourceUrl','https://www.wisdomtree.com/')})
+            raw=acquire_public_rankings(url,fetch,{**route['fundRankingsRequestHeaders'],'Referer':share.get('sourceUrl','https://www.wisdomtree.com/')})
         except (urllib.error.URLError,TimeoutError,ConnectionError)as error:
             if isinstance(error,urllib.error.HTTPError)and error.code not in (403,408,429,500,502,503,504):raise
             attempts.append({'sourceUrl':url,'status':'unavailable','error':str(error)[:500]})

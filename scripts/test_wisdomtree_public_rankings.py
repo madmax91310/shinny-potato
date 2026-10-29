@@ -6,6 +6,49 @@ FIX=pathlib.Path(__file__).with_name('fixtures')/'wisdomtree-complete'
 NOW=dt.datetime(2026,10,29,tzinfo=dt.timezone.utc)
 def load(isin):return json.loads(gzip.decompress((FIX/(isin+'.rankings.json.gz')).read_bytes()))
 class PublicRankings(unittest.TestCase):
+ def setUp(self):
+  self.clock=0
+  def advance(seconds):self.clock+=seconds
+  for target,kwargs in [('_RANKINGS_CLOCK',{'side_effect':lambda:self.clock}),('_RANKINGS_SLEEP',{'side_effect':advance}),('_RANKINGS_NEXT_AT',{'new':0})]:
+   replacement=patch('collect_wisdomtree_holdings.'+target,**kwargs);replacement.start();self.addCleanup(replacement.stop)
+
+ def test_public_feed_retries_are_bounded_and_serialized_across_funds(self):
+  import urllib.error
+  from collect_wisdomtree_holdings import acquire_public_rankings
+  calls=[]
+  def fetch(url,**kwargs):
+   calls.append((self.clock,kwargs));
+   if len(calls)<3:raise urllib.error.HTTPError(url,403,'Forbidden',{},None)
+   return b'[]'
+  self.assertEqual(acquire_public_rankings('https://dataspanapi.wisdomtree.com/funddetails/rankings/',fetch,{'Accept':'application/json'}),b'[]')
+  self.assertEqual([x[0]for x in calls],[0,4,12])
+  self.assertTrue(all(x[1]['max_attempts']==1 for x in calls))
+  calls.clear()
+  def unavailable(url,**kwargs):calls.append(url);raise urllib.error.HTTPError(url,403,'Forbidden',{},None)
+  with self.assertRaises(urllib.error.HTTPError):acquire_public_rankings('https://dataspanapi.wisdomtree.com/funddetails/rankings/',unavailable,{})
+  self.assertEqual(len(calls),3)
+  calls.clear()
+  def missing(url,**kwargs):calls.append(url);raise urllib.error.HTTPError(url,404,'Missing',{},None)
+  with self.assertRaises(urllib.error.HTTPError):acquire_public_rankings('https://dataspanapi.wisdomtree.com/funddetails/rankings/',missing,{})
+  self.assertEqual(len(calls),1)
+
+ def test_concurrent_funds_share_one_public_feed_and_identity_snapshot(self):
+  import time
+  from concurrent.futures import ThreadPoolExecutor
+  from collect_wisdomtree_holdings import acquire_public_rankings,complete_identity_mapping,_cached_identity_mapping
+  active=0;maximum=0;starts=[]
+  def fetch(url,**kwargs):
+   nonlocal active,maximum
+   active+=1;maximum=max(maximum,active);starts.append(self.clock)
+   time.sleep(.005);active-=1;return b'[]'
+  with ThreadPoolExecutor(max_workers=4)as pool:
+   self.assertEqual(list(pool.map(lambda _:acquire_public_rankings('https://dataspanapi.wisdomtree.com/funddetails/rankings/',fetch,{}),range(4))),[b'[]']*4)
+  self.assertEqual(maximum,1);self.assertEqual(starts,[0,2,4,6])
+  _cached_identity_mapping.cache_clear();self.addCleanup(_cached_identity_mapping.cache_clear)
+  with patch('collect_wisdomtree_holdings.IDENTITIES',[('TEST','https://issuer.example/identities')]),patch('collect_wisdomtree_holdings.identity_document',return_value=b'identity')as acquire,patch('collect_wisdomtree_holdings.identities',return_value=({'0000001':'US0378331005'},'2026-10-28')),patch('security_identifier_observations.retained_identity_pairs',return_value=[]),patch('security_identifier_observations.mappings',return_value=({},{})):
+   with ThreadPoolExecutor(max_workers=4)as pool:results=list(pool.map(lambda _:complete_identity_mapping(NOW),range(4)))
+   self.assertEqual(acquire.call_count,1);self.assertTrue(all(r==results[0]for r in results))
+
  def test_captured_fixture_hashes_match_the_committed_bodies(self):
   manifest=json.loads((FIX/'manifest.json').read_text())
   for isin,entry in manifest['observations'].items():
@@ -51,7 +94,7 @@ class PublicRankings(unittest.TestCase):
   with patch('collect_wisdomtree_holdings.complete_identity_mapping',return_value=(mapping,['2026-10-28'],{})):
    h=collect_public_rankings({'isin':isin,'currency':'USD'},NOW,fetch)
   self.assertEqual(h['requestedListingTicker'],'GGRG LN');self.assertEqual(h['asOf'],'2026-10-23')
-  self.assertTrue(h['complete']);self.assertEqual(len(calls),3)
+  self.assertTrue(h['complete']);self.assertEqual(len(calls),5)
   self.assertEqual(h['qualifiedRankingListings'][0]['tradingCurrency'],'GBx')
   self.assertEqual(h['accessAttempts'][0]['status'],'unavailable')
   self.assertAlmostEqual(sum(r['weightPct']for r in h['rows']),99.9996)
