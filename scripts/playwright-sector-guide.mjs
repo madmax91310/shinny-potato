@@ -40,7 +40,7 @@ try {
     const errors = []
     page.on('pageerror', error => errors.push(error.message))
     await page.goto(base + '/banque-tweets', { waitUntil: 'networkidle' })
-    await page.getByRole('button', { name: 'Guide ETF', exact: true }).click()
+    await page.getByRole('button', { name: 'Guide', exact: true }).click()
     await page.locator('.tb-search').fill('sectoriels et thématiques')
     assert.equal(await page.locator('.tb-tweet').count(), 1)
     const card = page.locator(`[data-tweet-id="${id}"]`)
