@@ -58,7 +58,8 @@ for (const id of ['monetaire_xeon', 'oblig_0_1_ishares', 'oblig_global_agg_eur_h
 console.log('Réutilisation : drawdown, récupération, séries courtes, frais, compositions, consommateurs et options automatiques OK.')
 
 // Individual fee source controls reach catalogue and fee-comparison consumers.
-const {buildEtfTerEvidence} = await import('../src/data/etf-ter-evidence.js');
+const {buildFeeFieldEvidence} = await import('../src/data/fee-field-evidence.js');
+const buildEtfTerEvidence = (_isin, record, reference) => buildFeeFieldEvidence(record, reference);
 const oldFeeProof = {checkedAt:'2026-10-20',asOf:'2026-10-19',sourceUrl:'https://issuer.test/page'};
 const corroboratedFee = {checkedAt:'2026-10-29',asOf:'2026-10-19',sourceAsOf:'2026-09-30',sourceUrl:'https://issuer.test/factsheet.pdf',sha256:'a'.repeat(64),controlMethod:'unchanged-fee-corroboration',observationEvidence:oldFeeProof};
 const bundleWithFee = {sourceUrl:'https://issuer.test/unrelated-aum',characteristics:{terPct:.4,checkedAt:'2026-10-30'},characteristicChecks:{terPct:corroboratedFee}};
