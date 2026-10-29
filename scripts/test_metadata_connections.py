@@ -6,6 +6,28 @@ from collect_instrument_metadata import collect,fortuneo_reference_urls,invesco_
 
 FIX=Path(__file__).with_name('fixtures')/'metadata-connections'
 class ConnectionsTests(unittest.TestCase):
+ def test_wisdomtree_paris_listings_use_exchange_identity_without_price_or_other_market_renewal(self):
+  import copy
+  from collect_instrument_metadata import merge_field_observation
+  sources=json.loads((FIX.parents[1]/'instrument-metadata-sources.json').read_text())['instruments']
+  for isin,ticker in [('JE00BN7KB334','NGASP'),('GB00B15KXV33','CRUDP'),('JE00BN7KB664','WEATP')]:
+   url=f'https://live.euronext.com/en/product/etfs/{isin}-XPAR'
+   source=next(s for s in sources if s['isin']==isin)
+   self.assertIn(url,source['urls'],'The generator must retain the ordinary collection route')
+   body=(FIX/f'euronext-{isin}.html').read_bytes()
+   values,errors=collect({'isin':isin,'urls':[url]},dt.datetime(2026,10,29,tzinfo=dt.timezone.utc),lambda _:body)
+   self.assertEqual(errors,[]);self.assertEqual(set(values),{'listings'})
+   row=values['listings']['value'][0]
+   self.assertEqual((row['ticker'],row['mic'],row['currency']),(ticker,'XPAR','EUR'))
+   self.assertNotIn('price',row);self.assertNotIn('symbol',row,'Exchange ticker is not a newly certified vendor alias')
+   previous={'checkedAt':'2026-10-21','value':[{'ticker':'OTHER','mic':'XLON','currency':'USD','checkedAt':'2026-10-21'}]}
+   original=copy.deepcopy(previous);merged=merge_field_observation('listings',previous,values['listings'])
+   self.assertEqual(previous,original)
+   self.assertEqual(next(r for r in merged['value']if r['mic']=='XLON')['checkedAt'],'2026-10-21')
+   self.assertEqual(next(r for r in merged['value']if r['mic']=='XPAR')['checkedAt'],'2026-10-29')
+   with self.assertRaises(ValueError):euronext_listing_rows(body,'FR0011550185',url)
+   with self.assertRaises(ValueError):euronext_listing_rows(body,isin,url.replace('XPAR','XAMS'))
+
  def test_discovery_is_exact_and_never_a_tax_statement(self):
   isin='IE00BK5BQT80';url='https://bourse.fortuneo.fr/api/search?term='+isin
   body=(FIX/'fortuneo-discovery.json').read_bytes()
