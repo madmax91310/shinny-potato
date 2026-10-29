@@ -38,9 +38,16 @@ const references = {
   cleanenergy: 'support-sect_energie_propre', infrastructure: 'infrastructures', property: 'immobilier-reit',
   semiconductors: 'semiconducteurs', blockchain: 'blockchain',
 }
+// PANX is already qualified in the shared catalogue/DCA but has no ETF sheet.
+// Reuse the reviewed technology illustration, never an inferred provider logo.
+const manualIllustrations = {'FR0013412269': 'technologie'}
+export function getManualDuelArt(asset, cards=ETFS) {
+ const card=cards.find(card=>card.isin===asset.isin)
+ const art=getETFArt(card?.id ?? manualIllustrations[asset.isin])
+ return art.scene?art:{...art,scene:art.mark}
+}
 const automaticArt = Object.fromEntries(CATALOG.filter(asset=>asset.id.startsWith('manual-') || asset.annualManual).map(asset=>{
- const card=ETFS.find(card=>card.isin===asset.isin)
- const art=getETFArt(card?.id)
+ const art=getManualDuelArt(asset)
  return [asset.exposure,art.scene?art:{...art,scene:art.mark}]
 }))
 export const DUEL_EXPOSURE_ART = Object.freeze({...automaticArt,...Object.fromEntries(CATALOG.filter(asset => asset.art).map(asset => [asset.exposure, {kind: 'illustration', ...asset.art}])), ...Object.fromEntries(Object.entries(references).filter(([exposure])=>CATALOG.some(asset=>asset.exposure===exposure)).map(([exposure, id]) => [exposure, exposure === 'construction-europe' ? { kind: 'illustration', theme: 'construction', scene: 'duels/construction.webp' } : getETFArt(id)]))})
