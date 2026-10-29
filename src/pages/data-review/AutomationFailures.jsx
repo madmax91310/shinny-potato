@@ -7,6 +7,7 @@ import MonitoringIncidents from './MonitoringIncidents.jsx'
 import { Link } from 'react-router-dom'
 import { TOOLS } from '../../tools.js'
 import { AUTOMATION_STATUS_URL, automationFailures, automationOverview } from './automation.js'
+import { decodeMonitorStorage } from '../../lib/monitor-storage.js'
 const toolTitle = path => TOOLS.find(tool => tool.to === path)?.navLabel ?? path
 
 const recoveryLabel = value => ({ reserved: 'Relance réservée', dispatched: 'Relance demandée', waiting: 'Nouvelle tentative programmée', 'awaiting-current-run': 'Une exécution est déjà en cours ou attend son bilan', 'budget-exhausted': 'Limite de relances atteinte pour 24 heures', 'dispatch-failed': 'Demande de relance échouée ; nouvelle tentative différée' }[value] ?? null)
@@ -29,7 +30,7 @@ export default function AutomationFailures({review}) {
       try {
         const response = await fetch(AUTOMATION_STATUS_URL, {cache: 'no-store', signal: controller.signal})
         if (!response.ok) throw new Error('Statut indisponible')
-        const status = await response.json()
+        const status = await decodeMonitorStorage(await response.json())
         const rows = automationOverview(status)
         const next = automationFailures(status)
         if (active) { setFullStatus(status); setAlerts(next); setOverview(rows); setMonitor(status.monitoring ?? null); setUnavailable(false) }

@@ -36,6 +36,12 @@ on:
       - "scripts/publish_automation_status.py"
       - "scripts/automation-report-contracts.json"
       - "scripts/test_automation_product.py"
+      - "scripts/automation_status_storage.py"
+      - "scripts/automation_status_git.py"
+      - "scripts/test_automation_status_storage.py"
+      - "scripts/test-monitor-storage.mjs"
+      - "src/lib/monitor-storage.js"
+      - "public/monitor-storage-capabilities.json"
       - "scripts/fixtures/automation-reports/**"
       - "scripts/test_automation_status.py"
       - "scripts/automation_monitoring.py"
@@ -53,6 +59,10 @@ on:
     paths:
       - '.github/workflows/automation-status.yml'
       - 'scripts/publish_automation_status.py'
+      - 'scripts/automation_status_storage.py'
+      - 'scripts/automation_status_git.py'
+      - 'src/lib/monitor-storage.js'
+      - 'public/monitor-storage-capabilities.json'
       - 'scripts/automation-report-contracts.json'
       - 'scripts/fixtures/automation-reports/**'
       - 'scripts/automation_monitoring.py'
@@ -83,6 +93,7 @@ jobs:
         with:
           node-version: 24
       - run: node scripts/test-monitoring-context.mjs
+      - run: node scripts/test-monitor-storage.mjs
       - run: python -m unittest discover -s scripts -p 'test_automation*.py'
       - run: python -m unittest discover -s scripts -p 'test_producer_report_contract.py'
       - run: python -m unittest discover -s scripts -p 'test_source_revision.py'
@@ -108,6 +119,7 @@ jobs:
         with:
           node-version: 24
       - run: node scripts/test-monitoring-context.mjs
+      - run: node scripts/test-monitor-storage.mjs
       - run: python -m unittest discover -s scripts -p 'test_automation*.py'
       - run: python -m unittest discover -s scripts -p 'test_producer_report_contract.py'
       - run: python -m unittest discover -s scripts -p 'test_source_revision.py'
