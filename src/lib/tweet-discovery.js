@@ -77,9 +77,11 @@ export function curateTweet(tweet) {
     'comparaison-portefeuilles':'Se comparer aux gros portefeuilles',
     'retraite-300':'Retraite : une projection avec 300 € par mois',
     'world-pea-cto':'World sur PEA ou CTO : simulation sur trente ans',
+    'multi-actifs':titles['guide:multi-asset'],
     'indices-monde':titles['32'], 'etf-thematiques':titles['49'],
   }
   const families = {
+    'guide:multi-asset':['multi-actifs',0], 'guide:lifestrategy-court':['multi-actifs',1],
     '33':['salaire-lambda',0], '43':['salaire-lambda',1],
     '34':['comparaison-portefeuilles',0], '44':['comparaison-portefeuilles',1],
     '8':['retraite-300',0], '45':['retraite-300',1],

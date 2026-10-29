@@ -22,6 +22,8 @@ const generalIds = new Set([2, 20, 28, 34, 39, 44])
 const personalIds = new Set(['story:dix-ans-moins-10000-patrimoine-79058', 'story:profil-monsieur-tout-le-monde', 'story:bitcoin-3500-reflexions-proches', 'bilan:dca-septembre-530', 'story:pea-investir-pas-casino', 'bilan:pea-presque-10000-octobre-2026', 1, 3, 6, 7, 8, 9, 11, 14, 16, 18, 19, 22, 25, 29, 30, 33, 38, 40, 42, 43, 45, 46, 47])
 const marketIds = new Set([10, 15, 17, 21, 24, 27, 32, 37])
 export function reviewPolicy(tweet) {
+  // Exact accumulating shares, published EUR calendar returns and OCF: sources on the entry.
+  if (tweet.id === 'guide:lifestrategy-court') return reviewed(tweet, '2026-10-29')
   // Liste explicite de textes historiques relus : la catégorie seule ne certifie rien.
   const story = MARKET_STORIES.find(item => item.id === tweet.id && item.text === tweet.text)
   if (story) return { kind: 'historical', checkedAt: story.reviewedAt, maxAge: null }

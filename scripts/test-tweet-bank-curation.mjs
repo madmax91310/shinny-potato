@@ -26,3 +26,16 @@ assert.equal(groupTweetVariants([{id:'a',text:'DCA de juin',source:'personal'},{
 assert.equal(groupTweetVariants(TWEETS.filter(t=>String(t.id).startsWith('pedagogy:'))).length,TWEETS.filter(t=>String(t.id).startsWith('pedagogy:')).length)
 assert.equal(curateTweet({id:'own',source:'personal',text:'Tu veux ouvrir une assurance-vie, mais tu ne sais pas laquelle choisir ?',category:'Guide ETF'}).title,'Comment choisir son assurance-vie')
 console.log('Curation: texts, IDs, personal copies, publication dates and favorites preserved; explicit families and category corrections verified.')
+const short = TWEETS.find(t=>t.id==='guide:lifestrategy-court')
+const original = TWEETS.find(t=>t.id==='guide:multi-asset')
+const multi = grouped.filter(t=>t.variantGroup==='multi-actifs')
+assert.equal(multi.length,1)
+assert.equal(multi[0].id,short.id)
+assert.deepEqual(multi[0].variants.map(v=>v.id),[short.id,original.id])
+assert.equal(multi[0].category,'Guide ETF')
+assert.equal(discoverTweets(multi,{search:'NL0009272772'}).length,1,'Original VanEck content remains searchable inside the family')
+assert(short.text.length < original.text.length * .8)
+for (const archivePrefix of ['', 'archive:']) {
+  const pair = [short,original].map(t=>({...t,id:archivePrefix+t.id}))
+  assert.equal(groupTweetVariants(pair).length,1,'Static and private catalogs share the same family')
+}
