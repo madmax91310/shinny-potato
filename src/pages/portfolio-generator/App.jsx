@@ -663,7 +663,7 @@ function GeneratorWorkspace({search}) {
 
           <SettingsDetails title="Comprendre le calcul">
             <p className="pg-fine-print">
-              Les performances utilisent les historiques qualifiés de chaque support et les années communes affichées. L’indice ne remplace pas l’historique manquant d’une part. Les poids sont rétablis chaque année ; les rendements annuels sont ensuite capitalisés pour calculer la performance annualisée, hors courtage et fiscalité. Les conversions utilisent les taux BCE aux bornes annuelles. En mode automatique, les plafonds de composition et le seuil historique du profil sont contrôlés. En manuel, le rapprochement exige six années communes complètes et les mêmes plafonds ; il ne prédit pas le risque futur.
+              Les performances utilisent les historiques qualifiés de chaque support et les années communes affichées. Les simulations sur indice déjà autorisées restent explicitement signalées et distinctes de la performance de la part. Les poids sont rétablis chaque année ; les rendements annuels sont ensuite capitalisés pour calculer la performance annualisée, hors courtage et fiscalité. Les conversions utilisent les taux BCE aux bornes annuelles. En mode automatique, les plafonds de composition et le seuil historique du profil sont contrôlés. En manuel, le rapprochement exige six années communes complètes et les mêmes plafonds ; il ne prédit pas le risque futur.
             </p>
           </SettingsDetails></>}
         </section>
