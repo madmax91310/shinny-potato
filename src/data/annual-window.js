@@ -9,7 +9,7 @@ export function latestCommonYears(series, { length = 6, minimum = length, now = 
   if (!series.length) return [];
   const lastComplete = lastCompleteYear(now);
   const common = Object.keys(series[0]).map(Number).filter(year => Number.isInteger(year) && year >= 2020 && year <= lastComplete &&
-    series.every(row => Number.isFinite(row[year]) && row[year] > -100)).sort((a, b) => b - a);
+    series.every(row => Number.isFinite(row[year]) && row[year] >= -100)).sort((a, b) => b - a);
   for (const end of common) {
     const years = [];
     for (let year = end; years.length < length && common.includes(year); year--) years.unshift(year);

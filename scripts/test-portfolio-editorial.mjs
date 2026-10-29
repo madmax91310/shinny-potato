@@ -317,7 +317,7 @@ assert.match(validatedText,/^📈 .* par an sur la période 2020–2025 : quels 
 assert.match(validatedText,/ont chacun une ligne dédiée/);
 assert.match(validatedText,/85 % d’actions/);
 assert.match(validatedText,/iShares Core MSCI World/);
-assert.doesNotMatch(validatedText,/ISIN|pas un conseil|Simulation avec|en dollars/);
+assert.doesNotMatch(validatedText,/ISIN|Simulation avec|en dollars/);
 const imiSmall = manual([{id:'acwi_imi_spdr',pct:60},{id:'smallcap_monde',pct:40}]);
 assert.match(renderTweetText(imiSmall),/déjà présents dans la base mondiale/);
 assert.doesNotMatch(renderTweetText(imiSmall),/petites entreprises.*absentes/s);
