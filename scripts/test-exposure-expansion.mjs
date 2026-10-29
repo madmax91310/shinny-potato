@@ -4,8 +4,8 @@ import records from '../src/data/exposure-etf-expansion-records.json' with {type
 import {references,analyzeProfile} from '../src/pages/dca-profiles/engine.js'
 import {searchAssets} from '../src/pages/dca-profiles/management.js'
 import {dcaExposure,exposureDisplay} from '../src/pages/dca-profiles/exposure.js'
-assert.equal(config.instruments.length,35)
-assert.equal(new Set(config.instruments.map(s=>s.isin)).size,35)
+assert.equal(config.instruments.length,36)
+assert.equal(new Set(config.instruments.map(s=>s.isin)).size,36)
 for(const s of config.instruments){
  assert(records[s.isin],`Missing validated record ${s.isin}`)
  assert(searchAssets(s.isin).includes(s.isin),`ISIN search missing ${s.isin}`)
@@ -26,4 +26,10 @@ for(const s of config.instruments){
 }
 assert.equal(records.LU2903252349.countries.basis,'index')
 assert.match(records.LU1681040223.characteristics.index,/ESG/i)
-console.log('35 exact ISINs: catalogue search, dated country/sector donuts, monetary treatment and index identity verified.')
+console.log('36 exact ISINs: catalogue search, dated country/sector donuts, monetary treatment and index identity verified.')
+
+assert(searchAssets('PANX').includes('FR0013412269'))
+assert.equal(references.FR0013412269.pea,true)
+assert.equal(references.FR0013412269.synthetic,true)
+assert.equal(records.FR0013412269.holdings.basis,'index')
+assert.notEqual(records.FR0013412269.holdings.complete,true)

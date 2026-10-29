@@ -60,6 +60,11 @@ jobs:
         run: python scripts/collect_exposure_expansion.py --apply --report "$RUNNER_TEMP/exposure-expansion.json"
       - name: Validate expanded exposures
         run: npm run build && node scripts/test-exposure-expansion.mjs
+      - name: Verify DCA holdings in browser
+        if: github.event_name == 'pull_request'
+        run: |
+          npx playwright install --with-deps chromium
+          node scripts/playwright-dca-holdings-contracts.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -76,7 +81,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh 35 exact-share ETF exposures' src/data/exposure-etf-expansion-records.json src/pages/dca-profiles/catalog.json src/pages/dca-profiles/exposures*.json src/pages/dca-profiles/holdings*.json
+          bash scripts/commit-validated-data.sh 'Refresh exact-share ETF exposures' src/data/exposure-etf-expansion-records.json src/pages/dca-profiles/catalog.json src/pages/dca-profiles/exposures*.json src/pages/dca-profiles/holdings*.json
   deploy:
     needs: refresh
     if: github.event_name != 'pull_request'

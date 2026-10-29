@@ -55,6 +55,7 @@ export const INSTRUMENTS_BY_ISIN = Object.freeze({
   "FR0013411980": Object.freeze({name: "Amundi PEA Japan (TOPIX) UCITS ETF", labels: {"index": "Amundi PEA Japon (TOPIX) UCITS ETF"}}),
   "FR0013411998": Object.freeze({pea: true, name: "Amundi PEA Japon (TOPIX) UCITS ETF EUR Hedged Acc"}),
   "FR0013412004": Object.freeze({name: "Amundi PEA Amérique Latine (MSCI Emerging Latin America Selection) UCITS ETF"}),
+  "FR0013412269": Object.freeze({name: "Amundi PEA US Tech Screened UCITS ETF - Acc"}),
   "FR0013412012": Object.freeze({name: "Amundi PEA Asie Emergente (MSCI Emerging Asia) Screened UCITS ETF"}),
   "FR0013412020": Object.freeze({name: "Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF"}),
   "FR0013412038": Object.freeze({name: "Amundi PEA MSCI Europe UCITS ETF (Acc)"}),
