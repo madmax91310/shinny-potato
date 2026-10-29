@@ -28,6 +28,28 @@ class InvescoAllocations(unittest.TestCase):
    with self.subTest(old=old),self.assertRaises(ValueError):parse_allocations(text.replace(old,new),config,dt.datetime(2026,10,14))
 
 class NonBondSources(unittest.TestCase):
+ def test_official_french_listing_fallback_for_empty_english_response(self):
+  body=(ROOT/'scripts/fixtures/metadata-connections/invesco-IE000L2SA8K5-listings-fr.json').read_bytes()
+  urls=[]
+  def fetch(url):
+   urls.append(url)
+   return b'{}' if '/en_GB/' in url else body
+  rows,attempts=funds.collect_invesco_listings({'isin':'IE000L2SA8K5'},dt.datetime(2026,10,29),fetch)
+  self.assertEqual(len(urls),2)
+  self.assertEqual([a['status']for a in attempts],['failed','validated'])
+  self.assertIn(('XLON','USD','IEWQ.L'),[(r['mic'],r['currency'],r['symbol'])for r in rows])
+  self.assertTrue(all('/fr_FR/'in r['sourceUrl'] and r['checkedAt']=='2026-10-29'for r in rows))
+  self.assertTrue(all('inav'not in r for r in rows),'An indicative NAV is not a collected close')
+ def test_successful_primary_does_not_call_fallback(self):
+  body=(ROOT/'scripts/fixtures/metadata-connections/invesco-IE000L2SA8K5-listings-fr.json').read_bytes()
+  urls=[]
+  def fetch(url):urls.append(url);return body
+  rows,attempts=funds.collect_invesco_listings({'isin':'IE000L2SA8K5'},dt.datetime(2026,10,29),fetch)
+  self.assertEqual(len(urls),1);self.assertEqual(attempts[0]['status'],'validated')
+ def test_two_invalid_source_responses_remain_a_failure(self):
+  for body in [b'{}',b'[]',b'{"error":"unavailable"}',b'[{"listingExchangeName":"London Stock Exchange"}]']:
+   with self.subTest(body=body),self.assertRaisesRegex(ValueError,'Official Invesco listings unavailable'):
+    funds.collect_invesco_listings({'isin':'IE000L2SA8K5'},dt.datetime(2026,10,29),lambda _:body)
  def holdings(self):
   return {'holdings':[{'isin':f'US{i:010d}','name':f'Security {i}','weight':i}for i in range(1,11)]+[{'name':'Cash and/or Derivatives','weight':45}]}
  def test_full_index_sorted_cash_is_not_a_security(self):

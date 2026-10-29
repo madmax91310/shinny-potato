@@ -71,6 +71,23 @@ def wisdomtree_pdf(share, now, transport_error):
                               {'url':url,'status':'validated'}]
     return result
 
+def collect_invesco_listings(share, now, fetch=download):
+    """Two official locale routes; an empty response is not a source check."""
+    from collect_instrument_metadata import invesco_listing_rows
+    attempts=[]
+    for locale in ('en_GB', 'fr_FR'):
+        url=f'https://dng-api.invesco.com/cache/v1/accounts/{locale}/shareclasses/{share["isin"]}?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData'
+        try:
+            raw=fetch(url)
+            parsed=invesco_listing_rows(raw, share['isin'], url)
+            rows=listings([(r['exchange'],r['currency'],r['ticker'],r['symbol'],r['excerpt'].removeprefix(share['isin']+' | ')) for r in parsed],share,now,url,proof(raw))
+            attempts.append({'url':url,'status':'validated','sha256':proof(raw),'field':'listings'})
+            return rows, attempts
+        except (ValueError, urllib.error.URLError, TimeoutError, KeyError, TypeError) as error:
+            attempts.append({'url':url,'status':'failed','field':'listings','reason':str(error)})
+    reject('Official Invesco listings unavailable: '+json.dumps(attempts))
+
+
 def collect_one(share, now):
     kind=share['expansionKind']
     if kind=='ssga':
@@ -110,9 +127,8 @@ def collect_one(share, now):
         from collect_invesco_etf import parse_document
         body=download(share['sourceUrl']);result=parse_document(body,share,now)
         base='https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/'+share['isin']
-        url=base+'?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData'
-        raw=download(url);rows=json.loads(raw)
-        ls=listings([(r['listingExchangeName'],r['listingCurrency'],r['listingExchangeTicker'],r['listingRic'],json.dumps(r))for r in rows],share,now,url,proof(raw))
+        ls, attempts=collect_invesco_listings(share,now,download)
+        result['sourceAttempts']=attempts
         # Check the official product's ISIN and share currency independently of its trading rows.
         page=BeautifulSoup(public_page(share['pageUrl']),'html.parser')
         if page.find('meta',attrs={'name':'isin'})['content']!=share['isin']:reject('Wrong Invesco listing product')

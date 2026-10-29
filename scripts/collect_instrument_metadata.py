@@ -423,7 +423,7 @@ def invesco_listing_rows(body,isin,url):
     """The issuer's ISIN-keyed API returns one array of trading rows, not facts JSON."""
     from urllib.parse import urlsplit, parse_qs
     parts=urlsplit(url)
-    if parts.hostname!='dng-api.invesco.com' or parts.path!=f'/cache/v1/accounts/en_GB/shareclasses/{isin}' or parse_qs(parts.query)!={'expand':['marketdata'],'idType':['isin'],'variationType':['exchangeTradingInformationWithMarketData']}:
+    if parts.scheme!='https' or parts.netloc!='dng-api.invesco.com' or parts.fragment or parts.path not in {f'/cache/v1/accounts/{locale}/shareclasses/{isin}' for locale in ('en_GB','fr_FR')} or parse_qs(parts.query)!={'expand':['marketdata'],'idType':['isin'],'variationType':['exchangeTradingInformationWithMarketData']}:
         raise ValueError('Wrong Invesco exact-share endpoint')
     data=json.loads(body)
     if not isinstance(data,list) or not data:raise ValueError('Missing Invesco listing rows')
@@ -575,7 +575,7 @@ def parse_listings(body,source,url,checked):
     isin=source['isin'];digest=hashlib.sha256(body).hexdigest();rows=[]
     if urlsplit(url).hostname=='apidata.londonstockexchange.com':
         return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"}for r in lse_listing_rows(body,source,url,checked)]
-    if urlsplit(url).hostname=='dng-api.invesco.com' and urlsplit(url).path==f'/cache/v1/accounts/fr_FR/shareclasses/{isin}':
+    if urlsplit(url).hostname=='dng-api.invesco.com' and urlsplit(url).path==f'/cache/v1/accounts/fr_FR/shareclasses/{isin}' and 'variationType=' not in urlsplit(url).query:
         return []  # Characteristics endpoint; the independent listing endpoint remains required.
     markets=EXCHANGE_MICS
     if urlsplit(url).hostname=='live.euronext.com' and re.fullmatch(r'/en/product/etfs/[A-Z0-9]{12}-[A-Z0-9]{4}',urlsplit(url).path):
@@ -677,7 +677,7 @@ def collect(source,now,fetch=download,on_document=None):
                 from urllib.parse import urlsplit
                 if urlsplit(url).hostname=='apidata.londonstockexchange.com':fields={}
                 elif urlsplit(url).hostname=='dng-api.invesco.com':
-                    fields=invesco_characteristics(body,source['isin'],url,now.date()) if '/fr_FR/' in urlsplit(url).path else {}
+                    fields=invesco_characteristics(body,source['isin'],url,now.date()) if '/fr_FR/' in urlsplit(url).path and 'variationType=' not in urlsplit(url).query else {}
                 elif urlsplit(url).hostname=='www.justetf.com':fields=parse_justetf(body,source['isin'])
                 elif urlsplit(url).hostname=='www.quantalys.com':fields=parse_quantalys_pea(body,source['isin'],url)
                 elif urlsplit(url).hostname=='extraetf.com':fields=parse_extraetf_pea(body,source['isin'],url)
