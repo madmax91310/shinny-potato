@@ -2,9 +2,9 @@
   "fieldCoverage": {
     "ter": {
       "label": "Frais",
-      "present": 258,
-      "total": 261,
-      "applicable": 261,
+      "present": 259,
+      "total": 262,
+      "applicable": 262,
       "notApplicable": 0,
       "waiting": 0,
       "notPublished": 0,
@@ -12,9 +12,9 @@
     },
     "aum": {
       "label": "Encours",
-      "present": 258,
-      "total": 261,
-      "applicable": 261,
+      "present": 259,
+      "total": 262,
+      "applicable": 262,
       "notApplicable": 0,
       "waiting": 0,
       "notPublished": 0,
@@ -22,9 +22,9 @@
     },
     "performance": {
       "label": "Calendrier annuel",
-      "present": 238,
-      "total": 261,
-      "applicable": 261,
+      "present": 239,
+      "total": 262,
+      "applicable": 262,
       "notApplicable": 0,
       "waiting": 13,
       "notPublished": 7,
@@ -32,9 +32,9 @@
     },
     "countries": {
       "label": "Pays",
-      "present": 229,
-      "total": 261,
-      "applicable": 238,
+      "present": 230,
+      "total": 262,
+      "applicable": 239,
       "notApplicable": 23,
       "waiting": 0,
       "notPublished": 6,
@@ -42,9 +42,9 @@
     },
     "sectors": {
       "label": "Secteurs",
-      "present": 229,
-      "total": 261,
-      "applicable": 238,
+      "present": 230,
+      "total": 262,
+      "applicable": 239,
       "notApplicable": 23,
       "waiting": 0,
       "notPublished": 5,
@@ -52,9 +52,9 @@
     },
     "holdings": {
       "label": "Positions pondérées",
-      "present": 234,
-      "total": 261,
-      "applicable": 238,
+      "present": 235,
+      "total": 262,
+      "applicable": 239,
       "notApplicable": 23,
       "waiting": 0,
       "notPublished": 0,
@@ -409,14 +409,14 @@
   ],
   "checkedAt": "2026-10-29",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
-  "instruments": 261,
+  "instruments": 262,
   "covered": {
-    "ter": 258,
-    "aum": 258,
-    "performance": 238,
-    "countries": 229,
-    "sectors": 229,
-    "holdings": 234
+    "ter": 259,
+    "aum": 259,
+    "performance": 239,
+    "countries": 230,
+    "sectors": 230,
+    "holdings": 235
   },
   "summary": {
     "instrument:unqualified": 19,
@@ -1095,7 +1095,7 @@
       "status": "not-published",
       "checkedAt": "2026-10-29",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "62c0247a8bc0b3c783a51ce84d272fc151c52d8f0ea4e315091c2f5a7516401f",
+      "sha256": "17774c58d4f7144a6226e63f8000ea4ec9e449fe2b1c597890419b9c45240c6d",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1831,7 +1831,7 @@
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
       "checkedAt": "2026-10-29",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "53ce013a438c176bc8549287c1735a316450c6a6667065a6d88ca29e7ea99efe",
+      "sha256": "cef15a08efc93f810584d48b21026bbf941bca3c5525c0f0f621b01693bb8293",
       "evidence": [
         "Performance History",
         "USD Accumulating",
@@ -1860,14 +1860,7 @@
         "15.75%",
         "-0.46%",
         "Performance is based on the fund’s NAV and is shown on a total return basis (i.e., with gross income reinvested, where applicable). The fund’s NAV may differ from its market price and, as a result, individual shareholders may realize returns that are different from the NAV performance. Cumulative return is the aggregate amount that an investment has gained or lost over time. Annualised return is the average return gained or lost by an investment each year over a given time period.",
-        "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations.",
-        "Top 10 Reference Index Constituents",
-        "As of 26 Oct 2026",
-        "Weight (%)",
-        "Ticker",
-        "Name",
-        "8.10",
-        "NVDA"
+        "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations."
       ]
     },
     {
@@ -1881,7 +1874,7 @@
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
       "checkedAt": "2026-10-29",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "53ce013a438c176bc8549287c1735a316450c6a6667065a6d88ca29e7ea99efe",
+      "sha256": "cef15a08efc93f810584d48b21026bbf941bca3c5525c0f0f621b01693bb8293",
       "evidence": []
     },
     {
@@ -1895,7 +1888,7 @@
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
       "checkedAt": "2026-10-29",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "53ce013a438c176bc8549287c1735a316450c6a6667065a6d88ca29e7ea99efe",
+      "sha256": "cef15a08efc93f810584d48b21026bbf941bca3c5525c0f0f621b01693bb8293",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 30 Sep 2026",
@@ -1936,7 +1929,7 @@
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, MSFT, NVDA, TSLA.",
       "checkedAt": "2026-10-29",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "53ce013a438c176bc8549287c1735a316450c6a6667065a6d88ca29e7ea99efe",
+      "sha256": "cef15a08efc93f810584d48b21026bbf941bca3c5525c0f0f621b01693bb8293",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 26 Oct 2026",

@@ -42,7 +42,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | broker | 8 |
 | household | 29 |
 | index | 56 |
-| instrument | 671 |
+| instrument | 672 |
 | insurance | 7 |
 | lexicon | 44 |
 | reference | 11 |
@@ -53,12 +53,12 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 
 | Champ | Présents / instruments |
 |---|---:|
-| ter | 258/261 |
-| aum | 258/261 |
-| performance | 238/261 |
-| countries | 229/261 |
-| sectors | 229/261 |
-| holdings | 234/261 |
+| ter | 259/262 |
+| aum | 259/262 |
+| performance | 239/262 |
+| countries | 230/262 |
+| sectors | 230/262 |
+| holdings | 235/262 |
 
 Les raisons des absences figurent dans [l’inventaire des lacunes](automation-gaps.md).
 
