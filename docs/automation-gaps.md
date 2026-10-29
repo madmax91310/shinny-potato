@@ -6,8 +6,8 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 |---|---:|---:|---:|---:|---:|
 | Frais | 258/261 | 0 | 0 | 0 | 3 |
 | Encours | 258/261 | 0 | 0 | 0 | 3 |
-| Calendrier annuel | 238/261 | 0 | 13 | 7 | 3 |
-| Pays | 229/238 | 23 | 0 | 6 | 3 |
+| Calendrier annuel | 238/261 | 0 | 13 | 6 | 4 |
+| Pays | 229/238 | 23 | 0 | 5 | 4 |
 | Secteurs | 229/238 | 23 | 0 | 5 | 4 |
 | Positions pondérées | 234/238 | 23 | 0 | 0 | 4 |
 
@@ -148,8 +148,8 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | iShares Diversified Commodity Swap UCITS ETF (IE00BDFL4P12) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Diversified Commodity Swap UCITS ETF (IE00BDFL4P12) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Diversified Commodity Swap UCITS ETF (IE00BDFL4P12) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
-| instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Calendrier annuel | Non publié | La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués. |
-| instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Pays | Non publié | Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus. |
+| instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Calendrier annuel | À qualifier | La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués. |
+| instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Pays | À qualifier | Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus. |
 | instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Secteurs | À qualifier | Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée. |
 | instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Positions pondérées | Source contradictoire | Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, MSFT, NVDA, TSLA. |
 | instrument | WisdomTree Physical Gold (JE00B1VS3770) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
