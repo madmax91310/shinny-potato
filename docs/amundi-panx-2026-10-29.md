@@ -14,3 +14,7 @@ Sources :
 - https://www.solactive.com/index/DE000SL0J395/ (identité de l'indice)
 
 Validation locale : collecte réelle ciblée, 7 tests Python, test des 36 références et recherche PANX, suite DCA et build complet réussis. Le test navigateur inclut désormais les huit lignes du portefeuille ; lancement local bloqué par l'environnement Chromium (`socket() failed: Operation not permitted`), à exécuter en CI avant publication.
+
+
+Reprise mensuelle PANX, 29 octobre19h40 — #1052 est fusionnée (cb9dd28), son catalogue et sa composition sont préservés. Le producteur ordinaire40939814124 qualifie réellement la seule nouvelle partFR0013412269, puis échoue à Validate observations: test-etf-tool-connections ; Duels importe ses nouveaux rendements mais cherche exclusivement une fiche ETF inexistante et appelle getETFArt(undefined). Ce lot possède le raccord explicite à l’illustration technologie déjà vérifiée, sa régression sans fiche et le déclenchement mensuel correspondant. Aucun nouveau seuil, rendement, rôle automatique ou fiche créé ; toute autre identité sans illustration reste refusée. Collecte et publication ordinaires à vérifier après fusion.
+
