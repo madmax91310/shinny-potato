@@ -73,6 +73,14 @@ class RankedFields(unittest.TestCase):
         def fail(*_):raise OSError('network unavailable')
         out=augment_document(result,self.share(),NOW,b'document',fail)
         self.assertEqual(out['sectors'],before['sectors']);self.assertEqual({e['field']for e in out['collectionErrors']},{'holdings','sectors'})
+    def test_qualified_alternative_listing_keeps_the_ordinary_etf_summary_contract(self):
+        def acquire(*args):
+            raw,url,identity,listing,_=self.acquire()(*args)
+            return raw,url,identity,listing,[{'sourceUrl':'https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=primary','status':'unavailable','error':'HTTP 403'}]
+        out=augment_document({},self.share(),NOW,b'document',acquire)
+        attempt=out['sourceAttempts'][0]
+        self.assertEqual(attempt['url'],attempt['sourceUrl']);self.assertEqual(attempt['reason'],'HTTP 403')
+        self.assertTrue(all('url' in item for item in out['sourceAttempts']))
     def test_equal_dates_with_different_values_are_quarantined_without_arbitration(self):
         values,_=parse_fields(self.payload(),self.share(),NOW,self.payload()[0]['ticker'])
         result=copy.deepcopy(values); result['sectors']['rows'][0]['weightPct']-=1

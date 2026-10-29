@@ -85,6 +85,11 @@ def augment_document(result, share, now, document_body, acquire=acquire_qualifie
                              'identitySourceUrl': identity['identitySourceUrl'], 'identitySha256': identity['identitySha256'],
                              'identityAsOf': identity['identityAsOf']}
             used.append(field)
+        # The holdings reader calls these sourceUrl/error; the ETF producer's
+        # established summary contract expects url/reason. Preserve both facts.
+        attempts = [{**attempt, 'url': attempt.get('url') or attempt['sourceUrl'],
+                     **({'reason': attempt['error']} if attempt.get('error') and not attempt.get('reason') else {})}
+                    for attempt in attempts]
         result.setdefault('sourceAttempts', []).extend([*attempts, {'url': url, 'status': 'validated' if not errors else 'partial',
                                                                    'fields': used, 'deferred': deferred}])
         result.setdefault('collectionErrors', []).extend({**e, 'url': url, 'phase': 'validation'} for e in errors)
