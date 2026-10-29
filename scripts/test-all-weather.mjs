@@ -22,7 +22,7 @@ const portfolios = ALL_WEATHER_PRESETS.map(preset => {
   assert.deepEqual(getReplacementCandidates(p, p.selection[0].id), [])
   const text = renderTweetText(p)
   assert.ok(text.includes(preset.label) && text.includes(preset.thesis))
-  assert.ok(text.includes('EUR') && text.includes('perte maximale'))
+  assert.ok(text.includes('EUR') && text.includes('Pas un conseil.'))
   const edited = buildManualPortfolio(p.selection.map(({ id, pct }) => ({ id, pct })), 'generaliste', [p])
   assert.deepEqual(edited.perf, p.perf)
   assert.equal(edited.strategyLabel, undefined)

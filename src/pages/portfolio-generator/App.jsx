@@ -7,7 +7,7 @@ import PortfolioHistoryLinks from '../../design-system/PortfolioHistoryLinks.jsx
 import { lazy, Suspense } from 'react'
 const PortfolioExposure = lazy(() => import('../../design-system/PortfolioExposure.jsx'))
 import { copyPublicationText } from '../../design-system/publicationActions.js'
-import { performanceYears, performanceNotes, formatPerformance } from './performance.js'
+import { performanceYears, performanceNotes, formatPerformance, validAllocation } from './performance.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { dataLabels } from './compact.js'
 import { instrumentOption } from '../../data/asset-selection.js'
@@ -153,9 +153,10 @@ function ManualRiskInfo({ worst, closestRiskLabel, closestBound, preset = false 
         {closestBound && (
           <span className="pg-riskgauge-bound">
             {' '}
-            · palier le plus proche pour comparaison : {closestRiskLabel} ({closestBound.text})
+            · construction compatible à titre indicatif : {closestRiskLabel} ({closestBound.text})
           </span>
         )}
+        {!closestBound && <span className="pg-riskgauge-bound"> · Rapprochement non disponible : historique incomplet ou composition hors du périmètre des profils.</span>}
       </p>
     </div>
   )
@@ -175,7 +176,8 @@ function ManualComposer({
   const total = selection.reduce((sum, s) => sum + s.pct, 0)
   const maxPct = selection.reduce((max, s) => Math.max(max, s.pct), 0)
   const lineCount = selection.length
-  const canGenerate = !busy && total === 100 && lineCount > 0
+  const totalValid = validAllocation(selection)
+  const canGenerate = !busy && totalValid
 
   return (
     <div className="pg-panel" inert={busy || undefined} aria-busy={busy}>
@@ -234,9 +236,9 @@ function ManualComposer({
         </ul>
       )}
 
-      <div className={`pg-manual-total ${total === 100 ? 'ok' : 'bad'}`}>
-        Total : <b>{total}%</b>
-        {total !== 100 && (
+      <div className={`pg-manual-total ${totalValid ? 'ok' : 'bad'}`}>
+        Total : <b>{Number(total.toFixed(6)).toLocaleString('fr-FR')}%</b>
+        {!totalValid && (
           <span className="pg-manual-total-hint">
             {total < 100 ? ` — il manque ${100 - total}%` : ` — ${total - 100}% en trop`}
           </span>
@@ -386,7 +388,8 @@ function GeneratorWorkspace({search}) {
   const [modelFamily, setModelFamily] = useState('all-weather')
   const [modelPreset, setModelPreset] = useState('euro')
 
-  const current = history[history.length - 1]
+  const current = mode === 'manual' && manualEditing ? null
+    : history.findLast(portfolio => portfolio.mode === (mode === 'models' ? 'preset' : mode === 'auto' ? 'auto' : 'manual'))
   const [background, setBackground] = useState(null)
   const [imageError, setImageError] = useState('')
   const [imageAttempt, setImageAttempt] = useState(0)
@@ -397,10 +400,11 @@ function GeneratorWorkspace({search}) {
       .catch(error => { if (active) setImageError(error.message) })
     return () => { active = false }
   }, [imageAttempt])
-  const imageDataUrl = useMemo(() => background ? renderPortfolioImage(current, background).toDataURL('image/png') : '', [current, background])
+  const imageDataUrl = useMemo(() => current && background ? renderPortfolioImage(current, background).toDataURL('image/png') : '', [current, background])
   const prepareImage = useMemo(() => {
     // A retry creates a fresh preview request as well as reloading the download.
     void imageAttempt
+    if (!current) return undefined
     return async () => imageDataUrl || renderPortfolioImage(current, await loadPortfolioBackground()).toDataURL('image/png')
   }, [current, imageDataUrl, imageAttempt])
 
@@ -525,7 +529,7 @@ function GeneratorWorkspace({search}) {
         </span>
       </div>
 
-      <ToolWorkspace renderImage={prepareImage} imageAlt={`Répartition ${current.title}`} className="pg-main" actions={<>
+      <ToolWorkspace renderImage={prepareImage} imageAlt={current ? `Répartition ${current.title}` : undefined} className="pg-main" actions={current && <>
           <div className="pg-tweet-actions">
             <Button type="button" variant="secondary" className="w-full" onClick={handleCopy}>
               {copyState === 'done' ? '✅ Copié !' : copyState === 'error' ? '⚠️ Copie manuelle requise' : '📋 Copier le texte'}
@@ -536,7 +540,7 @@ function GeneratorWorkspace({search}) {
                 : <p role="status">Préparation du visuel…</p>}
         </>}>
         <section className="pg-tweet-col tool-preview">
-          <TweetCard portfolio={current} />
+          {current ? <TweetCard portfolio={current} /> : <p role="status">Compose le portefeuille, puis génère le texte et son visuel.</p>}
 
           <textarea ref={textareaRef} className="pg-clipboard-fallback" readOnly />
         </section>
@@ -610,7 +614,8 @@ function GeneratorWorkspace({search}) {
             </div>
           )}
 
-          <div className="pg-panel">
+          {generationError && <p role="alert">{generationError}</p>}
+          {current && <><div className="pg-panel">
             {current.mode !== 'auto' ? (
               <ManualRiskInfo worst={current.worst} closestRiskLabel={current.closestRiskLabel} closestBound={current.closestBound} preset={current.mode === 'preset'} />
             ) : (
@@ -629,7 +634,6 @@ function GeneratorWorkspace({search}) {
             {current.recipeLabel && <p className="pg-fine-print pg-recipe-label">{current.recipeLabel}</p>}
             <AllocationList selection={current.selection} />
             {current.mode === 'auto' && mode === 'auto' && <GeneratorControls portfolio={current} history={history} locked={locked} onLock={setLocked} />}
-            {generationError && <p role="alert">{generationError}</p>}
             <CategorySummary selection={current.selection} />
             <Suspense fallback={<p>Chargement des expositions…</p>}><PortfolioExposure lines={current.selection} /></Suspense>
             {current.mode === 'auto' && <ReplacementPanel key={current.id} portfolio={current} locked={locked} onReplace={(assetId, replacementId) => {
@@ -659,12 +663,9 @@ function GeneratorWorkspace({search}) {
 
           <SettingsDetails title="Comprendre le calcul">
             <p className="pg-fine-print">
-              Rendements sur les années complètes affichées : données historiques approximatives par actif, à titre pédagogique et
-              éditables manuellement. Chaque année additionne les rendements des lignes selon des poids
-              affichés, sans simuler les versements ni un capital cumulé ; les rendements USD sont convertis en euros avec les taux BCE de fin d’année. Chaque combinaison est validée pour respecter la borne de pire année
-              de son profil de construction avant d'être affichée.
+              Les performances utilisent les historiques qualifiés de chaque support et les années communes affichées. L’indice ne remplace pas l’historique manquant d’une part. Les poids sont rétablis chaque année ; les rendements annuels sont ensuite capitalisés pour calculer la performance annualisée, hors courtage et fiscalité. Les conversions utilisent les taux BCE aux bornes annuelles. En mode automatique, les plafonds de composition et le seuil historique du profil sont contrôlés. En manuel, le rapprochement exige six années communes complètes et les mêmes plafonds ; il ne prédit pas le risque futur.
             </p>
-          </SettingsDetails>
+          </SettingsDetails></>}
         </section>
       </ToolWorkspace>
     </div>

@@ -79,3 +79,9 @@ try {
   if (previousRecent) HISTORICAL_AUTOMATED_PERFORMANCE[recentIsin] = previousRecent;
   else delete HISTORICAL_AUTOMATED_PERFORMANCE[recentIsin];
 }
+
+// -100% is an observed loss, never a gap that permits choosing another window.
+const lossYears = Object.fromEntries([2020,2021,2022,2023,2024,2025].map(year=>[year,year===2022?-100:5]));
+assert.deepEqual(latestCommonYears([lossYears],{now:new Date('2026-06-01')}),[2020,2021,2022,2023,2024,2025]);
+assert.equal(annualizedReturn(lossYears),-100);
+assert.deepEqual(latestCommonYears([{2020:2,2021:2,2022:-100,2023:2,2024:2}],{minimum:3,now:new Date('2026-06-01')}),[2020,2021,2022,2023,2024]);

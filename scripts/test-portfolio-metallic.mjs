@@ -43,6 +43,7 @@ try {
       if (!words.includes('Performances annuelles simulées') || !words.includes('EUR · rééquilibrage annuel')) throw new Error('Missing simulation convention')
       if (/change BCE|hors courtage et fiscalité/.test(words)) throw new Error('Technical detail should remain in the tool')
       if (/devises non converties|ÉQUILIBRÉ|EXEMPLE DE PORTEFEUILLE|Le Généraliste|…/i.test(words)) throw new Error(`Forbidden heading/footer ${name}`)
+      if (!labels.includes('Pas un conseil.')) throw new Error('Missing disclaimer')
       if (labels.filter(label => label === 'Épargnant Libre').length !== 1) throw new Error('Signature')
       for (const asset of portfolio.selection.filter(a => a.pct > 0)) {
         if (!words.includes(asset.name) || !labels.includes(`${asset.pct.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`)) throw new Error(`Lost holding ${asset.name}`)
@@ -51,7 +52,7 @@ try {
       const available = YEARS.map(year => perf[year])
       if (available.every(Number.isFinite)) {
         const growth = available.reduce((product,v) => product * (1 + v/100),1)
-        const annual = growth > 0 ? (growth ** (1 / YEARS.length) - 1) * 100 : null
+        const annual = growth >= 0 ? (growth ** (1 / YEARS.length) - 1) * 100 : null
         if (!labels.includes(annual === null ? 'n.d.' : fmt(annual))) throw new Error('Annualized changed')
       } else if (!labels.includes('n.d.')) throw new Error('Missing value invented')
       // All nonzero bars must use one common absolute scale, and share the correct
