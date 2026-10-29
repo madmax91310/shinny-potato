@@ -2,6 +2,7 @@ import { requestRadarSource, sourceFailureKind, assertRadarAccess } from './rada
 import { unexplainedOfferOmissions } from './radar-offer-watch.mjs'
 import { consumerRejection } from './radar-consumer.mjs'
 import { articleBody,htmlElement } from './radar-article-body.mjs'
+import {bdfDebtCharts} from './bdf-debt-charts.mjs'
 import { relatePublications } from './radar-relationships.mjs'
 import { planPublicationQueue, documentDelays, queueClass } from './radar-queue.mjs'
 import { COVERAGE_SOURCES, coverageDiscovery } from './radar-coverage.mjs'
@@ -170,6 +171,11 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
     const table = [...html.matchAll(/<table\b[^>]*>([\s\S]*?)<\/table>/gi)].map(match => match[1]).find(text => /20\d{2}/.test(cleanText(text)))
     if (table) paragraphs = [...table.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].slice(0,5).map(match => [...match[1].matchAll(/<t[hd]\b[^>]*>([\s\S]*?)<\/t[hd]>/gi)].map(cell=>cleanText(cell[1])).join(' · '))
   }
+  let chartEvidence=null
+  if(!paragraphs.length&&source.id==='bdf-debt'){
+    chartEvidence=bdfDebtCharts(html,title,publishedAt)
+    paragraphs=[chartEvidence.summary]
+  }
   let summary
   try { summary = source.method.startsWith('extra-') ? extraSummary(html,source) : paragraphs.join('\n\n') } catch(error) {
     if(source.id!=='oll')throw error
@@ -184,7 +190,7 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
   const years = [...new Set(summary.match(/\b20\d{2}\b/g) ?? [])].sort()
   const year = source.id === 'drees' ? null : statisticalPeriod(title)
   const dataPeriods = years
-  return { ...base, field: 'publication', rule: 'publication', factType: metadataOnly ? 'publication-watch' : 'statistical-publication', ...(source.id==='credit-logement'?{publishedAt:diffusion,period:diffusion??base.period,sourceDeclaredPublicationDate:publishedAt,publicationDateNote:diffusion?'Diffusion des résultats explicitement annoncée lors de la conférence ; métadonnée WordPress conservée séparément.':'La date de la métadonnée peut être celle du mois statistique ; date de diffusion non certifiée. Les données restent à suivre.'}:{}), referencePeriod: year ?? null, dataPeriods, value: summary, summary, evidence: { sourceHash: hash(html), excerpt: summary, method: source.id==='credit-logement'?'Tableau officiel des taux fixes, colonnes et périodes conservées ; diffusion qualifiée seulement par une présentation explicitement datée.':'Paragraphes du chapeau officiel, sans réécriture générative' }, reason: 'Publication statistique officielle : un repère pour comprendre les revenus, le patrimoine ou les dépenses. La portée reste celle du texte cité.', angle: 'Partir du chiffre principal du résumé officiel et préciser la population, la période et les limites avant de comparer.' }
+  return { ...base, field: 'publication', rule: 'publication', factType: metadataOnly ? 'publication-watch' : 'statistical-publication', ...(source.id==='credit-logement'?{publishedAt:diffusion,period:diffusion??base.period,sourceDeclaredPublicationDate:publishedAt,publicationDateNote:diffusion?'Diffusion des résultats explicitement annoncée lors de la conférence ; métadonnée WordPress conservée séparément.':'La date de la métadonnée peut être celle du mois statistique ; date de diffusion non certifiée. Les données restent à suivre.'}:{}), referencePeriod: chartEvidence?.period ?? year ?? null, dataPeriods:chartEvidence?[chartEvidence.period]:dataPeriods, value: summary, summary, evidence: { sourceHash: hash(html), excerpt: summary, ...(chartEvidence?{controlledSeries:chartEvidence.series}:{}), method: chartEvidence?'Données littérales des deux graphiques officiels ; dernier trimestre, axes, populations et unités contrôlés sans exécuter le JavaScript.':source.id==='credit-logement'?'Tableau officiel des taux fixes, colonnes et périodes conservées ; diffusion qualifiée seulement par une présentation explicitement datée.':'Paragraphes du chapeau officiel, sans réécriture générative' }, reason: 'Publication statistique officielle : un repère pour comprendre les revenus, le patrimoine ou les dépenses. La portée reste celle du texte cité.', angle: 'Partir du chiffre principal du résumé officiel et préciser la population, la période et les limites avant de comparer.' }
 }
 
 // Durable FIFO with exponential retry. No age-based deletion, and no lastmod as publication date.
@@ -193,7 +199,7 @@ export async function collectPublications(now = new Date(), request = fetch, pre
   const state = structuredClone(previous), errors = [], reports = []
   state.documents ??= {}; state.sources ??= {}; state.documentDurationsMs ??= []; state.offerReferences ??= {}
   // Versioned requalification only for existing rejected/partial adapters. No global replay.
-  const parserVersion = source => source.method.startsWith('consumer-') || source.format || source.family==='etf' || source.method==='offer-watch' || source.id==='insee-studies' ? 3 : source.parserVersion
+  const parserVersion = source => source.method.startsWith('consumer-') || source.format || source.family==='etf' || source.method==='offer-watch' || source.id==='insee-studies' ? 3 : source.id==='bdf-debt'?1:source.parserVersion
   sources=sources.map(source=>({...source,parserVersion:Math.max(source.parserVersion??0,parserVersion(source)??0)}))
   const requestContent = async (url, cached, limit = 2500000, body = null) => {
     const response = await requestRadarSource(request,url, { ...(body?{method:'POST',body:JSON.stringify(body)}:{}), signal: AbortSignal.timeout(25000), headers: { ...(body?{'Content-Type':'application/json'}:{}), 'User-Agent': 'EpargnantLibre-Radar/2.0', Accept: body?'application/json':'application/rss+xml, application/xml, application/json, text/html, application/pdf', ...(cached?.etag ? {'If-None-Match': cached.etag} : {}), ...(cached?.lastModified ? {'If-Modified-Since': cached.lastModified} : {}) } },()=>metrics.requests++)
