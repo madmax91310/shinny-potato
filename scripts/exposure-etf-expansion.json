@@ -368,6 +368,17 @@
       "currency": "USD",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
       "ticker": "BUG"
+    },
+    {
+      "isin": "FR0013412269",
+      "name": "Amundi PEA US Tech Screened UCITS ETF - Acc",
+      "provider": "Amundi",
+      "parser": "amundi-expansion",
+      "currency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "collectComposition": true,
+      "replication": "Indirect(Swap Based)",
+      "expectedIndex": "Solactive ISS ESG US Tech 100 Index"
     }
   ]
 }

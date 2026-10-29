@@ -9121,5 +9121,200 @@
         "asOf": null
       }
     }
+  },
+  "FR0013412269": {
+    "currency": "EUR",
+    "productId": "FR0013412269",
+    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "provider": "Amundi",
+    "aum": {
+      "amount": 528101264.26559997,
+      "currency": "EUR",
+      "scope": "share-class",
+      "asOf": "2026-10-28",
+      "checkedAt": "2026-10-29",
+      "modifiedAt": "2026-10-29"
+    },
+    "sectors": {
+      "asOf": "2026-10-27",
+      "basis": "index",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "rows": [
+        {
+          "name": "Information Technology",
+          "weightPct": 65.95574,
+          "label": "Information Technology"
+        },
+        {
+          "name": "Communication Services",
+          "weightPct": 18.664541,
+          "label": "Communication"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 6.75133,
+          "label": "Consumer Discretionary"
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 4.193106,
+          "label": "Health Care"
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 1.582234,
+          "label": "Consumer Staples"
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 1.208414,
+          "label": "Industrials"
+        },
+        {
+          "name": "Materials",
+          "weightPct": 1.132218,
+          "label": "Materials"
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 0.273816,
+          "label": "Utilities"
+        },
+        {
+          "name": "Energy",
+          "weightPct": 0.2386,
+          "label": "Energy"
+        }
+      ],
+      "sourceComponent": "INDEX_SECTORS",
+      "checkedAt": "2026-10-29",
+      "modifiedAt": "2026-10-29"
+    },
+    "countries": {
+      "asOf": "2026-10-27",
+      "basis": "index",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 98.195536
+        },
+        {
+          "name": "Ireland",
+          "weightPct": 1.559484
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 0.244979
+        }
+      ],
+      "sourceComponent": "INDEX_COUNTRIES",
+      "checkedAt": "2026-10-29",
+      "modifiedAt": "2026-10-29"
+    },
+    "holdings": {
+      "asOf": "2026-10-27",
+      "basis": "index",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "rows": [
+        {
+          "name": "NVIDIA CORP",
+          "weightPct": 17.311,
+          "isin": "US67066G1040"
+        },
+        {
+          "name": "APPLE INC",
+          "weightPct": 16.348119,
+          "isin": "US0378331005"
+        },
+        {
+          "name": "MICROSOFT CORP",
+          "weightPct": 11.906054,
+          "isin": "US5949181045"
+        },
+        {
+          "name": "ALPHABET INC CL A",
+          "weightPct": 6.343957,
+          "isin": "US02079K3059"
+        },
+        {
+          "name": "META PLATFORMS INC-CLASS A",
+          "weightPct": 6.20535,
+          "isin": "US30303M1027"
+        },
+        {
+          "name": "TESLA INC",
+          "weightPct": 6.128908,
+          "isin": "US88160R1014"
+        },
+        {
+          "name": "ALPHABET INC CL C",
+          "weightPct": 5.445777,
+          "isin": "US02079K1079"
+        },
+        {
+          "name": "MICRON TECHNOLOGY INC",
+          "weightPct": 3.171292,
+          "isin": "US5951121038"
+        },
+        {
+          "name": "ADVANCED MICRO DEVICES",
+          "weightPct": 2.472048,
+          "isin": "US0079031078"
+        },
+        {
+          "name": "CISCO SYSTEMS INC",
+          "weightPct": 1.635852,
+          "isin": "US17275R1023"
+        }
+      ],
+      "checkedAt": "2026-10-29",
+      "modifiedAt": "2026-10-29"
+    },
+    "characteristics": {
+      "terPct": 0.3,
+      "index": "Solactive ISS ESG US Tech 100 Index",
+      "distribution": "Capitalisation and/or distribution",
+      "replicationMethod": "Indirect(Swap Based)",
+      "checkedAt": "2026-10-29",
+      "modifiedAt": "2026-10-29"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-29",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-29",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-29",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-29",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "asOf": null
+      }
+    },
+    "performance": {
+      "currency": "EUR",
+      "basis": "fund",
+      "method": "calendar-year share total return, income reinvested, fund fees included",
+      "years": {
+        "2020": 36.13,
+        "2021": 36.73,
+        "2022": -28.17,
+        "2023": 46.71,
+        "2024": 38.07,
+        "2025": 10.12
+      },
+      "checkedAt": "2026-10-29",
+      "modifiedAt": "2026-10-29"
+    }
   }
 }
