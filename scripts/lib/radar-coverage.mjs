@@ -51,6 +51,7 @@ function lbpPage(html,source) {
 export async function coverageDiscovery(content,source,request) {
  if(!source.format)return null
  let pages=[content],archiveWarning=null
+ const discoveryFailures=[]
  if(source.format==='lbp') {
   const url=source.url.replace('.typo-pressrelease.html','.typo-pressrelease.p-2.html')
   // Preserve all first-page results when the deeper archive is temporarily down.
@@ -88,20 +89,32 @@ export async function coverageDiscovery(content,source,request) {
    const title=(source.format==='bpce'?tag(block,'a'):null)||tag(block,'h3')||tag(block,'h2')||(source.format==='sg'?clean(block.match(/class="actu-thumb-title"[^>]*>([\s\S]*?)<\/div>/)?.[1]):tag(block,'a'))
    if(!title||title.length>700)continue
    if(source.format==='invesco'&&!/\bETF|UCITS|exchange.traded/i.test(title))continue
-   const datePart=source.format==='ca'?block.match(/class="date"[^>]*>([\s\S]*?)<\/p>/)?.[1]:source.format==='saxo'?block.match(/datetime="(\d{4}-\d{2}-\d{2})/)?.[1]:clean(block)
-   const publishedAt=source.format==='saxo'?datePart:coverageDate(datePart)
+   const datePart=source.format==='ca'?block.match(/class="date"[^>]*>([\s\S]*?)<\/p>/)?.[1]:source.format==='cm'?block.match(/class="tile__article__date"[^>]*>([\s\S]*?)<\/p>/)?.[1]:source.format==='saxo'?block.match(/datetime="(\d{4}-\d{2}-\d{2})/)?.[1]:clean(block)
+   let publishedAt
+   try{publishedAt=source.format==='saxo'?datePart:coverageDate(datePart)}
+   catch(error){
+    if(source.format!=='cm')throw error
+    // One undated/ambiguous card does not discard the other dated cards.
+    // Never infer a century from collection time or from adjacent articles.
+    discoveryFailures.push({url,title,field:'publishedAt',rawDate:clean(datePart),reason:error.message});continue
+   }
    if(!publishedAt)throw Error('Date officielle de la carte absente')
    const description=source.format==='ca'?clean(block.match(/class="content"[^>]*>([\s\S]*?)<\/div>/)?.[1]).slice(0,700):source.format==='bpce'?clean(block.match(/class="card-text"[^>]*>([\s\S]*?)<\/p>/)?.[1]).slice(0,700):''
    rows.push({url,title,publishedAt,description})
   }
  }
- if(!rows.length)throw Error('Liste officielle vide ou contrat de découverte modifié')
+ if(!rows.length)throw Error('Liste officielle vide ou contrat de découverte modifié'+(discoveryFailures.length?': '+discoveryFailures.map(r=>`${r.url} (${r.reason})`).join('; '):''))
  for(const row of rows) {
   if(source.family==='etf')row.listingRejection=/\bETF|UCITS|exchange.traded/i.test(row.title)?null:'Communiqué sans annonce ETF'
   else row.listingRejection=/\bETF|UCITS/i.test(row.title)?null:consumerRejection(row.title,row.description)
   if(/nomination|grande client[eè]le|cession de l.activit[eé]|r[eé]seaux [eé]nerg[eé]tiques|banque commerciale en belgique|march[eé] nordique|foncier rural|finances locales|d[eé]partements.*financier|financier.*d[eé]partements/i.test(row.title))row.listingRejection='Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français'
  }
  const unique=[...new Map(rows.map(row=>[row.url,row])).values()]
+ if(discoveryFailures.length){
+  unique.discoveryFailures=discoveryFailures
+  unique.expectedListingItems=new Set([...unique,...discoveryFailures].map(row=>row.url)).size
+  archiveWarning=[archiveWarning,`Cartes non qualifiées (${discoveryFailures.length}/${unique.expectedListingItems}) : `+discoveryFailures.map(r=>`${r.url} — ${r.field} : ${r.reason} [${r.rawDate}]`).join('; ')].filter(Boolean).join('; ')
+ }
  if(archiveWarning)unique.archiveWarning=archiveWarning
  return unique
 }

@@ -234,6 +234,8 @@ export async function collectPublications(now = new Date(), request = fetch, pre
           const rows = offerDiscovery(result.content,source) ?? await inseeDiscovery(result.content,source,discoveryRequest) ?? await coverageDiscovery(result.content,source,discoveryRequest) ?? await extraDiscovery(result.content,source,discoveryRequest) ?? discoverPublications(result.content, source)
           report.discovered = rows.length
           report.archiveWarning=rows.archiveWarning??null
+          report.discoveryFailures=rows.discoveryFailures??[]
+          report.expectedListingItems=rows.expectedListingItems??rows.length
           for (const row of rows) {
             const existing=state.documents[row.url]
             if(source.id==='hanetf' && !row.title)row.title=existing?.observation?.label??existing?.title

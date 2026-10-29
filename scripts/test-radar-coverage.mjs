@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import './test-cm-cic-partial-discovery.mjs'
 import { readFile } from 'node:fs/promises'
 import { COVERAGE_SOURCES, coverageDiscovery, coverageDate } from './lib/radar-coverage.mjs'
 import { parsePublication, collectPublications, consolidateOfficialAnnouncements } from './lib/radar-publications.mjs'
