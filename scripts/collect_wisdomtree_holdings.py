@@ -101,8 +101,24 @@ def parse(page,share,now,mapping,identity_dates,*,identity_observations=None):
 
 def collect(share,now):
     from wisdomtree_api_holdings import CLASSES, IssuerApiUnavailable, collect as api_collect
+    rankings_error=''
+    if share['isin'] in CLASSES:
+        try:return collect_public_rankings(share,now)
+        except (urllib.error.URLError,TimeoutError,ConnectionError) as error:
+            rankings_error=f'Public Dataspan acquisition unavailable at {getattr(error, "url", "public issuer route")}: {error}; '
     if share['isin'] not in CLASSES:
         return collect_rankings(share,now)
+    # Preserve the existing SEDOL-qualified full portfolio when it is available.
+    # The public API is an independently qualified fallback for the same share,
+    # not a source of identifiers inferred from rendered company names.
+    if share['isin']!='IE00BJGWQN72':
+        try:
+            return collect_rankings(share,now)
+        except ConnectionError:
+            pass
+        except ValueError as error:
+            if not str(error).startswith(('Unqualified SEDOL identities:','Incomplete independent identity evidence')):
+                raise
     try:
         return api_collect(share,now)
     except IssuerApiUnavailable as error:
@@ -112,7 +128,7 @@ def collect(share,now):
     try:
         result=collect_rankings(share,now)
     except Exception as error:
-        raise ValueError(f'Issuer API unavailable: {primary_error}; public full portfolio unqualified: {error}') from error
+        raise ValueError(f'{rankings_error}Issuer API unavailable: {primary_error}; public full portfolio unqualified: {error}') from error
     result['accessAttempts']=[{'sourceUrl':f'https://www.wisdomtree.com/api/fund-holdings/{CLASSES[share["isin"]][0]}',
         'status':'unavailable','error':str(primary_error)[:800]},
         *result.get('accessAttempts',[{'sourceUrl':result.get('sourceUrl',share['sourceUrl']),'status':'validated-public-portfolio'}])]
@@ -150,6 +166,15 @@ def collect_rankings(share,now):
           identityCheckedAt={key:value['checkedAt']for key,value in evidence.items()},identityMethod='Exact SEDOL to ISIN; identity-source weights never imported',
           identityQualification='Independent common FIGI proofs under the existing static-identity freshness policy; portfolio date unchanged',
           sourceUrls=[share['sourceUrl'],*proofs],accessAttempts=[*attempts,{'sourceUrl':share['sourceUrl'],'status':'validated-public-portfolio'}])
+    mapping,dates,proofs=complete_identity_mapping(now)
+    rows,stamp=parse(page,share,now,mapping,dates)
+    return observation(rows,stamp,share['sourceUrl'],page,identitySourceHashes=proofs,identityAsOfDates=dates,
+      accessAttempts=[*attempts,{'sourceUrl':share['sourceUrl'],'status':'validated-public-portfolio'}],
+      sourceUrls=[share['sourceUrl'],*proofs],identityMethod='Exact SEDOL to ISIN; identity-source weights never imported')
+
+
+@lru_cache(maxsize=2)
+def complete_identity_mapping(now):
     mapping={};dates=[];proofs={}
     for expected,url in IDENTITIES:
         raw=identity_document(url);values,stamp=identities(raw,expected,now)
@@ -171,7 +196,60 @@ def collect_rankings(share,now):
         if key in mapping and mapping[key]!=value:raise ValueError('Conflicting qualified identifier crosswalk')
         mapping[key]=value
     proofs.update(identifier_proofs)
-    rows,stamp=parse(page,share,now,mapping,dates)
-    return observation(rows,stamp,share['sourceUrl'],page,identitySourceHashes=proofs,identityAsOfDates=dates,
-      accessAttempts=[*attempts,{'sourceUrl':share['sourceUrl'],'status':'validated-public-portfolio'}],
-      sourceUrls=[share['sourceUrl'],*proofs],identityMethod='Exact SEDOL to ISIN; identity-source weights never imported')
+    return mapping,dates,proofs
+
+
+def parse_public_rankings(payload,share,now,mapping):
+    from wisdomtree_api_holdings import CLASS_CONFIG
+    config=CLASS_CONFIG[share['isin']]
+    if not isinstance(payload,list) or not payload:raise ValueError('Missing public issuer rankings')
+    # The endpoint also publishes sectors, countries and index members. Only
+    # rankClassificationID=1 / Fund is a holding. Never add those other weights.
+    if any(r.get('wtID')!=config['rankingsEntityId'] or r.get('ticker')!=config['fundTicker'] or r.get('entityName')!=config['title'] for r in payload):
+        raise ValueError('Wrong exact WisdomTree rankings fund or listing')
+    selected=[r for r in payload if r.get('rankClassificationID')==1]
+    if len(selected)<11 or any(r.get('rankClassification')!='Fund' for r in selected):raise ValueError('Partial or non-fund rankings')
+    dates={document_date(r['dt'][:10],now)for r in selected}
+    if len(dates)!=1:raise ValueError('Mixed public rankings dates')
+    sedols=[r.get('additionalInfo2')for r in selected]
+    if any(not re.fullmatch(r'[A-Z0-9]{7}',s or '')for s in sedols)or len(set(sedols))!=len(sedols):raise ValueError('Missing/duplicate rankings security identifiers')
+    weights=[r['pct']for r in selected]
+    if any(type(w)not in (float,int)or not math.isfinite(w)or not 0<=w<=1 for w in weights)or abs(sum(weights)-1)>.0002:
+        raise ValueError('Incomplete public fund ranking weights')
+    ranks={}
+    for r in selected:
+        rank=r.get('ranking')
+        if type(rank)is not int or rank<1 or not r.get('name'):raise ValueError('Invalid fund ranking')
+        if rank in ranks and ranks[rank]!=r['pct']:raise ValueError('Conflicting tied fund rank')
+        ranks[rank]=r['pct']
+    if set(ranks)!=set(range(1,max(ranks)+1))or any(a<b for a,b in zip([ranks[k]for k in sorted(ranks)],[ranks[k]for k in sorted(ranks)][1:])):
+        raise ValueError('Truncated or unordered fund ranking sequence')
+    rows=[{'isin':mapping.get(r['additionalInfo2']),'sedol':r['additionalInfo2'],'name':r['name'],'weightPct':r['pct']*100}for r in selected]
+    if not any(r['isin']for r in rows):raise ValueError('No independently qualified rankings identities')
+    return rows,dates.pop()
+
+
+def collect_public_rankings(share,now,fetch=download):
+    from urllib.parse import urlencode
+    from collect_physical_holdings import observation
+    from wisdomtree_api_holdings import CLASS_CONFIG,qualify_share_document
+    identity=qualify_share_document(share,now,fetch)
+    config=CLASS_CONFIG[share['isin']]
+    url='https://dataspanapi.wisdomtree.com/funddetails/rankings/?'+urlencode({'ticker':config['fundTicker'],'isoCode':'en-GB'})
+    raw=fetch(url,max_bytes=8_000_000)
+    mapping,dates,proofs=complete_identity_mapping(now)
+    rows,stamp=parse_public_rankings(json.loads(raw),share,now,mapping)
+    # Mapping dates stay distinct from portfolio dates, under the same existing
+    # identity compatibility window used by the SSR collector.
+    policy=json.loads((Path(__file__).resolve().parents[1]/'src/data/freshness-policy.json').read_text())
+    if not dates or any(abs((dt.date.fromisoformat(d)-dt.date.fromisoformat(stamp)).days)>policy['fields']['etf.default']['checkDays']for d in dates):
+        raise ValueError('Rankings identity dates incompatible')
+    result=observation(rows,stamp,url,raw,allow_unidentified=True,**identity,
+        identitySourceHashes=proofs,identityAsOfDates=dates,
+        identityMethod='Exact SEDOL to ISIN; identity-source weights never imported',
+        captureMethod='public-dataspan-fund-rankings',
+        sourceUrls=[url,identity['identitySourceUrl'],*proofs],
+        coverageProof={'rankClassificationID':1,'rankClassification':'Fund','rowCount':len(rows),
+            'publishedWeightPct':sum(r['weightPct']for r in rows),'otherRankingGroupsExcluded':True})
+    result['method']='Complete issuer Fund ranking (rankClassificationID 1); original published pct weights, no renormalisation; sector/country/index groups excluded; identities independently matched by exact SEDOL'
+    return result

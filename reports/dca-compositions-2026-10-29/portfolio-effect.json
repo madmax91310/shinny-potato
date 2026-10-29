@@ -1,0 +1,28 @@
+{
+  "comparison": "Same corrected engine applied to before/after data, to isolate the data effect",
+  "scenario": "50 % Cloud + 50 % S&P 500",
+  "cases": {
+    "before": {
+      "commonSecurities": 10,
+      "identifiedCoverage": [
+        98.37128186039267,
+        99.86879000000002
+      ],
+      "full": false,
+      "overlap": null,
+      "coverage": 99.12003593019638,
+      "concentrationComplete": false
+    },
+    "after": {
+      "commonSecurities": 10,
+      "identifiedCoverage": [
+        99.99989999999997,
+        99.8682599999999
+      ],
+      "full": true,
+      "overlap": 2.5747499999999994,
+      "coverage": 99.93408000000015,
+      "concentrationComplete": true
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import {isSyntheticReplication,projectDcaHoldings} from './lib/dca-holdings-projection.mjs'
 import { deriveExposureSleeves } from './derive-exposure-sleeves.mjs'
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
@@ -27,7 +28,7 @@ const catalog={}
 const holdings={}
 const records = Object.fromEntries(Object.entries(allMapping).map(([asset,isin])=>{
  const source=exposureFunds[isin],name=source?.name ?? getInstrumentName(isin) ?? isin
- const synthetic=/swap|synthetic|leveraged|daily.*2x/i.test(name+' '+(source?.characteristics?.replicationMethod||''))
+ const synthetic=isSyntheticReplication(name,source?.characteristics?.replicationMethod)
  const compositionOnly=Boolean(compositionOnlyFunds[isin]&&!AUTOMATED_ETF[isin])
  const record={isin,name,...(compositionOnly?{compositionOnly:true}:{}),kind:/\bET[CP]\b/.test(name)?'etc':'etf',provider:source?.provider,pea:compositionOnly ? null : getInstrumentPeaStatus(isin),tickers:(INSTRUMENT_LISTINGS_BY_ISIN[isin]||[]).map(l=>l.ticker),synthetic}
  const outsideClassification=outsideEquityClassification(isin,name)
@@ -37,9 +38,9 @@ const records = Object.fromEntries(Object.entries(allMapping).map(([asset,isin])
  catalog[asset]={isin,name,...(compositionOnly?{compositionOnly:true}:{}),kind:record.kind,pea:record.pea,tickers:record.tickers,provider:record.provider}
  if(holdingStatus[isin])catalog[asset].holdingsStatus=holdingStatus[isin]
  const complete=fullHoldings[isin],partial=source?.holdings
- const h=selectDcaHoldings(complete,partial)
+ const h=projectDcaHoldings(selectDcaHoldings(complete,partial),synthetic,source?.sourceUrl)
  if(h)catalog[asset].holdings={asOf:h.asOf,complete:h.complete===true,identifiedCoverage:h.rows.filter(r=>/^[A-Z]{2}[A-Z0-9]{9}[0-9]$/.test(r.isin||'')).reduce((s,r)=>s+r.weightPct,0)}
- if(h)holdings[asset]={asOf:h.asOf,basis:h.basis||'fund',sourceUrl:h.sourceUrl||source.sourceUrl,...(h.scope?{scope:h.scope,method:h.method,sourceUrls:h.sourceUrls}:{}),complete:h.complete===true,rows:h.rows.map(r=>({name:r.name,isin:r.isin,weightPct:r.weightPct})),synthetic}
+ if(h)holdings[asset]=h
 
  for(const field of ['countries','sectors']){
   let observation=PORTFOLIO_EXPOSURES[isin]?.[field] ?? compositionOnlyFunds[isin]?.[field]
