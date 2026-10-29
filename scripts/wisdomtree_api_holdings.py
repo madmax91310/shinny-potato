@@ -145,7 +145,16 @@ def qualify_share_document(share,now,fetch=download):
     identity_date = document_date(re.search(r'Document Date:\s*(\d{2}/\d{2}/\d{4})', text)[1], now, max_age=limit)
     if (now.date()-dt.date.fromisoformat(identity_date)).days > limit:
         raise ValueError('Expired API fund identity document')
-    return {'identitySourceUrl':document_url,'identitySha256':proof(document),'identityAsOf':identity_date}
+    # A trading-currency listing is an access route for this same exact ISIN,
+    # never a different share or a currency conversion of its holdings weights.
+    normalized=' '.join(text.split())
+    alternatives=[]
+    for listing in CLASS_CONFIG[share['isin']].get('rankingsListingAlternatives',[]):
+        fields=[listing['exchange'],listing['tradingCurrency'],listing['exchangeTicker'],listing['ticker'],listing['ric'],listing['sedol'],share['isin']]
+        if re.search(r'\b'+r'\s+'.join(re.escape(value) for value in fields)+r'\b',normalized):
+            alternatives.append(listing)
+    return {'identitySourceUrl':document_url,'identitySha256':proof(document),'identityAsOf':identity_date,
+            **({'qualifiedRankingListings':alternatives} if alternatives else {})}
 
 
 def collect(share, now, fetch=download, post=mapping_request):

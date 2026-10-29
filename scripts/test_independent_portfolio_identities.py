@@ -1,7 +1,7 @@
 import copy,datetime as dt,gzip,json,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
-from collect_wisdomtree_holdings import parse,known_shares
+from collect_wisdomtree_holdings import parse,known_shares,rankings
 from security_identifier_observations import qualified,digest,refresh
 ROOT=Path(__file__).resolve().parents[1]
 PROOFS=ROOT/'reports/donnees-consolidees-2026-10-24/preuves/reprise-20261026'
@@ -39,7 +39,7 @@ class IndependentPortfolioIdentities(unittest.TestCase):
    jobs=json.loads(req.data);key=jobs[0]['idValue'];return io.BytesIO(json.dumps(self.evidence[key]['response']).encode())
   with tempfile.TemporaryDirectory()as temp:
    path=Path(temp)/'identities.json';path.write_text(json.dumps({'schemaVersion':1,'observations':cache_evidence}))
-   with patch('security_identifier_observations.PATH',path),patch('security_identifier_observations.configured_candidates',return_value={}),patch('security_identifier_observations.candidate_isins',return_value=set()),patch('collect_wisdomtree_holdings.IDENTITIES',[('fund','https://example.test/book')]),patch('collect_wisdomtree_holdings.identity_document',return_value=b'book'),patch('collect_wisdomtree_holdings.identities',return_value=(self.mapping,'2028-10-26')),patch('collect_wisdomtree_holdings.known_shares',return_value=[self.share]),patch('collect_wisdomtree_holdings.product_page',return_value=(self.page,self.share['sourceUrl'],[])),patch('security_identifier_observations.urllib.request.urlopen',side_effect=request)as fetch:
+   with patch('security_identifier_observations.PATH',path),patch('security_identifier_observations.configured_candidates',return_value={}),patch('security_identifier_observations.candidate_isins',return_value=set()),patch('collect_wisdomtree_holdings.IDENTITIES',[('fund','https://example.test/book')]),patch('collect_wisdomtree_holdings.identity_document',return_value=b'book'),patch('collect_wisdomtree_holdings.identities',return_value=(self.mapping,'2028-10-26')),patch('collect_wisdomtree_holdings.known_shares',return_value=[self.share]),patch('collect_wisdomtree_holdings.public_identity_candidates',return_value=rankings(self.page)['ranking']),patch('collect_wisdomtree_holdings.product_page',return_value=(self.page,self.share['sourceUrl'],[])),patch('security_identifier_observations.urllib.request.urlopen',side_effect=request)as fetch:
     refresh(future,max_requests=1)
    self.assertEqual(fetch.call_count,1,'Current workbook cannot suppress an expired independent qualification')
    renewed=[r for r in json.loads(path.read_text())['observations'].values()if r['checkedAt']==future.isoformat()]
@@ -72,7 +72,7 @@ class IndependentPortfolioIdentities(unittest.TestCase):
   future=NOW.replace(year=2028)
   with tempfile.TemporaryDirectory()as temp:
    path=Path(temp)/'identities.json';initial={'schemaVersion':1,'observations':self.evidence};path.write_text(json.dumps(initial))
-   with patch('security_identifier_observations.PATH',path),patch('security_identifier_observations.configured_candidates',return_value={}),patch('security_identifier_observations.candidate_isins',return_value=set()),patch('collect_wisdomtree_holdings.IDENTITIES',[('fund','https://example.test/book')]),patch('collect_wisdomtree_holdings.identity_document',return_value=b'book'),patch('collect_wisdomtree_holdings.identities',return_value=(self.mapping,'2028-10-26')),patch('collect_wisdomtree_holdings.known_shares',return_value=[self.share]),patch('collect_wisdomtree_holdings.product_page',return_value=(self.page,self.share['sourceUrl'],[])),patch('security_identifier_observations.urllib.request.urlopen',side_effect=urllib.error.URLError('offline')):
+   with patch('security_identifier_observations.PATH',path),patch('security_identifier_observations.configured_candidates',return_value={}),patch('security_identifier_observations.candidate_isins',return_value=set()),patch('collect_wisdomtree_holdings.IDENTITIES',[('fund','https://example.test/book')]),patch('collect_wisdomtree_holdings.identity_document',return_value=b'book'),patch('collect_wisdomtree_holdings.identities',return_value=(self.mapping,'2028-10-26')),patch('collect_wisdomtree_holdings.known_shares',return_value=[self.share]),patch('collect_wisdomtree_holdings.public_identity_candidates',return_value=rankings(self.page)['ranking']),patch('collect_wisdomtree_holdings.product_page',return_value=(self.page,self.share['sourceUrl'],[])),patch('security_identifier_observations.urllib.request.urlopen',side_effect=urllib.error.URLError('offline')):
     with self.assertRaises(SystemExit)as failure:refresh(future,max_requests=1)
    self.assertEqual(failure.exception.code,1)
    self.assertEqual(json.loads(path.read_text()),initial)
