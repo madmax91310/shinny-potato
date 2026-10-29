@@ -6,6 +6,20 @@ from collect_instrument_metadata import collect,fortuneo_reference_urls,invesco_
 
 FIX=Path(__file__).with_name('fixtures')/'metadata-connections'
 class ConnectionsTests(unittest.TestCase):
+ def test_french_invesco_listing_route_is_not_a_characteristics_document(self):
+  from collect_instrument_metadata import parse_listings
+  isin='IE000L2SA8K5'
+  url=f'https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/{isin}?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData'
+  body=(FIX/'invesco-IE000L2SA8K5-listings-fr.json').read_bytes()
+  rows=parse_listings(body,{'isin':isin},url,'2026-10-29')
+  self.assertEqual(len(rows),5)
+  self.assertIn('GBX',[r['currency']for r in rows])
+  values,errors=collect({'isin':isin,'urls':[url]},dt.datetime(2026,10,29,tzinfo=dt.timezone.utc),lambda _:body)
+  self.assertEqual(errors,[]);self.assertEqual(set(values),{'listings'})
+  self.assertEqual(values['listings']['sourceUrl'],url)
+  self.assertEqual(parse_listings(b'{}',{'isin':isin},f'https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/{isin}?idType=isin','2026-10-29'),[])
+  for wrong in [url.replace(isin,'IE000OTHER00'),url.replace('fr_FR','de_DE'),url.replace('https:','http:'),url+'#other',url.replace('exchangeTradingInformationWithMarketData','generalSecurityInformation')]:
+   with self.subTest(wrong=wrong),self.assertRaises(ValueError):invesco_listing_rows(body,isin,wrong)
  def test_wisdomtree_paris_listings_use_exchange_identity_without_price_or_other_market_renewal(self):
   import copy
   from collect_instrument_metadata import merge_field_observation
