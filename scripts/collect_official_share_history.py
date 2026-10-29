@@ -148,12 +148,13 @@ def _landg_catalogue(fetch,url):
 
 def collect_one(source, now, json_fetch=get_json, document_fetch=download, capture=None):
     urls, hashes = [], {}
-    def document(url, supplied=None):
+    def document(url, supplied=None, request_headers=None):
         if supplied is not None:body=supplied
         elif url==VANECK_CHART_URL:
             # A single shared request even when the monthly producer collects
             # several UCITS funds concurrently. Cache lasts only this process.
             with _VANECK_CHART_LOCK:body=_vaneck_chart_body(document_fetch)
+        elif request_headers and document_fetch is download:body=document_fetch(url,headers=request_headers)
         else:body=document_fetch(url)
         urls.append(url);hashes[url]=hashlib.sha256(body).hexdigest()
         if capture:
@@ -281,7 +282,12 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         from wisdomtree_performance_history import urls as performance_urls,parse as performance_parse,anchor_for
         from collect_public_issuer import wisdomtree_factsheet
         graph_url,table_url=performance_urls(source)
-        graph,table=[json.loads(document(url)) for url in (graph_url,table_url)]
+        # These are the ordinary cross-origin headers of the public product
+        # widget, not credentials or a challenge bypass.
+        headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
+                 'Accept':'application/json','Origin':'https://www.wisdomtree.com','Referer':source['sourceUrl']}
+        try:graph,table=[json.loads(document(url,request_headers=headers)) for url in (graph_url,table_url)]
+        except Exception as error:raise ValueError('Official Dataspan NAV(TR) access failed for '+graph_url+': '+str(error))from error
         fresh=wisdomtree_factsheet(document(source['factsheetUrl']),{
             **source,'name':source['wisdomProductName'],'currency':native,'documentType':'wisdomtree'},now)
         registry=source['calendarRegistry']
