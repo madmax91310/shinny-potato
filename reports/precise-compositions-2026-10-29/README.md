@@ -55,3 +55,12 @@ Les550identités sont qualifiées sur les acquisitions locales réelles. Leur co
 Le rapport EPRA public `https://crm.epra.com/media/MMR%20September.pdf`, réellement lu, porte notamment sur le Developers Benchmark, distinct du FTSE EPRA Nareit Developed Europe ; ses poids ne sont pas utilisés comme substitution. Les anciennes routes publiques STOXX de composants testées répondent404. Aucun de ces essais ne justifie une composition intégrale.
 
 Les rapports et projections régénérés sont retirés du diff de PR conformément àCLAUDE.md : leurs générateurs existants les reconstruisent depuis les registres qualifiés au build. Le rapprochement avec masterf220bc7 conserve toutes les autres observations automatiques ; seuls les deux livres natifs plus récents sont retenus, aux dates d’origine. Aucun incident de suivi n’est déclaré résolu sur les seules preuves locales.
+
+
+## Vérification finale du code et des données locales
+
+Le registre conserve les routes natives par un identifiant de méthode versionné partagé Python/Node. Les anciennes observations gardent leur compatibilité ; modifier la description humaine ne désinscrit plus le collecteur, et une version inconnue est refusée. Le test du parcours découverte→génération→plan du producteur vérifie les six parts existantes. Les projections transmettent cet identifiant sans changer les poids.
+
+Dernière acquisition ordinaire locale : 29octobre22:59:40UTC, deux livres du28octobre, 550actions, aucune identité inconnue. Reçu et synthèse joints ; aucun passage GitHub réussi de ces deux API n’est revendiqué. Nouveau build complet et nouvelle recette13portefeuilles après le raccord versionné réussis. Le générateur de portefeuilles et les duels ont aussi été parcourus sur mobile et ordinateur. La synthèse50/50 contient542titres distincts, huitentreprises communes, recouvrement1,5851925825662696% des poids NAV et couverture actions98,80608843036683% ; les liquidités ne deviennent pas des entreprises.
+
+Les signatures, emojis, textes et squelette d’image n’ont pas été modifiés. Les sauvegardes, profils classiques/polémiques, copie réelle, imports/exports et ancien format ont été exercés. Publication effective et recette du site en ligne seront consignées dans la PR avec leurs SHA et exécutions, une fois accomplies.
