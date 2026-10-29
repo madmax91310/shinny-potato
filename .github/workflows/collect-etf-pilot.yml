@@ -229,6 +229,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
       - run: python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
       - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
       - run: python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
