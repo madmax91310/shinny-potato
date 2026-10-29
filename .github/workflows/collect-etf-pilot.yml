@@ -9,6 +9,7 @@ on:
       - 'scripts/validate-etf-publication.sh'
       - 'scripts/test_etf_publication.py'
       - 'scripts/observation_rebase_guard.py'
+      - 'scripts/test_observation_rebase.py'
       - 'scripts/commit-validated-data.sh'
       - 'scripts/stage_validated_projections.py'
       - 'src/data/etf-themes.js'
@@ -84,6 +85,7 @@ on:
       - 'scripts/validate-etf-publication.sh'
       - 'scripts/test_etf_publication.py'
       - 'scripts/observation_rebase_guard.py'
+      - 'scripts/test_observation_rebase.py'
       - 'scripts/commit-validated-data.sh'
       - 'scripts/stage_validated_projections.py'
       - 'src/data/etf-themes.js'
@@ -204,6 +206,7 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_etf_publication.py'
+      - run: python -m unittest discover -s scripts -p 'test_observation_rebase.py'
       - run: node scripts/test-comparison-automation.mjs
       - run: node scripts/test-vaneck-document.mjs
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
