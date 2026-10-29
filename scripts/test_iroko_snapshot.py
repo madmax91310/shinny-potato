@@ -44,6 +44,7 @@ class IrokoSnapshotTests(unittest.TestCase):
         self.assertEqual(result['records'][0]['snapshot'],old['snapshot'])
         self.assertEqual(result['records'][0]['price']['value'],210)
         self.assertEqual([o['status'] for o in observations],['success','failure'])
+        self.assertIn('checkedAt',observations[0]);self.assertNotIn('checkedAt',observations[1])
         recovered=copy.deepcopy(result['records'][0]);recovered['snapshot']=parse_snapshot(*self.source(),TODAY)
         result,observations=refresh(result,{'iroko-zen':lambda day:recovered},TODAY)
         self.assertEqual(observations[-1]['status'],'success')

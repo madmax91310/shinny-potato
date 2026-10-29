@@ -29,8 +29,13 @@ def observations(body,source_id,now):
     if source_id=='nordic-main':
         data=json.loads(body);rows=data['data']['instrumentListing']['rows']
         if len(rows)!=int(data['data']['pagination']['total']):raise ValueError('Incomplete Nordic directory')
-        asof=data['status']['timestamp'][:10]
-        if dt.date.fromisoformat(asof)>now.date():raise ValueError('Future directory date')
+        # This is the directory response timestamp, not a financial valuation date.
+        # Nasdaq publishes an explicit Nordic offset (+0100/+0200). Compare the
+        # response and collection in UTC so local midnight is not a future day.
+        stamp=dt.datetime.fromisoformat(data['status']['timestamp'])
+        if stamp.tzinfo is None or now.tzinfo is None:raise ValueError('Missing directory timestamp timezone')
+        asof=stamp.astimezone(dt.timezone.utc).date().isoformat()
+        if dt.date.fromisoformat(asof)>now.astimezone(dt.timezone.utc).date():raise ValueError('Future directory date')
         return [dict(ticker=r['symbol'],mic=r.get('micCode'),currency=r['currency'],name=r['fullName'],isin=r['isin'],orderbook=r['orderbookId'],shareType=security_type(r['fullName']))for r in rows],asof
     raise ValueError('Unsupported shared directory')
 

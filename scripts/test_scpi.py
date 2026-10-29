@@ -125,6 +125,22 @@ class ScpiTests(unittest.TestCase):
         self.assert_retained_financial(failed,previous)
         self.assertEqual(refresh({'records':[]},{'remake-live':missing},dt.date(2026,10,17))[1][0]['status'],'failure')
 
+    def test_success_proof_is_current_without_redating_values_or_failures(self):
+        record=self.remake()
+        previous={'records':[copy.deepcopy(record)]}
+        before=dt.datetime.now(dt.timezone.utc)
+        result,report=refresh(previous,{'remake-live':lambda _:copy.deepcopy(record)},TODAY)
+        checked=dt.datetime.fromisoformat(report[0]['checkedAt'])
+        self.assertLessEqual(before,checked)
+        self.assertLessEqual(checked,dt.datetime.now(dt.timezone.utc))
+        self.assertEqual(report[0]['sourceUrl'],record['sourceUrl'])
+        self.assertEqual(result['records'][0]['snapshot']['asOf'],record['snapshot']['asOf'])
+        self.assertEqual(result['records'][0]['price'],record['price'])
+        def offline(_):raise TimeoutError('source unavailable')
+        result,failed=refresh(previous,{'remake-live':offline},TODAY)
+        self.assertNotIn('checkedAt',failed[0])
+        self.assert_retained_financial(result,previous)
+
     def test_successful_read_of_retained_quarter_is_not_an_issuer_deadline(self):
         previous={'records':[self.remake()]}
         record=self.remake();record['snapshot']['asOf']='2026-06-30';previous['records'][0]['snapshot']['asOf']='2026-06-30'

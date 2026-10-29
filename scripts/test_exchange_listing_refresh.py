@@ -1,5 +1,5 @@
 import copy,datetime as dt,unittest
-from exchange_listing_refresh import refresh
+from exchange_listing_refresh import refresh, observations
 NOW=dt.datetime(2026,10,24,tzinfo=dt.timezone.utc)
 URL='https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt'
 def body(name='Issuer - Class A Ordinary Shares',date='10232026',etf='N'):
@@ -28,4 +28,15 @@ class CommonDirectory(unittest.TestCase):
   old=document();old['listings'].append({**old['listings'][0],'id':'other','ticker':'OTHER','symbol':'OTHER'});calls=[]
   def fetch(*a,**k):calls.append(a[0]);return body()
   new,r=refresh(old,NOW,fetch);self.assertEqual(calls,[URL]);self.assertEqual(len(new['listings']),2);self.assertEqual(len(r['successes']),1);self.assertEqual(len(r['errors']),1)
+class NordicDirectoryTimezone(unittest.TestCase):
+ def body(self,stamp):
+  import json
+  return json.dumps({'status':{'timestamp':stamp},'data':{'pagination':{'total':0},'instrumentListing':{'rows':[]}}}).encode()
+ def test_local_midnight_and_year_rollover_are_the_same_utc_day(self):
+  for stamp,now,expected in [('2026-10-29T00:15:00+0100',dt.datetime(2026,10,28,23,20,tzinfo=dt.timezone.utc),'2026-10-28'),('2027-01-01T00:15:00+0100',dt.datetime(2026,12,31,23,20,tzinfo=dt.timezone.utc),'2026-12-31'),('2026-07-01T01:15:00+0200',dt.datetime(2026,6,30,23,20,tzinfo=dt.timezone.utc),'2026-06-30')]:
+   self.assertEqual(observations(self.body(stamp),'nordic-main',now),([],expected))
+ def test_a_genuinely_future_utc_day_or_missing_offset_still_fails(self):
+  for stamp in ['2026-10-26T00:15:00+0100','2026-10-24T00:00:00']:
+   with self.assertRaises(ValueError):observations(self.body(stamp),'nordic-main',NOW)
+
 if __name__=='__main__':unittest.main()
