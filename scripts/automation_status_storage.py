@@ -145,7 +145,58 @@ def expand_report_scopes(state):
     return visit({k:v for k,v in state.items()if k not in ('reportScopes','reportScopeSchemaVersion')})
 
 
-def encode_status(state):
+MAX_STATUS_BYTES = 256 * 1024 * 1024
+STATUS_TRANSPORT = 'gzip+base64-v1'
+
+
+def decode_status(state):
+    """Restore the bounded wire envelope; legacy reports remain unchanged."""
+    if not isinstance(state, dict) or 'monitorStorage' not in state:
+        return state
+    try:
+        if (set(state) != {'schemaVersion', 'monitorStorage', 'decodedBytes', 'sha256', 'data'}
+                or state['schemaVersion'] != 2 or state['monitorStorage'] != STATUS_TRANSPORT
+                or type(state['decodedBytes']) is not int or not 0 < state['decodedBytes'] <= MAX_STATUS_BYTES):
+            raise ValueError('Unknown monitor storage envelope')
+        packed = base64.b64decode(state['data'], validate=True)
+        if base64.b64encode(packed).decode() != state['data']:
+            raise ValueError('Non-canonical base64')
+        decoder = zlib.decompressobj(16 + zlib.MAX_WBITS)
+        raw = decoder.decompress(packed, state['decodedBytes'] + 1)
+        if (not decoder.eof or decoder.unused_data or len(raw) != state['decodedBytes']
+                or hashlib.sha256(raw).hexdigest() != state['sha256']):
+            raise ValueError('Monitor storage checksum/size mismatch')
+        restored = json.loads(raw.decode('utf-8'))
+        if not isinstance(restored, dict) or restored.get('schemaVersion') != 1 or 'monitorStorage' in restored:
+            raise ValueError('Invalid or nested monitor state')
+        return restored
+    except (KeyError, TypeError, UnicodeError, zlib.error, ValueError) as error:
+        raise ValueError('Transport du moniteur invalide ; aucune preuve réinitialisée') from error
+
+
+def reader_ready(repo, fetch=None):
+    """Only the deployed code may authorize a new wire format, never CI alone."""
+    import urllib.request
+    owner, project = repo.split('/')
+    url = f'https://{owner}.github.io/{project}/monitor-storage-capabilities.json'
+    if fetch is None:
+        def fetch(url):
+            with urllib.request.urlopen(url, timeout=20) as response:
+                return json.loads(response.read(4097))
+    try:
+        return fetch(url) == {'schemaVersion': 1, 'monitorStorage': STATUS_TRANSPORT}
+    except (OSError, ValueError, TypeError):
+        return False
+
+
+def encode_status(state, compressed=False):
     """UTF-8 compact JSON is lossless; omit indentation from this machine payload."""
     body=(json.dumps(state,ensure_ascii=False,separators=(',',':'))+'\n').encode()
+    if compressed:
+        if len(body) > MAX_STATUS_BYTES or state.get('schemaVersion') != 1 or 'monitorStorage' in state:
+            raise ValueError('État du moniteur hors contrat de transport ; historique conservé')
+        envelope = {'schemaVersion': 2, 'monitorStorage': STATUS_TRANSPORT,
+                    'decodedBytes': len(body), 'sha256': hashlib.sha256(body).hexdigest(),
+                    'data': base64.b64encode(gzip.compress(body, compresslevel=6, mtime=0)).decode()}
+        body = (json.dumps(envelope, separators=(',', ':')) + '\n').encode()
     return base64.b64encode(body).decode()
