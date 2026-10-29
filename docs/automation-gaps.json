@@ -130,7 +130,7 @@
       "status": "waiting-first-year",
       "firstYear": null,
       "years": [],
-      "sourceUrl": "https://www.vaneck.com/nl/en/library/fact-sheets/qntm-fact-sheet.pdf"
+      "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf"
     },
     {
       "id": "IE000C6ITGC8",
@@ -419,11 +419,10 @@
     "holdings": 235
   },
   "summary": {
-    "instrument:unqualified": 19,
+    "instrument:unqualified": 20,
     "instrument:not-applicable": 69,
     "instrument:waiting-first-year": 13,
     "instrument:not-published": 18,
-    "instrument:source-conflict": 1,
     "index:waiting-publication": 1,
     "index:not-applicable": 16
   },
@@ -1095,7 +1094,7 @@
       "status": "not-published",
       "checkedAt": "2026-10-29",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "6bd49ff09e862ee1785bdc0b30ec6f37a86edd702299654b47780cdd4fe386fd",
+      "sha256": "030a87481e92f25d9bd6479659893b09fba46e1e6b797ef01baeb3fcef8cfbcf",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1831,7 +1830,7 @@
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
       "checkedAt": "2026-10-29",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "a8f826e968295fc56d9ddc0583a16eeebb0bee0da55aae9593a5bac1742c9d4a",
+      "sha256": "afbe88440a31d1ac793ef6fb66aa8ca28fa8273ee318fce1042078ce88f31c49",
       "evidence": [
         "Performance History",
         "USD Accumulating",
@@ -1860,7 +1859,14 @@
         "15.75%",
         "-0.46%",
         "Performance is based on the fund’s NAV and is shown on a total return basis (i.e., with gross income reinvested, where applicable). The fund’s NAV may differ from its market price and, as a result, individual shareholders may realize returns that are different from the NAV performance. Cumulative return is the aggregate amount that an investment has gained or lost over time. Annualised return is the average return gained or lost by an investment each year over a given time period.",
-        "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations."
+        "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations.",
+        "Basket Constituents",
+        "As of 28 Oct 2026",
+        "Full Basket List (.csv)",
+        "Holdings are subject to change. \"Cash\" means U.S. Dollar. The performance of the Basket is delivered to the swap counterparties in return for the exposure on the Index being received by the Fund, there is no remaining economic exposure in the Fund to the Basket.",
+        "Net Assets (%)",
+        "Ticker",
+        "Name"
       ]
     },
     {
@@ -1874,7 +1880,7 @@
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
       "checkedAt": "2026-10-29",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "a8f826e968295fc56d9ddc0583a16eeebb0bee0da55aae9593a5bac1742c9d4a",
+      "sha256": "afbe88440a31d1ac793ef6fb66aa8ca28fa8273ee318fce1042078ce88f31c49",
       "evidence": []
     },
     {
@@ -1888,7 +1894,7 @@
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
       "checkedAt": "2026-10-29",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "a8f826e968295fc56d9ddc0583a16eeebb0bee0da55aae9593a5bac1742c9d4a",
+      "sha256": "afbe88440a31d1ac793ef6fb66aa8ca28fa8273ee318fce1042078ce88f31c49",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 30 Sep 2026",
@@ -1925,11 +1931,11 @@
       "field": "holdings",
       "label": "Positions pondérées",
       "configured": true,
-      "status": "source-conflict",
-      "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, MSFT, NVDA, TSLA.",
+      "status": "unqualified",
+      "reason": "Composition de référence à qualifier ; aucune substitution par le panier détenu.",
       "checkedAt": "2026-10-29",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "a8f826e968295fc56d9ddc0583a16eeebb0bee0da55aae9593a5bac1742c9d4a",
+      "sha256": "afbe88440a31d1ac793ef6fb66aa8ca28fa8273ee318fce1042078ce88f31c49",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 26 Oct 2026",
@@ -1954,48 +1960,7 @@
         "3.70",
         "AMD",
         "Advanced Micro Devices Inc",
-        "3.10",
-        "TSLA",
-        "Tesla Inc",
-        "3.00",
-        "META",
-        "Meta Platforms Inc Class A",
-        "3.00",
-        "GOOGL",
-        "Alphabet Inc Class A",
-        "2.80",
-        "GOOG",
-        "Alphabet Inc Class C",
-        "9.20",
-        "NVDA",
-        "NVIDIA Corp",
-        "8.60",
-        "AAPL",
-        "Apple Inc",
-        "7.50",
-        "MSFT",
-        "Microsoft Corp",
-        "6.60",
-        "AVGO",
-        "Broadcom Inc",
-        "5.10",
-        "AMZN",
-        "Amazon.com Inc",
-        "3.80",
-        "GOOGL",
-        "Alphabet Inc Class A",
-        "3.60",
-        "GOOG",
-        "Alphabet Inc Class C",
-        "3.40",
-        "TSLA",
-        "Tesla Inc",
-        "3.00",
-        "META",
-        "Meta Platforms Inc Class A",
-        "2.20",
-        "PLTR",
-        "Palantir Technologies Inc Ordinary Shares - Class A"
+        "3.10"
       ]
     },
     {
