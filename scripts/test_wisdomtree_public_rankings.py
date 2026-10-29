@@ -1,4 +1,4 @@
-import copy,datetime as dt,gzip,json,pathlib,unittest
+import copy,datetime as dt,gzip,hashlib,json,pathlib,unittest
 from unittest.mock import patch
 from collect_wisdomtree_holdings import parse_public_rankings,collect_public_rankings
 from wisdomtree_api_holdings import CLASS_CONFIG
@@ -6,6 +6,15 @@ FIX=pathlib.Path(__file__).with_name('fixtures')/'wisdomtree-complete'
 NOW=dt.datetime(2026,10,29,tzinfo=dt.timezone.utc)
 def load(isin):return json.loads(gzip.decompress((FIX/(isin+'.rankings.json.gz')).read_bytes()))
 class PublicRankings(unittest.TestCase):
+ def test_captured_fixture_hashes_match_the_committed_bodies(self):
+  manifest=json.loads((FIX/'manifest.json').read_text())
+  for isin,entry in manifest['observations'].items():
+   for key,suffix in [('json','.json.gz'),('pdf','.pdf.gz'),('rankings','.rankings.json.gz'),('ssrComparison','.ssr-rankings.json.gz')]:
+    with self.subTest(isin=isin,source=key):
+     raw=gzip.decompress((FIX/(isin+suffix)).read_bytes())
+     self.assertEqual(hashlib.sha256(raw).hexdigest(),entry[key]['sha256'])
+     self.assertEqual(len(raw),entry[key]['bytes'])
+
  def test_all_six_fund_files_match_independent_ssr_no_country_sector_index_double_count(self):
   for isin,config in CLASS_CONFIG.items():
    with self.subTest(isin=isin):

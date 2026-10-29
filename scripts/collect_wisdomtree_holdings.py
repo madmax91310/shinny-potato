@@ -101,9 +101,11 @@ def parse(page,share,now,mapping,identity_dates,*,identity_observations=None):
 
 def collect(share,now):
     from wisdomtree_api_holdings import CLASSES, IssuerApiUnavailable, collect as api_collect
+    rankings_error=''
     if share['isin'] in CLASSES:
         try:return collect_public_rankings(share,now)
-        except (urllib.error.URLError,TimeoutError,ConnectionError):pass
+        except (urllib.error.URLError,TimeoutError,ConnectionError) as error:
+            rankings_error=f'Public Dataspan acquisition unavailable at {getattr(error, "url", "public issuer route")}: {error}; '
     if share['isin'] not in CLASSES:
         return collect_rankings(share,now)
     # Preserve the existing SEDOL-qualified full portfolio when it is available.
@@ -126,7 +128,7 @@ def collect(share,now):
     try:
         result=collect_rankings(share,now)
     except Exception as error:
-        raise ValueError(f'Issuer API unavailable: {primary_error}; public full portfolio unqualified: {error}') from error
+        raise ValueError(f'{rankings_error}Issuer API unavailable: {primary_error}; public full portfolio unqualified: {error}') from error
     result['accessAttempts']=[{'sourceUrl':f'https://www.wisdomtree.com/api/fund-holdings/{CLASSES[share["isin"]][0]}',
         'status':'unavailable','error':str(primary_error)[:800]},
         *result.get('accessAttempts',[{'sourceUrl':result.get('sourceUrl',share['sourceUrl']),'status':'validated-public-portfolio'}])]
