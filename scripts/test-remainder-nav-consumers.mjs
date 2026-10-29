@@ -1,6 +1,7 @@
 import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
+import {createHash} from 'node:crypto'
 import {ASSETS,ASSET_ORDER} from '../src/data/market-history.js'
 import {derive,buildTweetText} from '../src/pages/investment-calculator/lib.js'
 import {RANKING_ASSETS} from '../src/pages/performance-rankings/data.js'
@@ -28,8 +29,17 @@ proofs.push(...JSON.parse((await import('node:zlib')).gunzipSync(fs.readFileSync
 proofs.push(...JSON.parse((await import('node:zlib')).gunzipSync(fs.readFileSync('scripts/fixtures/wisdomtree-export/qualified-collection.json.gz'))).series)
 proofs.push(...JSON.parse((await import('node:zlib')).gunzipSync(fs.readFileSync('scripts/fixtures/landg-history/collection.json.gz'))).series)
 proofs.push(...JSON.parse((await import('node:zlib')).gunzipSync(fs.readFileSync('scripts/fixtures/bnp-nav/collection.json.gz'))).series)
+const qualifiedWisdom=JSON.parse((await import('node:zlib')).gunzipSync(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/wisdomtree-20261029/qualification-GitHub-40839857667.json.gz'))).series
+qualifiedWisdom.push(...JSON.parse((await import('node:zlib')).gunzipSync(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/wisdomtree-20261029/qualification-GitHub-40844493683.json.gz'))).series)
+for(const {record:r}of qualifiedWisdom){
+ const raw=(await import('node:zlib')).gunzipSync(fs.readFileSync(`scripts/fixtures/wisdomtree-performance/${r.wisdomTicker}-graph.gz`))
+ const url=Object.keys(r.rawSourceHashes).find(url=>url.includes('mode=gro10k'))
+ assert.equal(createHash('sha256').update(raw).digest('hex'),r.rawSourceHashes[url],'Frozen daily oracle must be the actual qualified GitHub source')
+}
 for(const s of sources){
- const a=ASSETS[s.id],r=proofs.find(r=>r.id===s.id).record
+ // An independent replacement is checked against its own qualified daily
+ // observations; the old export remains separately tested and archived.
+ const a=ASSETS[s.id],r=(qualifiedWisdom.find(r=>r.id===s.id)??proofs.find(r=>r.id===s.id)).record
  assert(ASSET_ORDER.includes(s.id)&&MARKET_ASSETS.some(a=>a.id===s.id)&&(s.collectAnniversary===false?!ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===s.id):ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===s.id)))
  assert.equal(RANKING_ASSETS[s.id].basis,'fund-nav-total-return');assert.equal(commonCoverage([RANKING_ASSETS[s.id],{...RANKING_ASSETS[s.id],id:'same-nav-fixture'}]).basis,'fund-nav-total-return');assert.equal(basisLabel(RANKING_ASSETS[s.id].basis),'Valeurs liquidatives · revenus réinvestis');
  assert(a.icon,`The existing share visual identity is required for PNG export: ${s.id}`)

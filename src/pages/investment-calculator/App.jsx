@@ -404,13 +404,14 @@ function InvestmentEditor({state,setState}){
                 <>
                   <p className="ic-current-level">
                     📍 Dernier niveau connu :{' '}
-                    <strong>{ASSETS[state.assetId].priceUnit === 'points' ? `${lastPoint.price.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} points` : fmtEUR(lastPoint.price, ASSETS[state.assetId].currency)}</strong>
+                    <strong>{(ASSETS[state.assetId].priceUnit === 'points' || ASSETS[state.assetId].levelUnit === 'performance-points') ? `${lastPoint.price.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} points` : fmtEUR(lastPoint.price, ASSETS[state.assetId].currency)}</strong>
                     {' '}(au {lastPointLabel})
                   </p>
                   {REDUCED_CONFIDENCE_LAST_POINT[state.assetId] && (
                     <p className="ic-field-warning">⚠️ {REDUCED_CONFIDENCE_LAST_POINT[state.assetId]}</p>
                   )}
-                  {!crisisMode && <SettingsDetails title="Actualiser le prix" summary={state.overridePriceRaw ? `Prix saisi : ${state.overridePriceRaw}` : 'Facultatif'}>
+                  {ASSETS[state.assetId].allowPriceOverride===false && state.overridePriceRaw && <button type="button" className="ic-control" onClick={() => set({overridePriceRaw:''})}>Effacer le prix saisi</button>}
+                  {!crisisMode && ASSETS[state.assetId].allowPriceOverride!==false && <SettingsDetails title="Actualiser le prix" summary={state.overridePriceRaw ? `Prix saisi : ${state.overridePriceRaw}` : 'Facultatif'}>
                     <input
                       className="ic-control"
                       type="number"
