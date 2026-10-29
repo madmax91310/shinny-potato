@@ -17,6 +17,19 @@ MARKET_PROJECTION_INPUTS = {'src/data/worldbank-gold-monthly.json'}
 # and validation hooks still rebuild projections and check the combined tree.
 # Do not generalise this to collector code, configurations or other producers.
 MARKET_READER_ONLY_CHANGES = {
+    # Actual refusal40884415624 after #1043: these exact downstream proof
+    # readers/fixtures and their regressions are not monthly acquisition inputs.
+    # Keep regeneration and financial validation on the combined tree mandatory.
+    'docs/data-operations-coordination.md',
+    'scripts/fixtures/qualified-monthly-return-resolutions-20261029.json',
+    'scripts/test-bdf-debt-charts.mjs',
+    'scripts/lib/radar-queue.mjs',
+    'scripts/test-radar-requalification-queue.mjs',
+    'scripts/test-monthly-return-resolution.mjs',
+    'scripts/test-review-inbox.mjs',
+    'scripts/test_automation_monitoring.py',
+    'src/pages/data-review/review-causes.js',
+    'src/pages/data-review/review-inbox.js',
     'docs/editorial-radar-couverture-2026-10-25.md',
     'scripts/lib/radar-consumer.mjs',
     'scripts/lib/radar-publications.mjs',
@@ -61,7 +74,11 @@ ALLOWED = {
                          'src/data/anniversary-index-history.json',
                          'src/data/purchasing-power-observations.json',
                          'scripts/source-snapshots/anniversary-indices.json'},
-    'publication': INDEPENDENT | {'src/data/automated-scpi.json'},
+    # Actual refusal40893319635: actor presentations are not an acquisition
+    # input for INSEE observations or exact anniversary levels. Their latest
+    # version must still survive the mandatory combined-tree build/audits.
+    'publication': INDEPENDENT | {'src/data/automated-scpi.json',
+                                  'src/data/automated-presentation-actors.json'},
 }
 
 
