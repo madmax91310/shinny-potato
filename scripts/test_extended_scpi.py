@@ -84,4 +84,57 @@ class ExtendedScpiTests(unittest.TestCase):
         r=remake_portfolio('pour la diversification : 77 immeubles Locaux occupés sous franchise 145 Baux','2026-06-30',URL,pages('remake'))
         self.assertEqual(r['buildings']['value'],77);self.assertEqual(r['occupancy']['value'],98.93);self.assertNotIn('tenants',r)
 
+class BulletinPublicationCalendar(unittest.TestCase):
+    def record(self,identifier):
+        return copy.deepcopy(next(r for r in json.loads((ROOT/'src/data/automated-scpi.json').read_text())['records']if r['id']==identifier))
+    def metadata(self,record):
+        from collect_extended_scpi import bulletin_calendar
+        patterns={'transitions-europe':r'te_(?:t(?P<quarter>\d)|s(?P<semester>\d))[-_](?P<year>\d{4})',
+            'activimmo':r'BTI-T(?P<quarter>\d)-(?P<year>\d{4})-ActivImmo',
+            'epargne-pierre':r'BPI(?P<quarter>[1-4])T(?P<year>\d{4})-EP-'}
+        return bulletin_calendar(record['snapshot']['sourceUrls'][0],patterns[record['id']],record['snapshot']['asOf'])
+    def test_real_bulletin_period_is_not_cash_distribution_frequency(self):
+        for identifier,months in [('transitions-europe',6),('activimmo',3),('epargne-pierre',3)]:
+            row=self.record(identifier);proof=self.metadata(row)
+            self.assertEqual(proof['periodMonths'],months)
+            self.assertIsNone(proof['issuerPublicationDeadline'])
+            self.assertEqual(proof['asOf'],'2026-06-30')
+    def test_waiting_fresh_source_never_redates_financial_values(self):
+        for identifier,due in [('transitions-europe','2027-02-14'),('activimmo','2026-11-14'),('epargne-pierre','2026-11-14')]:
+            row=self.record(identifier);candidate=copy.deepcopy(row);candidate['snapshotPublication']=self.metadata(row)
+            result,observations=refresh({'records':[row]},{identifier:lambda today:copy.deepcopy(candidate)},dt.date(2026,10,29))
+            updated=result['records'][0]
+            self.assertEqual(updated['collectionStatus']['status'],'waiting-publication')
+            self.assertEqual(updated['collectionStatus']['internalReviewDue'],due)
+            self.assertEqual(observations[0]['status'],'success')
+            self.assertIsNone(updated['collectionStatus']['issuerPublicationDeadline'])
+            for field in ['snapshot','price','annual','conditions','portfolio','priceHistory']:
+                if field in row:self.assertEqual(updated[field],row[field])
+    def test_end_of_internal_interval_is_not_an_issuer_deadline(self):
+        row=self.record('activimmo');row['snapshotPublication']=self.metadata(row)
+        for day,status in [('2026-11-14','waiting-publication'),('2026-11-15','success')]:
+            result,_=refresh({'records':[row]},{row['id']:lambda today:copy.deepcopy(row)},dt.date.fromisoformat(day))
+            self.assertEqual(result['records'][0]['collectionStatus']['status'],status)
+            self.assertIsNone(result['records'][0]['collectionStatus']['issuerPublicationDeadline'])
+    def test_failed_source_does_not_renew_waiting_or_access(self):
+        row=self.record('activimmo');row['snapshotPublication']=self.metadata(row)
+        current,_=refresh({'records':[row]},{row['id']:lambda today:copy.deepcopy(row)},dt.date(2026,10,29))
+        def offline(today):raise TimeoutError('network unavailable')
+        failed,observations=refresh(current,{row['id']:offline},dt.date(2026,10,30));out=failed['records'][0]
+        self.assertEqual(out['collectionStatus']['status'],'failed')
+        self.assertEqual(out['collectionStatus']['lastAccessSuccessAt'],'2026-10-29')
+        self.assertEqual(out['snapshot'],row['snapshot']);self.assertEqual(observations[0]['status'],'failure')
+    def test_mismatched_or_unknown_period_fails_closed(self):
+        from collect_extended_scpi import bulletin_calendar
+        pattern=r'te_(?:t(?P<quarter>\d)|s(?P<semester>\d))[-_](?P<year>\d{4})'
+        for url,date in [('https://issuer.fr/te_s1-2026.pdf','2026-09-30'),('https://issuer.fr/te_s3-2026.pdf','2026-06-30'),('https://issuer.fr/report.pdf','2026-06-30')]:
+            with self.assertRaises(ValueError):bulletin_calendar(url,pattern,date)
+    def test_month_and_year_rollovers_keep_actual_periods(self):
+        from collect_scpi import next_bulletin_due
+        self.assertEqual(next_bulletin_due('2026-09-30').isoformat(),'2027-02-14')
+        self.assertEqual(next_bulletin_due('2026-06-30',6).isoformat(),'2027-02-14')
+        self.assertEqual(next_bulletin_due('2026-12-31',6).isoformat(),'2027-08-14')
+        with self.assertRaises(ValueError):next_bulletin_due('2026-06-29',3)
+        with self.assertRaises(ValueError):next_bulletin_due('2026-09-30',6)
+
 if __name__=='__main__':unittest.main()
