@@ -27,8 +27,8 @@
       "applicable": 261,
       "notApplicable": 0,
       "waiting": 13,
-      "notPublished": 6,
-      "unresolved": 4
+      "notPublished": 7,
+      "unresolved": 3
     },
     "countries": {
       "label": "Pays",
@@ -37,8 +37,8 @@
       "applicable": 238,
       "notApplicable": 23,
       "waiting": 0,
-      "notPublished": 5,
-      "unresolved": 4
+      "notPublished": 6,
+      "unresolved": 3
     },
     "sectors": {
       "label": "Secteurs",
@@ -339,7 +339,7 @@
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
       "scope": "Souscriptions, versements complémentaires et programmés",
-      "sha256": "0bb3bc358e50dde24f3ecc1244ee10c919e7f522d22c40da36ef4e870884545d",
+      "sha256": "5aaaceb9eadd3eaf6f51d9754c91c7d5b2c446e14e10c48d6681a1fe4331eb5a",
       "active": true
     },
     {
@@ -351,7 +351,7 @@
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
       "scope": "Souscriptions, versements complémentaires et programmés",
-      "sha256": "0bb3bc358e50dde24f3ecc1244ee10c919e7f522d22c40da36ef4e870884545d",
+      "sha256": "5aaaceb9eadd3eaf6f51d9754c91c7d5b2c446e14e10c48d6681a1fe4331eb5a",
       "active": true
     },
     {
@@ -364,7 +364,7 @@
       "statement": "ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte jusqu’au 31/12/2026",
       "validUntil": "2026-12-31",
       "scope": "Souscriptions, versements libres et programmés",
-      "sha256": "e5ab32116c9f9c3ad5bb8176459d53656405fc73942df1f6fd39a88f1c6deb68",
+      "sha256": "8abc2b4e11a8b7f31ebe39cbee39197b17fd3dc65097e097e94cf08206afda6a",
       "active": true
     },
     {
@@ -378,7 +378,7 @@
       "scope": "Versements initiaux, libres et programmés ; année civile",
       "openingYearUpperBound": 50000,
       "followingYearUpperBound": 25000,
-      "sha256": "e5ab32116c9f9c3ad5bb8176459d53656405fc73942df1f6fd39a88f1c6deb68",
+      "sha256": "8abc2b4e11a8b7f31ebe39cbee39197b17fd3dc65097e097e94cf08206afda6a",
       "active": true
     },
     {
@@ -390,7 +390,7 @@
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
       "scope": "Souscriptions, versements complémentaires et programmés",
-      "sha256": "031a01ed8d553b4421ba6ab3f8b3ba8df61e758a1c27e1df07b627d9721af7f0",
+      "sha256": "9893e77510b491b17dd4bb9adf82ed32860caeeb6cf7ffd633e311c631d2b60b",
       "active": true
     },
     {
@@ -403,7 +403,7 @@
       "statement": "Ce fonds en euros est accessible sans limite de montant avec un minimum de 30 % en unités de compte qui présentent un risque de perte en capital",
       "scope": "Souscriptions, versements complémentaires et programmés",
       "minimumUnits": 30,
-      "sha256": "031a01ed8d553b4421ba6ab3f8b3ba8df61e758a1c27e1df07b627d9721af7f0",
+      "sha256": "9893e77510b491b17dd4bb9adf82ed32860caeeb6cf7ffd633e311c631d2b60b",
       "active": true
     }
   ],
@@ -419,10 +419,10 @@
     "holdings": 234
   },
   "summary": {
-    "instrument:unqualified": 21,
+    "instrument:unqualified": 19,
     "instrument:not-applicable": 69,
     "instrument:waiting-first-year": 13,
-    "instrument:not-published": 16,
+    "instrument:not-published": 18,
     "instrument:source-conflict": 1,
     "index:waiting-publication": 1,
     "index:not-applicable": 16
@@ -1095,7 +1095,7 @@
       "status": "not-published",
       "checkedAt": "2026-10-29",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "49ee0e1541db66f075d6c75406fec1aecda727eecd271e1c783bcf934c027b7c",
+      "sha256": "5aa8770d14b83233a994882c2c4c4087756f00b44a65f63ff3f91b1924edadaf",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1827,12 +1827,48 @@
       "field": "performance",
       "label": "Calendrier annuel",
       "configured": true,
-      "status": "unqualified",
+      "status": "not-published",
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
       "checkedAt": "2026-10-29",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "06a240e401db9c5acef96e1665afcc0e7ebf1cb7d370541afde9a85f0e6f795f",
-      "evidence": []
+      "sha256": "92f60e630c6a6e78183680872e65ea8f8520d24c291fa619b813df83292aceca",
+      "evidence": [
+        "Performance History",
+        "USD Accumulating",
+        "Avg. Annualised %",
+        "Cumulative %",
+        "As of recent",
+        "Month End",
+        "&",
+        "Quarter End",
+        "(",
+        "30 Sep 2026",
+        ")",
+        "ETF",
+        "Index",
+        "Difference",
+        "1 Year",
+        "19.39%",
+        "19.89%",
+        "-0.50%",
+        "3 Years",
+        "15.40%",
+        "15.86%",
+        "-0.46%",
+        "Since Inception",
+        "15.29%",
+        "15.75%",
+        "-0.46%",
+        "Performance is based on the fund’s NAV and is shown on a total return basis (i.e., with gross income reinvested, where applicable). The fund’s NAV may differ from its market price and, as a result, individual shareholders may realize returns that are different from the NAV performance. Cumulative return is the aggregate amount that an investment has gained or lost over time. Annualised return is the average return gained or lost by an investment each year over a given time period.",
+        "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations.",
+        "Top 10 Reference Index Constituents",
+        "As of 26 Oct 2026",
+        "Weight (%)",
+        "Ticker",
+        "Name",
+        "8.10",
+        "NVDA"
+      ]
     },
     {
       "type": "instrument",
@@ -1841,11 +1877,11 @@
       "field": "countries",
       "label": "Pays",
       "configured": true,
-      "status": "unqualified",
+      "status": "not-published",
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
       "checkedAt": "2026-10-29",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "06a240e401db9c5acef96e1665afcc0e7ebf1cb7d370541afde9a85f0e6f795f",
+      "sha256": "92f60e630c6a6e78183680872e65ea8f8520d24c291fa619b813df83292aceca",
       "evidence": []
     },
     {
@@ -1859,7 +1895,7 @@
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
       "checkedAt": "2026-10-29",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "06a240e401db9c5acef96e1665afcc0e7ebf1cb7d370541afde9a85f0e6f795f",
+      "sha256": "92f60e630c6a6e78183680872e65ea8f8520d24c291fa619b813df83292aceca",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 30 Sep 2026",
@@ -1900,7 +1936,7 @@
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, MSFT, NVDA, TSLA.",
       "checkedAt": "2026-10-29",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "06a240e401db9c5acef96e1665afcc0e7ebf1cb7d370541afde9a85f0e6f795f",
+      "sha256": "92f60e630c6a6e78183680872e65ea8f8520d24c291fa619b813df83292aceca",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 26 Oct 2026",
