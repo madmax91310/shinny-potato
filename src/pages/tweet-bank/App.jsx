@@ -42,6 +42,9 @@ function fallbackCopy(text, textareaEl) {
   return ok
 }
 
+// Preserve the stored category and existing calendar links; rename its visible label.
+const categoryLabel = category => category === 'Guide ETF' ? 'Guide' : category
+
 function ChipRow({ options, allLabel, value, onChange, gold }) {
   return (
     <div className="tb-chiprow" role="group">
@@ -55,7 +58,7 @@ function ChipRow({ options, allLabel, value, onChange, gold }) {
           className={`tb-chip${gold ? ' gold' : ''}${value === o ? ' active' : ''}`}
           onClick={() => onChange(o)}
         >
-          {o}
+          {categoryLabel(o)}
         </button>
       ))}
     </div>
@@ -132,7 +135,7 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
     <article data-tweet-id={tweet.id} className={`tb-tweet${badge?.status === 'cooldown' ? ' cooldown' : ''}`}>
       <div className="tb-tweet-meta">
         <span className="tb-tag-month">{tweet.month}{tweet.month === 'Intemporel' ? '' : ' 2026'}</span>
-        <span className={`tb-tag-cat${GOLD_CATEGORIES.includes(tweet.category) ? ' gold' : ''}`}>{tweet.category}</span>
+        <span className={`tb-tag-cat${GOLD_CATEGORIES.includes(tweet.category) ? ' gold' : ''}`}>{categoryLabel(tweet.category)}</span>
         {(tweet.formats || []).map((f) => (
           <span key={f} className="tb-tag-format">
             {f}
