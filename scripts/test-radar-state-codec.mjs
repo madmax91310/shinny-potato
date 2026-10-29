@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import {packRadarState,unpackRadarState,radarStateContent} from './lib/radar-state-codec.mjs'
+import {unpackRadarState as previousReader} from './fixtures/radar-state-v1-reader.mjs'
 import {advanceRadar} from './lib/editorial-radar.mjs'
 const now=new Date('2026-10-28T15:00:00Z'),evidence={version:1,identity:'fund',basis:'fund',currency:'USD',unit:'%',asOf:'2026-10-26',sourceHash:'a'.repeat(64),method:'Published NAV allocation',categories:[{name:'Financials',weightPct:99.5},{name:'Cash',weightPct:.5}],rowCount:2,categoryCount:2,total:100,onlyResidual:false,weightConvention:'net-asset-value'}
 const row={family:'etf',entity:'fund',field:'sectors:Financials',fieldLabel:'Poids du secteur Finance',label:'ETF',value:99.5,period:evidence.asOf,checkedAt:now.toISOString(),scope:'Exact fund',sourceUrl:'https://www.ishares.com/fund',unit:'%',compositionEvidence:evidence}
@@ -37,6 +38,8 @@ const metrics=[],bounded=radarStateContent(large,row=>metrics.push(row)),transpo
 assert.equal(metrics[0].originalRequestBytes,Buffer.byteLength(request(uncompressed)))
 assert.equal(metrics[0].requestBytes,Buffer.byteLength(request(bounded)))
 assert.equal(transport.radarStateTransport,1)
+assert.throws(()=>previousReader(transport),/non reconnu/,'A queued old writer must refuse the new envelope, never seed an empty history')
+assert.deepEqual(previousReader(packed),plain,'The frozen reader still accepts its original format')
 assert.deepEqual(transport.conflicts,packRadarState(large).conflicts,'Python supervision reads the same durable conflict ledger without a format migration')
 const badPreview=structuredClone(transport);badPreview.conflicts={unexpected:true};assert.throws(()=>unpackRadarState(badPreview),/altéré/)
 const missingPreview=structuredClone(transport);delete missingPreview.conflicts;assert.throws(()=>unpackRadarState(missingPreview),/altéré/)
