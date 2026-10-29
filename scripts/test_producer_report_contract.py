@@ -331,4 +331,85 @@ class InputScopeRegressions(unittest.TestCase):
         report={'successes':[{'id':'A'}],'errors':[],'_reportEvidence':{'scope':{'runId':'1','attempt':'1'}}}
         r=normalize_attempt_report(report,{'id':2,'run_attempt':1});self.assertFalse(r['successes']);self.assertTrue(r['errors'][0]['id'].startswith('report-contract:'))
 
+class CompleteHoldingsReceipts(unittest.TestCase):
+    def setUp(self):
+        import gzip
+        path=Path(__file__).parent/'fixtures/producer-reports/dca-holdings-40952108356.json.gz'
+        self.original=json.loads(gzip.decompress(path.read_bytes()))
+        self.p=self.original['resultContract']['inputPlan']
+        # Strip only wrapper-generated metadata for this isolated replay. The
+        # immutable historical report/plan are never rewritten or renewed.
+        self.native={k:v for k,v in self.original.items()if k not in ('producerStarted','resultContract')}
+
+    def test_real_bounded_dictionary_keeps_182_results_and_one_financial_failure(self):
+        self.assertEqual(len(self.p['items']),183)
+        self.assertTrue(all(r.get('kind')=='omission'for r in self.original['resultContract']['outcomes']))
+        before=copy.deepcopy(self.native)
+        output=c.finish(self.native,self.p);r=c.normalize_contract(output['resultContract'])
+        self.assertEqual(len(r['successes']),182);self.assertEqual(len(r['errors']),1)
+        self.assertEqual(r['errors'][0]['id'],'dca-holdings:IE00B441G979')
+        self.assertIn('100.762180%',r['errors'][0]['error']);self.assertIn('100.5%',r['errors'][0]['error'])
+        self.assertFalse(any(x.get('kind')=='omission'for x in output['resultContract']['outcomes']))
+        self.assertEqual(output['resultContract']['inputPlan'],self.p)
+        self.assertEqual(self.native,before)
+        self.assertEqual(output['observations'],before['observations'])
+        self.assertNotIn('producerStarted',output)
+
+    def test_original_source_period_and_check_are_not_replaced_by_report_time(self):
+        output=c.finish(self.native,self.p)
+        row=next(r for r in output['resultContract']['outcomes']if r['id']=='dca-holdings:IE00BJGWQN72')
+        receipt=self.native['observations']['IE00BJGWQN72']
+        for key in ('asOf','checkedAt','sourceUrl','sha256'):self.assertEqual(row[key],receipt[key])
+        self.assertEqual(row['asOf'],'2026-10-23');self.assertTrue(row['sourceAttempted'])
+        self.assertNotIn('sourceUrls',row,'Pooled identity URLs remain in native evidence, not attributed as fund observations')
+
+    def test_incomplete_or_cached_receipt_is_not_a_source_success(self):
+        for key,value in [('checkedAt',None),('asOf','invalid'),('sha256',''),('sourceUrl',None),('sourceAttempted',False)]:
+            native=copy.deepcopy(self.native);native['observations']['IE00BJGWQN72'][key]=value
+            with self.subTest(key=key):
+                r=c.finish(native,self.p)['resultContract']['outcomes']
+                row=next(r for r in r if r['id']=='dca-holdings:IE00BJGWQN72')
+                self.assertEqual(row['status'],'failed');self.assertEqual(row['phase'],'qualification')
+                self.assertEqual(row['kind'],'evidence-incomplete');self.assertIsNone(row['sourceAttempted'])
+                self.assertNotIn('checkedAt',row)
+
+    def test_targeted_retry_does_not_certify_the_other_181_instruments(self):
+        p=copy.deepcopy(self.p)
+        selected={'dca-holdings:IE00BJGWQN72','dca-holdings:IE00B441G979'}
+        for item in p['items']:
+            item['selected']=item['id']in selected
+            if not item['selected']:item['reason']='Outside this isolated targeted retry'
+        native=copy.deepcopy(self.native)
+        native['successes']=[r for r in native['successes']if r['id']in selected]
+        native['observations']={'IE00BJGWQN72':native['observations']['IE00BJGWQN72']}
+        output=finished(native,p);r=c.normalize_contract(output['resultContract'])
+        self.assertEqual(len(r['successes']),1);self.assertEqual(len(r['errors']),1)
+        self.assertEqual(len(output['resultContract']['scope']['networkRequestedIds']),1)
+        self.assertEqual(sum(x['status']=='not-attempted'for x in output['resultContract']['outcomes']),181)
+
+    def test_interruption_and_cache_mode_still_cannot_certify_source_controls(self):
+        output=c.finish(self.native,self.p,completed=False)
+        self.assertTrue(all(r.get('kind')=='omission'for r in output['resultContract']['outcomes']))
+        p=copy.deepcopy(self.p);p['cacheRequested']=True
+        output=finished(self.native,p);self.assertFalse(c.normalize_contract(output['resultContract'])['successes'])
+
+    def test_existing_monitor_reads_the_completed_contract(self):
+        output=c.finish(self.native,self.p)
+        with tempfile.TemporaryDirectory()as folder:
+            path=Path(folder)/'dca-complete-holdings.json';path.write_text(json.dumps(output))
+            import gzip
+            declared=Path(__file__).parent/'fixtures/producer-reports/dca-holdings-40952108356-plan.json.gz'
+            path.with_name('dca-complete-holdings.contract-plan.json').write_bytes(gzip.decompress(declared.read_bytes()))
+            result=read_report(path,'update-qualified-exposures.yml',json.loads(gzip.decompress(declared.read_bytes())))
+        self.assertTrue(result['_reportEvidence']['scopeExplicit'])
+        self.assertNotIn('_scopeWarning',result)
+        self.assertEqual(len(result['successes']),182);self.assertEqual(len(result['errors']),1)
+
+    def test_missing_independent_plan_keeps_the_completeness_qualification(self):
+        output=c.finish(self.native,self.p)
+        with tempfile.TemporaryDirectory()as folder:
+            path=Path(folder)/'dca-complete-holdings.json';path.write_text(json.dumps(output))
+            result=read_report(path,'update-qualified-exposures.yml')
+        self.assertIn('_scopeWarning',result)
+
 if __name__=='__main__':unittest.main()
