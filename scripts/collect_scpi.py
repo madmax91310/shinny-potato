@@ -379,9 +379,11 @@ def refresh(previous, adapters, today):
                 if due-dt.timedelta(days=BULLETIN_GRACE_DAYS)<=today<=due:
                     record['collectionStatus'].update(status='waiting-publication',accessStatus='success',reason='Published current bulletin verified; awaiting the next edition linked by the issuer')
             records[id] = record
-            observations.append({'id': id, 'name':record['name'], 'status': 'success'})
+            observations.append({'id': id, 'name':record['name'], 'status': 'success',
+                                 'checkedAt':dt.datetime.now(dt.timezone.utc).isoformat(),
+                                 'sourceUrl':record['sourceUrl']})
             if id=='iroko-zen':
-                observations.append({'id':'iroko-zen:snapshot','name':'Iroko Zen · Répartition trimestrielle','status':'failure' if snapshot_error else 'success',**({'reason':snapshot_error} if snapshot_error else {})})
+                observations.append({'id':'iroko-zen:snapshot','name':'Iroko Zen · Répartition trimestrielle','status':'failure' if snapshot_error else 'success',**({'reason':snapshot_error} if snapshot_error else {'checkedAt':dt.datetime.now(dt.timezone.utc).isoformat(),'asOf':record['snapshot']['asOf']})})
         except AwaitingPublication as error:
             old = records.get(id)
             due = old and old.get('snapshot', {}).get('asOf') and next_bulletin_due(old['snapshot']['asOf'])
