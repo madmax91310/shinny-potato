@@ -18,6 +18,9 @@ on:
       - 'scripts/test-dws-reconciliation.mjs'
       - 'scripts/lib/radar-news.mjs'
       - 'scripts/lib/radar-publications.mjs'
+      - 'scripts/lib/bdf-debt-charts.mjs'
+      - 'scripts/test-bdf-debt-charts.mjs'
+      - 'scripts/check-radar-bdf-debt.mjs'
       - 'scripts/lib/radar-households.mjs'
       - 'scripts/lib/radar-schedule.mjs'
       - 'scripts/lib/radar-source-access.mjs'
@@ -90,6 +93,9 @@ on:
       - 'scripts/test-dws-reconciliation.mjs'
       - 'scripts/lib/radar-news.mjs'
       - 'scripts/lib/radar-publications.mjs'
+      - 'scripts/lib/bdf-debt-charts.mjs'
+      - 'scripts/test-bdf-debt-charts.mjs'
+      - 'scripts/check-radar-bdf-debt.mjs'
       - 'scripts/lib/radar-households.mjs'
       - 'scripts/lib/radar-schedule.mjs'
       - 'scripts/lib/radar-source-access.mjs'
@@ -189,6 +195,15 @@ jobs:
       - run: node scripts/test-radar-publication-policy.mjs "$RUNNER_TEMP/radar-publication-policy"
       - run: node scripts/test-purchasing-power-news.mjs
       - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
+      - name: Qualify the current official BDF debt charts (read-only)
+        run: node scripts/check-radar-bdf-debt.mjs "$RUNNER_TEMP/radar-bdf-debt"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: radar-bdf-debt-source-control
+          path: ${{ runner.temp }}/radar-bdf-debt/
+          retention-days: 35
+          if-no-files-found: error
       - name: Qualify the six failed Radar sources (read-only)
         run: node scripts/check-radar-source-recovery.mjs "$RUNNER_TEMP/radar-source-recovery"
       - uses: actions/upload-artifact@v7.0.1
