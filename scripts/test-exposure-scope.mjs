@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import './test-dca-asset-scope.mjs'
 import {publishedExposure,exposureView} from '../src/pages/dca-profiles/exposure.js'
 import {donutData,integerPercentages} from '../src/pages/dca-profiles/image.js'
 import {references} from '../src/pages/dca-profiles/engine.js'
