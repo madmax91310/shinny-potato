@@ -15,6 +15,7 @@ export function indexAnchorPoints(assetId, endYm) {
 }
 
 export function derive(state) {
+  if(ASSETS[state.assetId]?.allowPriceOverride===false && state.overridePriceRaw) throw Error('Un prix de part ne peut pas revaloriser cette série en unités de performance.')
   if(state.assetId!=='custom' && ASSETS[state.assetId]?.historyPending) throw Error('Charger l’historique avant le calcul')
   const amount = parseFloat(state.amountRaw) || 0
   const isCustom = state.assetId === 'custom'

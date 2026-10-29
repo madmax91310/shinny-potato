@@ -123,6 +123,7 @@ export function getComparativeAssetIssue(assetId, startYm, mode, endYm, currency
 // retour utilisateur du 14/09/2026). Mode toujours 'lump' pour ces actifs (DCA bloqué en amont par
 // getComparativeAssetIssue), donc pas de branche DCA à gérer ici.
 export function computeComparativeSeries(assetId, startYm, endYm, amount, mode, overridePriceRaw = '', currency = 'native') {
+  if(ASSETS[assetId]?.allowPriceOverride===false && overridePriceRaw) throw Error('Un prix de part ne peut pas revaloriser cette série en unités de performance.')
   requireHistoryWindow(ASSETS[assetId], startYm, endYm, { contiguous: !SPARSE_MONTHLY_DATA_IDS.has(assetId) && !INCONSISTENT_MONTHLY_DATA_IDS.has(assetId) })
   const asset = historyInCurrency(ASSETS[assetId], currency, startYm, endYm)
   const points = asset.points

@@ -12,6 +12,7 @@ export function buildEtfMonthlyHistories(records = RECORDS) {
     .map(([id, record]) => [id, {
       id, label: record.label, instrumentType: record.instrumentType || 'ETF', tweetPhrase: `l’${record.instrumentType || 'ETF'} ${record.label}`, icon: ETF_HISTORY_IDENTITIES[id].icon,
       isin: record.isin, ...(record.ticker?{ticker:record.ticker}:{}), sourceCredit: record.sourceCredit ?? 'Yahoo Finance',
+      ...(record.navHistoryTransport==='official-dataspan-nav-tr'?{levelUnit:'performance-points',allowPriceOverride:false}:{}),
       ...(record.mic?{mic:record.mic}:{}), currency: record.currency, priceMethod: 'adjusted',
       ...(record.valuationBasis ? {valuationBasis:record.valuationBasis,historyConvention:record.valuationBasis} : {}),
       ...(record.anniversaryValuationBasis ? {anniversaryValuationBasis:record.anniversaryValuationBasis,anniversaryVariant:record.anniversaryVariant}:{}),

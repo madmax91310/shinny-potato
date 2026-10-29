@@ -1,0 +1,32 @@
+{
+  "qualifiedRun": 40839857667,
+  "artifact": 12882645892,
+  "checkedAt": "2026-10-29T08:07:42.347212+00:00",
+  "scope": {
+    "requestedIds": [
+      "etfGB00B15KXQ89Nav",
+      "etc_brent_crude_oilNav",
+      "etc_wti_crude_oilNav",
+      "etc_coffeeNav"
+    ],
+    "expectedIds": [
+      "etfGB00B15KXQ89Nav",
+      "etc_brent_crude_oilNav",
+      "etc_wti_crude_oilNav",
+      "etc_coffeeNav"
+    ],
+    "selection": "configured-official-nav-without-ordinary-source-control"
+  },
+  "rawReportSha256": "dd3a353d0573a6a95a8d8bad21024f3c8e869b8712f590b89a2107873978c228",
+  "qualifiedIds": [
+    "etc_brent_crude_oilNav",
+    "etc_coffeeNav",
+    "etc_wti_crude_oilNav",
+    "etfGB00B15KXQ89Nav"
+  ],
+  "otherMonthlyRecordsPreserved": 240,
+  "otherSnapshotRecordsPreserved": 674,
+  "ordinaryProducerProof": "Not yet observed; this is the real read-only GitHub qualification, not a scheduled production run",
+  "oldQuoteDivergencesClosed": 0,
+  "originalExportRefusalsStillArchived": 6
+}
