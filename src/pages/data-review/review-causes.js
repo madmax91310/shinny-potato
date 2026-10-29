@@ -30,6 +30,20 @@ export function historicalResolutionProof(row,now){
  if(p.kind){
   if(!validDate(p.checkedAt))return false
   switch(p.kind){
+   case 'qualified-monthly-return-window': {
+    const w=p.window,expected=row.unqualifiedReturnWindow,runtime=w?.sourceRuntime,check=w?.sourceCheck
+    const bounds=row.id.match(/^history:automated-etf-monthly:[^:]+:return-window:(\d{4}-\d{2}):(\d{4}-\d{2})$/)
+    return Boolean(bounds&&w&&expected&&check&&runtime&&p.dataId===row.dataId&&/^[A-Z]{2}[A-Z0-9]{9}\d$/.test(p.dataId)&&
+     p.currency===row.currency&&typeof p.method==='string'&&p.method.length>0&&p.method===row.method&&sha(p.responseSha256,64)&&
+     w.start===bounds[1]&&w.end===bounds[2]&&w.start===expected.start&&w.end===expected.end&&w.year===expected.year&&
+     Number.isInteger(w.year)&&w.start===`${w.year-1}-12`&&w.end===`${w.year}-12`&&w.convention==='fund-nav-total-return'&&
+     runtime.kind==='github'&&['push','schedule','workflow_dispatch'].includes(runtime.event)&&/^[1-9]\d*$/.test(String(runtime.runId))&&
+     /^[1-9]\d*$/.test(String(runtime.attempt))&&sha(runtime.codeRevision,40)&&check.year===w.year&&
+     typeof check.start==='string'&&typeof check.end==='string'&&check.start.slice(0,7)===w.start&&check.end.slice(0,7)===w.end&&
+     validDate(check.start)&&validDate(check.end)&&check.start<check.end&&
+     [check.startValue,check.endValue].every(v=>typeof v==='number'&&Number.isFinite(v)&&v>0)&&
+     [check.dailyDerived,check.published].every(v=>typeof v==='number'&&Number.isFinite(v)))
+   }
    case 'verified-existing-field-binding':return p.publishedFilesVerified===true&&p.subject===row.id.replace(/^field:/,'')&&sha(p.seriesFingerprint,64)&&url(p.sourceUrl)&&p.sourceFiles&&Object.keys(p.sourceFiles).length>0&&Object.values(p.sourceFiles).every(v=>sha(v,40))
    case 'verified-source-revision':return p.evidenceVerified===true&&p.status==='confirmed'&&sha(p.sourceHash,64)&&url(p.sourceUrl)
    case 'matching-public-source-fingerprints':return sha(p.receiptCommit,40)&&sha(p.codeSha,40)&&sha(p.dataSha,40)&&Number.isInteger(p.fileCount)&&p.fileCount>0
