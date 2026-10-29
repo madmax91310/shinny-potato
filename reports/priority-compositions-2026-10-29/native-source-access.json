@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-29T17:37:18.505576+00:00",
+  "method": "HTTP access and content changes only; primary and configured alternatives are checked independently with a bounded budget. Never renew financial checkedAt, asOf or lastSuccessAt, and never resolve a qualification incident.",
+  "sources": {
+    "https://stoxx.com/index/sxxr/?components=true": {
+      "sourceUrl": "https://stoxx.com/index/sxxr/?components=true",
+      "lastAccessAttemptAt": "2026-10-29T17:37:18.505576+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://stoxx.com/index/sxxr/?components=true",
+      "sha256": "71d4cd9e02d1443b547ecfa3019a4e3981571f878587917d6dcb8583382f3baf",
+      "bytes": 115147,
+      "lastAccessibleAt": "2026-10-29T17:37:18.505576+00:00"
+    },
+    "https://stoxx.com/index/sxxr/?data=true": {
+      "sourceUrl": "https://stoxx.com/index/sxxr/?data=true",
+      "lastAccessAttemptAt": "2026-10-29T17:37:18.505576+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://stoxx.com/index/sxxr/?data=true",
+      "sha256": "0aa69c0bf0e87d565fbc728603183aec0d07c23cae502b76f6cbfd8102a5e8a2",
+      "bytes": 671505,
+      "lastAccessibleAt": "2026-10-29T17:37:18.505576+00:00"
+    },
+    "https://www.lseg.com/en/ftse-russell/indices/epra-nareit": {
+      "sourceUrl": "https://www.lseg.com/en/ftse-russell/indices/epra-nareit",
+      "lastAccessAttemptAt": "2026-10-29T17:37:18.505576+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.lseg.com/en/ftse-russell/indices/epra-nareit",
+      "sha256": "4e98e2d9bba151574b5eed3af1838a2ba5b11d158cea9c70cd59a620dff390d8",
+      "bytes": 280547,
+      "lastAccessibleAt": "2026-10-29T17:37:18.505576+00:00"
+    },
+    "https://www.epra.com/research/monthly-reports": {
+      "sourceUrl": "https://www.epra.com/research/monthly-reports",
+      "lastAccessAttemptAt": "2026-10-29T17:37:18.505576+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.epra.com/research/monthly-reports",
+      "sha256": "d0c11527aa17e252ab3e2b6e9a47e0ee4fbeb2b3c55a1f4b8efc1877b7763a7e",
+      "bytes": 123538,
+      "lastAccessibleAt": "2026-10-29T17:37:18.505576+00:00"
+    },
+    "https://indexes.nasdaqomx.com/Index/Weighting/NDX": {
+      "sourceUrl": "https://indexes.nasdaqomx.com/Index/Weighting/NDX",
+      "lastAccessAttemptAt": "2026-10-29T17:37:18.505576+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://indexes.nasdaqomx.com/Index/Weighting/NDX",
+      "sha256": "fae2498e6ac4de6280428d98b55d1d4fd2fae6381a6e74967854ebd3e853d3fa",
+      "bytes": 55604,
+      "lastAccessibleAt": "2026-10-29T17:37:18.505576+00:00"
+    }
+  },
+  "observations": {
+    "FR0011550193:completeHoldings": {
+      "prerequisite": "economic-index-holdings-required",
+      "sourceUrl": "https://stoxx.com/index/sxxr/?components=true",
+      "lastAccessAttemptAt": "2026-10-29T17:37:18.505576+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://stoxx.com/index/sxxr/?components=true",
+      "sha256": "71d4cd9e02d1443b547ecfa3019a4e3981571f878587917d6dcb8583382f3baf",
+      "bytes": 115147,
+      "lastAccessibleAt": "2026-10-29T17:37:18.505576+00:00",
+      "primarySourceUrl": "https://stoxx.com/index/sxxr/?components=true",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://stoxx.com/index/sxxr/?components=true",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://stoxx.com/index/sxxr/?data=true",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
+    },
+    "FR0011869304:completeHoldings": {
+      "prerequisite": "economic-index-holdings-required",
+      "sourceUrl": "https://www.lseg.com/en/ftse-russell/indices/epra-nareit",
+      "lastAccessAttemptAt": "2026-10-29T17:37:18.505576+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.lseg.com/en/ftse-russell/indices/epra-nareit",
+      "sha256": "4e98e2d9bba151574b5eed3af1838a2ba5b11d158cea9c70cd59a620dff390d8",
+      "bytes": 280547,
+      "lastAccessibleAt": "2026-10-29T17:37:18.505576+00:00",
+      "primarySourceUrl": "https://www.lseg.com/en/ftse-russell/indices/epra-nareit",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.lseg.com/en/ftse-russell/indices/epra-nareit",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.epra.com/research/monthly-reports",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
+    },
+    "FR0011871110:completeHoldings": {
+      "prerequisite": "economic-index-holdings-required",
+      "sourceUrl": "https://indexes.nasdaqomx.com/Index/Weighting/NDX",
+      "lastAccessAttemptAt": "2026-10-29T17:37:18.505576+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://indexes.nasdaqomx.com/Index/Weighting/NDX",
+      "sha256": "fae2498e6ac4de6280428d98b55d1d4fd2fae6381a6e74967854ebd3e853d3fa",
+      "bytes": 55604,
+      "lastAccessibleAt": "2026-10-29T17:37:18.505576+00:00",
+      "primarySourceUrl": "https://indexes.nasdaqomx.com/Index/Weighting/NDX",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://indexes.nasdaqomx.com/Index/Weighting/NDX",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
+    }
+  }
+}

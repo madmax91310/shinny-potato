@@ -424,7 +424,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_regional_routes.py'
       - run: python -m unittest discover -s scripts -p 'test_independent_portfolio_identities.py'
       - run: node scripts/test-issuer-product-routes.mjs
-      - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py'
+      - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py' && python -m unittest discover -s scripts -p 'test_security_residual_identities.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_identity_isolation.py'
       - run: python -m unittest discover -s scripts -p 'test_lg_discovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_topix_holdings.py'

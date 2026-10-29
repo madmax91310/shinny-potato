@@ -1,0 +1,38 @@
+{
+  "scenario": "controlled single identity-book outage, real issuer portfolio and remaining identity sources",
+  "asOf": "2026-10-23",
+  "rows": 111,
+  "identifiedWeightPct": 100.0004,
+  "identitySourceFailures": [
+    {
+      "isin": "IE00B3YLTY66",
+      "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyi-gy.xlsx",
+      "error": "Controlled outage for isolation recipe"
+    }
+  ],
+  "identityAsOfDates": [
+    "2026-10-28",
+    "2026-10-28",
+    "2026-10-28",
+    "2026-10-28",
+    "2026-10-28",
+    "2026-10-28",
+    "2026-10-28",
+    "2026-10-28",
+    "2026-10-28",
+    "2026-10-28",
+    "2026-10-28",
+    "2026-10-28",
+    "2026-10-28",
+    "2026-10-28",
+    "2026-10-28",
+    "2026-10-28",
+    "2026-10-23",
+    "2026-10-28",
+    "2026-10-23",
+    "2026-10-23",
+    "2026-10-23",
+    "2026-10-23",
+    "2026-10-23"
+  ]
+}

@@ -6,6 +6,13 @@ on:
   push:
     branches: [master]
     paths:
+      - 'scripts/test_security_residual_identities.py'
+      - 'scripts/test_wisdomtree_identity_isolation.py'
+      - 'scripts/fixtures/security-residual-identities.json.gz'
+      - 'scripts/holdings_reconciliation.py'
+      - 'scripts/test_dca_nav_reconciliation.py'
+      - 'scripts/native-index-source-candidates.json'
+      - 'scripts/lib/native-index-source-candidates.mjs'
       - 'scripts/collect_dca_complete_holdings.py'
       - 'scripts/collect_physical_holdings.py'
       - 'scripts/collect_wisdomtree_holdings.py'
@@ -52,6 +59,13 @@ on:
       - 'scripts/collect_vanguard_sleeves.py'
       - 'scripts/derive-exposure-sleeves.mjs'
       - 'scripts/dca-equity-identities.json'
+      - 'scripts/test_security_residual_identities.py'
+      - 'scripts/test_wisdomtree_identity_isolation.py'
+      - 'scripts/fixtures/security-residual-identities.json.gz'
+      - 'scripts/holdings_reconciliation.py'
+      - 'scripts/test_dca_nav_reconciliation.py'
+      - 'scripts/native-index-source-candidates.json'
+      - 'scripts/lib/native-index-source-candidates.mjs'
       - 'scripts/collect_dca_complete_holdings.py'
       - 'scripts/collect_physical_holdings.py'
       - 'scripts/collect_wisdomtree_holdings.py'
@@ -134,7 +148,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_regional_routes.py'
       - run: python -m unittest discover -s scripts -p 'test_independent_portfolio_identities.py'
       - run: node scripts/test-issuer-product-routes.mjs
-      - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py'
+      - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py' && python -m unittest discover -s scripts -p 'test_security_residual_identities.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_identity_isolation.py'
       - name: Validate public holdings API identities and complete weights
         run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_complete_api.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_public_rankings.py' && python -m unittest discover -s scripts -p 'test_dca_holdings_retention.py'
       - name: Validate exact native-index and dated-identity contracts

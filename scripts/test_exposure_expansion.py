@@ -8,6 +8,30 @@ from collect_dws_etf import parse_holdings
 from collect_invesco_allocations import parse_allocations
 
 class Expansion(unittest.TestCase):
+    def test_german_other_is_explicit_and_keeps_raw_weights_and_dates(self):
+        from collect_ishares_german import normalize
+        body={'productId':251931,'currencyCode':'EUR','componentsByNameMap':{
+            'keyFundFacts':{'containersByNameMap':{'default':{'dataPointsByNameMap':{
+                'isin':{'value':'DE0002635307'},'useOfProfitsCode':{'value':'ausschüttend'}}}}},
+            'exposureBreakdowns':{'containersByNameMap':{
+                'sector':{'asOfDate':20261028,'dataPointsByNameMap':{
+                    'type':{'value':['Industrie','Sonstige']},'weight':{'value':[17.23,0.01]}}},
+                'geography':{'subContainersByNameMap':{'countries':{'dataPointsByNameMap':{
+                    'type':{'value':['Deutschland']},'weight':{'value':[12.34]}}}}}}},
+            'holdings':{'containersByNameMap':{'all':{'dataPointsByNameMap':{
+                'countryOfRisk':{'value':['Deutschland']},'assetClass':{'value':['Aktien']}}}}}}}
+        original=copy.deepcopy(body)
+        result=normalize(body)
+        sector=result['componentsByNameMap']['exposureBreakdowns']['containersByNameMap']['sector']
+        self.assertEqual(sector['dataPointsByNameMap']['type']['value'],['Industrials','Other'])
+        self.assertEqual(sector['dataPointsByNameMap']['weight']['value'],[17.23,0.01])
+        self.assertEqual(sector['asOfDate'],20261028)
+        self.assertEqual(body,original,'Issuer proof is never rewritten')
+        body['componentsByNameMap']['exposureBreakdowns']['containersByNameMap']['sector']['dataPointsByNameMap']['type']['value']=['New unknown sector']
+        with self.assertRaises(KeyError):normalize(body)
+        body=copy.deepcopy(original);body['productId']=123
+        with self.assertRaises(ValueError):normalize(body)
+
     def test_wrong_share_and_incomplete_exposure_rejected(self):
         s={'isin':'IE00B3RBWM25'}
         with self.assertRaises(ValueError):qualify({'isin':'IE00BK5BQT80'},s)

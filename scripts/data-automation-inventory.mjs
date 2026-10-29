@@ -1,4 +1,5 @@
 import {sourceConditions} from './lib/source-conditions.mjs'
+import {connectNativeIndexCandidates} from './lib/native-index-source-candidates.mjs'
 import DYNAMIC from '../src/data/dynamic-data-consumers.json' with {type:'json'}
 import { readFileSync, readdirSync, mkdirSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve, relative, dirname } from 'node:path'
@@ -132,7 +133,7 @@ export function buildDataAutomationInventory(){
    missingReason:field.qualificationMissing||null,
    action:nature.kind==='archive'?nature.reason:nature.kind==='simulation'||nature.kind==='editorial'?nature.reason:evidence.sourceStatus==='archive-unverifiable'?'Archive non recertifiable conservée avec sa qualification ; ne pas l’utiliser comme observation actuelle.':!evidence.sourceUrls?.length?'Compléter la provenance ou confirmer le statut éditorial/archive.':!evidence.checkedAt?'Qualifier la date de contrôle ; la génération du rapport ne renouvelle pas la preuve.':registry?.mode==='manual-or-editorial'?'Qualifier la mise à jour manuelle et séparer rédaction, hypothèses et chiffres vivants.':'Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.'}
  }))
- const connections=coverage.rows.map(row=>qualifyCoverage(row,{record:AUTOMATED_ETF[row.id],holdingStatus:row.field==='completeHoldings'?holdingsStatus[row.id]:null,holdingSource:row.field==='completeHoldings'?holdingSources[row.id]:null,metadataStatus:attempts[row.id]}))
+ const connections=coverage.rows.map(row=>connectNativeIndexCandidates(qualifyCoverage(row,{record:AUTOMATED_ETF[row.id],holdingStatus:row.field==='completeHoldings'?holdingsStatus[row.id]:null,holdingSource:row.field==='completeHoldings'?holdingSources[row.id]:null,metadataStatus:attempts[row.id]})))
  for(const f of fields.filter(f=>f.requiresConnection))connections.push({type:f.type,id:f.id,name:f.name,field:`catalog:${f.field}`,label:f.field,observationState:'manual',actionState:'connector-needed',requiresAction:true,priority:2,sourceUrl:f.sourceUrls[0]??null,configuredSourceUrls:f.sourceUrls,checkedAt:f.checkedAt,lastSuccessAt:null,lastAttemptAt:null,tools:f.consumers.map(c=>c.path),reason:f.missingReason??f.nature.reason,nextAction:f.type==='instrument'?'Recollecter la table liée à la part exacte, qualifier la période et brancher sa valeur au registre commun.':'Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.'})
  const accessPath='public/data/pending-source-checks.json'
  const access=existsSync(resolve(ROOT,accessPath))?JSON.parse(read(accessPath)):null
