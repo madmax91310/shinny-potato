@@ -44,3 +44,14 @@ Master `51fe4c2`, dont #1057, intégré sans conflit ; build de l’arbre combin
 Le passage PR40965305863 sur le cache complet refuse correctement deux régressions de date : l’API précise n’est pas acquise depuis GitHub, et le secours23octobre ne remplace pas les livres28octobre. Le transport navigateur passe désormais par le client public de la même fiche exacte, puis contrôle sa réponse API ; ni authentification ni résolution de challenge. Acquisition locale réelle du client public GGRA : mêmes169805octets et mêmeSHA256 que le fichier natif. Les diagnostics de régression conservent les tentatives d’accès, pour ne plus masquer une panne primaire derrière le seul libelléDateRegression.
 
 Fusion, déploiement, passage automatique final et recette publique ne sont pas encore revendiqués dans cette version datée du rapport.
+
+
+## Qualification distante finale : blocage conservé
+
+Les trois environnements GitHub testés refusent les mêmes accès publics WisdomTree par HTTP403 : Ubuntu24.04 x64 (run40966893268), macOS15 ARM64 (run40967996438, job123777287958), Ubuntu24.04 ARM64 (run40968365058, job123778534671). API et fiches produits publiques sont toutes refusées. Le client navigateur ordinaire échoue aussi ; aucune résolution de challenge ni authentification n’est utilisée. Les deux qualifications de runtime ciblées réemploient le même producteur, sans écriture ; leurs reçus sont joints. Les jobs expérimentaux ne restent pas dans le workflow final, qui conserve son environnement et sa chaîne habituels. Les anomalies demeurent visibles dans la collecte ordinaire, avec la dernière observation valide conservée.
+
+Les550identités sont qualifiées sur les acquisitions locales réelles. Leur collecte précise **n’est pas déclarée opérationnelle depuis GitHub**. Un accès de production autorisé et durable est nécessaire ; question envoyée à l’utilisateur, réponse non reçue à ce relevé. Les derniers refus ne réécrivent ni date financière ni date du succès précédent.
+
+Le rapport EPRA public `https://crm.epra.com/media/MMR%20September.pdf`, réellement lu, porte notamment sur le Developers Benchmark, distinct du FTSE EPRA Nareit Developed Europe ; ses poids ne sont pas utilisés comme substitution. Les anciennes routes publiques STOXX de composants testées répondent404. Aucun de ces essais ne justifie une composition intégrale.
+
+Les rapports et projections régénérés sont retirés du diff de PR conformément àCLAUDE.md : leurs générateurs existants les reconstruisent depuis les registres qualifiés au build. Le rapprochement avec masterf220bc7 conserve toutes les autres observations automatiques ; seuls les deux livres natifs plus récents sont retenus, aux dates d’origine. Aucun incident de suivi n’est déclaré résolu sur les seules preuves locales.

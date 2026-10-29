@@ -252,7 +252,7 @@
             "end": "2026-09",
             "sourceUrls": [
               "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download?startDate=2015-06-26&endDate=2026-10-29&includeTax=false",
+              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download?startDate=2015-06-26&endDate=2026-10-26&includeTax=false",
               "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
             ],
             "qualification": {
@@ -915,24 +915,6 @@
               "code": "financial-window-unconfirmed",
               "reason": "WCLD.L : rapprochement financier non résolu (2019-12 → 2020-12)."
             }
-          },
-          {
-            "id": "etfCloudWisdomtreeNav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2019-09",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2019-12",
-              "end": "2020-12"
-            }
           }
         ],
         "annualNav": {
@@ -943,9 +925,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72"
           ]
         },
-        "route": "etfCloudWisdomtreeNav · USD · fund-nav-total-return",
+        "route": "annual-IE00BJGWQN72 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2020 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2020 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72"
@@ -1010,24 +992,6 @@
               "code": "financial-window-unconfirmed",
               "reason": "WCLD.L : rapprochement financier non résolu (2022-12 → 2023-12)."
             }
-          },
-          {
-            "id": "etfCloudWisdomtreeNav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2019-09",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2022-12",
-              "end": "2023-12"
-            }
           }
         ],
         "annualNav": {
@@ -1038,9 +1002,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72"
           ]
         },
-        "route": "etfCloudWisdomtreeNav · USD · fund-nav-total-return",
+        "route": "annual-IE00BJGWQN72 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2023 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2023 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72"
@@ -1105,24 +1069,6 @@
               "code": "financial-window-unconfirmed",
               "reason": "AIAI.L : rapprochement financier non résolu (2022-12 → 2023-12)."
             }
-          },
-          {
-            "id": "etfIE00BK5BCD43Nav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2019-07",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-              "https://fundcentres.landg.com/en/uk/institutional/fund-centre/ETF/Artificial-Intelligence/IE00BK5BCD43/",
-              "https://fundcentres.landg.com/srp/api/price-history/4516?pricetype_id=84&pricetype_id=87"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2022-12",
-              "end": "2023-12"
-            }
           }
         ],
         "annualNav": {
@@ -1133,9 +1079,9 @@
             "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1"
           ]
         },
-        "route": "etfIE00BK5BCD43Nav · USD · fund-nav-total-return",
+        "route": "annual-IE00BK5BCD43 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2023 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2023 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1"
@@ -1751,25 +1697,6 @@
               "code": "financial-window-unconfirmed",
               "reason": "ABTC.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
             }
-          },
-          {
-            "id": "etfCH0454664001Nav",
-            "currency": "EUR",
-            "convention": "fund-nav-total-return",
-            "start": "2019-03",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://api.primary.21shares.com/api/product_details/ABTC",
-              "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
-              "https://api.primary.21shares.com/api/product_performance_metrics/ABTC",
-              "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2023-12",
-              "end": "2024-12"
-            }
           }
         ],
         "annualNav": {
@@ -1780,9 +1707,9 @@
             "https://api.primary.21shares.com/api/product_valuation_history/ABTC"
           ]
         },
-        "route": "etfCH0454664001Nav · EUR · fund-nav-total-return",
+        "route": "annual-CH0454664001 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2024 (EUR), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2024 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://api.primary.21shares.com/api/product_valuation_history/ABTC"
@@ -1847,25 +1774,6 @@
               "code": "financial-window-unconfirmed",
               "reason": "ABTC.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
             }
-          },
-          {
-            "id": "etfCH0454664001Nav",
-            "currency": "EUR",
-            "convention": "fund-nav-total-return",
-            "start": "2019-03",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://api.primary.21shares.com/api/product_details/ABTC",
-              "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
-              "https://api.primary.21shares.com/api/product_performance_metrics/ABTC",
-              "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2024-12",
-              "end": "2025-12"
-            }
           }
         ],
         "annualNav": {
@@ -1876,9 +1784,9 @@
             "https://api.primary.21shares.com/api/product_valuation_history/ABTC"
           ]
         },
-        "route": "etfCH0454664001Nav · EUR · fund-nav-total-return",
+        "route": "annual-CH0454664001 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2025 (EUR), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2025 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://api.primary.21shares.com/api/product_valuation_history/ABTC"
@@ -2138,24 +2046,6 @@
               "code": "financial-window-unconfirmed",
               "reason": "RENW.MI : rapprochement financier non résolu (2024-12 → 2025-12)."
             }
-          },
-          {
-            "id": "etfIE00BK5BCH80Nav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2020-11",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-              "https://fundcentres.landg.com/en/uk/institutional/fund-centre/ETF/Clean-Energy/IE00BK5BCH80/",
-              "https://fundcentres.landg.com/srp/api/price-history/5185?pricetype_id=84&pricetype_id=87"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2024-12",
-              "end": "2025-12"
-            }
           }
         ],
         "annualNav": {
@@ -2166,9 +2056,9 @@
             "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1"
           ]
         },
-        "route": "etfIE00BK5BCH80Nav · USD · fund-nav-total-return",
+        "route": "annual-IE00BK5BCH80 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2025 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2025 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1"
@@ -2233,22 +2123,6 @@
               "code": "financial-window-unconfirmed",
               "reason": "10AJ.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
             }
-          },
-          {
-            "id": "etfLU1737652823Nav",
-            "currency": "EUR",
-            "convention": "fund-nav-total-return",
-            "start": "2019-01",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2023-12",
-              "end": "2024-12"
-            }
           }
         ],
         "annualNav": {
@@ -2259,9 +2133,9 @@
             "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
           ]
         },
-        "route": "etfLU1737652823Nav · EUR · fund-nav-total-return",
+        "route": "annual-LU1737652823 · EUR · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2024 (EUR), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2024 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -4968,24 +4842,6 @@
               "code": "financial-window-unconfirmed",
               "reason": "COPA.L : rapprochement financier non résolu (2017-12 → 2018-12)."
             }
-          },
-          {
-            "id": "etfGB00B15KXQ89Nav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2015-01",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2017-12",
-              "end": "2018-12"
-            }
           }
         ],
         "annualNav": {
@@ -4996,9 +4852,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
           ]
         },
-        "route": "etfGB00B15KXQ89Nav · USD · fund-nav-total-return",
+        "route": "annual-GB00B15KXQ89 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2018 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2018 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
@@ -5063,24 +4919,6 @@
               "code": "financial-window-unconfirmed",
               "reason": "COPA.L : rapprochement financier non résolu (2018-12 → 2019-12)."
             }
-          },
-          {
-            "id": "etfGB00B15KXQ89Nav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2015-01",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2018-12",
-              "end": "2019-12"
-            }
           }
         ],
         "annualNav": {
@@ -5091,9 +4929,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
           ]
         },
-        "route": "etfGB00B15KXQ89Nav · USD · fund-nav-total-return",
+        "route": "annual-GB00B15KXQ89 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2019 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2019 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
@@ -5158,24 +4996,6 @@
               "code": "financial-window-unconfirmed",
               "reason": "WTAI.L : rapprochement financier non résolu (2018-12 → 2019-12)."
             }
-          },
-          {
-            "id": "etfIE00BDVPNG13Nav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2018-12",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WTAI&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WTAI&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2018-12",
-              "end": "2019-12"
-            }
           }
         ],
         "annualNav": {
@@ -5186,9 +5006,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13"
           ]
         },
-        "route": "etfIE00BDVPNG13Nav · USD · fund-nav-total-return",
+        "route": "annual-IE00BDVPNG13 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2019 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2019 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13"
@@ -5253,24 +5073,6 @@
               "code": "financial-window-unconfirmed",
               "reason": "WTAI.L : rapprochement financier non résolu (2022-12 → 2023-12)."
             }
-          },
-          {
-            "id": "etfIE00BDVPNG13Nav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2018-12",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WTAI&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WTAI&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2022-12",
-              "end": "2023-12"
-            }
           }
         ],
         "annualNav": {
@@ -5281,9 +5083,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13"
           ]
         },
-        "route": "etfIE00BDVPNG13Nav · USD · fund-nav-total-return",
+        "route": "annual-IE00BDVPNG13 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2023 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2023 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13"
@@ -5426,24 +5228,6 @@
               "code": "financial-window-unconfirmed",
               "reason": "XDJE.DE : rapprochement financier non résolu (2018-12 → 2019-12)."
             }
-          },
-          {
-            "id": "etfLU1875395870Nav",
-            "currency": "EUR",
-            "convention": "fund-nav-total-return",
-            "start": "2018-12",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/pdpMetaTagsTealium",
-              "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/historicaldata/download?startDate=2018-11-06&endDate=2026-10-29&includeTax=false",
-              "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870-nikkei-225-ucits-etf-2d-eur-hedged/performancechart"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2018-12",
-              "end": "2019-12"
-            }
           }
         ],
         "annualNav": {
@@ -5454,9 +5238,9 @@
             "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium"
           ]
         },
-        "route": "etfLU1875395870Nav · EUR · fund-nav-total-return",
+        "route": "annual-LU1875395870 · EUR · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2019 (EUR), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2019 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium"
@@ -5530,7 +5314,7 @@
             "end": "2026-09",
             "sourceUrls": [
               "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
-              "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download?startDate=2020-10-27&endDate=2026-10-29&includeTax=false",
+              "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download?startDate=2020-10-27&endDate=2026-10-26&includeTax=false",
               "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
             ],
             "qualification": {
@@ -5616,24 +5400,6 @@
               "code": "financial-window-unconfirmed",
               "reason": "ESE.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
             }
-          },
-          {
-            "id": "etfFR0011550185Nav",
-            "currency": "EUR",
-            "convention": "fund-nav-total-return",
-            "start": "2019-12",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://api.bnpparibas-am.com/push/fundsheet/IP_FR-IND/FRE/FRA/FR0011550185",
-              "https://api.bnpparibas-am.com/push-raw/navs/fast?currency=EUR&product_gids=FR0011550185&granularity=day",
-              "https://api.bnpparibas-am.com/push-raw/navs/fast?currency=EUR&product_gids=FR0011550185&granularity=month"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2020-12",
-              "end": "2021-12"
-            }
           }
         ],
         "annualNav": {
@@ -5644,9 +5410,9 @@
             "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30"
           ]
         },
-        "route": "etfFR0011550185Nav · EUR · fund-nav-total-return",
+        "route": "annual-FR0011550185 · EUR · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2021 (EUR), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2021 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30"
@@ -5853,24 +5619,6 @@
         },
         "windows": [
           {
-            "id": "etc_brent_crude_oilNav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2020-12",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2020-12",
-              "end": "2021-12"
-            }
-          },
-          {
             "id": "etc_brent_crude_oil",
             "currency": "USD",
             "convention": "adjusted",
@@ -5895,9 +5643,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
           ]
         },
-        "route": "etc_brent_crude_oilNav · USD · fund-nav-total-return",
+        "route": "annual-JE00B78CGV99 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2021 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2021 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
@@ -5948,24 +5696,6 @@
         },
         "windows": [
           {
-            "id": "etc_brent_crude_oilNav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2020-12",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2021-12",
-              "end": "2022-12"
-            }
-          },
-          {
             "id": "etc_brent_crude_oil",
             "currency": "USD",
             "convention": "adjusted",
@@ -5990,9 +5720,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
           ]
         },
-        "route": "etc_brent_crude_oilNav · USD · fund-nav-total-return",
+        "route": "annual-JE00B78CGV99 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2022 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2022 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
@@ -6043,24 +5773,6 @@
         },
         "windows": [
           {
-            "id": "etc_brent_crude_oilNav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2020-12",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2022-12",
-              "end": "2023-12"
-            }
-          },
-          {
             "id": "etc_brent_crude_oil",
             "currency": "USD",
             "convention": "adjusted",
@@ -6085,9 +5797,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
           ]
         },
-        "route": "etc_brent_crude_oilNav · USD · fund-nav-total-return",
+        "route": "annual-JE00B78CGV99 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2023 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2023 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
@@ -6138,24 +5850,6 @@
         },
         "windows": [
           {
-            "id": "etc_wti_crude_oilNav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2020-12",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2020-12",
-              "end": "2021-12"
-            }
-          },
-          {
             "id": "etc_wti_crude_oil",
             "currency": "USD",
             "convention": "adjusted",
@@ -6180,9 +5874,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
           ]
         },
-        "route": "etc_wti_crude_oilNav · USD · fund-nav-total-return",
+        "route": "annual-GB00B15KXV33 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2021 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2021 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
@@ -6233,24 +5927,6 @@
         },
         "windows": [
           {
-            "id": "etc_wti_crude_oilNav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2020-12",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2021-12",
-              "end": "2022-12"
-            }
-          },
-          {
             "id": "etc_wti_crude_oil",
             "currency": "USD",
             "convention": "adjusted",
@@ -6275,9 +5951,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
           ]
         },
-        "route": "etc_wti_crude_oilNav · USD · fund-nav-total-return",
+        "route": "annual-GB00B15KXV33 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2022 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2022 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
@@ -6328,24 +6004,6 @@
         },
         "windows": [
           {
-            "id": "etc_wti_crude_oilNav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2020-12",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2022-12",
-              "end": "2023-12"
-            }
-          },
-          {
             "id": "etc_wti_crude_oil",
             "currency": "USD",
             "convention": "adjusted",
@@ -6370,9 +6028,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
           ]
         },
-        "route": "etc_wti_crude_oilNav · USD · fund-nav-total-return",
+        "route": "annual-GB00B15KXV33 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2023 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2023 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
@@ -6423,24 +6081,6 @@
         },
         "windows": [
           {
-            "id": "etc_natural_gasNav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2021-12",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2021-12",
-              "end": "2022-12"
-            }
-          },
-          {
             "id": "etc_natural_gas",
             "currency": "USD",
             "convention": "adjusted",
@@ -6465,9 +6105,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
           ]
         },
-        "route": "etc_natural_gasNav · USD · fund-nav-total-return",
+        "route": "annual-JE00BN7KB334 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2022 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2022 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
@@ -6518,24 +6158,6 @@
         },
         "windows": [
           {
-            "id": "etc_coffeeNav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2021-12",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2021-12",
-              "end": "2022-12"
-            }
-          },
-          {
             "id": "etc_coffee",
             "currency": "USD",
             "convention": "adjusted",
@@ -6560,9 +6182,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
           ]
         },
-        "route": "etc_coffeeNav · USD · fund-nav-total-return",
+        "route": "annual-JE00BN7KB557 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2022 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2022 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
@@ -6613,24 +6235,6 @@
         },
         "windows": [
           {
-            "id": "etc_coffeeNav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2021-12",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2023-12",
-              "end": "2024-12"
-            }
-          },
-          {
             "id": "etc_coffee",
             "currency": "USD",
             "convention": "adjusted",
@@ -6655,9 +6259,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
           ]
         },
-        "route": "etc_coffeeNav · USD · fund-nav-total-return",
+        "route": "annual-JE00BN7KB557 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2024 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2024 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
@@ -6708,24 +6312,6 @@
         },
         "windows": [
           {
-            "id": "etc_coffeeNav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2021-12",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2024-12",
-              "end": "2025-12"
-            }
-          },
-          {
             "id": "etc_coffee",
             "currency": "USD",
             "convention": "adjusted",
@@ -6750,9 +6336,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
           ]
         },
-        "route": "etc_coffeeNav · USD · fund-nav-total-return",
+        "route": "annual-JE00BN7KB557 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2025 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2025 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
@@ -6803,24 +6389,6 @@
         },
         "windows": [
           {
-            "id": "etc_cocoaNav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2015-01",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2022-12",
-              "end": "2023-12"
-            }
-          },
-          {
             "id": "etc_cocoa",
             "currency": "USD",
             "convention": "adjusted",
@@ -6845,9 +6413,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10"
           ]
         },
-        "route": "etc_cocoaNav · USD · fund-nav-total-return",
+        "route": "annual-JE00B2QXZK10 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2023 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2023 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10"
@@ -6898,24 +6466,6 @@
         },
         "windows": [
           {
-            "id": "etc_cocoaNav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2015-01",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2023-12",
-              "end": "2024-12"
-            }
-          },
-          {
             "id": "etc_cocoa",
             "currency": "USD",
             "convention": "adjusted",
@@ -6940,9 +6490,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10"
           ]
         },
-        "route": "etc_cocoaNav · USD · fund-nav-total-return",
+        "route": "annual-JE00B2QXZK10 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2024 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2024 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10"
@@ -6993,24 +6543,6 @@
         },
         "windows": [
           {
-            "id": "etc_wheatNav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2021-12",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WEAT&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WEAT&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2021-12",
-              "end": "2022-12"
-            }
-          },
-          {
             "id": "etc_wheat",
             "currency": "USD",
             "convention": "adjusted",
@@ -7035,9 +6567,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664"
           ]
         },
-        "route": "etc_wheatNav · USD · fund-nav-total-return",
+        "route": "annual-JE00BN7KB664 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2022 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2022 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664"
@@ -7088,24 +6620,6 @@
         },
         "windows": [
           {
-            "id": "etc_wheatNav",
-            "currency": "USD",
-            "convention": "fund-nav-total-return",
-            "start": "2021-12",
-            "end": "2026-09",
-            "sourceUrls": [
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WEAT&mode=gro10k",
-              "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WEAT&mode=tabular",
-              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664"
-            ],
-            "qualification": {
-              "qualified": true,
-              "convention": "fund-nav-total-return",
-              "start": "2022-12",
-              "end": "2023-12"
-            }
-          },
-          {
             "id": "etc_wheat",
             "currency": "USD",
             "convention": "adjusted",
@@ -7130,9 +6644,9 @@
             "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664"
           ]
         },
-        "route": "etc_wheatNav · USD · fund-nav-total-return",
+        "route": "annual-JE00BN7KB664 · USD · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "NAV indépendante qualifiée pour 2023 (USD), sans attribuer la divergence de cotation initiale."
+        "secured": "Fenêtre de cotation contestée refusée pour 2023 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664"
