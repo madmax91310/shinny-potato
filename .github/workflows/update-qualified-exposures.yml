@@ -6,6 +6,10 @@ on:
   push:
     branches: [master]
     paths:
+      - 'scripts/holdings_reconciliation.py'
+      - 'scripts/test_dca_nav_reconciliation.py'
+      - 'scripts/native-index-source-candidates.json'
+      - 'scripts/lib/native-index-source-candidates.mjs'
       - 'scripts/collect_dca_complete_holdings.py'
       - 'scripts/collect_physical_holdings.py'
       - 'scripts/collect_wisdomtree_holdings.py'
@@ -52,6 +56,10 @@ on:
       - 'scripts/collect_vanguard_sleeves.py'
       - 'scripts/derive-exposure-sleeves.mjs'
       - 'scripts/dca-equity-identities.json'
+      - 'scripts/holdings_reconciliation.py'
+      - 'scripts/test_dca_nav_reconciliation.py'
+      - 'scripts/native-index-source-candidates.json'
+      - 'scripts/lib/native-index-source-candidates.mjs'
       - 'scripts/collect_dca_complete_holdings.py'
       - 'scripts/collect_physical_holdings.py'
       - 'scripts/collect_wisdomtree_holdings.py'

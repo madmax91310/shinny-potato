@@ -168,14 +168,35 @@ def collect_rankings(share,now):
           identityCheckedAt={key:value['checkedAt']for key,value in evidence.items()},identityMethod='Exact SEDOL to ISIN; identity-source weights never imported',
           identityQualification='Independent common FIGI proofs under the existing static-identity freshness policy; portfolio date unchanged',
           sourceUrls=[share['sourceUrl'],*proofs],accessAttempts=[*attempts,{'sourceUrl':share['sourceUrl'],'status':'validated-public-portfolio'}])
-    mapping,dates,proofs=complete_identity_mapping(now)
+    snapshot=complete_identity_mapping(now)
+    mapping,dates,proofs=snapshot
     rows,stamp=parse(page,share,now,mapping,dates)
     return observation(rows,stamp,share['sourceUrl'],page,identitySourceHashes=proofs,identityAsOfDates=dates,
       accessAttempts=[*attempts,{'sourceUrl':share['sourceUrl'],'status':'validated-public-portfolio'}],
-      sourceUrls=[share['sourceUrl'],*proofs],identityMethod='Exact SEDOL to ISIN; identity-source weights never imported')
+      sourceUrls=[share['sourceUrl'],*proofs],identityMethod='Exact SEDOL to ISIN; identity-source weights never imported',
+      **({'identitySourceFailures':snapshot.source_failures}if getattr(snapshot,'source_failures',[])else{}))
 
 
 _IDENTITY_SNAPSHOT_LOCK=threading.Lock()
+
+class IdentitySnapshot(tuple):
+    def __new__(cls, values, failures):
+        result=super().__new__(cls,values)
+        result.source_failures=failures
+        return result
+
+def qualified_identity_books(now):
+    mapping={};dates=[];proofs={};failures=[]
+    for expected,url in IDENTITIES:
+        try:
+            raw=identity_document(url);values,stamp=identities(raw,expected,now)
+        except Exception as error:
+            failures.append({'isin':expected,'sourceUrl':url,'error':str(error)[:350]})
+            continue
+        # Two valid but contradictory identifiers must still fail closed.
+        if any(k in mapping and mapping[k]!=v for k,v in values.items()):raise ValueError('Contradictory identity sources')
+        mapping.update(values);dates.append(stamp);proofs[url]=hashlib.sha256(raw).hexdigest()
+    return mapping,dates,proofs,failures
 
 def complete_identity_mapping(now):
     # lru_cache alone allows concurrent misses to repeat all issuer downloads.
@@ -183,11 +204,7 @@ def complete_identity_mapping(now):
 
 @lru_cache(maxsize=2)
 def _cached_identity_mapping(now):
-    mapping={};dates=[];proofs={}
-    for expected,url in IDENTITIES:
-        raw=identity_document(url);values,stamp=identities(raw,expected,now)
-        if any(k in mapping and mapping[k]!=v for k,v in values.items()):raise ValueError('Contradictory identity sources')
-        mapping.update(values);dates.append(stamp);proofs[url]=hashlib.sha256(raw).hexdigest()
+    mapping,dates,proofs,failures=qualified_identity_books(now)
     retained=json.loads((Path(__file__).resolve().parents[1]/'src/data/dca-complete-holdings.json').read_text())
     from security_identifier_observations import mappings,retained_identity_pairs
     for record in retained.values():
@@ -204,7 +221,7 @@ def _cached_identity_mapping(now):
         if key in mapping and mapping[key]!=value:raise ValueError('Conflicting qualified identifier crosswalk')
         mapping[key]=value
     proofs.update(identifier_proofs)
-    return mapping,dates,proofs
+    return IdentitySnapshot((mapping,dates,proofs),failures)
 
 
 def parse_public_rankings(payload,share,now,mapping,listing_ticker=None,*,require_identity=True):
@@ -311,7 +328,8 @@ def public_identity_candidates(share,now,fetch=download):
 def collect_public_rankings(share,now,fetch=download):
     from collect_physical_holdings import observation
     raw,url,identity,listing,attempts=acquire_qualified_public_rankings(share,now,fetch)
-    mapping,dates,proofs=complete_identity_mapping(now)
+    snapshot=complete_identity_mapping(now)
+    mapping,dates,proofs=snapshot
     rows,stamp=parse_public_rankings(json.loads(raw),share,now,mapping,listing['ticker'])
     # Mapping dates stay distinct from portfolio dates, under the same existing
     # identity compatibility window used by the SSR collector.
@@ -327,4 +345,5 @@ def collect_public_rankings(share,now,fetch=download):
         coverageProof={'rankClassificationID':1,'rankClassification':'Fund','rowCount':len(rows),
             'publishedWeightPct':sum(r['weightPct']for r in rows),'otherRankingGroupsExcluded':True})
     result['method']='Complete issuer Fund ranking (rankClassificationID 1); original published pct weights, no renormalisation; sector/country/index groups excluded; identities independently matched by exact SEDOL; access listings are document-qualified routes for the same ISIN, no trading-currency conversion of fund weights'
+    if getattr(snapshot,'source_failures',[]):result['identitySourceFailures']=snapshot.source_failures
     return result
