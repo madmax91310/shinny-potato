@@ -1,7 +1,7 @@
-import { qualifiedNativeIndexComposition } from '../../data/native-index-composition.js'
+import { qualifyHoldings } from './holdings-qualification.js'
 import { aggregateCompanies } from '../../data/index-concentration-core.js'
 import COMPANY_IDENTITIES from '../../data/index-company-identities.json' with { type: 'json' }
-import { dcaExposure, exposureDisplay, EXPOSURE_MAX_AGE_DAYS, EXPOSURE_MAX_SPREAD_DAYS } from './exposure.js'
+import { dcaExposure, exposureDisplay, EXPOSURE_MAX_SPREAD_DAYS } from './exposure.js'
 export function catalogCoverage(references,now=new Date()){
  return Object.entries(references).map(([asset,r])=>{
   const line={asset,label:r.name,isin:r.isin,weight:100}
@@ -15,28 +15,30 @@ export function catalogCoverage(references,now=new Date()){
 // Exact security identifiers only. Top holdings are evidence of shared positions,
 // never a full-portfolio overlap score or a match based on company name.
 export function sharedPositions(lines,references,now=new Date(),observations={}){
- const today=Date.parse(new Date(now).toISOString().slice(0,10)),eligible=[],unavailable=[]
+ const eligible=[],unavailable=[],qualification=[],incompatiblePairs=[]
  for(const line of lines.filter(l=>l.weight>0).slice().sort((a,b)=>a.asset.localeCompare(b.asset))){
   const r=references[line.asset]
   if(r?.outsideClassification)continue // No company positions for bonds, cash, metals or crypto.
   const o=r?.countries||r?.sectors
-  const h=r?.kind==='equity'&&r.isin&&o?{asOf:o.asOf,sourceUrl:o.sourceUrl,basis:'equity',complete:true,rows:[{isin:r.isin,name:r.name,weightPct:100}]}:observations[line.asset],age=(today-Date.parse(h?.asOf))/86400000
-  const valid=(!(h?.basis==='index'&&h.complete===true)||qualifiedNativeIndexComposition(h,line.isin,now))&&line.isin===references[line.asset]?.isin&&h?.sourceUrl&&Number.isFinite(age)&&/^\d{4}-\d{2}-\d{2}$/.test(h.asOf)&&new Date(h.asOf).toISOString().slice(0,10)===h.asOf&&age>=0&&age<=EXPOSURE_MAX_AGE_DAYS&&['fund','index','equity'].includes(h.basis)&&!((h.synthetic||r?.synthetic)&&h.basis==='fund')&&h.rows?.length&&h.rows.every(r=>Number.isFinite(r.weightPct)&&r.weightPct>=0&&r.weightPct<=100)&&h.rows.reduce((s,r)=>s+r.weightPct,0)<=100.5
-  if(!valid){unavailable.push(line.label);continue}
+  const h=r?.kind==='equity'&&r.isin&&o?{asOf:o.asOf,sourceUrl:o.sourceUrl,basis:'equity',complete:true,rows:[{isin:r.isin,name:r.name,weightPct:100}]}:observations[line.asset]
+  const q=qualifyHoldings(h,line,r,now)
+  qualification.push({asset:line.asset,label:line.label,isin:line.isin,asOf:h?.asOf,sourceUrl:h?.sourceUrl,...q})
+  if(!q.valid){unavailable.push(line.label);continue}
   const rows=new Map()
   for(const row of h.rows.filter(r=>/^[A-Z]{2}[A-Z0-9]{9}[0-9]$/.test(r.isin||'')))rows.set(row.isin,{...row,weightPct:(rows.get(row.isin)?.weightPct||0)+row.weightPct})
   if([...rows.values()].some(row=>row.weightPct>100)){unavailable.push(line.label);continue}
-  eligible.push({line,h,rows})
+  eligible.push({line,h,rows,q})
  }
  // A shared gate for pair scores and concentration completeness. A complete
  // source file with unknown identifiers, excess weights or missing coverage is
  // still insufficient for a complete portfolio claim. Keep its real weights.
- const completeList=x=>x.h.complete===true&&x.h.approximation!==true&&x.h.rows.every(r=>x.rows.has(r.isin))
-  &&x.h.rows.reduce((s,r)=>s+r.weightPct,0)>=99.5&&x.h.rows.reduce((s,r)=>s+r.weightPct,0)<=100.00001
+ const completeList=x=>x.q.complete
  const pairs=[]
  for(let i=0;i<eligible.length;i++)for(let j=i+1;j<eligible.length;j++){
   const left=eligible[i],right=eligible[j]
-  if((left.h.basis!==right.h.basis&&left.h.basis!=='equity'&&right.h.basis!=='equity')||Math.abs(Date.parse(left.h.asOf)-Date.parse(right.h.asOf))/86400000>EXPOSURE_MAX_SPREAD_DAYS)continue
+  const basisMismatch=left.h.basis!==right.h.basis&&left.h.basis!=='equity'&&right.h.basis!=='equity'
+  const dateMismatch=Math.abs(Date.parse(left.h.asOf)-Date.parse(right.h.asOf))/86400000>EXPOSURE_MAX_SPREAD_DAYS
+  if(basisMismatch||dateMismatch){incompatiblePairs.push({left:left.line.label,right:right.line.label,reasons:[...(basisMismatch?['Détentions du fonds et exposition d’indice : périmètres distincts.']:[]),...(dateMismatch?['Dates de photographie trop éloignées.']:[])]});continue}
   const common=[...left.rows].filter(([isin])=>right.rows.has(isin)).map(([isin,l])=>({isin,name:l.name,leftWeight:l.weightPct,rightWeight:right.rows.get(isin).weightPct,portfolioWeight:(left.line.weight*l.weightPct+right.line.weight*right.rows.get(isin).weightPct)/100})).sort((a,b)=>b.portfolioWeight-a.portfolioWeight)
   const companies = [left,right].map(item => new Map(aggregateCompanies([...item.rows.values()].map(row=>({...row,name:row.name?.trim()||row.isin})), COMPANY_IDENTITIES).map(row => [row.id,row])))
   const companyCommon = [...companies[0]].filter(([id]) => companies[1].has(id)).map(([id,row]) => ({
@@ -70,5 +72,5 @@ export function sharedPositions(lines,references,now=new Date(),observations={})
  // Keep unidentifiable scopes visible, after scopes with usable positions.
  // Their zero identified weight must not hide another scope's real holdings.
  totals.sort((a,b)=>Number(b.rows.length>0)-Number(a.rows.length>0))
- return {pairs,unavailable,totals}
+ return {pairs,unavailable,totals,qualification,incompatiblePairs}
 }

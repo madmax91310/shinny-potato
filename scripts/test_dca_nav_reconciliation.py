@@ -1,6 +1,7 @@
 import copy,unittest,gzip,json,hashlib,datetime as dt
 from pathlib import Path
-from collect_dca_complete_holdings import parse_complete
+from collect_dca_complete_holdings import parse_complete, collect_blackrock_complete
+from holdings_reconciliation import HoldingsPerimeterError
 from holdings_reconciliation import reconcile_positions
 import test_dca_complete_realestate as fixtures
 
@@ -32,6 +33,17 @@ class NavReconciliation(unittest.TestCase):
   b=self.fixture()
   with self.assertRaisesRegex(ValueError,r'100\.800000.*100\.5.*net NAV 100\.000000.*Forwards'):
    fixtures.CompleteRealEstate().parse(b)
+ def test_gross_net_diagnostic_binds_exact_source_hash_and_control_without_admission(self):
+  b=self.fixture();raw=json.dumps(b);now=dt.datetime(2026,10,16,tzinfo=dt.timezone.utc)
+  config={'isin':'IE00B0M63284','url':'https://www.blackrock.com/?portfolioId=251808','fundAssetClass':'Real Estate'}
+  with self.assertRaises(HoldingsPerimeterError) as caught:
+   collect_blackrock_complete(config,now,fetch=lambda *args:raw)
+  d=caught.exception.diagnostic
+  self.assertFalse(d['financialDataQualified']);self.assertEqual(d['subjectIsin'],config['isin'])
+  self.assertEqual(d['asOf'],'2026-10-15');self.assertEqual(d['checkedAt'],now.isoformat())
+  self.assertEqual(d['sha256'],hashlib.sha256(raw.encode()).hexdigest())
+  self.assertAlmostEqual(d['navReconciliation']['selectedWeightPct'],100.8)
+  self.assertEqual(d['navReconciliation']['excludedWeightPctByType'],{'Forwards':-.8})
  def test_signed_excluded_perimeter_and_unknown_security_remain_distinct(self):
   b=self.fixture();p=b['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
   values={

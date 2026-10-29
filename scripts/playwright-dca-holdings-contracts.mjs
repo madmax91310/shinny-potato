@@ -5,12 +5,13 @@ import {readFileSync,mkdirSync} from 'node:fs'
 import {readFile as readBytes} from 'node:fs/promises'
 import {createHash} from 'node:crypto'
 import {references,pct} from '../src/pages/dca-profiles/engine.js'
-import {holdingsReconciliationDetails,accountingWeight} from '../src/data/holdings-reconciliation.js'
+import {holdingsReconciliationDetails,rejectedPerimeterDetails,accountingWeight} from '../src/data/holdings-reconciliation.js'
 import {portfolioAnalytics,selectConcentrationGroup} from '../src/pages/dca-profiles/analytics.js'
 const port=4374,base=`http://127.0.0.1:${port}/shinny-potato/`
 const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port',String(port)],{stdio:'ignore'})
 const manifest=JSON.parse(readFileSync('src/pages/dca-profiles/holdings-manifest.json'))
 const holdings=Object.assign({},...[...new Set(Object.values(manifest))].map(n=>JSON.parse(readFileSync(`src/pages/dca-profiles/holdings-${n}.json`))))
+const catalog=JSON.parse(readFileSync('src/pages/dca-profiles/catalog.json'))
 const normalize=s=>String(s).replace(/[\u00a0\u202f]/g,' ')
 const hash=b=>createHash('sha256').update(b).digest('hex')
 let browser
@@ -58,16 +59,26 @@ try{
   const pairs=await panel.locator('.dca-pair-grid article strong').allTextContents()
   assert.deepEqual(pairs.map(normalize),expected.pairs.map(p=>normalize(p.full?pct(p.overlap):'Partiel')))
   const accounting=lines.map(line=>({line,proof:holdingsReconciliationDetails(holdings[line.asset])})).filter(x=>x.proof)
-  if(accounting.length){
+  const rejected=lines.map(line=>({line,proof:rejectedPerimeterDetails(catalog[line.asset]?.holdingsStatus,line.isin)})).filter(x=>x.proof)
+  if(accounting.length||rejected.length||expected.qualification.some(q=>!q.complete)||expected.incompatiblePairs.length){
    await panel.locator('summary').filter({hasText:'Sources, couverture du catalogue et détail des comparaisons'}).click()
    const source=page.getByRole('region',{name:'Vérification des expositions',exact:true})
    await source.locator('summary').filter({hasText:'Positions retenues et solde hors périmètre'}).click()
    for(const {line,proof}of accounting){
-    const item=source.locator('article').filter({has:page.getByText(line.label,{exact:true})})
+    const item=source.getByRole('article',{name:`Rapprochement comptable ${line.label}`,exact:true})
     await item.waitFor()
     const text=normalize(await item.innerText())
     for(const value of [accountingWeight(proof.selectedWeightPct),accountingWeight(proof.publishedNetWeightPct),...proof.unidentifiedPositions.map(r=>r.name)])assert(text.includes(normalize(value)),id+' accounting '+value)
    }
+   for(const {proof}of rejected){
+    const text=normalize(await source.innerText())
+    for(const value of [proof.asOf,accountingWeight(proof.navReconciliation.selectedWeightPct),accountingWeight(proof.navReconciliation.publishedNetWeightPct)])assert(text.includes(normalize(value)),id+' rejected perimeter '+value)
+   }
+   await source.getByText('Positions communes entre ETF et actions',{exact:true}).click()
+   await source.getByText('Pourquoi certaines comparaisons restent partielles ou impossibles',{exact:true}).click()
+   const reasons=normalize(await source.innerText())
+   for(const q of expected.qualification.filter(q=>!q.complete))for(const reason of q.reasons)assert(reasons.includes(normalize(reason)),id+' qualification '+reason)
+   for(const pair of expected.incompatiblePairs.slice(0,20))for(const reason of pair.reasons)assert(reasons.includes(normalize(reason)),id+' scope '+reason)
   }
   const image=page.getByRole('img',{name:'Répartition et expositions du portefeuille',exact:true})
   await image.waitFor();await image.evaluate(img=>img.decode())

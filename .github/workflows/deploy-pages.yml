@@ -432,6 +432,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py'
       - run: python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_pending_sources.py'
+      - run: python -m unittest discover -s scripts -p 'test_native_source_evidence.py'
       - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py'
       - run: python -m unittest discover -s scripts -p 'test_consolidated_data_followup.py'
       - run: python -m unittest discover -s scripts -p 'test_removed_ai_scope.py'

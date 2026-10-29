@@ -1,0 +1,41 @@
+Architecture guard: real imports/re-exports, JSX, deferred/computed imports, cycles, inverted dependencies and transitive UI access verified.
+Architecture: 518 source modules, 1422 JS imports (74 deferred); 0 boundary/cycle errors.
+Radar read state: existing keys/scalar and grouped signals, unread identity, deduplication, 2000 limit, events, corrupt and unavailable storage verified.
+Hey @Grok: all 80 intentions, themes, archive retention, X counts, batch cycles, templates and guarded v1→v2 migration passed.
+Tweet bank storage: existing draft/review/date maps, unknown fields/IDs, no read writes, corrupt/blocked/quota preservation and observed cross-tab conflicts verified.
+Curation: texts, IDs, personal copies, publication dates and favorites preserved; explicit families and category corrections verified.
+Inventory: 27 routes, 1590 records; implementations verified.
+{"summary":{"instruments":674,"sheets":258,"comparisons":245,"practical":21,"duels":638,"generatorAutomatic":144,"dca":673,"fullExposure":609,"outsideExposure":43,"automaticHistories":269,"historyCandidates":1,"unused":0,"blockers":{"no-listing":1,"listing-not-collectable":0,"qualification-failed":0,"qualification-pending":0,"collection-pending":1,"history-short":30}},"errors":[]}
+{"sharedMarketData":{"histories":681,"equityHistories":412,"historyStates":{"current":681},"exposures":673,"positionStates":{"complete-list":532,"partial-list":97,"not-applicable":43,"unavailable":1},"identityLimits":2},"errors":[]}
+    "collection-error": 1,
+✓ built in 6.18s
+Route total: src/pages/broker-comparator/App.jsx: 522.0 kB (144.1 kB gzip), 13 files; code 755.9/804 kB, data 162.5 kB
+Route total: src/pages/data-review/App.jsx: 1930.1 kB (326.5 kB gzip), 28 files; code 889.8/892 kB, data 1873.8 kB
+Route total: src/pages/data-search/App.jsx: 572.6 kB (165.7 kB gzip), 12 files; code 656.2/672 kB, data 340.1 kB
+Route total: src/pages/dca-profiles/App.jsx: 655.0 kB (191.4 kB gzip), 20 files; code 782.4/805 kB, data 375.9 kB
+Route total: src/pages/editorial-radar/App.jsx: 293.7 kB (97.2 kB gzip), 10 files; code 661.5/703 kB, data 0.0 kB
+Route total: src/pages/etf-sheets/App.jsx: 2681.8 kB (609.7 kB gzip), 44 files; code 889.1/906 kB, data 3068.4 kB
+Route total: src/pages/factsheet-tweets/App.jsx: 1378.1 kB (338.6 kB gzip), 26 files; code 983.1/2102 kB, data 987.6 kB
+Route total: src/pages/fee-impact/App.jsx: 538.0 kB (131.7 kB gzip), 18 files; code 699.9/724 kB, data 274.6 kB
+Route total: src/pages/france-100-menages/App.jsx: 372.9 kB (119.1 kB gzip), 16 files; code 736.3/1930 kB, data 21.8 kB
+Route total: src/pages/hey-grok/App.jsx: 456.4 kB (146.9 kB gzip), 12 files; code 914.4/930 kB, data 0.0 kB
+Route total: src/pages/investment-calculator/App.jsx: 1200.7 kB (293.6 kB gzip), 26 files; code 805.0/850 kB, data 978.2 kB
+Route total: src/pages/investor-portfolio/App.jsx: 322.4 kB (109.3 kB gzip), 14 files; code 690.7/725 kB, data 11.3 kB
+Route total: src/pages/market-facts/App.jsx: 587.5 kB (177.7 kB gzip), 12 files; code 658.1/699 kB, data 321.7 kB
+Route total: src/pages/performance-rankings/App.jsx: 3341.7 kB (1049.3 kB gzip), 63 files; code 808.5/847 kB, data 3948.5 kB
+Route total: src/pages/portfolio-duels/App.jsx: 1247.0 kB (333.5 kB gzip), 20 files; code 752.7/775 kB, data 1126.8 kB
+Route total: src/pages/portfolio-generator/App.jsx: 1476.2 kB (416.6 kB gzip), 26 files; code 1033.6/1105 kB, data 1175.5 kB
+Route total: src/pages/practical-sheets/App.jsx: 1389.6 kB (333.7 kB gzip), 24 files; code 779.0/793 kB, data 1366.6 kB
+Route total: src/pages/presentations/App.jsx: 438.0 kB (133.5 kB gzip), 16 files; code 744.0/1935 kB, data 106.8 kB
+Route total: src/pages/ranking-ideas/App.jsx: 299.0 kB (99.7 kB gzip), 11 files; code 646.4/650 kB, data 17.3 kB
+Route total: src/pages/tweet-bank/App.jsx: 1844.6 kB (411.9 kB gzip), 26 files; code 692.3/694 kB, data 2190.1 kB
+Route total: src/pages/tweet-midi/App.jsx: 7253.0 kB (1809.9 kB gzip), 110 files; code 1152.6/1307 kB, data 8828.3 kB
+Route total: src/pages/tweet-midi/formats/anniversaire/App.jsx: 1811.9 kB (393.1 kB gzip), 27 files; code 771.3/810 kB, data 1750.3 kB
+Route total: src/pages/tweet-midi/formats/comparatif/App.jsx: 3590.4 kB (800.2 kB gzip), 50 files; code 996.2/1189 kB, data 4100.0 kB
+Route total: src/pages/tweet-midi/formats/dilemme/App.jsx: 742.4 kB (228.7 kB gzip), 23 files; code 761.1/786 kB, data 466.6 kB
+Route total: src/pages/tweet-midi/formats/lexique/App.jsx: 878.7 kB (266.7 kB gzip), 27 files; code 887.0/896 kB, data 482.4 kB
+Route total: src/pages/tweet-midi/formats/performance/App.jsx: 1685.7 kB (367.7 kB gzip), 28 files; code 761.8/773 kB, data 1762.5 kB
+Route total: src/pages/tweet-midi/formats/pouvoir/App.jsx: 770.9 kB (233.1 kB gzip), 23 files; code 771.9/788 kB, data 493.3 kB
+Route total: src/pages/wealth-simulator/App.jsx: 351.5 kB (112.7 kB gzip), 18 files; code 713.0/1897 kB, data 32.4 kB
+Published coverage: 4289 field certificates agree with the inventory and generated collection targets.
+Publication manifest matches all 41 built public data files.

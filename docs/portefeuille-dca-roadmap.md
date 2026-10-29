@@ -1,10 +1,12 @@
 # Portefeuille & DCA — décisions et roadmap
 
+Suite autorisée du 29 octobre 2026 : motifs de qualification des compositions et incompatibilités de paires centralisés, diagnostic brut/net refusé conservé avec ses propres preuves, surveillance du contenu de sept routes officielles Europe/PEA. Les refus ne deviennent pas des compositions admises. Répartition à parts égales et affectation explicite du solde ajoutées ; import/export JSON versionné avec texte/options conservés, sauvegardes nommées intactes et approbation révoquée à l’ouverture. Aucun changement du générateur de texte, du dessin des images, des profils ou des seuils. [Bilan de cette suite](../reports/dca-roadmap-2026-10-29/README.md).
+
 Complément #1050, 29 octobre 2026 : 21 identifiants supplémentaires confirmés par requêtes indépendantes, renouvelés dans la voie existante. Battery est entièrement identifiée avec sa somme publiée de100,0004% conservée ; GGRA reste partielle à97,1431%, seul le SEDOL Merck demeure inconnu. ACWI DUMMY et SmallCap CVR restent des positions distinctes sans ISIN publié. Les résidus comptables BlackRock/DWS sont conservés et expliqués dans les sources de l'analyse ; les contrats de change éclairent le refus WorldHedged sans relâcher le plafond. Les trois recherches d'indices Europe/PEA sont désormais surveillées automatiquement sur cinq routes officielles, toujours sans admission financière faute de composition complète qualifiée. [Bilan et preuves du lot](../reports/priority-compositions-2026-10-29/README.md).
 
 État du lot automatique #1045, 29 octobre 2026 : accès GitHub rétabli et mesuré pour les six compositions WisdomTree ; découverte d'identifiants raccordée au même flux qualifié, conservation datée des preuves sur échec ; références TOPIX PEA soumises à un contrat natif liant fonds exact, source, recensement et identités à la même date. Les analyses partielles restent partielles. Recette et limites : [rapport compositions automatiques](../reports/compositions-auto-2026-10-29/README.md).
 
-Suite conditionnée aux données disponibles : obtenir une composition native officielle, datée, pondérée et identifiée du benchmark exact pour Europe 600 / Nasdaq PEA / immobilier PEA ; qualifier son accès et ses droits avant raccordement au producteur partagé. Les sources publiques vérifiées ne suffisent pas actuellement. Continuer le rapprochement indépendant des SEDOL inconnus de Battery et GGRA ; ne pas rapprocher les titres par leur seul nom. L'anomalie de poids World Hedged reste suivie sans modification de seuil. Une collecte automatique ne garantit pas qu'un émetteur fournisse toujours un fichier complet ou valide.
+Suite conditionnée aux données disponibles : obtenir une composition native officielle, datée, pondérée et identifiée du benchmark exact pour Europe 600 / Nasdaq PEA / immobilier PEA ; qualifier son accès et ses droits avant raccordement au producteur partagé. Les sources publiques vérifiées ne suffisent pas actuellement. Battery est entièrement identifiée ; poursuivre le rapprochement indépendant du SEDOL Merck inconnu de GGRA, sans rapprochement par le seul nom. World Hedged conserve un périmètre brut/net non admis : le diagnostic est séparé de la dernière composition valide, sans modification de seuil. Une collecte automatique ne garantit pas qu'un émetteur fournisse toujours un fichier complet ou valide.
 
 Décisions du 28 octobre 2026, après audit des parcours Actifs & expositions et Le DCA d’un abonné.
 
@@ -24,14 +26,14 @@ Les tests de régression couvrent les contrats des observations, la conservation
 - Le format actuel de concentration reste léger. Les taux de recouvrement par paire restent dans l’analyse interactive ; pas de matrice supplémentaire dans l’image.
 - Pas de refonte graphique ni de changement des profils éditoriaux dans ce lot.
 
-## Suite proposée — non engagée
+## Suivi des chantiers
 
 | Ordre | Chantier | Résultat attendu | Critère de fin |
 | --- | --- | --- | --- |
-| 1 | Rendre les limites plus compréhensibles dans l’interface | Expliquer pourquoi une comparaison est refusée et quels supports ou conventions sont concernés, sans encombrer le PNG | Un portefeuille mixte montre des raisons et sources précises ; aucune équivalence supposée |
-| 2 | Améliorer les compositions utiles au recouvrement | Compléter les supports les plus utilisés dont seules les principales positions sont connues | Source intégrale automatisée, identité et date qualifiées, panne isolée avec ancienne observation conservée ; aucun top 10 transformé en composition complète |
-| 3 | Faciliter la composition de grandes allocations | Répartition à parts égales et ajustement explicite du solde, avec contrôle des doublons et total visible | Cas 1, 2, 8 et 50 lignes utilisables sur mobile ; aucun poids changé sans action explicite |
-| 4 | Rendre les sauvegardes transportables | Import/export des portefeuilles avec texte, options et choix d’analyse | Aller-retour sans perte, format versionné, import invalide sans écrasement et approbation révoquée à l’import |
-| 5 | Renforcer les recettes ciblées | Rejouer les cas multi-actifs, méthodes différentes, données partielles et périmètres multiples après évolution des collectes | Égalité des chiffres entre écran et aperçu, données vivantes non figées et images lisibles sur téléphone |
+| 1 | Rendre les limites plus compréhensibles dans l’interface | Implémenté dans cette suite : motifs par support, poids inconnus/résiduels et incompatibilités de paires ; preuves brutes/nettes séparées | Recette mixte, partielle et inconnue ; aucun ajout au PNG |
+| 2 | Améliorer les compositions utiles au recouvrement | #1045/#1050 livrées ; sept routes de recherche surveillées. Europe/PEA et Merck restent bloqués par les preuves manquantes | Source intégrale automatisée, identité et date qualifiées nécessaires avant admission ; pas de top 10 ni de proxy transformé en composition complète |
+| 3 | Faciliter la composition de grandes allocations | Implémenté dans cette suite : parts égales au centième et solde sur une ligne explicitement choisie ; versements inchangés | Cas 1, 2, 8 et 50 lignes exercés sur ordinateur/mobile |
+| 4 | Rendre les sauvegardes transportables | Implémenté dans cette suite : fichier JSON versionné, texte/options/choix d’analyse, ouverture explicite, import invalide isolé | Aller-retour sans perte ; consentement non transportable ; sauvegardes nommées jamais écrasées à l’import |
+| 5 | Renforcer les recettes ciblées | Recettes partagées et nouveau parcours de transport ajoutés au portail ordinaire | Calculs conservateurs partagés, égalité aperçu/PNG et mobile ; preuves de publication à compléter dans la PR après déploiement |
 
-Les priorités ci-dessus sont une proposition de suite, pas une autorisation de nouvelles fonctionnalités ou de nouvelles automatisations. Un nombre d’actifs supplémentaire ne constitue pas à lui seul un critère de réussite.
+Cette suite est autorisée par la demande utilisateur « fait tout ça » avec fusion et déploiement. Les blocages de source restent ouverts ; aucun actif ou profil n’est ajouté pour modifier les compteurs.

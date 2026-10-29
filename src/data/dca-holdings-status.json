@@ -372,11 +372,51 @@
     "asOf": "2026-10-28"
   },
   "IE00B441G979": {
-    "checkedAt": "2026-10-29T18:07:32.859767+00:00",
+    "checkedAt": "2026-10-29T20:24:35.239011+00:00",
     "lastSuccessAt": "2026-10-27T14:45:21.396770+00:00",
     "status": "failed",
     "asOf": "2026-10-23",
-    "error": "Equity NAV weights 100.762180% exceed the existing 100.5% limit; published net NAV 100.000010%; excluded classes {\"Cash\": 0.35268, \"Cash Collateral and Margins\": 0.06606, \"Equity\": 0.0, \"FX\": -1e-05, \"Forwards\": -1.89321, \"Futures\": 0.0, \"Money Market\": 0.71231}; unsupported gross/net perimeter, no renormalisation"
+    "error": "Equity NAV weights 100.762180% exceed the existing 100.5% limit; published net NAV 100.000010%; excluded classes {\"Cash\": 0.35268, \"Cash Collateral and Margins\": 0.06606, \"Equity\": 0.0, \"FX\": -1e-05, \"Forwards\": -1.89321, \"Futures\": 0.0, \"Money Market\": 0.71231}; unsupported gross/net perimeter, no renormalisation",
+    "lastRejectedObservation": {
+      "kind": "unsupported-gross-net-perimeter",
+      "subjectIsin": "IE00B441G979",
+      "asOf": "2026-10-28",
+      "benchmark": "MSCI World 100% Hedged to EUR Index (EUR)",
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-10-28",
+        "sourceRowCount": 1307,
+        "selectedRowCount": 1245,
+        "excludedRowCount": 62,
+        "publishedNetWeightPct": 100.00000999999992,
+        "selectedWeightPct": 100.76218,
+        "sourceWeightPctByType": {
+          "Equity": 100.76217999999992,
+          "Money Market": 0.71231,
+          "Cash": 0.35268,
+          "Cash Collateral and Margins": 0.06606,
+          "Forwards": -1.89321,
+          "Futures": 0.0,
+          "FX": -1e-05
+        },
+        "excludedWeightPctByType": {
+          "Money Market": 0.71231,
+          "Cash": 0.35268,
+          "Cash Collateral and Margins": 0.06606,
+          "Forwards": -1.89321,
+          "Equity": 0.0,
+          "Futures": 0.0,
+          "FX": -1e-05
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "financialDataQualified": false,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "3c17432d76690251a2c38ec3d4ba39339fc14ecff33c56e33126c3289cab34ba",
+      "checkedAt": "2026-10-29T20:24:35.239011+00:00"
+    }
   },
   "IE00B44Z5B48": {
     "checkedAt": "2026-10-29T18:07:32.859767+00:00",

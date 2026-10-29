@@ -6,7 +6,7 @@ from urllib.parse import urlsplit, parse_qs
 from data_automation import get_json, get_text, UTC, write_json_atomic
 from observation_status import holdings_status
 from collect_etf_holdings import parse_holdings
-from holdings_reconciliation import reconcile_positions
+from holdings_reconciliation import reconcile_positions, HoldingsPerimeterError
 ROOT=Path(__file__).resolve().parents[1]
 def collect_blackrock_complete(config,now,fetch=get_text,sleep=time.sleep):
     """Retry only a missing component on an otherwise exact product response."""
@@ -26,7 +26,11 @@ def collect_blackrock_complete(config,now,fetch=get_text,sleep=time.sleep):
                 sleep(2)
                 continue
             raise ValueError('BlackRock exact-share holdings component absent after two bounded attempts: '+json.dumps(attempts))
-        record,securities=parse_complete(body,config['isin'],config['url'],now,config.get('fundAssetClass','Equity'))
+        try:
+            record,securities=parse_complete(body,config['isin'],config['url'],now,config.get('fundAssetClass','Equity'))
+        except HoldingsPerimeterError as error:
+            error.diagnostic.update(sourceUrl=config['url'],sha256=digest,checkedAt=now.isoformat())
+            raise
         record['sha256']=digest
         if attempts:
             record['sourceAttempts']=[*attempts,{'attempt':attempt+1,'sha256':digest,'status':'validated'}]
@@ -79,7 +83,11 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
     total=sum(r['weightPct'] for r in rows)
     if not rows:raise ValueError('No physical equity composition')
     reconciliation=reconcile_positions(positions,selected,h['asOf'])
-    if total>100.5:raise ValueError(f'Equity NAV weights {total:.6f}% exceed the existing 100.5% limit; published net NAV {reconciliation["publishedNetWeightPct"]:.6f}%; excluded classes {json.dumps(reconciliation["excludedWeightPctByType"],sort_keys=True)}; unsupported gross/net perimeter, no renormalisation')
+    if total>100.5:
+        raise HoldingsPerimeterError(f'Equity NAV weights {total:.6f}% exceed the existing 100.5% limit; published net NAV {reconciliation["publishedNetWeightPct"]:.6f}%; excluded classes {json.dumps(reconciliation["excludedWeightPctByType"],sort_keys=True)}; unsupported gross/net perimeter, no renormalisation',
+            {'kind':'unsupported-gross-net-perimeter','subjectIsin':isin,'asOf':h['asOf'],
+             'benchmark':facts.get('indexSeriesName',{}).get('value'),
+             'navReconciliation':reconciliation,'financialDataQualified':False})
     record={'asOf':h['asOf'],'basis':'fund','sourceUrl':url,'complete':True,'rows':rows,'navReconciliation':reconciliation,'method':'Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation'}
     # Attributes and equity weights come from these exact dated holdings, never
     # the independently dated exposure tables or a later security lookup.
@@ -96,7 +104,7 @@ def main():
     if args.only:
         if set(args.only)-set(config):raise ValueError('Unknown complete holdings selection')
         config={k:v for k,v in config.items() if k in args.only}
-    errors={};fresh={};evidence={}
+    errors={};fresh={};evidence={};rejected={}
     identities={**json.loads((ROOT/'scripts/dca-equity-identities.json').read_text()),**json.loads((ROOT/'scripts/dca-equity-extra-identities.json').read_text())}
     wanted=set(identities.values())
     def one(item):
@@ -133,11 +141,14 @@ def main():
                 qualifications={fund_isin:qualify_liquidity_fund(fund_isin,now) for fund_isin in fund_isins}
                 return isin, (parse_holdings(body, c, now, url, complete=True,non_equity_funds=qualifications)['completeHoldings'], []), None
             return isin,collect_blackrock_complete({**c,'isin':isin},now),None
-        except Exception as e:return isin,None,str(e)
+        except Exception as e:return isin,None,e
     direct={isin:c for isin,c in config.items() if c.get('parser')!='lifestrategy-lookthrough'}
     with ThreadPoolExecutor(max_workers=6) as pool:
         for isin,result,error in pool.map(one,direct.items()):
-            if error:errors[isin]=error;continue
+            if error:
+                errors[isin]=str(error)
+                if isinstance(error,HoldingsPerimeterError):rejected[isin]=error.diagnostic
+                continue
             h,securities=result
             if previous.get(isin,{}).get('asOf','')>h['asOf']:errors[isin]='Date regression';continue
             fresh[isin]={**h,'checkedAt':now.isoformat()}
@@ -163,7 +174,12 @@ def main():
         status_path=ROOT/'src/data/dca-holdings-status.json'
         status=json.loads(status_path.read_text()) if status_path.exists() else {}
         for isin in config:
-            status[isin]=holdings_status(status.get(isin,{}),previous.get(isin,{}),fresh.get(isin),errors.get(isin),now)
+            old=status.get(isin,{})
+            status[isin]=holdings_status(old,previous.get(isin,{}),fresh.get(isin),errors.get(isin),now)
+            # Keep the rejected source's own clock separate from retained data.
+            # A transport failure must not renew this diagnostic either.
+            diagnostic=rejected.get(isin) or (old.get('lastRejectedObservation') if isin not in fresh else None)
+            if diagnostic:status[isin]['lastRejectedObservation']=diagnostic
         write_json_atomic(status_path,status)
     # Bounded proof in the ordinary producer artifact, including PR runs that
     # deliberately do not commit or publish their acquired observations.
@@ -172,7 +188,7 @@ def main():
         'publishedEquityWeightPct':sum(r['weightPct'] for r in h['rows']),
         'identifiedEquityWeightPct':sum(r['weightPct'] for r in h['rows'] if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',r.get('isin') or ''))}
         for isin,h in fresh.items()}
-    write_json_atomic(args.output,{'observations':observations,'updated':list(fresh),'successes':[{'id':'dca-holdings:'+isin} for isin in fresh],'errors':[{'id':'dca-holdings:'+isin,'field':'Composition complète','error':error} for isin,error in errors.items()]})
+    write_json_atomic(args.output,{'observations':observations,'rejectedObservations':rejected,'updated':list(fresh),'successes':[{'id':'dca-holdings:'+isin} for isin in fresh],'errors':[{'id':'dca-holdings:'+isin,'field':'Composition complète','error':error} for isin,error in errors.items()]})
     # Audit each success even if an unrelated support fails later in this run.
     # Only bounded public-source metadata; never the thousands of holding rows.
     for isin,entry in observations.items():

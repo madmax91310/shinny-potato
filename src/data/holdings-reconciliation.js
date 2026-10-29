@@ -22,3 +22,17 @@ export function holdingsReconciliationDetails(h){
 }
 export const accountingWeight=value=>`${value.toLocaleString('fr-FR',{maximumFractionDigits:6})} %`
 export const accountingClass=kind=>({Cash:'Liquidités','Money Market':'Supports monétaires','Cash Collateral and Margins':'Dépôts de garantie',FX:'Change',Futures:'Contrats à terme',Forwards:'Contrats à terme de change',Future:'Contrats à terme','FX Forward':'Contrats à terme de change','Mutual Fund':'Parts de fonds',Other:'Autres instruments'})[kind]||kind
+
+// A rejected observation is a separate source diagnostic. It cannot re-date or
+// replace the last admitted composition, and must never enter portfolio math.
+export function rejectedPerimeterDetails(status,subjectIsin) {
+ const d=status?.lastRejectedObservation,p=d?.navReconciliation
+ if(d?.kind!=='unsupported-gross-net-perimeter'||d.financialDataQualified!==false||d.subjectIsin!==subjectIsin
+  ||!d.sourceUrl||!/^[a-f0-9]{64}$/.test(d.sha256||'')||!Number.isFinite(Date.parse(d.checkedAt))
+  ||!/^\d{4}-\d{2}-\d{2}$/.test(d.asOf||'')||!Number.isFinite(Date.parse(d.asOf))||new Date(d.asOf).toISOString().slice(0,10)!==d.asOf
+  ||Date.parse(d.asOf)>Date.parse(d.checkedAt)||p?.schemaVersion!==1||p.asOf!==d.asOf||p.normalizationApplied!==false
+  ||!finite(p.selectedWeightPct)||p.selectedWeightPct<=100.5||!finite(p.publishedNetWeightPct)||p.publishedNetWeightPct<99||p.publishedNetWeightPct>101
+  ||!p.sourceWeightPctByType||!p.excludedWeightPctByType||!Object.values(p.sourceWeightPctByType).every(finite)||!Object.values(p.excludedWeightPctByType).every(finite)
+  ||!close(sum(Object.values(p.sourceWeightPctByType)),p.publishedNetWeightPct)||!close(p.selectedWeightPct+sum(Object.values(p.excludedWeightPctByType)),p.publishedNetWeightPct))return null
+ return d
+}
