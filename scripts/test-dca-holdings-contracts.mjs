@@ -1,7 +1,6 @@
 import assert from 'node:assert/strict'
 import {readFileSync} from 'node:fs'
 import {projectDcaHoldings,isSyntheticReplication} from './lib/dca-holdings-projection.mjs'
-import {sharedPositions} from '../src/pages/dca-profiles/verification.js'
 import {portfolioAnalytics} from '../src/pages/dca-profiles/analytics.js'
 const now=new Date('2026-10-29T12:00:00Z'),asOf='2026-10-28',sourceUrl='https://issuer.example/full'
 const a='US0378331005',b='US5949181045'
