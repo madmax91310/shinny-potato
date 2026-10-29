@@ -214,7 +214,7 @@
       "id": "86f9ef3c9cd6373810121f99",
       "reason": "Ventilation limitée aux liquidités/dérivés ou au non ventilé ; couverture économique non prouvée.",
       "firstSeenAt": "2026-10-29T15:43:01.040Z",
-      "lastAttemptAt": "2026-10-29T19:08:45.058Z",
+      "lastAttemptAt": "2026-10-29T19:11:49.166Z",
       "resolvedAt": null,
       "entity": "IE00B1TXHL60",
       "period": "2026-10-28",
@@ -224,7 +224,7 @@
       "id": "51a932e09c53193c75dd5dde",
       "reason": "Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
       "firstSeenAt": "2026-10-29T15:43:01.040Z",
-      "lastAttemptAt": "2026-10-29T19:08:45.058Z",
+      "lastAttemptAt": "2026-10-29T19:11:49.166Z",
       "resolvedAt": null,
       "entity": "IE00BG0SKF03",
       "period": "2026-10-28",
@@ -234,7 +234,7 @@
       "id": "8947a8ec30c35531e7d08fc7",
       "reason": "Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
       "firstSeenAt": "2026-10-29T17:09:14.579Z",
-      "lastAttemptAt": "2026-10-29T19:08:45.058Z",
+      "lastAttemptAt": "2026-10-29T19:11:49.166Z",
       "resolvedAt": null,
       "entity": "IE00BYYHSQ67",
       "period": "2026-10-28",
@@ -244,7 +244,7 @@
       "id": "25d36ca478eb34a4103bff39",
       "reason": "Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
       "firstSeenAt": "2026-10-29T17:09:14.579Z",
-      "lastAttemptAt": "2026-10-29T19:08:45.058Z",
+      "lastAttemptAt": "2026-10-29T19:11:49.166Z",
       "resolvedAt": null,
       "entity": "IE00BKPSFC54",
       "period": "2026-10-28",
@@ -357,61 +357,61 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
         "status": "ok",
         "articles": 10,
         "relevant": 1,
-        "attemptedAt": "2026-10-29T19:08:35.104Z"
+        "attemptedAt": "2026-10-29T19:11:32.637Z"
       },
       {
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
         "status": "ok",
         "articles": 10,
         "relevant": 2,
-        "attemptedAt": "2026-10-29T19:08:35.105Z"
+        "attemptedAt": "2026-10-29T19:11:32.638Z"
       },
       {
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
         "status": "ok",
         "articles": 10,
         "relevant": 1,
-        "attemptedAt": "2026-10-29T19:08:35.105Z"
+        "attemptedAt": "2026-10-29T19:11:32.639Z"
       },
       {
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0,
-        "attemptedAt": "2026-10-29T19:08:35.106Z"
+        "attemptedAt": "2026-10-29T19:11:32.640Z"
       },
       {
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
         "status": "ok",
         "articles": 12,
         "relevant": 1,
-        "attemptedAt": "2026-10-29T19:08:35.107Z"
+        "attemptedAt": "2026-10-29T19:11:32.640Z"
       },
       {
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
         "status": "ok",
         "articles": 7,
         "relevant": 0,
-        "attemptedAt": "2026-10-29T19:08:35.107Z"
+        "attemptedAt": "2026-10-29T19:11:32.641Z"
       }
     ],
     "items": [
@@ -1305,7 +1305,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-28",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
         "sourceUrl": "https://www.vie-publique.fr/en-bref/305153-gaz-effet-de-serre-une-concentration-inedite-atteinte-en-2025",
         "evidence": {
           "sourceHash": "79594c81d18ebf89dcecb9a7b4adca9abb7e77ccd0e405fdc9249b2253d46e1b",
@@ -1339,7 +1339,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-28",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A18476",
         "evidence": {
           "sourceHash": "0c359a5f4271250645d1d9ee47ac4cbd84c16d86e17b44117b7a0e9a9916d181",
@@ -1707,7 +1707,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-27",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/quest-ce-que-la-location-et-lachat-dune-voiture-en-leasing",
         "evidence": {
           "sourceHash": "aced2ff4dc4db4853e6ba0c0bb7a81ba228b405ae3f96577342ebbb97bc65bfb",
@@ -2836,7 +2836,7 @@
         "publishedInstant": "2026-10-23T04:00:09+02:00",
         "publishedAt": "2026-10-23",
         "period": "2026-10-23",
-        "checkedAt": "2026-10-28T15:44:17.380Z",
+        "checkedAt": "2026-10-29T19:11:32.642Z",
         "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/banque/actualites/110933/remboursement-de-fraude-bancaire-ce-que-change-vraiment-arret-de-la-cjue-pour-les-victimes-et-les-banques",
         "populationScope": "La CJUE a statué le 15 octobre qu'une banque doit rembourser immédiatement une opération non autorisée, même en cas de soupçon de négligence grave du client.",
         "analysisContribution": false,
@@ -2867,7 +2867,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "594624bea653110f89552ed8881adce09f482a291395f95601201b8001b3d3fd",
+          "sourceHash": "2bf9cae4d29523357aa9ab9ccea76688e9a830ab497110c6600485467574772f",
           "excerpt": "La CJUE a statué le 15 octobre qu'une banque doit rembourser immédiatement une opération non autorisée, même en cas de soupçon de négligence grave du client. Les banques ne remboursent actuellement que 62% des paiements non autorisés, et tendent à invoquer la négligence grave du client comme justification pour ne pas rembourser.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -2930,7 +2930,7 @@
         "publishedInstant": "2026-10-22T22:56:24+02:00",
         "publishedAt": "2026-10-22",
         "period": "2026-10-22",
-        "checkedAt": "2026-10-28T15:44:17.380Z",
+        "checkedAt": "2026-10-29T19:11:32.642Z",
         "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/credit/actualites/110954/le-nombre-de-refus-de-pret-immobilier-augmente-les-ventes-de-nexity-subissent-la-remontee-des-taux",
         "populationScope": "&laquo; La guerre en Iran a de gros effets : nos primo-accédants ont vu leur plein d'essence augmenter de 30%, l'inflation est de 3% sur un an et le taux d'intérêt &raquo; de la dette français à dix ans &laquo; s'envole et a dépassé les 5% &raquo;, énumère la PDG de Nexity, Véronique Bédague.",
         "analysisContribution": false,
@@ -2978,7 +2978,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "a765e4fd658a8f82a8b2584724ead298a83565cc674b9cc98a927f601de857b4",
+          "sourceHash": "384175c371d4b866d02cbe144fc0725dfea28ea8076fe0d988f6b7c777c65bfb",
           "excerpt": "&laquo; La guerre en Iran a de gros effets : nos primo-accédants ont vu leur plein d'essence augmenter de 30%, l'inflation est de 3% sur un an et le taux d'intérêt &raquo; de la dette français à dix ans &laquo; s'envole et a dépassé les 5% &raquo;, énumère la PDG de Nexity, Véronique Bédague. Les taux d'intérêt des crédits immobiliers sont liés aux taux longs de la dette de l'Etat et évoluent actuellement entre 3,2% et 3,5%, mais les experts prévoient qu'ils dépassent 4% début 2027.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -3101,7 +3101,7 @@
         "publishedInstant": "2026-10-22T17:46:39+02:00",
         "publishedAt": "2026-10-22",
         "period": "2026-10-22",
-        "checkedAt": "2026-10-28T15:44:17.380Z",
+        "checkedAt": "2026-10-29T19:11:32.642Z",
         "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/energie/actualites/110948/electricite-ce-qui-va-changer-pour-les-jours-rouges-de-option-tempo-edf-et-des-eld",
         "populationScope": "Changement en vue pour les 880 000 clients de la formule Tempo (1).",
         "analysisContribution": false,
@@ -3132,7 +3132,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "42037d317b208fc442172f1ec6da5e2c27abe0de85cbaf9b29b3e0c9c30e8ecc",
+          "sourceHash": "e90d13f3efe4638cf79620b9af2e6ca2fee5c822b4bc1ffa37e87b0ce5fbe60f",
           "excerpt": "Changement en vue pour les 880 000 clients de la formule Tempo (1). Pour rappel, cette option du tarif réglementé de vente proposée par EDF ou par les Entreprises locales de distribution (ELD) prévoit différents prix du kWh en fonction des heures pleines ou creuses, mais aussi selon les jours de l'année. Les jours 300 bleus sont ceux durant lesquels les prix sont les moins élevés, viennent ensuite les 43 jours blancs. Les 22 jours rouges sont placés entre le 1ᵉʳ novembre et le 31 mars, lors de moments de tension pour le réseau électrique (notamment les pics de froid), avec des prix particulièrement élevés durant les heures pleines.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -4167,7 +4167,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-21",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
         "evidence": {
           "sourceHash": "447df7d50199119cd99beaa41f3566603822e9a349706019c2062555fcba3ae0",
@@ -5210,7 +5210,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "evidence": {
           "sourceHash": "da5945b332a70816d0a1cdaf9121d0e58f2e49437e364abf7a6dbab3e7d8b29b",
@@ -7774,7 +7774,7 @@
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-29T19:08:45.058Z",
+  "checkedAt": "2026-10-29T19:11:49.166Z",
   "sourceRevision": "5e77670749a005090964a4443f83755ff5833fa6",
   "observationCount": 7837,
   "coverage": {
@@ -7809,11 +7809,6 @@
       "family": "economie",
       "entity": "DREES",
       "reason": "fetch failed"
-    },
-    {
-      "family": "economie",
-      "entity": "https://www.insee.fr/fr/statistiques/8071406",
-      "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
       "family": "economie",
@@ -7894,6 +7889,11 @@
       "family": "pouvoir-achat",
       "entity": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-noires-et-mises-en-garde",
       "reason": "Date de publication non extractible ; lastmod et collecte non substitués"
+    },
+    {
+      "family": "economie",
+      "entity": "https://www.insee.fr/fr/statistiques/8071406",
+      "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
       "family": "economie",
@@ -8892,7 +8892,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-29",
-            "age": 0.7977437268518518,
+            "age": 0.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -9055,7 +9055,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -9256,7 +9256,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-29",
-            "age": 0.7977437268518518,
+            "age": 0.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -9451,7 +9451,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-27",
-            "age": 2.7977437268518517,
+            "age": 2.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -9650,7 +9650,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-29",
-            "age": 0.7977437268518518,
+            "age": 0.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -9861,7 +9861,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-29",
-            "age": 0.7977437268518518,
+            "age": 0.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -10046,7 +10046,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-27",
-            "age": 2.7977437268518517,
+            "age": 2.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -10233,7 +10233,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-29",
-            "age": 0.7977437268518518,
+            "age": 0.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -10438,7 +10438,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-29",
-            "age": 0.7977437268518518,
+            "age": 0.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -10685,7 +10685,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-29",
-            "age": 0.7977437268518518,
+            "age": 0.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -10872,7 +10872,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-29",
-            "age": 0.7977437268518518,
+            "age": 0.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -11093,7 +11093,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-29",
-            "age": 0.7977437268518518,
+            "age": 0.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -11300,7 +11300,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-29",
-            "age": 0.7977437268518518,
+            "age": 0.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -11499,7 +11499,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-29",
-            "age": 0.7977437268518518,
+            "age": 0.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -11686,7 +11686,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-29",
-            "age": 0.7977437268518518,
+            "age": 0.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -11873,7 +11873,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-29",
-            "age": 0.7977437268518518,
+            "age": 0.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -12066,7 +12066,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-02",
-            "age": 57.79774372685185,
+            "age": 57.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -12254,7 +12254,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-16",
-            "age": 43.79774372685185,
+            "age": 43.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -12626,7 +12626,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -12806,7 +12806,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -12964,7 +12964,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -13153,7 +13153,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-08",
-            "age": 21.797743726851852,
+            "age": 21.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -13330,7 +13330,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-06",
-            "age": 23.797743726851852,
+            "age": 23.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -13507,7 +13507,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-06",
-            "age": 23.797743726851852,
+            "age": 23.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -13684,7 +13684,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -13997,7 +13997,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -14190,7 +14190,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -14397,7 +14397,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -14579,7 +14579,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -14761,7 +14761,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -14943,7 +14943,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -15125,7 +15125,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -15331,7 +15331,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -15522,7 +15522,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-08-17",
-            "age": 73.79774372685185,
+            "age": 73.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -15726,7 +15726,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-21",
-            "age": 8.797743726851852,
+            "age": 8.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -15913,7 +15913,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -16095,7 +16095,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-27",
-            "age": 2.7977437268518517,
+            "age": 2.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -16317,7 +16317,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -16475,7 +16475,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-27",
-            "age": 2.7977437268518517,
+            "age": 2.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -16691,7 +16691,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -16892,7 +16892,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -17085,7 +17085,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -17284,7 +17284,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -17448,7 +17448,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-27",
-            "age": 2.7977437268518517,
+            "age": 2.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -17648,7 +17648,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -17835,7 +17835,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -18030,7 +18030,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -18252,7 +18252,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -18439,7 +18439,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -18637,7 +18637,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -18851,7 +18851,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -19044,7 +19044,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-27",
-            "age": 2.7977437268518517,
+            "age": 2.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -19233,7 +19233,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-27",
-            "age": 2.7977437268518517,
+            "age": 2.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -19434,7 +19434,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-26",
-            "age": 3.7977437268518517,
+            "age": 3.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -19618,7 +19618,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-26",
-            "age": 3.7977437268518517,
+            "age": 3.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -19803,7 +19803,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-26",
-            "age": 3.7977437268518517,
+            "age": 3.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -19991,7 +19991,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-10",
-            "age": 49.79774372685185,
+            "age": 49.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -20184,7 +20184,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-26",
-            "age": 3.7977437268518517,
+            "age": 3.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -20398,7 +20398,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -20596,7 +20596,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-26",
-            "age": 3.7977437268518517,
+            "age": 3.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -20791,7 +20791,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -20989,7 +20989,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-10",
-            "age": 49.79774372685185,
+            "age": 49.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -21195,7 +21195,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-03-26",
-            "age": 217.79774372685185,
+            "age": 217.7998746064815,
             "signals": [],
             "independentTreatments": 0
           },
@@ -21529,7 +21529,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-21",
-            "age": 8.797743726851852,
+            "age": 8.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -21712,7 +21712,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-07",
-            "age": 22.797743726851852,
+            "age": 22.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -21893,7 +21893,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -22088,7 +22088,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-24",
-            "age": 5.797743726851852,
+            "age": 5.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -22286,7 +22286,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-12",
-            "age": 17.797743726851852,
+            "age": 17.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -22469,7 +22469,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-24",
-            "age": 5.797743726851852,
+            "age": 5.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -22664,7 +22664,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-17",
-            "age": 42.79774372685185,
+            "age": 42.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -22918,7 +22918,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -23104,7 +23104,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -23293,7 +23293,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-25",
-            "age": 4.797743726851852,
+            "age": 4.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -23501,7 +23501,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-29",
-            "age": 30.797743726851852,
+            "age": 30.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -23680,7 +23680,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-21",
-            "age": 8.797743726851852,
+            "age": 8.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -23876,7 +23876,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-21",
-            "age": 8.797743726851852,
+            "age": 8.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -24062,7 +24062,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -24242,7 +24242,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-24",
-            "age": 5.797743726851852,
+            "age": 5.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -24428,7 +24428,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-21",
-            "age": 8.797743726851852,
+            "age": 8.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -24603,7 +24603,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-20",
-            "age": 9.797743726851852,
+            "age": 9.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -24804,7 +24804,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-21",
-            "age": 8.797743726851852,
+            "age": 8.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -25005,7 +25005,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-21",
-            "age": 8.797743726851852,
+            "age": 8.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -25216,7 +25216,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -25421,7 +25421,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -25646,7 +25646,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -25888,7 +25888,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -26111,7 +26111,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -26326,7 +26326,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -26555,7 +26555,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -26779,7 +26779,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -26991,7 +26991,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -27231,7 +27231,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -27448,7 +27448,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -28049,7 +28049,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-07-16",
-            "age": 105.79774372685185,
+            "age": 105.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -28241,7 +28241,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -28648,7 +28648,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -29058,7 +29058,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -29247,7 +29247,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -29486,7 +29486,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -29706,7 +29706,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -29912,7 +29912,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-10",
-            "age": 49.79774372685185,
+            "age": 49.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -30121,7 +30121,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-17",
-            "age": 42.79774372685185,
+            "age": 42.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -30336,7 +30336,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-30",
-            "age": 29.797743726851852,
+            "age": 29.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -30519,7 +30519,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-10",
-            "age": 49.79774372685185,
+            "age": 49.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -30707,7 +30707,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-19",
-            "age": 10.797743726851852,
+            "age": 10.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -30918,7 +30918,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-24",
-            "age": 5.797743726851852,
+            "age": 5.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -31125,7 +31125,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-24",
-            "age": 35.79774372685185,
+            "age": 35.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -31385,7 +31385,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-21",
-            "age": 8.797743726851852,
+            "age": 8.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -31609,7 +31609,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -31837,7 +31837,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-19",
-            "age": 10.797743726851852,
+            "age": 10.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -32031,7 +32031,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-09",
-            "age": 50.79774372685185,
+            "age": 50.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -32230,7 +32230,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-07",
-            "age": 52.79774372685185,
+            "age": 52.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -32423,7 +32423,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-14",
-            "age": 45.79774372685185,
+            "age": 45.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -32635,7 +32635,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-01",
-            "age": 28.797743726851852,
+            "age": 28.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -32813,7 +32813,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-07",
-            "age": 22.797743726851852,
+            "age": 22.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -32998,7 +32998,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-24",
-            "age": 5.797743726851852,
+            "age": 5.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -33196,7 +33196,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-22",
-            "age": 37.79774372685185,
+            "age": 37.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -33378,7 +33378,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-24",
-            "age": 35.79774372685185,
+            "age": 35.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -33562,7 +33562,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-06",
-            "age": 23.797743726851852,
+            "age": 23.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -33753,7 +33753,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-12",
-            "age": 17.797743726851852,
+            "age": 17.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -33939,7 +33939,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-17",
-            "age": 42.79774372685185,
+            "age": 42.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -34127,7 +34127,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -34300,7 +34300,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-08-28",
-            "age": 62.79774372685185,
+            "age": 62.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -34497,7 +34497,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -34683,7 +34683,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-25",
-            "age": 4.797743726851852,
+            "age": 4.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -34891,7 +34891,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-12",
-            "age": 17.797743726851852,
+            "age": 17.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -35076,7 +35076,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -35261,7 +35261,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-09-08",
-            "age": 51.79774372685185,
+            "age": 51.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -35434,7 +35434,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-09-15",
-            "age": 44.79774372685185,
+            "age": 44.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -35607,7 +35607,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-09-15",
-            "age": 44.79774372685185,
+            "age": 44.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -35768,7 +35768,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-02",
-            "age": 57.79774372685185,
+            "age": 57.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -35938,7 +35938,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-08-11",
-            "age": 79.79774372685185,
+            "age": 79.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -36111,7 +36111,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-09-08",
-            "age": 51.79774372685185,
+            "age": 51.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -36298,7 +36298,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-15",
-            "age": 44.79774372685185,
+            "age": 44.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -36522,7 +36522,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-09",
-            "age": 20.797743726851852,
+            "age": 20.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -36758,7 +36758,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-13",
-            "age": 16.797743726851852,
+            "age": 16.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -36956,7 +36956,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-09-18",
-            "age": 41.79774372685185,
+            "age": 41.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -37126,7 +37126,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-08-11",
-            "age": 79.79774372685185,
+            "age": 79.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -37287,7 +37287,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-09",
-            "age": 50.79774372685185,
+            "age": 50.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -37454,7 +37454,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-09",
-            "age": 50.79774372685185,
+            "age": 50.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -37635,7 +37635,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-23",
-            "age": 36.79774372685185,
+            "age": 36.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -37805,7 +37805,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-02",
-            "age": 57.79774372685185,
+            "age": 57.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -38279,7 +38279,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-14",
-            "age": 15.797743726851852,
+            "age": 15.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -38541,7 +38541,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-23",
-            "age": 36.79774372685185,
+            "age": 36.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -38737,7 +38737,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-09-23",
-            "age": 36.79774372685185,
+            "age": 36.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -38918,7 +38918,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-23",
-            "age": 36.79774372685185,
+            "age": 36.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -39304,7 +39304,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -39490,7 +39490,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-06",
-            "age": 23.797743726851852,
+            "age": 23.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -39677,7 +39677,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-09-30",
-            "age": 29.797743726851852,
+            "age": 29.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -39858,7 +39858,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-07-16",
-            "age": 105.79774372685185,
+            "age": 105.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -40039,7 +40039,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-09-30",
-            "age": 29.797743726851852,
+            "age": 29.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -40220,7 +40220,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-06",
-            "age": 23.797743726851852,
+            "age": 23.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -40387,7 +40387,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-01",
-            "age": 28.797743726851852,
+            "age": 28.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -40548,7 +40548,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-08",
-            "age": 21.797743726851852,
+            "age": 21.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -40729,7 +40729,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-06",
-            "age": 23.797743726851852,
+            "age": 23.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -40902,7 +40902,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -41165,7 +41165,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-16",
-            "age": 13.797743726851852,
+            "age": 13.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -41363,7 +41363,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-07",
-            "age": 52.79774372685185,
+            "age": 52.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -41538,7 +41538,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -41699,7 +41699,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-08",
-            "age": 21.797743726851852,
+            "age": 21.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -41936,7 +41936,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-20",
-            "age": 9.797743726851852,
+            "age": 9.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -42535,7 +42535,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-08",
-            "age": 51.79774372685185,
+            "age": 51.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -42722,7 +42722,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-06",
-            "age": 23.797743726851852,
+            "age": 23.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -42883,7 +42883,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-14",
-            "age": 15.797743726851852,
+            "age": 15.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -43089,7 +43089,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-13",
-            "age": 16.797743726851852,
+            "age": 16.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -43285,7 +43285,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-01",
-            "age": 28.797743726851852,
+            "age": 28.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -43507,7 +43507,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-14",
-            "age": 15.797743726851852,
+            "age": 15.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -43680,7 +43680,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -43943,7 +43943,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-21",
-            "age": 8.797743726851852,
+            "age": 8.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -44407,7 +44407,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-16",
-            "age": 13.797743726851852,
+            "age": 13.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -44588,7 +44588,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -44789,7 +44789,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-06",
-            "age": 23.797743726851852,
+            "age": 23.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -44958,7 +44958,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -45123,7 +45123,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-24",
-            "age": 5.797743726851852,
+            "age": 5.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -45277,7 +45277,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-23",
-            "age": 6.797743726851852,
+            "age": 6.799874606481482,
             "signals": [
               {
                 "kind": "recent-week",
@@ -45760,7 +45760,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -45937,7 +45937,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -46254,7 +46254,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -46566,7 +46566,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-21",
-            "age": 8.797743726851852,
+            "age": 8.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -46715,7 +46715,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-21",
-            "age": 8.797743726851852,
+            "age": 8.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -46864,7 +46864,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-19",
-            "age": 10.797743726851852,
+            "age": 10.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -47013,7 +47013,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-20",
-            "age": 9.797743726851852,
+            "age": 9.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -47321,7 +47321,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-19",
-            "age": 10.797743726851852,
+            "age": 10.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -47470,7 +47470,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-16",
-            "age": 13.797743726851852,
+            "age": 13.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -47775,7 +47775,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -47930,7 +47930,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -48079,7 +48079,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -48238,7 +48238,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-12",
-            "age": 17.797743726851852,
+            "age": 17.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -48702,7 +48702,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-14",
-            "age": 15.797743726851852,
+            "age": 15.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -49016,7 +49016,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-12",
-            "age": 17.797743726851852,
+            "age": 17.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -49165,7 +49165,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-12",
-            "age": 17.797743726851852,
+            "age": 17.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -49314,7 +49314,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-06",
-            "age": 23.797743726851852,
+            "age": 23.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -49482,7 +49482,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-29",
-            "age": 0.7977437268518518,
+            "age": 0.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -50713,7 +50713,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-29",
-            "age": 0.7977437268518518,
+            "age": 0.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -50892,7 +50892,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -51073,7 +51073,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -52712,7 +52712,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-29",
-            "age": 0.7977437268518518,
+            "age": 0.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -52899,7 +52899,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-26",
-            "age": 3.7977437268518517,
+            "age": 3.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -53137,7 +53137,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-08",
-            "age": 51.79774372685185,
+            "age": 51.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -53370,7 +53370,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-08",
-            "age": 51.79774372685185,
+            "age": 51.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -53603,7 +53603,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-08",
-            "age": 51.79774372685185,
+            "age": 51.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -53836,7 +53836,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-08",
-            "age": 51.79774372685185,
+            "age": 51.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -54069,7 +54069,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-09",
-            "age": 50.79774372685185,
+            "age": 50.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -56395,7 +56395,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -56562,7 +56562,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -56758,7 +56758,7 @@
           "rapidEligible": true,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -56954,7 +56954,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -57150,7 +57150,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -57346,7 +57346,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-28",
-            "age": 1.797743726851852,
+            "age": 1.7998746064814815,
             "signals": [
               {
                 "kind": "recent",
@@ -57542,7 +57542,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-27",
-            "age": 2.7977437268518517,
+            "age": 2.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -57722,7 +57722,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-27",
-            "age": 2.7977437268518517,
+            "age": 2.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -58065,7 +58065,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-27",
-            "age": 2.7977437268518517,
+            "age": 2.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -58245,7 +58245,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-27",
-            "age": 2.7977437268518517,
+            "age": 2.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -58531,7 +58531,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-27",
-            "age": 2.7977437268518517,
+            "age": 2.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -58752,7 +58752,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-27",
-            "age": 2.7977437268518517,
+            "age": 2.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -58924,7 +58924,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-27",
-            "age": 2.7977437268518517,
+            "age": 2.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -59104,7 +59104,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-27",
-            "age": 2.7977437268518517,
+            "age": 2.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -59465,7 +59465,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-26",
-            "age": 3.7977437268518517,
+            "age": 3.7998746064814815,
             "signals": [
               {
                 "kind": "recent-week",
@@ -60445,7 +60445,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-30",
-            "age": 29.797743726851852,
+            "age": 29.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -63167,7 +63167,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-08",
-            "age": 21.797743726851852,
+            "age": 21.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -63345,7 +63345,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-21",
-            "age": 38.79774372685185,
+            "age": 38.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -63508,7 +63508,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-09-30",
-            "age": 29.797743726851852,
+            "age": 29.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -63720,7 +63720,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-08",
-            "age": 21.797743726851852,
+            "age": 21.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -63932,7 +63932,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-08",
-            "age": 21.797743726851852,
+            "age": 21.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -64101,7 +64101,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -64331,7 +64331,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-01",
-            "age": 28.797743726851852,
+            "age": 28.79987460648148,
             "signals": [],
             "independentTreatments": 0
           },
@@ -64500,7 +64500,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-20",
-            "age": 9.797743726851852,
+            "age": 9.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -68976,7 +68976,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -69142,7 +69142,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -69295,7 +69295,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -69458,7 +69458,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-22",
-            "age": 7.797743726851852,
+            "age": 7.799874606481482,
             "signals": [],
             "independentTreatments": 0
           },
@@ -91197,7 +91197,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -91336,7 +91336,7 @@
           "rapidEligible": false,
           "attention": {
             "at": "2026-10-15",
-            "age": 14.797743726851852,
+            "age": 14.799874606481481,
             "signals": [],
             "independentTreatments": 0
           },
@@ -143754,151 +143754,6 @@
   "scopeNote": "Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.",
   "sources": [
     {
-      "id": "fortuneo-tariffs",
-      "name": "Fortuneo · brochure tarifaire",
-      "url": "https://www.fortuneo.fr/tarifs",
-      "method": "offer-watch",
-      "depth": "Brochure officielle liée par le site ; suivi des lignes comparables, pas de couverture exhaustive des cellules",
-      "attemptedAt": "2026-10-29T17:08:57.159Z",
-      "discovered": 1,
-      "archiveWarning": null,
-      "etag": "W/\"6de74b91b038b531395cc3954b89e1a7\"",
-      "lastModified": "Thu, 29 Oct 2026 16:13:16 GMT",
-      "checkedAt": "2026-10-29T17:08:57.138Z",
-      "lastSuccessAt": "2026-10-29T17:08:57.138Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-29T19:08:57.138Z",
-      "queue": {
-        "pending": 0,
-        "done": 0,
-        "error": 0,
-        "rejected": 0,
-        "partial": 1
-      },
-      "extractionStatus": "partial",
-      "silentBaselines": 1,
-      "lastExtractionSuccessAt": null,
-      "discoveryFailures": [],
-      "expectedListingItems": 1,
-      "discoveryDateEvidence": []
-    },
-    {
-      "id": "fortuneo-offers",
-      "name": "Fortuneo · offres et conditions",
-      "url": "https://www.fortuneo.fr/offres-speciales-fortuneo",
-      "method": "offer-watch",
-      "depth": "Page publique des offres ; clauses chiffrées et conditions, pas de lancement déduit de la première observation",
-      "attemptedAt": "2026-10-29T17:08:57.160Z",
-      "discovered": 1,
-      "archiveWarning": null,
-      "etag": "W/\"0b761c3781420223052040646bf6b6b3\"",
-      "lastModified": "Thu, 29 Oct 2026 16:13:16 GMT",
-      "checkedAt": "2026-10-29T17:08:57.138Z",
-      "lastSuccessAt": "2026-10-29T17:08:57.138Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-29T19:08:57.138Z",
-      "queue": {
-        "pending": 0,
-        "done": 1,
-        "error": 0,
-        "rejected": 0,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "silentBaselines": 1,
-      "lastExtractionSuccessAt": null,
-      "discoveryFailures": [],
-      "expectedListingItems": 1,
-      "discoveryDateEvidence": []
-    },
-    {
-      "id": "boursobank-offers",
-      "name": "BoursoBank · offres et conditions",
-      "url": "https://www.boursobank.com/",
-      "method": "offer-watch",
-      "depth": "Page publique des offres ; clauses chiffrées et conditions, pas de lancement déduit de la première observation",
-      "attemptedAt": "2026-10-29T17:08:57.161Z",
-      "discovered": 1,
-      "archiveWarning": null,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-29T17:08:57.138Z",
-      "lastSuccessAt": "2026-10-29T17:08:57.138Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-29T19:08:57.138Z",
-      "queue": {
-        "pending": 0,
-        "done": 1,
-        "error": 0,
-        "rejected": 0,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "silentBaselines": 1,
-      "lastExtractionSuccessAt": null,
-      "discoveryFailures": [],
-      "expectedListingItems": 1,
-      "discoveryDateEvidence": []
-    },
-    {
-      "id": "boursobank-tariffs",
-      "name": "BoursoBank · brochure tarifaire",
-      "url": "https://www.boursobank.com/",
-      "method": "offer-watch",
-      "depth": "Brochure officielle liée par le site ; suivi des lignes comparables, pas de couverture exhaustive des cellules",
-      "attemptedAt": "2026-10-29T17:08:57.161Z",
-      "discovered": 1,
-      "archiveWarning": null,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-29T17:08:57.138Z",
-      "lastSuccessAt": "2026-10-29T17:08:57.138Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-29T19:08:57.138Z",
-      "queue": {
-        "pending": 0,
-        "done": 1,
-        "error": 0,
-        "rejected": 0,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "silentBaselines": 1,
-      "lastExtractionSuccessAt": null,
-      "discoveryFailures": [],
-      "expectedListingItems": 1,
-      "discoveryDateEvidence": []
-    },
-    {
-      "id": "lbp-tariffs",
-      "name": "La Banque Postale · tarifs particuliers",
-      "url": "https://www.labanquepostale.fr/particulier/footer/tarifs.html",
-      "method": "offer-watch",
-      "depth": "Brochure officielle liée par le site ; suivi des lignes comparables, pas de couverture exhaustive des cellules",
-      "attemptedAt": "2026-10-29T17:08:57.162Z",
-      "discovered": 6,
-      "archiveWarning": null,
-      "etag": null,
-      "lastModified": "Thu, 29 Oct 2026 17:01:45 GMT",
-      "checkedAt": "2026-10-29T17:08:57.138Z",
-      "lastSuccessAt": "2026-10-29T17:08:57.138Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-29T19:08:57.138Z",
-      "queue": {
-        "pending": 0,
-        "done": 6,
-        "error": 0,
-        "rejected": 0,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "silentBaselines": 6,
-      "lastExtractionSuccessAt": null,
-      "discoveryFailures": [],
-      "expectedListingItems": 6,
-      "discoveryDateEvidence": []
-    },
-    {
       "id": "insee-studies",
       "name": "INSEE · recherche des études parues",
       "url": "https://www.insee.fr/fr/solr/consultation",
@@ -144037,7 +143892,7 @@
         "partial": 0
       },
       "extractionStatus": "error",
-      "lastExtractionSuccessAt": "2026-10-29T19:08:35.108Z",
+      "lastExtractionSuccessAt": "2026-10-29T19:11:32.642Z",
       "archiveWarning": null,
       "silentBaselines": 0,
       "discoveryFailures": [],
@@ -144066,7 +143921,7 @@
         "partial": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-29T19:08:35.108Z",
+      "lastExtractionSuccessAt": "2026-10-29T19:11:32.642Z",
       "archiveWarning": null,
       "silentBaselines": 0,
       "discoveryFailures": [],
@@ -144317,61 +144172,6 @@
       "discoveryFailures": [],
       "expectedListingItems": 4,
       "discoveryDateEvidence": []
-    },
-    {
-      "id": "invesco",
-      "name": "Invesco · communiqués européens",
-      "url": "https://www.invesco.com/uk/en/about-us/media-hub.html",
-      "method": "extra-coverage",
-      "depth": "Table datée 2026 et archives rendues ; documents PDF officiels, sans catalogue",
-      "attemptedAt": "2026-10-29T17:08:57.171Z",
-      "discovered": 43,
-      "archiveWarning": null,
-      "etag": null,
-      "lastModified": "Thu, 29 Oct 2026 17:09:01 GMT",
-      "checkedAt": "2026-10-29T17:08:57.138Z",
-      "lastSuccessAt": "2026-10-29T17:08:57.138Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-29T19:08:57.138Z",
-      "queue": {
-        "pending": 0,
-        "done": 43,
-        "error": 0,
-        "rejected": 0,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-28T14:16:28.188Z",
-      "silentBaselines": 0,
-      "discoveryFailures": [],
-      "expectedListingItems": 43,
-      "discoveryDateEvidence": []
-    },
-    {
-      "id": "spdr-news",
-      "name": "State Street · communiqués",
-      "url": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
-      "method": "extra-coverage",
-      "depth": "Fenêtre RSS mondiale ; seuls les communiqués explicitement UCITS sont exploitables en Europe",
-      "attemptedAt": "2026-10-29T17:08:57.172Z",
-      "discovered": 10,
-      "archiveWarning": null,
-      "etag": "\"fd6732d1a7721382c015c1c5673ce9ee\"",
-      "lastModified": null,
-      "checkedAt": "2026-10-29T17:08:57.138Z",
-      "lastSuccessAt": "2026-10-29T17:08:57.138Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-29T19:08:57.138Z",
-      "queue": {
-        "pending": 0,
-        "done": 0,
-        "error": 0,
-        "rejected": 11,
-        "partial": 0
-      },
-      "extractionStatus": "no-in-scope-publication",
-      "lastExtractionSuccessAt": null,
-      "silentBaselines": 0
     },
     {
       "id": "xetra",
@@ -144699,7 +144499,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-29T19:08:35.107Z",
+      "attemptedAt": "2026-10-29T19:11:32.640Z",
       "discovered": 12,
       "etag": "\"1793300187-gzip\"",
       "lastModified": "Thu, 29 Oct 2026 18:56:27 GMT",
@@ -144810,12 +144610,70 @@
       "discoveryDateEvidence": []
     },
     {
+      "id": "fortuneo-offers",
+      "name": "Fortuneo · offres et conditions",
+      "url": "https://www.fortuneo.fr/offres-speciales-fortuneo",
+      "method": "offer-watch",
+      "depth": "Page publique des offres ; clauses chiffrées et conditions, pas de lancement déduit de la première observation",
+      "attemptedAt": "2026-10-29T19:11:32.663Z",
+      "discovered": 1,
+      "archiveWarning": null,
+      "etag": "W/\"3a490ff7ed3d42283c8365c9810c5bb3\"",
+      "lastModified": "Mon, 26 Oct 2026 12:57:10 GMT",
+      "checkedAt": "2026-10-29T19:11:32.642Z",
+      "lastSuccessAt": "2026-10-29T19:11:32.642Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-29T21:11:32.642Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 0,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "silentBaselines": 1,
+      "lastExtractionSuccessAt": null,
+      "discoveryFailures": [],
+      "expectedListingItems": 1,
+      "discoveryDateEvidence": []
+    },
+    {
+      "id": "fortuneo-tariffs",
+      "name": "Fortuneo · brochure tarifaire",
+      "url": "https://www.fortuneo.fr/tarifs",
+      "method": "offer-watch",
+      "depth": "Brochure officielle liée par le site ; suivi des lignes comparables, pas de couverture exhaustive des cellules",
+      "attemptedAt": "2026-10-29T19:11:32.661Z",
+      "discovered": 1,
+      "archiveWarning": null,
+      "etag": "W/\"6200ca70afb5d304cdc141ae879c7643\"",
+      "lastModified": "Mon, 26 Oct 2026 12:57:10 GMT",
+      "checkedAt": "2026-10-29T19:11:32.642Z",
+      "lastSuccessAt": "2026-10-29T19:11:32.642Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-29T21:11:32.642Z",
+      "queue": {
+        "pending": 0,
+        "done": 0,
+        "error": 0,
+        "rejected": 0,
+        "partial": 1
+      },
+      "extractionStatus": "partial",
+      "silentBaselines": 1,
+      "lastExtractionSuccessAt": null,
+      "discoveryFailures": [],
+      "expectedListingItems": 1,
+      "discoveryDateEvidence": []
+    },
+    {
       "id": "revolut-news",
       "name": "Revolut · annonces concernant la France",
       "url": "https://www.revolut.com/news/",
       "method": "consumer-links",
       "depth": "Première page mondiale officielle, filtrée sur une portée française explicite ; couverture partielle, annonces étrangères écartées",
-      "attemptedAt": "2026-10-29T19:08:35.127Z",
+      "attemptedAt": "2026-10-29T19:11:32.665Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -144836,7 +144694,7 @@
       "url": "https://www.wisdomtree.com/fr/press-room",
       "method": "links",
       "depth": "Archive rendue par le serveur, sans pagination supposée",
-      "attemptedAt": "2026-10-29T19:08:35.128Z",
+      "attemptedAt": "2026-10-29T19:11:32.667Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -144852,12 +144710,125 @@
       "failureKind": "access-denied"
     },
     {
+      "id": "spdr-news",
+      "name": "State Street · communiqués",
+      "url": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
+      "method": "extra-coverage",
+      "depth": "Fenêtre RSS mondiale ; seuls les communiqués explicitement UCITS sont exploitables en Europe",
+      "attemptedAt": "2026-10-29T19:11:32.666Z",
+      "discovered": 10,
+      "archiveWarning": null,
+      "etag": "\"fd6732d1a7721382c015c1c5673ce9ee\"",
+      "lastModified": null,
+      "checkedAt": "2026-10-29T19:11:32.642Z",
+      "lastSuccessAt": "2026-10-29T19:11:32.642Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-29T21:11:32.642Z",
+      "queue": {
+        "pending": 0,
+        "done": 0,
+        "error": 0,
+        "rejected": 11,
+        "partial": 0
+      },
+      "extractionStatus": "no-in-scope-publication",
+      "lastExtractionSuccessAt": null,
+      "silentBaselines": 0
+    },
+    {
+      "id": "boursobank-tariffs",
+      "name": "BoursoBank · brochure tarifaire",
+      "url": "https://www.boursobank.com/",
+      "method": "offer-watch",
+      "depth": "Brochure officielle liée par le site ; suivi des lignes comparables, pas de couverture exhaustive des cellules",
+      "attemptedAt": "2026-10-29T19:11:32.663Z",
+      "discovered": 1,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-29T19:11:32.642Z",
+      "lastSuccessAt": "2026-10-29T19:11:32.642Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-29T21:11:32.642Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 0,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "silentBaselines": 1,
+      "lastExtractionSuccessAt": null,
+      "discoveryFailures": [],
+      "expectedListingItems": 1,
+      "discoveryDateEvidence": []
+    },
+    {
+      "id": "boursobank-offers",
+      "name": "BoursoBank · offres et conditions",
+      "url": "https://www.boursobank.com/",
+      "method": "offer-watch",
+      "depth": "Page publique des offres ; clauses chiffrées et conditions, pas de lancement déduit de la première observation",
+      "attemptedAt": "2026-10-29T19:11:32.663Z",
+      "discovered": 1,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-29T19:11:32.642Z",
+      "lastSuccessAt": "2026-10-29T19:11:32.642Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-29T21:11:32.642Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 0,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "silentBaselines": 1,
+      "lastExtractionSuccessAt": null,
+      "discoveryFailures": [],
+      "expectedListingItems": 1,
+      "discoveryDateEvidence": []
+    },
+    {
+      "id": "invesco",
+      "name": "Invesco · communiqués européens",
+      "url": "https://www.invesco.com/uk/en/about-us/media-hub.html",
+      "method": "extra-coverage",
+      "depth": "Table datée 2026 et archives rendues ; documents PDF officiels, sans catalogue",
+      "attemptedAt": "2026-10-29T19:11:32.666Z",
+      "discovered": 43,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": "Thu, 29 Oct 2026 17:24:22 GMT",
+      "checkedAt": "2026-10-29T19:11:32.642Z",
+      "lastSuccessAt": "2026-10-29T19:11:32.642Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-29T21:11:32.642Z",
+      "queue": {
+        "pending": 0,
+        "done": 43,
+        "error": 0,
+        "rejected": 0,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-28T14:16:28.188Z",
+      "silentBaselines": 0,
+      "discoveryFailures": [],
+      "expectedListingItems": 43,
+      "discoveryDateEvidence": []
+    },
+    {
       "id": "dares",
       "name": "DARES",
       "url": "https://dares.travail-emploi.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-29T19:08:35.129Z",
+      "attemptedAt": "2026-10-29T19:11:32.668Z",
       "status": "error",
       "error": "Accès refusé ou page anti-robot, même si HTTP 200",
       "queue": {
@@ -144878,7 +144849,7 @@
       "url": "https://drees.solidarites-sante.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-29T19:08:35.129Z",
+      "attemptedAt": "2026-10-29T19:11:32.667Z",
       "discovered": 3,
       "etag": null,
       "lastModified": "Sun, 25 Oct 2026 00:17:08 GMT",
@@ -144900,88 +144871,117 @@
       "failureKind": "temporary-unavailable"
     },
     {
+      "id": "lbp-tariffs",
+      "name": "La Banque Postale · tarifs particuliers",
+      "url": "https://www.labanquepostale.fr/particulier/footer/tarifs.html",
+      "method": "offer-watch",
+      "depth": "Brochure officielle liée par le site ; suivi des lignes comparables, pas de couverture exhaustive des cellules",
+      "attemptedAt": "2026-10-29T19:11:32.664Z",
+      "discovered": 6,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": "Thu, 29 Oct 2026 19:11:37 GMT",
+      "checkedAt": "2026-10-29T19:11:32.642Z",
+      "lastSuccessAt": "2026-10-29T19:11:32.642Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-29T21:11:32.642Z",
+      "queue": {
+        "pending": 0,
+        "done": 6,
+        "error": 0,
+        "rejected": 0,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "silentBaselines": 6,
+      "lastExtractionSuccessAt": null,
+      "discoveryFailures": [],
+      "expectedListingItems": 6,
+      "discoveryDateEvidence": []
+    },
+    {
       "id": "Communiqués Vanguard",
       "name": "Communiqués Vanguard",
       "url": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
       "status": "ok",
-      "checkedAt": "2026-10-29T19:08:35.100Z",
-      "lastSuccessAt": "2026-10-29T19:08:35.100Z",
+      "checkedAt": "2026-10-29T19:11:32.633Z",
+      "lastSuccessAt": "2026-10-29T19:11:32.633Z",
       "discovered": 2,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle",
-      "attemptedAt": "2026-10-29T19:08:35.101Z"
+      "attemptedAt": "2026-10-29T19:11:32.633Z"
     },
     {
       "id": "Communiqués Global X Europe",
       "name": "Communiqués Global X Europe",
       "url": "https://globalxetfs.eu/news",
       "status": "ok",
-      "checkedAt": "2026-10-29T19:08:35.100Z",
-      "lastSuccessAt": "2026-10-29T19:08:35.100Z",
+      "checkedAt": "2026-10-29T19:11:32.633Z",
+      "lastSuccessAt": "2026-10-29T19:11:32.633Z",
       "discovered": 4,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle",
-      "attemptedAt": "2026-10-29T19:08:35.102Z"
+      "attemptedAt": "2026-10-29T19:11:32.635Z"
     },
     {
       "id": "service-public",
       "name": "Service Public",
       "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-      "checkedAt": "2026-10-29T19:08:35.103Z",
+      "checkedAt": "2026-10-29T19:11:32.636Z",
       "status": "ok",
       "articles": 10,
       "relevant": 1,
-      "attemptedAt": "2026-10-29T19:08:35.104Z"
+      "attemptedAt": "2026-10-29T19:11:32.637Z"
     },
     {
       "id": "bercy",
       "name": "Ministère de l’Économie",
       "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-      "checkedAt": "2026-10-29T19:08:35.103Z",
+      "checkedAt": "2026-10-29T19:11:32.636Z",
       "status": "ok",
       "articles": 10,
       "relevant": 2,
-      "attemptedAt": "2026-10-29T19:08:35.105Z"
+      "attemptedAt": "2026-10-29T19:11:32.638Z"
     },
     {
       "id": "vie-publique-actualites",
       "name": "Vie publique · actualités",
       "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-      "checkedAt": "2026-10-29T19:08:35.103Z",
+      "checkedAt": "2026-10-29T19:11:32.636Z",
       "status": "ok",
       "articles": 10,
       "relevant": 1,
-      "attemptedAt": "2026-10-29T19:08:35.105Z"
+      "attemptedAt": "2026-10-29T19:11:32.639Z"
     },
     {
       "id": "vie-publique-lois",
       "name": "Vie publique · lois",
       "url": "https://www.vie-publique.fr/lois-feeds.xml",
-      "checkedAt": "2026-10-29T19:08:35.103Z",
+      "checkedAt": "2026-10-29T19:11:32.636Z",
       "status": "ok",
       "articles": 100,
       "relevant": 0,
-      "attemptedAt": "2026-10-29T19:08:35.106Z"
+      "attemptedAt": "2026-10-29T19:11:32.640Z"
     },
     {
       "id": "banque-france-credit",
       "name": "Banque de France · crédits aux particuliers",
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "checkedAt": "2026-10-29T19:08:35.103Z",
+      "checkedAt": "2026-10-29T19:11:32.636Z",
       "status": "ok",
       "articles": 12,
       "relevant": 1,
-      "attemptedAt": "2026-10-29T19:08:35.107Z"
+      "attemptedAt": "2026-10-29T19:11:32.640Z"
     },
     {
       "id": "cre-prix",
       "name": "CRE · prix de l’énergie",
       "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-      "checkedAt": "2026-10-29T19:08:35.103Z",
+      "checkedAt": "2026-10-29T19:11:32.636Z",
       "status": "ok",
       "articles": 7,
       "relevant": 0,
-      "attemptedAt": "2026-10-29T19:08:35.107Z"
+      "attemptedAt": "2026-10-29T19:11:32.641Z"
     },
     {
       "id": "ishares",
@@ -145018,7 +145018,7 @@
       "url": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
       "reason": "Flux mondial raccordé et daté ; exemple du 14 octobre non UCITS rejeté. Aucun communiqué UCITS européen dans la fenêtre testée : couverture européenne partielle.",
       "status": "unqualified",
-      "attemptedAt": "2026-10-29T17:08:57.172Z",
+      "attemptedAt": "2026-10-29T19:11:32.666Z",
       "method": "Contrôle d’accès uniquement",
       "depth": "Aucune couverture déclarée",
       "nextCheckAt": "2026-10-30T08:23:57.395Z",
@@ -145187,26 +145187,26 @@
   },
   "metrics": {
     "collection": {
-      "requests": 12,
-      "bytes": 494194,
+      "requests": 24,
+      "bytes": 3201286,
       "notModified": 1,
-      "attemptedDocuments": 7,
+      "attemptedDocuments": 12,
       "queue": {
-        "admitted": 7,
-        "attempted": 7,
-        "capacity": 7,
-        "p90DocumentMs": 8486,
+        "admitted": 12,
+        "attempted": 12,
+        "capacity": 12,
+        "p90DocumentMs": 5396,
         "requalificationsEligible": 0,
         "requalificationsSelected": 0,
         "recentEligible": 0,
         "recentFirstAttempted": 0,
         "recentDeferred": 0,
         "pending": 57,
-        "oldestWaitHours": 121.67383277777778,
+        "oldestWaitHours": 121.72314777777778,
         "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
       },
-      "durationMs": 7158,
-      "checkedAt": "2026-10-29T19:08:35.108Z"
+      "durationMs": 13190,
+      "checkedAt": "2026-10-29T19:11:32.642Z"
     },
     "publicationDelays": [
       {
@@ -150647,8 +150647,8 @@
       ],
       "lastProducer": {
         "eventName": "workflow_run",
-        "runId": "40937249462",
-        "observedAt": "2026-10-29T19:08:47.296Z"
+        "runId": "40937622524",
+        "observedAt": "2026-10-29T19:11:51.538Z"
       },
       "lastScheduledRun": {
         "runId": "40935325843",
@@ -153043,6 +153043,26 @@
         "pending": 57,
         "oldestWaitHours": 121.67383277777778,
         "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
+      },
+      {
+        "checkedAt": "2026-10-29T19:11:32.642Z",
+        "eventName": "workflow_run",
+        "runId": "40937622524",
+        "requests": 24,
+        "bytes": 3201286,
+        "durationMs": 13190,
+        "admitted": 12,
+        "attempted": 12,
+        "capacity": 12,
+        "p90DocumentMs": 5396,
+        "requalificationsEligible": 0,
+        "requalificationsSelected": 0,
+        "recentEligible": 0,
+        "recentFirstAttempted": 0,
+        "recentDeferred": 0,
+        "pending": 57,
+        "oldestWaitHours": 121.72314777777778,
+        "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
       }
     ]
   },
@@ -153051,66 +153071,122 @@
   "contractResults": {
     "successes": [
       {
+        "id": "radar-source:fortuneo-offers",
+        "sourceUrl": "https://www.fortuneo.fr/offres-speciales-fortuneo",
+        "checkedAt": "2026-10-29T19:11:32.642Z",
+        "attemptedAt": "2026-10-29T19:11:32.663Z",
+        "status": "succeeded",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:fortuneo-tariffs",
+        "sourceUrl": "https://www.fortuneo.fr/tarifs",
+        "checkedAt": "2026-10-29T19:11:32.642Z",
+        "attemptedAt": "2026-10-29T19:11:32.661Z",
+        "status": "succeeded",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:spdr-news",
+        "sourceUrl": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
+        "checkedAt": "2026-10-29T19:11:32.642Z",
+        "attemptedAt": "2026-10-29T19:11:32.666Z",
+        "status": "unchanged-verified",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:boursobank-tariffs",
+        "sourceUrl": "https://www.boursobank.com/",
+        "checkedAt": "2026-10-29T19:11:32.642Z",
+        "attemptedAt": "2026-10-29T19:11:32.663Z",
+        "status": "succeeded",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:boursobank-offers",
+        "sourceUrl": "https://www.boursobank.com/",
+        "checkedAt": "2026-10-29T19:11:32.642Z",
+        "attemptedAt": "2026-10-29T19:11:32.663Z",
+        "status": "succeeded",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:invesco",
+        "sourceUrl": "https://www.invesco.com/uk/en/about-us/media-hub.html",
+        "checkedAt": "2026-10-29T19:11:32.642Z",
+        "attemptedAt": "2026-10-29T19:11:32.666Z",
+        "status": "succeeded",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:lbp-tariffs",
+        "sourceUrl": "https://www.labanquepostale.fr/particulier/footer/tarifs.html",
+        "checkedAt": "2026-10-29T19:11:32.642Z",
+        "attemptedAt": "2026-10-29T19:11:32.664Z",
+        "status": "succeeded",
+        "sourceAttempted": true
+      },
+      {
         "id": "radar-source:Communiqués Vanguard",
         "sourceUrl": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
-        "checkedAt": "2026-10-29T19:08:35.100Z",
-        "attemptedAt": "2026-10-29T19:08:35.101Z",
+        "checkedAt": "2026-10-29T19:11:32.633Z",
+        "attemptedAt": "2026-10-29T19:11:32.633Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:Communiqués Global X Europe",
         "sourceUrl": "https://globalxetfs.eu/news",
-        "checkedAt": "2026-10-29T19:08:35.100Z",
-        "attemptedAt": "2026-10-29T19:08:35.102Z",
+        "checkedAt": "2026-10-29T19:11:32.633Z",
+        "attemptedAt": "2026-10-29T19:11:32.635Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:service-public",
         "sourceUrl": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
-        "attemptedAt": "2026-10-29T19:08:35.104Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
+        "attemptedAt": "2026-10-29T19:11:32.637Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:bercy",
         "sourceUrl": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
-        "attemptedAt": "2026-10-29T19:08:35.105Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
+        "attemptedAt": "2026-10-29T19:11:32.638Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:vie-publique-actualites",
         "sourceUrl": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
-        "attemptedAt": "2026-10-29T19:08:35.105Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
+        "attemptedAt": "2026-10-29T19:11:32.639Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:vie-publique-lois",
         "sourceUrl": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
-        "attemptedAt": "2026-10-29T19:08:35.106Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
+        "attemptedAt": "2026-10-29T19:11:32.640Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:banque-france-credit",
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
-        "attemptedAt": "2026-10-29T19:08:35.107Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
+        "attemptedAt": "2026-10-29T19:11:32.640Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:cre-prix",
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-29T19:08:35.103Z",
-        "attemptedAt": "2026-10-29T19:08:35.107Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
+        "attemptedAt": "2026-10-29T19:11:32.641Z",
         "status": "succeeded",
         "sourceAttempted": true
       }
@@ -153119,21 +153195,21 @@
       {
         "id": "radar-source:revolut-news",
         "sourceUrl": "https://www.revolut.com/news/",
-        "attemptedAt": "2026-10-29T19:08:35.127Z",
+        "attemptedAt": "2026-10-29T19:11:32.665Z",
         "error": "HTTP 403",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:wisdomtree",
         "sourceUrl": "https://www.wisdomtree.com/fr/press-room",
-        "attemptedAt": "2026-10-29T19:08:35.128Z",
+        "attemptedAt": "2026-10-29T19:11:32.667Z",
         "error": "HTTP 403",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:dares",
         "sourceUrl": "https://dares.travail-emploi.gouv.fr/",
-        "attemptedAt": "2026-10-29T19:08:35.129Z",
+        "attemptedAt": "2026-10-29T19:11:32.668Z",
         "error": "Accès refusé ou page anti-robot, même si HTTP 200",
         "sourceAttempted": true
       },
@@ -153141,53 +153217,13 @@
         "id": "radar-source:drees",
         "sourceUrl": "https://drees.solidarites-sante.gouv.fr/",
         "checkedAt": "2026-10-25T00:25:11.059Z",
-        "attemptedAt": "2026-10-29T19:08:35.129Z",
+        "attemptedAt": "2026-10-29T19:11:32.667Z",
         "error": "fetch failed",
         "sourceAttempted": true
       }
     ]
   },
   "contractSkipped": [
-    {
-      "id": "radar-source:fortuneo-tariffs",
-      "sourceUrl": "https://www.fortuneo.fr/tarifs",
-      "checkedAt": "2026-10-29T17:08:57.138Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:08:57.138Z"
-    },
-    {
-      "id": "radar-source:fortuneo-offers",
-      "sourceUrl": "https://www.fortuneo.fr/offres-speciales-fortuneo",
-      "checkedAt": "2026-10-29T17:08:57.138Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:08:57.138Z"
-    },
-    {
-      "id": "radar-source:boursobank-offers",
-      "sourceUrl": "https://www.boursobank.com/",
-      "checkedAt": "2026-10-29T17:08:57.138Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:08:57.138Z"
-    },
-    {
-      "id": "radar-source:boursobank-tariffs",
-      "sourceUrl": "https://www.boursobank.com/",
-      "checkedAt": "2026-10-29T17:08:57.138Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:08:57.138Z"
-    },
-    {
-      "id": "radar-source:lbp-tariffs",
-      "sourceUrl": "https://www.labanquepostale.fr/particulier/footer/tarifs.html",
-      "checkedAt": "2026-10-29T17:08:57.138Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:08:57.138Z"
-    },
     {
       "id": "radar-source:insee-studies",
       "sourceUrl": "https://www.insee.fr/fr/solr/consultation",
@@ -153301,22 +153337,6 @@
       "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:56:22.242Z"
     },
     {
-      "id": "radar-source:invesco",
-      "sourceUrl": "https://www.invesco.com/uk/en/about-us/media-hub.html",
-      "checkedAt": "2026-10-29T17:08:57.138Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:08:57.138Z"
-    },
-    {
-      "id": "radar-source:spdr-news",
-      "sourceUrl": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
-      "checkedAt": "2026-10-29T17:08:57.138Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:08:57.138Z"
-    },
-    {
       "id": "radar-source:xetra",
       "sourceUrl": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases",
       "checkedAt": "2026-10-29T18:56:22.242Z",
@@ -153408,7 +153428,7 @@
       "id": "radar-source:bdf-credit",
       "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "checkedAt": "2026-10-29T18:56:22.242Z",
-      "attemptedAt": "2026-10-29T19:08:35.107Z",
+      "attemptedAt": "2026-10-29T19:11:32.640Z",
       "status": "waiting",
       "sourceAttempted": false,
       "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:56:22.242Z"
@@ -153456,6 +153476,7 @@
       "id": "radar-source:spdr",
       "sourceUrl": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
       "checkedAt": "2026-10-29T08:23:57.395Z",
+      "attemptedAt": "2026-10-29T19:11:32.666Z",
       "status": "waiting",
       "sourceAttempted": false,
       "reason": "Prochain contrôle différé jusqu’au 2026-10-30T08:23:57.395Z"
@@ -154115,13 +154136,13 @@
       "mode": "full",
       "emptyReason": null,
       "retainNativeFailuresOnly": true,
-      "declaredAt": "2026-10-29T19:08:31.860061+00:00",
-      "nonce": "0c3c718f-6d39-44e8-a4e7-9dc0e6729a24",
+      "declaredAt": "2026-10-29T19:11:28.983536+00:00",
+      "nonce": "bb0a5bfb-4642-472d-9647-a83e033065e2",
       "codeSha": "5e77670749a005090964a4443f83755ff5833fa6",
       "durablePlan": true,
-      "runId": "40937249462",
+      "runId": "40937622524",
       "attempt": "1",
-      "sha256": "0d2f618d879aed7942cdc93e05dc1c2beab569d40edf59a697101c8881db9885"
+      "sha256": "82ba4562cf4d59fd6d1efd97c072318e26741941fce60c0b4026016af3fcf865"
     },
     "scope": {
       "kind": "editorial-radar-sources",
@@ -154815,10 +154836,17 @@
         }
       ],
       "emptyReason": null,
-      "declaredAt": "2026-10-29T19:08:31.860061+00:00",
-      "planSha256": "0d2f618d879aed7942cdc93e05dc1c2beab569d40edf59a697101c8881db9885",
+      "declaredAt": "2026-10-29T19:11:28.983536+00:00",
+      "planSha256": "82ba4562cf4d59fd6d1efd97c072318e26741941fce60c0b4026016af3fcf865",
       "attemptedIds": [
+        "radar-source:fortuneo-tariffs",
+        "radar-source:fortuneo-offers",
+        "radar-source:boursobank-offers",
+        "radar-source:boursobank-tariffs",
+        "radar-source:lbp-tariffs",
         "radar-source:revolut-news",
+        "radar-source:invesco",
+        "radar-source:spdr-news",
         "radar-source:wisdomtree",
         "radar-source:drees",
         "radar-source:dares",
@@ -154833,7 +154861,14 @@
       ],
       "attemptUnknownIds": [],
       "networkRequestedIds": [
+        "radar-source:fortuneo-tariffs",
+        "radar-source:fortuneo-offers",
+        "radar-source:boursobank-offers",
+        "radar-source:boursobank-tariffs",
+        "radar-source:lbp-tariffs",
         "radar-source:revolut-news",
+        "radar-source:invesco",
+        "radar-source:spdr-news",
         "radar-source:wisdomtree",
         "radar-source:drees",
         "radar-source:dares",
@@ -154847,10 +154882,10 @@
         "radar-source:Communiqués Global X Europe"
       ],
       "networkAttemptUnknownIds": [],
-      "runId": "40937249462",
+      "runId": "40937622524",
       "attempt": "1",
       "selectionReason": null,
-      "nonce": "0c3c718f-6d39-44e8-a4e7-9dc0e6729a24"
+      "nonce": "bb0a5bfb-4642-472d-9647-a83e033065e2"
     },
     "outcomes": [
       {
@@ -154861,11 +154896,11 @@
         ],
         "sourceUrl": "https://www.fortuneo.fr/tarifs",
         "selected": true,
-        "checkedAt": "2026-10-29T17:08:57.138Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:08:57.138Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-29T19:11:32.642Z",
+        "attemptedAt": "2026-10-29T19:11:32.661Z",
+        "status": "succeeded",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:fortuneo-offers",
@@ -154875,11 +154910,11 @@
         ],
         "sourceUrl": "https://www.fortuneo.fr/offres-speciales-fortuneo",
         "selected": true,
-        "checkedAt": "2026-10-29T17:08:57.138Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:08:57.138Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-29T19:11:32.642Z",
+        "attemptedAt": "2026-10-29T19:11:32.663Z",
+        "status": "succeeded",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:boursobank-offers",
@@ -154889,11 +154924,11 @@
         ],
         "sourceUrl": "https://www.boursobank.com/",
         "selected": true,
-        "checkedAt": "2026-10-29T17:08:57.138Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:08:57.138Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-29T19:11:32.642Z",
+        "attemptedAt": "2026-10-29T19:11:32.663Z",
+        "status": "succeeded",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:boursobank-tariffs",
@@ -154903,11 +154938,11 @@
         ],
         "sourceUrl": "https://www.boursobank.com/",
         "selected": true,
-        "checkedAt": "2026-10-29T17:08:57.138Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:08:57.138Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-29T19:11:32.642Z",
+        "attemptedAt": "2026-10-29T19:11:32.663Z",
+        "status": "succeeded",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:lbp-tariffs",
@@ -154917,11 +154952,11 @@
         ],
         "sourceUrl": "https://www.labanquepostale.fr/particulier/footer/tarifs.html",
         "selected": true,
-        "checkedAt": "2026-10-29T17:08:57.138Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:08:57.138Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-29T19:11:32.642Z",
+        "attemptedAt": "2026-10-29T19:11:32.664Z",
+        "status": "succeeded",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:insee-studies",
@@ -155029,7 +155064,7 @@
         ],
         "sourceUrl": "https://www.revolut.com/news/",
         "selected": true,
-        "attemptedAt": "2026-10-29T19:08:35.127Z",
+        "attemptedAt": "2026-10-29T19:11:32.665Z",
         "error": "HTTP 403",
         "sourceAttempted": true,
         "status": "failed",
@@ -155141,11 +155176,11 @@
         ],
         "sourceUrl": "https://www.invesco.com/uk/en/about-us/media-hub.html",
         "selected": true,
-        "checkedAt": "2026-10-29T17:08:57.138Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:08:57.138Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-29T19:11:32.642Z",
+        "attemptedAt": "2026-10-29T19:11:32.666Z",
+        "status": "succeeded",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:spdr-news",
@@ -155155,11 +155190,11 @@
         ],
         "sourceUrl": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
         "selected": true,
-        "checkedAt": "2026-10-29T17:08:57.138Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:08:57.138Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-29T19:11:32.642Z",
+        "attemptedAt": "2026-10-29T19:11:32.666Z",
+        "status": "unchanged-verified",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:xetra",
@@ -155323,7 +155358,7 @@
         ],
         "sourceUrl": "https://www.wisdomtree.com/fr/press-room",
         "selected": true,
-        "attemptedAt": "2026-10-29T19:08:35.128Z",
+        "attemptedAt": "2026-10-29T19:11:32.667Z",
         "error": "HTTP 403",
         "sourceAttempted": true,
         "status": "failed",
@@ -155338,7 +155373,7 @@
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
         "selected": true,
         "checkedAt": "2026-10-29T18:56:22.242Z",
-        "attemptedAt": "2026-10-29T19:08:35.107Z",
+        "attemptedAt": "2026-10-29T19:11:32.640Z",
         "status": "waiting",
         "sourceAttempted": false,
         "reason": "Prochain contrôle différé jusqu’au 2026-10-29T19:56:22.242Z",
@@ -155395,7 +155430,7 @@
         "sourceUrl": "https://drees.solidarites-sante.gouv.fr/",
         "selected": true,
         "checkedAt": "2026-10-25T00:25:11.059Z",
-        "attemptedAt": "2026-10-29T19:08:35.129Z",
+        "attemptedAt": "2026-10-29T19:11:32.667Z",
         "error": "fetch failed",
         "sourceAttempted": true,
         "status": "failed",
@@ -155409,7 +155444,7 @@
         ],
         "sourceUrl": "https://dares.travail-emploi.gouv.fr/",
         "selected": true,
-        "attemptedAt": "2026-10-29T19:08:35.129Z",
+        "attemptedAt": "2026-10-29T19:11:32.668Z",
         "error": "Accès refusé ou page anti-robot, même si HTTP 200",
         "sourceAttempted": true,
         "status": "failed",
@@ -155423,8 +155458,8 @@
         ],
         "sourceUrl": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
         "selected": true,
-        "checkedAt": "2026-10-29T19:08:35.103Z",
-        "attemptedAt": "2026-10-29T19:08:35.104Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
+        "attemptedAt": "2026-10-29T19:11:32.637Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -155437,8 +155472,8 @@
         ],
         "sourceUrl": "https://www.economie.gouv.fr/rss/toutesactualites",
         "selected": true,
-        "checkedAt": "2026-10-29T19:08:35.103Z",
-        "attemptedAt": "2026-10-29T19:08:35.105Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
+        "attemptedAt": "2026-10-29T19:11:32.638Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -155451,8 +155486,8 @@
         ],
         "sourceUrl": "https://www.vie-publique.fr/actualites-feeds.xml",
         "selected": true,
-        "checkedAt": "2026-10-29T19:08:35.103Z",
-        "attemptedAt": "2026-10-29T19:08:35.105Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
+        "attemptedAt": "2026-10-29T19:11:32.639Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -155465,8 +155500,8 @@
         ],
         "sourceUrl": "https://www.vie-publique.fr/lois-feeds.xml",
         "selected": true,
-        "checkedAt": "2026-10-29T19:08:35.103Z",
-        "attemptedAt": "2026-10-29T19:08:35.106Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
+        "attemptedAt": "2026-10-29T19:11:32.640Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -155479,8 +155514,8 @@
         ],
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
         "selected": true,
-        "checkedAt": "2026-10-29T19:08:35.103Z",
-        "attemptedAt": "2026-10-29T19:08:35.107Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
+        "attemptedAt": "2026-10-29T19:11:32.640Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -155493,8 +155528,8 @@
         ],
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse.html",
         "selected": true,
-        "checkedAt": "2026-10-29T19:08:35.103Z",
-        "attemptedAt": "2026-10-29T19:08:35.107Z",
+        "checkedAt": "2026-10-29T19:11:32.636Z",
+        "attemptedAt": "2026-10-29T19:11:32.641Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -155645,6 +155680,7 @@
         "sourceUrl": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
         "selected": true,
         "checkedAt": "2026-10-29T08:23:57.395Z",
+        "attemptedAt": "2026-10-29T19:11:32.666Z",
         "status": "waiting",
         "sourceAttempted": false,
         "reason": "Prochain contrôle différé jusqu’au 2026-10-30T08:23:57.395Z",
@@ -155699,8 +155735,8 @@
         ],
         "sourceUrl": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
         "selected": true,
-        "checkedAt": "2026-10-29T19:08:35.100Z",
-        "attemptedAt": "2026-10-29T19:08:35.101Z",
+        "checkedAt": "2026-10-29T19:11:32.633Z",
+        "attemptedAt": "2026-10-29T19:11:32.633Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -155713,8 +155749,8 @@
         ],
         "sourceUrl": "https://globalxetfs.eu/news",
         "selected": true,
-        "checkedAt": "2026-10-29T19:08:35.100Z",
-        "attemptedAt": "2026-10-29T19:08:35.102Z",
+        "checkedAt": "2026-10-29T19:11:32.633Z",
+        "attemptedAt": "2026-10-29T19:11:32.635Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -155747,13 +155783,5 @@
         "sourceAttempted": false
       }
     ]
-  },
-  "notifications": {
-    "checkedAt": "2026-10-29T19:09:00.301Z",
-    "mode": "major",
-    "sent": 0,
-    "pending": 0,
-    "status": "ok",
-    "recovered": 0
   }
 }
