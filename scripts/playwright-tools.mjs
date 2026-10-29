@@ -339,7 +339,7 @@ async function testPortfolioGenerator(page) {
   const performanceHookOk = text => {
     const result = text.match(/Performance annualisée \([^)]*\) : ([＋+−-]?[0-9]+,[0-9] %) par an/);
     return Boolean(result && text.startsWith(`📈 ${result[1]} par an sur la période `)
-      && text.includes('Voici sa répartition et le détail des performances simulées 👇'));
+      && text.includes('Répartition et performances simulées 👇') && text.includes('Pas un conseil.'));
   };
   // Utilities legitimately uses 💡 on its weighted asset line. Only reject
   // the removed editorial heading, not the icon of a randomly selected ETF.
