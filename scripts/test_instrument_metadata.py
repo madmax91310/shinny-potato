@@ -4,6 +4,27 @@ import unittest
 from collect_instrument_metadata import parse_text,parse_json,parse_listings,collect
 class MetadataTests(unittest.TestCase):
     ISIN='IE00B4L5Y983'
+    def test_amundi_official_explicit_pea_false_is_exact_share_evidence(self):
+        from pathlib import Path
+        body=Path(__file__).with_name('fixtures').joinpath('official-documents','amundi-explicit-pea-LU3038520774.json').read_bytes()
+        self.assertFalse(parse_json(body,'LU3038520774')['pea'])
+        with self.assertRaises(ValueError): parse_json(body,'LU0000000000')
+        doc=json.loads(body); facts=doc['products'][0]['characteristics']
+        for absent in (None,'false','true','No',0,1,{},[]):
+            facts['FUND_PEA']=absent
+            self.assertNotIn('pea',parse_json(json.dumps(doc).encode(),'LU3038520774'))
+        del facts['FUND_PEA']
+        self.assertNotIn('pea',parse_json(json.dumps(doc).encode(),'LU3038520774'))
+        facts['FUND_PEA']=True
+        self.assertTrue(parse_json(json.dumps(doc).encode(),'LU3038520774')['pea'])
+    def test_amundi_acquisition_requests_the_explicit_tax_characteristic(self):
+        from unittest.mock import patch
+        from collect_instrument_metadata import fetch_amundi
+        with patch('collect_amundi_etf.fetch_api',return_value={}) as api:
+            fetch_amundi('LU3038520774')
+        payload=api.call_args.args[0]
+        self.assertEqual(payload['productIds'],['LU3038520774'])
+        self.assertIn('FUND_PEA',payload['characteristics'])
     def test_explicit_fields_and_negatives(self):
         text=self.ISIN+'\nEligible PEA: Non\nCurrency Hedged: No\nUse of Income: Accumulating\nDomicile: Ireland\nReplication: Physical'
         r=parse_text(text,self.ISIN)

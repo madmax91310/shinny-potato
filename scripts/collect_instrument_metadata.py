@@ -28,7 +28,7 @@ VANECK_FACTSHEET=re.compile(r'https://www\.vaneck\.com/(?:ucits|[a-z]{2}/[a-z]{2
 # Amundi publishes exact-share characteristics and listings through a POST API only: a GET on this
 # URL answers 405 and had left every Amundi instrument without metadata or listing evidence.
 AMUNDI_API='https://www.amundietf.fr/mapi/ProductAPI/getProductsData'
-AMUNDI_CHARACTERISTICS=['ISIN','DISTRIBUTION_POLICY','FUND_REPLICATION_METHODOLOGY','LISTINGS','MAIN_LISTINGS']
+AMUNDI_CHARACTERISTICS=['ISIN','DISTRIBUTION_POLICY','FUND_REPLICATION_METHODOLOGY','FUND_PEA','LISTINGS','MAIN_LISTINGS']
 # Exchange labels as the issuers print them, mapped to the MIC used across the registries.
 EXCHANGE_MICS={'London Stock Exchange':'XLON','LSE':'XLON','Deutsche Boerse Xetra':'XETR','Xetra':'XETR','XETRA':'XETR',
   'Euronext Amsterdam':'XAMS','Nyse Euronext - Euronext Paris':'XPAR','Euronext Paris':'XPAR','Borsa Italiana':'ETFP','SIX Swiss Exchange':'XSWX',
@@ -174,7 +174,12 @@ def parse_json(body,isin):
     if isinstance(doc,dict) and 'products' in doc:
         facts=amundi_product(doc,isin)['characteristics']
         mapping={'DISTRIBUTION_POLICY':'distribution','FUND_REPLICATION_METHODOLOGY':'replicationMethod'}
-        return {field:facts[key] for key,field in mapping.items() if isinstance(facts.get(key),str) and facts[key]}
+        values = {field:facts[key] for key,field in mapping.items() if isinstance(facts.get(key),str) and facts[key]}
+        # The official website requests this explicit boolean for the exact
+        # product. Missing/null/text values never become an ineligibility.
+        if type(facts.get('FUND_PEA')) is bool:
+            values['pea'] = facts['FUND_PEA']
+        return values
     if isinstance(doc,dict) and 'pdpResult' in doc:
         from collect_dws_etf import items
         section=dws_identity(body,isin)
