@@ -18,7 +18,7 @@ export function queueClass(item, now = new Date()) {
   // An initial archive can contain a recent publication; it stays notification-silent.
   return first && relevant && age >= 0 && age <= QUEUE_POLICY.recentDays && !item.offerReference ? 'recent-first-extraction' : first ? 'archive-first-extraction' : ['error','partial'].includes(item.status) ? 'retry' : 'recheck'
 }
-export function planPublicationQueue(documents,sources,now,previous={},limit) {
+export function planPublicationQueue(documents,sources,now,previous={},limit,{requalificationIds=new Set()}={}) {
   const costs = previous.documentDurationsMs ?? [], sorted = [...costs].sort((a,b)=>a-b)
   const p90 = sorted.length ? sorted[Math.min(sorted.length-1,Math.floor(sorted.length*.9))] : QUEUE_POLICY.initialDocumentMs
   const measuredLimit = Math.max(1,Math.min(QUEUE_POLICY.maxDocuments,Math.floor(QUEUE_POLICY.timeBudgetMs*.75/Math.max(1000,p90))))
@@ -29,13 +29,22 @@ export function planPublicationQueue(documents,sources,now,previous={},limit) {
   const fresh = documents.filter(([,d])=>queueClass(d,now)==='recent-first-extraction').sort((a,b)=>Date.parse(b[1].publishedAt??b[1].hint)-Date.parse(a[1].publishedAt??a[1].hint)||age(a[1])-age(b[1]))
   const freshSlots=Math.min(fresh.length,count===0?0:count===1 ? ((previous.queuePass??0)%3===2?0:1) : Math.max(1,Math.floor(count*QUEUE_POLICY.reservedFraction))), chosen=fresh.slice(0,freshSlots)
   const used=new Set(chosen.map(([u])=>u))
+  // A repaired parser is a one-off background recovery, not recent news.
+  // Use at most half of the remaining slots; aging/ordinary work keeps the
+  // other half. Neither the request ceiling nor the time budget is increased.
+  const repairSlots=Math.floor((count-chosen.length)/2)
+  const repairs=documents.filter(([u])=>!used.has(u)&&requalificationIds.has(u))
+  const repairQueues=ordered.map(source=>repairs.filter(([,d])=>d.source===source.id)
+    .sort((a,b)=>(b[1].publishedAt??'').localeCompare(a[1].publishedAt??'')||age(a[1])-age(b[1])))
+  let admittedRepairs=0
+  while(admittedRepairs<repairSlots&&repairQueues.some(q=>q.length))for(const q of repairQueues)if(q.length&&admittedRepairs<repairSlots){const item=q.shift();chosen.push(item);used.add(item[0]);admittedRepairs++}
   const background=documents.filter(([u])=>!used.has(u)).sort((a,b)=>age(a[1])-age(b[1]) || (a[1].attempts??0)-(b[1].attempts??0))
   // Aging protects a source's old documents even while its archive keeps growing.
   const overdue=background.filter(([,d])=>(+now-Date.parse(d.lastQueueServiceAt??d.discoveredAt))/3600000>=QUEUE_POLICY.agingHours)
   for(const item of overdue){if(chosen.length>=count)break;chosen.push(item);used.add(item[0])}
   const queues=ordered.map(source=>background.filter(([u,d])=>!used.has(u)&&d.source===source.id))
   while(chosen.length<count&&queues.some(q=>q.length))for(const q of queues)if(q.length&&chosen.length<count)chosen.push(q.shift())
-  return {chosen,limit:count,p90DocumentMs:p90,policy:QUEUE_POLICY,reservedRecent:freshSlots,eligibleRecent:fresh.length,objective:'Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles.'}
+  return {chosen,limit:count,p90DocumentMs:p90,policy:QUEUE_POLICY,reservedRecent:freshSlots,eligibleRecent:fresh.length,admittedRequalifications:admittedRepairs,eligibleRequalifications:repairs.length,objective:'Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles.'}
 }
 export function documentDelays(item) {
   const hours=(a,b)=>a&&b&&Number.isFinite(Date.parse(a))&&Number.isFinite(Date.parse(b))&&Date.parse(b)>=Date.parse(a)?(Date.parse(b)-Date.parse(a))/3600000:null

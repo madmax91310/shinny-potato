@@ -88,3 +88,25 @@ const untouched=Object.entries(bounded.state.documents).filter(([url,item])=>url
 assert.equal(untouched.length,1)
 assert.equal(untouched[0][1].attemptedAt,earlier)
 console.log('BDF versioned recovery: future-backoff legacy failures requalified once within ordinary budget; valid history, failed periods, no-source-cache and unattempted identities preserved.')
+
+// Integration with a congested ordinary queue: a fresh parser must actually
+// reach its source, while older unrelated work still gets half the envelope.
+const q3=manifest.responses.find(r=>r.url.endsWith('2025-q3')),q3Html=gunzipSync(fs.readFileSync(dir+'/'+q3.file)).toString()
+const other=PUBLICATION_SOURCES.find(s=>s.id==='bdf-credit'),longAgo=new Date(+now-3*86400000).toISOString()
+const backlog=Object.fromEntries(Array.from({length:8},(_,i)=>{const url=other.url+'&isolated-test='+i;return[url,{url,source:other.id,title:'Ancien dossier de test isolé',status:'error',attempts:3,firstAttemptAt:longAgo,attemptedAt:longAgo,lastQueueServiceAt:longAgo,discoveredAt:longAgo,nextAttemptAt:earlier,error:'Previous isolated failure'}]}))
+const congested={sources:{...before.sources,[other.id]:{id:other.id,status:'ok',checkedAt:earlier,nextCheckAt:future}},documents:{...backlog,[latest.url]:oldFailure(latest),[q3.url]:oldFailure(q3),[bad.url]:oldFailure(bad)}}
+const calls=[]
+const replay=await collectPublications(now,async url=>{
+ calls.push(url)
+ if(url===latest.url||url===q3.url)return new Response(url===latest.url?html:q3Html,{headers:{'content-type':'text/html'}})
+ if(Object.hasOwn(backlog,url))return new Response('Isolated background failure',{status:503})
+ throw Error('The older contradictory document must remain unattempted in this four-document pass')
+},congested,[other,source],4)
+assert.equal(replay.metrics.attemptedDocuments,4)
+assert.equal(replay.metrics.queue.requalificationsEligible,3)
+assert.equal(replay.metrics.queue.requalificationsSelected,2)
+assert.equal(replay.state.documents[latest.url].status,'done');assert.equal(replay.state.documents[q3.url].status,'done')
+assert.equal(new Set(calls.filter(url=>Object.hasOwn(backlog,url))).size,2,'Unrelated background work retains half the no-news budget')
+assert.deepEqual(replay.state.documents[bad.url],congested.documents[bad.url],'A targeted recovery does not certify the unattempted archive')
+assert.equal(replay.sources.find(s=>s.id===source.id).checkedAt,earlier,'Document recovery must not invent a new listing check')
+console.log('BDF congested queue: latest two real documents recovered before eight older failures, two background attempts retained, old contradiction unattempted and not certified.')

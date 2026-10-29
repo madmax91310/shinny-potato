@@ -269,7 +269,8 @@ export async function collectPublications(now = new Date(), request = fetch, pre
   const due = Object.entries(state.documents).filter(([, item]) => (!item.listingRejected || parserDue(item)) && (parserDue(item) || !item.nextAttemptAt || Date.parse(item.nextAttemptAt) <= +now))
     .sort((a,b) => (a[1].attemptedAt ?? '').localeCompare(b[1].attemptedAt ?? '') || (b[1].processingPriority??0)-(a[1].processingPriority??0) || b[1].discoveredAt.localeCompare(a[1].discoveredAt))
   // Round-robin across sources: a prolific archive cannot starve the others.
-  const queuePlan=planPublicationQueue(due,sources,now,state,budget)
+  const requalificationIds=new Set(due.filter(([,item])=>parserDue(item)).map(([url])=>url))
+  const queuePlan=planPublicationQueue(due,sources,now,state,budget,{requalificationIds})
   const chosen=queuePlan.chosen
   state.queuePass=(state.queuePass??0)+1
   if(chosen.length) state.nextSourceIndex=(sources.findIndex(source=>source.id===chosen.at(-1)[1].source)+1)%sources.length
@@ -384,7 +385,7 @@ export async function collectPublications(now = new Date(), request = fetch, pre
   }
   for (const [url,item] of Object.entries(state.documents)) if (item.status === 'error' && !errors.some(error => error.entity === url)) errors.push({ family: sources.find(source => source.id === item.source)?.family ?? 'radar', entity: url, reason: item.error })
   const waiting=Object.values(state.documents).filter(d=>['pending','error','partial'].includes(d.status))
-  state.metrics = { ...metrics, queue:{admitted:chosen.length,attempted:metrics.attemptedDocuments,capacity:queuePlan.limit,p90DocumentMs:queuePlan.p90DocumentMs,recentEligible:queuePlan.eligibleRecent,recentFirstAttempted:chosen.filter(([,d])=>d.queueClass==='recent-first-extraction' && d.firstAttemptAt===now.toISOString()).length,recentDeferred:Math.max(0,queuePlan.eligibleRecent-chosen.filter(([,d])=>d.queueClass==='recent-first-extraction'&&d.firstAttemptAt===now.toISOString()).length),pending:waiting.length,oldestWaitHours:waiting.length?Math.max(...waiting.map(d=>(+now-Date.parse(d.discoveredAt))/3600000)):0,objective:queuePlan.objective}, durationMs: Date.now()-started, checkedAt: now.toISOString() }
+  state.metrics = { ...metrics, queue:{admitted:chosen.length,attempted:metrics.attemptedDocuments,capacity:queuePlan.limit,p90DocumentMs:queuePlan.p90DocumentMs,requalificationsEligible:queuePlan.eligibleRequalifications,requalificationsSelected:chosen.filter(([url])=>requalificationIds.has(url)).length,recentEligible:queuePlan.eligibleRecent,recentFirstAttempted:chosen.filter(([,d])=>d.queueClass==='recent-first-extraction' && d.firstAttemptAt===now.toISOString()).length,recentDeferred:Math.max(0,queuePlan.eligibleRecent-chosen.filter(([,d])=>d.queueClass==='recent-first-extraction'&&d.firstAttemptAt===now.toISOString()).length),pending:waiting.length,oldestWaitHours:waiting.length?Math.max(...waiting.map(d=>(+now-Date.parse(d.discoveredAt))/3600000)):0,objective:queuePlan.objective}, durationMs: Date.now()-started, checkedAt: now.toISOString() }
   state.queueHistory??=[]
   state.queueHistory.push({checkedAt:now.toISOString(),eventName:process.env.GITHUB_EVENT_NAME??'local-qualification',runId:process.env.GITHUB_RUN_ID??null,requests:metrics.requests,bytes:metrics.bytes,durationMs:state.metrics.durationMs,...state.metrics.queue})
   state.queueHistory=state.queueHistory.slice(-512)
