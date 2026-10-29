@@ -155,20 +155,46 @@ def latest(urls,pattern,today):
     return max(selected)[1]
 
 
+def bulletin_calendar(url, pattern, snapshot_as_of):
+    """Period of the issuer-linked bulletin, not its distribution cadence.
+
+    This documents the observed publication series. It does not assert an
+    issuer deadline, nor renew any financial observation date.
+    """
+    match = re.search(pattern, urllib.parse.unquote(url), re.I)
+    if not match:
+        raise ValueError('Unqualified bulletin publication period')
+    quarter, semester = match.groupdict().get('quarter'), match.groupdict().get('semester')
+    if bool(quarter) == bool(semester):
+        raise ValueError('Ambiguous bulletin publication cadence')
+    number, months = (int(quarter), 3) if quarter else (int(semester), 6)
+    if not 1 <= number <= 12 // months:
+        raise ValueError('Invalid bulletin publication period')
+    month = number * months
+    end = dt.date(int(match['year']), month, calendar.monthrange(int(match['year']), month)[1])
+    if end.isoformat() != snapshot_as_of:
+        raise ValueError('Bulletin link period and financial snapshot disagree')
+    return {'asOf': snapshot_as_of, 'periodMonths': months, 'sourceUrl': url,
+            'basis': 'issuer-linked-bulletin-period', 'issuerPublicationDeadline': None}
+
+
 def collect(id_,today):
     name,base=PRODUCTS[id_]
     links=document_links(fetch(base if id_=='transitions-europe' else 'https://alderan.fr/scpi-documentation/').decode(),'https://www.arkea-reim.com/' if id_=='transitions-europe' else base)
     if id_=='transitions-europe':
-        url=latest(links,r'te_(?:t(?P<quarter>\d)|s(?P<semester>\d))[-_](?P<year>\d{4})',today)
+        period_pattern=r'te_(?:t(?P<quarter>\d)|s(?P<semester>\d))[-_](?P<year>\d{4})'
+        url=latest(links,period_pattern,today)
         note_url=next(u for u in links if 'note_d_information' in u)
         pdf=fetch(url);result=parse_transitions(pdf_text(pdf),bbox_pages(pdf),pdf_text(fetch(note_url)),url,today)
         result['conditions']['sourceUrls'].append(note_url)
     else:
-        url=latest(links,r'BTI-T(?P<quarter>\d)-(?P<year>\d{4})-ActivImmo',today)
+        period_pattern=r'BTI-T(?P<quarter>\d)-(?P<year>\d{4})-ActivImmo'
+        url=latest(links,period_pattern,today)
         annual_url,_=latest_annual(links,r'Rapport-annuel-(?P<year>20\d{2})-ActivImmo',today)
         note_url=next(u for u in links if 'Note-dinformation-SCPI-ActivImmo-1' in u)
         price_url=max((u for u in links if 'Modification-des-prix-de-part' in u),key=lambda u:u.rsplit('/',1)[-1])
         pdf=fetch(url);result=parse_activimmo(pdf_text(pdf),bbox_pages(pdf),pdf_text(fetch(annual_url)),pdf_text(fetch(note_url)),pdf_text(fetch(price_url)),url,annual_url,note_url,price_url,today)
         linked_year=int(required(r'Rapport-annuel-(20\d{2})-ActivImmo',annual_url)[1])
         if result['annual']['years'][-1]['year']!=linked_year:raise ValueError('Annual URL and published columns disagree')
+    result['snapshotPublication'] = bulletin_calendar(url,period_pattern,result['snapshot']['asOf'])
     return {'id':id_,'name':name,'sourceUrl':base,'checkedAt':today.isoformat(),**result}

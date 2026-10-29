@@ -331,9 +331,13 @@ class AwaitingPublication(ValueError):
 BULLETIN_GRACE_DAYS = json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/freshness-policy.json').read_text())['calendars']['scpi.quarterlyBulletin']['graceDaysAfterNextQuarterEnd']
 
 
-def next_bulletin_due(snapshot_as_of):
+def next_bulletin_due(snapshot_as_of, period_months=3):
+    if period_months not in (3,6):raise ValueError('Unqualified bulletin cadence')
     quarter_end = dt.date.fromisoformat(snapshot_as_of)
-    month = quarter_end.month + 3
+    import calendar
+    if (quarter_end.month%period_months or quarter_end.day!=calendar.monthrange(quarter_end.year,quarter_end.month)[1]):
+        raise ValueError('Bulletin snapshot is not the end of its qualified period')
+    month = quarter_end.month + period_months
     year = quarter_end.year + (month - 1) // 12
     month = (month - 1) % 12 + 1
     next_end = dt.date(year, month + 1, 1) - dt.timedelta(days=1) if month < 12 else dt.date(year, 12, 31)
@@ -373,6 +377,19 @@ def refresh(previous, adapters, today):
                 for action in old.get('priceHistory',{}).get('corporateActions',[]):
                     if not any(all(new[k]==action[k] for k in ['asOf','ratio','oldPrice','newPrice']) for new in record.get('priceHistory',{}).get('corporateActions',[])):raise ValueError('Share split evidence disappeared or changed')
             record['collectionStatus'] = {'status':'success','lastAttemptAt':today.isoformat(),'lastAccessSuccessAt':today.isoformat()}
+            publication=record.get('snapshotPublication')
+            if publication:
+                if (publication.get('basis')!='issuer-linked-bulletin-period'
+                        or publication.get('asOf')!=record['snapshot']['asOf']
+                        or publication.get('sourceUrl')not in record['snapshot']['sourceUrls']
+                        or publication.get('issuerPublicationDeadline')is not None):
+                    raise ValueError('Unqualified snapshot publication evidence')
+                due=next_bulletin_due(publication['asOf'],publication['periodMonths'])
+                record['collectionStatus'].update(internalReviewDue=due.isoformat(),issuerPublicationDeadline=None,
+                    deadlineBasis='internal-monitoring-policy',publicationPeriodMonths=publication['periodMonths'])
+                if today<=due:
+                    record['collectionStatus'].update(status='waiting-publication',accessStatus='success',
+                        reason='Current issuer-linked bulletin checked; next reporting period or its normal publication interval pending. Internal review date, no issuer deadline established.')
             if id=='remake-live':
                 due=next_bulletin_due(record['snapshot']['asOf'])
                 record['collectionStatus'].update(internalReviewDue=due.isoformat(),issuerPublicationDeadline=None,deadlineBasis='internal-monitoring-policy')
