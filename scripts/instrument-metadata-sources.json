@@ -2016,10 +2016,10 @@
         "checkedAt": "2026-10-29"
       },
       "urls": [
-        "https://www.vaneck.com/uk/en/library/fact-sheets/smh-fact-sheet.pdf",
         "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
         "https://bourse.fortuneo.fr/trackers/cours-vaneck-semiconductor-ucits-etf-a-usd-acc-SMH-IE00BMC38736-23",
         "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMC38736",
+        "https://www.vaneck.com/uk/en/library/fact-sheets/smh-fact-sheet.pdf",
         "https://bourse.fortuneo.fr/api/search?term=IE00BMC38736"
       ]
     },
@@ -2266,6 +2266,37 @@
         "https://bourse.fortuneo.fr/trackers/cours-ishares-stoxx-europe-600-ucits-etf-de-eur-dist-EXSA-DE0002635307-19",
         "https://www.justetf.com/fr/etf-profile.html?isin=DE0002635307",
         "https://bourse.fortuneo.fr/api/search?term=DE0002635307"
+      ]
+    },
+    {
+      "isin": "FR0013412269",
+      "listings": [
+        {
+          "ticker": "PANX",
+          "exchange": "Euronext Paris",
+          "mic": "XPAR",
+          "currency": "EUR",
+          "symbol": "PANX.PA",
+          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412269/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+          "checkedAt": "2026-10-29",
+          "evidenceId": "FR0013412269-XPAR-PANX-EUR",
+          "excerpt": "FR0013412269 | Euronext Paris       EUR                    PANX FP                                        IPANX                              PANX.PA                  IPANX=BNPP",
+          "sha256": "45969021b3baa56a74f71b95d9a6f7381ca5ea849cfa2fc2546360345f667e38"
+        }
+      ],
+      "peaExpectation": {
+        "value": true,
+        "sourceUrl": "https://www.amundietf.com/pdfDocuments/monthly-factsheet/FR0013412269/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+        "checkedAt": "2026-10-29"
+      },
+      "urls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412269/FRA/FRA/INSTITUTIONNEL/ETF",
+        "https://www.amundietf.com/pdfDocuments/monthly-factsheet/FR0013412269/FRA/FRA/INSTITUTIONNEL/ETF",
+        "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412269",
+        "https://bourse.fortuneo.fr/api/search?term=FR0013412269",
+        "https://extraetf.com/fr/etf-profile/FR0013412269",
+        "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=FR0013412269"
       ]
     },
     {
@@ -8034,10 +8065,11 @@
         "checkedAt": "2026-10-29"
       },
       "urls": [
-        "https://www.vaneck.com/nl/en/library/fact-sheets/nucl-fact-sheet.pdf",
+        "https://www.vaneck.com/ucits/library/fact-sheets/nucl-fact-sheet.pdf",
         "https://www.justetf.com/en/etf-profile.html?isin=IE000M7V94E1",
         "https://bourse.fortuneo.fr/trackers/cours-vaneck-uranium-and-nuclear-technologies-ucits-etf-a-usd-acc-NUCL-IE000M7V94E1-23",
         "https://www.justetf.com/fr/etf-profile.html?isin=IE000M7V94E1",
+        "https://www.vaneck.com/nl/en/library/fact-sheets/nucl-fact-sheet.pdf",
         "https://bourse.fortuneo.fr/api/search?term=IE000M7V94E1"
       ]
     },
@@ -8095,10 +8127,11 @@
         "checkedAt": "2026-10-29"
       },
       "urls": [
-        "https://www.vaneck.com/nl/en/library/fact-sheets/jedi-fact-sheet.pdf",
+        "https://www.vaneck.com/ucits/library/fact-sheets/jedi-fact-sheet.pdf",
         "https://www.justetf.com/en/etf-profile.html?isin=IE000YU9K6K2",
         "https://bourse.fortuneo.fr/trackers/cours-vaneck-space-innovators-ucits-etf-a-usd-acc-JEDI-IE000YU9K6K2-23",
         "https://www.justetf.com/fr/etf-profile.html?isin=IE000YU9K6K2",
+        "https://www.vaneck.com/nl/en/library/fact-sheets/jedi-fact-sheet.pdf",
         "https://bourse.fortuneo.fr/api/search?term=IE000YU9K6K2"
       ]
     },
