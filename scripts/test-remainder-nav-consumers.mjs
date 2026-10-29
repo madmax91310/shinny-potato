@@ -30,6 +30,7 @@ proofs.push(...JSON.parse((await import('node:zlib')).gunzipSync(fs.readFileSync
 proofs.push(...JSON.parse((await import('node:zlib')).gunzipSync(fs.readFileSync('scripts/fixtures/landg-history/collection.json.gz'))).series)
 proofs.push(...JSON.parse((await import('node:zlib')).gunzipSync(fs.readFileSync('scripts/fixtures/bnp-nav/collection.json.gz'))).series)
 const qualifiedWisdom=JSON.parse((await import('node:zlib')).gunzipSync(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/wisdomtree-20261029/qualification-GitHub-40839857667.json.gz'))).series
+qualifiedWisdom.push(...JSON.parse((await import('node:zlib')).gunzipSync(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/wisdomtree-20261029/qualification-GitHub-40844493683.json.gz'))).series)
 for(const {record:r}of qualifiedWisdom){
  const raw=(await import('node:zlib')).gunzipSync(fs.readFileSync(`scripts/fixtures/wisdomtree-performance/${r.wisdomTicker}-graph.gz`))
  const url=Object.keys(r.rawSourceHashes).find(url=>url.includes('mode=gro10k'))
