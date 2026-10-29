@@ -1,3 +1,4 @@
+import { qualifiedNativeIndexComposition } from '../../data/native-index-composition.js'
 import { aggregateCompanies } from '../../data/index-concentration-core.js'
 import COMPANY_IDENTITIES from '../../data/index-company-identities.json' with { type: 'json' }
 import { dcaExposure, exposureDisplay, EXPOSURE_MAX_AGE_DAYS, EXPOSURE_MAX_SPREAD_DAYS } from './exposure.js'
@@ -20,7 +21,7 @@ export function sharedPositions(lines,references,now=new Date(),observations={})
   if(r?.outsideClassification)continue // No company positions for bonds, cash, metals or crypto.
   const o=r?.countries||r?.sectors
   const h=r?.kind==='equity'&&r.isin&&o?{asOf:o.asOf,sourceUrl:o.sourceUrl,basis:'equity',complete:true,rows:[{isin:r.isin,name:r.name,weightPct:100}]}:observations[line.asset],age=(today-Date.parse(h?.asOf))/86400000
-  const valid=line.isin===references[line.asset]?.isin&&h?.sourceUrl&&Number.isFinite(age)&&/^\d{4}-\d{2}-\d{2}$/.test(h.asOf)&&new Date(h.asOf).toISOString().slice(0,10)===h.asOf&&age>=0&&age<=EXPOSURE_MAX_AGE_DAYS&&['fund','index','equity'].includes(h.basis)&&!((h.synthetic||r?.synthetic)&&h.basis==='fund')&&h.rows?.length&&h.rows.every(r=>Number.isFinite(r.weightPct)&&r.weightPct>=0&&r.weightPct<=100)&&h.rows.reduce((s,r)=>s+r.weightPct,0)<=100.5
+  const valid=(!(h?.basis==='index'&&h.complete===true)||qualifiedNativeIndexComposition(h,line.isin,now))&&line.isin===references[line.asset]?.isin&&h?.sourceUrl&&Number.isFinite(age)&&/^\d{4}-\d{2}-\d{2}$/.test(h.asOf)&&new Date(h.asOf).toISOString().slice(0,10)===h.asOf&&age>=0&&age<=EXPOSURE_MAX_AGE_DAYS&&['fund','index','equity'].includes(h.basis)&&!((h.synthetic||r?.synthetic)&&h.basis==='fund')&&h.rows?.length&&h.rows.every(r=>Number.isFinite(r.weightPct)&&r.weightPct>=0&&r.weightPct<=100)&&h.rows.reduce((s,r)=>s+r.weightPct,0)<=100.5
   if(!valid){unavailable.push(line.label);continue}
   const rows=new Map()
   for(const row of h.rows.filter(r=>/^[A-Z]{2}[A-Z0-9]{9}[0-9]$/.test(r.isin||'')))rows.set(row.isin,{...row,weightPct:(rows.get(row.isin)?.weightPct||0)+row.weightPct})

@@ -72,6 +72,17 @@ class PublicRankings(unittest.TestCase):
     self.assertEqual(sum(r['isin']is not None for r in rows),1)
     with self.assertRaises(ValueError):parse_public_rankings(fund[:10],{'isin':isin},NOW,{fund[0]['additionalInfo2']:'US0378331005'})
 
+ def test_identity_discovery_uses_the_same_complete_fund_perimeter_without_assigning_isins(self):
+  from collect_wisdomtree_holdings import public_identity_candidates
+  isin='IE00BZ56SW52';raw=gzip.decompress((FIX/(isin+'.rankings.json.gz')).read_bytes());doc=gzip.decompress((FIX/(isin+'.pdf.gz')).read_bytes())
+  rows=public_identity_candidates({'isin':isin,'currency':'USD'},NOW,lambda url,**kwargs:doc if '/pdr/'in url else raw)
+  self.assertEqual(len(rows),560);self.assertTrue(all('isin'not in r for r in rows))
+  self.assertTrue(all(r['candidateShareIsin']==isin for r in rows))
+  self.assertTrue(all(r['candidateAsOf']=='2026-10-23' for r in rows))
+  self.assertAlmostEqual(sum(r['weightPct']for r in rows),99.9996)
+  bad=[r for r in json.loads(raw)if r['rankClassificationID']==1][:10]
+  with self.assertRaises(ValueError):public_identity_candidates({'isin':isin,'currency':'USD'},NOW,lambda url,**kwargs:doc if '/pdr/'in url else json.dumps(bad).encode())
+
  def test_same_share_alternate_listing_preserves_exact_fund_weights(self):
   isin='IE00BZ56SW52';payload=json.loads(gzip.decompress((FIX/(isin+'.rankings-gbpx.json.gz')).read_bytes()))
   primary=load(isin);mapping={r['sedol']:r['isin']for r in json.loads((FIX.parents[2]/'src/data/dca-complete-holdings.json').read_text())[isin]['rows']if r.get('sedol')and r.get('isin')}
@@ -107,7 +118,7 @@ class PublicRankings(unittest.TestCase):
 
  def test_identity_partial_future_negative_duplicate_and_wrong_scopes_refused(self):
   isin='IE00BJGWQN72';original=load(isin);mapping={original[0]['additionalInfo2']:'US0378331005'}
-  for key,value in [('wtID',1),('ticker','WTAI LN'),('entityName','Other fund'),('dt','2026-10-30'),('dt','2026-10-22'),('pct',float('nan')),('pct',-.01),('pct',.7),('ranking',999),('additionalInfo2',original[1]['additionalInfo2']),('rankClassification','Index')]:
+  for key,value in [('wtID',1),('ticker','WTAI LN'),('entityName','Other fund'),('dt','2026-10-30'),('dt','2026-10-22'),('pct',float('nan')),('pct',-.01),('pct',.7),('ranking',999),('additionalInfo2',original[1]['additionalInfo2']),('rankClassification','Index'),('rankClassificationID',True)]:
    body=copy.deepcopy(original);body[0][key]=value
    with self.subTest(key=key,value=value),self.assertRaises(ValueError):parse_public_rankings(body,{'isin':isin},NOW,mapping)
   body=[r for r in original if r['rankClassificationID']!=1]

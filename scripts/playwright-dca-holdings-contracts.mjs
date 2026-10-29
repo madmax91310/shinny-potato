@@ -27,10 +27,13 @@ try{
   ['new-issuer-portfolios',[['IE00BZ56SW52',50],['IE00BKLF1R75',50]]],
   ['neutral',[['world',60],['gold',20],['btc',10],['IE0008UEVOE0',10]]],
   ['fund-and-index',[['world',60],['FR0013411980',40]]],
+  ['native-index-pair',[['FR0013411980',50],['FR0013411998',50]]],
+  ['europe-pea-partial',[['europe',40],['FR0011869304',30],['FR0011871110',30]]],
+  ['europe-only-no-identifiers',[['europe',100]]],
+  ['outside-equity-only',[['gold',50],['btc',50]]],
  ]){
   const lines=allocation.map(([asset,weight])=>({asset,isin:references[asset].isin,label:references[asset].name,weight,amount:0}))
   const expected=portfolioAnalytics(lines,references,holdings),group=selectConcentrationGroup(expected.groups)
-  assert(group,id+' needs a qualified composition')
   await page.evaluate(lines=>localStorage.setItem('epargnant-publication:v1:simple-exposure-draft',JSON.stringify({lines,field:'overlap',exposureLimit:4})),lines)
   await page.goto(base+'le-dca-de')
   await page.getByText('Voir l’analyse détaillée',{exact:true}).filter({visible:true}).click()
@@ -38,8 +41,13 @@ try{
   await panel.getByRole('heading',{name:'Ce que tu détiens vraiment',exact:true}).waitFor()
   await panel.getByText('Chargement de l’analyse des détentions…',{exact:true}).waitFor({state:'hidden'})
   await panel.getByText('Concentration et poids cumulés',{exact:true}).click()
-  const ui=normalize(await panel.locator('.dca-concentration').innerText())
-  for(const value of [pct(group.top5),pct(group.top10),pct(group.coverage)])assert(ui.includes(normalize(value)),id+': '+value)
+  if(group){
+   const ui=normalize(await panel.locator('.dca-concentration').innerText())
+   for(const value of [pct(group.top5),pct(group.top10),pct(group.coverage)])assert(ui.includes(normalize(value)),id+': '+value)
+  }else{
+   await panel.getByText('Aucune composition compatible disponible pour ce périmètre.',{exact:false}).waitFor()
+   assert.equal(await panel.locator('.dca-concentration').count(),0,'No stale concentration when all data is unavailable or inapplicable')
+  }
   await panel.locator('summary').filter({hasText:'Recouvrement entre les supports'}).click()
   assert.equal(await panel.locator('.dca-pair-grid article').count(),expected.pairs.length)
   const pairs=await panel.locator('.dca-pair-grid article strong').allTextContents()
@@ -47,7 +55,7 @@ try{
   const image=page.getByRole('img',{name:'Répartition et expositions du portefeuille',exact:true})
   await image.waitFor();await image.evaluate(img=>img.decode())
   const painted=(await page.evaluate(()=>window.__painted)).map(normalize)
-  for(const text of [pct(group.coverage),pct(group.top5),pct(group.top10),`${group.identified} titres identifiés`])assert(painted.includes(normalize(text)),id+' canvas '+text)
+  for(const text of [pct(group?.coverage||0),pct(group?.top5||0),pct(group?.top10||0),`${group?.identified||0} titres identifiés`,...(!group?['Aucune liste compatible']:[])])assert(painted.includes(normalize(text)),id+' canvas '+text)
   assert(!painted.some(t=>/fictif|polémique|risqué|profil pédagogique|CFD/.test(t)))
   const preview=Buffer.from(await image.evaluate(async img=>Array.from(new Uint8Array(await(await fetch(img.src)).arrayBuffer()))))
   const downloading=page.waitForEvent('download')
@@ -62,5 +70,5 @@ try{
   }
  }
  assert.deepEqual(errors,[])
- console.log('Built site: 5 complete/partial/neutral/mixed portfolios, identical analysis/canvas/download, desktop and mobile verified.')
+ console.log('Built site: 9 complete/partial/unidentified/inapplicable/native-index/mixed portfolios, identical analysis/canvas/download, desktop and mobile verified.')
 }finally{await browser?.close();server.kill()}

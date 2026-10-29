@@ -1,4 +1,6 @@
 import csv,datetime as dt,io,json,unittest
+from unittest.mock import patch
+from collect_topix_holdings import collect,IDENTITY,JPX,CONTRACTS
 from collect_topix_holdings import jpx_rows,identity_rows,combine,HEADERS,qualify_share,historical_identities
 NOW=dt.datetime(2026,10,20,tzinfo=dt.timezone.utc)
 def fixture():
@@ -21,7 +23,7 @@ class Topix(unittest.TestCase):
   self.assertEqual(result['unidentifiedWeightPct'],0.1);self.assertEqual(result['unidentifiedSecurityCount'],1)
   self.assertIsNone(result['rows'][0]['isin']);self.assertEqual(result['rows'][0]['weightPct'],0.1)
  def test_truncation_mixed_dates_bad_totals_and_schema_are_rejected(self):
-  for bad in [fixture().replace(b'20260831',b'20260830',1),fixture().replace(b'0.1000%',b'5.0000%',1),fixture().replace(b'1001',b'1000'),fixture().splitlines()[0]+b'\n',fixture().replace(b'0.1000%',b'nan%',1)]:
+  for bad in [fixture().replace(b'20260831',b'20260830',1),fixture().replace(b'0.1000%',b'5.0000%',1),fixture().replace(b'1001',b'1000'),fixture().splitlines()[0]+b'\n',fixture().replace(b'0.1000%',b'nan%',1),b'\n'.join(fixture().splitlines()[:-1])]:
    with self.assertRaises(ValueError):jpx_rows(bad,NOW)
  def test_historical_identity_date_requires_csv_json_concordance(self):
   data=identities()
@@ -44,6 +46,24 @@ class Topix(unittest.TestCase):
   for wrong in [text.replace('TOPIX («','TOPIX 100 («'),text.replace('TPXDDVD','OTHER'),text.replace('30/09/2026','30/11/2026')]:
    with self.assertRaises(ValueError):qualify_share(wrong,'FR0013411980',NOW)
   with self.assertRaises(ValueError):qualify_share(text,'FR0013411998',NOW)
+
+ def test_current_identifiers_cannot_fill_a_historical_index_snapshot(self):
+  text="Amundi PEA Japon (TOPIX) UCITS ETF EUR Acc REPORTING 30/09/2026 Objectif d'investissement performance de l’indice TOPIX (« l’Indice ») (.TOPXDV) (TPXDDVD) FR0013411980"
+  isin='FR0013411980';share={'isin':isin,'currency':'EUR','identitySourceUrl':CONTRACTS['shares'][isin]['shareDocumentBase']}
+  current=identity_rows(json.dumps(identities()).encode());historical={k:v for k,v in current.items()if k!='1000'}
+  historical['9999']={'isin':'JP0000099990','name':'Off-index historical holding'}
+  base='https://www.blackrock.com/jp/individual-en/en/products/279438/fund/1480664184455.ajax'
+  proof={'sourceUrl':base+'?fileType=json&asOfDate=20260831','asOf':'2026-08-31','sha256':'a'*64,'dateSourceUrl':base+'?fileType=csv&asOfDate=20260831','dateSha256':'b'*64}
+  def fetch(url):return fixture()if url==JPX else b'document'
+  with patch('collect_topix_holdings.pdf_text',return_value=text),patch('collect_topix_holdings.identity_route',return_value=(base+'?fileType=json&asOfDate=20261019','2026-10-19')),patch('collect_topix_holdings.identity_rows',return_value=current),patch('collect_topix_holdings.historical_identities',return_value=(historical,proof)):
+   result=collect(share,NOW,fetch)
+  self.assertEqual(result['subjectIsin'],isin);self.assertEqual(result['identityAsOf'],result['asOf'])
+  self.assertEqual(result['identitySourceUrl'],proof['sourceUrl'])
+  self.assertEqual(result['coverageProof']['sourceRowCount'],1000)
+  self.assertIsNone(result['rows'][0]['isin']);self.assertEqual(result['unidentifiedWeightPct'],.1)
+  self.assertAlmostEqual(sum(r['weightPct']for r in result['rows']),100)
+  with patch('collect_topix_holdings.pdf_text',return_value=text),patch('collect_topix_holdings.identity_route',return_value=(base+'?fileType=json&asOfDate=20261019','2026-10-19')),patch('collect_topix_holdings.identity_rows',return_value=current),patch('collect_topix_holdings.historical_identities',side_effect=ConnectionError('Historical source unavailable')):
+   with self.assertRaisesRegex(ValueError,'No independently dated identities'):collect(share,NOW,fetch)
 
  def test_duplicate_identity_and_wrong_row_shape_rejected(self):
   data=identities();data['aaData'].append([*data['aaData'][0][:9],'JP0000000990',*data['aaData'][0][10:]])

@@ -207,7 +207,7 @@ def _cached_identity_mapping(now):
     return mapping,dates,proofs
 
 
-def parse_public_rankings(payload,share,now,mapping,listing_ticker=None):
+def parse_public_rankings(payload,share,now,mapping,listing_ticker=None,*,require_identity=True):
     from wisdomtree_api_holdings import CLASS_CONFIG
     config=CLASS_CONFIG[share['isin']]
     expected_ticker=listing_ticker or config['fundTicker']
@@ -217,6 +217,7 @@ def parse_public_rankings(payload,share,now,mapping,listing_ticker=None):
     # rankClassificationID=1 / Fund is a holding. Never add those other weights.
     if any(r.get('wtID')!=config['rankingsEntityId'] or r.get('ticker')!=expected_ticker or r.get('entityName')!=config['title'] for r in payload):
         raise ValueError('Wrong exact WisdomTree rankings fund or listing')
+    if any(type(r.get('rankClassificationID'))is not int for r in payload):raise ValueError('Invalid rankings classification identifier')
     selected=[r for r in payload if r.get('rankClassificationID')==1]
     if len(selected)<11 or any(r.get('rankClassification')!='Fund' for r in selected):raise ValueError('Partial or non-fund rankings')
     dates={document_date(r['dt'][:10],now)for r in selected}
@@ -235,7 +236,7 @@ def parse_public_rankings(payload,share,now,mapping,listing_ticker=None):
     if set(ranks)!=set(range(1,max(ranks)+1))or any(a<b for a,b in zip([ranks[k]for k in sorted(ranks)],[ranks[k]for k in sorted(ranks)][1:])):
         raise ValueError('Truncated or unordered fund ranking sequence')
     rows=[{'isin':mapping.get(r['additionalInfo2']),'sedol':r['additionalInfo2'],'name':r['name'],'weightPct':r['pct']*100}for r in selected]
-    if not any(r['isin']for r in rows):raise ValueError('No independently qualified rankings identities')
+    if require_identity and not any(r['isin']for r in rows):raise ValueError('No independently qualified rankings identities')
     return rows,dates.pop()
 
 
@@ -257,7 +258,7 @@ def acquire_public_rankings(url,fetch,headers):
     route=ROUTES['wisdomtree']
     interval=route['fundRankingsMinimumIntervalSeconds']
     attempts=route['fundRankingsMaximumAttempts']
-    if not 1<=interval<=10 or type(attempts)is not int or not 1<=attempts<=3:
+    if type(interval)not in (int,float)or not 1<=interval<=10 or type(attempts)is not int or not 1<=attempts<=3:
         raise ValueError('Unbounded public rankings transport policy')
     for attempt in range(attempts):
         with _RANKINGS_LOCK:
@@ -274,10 +275,9 @@ def acquire_public_rankings(url,fetch,headers):
                 _RANKINGS_NEXT_AT=max(_RANKINGS_NEXT_AT,_RANKINGS_CLOCK()+interval*2**(attempt+1))
 
 
-def collect_public_rankings(share,now,fetch=download):
+def acquire_qualified_public_rankings(share,now,fetch=download):
     from urllib.parse import urlencode,quote
     from issuer_routes import ROUTES
-    from collect_physical_holdings import observation
     from wisdomtree_api_holdings import CLASS_CONFIG,qualify_share_document
     identity=qualify_share_document(share,now,fetch)
     config=CLASS_CONFIG[share['isin']]
@@ -295,6 +295,22 @@ def collect_public_rankings(share,now,fetch=download):
         break
     else:
         raise ConnectionError('Qualified exact-share public rankings unavailable: '+json.dumps(attempts))
+    # Validate the entire fund/date/weight perimeter before exposing any names
+    # as lookup hypotheses. This stage does not assign a security identity.
+    parse_public_rankings(json.loads(raw),share,now,{},listing['ticker'],require_identity=False)
+    return raw,url,identity,listing,attempts
+
+
+def public_identity_candidates(share,now,fetch=download):
+    raw,url,identity,listing,_=acquire_qualified_public_rankings(share,now,fetch)
+    rows,stamp=parse_public_rankings(json.loads(raw),share,now,{},listing['ticker'],require_identity=False)
+    return [{'descriptorB':r['sedol'],'constituentName':r['name'],'weightPct':r['weightPct'],
+             'candidateSourceUrl':url,'candidateAsOf':stamp,'candidateShareIsin':share['isin']}for r in rows]
+
+
+def collect_public_rankings(share,now,fetch=download):
+    from collect_physical_holdings import observation
+    raw,url,identity,listing,attempts=acquire_qualified_public_rankings(share,now,fetch)
     mapping,dates,proofs=complete_identity_mapping(now)
     rows,stamp=parse_public_rankings(json.loads(raw),share,now,mapping,listing['ticker'])
     # Mapping dates stay distinct from portfolio dates, under the same existing
