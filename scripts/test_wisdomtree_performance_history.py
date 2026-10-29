@@ -4,7 +4,7 @@ from wisdomtree_performance_history import parse,anchor_for
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 FIX=ROOT/'scripts/fixtures/wisdomtree-performance'
 NOW=dt.datetime(2026,10,29,8,tzinfo=dt.timezone.utc)
-SOURCES=[s for s in configurations()if s.get('navHistoryTransport')=='official-dataspan-nav-tr']
+SOURCES=[s for s in configurations()if s.get('wisdomTicker') in ('COPA','BRNT','CRUD','COFF')]
 def fixture(s,kind):return gzip.decompress((FIX/(s['wisdomTicker']+'-'+kind+'.gz')).read_bytes())
 class OfficialPerformance(unittest.TestCase):
  def test_all_four_sources_keep_exact_units_and_all_calendar_gates(self):
@@ -75,6 +75,40 @@ class OfficialPerformance(unittest.TestCase):
   self.assertGreater(proof['excludedPreWindowObservations'],0)
   self.assertEqual(min(points),'2021-12-01')
   self.assertEqual(proof['suppliedExactSecurityStart'],'2021-12-01')
+class ExistingBlockedShares(unittest.TestCase):
+ def test_five_exact_existing_shares_retain_dates_units_and_all_calendar_gates(self):
+  sources=[s for s in configurations()if s.get('wisdomTicker')in('WTAI','WCLD','COCO','NGAS','WEAT')]
+  self.assertEqual(len(sources),5)
+  for s in sources:
+   def fetch(url):return fixture(s,'identity'if url==s['factsheetUrl']else'graph'if'mode=gro10k'in url else'tabular')
+   r=collect_one(s,NOW,document_fetch=fetch)
+   self.assertFalse(r['anniversaryAvailable']);self.assertFalse(r['collectAnniversary'])
+   self.assertEqual(r['historyUnqualifiedReturnWindows'],[])
+   self.assertTrue(set(s['requiredQualifiedCalendarYears'])<=set(r['calendarProof']['qualifiedCalendarYears']))
+   self.assertEqual(r['latestLevel']['asOf'],'2026-10-21')
+   self.assertEqual(r['latestLevel']['checkedAt'],anchor_for(s)['sourceCheckedAt'])
+   self.assertEqual(r['calendarProof']['sourceSnapshotDate'],'2026-10-27')
+   self.assertEqual(r['calendarProof']['tablePublicationDate'],'2026-10-28')
+   self.assertEqual(r['periodStart'],s['periodStart'])
+   if s['wisdomTicker']=='WTAI':
+    self.assertEqual(r['calendarProof']['issuerProductInception'],'2018-11-30')
+    self.assertEqual(r['calendarProof']['issuerChartInception'],'2018-12-05')
+   if s['wisdomTicker']in('NGAS','WEAT'):
+    self.assertGreater(r['calendarProof']['excludedPreWindowObservations'],0)
+    self.assertEqual(r['points'][0][0],'2021-12')
+ def test_independently_refreshed_table_requires_each_closed_calendar_match(self):
+  s=next(s for s in configurations()if s.get('wisdomTicker')=='WTAI')
+  g=json.loads(fixture(s,'graph'));t=json.loads(fixture(s,'tabular'));a=anchor_for(s)
+  for field,value in [('windowRoR',.99),('dt','2019-11-30'),('cobDate','2027-01-01')]:
+   bad=copy.deepcopy(t);next(r for r in bad if r['wtTypeID']==1 and r['windowTag']=='calYearEnd')[field]=value
+   with self.subTest(field=field),self.assertRaises(ValueError):parse(g,bad,s,a,NOW)
+  bad=copy.deepcopy(s);bad['wisdomChartInception']='2018-11-30'
+  with self.assertRaises(ValueError):parse(g,t,bad,a,NOW)
+ def test_archived_nav_anchor_does_not_admit_a_different_class_or_currency(self):
+  s=next(s for s in configurations()if s.get('wisdomTicker')=='WTAI')
+  for patch in [{'wisdomClassId':1},{'navCurrency':'EUR'}]:
+   with self.assertRaises(ValueError):anchor_for({**s,**patch})
+
 class OrdinaryBrowserTransport(unittest.TestCase):
  def test_direct_success_and_origin_are_scoped_to_two_registered_endpoints(self):
   from unittest.mock import patch

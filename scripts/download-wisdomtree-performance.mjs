@@ -3,7 +3,7 @@ import {chromium} from 'playwright'
 import {existsSync} from 'node:fs'
 import sources from './official-nav-remainder-sources.json' with {type:'json'}
 const source=sources.find(s=>s.id===process.argv[2]&&s.navHistoryTransport==='official-dataspan-nav-tr')
-if(!source||!['COPA','BRNT','CRUD','COFF'].includes(source.wisdomTicker))throw Error('Unqualified issuer performance scope')
+if(!source||!['COPA','BRNT','CRUD','COFF','WTAI','WCLD','COCO','NGAS','WEAT'].includes(source.wisdomTicker))throw Error('Unqualified issuer performance scope')
 const executablePath=[process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,'/usr/bin/google-chrome','/usr/bin/chromium'].filter(Boolean).find(existsSync)
 const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),...(process.env.HTTPS_PROXY?{proxy:{server:process.env.HTTPS_PROXY}}:{})})
 try{

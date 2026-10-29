@@ -289,9 +289,9 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         else:
             graph,table=[json.loads(document(url))for url in (graph_url,table_url)]
         fresh=wisdomtree_factsheet(document(source['factsheetUrl']),{
-            **source,'name':source['wisdomProductName'],'currency':native,'documentType':'wisdomtree'},now)
+            **source,'name':source['wisdomProductName'],'currency':native,'documentType':source.get('documentType','wisdomtree')},now)
         registry=source['calendarRegistry']
-        if registry not in ['src/data/automated-etf.json','src/data/non-bond-etf-records.json']:
+        if registry not in ['src/data/automated-etf.json','src/data/non-bond-etf-records.json','src/data/exposure-etf-expansion-records.json']:
             raise ValueError('Unqualified WisdomTree calendar registry')
         performance=json.loads((ROOT/registry).read_text())[isin]['performance']
         if (performance['currency']!=native or performance['basis']!='fund'
@@ -452,7 +452,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         if native!=source['currency']:raise ValueError('Unqualified NAV unit-anchor currency conversion')
         latest_level.update(value=anchor['nav'],nativeValue=anchor['nav'],asOf=anchor['date'],
             checkedAt=anchor['sourceCheckedAt'],sourceUrl=anchor['sourceUrl'],sourceUrls=[anchor['sourceUrl']],
-            sha256=anchor['rawWorkbookSha256'],unitQualification='historical-reference-only',
+            sha256=anchor.get('rawWorkbookSha256',anchor.get('rawNavSha256')),unitQualification='historical-reference-only',
             method='Previously qualified exact-share NAV used only as an immutable scale anchor; not a new price consultation')
     observation_hashes={**hashes,**({'cachedCalendarPerformance':calendar_proof['calendarRegistryPerformanceHash']}if 'calendarRegistryPerformanceHash'in calendar_proof else{})}
     result={**source,'points':points,**({'anniversaryPoints':anniversary_points}if source.get('collectAnniversary') is not False else {'anniversaryAvailable':False}),**({'anniversaryValuationBasis':'fund-nav-price','anniversaryVariant':'Valeurs liquidatives publiées · hors distributions'}if anniversary_nav else{}),'checkedAt':now.date().isoformat(),

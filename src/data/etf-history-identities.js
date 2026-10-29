@@ -11,6 +11,11 @@ export const ETF_HISTORY_IDENTITIES = {
  etc_brent_crude_oilNav:{...(automaticIdentities.etc_brent_crude_oil??NON_BOND_HISTORY_IDENTITIES.etc_brent_crude_oil)},
  etc_wti_crude_oilNav:{...(automaticIdentities.etc_wti_crude_oil??NON_BOND_HISTORY_IDENTITIES.etc_wti_crude_oil)},
  etc_coffeeNav:{...(automaticIdentities.etc_coffee??NON_BOND_HISTORY_IDENTITIES.etc_coffee)},
+ etfIE00BDVPNG13Nav:{...automaticIdentities.etfIE00BDVPNG13},
+ etfCloudWisdomtreeNav:{icon:'☁️',scene:'world',title:'CLOUD COMPUTING',ticker:'WCLD'},
+ etc_cocoaNav:{...(automaticIdentities.etc_cocoa??NON_BOND_HISTORY_IDENTITIES.etc_cocoa)},
+ etc_natural_gasNav:{...(automaticIdentities.etc_natural_gas??NON_BOND_HISTORY_IDENTITIES.etc_natural_gas)},
+ etc_wheatNav:{...(automaticIdentities.etc_wheat??NON_BOND_HISTORY_IDENTITIES.etc_wheat)},
  // Independent NAV choices reuse the existing share artwork, never its quote history.
  etfFR0010342592Nav:{...automaticIdentities.etfFR0010342592},
  etfFR0007054358Nav:{...automaticIdentities.etfFR0007054358},

@@ -49,6 +49,24 @@ def acquire(source):
 
 def anchor_for(source):
     anchor = json.loads((ROOT/'scripts/wisdomtree-performance-anchors.json').read_text())[source['isin']]
+    if anchor.get('format') == 'qualified-nav-modal-json':
+        from issuer_nav_history import wisdomtree_identity
+        raw = gzip.decompress((ROOT/anchor['navFile']).read_bytes())
+        page = gzip.decompress((ROOT/anchor['pageFile']).read_bytes())
+        if (hashlib.sha256(raw).hexdigest() != anchor['rawNavSha256']
+                or hashlib.sha256(page).hexdigest() != anchor['rawPageSha256']):
+            raise ValueError('Historical NAV/identity evidence changed')
+        identity = wisdomtree_identity(page.decode(), source['isin'])
+        values = [r['nav'] for r in json.loads(raw) if r['dt'] == anchor['date']]
+        if (identity['wtClassID'] != source['wisdomClassId']
+                or identity['fundCurrency'] != source['navCurrency']
+                or identity['useOfIncome'] not in ('Accumulating', 'N/A')
+                or anchor['classId'] != source['wisdomClassId']
+                or anchor['isin'] != source['isin'] or anchor['currency'] != source['navCurrency']
+                or values != [anchor['nav']]
+                or anchor['sourceUrl'] != f"https://www.wisdomtree.com/api/fund-history/{source['wisdomClassId']}?view=navHistoryModal"):
+            raise ValueError('Unqualified historical exact-share NAV anchor')
+        return anchor
     raw = gzip.decompress((ROOT/anchor['workbook']).read_bytes())
     if (hashlib.sha256(raw).hexdigest() != anchor['rawWorkbookSha256']
             or anchor['isin'] != source['isin'] or anchor['currency'] != source['navCurrency']
@@ -90,7 +108,7 @@ def parse(graph, table, source, anchor, now):
             raise ValueError('Official performance share/currency/convention conflict')
     fund = []
     for row in graph:
-        if type(row.get('wtTypeID')) is not int or row['wtTypeID'] not in (1, 2):
+        if type(row.get('wtTypeID')) is not int or row['wtTypeID'] not in (1, 2, 3):
             raise ValueError('Unknown issuer chart entity type')
         if row['wtTypeID'] != 1:
             continue  # Adjacent benchmark is deliberately not a fund observation.
@@ -100,7 +118,7 @@ def parse(graph, table, source, anchor, now):
                 or row.get('levelTypeID') != 2 or row.get('levelType') != 'NAV (TR)'
                 or row.get('shiftTicker') is not None
                 or row.get('listingShiftDisposition') != 'listingShift'
-                or row.get('entityInceptionDt') != source['wisdomInception']
+                or row.get('entityInceptionDt') != source.get('wisdomChartInception', source['wisdomInception'])
                 or row.get('inceptionDt') != source['wisdomInception']):
             raise ValueError('Unqualified product identity, historical currency or listing shift')
         if row['cobDate'] < source['wisdomInception']:
@@ -117,8 +135,32 @@ def parse(graph, table, source, anchor, now):
     points = {day:value for day,value in points.items() if day >= source['periodStart']+'-01'}
     if not points:raise ValueError('No official performance in supplied exact-security window')
     end = max(points)
-    if any(r['cobDate'] != end for r in products):
-        raise ValueError('Table and daily chart are different publication snapshots')
+    # The table's cobDate is its refresh date, not the valuation date of each
+    # completed calendar window (dt). The official widget updates these feeds
+    # independently. Never compare its current/rolling return to an older chart.
+    # Only closed, individually corroborated calendar windows qualify here.
+    table_dates = {r['cobDate'] for r in products}
+    if len(table_dates) != 1 or next(iter(table_dates)) < end or next(iter(table_dates)) > now.date().isoformat():
+        raise ValueError('Unqualified table publication chronology')
+    from issuer_nav_history import calendar_checks
+    closed_checks = []
+    for row in products:
+        if row['windowTag'] != 'calYearEnd':
+            continue
+        year = int(row['dt'][:4])
+        if row['dt'] != f'{year}-12-31' or year >= now.year:
+            raise ValueError('Unqualified closed calendar period')
+        if f'{year-1}-12-01' < source['periodStart']+'-01':
+            continue
+        value = row.get('windowRoR')
+        if type(value) not in (int, float) or not math.isfinite(value):
+            raise ValueError('Invalid published calendar return')
+        check = calendar_checks(points, {str(year):round(value*100, 2)}, 2, now)
+        if not check or check[0]['year'] != year:
+            raise ValueError('Closed table calendar lacks daily valuation bounds')
+        closed_checks.extend(check)
+    if not closed_checks:
+        raise ValueError('No independently matched completed table calendar')
     if (anchor['isin'], anchor['currency']) != (source['isin'], currency) or anchor['date'] not in points:
         raise ValueError('Exact same-day NAV unit anchor unavailable')
     nav = anchor['nav']
@@ -135,6 +177,9 @@ def parse(graph, table, source, anchor, now):
         'requestedStart': source['periodStart']+'-01', 'incomeTreatment': 'Issuer exact-product NAV (TR); no additional cash',
         'navHistoryTransport': 'official-dataspan-nav-tr', 'dailyObservations': len(points),
         'sourceSnapshotDate': end, 'issuerProductInception': source['wisdomInception'],
+        'issuerChartInception': source.get('wisdomChartInception', source['wisdomInception']),
+        'tablePublicationDate': next(iter(table_dates)), 'closedTableCalendarChecks': closed_checks,
+        'snapshotQualification': 'Closed calendar dt/December valuation bounds matched individually at unchanged published two-decimal precision; current and rolling table returns are not used',
         'excludedPreWindowObservations':excluded,'suppliedExactSecurityStart':source['periodStart']+'-01',
         'scaleProof': {'anchor': anchor, 'sourcePerformanceLevel': points[anchor['date']], 'factor': scale,
             'method': 'Official exact-product NAV(TR) performance units anchored to independently qualified same-day per-share NAV; no raw historical price claim',
