@@ -6,7 +6,9 @@ import hashlib
 import json
 import subprocess
 import unittest
+from unittest.mock import patch
 from automation_status_storage import encode_status, decode_status, reader_ready, MAX_STATUS_BYTES
+from automation_recovery import persist_and_dispatch
 
 
 class MonitorTransport(unittest.TestCase):
@@ -63,6 +65,31 @@ process.stdout.write(JSON.stringify(await decodeMonitorStorage(JSON.parse(body))
         output = subprocess.run(['node', '--input-type=module', '-e', script], input=json.dumps(self.wire()),
                                 capture_output=True, text=True, check=True)
         self.assertEqual(json.loads(output.stdout), self.state)
+
+    def test_compressed_reservation_and_dispatch_receipt_keep_same_transport(self):
+        state = copy.deepcopy(self.state)
+        state['recovery'] = {'source': {'status': 'reserved', 'attempts': [{}]}}
+        payload = {'sha': 'original', 'branch': 'automation-status', 'content': encode_status(state, True)}
+        calls = []
+        def write(api, path, body):
+            wire = json.loads(base64.b64decode(body['content']))
+            self.assertEqual(wire['monitorStorage'], 'gzip+base64-v1')
+            saved = decode_status(wire)
+            calls.append(saved['recovery']['source']['status'])
+            self.assertEqual(saved['monitoring'], self.state['monitoring'])
+            return {'content': {'sha': 'reserved'}}
+        def api(path, method, body):
+            self.assertEqual(calls, ['reserved'])
+            self.assertEqual(body, {'ref': 'master'})
+            calls.append('POST')
+        with patch('automation_recovery.write_status', side_effect=write):
+            persist_and_dispatch(api, 'automation-status.json', payload, state, ['source'], compressed=True)
+        self.assertEqual(calls, ['reserved', 'POST', 'dispatched'])
+        calls.clear()
+        with patch('automation_recovery.write_status', side_effect=RuntimeError('conflict')):
+            with self.assertRaises(RuntimeError):
+                persist_and_dispatch(api, 'automation-status.json', payload, state, ['source'], compressed=True)
+        self.assertEqual(calls, [])
 
 
 if __name__ == '__main__':
