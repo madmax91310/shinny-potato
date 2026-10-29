@@ -375,6 +375,12 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
             for name in CURRENT_REVIEW_OUTPUTS:self.assertIsNone(re.search(r'(?<![\w-])' + re.escape(pathlib.Path(name).name) + r'(?![\w.])', text), str(path) + ': ' + name)
             for relative in re.findall(r"(?:from\s*|import\s*|import\s*\(\s*)['\"](\.[^'\"]+)['\"]", text):pending.append(path.parent / relative)
 
+    def test_market_guard_changes_run_its_actual_workflow_and_regressions(self):
+        workflow = (ROOT / '.github/workflows/update-market-monthly.yml').read_text()
+        for path in ['scripts/observation_rebase_guard.py', 'scripts/test_observation_rebase.py']:
+            self.assertEqual(workflow.count("      - '" + path + "'"), 2)
+        self.assertIn("run: python -m unittest discover -s scripts -p 'test_observation_rebase.py'", workflow)
+
     def test_publication_collectors_do_not_read_actor_presentations(self):
         self.python_graph(['refresh_purchasing_power.py', 'refresh_anniversary_levels.py',
                            'refresh_anniversary_indices.py'], [ACTOR_OUTPUT])
