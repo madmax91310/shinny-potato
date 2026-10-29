@@ -33,8 +33,7 @@ export function performanceNotes(selection, { includeMethod = true } = {}) {
 // Chaque ligne est repondérée au début de l'année ; même calcul pour le Générateur et les duels.
 export function computeYearlyPerf(selection) {
   const perf = {}
-  const validAllocation = selection.length > 0 && selection.every(asset => Number.isFinite(asset.pct) && asset.pct >= 0) &&
-    Math.abs(selection.reduce((sum, asset) => sum + asset.pct, 0) - 100) < 1e-6
+  const allocationValid = validAllocation(selection)
   const maps = selection.map(asset => asset.calendarReturns ?? calendarMap(asset.r))
   // Recent shares may have fewer years, but an internal gap must stay visible.
   const hasInternalGap = maps.some(map => {
@@ -46,7 +45,7 @@ export function computeYearlyPerf(selection) {
   const selectedYears = years.length ? years : HISTORICAL_YEARS
   // Canonical summation keeps display sorting from changing a rounding boundary.
   selectedYears.forEach(year => {
-    perf[year] = !validAllocation || selection.some((asset) => !Number.isFinite(assetReturn(asset, year)))
+    perf[year] = !allocationValid || selection.some((asset) => !Number.isFinite(assetReturn(asset, year)))
       ? null
       : selection.map(asset => assetReturn(asset, year) * asset.pct / 100).sort((a, b) => Math.abs(a) - Math.abs(b) || a - b).reduce((sum, value) => sum + value, 0)
   })
@@ -78,3 +77,9 @@ export function performanceExcerpt(perf) {
   ].join('\n')
 }
 
+
+// The form and calculation share the same tolerance; never round an invalid total to 100.
+export function validAllocation(selection) {
+  return selection.length > 0 && selection.every(row => Number.isFinite(row.pct) && row.pct >= 0) &&
+    Math.abs(selection.reduce((sum, row) => sum + row.pct, 0) - 100) < 1e-6
+}

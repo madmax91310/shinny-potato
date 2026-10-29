@@ -49,3 +49,34 @@ try {
   assert.throws(()=>etfDevelopmentEntry('UNKNOWN'),/Produit inconnu/);
   console.log(`OK : ${draws} tirages verrouillés, ${replacements} remplacements, plafonds cumulés, recoupements et ${lots.length} références ETF.`);
 } finally {Math.random=random;}
+
+// A short/partial positive window cannot make a risky allocation look prudent.
+const { compatibleRiskTier, buildManualPortfolio, renderTweetText } = await import('../src/pages/portfolio-generator/engine.js');
+const { computeYearlyPerf, annualizedReturn, validAllocation } = await import('../src/pages/portfolio-generator/performance.js');
+const { getAsset } = await import('../src/data/portfolio-assets.js');
+const years = Array.from({length:6},(_,i)=>new Date().getUTCFullYear()-6+i);
+const full = Object.fromEntries(years.map(year=>[year,2]));
+assert.equal(compatibleRiskTier([{id:'fonds_euros',pct:100}],full),'prudent');
+assert.equal(compatibleRiskTier([{id:'sp500',pct:100}],full),'dynamique','Equity ceilings apply even after six positive years');
+assert.equal(compatibleRiskTier([{id:'bitcoin',pct:100}],full),null,'Beyond every construction ceiling');
+assert.equal(compatibleRiskTier([{id:'sp500',pct:100}],Object.fromEntries(years.slice(-3).map(y=>[y,2]))),null);
+assert.equal(compatibleRiskTier([{id:'fonds_euros',pct:100}],{...full,[years[1]]:null}),null);
+assert.equal(compatibleRiskTier([{id:'fonds_euros',pct:100}],{...full,[years[1]]:-100}),'offensif','Loss of all capital remains in the historical floor');
+const short = {...getAsset('sp500'),pct:100,calendarReturns:Object.fromEntries(years.slice(-3).map(y=>[y,2]))};
+assert.deepEqual(Object.keys(computeYearlyPerf([short])).map(Number),years.slice(-3),'No index-filled missing years');
+const loss = computeYearlyPerf([{...short,calendarReturns:{...full,[years[1]]:-100}}]);
+assert.equal(loss[years[1]],-100);
+assert.equal(annualizedReturn(loss),-100);
+const decimals=[{pct:33.3},{pct:33.3},{pct:33.4}];
+assert(validAllocation(decimals));
+assert(!validAllocation([{pct:99.999}]));
+assert(!validAllocation([{pct:101},{pct:-1}]));
+assert(!validAllocation([{pct:NaN}]));
+const texts=[];const prior=[];
+for(let i=0;i<3;i++){
+ const p=buildManualPortfolio([{id:'msci_world',pct:70},{id:'or',pct:30}],'generaliste',prior);prior.push(p);texts.push(renderTweetText(p));
+ assert.equal(texts[i].match(/Pas un conseil\./g)?.length,1);
+ assert(!texts[i].includes('La pire année civile observée n’est pas une perte maximale'));
+}
+assert.equal(new Set(texts.map(text=>text.split('💼 La répartition')[0])).size,3,'Actual publication variants rotate');
+console.log('Audit regression: six-year qualification, composition limits, exact share, total loss, decimals and three publication variants verified.');

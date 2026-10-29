@@ -1,4 +1,4 @@
-import { constructionIssues } from './controls.js';
+import { assetKind, constructionIssues } from './controls.js';
 import { benchmarkKey } from '../../data/asset-selection.js';
 import { portfolioPostEditorial, portfolioPostName } from './postEditorial.js';
 import { ASSETS, getAsset } from '../../data/portfolio-assets.js';
@@ -271,24 +271,17 @@ function msciComparisonLine(selection, perf) {
   return `→ En ${worst.year}, quand le MSCI World ${worldVerb} ${worldFmt}, ce portefeuille ${portVerb} ${fmtAbsPct(worst.value)}.`;
 }
 
-// Palier de risque le plus proche, pour affichage informatif uniquement (jamais bloquant en mode
-// manuel) : celui dont le plancher (RISK_BOUNDS[r].min) est numériquement le plus proche de la
-// pire année réellement calculée sur CETTE composition. Offensif (pas de plancher, min: null) n'a
-// rien à comparer et n'est retenu qu'en dernier recours, si aucun autre palier n'a de plancher
-// défini (ne devrait jamais arriver avec le RISK_BOUNDS actuel).
-function closestRiskTier(worstValue) {
-  let best = null;
-  let bestDiff = Infinity;
-  RISK_ORDER.forEach((r) => {
-    const bound = RISK_BOUNDS[r];
-    if (bound.min === null) return;
-    const diff = Math.abs(worstValue - bound.min);
-    if (diff < bestDiff) {
-      bestDiff = diff;
-      best = r;
-    }
-  });
-  return best ?? "offensif";
+// Same construction ceilings and historical floor as Auto, on a complete common
+// six-year window. Missing years never become index returns for the selected share.
+export function compatibleRiskTier(selection, perf) {
+  const years = performanceYears(perf);
+  if (years.length !== 6 || years.some((year, i) => !Number.isFinite(perf[year]) || perf[year] < -100 ||
+    (i > 0 && year !== years[i - 1] + 1))) return null;
+  // Underlying equity/bond weights of mixed funds are not qualified by this model.
+  if (selection.some(row => assetKind(row.id) === 'multi-asset')) return null;
+  const worst = Math.min(...years.map(year => perf[year]));
+  return RISK_ORDER.find(risk => withinBound(worst, RISK_BOUNDS[risk]) &&
+    constructionIssues(selection, risk).length === 0) ?? null;
 }
 
 // La saisie manuelle partage le modèle éditorial de la génération automatique.
@@ -306,7 +299,7 @@ export function buildManualPortfolio(rawSelection, profileId, history) {
   const perf = computeYearlyPerf(selection);
   const worst = worstYearOf(perf);
   const best = bestYearOf(perf);
-  const closestRiskId = closestRiskTier(worst.value);
+  const closestRiskId = compatibleRiskTier(selection, perf);
 
   const contextText = boostedYearLine(selection, perf) || msciComparisonLine(selection, perf) || "";
   const editorial = buildEditorial(selection, history, profileId, "manuel");
@@ -321,8 +314,8 @@ export function buildManualPortfolio(rawSelection, profileId, history) {
     riskLabel: "Composition manuelle",
     title: `${profile.label} · Composition manuelle`,
     closestRiskId,
-    closestRiskLabel: RISK_LABELS[closestRiskId],
-    closestBound: RISK_BOUNDS[closestRiskId],
+    closestRiskLabel: closestRiskId ? RISK_LABELS[closestRiskId] : null,
+    closestBound: closestRiskId ? RISK_BOUNDS[closestRiskId] : null,
     selection,
     perf,
     worst,
@@ -475,7 +468,7 @@ export function renderTweetText(p) {
   const hook = annualized === null
     ? '📈 Quelles performances pour ce portefeuille ? 👀'
     : `📈 ${formatPerformance(annualized)} par an sur la période ${years[0]}–${years.at(-1)} : ${questions[index]} 👀`;
-  const blocks = [`${hook}\n\nVoici sa répartition et le détail des performances simulées 👇`, '💼 La répartition'];
+  const blocks = [`${hook}\n\n${editorial.hooks[index].split('\n\n')[0]}\n\nRépartition et performances simulées 👇`, '💼 La répartition'];
   if (p.strategyLabel) blocks.splice(1, 0, `${p.strategyEmoji ?? '🌦️'} ${p.strategyLabel}`);
   // Sort a copy: recipe slots and replacements still rely on the stored order.
   const ordered = [...p.selection].filter(s => s.pct > 0).sort((a, b) => b.pct - a.pct);
@@ -483,7 +476,7 @@ export function renderTweetText(p) {
   blocks.push(performanceExcerpt(perf));
   const notes = performanceNotes(p.selection, { includeMethod: false });
   if (notes) blocks.push(notes);
-  blocks.push('La pire année civile observée n’est pas une perte maximale : une baisse en cours d’année peut être plus forte.');
+  blocks.push('Pas un conseil.');
   blocks.push(`📌 ${p.strategyThesis ?? editorial.thesis}`);
   blocks.push('💬 Que penses-tu de ce portefeuille ?');
   return blocks.join("\n\n");

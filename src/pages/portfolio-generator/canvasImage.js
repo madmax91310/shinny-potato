@@ -113,7 +113,7 @@ export function renderPortfolioImage(portfolio, background) {
   rows.forEach(row => { row.height = Math.max(159, row.lines.length * 57 + 65) })
   const legendHeight = rows.reduce((sum, row) => sum + row.height, 0)
   const upperHeight = Math.max(664, legendHeight + 120)
-  const height = upperHeight + 536
+  const height = upperHeight + 576
   canvas.width = 2700
   canvas.height = Math.ceil(height * 1.5)
   ctx.scale(1.5, 1.5)
@@ -178,8 +178,9 @@ export function renderPortfolioImage(portfolio, background) {
   label(ctx, result, 1570, upperHeight + 266, fitSize(ctx, result, 280, 77), metal(ctx, 1430, upperHeight + 200, 280, 90, resultColor), 'center', false, 'Georgia, serif')
   label(ctx, 'Annualisé', 1570, upperHeight + 157, 48, WHITE, 'center', false, 'Georgia, serif')
   label(ctx, `${YEARS[0]}–${YEARS.at(-1)}`, 1570, upperHeight + 316, 40, MUTED, 'center', false)
-  rule(ctx, 70, height - 50, 1660)
-  label(ctx, `EUR · rééquilibrage annuel${selection.some(isIndicative) ? ' · * historique indicatif' : ''}`, 70, height - 18, 18, MUTED, 'left', false)
+  rule(ctx, 70, height - 88, 1660)
+  label(ctx, `EUR · rééquilibrage annuel${selection.some(isIndicative) ? ' · * historique indicatif' : ''}`, 70, height - 52, 27, MUTED, 'left', false)
+  label(ctx, 'Pas un conseil.', 70, height - 18, 27, MUTED, 'left', false)
   label(ctx, 'Épargnant Libre', 1730, height - 18, 24, '#dfc390', 'right', false)
   return canvas
 }
