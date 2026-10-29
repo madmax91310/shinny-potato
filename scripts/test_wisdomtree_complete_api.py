@@ -8,6 +8,31 @@ FIX=pathlib.Path(__file__).with_name('fixtures')/'wisdomtree-complete'
 NOW=dt.datetime(2026,10,29,15,tzinfo=dt.timezone.utc)
 
 class CompleteApi(unittest.TestCase):
+ def test_real_precise_books_all_identities_and_original_cash_reconcile(self):
+  from wisdomtree_identity_cache import expand_observation
+  snapshot=json.loads(gzip.decompress((FIX/'precise-qualified-books.json.gz').read_bytes()))
+  now=NOW.replace(hour=23)
+  for isin,count in [('IE00BKLF1R75',111),('IE00BZ56SW52',439)]:
+   h=snapshot['books'][isin]
+   raw=gzip.decompress((FIX/(isin+'.json.gz')).read_bytes())
+   self.assertEqual(hashlib.sha256(raw).hexdigest(),h['sha256'])
+   receipts=[expand_observation(o)for o in h['identityObservations']]
+   # The shared registry was used too. Its receipt hashes are checked against
+   # the immutable acquisition fixture, never against a refreshed live cache.
+   shared=snapshot['sharedIdentityObservations']
+   for key,expected in h.get('identitySourceHashes',{}).items():
+    self.assertEqual(shared[key]['sha256'],expected)
+    receipts.append(shared[key])
+   mapping=identity_map(receipts,now)
+   rows,stamp,cash=parse(json.loads(raw),{'isin':isin},now,mapping,
+                       pending_observations=[o for o in receipts if o.get('issuerPendingIdentity')])
+   self.assertEqual(rows,h['rows']);self.assertEqual(len(rows),count)
+   self.assertTrue(all(r['isin']for r in rows));self.assertEqual(stamp,h['asOf'])
+   self.assertEqual(len({r['isin']for r in rows}),count)
+   self.assertAlmostEqual(sum(r['weightPct']for r in rows)+cash,100)
+   self.assertEqual(h['navReconciliation']['unidentifiedPositions'],[])
+   self.assertEqual(h['navReconciliation']['excludedWeightPctByType'],{'Cash':cash})
+
  def test_all_six_actual_complete_files_and_separate_cash(self):
   manifest=json.loads((FIX/'manifest.json').read_text())
   for isin in CLASSES:
@@ -57,6 +82,8 @@ class CompleteApi(unittest.TestCase):
    evidence['sha256']=digest(evidence['response'])
    with tempfile.TemporaryDirectory() as folder:
     root=pathlib.Path(folder);(root/'src/data').mkdir(parents=True)
+    (root/'scripts').mkdir()
+    (root/'scripts/security-identifier-candidates.json').write_bytes(pathlib.Path('scripts/security-identifier-candidates.json').read_bytes())
     (root/'src/data/dca-complete-holdings.json').write_text(json.dumps({isin:{'identityObservations':[evidence]}}))
     (root/'src/data/freshness-policy.json').write_bytes(pathlib.Path('src/data/freshness-policy.json').read_bytes())
     doc=gzip.decompress((FIX/(isin+'.pdf.gz')).read_bytes())

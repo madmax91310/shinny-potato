@@ -13,6 +13,7 @@ import urllib.request
 from pathlib import Path
 from issuer_documents import download, pdf_text, document_date, proof
 from security_identifier_observations import API, digest, candidate_name, candidate_isins
+from wisdomtree_identity_cache import expand_observation, compact_observation
 
 ROOT = Path(__file__).resolve().parents[1]
 # Exact share/class/listing identities corroborated by issuer pages and factsheets
@@ -73,7 +74,7 @@ def pending_namespace(suffix):
 
 
 def collect_pending_proofs(payload, observations, candidates_by_name, now, url, raw, post):
-    result=[]
+    result=[];attempts=0
     for item in payload:
         token=item.get('figi') or ''
         if not re.fullmatch(r'FIGI-PENDING-([A-Z0-9]{7}|[A-Z0-9]{9})',token):continue
@@ -83,10 +84,11 @@ def collect_pending_proofs(payload, observations, candidates_by_name, now, url, 
         if retained:
             result.extend(retained);continue
         candidates=sorted(candidate_isins(re.sub(r'-New$','',item.get('securityName',''),flags=re.I),candidates_by_name))
-        if not candidates or len(candidates)>3:continue
+        if not candidates or len(candidates)>3 or attempts>=20:continue
         suffix=token.removeprefix('FIGI-PENDING-')
         jobs=[{'idType':pending_namespace(suffix),'idValue':suffix},
               *[{'idType':'ID_ISIN','idValue':value}for value in candidates]]
+        attempts+=1
         response=post(jobs)
         evidence={'sourceUrl':API,'checkedAt':now.isoformat(),'request':jobs,'response':response,'sha256':digest(response),
                   'issuerPendingIdentity':{'identifier':token,'securityTicker':item['securityTicker'],
@@ -259,7 +261,7 @@ def collect(share, now, fetch=download, post=mapping_request):
         raise IssuerApiUnavailable('Public issuer API unavailable: '+str(error)) from error
     payload = json.loads(raw)
     previous = json.loads((ROOT/'src/data/dca-complete-holdings.json').read_text())
-    observations = previous.get(share['isin'], {}).get('identityObservations', [])
+    observations = [expand_observation(o)for o in previous.get(share['isin'], {}).get('identityObservations', [])]
     # Reuse independently acquired exact ISIN/FIGI evidence from the ordinary
     # identifier producer. Do not re-query or re-date it, nor match by a name.
     from security_identifier_observations import qualified_observations
@@ -279,12 +281,27 @@ def collect(share, now, fetch=download, post=mapping_request):
                 candidates_by_name.setdefault(candidate_name(row['name']),set()).add(row['isin'])
     # Names only propose candidates. The issuer's exact listing FIGI must be in
     # the response to an independent ID_ISIN request before assigning an ISIN.
+    lookup_names={}
+    for evidence in observations:
+        for job,reply in zip(evidence['request'],evidence['response']):
+            if job.get('idType')=='ID_BB_GLOBAL':
+                lookup_names[job['idValue']]=[r.get('name','')for r in reply.get('data',[])if r.get('figi')==job['idValue']]
     priority={}
     for row in payload:
         if row.get('figi') in mapping:continue
-        for isin in candidate_isins(re.sub(r'-New$','',row.get('securityName',''),flags=re.I),candidates_by_name)-already_tested:
-            priority[isin]=max(priority.get(isin,0),row.get('wgt',0))
+        for name in [row.get('securityName',''),*lookup_names.get(row.get('figi'),[])]:
+            for isin in candidate_isins(re.sub(r'-New$','',name,flags=re.I),candidates_by_name)-already_tested:
+                priority[isin]=max(priority.get(isin,0),row.get('wgt',0))
     candidates=sorted(priority,key=lambda isin:(-priority[isin],isin))
+    # Sourced lookup seeds share the existing registry. They never assign an
+    # identity: an independent query must return the exact issuer FIGI again.
+    seeds=json.loads((ROOT/'scripts/security-identifier-candidates.json').read_text()).get('figiCandidates',[])
+    seeded=[]
+    for seed in seeds:
+        if not re.fullmatch(r'BBG[A-Z0-9]{9}',seed.get('figi','')) or not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',seed.get('isin','')) or not seed.get('sourceUrls'):
+            raise ValueError('Invalid FIGI lookup candidate registry')
+        if seed['figi'] in wanted_figis and seed['figi']not in mapping and seed['isin']not in already_tested:seeded.append(seed['isin'])
+    candidates=list(dict.fromkeys([*seeded,*candidates]))
     for start in range(0, min(len(candidates), 80), 10):
         # Share currency is not the underlying listing country. Query exact
         # ISINs globally; only the returned exact FIGI/share class can join.
@@ -324,7 +341,7 @@ def collect(share, now, fetch=download, post=mapping_request):
                 for r in reply.get('data',[]):
                     if re.fullmatch(r'BBG[A-Z0-9]{9}',r.get('shareClassFIGI')or''):
                         hypotheses.setdefault(r['shareClassFIGI'],set()).add(job['idValue'])
-    tested={(j['idValue'],j.get('exchCode'))for o in observations for j in o['request']if j['idType']=='ID_ISIN'}
+    tested={(j['idValue'],j.get('exchCode'),j.get('includeUnlistedEquities',False))for o in observations for j in o['request']if j['idType']=='ID_ISIN'}
     targeted=set()
     for evidence in observations:
         for job,reply in zip(evidence['request'],evidence['response']):
@@ -332,9 +349,9 @@ def collect(share, now, fetch=download, post=mapping_request):
             for r in reply.get('data',[]):
                 if r.get('figi')!=job['idValue'] or not re.fullmatch(r'[A-Z0-9]{2}',r.get('exchCode')or''):continue
                 for isin in hypotheses.get(r.get('shareClassFIGI'),[]):
-                    if (isin,r['exchCode'])not in tested:targeted.add((isin,r['exchCode']))
+                    if (isin,r['exchCode'],True)not in tested:targeted.add((isin,r['exchCode']))
     for start in range(0,min(len(targeted),20),10):
-        jobs=[{'idType':'ID_ISIN','idValue':isin,'exchCode':venue}for isin,venue in sorted(targeted)[start:start+10]]
+        jobs=[{'idType':'ID_ISIN','idValue':isin,'exchCode':venue,'includeUnlistedEquities':True}for isin,venue in sorted(targeted)[start:start+10]]
         response=post(jobs)
         evidence={'sourceUrl':API,'checkedAt':now.isoformat(),'request':jobs,'response':response,'sha256':digest(response)}
         identity_map([evidence],now)
@@ -352,7 +369,7 @@ def collect(share, now, fetch=download, post=mapping_request):
                        navReconciliation=reconciliation,
                        subjectIsin=share['isin'],scope='complete-equity-sleeve-with-published-cash',
                        captureMethod=capture_method,
-                       excludedWeightPctByType={'Cash': cash}, identityObservations=[o for o in observations if o not in shared.values()],
+                       excludedWeightPctByType={'Cash': cash}, identityObservations=[compact_observation(o) for o in observations if o not in shared.values()],
                        identityEvidenceRegistry='src/data/security-identifier-observations.json',
                        identitySourceHashes={key:o['sha256'] for key,o in shared.items()},
                        **identity,

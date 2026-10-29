@@ -16,6 +16,17 @@ def portfolio():
             for i in range(12)]
 
 class ApiHoldings(unittest.TestCase):
+    def test_identifier_cache_is_lossless_bounded_and_never_redates_evidence(self):
+        from wisdomtree_identity_cache import expand_observation,compact_observation
+        record={'checkedAt':NOW.isoformat(),'sha256':'a'*64,'request':[{'idType':'ID_ISIN','idValue':'US0000000001'}],
+                'response':[{'data':[{'name':'Société électricité','weight':.12345678901234567}]}]}
+        compact=compact_observation(record)
+        self.assertEqual(expand_observation(compact),record)
+        self.assertEqual(compact_observation(compact),compact)
+        for wrong in [{**compact,'response':[]},{**compact,'responseGzipBase64':'bad!'},
+                      {**compact,'responseGzipBase64':'a'*8_000_001}]:
+            with self.assertRaises(ValueError):expand_observation(wrong)
+
     def test_pending_namespace_crosswalk_requires_exact_security_class_and_ticker(self):
         for suffix,kind in [('748193208','ID_CUSIP'),('Y2925Z103','ID_CINS'),('BS28Y61','ID_SEDOL')]:
             row={'figi':'BBG000000001','shareClassFIGI':'BBG000000002','ticker':'T0','marketSector':'Equity','securityType':'Common Stock'}
