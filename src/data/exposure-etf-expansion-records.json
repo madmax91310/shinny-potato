@@ -2086,7 +2086,7 @@
       "scope": "fund",
       "asOf": "2026-10-28",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
-      "sha256": "2d8af72450018adcef41ae44f52639d4a3b49f85ee59279c359b412b5a29775d",
+      "sha256": "1b8888147b8e9fbeafccdfed0c86722d4fbeba74f82e4e156b27c76e9131e591",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "10.13 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -2351,7 +2351,7 @@
       "scope": "fund",
       "asOf": "2026-10-28",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
-      "sha256": "31732cb914f6821060527f1898afe22697f19c84913d6803ce6464b9e84b4570",
+      "sha256": "630e6a1f2004236e1e2a9e121558472a556c3c787101c15f8df6a53b012d78cb",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "4.85 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -4910,36 +4910,41 @@
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 77.05,
+          "weightPct": 77.4845,
           "label": "Information Technology"
         },
         {
           "name": "Communication Services",
-          "weightPct": 7.75,
+          "weightPct": 7.3547,
           "label": "Communication"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 6.17,
+          "weightPct": 6.1565,
           "label": "Consumer Discretionary"
         },
         {
-          "name": "Health Care",
-          "weightPct": 4.61,
-          "label": "Health Care"
+          "name": "Industrials",
+          "weightPct": 4.614999999999999,
+          "label": "Industrials"
         },
         {
-          "name": "Industrials",
-          "weightPct": 4.41,
-          "label": "Industrials"
+          "name": "Health Care",
+          "weightPct": 4.389,
+          "label": "Health Care"
         }
       ],
-      "asOf": "2026-10-15",
+      "asOf": "2026-10-23",
       "basis": "fund",
-      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
-      "sha256": "39a9a3029e5783d185773ec0486c164c86932b7c2f6ef436ba2e4fc43bdb0467",
-      "checkedAt": "2026-10-16",
-      "modifiedAt": "2026-10-16"
+      "rankClassificationID": 2,
+      "method": "Exact issuer Fund Sector ranking; original percentages, not country or index groups",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB",
+      "sha256": "a33af63545114be25caa47d870a315a0447b80b9ae2267cdb0d89175a8ae297f",
+      "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+      "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+      "identityAsOf": "2026-09-30",
+      "checkedAt": "2026-10-29",
+      "modifiedAt": "2026-10-29"
     },
     "countries": {
       "rows": [
@@ -4983,51 +4988,57 @@
       "rows": [
         {
           "name": "Advanced Micro Devices",
-          "weightPct": 3.05
-        },
-        {
-          "name": "Palantir Technologies Inc-A",
-          "weightPct": 2.64
-        },
-        {
-          "name": "Alphabet Inc-Cl A",
-          "weightPct": 2.63
-        },
-        {
-          "name": "Synopsys Inc",
-          "weightPct": 2.61
+          "weightPct": 2.9011
         },
         {
           "name": "Nice Ltd - Spon ADR",
-          "weightPct": 2.58
+          "weightPct": 2.8212
         },
         {
-          "name": "Meta Platforms, Inc. Cl A",
-          "weightPct": 2.53
+          "name": "Palantir Technologies Inc-A",
+          "weightPct": 2.6859
         },
         {
           "name": "Nvidia Corp",
-          "weightPct": 2.51
+          "weightPct": 2.5234
         },
         {
           "name": "Amazon.com Inc",
-          "weightPct": 2.5
+          "weightPct": 2.5213
         },
         {
-          "name": "Recursion Pharmaceuticals-A",
-          "weightPct": 2.4
+          "name": "Alphabet Inc-Cl A",
+          "weightPct": 2.4923
+        },
+        {
+          "name": "Synopsys Inc",
+          "weightPct": 2.4868
+        },
+        {
+          "name": "Meta Platforms, Inc. Cl A",
+          "weightPct": 2.2831
         },
         {
           "name": "Marvell Technology Inc",
-          "weightPct": 2.33
+          "weightPct": 2.2805
+        },
+        {
+          "name": "Recursion Pharmaceuticals-A",
+          "weightPct": 2.2096
         }
       ],
-      "asOf": "2026-10-15",
+      "asOf": "2026-10-23",
       "basis": "fund",
-      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
-      "sha256": "39a9a3029e5783d185773ec0486c164c86932b7c2f6ef436ba2e4fc43bdb0467",
-      "checkedAt": "2026-10-16",
-      "modifiedAt": "2026-10-16"
+      "rankClassificationID": 1,
+      "scope": "top-10",
+      "method": "Top ten of the exact issuer Fund ranking; original fund weights, not renormalised",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB",
+      "sha256": "a33af63545114be25caa47d870a315a0447b80b9ae2267cdb0d89175a8ae297f",
+      "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+      "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+      "identityAsOf": "2026-09-30",
+      "checkedAt": "2026-10-29",
+      "modifiedAt": "2026-10-29"
     },
     "characteristics": {
       "asOf": "2026-09-30",
@@ -5083,41 +5094,46 @@
       "rows": [
         {
           "name": "Industrials",
-          "weightPct": 45.54,
+          "weightPct": 45.2146,
           "label": "Industrials"
         },
         {
           "name": "Materials",
-          "weightPct": 22.52,
+          "weightPct": 21.878,
           "label": "Materials"
         },
         {
-          "name": "Consumer Discretionary",
-          "weightPct": 10.53,
-          "label": "Consumer Discretionary"
-        },
-        {
           "name": "Energy",
-          "weightPct": 10.23,
+          "weightPct": 11.1789,
           "label": "Energy"
         },
         {
+          "name": "Consumer Discretionary",
+          "weightPct": 10.4764,
+          "label": "Consumer Discretionary"
+        },
+        {
           "name": "Information Technology",
-          "weightPct": 9.99,
+          "weightPct": 9.9456,
           "label": "Information Technology"
         },
         {
           "name": "Utilities",
-          "weightPct": 1.19,
+          "weightPct": 1.3062,
           "label": "Utilities"
         }
       ],
-      "asOf": "2026-10-15",
+      "asOf": "2026-10-23",
       "basis": "fund",
-      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc",
-      "sha256": "afb140cf2a2d273da2bde486d8f0175a722a54c04c623fccd3f87a3e27de64a4",
-      "checkedAt": "2026-10-16",
-      "modifiedAt": "2026-10-16"
+      "rankClassificationID": 2,
+      "method": "Exact issuer Fund Sector ranking; original percentages, not country or index groups",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB",
+      "sha256": "eaa0cb7e2da546de4cb54df7deddfb1f2ad63ff9505e661e01def8b64b4f4d31",
+      "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+      "identitySha256": "828e4fdc420e40c8455e1cbaefc5bba1094641ad4c41d7a71f3cf1da01dcbc46",
+      "identityAsOf": "2026-09-30",
+      "checkedAt": "2026-10-29",
+      "modifiedAt": "2026-10-29"
     },
     "countries": {
       "rows": [
@@ -5205,51 +5221,57 @@
       "rows": [
         {
           "name": "Shell Plc-New",
-          "weightPct": 5.28
-        },
-        {
-          "name": "JOHNSON CONTROLS INTERNATION USD0.01",
-          "weightPct": 4.97
+          "weightPct": 5.7469
         },
         {
           "name": "BP PLC",
-          "weightPct": 4.66
+          "weightPct": 5.1331
         },
         {
-          "name": "Bloom Energy Corp- A",
-          "weightPct": 3.58
+          "name": "JOHNSON CONTROLS INTERNATION USD0.01",
+          "weightPct": 5.0708
         },
         {
           "name": "Solid Power Inc",
-          "weightPct": 3.49
+          "weightPct": 3.3930000000000002
         },
         {
-          "name": "UMICORE NPV",
-          "weightPct": 3.12
+          "name": "Bloom Energy Corp- A",
+          "weightPct": 3.0648999999999997
         },
         {
           "name": "Archer Aviation Inc-A",
-          "weightPct": 2.86
+          "weightPct": 2.7407999999999997
+        },
+        {
+          "name": "UMICORE NPV",
+          "weightPct": 2.7333
         },
         {
           "name": "TDK Corp",
-          "weightPct": 2.79
-        },
-        {
-          "name": "Wartsila Oyj",
-          "weightPct": 2.55
+          "weightPct": 2.6466
         },
         {
           "name": "Qingdao Tgood Electric-A",
-          "weightPct": 2.48
+          "weightPct": 2.6299
+        },
+        {
+          "name": "Wartsila Oyj",
+          "weightPct": 2.5519
         }
       ],
-      "asOf": "2026-10-15",
+      "asOf": "2026-10-23",
       "basis": "fund",
-      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc",
-      "sha256": "afb140cf2a2d273da2bde486d8f0175a722a54c04c623fccd3f87a3e27de64a4",
-      "checkedAt": "2026-10-16",
-      "modifiedAt": "2026-10-16"
+      "rankClassificationID": 1,
+      "scope": "top-10",
+      "method": "Top ten of the exact issuer Fund ranking; original fund weights, not renormalised",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB",
+      "sha256": "eaa0cb7e2da546de4cb54df7deddfb1f2ad63ff9505e661e01def8b64b4f4d31",
+      "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+      "identitySha256": "828e4fdc420e40c8455e1cbaefc5bba1094641ad4c41d7a71f3cf1da01dcbc46",
+      "identityAsOf": "2026-09-30",
+      "checkedAt": "2026-10-29",
+      "modifiedAt": "2026-10-29"
     },
     "characteristics": {
       "asOf": "2026-09-30",
@@ -5295,7 +5317,7 @@
       "scope": "fund",
       "asOf": "2026-10-28",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "73f66a80836453b69c53bac74236e00a244bade5d470497087dc80f6998b586a",
+      "sha256": "b3639c5b06091952525ebf4ead00680f26a8ea775014b1af7978dcfad479130c",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
     },
@@ -5340,7 +5362,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "73f66a80836453b69c53bac74236e00a244bade5d470497087dc80f6998b586a",
+      "sha256": "b3639c5b06091952525ebf4ead00680f26a8ea775014b1af7978dcfad479130c",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
     },
@@ -5390,7 +5412,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "73f66a80836453b69c53bac74236e00a244bade5d470497087dc80f6998b586a",
+      "sha256": "b3639c5b06091952525ebf4ead00680f26a8ea775014b1af7978dcfad479130c",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
     },
@@ -5440,14 +5462,14 @@
       "asOf": "2026-10-28",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "73f66a80836453b69c53bac74236e00a244bade5d470497087dc80f6998b586a",
+      "sha256": "b3639c5b06091952525ebf4ead00680f26a8ea775014b1af7978dcfad479130c",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
     },
     "characteristics": {
       "asOf": "2026-10-28",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "73f66a80836453b69c53bac74236e00a244bade5d470497087dc80f6998b586a",
+      "sha256": "b3639c5b06091952525ebf4ead00680f26a8ea775014b1af7978dcfad479130c",
       "terPct": 0.5,
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
@@ -5485,7 +5507,7 @@
       ],
       "asOf": "2026-09-30",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "73f66a80836453b69c53bac74236e00a244bade5d470497087dc80f6998b586a",
+      "sha256": "b3639c5b06091952525ebf4ead00680f26a8ea775014b1af7978dcfad479130c",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "months": {
@@ -5495,7 +5517,7 @@
         "2026-09": {
           "asOf": "2026-09-30",
           "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-          "sha256": "73f66a80836453b69c53bac74236e00a244bade5d470497087dc80f6998b586a",
+          "sha256": "b3639c5b06091952525ebf4ead00680f26a8ea775014b1af7978dcfad479130c",
           "checkedAt": "2026-10-29",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -5522,7 +5544,7 @@
       "scope": "fund",
       "asOf": "2026-10-28",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "ef700b9ea721b7ab3ec219e86310ac085c22ab5ecb529c49bbafc62766750ff0",
+      "sha256": "8a6f6c9df7893d8fefaed31a83a4b932e360af4191a4a70e73aa7669b7ad1c7d",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
     },
@@ -5557,7 +5579,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "ef700b9ea721b7ab3ec219e86310ac085c22ab5ecb529c49bbafc62766750ff0",
+      "sha256": "8a6f6c9df7893d8fefaed31a83a4b932e360af4191a4a70e73aa7669b7ad1c7d",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
     },
@@ -5611,7 +5633,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "ef700b9ea721b7ab3ec219e86310ac085c22ab5ecb529c49bbafc62766750ff0",
+      "sha256": "8a6f6c9df7893d8fefaed31a83a4b932e360af4191a4a70e73aa7669b7ad1c7d",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
     },
@@ -5661,14 +5683,14 @@
       "asOf": "2026-10-28",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "ef700b9ea721b7ab3ec219e86310ac085c22ab5ecb529c49bbafc62766750ff0",
+      "sha256": "8a6f6c9df7893d8fefaed31a83a4b932e360af4191a4a70e73aa7669b7ad1c7d",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
     },
     "characteristics": {
       "asOf": "2026-10-28",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "ef700b9ea721b7ab3ec219e86310ac085c22ab5ecb529c49bbafc62766750ff0",
+      "sha256": "8a6f6c9df7893d8fefaed31a83a4b932e360af4191a4a70e73aa7669b7ad1c7d",
       "terPct": 0.65,
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
@@ -5706,7 +5728,7 @@
       ],
       "asOf": "2026-09-30",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "ef700b9ea721b7ab3ec219e86310ac085c22ab5ecb529c49bbafc62766750ff0",
+      "sha256": "8a6f6c9df7893d8fefaed31a83a4b932e360af4191a4a70e73aa7669b7ad1c7d",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "months": {
@@ -5716,7 +5738,7 @@
         "2026-09": {
           "asOf": "2026-09-30",
           "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-          "sha256": "ef700b9ea721b7ab3ec219e86310ac085c22ab5ecb529c49bbafc62766750ff0",
+          "sha256": "8a6f6c9df7893d8fefaed31a83a4b932e360af4191a4a70e73aa7669b7ad1c7d",
           "checkedAt": "2026-10-29",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -5743,7 +5765,7 @@
       "scope": "fund",
       "asOf": "2026-10-28",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "9543d947b322b6e4c1e047dcd7ace28352da78070e88dbca40f3359b77aa46c1",
+      "sha256": "c1174edba4ed7908032e916f095f0a4ac2dff63cc26bb420df6ab30e5c71ddf1",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
     },
@@ -5763,7 +5785,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "9543d947b322b6e4c1e047dcd7ace28352da78070e88dbca40f3359b77aa46c1",
+      "sha256": "c1174edba4ed7908032e916f095f0a4ac2dff63cc26bb420df6ab30e5c71ddf1",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
     },
@@ -5793,7 +5815,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "9543d947b322b6e4c1e047dcd7ace28352da78070e88dbca40f3359b77aa46c1",
+      "sha256": "c1174edba4ed7908032e916f095f0a4ac2dff63cc26bb420df6ab30e5c71ddf1",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
     },
@@ -5843,14 +5865,14 @@
       "asOf": "2026-10-28",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "9543d947b322b6e4c1e047dcd7ace28352da78070e88dbca40f3359b77aa46c1",
+      "sha256": "c1174edba4ed7908032e916f095f0a4ac2dff63cc26bb420df6ab30e5c71ddf1",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
     },
     "characteristics": {
       "asOf": "2026-10-28",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "9543d947b322b6e4c1e047dcd7ace28352da78070e88dbca40f3359b77aa46c1",
+      "sha256": "c1174edba4ed7908032e916f095f0a4ac2dff63cc26bb420df6ab30e5c71ddf1",
       "terPct": 0.5,
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
@@ -5888,7 +5910,7 @@
       ],
       "asOf": "2026-09-30",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "9543d947b322b6e4c1e047dcd7ace28352da78070e88dbca40f3359b77aa46c1",
+      "sha256": "c1174edba4ed7908032e916f095f0a4ac2dff63cc26bb420df6ab30e5c71ddf1",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "months": {
@@ -5898,7 +5920,7 @@
         "2026-09": {
           "asOf": "2026-09-30",
           "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-          "sha256": "9543d947b322b6e4c1e047dcd7ace28352da78070e88dbca40f3359b77aa46c1",
+          "sha256": "c1174edba4ed7908032e916f095f0a4ac2dff63cc26bb420df6ab30e5c71ddf1",
           "checkedAt": "2026-10-29",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -7782,7 +7804,7 @@
       "scope": "fund",
       "asOf": "2026-10-28",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
-      "sha256": "14f3c99885ed104ad895378f695fa842eee1241d7984f2f9587d84b52cefc8f4",
+      "sha256": "a77f0da443a5a31979be93083014ffbd2fa0525fc8e48ee7778a57e100558013",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "23.53 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -8148,7 +8170,7 @@
       "scope": "fund",
       "asOf": "2026-10-28",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
-      "sha256": "777d60a79e155675abee328fccfe24c422d56780c68aaab6be3da70956cdabf2",
+      "sha256": "530cc6d59de6f7f714c150bb69abc9c2bc99a7553b00444a0145bf9bdbcf2c97",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "23.53 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -8736,10 +8758,10 @@
     "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
     "provider": "iShares",
     "aum": {
-      "amount": 9565458824.15,
+      "amount": 9641249823.4,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
     },
@@ -8815,7 +8837,7 @@
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
       "basis": "fund",
-      "sha256": "b05706cc08a427ff68c0eeb603dfafaa6078ebcd7355b13ab6537f4458845682",
+      "sha256": "e6b0f29131e1173db4133df43c373604c52d5ea367272507998218fbe6df9f16",
       "translation": "Explicit German-to-English labels; published weights unchanged",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
@@ -8887,7 +8909,7 @@
       "sourceComponent": "exposureBreakdowns.geography.countries",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
       "basis": "fund",
-      "sha256": "b05706cc08a427ff68c0eeb603dfafaa6078ebcd7355b13ab6537f4458845682",
+      "sha256": "e6b0f29131e1173db4133df43c373604c52d5ea367272507998218fbe6df9f16",
       "translation": "Explicit German-to-English labels; published weights unchanged",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
@@ -8979,7 +9001,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
       "basis": "fund",
-      "sha256": "b05706cc08a427ff68c0eeb603dfafaa6078ebcd7355b13ab6537f4458845682",
+      "sha256": "e6b0f29131e1173db4133df43c373604c52d5ea367272507998218fbe6df9f16",
       "translation": "Explicit German-to-English labels; published weights unchanged",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
@@ -9040,7 +9062,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&includeConfig=true&excludeContent=true",
-      "sha256": "b05706cc08a427ff68c0eeb603dfafaa6078ebcd7355b13ab6537f4458845682",
+      "sha256": "e6b0f29131e1173db4133df43c373604c52d5ea367272507998218fbe6df9f16",
       "translation": "Explicit German-to-English labels; published weights unchanged",
       "checkedAt": "2026-10-29",
       "modifiedAt": "2026-10-29"
