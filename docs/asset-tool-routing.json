@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-29T08:09:09.961Z",
+  "checkedAt": "2026-10-29T09:52:27.000Z",
   "summary": {
     "instruments": 673,
     "sheets": 258,
@@ -10,7 +10,7 @@
     "dca": 672,
     "fullExposure": 606,
     "outsideExposure": 41,
-    "automaticHistories": 264,
+    "automaticHistories": 269,
     "historyCandidates": 0,
     "unused": 0,
     "blockers": {
@@ -12102,6 +12102,16 @@
           "performance": true,
           "simulation": true,
           "anniversary": true
+        },
+        {
+          "id": "etfIE00BDVPNG13Nav",
+          "automatic": true,
+          "first": "2018-12",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": false
         }
       ],
       "historyCandidate": false,
@@ -13305,6 +13315,16 @@
           "performance": true,
           "simulation": true,
           "anniversary": true
+        },
+        {
+          "id": "etfCloudWisdomtreeNav",
+          "automatic": true,
+          "first": "2019-09",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": false
         }
       ],
       "historyCandidate": false,
@@ -17024,6 +17044,16 @@
       "holdings": null,
       "monthly": [
         {
+          "id": "etc_cocoaNav",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": false
+        },
+        {
           "id": "etc_cocoa",
           "automatic": true,
           "first": "2020-01",
@@ -17154,6 +17184,16 @@
       "holdings": null,
       "monthly": [
         {
+          "id": "etc_natural_gasNav",
+          "automatic": true,
+          "first": "2021-12",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": false
+        },
+        {
           "id": "etc_natural_gas",
           "automatic": true,
           "first": "2020-01",
@@ -17239,6 +17279,16 @@
       },
       "holdings": null,
       "monthly": [
+        {
+          "id": "etc_wheatNav",
+          "automatic": true,
+          "first": "2021-12",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": false
+        },
         {
           "id": "etc_wheat",
           "automatic": true,

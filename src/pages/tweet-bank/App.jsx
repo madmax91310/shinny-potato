@@ -2,14 +2,17 @@ import { notifyPublication } from '../../design-system/publicationActions.js'
 import { contentValidity, renderBankCopy, bankToday, reviewPolicy } from './validity.js'
 import { forwardRef, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { TWEETS, MONTHS, CATEGORIES, FORMATS, GOLD_CATEGORIES, COOLDOWN_DAYS } from './data'
+import { TWEETS as ARCHIVED_TWEETS, MONTHS, CATEGORIES, FORMATS, GOLD_CATEGORIES, COOLDOWN_DAYS } from './data'
 import { filterAndSortTweets, countAvailable, publicationBadge, todayStr } from './lib'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './tweet-bank.css'
+import { groupTweetVariants, curateTweet } from '../../lib/tweet-discovery.js'
 
 import { DRAFTS_KEY, LAST_PUBLICATION_KEY } from './storage.js'
 import { useBankRecord } from './useBankRecord.js'
+
+const TWEETS = ARCHIVED_TWEETS.map(curateTweet)
 
 // Repli en cascade Clipboard API → execCommand → sélection manuelle — même pattern que les autres
 // outils de l'app (cf. etf-sheets/App.jsx, investment-calculator/App.jsx), jamais partagé entre
@@ -208,6 +211,22 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
   )
 }
 
+function TweetVariantCard({ group, drafts, lastPub, ...props }) {
+  const [selectedId, setSelectedId] = useState(null)
+  const selected = group.variants.find(t => String(t.id) === String(selectedId))
+    || group.variants.find(t => drafts[t.id]) || group.variants[0]
+  const original = TWEETS.find(t => t.id === selected.id)
+  return <section className="tb-variant-group">
+    {group.variants.length > 1 && <div className="tb-variant-picker">
+      <label>Versions de ce tweet <select aria-label={`Versions : ${group.title}`} value={selected.id} onChange={e => setSelectedId(e.target.value)}>
+        {group.variants.map((t,i) => <option key={t.id} value={t.id}>{i === 0 ? 'Version de référence' : `Autre version ${i}`} · archive {String(t.id)}{lastPub[t.id] ? ` · publiée le ${lastPub[t.id]}` : ''}</option>)}
+      </select></label>
+      {group.latestPublication && <p>Dernière publication du groupe : {group.latestPublication}</p>}
+    </div>}
+    <TweetCard {...props} tweet={original} draft={drafts[selected.id]} lastPublished={lastPub[selected.id]} />
+  </section>
+}
+
 export default function App() {
   const [searchParams] = useSearchParams()
   const requestedCategory = searchParams.get('category')
@@ -231,9 +250,11 @@ export default function App() {
     setFilters(previous => ({ ...previous, category: CATEGORIES.includes(requestedCategory) ? requestedCategory : null }))
   }, [requestedCategory])
 
+  const groups = useMemo(() => groupTweetVariants(TWEETS.map(tweet => ({...tweet, text:drafts[tweet.id]?.text ?? tweet.text, last_published:lastPub[tweet.id] || ''}))), [lastPub,drafts])
+  const groupDates = useMemo(() => Object.fromEntries(groups.map(t => [t.id,t.latestPublication])), [groups])
   const list = useMemo(
     () =>
-      filterAndSortTweets(TWEETS.map(tweet => ({ ...tweet, text: drafts[tweet.id]?.text ?? tweet.text })), lastPub, {
+      filterAndSortTweets(groups, groupDates, {
         month: filters.month ?? 'Tous',
         category: filters.category ?? 'Toutes',
         format: filters.format ?? 'Tous',
@@ -241,7 +262,7 @@ export default function App() {
         hideCooldown: filters.hideCooldown,
         sortByAge: filters.sortByAge,
       }),
-    [lastPub, filters, drafts]
+    [groups, groupDates, filters]
   )
 
   const available = countAvailable(TWEETS, lastPub, drafts)
@@ -326,7 +347,7 @@ export default function App() {
       </div>
 
       <p className="tb-count-line">
-        {list.length} tweet{list.length > 1 ? 's' : ''} trouvé{list.length > 1 ? 's' : ''}
+        {list.length} tweet{list.length > 1 ? 's' : ''} trouvé{list.length > 1 ? 's' : ''} · les versions proches sont regroupées
       </p>
 
       {list.length === 0 ? (
@@ -334,7 +355,7 @@ export default function App() {
       ) : (
         <div className="tb-list">
           {list.map((t) => (
-            <TweetCard key={t.id} tweet={TWEETS.find(tweet => tweet.id === t.id)} draft={drafts[t.id]} onDraftChange={changeDraft} today={today} lastPublished={lastPub[t.id]} onMarkToday={markToday} onSetDate={setDate} onClearDate={clearDate} />
+            <TweetVariantCard key={t.id} group={t} drafts={drafts} lastPub={lastPub} onDraftChange={changeDraft} today={today} onMarkToday={markToday} onSetDate={setDate} onClearDate={clearDate} />
           ))}
         </div>
       )}
