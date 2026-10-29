@@ -5,6 +5,7 @@ import { ASSETS } from './data.js'
 import catalog from './catalog.json' with { type: 'json' }
 import { MAX_POSITIONS, references, pct } from './engine.js'
 import { searchAssets } from './management.js'
+import { equalWeights, assignRemainder } from './allocation-actions.js'
 export function confirmLines(lines) {
   return lines.map(line => ({...line, isin:line.isin || references[line.asset]?.isin || ''}))
 }
@@ -13,6 +14,8 @@ export function newLine(asset, weight = 0) {
 }
 export default function AllocationEditor({lines, onChange, dca = false}) {
   const [changing, setChanging] = useState(null)
+  const [feedback, setFeedback] = useState('')
+  function apply(action) { try { onChange(action()); setFeedback('Répartition mise à jour. Les versements sont conservés.') } catch(error) { setFeedback(error.message) } }
   const total = lines.reduce((sum, line) => sum + (Number.isFinite(line.weight) ? line.weight : 0), 0)
   const options = searchAssets('', '').filter(key => !lines.some(line => line.asset === key)).map(key => ({
     id:key, label:catalog[key]?.name || ASSETS[key][1], isin:references[key]?.isin,
@@ -26,6 +29,8 @@ export default function AllocationEditor({lines, onChange, dca = false}) {
     <p className="dca-note">Personnalise chaque ligne avec « Changer l’actif », ou ajoute un support. {Object.keys(ASSETS).length} actifs disponibles par nom, ticker ou ISIN.</p>
     <AssetPicker label="Ajouter un actif" items={options} value="" onChange={asset => onChange([...lines, newLine(asset, Math.max(0, 100 - total))])} clearSearchOnSelect searchPlaceholder="Nom, ticker ou ISIN" optionsClassName="dca-simple-results" disabled={lines.length >= MAX_POSITIONS} />
     {!lines.length && <p className="dca-note">Recherche ton premier actif pour commencer.</p>}
+    {!!lines.length && <button type="button" onClick={() => apply(() => equalWeights(lines))}>Répartir à parts égales</button>}
+    {feedback && <p role="status">{feedback}</p>}
     {dca && !!lines.length && <p className="dca-note">Pour chaque actif : poids actuel en % et versement en €/mois.</p>}
     {lines.map((line,index) => <div key={line.asset} className="dca-position">
      <div className={`dca-simple-line${dca ? ' dca-line-with-flow' : ''}`}>
@@ -38,6 +43,7 @@ export default function AllocationEditor({lines, onChange, dca = false}) {
       <p className="dca-note">Le nouvel actif conserve le poids{dca?' et le versement mensuel':''} de cette ligne.</p>
       <AssetPicker label={`Remplacer l’actif position ${index+1}`} items={options} value="" onChange={asset=>{edit(index,{...newLine(asset),weight:line.weight,amount:line.amount});setChanging(null)}} searchPlaceholder="Nom, ticker ou ISIN" optionsClassName="dca-simple-results" />
      </div>}
+     {Math.abs(total-100) > .001 && <button type="button" aria-label={`Affecter le solde à la position ${index+1}`} onClick={() => apply(() => assignRemainder(lines,index))}>Affecter le solde à cette ligne</button>}
     </div>)}
     <p className="dca-total">Total : {pct(total)} / 100 %{Math.abs(total-100) > .001 && !!lines.length && <small>{total < 100 ? `Il manque ${pct(100-total)}.` : `${pct(total-100)} en trop.`}</small>}</p>
   </>

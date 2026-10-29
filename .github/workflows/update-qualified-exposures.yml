@@ -6,6 +6,8 @@ on:
   push:
     branches: [master]
     paths:
+      - 'scripts/native_source_evidence.py'
+      - 'scripts/test_native_source_evidence.py'
       - 'scripts/test_security_residual_identities.py'
       - 'scripts/test_wisdomtree_identity_isolation.py'
       - 'scripts/fixtures/security-residual-identities.json.gz'
@@ -48,6 +50,8 @@ on:
       - '.github/workflows/update-qualified-exposures.yml'
   pull_request:
     paths:
+      - 'scripts/native_source_evidence.py'
+      - 'scripts/test_native_source_evidence.py'
       - 'scripts/collect_qualified_exposures.py'
       - 'scripts/dws_liquidity_funds.py'
       - 'scripts/hsbc_holdings.py'
@@ -179,7 +183,7 @@ jobs:
         run: python -m unittest discover -s scripts -p "test_dca*py"
       - name: Validate complete physical issuer portfolios
         run: python -m unittest discover -s scripts -p "test_physical_holdings.py" && python -m unittest discover -s scripts -p "test_lifestrategy_holdings.py"
-      - run: python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py' && python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py' && python -m unittest discover -s scripts -p 'test_pending_sources.py'
+      - run: python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py' && python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py' && python -m unittest discover -s scripts -p 'test_pending_sources.py' && python -m unittest discover -s scripts -p 'test_native_source_evidence.py'
       - name: Validate DCA observations
         run: node scripts/build-dca-exposures.mjs && npm run test:dca
       - name: "Validate observations: node scripts test-qualified-exposures.mjs"

@@ -7,6 +7,13 @@ import math
 import re
 
 
+class HoldingsPerimeterError(ValueError):
+    """A reconciled native book is evidence, but not an admitted net allocation."""
+    def __init__(self, message, diagnostic):
+        super().__init__(message)
+        self.diagnostic = diagnostic
+
+
 def reconcile_positions(positions, selected, as_of):
     if not positions or not selected or len(set(selected)) != len(selected):
         raise ValueError('Missing or duplicate reconciliation perimeter')

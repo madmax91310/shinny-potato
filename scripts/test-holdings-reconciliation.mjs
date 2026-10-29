@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import {holdingsReconciliationDetails,accountingWeight} from '../src/data/holdings-reconciliation.js'
+import {holdingsReconciliationDetails,rejectedPerimeterDetails,accountingWeight} from '../src/data/holdings-reconciliation.js'
 import {projectDcaHoldings} from './lib/dca-holdings-projection.mjs'
 import {sharedPositions} from '../src/pages/dca-profiles/verification.js'
 import {connectNativeIndexCandidates} from './lib/native-index-source-candidates.mjs'
@@ -24,3 +24,12 @@ for(const id of ['FR0011550193','FR0011871110','FR0011869304']){
  assert.deepEqual(connectNativeIndexCandidates({...original,field:'performance'}),{...original,field:'performance'})
 }
 console.log('NAV reconciliation: exact original weights, excluded classes and unknown identities survive projection; invalid proofs rejected; no effect on conservative overlap; three native-index sourcing leads monitored without financial admission.')
+const rejected={kind:'unsupported-gross-net-perimeter',subjectIsin:line.isin,asOf:'2026-10-28',checkedAt:'2026-10-29T10:00:00Z',
+ sourceUrl:h.sourceUrl,sha256:h.sha256,financialDataQualified:false,navReconciliation:{...h.navReconciliation,
+ selectedWeightPct:100.8,publishedNetWeightPct:100,sourceWeightPctByType:{Equity:100.8,Forwards:-.8},excludedWeightPctByType:{Forwards:-.8}}}
+const status={asOf:'2026-10-23',lastRejectedObservation:rejected}
+assert(rejectedPerimeterDetails(status,line.isin))
+for(const patch of [{financialDataQualified:true},{subjectIsin:'OTHER'},{sha256:'bad'},{asOf:'2026-02-30'},{checkedAt:'2026-01-01'},
+ {navReconciliation:{...rejected.navReconciliation,normalizationApplied:true}},
+ {navReconciliation:{...rejected.navReconciliation,excludedWeightPctByType:{Forwards:0}}}])
+ assert.equal(rejectedPerimeterDetails({...status,lastRejectedObservation:{...rejected,...patch}},line.isin),null)
