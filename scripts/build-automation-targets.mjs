@@ -47,6 +47,7 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  if(urls.some(url=>url?.includes('invesco.com/'))){
   urls.push('https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/'+isin+'?idType=isin')
   urls.push('https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/'+isin+'?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData')
+  urls.push('https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/'+isin+'?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData')
  }
  if(['FR0011550185','FR0011550193','IE00B4K6B022','IE000QDFFK00','IE000DQLYVB9'].includes(isin))urls.push('https://live.euronext.com/en/product/etfs/'+isin+'-XPAR')
  if(isin==='IE00BD4TXV59')urls.push('https://live.euronext.com/en/product/etfs/'+isin+'-ETFP')
