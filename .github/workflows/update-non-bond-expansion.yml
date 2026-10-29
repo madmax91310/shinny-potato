@@ -10,13 +10,17 @@ on:
       - 'scripts/collect_invesco_allocations.py'
       - 'scripts/*non-bond*'
       - '.github/workflows/update-non-bond-expansion.yml'
+      - 'scripts/apply_etf_collection.py'
   pull_request:
     paths:
+      - 'scripts/test_issuer_refresh.py'
+      - 'scripts/fixtures/characteristic-controls/**'
       - 'scripts/*non_bond*'
       - 'scripts/collect_invesco_allocations.py'
       - 'scripts/*non-bond*'
       - 'src/data/non-bond*'
       - '.github/workflows/update-non-bond-expansion.yml'
+      - 'scripts/apply_etf_collection.py'
 permissions:
   contents: read
 jobs:
@@ -46,6 +50,7 @@ jobs:
       - run: pip install -r scripts/company-requirements.txt openpyxl==3.1.5
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_non_bond_expansion.py'
+      - run: python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_roadmap_assets.py'
       - name: "Collect observations: collect"
         id: collect

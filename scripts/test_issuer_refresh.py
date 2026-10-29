@@ -293,6 +293,34 @@ class IndividualFeeControls(unittest.TestCase):
         incoming=copy.deepcopy(self.incoming);incoming['currency']='EUR'
         with self.assertRaises(ValueError):self.merge(incoming)
 
+    def test_six_specialized_commodity_fee_controls_use_their_actual_registry(self):
+        from unittest.mock import patch
+        import collect_non_bond_expansion as nonbond
+        records=json.loads(gzip.decompress((ROOT/'scripts/fixtures/characteristic-controls/nonbond-fees-before-20261029.json.gz').read_bytes()))['records']
+        configs=json.loads((ROOT/'scripts/non-bond-expansion-sources.json').read_text())['instruments']
+        codes={'JE00B78CGV99':'BRNT','GB00B15KXV33':'CRUD','JE00BN7KB334':'NGAS','JE00BN7KB557':'COFF','JE00B2QXZK10':'COCO','JE00BN7KB664':'WEAT'}
+        for isin,code in codes.items():
+            with self.subTest(isin=isin):
+                config=next(r for r in configs if r['isin']==isin)
+                body=gzip.decompress((ROOT/f'scripts/fixtures/wisdomtree-performance/{code}-identity.gz').read_bytes())
+                with patch.object(nonbond,'download',return_value=body):
+                    incoming=nonbond.wisdomtree_pdf(config,self.now,OSError('Isolated transport failure; fixture replay, no provider test'))
+                old=records[isin];result=merge_collection({'checkedAt':'2026-10-29','shares':[incoming]},{isin:old},{})[isin]
+                self.assertEqual(result['characteristics'],old['characteristics'])
+                for key in ['terPct','annualSwapRatePct']:
+                    self.assertEqual(result['characteristicChecks'][key]['checkedAt'],'2026-10-29')
+                    self.assertEqual(result['characteristicChecks'][key]['asOf'],old['characteristicChecks'][key]['asOf'])
+                    self.assertEqual(result['characteristicChecks'][key]['sourceAsOf'],incoming['characteristics']['asOf'])
+                    self.assertEqual(result['characteristicChecks'][key]['observationEvidence'],old['characteristicChecks'][key])
+                self.assertEqual(result['characteristicChecks']['listings'],old['characteristicChecks']['listings'])
+                for key in ['aum','countries','sectors','holdings']:
+                    self.assertEqual(result.get(key),old.get(key))
+
+    def test_nonbond_guard_changes_trigger_the_ordinary_producer_and_regression(self):
+        workflow=(ROOT/'.github/workflows/update-non-bond-expansion.yml').read_text()
+        self.assertEqual(workflow.count("      - 'scripts/apply_etf_collection.py'"),2)
+        self.assertIn("run: python -m unittest discover -s scripts -p 'test_issuer_refresh.py'",workflow)
+
     def test_wrong_official_pdf_identity_is_rejected_before_merge(self):
         from collect_public_issuer import wisdomtree_factsheet
         wrong={**self.share,'isin':'IE00WRONG0000'}
