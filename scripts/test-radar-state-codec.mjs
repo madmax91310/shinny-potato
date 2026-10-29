@@ -26,3 +26,24 @@ assert.deepEqual(unpackRadarState(JSON.parse(compact)),many,'Compact persistence
 const request=content=>JSON.stringify({content,encoding:'utf-8'})
 assert(Buffer.byteLength(request(compact))<Buffer.byteLength(request(pretty))*.95,'Measure the actual escaped REST envelope, not only the JSON file')
 assert.equal(compact.split('\n').length,2,'Only the final newline is literal; text/source newlines remain escaped and intact')
+
+// A compact state can still exceed the API limit as source text accumulates.
+// Quotes/backslashes/newlines also grow when JSON is escaped a second time.
+const large=structuredClone(plain)
+large.retainedSourceText='"\\\n'.repeat(4_000_000)
+const uncompressed=JSON.stringify(packRadarState(large))+'\n'
+assert(Buffer.byteLength(request(uncompressed))>32*1024*1024)
+const metrics=[],bounded=radarStateContent(large,row=>metrics.push(row)),transport=JSON.parse(bounded)
+assert.equal(metrics[0].originalRequestBytes,Buffer.byteLength(request(uncompressed)))
+assert.equal(metrics[0].requestBytes,Buffer.byteLength(request(bounded)))
+assert.equal(transport.radarStateTransport,1)
+assert.deepEqual(transport.conflicts,packRadarState(large).conflicts,'Python supervision reads the same durable conflict ledger without a format migration')
+const badPreview=structuredClone(transport);badPreview.conflicts={unexpected:true};assert.throws(()=>unpackRadarState(badPreview),/altéré/)
+const missingPreview=structuredClone(transport);delete missingPreview.conflicts;assert.throws(()=>unpackRadarState(missingPreview),/altéré/)
+assert(Buffer.byteLength(request(bounded))<32*1024*1024)
+assert.deepEqual(unpackRadarState(transport),large,'Lossless transport preserves source text, financial proofs, queues and history')
+assert.equal(radarStateContent(transport),bounded,'Repeated persistence is idempotent')
+assert.deepEqual(advanceRadar(transport,[row],{now}),advanceRadar(large,[row],{now}),'Storage migration produces no new classification/signal')
+for(const change of [{radarStateTransport:99},{encoding:'unknown'},{originalBytes:transport.originalBytes+1},{originalBytes:257*1024*1024},{sha256:'0'.repeat(64)},{data:transport.data.slice(0,-4)},{data:transport.data+'!'}])assert.throws(()=>unpackRadarState({...transport,...change}),/Radar|historique/)
+assert.equal(large.retainedSourceText.length,12_000_000,'Input data remains untouched')
+console.log('Large Radar state: bounded escaped request, full restoration, legacy compatibility, idempotence, corruption rejection and unchanged restart/signals verified.')
