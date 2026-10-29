@@ -17,6 +17,7 @@ on:
   push:
     branches: [master]
     paths:
+      - 'src/pages/portfolio-duels/visualIdentity.js'
       - '.github/workflows/update-market-monthly.yml'
       - 'scripts/observation_rebase_guard.py'
       - 'scripts/test_observation_rebase.py'

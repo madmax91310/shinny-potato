@@ -1,4 +1,5 @@
 import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
+import {getManualDuelArt} from '../src/pages/portfolio-duels/visualIdentity.js'
 import { getAnnualReturnStartYears as routedPerformanceYears, ASSETS as routedPerformanceAssets } from '../src/pages/tweet-midi/data/performanceHistory.js'
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
@@ -21,6 +22,8 @@ execFileSync(process.execPath, [fileURLToPath(new URL('./build-performance-links
 const { getPerformanceAssetId } = await import('../src/data/performance-links.js')
 const LEVELS={...BASE_LEVELS,...NON_BOND_LEVELS};
 const clock = new Date('2026-10-11T12:00:00Z')
+assert.deepEqual(getManualDuelArt({isin:'FR0013412269'}, []), {theme:'chip',scene:'etf-night/chip.webp',kind:'illustration'}, 'A new qualified PANX history must not prevent monthly publication when its ETF sheet is absent')
+assert.throws(()=>getManualDuelArt({isin:'UNKNOWN'}, []), /Illustration non vérifiée/, 'Unreviewed instruments keep the existing visual qualification guard')
 const close = (a, b) => assert(Math.abs(a - b) < 1e-7, `${a} != ${b}`)
 for (const id of ['etfImie','etfVwce','etfEqualWeight','etfMinVol','etfWqdv','etfTdiv','etfEpra','etfCmod','etfSemi','etfLock']) assert(ETF_MONTHLY_HISTORIES[id], `Initial exact share missing: ${id}`)
 for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
