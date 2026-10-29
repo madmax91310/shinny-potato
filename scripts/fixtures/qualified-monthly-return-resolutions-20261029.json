@@ -525,5 +525,87 @@
         }
       }
     }
+  ],
+  "retained": [
+    {
+      "name": "Bitwise Physical Bitcoin ETP",
+      "tools": [
+        "Comparatif ETF",
+        "Duels de portefeuilles",
+        "Générateur de portefeuilles",
+        "Présentation ETF"
+      ],
+      "impactScope": "asset",
+      "sourceUrls": [
+        "https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/",
+        "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+        "https://bourse.fortuneo.fr/trackers/cours-bitetnxetcfixpar-BTCE-DE000A27Z304-23",
+        "https://www.justetf.com/en/etf-profile.html?isin=DE000A27Z304",
+        "https://www.slickcharts.com/currency/BTC/returns"
+      ],
+      "to": "/bibliotheque-donnees?id=DE000A27Z304",
+      "conflictId": "etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-27",
+      "kind": "conflict",
+      "field": "Encours",
+      "cause": "Valeur contradictoire pour la même période (2026-10-27) : Encours. Dernière observation conservée ; propositions archivées (etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-27).",
+      "id": "radar:9a978e4b08c86aff54faea23",
+      "firstSeenAt": "2026-10-28T07:35:21.067615+00:00",
+      "lastSeenAt": "2026-10-29T12:56:36.173828+00:00",
+      "observations": [
+        {
+          "cause": "Valeur contradictoire pour la même période (2026-10-27) : Encours. Dernière observation conservée ; propositions archivées (etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-27).",
+          "sourceUrls": [
+            "https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/",
+            "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+            "https://bourse.fortuneo.fr/trackers/cours-bitetnxetcfixpar-BTCE-DE000A27Z304-23",
+            "https://www.justetf.com/en/etf-profile.html?isin=DE000A27Z304",
+            "https://www.slickcharts.com/currency/BTC/returns"
+          ]
+        }
+      ],
+      "originalKind": "conflict",
+      "proofStatus": "resolution-unproven",
+      "action": "Dernier incident connu conservé : obtenir une preuve ciblée de résolution ou de retrait du périmètre."
+    },
+    {
+      "name": "Bitwise Physical Bitcoin ETP",
+      "tools": [
+        "Comparatif ETF",
+        "Duels de portefeuilles",
+        "Générateur de portefeuilles",
+        "Présentation ETF"
+      ],
+      "impactScope": "asset",
+      "sourceUrls": [
+        "https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/",
+        "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+        "https://bourse.fortuneo.fr/trackers/cours-bitetnxetcfixpar-BTCE-DE000A27Z304-23",
+        "https://www.justetf.com/en/etf-profile.html?isin=DE000A27Z304",
+        "https://www.slickcharts.com/currency/BTC/returns"
+      ],
+      "to": "/bibliotheque-donnees?id=DE000A27Z304",
+      "conflictId": "etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-26",
+      "kind": "conflict",
+      "field": "Encours",
+      "cause": "Valeur contradictoire pour la même période (2026-10-26) : Encours. Dernière observation conservée ; propositions archivées (etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-26).",
+      "id": "radar:ca85f89e0d5309b28a00b3a6",
+      "firstSeenAt": "2026-10-26T21:04:57.314907+00:00",
+      "lastSeenAt": "2026-10-29T12:56:36.173828+00:00",
+      "observations": [
+        {
+          "cause": "Valeur contradictoire pour la même période (2026-10-26) : Encours. Dernière observation conservée ; propositions archivées (etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-26).",
+          "sourceUrls": [
+            "https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/",
+            "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+            "https://bourse.fortuneo.fr/trackers/cours-bitetnxetcfixpar-BTCE-DE000A27Z304-23",
+            "https://www.justetf.com/en/etf-profile.html?isin=DE000A27Z304",
+            "https://www.slickcharts.com/currency/BTC/returns"
+          ]
+        }
+      ],
+      "originalKind": "conflict",
+      "proofStatus": "resolution-unproven",
+      "action": "Dernier incident connu conservé : obtenir une preuve ciblée de résolution ou de retrait du périmètre."
+    }
   ]
 }

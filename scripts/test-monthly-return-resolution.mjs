@@ -40,3 +40,18 @@ assert.equal(issues.length,6)
 assert(issues.every(r=>r.kind==='history'&&!r.qualificationBlock),'Known exact proofs must reach the public inbox reducer')
 assert.deepEqual(fixture.rows.map(r=>r.unqualifiedReturnWindow),JSON.parse(fs.readFileSync('scripts/fixtures/qualified-monthly-return-resolutions-20261029.json')).rows.map(r=>r.unqualifiedReturnWindow),'Original failed-window evidence remains unchanged')
 console.log('Six actual public monthly resolutions recognised through inbox reducer; 138 mismatched/missing/cache/quote/future evidence variants rejected, original financial incidents preserved.')
+
+const retained=buildInbox({status:{...status,monitoring:{active:Object.fromEntries(fixture.retained.map(r=>[r.id,r]))}},now}).issues.filter(r=>fixture.retained.some(f=>f.id===r.id))
+assert.equal(retained.length,2)
+for(const row of retained){
+ const original=fixture.retained.find(r=>r.id===row.id)
+ assert.equal(row.kind,'qualification');assert.equal(row.stage,'Qualification historique')
+ assert.equal(row.originalKind,'conflict');assert.equal(row.qualificationBlock,'historical-resolution-unproven')
+ assert.equal(row.cause,original.cause);assert.deepEqual(row.observations,original.observations)
+ assert.equal(row.resolvedAt,undefined,'A changed classification never closes the old contradiction')
+}
+const activeAgain=structuredClone(fixture.retained[0]);delete activeAgain.proofStatus
+const renewed=buildInbox({status:{...status,monitoring:{active:{[activeAgain.id]:activeAgain}}},now}).issues.find(r=>r.id===activeAgain.id)
+assert.equal(renewed.kind,'failure','A source-reobserved conflict without the retention marker remains an active failure')
+assert.equal(renewed.qualificationBlock,undefined)
+console.log('Actual Bitwise superseded-photo incidents remain open qualifications with all original evidence; reobserved active source contradictions remain failures.')
