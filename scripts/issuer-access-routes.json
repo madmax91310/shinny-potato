@@ -28,6 +28,13 @@
       "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc": [
         "https://www.wisdomtree.eu/en-ie/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc"
       ]
+    },
+    "fundRankings": "https://dataspanapi.wisdomtree.com/funddetails/rankings/",
+    "fundRankingsRequestHeaders": {
+      "Accept": "application/json",
+      "Accept-Language": "en-GB,en;q=0.9",
+      "Origin": "https://www.wisdomtree.com",
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
     }
   },
   "blackrock": {

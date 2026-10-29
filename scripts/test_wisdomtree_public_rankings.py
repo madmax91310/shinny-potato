@@ -41,7 +41,13 @@ class PublicRankings(unittest.TestCase):
   isin='IE00BJGWQN72';body=load(isin);raw=json.dumps(body).encode();doc=gzip.decompress((FIX/(isin+'.pdf.gz')).read_bytes())
   mapping={r['additionalInfo2']:f'US{i:010d}'for i,r in enumerate(body)if r['rankClassificationID']==1}
   calls=[]
-  def fetch(url,**kwargs):calls.append(url);return doc if '/pdr/'in url else raw
+  def fetch(url,**kwargs):
+   calls.append(url)
+   if '/funddetails/'in url:
+    self.assertIn('WCLD%20LN',url)
+    self.assertEqual(kwargs['headers']['Accept'],'application/json')
+    self.assertEqual(kwargs['headers']['Origin'],'https://www.wisdomtree.com')
+   return doc if '/pdr/'in url else raw
   with patch('collect_wisdomtree_holdings.complete_identity_mapping',return_value=(mapping,['2026-10-28'],{})):
    h=collect_public_rankings({'isin':isin,'currency':'USD'},NOW,fetch)
    self.assertEqual(h['asOf'],'2026-10-23');self.assertEqual(h['identityAsOf'],'2026-09-30')

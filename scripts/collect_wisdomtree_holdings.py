@@ -230,13 +230,15 @@ def parse_public_rankings(payload,share,now,mapping):
 
 
 def collect_public_rankings(share,now,fetch=download):
-    from urllib.parse import urlencode
+    from urllib.parse import urlencode,quote
+    from issuer_routes import ROUTES
     from collect_physical_holdings import observation
     from wisdomtree_api_holdings import CLASS_CONFIG,qualify_share_document
     identity=qualify_share_document(share,now,fetch)
     config=CLASS_CONFIG[share['isin']]
-    url='https://dataspanapi.wisdomtree.com/funddetails/rankings/?'+urlencode({'ticker':config['fundTicker'],'isoCode':'en-GB'})
-    raw=fetch(url,max_bytes=8_000_000)
+    route=ROUTES['wisdomtree']
+    url=route['fundRankings']+'?'+urlencode({'ticker':config['fundTicker'],'isoCode':'en-GB'},quote_via=quote)
+    raw=fetch(url,max_bytes=8_000_000,headers={**route['fundRankingsRequestHeaders'],'Referer':share.get('sourceUrl','https://www.wisdomtree.com/')})
     mapping,dates,proofs=complete_identity_mapping(now)
     rows,stamp=parse_public_rankings(json.loads(raw),share,now,mapping)
     # Mapping dates stay distinct from portfolio dates, under the same existing
