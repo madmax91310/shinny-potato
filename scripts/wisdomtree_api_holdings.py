@@ -13,7 +13,7 @@ import urllib.request
 from pathlib import Path
 from issuer_documents import download, pdf_text, document_date, proof
 from security_identifier_observations import API, digest, candidate_name, candidate_isins
-from wisdomtree_identity_cache import expand_observation, compact_observation
+from wisdomtree_identity_cache import expand_observation, compact_observation, lookup_key, recent_lookup_keys
 
 ROOT = Path(__file__).resolve().parents[1]
 # Exact share/class/listing identities corroborated by issuer pages and factsheets
@@ -75,16 +75,19 @@ def pending_namespace(suffix):
 
 def collect_pending_proofs(payload, observations, candidates_by_name, now, url, raw, post):
     result=[];attempts=0
+    fields=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']
+    renewal=max(0,fields['etf.staticCharacteristic']['checkDays']-fields['etf.default']['checkDays'])
     for item in payload:
         token=item.get('figi') or ''
         if not re.fullmatch(r'FIGI-PENDING-([A-Z0-9]{7}|[A-Z0-9]{9})',token):continue
         retained=[o for o in observations if o.get('issuerPendingIdentity',{}).get('identifier')==token
                   and o['issuerPendingIdentity'].get('sourceUrl')==url
                   and o['issuerPendingIdentity'].get('securityTicker')==item.get('securityTicker')]
-        if retained:
+        if any((now-dt.datetime.fromisoformat(o['checkedAt'])).total_seconds()/86400<=renewal for o in retained):
             result.extend(retained);continue
         candidates=sorted(candidate_isins(re.sub(r'-New$','',item.get('securityName',''),flags=re.I),candidates_by_name))
-        if not candidates or len(candidates)>3 or attempts>=20:continue
+        if not candidates or len(candidates)>3 or attempts>=20:
+            result.extend(retained);continue
         suffix=token.removeprefix('FIGI-PENDING-')
         jobs=[{'idType':pending_namespace(suffix),'idValue':suffix},
               *[{'idType':'ID_ISIN','idValue':value}for value in candidates]]
@@ -94,7 +97,8 @@ def collect_pending_proofs(payload, observations, candidates_by_name, now, url, 
                   'issuerPendingIdentity':{'identifier':token,'securityTicker':item['securityTicker'],
                       'sourceUrl':url,'sourceSha256':proof(raw)}}
         try:pending_identity(evidence,now)
-        except ValueError:continue  # Unproved hypotheses remain unidentified.
+        except ValueError:
+            result.extend(retained);continue  # Failed renewal never re-dates valid evidence.
         result.append(evidence)
     return result
 
@@ -273,7 +277,11 @@ def collect(share, now, fetch=download, post=mapping_request):
     mapping = identity_map(observations, now)
     max_age = json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['etf.staticCharacteristic']['checkDays']
     observations = [o for o in observations if 0 <= (now-dt.datetime.fromisoformat(o['checkedAt'])).total_seconds()/86400 <= max_age]
-    already_tested = {job['idValue'] for o in observations for job in o['request'] if job.get('idType')=='ID_ISIN' and not job.get('exchCode')}
+    check_days=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['etf.default']['checkDays']
+    renewal=max(0,max_age-check_days)
+    recent=recent_lookup_keys(observations,now,renewal,check_days)
+    current_mapping=identity_map([o for o in observations if (now-dt.datetime.fromisoformat(o['checkedAt'])).total_seconds()/86400<=renewal],now)
+    already_tested = {key[1] for key in recent if key[0]=='ID_ISIN' and key[2] is None}
     candidates_by_name={}
     for fund in previous.values():
         for row in fund.get('rows',[]):
@@ -288,7 +296,7 @@ def collect(share, now, fetch=download, post=mapping_request):
                 lookup_names[job['idValue']]=[r.get('name','')for r in reply.get('data',[])if r.get('figi')==job['idValue']]
     priority={}
     for row in payload:
-        if row.get('figi') in mapping:continue
+        if row.get('figi') in current_mapping:continue
         for name in [row.get('securityName',''),*lookup_names.get(row.get('figi'),[])]:
             for isin in candidate_isins(re.sub(r'-New$','',name,flags=re.I),candidates_by_name)-already_tested:
                 priority[isin]=max(priority.get(isin,0),row.get('wgt',0))
@@ -300,7 +308,7 @@ def collect(share, now, fetch=download, post=mapping_request):
     for seed in seeds:
         if not re.fullmatch(r'BBG[A-Z0-9]{9}',seed.get('figi','')) or not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',seed.get('isin','')) or not seed.get('sourceUrls'):
             raise ValueError('Invalid FIGI lookup candidate registry')
-        if seed['figi'] in wanted_figis and seed['figi']not in mapping and seed['isin']not in already_tested:seeded.append(seed['isin'])
+        if seed['figi'] in wanted_figis and seed['figi']not in current_mapping and seed['isin']not in already_tested:seeded.append(seed['isin'])
     candidates=list(dict.fromkeys([*seeded,*candidates]))
     for start in range(0, min(len(candidates), 80), 10):
         # Share currency is not the underlying listing country. Query exact
@@ -312,8 +320,8 @@ def collect(share, now, fetch=download, post=mapping_request):
         identity_map([evidence], now)
         observations = [*observations, evidence]
     mapping = identity_map(observations, now)
-    queried_figis = {job['idValue'] for o in observations for job in o['request'] if job['idType']=='ID_BB_GLOBAL'}
-    missing_figis = sorted({r['figi'] for r in payload if re.fullmatch(r'BBG[A-Z0-9]{9}',r.get('figi')or'') and r['figi'] not in mapping and r['figi'] not in queried_figis})
+    queried_figis = {key[1]for key in recent if key[0]=='ID_BB_GLOBAL'}
+    missing_figis = sorted({r['figi'] for r in payload if re.fullmatch(r'BBG[A-Z0-9]{9}',r.get('figi')or'') and r['figi'] not in current_mapping and r['figi'] not in queried_figis})
     for start in range(0, min(len(missing_figis),80),10):
         jobs = [{'idType':'ID_BB_GLOBAL','idValue':value} for value in missing_figis[start:start+10]]
         response = post(jobs)
@@ -341,15 +349,15 @@ def collect(share, now, fetch=download, post=mapping_request):
                 for r in reply.get('data',[]):
                     if re.fullmatch(r'BBG[A-Z0-9]{9}',r.get('shareClassFIGI')or''):
                         hypotheses.setdefault(r['shareClassFIGI'],set()).add(job['idValue'])
-    tested={(j['idValue'],j.get('exchCode'),j.get('includeUnlistedEquities',False))for o in observations for j in o['request']if j['idType']=='ID_ISIN'}
+    tested=recent_lookup_keys(observations,now,renewal,check_days)
     targeted=set()
     for evidence in observations:
         for job,reply in zip(evidence['request'],evidence['response']):
-            if job.get('idType')!='ID_BB_GLOBAL' or job['idValue'] in mapping:continue
+            if job.get('idType')!='ID_BB_GLOBAL' or job['idValue'] in current_mapping:continue
             for r in reply.get('data',[]):
                 if r.get('figi')!=job['idValue'] or not re.fullmatch(r'[A-Z0-9]{2}',r.get('exchCode')or''):continue
                 for isin in hypotheses.get(r.get('shareClassFIGI'),[]):
-                    if (isin,r['exchCode'],True)not in tested:targeted.add((isin,r['exchCode']))
+                    if lookup_key({'idType':'ID_ISIN','idValue':isin,'exchCode':r['exchCode'],'includeUnlistedEquities':True})not in tested:targeted.add((isin,r['exchCode']))
     for start in range(0,min(len(targeted),20),10):
         jobs=[{'idType':'ID_ISIN','idValue':isin,'exchCode':venue,'includeUnlistedEquities':True}for isin,venue in sorted(targeted)[start:start+10]]
         response=post(jobs)

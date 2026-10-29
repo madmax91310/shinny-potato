@@ -16,6 +16,33 @@ def portfolio():
             for i in range(12)]
 
 class ApiHoldings(unittest.TestCase):
+    def test_positive_receipts_renew_before_expiry_and_negative_lookups_retry(self):
+        from wisdomtree_identity_cache import recent_lookup_keys,lookup_key
+        positive={'idType':'ID_ISIN','idValue':'US0000000001'}
+        negative={'idType':'ID_ISIN','idValue':'US0000000002','exchCode':'M0','includeUnlistedEquities':True}
+        def receipt(age):return {'checkedAt':(NOW-dt.timedelta(days=age)).isoformat(),
+                                'request':[positive,negative],'response':[{'data':[{'figi':'BBG000000000'}]},{'warning':'No identifier found.'}]}
+        self.assertEqual(recent_lookup_keys([receipt(7)],NOW,358,7),{lookup_key(positive),lookup_key(negative)})
+        self.assertEqual(recent_lookup_keys([receipt(8)],NOW,358,7),{lookup_key(positive)})
+        self.assertEqual(recent_lookup_keys([receipt(358)],NOW,358,7),{lookup_key(positive)})
+        self.assertEqual(recent_lookup_keys([receipt(359)],NOW,358,7),set())
+        self.assertEqual(recent_lookup_keys([receipt(-1)],NOW,358,7),set())
+
+    def test_failed_pending_renewal_keeps_the_original_still_valid_proof(self):
+        row={'figi':'BBG000000001','shareClassFIGI':'BBG000000002','ticker':'T0','marketSector':'Equity','securityType':'Common Stock'}
+        response=[{'data':[copy.deepcopy(row)]},{'data':[copy.deepcopy(row)]}]
+        source='https://www.wisdomtree.com/api/fund-holdings/3104137'
+        e={'sourceUrl':API,'checkedAt':(NOW-dt.timedelta(days=359)).isoformat(),
+           'request':[{'idType':'ID_CUSIP','idValue':'748193208'},{'idType':'ID_ISIN','idValue':'US0000000001'}],
+           'response':response,'sha256':digest(response),'issuerPendingIdentity':{'identifier':'FIGI-PENDING-748193208','securityTicker':'T0 US','sourceUrl':source,'sourceSha256':'a'*64}}
+        item={'figi':'FIGI-PENDING-748193208','securityTicker':'T0 US','securityName':'Stock 0'}
+        attempts=[]
+        def unavailable(jobs):attempts.append(jobs);return [{'warning':'No identifier found.'}for _ in jobs]
+        renewed=collect_pending_proofs([item],[e],{'STOCK0':{'US0000000001'}},NOW,source,b'new source',unavailable)
+        self.assertEqual(len(attempts),1);self.assertEqual(renewed,[e]);self.assertEqual(pending_identity(renewed[0],NOW)[1],'US0000000001')
+        fresh={**e,'checkedAt':NOW.isoformat()}
+        self.assertEqual(collect_pending_proofs([item],[fresh],{},NOW,source,b'new source',lambda _:self.fail('Fresh proof must not be re-dated')),[fresh])
+
     def test_identifier_cache_is_lossless_bounded_and_never_redates_evidence(self):
         from wisdomtree_identity_cache import expand_observation,compact_observation
         record={'checkedAt':NOW.isoformat(),'sha256':'a'*64,'request':[{'idType':'ID_ISIN','idValue':'US0000000001'}],

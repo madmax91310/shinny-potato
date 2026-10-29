@@ -32,7 +32,13 @@ Ces cinq supports restent partiels ou en échec explicite. L’application n’e
 ## Contrôles exécutés
 
 - Collectes locales réelles via `collect_dca_complete_holdings.py --only ... --apply` : sept passages bornés, dernier reçu joint. Les preuves s’accumulent dans le cache partagé ; cadence partagée inchangée, nouvelles recherches bornées à vingt requêtes de placeholders et vingt hypothèses de places par support.
-- 71 régressions WisdomTree réussies, dont reproduction des deux livres réellement qualifiés ; 25 tests Python DCA, suite `test:dca` et build local réussis. Lint exécuté avec avertissements préexistants. Recette navigateur/CI/publication à compléter avant livraison.
+- 73 régressions WisdomTree réussies, dont reproduction des deux livres réellement qualifiés ; 25 tests Python DCA, suite `test:dca` et build local réussis. Lint exécuté avec avertissements préexistants. Recette navigateur/CI/publication à compléter avant livraison.
 - Premier passage PR ordinaire **40964013892** : 182/183 compositions acquises ; accès API des deux fonds confirmé depuis GitHub ; refus World Hedged seul. Ce passage précède le cache complet final et ne prouve pas sa publication.
 
-Fusion, déploiement, passage automatique final et recette publique ne sont pas encore revendiqués dans cette version du rapport.
+La recette Chromium locale finale vérifie 13 portefeuilles (complets, partiels, identifiants manquants, crypto/or, indices natifs, dates/périmètres incompatibles et rapprochement comptable), cohérence analyse/canvas/PNG téléchargé, ordinateur 1440 px et mobile 390 px. Les parcours de sélection, copie réelle, sauvegarde/ancien format et transport JSON à 1/2/8/50 lignes passent également. Deux exports du portefeuille GGRA/Battery inspectés visuellement.
+
+Le renouvellement est anticipé dans la fenêtre existante (365 − 7 jours) ; un échec conserve la preuve encore valide, avec sa date d’origine. Les recherches négatives redeviennent éligibles après les sept jours du contrôle ordinaire, au lieu de bloquer une reprise pendant un an. La décompression du cache est bornée et les reçus complets sont vérifiés sans perte.
+
+Master `51fe4c2`, dont #1057, intégré sans conflit ; build de l’arbre combiné réussi. Un huitième passage réel sans écriture vérifie le code final de renouvellement avec les 550 actions qualifiées.
+
+Fusion, déploiement, passage automatique final et recette publique ne sont pas encore revendiqués dans cette version datée du rapport.

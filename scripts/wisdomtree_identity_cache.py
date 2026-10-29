@@ -7,6 +7,7 @@ import base64
 import gzip
 import io
 import json
+import datetime as dt
 
 LIMIT=8_000_000
 
@@ -34,3 +35,17 @@ def compact_observation(record):
     if len(raw)>LIMIT:raise ValueError('Oversized identifier receipt')
     return {**{k:v for k,v in expanded.items() if k!='response'},
             'responseGzipBase64':base64.b64encode(gzip.compress(raw,mtime=0)).decode()}
+
+
+def lookup_key(job):
+    return (job['idType'],job['idValue'],job.get('exchCode'),job.get('includeUnlistedEquities',False))
+
+
+def recent_lookup_keys(observations,now,positive_days,negative_days):
+    """A negative lookup must not suppress ordinary recovery for a full year."""
+    result=set()
+    for evidence in observations:
+        age=(now-dt.datetime.fromisoformat(evidence['checkedAt'])).total_seconds()/86400
+        for job,reply in zip(evidence['request'],evidence['response']):
+            if 0<=age<=(positive_days if reply.get('data') else negative_days):result.add(lookup_key(job))
+    return result
