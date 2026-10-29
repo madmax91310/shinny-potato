@@ -19,7 +19,7 @@ def candidate_name(value):
     text = re.sub(r'\b(?:GBP|USD|EUR|GBX|JPY|SEK|NOK|CHF|CNY|KRW|HKD|IDR)\s*\d+(?:[.,]\d+)?\b', '', text)
     text = re.sub(r'\b(?:GBP|USD|EUR|GBX|JPY|SEK|NOK|CHF|CNY|KRW|HKD|IDR)\s+NPV\b|\bNPV\b', '', text)
     text = re.sub(r'\b(?:ORDINARY|ORD|COMMON)\s+(?:SHARES?|STOCK)\b', '', text)
-    text = re.sub(r'\b(?:INCORPORATED|INC|CORPORATION|CORP|PLC|LIMITED|LTD)\b', '', text)
+    text = re.sub(r'\b(?:INCORPORATED|INC|CORPORATION|CORP|PLC|LIMITED|LTD|HOLDINGS|HLDGS|HLDG)\b', '', text)
     text = re.sub(r'\b(?:SPONSORED|SPON|CO|COMPANY|SA|SE|NV|AG|OYJ)\b|/NJ\b', '', text)
     text = re.sub(r'\bCLASS\b', 'CL', text)
     text = re.sub(r'\bADR\s+REPRESENTING\b', 'ADR', text)
@@ -102,10 +102,29 @@ def retained_identity_pairs(record,now):
     return [r for r in record.get('rows',[]) if re.fullmatch(r'[A-Z0-9]{7}',r.get('sedol')or'')
             and re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',r.get('isin')or'')]
 
+def retain_identifier_proof(previous,candidate,now):
+    """A failed renewal must not erase the last proved identifier or re-date it.
+
+    An expired historical proof is retained for traceability; mappings(now)
+    still excludes it under the unchanged freshness policy.
+    """
+    try:
+        qualified(candidate,now)
+        return candidate
+    except (ValueError,KeyError,TypeError):
+        try:
+            original_check=dt.datetime.fromisoformat(previous['checkedAt'])
+            if original_check>now:return candidate
+            qualified(previous,original_check)
+            return previous
+        except (ValueError,KeyError,TypeError):return candidate
+
+
 def refresh(now,max_requests=12):
     if type(max_requests) is not int or not 1 <= max_requests <= 24:
         raise ValueError('Invalid bounded identifier request budget')
-    from collect_wisdomtree_holdings import IDENTITIES,identity_document,identities,rankings,known_shares,product_page
+    from collect_wisdomtree_holdings import IDENTITIES,identity_document,identities,rankings,known_shares,product_page,public_identity_candidates
+    from wisdomtree_api_holdings import CLASS_CONFIG
     from issuer_documents import public_page
     from data_automation import write_json_atomic
     cache=json.loads(PATH.read_text())if PATH.exists()else {'schemaVersion':1,'observations':{}}
@@ -134,17 +153,22 @@ def refresh(now,max_requests=12):
     pending=[]
     for share in shares:
         if share.get('documentType')!='wisdomtree-ucits':continue
-        try:pending.extend({**r,'requiresIndependentIdentity':requires_independent_identity(share['isin'])}for r in rankings(product_page(share['sourceUrl'])[0])['ranking'])
+        try:
+            # Same issuer feed and exact-share qualification as the holdings
+            # producer. A blocked HTML front end cannot strand the crosswalk.
+            rows=public_identity_candidates(share,now) if share['isin'] in CLASS_CONFIG else rankings(product_page(share['sourceUrl'])[0])['ranking']
+            pending.extend({**r,'requiresIndependentIdentity':requires_independent_identity(share['isin'])}for r in rows)
         except Exception as e:print('Identity discovery pending:',share['isin'],str(e)[:200])
-    pending.sort(key=lambda row: row['descriptorB'] not in seeds)
+    pending.sort(key=lambda row:((cache.get('lastAttempts',{}).get(row['descriptorB'])or cache['observations'].get(row['descriptorB'],{})).get('checkedAt',''),row['descriptorB']not in seeds,-row.get('weightPct',0)))
     attempts=0;seen=set();transport_failure=None
     for r in pending:
         sedol=r['descriptorB'];values=sorted(candidate_isins(r['constituentName'],candidates) | seeds.get(sedol,set()) | ({known[sedol]} if r.get('requiresIndependentIdentity') and sedol in known else set()))
         if (sedol in independent_known if r.get('requiresIndependentIdentity') else sedol in known) or sedol in seen or not values or len(values)>3:continue
         seen.add(sedol)
         old=cache['observations'].get(sedol,{})
-        tested={job.get('idValue') for job in old.get('request',[])[1:]}
-        if old.get('checkedAt','')[:10]==now.date().isoformat() and tested==set(values):continue
+        last_attempt=cache.get('lastAttempts',{}).get(sedol,old)
+        tested={job.get('idValue') for job in last_attempt.get('request',[])[1:]}
+        if last_attempt.get('checkedAt','')[:10]==now.date().isoformat() and tested==set(values):continue
         if attempts>=max_requests:break
         jobs=[{'idType':'ID_SEDOL','idValue':sedol},*[{'idType':'ID_ISIN','idValue':v}for v in values]]
         request=urllib.request.Request(API,json.dumps(jobs).encode(),{'Content-Type':'application/json','User-Agent':'EpargnantLibre/1.0 (lepargnantlibre@gmail.com)'})
@@ -158,7 +182,10 @@ def refresh(now,max_requests=12):
             # Persist failed identity attempts for diagnostics, never as mappings.
             try:qualified(row,now);row['status']='qualified'
             except ValueError as e:row['status']='qualification-required';row['error']=str(e)
-            cache['observations'][sedol]=row
+            if r.get('candidateSourceUrl'):
+                row['candidateSource']={'sourceUrl':r['candidateSourceUrl'],'asOf':r['candidateAsOf'],'shareIsin':r['candidateShareIsin']}
+            cache.setdefault('lastAttempts',{})[sedol]=row
+            cache['observations'][sedol]=retain_identifier_proof(old,row,now)
         except Exception as e:
             transport_failure=f'{API} SEDOL={sedol}: {e}'
             print('Identifier service failed:',transport_failure[:500]);break

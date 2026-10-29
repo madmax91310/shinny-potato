@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "indices": {
+    "topix": {
+      "weightSourceUrl": "https://www.jpx.co.jp/automation/markets/indices/topix/files/topixweight_j.csv",
+      "identityDiscoverySourceUrl": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
+      "identitySourcePrefix": "https://www.blackrock.com/jp/individual-en/en/products/279438/fund/",
+      "minimumMembers": 1000,
+      "maximumMembers": 5000
+    }
+  },
+  "shares": {
+    "FR0013411980": {
+      "indexId": "topix",
+      "hedged": false,
+      "shareDocumentBase": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF"
+    },
+    "FR0013411998": {
+      "indexId": "topix",
+      "hedged": true,
+      "shareDocumentBase": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF"
+    }
+  }
+}

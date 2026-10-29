@@ -115,7 +115,8 @@ try{
  const fixtureDate=new Date().toISOString().slice(0,10)
  await page.route(/\/holdings-\d+\.json/,route=>/[?&](import|url)([=&]|$)/.test(route.request().url())?route.continue():route.fulfill({json:{
   world:{asOf:fixtureDate,basis:'fund',sourceUrl:'https://example.com/fund',complete:true,rows:[{isin:'US0378331005',name:'Apple',weightPct:100}]},
-  FR001400ZGO4:{asOf:fixtureDate,basis:'index',sourceUrl:'https://example.com/index',complete:true,rows:[{isin:'US5949181045',name:'Microsoft',weightPct:100}]},
+  // Partial fixture exercises scope switching; a full native index requires its independently tested proof.
+  FR001400ZGO4:{asOf:fixtureDate,basis:'index',sourceUrl:'https://example.com/index',complete:false,rows:[{isin:'US5949181045',name:'Microsoft',weightPct:100}]},
  }}))
  for(const imageOnly of [false,true]){
   await page.evaluate(async imageOnly=>{

@@ -24,6 +24,9 @@ on:
       - 'scripts/security-identity-sources.json'
       - 'scripts/security-identifier-candidates.json'
       - 'scripts/test_wisdomtree_discovery.py'
+      - 'src/data/native-index-composition-contracts.json'
+      - 'src/data/native-index-composition.js'
+      - 'scripts/test-native-index-compositions.mjs'
       - 'scripts/collect_topix_holdings.py'
       - 'scripts/test_topix_holdings.py'
       - 'scripts/dws_liquidity_funds.py'
@@ -66,6 +69,9 @@ on:
       - 'scripts/security-identity-sources.json'
       - 'scripts/security-identifier-candidates.json'
       - 'scripts/test_wisdomtree_discovery.py'
+      - 'src/data/native-index-composition-contracts.json'
+      - 'src/data/native-index-composition.js'
+      - 'scripts/test-native-index-compositions.mjs'
       - 'scripts/collect_topix_holdings.py'
       - 'scripts/test_topix_holdings.py'
       - 'scripts/lifestrategy_holdings.py'
@@ -131,6 +137,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py'
       - name: Validate public holdings API identities and complete weights
         run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_complete_api.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_public_rankings.py' && python -m unittest discover -s scripts -p 'test_dca_holdings_retention.py'
+      - name: Validate exact native-index and dated-identity contracts
+        run: python -m unittest discover -s scripts -p 'test_topix_holdings.py' && node scripts/test-native-index-compositions.mjs
       - name: Refresh exact security identifier evidence
         id: identifiers
         continue-on-error: true
@@ -153,7 +161,6 @@ jobs:
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_vanguard_sleeves.py --apply --output "$RUNNER_TEMP/vanguard-sleeves.json"
       - run: python -m unittest discover -s scripts -p "test_exposure_sleeves.py"
-      - run: python -m unittest discover -s scripts -p 'test_topix_holdings.py'
       - name: Validate complete DWS parser
         run: python -m unittest discover -s scripts -p "test_dca*py"
       - name: Validate complete physical issuer portfolios

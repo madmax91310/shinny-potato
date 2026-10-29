@@ -1,5 +1,9 @@
 # Portefeuille & DCA — décisions et roadmap
 
+État du lot automatique #1045, 29 octobre 2026 : accès GitHub rétabli et mesuré pour les six compositions WisdomTree ; découverte d'identifiants raccordée au même flux qualifié, conservation datée des preuves sur échec ; références TOPIX PEA soumises à un contrat natif liant fonds exact, source, recensement et identités à la même date. Les analyses partielles restent partielles. Recette et limites : [rapport compositions automatiques](../reports/compositions-auto-2026-10-29/README.md).
+
+Suite conditionnée aux données disponibles : obtenir une composition native officielle, datée, pondérée et identifiée du benchmark exact pour Europe 600 / Nasdaq PEA / immobilier PEA ; qualifier son accès et ses droits avant raccordement au producteur partagé. Les sources publiques vérifiées ne suffisent pas actuellement. Continuer le rapprochement indépendant des SEDOL inconnus de Battery et GGRA ; ne pas rapprocher les titres par leur seul nom. L'anomalie de poids World Hedged reste suivie sans modification de seuil. Une collecte automatique ne garantit pas qu'un émetteur fournisse toujours un fichier complet ou valide.
+
 Décisions du 28 octobre 2026, après audit des parcours Actifs & expositions et Le DCA d’un abonné.
 
 ## Périmètre de la correction autorisée

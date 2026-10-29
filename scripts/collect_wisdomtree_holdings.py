@@ -5,6 +5,8 @@ import json
 import math
 import re
 import urllib.error
+import threading
+import time
 from functools import lru_cache
 from pathlib import Path
 from bs4 import BeautifulSoup
@@ -173,8 +175,14 @@ def collect_rankings(share,now):
       sourceUrls=[share['sourceUrl'],*proofs],identityMethod='Exact SEDOL to ISIN; identity-source weights never imported')
 
 
-@lru_cache(maxsize=2)
+_IDENTITY_SNAPSHOT_LOCK=threading.Lock()
+
 def complete_identity_mapping(now):
+    # lru_cache alone allows concurrent misses to repeat all issuer downloads.
+    with _IDENTITY_SNAPSHOT_LOCK:return _cached_identity_mapping(now)
+
+@lru_cache(maxsize=2)
+def _cached_identity_mapping(now):
     mapping={};dates=[];proofs={}
     for expected,url in IDENTITIES:
         raw=identity_document(url);values,stamp=identities(raw,expected,now)
@@ -199,14 +207,17 @@ def complete_identity_mapping(now):
     return mapping,dates,proofs
 
 
-def parse_public_rankings(payload,share,now,mapping):
+def parse_public_rankings(payload,share,now,mapping,listing_ticker=None,*,require_identity=True):
     from wisdomtree_api_holdings import CLASS_CONFIG
     config=CLASS_CONFIG[share['isin']]
+    expected_ticker=listing_ticker or config['fundTicker']
+    if expected_ticker not in [config['fundTicker'],*[r['ticker']for r in config.get('rankingsListingAlternatives',[])]]:raise ValueError('Unqualified exact-share listing')
     if not isinstance(payload,list) or not payload:raise ValueError('Missing public issuer rankings')
     # The endpoint also publishes sectors, countries and index members. Only
     # rankClassificationID=1 / Fund is a holding. Never add those other weights.
-    if any(r.get('wtID')!=config['rankingsEntityId'] or r.get('ticker')!=config['fundTicker'] or r.get('entityName')!=config['title'] for r in payload):
+    if any(r.get('wtID')!=config['rankingsEntityId'] or r.get('ticker')!=expected_ticker or r.get('entityName')!=config['title'] for r in payload):
         raise ValueError('Wrong exact WisdomTree rankings fund or listing')
+    if any(type(r.get('rankClassificationID'))is not int for r in payload):raise ValueError('Invalid rankings classification identifier')
     selected=[r for r in payload if r.get('rankClassificationID')==1]
     if len(selected)<11 or any(r.get('rankClassification')!='Fund' for r in selected):raise ValueError('Partial or non-fund rankings')
     dates={document_date(r['dt'][:10],now)for r in selected}
@@ -225,20 +236,83 @@ def parse_public_rankings(payload,share,now,mapping):
     if set(ranks)!=set(range(1,max(ranks)+1))or any(a<b for a,b in zip([ranks[k]for k in sorted(ranks)],[ranks[k]for k in sorted(ranks)][1:])):
         raise ValueError('Truncated or unordered fund ranking sequence')
     rows=[{'isin':mapping.get(r['additionalInfo2']),'sedol':r['additionalInfo2'],'name':r['name'],'weightPct':r['pct']*100}for r in selected]
-    if not any(r['isin']for r in rows):raise ValueError('No independently qualified rankings identities')
+    if require_identity and not any(r['isin']for r in rows):raise ValueError('No independently qualified rankings identities')
     return rows,dates.pop()
 
 
-def collect_public_rankings(share,now,fetch=download):
-    from urllib.parse import urlencode
-    from collect_physical_holdings import observation
+_RANKINGS_LOCK=threading.Lock()
+_RANKINGS_NEXT_AT=0.0
+_RANKINGS_CLOCK=time.monotonic
+_RANKINGS_SLEEP=time.sleep
+
+
+def acquire_public_rankings(url,fetch,headers):
+    """One bounded public feed, shared by concurrently collected exact shares.
+
+    Identical requests succeeded for five funds and intermittently failed for a
+    different sixth fund on GitHub. Pace the public service and back off instead
+    of multiplying parallel requests or accepting different financial content.
+    """
+    from issuer_routes import ROUTES
+    global _RANKINGS_NEXT_AT
+    route=ROUTES['wisdomtree']
+    interval=route['fundRankingsMinimumIntervalSeconds']
+    attempts=route['fundRankingsMaximumAttempts']
+    if type(interval)not in (int,float)or not 1<=interval<=10 or type(attempts)is not int or not 1<=attempts<=3:
+        raise ValueError('Unbounded public rankings transport policy')
+    for attempt in range(attempts):
+        with _RANKINGS_LOCK:
+            pause=max(0,_RANKINGS_NEXT_AT-_RANKINGS_CLOCK())
+            if pause:_RANKINGS_SLEEP(pause)
+            _RANKINGS_NEXT_AT=_RANKINGS_CLOCK()+interval
+            try:
+                # download() normally has its own retries: disable them here so
+                # there is only this one bounded budget for the public feed.
+                return fetch(url,max_bytes=8_000_000,headers=headers,max_attempts=1)
+            except (urllib.error.URLError,TimeoutError,ConnectionError)as error:
+                if isinstance(error,urllib.error.HTTPError)and error.code not in (403,408,429,500,502,503,504):raise
+                if attempt==attempts-1:raise
+                _RANKINGS_NEXT_AT=max(_RANKINGS_NEXT_AT,_RANKINGS_CLOCK()+interval*2**(attempt+1))
+
+
+def acquire_qualified_public_rankings(share,now,fetch=download):
+    from urllib.parse import urlencode,quote
+    from issuer_routes import ROUTES
     from wisdomtree_api_holdings import CLASS_CONFIG,qualify_share_document
     identity=qualify_share_document(share,now,fetch)
     config=CLASS_CONFIG[share['isin']]
-    url='https://dataspanapi.wisdomtree.com/funddetails/rankings/?'+urlencode({'ticker':config['fundTicker'],'isoCode':'en-GB'})
-    raw=fetch(url,max_bytes=8_000_000)
+    route=ROUTES['wisdomtree']
+    attempts=[]
+    listings=[{'ticker':config['fundTicker']},*identity.get('qualifiedRankingListings',[])]
+    for listing in listings:
+        url=route['fundRankings']+'?'+urlencode({'ticker':listing['ticker'],'isoCode':'en-GB'},quote_via=quote)
+        try:
+            raw=acquire_public_rankings(url,fetch,{**route['fundRankingsRequestHeaders'],'Referer':share.get('sourceUrl','https://www.wisdomtree.com/')})
+        except (urllib.error.URLError,TimeoutError,ConnectionError)as error:
+            if isinstance(error,urllib.error.HTTPError)and error.code not in (403,408,429,500,502,503,504):raise
+            attempts.append({'sourceUrl':url,'status':'unavailable','error':str(error)[:500]})
+            continue
+        break
+    else:
+        raise ConnectionError('Qualified exact-share public rankings unavailable: '+json.dumps(attempts))
+    # Validate the entire fund/date/weight perimeter before exposing any names
+    # as lookup hypotheses. This stage does not assign a security identity.
+    parse_public_rankings(json.loads(raw),share,now,{},listing['ticker'],require_identity=False)
+    return raw,url,identity,listing,attempts
+
+
+def public_identity_candidates(share,now,fetch=download):
+    raw,url,identity,listing,_=acquire_qualified_public_rankings(share,now,fetch)
+    rows,stamp=parse_public_rankings(json.loads(raw),share,now,{},listing['ticker'],require_identity=False)
+    return [{'descriptorB':r['sedol'],'constituentName':r['name'],'weightPct':r['weightPct'],
+             'candidateSourceUrl':url,'candidateAsOf':stamp,'candidateShareIsin':share['isin']}for r in rows]
+
+
+def collect_public_rankings(share,now,fetch=download):
+    from collect_physical_holdings import observation
+    raw,url,identity,listing,attempts=acquire_qualified_public_rankings(share,now,fetch)
     mapping,dates,proofs=complete_identity_mapping(now)
-    rows,stamp=parse_public_rankings(json.loads(raw),share,now,mapping)
+    rows,stamp=parse_public_rankings(json.loads(raw),share,now,mapping,listing['ticker'])
     # Mapping dates stay distinct from portfolio dates, under the same existing
     # identity compatibility window used by the SSR collector.
     policy=json.loads((Path(__file__).resolve().parents[1]/'src/data/freshness-policy.json').read_text())
@@ -247,9 +321,10 @@ def collect_public_rankings(share,now,fetch=download):
     result=observation(rows,stamp,url,raw,allow_unidentified=True,**identity,
         identitySourceHashes=proofs,identityAsOfDates=dates,
         identityMethod='Exact SEDOL to ISIN; identity-source weights never imported',
-        captureMethod='public-dataspan-fund-rankings',
+        captureMethod='public-dataspan-fund-rankings',requestedListingTicker=listing['ticker'],
+        accessAttempts=[*attempts,{'sourceUrl':url,'status':'validated-public-portfolio'}],
         sourceUrls=[url,identity['identitySourceUrl'],*proofs],
         coverageProof={'rankClassificationID':1,'rankClassification':'Fund','rowCount':len(rows),
             'publishedWeightPct':sum(r['weightPct']for r in rows),'otherRankingGroupsExcluded':True})
-    result['method']='Complete issuer Fund ranking (rankClassificationID 1); original published pct weights, no renormalisation; sector/country/index groups excluded; identities independently matched by exact SEDOL'
+    result['method']='Complete issuer Fund ranking (rankClassificationID 1); original published pct weights, no renormalisation; sector/country/index groups excluded; identities independently matched by exact SEDOL; access listings are document-qualified routes for the same ISIN, no trading-currency conversion of fund weights'
     return result
