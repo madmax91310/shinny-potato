@@ -1,0 +1,59 @@
+{
+  "scope": "Real official source controls29Oct; fixtures contain exact identity/currency fragments, not prices or performances",
+  "observations": [
+    {
+      "isin": "JE00BN7KB334",
+      "url": "https://live.euronext.com/en/product/etfs/JE00BN7KB334-XPAR",
+      "attemptedAt": "2026-10-29T17:35:39.620150+00:00",
+      "strategy": "New exact exchange confirmation of the Paris listing absent from issuer PDF; do not infer delisting from that omission",
+      "status": "received",
+      "actualUrl": "https://live.euronext.com/en/product/etfs/JE00BN7KB334-XPAR",
+      "sha256": "6d8b7eb75a2f2e9ca6a1b320e1983f88a8246a00d3b4079afc31d2a62f67f829",
+      "rows": [
+        {
+          "ticker": "NGASP",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "excerpt": "JE00BN7KB334 | {\"default_period\": {\"range\": \"1D\", \"type\": \"intraday\"}, \"isin\": \"JE00BN7KB334\", \"issuer_code\": \"132346\", \"mic\": \"XPAR\", \"name\": \"WT NATURAL GAS\", \"product_data\": \"JE00BN7KB334-XPAR\", \"symbol\": \"NGASP\", \"type\": \"TRACK\", \"url_type\": \"etfs\"} | Currency EUR"
+        }
+      ]
+    },
+    {
+      "isin": "GB00B15KXV33",
+      "url": "https://live.euronext.com/en/product/etfs/GB00B15KXV33-XPAR",
+      "attemptedAt": "2026-10-29T17:37:03.803142+00:00",
+      "strategy": "Exact Paris listing omitted by the issuer PDF; distinct official exchange route",
+      "status": "received",
+      "actualUrl": "https://live.euronext.com/en/product/etfs/GB00B15KXV33-XPAR",
+      "sha256": "f2733f00d9b86bc671a1fef0cd5ab24d536d63f3bcf9edf64237ddf1d1e65a2e",
+      "rows": [
+        {
+          "ticker": "CRUDP",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "excerpt": "GB00B15KXV33 | {\"default_period\": {\"range\": \"1D\", \"type\": \"intraday\"}, \"isin\": \"GB00B15KXV33\", \"issuer_code\": \"132346\", \"mic\": \"XPAR\", \"name\": \"WT CRUDE OIL\", \"product_data\": \"GB00B15KXV33-XPAR\", \"symbol\": \"CRUDP\", \"type\": \"TRACK\", \"url_type\": \"etfs\"} | Currency EUR"
+        }
+      ]
+    },
+    {
+      "isin": "JE00BN7KB664",
+      "url": "https://live.euronext.com/en/product/etfs/JE00BN7KB664-XPAR",
+      "attemptedAt": "2026-10-29T17:37:09.686187+00:00",
+      "strategy": "Exact Paris listing omitted by the issuer PDF; distinct official exchange route",
+      "status": "received",
+      "actualUrl": "https://live.euronext.com/en/product/etfs/JE00BN7KB664-XPAR",
+      "sha256": "70c0f700c7336e342015e2bac10dab0798dd4f575ab7cdab5aff3371ffdfbed8",
+      "rows": [
+        {
+          "ticker": "WEATP",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "excerpt": "JE00BN7KB664 | {\"default_period\": {\"range\": \"1D\", \"type\": \"intraday\"}, \"isin\": \"JE00BN7KB664\", \"issuer_code\": \"132346\", \"mic\": \"XPAR\", \"name\": \"WT WHEAT\", \"product_data\": \"JE00BN7KB664-XPAR\", \"symbol\": \"WEATP\", \"type\": \"TRACK\", \"url_type\": \"etfs\"} | Currency EUR"
+        }
+      ]
+    }
+  ]
+}
