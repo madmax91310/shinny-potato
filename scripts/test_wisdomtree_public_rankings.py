@@ -9,7 +9,7 @@ class PublicRankings(unittest.TestCase):
  def test_captured_fixture_hashes_match_the_committed_bodies(self):
   manifest=json.loads((FIX/'manifest.json').read_text())
   for isin,entry in manifest['observations'].items():
-   for key,suffix in [('json','.json.gz'),('pdf','.pdf.gz'),('rankings','.rankings.json.gz'),('ssrComparison','.ssr-rankings.json.gz')]:
+   for key,suffix in [('json','.json.gz'),('pdf','.pdf.gz'),('rankings','.rankings.json.gz'),('ssrComparison','.ssr-rankings.json.gz'),*([('alternateListing','.rankings-gbpx.json.gz')]if 'alternateListing'in entry else[])]:
     with self.subTest(isin=isin,source=key):
      raw=gzip.decompress((FIX/(isin+suffix)).read_bytes())
      self.assertEqual(hashlib.sha256(raw).hexdigest(),entry[key]['sha256'])
@@ -28,6 +28,39 @@ class PublicRankings(unittest.TestCase):
                      {r['descriptorB']:(r['pctWeight'],r['dt'][:10])for r in original})
     self.assertEqual(sum(r['isin']is not None for r in rows),1)
     with self.assertRaises(ValueError):parse_public_rankings(fund[:10],{'isin':isin},NOW,{fund[0]['additionalInfo2']:'US0378331005'})
+
+ def test_same_share_alternate_listing_preserves_exact_fund_weights(self):
+  isin='IE00BZ56SW52';payload=json.loads(gzip.decompress((FIX/(isin+'.rankings-gbpx.json.gz')).read_bytes()))
+  primary=load(isin);mapping={r['sedol']:r['isin']for r in json.loads((FIX.parents[2]/'src/data/dca-complete-holdings.json').read_text())[isin]['rows']if r.get('sedol')and r.get('isin')}
+  rows,stamp=parse_public_rankings(payload,{'isin':isin},NOW,mapping,'GGRG LN')
+  original,date=parse_public_rankings(primary,{'isin':isin},NOW,mapping)
+  self.assertEqual(rows,original);self.assertEqual(stamp,date)
+  with self.assertRaisesRegex(ValueError,'Wrong exact'):parse_public_rankings(payload,{'isin':isin},NOW,mapping)
+  with self.assertRaisesRegex(ValueError,'Unqualified exact-share'):parse_public_rankings(payload,{'isin':isin},NOW,mapping,'GGRA IM')
+
+ def test_transport_fallback_requires_the_same_isin_listing_in_issuer_document(self):
+  import urllib.error
+  from wisdomtree_api_holdings import qualify_share_document
+  isin='IE00BZ56SW52';payload=gzip.decompress((FIX/(isin+'.rankings-gbpx.json.gz')).read_bytes());doc=gzip.decompress((FIX/(isin+'.pdf.gz')).read_bytes());calls=[]
+  mapping={r['sedol']:r['isin']for r in json.loads((FIX.parents[2]/'src/data/dca-complete-holdings.json').read_text())[isin]['rows']if r.get('sedol')and r.get('isin')}
+  def fetch(url,**kwargs):
+   calls.append(url)
+   if '/pdr/'in url:return doc
+   if 'GGRA%20LN'in url:raise urllib.error.HTTPError(url,403,'Forbidden',{},None)
+   self.assertIn('GGRG%20LN',url);return payload
+  with patch('collect_wisdomtree_holdings.complete_identity_mapping',return_value=(mapping,['2026-10-28'],{})):
+   h=collect_public_rankings({'isin':isin,'currency':'USD'},NOW,fetch)
+  self.assertEqual(h['requestedListingTicker'],'GGRG LN');self.assertEqual(h['asOf'],'2026-10-23')
+  self.assertTrue(h['complete']);self.assertEqual(len(calls),3)
+  self.assertEqual(h['qualifiedRankingListings'][0]['tradingCurrency'],'GBx')
+  self.assertEqual(h['accessAttempts'][0]['status'],'unavailable')
+  self.assertAlmostEqual(sum(r['weightPct']for r in h['rows']),99.9996)
+  from issuer_documents import pdf_text
+  text=pdf_text(doc).replace('BYZK6Q0','INVALID')
+  calls.clear()
+  with patch('wisdomtree_api_holdings.pdf_text',return_value=text),self.assertRaises(ConnectionError):
+   collect_public_rankings({'isin':isin,'currency':'USD'},NOW,fetch)
+  self.assertFalse(any('GGRG%20LN'in u for u in calls),'No unproved listing fallback')
 
  def test_identity_partial_future_negative_duplicate_and_wrong_scopes_refused(self):
   isin='IE00BJGWQN72';original=load(isin);mapping={original[0]['additionalInfo2']:'US0378331005'}

@@ -199,13 +199,15 @@ def complete_identity_mapping(now):
     return mapping,dates,proofs
 
 
-def parse_public_rankings(payload,share,now,mapping):
+def parse_public_rankings(payload,share,now,mapping,listing_ticker=None):
     from wisdomtree_api_holdings import CLASS_CONFIG
     config=CLASS_CONFIG[share['isin']]
+    expected_ticker=listing_ticker or config['fundTicker']
+    if expected_ticker not in [config['fundTicker'],*[r['ticker']for r in config.get('rankingsListingAlternatives',[])]]:raise ValueError('Unqualified exact-share listing')
     if not isinstance(payload,list) or not payload:raise ValueError('Missing public issuer rankings')
     # The endpoint also publishes sectors, countries and index members. Only
     # rankClassificationID=1 / Fund is a holding. Never add those other weights.
-    if any(r.get('wtID')!=config['rankingsEntityId'] or r.get('ticker')!=config['fundTicker'] or r.get('entityName')!=config['title'] for r in payload):
+    if any(r.get('wtID')!=config['rankingsEntityId'] or r.get('ticker')!=expected_ticker or r.get('entityName')!=config['title'] for r in payload):
         raise ValueError('Wrong exact WisdomTree rankings fund or listing')
     selected=[r for r in payload if r.get('rankClassificationID')==1]
     if len(selected)<11 or any(r.get('rankClassification')!='Fund' for r in selected):raise ValueError('Partial or non-fund rankings')
@@ -237,10 +239,21 @@ def collect_public_rankings(share,now,fetch=download):
     identity=qualify_share_document(share,now,fetch)
     config=CLASS_CONFIG[share['isin']]
     route=ROUTES['wisdomtree']
-    url=route['fundRankings']+'?'+urlencode({'ticker':config['fundTicker'],'isoCode':'en-GB'},quote_via=quote)
-    raw=fetch(url,max_bytes=8_000_000,headers={**route['fundRankingsRequestHeaders'],'Referer':share.get('sourceUrl','https://www.wisdomtree.com/')})
+    attempts=[]
+    listings=[{'ticker':config['fundTicker']},*identity.get('qualifiedRankingListings',[])]
+    for listing in listings:
+        url=route['fundRankings']+'?'+urlencode({'ticker':listing['ticker'],'isoCode':'en-GB'},quote_via=quote)
+        try:
+            raw=fetch(url,max_bytes=8_000_000,headers={**route['fundRankingsRequestHeaders'],'Referer':share.get('sourceUrl','https://www.wisdomtree.com/')})
+        except (urllib.error.URLError,TimeoutError,ConnectionError)as error:
+            if isinstance(error,urllib.error.HTTPError)and error.code not in (403,408,429,500,502,503,504):raise
+            attempts.append({'sourceUrl':url,'status':'unavailable','error':str(error)[:500]})
+            continue
+        break
+    else:
+        raise ConnectionError('Qualified exact-share public rankings unavailable: '+json.dumps(attempts))
     mapping,dates,proofs=complete_identity_mapping(now)
-    rows,stamp=parse_public_rankings(json.loads(raw),share,now,mapping)
+    rows,stamp=parse_public_rankings(json.loads(raw),share,now,mapping,listing['ticker'])
     # Mapping dates stay distinct from portfolio dates, under the same existing
     # identity compatibility window used by the SSR collector.
     policy=json.loads((Path(__file__).resolve().parents[1]/'src/data/freshness-policy.json').read_text())
@@ -249,9 +262,10 @@ def collect_public_rankings(share,now,fetch=download):
     result=observation(rows,stamp,url,raw,allow_unidentified=True,**identity,
         identitySourceHashes=proofs,identityAsOfDates=dates,
         identityMethod='Exact SEDOL to ISIN; identity-source weights never imported',
-        captureMethod='public-dataspan-fund-rankings',
+        captureMethod='public-dataspan-fund-rankings',requestedListingTicker=listing['ticker'],
+        accessAttempts=[*attempts,{'sourceUrl':url,'status':'validated-public-portfolio'}],
         sourceUrls=[url,identity['identitySourceUrl'],*proofs],
         coverageProof={'rankClassificationID':1,'rankClassification':'Fund','rowCount':len(rows),
             'publishedWeightPct':sum(r['weightPct']for r in rows),'otherRankingGroupsExcluded':True})
-    result['method']='Complete issuer Fund ranking (rankClassificationID 1); original published pct weights, no renormalisation; sector/country/index groups excluded; identities independently matched by exact SEDOL'
+    result['method']='Complete issuer Fund ranking (rankClassificationID 1); original published pct weights, no renormalisation; sector/country/index groups excluded; identities independently matched by exact SEDOL; access listings are document-qualified routes for the same ISIN, no trading-currency conversion of fund weights'
     return result
