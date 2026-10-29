@@ -380,6 +380,11 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
         for path in ['scripts/observation_rebase_guard.py', 'scripts/test_observation_rebase.py']:
             self.assertEqual(workflow.count("      - '" + path + "'"), 2)
         self.assertIn("run: python -m unittest discover -s scripts -p 'test_observation_rebase.py'", workflow)
+        self.assertIn("cancel-in-progress: ${{ github.event_name == 'pull_request' }}", workflow)
+        self.assertIn("queue: ${{ github.event_name == 'pull_request' && 'single' || 'max' }}", workflow)
+        self.assertIn("github.ref == 'refs/heads/master' && github.event_name != 'pull_request'", workflow)
+        self.assertIn("|| 'production'", workflow)
+
 
     def test_publication_collectors_do_not_read_actor_presentations(self):
         self.python_graph(['refresh_purchasing_power.py', 'refresh_anniversary_levels.py',
