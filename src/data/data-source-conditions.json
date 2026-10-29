@@ -89,7 +89,7 @@
     },
     {
       "host": "dataspanapi.wisdomtree.com",
-      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "access": "API publique du graphique officiel perfchart.wisdomtree.eu : funddetails/historical_performance, modes gro10k et tabular ; PDF officiel pour identité et calendriers. Seuls quatre ETC existants qualifiés par ce collecteur.",
       "reuseStatus": "unverified",
       "license": null,
       "attribution": "À vérifier pour la donnée et le document précis",
@@ -97,8 +97,11 @@
       "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
       "configurations": [
         "scripts/monthly-automation.json",
-        "scripts/qualified-listing-sources.json"
-      ]
+        "scripts/qualified-listing-sources.json",
+        "scripts/official-nav-remainder-sources.json",
+        "scripts/wisdomtree-performance-anchors.json"
+      ],
+      "qualificationLimit": "NAV(TR) du produit exact, distinct de son indice ; niveaux recalés sur une VL historique qualifiée de même date, sans prétendre fournir une cotation de marché. Ancres immuables distinctes des consultations réseau. Collecte GitHub et publication à démontrer séparément des fixtures."
     },
     {
       "host": "epargne.boursedirect.fr",

@@ -135,6 +135,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_blackrock_income_history.py'
       - run: python -m unittest discover -s scripts -p 'test_dws_income_history.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_nav_export.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_performance_history.py'
       - run: python -m unittest discover -s scripts -p 'test_landg_nav_history.py'
       - run: python -m unittest discover -s scripts -p 'test_bnp_nav_history.py'
       - run: node scripts/test-bnp-nav-consumers.mjs

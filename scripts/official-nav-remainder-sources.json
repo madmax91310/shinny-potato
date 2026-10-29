@@ -624,7 +624,7 @@
     "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
     "navProvider": "wisdomtree",
     "navCurrency": "USD",
-    "navHistoryTransport": "official-xlsx-post",
+    "navHistoryTransport": "official-dataspan-nav-tr",
     "wisdomClassId": 1000073,
     "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-copper",
     "calendarRegistry": "src/data/automated-etf.json",
@@ -632,7 +632,12 @@
     "requiredQualifiedCalendarYears": [
       2018,
       2019
-    ]
+    ],
+    "wisdomTicker": "COPA",
+    "wisdomProductName": "WisdomTree Copper",
+    "wisdomListingId": 2740790,
+    "wisdomInception": "2006-09-22",
+    "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
   },
   {
     "id": "etc_brent_crude_oilNav",
@@ -650,7 +655,7 @@
     "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
     "navProvider": "wisdomtree",
     "navCurrency": "USD",
-    "navHistoryTransport": "official-xlsx-post",
+    "navHistoryTransport": "official-dataspan-nav-tr",
     "wisdomClassId": 1000279,
     "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-brent-crude-oil",
     "calendarRegistry": "src/data/non-bond-etf-records.json",
@@ -658,7 +663,12 @@
     "requiredQualifiedCalendarYears": [
       2021,
       2023
-    ]
+    ],
+    "wisdomTicker": "BRNT",
+    "wisdomProductName": "WisdomTree Brent Crude Oil",
+    "wisdomListingId": 2741261,
+    "wisdomInception": "2012-02-21",
+    "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
   },
   {
     "id": "etc_wti_crude_oilNav",
@@ -676,14 +686,19 @@
     "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
     "navProvider": "wisdomtree",
     "navCurrency": "USD",
-    "navHistoryTransport": "official-xlsx-post",
+    "navHistoryTransport": "official-dataspan-nav-tr",
     "wisdomClassId": 1000076,
     "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil",
     "calendarRegistry": "src/data/non-bond-etf-records.json",
     "returnWindowQualification": "corroborated-calendars",
     "requiredQualifiedCalendarYears": [
       2023
-    ]
+    ],
+    "wisdomTicker": "CRUD",
+    "wisdomProductName": "WisdomTree WTI Crude Oil",
+    "wisdomListingId": 2740803,
+    "wisdomInception": "2006-09-22",
+    "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
   },
   {
     "id": "etc_coffeeNav",
@@ -701,7 +716,7 @@
     "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
     "navProvider": "wisdomtree",
     "navCurrency": "USD",
-    "navHistoryTransport": "official-xlsx-post",
+    "navHistoryTransport": "official-dataspan-nav-tr",
     "wisdomClassId": 1000072,
     "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-coffee",
     "calendarRegistry": "src/data/non-bond-etf-records.json",
@@ -709,7 +724,12 @@
     "requiredQualifiedCalendarYears": [
       2024,
       2025
-    ]
+    ],
+    "wisdomTicker": "COFF",
+    "wisdomProductName": "WisdomTree Coffee",
+    "wisdomListingId": 2740785,
+    "wisdomInception": "2006-09-22",
+    "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
   },
   {
     "id": "etfIE00BK5BCD43Nav",

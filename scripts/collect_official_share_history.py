@@ -277,6 +277,29 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
                 'product_valuation_history.fiat_denominator','product_valuation_history.index:split-check-only',
                 'product_performance_metrics.performance_monthly','product_performance_metrics.performance_details'],
             'historicFxQualification':'Existing validated monthly ECB observations; not a new historic ECB source consultation'}
+    elif kind=='wisdomtree' and source.get('navHistoryTransport')=='official-dataspan-nav-tr':
+        from wisdomtree_performance_history import urls as performance_urls,parse as performance_parse,anchor_for
+        from collect_public_issuer import wisdomtree_factsheet
+        graph_url,table_url=performance_urls(source)
+        graph,table=[json.loads(document(url)) for url in (graph_url,table_url)]
+        fresh=wisdomtree_factsheet(document(source['factsheetUrl']),{
+            **source,'name':source['wisdomProductName'],'currency':native,'documentType':'wisdomtree'},now)
+        registry=source['calendarRegistry']
+        if registry not in ['src/data/automated-etf.json','src/data/non-bond-etf-records.json']:
+            raise ValueError('Unqualified WisdomTree calendar registry')
+        performance=json.loads((ROOT/registry).read_text())[isin]['performance']
+        if (performance['currency']!=native or performance['basis']!='fund'
+                or fresh['performance']['currency']!=native or fresh['performance']['basis']!='fund'
+                or any(fresh['performance']['years'].get(y)!=v for y,v in performance['years'].items())):
+            raise ValueError('Fresh official PDF and retained exact-product calendar conflict')
+        nav,calendar_proof=performance_parse(graph,table,source,anchor_for(source),now)
+        calendar_proof.update(calendarRegistry=registry,
+            calendarRegistryPerformanceHash=hashlib.sha256(json.dumps(performance,sort_keys=True,separators=(',',':')).encode()).hexdigest(),
+            calendarSource={k:fresh['performance'].get(k)for k in ['sourceUrl','sha256','asOf','checkedAt','method']},
+            calendarSourceConsultedByThisCollector=True,
+            controlledCalendarYears=sorted(performance['years']),
+            productPageReferenceOnly=source['sourceUrl'])
+        years=performance['years'];credit='WisdomTree'
     elif kind=='wisdomtree':
         export_body=None
         if source.get('navHistoryTransport')=='official-xlsx-post':
@@ -377,7 +400,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
             outside.append(item)
         if outside:calendar_proof['outsideSuppliedWindowChecks']=outside
     if source.get('returnWindowQualification')=='corroborated-calendars':
-        if kind!='wisdomtree'or source.get('navHistoryTransport')!='official-xlsx-post':raise ValueError('Unqualified partial return-window policy')
+        if kind!='wisdomtree'or source.get('navHistoryTransport')not in ('official-xlsx-post','official-dataspan-nav-tr'):raise ValueError('Unqualified partial return-window policy')
         from wisdomtree_nav_export import qualify_return_windows
         checks,withheld=qualify_return_windows(checked_nav,performance,source,now)
         calendar_proof['historyUnqualifiedReturnWindows']=withheld
@@ -411,13 +434,13 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     latest_level={'value':latest_values[latest]*factor,'asOf':latest,'currency':source['currency'],'isin':isin,
        'parser':'official-nav','valuationBasis':'fund-nav-price'if anniversary_nav else source['valuationBasis'],'nativeValue':latest_values[latest],'nativeCurrency':native,
        'fxAsOf':fx_date,'fxFactor':factor,'sourceUrl':urls[0],'sourceUrls':urls,'checkedAt':now.date().isoformat(),
-       'method':'Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire'if anniversary_nav else source['method']if source.get('navHistoryKind')else'Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire',
+       'method':'Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire'if anniversary_nav else calendar_proof['scaleProof']['method']if source.get('navHistoryTransport')=='official-dataspan-nav-tr'else source['method']if source.get('navHistoryKind')else'Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire',
        'maxAgeDays':daily_policy['dataDays'],'sha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest()}
     observation_hashes={**hashes,**({'cachedCalendarPerformance':calendar_proof['calendarRegistryPerformanceHash']}if 'calendarRegistryPerformanceHash'in calendar_proof else{})}
     result={**source,'points':points,**({'anniversaryPoints':anniversary_points}if source.get('collectAnniversary') is not False else {'anniversaryAvailable':False}),**({'anniversaryValuationBasis':'fund-nav-price','anniversaryVariant':'Valeurs liquidatives publiées · hors distributions'}if anniversary_nav else{}),'checkedAt':now.date().isoformat(),
             'periodEnd':points[-1][0],'sourceUrls':urls,'sourceCredit':credit,
             'latestLevel':latest_level,'nativeValuationCurrency':native,'lastOfficialValuation':max(nav),
-            'financialConvention':('exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim'if source.get('navHistoryKind')else'exact-share accumulated net NAV; no exchange-price claim'),
+            'financialConvention':('exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim'if source.get('navHistoryKind')or source.get('navHistoryTransport')=='official-dataspan-nav-tr'else'exact-share accumulated net NAV; no exchange-price claim'),
             'calendarProof':{**calendar_proof,'checks':checks},
             **({key:calendar_proof[key]for key in ['historyExcludedMonths','anniversaryExcludedMonths','historyUnqualifiedReturnWindows']if key in calendar_proof}),
             'proofRows':proof_rows,
@@ -440,7 +463,12 @@ def main():
     if args.missing_source_controls:
         registered={r['id']:r for r in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']}
         observed=json.loads((ROOT/'scripts/source-snapshots/monthly-collection-status.json').read_text()).get('series',{})
-        sources=[s for s in sources if registered.get(s['id'],{}).get('parser')=='official-nav'and s['id']not in observed]
+        active=json.loads((ROOT/'src/data/automated-etf-monthly.json').read_text())
+        # A new transport requires its own ordinary proof even for an existing ID.
+        # Once recorded, subsequent PRs do not retry old failures just to count them.
+        sources=[s for s in sources if registered.get(s['id'],{}).get('parser')=='official-nav' and
+                 (s['id']not in observed or (s.get('navHistoryTransport')=='official-dataspan-nav-tr' and
+                  active.get(s['id'],{}).get('calendarProof',{}).get('navHistoryTransport')!=s['navHistoryTransport']))]
     scope={'requestedIds':args.only or [s['id']for s in sources],'expectedIds':[s['id']for s in sources]}
     if args.missing_source_controls:
         scope['selection']='configured-official-nav-without-ordinary-source-control'
