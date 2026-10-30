@@ -30,7 +30,12 @@ for(const [asset,r] of Object.entries(universe)){
 const lines=Object.entries(references).slice(0,50).map(([asset,r])=>({asset,isin:r.isin,label:r.name,weight:2,amount:0}))
 assert.deepEqual(validateProfile({imageOnly:true,scope:'Portefeuille investi',lines}),[])
 assert(validateProfile({imageOnly:true,scope:'Portefeuille investi',lines:[...lines,lines[0]]}).length)
-const visible=allocationRows(lines);assert.equal(visible.length,8);assert.equal(visible.reduce((s,r)=>s+r.weight,0),100);assert.equal(visible.at(-1).weight,86)
+const visible=allocationRows(lines)
+assert.equal(visible.length,8)
+assert.equal(visible.reduce((s,r)=>s+r.weight,0),100)
+// Publication rows, including the grouped remainder, follow descending weight.
+assert.equal(visible.find(row=>row.name===`${lines.length-7} autres positions`)?.weight,86)
+assert(visible.slice(1).every((row,index)=>visible[index].weight>=row.weight))
 const now=new Date('2026-10-16'),a='US0378331005',b='US5949181045'
 const o={asOf:'2026-10-14',sourceUrl:'https://example.com/full',basis:'fund',complete:true,rows:[{name:'Apple',isin:a,weightPct:50},{name:'Microsoft',isin:b,weightPct:50}]}
 const refs={x:{isin:'IE00B4L5Y983'},y:{isin:'IE00B5BMR087'},z:{isin:a,name:'Apple',kind:'equity',countries:o}}
