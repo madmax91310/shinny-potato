@@ -74,13 +74,6 @@ export async function renderAnniversaryImage(item, currentRaw, currentRawB = '')
   if (comparative) posterRule(ctx,1200,150,1200,1400)
   posterText(ctx,'ÉPARGNANT LIBRE',canvas.width/2,53 * scale,48 * scale,{width:canvas.width-200,spacing:8 * scale,weight:400,relief:false})
   if (comparative) posterText(ctx,`EN ${item.yearsBack} AN${item.yearsBack > 1 ? 'S' : ''}`,canvas.width/2,1500 * scale,100 * scale,{spacing:3,width:1000})
-  // Retain licensed source attribution, with a single account signature overall.
-  const credits = [...new Set(snapshots.map(snap => snap.asset.sourceCredit).filter(Boolean))]
-  const creditLines = credits.flatMap(credit => credit.replace(' · Calculs Épargnant Libre','').split('\n'))
-  const creditTop = Math.min(1935, 1970 - (creditLines.length - 1) * 29)
-  creditLines.forEach((line,i) => {
-    posterText(ctx,line,canvas.width/2,(creditTop+i*29)*scale,24*scale,{width:canvas.width-120,weight:400,relief:false})
-  })
   return canvas
 }
 

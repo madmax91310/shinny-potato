@@ -78,7 +78,8 @@ try {
       // Assert the history currency and the browser's exact localized unit.
       const expectedUnit=ANNIVERSARY_ART[asset.id].unit || (asset.currency==='GBp'?'GBp':new Intl.NumberFormat('fr-FR',{style:'currency',currency:asset.currency,currencyDisplay:'narrowSymbol'}).formatToParts(0).find(part=>part.type==='currency').value)
       if(!expectedUnit || !labels.some(v=>v.endsWith(expectedUnit)))throw new Error(`${asset.id}: wrong unit for ${asset.currency}`)
-      if(asset.id==='or'&&!labels.some(v=>v.includes('CC BY 4.0')))throw new Error('Gold attribution lost')
+      const sourceLines = (getMarketAsset(asset.id).sourceCredit ?? '').replace(' · Calculs Épargnant Libre','').split('\n').filter(Boolean)
+      if(sourceLines.some(line=>labels.includes(line)))throw new Error(`${asset.id}: source text leaked into the image`)
       if(canvas.width!==1600||canvas.height!==2000)throw new Error('Incorrect single aspect ratio')
       await window.saveAnniversaryExport({name:asset.id,png:canvas.toDataURL(),labels:[...labels]})
       records.push({name:asset.id})
@@ -91,6 +92,8 @@ try {
       if(!labels.includes('+50,0 %')||!labels.includes('−25,0 %'))throw new Error('Comparative inputs mixed up')
       if(labels.filter(v=>v==='ÉPARGNANT LIBRE').length!==1||labels.filter(v=>v===`EN ${yearsBack} ${yearsBack===1?'AN':'ANS'}`).length!==1)throw new Error('Comparative repetitions')
       if(canvas.width!==2400||canvas.height!==1500)throw new Error('Incorrect comparative aspect ratio')
+      const sourceLines = [a,b].flatMap(id=>(getMarketAsset(id).sourceCredit ?? '').replace(' · Calculs Épargnant Libre','').split('\n')).filter(Boolean)
+      if(sourceLines.some(line=>labels.includes(line)))throw new Error('Source text leaked into the comparative image')
       await window.saveAnniversaryExport({name:`${a}-${b}`,png:canvas.toDataURL(),labels:[...labels]})
       records.push({name:`${a}-${b}`})
     }
