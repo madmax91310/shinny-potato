@@ -37,7 +37,8 @@
       "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
     },
     "fundRankingsMinimumIntervalSeconds": 2,
-    "fundRankingsMaximumAttempts": 3
+    "fundRankingsMaximumAttempts": 3,
+    "fundDirectory": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0"
   },
   "blackrock": {
     "characteristicsComponents": "keyFundFacts%2Clistings",
