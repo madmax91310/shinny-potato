@@ -354,6 +354,9 @@ def collect_invesco(share, now):
     if (share['isin'] not in text or not re.search(r'Replication method\s+Physical\b', text)
             or not re.search(r'(?:Fund base currency|Base currency)\s+' + share['currency'] + r'\b', text)):
         raise ValueError('Wrong Invesco exact physical share/currency')
+    if share.get('holdingsContract'):
+        from invesco_physical_holdings import collect
+        return collect(share, now, raw_identity)
     url = 'https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/' + share['isin'] + '/holdings/fund?idType=isin'
     attempts=[]
     for attempt in range(2):

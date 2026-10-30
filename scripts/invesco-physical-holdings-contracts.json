@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "methodCode": "invesco-physical-fund-exposure-v1",
+  "account": "fr_FR",
+  "shares": {
+    "IE000716YHJ7": {
+      "pageUrl": "https://www.invesco.com/fr/fr/financial-products/etfs/invesco-ftse-all-world-ucits-etf-acc.html",
+      "shareName": "Invesco FTSE All-World UCITS ETF Acc",
+      "distribution": "Accumulating"
+    },
+    "IE0000QLH0G6": {
+      "pageUrl": "https://www.invesco.com/fr/fr/financial-products/etfs/invesco-ftse-all-world-ucits-etf-dist.html",
+      "shareName": "Invesco FTSE All-World UCITS ETF Dist",
+      "distribution": "Quarterly"
+    }
+  },
+  "fundName": "Invesco FTSE All-World UCITS ETF",
+  "currency": "USD",
+  "benchmarkName": "FTSE All-World Index",
+  "benchmarkTicker": "TAWNT01U",
+  "note": "The issuer's physical sampled fund page publishes the full economic holdings table behind its ten-row view. Its internal API variationType is index; this is not an admitted native FTSE index composition. The fund scope must be independently confirmed by exact-share physical metadata, sampling mandate and the publisher's complete table census/date. Never apply this contract to a synthetic or hedged share."
+}
