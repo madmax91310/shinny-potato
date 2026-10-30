@@ -36,7 +36,8 @@ def silver_sector_report(body,now):
             'method':'Morningstar equity-sector classification, percentage of equity holdings excluding cash; exact UCITS share and portfolio date verified',
             'rows':rows}
 
-def equity_rows(body, isin, url, now):
+def equity_rows(body, isin, url, now, *, classification_only=False):
+    if classification_only and isin is not None:raise ValueError('Unweighted classification mode is restricted to existing US references')
     facts=body['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
     if isin and (facts['isin']['value']!=isin or facts['productStructure']['value']!='Physical'):raise ValueError('Exact physical share identity mismatch')
     if not isin and (str(body['productId']) not in US_FUNDS or facts['assetClass']['value']!='Equity'):raise ValueError('Unexpected US classification source')
@@ -50,7 +51,25 @@ def equity_rows(body, isin, url, now):
     if any(isinstance(r['holdingPercent'],bool) or not isinstance(r['holdingPercent'],(int,float)) or not math.isfinite(r['holdingPercent']) for r in rows):raise ValueError('Invalid weight')
     if not 99<=sum(r['holdingPercent'] for r in rows)<=101:raise ValueError('Incomplete net holdings')
     equities=[r for r in rows if r['assetClass']=='Equity']
-    if not equities or any(r['holdingPercent']<0 for r in equities):raise ValueError('Short or missing equity sleeve')
+    if not equities:raise ValueError('Missing equity classification rows' if classification_only else 'Short or missing equity sleeve')
+    if classification_only:
+        # These rows supply company country/sector labels only. Signed weights
+        # are retained as published and are never an exposure of the target fund.
+        identified=[r for r in equities if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',r.get('isin') or '')]
+        if not identified:raise ValueError('Missing identified equity classification rows')
+        observed={}
+        for r in identified:
+            if any(not r.get(k) or r[k]=='-' for k in ['countryOfRisk','sectorName']):raise ValueError('Missing company classification: '+r['isin'])
+            pair=(r['countryOfRisk'],r['sectorName'])
+            if r['isin'] in observed and observed[r['isin']]!=pair:raise ValueError('Conflicting company classification: '+r['isin'])
+            observed[r['isin']]=pair
+        return {'scope':'security-classification-reference',
+                'asOf':stamp,'checkedAt':now.date().isoformat(),
+                'sourceUrl':url,'portfolioWeightsUsed':False,
+                'identifiedReferenceRows':len(identified),
+                'unidentifiedReferenceRows':len(equities)-len(identified),
+                'negativeReferenceRows':sum(r['holdingPercent']<0 for r in identified)},identified,stamp
+    if any(r['holdingPercent']<0 for r in equities):raise ValueError('Short or missing equity sleeve')
     total=sum(r['holdingPercent'] for r in equities)
     if not 90<total<110:raise ValueError('Unexpected equity notional')
     out={'checkedAt':now.date().isoformat(),'equityNavPct':total,'excludedClasses':sorted({r['assetClass'] for r in rows if r['assetClass']!='Equity'})}
@@ -107,7 +126,7 @@ def joined(rows, stamp, url, index, now, field):
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--apply',action='store_true');ap.add_argument('--cache',type=Path);ap.add_argument('--output',type=Path,required=True);args=ap.parse_args()
-    now=dt.datetime.now(UTC);path=ROOT/'src/data/exposure-sleeves.json';previous=json.loads(path.read_text()) if path.exists() else {};fresh={};errors=[];index={};successful=set()
+    now=dt.datetime.now(UTC);path=ROOT/'src/data/exposure-sleeves.json';previous=json.loads(path.read_text()) if path.exists() else {};fresh={};errors=[];index={};successful=set();classification_references={}
     def get(url,name):
         p=args.cache/name if args.cache else None
         if p and p.exists():return p.read_text()
@@ -131,7 +150,8 @@ def main():
         try:
             body=json.loads(get(url,'br-us-'+code+'.json'))
             if str(body['productId'])!=code:raise ValueError('Classification source product mismatch')
-            _,rows,stamp=equity_rows(body,None,url,now)
+            reference,rows,stamp=equity_rows(body,None,url,now,classification_only=True)
+            classification_references[code]=reference
             successful.add(code)
             for r in rows:
                 if r['isin'] not in index or stamp>=index[r['isin']]['asOf']:index[r['isin']]={**r,'asOf':stamp,'sourceUrl':url}
@@ -190,7 +210,8 @@ def main():
             if errors and old and sum(x['weightPct'] for x in r[f]['rows'])+0.001<sum(x['weightPct'] for x in old['rows']):r[f]=old
         previous[isin]={**previous.get(isin,{}),**r}
     if args.apply:write_json_atomic(path,previous)
-    report={'checkedAt':now.isoformat(),'updated':list(fresh),'successes':[{'id':'exposure-sleeve:'+isin} for isin in sorted(set(fresh)|successful)],
+    report={'checkedAt':now.isoformat(),'updated':list(fresh),'successes':[{'id':'exposure-sleeve:'+isin,**classification_references.get(isin,{})} for isin in sorted(set(fresh)|successful)],
+            'classificationReferences':classification_references,
             'errors':[{'id':'exposure-sleeve:'+e.get('isin',e.get('source','unknown')),'field':'Pays/secteurs de la poche actions',**e} for e in errors]}
     write_json_atomic(args.output,report);print(json.dumps(report))
     if errors:raise SystemExit(1)

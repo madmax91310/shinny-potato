@@ -148,6 +148,7 @@ jobs:
       - run: node scripts/test-exposure-classification.mjs
       - run: node scripts/test-equity-exposure-qualification.mjs
       - run: python -m unittest discover -s scripts -p "test_exposure_sleeves.py"
+      - run: python -m unittest discover -s scripts -p "test_partial_official_publications.py"
       - run: node scripts/test-global-audit.mjs
       - run: node scripts/test-portfolio-roadmap.mjs
       - run: node scripts/test-all-weather.mjs && node scripts/test-model-portfolios.mjs
