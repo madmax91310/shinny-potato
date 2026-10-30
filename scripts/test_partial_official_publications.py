@@ -137,6 +137,12 @@ class PlatformPhases(unittest.TestCase):
         self.assertEqual(activity['lastKnownRunoffAccess']['state'],'open')
         self.assertEqual(activity['lastKnownRunoffAccess']['checkedAt'],'2026-10-30')
         self.assertNotIn('accès à Run Off sont désormais ouverts',activity['notice'])
+        # Repeated incomplete notices must not lose or rejuvenate the last proof.
+        next_day=dt.date(2026,11,1)
+        again=platform_activity('tudigo',[partial,partial],next_day)
+        repeated,report=refresh(data,{'tudigo':lambda d:{'id':'tudigo','activity':again}},next_day)
+        self.assertEqual(repeated['tudigo']['activity']['lastKnownRunoffAccess'],activity['lastKnownRunoffAccess'])
+
 
 
 class PurchasingMaturity(unittest.TestCase):

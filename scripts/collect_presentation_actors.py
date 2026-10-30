@@ -283,9 +283,12 @@ def refresh(previous,adapters,today):
     if len(activity.get('sources',[]))!=len(SOURCES[id_]) or [s['url']for s in activity['sources']]!=SOURCES[id_] or any(not re.fullmatch('[a-f0-9]{64}',s.get('sha256',''))for s in activity['sources']):raise ValueError('Incomplete cessation source identity')
     prior=old.get('activity',{})
     prior_access=prior.get('runoffAccess') or ('not-open' if 'accès ne sont pas encore ouverts' in prior.get('notice','') else None)
-    if prior_access=='open' and activity.get('runoffAccess')=='not-open':raise ValueError('Regressing initial Run Off access notice; prior activity retained')
-    if activity.get('runoffAccess')=='not-published' and prior_access in ('open','not-open'):
-     activity={**activity,'lastKnownRunoffAccess':{'state':prior_access,'checkedAt':prior.get('runoffAccessCheckedAt') or prior.get('checkedAt'),'sourceUrl':prior.get('sourceUrl'),'sha256':prior.get('sha256')}}
+    last_access=prior.get('lastKnownRunoffAccess')
+    if prior_access in ('open','not-open'):
+     last_access={'state':prior_access,'checkedAt':prior.get('runoffAccessCheckedAt') or prior.get('checkedAt'),'sourceUrl':prior.get('sourceUrl'),'sha256':prior.get('sha256')}
+    if last_access and last_access.get('state')=='open' and activity.get('runoffAccess')=='not-open':raise ValueError('Regressing initial Run Off access notice; prior activity retained')
+    if activity.get('runoffAccess')=='not-published' and last_access:
+     activity={**activity,'lastKnownRunoffAccess':copy.deepcopy(last_access)}
     result[id_]=copy.deepcopy(old);result[id_]['activity']=copy.deepcopy(activity)
     observations.append({'id':id_,'name':id_,'status':'success','scope':'platform-activity','historicalTermsRetained':True})
     continue
