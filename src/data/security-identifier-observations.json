@@ -57030,7 +57030,7 @@
     },
     "B59RGY2": {
       "sourceUrl": "https://api.openfigi.com/v3/mapping",
-      "checkedAt": "2026-10-29T15:39:39.409654+00:00",
+      "checkedAt": "2026-10-30T00:55:50.795823+00:00",
       "request": [
         {
           "idType": "ID_SEDOL",
@@ -61434,11 +61434,23 @@
               "shareClassFIGI": "BBG001S5TC52",
               "securityType2": "Common Stock",
               "securityDescription": "MRK1PLN"
+            },
+            {
+              "figi": "BBG026CX9ZB9",
+              "name": "MERCK & CO. INC.",
+              "ticker": "6MKD",
+              "exchCode": "T1",
+              "compositeFIGI": "BBG026CX9Z83",
+              "securityType": "Common Stock",
+              "marketSector": "Equity",
+              "shareClassFIGI": "BBG001S5TC52",
+              "securityType2": "Common Stock",
+              "securityDescription": "6MKD"
             }
           ]
         }
       ],
-      "sha256": "f6ef548e0b2310880fe6a641ee306bd4bea595a22fb919d24284b164e20fbf8c",
+      "sha256": "5ed46a24e4d09f1d280f4077fa95a47d9c11b5dc1cafd4d7a150a842fd519d4c",
       "status": "qualification-required",
       "error": "Missing or ambiguous exact FIGI crosswalk",
       "candidateSource": {
@@ -132413,7 +132425,7 @@
   "lastAttempts": {
     "B59RGY2": {
       "sourceUrl": "https://api.openfigi.com/v3/mapping",
-      "checkedAt": "2026-10-29T15:39:39.409654+00:00",
+      "checkedAt": "2026-10-30T00:55:50.795823+00:00",
       "request": [
         {
           "idType": "ID_SEDOL",
@@ -136817,11 +136829,23 @@
               "shareClassFIGI": "BBG001S5TC52",
               "securityType2": "Common Stock",
               "securityDescription": "MRK1PLN"
+            },
+            {
+              "figi": "BBG026CX9ZB9",
+              "name": "MERCK & CO. INC.",
+              "ticker": "6MKD",
+              "exchCode": "T1",
+              "compositeFIGI": "BBG026CX9Z83",
+              "securityType": "Common Stock",
+              "marketSector": "Equity",
+              "shareClassFIGI": "BBG001S5TC52",
+              "securityType2": "Common Stock",
+              "securityDescription": "6MKD"
             }
           ]
         }
       ],
-      "sha256": "f6ef548e0b2310880fe6a641ee306bd4bea595a22fb919d24284b164e20fbf8c",
+      "sha256": "5ed46a24e4d09f1d280f4077fa95a47d9c11b5dc1cafd4d7a150a842fd519d4c",
       "status": "qualification-required",
       "error": "Missing or ambiguous exact FIGI crosswalk",
       "candidateSource": {
