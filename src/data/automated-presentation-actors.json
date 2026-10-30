@@ -129,7 +129,7 @@
     "sources": [
       {
         "url": "https://www.mymarguerit.com/",
-        "sha256": "a71cdbcc643859f375d8525953fa119b66487660125ffcd04b6dd11ddedc16ad"
+        "sha256": "be03f5ff818817bb9af205bfbe0a88b0f82e52d1bd0bcbd9143c1e3979542568"
       }
     ],
     "offers": [
@@ -202,11 +202,11 @@
     "sources": [
       {
         "url": "https://bacchusconseil.com/fonctionnement/",
-        "sha256": "60525c98e0f4ed63baf5915c62e009f4708bf3deb738124d1bffac99c4eccad6"
+        "sha256": "7d5183dceb7f0b66d5a4a334fbddde79c9b3d5bd4c6a3aff118a345376130b39"
       },
       {
         "url": "https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/",
-        "sha256": "b1eeb267ee9bc323c39d0217587b28080be4d88e0cd8437faf20a84e59510866"
+        "sha256": "7520f01bc476cda0b382a0ee0f8e52053a88ede1fc05dd00a5d4e13829534e5f"
       }
     ],
     "offers": [
@@ -480,7 +480,7 @@
     "sources": [
       {
         "url": "https://www.enerfip.eu/fr/legal/convention-investisseur",
-        "sha256": "3e996a2de0f8988eb4271c67836cd8361b0a2ad50500f312eac2771498e823cf"
+        "sha256": "c916f2173dea36a56d892fbe9aaaad4f934fbfa5606dcebd3b231b2fbc3d9300"
       }
     ],
     "offers": [
@@ -709,15 +709,15 @@
     "sources": [
       {
         "url": "https://www.hectarea.io/aide/fonctionnement",
-        "sha256": "ec0742d3639f154d1781130fd6988d87945cbc70850e68452cde84eec5ce9f81"
+        "sha256": "f5a56c6eec2bf3c45f4e40b2913834e75d58c531abb25b37281d38854623f953"
       },
       {
         "url": "https://www.hectarea.io/aide/portefeuille",
-        "sha256": "d443479a45d0a86917d2f303361fd2b9db9b7acdea49093b271a4a46ba79d853"
+        "sha256": "497513f97e3b769ee15e0f83b6ebb571e5f173fbbecf166e98af52dddc1af8ee"
       },
       {
         "url": "https://www.hectarea.io/aide/investir",
-        "sha256": "ce240d598515aaf18b0ddb0e875b4b90b8ce285174f9d5299386376421a14794"
+        "sha256": "6842a5180829748fa342054e8392ddb7e0af1e19acbb126541c645bae21e6ae7"
       }
     ],
     "offers": [
@@ -803,7 +803,7 @@
       },
       {
         "url": "https://www.anaxago.com/operations-financees",
-        "sha256": "33b5a0ef6eeae6512503a7c294654613541f9e5af90a88902cb70cdb2470d487"
+        "sha256": "482e9bad013eb3cc4d3735753f2dd666cb7f8503a4e69effdbbd1d270fe8c8f9"
       }
     ],
     "offers": [
@@ -1015,20 +1015,24 @@
     "activity": {
       "status": "ceased",
       "judgmentAt": "2026-10-12",
-      "checkedAt": "2026-10-29",
+      "checkedAt": "2026-10-30",
       "sourceUrl": "https://www.tudigo.com/frais-investissement",
-      "sha256": "ad395ba6c780096cc74393c7457ccb23237126c7674c8a2e2f48a6f369a7468e",
+      "sha256": "c1934dc6cc00ad3c4ffd8c790c81bd5c4cf6445698397d8755422ad01d4e2061",
       "sources": [
         {
           "url": "https://www.tudigo.com/frais-investissement",
-          "sha256": "ad395ba6c780096cc74393c7457ccb23237126c7674c8a2e2f48a6f369a7468e"
+          "sha256": "c1934dc6cc00ad3c4ffd8c790c81bd5c4cf6445698397d8755422ad01d4e2061"
         },
         {
           "url": "https://www.tudigo.com/legal/cgu",
-          "sha256": "ad395ba6c780096cc74393c7457ccb23237126c7674c8a2e2f48a6f369a7468e"
+          "sha256": "c1934dc6cc00ad3c4ffd8c790c81bd5c4cf6445698397d8755422ad01d4e2061"
         }
       ],
-      "notice": "La plateforme annonce sa cessation d’activité et une liquidation judiciaire par jugement du tribunal de commerce de Bordeaux. Un transfert des investissements, documents et porte-monnaie vers Run Off, solution de gestion extinctive opérée par Capsens, est annoncé ; les accès ne sont pas encore ouverts. La date de transfert et les résultats des investissements ne sont pas établis par cet avis."
+      "runoffAccess": "open",
+      "runoffAccessCheckedAt": "2026-10-30",
+      "runoffDataMigration": "in-progress",
+      "runoffMigrationCheckedAt": "2026-10-30",
+      "notice": "La plateforme annonce sa cessation d’activité et une liquidation judiciaire par jugement du tribunal de commerce de Bordeaux. Run Off, solution de gestion extinctive opérée par Capsens, assure la gestion annoncée par cet avis. L’avis indique que les accès à Run Off sont désormais ouverts. La migration des données reste en cours et certaines informations peuvent manquer. Cet avis ne démontre ni la récupération ni les résultats des investissements."
     }
   },
   "lendosphere": {
@@ -1038,11 +1042,11 @@
     "sources": [
       {
         "url": "https://www.lendosphere.com/infos/questions-frequentes",
-        "sha256": "145da585c14d88a42f460aa6abafaea24b91589bff4a6bebe7370d1891cb0148"
+        "sha256": "f28a5628a57e7d78c6ab87a8445347c2fe6fdbd4fd5685f517e17418434bee1e"
       },
       {
         "url": "https://www.lendosphere.com/infos/comment-ca-marche",
-        "sha256": "f6287e7e0a36bafe7c34fe97d076cbe2e7b292c621cc4551fd815c962d018b48"
+        "sha256": "5ed22982fd142a109b2a3ce1e0edee5913048e68b343d3b7cff6190d01625b2d"
       }
     ],
     "offers": [

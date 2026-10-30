@@ -68,7 +68,7 @@
       "general": {
         "seriesId": "011814630",
         "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011814630?startPeriod=2010",
-        "sourceUpdatedAt": "2026-10-15",
+        "sourceUpdatedAt": "2026-10-30",
         "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Nomenclature Coicop : 00 - Ensemble",
         "scope": "FE",
         "frequency": "M",
@@ -478,13 +478,23 @@
           "2026-08": "DEF",
           "2026-09": "DEF"
         },
-        "sha256": "f7c943196628d6cda0314077440c2e4ce88534ae831fce21640fdde46c66ae81",
-        "checkedAt": "2026-10-29T22:50:39.993813+00:00"
+        "pendingObservations": [
+          {
+            "month": "2026-10",
+            "value": 103.47,
+            "quality": "P",
+            "observationStatus": "P",
+            "reason": "official-provisional-incomplete-calendar-month",
+            "includedInActiveHistory": false
+          }
+        ],
+        "sha256": "8283b7b0a64590d19dbeeb253ca9727c353af56644ec1b1f39457cec1f07e422",
+        "checkedAt": "2026-10-30T18:15:49.657180+00:00"
       },
       "alimentation": {
         "seriesId": "011813717",
         "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813717?startPeriod=2010",
-        "sourceUpdatedAt": "2026-10-15",
+        "sourceUpdatedAt": "2026-10-30",
         "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Alimentation",
         "scope": "FE",
         "frequency": "M",
@@ -894,13 +904,23 @@
           "2026-08": "DEF",
           "2026-09": "DEF"
         },
-        "sha256": "3613cc483fe59aea24d86dc03e37b3aac7a2e6e5b11fca3b0955ea0516c422a7",
-        "checkedAt": "2026-10-29T22:50:39.993813+00:00"
+        "pendingObservations": [
+          {
+            "month": "2026-10",
+            "value": 101.42,
+            "quality": "P",
+            "observationStatus": "P",
+            "reason": "official-provisional-incomplete-calendar-month",
+            "includedInActiveHistory": false
+          }
+        ],
+        "sha256": "5ada228f7aa32e82c8286038fc6d5465e62db9d5690a7a164dcd139fb79d23ca",
+        "checkedAt": "2026-10-30T18:15:49.657180+00:00"
       },
       "energie": {
         "seriesId": "011813864",
         "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813864?startPeriod=2010",
-        "sourceUpdatedAt": "2026-10-15",
+        "sourceUpdatedAt": "2026-10-30",
         "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Énergie",
         "scope": "FE",
         "frequency": "M",
@@ -1310,11 +1330,21 @@
           "2026-08": "DEF",
           "2026-09": "DEF"
         },
-        "sha256": "f32962c754c347101f90cdda9e1389dd405ce4b72da9836a52fc111847af33d4",
-        "checkedAt": "2026-10-29T22:50:39.993813+00:00"
+        "pendingObservations": [
+          {
+            "month": "2026-10",
+            "value": 122.43,
+            "quality": "P",
+            "observationStatus": "P",
+            "reason": "official-provisional-incomplete-calendar-month",
+            "includedInActiveHistory": false
+          }
+        ],
+        "sha256": "0c25cc4a3de00371c7c4b8a9b389e681f38ea3daa0add816a39f791ddd43b559",
+        "checkedAt": "2026-10-30T18:15:49.657180+00:00"
       }
     },
-    "checkedAt": "2026-10-29T22:50:39.993813+00:00"
+    "checkedAt": "2026-10-30T18:15:49.657180+00:00"
   },
   "irl": {
     "asOf": "2026-Q3",
@@ -1532,10 +1562,11 @@
         "2026-Q2": "DEF",
         "2026-Q3": "DEF"
       },
-      "sha256": "9cc149c15ae7323cb99710091ac3025e9a8c3a3f8dcf7dccc908b9629ca40718",
-      "checkedAt": "2026-10-30T14:30:24.410552+00:00"
+      "pendingObservations": [],
+      "sha256": "720fdf006357444138a80473dee8428a138b878fca737249c4f5ce4df786717c",
+      "checkedAt": "2026-10-30T18:15:49.657180+00:00"
     },
-    "checkedAt": "2026-10-30T14:30:24.410552+00:00"
+    "checkedAt": "2026-10-30T18:15:49.657180+00:00"
   },
   "smic": {
     "asOf": "2026-10",
@@ -2158,10 +2189,11 @@
         "2026-09": "DEF",
         "2026-10": "DEF"
       },
-      "sha256": "ba63436483f138e0a177f0abec44550b49a6b3aa890a05940505951f6677e071",
-      "checkedAt": "2026-10-30T14:30:24.410552+00:00"
+      "pendingObservations": [],
+      "sha256": "416b10549968b4459a6aa2df85c27a40f6a330b2fe271c4b9c6f85e9159ce3c6",
+      "checkedAt": "2026-10-30T18:15:49.657180+00:00"
     },
-    "checkedAt": "2026-10-30T14:30:24.410552+00:00"
+    "checkedAt": "2026-10-30T18:15:49.657180+00:00"
   },
   "schemaVersion": 1
 }
