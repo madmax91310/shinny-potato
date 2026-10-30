@@ -86,6 +86,11 @@ def resolve_venue_tickers(items, share, source_url, source_hash, as_of, now):
         keys=[(r.get('Label'),r.get('CurrencyCode')) for r in items if r.get('AssetClass')=='Stock']
         for item in items:
             if item.get('AssetClass')!='Stock' or item.get('ISIN') or keys.count((item.get('Label'),item.get('CurrencyCode')))!=1:continue
+            # This opt-in route fills the observed native identifier gaps.
+            # A supplied FIGI/CUSIP needs its own exact crosswalk; it cannot
+            # be silently discarded in favour of a weaker ticker lookup.
+            native=[item.get(k)for k in ['FIGI','CUSIP']]
+            if any(v is not None and (not isinstance(v,str)or v.strip())for v in native):continue
             label=item.get('Label','');currency=item.get('CurrencyCode')
             labels=label.split()
             if len(labels)!=2 or {'US':'USD','CN':'CAD','AU':'AUD'}.get(labels[1])!=currency:continue

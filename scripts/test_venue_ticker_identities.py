@@ -16,6 +16,22 @@ NOW=dt.datetime.fromisoformat(FIXTURE['checkedAt'])
 
 
 class VenueTickerIdentities(unittest.TestCase):
+    def test_native_stable_identifier_is_not_ignored_for_a_ticker_lookup(self):
+        subject='IE000YYE6WK5'
+        proof=next(p for p in FIXTURE['proofs'].values()if p['issuerBinding']['subjectIsin']==subject)
+        binding=proof['issuerBinding']
+        for field,value in [('FIGI','BBG000000001'),('CUSIP','92242T101'),('FIGI',0)]:
+            book=copy.deepcopy(FIXTURE['books'][subject])
+            item=next(r for r in book['data']['Holdings']if r['Label']=='VVX US');item[field]=value
+            with self.subTest(field=field,value=value),tempfile.TemporaryDirectory()as tmp:
+                path=Path(tmp)/'cache.json';path.write_text(json.dumps({'schemaVersion':1,'observations':{},
+                    'venueTickerObservations':{subject+'|VVX US|USD':proof}}))
+                with patch.object(ids,'PATH',path),patch('wisdomtree_api_holdings.mapping_request')as request:
+                    mappings,used,_=ids.resolve_venue_tickers(book['data']['Holdings'],{'isin':subject},
+                        binding['sourceUrl'],'f'*64,binding['asOf'],NOW)
+                request.assert_not_called();self.assertEqual(mappings,{})
+                self.assertEqual(used,[])
+
     def test_five_real_cross_queries_agree_without_names(self):
         expected={'VVX US':'US92242T1016','USA CN':'CA03062D8035','MLX AU':'AU000000MLX7',
                   'SLS CN':'CA83419D2014','ARU AU':'AU000000ARU5'}
