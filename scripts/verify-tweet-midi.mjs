@@ -144,6 +144,7 @@ for (const index of shardIndices(ALL_ITEMS.length, shardIndex, shardCount)) {
   if (problems.length) failures.push({ id: item.id, format: item.format, problems });
 }
 
+console.log('TWEET_MIDI_RESULT ' + JSON.stringify({ shardIndex, shardCount, poolSize: ALL_ITEMS.length, checked: totalChecked, failures: failures.length }));
 console.log(`${totalChecked} entrées vérifiées (partition ${shardIndex + 1}/${shardCount}, pool complet : ${ALL_ITEMS.length}).\n`);
 for (const [format, entry] of byFormat) {
   const label = FORMAT_LABELS[format] ?? format;

@@ -1,3 +1,4 @@
+import './test-tweet-midi-parallel.mjs'
 import assert from 'node:assert/strict'
 import { shardIndices } from './tweet-midi-shards.mjs'
 
