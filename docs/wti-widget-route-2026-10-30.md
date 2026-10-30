@@ -17,3 +17,6 @@ Le second run est conservé en échec partiel : son étape supplémentaire de na
 Les refus de08:30 sont conservés et ne sont pas réécrits. Les succès actuels qualifient un accès disponible maintenant, sans démontrer que la barre finale était l'unique cause des anciens403. Le correctif adopte le chemin explicite du client émetteur pour le seulWTI. Une nouvelle panne doit toujours échouer et remonter ; le prochain cron fournisseur reste à observer.
 
 La collecte ordinaire master, son enregistrement, sa publication et sa consommation restent à vérifier après fusion. Aucun des neuf cas encore refusés sur les79 n'est débloqué par cette qualification WTI, qui concerne une autre série déjà utilisable sur ses périodes qualifiées. Les70fenêtres et les anciennes divergences restent distinctes.
+
+
+Le reliquat public comprend aussi l'échec individuel `history:etfIE00BDVPNG13Nav`. La même route explicite du client émetteur est mise en qualification pour **WTAI IE00BDVPNG13**, avec son identité USD, son propre document et son propre contrôle de calendrier. Le périmètre du job en lecture seule est déclaré avant collecte : WTI + WTAI. Les sept autres routes restent inchangées. Cette seconde voie n'est pas présentée comme fonctionnelle avant sa propre preuve GitHub. Elle concerne l'ETF Artificial Intelligence déjà partagé ; aucun outil Portefeuilles IA n'est rétabli.

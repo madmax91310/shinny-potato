@@ -151,7 +151,7 @@ class DocumentedWidgetPath(unittest.TestCase):
   wti=next(s for s in configurations()if s.get('wisdomTicker')=='CRUD')
   self.assertEqual(urls(wti),[f'https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode={mode}'for mode in ['gro10k','tabular']])
   for source in configurations():
-   if source.get('navHistoryTransport')=='official-dataspan-nav-tr'and source.get('wisdomTicker')!='CRUD':
+   if source.get('navHistoryTransport')=='official-dataspan-nav-tr'and source.get('wisdomTicker')not in ('CRUD','WTAI'):
     self.assertTrue(all('/historical_performance/?'in u for u in urls(source)))
   ordinary=next(s for s in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']if s['id']==wti['id'])
   self.assertNotIn('wisdomPerformancePathStyle',ordinary)
@@ -160,3 +160,13 @@ class DocumentedWidgetPath(unittest.TestCase):
    with self.assertRaises(ValueError):urls({**ordinary,key:value})
   for bad in ['unregistered','https://another.invalid/','../']:
    with self.assertRaises(ValueError):urls({**wti,'wisdomPerformancePathStyle':bad})
+
+ def test_active_ai_incident_uses_its_own_exact_shared_client_route(self):
+  from wisdomtree_performance_history import urls
+  from collect_official_share_history import configurations
+  source=next(s for s in configurations()if s.get('wisdomTicker')=='WTAI')
+  self.assertEqual(source['isin'],'IE00BDVPNG13');self.assertEqual(source['navCurrency'],'USD')
+  self.assertEqual(urls(source),[f'https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode={mode}'for mode in ['gro10k','tabular']])
+  ordinary=next(s for s in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']if s['id']==source['id'])
+  self.assertEqual(urls(ordinary),urls(source))
+  with self.assertRaises(ValueError):urls({**ordinary,'isin':'GB00B15KXV33'})
