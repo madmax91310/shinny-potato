@@ -4,10 +4,10 @@ on:
     - cron: '30 7 * * *'
   workflow_dispatch:
   pull_request:
-    paths: ['.github/workflows/update-presentation-actors.yml', 'scripts/*presentation_actors*', 'scripts/fixtures/presentation-actors/**', 'src/data/*presentation-actors*', 'src/pages/presentations/**']
+    paths: ['.github/workflows/update-presentation-actors.yml', 'scripts/*presentation_actors*', 'scripts/observation_rebase_guard.py', 'scripts/test_observation_rebase.py', 'scripts/validate-producer-publication.sh', 'scripts/fixtures/presentation-actors/**', 'src/data/*presentation-actors*', 'src/pages/presentations/**']
   push:
     branches: [master]
-    paths: ['.github/workflows/update-presentation-actors.yml', 'scripts/collect_presentation_actors.py']
+    paths: ['.github/workflows/update-presentation-actors.yml', 'scripts/collect_presentation_actors.py', 'scripts/observation_rebase_guard.py', 'scripts/validate-producer-publication.sh']
 permissions:
   contents: read
 jobs:
@@ -36,6 +36,7 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: pip install beautifulsoup4==4.15.0
       - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_observation_rebase.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_actors.py'
       - name: "Collect observations: collect"
         id: collect
@@ -59,6 +60,8 @@ jobs:
         run: echo 'Mandatory observation checks passed'
       - name: Commit validated observations
         id: commit
+        env:
+          VALIDATED_DATA_CHECK: bash scripts/validate-producer-publication.sh actors
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
