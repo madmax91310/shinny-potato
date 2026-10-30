@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-10-30T02:07:25.201730+00:00",
+  "pr": 1063,
+  "runs": [
+    {
+      "id": 40986217139,
+      "name": "Deploy to GitHub Pages",
+      "path": ".github/workflows/deploy-pages.yml",
+      "event": "pull_request",
+      "head_sha": "e0f8b53b69a017de2b1fc4ae5c39291f1acdb57c",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-30T01:30:08Z",
+      "updated_at": "2026-10-30T01:58:15Z"
+    },
+    {
+      "id": 40986217195,
+      "name": "Update active monthly market histories",
+      "path": ".github/workflows/update-market-monthly.yml",
+      "event": "pull_request",
+      "head_sha": "e0f8b53b69a017de2b1fc4ae5c39291f1acdb57c",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-30T01:30:08Z",
+      "updated_at": "2026-10-30T02:04:39Z"
+    },
+    {
+      "id": 40986217287,
+      "name": "Validate asset field automation",
+      "path": ".github/workflows/validate-asset-automation.yml",
+      "event": "pull_request",
+      "head_sha": "e0f8b53b69a017de2b1fc4ae5c39291f1acdb57c",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-30T01:30:08Z",
+      "updated_at": "2026-10-30T01:32:29Z"
+    }
+  ],
+  "allChecksCompletedSuccessfully": true,
+  "limit": "Monthly PR workflow validates fixtures and rendering; it is not a production source collection."
+}

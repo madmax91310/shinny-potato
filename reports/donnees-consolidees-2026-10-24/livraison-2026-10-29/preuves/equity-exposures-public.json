@@ -1,0 +1,87 @@
+{
+  "base": "https://madmax91310.github.io/shinny-potato",
+  "results": [
+    {
+      "isin": "US0378331005",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "asOf": "2026-10-28",
+      "method": "GICS sector according to BlackRock",
+      "rows": 1,
+      "weightPct": 100,
+      "pngSha256": "81ac8273e031c62691a1cae2b98468baac2dca21e923197689dcefb67641ded4",
+      "version": {
+        "sha": "d44e993bc1a57b0f613076bb4d319a6abefc44b5",
+        "dataSha": "af16ce85ec8025737d69b13b17d92f2f27b46301",
+        "lane": "validated-data",
+        "builtAt": "2026-10-29T22:55:23.191Z"
+      },
+      "checkedAt": "2026-10-29T23:29:38.140Z"
+    },
+    {
+      "isin": "US4262811015",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "asOf": "2026-10-28",
+      "method": "GICS sector according to BlackRock",
+      "rows": 1,
+      "weightPct": 100,
+      "pngSha256": "f85ea8e0edf24de6ceb98f026036dc78796fa1ebca611e6f1df2536c9593db76",
+      "version": {
+        "sha": "d44e993bc1a57b0f613076bb4d319a6abefc44b5",
+        "dataSha": "af16ce85ec8025737d69b13b17d92f2f27b46301",
+        "lane": "validated-data",
+        "builtAt": "2026-10-29T22:55:23.191Z"
+      },
+      "checkedAt": "2026-10-29T23:29:41.959Z"
+    },
+    {
+      "isin": "US70432V1026",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "asOf": "2026-10-28",
+      "method": "GICS sector according to BlackRock",
+      "rows": 1,
+      "weightPct": 100,
+      "pngSha256": "78e5260f2817ccd9f3c873e9929bc2b50a05f180f24ad068125c2f250cbce28b",
+      "version": {
+        "sha": "d44e993bc1a57b0f613076bb4d319a6abefc44b5",
+        "dataSha": "af16ce85ec8025737d69b13b17d92f2f27b46301",
+        "lane": "validated-data",
+        "builtAt": "2026-10-29T22:55:23.191Z"
+      },
+      "checkedAt": "2026-10-29T23:29:45.795Z"
+    },
+    {
+      "isin": "KR7000660001",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "asOf": "2026-10-28",
+      "method": "GICS sector according to BlackRock",
+      "rows": 1,
+      "weightPct": 100,
+      "pngSha256": "41ea971553dbcae8656ac55b1b59f58741d2d17dcaf8555f17535d25e069580e",
+      "version": {
+        "sha": "d44e993bc1a57b0f613076bb4d319a6abefc44b5",
+        "dataSha": "af16ce85ec8025737d69b13b17d92f2f27b46301",
+        "lane": "validated-data",
+        "builtAt": "2026-10-29T22:55:23.191Z"
+      },
+      "checkedAt": "2026-10-29T23:29:49.884Z"
+    },
+    {
+      "isin": "US8740391003",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "asOf": "2026-10-28",
+      "method": "Depositary receipt issuer classification; underlying ordinary share TW0002330008",
+      "rows": 1,
+      "weightPct": 100,
+      "pngSha256": "3a8380faa071256a322e640168f215bb5591a180f6eea088de7f735465127ba4",
+      "version": {
+        "sha": "d44e993bc1a57b0f613076bb4d319a6abefc44b5",
+        "dataSha": "af16ce85ec8025737d69b13b17d92f2f27b46301",
+        "lane": "validated-data",
+        "builtAt": "2026-10-29T22:55:23.191Z"
+      },
+      "checkedAt": "2026-10-29T23:29:53.828Z"
+    }
+  ],
+  "errors": [],
+  "limit": "Source sectors and exact share only. Countries and full-overlap eligibility are independent; a top ten is never certified as a complete portfolio."
+}

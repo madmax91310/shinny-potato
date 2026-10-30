@@ -1,0 +1,62 @@
+{
+  "checkedAt": "2026-10-30T02:19:51.554496+00:00",
+  "rows": [
+    {
+      "isin": "IE0002XZSHO1",
+      "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+      "localFetchAt": "2026-10-30T02:19:19.597145+00:00",
+      "sha256": "025513c02c18ac210402ae67bf3f8083e3059c1b936249c5aa26ae4220d61ff4",
+      "sameDocumentAlreadyParsedInGithubRun": 40974179474,
+      "monthlyShareClassAum": {
+        "amount": 2218860000.0,
+        "currency": "EUR",
+        "scope": "share-class",
+        "asOf": "2026-09-30",
+        "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+        "sha256": "025513c02c18ac210402ae67bf3f8083e3059c1b936249c5aa26ae4220d61ff4"
+      },
+      "retainedNewerAum": {
+        "amount": 2337365975.0,
+        "currency": "EUR",
+        "scope": "share-class",
+        "asOf": "2026-10-15",
+        "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
+        "sha256": "a2d07f920cd7e7aa9659562fdec50804f5dd18b2dad1f22a272d42ea19334354",
+        "checkedAt": "2026-10-16",
+        "modifiedAt": "2026-10-16"
+      },
+      "retainedAumAndProofClockExactlyUnchanged": true,
+      "missingForNewFinancialUpdate": "A newer official monthly factsheet, or restoration of the exact daily share-class source.",
+      "scope": "Existing monthly parser and fallback already work; this is not a newly repaired primary route or a new source collection in GitHub."
+    },
+    {
+      "isin": "IE000DQLYVB9",
+      "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+      "localFetchAt": "2026-10-30T02:19:52.037941+00:00",
+      "sha256": "5eceaf787220f001b9ce7398bf2c70bbb1f56d70c1bfeeade6a811ac645f64fa",
+      "sameDocumentAlreadyParsedInGithubRun": 40974179474,
+      "monthlyShareClassAum": {
+        "amount": 54220000.0,
+        "currency": "EUR",
+        "scope": "share-class",
+        "asOf": "2026-09-30",
+        "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+        "sha256": "5eceaf787220f001b9ce7398bf2c70bbb1f56d70c1bfeeade6a811ac645f64fa"
+      },
+      "retainedNewerAum": {
+        "amount": 57410636.0,
+        "currency": "EUR",
+        "scope": "share-class",
+        "asOf": "2026-10-15",
+        "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
+        "sha256": "ee3c684afe20c2d322c7d87b7adc748242da97cfd40efb8dd3dc46d7893ee594",
+        "checkedAt": "2026-10-16",
+        "modifiedAt": "2026-10-16"
+      },
+      "retainedAumAndProofClockExactlyUnchanged": true,
+      "missingForNewFinancialUpdate": "A newer official monthly factsheet, or restoration of the exact daily share-class source.",
+      "scope": "Existing monthly parser and fallback already work; this is not a newly repaired primary route or a new source collection in GitHub."
+    }
+  ],
+  "noProductionDataModified": true
+}

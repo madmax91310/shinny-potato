@@ -1,0 +1,27 @@
+{
+  "base": "https://madmax91310.github.io/shinny-potato/",
+  "results": [
+    {
+      "id": "jpm-hsbc",
+      "version": {
+        "sha": "66c27cda4ef5154446d33b0fcaeed15db93f0dfd",
+        "builtAt": "2026-10-30T02:10:12Z"
+      },
+      "coverage": 99.4982970570749,
+      "top5": 14.886244138946795,
+      "top10": 23.58315029171807,
+      "complete": false,
+      "pairs": [
+        {
+          "left": "JPM Global Equity Premium Income Active UCITS ETF USD (Dist)",
+          "right": "HSBC EURO STOXX 50",
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "b90a8921da4287e6e93294919beb48d6629a83a6f0c6535d1432a0d0936bbe60",
+      "checkedAt": "2026-10-30T02:33:37.914Z"
+    }
+  ],
+  "errors": []
+}

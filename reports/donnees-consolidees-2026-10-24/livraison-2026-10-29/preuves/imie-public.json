@@ -1,0 +1,152 @@
+{
+  "checkedAt": "2026-10-30T00:25:38.195Z",
+  "base": "https://madmax91310.github.io/shinny-potato",
+  "method": "Direct daily-source monthly levels; lump1000*last/first; DCA sum1000*last/each month. No application calculation helper imported.",
+  "results": [
+    {
+      "id": "etfImie",
+      "mode": "lump",
+      "start": "2011-11",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1280,
+      "monthlyContributions": 1,
+      "expected": 5881.374722838138,
+      "displayed": "5 881 €",
+      "pngBytes": 1930976,
+      "version": {
+        "sha": "f570662c6146aa49bfdfc3e70be63ddd349f1adf",
+        "dataSha": "4157fc76c20e45eab4f1eb501da3c7653f792f28",
+        "lane": "validated-code-data",
+        "builtAt": "2026-10-30T00:24:26.092Z"
+      }
+    },
+    {
+      "id": "etfImie",
+      "mode": "dca",
+      "start": "2011-11",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1280,
+      "monthlyContributions": 179,
+      "expected": 474347.2959484322,
+      "displayed": "474 347 €",
+      "pngBytes": 1975670,
+      "version": {
+        "sha": "f570662c6146aa49bfdfc3e70be63ddd349f1adf",
+        "dataSha": "4157fc76c20e45eab4f1eb501da3c7653f792f28",
+        "lane": "validated-code-data",
+        "builtAt": "2026-10-30T00:24:26.092Z"
+      }
+    },
+    {
+      "id": "etfImie",
+      "mode": "lump",
+      "start": "2014-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1280,
+      "monthlyContributions": 1,
+      "expected": 3507.3326120927995,
+      "displayed": "3 507 €",
+      "pngBytes": 1938966,
+      "version": {
+        "sha": "f570662c6146aa49bfdfc3e70be63ddd349f1adf",
+        "dataSha": "4157fc76c20e45eab4f1eb501da3c7653f792f28",
+        "lane": "validated-code-data",
+        "builtAt": "2026-10-30T00:24:26.092Z"
+      }
+    },
+    {
+      "id": "etfImie",
+      "mode": "dca",
+      "start": "2014-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1280,
+      "monthlyContributions": 142,
+      "expected": 303812.511046157,
+      "displayed": "303 813 €",
+      "pngBytes": 1972883,
+      "version": {
+        "sha": "f570662c6146aa49bfdfc3e70be63ddd349f1adf",
+        "dataSha": "4157fc76c20e45eab4f1eb501da3c7653f792f28",
+        "lane": "validated-code-data",
+        "builtAt": "2026-10-30T00:24:26.092Z"
+      }
+    },
+    {
+      "id": "etfImie",
+      "mode": "lump",
+      "start": "2011-11",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 1,
+      "expected": 5881.374722838138,
+      "displayed": "5 881 €",
+      "pngBytes": 1930976,
+      "version": {
+        "sha": "f570662c6146aa49bfdfc3e70be63ddd349f1adf",
+        "dataSha": "4157fc76c20e45eab4f1eb501da3c7653f792f28",
+        "lane": "validated-code-data",
+        "builtAt": "2026-10-30T00:24:26.092Z"
+      }
+    },
+    {
+      "id": "etfImie",
+      "mode": "dca",
+      "start": "2011-11",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 179,
+      "expected": 474347.2959484322,
+      "displayed": "474 347 €",
+      "pngBytes": 1975670,
+      "version": {
+        "sha": "f570662c6146aa49bfdfc3e70be63ddd349f1adf",
+        "dataSha": "4157fc76c20e45eab4f1eb501da3c7653f792f28",
+        "lane": "validated-code-data",
+        "builtAt": "2026-10-30T00:24:26.092Z"
+      }
+    },
+    {
+      "id": "etfImie",
+      "mode": "lump",
+      "start": "2014-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 1,
+      "expected": 3507.3326120927995,
+      "displayed": "3 507 €",
+      "pngBytes": 1938966,
+      "version": {
+        "sha": "f570662c6146aa49bfdfc3e70be63ddd349f1adf",
+        "dataSha": "4157fc76c20e45eab4f1eb501da3c7653f792f28",
+        "lane": "validated-code-data",
+        "builtAt": "2026-10-30T00:24:26.092Z"
+      }
+    },
+    {
+      "id": "etfImie",
+      "mode": "dca",
+      "start": "2014-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 142,
+      "expected": 303812.511046157,
+      "displayed": "303 813 €",
+      "pngBytes": 1972883,
+      "version": {
+        "sha": "f570662c6146aa49bfdfc3e70be63ddd349f1adf",
+        "dataSha": "4157fc76c20e45eab4f1eb501da3c7653f792f28",
+        "lane": "validated-code-data",
+        "builtAt": "2026-10-30T00:24:26.092Z"
+      }
+    }
+  ],
+  "errors": []
+}
