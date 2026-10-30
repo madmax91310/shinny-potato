@@ -1036,6 +1036,8 @@ def update_status(state, run, jobs, reports=None):
 
 def require_completed_job_evidence(run, jobs, collection_job):
     """A terminal run with an empty Jobs API response is not a phase proof."""
+    if run.get('conclusion') in ('cancelled', 'skipped', 'neutral'):
+        return jobs  # Ignored attempts are not missing supplier/phase evidence.
     if run.get('status') != 'completed':
         raise ValueError('Run terminal attendu pour les preuves de phases')
     producers = [job for job in jobs if job.get('name') == collection_job

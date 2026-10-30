@@ -234,6 +234,11 @@ class MissingTerminalJobsTests(unittest.TestCase):
     with self.assertRaises(ValueError):require_completed_job_evidence(terminal,jobs,'update')
   for conclusion in ('skipped','cancelled'):
    require_completed_job_evidence(terminal,[{'name':'update','conclusion':conclusion,'steps':[]}],'update')
+  for conclusion in ('skipped','cancelled','neutral'):
+   ignored={**terminal,'conclusion':conclusion}
+   self.assertEqual(require_completed_job_evidence(ignored,[],'update'),[])
+  with self.assertRaises(ValueError):
+   require_completed_job_evidence(terminal,[{'name':'update','conclusion':None,'steps':[{'status':'in_progress'}]}],'update')
 
  def test_real_13f_recording_failure_is_recovered_from_missing_jobs_same_attempt(self):
   terminal=run(workflow='update-investor-13f.yml')
