@@ -69,7 +69,8 @@ def wisdomtree_pdf(share, now, transport_error):
         'rows':[{'name':share['commodity'],'label':COMMODITY_LABELS[share['commodity']],'weightPct':100}]}
     result['sourceAttempts']=[{'url':share['sourceUrl'],'reason':str(transport_error)},
                               {'url':url,'status':'validated'}]
-    return result
+    from wisdomtree_directory_aum import augment_aum
+    return augment_aum(result,share,now,fetch=download)
 
 def collect_invesco_listings(share, now, fetch=download):
     """Two official locale routes; an empty response is not a source check."""
@@ -145,4 +146,7 @@ def collect_one(share, now):
         result['unavailable']=[]
     else:reject('Unknown non-bond issuer')
     if not result.get('performance',{}).get('years'):reject('Missing complete NAV calendar')
+    if kind=='wisdomtree':
+        from wisdomtree_directory_aum import augment_aum
+        result=augment_aum(result,share,now,fetch=download)
     return result

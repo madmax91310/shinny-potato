@@ -108,7 +108,8 @@ class RankedFields(unittest.TestCase):
         self.assertEqual(result['sectors']['asOf'],'2026-10-23')
         self.assertEqual(result['holdings']['asOf'],'2026-10-23')
         self.assertIn('403',result['sourceAttempts'][0]['reason'])
-        self.assertEqual(result['sourceAttempts'][-1]['fields'],['holdings','sectors','countries'])
+        self.assertTrue(any(a.get('fields')==['holdings','sectors','countries']for a in result['sourceAttempts']))
+        self.assertTrue(any(e['field']=='aum'and 'identity proof missing'in e['reason'] for e in result['collectionErrors']))
 
 
 if __name__ == '__main__': unittest.main()

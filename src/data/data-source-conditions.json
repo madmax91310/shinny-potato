@@ -89,7 +89,7 @@
     },
     {
       "host": "dataspanapi.wisdomtree.com",
-      "access": "API publique du graphique officiel perfchart.wisdomtree.eu : funddetails/historical_performance, modes gro10k et tabular ; PDF officiel pour identité et calendriers. Instruments configurés et individuellement qualifiés par ce collecteur ; périmètre exact déclaré par exécution.",
+      "access": "API publique du graphique officiel perfchart.wisdomtree.eu : funddetails/historical_performance, modes gro10k et tabular ; PDF officiel pour identité et calendriers. Instruments configurés et individuellement qualifiés par ce collecteur ; périmètre exact déclaré par exécution. Annuaire collectif public fundlist/data réellement appelé par /gb/products : encours AUM uniquement sur une cotation dont fundCurrency, baseCCY et listingCCY sont identiques ; pas AUMusd ni Net_Assets. Les pays des six ETF restent une voie rankings distincte.",
       "reuseStatus": "unverified",
       "license": null,
       "attribution": "À vérifier pour la donnée et le document précis",
@@ -99,9 +99,13 @@
         "scripts/monthly-automation.json",
         "scripts/qualified-listing-sources.json",
         "scripts/official-nav-remainder-sources.json",
-        "scripts/wisdomtree-performance-anchors.json"
+        "scripts/wisdomtree-performance-anchors.json",
+        "scripts/issuer-access-routes.json",
+        "scripts/additional-etf-sources.json",
+        "scripts/exposure-etf-expansion.json",
+        "scripts/non-bond-expansion-sources.json"
       ],
-      "qualificationLimit": "NAV(TR) du produit exact, distinct de son indice ; niveaux recalés sur une VL historique qualifiée de même date, sans prétendre fournir une cotation de marché. Ancres immuables distinctes des consultations réseau. Collecte GitHub et publication à démontrer séparément des fixtures."
+      "qualificationLimit": "NAV(TR) du produit exact, distinct de son indice ; niveaux recalés sur une VL historique qualifiée de même date, sans prétendre fournir une cotation de marché. Ancres immuables distinctes des consultations réseau. Collecte GitHub et publication à démontrer séparément des fixtures. Le succès de cet annuaire ne certifie ni historique, ni portefeuille, ni change, ni autre caractéristique. Réutilisation toujours non vérifiée."
     },
     {
       "host": "epargne.boursedirect.fr",

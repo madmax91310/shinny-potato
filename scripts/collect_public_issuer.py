@@ -250,7 +250,8 @@ def collect_one(share, now):
                                       {'url':share['factsheetUrl'],'status':'validated'}]
             from wisdomtree_ranked_fields import augment_document
             result=augment_document(result,share,now,body)
-            return result
+            from wisdomtree_directory_aum import augment_aum
+            return augment_aum(result,share,now,fetch=download)
     elif share['parser']=='globalx-html':
         from urllib.parse import urlparse
         urls=[share['sourceUrl'],*share.get('fallbackUrls',[])]
@@ -280,8 +281,9 @@ def collect_one(share, now):
         except (urllib.error.URLError, TimeoutError, ValueError) as error:
             # Independently dated HTML AUM/fees remain valid even when the
             # calendar PDF is temporarily unavailable. Keep the failure visible.
-            result['collectionErrors'] = [{'field':'performance', 'url':share['factsheetUrl'], 'reason':str(error)}]
-            return result
+            result.setdefault('collectionErrors',[]).append({'field':'performance', 'url':share['factsheetUrl'], 'reason':str(error)})
+            from wisdomtree_directory_aum import augment_aum
+            return augment_aum(result,share,now,fetch=download)
         if document.get('collectionErrors'):
             result.setdefault('collectionErrors', []).extend(document['collectionErrors'])
         if document.get('characteristics',{}).get('listings'):
@@ -289,6 +291,9 @@ def collect_one(share, now):
         if document.get('performance'):
             result['performance']=document['performance']
             result['unavailable']=[item for item in result['unavailable'] if not item.startswith('performance:')]
+    if share['parser']=='wisdomtree-html':
+        from wisdomtree_directory_aum import augment_aum
+        result=augment_aum(result,share,now,fetch=download)
     return result
 
 

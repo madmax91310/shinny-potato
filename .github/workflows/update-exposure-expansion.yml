@@ -10,6 +10,7 @@ on:
       - 'scripts/collect_public_issuer.py'
       - 'scripts/wisdomtree_ranked_fields.py'
       - 'scripts/wisdomtree_country_allocation.py'
+      - 'scripts/wisdomtree_directory_aum.py'
       - 'scripts/collect_wisdomtree_holdings.py'
       - 'scripts/wisdomtree_api_holdings.py'
       - 'scripts/wisdomtree-holdings-classes.json'
@@ -27,6 +28,7 @@ on:
       - 'scripts/collect_public_issuer.py'
       - 'scripts/wisdomtree_ranked_fields.py'
       - 'scripts/wisdomtree_country_allocation.py'
+      - 'scripts/wisdomtree_directory_aum.py'
       - 'scripts/collect_wisdomtree_holdings.py'
       - 'scripts/wisdomtree_api_holdings.py'
       - 'scripts/wisdomtree-holdings-classes.json'
@@ -72,6 +74,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_exposure_expansion.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_country_allocation.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
       - name: Collect exact-share observations
         id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}

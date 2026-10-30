@@ -60,7 +60,8 @@ class IndependentPortfolioIdentities(unittest.TestCase):
   with patch('collect_public_issuer.get_text',side_effect=[error,error,error,self.page])as fetch,patch('collect_public_issuer.download',side_effect=urllib.error.URLError('PDF offline')):
    result=collect_one(self.share,NOW)
   self.assertEqual(fetch.call_count,4);self.assertEqual(result['sourceUrl'],legacy)
-  self.assertEqual(result['collectionErrors'][0]['field'],'performance')
+  self.assertTrue(any(e['field']=='performance'for e in result['collectionErrors']))
+  self.assertTrue(any(e['field']=='countries'for e in result['collectionErrors']))
   self.assertTrue(result['holdings']['rows']);self.assertTrue(result['sourceAttempts'])
  def test_financial_identity_failure_never_tries_another_route_or_pdf(self):
   from collect_public_issuer import collect_one

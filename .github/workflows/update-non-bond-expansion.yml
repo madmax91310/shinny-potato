@@ -11,6 +11,9 @@ on:
       - 'scripts/*non-bond*'
       - '.github/workflows/update-non-bond-expansion.yml'
       - 'scripts/apply_etf_collection.py'
+      - 'scripts/wisdomtree_directory_aum.py'
+      - 'scripts/test_wisdomtree_directory_aum.py'
+      - 'scripts/issuer-access-routes.json'
   pull_request:
     paths:
       - 'scripts/test_issuer_refresh.py'
@@ -21,6 +24,9 @@ on:
       - 'src/data/non-bond*'
       - '.github/workflows/update-non-bond-expansion.yml'
       - 'scripts/apply_etf_collection.py'
+      - 'scripts/wisdomtree_directory_aum.py'
+      - 'scripts/test_wisdomtree_directory_aum.py'
+      - 'scripts/issuer-access-routes.json'
 permissions:
   contents: read
 jobs:
@@ -50,6 +56,7 @@ jobs:
       - run: pip install -r scripts/company-requirements.txt openpyxl==3.1.5
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_non_bond_expansion.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_roadmap_assets.py'
       - name: "Collect observations: collect"

@@ -1,6 +1,7 @@
 """Regression guards against wrong shares, dates, economic scope and partial years."""
 import copy
 from test_wisdomtree_country_allocation import CountryAllocation
+from test_wisdomtree_directory_aum import DirectoryAum
 import datetime as dt
 import json
 from pathlib import Path
@@ -150,7 +151,8 @@ class IssuerSources(unittest.TestCase):
         with patch('collect_public_issuer.get_text',return_value=text),patch('collect_public_issuer.download',side_effect=failure):
             result=public_collect(s,NOW)
         self.assertIn('aum',result)
-        self.assertEqual(result['collectionErrors'][0]['field'],'performance')
+        self.assertTrue(any(e['field']=='performance'for e in result['collectionErrors']))
+        self.assertTrue(any(e['field']=='countries'for e in result['collectionErrors']))
         self.assertNotIn('performance',result)
 
     def test_wisdomtree_rejected_pdf_preserves_html_without_applying_pdf_fields(self):
@@ -165,7 +167,8 @@ class IssuerSources(unittest.TestCase):
             self.assertEqual(result['aum']['amount'],1645809873)
             self.assertEqual(result['characteristics']['terPct'],.38)
             self.assertNotIn('performance',result)
-            self.assertEqual(result['collectionErrors'][0]['reason'],reason)
+            self.assertTrue(any(e.get('field')=='performance'and e.get('reason')==reason for e in result['collectionErrors']))
+            self.assertTrue(any(e['field']=='countries'for e in result['collectionErrors']))
 
     def test_wisdomtree_invalid_allocations_preserve_valid_pdf_calendars(self):
         text=(FIX/'wisdomtree-calendar.txt').read_text();s=share('IE00BZ56SW52')
