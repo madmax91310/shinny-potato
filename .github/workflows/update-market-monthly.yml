@@ -225,7 +225,7 @@ jobs:
         id: collect
         continue-on-error: true
         env:
-          RETRY_FAILED: ${{ inputs.retry_failed == true || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
+          RETRY_FAILED: ${{ inputs.retry_failed == true || github.event_name == 'push' || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
           REQUESTED_SERIES: ${{ inputs.series }}
         run: |
           args=()
@@ -241,7 +241,7 @@ jobs:
         if: github.event_name != 'pull_request' && inputs.listings_only != true
         continue-on-error: true
         env:
-          RETRY_FAILED: ${{ inputs.series != '' || inputs.retry_failed == true || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
+          RETRY_FAILED: ${{ inputs.series != '' || inputs.retry_failed == true || github.event_name == 'push' || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
           REQUESTED_RANKING_SOURCES: ${{ inputs.ranking_sources }}
           CROSS_FX_EVIDENCE_DIR: ${{ runner.temp }}/cross-fx-evidence
         run: |

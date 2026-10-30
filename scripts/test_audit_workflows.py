@@ -227,6 +227,7 @@ class ExplicitRankingRecovery(unittest.TestCase):
         import os, subprocess, textwrap
         workflow=(ROOT/'.github/workflows/update-market-monthly.yml').read_text()
         step=workflow.split('      - name: Refresh exact ranking histories and ECB conversion')[1].split('      - run: node scripts/build-equity-history-links.mjs')[0]
+        self.assertIn("github.event_name == 'push'",step)
         command=textwrap.dedent(step.split('        run: |\n')[1])
         for selected,retry,expected in [('fx','true',['--only','fx']),('fx','false',['--only','fx']),('','true',['--retry-failed']),('','false',[])]:
             with self.subTest(selected=selected,retry=retry):
