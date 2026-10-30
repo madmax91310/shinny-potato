@@ -86,6 +86,11 @@ def resolve_venue_tickers(items, share, source_url, source_hash, as_of, now):
         keys=[(r.get('Label'),r.get('CurrencyCode')) for r in items if r.get('AssetClass')=='Stock']
         for item in items:
             if item.get('AssetClass')!='Stock' or item.get('ISIN') or keys.count((item.get('Label'),item.get('CurrencyCode')))!=1:continue
+            # This opt-in route fills the observed native identifier gaps.
+            # A supplied FIGI/CUSIP needs its own exact crosswalk; it cannot
+            # be silently discarded in favour of a weaker ticker lookup.
+            native=[item.get(k)for k in ['FIGI','CUSIP']]
+            if any(v is not None and (not isinstance(v,str)or v.strip())for v in native):continue
             label=item.get('Label','');currency=item.get('CurrencyCode')
             labels=label.split()
             if len(labels)!=2 or {'US':'USD','CN':'CAD','AU':'AUD'}.get(labels[1])!=currency:continue
@@ -102,24 +107,19 @@ def resolve_venue_tickers(items, share, source_url, source_hash, as_of, now):
             ticker,venue=labels
             jobs=[{'idType':'TICKER','idValue':ticker,'exchCode':venue,'currency':currency},
                   *[{'idType':'ID_ISIN','idValue':isin,'exchCode':venue,'currency':currency}for isin in candidates]]
+            proof={'sourceUrl':API,'checkedAt':now.isoformat(),'request':jobs,'issuerBinding':binding}
             try:
                 response=mapping_request(jobs)
-                proof={'sourceUrl':API,'checkedAt':now.isoformat(),'request':jobs,'response':response,
-                       'sha256':digest(response),'issuerBinding':binding}
+                proof.update(response=response,sha256=digest(response))
                 identity=venue_ticker_identity(proof,now,binding)
                 proofs[key]=proof;mappings[(label,currency)]=identity;used.append(proof)
             except Exception as error:
-                failure={'ticker':label,'sourceUrl':API,'checkedAt':now.isoformat(),'error':str(error)[:500]}
+                failure={**proof,'ticker':label,'error':str(error)[:500],
+                         'status':'rejected-identity-proof' if 'response'in proof else'unavailable-service'}
                 cache.setdefault('venueTickerLastAttempts',{})[key]=failure;failures.append(failure)
-                old_binding=previous.get('issuerBinding',{})
-                # An identity proof is not a financial observation. A still
-                # current exact listing proof may survive a failed renewal,
-                # with its original source binding and control clock intact.
-                if all(old_binding.get(k)==binding[k]for k in ['subjectIsin','sourceUrl','ticker','currency','assetClass']):
-                    try:
-                        identity=venue_ticker_identity(previous,now,old_binding)
-                        mappings[(label,currency)]=identity;used.append(previous)
-                    except (ValueError,KeyError,TypeError):pass
+                # Keep the historical proof unchanged for its original book.
+                # A different native hash requires its own successful proof;
+                # an outage or contradiction cannot rebind an old ticker ID.
         write_json_atomic(PATH,cache)
     return mappings,used,failures
 
