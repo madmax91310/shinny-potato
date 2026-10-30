@@ -14,7 +14,7 @@
     "audit:architecture": "node scripts/test-module-boundaries.mjs && node scripts/audit-module-boundaries.mjs",
     "preview": "vite preview",
     "stress-test:portfolios": "node scripts/stress-test-portfolios.mjs",
-    "verify:tweet-midi": "npx esbuild scripts/verify-tweet-midi.mjs --bundle --format=esm --platform=node | node --input-type=module",
+    "verify:tweet-midi": "node scripts/verify-tweet-midi-parallel.mjs",
     "verify:factsheet-tweets": "node scripts/verify-factsheet-tweets.mjs",
     "audit:broker-evidence": "node scripts/audit-broker-evidence.mjs",
     "audit:etf-consistency": "node scripts/audit-etf-consistency.mjs",
