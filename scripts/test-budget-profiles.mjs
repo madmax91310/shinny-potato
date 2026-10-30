@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
-import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
-import { analyzeBudget, blankBudget, buildBudgetText, sourceReply, validBudget } from '../src/pages/budget-profiles/lib.js'
-import { DRAFT_KEY, USAGE_KEY, loadDraft, loadUsage, saveDraft, saveUsage } from '../src/pages/budget-profiles/storage.js'
+import { BUDGET_EDITORIAL, BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
+import { analyzeBudget, blankBudget, budgetDisplayName, budgetExpenseSections, buildBudgetText, euro, refreshBudgetDraft, sourceReply, validBudget } from '../src/pages/budget-profiles/lib.js'
+import { DRAFT_KEY, PUBLISHED_KEY, USAGE_KEY, loadDraft, loadPublished, loadUsage, saveDraft, savePublished, saveUsage } from '../src/pages/budget-profiles/storage.js'
 import { TOOLS, HOME_TOOLS } from '../src/tools.js'
 
 assert(BUDGET_PROFILES.length > 0)
@@ -11,10 +11,39 @@ for (const p of BUDGET_PROFILES) {
   assert.deepEqual(analyzeBudget(p).errors, [], p.id)
   assert(p.source.url.startsWith('https://'))
   assert(p.publishedAt <= p.checkedAt)
-  assert(buildBudgetText(p).includes(p.source.publisher))
+  const text = buildBudgetText(p)
+  assert(text.includes(budgetDisplayName(p)))
+  assert.match(text, /prénoms? fictifs?/)
+  assert(!text.includes(p.period), 'Publication dates stay in the source panel, not the tweet')
+  assert(!text.includes(p.source.publisher), 'Sources remain available in the separate source reply')
+  assert(!text.includes('Situation familiale non précisée'))
+  for (const row of p.expenses) assert(text.includes(`${row.label} : ${euro(row.amount)}`), row.label)
+  const sections = budgetExpenseSections(p)
+  assert.deepEqual(sections.flatMap(s => s.rows).map(r => r.label).sort(), p.expenses.map(r => r.label).sort(), 'Every expense appears once')
+  if (p.kind === 'planned') assert(text.includes('Budget prévu'))
+  if (p.age === null) assert(!/\d+ ans/.test(text.split('\n')[0]))
   assert(sourceReply(p).includes(p.source.url))
   assert(!buildBudgetText(p).includes('abonné'), 'A public witness must not become a received subscriber testimony')
 }
+assert.equal(new Set(BUDGET_PROFILES.map(budgetDisplayName)).size, BUDGET_PROFILES.length)
+for (const id of Object.keys(BUDGET_EDITORIAL)) assert(BUDGET_PROFILES.some(p => p.id === id), id)
+const grouped = BUDGET_PROFILES.find(p => p.id === 'finary-alternant-22-2025-05-15')
+assert.equal(budgetExpenseSections(grouped).length, 1)
+assert.match(buildBudgetText(grouped), /pas intégralement une épargne nouvelle/)
+const detailed = BUDGET_PROFILES.find(p => p.id === 'finary-alternant-19-2025-09-27')
+assert.equal(budgetExpenseSections(detailed).length, 2)
+assert.equal(budgetExpenseSections({ ...detailed, expenses: [...detailed.expenses, { label: 'Poste non ventilé', amount: 10 }] }).length, 1)
+assert(buildBudgetText(detailed).includes(`Reste avant épargne : ${euro(200.01)}`))
+assert(buildBudgetText(detailed).includes(`Solde après ces versements : ${euro(50.01)}`))
+assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-ingenieur-aero-2025-11-30')), /Net avant impôt/)
+assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-fonctionnaire-30-2025-05-21')), /vacances ne sont pas comprises/)
+const techText = buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'reddit-tech-26-2026-02-06'))
+assert(techText.includes(`Reste avant épargne : ${euro(830)}`))
+assert(techText.includes(`Solde après ces versements : ${euro(230)}`))
+assert(!techText.includes('Épargne déjà constituée'), 'Missing assets are not invented')
+const generatedDraft = { profile: structuredClone(BUDGET_PROFILES[0]), text: 'Ancien texte généré', edited: false }
+assert.equal(refreshBudgetDraft(generatedDraft).text, buildBudgetText(BUDGET_PROFILES[0]))
+assert.equal(refreshBudgetDraft({ ...generatedDraft, text: 'Mon texte personnel', edited: true }).text, 'Mon texte personnel')
 // Independent reconciliation of the three retained source ledgers.
 assert.equal(analyzeBudget(BUDGET_PROFILES.find(p => p.id === 'reddit-actif-2026-09-27')).available, 307)
 const couple = BUDGET_PROFILES.find(p => p.id === 'reddit-couple-nord-2026-07-09')
@@ -49,7 +78,7 @@ assert.equal(BUDGET_PROFILES.find(p => p.id === 'finary-fonctionnaire-30-2025-05
 // A capacity declaration is not a transfer and never reduces available cash.
 const fixture = { ...blankBudget(), name: 'Test', income: [{ label: 'Revenu', amount: 1000 }], expenses: [{ label: 'Dépense', amount: 800 }], capacity: 150 }
 assert.equal(analyzeBudget(fixture).balance, 200)
-assert.match(buildBudgetText({ ...fixture, age: 32 }), /Test · 32 ans/)
+assert.match(buildBudgetText({ ...fixture, age: 32 }), /Budget de Test, 32 ans/)
 assert.equal(analyzeBudget({ ...fixture, savings: [{ label: 'Virement prévu', amount: 100 }] }).balance, 100)
 assert.equal(analyzeBudget({ ...fixture, income: [{ label: 'Revenu', amount: 0.30 }], expenses: [{ label: 'A', amount: 0.1 }, { label: 'B', amount: 0.2 }], capacity: null }).balance, 0)
 const deficit = { ...fixture, expenses: [{ label: 'Dépense', amount: 1200 }] }
@@ -80,5 +109,17 @@ try {
   assert.equal(loadUsage().readable, false); assert.equal(saveUsage(['x']), false)
   assert.equal(memory.get(USAGE_KEY), JSON.stringify({ unknown: true }))
   memory.delete(USAGE_KEY); assert(saveUsage(['x'])); assert.deepEqual(loadUsage().value, ['x'])
+  assert.deepEqual(loadPublished().value, [], 'Historical usage never declares publication')
+  assert(savePublished(['published-profile'])); assert.deepEqual(loadPublished().value, ['published-profile'])
+  assert.deepEqual(loadUsage().value, ['x'], 'Publication never overwrites historical usage')
+  assert(savePublished([])); assert.deepEqual(loadPublished().value, [])
+  memory.set(PUBLISHED_KEY, '{broken')
+  assert.equal(loadPublished().readable, false); assert.equal(savePublished(['x']), false)
+  assert.equal(memory.get(PUBLISHED_KEY), '{broken')
+  memory.set(PUBLISHED_KEY, JSON.stringify({ unexpected: true }))
+  assert.equal(loadPublished().readable, false); assert.equal(savePublished([]), false)
+  memory.delete(PUBLISHED_KEY)
+  globalThis.localStorage.setItem = () => { throw new Error('Storage blocked') }
+  assert.equal(savePublished(['x']), false)
 } finally { globalThis.localStorage = previous }
-console.log(`Budget profiles: ${BUDGET_PROFILES.length} source ledgers, reconciliation, capacities, deficits, invalid inputs, discovery and storage verified.`)
+console.log(`Budget profiles: ${BUDGET_PROFILES.length} source ledgers, adaptive texts, expense coverage, reconciliation, draft migration and independent publication storage verified.`)
