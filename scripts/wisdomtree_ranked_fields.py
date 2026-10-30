@@ -1,7 +1,7 @@
 """Exact issuer fields; country definitions require their own qualified policy.
 
 A top ten is never a complete portfolio. Incorporated and Aggregate Country
-remain distinct; only Cloud has a rendered-primary country reconciliation.
+remain distinct; each admitted share has its own rendered-primary reconciliation.
 """
 import hashlib
 import http.client

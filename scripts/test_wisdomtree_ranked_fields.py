@@ -32,7 +32,7 @@ class RankedFields(unittest.TestCase):
                 data = self.payload(isin)
                 values, errors = parse_fields(data, self.share(isin), NOW, data[0]['ticker'])
                 self.assertEqual(errors, [])
-                self.assertEqual(set(values), {'holdings', 'sectors','countries'} if isin==self.ISIN else {'holdings','sectors'})
+                self.assertEqual(set(values), {'holdings', 'sectors','countries'})
                 self.assertEqual(len(values['holdings']['rows']), 10)
                 self.assertLess(sum(r['weightPct'] for r in values['holdings']['rows']), 100)
                 self.assertEqual(values['holdings']['scope'], 'top-10')

@@ -9,6 +9,7 @@ from unittest.mock import patch
 from collect_public_issuer import Page, wisdomtree
 from collect_wisdomtree_holdings import known_shares, flight_values
 from wisdomtree_country_allocation import primary_country, api_country
+from wisdomtree_api_holdings import CLASS_CONFIG
 
 FIX = Path(__file__).with_name('fixtures')
 NOW = dt.datetime(2026,10,30,tzinfo=dt.timezone.utc)
@@ -37,7 +38,23 @@ class CountryAllocation(unittest.TestCase):
         aggregate=next(r for r in self.payload if r['rankClassificationID']==16 and r['name']=='United States')
         self.assertNotEqual(primary['rows'][0]['weightPct'],aggregate['pct']*100)
     def test_unqualified_share_never_borrows_the_country_policy(self):
-        self.assertIsNone(api_country(self.payload,{'isin':'IE00BZ56SW52'},NOW))
+        config={k:v for k,v in CLASS_CONFIG[self.share['isin']].items() if k!='countryAllocationDefinition'}
+        with patch.dict(CLASS_CONFIG,{self.share['isin']:config}):
+            self.assertIsNone(api_country(self.payload,self.share,NOW))
+    def test_five_other_shares_each_reconcile_their_own_primary_and_api_rows(self):
+        for share in known_shares():
+            if share['isin']==self.share['isin']:continue
+            with self.subTest(isin=share['isin']):
+                page=gzip.decompress((FIX/'wisdomtree-complete'/(share['isin']+'.country-primary-20261030.html.gz')).read_bytes()).decode()
+                display=next(t['rows'][1:]for t in Page(page).tables if t['context'].endswith('Country Allocation') and t['rows'][0]==['Country','Weight (%)'])
+                payload=json.loads(gzip.decompress((FIX/'wisdomtree-complete'/(share['isin']+'.rankings.json.gz')).read_bytes()))
+                primary=primary_country(page,share,display,NOW);api=api_country(payload,share,NOW)
+                for key in ('rows','asOf','rankClassificationID'):self.assertEqual(primary[key],api[key])
+                self.assertEqual(primary['asOf'],'2026-10-23')
+                config={**CLASS_CONFIG[share['isin']],'countryAllocationDefinition':{'classificationId':16,'classificationName':'Aggregate Country'}}
+                with patch.dict(CLASS_CONFIG,{share['isin']:config}):
+                    with self.assertRaises(ValueError):primary_country(page,share,display,NOW)
+
     def test_bad_api_country_preserves_the_other_qualified_fields(self):
         from wisdomtree_ranked_fields import parse_fields
         for change in ({'pct':True},{'pct':float('nan')},{'pct':1.2},{'dt':'2026-11-01T00:00:00Z'},{'dt':'2026-10-22T00:00:00Z'},{'name':'Unknown'},{'rankClassification':'Aggregate Country'}):
