@@ -165,7 +165,9 @@ def main():
             try:
                 h=derive(isin,records[isin],{**previous,**fresh},errors,now)
                 if previous.get(isin,{}).get('asOf','')>h['asOf']:raise ValueError('Date regression')
-                fresh[isin]={**h,'checkedAt':now.isoformat()}
+                # The derivation did not fetch its parent fund documents.
+                # Keep the oldest real dependency control and its own validation clock.
+                fresh[isin]=h
             except Exception as e:errors[isin]=str(e)
     if args.apply:
         write_json_atomic(path,{**previous,**fresh})
@@ -185,7 +187,7 @@ def main():
         write_json_atomic(status_path,status)
     # Bounded proof in the ordinary producer artifact, including PR runs that
     # deliberately do not commit or publish their acquired observations.
-    observations={isin:{**{key:h[key] for key in ['asOf','checkedAt','basis','scope','sourceUrl','sourceUrls','sha256','method','identitySourceUrl','identitySha256','identityAsOf','identityMethod'] if key in h},
+    observations={isin:{**{key:h[key] for key in ['asOf','checkedAt','validatedAt','basis','scope','sourceUrl','sourceUrls','sha256','method','identitySourceUrl','identitySha256','identityAsOf','identityMethod'] if key in h},
         'completeFile':h.get('complete') is True,'rows':len(h['rows']),
         'publishedEquityWeightPct':sum(r['weightPct'] for r in h['rows']),
         'identifiedEquityWeightPct':sum(r['weightPct'] for r in h['rows'] if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',r.get('isin') or ''))}

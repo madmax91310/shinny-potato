@@ -37,6 +37,19 @@ class LifeStrategyLookthroughTest(unittest.TestCase):
         self.assertEqual(result['asOf'], '2026-09-30')
         self.assertEqual(result['excludedWeightPctByType']['Bonds'], 79.62)
 
+    def test_derivation_keeps_oldest_true_control_separate_from_validation(self):
+        record,underliers=inputs()
+        record['holdings']['checkedAt']='2026-10-18T22:00:00Z'
+        record['assetAllocation']['checkedAt']='2026-10-18T19:00:00+00:00'
+        before=copy.deepcopy((record,underliers))
+        result=derive(ISIN,record,underliers,{},NOW)
+        self.assertEqual(result['checkedAt'],'2026-10-18T19:00:00+00:00')
+        self.assertEqual(result['validatedAt'],NOW.isoformat())
+        self.assertEqual((record,underliers),before)
+        record['assetAllocation']['checkedAt']='2026-10-18'
+        result=derive(ISIN,record,underliers,{},NOW)
+        self.assertEqual(result['checkedAt'],'2026-10-18','Date-only source control stays date-only')
+
     def test_missing_failed_partial_or_misaligned_dependency_rejected(self):
         for mutation in ('missing', 'failed', 'partial', 'date', 'stale', 'identity'):
             record, underliers = inputs()

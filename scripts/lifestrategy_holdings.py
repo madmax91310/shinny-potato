@@ -101,7 +101,12 @@ def derive(isin, record, underliers, errors, now):
         raise ValueError('LifeStrategy equity exposure exceeds its published fund weights')
     evidence = dict(isin=isin, documentSha256=record['documentSha256'],
                     holdings=holdings, allocation=allocation, dependencies=dependencies)
+    controls=[holdings['checkedAt'],allocation['checkedAt'],*(d['checkedAt']for d in dependencies)]
+    def control_time(value):
+        stamp=dt.datetime.fromisoformat(value.replace('Z','+00:00'))
+        return (stamp if stamp.tzinfo else stamp.replace(tzinfo=dt.timezone.utc)).timestamp()
     return dict(rows=final, asOf=min(dates), sourceUrl=holdings['sourceUrl'], sourceUrls=sorted(sources),
+                checkedAt=min(controls,key=control_time),validatedAt=now.isoformat(),
                 basis='fund', complete=True, scope='equity-lookthrough',
                 equitySleeveWeightPct=allocation_rows['Actions'],
                 excludedWeightPctByType={'Bonds': allocation_rows['Obligations'],

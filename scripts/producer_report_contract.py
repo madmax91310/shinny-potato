@@ -85,7 +85,7 @@ def _complete_holdings_results(native):
             continue
         # The native payload retains pooled identity URLs. Do not attribute that
         # global list to the financial observation of each individual fund.
-        fields=('checkedAt','asOf','sourceUrl','sha256','basis','scope','completeFile','rows',
+        fields=('checkedAt','validatedAt','asOf','sourceUrl','sha256','basis','scope','completeFile','rows',
                 'publishedEquityWeightPct','identifiedEquityWeightPct')
         successes.append({**row,**{key:receipt[key]for key in fields if key in receipt},'sourceAttempted':not derived,
                           **({'phase':'validation','reason':'Transparisation calculée ; aucune nouvelle consultation du document du fonds déduite.'}if derived else{})})
