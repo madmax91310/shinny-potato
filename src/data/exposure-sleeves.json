@@ -279,7 +279,7 @@
       "asOf": "2026-10-28",
       "checkedAt": "2026-10-30",
       "sourceUrl": "https://lt.morningstar.com/1c6qh1t6k9/snapshotpdf/default.aspx?1=1&BaseCurrencyId=USD&ClientFund=0&Id=0P0001OWZV&InvestmentType=FO&LanguageId=en-GB&SecurityToken=0P0001OWZV%5D22%5D0%5DETEXG%24XLON",
-      "sha256": "94a9868dc08cb183a6a555ede481572ad1c18ff0ad0561bba73a04f95049a70d",
+      "sha256": "f9c0c9d97323cdf4bc8af1abf33921a341e2962a43b8de4ae2cfde99fcd75175",
       "basis": "fund",
       "compatibility": "morningstar-equity-sectors",
       "classificationLabel": "Secteurs actions Morningstar",
@@ -343,6 +343,7 @@
         "https://www.avantisinvestors.com/avantis-investments/en-us/total-holdings/120/?type=etf",
         "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/",
         "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239656&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+        "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239710&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
         "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239716&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -353,7 +354,7 @@
       "rows": [
         {
           "name": "United States",
-          "weightPct": 69.99697854768894
+          "weightPct": 68.90925571558083
         },
         {
           "name": "Japan",
@@ -361,7 +362,7 @@
         },
         {
           "name": "United Kingdom",
-          "weightPct": 3.595528250579114
+          "weightPct": 3.645885789102631
         },
         {
           "name": "Canada",
@@ -392,8 +393,12 @@
           "weightPct": 0.9567932319468228
         },
         {
+          "name": "Bermuda",
+          "weightPct": 0.9265787088327122
+        },
+        {
           "name": "Italy",
-          "weightPct": 0.6949340316245345
+          "weightPct": 0.7956491086715686
         },
         {
           "name": "Norway",
@@ -413,7 +418,7 @@
         },
         {
           "name": "Belgium",
-          "weightPct": 0.39278880048343234
+          "weightPct": 0.4129318158928391
         },
         {
           "name": "Austria",
@@ -432,8 +437,8 @@
           "weightPct": 0.2719307080269916
         },
         {
-          "name": "Bermuda",
-          "weightPct": 0.08057206163762715
+          "name": "Monaco",
+          "weightPct": 0.09064356934233055
         },
         {
           "name": "Ireland",
@@ -442,10 +447,6 @@
         {
           "name": "Portugal",
           "weightPct": 0.06042904622822036
-        },
-        {
-          "name": "Monaco",
-          "weightPct": 0.020143015409406786
         },
         {
           "name": "New Zealand",
@@ -544,7 +545,7 @@
     "underlierEvidence": {
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
       "checkedAt": "2026-10-30",
-      "sha256": "3d859231c8a3843c4207de7b6e251317d80012b891b4767a6509124b7d432ec5",
+      "sha256": "939cc08aec0b5299cd059d03abdf8f8754e838c9532be4545f01ef10a56f5388",
       "underlier": "Nasdaq-100"
     }
   },

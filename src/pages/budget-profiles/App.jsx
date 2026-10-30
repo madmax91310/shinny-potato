@@ -117,7 +117,7 @@ export default function App() {
         {profile.source && <details className="dca-evidence"><summary>Source et vérification du profil</summary>
           <a href={profile.source.url} target="_blank" rel="noreferrer">{profile.source.publisher} · {profile.source.title}</a>
           <p>Publié le {dateLabel(profile.publishedAt)}. Consulté le {dateLabel(profile.checkedAt)}.</p>
-          <p>Budget autodéclaré, sans accès aux comptes bancaires. Les postes groupés et les arrondis sont conservés.</p><p>{profile.caveat}</p>
+          <p>{profile.kind === 'prepared' ? 'Budget préparé avec compléments et arrondis ; voir les hypothèses ci-dessous.' : 'Budget autodéclaré, sans accès aux comptes bancaires. Les postes groupés et les arrondis sont conservés.'}</p><p>{profile.caveat}</p>
           <p>Les prénoms du texte sont fictifs. La séparation entre dépenses contraintes et non contraintes est éditoriale ; les postes mixtes restent groupés.</p>
           <Button variant="secondary" onClick={() => copy(sourceReply(profile))}>Copier la source pour une réponse</Button>
         </details>}
