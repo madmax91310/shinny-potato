@@ -34,7 +34,9 @@ assert.match(post, /Simulation sur l'indice/)
 assert.match(post, /Pas un conseil\./)
 assert.doesNotMatch(post, /n’est pas une perte maximale/)
 assert.doesNotMatch(post, /999/)
-assert.match(performanceNotes(portfolio.selection), /2020/)
+assert.deepEqual(Object.keys(portfolio.perf), ['2022','2023','2024','2025'], 'Exact CoinShares calendar bounds the mixed simulation')
+assert.match(performanceNotes(portfolio.selection), /4 années communes \(2022–2025\)/)
+assert.doesNotMatch(performanceNotes(portfolio.selection), /2020.*spot|cours spot.*2020/, 'Retired spot backfill is not the current product provenance')
 for (const bound of Object.values(RISK_BOUNDS)) assert.doesNotMatch(bound.text, /perte max acceptable/)
 
 const today = '2026-10-09'
