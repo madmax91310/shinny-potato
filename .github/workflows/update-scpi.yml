@@ -4,7 +4,7 @@ on:
     - cron: '20 7 * * *'
   workflow_dispatch:
   pull_request:
-    paths: ['scripts/observation_rebase_guard.py', 'scripts/validate-producer-publication.sh', 'scripts/test_observation_rebase.py', '.github/workflows/update-scpi.yml', 'scripts/*scpi*', 'scripts/*iroko_snapshot*', 'scripts/*corum*', 'scripts/fixtures/scpi/**', 'scripts/fixtures/corum/**', 'scripts/fixtures/extended-scpi/**', 'scripts/publication_periods.py', 'scripts/test_publication_periods.py', 'scripts/test_presentation_expansion.py', 'scripts/fixtures/presentation-expansion/**', 'src/data/*scpi*', 'src/pages/scpi-presentation/**']
+    paths: ['scripts/observation_rebase_guard.py', 'scripts/validate-producer-publication.sh', 'scripts/test_observation_rebase.py', '.github/workflows/update-scpi.yml', 'scripts/*scpi*', 'scripts/*iroko_snapshot*', 'scripts/*corum*', 'scripts/fixtures/scpi/**', 'scripts/fixtures/scpi-q3-20261030/**', 'scripts/fixtures/corum/**', 'scripts/fixtures/extended-scpi/**', 'scripts/publication_periods.py', 'scripts/test_publication_periods.py', 'scripts/test_presentation_expansion.py', 'scripts/fixtures/presentation-expansion/**', 'src/data/*scpi*', 'src/pages/scpi-presentation/**']
   push:
     branches: [master]
     paths: ['scripts/observation_rebase_guard.py', 'scripts/validate-producer-publication.sh', 'scripts/test_observation_rebase.py', 'scripts/publication_periods.py', 'scripts/test_publication_periods.py', '.github/workflows/update-scpi.yml', 'scripts/collect_scpi.py', 'scripts/test-scpi.mjs', 'scripts/collect_iroko_snapshot.py', 'scripts/collect_corum.py', 'scripts/corum_vector_ocr.py', 'scripts/fixtures/corum/vector-labels.json', 'scripts/corum-quarterly-qualified.json', 'scripts/collect_extended_scpi.py', 'scripts/collect_atland_scpi.py']
@@ -41,6 +41,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_corum.py'
       - run: python -m unittest discover -s scripts -p 'test_corum_vector.py'
       - run: python -m unittest discover -s scripts -p 'test_extended_scpi.py'
+      - run: python -m unittest discover -s scripts -p 'test_scpi_current_bulletins.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_expansion.py'
       - run: python -m unittest discover -s scripts -p 'test_publication_periods.py'
       - name: "Collect observations: collect"
