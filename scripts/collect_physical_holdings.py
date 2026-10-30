@@ -92,13 +92,24 @@ def globalx_csv(raw, now):
             'SOUTH AFRICAN RAND', 'CHILEAN PESO', 'POLISH ZLOTY',
             'SWEDISH KRONE', 'MEXICAN PESO', 'PERUVIAN NEW SOL', 'SAUDI RIYAL',
             'OTHER PAYABLE & RECEIVABLES', 'CASH'}
-    for row in published:
+    for record, row in enumerate(published, start=2):
         if row['AS_OF_DATE'].startswith('The information contained herein') and not row.get('NAME'):
             continue  # Explicit copyright footer, never a portfolio position.
         dates.add(document_date(row['AS_OF_DATE'], now))
-        weight = float(row['NET_ASSETS'])
+        # A missing NAV weight is not a zero, including on cash/payable lines.
+        # Keep enough context to diagnose the rejected raw CSV in CI.
+        context = (f"Global X NET_ASSETS at CSV record {record} "
+                   f"(name={row.get('NAME')!r}, isin={row.get('ISIN')!r}, "
+                   f"asOf={row.get('AS_OF_DATE')!r})")
+        value = row.get('NET_ASSETS')
+        if value is None or not value.strip():
+            raise ValueError('Missing ' + context)
+        try:
+            weight = float(value)
+        except ValueError as exc:
+            raise ValueError(f'Invalid {context}: {value!r}') from exc
         if not math.isfinite(weight) or not -5 <= weight <= 100:
-            raise ValueError('Invalid Global X weight')
+            raise ValueError(f'Invalid {context}: {value!r}')
         total += weight
         if not row['ISIN']:
             if row['NAME'] in cash and not row['TICKER']:
@@ -122,6 +133,7 @@ def collect_globalx(share, now):
     page = public_page(share['sourceUrl'])
     url = globalx_page(page, share)
     raw = download(url)
+    source_proof(share, 'globalx', raw)
     rows, stamp = globalx_csv(raw, now)
     return observation(rows, stamp, url, raw, allow_unidentified=True,
                        identitySourceUrl=share['sourceUrl'], identitySha256=digest(page))

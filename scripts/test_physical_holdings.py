@@ -1,11 +1,15 @@
 """Portfolio guards: controlled fixtures plus the issuer's full Global X CSV."""
 import copy
+import csv
 import datetime as dt
+import io
 import pathlib
 import json
+import tempfile
 import unittest
+from unittest.mock import patch
 from collect_physical_holdings import (
-    amundi_composition, checked_rows, globalx_csv, invesco_composition, vanguard_pages, vaneck_composition, vaneck_url)
+    amundi_composition, checked_rows, collect_globalx, globalx_csv, invesco_composition, vanguard_pages, vaneck_composition, vaneck_url)
 
 NOW = dt.datetime(2026, 10, 20, tzinfo=dt.timezone.utc)
 SHARE = dict(isin='IE00BK5BQT80', currency='USD', productCode=9679)
@@ -35,6 +39,96 @@ def vanguard():
 
 
 class PhysicalHoldingsTest(unittest.TestCase):
+    def uranium_current(self):
+        return (pathlib.Path(__file__).parent/'fixtures/physical-holdings/globalx-urnu-20261028.csv').read_bytes()
+
+    def uranium_weight(self, name, value):
+        reader = csv.DictReader(io.StringIO(self.uranium_current().decode()))
+        fields, rows = reader.fieldnames, list(reader)
+        next(row for row in rows if row['NAME'] == name)['NET_ASSETS'] = value
+        out = io.StringIO()
+        writer = csv.DictWriter(out, fieldnames=fields)
+        writer.writeheader(); writer.writerows(rows)
+        return out.getvalue().encode()
+
+    def test_globalx_current_uranium_original_nav_and_unknown_identities(self):
+        now = NOW.replace(day=29)
+        rows, stamp = globalx_csv(self.uranium_current(), now)
+        self.assertEqual((len(rows), stamp), (59, '2026-10-28'))
+        self.assertAlmostEqual(sum(r['weightPct'] for r in rows), 99.815)
+        unknown = [r for r in rows if r['isin'] is None]
+        self.assertEqual(len(unknown), 2)
+        self.assertAlmostEqual(sum(r['weightPct'] for r in unknown), .004)
+
+    def test_globalx_missing_weight_is_never_zero_or_skipped_even_for_cash(self):
+        for name in ('CAMECO CORP', 'CASH', 'VERDERA ENERGY CORP', 'OTHER PAYABLE & RECEIVABLES'):
+            for value in ('', '  ', None):
+                with self.subTest(name=name, value=value), self.assertRaisesRegex(
+                        ValueError, 'Missing Global X NET_ASSETS at CSV record .*name=' + repr(name)):
+                    globalx_csv(self.uranium_weight(name, value), NOW.replace(day=29))
+
+    def test_globalx_invalid_numeric_format_is_not_silently_accepted(self):
+        for value in ('NaN', 'inf', '-inf', '15,87', '15.87%', '-1', '101'):
+            with self.subTest(value=value), self.assertRaisesRegex(ValueError, 'Global X|physical'):
+                globalx_csv(self.uranium_weight('CAMECO CORP', value), NOW.replace(day=29))
+
+    def test_globalx_current_schema_dates_totals_and_duplicates_remain_required(self):
+        raw = self.uranium_current()
+        for bad in (raw.replace(b'NET_ASSETS', b'WEIGHT'),
+                    raw.replace(b'2026-10-28', b'2026-10-27', 1),
+                    self.uranium_weight('CAMECO CORP', '0'),
+                    raw.replace(b'CA65340P1062', b'CA13321L1085')):
+            with self.subTest(mutation=bad[:80]), self.assertRaises(ValueError):
+                globalx_csv(bad, NOW.replace(day=29))
+
+    def test_globalx_rejected_raw_response_is_preserved_before_parsing(self):
+        raw = self.uranium_weight('CAMECO CORP', '')
+        with tempfile.TemporaryDirectory() as root, patch.dict('os.environ', PHYSICAL_SOURCE_PROOF_DIR=root), \
+                patch('collect_physical_holdings.public_page', return_value='identity page'), \
+                patch('collect_physical_holdings.globalx_page', return_value='https://globalxetfs.eu/api/funds/urnu/topholdingscsv'), \
+                patch('collect_physical_holdings.download', return_value=raw):
+            with self.assertRaisesRegex(ValueError, 'Missing Global X NET_ASSETS'):
+                collect_globalx({'isin':'IE000NDWFGA5','sourceUrl':'https://globalxetfs.eu/funds/urnu/'}, NOW.replace(day=29))
+            self.assertEqual((pathlib.Path(root)/'IE000NDWFGA5-globalx.raw').read_bytes(), raw)
+
+    def test_globalx_failed_collection_retains_previous_then_recovers(self):
+        import collect_dca_complete_holdings as collector
+        from collect_physical_holdings import observation
+        isin = 'IE000NDWFGA5'
+        retained = {'asOf':'2026-10-26', 'checkedAt':'2026-10-27T14:45:21+00:00',
+                    'rows':[{'isin':'CA13321L1085','name':'CAMECO CORP','weightPct':15.0}]}
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            files = {
+                'scripts/dca-complete-holdings-sources.json': {isin:{'isin':isin,'parser':'globalx-complete'}},
+                'scripts/generated-holdings-sources.json': {},
+                'scripts/dca-equity-identities.json': {}, 'scripts/dca-equity-extra-identities.json': {},
+                'src/data/dca-complete-holdings.json': {isin:retained,'unrelated':retained},
+                'src/data/dca-holdings-status.json': {}, 'src/data/dca-security-classifications.json': {}}
+            for name, content in files.items():
+                path = root/name; path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(json.dumps(content))
+            output = root/'report.json'
+            argv = ['collect', '--only', isin, '--apply', '--output', str(output)]
+            def run(raw):
+                def source(share, now):
+                    rows, stamp = globalx_csv(raw, now)
+                    return observation(rows, stamp, 'https://globalxetfs.eu/api/funds/urnu/topholdingscsv', raw, allow_unidentified=True)
+                with patch.object(collector, 'ROOT', root), patch('sys.argv', argv), \
+                        patch.dict('collect_physical_holdings.COLLECTORS', {'globalx-complete':source}):
+                    collector.main()
+            with self.assertRaises(SystemExit):
+                run(self.uranium_weight('CAMECO CORP', ''))
+            self.assertEqual(json.loads((root/'src/data/dca-complete-holdings.json').read_text()), files['src/data/dca-complete-holdings.json'])
+            status = json.loads((root/'src/data/dca-holdings-status.json').read_text())[isin]
+            self.assertEqual((status['status'], status['asOf'], status['lastSuccessAt']), ('failed', retained['asOf'], retained['checkedAt']))
+            run(self.uranium_current())
+            saved = json.loads((root/'src/data/dca-complete-holdings.json').read_text())
+            self.assertEqual(saved['unrelated'], retained)
+            self.assertEqual(saved[isin]['asOf'], '2026-10-28')
+            self.assertAlmostEqual(sum(r['weightPct'] for r in saved[isin]['rows']), 99.815)
+            self.assertEqual(json.loads((root/'src/data/dca-holdings-status.json').read_text())[isin]['status'], 'validated')
+
     def test_uranium_unidentified_separate_lines_are_not_cash_or_listed_shares(self):
         raw=(pathlib.Path(__file__).parent/'fixtures/physical-holdings/globalx-urnu.csv').read_bytes()
         rows,stamp=globalx_csv(raw,NOW)

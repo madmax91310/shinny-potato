@@ -175,6 +175,7 @@ jobs:
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         env:
           WISDOMTREE_BROWSER_CAPTURE: '1'
+          PHYSICAL_SOURCE_PROOF_DIR: ${{ runner.temp }}/physical-source-proofs
         run: python scripts/collect_dca_complete_holdings.py --apply --output "$RUNNER_TEMP/dca-complete-holdings.json"
       - name: "Collect observations: sleeves"
         id: sleeves
@@ -216,6 +217,7 @@ jobs:
             ${{ runner.temp }}/qualified-exposures.json
             ${{ runner.temp }}/dca-equities.json
             ${{ runner.temp }}/dca-complete-holdings.json
+            ${{ runner.temp }}/physical-source-proofs
             ${{ runner.temp }}/exposure-sleeves.json
             ${{ runner.temp }}/vanguard-sleeves.json
             public/data/pending-source-checks.json
