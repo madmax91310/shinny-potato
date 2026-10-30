@@ -7339,18 +7339,6 @@
       "listings": [
         {
           "ticker": "XDWM",
-          "mic": "ETFP",
-          "exchange": "Borsa Italiana",
-          "currency": "EUR",
-          "symbol": "XDWM.MI",
-          "excerpt": "IE00BM67HS53 | Borsa Italiana | XDWM IM | EUR | XDWM.MI",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "checkedAt": "2026-10-30",
-          "sha256": "a82332a3ddd9fd7dc927f1ebcbcb86e6baf745bea4173c5d0ab118f324338878",
-          "evidenceId": "IE00BM67HS53-ETFP-XDWM-EUR"
-        },
-        {
-          "ticker": "XDWM",
           "mic": "XETR",
           "exchange": "Xetra",
           "currency": "EUR",
@@ -7360,6 +7348,18 @@
           "checkedAt": "2026-10-30",
           "sha256": "a82332a3ddd9fd7dc927f1ebcbcb86e6baf745bea4173c5d0ab118f324338878",
           "evidenceId": "IE00BM67HS53-XETR-XDWM-EUR"
+        },
+        {
+          "ticker": "XDWM",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "XDWM.MI",
+          "excerpt": "IE00BM67HS53 | Borsa Italiana | XDWM IM | EUR | XDWM.MI",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-30",
+          "sha256": "a82332a3ddd9fd7dc927f1ebcbcb86e6baf745bea4173c5d0ab118f324338878",
+          "evidenceId": "IE00BM67HS53-ETFP-XDWM-EUR"
         },
         {
           "ticker": "XDWM",
@@ -11517,18 +11517,6 @@
       "listings": [
         {
           "ticker": "XDWU",
-          "mic": "XLON",
-          "exchange": "London Stock Exchange",
-          "currency": "USD",
-          "symbol": "XDWU.L",
-          "excerpt": "IE00BM67HQ30 | London Stock Exchange | XDWU LN | USD | XDWU.L",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
-          "checkedAt": "2026-10-30",
-          "sha256": "bf2805aa925bfadb49e21b55e48ac002e6dfa6f76829de20fc2bb8abbac9cd0c",
-          "evidenceId": "IE00BM67HQ30-XLON-XDWU-USD"
-        },
-        {
-          "ticker": "XDWU",
           "mic": "ETFP",
           "exchange": "Borsa Italiana",
           "currency": "EUR",
@@ -11550,6 +11538,18 @@
           "checkedAt": "2026-10-30",
           "sha256": "bf2805aa925bfadb49e21b55e48ac002e6dfa6f76829de20fc2bb8abbac9cd0c",
           "evidenceId": "IE00BM67HQ30-XETR-XDWU-EUR"
+        },
+        {
+          "ticker": "XDWU",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "XDWU.L",
+          "excerpt": "IE00BM67HQ30 | London Stock Exchange | XDWU LN | USD | XDWU.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-30",
+          "sha256": "bf2805aa925bfadb49e21b55e48ac002e6dfa6f76829de20fc2bb8abbac9cd0c",
+          "evidenceId": "IE00BM67HQ30-XLON-XDWU-USD"
         },
         {
           "ticker": "XWUS",
