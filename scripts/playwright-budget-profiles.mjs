@@ -118,6 +118,7 @@ try {
     await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)).profile.id, DRAFT_KEY)).not.toBe(participationId)
     await expect(page.getByText('Participation à faire valider avant publication.')).toBeVisible()
     if (BUDGET_PROFILES.at(-1).currency === 'CHF') {
+      await page.getByText('Présentation du profil', { exact: true }).click()
       await expect(page.getByLabel('Devise du budget')).toHaveValue('CHF')
       await page.getByLabel('Devise du budget').selectOption('EUR')
       await expect.poll(() => page.getByLabel('Texte prêt à publier').inputValue()).toContain('€')
