@@ -1,5 +1,6 @@
 # Coordination des données — 24 octobre 2026
 
+Reprise30octobre — publications officielles partielles : préparation#1087 regroupée dans#1088, `fix/remaining-wisdom-issuer-routes-20261030` possède update_inflation.py, refresh_purchasing_power.py, le nouveau helper insee_month_maturity.py, collect_presentation_actors.py et collect_exposure_sleeves.py, leurs régressions et le branchement CI. Trois réponses sources actuelles conservées : flash INSEE du mois non clos (séparé des historiques), avis Tudigo Run Off ouvert mais migration en cours (plateforme toujours cessée, frais historiques non renouvelés), référentiel IWM dont une pondération négative ne sert pas au calcul d'exposition (classifications exactes par ISIN seulement). Aucun collecteur Radar, moteur financier, poids cible, seuil de recouvrement ou fichier Budget modifié. Tests isolés distincts des passages ordinaires GitHub et de leur publication, encore à démontrer après fusion.
 
 ## 2026-10-30 — suites économiques #1083
 

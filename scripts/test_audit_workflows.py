@@ -220,3 +220,21 @@ class WorkflowContracts(unittest.TestCase):
 
 if __name__ == '__main__': unittest.main()
 
+
+
+class ExplicitRankingRecovery(unittest.TestCase):
+    def test_explicit_scope_does_not_trigger_catalogue_or_skip_requested_fx(self):
+        import os, subprocess, textwrap
+        workflow=(ROOT/'.github/workflows/update-market-monthly.yml').read_text()
+        step=workflow.split('      - name: Refresh exact ranking histories and ECB conversion')[1].split('      - run: node scripts/build-equity-history-links.mjs')[0]
+        self.assertIn("github.event_name == 'push'",step)
+        command=textwrap.dedent(step.split('        run: |\n')[1])
+        for selected,retry,expected in [('fx','true',['--only','fx']),('fx','false',['--only','fx']),('','true',['--retry-failed']),('','false',[])]:
+            with self.subTest(selected=selected,retry=retry):
+                env={**os.environ,'REQUESTED_RANKING_SOURCES':selected,'RETRY_FAILED':retry,'RUNNER_TEMP':'/isolated-no-write'}
+                result=subprocess.run(['bash','-euc','python(){ printf "%s\\n" "$@"; };\n'+command],env=env,capture_output=True,text=True)
+                self.assertEqual(result.returncode,0,result.stderr)
+                argv=result.stdout.splitlines()
+                self.assertEqual(argv,['scripts/collect_ranking_sources.py','--apply','--output','/isolated-no-write/ranking-collection-status.json',*expected])
+        empty=subprocess.run(['bash','-euc','python(){ exit 99; };\n'+command],env={**os.environ,'REQUESTED_RANKING_SOURCES':' , ','RETRY_FAILED':'false'},capture_output=True,text=True)
+        self.assertEqual(empty.returncode,1)

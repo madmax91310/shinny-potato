@@ -117,7 +117,7 @@ class OrdinaryBrowserTransport(unittest.TestCase):
   with patch('wisdomtree_performance_history.download',return_value=b'[]')as fetch,patch('wisdomtree_performance_history.subprocess.run')as browser:
    bodies,proof=acquire(s)
   self.assertEqual(list(bodies),urls(s));browser.assert_not_called()
-  self.assertTrue(all('/historical_performance/?entity='in u for u in bodies))
+  self.assertTrue(all(u.startswith('https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=') for u in bodies))
   self.assertEqual(proof['actualNavTransport'],'public-widget-http')
   self.assertTrue(all(c.kwargs['headers']['Origin']=='https://www.wisdomtree.com'for c in fetch.call_args_list))
  def test_only_a_403_gets_one_fresh_bounded_browser_attempt(self):
@@ -151,7 +151,7 @@ class DocumentedWidgetPath(unittest.TestCase):
   wti=next(s for s in configurations()if s.get('wisdomTicker')=='CRUD')
   self.assertEqual(urls(wti),[f'https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode={mode}'for mode in ['gro10k','tabular']])
   for source in configurations():
-   if source.get('navHistoryTransport')=='official-dataspan-nav-tr'and source.get('wisdomTicker')not in ('CRUD','WTAI'):
+   if source.get('navHistoryTransport')=='official-dataspan-nav-tr'and source.get('wisdomTicker')not in ('CRUD','WTAI','COPA','COCO','COFF','NGAS','WEAT'):
     self.assertTrue(all('/historical_performance/?'in u for u in urls(source)))
   ordinary=next(s for s in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']if s['id']==wti['id'])
   self.assertNotIn('wisdomPerformancePathStyle',ordinary)
@@ -170,3 +170,16 @@ class DocumentedWidgetPath(unittest.TestCase):
   ordinary=next(s for s in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']if s['id']==source['id'])
   self.assertEqual(urls(ordinary),urls(source))
   with self.assertRaises(ValueError):urls({**ordinary,'isin':'GB00B15KXV33'})
+
+
+class RemainingIssuerWidgets(unittest.TestCase):
+ def test_five_successful_incident_routes_keep_exact_shared_identity_and_modes(self):
+  from wisdomtree_performance_history import urls
+  sources=[s for s in configurations()if s.get('wisdomTicker')in {'COPA','COCO','COFF','NGAS','WEAT'}]
+  self.assertEqual(len(sources),5)
+  ordinary={s['id']:s for s in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']}
+  for s in sources:
+   with self.subTest(isin=s['isin']):
+    self.assertEqual(urls(s),[f"https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity={s['wisdomTicker']}&mode={m}"for m in ['gro10k','tabular']])
+    self.assertEqual(urls(s),urls(ordinary[s['id']]))
+    with self.assertRaises(ValueError):urls({**ordinary[s['id']],'navCurrency':'EUR'})
