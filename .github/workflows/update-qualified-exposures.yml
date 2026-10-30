@@ -54,6 +54,10 @@ on:
       - 'scripts/capture-invesco-physical.mjs'
       - 'scripts/invesco-physical-holdings-contracts.json'
       - 'scripts/test_invesco_physical_holdings.py'
+      - 'scripts/invesco_economic_index.py'
+      - 'scripts/capture-invesco-economic-index.mjs'
+      - 'scripts/test_invesco_economic_index.py'
+      - 'scripts/fixtures/invesco-economic-index/**'
       - 'scripts/fixtures/invesco-physical/**'
       - 'scripts/build-automation-targets.mjs'
       - 'scripts/dca-complete-holdings-sources.json'
@@ -114,6 +118,10 @@ on:
       - 'scripts/capture-invesco-physical.mjs'
       - 'scripts/invesco-physical-holdings-contracts.json'
       - 'scripts/test_invesco_physical_holdings.py'
+      - 'scripts/invesco_economic_index.py'
+      - 'scripts/capture-invesco-economic-index.mjs'
+      - 'scripts/test_invesco_economic_index.py'
+      - 'scripts/fixtures/invesco-economic-index/**'
       - 'scripts/fixtures/invesco-physical/**'
       - 'scripts/collect_dws_etf.py'
       - 'scripts/collect_ssga_etf.py'
@@ -203,6 +211,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p "test_exposure_sleeves.py"
       - name: Validate complete DWS parser
         run: python -m unittest discover -s scripts -p "test_dca*py"
+      - name: Validate issuer economic index books
+        run: python -m unittest discover -s scripts -p "test_invesco_economic_index.py"
       - name: Validate complete physical issuer portfolios
         run: python -m unittest discover -s scripts -p "test_invesco_physical_holdings.py" && python -m unittest discover -s scripts -p "test_physical_holdings.py" && python -m unittest discover -s scripts -p "test_lifestrategy_holdings.py"
       - run: python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py' && python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py' && python -m unittest discover -s scripts -p 'test_pending_sources.py' && python -m unittest discover -s scripts -p 'test_native_source_evidence.py'
@@ -223,12 +233,14 @@ jobs:
           node scripts/playwright-live-data-connections.mjs --new-issuers
           node scripts/playwright-live-data-connections.mjs --wisdomtree
           node scripts/playwright-live-data-connections.mjs --defence
+          node scripts/playwright-dca-holdings-contracts.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: qualified-exposures-observation
           path: |
             test-artifacts/live-data-connections
+            test-artifacts/dca-compositions
             ${{ runner.temp }}/qualified-exposures.json
             ${{ runner.temp }}/dca-equities.json
             ${{ runner.temp }}/dca-complete-holdings.json

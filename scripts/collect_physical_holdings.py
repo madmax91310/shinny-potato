@@ -474,7 +474,8 @@ def collect_jpm(share, now):
 
 from collect_topix_holdings import collect as collect_topix
 from collect_wisdomtree_holdings import collect as collect_wisdomtree
+from invesco_economic_index import collect as collect_economic_index
 
-COLLECTORS = {'wisdomtree-complete':collect_wisdomtree,'jpx-topix':collect_topix,'jpm-complete':collect_jpm,'hsbc-complete':collect_hsbc,'globalx-complete': collect_globalx, 'avantis-complete': collect_avantis,
+COLLECTORS = {'invesco-economic-index':collect_economic_index,'wisdomtree-complete':collect_wisdomtree,'jpx-topix':collect_topix,'jpm-complete':collect_jpm,'hsbc-complete':collect_hsbc,'globalx-complete': collect_globalx, 'avantis-complete': collect_avantis,
               'amundi-complete': collect_amundi, 'vanguard-complete': collect_vanguard,
               'invesco-complete': collect_invesco, 'vaneck-complete': collect_vaneck}

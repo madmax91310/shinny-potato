@@ -37,6 +37,7 @@ try{
   ['neutral',[['world',60],['gold',20],['btc',10],['IE0008UEVOE0',10]]],
   ['fund-and-index',[['world',60],['FR0013411980',40]]],
   ['native-index-pair',[['FR0013411980',50],['FR0013411998',50]]],
+  ['issuer-economic-indices',[['europe',35],['FR0011871110',35],['nasdaq',30]]],
   ['europe-pea-partial',[['europe',40],['FR0011869304',30],['FR0011871110',30]]],
   ['europe-only-no-identifiers',[['europe',100]]],
   ['outside-equity-only',[['gold',50],['btc',50]]],
@@ -101,5 +102,5 @@ try{
   }
  }
  assert.deepEqual(errors,[])
- console.log('Built site: 16 complete/partial/unidentified/inapplicable/native-index/mixed/reconciled/retained portfolios, identical analysis/canvas/download, desktop and mobile verified.')
+ console.log('Built site: 17 complete/partial/unidentified/inapplicable/native-index/issuer-index/mixed/reconciled/retained portfolios, identical analysis/canvas/download, desktop and mobile verified.')
 }finally{await browser?.close();server.kill()}
