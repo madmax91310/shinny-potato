@@ -62,12 +62,27 @@ export function identifiersIn(file, text) {
   const ids = isinsIn(text)
   if (file.endsWith('.json')) {
     try {
-      const visit = node => {
-        if (!node || typeof node !== 'object') return
-        if (!Array.isArray(node)) for (const key of Object.keys(node)) if (key && !/^[\d-]/.test(key)) ids.add(key)
-        for (const child of Object.values(node)) visit(child)
+      const document = JSON.parse(text)
+      // This producer's summary keys are derived type:state counters, not
+      // instrument identifiers. Exempt only the exact, reconciled summary:
+      // financial ISINs anywhere in the document are still checked above.
+      const states = new Set(['unqualified', 'not-applicable', 'waiting-first-year', 'not-published', 'source-conflict', 'waiting-publication', 'access-blocked'])
+      const counters = new Map()
+      let validSummary = file === 'docs/automation-gaps.json' && Array.isArray(document.gaps) && document.summary && typeof document.summary === 'object' && !Array.isArray(document.summary)
+      if (validSummary) {
+        for (const gap of document.gaps) {
+          if (!gap || !['instrument', 'index'].includes(gap.type) || !states.has(gap.status)) { validSummary = false; break }
+          const key = `${gap.type}:${gap.status}`
+          counters.set(key, (counters.get(key) ?? 0) + 1)
+        }
+        validSummary &&= Object.keys(document.summary).length === counters.size && [...counters].every(([key, value]) => document.summary[key] === value)
       }
-      visit(JSON.parse(text))
+      const visit = (node, atSummary = false) => {
+        if (!node || typeof node !== 'object') return
+        if (!Array.isArray(node)) for (const key of Object.keys(node)) if (key && !/^[\d-]/.test(key) && !(atSummary && validSummary && counters.has(key))) ids.add(key)
+        for (const [key, child] of Object.entries(node)) visit(child, node === document && key === 'summary')
+      }
+      visit(document)
     } catch { /* invalid JSON: the build decides */ }
   }
   return ids

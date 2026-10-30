@@ -35,6 +35,47 @@ assert(isIsin('IE00B4L5Y983')); assert(isIsin('IE000U9ODG19')); assert(isIsin('C
 assert(!isIsin('IE00B4L5Y984')); assert(!isIsin('ABCDEFGHIJK1'))
 assert.deepEqual(introducedIdentifiers('a.json', '{"IE00B4L5Y983":{"2026-10":1},"brookfield":{}}', '{"IE00B4L5Y983":{"2026-09":1}}'), ['brookfield'])
 
+// 30/10: the first instrument:source-conflict counter blocked code/data
+// promotion although the instrument and state were already supported.
+const diagnosticReport = (status = 'unqualified', overrides = {}) => ({
+  summary: { [`instrument:${status}`]: 1 },
+  gaps: [{ type: 'instrument', status, id: 'IE00B4L5Y983' }], ...overrides,
+})
+const beforeSummary = JSON.stringify(diagnosticReport())
+const afterSummary = JSON.stringify(diagnosticReport('source-conflict'))
+assert.deepEqual(introducedIdentifiers('docs/automation-gaps.json', afterSummary, beforeSummary), [])
+assert.deepEqual(introducedIdentifiers('src/data/financial.json', afterSummary, beforeSummary), ['instrument:source-conflict'])
+for (const malformed of [
+  diagnosticReport('source-conflict', { summary: { 'instrument:source-conflict': 0 } }),
+  diagnosticReport('source-conflict', { summary: { 'instrument:source-conflict': '1' } }),
+  diagnosticReport('source-conflict', { gaps: [] }),
+  diagnosticReport('source-conflict', { gaps: [{ type: 'newInstrument', status: 'source-conflict' }] }),
+  diagnosticReport('future-convention'),
+]) assert.ok(introducedIdentifiers('docs/automation-gaps.json', JSON.stringify(malformed), beforeSummary).length)
+assert.deepEqual(introducedIdentifiers('docs/automation-gaps.json', JSON.stringify(diagnosticReport('source-conflict', {
+  gaps: [{ type: 'instrument', status: 'source-conflict', id: 'IE000U9ODG19' }],
+})), beforeSummary), ['IE000U9ODG19'], 'unknown financial identity is still held back, including inside diagnostics')
+assert.ok(introducedIdentifiers('docs/automation-gaps.json', JSON.stringify({ ...diagnosticReport('source-conflict'),
+  nested: { summary: { 'instrument:source-conflict': 1 } },
+}), beforeSummary).includes('instrument:source-conflict'), 'only the exact top-level reconciled counters are exempt')
+
+const summaryDir = mkdtempSync(path.join(tmpdir(), 'fallback-summary-'))
+try {
+  const git = (...args) => execFileSync('git', args, { cwd: summaryDir, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim()
+  git('init', '-q'); git('config', 'user.email', 't@t'); git('config', 'user.name', 't')
+  mkdirSync(path.join(summaryDir, 'docs'))
+  writeFileSync(path.join(summaryDir, 'app.js'), 'export const known = true\n')
+  writeFileSync(path.join(summaryDir, 'docs/automation-gaps.json'), beforeSummary)
+  git('add', '.'); git('commit', '-qm', 'Validated existing instrument')
+  const published = git('rev-parse', 'HEAD')
+  writeFileSync(path.join(summaryDir, 'docs/automation-gaps.json'), afterSummary)
+  git('add', '.'); git('commit', '-qm', 'First conflict, same instrument')
+  const result = compose({ published, data: git('rev-parse', 'HEAD'), cwd: summaryDir, allowed: ['docs/automation-gaps.json'] })
+  assert.deepEqual(result.heldBack, [])
+  assert.equal(readFileSync(path.join(summaryDir, 'docs/automation-gaps.json'), 'utf8'), afterSummary)
+  assert.equal(readFileSync(path.join(summaryDir, 'app.js'), 'utf8'), 'export const known = true\n')
+} finally { rmSync(summaryDir, { recursive: true, force: true }) }
+
 // 18/10/2026: a code change configured new assets, collectors filled their data, then
 // the full gate failed. The fallback overlaid that data on the published code, whose
 // registry threw "Produit inconnu : IE000U9ODG19": nothing was published. Now the
