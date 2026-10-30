@@ -33,97 +33,97 @@
       "asOf": "2026-10-29"
     },
     "countries": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 68.8
+          "weightPct": 68.59
         },
         {
           "name": "Japan",
-          "weightPct": 6.63
+          "weightPct": 6.61
         },
         {
           "name": "United Kingdom",
-          "weightPct": 3.99
+          "weightPct": 4.04
         },
         {
           "name": "Canada",
-          "weightPct": 3.72
+          "weightPct": 3.68
         },
         {
           "name": "France",
-          "weightPct": 3.55
+          "weightPct": 3.6
         },
         {
           "name": "Netherlands",
-          "weightPct": 2.72
+          "weightPct": 2.77
         },
         {
           "name": "Germany",
-          "weightPct": 2.6
+          "weightPct": 2.63
         },
         {
           "name": "Switzerland",
-          "weightPct": 1.6
+          "weightPct": 1.63
         },
         {
           "name": "Australia",
-          "weightPct": 1.55
+          "weightPct": 1.56
         },
         {
           "name": "Sweden",
-          "weightPct": 1.11
+          "weightPct": 1.12
         },
         {
           "name": "Other",
-          "weightPct": 3.4299999999999997
+          "weightPct": 3.4699999999999998
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.3
+          "weightPct": 0.31
         }
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries"
     },
     "sectors": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 44.07
+          "weightPct": 43.56
         },
         {
           "name": "Energy",
-          "weightPct": 12.43
+          "weightPct": 12.54
         },
         {
           "name": "Industrials",
-          "weightPct": 12.38
+          "weightPct": 12.47
         },
         {
           "name": "Health Care",
-          "weightPct": 10.51
+          "weightPct": 10.69
         },
         {
           "name": "Materials",
-          "weightPct": 8.41
+          "weightPct": 8.4
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 7.04
+          "weightPct": 7.1
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 3.13
+          "weightPct": 3.16
         },
         {
           "name": "Real Estate",
-          "weightPct": 0.8
+          "weightPct": 0.82
         },
         {
           "name": "Utilities",
-          "weightPct": 0.79
+          "weightPct": 0.8
         },
         {
           "name": "Communication",
@@ -131,7 +131,7 @@
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.3
+          "weightPct": 0.31
         }
       ],
       "sourceComponent": "exposureBreakdowns.sector"
@@ -259,10 +259,10 @@
     ],
     "metrics": {
       "twelveMonTrlYld": {
-        "value": 0.924486,
+        "value": 0.926992,
         "label": "Rendement des distributions sur 12 mois",
         "unit": "%",
-        "asOf": "2026-10-28",
+        "asOf": "2026-10-29",
         "checkedAt": "2026-10-30",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The yield an investor would have received if they had held the fund over the last twelve months assuming the most recent NAV. The 12-Month yield is calculated by assuming any income distributions over the past twelve months and dividing by the sum of the most recent NAV and any capital gain distributions made over the past twelve months. This yield calculation does not take into account any dividends received and held by the fund, but are awaiting the next distribution date. This can cause deviation with index level yield values.",
@@ -279,20 +279,20 @@
         "scope": "Fund portfolio"
       },
       "priceEarnings": {
-        "value": 28.35389,
+        "value": 28.61269,
         "label": "PER du portefeuille selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-28",
+        "asOf": "2026-10-29",
         "checkedAt": "2026-10-30",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
         "scope": "Fund portfolio"
       },
       "priceBook": {
-        "value": 4.31136,
+        "value": 4.31042,
         "label": "Cours / actif net comptable selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-28",
+        "asOf": "2026-10-29",
         "checkedAt": "2026-10-30",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
@@ -309,8 +309,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-30T12:35:19.121844+00:00",
-    "pageSha256": "8f643b2d80ca56b9b8ccd6f66c328fb5c44b8119e2898be8b1bf1a9f6f490373",
+    "checkedAt": "2026-10-30T13:57:11.838286+00:00",
+    "pageSha256": "0f32c6daefd1cc53f5f63230054d216e0c3f5431ea889acb55b6ff635f4cf856",
     "automatedRecord": {
       "currency": "USD",
       "productId": 251394,
@@ -325,51 +325,51 @@
         "modifiedAt": "2026-10-30"
       },
       "sectors": {
-        "asOf": "2026-10-28",
+        "asOf": "2026-10-29",
         "rows": [
           {
             "name": "Information Technology",
-            "weightPct": 44.07,
+            "weightPct": 43.56,
             "label": "Information Technology"
           },
           {
             "name": "Energy",
-            "weightPct": 12.43,
+            "weightPct": 12.54,
             "label": "Energy"
           },
           {
             "name": "Industrials",
-            "weightPct": 12.38,
+            "weightPct": 12.47,
             "label": "Industrials"
           },
           {
             "name": "Health Care",
-            "weightPct": 10.51,
+            "weightPct": 10.69,
             "label": "Health Care"
           },
           {
             "name": "Materials",
-            "weightPct": 8.41,
+            "weightPct": 8.4,
             "label": "Materials"
           },
           {
             "name": "Consumer Discretionary",
-            "weightPct": 7.04,
+            "weightPct": 7.1,
             "label": "Consumer Discretionary"
           },
           {
             "name": "Consumer Staples",
-            "weightPct": 3.13,
+            "weightPct": 3.16,
             "label": "Consumer Staples"
           },
           {
             "name": "Real Estate",
-            "weightPct": 0.8,
+            "weightPct": 0.82,
             "label": "Immobilier"
           },
           {
             "name": "Utilities",
-            "weightPct": 0.79,
+            "weightPct": 0.8,
             "label": "Utilities"
           },
           {
@@ -379,69 +379,69 @@
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.3,
+            "weightPct": 0.31,
             "label": "Cash and/or Derivatives"
           }
         ],
         "sourceComponent": "exposureBreakdowns.sector",
         "checkedAt": "2026-10-30",
-        "modifiedAt": "2026-10-29"
+        "modifiedAt": "2026-10-30"
       },
       "countries": {
-        "asOf": "2026-10-28",
+        "asOf": "2026-10-29",
         "rows": [
           {
             "name": "United States",
-            "weightPct": 68.8
+            "weightPct": 68.59
           },
           {
             "name": "Japan",
-            "weightPct": 6.63
+            "weightPct": 6.61
           },
           {
             "name": "United Kingdom",
-            "weightPct": 3.99
+            "weightPct": 4.04
           },
           {
             "name": "Canada",
-            "weightPct": 3.72
+            "weightPct": 3.68
           },
           {
             "name": "France",
-            "weightPct": 3.55
+            "weightPct": 3.6
           },
           {
             "name": "Netherlands",
-            "weightPct": 2.72
+            "weightPct": 2.77
           },
           {
             "name": "Germany",
-            "weightPct": 2.6
+            "weightPct": 2.63
           },
           {
             "name": "Switzerland",
-            "weightPct": 1.6
+            "weightPct": 1.63
           },
           {
             "name": "Australia",
-            "weightPct": 1.55
+            "weightPct": 1.56
           },
           {
             "name": "Sweden",
-            "weightPct": 1.11
+            "weightPct": 1.12
           },
           {
             "name": "Other",
-            "weightPct": 3.4299999999999997
+            "weightPct": 3.4699999999999998
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.3
+            "weightPct": 0.31
           }
         ],
         "sourceComponent": "exposureBreakdowns.geography.countries",
         "checkedAt": "2026-10-30",
-        "modifiedAt": "2026-10-29"
+        "modifiedAt": "2026-10-30"
       },
       "holdings": {
         "asOf": "2026-10-29",
@@ -579,15 +579,15 @@
       },
       "metrics": {
         "twelveMonTrlYld": {
-          "value": 0.924486,
+          "value": 0.926992,
           "label": "Rendement des distributions sur 12 mois",
           "unit": "%",
-          "asOf": "2026-10-28",
+          "asOf": "2026-10-29",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "method": "The yield an investor would have received if they had held the fund over the last twelve months assuming the most recent NAV. The 12-Month yield is calculated by assuming any income distributions over the past twelve months and dividing by the sum of the most recent NAV and any capital gain distributions made over the past twelve months. This yield calculation does not take into account any dividends received and held by the fund, but are awaiting the next distribution date. This can cause deviation with index level yield values.",
           "scope": "Exact share, trailing 12 months",
           "checkedAt": "2026-10-30",
-          "modifiedAt": "2026-10-29"
+          "modifiedAt": "2026-10-30"
         },
         "numHoldings": {
           "value": 387.0,
@@ -601,26 +601,26 @@
           "modifiedAt": "2026-10-30"
         },
         "priceEarnings": {
-          "value": 28.35389,
+          "value": 28.61269,
           "label": "PER du portefeuille selon l’émetteur",
           "unit": "fois",
-          "asOf": "2026-10-28",
+          "asOf": "2026-10-29",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
           "scope": "Fund portfolio",
           "checkedAt": "2026-10-30",
-          "modifiedAt": "2026-10-29"
+          "modifiedAt": "2026-10-30"
         },
         "priceBook": {
-          "value": 4.31136,
+          "value": 4.31042,
           "label": "Cours / actif net comptable selon l’émetteur",
           "unit": "fois",
-          "asOf": "2026-10-28",
+          "asOf": "2026-10-29",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
           "scope": "Fund portfolio",
           "checkedAt": "2026-10-30",
-          "modifiedAt": "2026-10-29"
+          "modifiedAt": "2026-10-30"
         },
         "volatilitySourced3YrAnnualized": {
           "value": 13.161572,
@@ -670,43 +670,43 @@
       "asOf": "2026-10-29"
     },
     "countries": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "rows": [
         {
           "name": "United Kingdom",
-          "weightPct": 26.68
+          "weightPct": 26.64
         },
         {
           "name": "Spain",
-          "weightPct": 18.04
+          "weightPct": 17.76
         },
         {
           "name": "Italy",
-          "weightPct": 14.2
+          "weightPct": 14.18
         },
         {
           "name": "France",
-          "weightPct": 7.82
+          "weightPct": 7.87
         },
         {
           "name": "Netherlands",
-          "weightPct": 5.63
+          "weightPct": 5.54
         },
         {
           "name": "Sweden",
-          "weightPct": 4.44
+          "weightPct": 4.47
         },
         {
           "name": "Germany",
-          "weightPct": 3.69
+          "weightPct": 3.81
         },
         {
           "name": "Finland",
-          "weightPct": 2.74
+          "weightPct": 2.77
         },
         {
           "name": "Poland",
-          "weightPct": 2.66
+          "weightPct": 2.73
         },
         {
           "name": "Austria",
@@ -714,45 +714,45 @@
         },
         {
           "name": "Denmark",
-          "weightPct": 2.46
-        },
-        {
-          "name": "Ireland",
-          "weightPct": 2.1
+          "weightPct": 2.49
         },
         {
           "name": "Greece",
-          "weightPct": 2.05
+          "weightPct": 2.12
+        },
+        {
+          "name": "Ireland",
+          "weightPct": 2.08
         },
         {
           "name": "Norway",
-          "weightPct": 1.72
+          "weightPct": 1.71
         },
         {
           "name": "Belgium",
-          "weightPct": 1.5
+          "weightPct": 1.49
         },
         {
           "name": "Other",
-          "weightPct": 1.1099999999999999
+          "weightPct": 1.13
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.52
+          "weightPct": 0.56
         }
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries"
     },
     "sectors": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "rows": [
         {
           "name": "Banks",
-          "weightPct": 99.48
+          "weightPct": 99.44
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.52
+          "weightPct": 0.56
         }
       ],
       "sourceComponent": "exposureBreakdowns.sector"
@@ -869,10 +869,10 @@
     ],
     "metrics": {
       "twelveMonTrlYld": {
-        "value": 3.952327,
+        "value": 3.956986,
         "label": "Rendement des distributions sur 12 mois",
         "unit": "%",
-        "asOf": "2026-10-28",
+        "asOf": "2026-10-29",
         "checkedAt": "2026-10-30",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The yield an investor would have received if they had held the fund over the last twelve months assuming the most recent NAV. The 12-Month yield is calculated by assuming any income distributions over the past twelve months and dividing by the sum of the most recent NAV and any capital gain distributions made over the past twelve months. This yield calculation does not take into account any dividends received and held by the fund, but are awaiting the next distribution date. This can cause deviation with index level yield values.",
@@ -889,20 +889,20 @@
         "scope": "Fund portfolio"
       },
       "priceEarnings": {
-        "value": 11.81943,
+        "value": 11.81597,
         "label": "PER du portefeuille selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-28",
+        "asOf": "2026-10-29",
         "checkedAt": "2026-10-30",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
         "scope": "Fund portfolio"
       },
       "priceBook": {
-        "value": 1.46942,
+        "value": 1.46988,
         "label": "Cours / actif net comptable selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-28",
+        "asOf": "2026-10-29",
         "checkedAt": "2026-10-30",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
@@ -919,8 +919,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-30T12:35:19.121844+00:00",
-    "pageSha256": "db1facb71d1db3812ff966f187d340c6499ee8e06ef59813e19a7d7bccc12b86",
+    "checkedAt": "2026-10-30T13:57:11.838286+00:00",
+    "pageSha256": "4090513e39c472cbdc481b4d5fa1a3baf52f4fb5b0d18c036f51cb10999e749b",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251934,
@@ -935,61 +935,61 @@
         "modifiedAt": "2026-10-29"
       },
       "sectors": {
-        "asOf": "2026-10-28",
+        "asOf": "2026-10-29",
         "rows": [
           {
             "name": "Banks",
-            "weightPct": 99.48,
+            "weightPct": 99.44,
             "label": "Banques"
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.52,
+            "weightPct": 0.56,
             "label": "Cash and/or Derivatives"
           }
         ],
         "sourceComponent": "exposureBreakdowns.sector",
         "checkedAt": "2026-10-30",
-        "modifiedAt": "2026-10-29"
+        "modifiedAt": "2026-10-30"
       },
       "countries": {
-        "asOf": "2026-10-28",
+        "asOf": "2026-10-29",
         "rows": [
           {
             "name": "United Kingdom",
-            "weightPct": 26.68
+            "weightPct": 26.64
           },
           {
             "name": "Spain",
-            "weightPct": 18.04
+            "weightPct": 17.76
           },
           {
             "name": "Italy",
-            "weightPct": 14.2
+            "weightPct": 14.18
           },
           {
             "name": "France",
-            "weightPct": 7.82
+            "weightPct": 7.87
           },
           {
             "name": "Netherlands",
-            "weightPct": 5.63
+            "weightPct": 5.54
           },
           {
             "name": "Sweden",
-            "weightPct": 4.44
+            "weightPct": 4.47
           },
           {
             "name": "Germany",
-            "weightPct": 3.69
+            "weightPct": 3.81
           },
           {
             "name": "Finland",
-            "weightPct": 2.74
+            "weightPct": 2.77
           },
           {
             "name": "Poland",
-            "weightPct": 2.66
+            "weightPct": 2.73
           },
           {
             "name": "Austria",
@@ -997,36 +997,36 @@
           },
           {
             "name": "Denmark",
-            "weightPct": 2.46
-          },
-          {
-            "name": "Ireland",
-            "weightPct": 2.1
+            "weightPct": 2.49
           },
           {
             "name": "Greece",
-            "weightPct": 2.05
+            "weightPct": 2.12
+          },
+          {
+            "name": "Ireland",
+            "weightPct": 2.08
           },
           {
             "name": "Norway",
-            "weightPct": 1.72
+            "weightPct": 1.71
           },
           {
             "name": "Belgium",
-            "weightPct": 1.5
+            "weightPct": 1.49
           },
           {
             "name": "Other",
-            "weightPct": 1.1099999999999999
+            "weightPct": 1.13
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.52
+            "weightPct": 0.56
           }
         ],
         "sourceComponent": "exposureBreakdowns.geography.countries",
         "checkedAt": "2026-10-30",
-        "modifiedAt": "2026-10-29"
+        "modifiedAt": "2026-10-30"
       },
       "holdings": {
         "asOf": "2026-10-29",
@@ -1164,15 +1164,15 @@
       },
       "metrics": {
         "twelveMonTrlYld": {
-          "value": 3.952327,
+          "value": 3.956986,
           "label": "Rendement des distributions sur 12 mois",
           "unit": "%",
-          "asOf": "2026-10-28",
+          "asOf": "2026-10-29",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "method": "The yield an investor would have received if they had held the fund over the last twelve months assuming the most recent NAV. The 12-Month yield is calculated by assuming any income distributions over the past twelve months and dividing by the sum of the most recent NAV and any capital gain distributions made over the past twelve months. This yield calculation does not take into account any dividends received and held by the fund, but are awaiting the next distribution date. This can cause deviation with index level yield values.",
           "scope": "Exact share, trailing 12 months",
           "checkedAt": "2026-10-30",
-          "modifiedAt": "2026-10-29"
+          "modifiedAt": "2026-10-30"
         },
         "numHoldings": {
           "value": 62.0,
@@ -1186,26 +1186,26 @@
           "modifiedAt": "2026-10-30"
         },
         "priceEarnings": {
-          "value": 11.81943,
+          "value": 11.81597,
           "label": "PER du portefeuille selon l’émetteur",
           "unit": "fois",
-          "asOf": "2026-10-28",
+          "asOf": "2026-10-29",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
           "scope": "Fund portfolio",
           "checkedAt": "2026-10-30",
-          "modifiedAt": "2026-10-29"
+          "modifiedAt": "2026-10-30"
         },
         "priceBook": {
-          "value": 1.46942,
+          "value": 1.46988,
           "label": "Cours / actif net comptable selon l’émetteur",
           "unit": "fois",
-          "asOf": "2026-10-28",
+          "asOf": "2026-10-29",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
           "scope": "Fund portfolio",
           "checkedAt": "2026-10-30",
-          "modifiedAt": "2026-10-29"
+          "modifiedAt": "2026-10-30"
         },
         "volatilitySourced3YrAnnualized": {
           "value": 16.746609,
@@ -1259,39 +1259,39 @@
       "asOf": "2026-10-29"
     },
     "countries": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "rows": [
         {
           "name": "Germany",
-          "weightPct": 32.33
+          "weightPct": 32.38
         },
         {
           "name": "Switzerland",
-          "weightPct": 24.41
+          "weightPct": 24.43
         },
         {
           "name": "United Kingdom",
-          "weightPct": 12.34
+          "weightPct": 12.39
         },
         {
           "name": "France",
-          "weightPct": 9.98
+          "weightPct": 9.95
         },
         {
           "name": "Italy",
-          "weightPct": 7.18
+          "weightPct": 7.11
         },
         {
           "name": "Netherlands",
-          "weightPct": 4.97
+          "weightPct": 4.96
         },
         {
           "name": "Finland",
-          "weightPct": 2.89
+          "weightPct": 2.9
         },
         {
           "name": "Norway",
-          "weightPct": 1.58
+          "weightPct": 1.57
         },
         {
           "name": "Belgium",
@@ -1303,7 +1303,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 1.2999999999999998
+          "weightPct": 1.28
         },
         {
           "name": "Cash and/or Derivatives",
@@ -1313,7 +1313,7 @@
       "sourceComponent": "exposureBreakdowns.geography.countries"
     },
     "sectors": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "rows": [
         {
           "name": "Insurance",
@@ -1427,10 +1427,10 @@
     ],
     "metrics": {
       "twelveMonTrlYld": {
-        "value": 3.38281,
+        "value": 3.361122,
         "label": "Rendement des distributions sur 12 mois",
         "unit": "%",
-        "asOf": "2026-10-28",
+        "asOf": "2026-10-29",
         "checkedAt": "2026-10-30",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The yield an investor would have received if they had held the fund over the last twelve months assuming the most recent NAV. The 12-Month yield is calculated by assuming any income distributions over the past twelve months and dividing by the sum of the most recent NAV and any capital gain distributions made over the past twelve months. This yield calculation does not take into account any dividends received and held by the fund, but are awaiting the next distribution date. This can cause deviation with index level yield values.",
@@ -1447,20 +1447,20 @@
         "scope": "Fund portfolio"
       },
       "priceEarnings": {
-        "value": 13.64103,
+        "value": 13.66094,
         "label": "PER du portefeuille selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-28",
+        "asOf": "2026-10-29",
         "checkedAt": "2026-10-30",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
         "scope": "Fund portfolio"
       },
       "priceBook": {
-        "value": 2.11706,
+        "value": 2.12035,
         "label": "Cours / actif net comptable selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-28",
+        "asOf": "2026-10-29",
         "checkedAt": "2026-10-30",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
@@ -1477,8 +1477,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-30T12:35:19.121844+00:00",
-    "pageSha256": "e1512e61faf715cd58a53bbcd7f99e5e2752e17171a7fc24f225e8bcace82a3f",
+    "checkedAt": "2026-10-30T13:57:11.838286+00:00",
+    "pageSha256": "e2597fb00f9be7c1724ae759f5f16c4bee1c4e5d975a50f8b87c0bdf417f3e25",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251950,
@@ -1493,7 +1493,7 @@
         "modifiedAt": "2026-10-29"
       },
       "sectors": {
-        "asOf": "2026-10-28",
+        "asOf": "2026-10-29",
         "rows": [
           {
             "name": "Insurance",
@@ -1508,42 +1508,42 @@
         ],
         "sourceComponent": "exposureBreakdowns.sector",
         "checkedAt": "2026-10-30",
-        "modifiedAt": "2026-10-29"
+        "modifiedAt": "2026-10-30"
       },
       "countries": {
-        "asOf": "2026-10-28",
+        "asOf": "2026-10-29",
         "rows": [
           {
             "name": "Germany",
-            "weightPct": 32.33
+            "weightPct": 32.38
           },
           {
             "name": "Switzerland",
-            "weightPct": 24.41
+            "weightPct": 24.43
           },
           {
             "name": "United Kingdom",
-            "weightPct": 12.34
+            "weightPct": 12.39
           },
           {
             "name": "France",
-            "weightPct": 9.98
+            "weightPct": 9.95
           },
           {
             "name": "Italy",
-            "weightPct": 7.18
+            "weightPct": 7.11
           },
           {
             "name": "Netherlands",
-            "weightPct": 4.97
+            "weightPct": 4.96
           },
           {
             "name": "Finland",
-            "weightPct": 2.89
+            "weightPct": 2.9
           },
           {
             "name": "Norway",
-            "weightPct": 1.58
+            "weightPct": 1.57
           },
           {
             "name": "Belgium",
@@ -1555,7 +1555,7 @@
           },
           {
             "name": "Other",
-            "weightPct": 1.2999999999999998
+            "weightPct": 1.28
           },
           {
             "name": "Cash and/or Derivatives",
@@ -1564,7 +1564,7 @@
         ],
         "sourceComponent": "exposureBreakdowns.geography.countries",
         "checkedAt": "2026-10-30",
-        "modifiedAt": "2026-10-29"
+        "modifiedAt": "2026-10-30"
       },
       "holdings": {
         "asOf": "2026-10-29",
@@ -1702,15 +1702,15 @@
       },
       "metrics": {
         "twelveMonTrlYld": {
-          "value": 3.38281,
+          "value": 3.361122,
           "label": "Rendement des distributions sur 12 mois",
           "unit": "%",
-          "asOf": "2026-10-28",
+          "asOf": "2026-10-29",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "method": "The yield an investor would have received if they had held the fund over the last twelve months assuming the most recent NAV. The 12-Month yield is calculated by assuming any income distributions over the past twelve months and dividing by the sum of the most recent NAV and any capital gain distributions made over the past twelve months. This yield calculation does not take into account any dividends received and held by the fund, but are awaiting the next distribution date. This can cause deviation with index level yield values.",
           "scope": "Exact share, trailing 12 months",
           "checkedAt": "2026-10-30",
-          "modifiedAt": "2026-10-29"
+          "modifiedAt": "2026-10-30"
         },
         "numHoldings": {
           "value": 29.0,
@@ -1724,26 +1724,26 @@
           "modifiedAt": "2026-10-30"
         },
         "priceEarnings": {
-          "value": 13.64103,
+          "value": 13.66094,
           "label": "PER du portefeuille selon l’émetteur",
           "unit": "fois",
-          "asOf": "2026-10-28",
+          "asOf": "2026-10-29",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
           "scope": "Fund portfolio",
           "checkedAt": "2026-10-30",
-          "modifiedAt": "2026-10-29"
+          "modifiedAt": "2026-10-30"
         },
         "priceBook": {
-          "value": 2.11706,
+          "value": 2.12035,
           "label": "Cours / actif net comptable selon l’émetteur",
           "unit": "fois",
-          "asOf": "2026-10-28",
+          "asOf": "2026-10-29",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
           "scope": "Fund portfolio",
           "checkedAt": "2026-10-30",
-          "modifiedAt": "2026-10-29"
+          "modifiedAt": "2026-10-30"
         },
         "volatilitySourced3YrAnnualized": {
           "value": 11.007475,
