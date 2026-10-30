@@ -1,4 +1,5 @@
 import wisdomtreeClasses from './wisdomtree-holdings-classes.json' with {type:'json'}
+import invescoPhysical from './invesco-physical-holdings-contracts.json' with {type:'json'}
 import {readFileSync,writeFileSync} from 'node:fs'
 import { wisdomtreeFactsheet, blackrockCharacteristicsEndpoint, wisdomtreeProductCandidates, qualifiedWisdomtreeRankingsRoute, qualifiedWisdomtreeApiMethod } from './issuer-routes.mjs'
 import {AUTOMATED_ETF} from '../src/data/automated-etf.js'
@@ -79,7 +80,7 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  else if(share?.parser==='vaneck'&&share.pageUrl&&share.apiTicker)holdings[isin]={isin,name,currency:share.currency,parser:'vaneck-complete',pageUrl:share.pageUrl,apiTicker:share.apiTicker}
  else if(share&&(amundiShares.has(isin)||share.parser==='amundi-expansion'))holdings[isin]={isin,name,currency:share.currency,parser:'amundi-complete'}
  else if(share?.productCode&&/vanguard/.test(share.parser??''))holdings[isin]={isin,name,currency:share.currency,productCode:share.productCode,parser:'vanguard-complete'}
- else if(['IE000716YHJ7','IE0000QLH0G6','IE000L2SA8K5'].includes(isin)&&share)holdings[isin]={isin,name,currency:share.currency,parser:'invesco-complete',sourceUrl:share.sourceUrl}
+ else if(['IE000716YHJ7','IE0000QLH0G6','IE000L2SA8K5'].includes(isin)&&share)holdings[isin]={isin,name,currency:share.currency,parser:'invesco-complete',sourceUrl:share.sourceUrl,...(invescoPhysical.shares[isin]?{holdingsContract:invescoPhysical.methodCode}:{})}
  else if(share?.documentType==='wisdomtree-ucits'&&completeHoldings[isin]?.complete===true&&(
   (wisdomtreeProductCandidates(share.sourceUrl).includes(completeHoldings[isin]?.sourceUrl)&&completeHoldings[isin]?.identityMethod==='Exact SEDOL to ISIN; identity-source weights never imported') ||
   (wisdomtreeClasses[isin]?.currency===share.currency&&qualifiedWisdomtreeRankingsRoute(completeHoldings[isin]?.sourceUrl,wisdomtreeClasses[isin],completeHoldings[isin]?.qualifiedRankingListings)&&completeHoldings[isin]?.identitySourceUrl===wisdomtreeFactsheet(isin)&&/^[a-f0-9]{64}$/.test(completeHoldings[isin]?.identitySha256||'')&&completeHoldings[isin]?.identityMethod==='Exact SEDOL to ISIN; identity-source weights never imported') ||

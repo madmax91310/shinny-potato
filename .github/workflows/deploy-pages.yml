@@ -422,6 +422,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_metadata_lse_listing_reference.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_listing_retention.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_incidents.py'
+      - run: python -m unittest discover -s scripts -p 'test_invesco_physical_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_physical_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_regional_routes.py'
