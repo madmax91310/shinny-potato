@@ -5,7 +5,7 @@ import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
 import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
-import { analyzeBudget, buildBudgetText, euro } from '../src/pages/budget-profiles/lib.js'
+import { analyzeBudget, budgetDisplayName, buildBudgetText, euro } from '../src/pages/budget-profiles/lib.js'
 import { DRAFT_KEY, PUBLISHED_KEY, USAGE_KEY } from '../src/pages/budget-profiles/storage.js'
 
 const base = process.env.BUDGET_PUBLIC_BASE ?? 'http://127.0.0.1:4403/shinny-potato'
@@ -18,6 +18,19 @@ try {
   const errors = [], results = []
   for (const width of [1440, 390, 320]) {
     const context = await browser.newContext({ viewport: { width, height: 950 }, permissions: ['clipboard-read', 'clipboard-write'], reducedMotion: 'reduce' })
+    await context.addInitScript(() => {
+      const original = CanvasRenderingContext2D.prototype.fillText
+      window.budgetCanvasText = []
+      CanvasRenderingContext2D.prototype.fillText = function (text, x, y, ...args) {
+        if (String(text) === 'LE BUDGET DE') window.budgetCanvasText = []
+        if (this.canvas.width === 1200) {
+          const width = this.measureText(text).width
+          const left = x - (this.textAlign === 'right' ? width : this.textAlign === 'center' ? width / 2 : 0)
+          window.budgetCanvasText.push({ text, left, right: left + width, y, size: parseFloat(this.font.match(/[\d.]+px/)?.[0]), height: this.canvas.height })
+        }
+        return original.call(this, text, x, y, ...args)
+      }
+    })
     const page = await context.newPage()
     page.on('pageerror', e => errors.push(e.message))
     await page.goto(base + '/'); await expect(page.getByRole('link', { name: 'Le budget de… Publication ponctuelle', exact: true })).toBeVisible()
@@ -37,6 +50,21 @@ try {
       const download = await downloadPromise
       assert.deepEqual(readFileSync(await download.path()), Buffer.from(previewBytes), 'The downloaded PNG must equal the visible preview byte for byte')
       assert((await image.evaluate(img => img.naturalWidth)) === 1200)
+      const drawn = await page.evaluate(() => window.budgetCanvasText)
+      assert(drawn.length > 0, 'Inspect the real canvas text, not only its PNG dimensions')
+      for (const t of drawn) {
+        assert(t.left >= 30 && t.right <= 1170 && t.y >= 0 && t.y + t.size <= t.height, `${profile.id}: text exceeds the image: ${JSON.stringify(t)}`)
+        assert(!t.text.includes('…'), `${profile.id}: no truncated content`)
+      }
+      const normalize = text => text.replace(/\s+/g, ' ').trim()
+      const imageText = normalize(drawn.map(t => t.text).join(' '))
+      assert(imageText.includes(budgetDisplayName(profile)))
+      for (const row of [...profile.income, ...profile.expenses, ...profile.savings]) {
+        assert(imageText.includes(normalize(row.label)), `${profile.id}: missing complete label ${row.label}`)
+        assert(imageText.includes(normalize(euro(row.amount))), `${profile.id}: missing amount ${row.amount}`)
+      }
+      assert(imageText.includes(normalize(euro(Math.abs(analyzeBudget(profile).balance)))))
+      writeFileSync(`${output}/${width}-${profile.id}-export.png`, Buffer.from(previewBytes))
       await page.getByRole('button', { name: 'Copier le texte', exact: true }).click()
       assert.equal(await page.evaluate(() => navigator.clipboard.readText()), buildBudgetText(profile))
       await expect(page.getByRole('checkbox', { name: 'Profil publié', exact: true })).not.toBeChecked()
