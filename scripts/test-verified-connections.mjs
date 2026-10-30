@@ -1,3 +1,4 @@
+import {MANUAL_SOURCE_ROUTES} from '../src/data/portfolio-admissions.js'
 import {RESOURCE_DUEL_CHOICES} from '../src/data/resource-selections.js'
 import { isQualifiedAnnualPortfolioFund } from '../src/data/annual-portfolio-funds.js'
 import { INVESTMENT_ART } from '../src/pages/investment-calculator/emeraldArt.js'
@@ -107,7 +108,7 @@ const projectedAdmissions=await import('data:text/javascript;base64,'+Buffer.fro
 assert.deepEqual(projectedAdmissions.AUTOMATIC_FACTOR_ADMISSIONS,AUTOMATIC_FACTOR_ADMISSIONS,'Build projections preserve role, profile and allocation permissions')
 assert(!admissionCode.includes('automated-etf'))
 let duelId=''
-for(let i=0;i<30;i++){const duel=generateDuel(duelId);duelId=duel.id;assert([...duel.a.assets,...duel.b.assets].every(a=>!a.annualManual || RESOURCE_DUEL_CHOICES.some(([id,isin,,,role])=>id===a.id && isin===a.isin && role===a.role)),'New annual admissions do not enter generated Duels; exact pre-existing resource roles remain available')}
+for(let i=0;i<30;i++){const duel=generateDuel(duelId);duelId=duel.id;assert([...duel.a.assets,...duel.b.assets].every(a=>!a.annualManual || RESOURCE_DUEL_CHOICES.some(([id,isin,,,role])=>id===a.id && isin===a.isin && role===a.role) || (MANUAL_SOURCE_ROUTES[a.isin]?.id===a.id && MANUAL_SOURCE_ROUTES[a.isin]?.existingDuelRole===a.role)),'New annual admissions do not enter generated Duels; exact pre-existing resource roles remain available')}
 for(const admission of AUTOMATIC_FACTOR_ADMISSIONS) {
   assert.equal(PORTFOLIO.find(a=>a.id===admission.id).manualOnly,false)
   for(const profile of ['generaliste','rentier','bouclier','pro_europe'])for(const risk of ['prudent','defensif','equilibre','dynamique','offensif']) {

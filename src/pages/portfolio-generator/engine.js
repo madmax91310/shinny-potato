@@ -119,10 +119,19 @@ function pickLeastUsed(options, usageCounts) {
 // équiprobabilité, pour que les alternatives sous-utilisées comblent vite leur retard.
 function resolveAssetId(slot, usageCounts, historyLength) {
   if (!slot.idOptions) return slot.id;
+  // Qualify the existing options before frequency rotation. An unavailable
+  // alternative must not crowd out the remaining qualified issuer once its
+  // session cap is reached. Keep the six-year financial admission unchanged.
+  const eligible = slot.idOptions.filter(id => {
+    const perf = computeYearlyPerf([{ ...getAsset(id), pct: 100 }]);
+    return performanceYears(perf).length === 6 && Object.values(perf).every(Number.isFinite);
+  });
+  // The final combined-window guard rejects recipes with no qualified option.
+  if (!eligible.length) return slot.idOptions[0];
   // Choose an exposure first: multiple issuers must not give a theme extra tickets.
-  const families = [...new Set(slot.idOptions.map(exposureFamily))];
+  const families = [...new Set(eligible.map(exposureFamily))];
   const family = weightedPick(families, families.map(key => 1 / ((usageCounts[`family:${key}`] || 0) + 1)));
-  let candidates = slot.idOptions.filter(id => exposureFamily(id) === family);
+  let candidates = eligible.filter(id => exposureFamily(id) === family);
   if (historyLength >= 5) {
     const cap = getFrequencyCap(slot.idOptions);
     const underCap = candidates.filter((id) => (usageCounts[id] || 0) / historyLength <= cap);

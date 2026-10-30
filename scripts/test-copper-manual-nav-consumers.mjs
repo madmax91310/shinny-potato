@@ -1,3 +1,4 @@
+import {MANUAL_SOURCE_ROUTES} from '../src/data/portfolio-admissions.js'
 import {generatedDuelPool} from '../src/pages/portfolio-duels/generate.js'
 import {RESOURCE_DUEL_CHOICES} from '../src/data/resource-selections.js'
 import assert from'node:assert/strict'
@@ -33,7 +34,7 @@ assert.equal(assetEditorial(fallback).text,commoditySourceExplanation(fallback))
 assert(!ASSETS.filter(x=>!x.manualOnly).some(x=>x.isin===isin),'No automatic Générateur role granted')
 assert(generatedDuelPool('complement').some(x=>x.id==='cuivre_wisdomtree'),'Existing generated Duel resource role is preserved')
 for(const role of['base','complement','theme'])for(const item of generatedDuelPool(role).filter(x=>x.annualManual))
- assert(RESOURCE_DUEL_CHOICES.some(([id,isin,,,oldRole])=>id===item.id && isin===item.isin && oldRole===role),'No new annual-only automatic Duel role')
+ assert(RESOURCE_DUEL_CHOICES.some(([id,isin,,,oldRole])=>id===item.id && isin===item.isin && oldRole===role) || (MANUAL_SOURCE_ROUTES[item.isin]?.id===item.id && MANUAL_SOURCE_ROUTES[item.isin]?.existingDuelRole===role),'No new annual-only automatic Duel role')
 if(qualifyPreferredManualNav(live)){
  assert.equal(g.cat,'matieres_premieres');assert.equal(g.basis,'fund-nav');assert.equal(d.basis,'fund-nav');assert(isQualifiedAnnualPortfolioFund(d),'Duel preserves the full independent NAV contract')
  assert.equal(g.returnCurrency,'USD');assert.equal(d.currency,'USD');if(g.underlyingMechanism)assert.equal(g.underlyingMechanism.kind,'commodity-swap');assert(!g.automatedManual)

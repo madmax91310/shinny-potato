@@ -527,17 +527,10 @@ export const ASSETS = [
   {
     id: "bitcoin", name: getInstrumentName("GB00BLD4ZL17", "portfolio"), cat: "crypto", emoji: "🟠",
     isin: "GB00BLD4ZL17",
-    // Contrôle individuel du proxy le 24/09/2026 : cours spot BTC/USD, 2020-2025 ; ce ne sont pas les rendements de l’ETP CoinShares. Confiance : proxy documenté, pas rendement du produit affiché.
-    // Sources : https://www.slickcharts.com/currency/BTC/returns et https://investor.coinshares.com/pressreleases/coinshares-lists-physically-backed-crypto-etps-on-euronext-paris-amsterdam
-    // Rendements BTC/USD publiés par Slickcharts, 2020-2025 : variation entre les
-    // clôtures annuelles successives, même convention pour toutes les années.
-    // https://www.slickcharts.com/currency/BTC/returns
-    // Le fournisseur ne précise pas l'heure de clôture dans ce tableau ; la valeur
-    // peut différer d'un cours figé à minuit UTC. 2020 précède l'ETP CoinShares :
-    // 2020 est un proxy spot antérieur au lancement de l'ETP, signalé dans l'interface.
-    // Même proxy pour les ETP WisdomTree, Bitwise et 21Shares.
+    // Série produit USD de l’émetteur CoinShares, frais et opérations inclus.
+    // Le calendrier ne retient que les années complètes effectivement publiées.
     r: getInstrumentReturnValues('GB00BLD4ZL17'),
-    confidenceNote: "Simulation sur le cours spot BTC/USD (Slickcharts), avant frais et change ; 2020 précède le lancement de l'ETP CoinShares et n'est pas sa performance.",
+    confidenceNote: "Rendements de l’ETP CoinShares en dollars, après frais ; seules les années complètes publiées sont utilisées. Le résultat en euros dépend du change.",
     desc: [
       "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
       "extrêmement volatil : capable de tripler... comme de perdre les deux tiers de sa valeur.",
@@ -547,18 +540,10 @@ export const ASSETS = [
   {
     id: "ethereum", name: getInstrumentName("GB00BLD4ZM24", "portfolio"), cat: "crypto", emoji: "🟠",
     isin: "GB00BLD4ZM24",
-    // Rendements ETH/USD publiés par Slickcharts, 2020-2025 : variation entre les
-    // clôtures annuelles successives, selon la même convention que le proxy BTC.
-    // https://www.slickcharts.com/currency/ETH/returns
-    // Cours spot uniquement : ne capte pas le staking de l'ETP CoinShares. 2020
-    // précède son lancement en février 2021 et ne constitue pas son rendement.
-    // Vérifié le 25/09/2026 : les six rendements 2020-2025 et la convention de
-    // clôture annuelle correspondent au tableau Slickcharts ; l'émetteur CoinShares
-    // (https://coinshares.com/uk/etp/physical-ethereum/) confirme l'ISIN, le staking
-    // et le lancement le 23/02/2021. Confiance élevée pour le proxy spot USD,
-    // pas d'attribution de ces rendements à l'ETP lui-même.
+    // Série produit USD de l’émetteur CoinShares, frais et staking reflétés.
+    // Le cours spot ne complète pas les années absentes de ce calendrier.
     r: getInstrumentReturnValues('GB00BLD4ZM24'),
-    confidenceNote: "Simulation sur le cours spot ETH/USD (Slickcharts), sans staking, frais ni change ; 2020 précède le lancement de l'ETP CoinShares et n'est pas sa performance.",
+    confidenceNote: "Rendements de l’ETP CoinShares en dollars, frais et staking reflétés ; seules les années complètes publiées sont utilisées. Le résultat en euros dépend du change.",
     desc: [
       "la deuxième plus grande cryptomonnaie, socle de nombreuses applications décentralisées.",
       "encore plus volatil que le bitcoin sur certaines périodes, avec des cycles très marqués.",
@@ -696,15 +681,15 @@ export const ASSETS = [
   {
     id: "quality_dividend", name: getInstrumentName("IE00BKPSFC54", "portfolio"), cat: "dividendes", emoji: "🟣",
     isin: "IE00BKPSFC54",
-    // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2021-2025 seulement ; 2020 emprunté à la part Dist. Confiance : élevée pour la période indiquée.
+    // Calendrier exact Acc : 2020 incomplet reste absent, sans emprunt à la part Dist.
     // Source primaire : https://www.ishares.com/gls-download/literature/fact-sheet/wqda-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf
     distributing: false,
     // Rendements NAV USD de la part Acc : benchmark modifié le 1er juin 2022.
-    // Part Acc lancée en mai 2020 : 2020 reprend le rendement de la part Dist
-    // du même fonds, publié par BlackRock ; objectif/indice modifié en juin 2022.
+    // Part Acc lancée en mai 2020 : aucune année complète 2020.
+    // Objectif/indice modifié en juin 2022 ; les dates ne sont pas prolongées.
     // https://www.ishares.com/gls-download/literature/fact-sheet/wqda-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf
     r: getInstrumentReturnValues('IE00BKPSFC54'),
-    confidenceNote: 'Rendements NAV en dollars ; 2020 provient de la part distribuante du même fonds (part Acc lancée en mai 2020). Indice modifié en juin 2022.',
+    confidenceNote: 'Rendements NAV de la part Acc en dollars, revenus réinvestis ; seules les années complètes publiées sont utilisées. Indice modifié en juin 2022.',
     desc: [
       "combine dividende régulier et critères de qualité financière (rentabilité, faible endettement).",
       "vise des entreprises capables de maintenir leur dividende même en période difficile.",
@@ -793,11 +778,11 @@ export const ASSETS = [
   {
     id: "bitcoin_etcgroup", name: getInstrumentName("DE000A27Z304", "portfolio"), cat: "crypto", emoji: "🟠",
     isin: "DE000A27Z304",
-    // NAV USD publiée par Bitwise ; 2020 commence au lancement du 08/06/2020
-    // et ne représente pas une année calendaire complète.
+    // NAV USD publiée par Bitwise pour les années calendaires complètes.
+    // Le lancement du 08/06/2020 ne permet pas une année 2020 complète.
     // https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/
     r: getInstrumentReturnValues('DE000A27Z304'),
-    confidenceNote: "2020 : cours spot BTC/USD, pas la performance de l'ETP lancé en juin ; 2021-2025 : NAV Bitwise USD nette de frais. Change EUR exclu.",
+    confidenceNote: "Performances annuelles de la NAV de l’ETP en dollars, nettes de frais ; seules les années complètes sont utilisées. Le résultat en euros dépend du change.",
     desc: [
       "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
       "extrêmement volatil : capable de tripler... comme de perdre les deux tiers de sa valeur.",
@@ -1008,9 +993,10 @@ export const ASSETS = [
     // contre 12,53% trouvé pour un indice proche mais visiblement pas exactement celui répliqué
     // par ce fonds — écarté). 2020 reste NON VÉRIFIÉ : le tableau du fact sheet lui-même démarre
     // en 2021 (fonds lancé le 18/11/2020). Pour 2020, indice MSCI Europe IT 20/35
+    // Ancienne référence 2020 écartée du calcul de la part :
     // Capped net EUR +11,61 % : https://www.msci.com/documents/10199/255599/msci-europe-it-2035-capped-index-eur-net.pdf
     r: getInstrumentReturnValues('IE00BMW42413'),
-    confidenceNote: "2020 : indice MSCI Europe Information Technology 20/35 Capped net EUR avant l'année complète du fonds ; 2021-2025 : part iShares EUR, nette de frais.",
+    confidenceNote: "Rendements de la part iShares en euros, nets de frais ; seules les années complètes publiées sont utilisées.",
     desc: [
       "la technologie européenne : un secteur beaucoup plus restreint qu'aux États-Unis, mais bien réel.",
       "ASML, SAP, Dassault Systèmes... les rares géants tech du continent réunis en une ligne.",
@@ -1321,17 +1307,17 @@ export const ASSETS = [
   },
   {
     // Part iShares lancée en avril 2020 : 2021-2025 sont les performances calendaires
-    // « Total Return » publiées en USD par BlackRock ; 2020 reprend la part Dist
-    // déjà existante du même fonds (fonds Acc lancé en avril). L'indice EXCLUT l'Inde.
+    // « Total Return » publiées en USD par BlackRock ; aucune part Dist
+    // ne complète l'année de lancement. L'indice EXCLUT l'Inde.
     // https://www.ishares.com/uk/individual/en/products/313316/ishares-msci-ac-far-east-ex-japan-ucits-etf
     id: "actions_asie_ex_japon", name: getInstrumentName("IE00BKPX3K41", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00BKPX3K41",
-    // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2021-2025 seulement ; 2020 emprunté à la part Dist. Confiance : élevée pour la période indiquée.
+    // Calendrier exact Acc : 2020 incomplet reste absent, sans emprunt à la part Dist.
     // Source primaire : https://www.ishares.com/gls-download/literature/fact-sheet/iffi-ishares-msci-ac-far-east-ex-japan-ucits-etf-fund-fact-sheet-en-gb.pdf
     // https://www.ishares.com/gls-download/literature/fact-sheet/iffi-ishares-msci-ac-far-east-ex-japan-ucits-etf-fund-fact-sheet-en-gb.pdf
     // https://www.ishares.com/uk/professionals/en/products/251848/ishares-msci-ac-far-east-ex-japan-ucits-etf
     r: getInstrumentReturnValues('IE00BKPX3K41'),
-    confidenceNote: '2020 : rendement de la part distribuante du même fonds, en dollars et dividendes réinvestis (part Acc lancée en avril). 2021-2025 : rendements de la part Acc en dollars.',
+    confidenceNote: 'Rendements de la part Acc en dollars, revenus réinvestis ; seules les années complètes publiées sont utilisées.',
     desc: [
       "Chine, Taïwan, Corée, Asean... l'Asie développée et émergente réunie en une seule ligne, hors Japon et Inde.",
       "plus diversifié qu'un pari sur un seul pays asiatique, mais toujours concentré sur une seule région du monde.",
