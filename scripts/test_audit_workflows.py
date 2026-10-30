@@ -186,6 +186,27 @@ class WorkflowContracts(unittest.TestCase):
         for critical in ['node scripts/test-route-loading.mjs','node scripts/playwright-tools.mjs','node scripts/test-automation-failures-ui.mjs']:
             self.assertIn(critical, commands)
 
+    def test_dependent_market_producers_share_the_production_lock(self):
+        # Real refusal41056366335: non-bond publication changed five inputs
+        # while the ETF collector was acquiring. Admission must start before
+        # checkout, rather than exempting those inputs from financial checks.
+        groups = []
+        for filename in ('collect-etf-pilot.yml', 'update-exposure-expansion.yml',
+                         'update-non-bond-expansion.yml'):
+            workflow = (ROOT/'.github/workflows'/filename).read_text()
+            job = workflow.split('  refresh:\n', 1)[1]
+            before_steps = job.split('    steps:', 1)[0]
+            group = re.search(r'(?m)^      group: (.+)$', before_steps).group(1)
+            groups.append(group)
+            self.assertIn("github.event_name == 'pull_request'", group)
+            self.assertIn('github.workflow', group)
+            self.assertIn('github.ref', group)
+            self.assertTrue(group.endswith("|| 'production' }}"))
+            self.assertIn('cancel-in-progress: false', before_steps)
+            self.assertIn('queue: max', before_steps)
+            self.assertIn("ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}", job)
+        self.assertEqual(len(set(groups)), 1, 'Dependent production writes must serialize; PR checks remain independent')
+
     def test_production_collectors_queue_instead_of_replacing_pending_runs(self):
         # GitHub keeps one pending job per concurrency group: without a queue, each new
         # arrival cancels the waiting one. Three ETF collectors cancelled each other on

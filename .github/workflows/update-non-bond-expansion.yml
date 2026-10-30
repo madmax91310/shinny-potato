@@ -34,7 +34,9 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     concurrency:
-      group: non-bond-data-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+      # The ordinary ETF writer validates against these same non-bond outputs.
+      # Serialize before checkout; do not weaken the rebase/input guard.
+      group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
       cancel-in-progress: false
       queue: max
     permissions:
