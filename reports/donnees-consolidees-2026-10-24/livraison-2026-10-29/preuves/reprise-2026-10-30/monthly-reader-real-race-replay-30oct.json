@@ -1,0 +1,39 @@
+{
+  "firstCronRecordingRefusal": {
+    "changedPaths": [
+      ".github/workflows/update-non-bond-expansion.yml",
+      "docs/data-operations-coordination.md",
+      "scripts/test_audit_workflows.py"
+    ],
+    "qualifiedPublicationReaders": [
+      ".github/workflows/update-non-bond-expansion.yml",
+      "scripts/test_audit_workflows.py"
+    ],
+    "financialRevalidationRequired": true,
+    "sourceControlsRenewedByThisAdapter": false
+  },
+  "budgetReaderOnlyMerge": {
+    "changedPaths": [
+      "docs/budget-text-publication-2026-10-30.md",
+      "scripts/playwright-budget-profiles.mjs",
+      "scripts/test-budget-profiles.mjs",
+      "src/pages/budget-profiles/App.jsx",
+      "src/pages/budget-profiles/data.js",
+      "src/pages/budget-profiles/lib.js",
+      "src/pages/budget-profiles/storage.js"
+    ],
+    "qualifiedPublicationReaders": [
+      "docs/budget-text-publication-2026-10-30.md",
+      "scripts/playwright-budget-profiles.mjs",
+      "scripts/test-budget-profiles.mjs",
+      "src/pages/budget-profiles/App.jsx",
+      "src/pages/budget-profiles/data.js",
+      "src/pages/budget-profiles/lib.js",
+      "src/pages/budget-profiles/storage.js"
+    ],
+    "financialRevalidationRequired": true,
+    "sourceControlsRenewedByThisAdapter": false
+  },
+  "budgetParent": "fe929644e60860239fee54afdedd3bcfc326de77",
+  "mixedFinancialChangesStillRefused": "Collection inputs may have changed; recollect from master: docs/exposure-coverage.json, docs/exposure-coverage.md, public/data/holdings-discovery.json, public/data/pending-source-checks.json, scripts/instrument-metadata-sources.json, src/data/dca-security-classifications.json, src/data/exposure-sleeves.json, src/data/qualified-exposure-etfs.json, src/data/qualified-listing-records.json, src/pages/dca-profiles/catalog.json, src/pages/dca-profiles/exposures-extra-0.json, src/pages/dca-profiles/exposures-extra-1.json, src/pages/dca-profiles/exposures-extra-2.json, src/pages/dca-profiles/exposures.json, src/pages/dca-profiles/holdings-0.json, src/pages/dca-profiles/holdings-1.json, src/pages/dca-profiles/holdings-10.json, src/pages/dca-profiles/holdings-11.json, src/pages/dca-profiles/holdings-12.json, src/pages/dca-profiles/holdings-13.json, src/pages/dca-profiles/holdings-14.json, src/pages/dca-profiles/holdings-15.json, src/pages/dca-profiles/holdings-16.json, src/pages/dca-profiles/holdings-17.json, src/pages/dca-profiles/holdings-18.json, src/pages/dca-profiles/holdings-19.json, src/pages/dca-profiles/holdings-2.json, src/pages/dca-profiles/holdings-20.json, src/pages/dca-profiles/holdings-21.json, src/pages/dca-profiles/holdings-22.json, src/pages/dca-profiles/holdings-23.json, src/pages/dca-profiles/holdings-24.json, src/pages/dca-profiles/holdings-25.json, src/pages/dca-profiles/holdings-26.json, src/pages/dca-profiles/holdings-27.json, src/pages/dca-profiles/holdings-28.json, src/pages/dca-profiles/holdings-29.json, src/pages/dca-profiles/holdings-3.json, src/pages/dca-profiles/holdings-30.json, src/pages/dca-profiles/holdings-31.json, src/pages/dca-profiles/holdings-4.json, src/pages/dca-profiles/holdings-5.json, src/pages/dca-profiles/holdings-6.json, src/pages/dca-profiles/holdings-7.json, src/pages/dca-profiles/holdings-8.json, src/pages/dca-profiles/holdings-9.json, src/pages/dca-profiles/holdings.json"
+}

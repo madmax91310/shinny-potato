@@ -1,35 +1,17 @@
 {
-  "updatedAt": "2026-10-30T02:53:20.534079+00:00",
-  "applicationCodeVerified": "66c27cda4ef5154446d33b0fcaeed15db93f0dfd",
-  "codePR": 1063,
-  "productionGate": 40989014229,
-  "ordinarySource": 40982595758,
-  "ordinarySourceRecord": "3b2ea3628949d7ab4a6275c4bc0217f9d29e04cb",
-  "registryBlobPublic": "12a3ad367f85091d2283beabd0a991215ca32f4e",
-  "ordinaryMonitor": 40992367498,
+  "updatedAt": "2026-10-30T18:46:15.422989+00:00",
+  "state": "travaux et vérifications en cours",
   "completeAutomationClaimed": false,
-  "followup": "Existing consolidated ledger only; #881 current, #583 historical closed",
-  "reports": [
-    "LIVRAISON.md",
-    "bilan-par-outil.csv",
-    "suivi-consolide.csv.gz",
-    "matrice-donnees-usages.csv.gz",
-    "reconciliation-79-ecarts.csv",
-    "statut-19-actions.csv",
-    "restant-a-verifier.csv.gz"
-  ],
+  "integrationPR": 1096,
+  "head": "fc4f3d28d18e858ac6d70513db9b986eafabe461",
+  "sourceRepairsAlreadyMerged": 1088,
+  "publicSnapshot": "capture17h59, code1b600c9227f72c5ab36863cc0673a30a720bbb65",
   "financial79": {
-    "qualified": 70,
-    "refused": 9,
-    "oldQuoteDivergences": 77,
+    "qualifiedMonthly": 70,
+    "refusedMonthly": 9,
+    "newMonthlyWindows": 0,
+    "oldDivergences": 77,
     "residuals": 2
   },
-  "openDrafts": {
-    "1061": "Primary regional PEA AUM route403inGitHub. Existing monthly PDF route works and preserves newer October values; do not merge draft as restored daily route.",
-    "1031": "GlobalX Uranium parser diagnostics; preserve owner files.",
-    "1042": "LifeStrategy editorial guide; preserve owner files."
-  },
-  "futureVerification": "New scheduled source runs after the fixes remain to be observed; successful workflow_dispatch never counts as cron.",
-  "exclusions": "No exclusive Portefeuilles IA component or company-analysis-only data restored.",
-  "priorResumePreserved": "ETAT-REPRISE.before-final-30oct.json.gz"
+  "limitation": "Ce dépôt de preuves ne clôture pas le lot1096 et ne revendique ni sa fusion ni sa publication. Les rapports finaux seront actualisés après validation et vérification publique."
 }

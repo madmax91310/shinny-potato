@@ -1,0 +1,57 @@
+{
+  "exportedAt": "2026-10-30T17:59:16.321Z",
+  "monitorCheckedAt": "2026-10-30T17:58:24.491482+00:00",
+  "code": {
+    "sha": "1b600c9227f72c5ab36863cc0673a30a720bbb65",
+    "builtAt": "2026-10-30T16:27:57Z"
+  },
+  "sourceHashes": {
+    "diagnostics-action.json": "9d0a99b94330e01a1ba2c0caf351ba3956d52fc1e8ab0d2167aef2f8ecf96eab",
+    "diagnostics-all.json": "5f92b4d9c7639d4f97444dfc03f975dd9a35cd15d180d6802b6d94006f4b4ba2",
+    "automation-status.json": "ec9583a7a3271066d07427d1ab1de43779497d7ae48a582a480059c702889ad2",
+    "data-review-inbox.json": "62e4ac3de42f69cba94d1101c3768cf970088b9f487bafa510b3f46b12558fff",
+    "asset-field-coverage.json": "8d97b6e7add0ad82011f7d3d19b9155850caa4e8f25600a61545ff89d11ec980"
+  },
+  "initialIdentitiesPreserved": 661,
+  "previousLedgerIdentitiesPreserved": 46216,
+  "newPublicIdentitiesAdded": 239,
+  "additionalMatrixIdentities": 20,
+  "ledgerIdentities": 46475,
+  "activeByClass": {
+    "monitoring": 6,
+    "failure": 124,
+    "qualification": 4661,
+    "connection": 33
+  },
+  "allByClass": {
+    "monitoring": 6,
+    "failure": 124,
+    "qualification": 4661,
+    "connection": 33,
+    "editorial": 798,
+    "waiting": 22,
+    "not-applicable": 423,
+    "history": 615
+  },
+  "investigationCategories": {
+    "preuve de supervision": 6,
+    "contrôle à renouveler": 2,
+    "cause à qualifier": 8,
+    "conflit financier à date identique": 97,
+    "enregistrement protégé": 1,
+    "convention historique non rapprochée": 1,
+    "champ financier fournisseur absent": 1,
+    "périmètre brut / net incompatible": 1,
+    "accès fournisseur refusé": 8,
+    "source Radar / propriétaire existant": 5,
+    "preuve / qualification incomplète": 4661,
+    "raccordement / qualification documentaire": 33
+  },
+  "financial79": {
+    "qualifiedMonthly": 70,
+    "refusedMonthly": 9,
+    "oldQuoteDivergences": 77,
+    "residuals": 2
+  },
+  "completeAutomationClaimed": false
+}

@@ -1,0 +1,262 @@
+{
+  "run": 41060821361,
+  "event": "workflow_dispatch",
+  "scope": {
+    "requested": [
+      "etc_wti_crude_oilNav",
+      "etfIE00BDVPNG13Nav"
+    ],
+    "selected": [
+      "etc_wti_crude_oilNav",
+      "etfIE00BDVPNG13Nav"
+    ]
+  },
+  "sourceState": "unchanged-verified from real source responses, not cached success",
+  "registeredCommit": "26f521972e6e959f949f9aeee682bbef3b672de8",
+  "monthlySeriesCompared": 250,
+  "changedRecords": [
+    "etc_wti_crude_oilNav",
+    "etfIE00BDVPNG13Nav"
+  ],
+  "changedPointSeries": [],
+  "records": [
+    {
+      "id": "etc_wti_crude_oilNav",
+      "isin": "GB00B15KXV33",
+      "label": "WisdomTree WTI Crude Oil \u00b7 VL",
+      "instrumentType": "ETC",
+      "consumerScope": "catalog",
+      "currency": "USD",
+      "periodStart": "2020-12",
+      "precision": 8,
+      "collectAnniversary": false,
+      "parser": "official-nav",
+      "field": "nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fen\u00eatres de rendement qualifi\u00e9es s\u00e9par\u00e9ment ; ancienne cotation conserv\u00e9e, aucune substitution par un indice",
+      "navProvider": "wisdomtree",
+      "navCurrency": "USD",
+      "navHistoryTransport": "official-dataspan-nav-tr",
+      "wisdomClassId": 1000076,
+      "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil",
+      "calendarRegistry": "src/data/non-bond-etf-records.json",
+      "returnWindowQualification": "corroborated-calendars",
+      "requiredQualifiedCalendarYears": [
+        2023
+      ],
+      "wisdomTicker": "CRUD",
+      "wisdomProductName": "WisdomTree WTI Crude Oil",
+      "wisdomListingId": 2740803,
+      "wisdomInception": "2006-09-22",
+      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+      "anniversaryAvailable": false,
+      "checkedAt": "2026-10-30",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
+      ],
+      "sourceCredit": "WisdomTree",
+      "latestLevel": {
+        "value": 19.0396,
+        "asOf": "2026-10-27",
+        "currency": "USD",
+        "isin": "GB00B15KXV33",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 19.0396,
+        "nativeCurrency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1,
+        "sourceUrl": "https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export",
+        "sourceUrls": [
+          "https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export"
+        ],
+        "checkedAt": "2026-10-28",
+        "method": "Previously qualified exact-share NAV used only as an immutable scale anchor; not a new price consultation",
+        "maxAgeDays": 7,
+        "sha256": "82c42b5d648d89853b3692c03034b00533bdefcf8f8c274569ded0a11c3fb044",
+        "unitQualification": "historical-reference-only"
+      },
+      "nativeValuationCurrency": "USD",
+      "lastOfficialValuation": "2026-10-29",
+      "financialConvention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
+      "historyUnqualifiedReturnWindows": [],
+      "responseSha256": "834e9eb98311957d941ab4a23d81a0fe1466910fda702294c7d4877405f00d9f",
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k": "a621b0122aedb31c946d625d336b46687e11fa944c2f32c84a9f58d54ddb03a1",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular": "b1f3111431e26e4441da4c3309586ee812d43895a2726e65d943b7faef5c096a",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33": "e8bbd5f4a33949849d608477bf4783f42bde72b10b5c98db2c83082ce59679a8"
+      },
+      "months": 70
+    },
+    {
+      "id": "etfIE00BDVPNG13Nav",
+      "isin": "IE00BDVPNG13",
+      "label": "WisdomTree Artificial Intelligence UCITS ETF - USD Acc \u00b7 VL",
+      "instrumentType": "ETF",
+      "consumerScope": "catalog",
+      "currency": "USD",
+      "periodStart": "2018-12",
+      "precision": 8,
+      "collectAnniversary": false,
+      "parser": "official-nav",
+      "field": "nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "method": "Rendement total NAV officiel de la part exacte en USD, net des frais ; unit\u00e9s de performance sans ajout de distributions ; ancienne cotation conserv\u00e9e s\u00e9par\u00e9ment",
+      "navProvider": "wisdomtree",
+      "navCurrency": "USD",
+      "navHistoryTransport": "official-dataspan-nav-tr",
+      "wisdomClassId": 1123138,
+      "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
+      "calendarRegistry": "src/data/exposure-etf-expansion-records.json",
+      "returnWindowQualification": "corroborated-calendars",
+      "requiredQualifiedCalendarYears": [
+        2019,
+        2023
+      ],
+      "wisdomTicker": "WTAI",
+      "wisdomProductName": "WisdomTree Artificial Intelligence UCITS ETF - USD Acc",
+      "wisdomListingId": 2120247,
+      "wisdomInception": "2018-11-30",
+      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+      "documentType": "wisdomtree-ucits",
+      "documentName": "WisdomTree Artificial Intelligence UCITS ETF - USD Acc",
+      "wisdomChartInception": "2018-12-05",
+      "anniversaryAvailable": false,
+      "checkedAt": "2026-10-30",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=gro10k",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=tabular",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13"
+      ],
+      "sourceCredit": "WisdomTree",
+      "latestLevel": {
+        "value": 114.5198,
+        "asOf": "2026-10-21",
+        "currency": "USD",
+        "isin": "IE00BDVPNG13",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 114.5198,
+        "nativeCurrency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1,
+        "sourceUrl": "https://www.wisdomtree.com/api/fund-history/1123138?view=navHistoryModal",
+        "sourceUrls": [
+          "https://www.wisdomtree.com/api/fund-history/1123138?view=navHistoryModal"
+        ],
+        "checkedAt": "2026-10-23T05:23:59.532114+00:00",
+        "method": "Previously qualified exact-share NAV used only as an immutable scale anchor; not a new price consultation",
+        "maxAgeDays": 7,
+        "sha256": "0e8c2106d3cc7b791708fd1d51192fddf8541784c374c1fb32de13da5a57e2da",
+        "unitQualification": "historical-reference-only"
+      },
+      "nativeValuationCurrency": "USD",
+      "lastOfficialValuation": "2026-10-29",
+      "financialConvention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
+      "historyUnqualifiedReturnWindows": [],
+      "responseSha256": "627f26c67b3757f47800c1a536b5a0b7cc738218801ab3b3e2cea4ba2a485bdc",
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=gro10k": "f203a459c306f80802cbc6ae37c696f55eee7e1473a2124212b91023428d8a0d",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=tabular": "2a44dc2f9c3fccdf81e9aa7261a485950572062442f56cb32c605ade22819f71",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297"
+      },
+      "months": 94
+    }
+  ],
+  "calendarWindows79": {
+    "qualified": 70,
+    "refused": 9,
+    "newlyQualified": 0
+  },
+  "publication": {
+    "checkedAt": "2026-10-30T14:36:42.772Z",
+    "version": {
+      "sha": "968f2f9aa5b32170f1f65c7ade573dabd2760983",
+      "dataSha": "fe929644e60860239fee54afdedd3bcfc326de77",
+      "lane": "validated-code-data",
+      "builtAt": "2026-10-30T14:18:35.489Z"
+    },
+    "expectedReceiptArtifact": 12981962970,
+    "proof": "Actual served369-file manifest compared individually to every expected monthly footprint; independent verification, not a success inferred from workflow colour",
+    "files": [
+      {
+        "path": "src/data/anniversary-levels.json",
+        "expectedGitBlob": "0722f82a30e13632ed4111f1577969ba4cb1bef3",
+        "publicGitBlob": "0722f82a30e13632ed4111f1577969ba4cb1bef3",
+        "match": true
+      },
+      {
+        "path": "src/data/auto-history-identities.json",
+        "expectedGitBlob": "ed6ef8dfac260910a311de0e1f59588a9157cf5a",
+        "publicGitBlob": "ed6ef8dfac260910a311de0e1f59588a9157cf5a",
+        "match": true
+      },
+      {
+        "path": "src/data/automated-etf-monthly.json",
+        "expectedGitBlob": "4be6a362ac6c59a137994bcee7c4c53f81dec5f8",
+        "publicGitBlob": "4be6a362ac6c59a137994bcee7c4c53f81dec5f8",
+        "match": true
+      },
+      {
+        "path": "src/data/automated-indices.json",
+        "expectedGitBlob": "8f443be8ba9ff4b25c318cb23c769b4ba17ef1c2",
+        "publicGitBlob": "8f443be8ba9ff4b25c318cb23c769b4ba17ef1c2",
+        "match": true
+      },
+      {
+        "path": "src/data/automated-monthly.json",
+        "expectedGitBlob": "eb5b254cc8d32c64bad17909702464ff8d7a22c9",
+        "publicGitBlob": "eb5b254cc8d32c64bad17909702464ff8d7a22c9",
+        "match": true
+      },
+      {
+        "path": "src/data/monthly-fx.json",
+        "expectedGitBlob": "259ca443a635fa3f10da140c3003d06abaa62cb9",
+        "publicGitBlob": "259ca443a635fa3f10da140c3003d06abaa62cb9",
+        "match": true
+      },
+      {
+        "path": "src/data/qualified-listing-records.json",
+        "expectedGitBlob": "b76bc0bda790bc43f61e142b5e71fd031529fa3e",
+        "publicGitBlob": "fd68b86ea261b9292390adff21d8fca83636c1dc",
+        "match": false,
+        "classification": "Newer separately validated common input, not an output modified by this targeted producer",
+        "oldRows": 56,
+        "newRows": 56,
+        "affectedTargetIsins": [],
+        "sourceScope": "Both NAV/TR target ISINs are absent from both versions; targeted workflow skips the56-quotation collector",
+        "lineage": "Public data commit fe929644 contains this newer registry from the ordinary qualified exposure producer41067648530. No control of these56 quotations is claimed by the WTI/WTAI run."
+      },
+      {
+        "path": "src/data/ranking-histories.json",
+        "expectedGitBlob": "f8fd0ba0df01fa78f969d54c5077cf798014c6a2",
+        "publicGitBlob": "f8fd0ba0df01fa78f969d54c5077cf798014c6a2",
+        "match": true
+      },
+      {
+        "path": "src/data/shared-listing-identities.json",
+        "expectedGitBlob": "1c94f6799221e6f0ec0ac60d107bf59e2adb5c36",
+        "publicGitBlob": "1c94f6799221e6f0ec0ac60d107bf59e2adb5c36",
+        "match": true
+      }
+    ],
+    "status": "verified for the two declared NAV source outputs and their actual consumers",
+    "exactExpectedFootprints": 8,
+    "totalReceiptFootprints": 9,
+    "independentInputSupersessions": 1,
+    "wholeProducerCatalogueCertified": false
+  },
+  "consumerRecipes": {
+    "calculator16": "browser-wti-wtai-calculator-public-30oct/results.json",
+    "performance4": "browser-wti-wtai-performance-public-30oct/results.json",
+    "comparison4": "browser-wti-wtai-comparison-public-30oct/results.json",
+    "annual4": "browser-wti-wtai-annual-public-30oct/results.json",
+    "distinctCases": 28,
+    "anniversaryRefusalChecks": 4
+  },
+  "sourceCronNotClaimed": true
+}

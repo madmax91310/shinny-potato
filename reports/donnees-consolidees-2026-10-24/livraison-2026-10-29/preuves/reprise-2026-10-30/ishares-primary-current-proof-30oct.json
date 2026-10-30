@@ -1,0 +1,257 @@
+{
+  "run": 41058298310,
+  "checkedAt": "2026-10-30T12:51:17.465605+00:00",
+  "globalFailures": [],
+  "shares": [
+    {
+      "isin": "IE00B5BMR087",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sectors": {
+        "asOf": "2026-10-28",
+        "rows": [
+          {
+            "name": "Information Technology",
+            "weightPct": 38.57
+          },
+          {
+            "name": "Financials",
+            "weightPct": 11.82
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 9.74
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 8.96
+          },
+          {
+            "name": "Communication",
+            "weightPct": 8.91
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 8.01
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 4.74
+          },
+          {
+            "name": "Energy",
+            "weightPct": 3.73
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 2.0
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 1.72
+          },
+          {
+            "name": "Materials",
+            "weightPct": 1.68
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.13
+          }
+        ],
+        "sourceComponent": "exposureBreakdowns.sector"
+      },
+      "countries": {
+        "asOf": "2026-10-29",
+        "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      },
+      "flags": {
+        "sectorFallback": "complete-physical-holdings"
+      },
+      "primaryContainers": {
+        "sector": {
+          "keys": [
+            "name",
+            "fullName",
+            "visible",
+            "sortIndex",
+            "sortOrder",
+            "properties",
+            "dataPointsByNameMap",
+            "hasData",
+            "subContainersByNameMap",
+            "default",
+            "granted"
+          ],
+          "pointNames": [
+            "asOf",
+            "fund",
+            "net",
+            "type"
+          ],
+          "sample": "{'asOf': {'name': 'asOf', 'visible': True, 'active': True, 'asOf': False, 'hideNullData': False, 'mobileEnabled': False, 'sortOrder': None, 'asOfDate': None, 'formattedAsOfDate': None, 'formattedValue': '28/Oct/2026', 'label': '', 'asOfLabel': '', 'infoBubble': '', 'prefix': None, 'value': 20261028, 'returnType': False, 'associatedReturnType': False, 'fullName': 'exposureBreakdowns.asOf'}, 'fund': {'name': 'fund', 'visible': True, 'active': True, 'asOf': False, 'hideNullData': False, 'mobileEnabled': False, 'sortOrder': None, 'asOfDate': None, 'formattedAsOfDate': None, 'formattedValue': ['38.57', '11.82', '9.74', '8.96', '8.91', '8.01', '4.7"
+        }
+      },
+      "primaryBranch": "exposureBreakdowns.sector, not the configured fallback",
+      "primaryValues": [
+        38.57,
+        11.82,
+        9.74,
+        8.96,
+        8.91,
+        8.01,
+        4.74,
+        3.73,
+        2.0,
+        1.72,
+        1.68,
+        0.13
+      ],
+      "primaryAsOf": 20261028,
+      "fragmentSha256": "90f2c13ca9b9f6bea4acf9044d6fe1972bf12d4601821bcca84870c6cf365e90",
+      "fragmentHashMethod": "Canonical JSON of the exact primary sector component, not a claimed raw HTTP body hash",
+      "artifact": {
+        "id": 12978427285,
+        "sha256": "1bcff3546a04cf3c8ce6bcad6f8c43643c331b7ede5719f4c8aca908befdb23a",
+        "sourceRun": 41058298310
+      },
+      "registrationCommit": "1840ed4f548a7bb063a94e6064d8234a0de7485e"
+    },
+    {
+      "isin": "IE00B6R52259",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sectors": {
+        "asOf": "2026-10-28",
+        "rows": [
+          {
+            "name": "Information Technology",
+            "weightPct": 31.96
+          },
+          {
+            "name": "Financials",
+            "weightPct": 17.87
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 9.91
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 8.76
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 8.29
+          },
+          {
+            "name": "Communication",
+            "weightPct": 7.2
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 4.74
+          },
+          {
+            "name": "Energy",
+            "weightPct": 4.05
+          },
+          {
+            "name": "Materials",
+            "weightPct": 3.21
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 2.2
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 1.43
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.36
+          }
+        ],
+        "sourceComponent": "exposureBreakdowns.sector"
+      },
+      "countries": {
+        "asOf": "2026-10-28",
+        "sourceComponent": "exposureBreakdowns.geography.countries"
+      },
+      "flags": {
+        "isolateAllocationFailures": true,
+        "sectorFallback": "physical-portfolio-allocation"
+      },
+      "primaryContainers": {
+        "geography": {
+          "keys": [
+            "name",
+            "fullName",
+            "visible",
+            "sortIndex",
+            "sortOrder",
+            "properties",
+            "dataPointsByNameMap",
+            "hasData",
+            "subContainersByNameMap",
+            "default",
+            "granted"
+          ],
+          "pointNames": [],
+          "sample": "{}"
+        },
+        "sector": {
+          "keys": [
+            "name",
+            "fullName",
+            "visible",
+            "sortIndex",
+            "sortOrder",
+            "properties",
+            "dataPointsByNameMap",
+            "hasData",
+            "subContainersByNameMap",
+            "default",
+            "granted"
+          ],
+          "pointNames": [
+            "asOf",
+            "fund",
+            "net",
+            "type"
+          ],
+          "sample": "{'asOf': {'name': 'asOf', 'visible': True, 'active': True, 'asOf': False, 'hideNullData': False, 'mobileEnabled': False, 'sortOrder': None, 'asOfDate': None, 'formattedAsOfDate': None, 'formattedValue': '28/Oct/2026', 'label': '', 'asOfLabel': '', 'infoBubble': '', 'prefix': None, 'value': 20261028, 'returnType': False, 'associatedReturnType': False, 'fullName': 'exposureBreakdowns.asOf'}, 'fund': {'name': 'fund', 'visible': True, 'active': True, 'asOf': False, 'hideNullData': False, 'mobileEnabled': False, 'sortOrder': None, 'asOfDate': None, 'formattedAsOfDate': None, 'formattedValue': ['31.96', '17.87', '9.91', '8.76', '8.29', '7.20', '4.7"
+        }
+      },
+      "primaryBranch": "exposureBreakdowns.sector, not the configured fallback",
+      "primaryValues": [
+        31.96,
+        17.87,
+        9.91,
+        8.76,
+        8.29,
+        7.2,
+        4.74,
+        4.05,
+        3.21,
+        2.2,
+        1.43,
+        0.36
+      ],
+      "primaryAsOf": 20261028,
+      "fragmentSha256": "ab07f0ef32f2487a5ff0248df71b35be94b49b07412351f9e260cb5d5931e57a",
+      "fragmentHashMethod": "Canonical JSON of the exact primary sector component, not a claimed raw HTTP body hash",
+      "artifact": {
+        "id": 12978427285,
+        "sha256": "1bcff3546a04cf3c8ce6bcad6f8c43643c331b7ede5719f4c8aca908befdb23a",
+        "sourceRun": 41058298310
+      },
+      "registrationCommit": "1840ed4f548a7bb063a94e6064d8234a0de7485e"
+    }
+  ],
+  "consumerVerification": "Four actual public DCA recipes desktop/mobile pass against the separately qualified29October physical-equity sleeve. Those values and conventions are not overwritten by the primary28October whole-fund table.",
+  "consumerProof": "browser-ishares-qualified-sectors-30oct/results.json",
+  "newMonthlyWindows": 0,
+  "newConnectionClaimed": false,
+  "probeBoundary": "Two earlier harness assertions expected the newly acquired whole-fund primary API28October to be the DCA consumer. Actual published provenance correctly showed the distinct newer equity-sleeve29October. The failed assertions were investigated; no app, data, threshold, date or convention changed."
+}
