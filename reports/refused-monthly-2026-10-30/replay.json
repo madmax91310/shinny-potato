@@ -1,0 +1,115 @@
+{
+  "captureDate": "2026-10-30",
+  "replayIsFreshSourceControl": false,
+  "additionalQualifiedWindows": 0,
+  "qualificationCriteriaChanged": false,
+  "hsbc": {
+    "officialExDates": [
+      {
+        "isin": "IE00B4K6B022",
+        "exDate": "2024-02-01",
+        "recordDate": "2024-02-02",
+        "paymentDate": "2024-02-22",
+        "amount": 0.2214,
+        "currency": "EUR",
+        "quoteCurrencyInferred": false,
+        "note": "Dividend currency is EUR even when the notice lists a GBX trading line"
+      },
+      {
+        "isin": "IE00B4K6B022",
+        "exDate": "2024-08-08",
+        "recordDate": "2024-08-09",
+        "paymentDate": "2024-08-30",
+        "amount": 1.2623,
+        "currency": "EUR",
+        "quoteCurrencyInferred": false,
+        "note": "Dividend currency is EUR even when the notice lists a GBX trading line"
+      }
+    ],
+    "contradictionWithEuronextClosed": false,
+    "monthlyWindowRestored": false,
+    "providerPricesModified": false
+  },
+  "amundi": [
+    {
+      "isin": "FR0010755611",
+      "incomePolicy": "Capitalisation and/or distribution",
+      "observations": {
+        "officialNav": 2005,
+        "countervalorisedAdjustedNAV": 2003,
+        "navCurrency": 2005,
+        "dividendAmount": null,
+        "dividendCurrency": 1
+      },
+      "zeroDistributionsProven": false,
+      "admitted": false
+    },
+    {
+      "isin": "FR0013411998",
+      "incomePolicy": "Capitalisation and/or distribution",
+      "observations": {
+        "officialNav": 1926,
+        "countervalorisedAdjustedNAV": 1925,
+        "navCurrency": 1926,
+        "dividendAmount": null,
+        "dividendCurrency": null
+      },
+      "zeroDistributionsProven": false,
+      "admitted": false
+    },
+    {
+      "isin": "FR0013412004",
+      "incomePolicy": "Capitalisation and/or distribution",
+      "observations": {
+        "officialNav": 1926,
+        "countervalorisedAdjustedNAV": 1924,
+        "navCurrency": 1926,
+        "dividendAmount": null,
+        "dividendCurrency": null
+      },
+      "zeroDistributionsProven": false,
+      "admitted": false
+    }
+  ],
+  "blackrock": {
+    "refusal": "Official cash adjustment not reconciled: 2019-07-15",
+    "cashChecks": [
+      {
+        "exDate": "2019-10-15",
+        "amount": "0.086569",
+        "observed": 1.002723863017094,
+        "expected": 1.0027238604467454,
+        "difference": 2.570348600627881e-09,
+        "passed": true
+      },
+      {
+        "exDate": "2019-07-15",
+        "amount": "0.374603",
+        "observed": 1.0120990293613583,
+        "expected": 1.0121032951425626,
+        "difference": -4.265781204271235e-06,
+        "passed": false
+      },
+      {
+        "exDate": "2019-04-15",
+        "amount": "0.075611",
+        "observed": 1.0023407310458916,
+        "expected": 1.0023520764584897,
+        "difference": -1.1345412598062765e-05,
+        "passed": false
+      },
+      {
+        "exDate": "2019-01-15",
+        "amount": "0.211425",
+        "observed": 1.0076346045685565,
+        "expected": 1.0076346076938285,
+        "difference": -3.1252720411600876e-09,
+        "passed": true
+      }
+    ]
+  },
+  "bitwise": {
+    "publishedTimestamp": "2023-02-09T13:30:02.468Z",
+    "dailyHistoryQualified": false
+  }
+}

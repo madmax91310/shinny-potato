@@ -6,7 +6,7 @@ from urllib.parse import urlsplit, parse_qs
 from data_automation import get_json, get_text, UTC, write_json_atomic
 from observation_status import holdings_status
 from collect_etf_holdings import parse_holdings
-from holdings_reconciliation import reconcile_positions, HoldingsPerimeterError
+from holdings_reconciliation import reconcile_positions, HoldingsPerimeterError, HoldingsSourceError
 ROOT=Path(__file__).resolve().parents[1]
 def collect_blackrock_complete(config,now,fetch=get_text,sleep=time.sleep):
     """Retry only a missing component on an otherwise exact product response."""
@@ -147,11 +147,17 @@ def main():
         for isin,result,error in pool.map(one,direct.items()):
             if error:
                 errors[isin]=str(error)
-                if isinstance(error,HoldingsPerimeterError):rejected[isin]=error.diagnostic
+                if isinstance(error,HoldingsSourceError):rejected[isin]=error.diagnostic
                 continue
             h,securities=result
             if previous.get(isin,{}).get('asOf','')>h['asOf']:
                 errors[isin]='Date regression'+('; access attempts: '+json.dumps(h['accessAttempts'])[:2400] if h.get('accessAttempts') else '')
+                rejected[isin]={'kind':'older-source-observation','subjectIsin':isin,
+                    'asOf':h['asOf'],'checkedAt':now.isoformat(),
+                    'retainedAsOf':previous[isin]['asOf'],
+                    'sourceUrl':h['sourceUrl'],'sha256':h.get('sha256'),
+                    'accessAttempts':h.get('accessAttempts',[]),
+                    'financialDataQualified':False,'normalizationApplied':False}
                 continue
             fresh[isin]={**h,'checkedAt':now.isoformat()}
             for r in securities:

@@ -32,6 +32,8 @@ on:
       - 'scripts/discover_lg_holdings.py'
       - 'scripts/test_lg_discovery.py'
       - 'scripts/security_identifier_observations.py'
+      - 'scripts/test_venue_ticker_identities.py'
+      - 'scripts/fixtures/venue-ticker-identities/**'
       - 'scripts/test_security_candidate_names.py'
       - 'scripts/security-identity-sources.json'
       - 'scripts/security-identifier-candidates.json'
@@ -48,6 +50,11 @@ on:
       - 'scripts/lifestrategy_holdings.py'
       - 'scripts/test_lifestrategy_holdings.py'
       - 'scripts/test_physical_holdings.py'
+      - 'scripts/invesco_physical_holdings.py'
+      - 'scripts/capture-invesco-physical.mjs'
+      - 'scripts/invesco-physical-holdings-contracts.json'
+      - 'scripts/test_invesco_physical_holdings.py'
+      - 'scripts/fixtures/invesco-physical/**'
       - 'scripts/build-automation-targets.mjs'
       - 'scripts/dca-complete-holdings-sources.json'
       - '.github/workflows/update-qualified-exposures.yml'
@@ -90,6 +97,8 @@ on:
       - 'scripts/discover_lg_holdings.py'
       - 'scripts/test_lg_discovery.py'
       - 'scripts/security_identifier_observations.py'
+      - 'scripts/test_venue_ticker_identities.py'
+      - 'scripts/fixtures/venue-ticker-identities/**'
       - 'scripts/security-identity-sources.json'
       - 'scripts/security-identifier-candidates.json'
       - 'scripts/test_wisdomtree_discovery.py'
@@ -101,6 +110,11 @@ on:
       - 'scripts/lifestrategy_holdings.py'
       - 'scripts/test_lifestrategy_holdings.py'
       - 'scripts/test_physical_holdings.py'
+      - 'scripts/invesco_physical_holdings.py'
+      - 'scripts/capture-invesco-physical.mjs'
+      - 'scripts/invesco-physical-holdings-contracts.json'
+      - 'scripts/test_invesco_physical_holdings.py'
+      - 'scripts/fixtures/invesco-physical/**'
       - 'scripts/collect_dws_etf.py'
       - 'scripts/collect_ssga_etf.py'
       - 'scripts/test_dca_dws_complete.py'
@@ -163,6 +177,7 @@ jobs:
         run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_complete_api.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_public_rankings.py' && python -m unittest discover -s scripts -p 'test_dca_holdings_retention.py'
       - name: Validate exact native-index and dated-identity contracts
         run: python -m unittest discover -s scripts -p 'test_topix_holdings.py' && node scripts/test-native-index-compositions.mjs
+      - run: python -m unittest discover -s scripts -p 'test_venue_ticker_identities.py'
       - name: Refresh exact security identifier evidence
         id: identifiers
         continue-on-error: true
@@ -189,7 +204,7 @@ jobs:
       - name: Validate complete DWS parser
         run: python -m unittest discover -s scripts -p "test_dca*py"
       - name: Validate complete physical issuer portfolios
-        run: python -m unittest discover -s scripts -p "test_physical_holdings.py" && python -m unittest discover -s scripts -p "test_lifestrategy_holdings.py"
+        run: python -m unittest discover -s scripts -p "test_invesco_physical_holdings.py" && python -m unittest discover -s scripts -p "test_physical_holdings.py" && python -m unittest discover -s scripts -p "test_lifestrategy_holdings.py"
       - run: python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py' && python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py' && python -m unittest discover -s scripts -p 'test_pending_sources.py' && python -m unittest discover -s scripts -p 'test_native_source_evidence.py'
       - name: Validate DCA observations
         run: node scripts/build-dca-exposures.mjs && npm run test:dca

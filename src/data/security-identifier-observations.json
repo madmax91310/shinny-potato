@@ -145900,5 +145900,317 @@
         "shareIsin": "IE00BKLF1R75"
       }
     }
+  },
+  "venueTickerObservations": {
+    "IE000YYE6WK5|VVX US|USD": {
+      "sourceUrl": "https://api.openfigi.com/v3/mapping",
+      "checkedAt": "2026-10-30T11:16:11.734948+00:00",
+      "request": [
+        {
+          "idType": "TICKER",
+          "idValue": "VVX",
+          "exchCode": "US",
+          "currency": "USD"
+        },
+        {
+          "idType": "ID_ISIN",
+          "idValue": "US92242T1016",
+          "exchCode": "US",
+          "currency": "USD"
+        }
+      ],
+      "response": [
+        {
+          "data": [
+            {
+              "figi": "BBG005PG80K4",
+              "name": "V2X INC",
+              "ticker": "VVX",
+              "exchCode": "US",
+              "compositeFIGI": "BBG005PG80K4",
+              "securityType": "Common Stock",
+              "marketSector": "Equity",
+              "shareClassFIGI": "BBG005PG80L3",
+              "securityType2": "Common Stock",
+              "securityDescription": "VVX"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "figi": "BBG005PG80K4",
+              "name": "V2X INC",
+              "ticker": "VVX",
+              "exchCode": "US",
+              "compositeFIGI": "BBG005PG80K4",
+              "securityType": "Common Stock",
+              "marketSector": "Equity",
+              "shareClassFIGI": "BBG005PG80L3",
+              "securityType2": "Common Stock",
+              "securityDescription": "VVX"
+            }
+          ]
+        }
+      ],
+      "sha256": "20afd8b529b82d410bc567e530a3462153864b59ec8a538ded75c62449b39dcd",
+      "issuerBinding": {
+        "subjectIsin": "IE000YYE6WK5",
+        "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233172&ticker=UCTDFNS&reactlang=en&reactctr=uk",
+        "sourceSha256": "26c0074144414f71f5f9d9c926e9171a7c0f6b2b58893c47a4fe32d576467ec5",
+        "asOf": "2026-10-29",
+        "ticker": "VVX US",
+        "currency": "USD",
+        "assetClass": "Stock"
+      }
+    },
+    "IE00BDFBTQ78|USA CN|CAD": {
+      "sourceUrl": "https://api.openfigi.com/v3/mapping",
+      "checkedAt": "2026-10-30T11:16:11.734948+00:00",
+      "request": [
+        {
+          "idType": "TICKER",
+          "idValue": "USA",
+          "exchCode": "CN",
+          "currency": "CAD"
+        },
+        {
+          "idType": "ID_ISIN",
+          "idValue": "CA03062D8035",
+          "exchCode": "CN",
+          "currency": "CAD"
+        }
+      ],
+      "response": [
+        {
+          "data": [
+            {
+              "figi": "BBG000BQKDN3",
+              "name": "AMERICAS GOLD AND SILVER COR",
+              "ticker": "USA",
+              "exchCode": "CN",
+              "compositeFIGI": "BBG000BQKDN3",
+              "securityType": "Common Stock",
+              "marketSector": "Equity",
+              "shareClassFIGI": "BBG001SCXBR0",
+              "securityType2": "Common Stock",
+              "securityDescription": "USA"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "figi": "BBG000BQKDN3",
+              "name": "AMERICAS GOLD AND SILVER COR",
+              "ticker": "USA",
+              "exchCode": "CN",
+              "compositeFIGI": "BBG000BQKDN3",
+              "securityType": "Common Stock",
+              "marketSector": "Equity",
+              "shareClassFIGI": "BBG001SCXBR0",
+              "securityType2": "Common Stock",
+              "securityDescription": "USA"
+            }
+          ]
+        }
+      ],
+      "sha256": "df74961e23a616d5c91e24c9498e64be814f39c9807a2a5a90990edc110eab08",
+      "issuerBinding": {
+        "subjectIsin": "IE00BDFBTQ78",
+        "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233154&ticker=UCTGDIG&reactlang=en&reactctr=uk",
+        "sourceSha256": "4ca8ef6c6465b52554780ce27bcd1be6b2ea51e4dc696dee2b465e10ef1b0b78",
+        "asOf": "2026-10-29",
+        "ticker": "USA CN",
+        "currency": "CAD",
+        "assetClass": "Stock"
+      }
+    },
+    "IE00BDFBTQ78|MLX AU|AUD": {
+      "sourceUrl": "https://api.openfigi.com/v3/mapping",
+      "checkedAt": "2026-10-30T11:16:11.734948+00:00",
+      "request": [
+        {
+          "idType": "TICKER",
+          "idValue": "MLX",
+          "exchCode": "AU",
+          "currency": "AUD"
+        },
+        {
+          "idType": "ID_ISIN",
+          "idValue": "AU000000MLX7",
+          "exchCode": "AU",
+          "currency": "AUD"
+        }
+      ],
+      "response": [
+        {
+          "data": [
+            {
+              "figi": "BBG000Q6QCT1",
+              "name": "METALS X LTD",
+              "ticker": "MLX",
+              "exchCode": "AU",
+              "compositeFIGI": "BBG000Q6QCT1",
+              "securityType": "Common Stock",
+              "marketSector": "Equity",
+              "shareClassFIGI": "BBG001SM9RC6",
+              "securityType2": "Common Stock",
+              "securityDescription": "MLX"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "figi": "BBG000Q6QCT1",
+              "name": "METALS X LTD",
+              "ticker": "MLX",
+              "exchCode": "AU",
+              "compositeFIGI": "BBG000Q6QCT1",
+              "securityType": "Common Stock",
+              "marketSector": "Equity",
+              "shareClassFIGI": "BBG001SM9RC6",
+              "securityType2": "Common Stock",
+              "securityDescription": "MLX"
+            }
+          ]
+        }
+      ],
+      "sha256": "136452c98895bc0b4eb02e148d4ec38ac4385e8ec415af63a90954d69cca5798",
+      "issuerBinding": {
+        "subjectIsin": "IE00BDFBTQ78",
+        "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233154&ticker=UCTGDIG&reactlang=en&reactctr=uk",
+        "sourceSha256": "4ca8ef6c6465b52554780ce27bcd1be6b2ea51e4dc696dee2b465e10ef1b0b78",
+        "asOf": "2026-10-29",
+        "ticker": "MLX AU",
+        "currency": "AUD",
+        "assetClass": "Stock"
+      }
+    },
+    "IE00BDFBTQ78|SLS CN|CAD": {
+      "sourceUrl": "https://api.openfigi.com/v3/mapping",
+      "checkedAt": "2026-10-30T11:16:11.734948+00:00",
+      "request": [
+        {
+          "idType": "TICKER",
+          "idValue": "SLS",
+          "exchCode": "CN",
+          "currency": "CAD"
+        },
+        {
+          "idType": "ID_ISIN",
+          "idValue": "CA83419D2014",
+          "exchCode": "CN",
+          "currency": "CAD"
+        }
+      ],
+      "response": [
+        {
+          "data": [
+            {
+              "figi": "BBG00L8NLS27",
+              "name": "SOLARIS RESOURCES INC",
+              "ticker": "SLS",
+              "exchCode": "CN",
+              "compositeFIGI": "BBG00L8NLS27",
+              "securityType": "Common Stock",
+              "marketSector": "Equity",
+              "shareClassFIGI": "BBG00L8NLS36",
+              "securityType2": "Common Stock",
+              "securityDescription": "SLS"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "figi": "BBG00L8NLS27",
+              "name": "SOLARIS RESOURCES INC",
+              "ticker": "SLS",
+              "exchCode": "CN",
+              "compositeFIGI": "BBG00L8NLS27",
+              "securityType": "Common Stock",
+              "marketSector": "Equity",
+              "shareClassFIGI": "BBG00L8NLS36",
+              "securityType2": "Common Stock",
+              "securityDescription": "SLS"
+            }
+          ]
+        }
+      ],
+      "sha256": "d503c76746d4b87a88bd1aa1e07486189d3d0dda66cc6b9d5febc49fd16ad8ef",
+      "issuerBinding": {
+        "subjectIsin": "IE00BDFBTQ78",
+        "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233154&ticker=UCTGDIG&reactlang=en&reactctr=uk",
+        "sourceSha256": "4ca8ef6c6465b52554780ce27bcd1be6b2ea51e4dc696dee2b465e10ef1b0b78",
+        "asOf": "2026-10-29",
+        "ticker": "SLS CN",
+        "currency": "CAD",
+        "assetClass": "Stock"
+      }
+    },
+    "IE00BDFBTQ78|ARU AU|AUD": {
+      "sourceUrl": "https://api.openfigi.com/v3/mapping",
+      "checkedAt": "2026-10-30T11:16:11.734948+00:00",
+      "request": [
+        {
+          "idType": "TICKER",
+          "idValue": "ARU",
+          "exchCode": "AU",
+          "currency": "AUD"
+        },
+        {
+          "idType": "ID_ISIN",
+          "idValue": "AU000000ARU5",
+          "exchCode": "AU",
+          "currency": "AUD"
+        }
+      ],
+      "response": [
+        {
+          "data": [
+            {
+              "figi": "BBG000Q0V5K2",
+              "name": "ARAFURA RARE EARTHS LTD",
+              "ticker": "ARU",
+              "exchCode": "AU",
+              "compositeFIGI": "BBG000Q0V5K2",
+              "securityType": "Common Stock",
+              "marketSector": "Equity",
+              "shareClassFIGI": "BBG001SGXPT8",
+              "securityType2": "Common Stock",
+              "securityDescription": "ARU"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "figi": "BBG000Q0V5K2",
+              "name": "ARAFURA RARE EARTHS LTD",
+              "ticker": "ARU",
+              "exchCode": "AU",
+              "compositeFIGI": "BBG000Q0V5K2",
+              "securityType": "Common Stock",
+              "marketSector": "Equity",
+              "shareClassFIGI": "BBG001SGXPT8",
+              "securityType2": "Common Stock",
+              "securityDescription": "ARU"
+            }
+          ]
+        }
+      ],
+      "sha256": "2f80d5c2c82e4d543b11eaa704a9a3328f6c7f99aae2a6256a21d8173fa66778",
+      "issuerBinding": {
+        "subjectIsin": "IE00BDFBTQ78",
+        "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233154&ticker=UCTGDIG&reactlang=en&reactctr=uk",
+        "sourceSha256": "4ca8ef6c6465b52554780ce27bcd1be6b2ea51e4dc696dee2b465e10ef1b0b78",
+        "asOf": "2026-10-29",
+        "ticker": "ARU AU",
+        "currency": "AUD",
+        "assetClass": "Stock"
+      }
+    }
   }
 }

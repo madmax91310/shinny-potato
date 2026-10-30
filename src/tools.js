@@ -16,6 +16,9 @@ export const TOOLS = [
   { to: '/le-dca-de', title: 'Portefeuille & DCA',
     publicationDay: 'Publication ponctuelle', icon: '👥', accent: '#65d5b0',
     description: 'Analyse les expositions, les titres communs et la concentration de ton portefeuille. Prépare un DCA ou une image à publier.', status: 'disponible' },
+  { to: '/le-budget-de', title: 'Le budget de…',
+    publicationDay: 'Publication ponctuelle', icon: '🧾', accent: '#65d5b0',
+    description: 'Budgets publics sourcés et participations : revenus, dépenses, épargne et reste disponible, avec texte et image à publier.', status: 'disponible' },
   {to:'/fiches-pratiques',title:'Fiches pratiques',publicationDay:'Publication ponctuelle',icon:'📑',accent:'#267863',description:'Enveloppes, ETF, indices et démarches : une question, un texte et une image à garder.',status:'disponible'},
   { to: '/radar-editorial', title: 'Radar éditorial',
     publicationDay: 'Veille en journée', icon: '📡', accent: '#65d5b0',
@@ -165,6 +168,7 @@ const TOOL_SUMMARIES = {
   '/hey-grok': 'Choisis une question concrète, adapte-la ou crée la tienne.',
   '/classements-performances': 'Les gagnants par année ou sur une période commune, avec une image à publier.',
   '/le-dca-de': 'Portefeuille manuel, expositions et profils DCA, avec un visuel à exporter.',
+  '/le-budget-de': 'Le budget d’une personne ou d’un foyer, avec ses dépenses, son texte et son image.',
   '/fiches-pratiques':'Les différences utiles pour comprendre et choisir un placement.',
   '/radar-editorial': 'Les changements sourcés qui peuvent devenir tes prochains posts.',
   '/simulateur-patrimoine': 'Ton patrimoine aujourd’hui et demain, avec des comparaisons pour X.',
@@ -193,7 +197,7 @@ const TOOL_SUMMARIES = {
 // Les mêmes groupes alimentent l’accueil et la navigation.
 export const TOOL_GROUPS = [
   { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/classements-performances', '/simulateur-patrimoine', '/comparatif-courtiers', '/calculateur-investissement', '/impact-frais'] },
-  { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/le-dca-de', '/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
+  { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/le-dca-de', '/le-budget-de', '/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
   { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/idees-classements', '/hey-grok', '/fiches-pratiques', '/radar-editorial', '/presentations', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
   { id: 'data', title: 'Gérer les données', description: 'Retrouver les sources et les prochaines mises à jour.', paths: ['/bibliotheque-donnees', '/donnees-a-revoir'] },
 ].map(group => ({ ...group, tools: group.paths.map(path => ({ ...TOOLS.find(tool => tool.to === path), summary: TOOL_SUMMARIES[path] })).filter(tool => !tool.hidden) }))
@@ -210,7 +214,7 @@ export const WEEKLY_ORDER = [
   '/presentations',
   '/portefeuilles-investisseurs', '/faits-marquants-marches',
   '/il-y-a-x-ans', '/pouvoir-achat',
-  '/le-dca-de', '/comparatif-courtiers',
+  '/le-dca-de', '/le-budget-de', '/comparatif-courtiers',
   '/simulateur-patrimoine', '/impact-frais', '/hey-grok', '/banque-tweets', '/bibliotheque-donnees', '/donnees-a-revoir',
 ]
 export const HOME_TOOLS = TOOL_GROUPS.flatMap(group => group.tools.map(tool => ({ ...tool, group: group.id })))

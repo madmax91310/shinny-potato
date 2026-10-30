@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "predev": "npm run generate:dev",
-    "prebuild": "npm run audit:architecture && node scripts/test-dca-usage-storage.mjs && node scripts/test-radar-read-state.mjs && node scripts/test-hey-grok.mjs && node scripts/test-tweet-bank-storage.mjs && node scripts/test-tweet-bank-curation.mjs && node scripts/test-export-resources.mjs && node scripts/test-etf-presentation-quality.mjs && npm run generate:app",
+    "prebuild": "npm run audit:architecture && node scripts/test-budget-profiles.mjs && node scripts/test-dca-usage-storage.mjs && node scripts/test-radar-read-state.mjs && node scripts/test-hey-grok.mjs && node scripts/test-tweet-bank-storage.mjs && node scripts/test-tweet-bank-curation.mjs && node scripts/test-export-resources.mjs && node scripts/test-etf-presentation-quality.mjs && npm run generate:app",
     "dev": "vite",
     "build": "vite build && node scripts/audit-route-bundles.mjs && node scripts/audit-published-coverage.mjs && node scripts/test-built-publication-manifest.mjs",
     "lint": "oxlint",
@@ -58,6 +58,8 @@
     "test:index-concentration": "node scripts/build-index-company-compositions.mjs && node scripts/test-index-concentration.mjs",
     "audit:etf-presentations": "node scripts/test-etf-presentation-quality.mjs",
     "test:hey-grok": "node scripts/test-hey-grok.mjs",
+    "test:budget": "node scripts/test-budget-profiles.mjs",
+    "test:budget:browser": "node scripts/playwright-budget-profiles.mjs",
     "test:hey-grok:browser": "node scripts/playwright-hey-grok.mjs",
     "test:dca:usage-storage": "node scripts/test-dca-usage-storage.mjs",
     "test:export-resources": "node scripts/test-export-resources.mjs",

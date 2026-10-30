@@ -1,0 +1,57 @@
+[
+  {
+    "id": "hsbc-february",
+    "file": "hsbc-fca-february.html.gz",
+    "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5044235.html",
+    "checkedAt": "2026-10-30T08:12:31.846849+00:00",
+    "sha256": "f372a398f6eb89d8df7e2c0104f2aa00beb971cf260b9d65b7fb350dce10ccd3",
+    "bytes": 38693,
+    "httpStatus": 200
+  },
+  {
+    "id": "hsbc-august",
+    "file": "hsbc-fca-august.html.gz",
+    "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5281783.html",
+    "checkedAt": "2026-10-30T08:12:31.845914+00:00",
+    "sha256": "0e95f4b157f3fea2d6e675334b04b84b3d18cca320eedba5ee4020eb171806c7",
+    "bytes": 50041,
+    "httpStatus": 200
+  },
+  {
+    "id": "blackrock",
+    "file": "ishares-current.json.gz",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251959&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-30T08:12:31.848715+00:00",
+    "sha256": "51e3733af928237a75be3dc0756a80b0d0f1aef98083aef6ff91c8f7e6980d04",
+    "bytes": 1118754,
+    "httpStatus": 200
+  },
+  {
+    "id": "bitwise",
+    "file": "bitwise-info.json.gz",
+    "sourceUrl": "https://bitwiseinvestments.eu/etc_info.json",
+    "checkedAt": "2026-10-30T08:12:31.847443+00:00",
+    "sha256": "212dfed8cdb87deb0748ed47944c9157502ff21d0038e6957d4300ec2f33bd52",
+    "bytes": 4001,
+    "httpStatus": 200
+  },
+  {
+    "id": "blackrock-tax",
+    "file": "ishares-tax.xlsm.gz",
+    "sourceUrl": "https://www.ishares.com/gls-download/literature/tax-information/germany-ishares-tax-information-february-2020-emea-en.xlsm",
+    "checkedAt": "2026-10-30T08:12:31.848090+00:00",
+    "sha256": "296a99c7caae37114e36c2be17239c8d7e91feefe00730bc510bfbd7bf25d63e",
+    "bytes": 133168,
+    "httpStatus": 200
+  },
+  {
+    "id": "amundi",
+    "file": "amundi.json.gz",
+    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "requestFile": "sources/amundi-request.json",
+    "checkedAt": "2026-10-30T08:10:18.253629+00:00",
+    "sha256": "27fbf744f995a7f4d66a0f78a8f1ae47134246750cd7f3726a1a3226003f3022",
+    "bytes": 771022,
+    "httpStatus": 200
+  }
+]

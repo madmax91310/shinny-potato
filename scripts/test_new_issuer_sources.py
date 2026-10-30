@@ -1,5 +1,6 @@
 """Regression guards against wrong shares, dates, economic scope and partial years."""
 import copy
+from test_wisdomtree_country_allocation import CountryAllocation
 import datetime as dt
 import json
 from pathlib import Path
@@ -25,9 +26,14 @@ class IssuerSources(unittest.TestCase):
         self.assertEqual(result['characteristics']['terPct'],.38)
         self.assertEqual(result['aum']['scope'],'fund')
         self.assertEqual(result['sectors']['basis'],'fund')
-        self.assertAlmostEqual(sum(r['weightPct']for r in result['countries']['rows']),100,delta=.1)
+        self.assertNotIn('countries',result)
+        self.assertEqual(result['collectionErrors'][0]['field'],'countries')
         self.assertNotIn('performance',result)
-        for a,b in [('IE00BZ56SW52','IE00OTHER001'),('05/10/2026','05/01/2026'),('61.34%','1.34%'),('US$1,645,809,873','1,645,809,873')]:
+        broken=wisdomtree(text.replace('61.34%','1.34%'),s,NOW)
+        self.assertNotIn('countries',broken)
+        self.assertEqual(broken['collectionErrors'][0]['field'],'countries')
+        self.assertIn('aum',broken)
+        for a,b in [('IE00BZ56SW52','IE00OTHER001'),('05/10/2026','05/01/2026'),('US$1,645,809,873','1,645,809,873')]:
             with self.assertRaises(ValueError):wisdomtree(text.replace(a,b),s,NOW)
 
     def test_copper_fee_components_stay_separate(self):

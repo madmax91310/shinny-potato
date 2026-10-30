@@ -325,5 +325,51 @@
       "sourceCheckedAt": "2026-10-29T22:17:01.960023+00:00",
       "method": "Lookup hypothesis only; a fresh independent exact ISIN query must return the issuer FIGI. No name-based assignment."
     }
+  ],
+  "venueTickerFunds": [
+    "IE000YYE6WK5",
+    "IE00BDFBTQ78"
+  ],
+  "venueTickerCandidates": [
+    {
+      "ticker": "VVX US",
+      "currency": "USD",
+      "isin": "US92242T1016",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "ticker": "USA CN",
+      "currency": "CAD",
+      "isin": "CA03062D8035",
+      "sourceUrls": [
+        "https://globalxetfs.eu/api/funds/silv/topholdingscsv"
+      ]
+    },
+    {
+      "ticker": "MLX AU",
+      "currency": "AUD",
+      "isin": "AU000000MLX7",
+      "sourceUrls": [
+        "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/"
+      ]
+    },
+    {
+      "ticker": "SLS CN",
+      "currency": "CAD",
+      "isin": "CA83419D2014",
+      "sourceUrls": [
+        "https://globalxetfs.eu/api/funds/copx/topholdingscsv"
+      ]
+    },
+    {
+      "ticker": "ARU AU",
+      "currency": "AUD",
+      "isin": "AU000000ARU5",
+      "sourceUrls": [
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyi-gy.xlsx"
+      ]
+    }
   ]
 }

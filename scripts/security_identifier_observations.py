@@ -8,10 +8,120 @@ import html
 import difflib
 import time
 import urllib.request
+import threading
+from urllib.parse import urlsplit, parse_qs
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 PATH=ROOT/'src/data/security-identifier-observations.json'
 API='https://api.openfigi.com/v3/mapping'
+_VENUE_LOCK=threading.Lock()
+
+def venue_ticker_identity(row, now, binding):
+    """A published venue/currency ticker and independent ISIN must prove the same share.
+
+    Names only propose queries. Neither a ticker without its venue/currency nor
+    a share-class-only match is admissible. The proof binds the native book.
+    """
+    if row.get('sourceUrl')!=API or row.get('sha256')!=digest(row.get('response')) or row.get('issuerBinding')!=binding:
+        raise ValueError('Unbound venue ticker identity proof')
+    policy=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']
+    age=(now-dt.datetime.fromisoformat(row['checkedAt'])).total_seconds()/86400
+    source_age=(now.date()-dt.date.fromisoformat(binding['asOf'])).days
+    if not 0<=age<=policy['etf.staticCharacteristic']['checkDays'] or not 0<=source_age<=policy['etf.default']['checkDays']:
+        raise ValueError('Expired venue ticker identity proof')
+    labels=binding.get('ticker','').split()
+    funds=json.loads((ROOT/'scripts/security-identifier-candidates.json').read_text()).get('venueTickerFunds',[])
+    route=urlsplit(binding.get('sourceUrl',''));query=parse_qs(route.query)
+    config=json.loads((ROOT/'scripts/generated-holdings-sources.json').read_text()).get(binding.get('subjectIsin'),{})
+    if (binding.get('subjectIsin') not in funds or len(labels)!=2
+            or {'US':'USD','CN':'CAD','AU':'AUD'}.get(labels[1])!=binding.get('currency')
+            or binding.get('assetClass')!='Stock' or not re.fullmatch(r'[a-f0-9]{64}',binding.get('sourceSha256',''))
+            or route.scheme!='https' or route.netloc!='www.vaneck.com' or route.path!='/Main/HoldingsBlock/GetContent/'
+            or route.fragment or set(query)!={'blockid','pageid','ticker','reactlang','reactctr'}
+            or any(len(v)!=1 for v in query.values())
+            or not query['blockid'][0].isdigit() or not query['pageid'][0].isdigit()
+            or query['ticker']!=[config.get('apiTicker')] or config.get('parser')!='vaneck-complete'
+            or query['reactlang']!=['en'] or query['reactctr']!=['uk']):
+        raise ValueError('Unqualified published venue ticker scope')
+    ticker,venue=labels;currency=binding['currency']
+    jobs=row.get('request',[]);responses=row.get('response',[])
+    if (len(jobs)!=len(responses) or not 2<=len(jobs)<=4
+            or jobs[0]!={'idType':'TICKER','idValue':ticker,'exchCode':venue,'currency':currency}):
+        raise ValueError('Missing exact published venue ticker lookup')
+    def exact(reply):
+        return {(r.get('figi'),r.get('compositeFIGI'),r.get('shareClassFIGI'),r.get('securityType'))
+                for r in reply.get('data',[]) if r.get('marketSector')=='Equity'
+                and r.get('securityType')=='Common Stock' and r.get('securityType2')=='Common Stock'
+                and r.get('ticker')==ticker and r.get('exchCode')==venue
+                and all(re.fullmatch(r'BBG[A-Z0-9]{9}',r.get(k)or'')for k in ['figi','compositeFIGI','shareClassFIGI'])}
+    source=exact(responses[0])
+    if len(source)!=1:raise ValueError('Missing or ambiguous source listing FIGI')
+    matches=set()
+    for job,reply in zip(jobs[1:],responses[1:]):
+        if (set(job)!={'idType','idValue','exchCode','currency'} or job['idType']!='ID_ISIN'
+                or job['exchCode']!=venue or job['currency']!=currency
+                or not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',job['idValue'])):
+            raise ValueError('Invalid independent venue ISIN query')
+        candidate=exact(reply)
+        if len(candidate)==1 and source==candidate:matches.add(job['idValue'])
+    if len(matches)!=1:raise ValueError('Missing or ambiguous exact venue ISIN identity')
+    return matches.pop()
+
+
+def resolve_venue_tickers(items, share, source_url, source_hash, as_of, now):
+    """Optional identity enrichment inside the existing shared holdings producer.
+
+    Failed/ambiguous lookups retain the native unidentified row and the old
+    proof's clock. No independent book contributes financial weights.
+    """
+    from data_automation import write_json_atomic
+    from wisdomtree_api_holdings import mapping_request
+    registry=json.loads((ROOT/'scripts/security-identifier-candidates.json').read_text())
+    if share['isin'] not in registry.get('venueTickerFunds',[]):return {},[],[]
+    with _VENUE_LOCK:
+        cache=json.loads(PATH.read_text()) if PATH.exists() else {'schemaVersion':1,'observations':{}}
+        proofs=cache.setdefault('venueTickerObservations',{})
+        seeds=registry.get('venueTickerCandidates',[])
+        mappings={};used=[];failures=[]
+        keys=[(r.get('Label'),r.get('CurrencyCode')) for r in items if r.get('AssetClass')=='Stock']
+        for item in items:
+            if item.get('AssetClass')!='Stock' or item.get('ISIN') or keys.count((item.get('Label'),item.get('CurrencyCode')))!=1:continue
+            # This opt-in route fills the observed native identifier gaps.
+            # A supplied FIGI/CUSIP needs its own exact crosswalk; it cannot
+            # be silently discarded in favour of a weaker ticker lookup.
+            native=[item.get(k)for k in ['FIGI','CUSIP']]
+            if any(v is not None and (not isinstance(v,str)or v.strip())for v in native):continue
+            label=item.get('Label','');currency=item.get('CurrencyCode')
+            labels=label.split()
+            if len(labels)!=2 or {'US':'USD','CN':'CAD','AU':'AUD'}.get(labels[1])!=currency:continue
+            binding={'subjectIsin':share['isin'],'sourceUrl':source_url,'sourceSha256':source_hash,
+                     'asOf':as_of,'ticker':label,'currency':currency,'assetClass':'Stock'}
+            key=share['isin']+'|'+label+'|'+currency;previous=proofs.get(key,{})
+            try:
+                identity=venue_ticker_identity(previous,now,binding)
+                mappings[(label,currency)]=identity;used.append(previous);continue
+            except (ValueError,KeyError,TypeError):pass
+            candidates=sorted({r['isin']for r in seeds if r['ticker']==label and r['currency']==currency
+                               and r.get('sourceUrls') and all(u.startswith('https://')for u in r['sourceUrls'])})
+            if not 1<=len(candidates)<=3:continue
+            ticker,venue=labels
+            jobs=[{'idType':'TICKER','idValue':ticker,'exchCode':venue,'currency':currency},
+                  *[{'idType':'ID_ISIN','idValue':isin,'exchCode':venue,'currency':currency}for isin in candidates]]
+            proof={'sourceUrl':API,'checkedAt':now.isoformat(),'request':jobs,'issuerBinding':binding}
+            try:
+                response=mapping_request(jobs)
+                proof.update(response=response,sha256=digest(response))
+                identity=venue_ticker_identity(proof,now,binding)
+                proofs[key]=proof;mappings[(label,currency)]=identity;used.append(proof)
+            except Exception as error:
+                failure={**proof,'ticker':label,'error':str(error)[:500],
+                         'status':'rejected-identity-proof' if 'response'in proof else'unavailable-service'}
+                cache.setdefault('venueTickerLastAttempts',{})[key]=failure;failures.append(failure)
+                # Keep the historical proof unchanged for its original book.
+                # A different native hash requires its own successful proof;
+                # an outage or contradiction cannot rebind an old ticker ID.
+        write_json_atomic(PATH,cache)
+    return mappings,used,failures
 
 def candidate_name(value):
     """Propose crosswalk queries only. This key is never a security identity."""
