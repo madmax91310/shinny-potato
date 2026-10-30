@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch
 from holdings_reconciliation import HoldingsSourceError
 from collect_physical_holdings import (
-    amundi_composition, checked_rows, collect_globalx, globalx_csv, invesco_composition, vanguard_pages, vaneck_composition, vaneck_url)
+    amundi_composition, checked_rows, collect_globalx, collect_invesco, globalx_csv, invesco_composition, vanguard_pages, vaneck_composition, vaneck_url)
 
 NOW = dt.datetime(2026, 10, 20, tzinfo=dt.timezone.utc)
 SHARE = dict(isin='IE00BK5BQT80', currency='USD', productCode=9679)
@@ -236,6 +236,58 @@ class PhysicalHoldingsTest(unittest.TestCase):
         self.assertEqual(len(invesco_composition(body, NOW)[0]), 12)
         body['holdings'].pop(0)
         with self.assertRaises(ValueError): invesco_composition(body, NOW)
+
+    def test_invesco_empty_official_response_is_missing_data_not_a_complete_zero_book(self):
+        raw=(pathlib.Path(__file__).parent/'fixtures/physical-holdings/invesco-empty-20261030.json').read_bytes()
+        with self.assertRaises(HoldingsSourceError) as caught:invesco_composition(json.loads(raw),NOW)
+        self.assertIsNone(caught.exception.diagnostic['asOf'])
+        self.assertFalse(caught.exception.diagnostic['financialDataQualified'])
+        for bad in [None, {'holdings':None,'numberOfHoldings':12},
+                    {'holdings':{},'numberOfHoldings':12}, {'holdings':None,'numberOfHoldings':False}]:
+            with self.assertRaises(ValueError) as error:invesco_composition(bad,NOW)
+            self.assertNotIsInstance(error.exception,HoldingsSourceError)
+
+    def test_invesco_bounded_recovery_and_raw_proofs_preserve_original_weights(self):
+        share={'isin':'IE000716YHJ7','currency':'USD','sourceUrl':'https://www.invesco.com/exact-share.pdf'}
+        empty=(pathlib.Path(__file__).parent/'fixtures/physical-holdings/invesco-empty-20261030.json').read_bytes()
+        valid=json.dumps(dict(effectiveDate='2026-10-19',numberOfHoldings=12,
+            holdings=[dict(isin=r['isin'],name=r['name'],weight=8.33)for r in securities()])).encode()
+        identity=share['isin']+'\nReplication method Physical\nFund base currency USD'
+        for next_response in [empty,valid]:
+            with self.subTest(recovered=next_response==valid),tempfile.TemporaryDirectory() as directory, \
+                    patch.dict('os.environ',{'PHYSICAL_SOURCE_PROOF_DIR':directory}), \
+                    patch('issuer_documents.pdf_text',return_value=identity), \
+                    patch('collect_physical_holdings.download',side_effect=[b'identity',empty,next_response]) as fetch, \
+                    patch('collect_physical_holdings.time.sleep') as sleep:
+                if next_response==empty:
+                    with self.assertRaises(HoldingsSourceError) as caught:collect_invesco(share,NOW)
+                    d=caught.exception.diagnostic
+                    self.assertEqual(d['checkedAt'],NOW.isoformat())
+                    self.assertEqual(d['subjectIsin'],share['isin'])
+                    self.assertIsNone(d['asOf'])
+                    attempts=d['sourceAttempts']
+                else:
+                    book=collect_invesco(share,NOW)
+                    self.assertEqual(book['asOf'],'2026-10-19')
+                    self.assertAlmostEqual(sum(r['weightPct']for r in book['rows']),99.96)
+                    attempts=book['sourceAttempts']
+                    self.assertEqual(attempts[-1]['status'],'validated')
+                self.assertEqual(len(attempts),2)
+                self.assertEqual(attempts[0]['status'],'missing-complete-fund-file')
+                self.assertEqual(fetch.call_count,3)
+                sleep.assert_called_once_with(2)
+                self.assertEqual((pathlib.Path(directory)/(share['isin']+'-invesco-1.raw')).read_bytes(),empty)
+                self.assertEqual((pathlib.Path(directory)/(share['isin']+'-invesco-2.raw')).read_bytes(),next_response)
+
+    def test_invesco_nonempty_invalid_financial_data_is_not_retried(self):
+        share={'isin':'IE000716YHJ7','currency':'USD','sourceUrl':'https://www.invesco.com/exact-share.pdf'}
+        invalid=json.dumps(dict(effectiveDate='2026-10-19',numberOfHoldings=11,
+            holdings=[dict(isin=r['isin'],name=r['name'],weight=8.33)for r in securities()])).encode()
+        with patch('issuer_documents.pdf_text',return_value=share['isin']+'\nReplication method Physical\nFund base currency USD'), \
+                patch('collect_physical_holdings.download',side_effect=[b'identity',invalid]), \
+                patch('collect_physical_holdings.time.sleep') as sleep:
+            with self.assertRaisesRegex(ValueError,'Truncated'):collect_invesco(share,NOW)
+            sleep.assert_not_called()
 
     def test_invalid_and_duplicate_security_never_published(self):
         for value in (float('nan'), float('inf'), -1, True):
