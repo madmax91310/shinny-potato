@@ -1,7 +1,9 @@
+import {generatedDuelPool} from '../src/pages/portfolio-duels/generate.js'
+import {RESOURCE_DUEL_CHOICES} from '../src/data/resource-selections.js'
 import assert from'node:assert/strict'
 import fs from'node:fs'
 import{QUALIFIED_FUND_CALENDARS}from'../src/data/qualified-annual-calendars.js'
-import{qualifyPreferredManualNav,qualifiedManualMechanism}from'../src/data/annual-portfolio-funds.js'
+import{qualifyPreferredManualNav,isQualifiedAnnualPortfolioFund,qualifiedManualMechanism}from'../src/data/annual-portfolio-funds.js'
 import{ASSETS,getAsset}from'../src/data/portfolio-assets.js'
 import{CATALOG}from'../src/data/duel-assets.js'
 import{AUTOMATED_PORTFOLIO_FUNDS}from'../src/data/automated-portfolio-funds.js'
@@ -27,10 +29,13 @@ assert.equal(ASSETS.filter(x=>x.isin===isin).length,1);assert.equal(CATALOG.filt
 assert.equal(g.id,id);assert.equal(d.id,'cuivre_wisdomtree');assert.equal(g.manualOnly,true)
 const fallback=AUTOMATED_PORTFOLIO_FUNDS.find(x=>x.isin===isin)
 assert(fallback&&fallback.manualOnly);assert.equal(fallback.cat,'matieres_premieres');assert.equal(fallback.basis,'market-price')
-assert.equal(assetEditorial(fallback).text,commoditySourceExplanation(fallback));assert(commoditySourceExplanation(fallback).includes('swap'));assert(!/métal physique|valeur liquidative/.test(commoditySourceExplanation(fallback)))
-assert(!ASSETS.filter(x=>!x.manualOnly).some(x=>x.isin===isin),'No automatic role granted')
+assert.equal(assetEditorial(fallback).text,commoditySourceExplanation(fallback));if(fallback.underlyingMechanism)assert(commoditySourceExplanation(fallback).includes('swap'));else assert(!commoditySourceExplanation(fallback).includes('swap')); assert(!/métal physique|valeur liquidative/.test(commoditySourceExplanation(fallback)))
+assert(!ASSETS.filter(x=>!x.manualOnly).some(x=>x.isin===isin),'No automatic Générateur role granted')
+assert(generatedDuelPool('complement').some(x=>x.id==='cuivre_wisdomtree'),'Existing generated Duel resource role is preserved')
+for(const role of['base','complement','theme'])for(const item of generatedDuelPool(role).filter(x=>x.annualManual))
+ assert(RESOURCE_DUEL_CHOICES.some(([id,isin,,,oldRole])=>id===item.id && isin===item.isin && oldRole===role),'No new annual-only automatic Duel role')
 if(qualifyPreferredManualNav(live)){
- assert.equal(g.cat,'matieres_premieres');assert.equal(g.basis,'fund-nav');assert.equal(d.basis,'fund')
+ assert.equal(g.cat,'matieres_premieres');assert.equal(g.basis,'fund-nav');assert.equal(d.basis,'fund-nav');assert(isQualifiedAnnualPortfolioFund(d),'Duel preserves the full independent NAV contract')
  assert.equal(g.returnCurrency,'USD');assert.equal(d.currency,'USD');if(g.underlyingMechanism)assert.equal(g.underlyingMechanism.kind,'commodity-swap');assert(!g.automatedManual)
  const p=buildManualPortfolio([{id,pct:100}],'generaliste',[]),duel=buildCustomDuel({left:[{id:d.id,pct:100}],right:[{id:'msci_world_ishares',pct:100}]})
  const years=Object.keys(live.years).map(Number).filter(y=>y<new Date().getUTCFullYear()).sort((a,b)=>a-b).slice(-6)
@@ -42,7 +47,7 @@ if(qualifyPreferredManualNav(live)){
  const text=renderTweetText(p),tweet=buildTweet(duel)
  assert(text.includes(String(years[0]))&&text.includes(String(years.at(-1)))&&text.includes('valeur liquidative'))
  assert(!text.includes('métal physique'));assert(tweet.includes(String(duel.years[0]))&&tweet.includes(String(duel.years.at(-1))))
- assert(duel.sources.find(x=>x.isin===isin).note.includes('NAV'));assert(duel.sources.find(x=>x.isin===isin).url===live.sourceUrls[0])
+ assert.equal(duel.sources.find(x=>x.isin===isin).note,g.confidenceNote);assert(duel.sources.find(x=>x.isin===isin).note.includes('valeur liquidative'));assert(duel.sources.find(x=>x.isin===isin).url===live.sourceUrls[0])
 }else{
  assert.notEqual(g.annualManual,true,'An unqualified preferred calendar cannot replace the independently qualified market fallback')
  console.log('Copper live preferred NAV inactive: fallback admission checked; this test does not certify supplier availability.')
