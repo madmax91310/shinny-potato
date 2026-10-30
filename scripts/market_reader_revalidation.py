@@ -13,6 +13,9 @@ import subprocess
 import observation_rebase_guard as guard
 
 BUDGET_READERS = {
+    'docs/budget-ten-additional-2026-10-30.md',
+    'src/pages/budget-profiles/additional-profiles-2026-10-30.json',
+    'src/pages/budget-profiles/image.js',
     'docs/budget-text-publication-2026-10-30.md',
     'scripts/playwright-budget-profiles.mjs',
     'scripts/test-budget-profiles.mjs',
