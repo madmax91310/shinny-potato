@@ -163,7 +163,7 @@ class FinancialPublicationGate(unittest.TestCase):
         command = (f'{shlex.quote(sys.executable)} {shlex.quote(str(adapter))} '
                    '--base "$VALIDATED_DATA_ORIGINAL_BASE" --upstream HEAD^')
         env = {'VALIDATED_DATA_PREPARE': command,
-               'VALIDATED_DATA_DERIVED_PATHS': '[]',
+               'VALIDATED_DATA_DERIVED_PATHS': '["validated.json"]',
                'VALIDATED_DATA_CHECK': 'exit 23'}
         result = f.publish(env)
         self.assertNotEqual(result.returncode, 0, result.stdout)
