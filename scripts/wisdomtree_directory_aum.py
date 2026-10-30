@@ -90,7 +90,7 @@ def augment_aum(result,share,now,fetch=download):
         result['aum']={**value,'sourceUrl':url,'sha256':digest,'identitySourceUrl':identity['sourceUrl'],
                        'identitySha256':identity['sha256'],'identityAsOf':identity['asOf']}
         result.setdefault('sourceAttempts',[]).append({'url':url,'status':'validated','fields':['aum'],'sharedCurrentResponse':True})
-        result['unavailable']=[s.replace('AUM not published, previous dated value preserved','AUM independently collected from the official collective directory')for s in result.get('unavailable',[])]
+        result['unavailable']=[s.replace('AUM not published, previous dated value preserved','AUM independently collected from the official collective directory')for s in result.get('unavailable',[]) if s!='aum: not published in this factsheet']
     except (OSError,ValueError,TypeError,KeyError) as error:
         result.setdefault('sourceAttempts',[]).append({'url':url,'status':'unavailable','fields':['aum'],'reason':str(error)})
         result.setdefault('collectionErrors',[]).append({'field':'aum','url':url,'phase':'acquisition'if 'acquisition failed'in str(error)else'validation',

@@ -17,7 +17,7 @@ class DirectoryAum(unittest.TestCase):
    self.shares.extend(r for r in items if r.get('documentType')in {'wisdomtree','wisdomtree-ucits'})
   self.share=next(s for s in self.shares if s['isin']=='IE00BJGWQN72');module._RESPONSES.clear()
  def result(self):
-  return {'productId':self.share['isin'],'currency':self.share['currency'],'characteristics':{'terPct':.4,'asOf':'2026-09-30','sourceUrl':self.share['factsheetUrl'],'sha256':'a'*64},'countries':{'asOf':'2026-10-15','checkedAt':'2026-10-20','rows':[{'name':'US','weightPct':100}]},'unavailable':['HTML unavailable: current official PDF used; AUM not published, previous dated value preserved']}
+  return {'productId':self.share['isin'],'currency':self.share['currency'],'characteristics':{'terPct':.4,'asOf':'2026-09-30','sourceUrl':self.share['factsheetUrl'],'sha256':'a'*64},'countries':{'asOf':'2026-10-15','checkedAt':'2026-10-20','rows':[{'name':'US','weightPct':100}]},'unavailable':['HTML unavailable: current official PDF used; AUM not published, previous dated value preserved','aum: not published in this factsheet','countries: incomplete official composition']}
  def native(self,data):return next(r for r in data if r.get('ISIN')==self.share['isin'] and r.get('listingCCY')=='USD')
  def test_exact_fifteen_existing_instruments_keep_native_amount_units_and_own_dates(self):
   self.assertEqual(len(self.shares),15)
@@ -61,7 +61,7 @@ class DirectoryAum(unittest.TestCase):
    self.assertEqual(out['aum'],prior);self.assertEqual(out['sourceAttempts'][-1]['status'],'unavailable')
  def test_success_updates_aum_only_without_borrowing_source_clocks_for_other_fields(self):
   r=self.result();before=copy.deepcopy(r);out=augment_aum(r,self.share,NOW,lambda *a,**kw:self.raw)
-  self.assertEqual(out['aum']['amount'],400637024);self.assertEqual(out['aum']['asOf'],'2026-10-29');self.assertNotIn('checkedAt',out['aum']);self.assertEqual(out['countries'],before['countries']);self.assertEqual(out['characteristics'],before['characteristics']);self.assertEqual(out['aum']['identityAsOf'],'2026-09-30');self.assertEqual(out['sourceAttempts'][-1]['fields'],['aum'])
+  self.assertEqual(out['aum']['amount'],400637024);self.assertEqual(out['aum']['asOf'],'2026-10-29');self.assertNotIn('checkedAt',out['aum']);self.assertEqual(out['countries'],before['countries']);self.assertEqual(out['characteristics'],before['characteristics']);self.assertEqual(out['aum']['identityAsOf'],'2026-09-30');self.assertEqual(out['sourceAttempts'][-1]['fields'],['aum']);self.assertNotIn('aum: not published in this factsheet',out['unavailable']);self.assertIn('countries: incomplete official composition',out['unavailable'])
  def test_same_date_contradiction_is_quarantined_and_older_result_cannot_replace_newer(self):
   r=self.result();r['aum']={'amount':123,'currency':'USD','scope':'fund','asOf':'2026-10-29','checkedAt':'2026-10-20'}
   out=augment_aum(r,self.share,NOW,lambda *a,**kw:self.raw);self.assertNotIn('aum',out);self.assertIn('Same-date',out['collectionErrors'][-1]['reason'])
