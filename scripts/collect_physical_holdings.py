@@ -11,6 +11,7 @@ from urllib.parse import urljoin, urlsplit
 from urllib.parse import urlencode
 from bs4 import BeautifulSoup
 from issuer_documents import download, document_date, public_page
+from holdings_reconciliation import HoldingsSourceError
 
 ISIN = re.compile(r'[A-Z]{2}[A-Z0-9]{9}\d')
 
@@ -103,7 +104,12 @@ def globalx_csv(raw, now):
                    f"asOf={row.get('AS_OF_DATE')!r})")
         value = row.get('NET_ASSETS')
         if value is None or not value.strip():
-            raise ValueError('Missing ' + context)
+            raise HoldingsSourceError('Missing ' + context, {
+                'kind':'missing-published-nav-weight', 'asOf':row['AS_OF_DATE'],
+                'recordNumber':record, 'name':row.get('NAME'),
+                'positionIsin':row.get('ISIN') or None,
+                'missingFields':[key for key in ['NET_ASSETS','MARKET_VALUE'] if not (row.get(key) or '').strip()],
+                'financialDataQualified':False, 'normalizationApplied':False})
         try:
             weight = float(value)
         except ValueError as exc:
@@ -134,7 +140,12 @@ def collect_globalx(share, now):
     url = globalx_page(page, share)
     raw = download(url)
     source_proof(share, 'globalx', raw)
-    rows, stamp = globalx_csv(raw, now)
+    try:
+        rows, stamp = globalx_csv(raw, now)
+    except HoldingsSourceError as error:
+        error.diagnostic.update(subjectIsin=share['isin'],sourceUrl=url,sha256=digest(raw),
+                                checkedAt=now.isoformat())
+        raise
     return observation(rows, stamp, url, raw, allow_unidentified=True,
                        identitySourceUrl=share['sourceUrl'], identitySha256=digest(page))
 

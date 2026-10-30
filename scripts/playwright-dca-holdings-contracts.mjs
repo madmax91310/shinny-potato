@@ -31,6 +31,7 @@ try{
   ['hedged-unsupported',[['IE00B441G979',60],['world',40]]],
   ['cloud',[['cloud',50],['sp500',50]]],
   ['new-issuer-portfolios',[['IE00BZ56SW52',50],['IE00BKLF1R75',50]]],
+  ['retained-globalx-and-jpm',[['IE000NDWFGA5',50],['IE0003UVYC20',50]]],
   ['neutral',[['world',60],['gold',20],['btc',10],['IE0008UEVOE0',10]]],
   ['fund-and-index',[['world',60],['FR0013411980',40]]],
   ['native-index-pair',[['FR0013411980',50],['FR0013411998',50]]],
@@ -98,5 +99,5 @@ try{
   }
  }
  assert.deepEqual(errors,[])
- console.log('Built site: 13 complete/partial/unidentified/inapplicable/native-index/mixed/reconciled portfolios, identical analysis/canvas/download, desktop and mobile verified.')
+ console.log('Built site: 14 complete/partial/unidentified/inapplicable/native-index/mixed/reconciled/retained portfolios, identical analysis/canvas/download, desktop and mobile verified.')
 }finally{await browser?.close();server.kill()}

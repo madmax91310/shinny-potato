@@ -8,6 +8,7 @@ import json
 import tempfile
 import unittest
 from unittest.mock import patch
+from holdings_reconciliation import HoldingsSourceError
 from collect_physical_holdings import (
     amundi_composition, checked_rows, collect_globalx, globalx_csv, invesco_composition, vanguard_pages, vaneck_composition, vaneck_url)
 
@@ -71,6 +72,28 @@ class PhysicalHoldingsTest(unittest.TestCase):
         for value in ('NaN', 'inf', '-inf', '15,87', '15.87%', '-1', '101'):
             with self.subTest(value=value), self.assertRaisesRegex(ValueError, 'Global X|physical'):
                 globalx_csv(self.uranium_weight('CAMECO CORP', value), NOW.replace(day=29))
+
+    def test_globalx_missing_published_field_has_bound_rejected_source_evidence(self):
+        import hashlib
+        raw=self.uranium_weight('CASH','')
+        share={'isin':'IE000NDWFGA5','sourceUrl':'https://globalxetfs.eu/funds/urnu/'}
+        url='https://globalxetfs.eu/api/funds/urnu/topholdingscsv'
+        with patch('collect_physical_holdings.public_page',return_value='identity'), \
+                patch('collect_physical_holdings.globalx_page',return_value=url), \
+                patch('collect_physical_holdings.download',return_value=raw), \
+                self.assertRaises(HoldingsSourceError) as caught:
+            collect_globalx(share,NOW.replace(day=29))
+        d=caught.exception.diagnostic
+        self.assertEqual(d['subjectIsin'],share['isin'])
+        self.assertEqual(d['sourceUrl'],url)
+        self.assertEqual(d['sha256'],hashlib.sha256(raw).hexdigest())
+        self.assertEqual(d['asOf'],'2026-10-28')
+        self.assertEqual(d['checkedAt'],NOW.replace(day=29).isoformat())
+        self.assertEqual(d['name'],'CASH')
+        self.assertEqual(d['missingFields'],['NET_ASSETS'])
+        self.assertGreater(d['recordNumber'],2)
+        self.assertFalse(d['financialDataQualified'])
+        self.assertFalse(d['normalizationApplied'])
 
     def test_globalx_current_schema_dates_totals_and_duplicates_remain_required(self):
         raw = self.uranium_current()
