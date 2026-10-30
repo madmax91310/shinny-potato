@@ -155,3 +155,37 @@ try {
   assert.equal(savePublished(['x']), false)
 } finally { globalThis.localStorage = previous }
 console.log(`Budget profiles: ${BUDGET_PROFILES.length} source ledgers, adaptive texts, expense coverage, reconciliation, draft migration and independent publication storage verified.`)
+
+// Prepared budgets must balance without posing as unmodified source statements.
+for (const p of BUDGET_PROFILES.filter(p => p.kind === 'prepared')) {
+  assert.equal(analyzeBudget(p).balance, p.provenance?.expectedBalance ?? 0, p.id)
+  assert.match(sourceReply(p), /compléments et arrondis/)
+  assert(!sourceReply(p).includes('Montants déclarés par la personne'))
+  assert(p.provenance?.method)
+}
+const preparedThomas = BUDGET_PROFILES.find(p => p.id === 'prepared-tom281-2026-10-30')
+assert.equal(preparedThomas.savings.find(r => r.label === 'Épargne de précaution').amount, 610)
+assert.equal(analyzeBudget(preparedThomas).income, 2530)
+
+// Independently reconciled user-approved lot: income / expenses / transfers / balance.
+for (const [n, income, expenses, savings, balance] of [
+  [1,2400,1755,645,0], [2,3350,2300,1050,0], [3,1672,1300,372,0],
+  [4,4600,3800,800,0], [5,2750,2750,0,0], [6,4700,3200,1500,0],
+  [7,4000,3000,1000,0], [8,2300,1630,670,0], [9,1400,1150,250,0],
+  [10,2100,1760,340,0], [11,904,497.97,406.03,0], [12,3500,2500,1000,0],
+  [13,2650,2450,200,0], [14,3650,2850,800,0], [15,3600,1211.58,2388.42,0],
+  [16,2300,1550,750,0], [17,8600,4800,2850,950], [18,7708.33,4350,3358.33,0],
+  [19,3300,2500,800,0], [20,5600,3000,2600,0],
+]) {
+  const p = BUDGET_PROFILES.find(p => p.id === `prepared-lot2-${String(n).padStart(2,'0')}-2026-10-30`)
+  assert(p, `Missing approved profile ${n}`)
+  const a = analyzeBudget(p)
+  assert.deepEqual([a.income,a.expenses,a.savings,a.balance], [income,expenses,savings,balance],p.id)
+  assert.notEqual(p.name,p.provenance.original.name,'Rename source identities')
+  assert.equal(p.source.url,p.provenance.original.sourceUrl)
+}
+const lot2 = n => BUDGET_PROFILES.find(p => p.id === `prepared-lot2-${String(n).padStart(2,'0')}-2026-10-30`)
+assert(!lot2(14).expenses.some(r => r.amount === 1117 || r.amount === 1220), 'No future housing mixed into current budget')
+assert(!lot2(18).income.some(r => r.amount === 6000 || r.amount === 50000), 'No duplicated bonus or future PEE')
+assert(!lot2(19).income.some(r => r.amount >= 9000), 'No post-internship projection treated as current salary')
+assert(!lot2(20).expenses.some(r => /crédit.*locatif/i.test(r.label)), 'Rental cash flow is already net; do not deduct mortgages twice')

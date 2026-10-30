@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-10-30T21:14:22.425140+00:00",
+  "version": {
+    "sha": "49ad42eb6a0eee67b459f4ae35abe591c418767a",
+    "dataSha": "991bdb81ecbabad0dffac331da66911adce6cad7",
+    "lane": "validated-code-data",
+    "builtAt": "2026-10-30T20:30:06.336Z"
+  },
+  "manifest": null,
+  "bindings": [
+    {
+      "path": "src/data/automated-etf-monthly.json",
+      "recordedCommit": "15915362731a390e36af7838f9fc391ed3f939f5",
+      "expected": "5f9c46fe8579c5f4600871e8519eed6a439d5872",
+      "served": "5f9c46fe8579c5f4600871e8519eed6a439d5872",
+      "matches": true,
+      "scope": "Five repaired WisdomTree NAV routes +PANX; all250pointarrays previously shown unchanged"
+    },
+    {
+      "path": "src/data/monthly-fx.json",
+      "recordedCommit": "15915362731a390e36af7838f9fc391ed3f939f5",
+      "expected": "9d7637c4723aeced9b2d3ad31e9ac0a59ec44a7a",
+      "served": "9d7637c4723aeced9b2d3ad31e9ac0a59ec44a7a",
+      "matches": true,
+      "scope": "Independently fetched ECB/H10 conversions; data periods retained"
+    },
+    {
+      "path": "src/data/dca-security-classifications.json",
+      "recordedCommit": "991bdb81ecbabad0dffac331da66911adce6cad7",
+      "expected": "9bb4275587695929afc48a0e11c9910c4235e3c9",
+      "served": "9bb4275587695929afc48a0e11c9910c4235e3c9",
+      "matches": true,
+      "scope": "IWM unweighted per-ISIN classification reference"
+    },
+    {
+      "path": "src/data/exposure-sleeves.json",
+      "recordedCommit": "991bdb81ecbabad0dffac331da66911adce6cad7",
+      "expected": "9f8588863fa233a9b5fe6a50560f587ac7954a6c",
+      "served": "9f8588863fa233a9b5fe6a50560f587ac7954a6c",
+      "matches": true,
+      "scope": "Qualified economic sleeves; weights of IWM reference not imported"
+    }
+  ],
+  "allExact": true,
+  "limitation": "Source control/record/public data binding, not a certification of every unrelated field or a post-fix scheduled trigger."
+}

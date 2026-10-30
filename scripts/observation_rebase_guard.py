@@ -62,22 +62,32 @@ MARKET_READER_ONLY_CHANGES = {
 # outputs (SCPI race40834040536; publication race40849049401).
 # Coverage reports/build do: regenerate and validate those on the merged tree.
 # Keep this narrower than INDEPENDENT; other outputs have not been qualified.
-ETF_INDEPENDENT = {'src/data/automated-insurance.json', 'src/data/automated-scpi.json',
+# Run41127528853 refused only the actor presentation output. Neither the ETF
+# collectors nor their baseline read it; combined-tree financial validation and
+# report regeneration remain mandatory. Actor code/config changes stay protected.
+ETF_INDEPENDENT = {'src/data/automated-presentation-actors.json',
+                   'src/data/automated-insurance.json', 'src/data/automated-scpi.json',
                    'src/data/anniversary-levels.json', 'src/data/purchasing-power-observations.json',
                    'src/data/automated-broker-tariffs.json', 'src/data/automated-regulatory.json'}
+# This saved INSEE source receipt is not read by actor, anniversary or monthly
+# acquisition. The active inflation-monthly.js remains a protected input.
+INFLATION_RECEIPT = 'scripts/source-snapshots/inflation-automated.json'
 ALLOWED = {
+    'actors': {INFLATION_RECEIPT},
     'etf': ETF_INDEPENDENT,
     'indices': INDEPENDENT | {'src/data/automated-scpi.json','src/data/worldbank-gold-monthly.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
-    'market': INDEPENDENT | MARKET_PROJECTION_INPUTS | MARKET_READER_ONLY_CHANGES | {'src/data/automated-scpi.json','src/data/exposure-etf-expansion-records.json','src/data/non-bond-monthly-records.json','src/data/non-bond-etf-records.json','src/data/non-bond-qualified-records.json','src/data/non-bond-levels.json','scripts/source-snapshots/non-bond-monthly-active.json','src/data/lifestrategy.json','src/data/automated-etf.json','src/data/automated-instrument-metadata.json','src/data/instrument-metadata-status.json','src/data/automated-presentation-actors.json','src/data/dca-complete-holdings.json','src/data/dca-holdings-status.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json'},
+    'market': {INFLATION_RECEIPT} | INDEPENDENT | MARKET_PROJECTION_INPUTS | MARKET_READER_ONLY_CHANGES | {'src/data/automated-scpi.json','src/data/exposure-etf-expansion-records.json','src/data/non-bond-monthly-records.json','src/data/non-bond-etf-records.json','src/data/non-bond-qualified-records.json','src/data/non-bond-levels.json','scripts/source-snapshots/non-bond-monthly-active.json','src/data/lifestrategy.json','src/data/automated-etf.json','src/data/automated-instrument-metadata.json','src/data/instrument-metadata-status.json','src/data/automated-presentation-actors.json','src/data/dca-complete-holdings.json','src/data/dca-holdings-status.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json'},
     'insurance': {'src/data/worldbank-gold-monthly.json','src/data/automated-broker-tariffs.json','src/data/automated-regulatory.json','src/data/automated-scpi.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
-    'scpi': INDEPENDENT | {'src/data/worldbank-gold-monthly.json','src/data/anniversary-levels.json',
+    # Run41115036012: actor/publication observations do not feed SCPI acquisition.
+    # Exact outputs only; combined-tree build, audits and non-mutation still required.
+    'scpi': INDEPENDENT | {'src/data/automated-presentation-actors.json', 'src/data/worldbank-gold-monthly.json','src/data/anniversary-levels.json',
                          'src/data/anniversary-index-history.json',
                          'src/data/purchasing-power-observations.json',
                          'scripts/source-snapshots/anniversary-indices.json'},
     # Actual refusal40893319635: actor presentations are not an acquisition
     # input for INSEE observations or exact anniversary levels. Their latest
     # version must still survive the mandatory combined-tree build/audits.
-    'publication': INDEPENDENT | {'src/data/automated-scpi.json',
+    'publication': {INFLATION_RECEIPT} | INDEPENDENT | {'src/data/automated-scpi.json',
                                   'src/data/automated-presentation-actors.json'},
 }
 

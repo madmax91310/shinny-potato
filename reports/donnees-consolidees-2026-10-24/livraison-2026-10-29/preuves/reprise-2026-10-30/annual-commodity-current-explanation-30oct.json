@@ -1,0 +1,66 @@
+{
+  "checkedAt": "2026-10-30T19:01:43.690Z",
+  "cases": [
+    {
+      "isin": "JE00BN7KB557",
+      "id": "etc-coffee",
+      "name": "WisdomTree Coffee",
+      "cat": "matieres_premieres",
+      "actualExplanation": "On s’expose ici à des contrats à terme sur le café à travers un ETC. Le renouvellement des contrats, les frais et le change influencent le rendement : cette ligne ne reproduit pas simplement le prix spot de la matière première.",
+      "sourceCharacteristics": {
+        "replicationMethod": "Synthétique",
+        "annualSwapRatePct": 0.45,
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-coffee",
+        "sha256": "e1a157e9ed2545c4e90751530681aad6241a0cb3099e56c4a6441b6a91d49741",
+        "checkedAt": "2026-10-30",
+        "asOf": "2026-10-19"
+      }
+    },
+    {
+      "isin": "JE00B2QXZK10",
+      "id": "etc-cocoa",
+      "name": "WisdomTree Cocoa",
+      "cat": "matieres_premieres",
+      "actualExplanation": "On s’expose ici à des contrats à terme sur le cacao à travers un ETC. Le renouvellement des contrats, les frais et le change influencent le rendement : cette ligne ne reproduit pas simplement le prix spot de la matière première.",
+      "sourceCharacteristics": {
+        "replicationMethod": "Synthétique",
+        "annualSwapRatePct": 0.45,
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-cocoa",
+        "sha256": "0c54e6f1a22027f11144d45c8799b0b2f813d81dac0bbe55030e0b5a5a8acb3f",
+        "checkedAt": "2026-10-30",
+        "asOf": "2026-10-19"
+      }
+    },
+    {
+      "isin": "JE00BN7KB334",
+      "id": "etc-natural-gas",
+      "name": "WisdomTree Natural Gas",
+      "cat": "matieres_premieres",
+      "actualExplanation": "On s’expose ici à des contrats à terme sur le gaz Henry Hub américain à travers un ETC. Le renouvellement des contrats, les frais et le change influencent le rendement : cette ligne ne reproduit pas simplement le prix spot de la matière première.",
+      "sourceCharacteristics": {
+        "replicationMethod": "Synthétique",
+        "annualSwapRatePct": 0.45,
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas",
+        "sha256": "93ece4d0002d3ef49b1fc4be1f25bd0ad7794f8f1c6f82b87be508855028fe5d",
+        "checkedAt": "2026-10-30",
+        "asOf": "2026-10-19"
+      }
+    },
+    {
+      "isin": "JE00BN7KB664",
+      "id": "etc-wheat",
+      "name": "WisdomTree Wheat",
+      "cat": "matieres_premieres",
+      "actualExplanation": "On s’expose ici à des contrats à terme sur le blé à travers un ETC. Le renouvellement des contrats, les frais et le change influencent le rendement : cette ligne ne reproduit pas simplement le prix spot de la matière première.",
+      "sourceCharacteristics": {
+        "replicationMethod": "Synthétique",
+        "annualSwapRatePct": 0.45,
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat",
+        "sha256": "aaf155cef5d4d34d5c0c0469522fd4df23e76bcb5ef89d85a4b614825e55cdac",
+        "checkedAt": "2026-10-30",
+        "asOf": "2026-10-19"
+      }
+    }
+  ],
+  "scope": "Reproduction of actual financial descriptions, no source or production value modified"
+}

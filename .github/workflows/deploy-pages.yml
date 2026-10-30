@@ -52,6 +52,8 @@ jobs:
         with:
           ref: ${{ inputs.ref || github.sha }}
           fetch-depth: 0
+          # Keep complete ancestry; fetch historical file bodies only when needed.
+          filter: blob:none
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
@@ -130,7 +132,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_market_transport.py'
       - run: python -m unittest discover -s scripts -p 'test_invesco_characteristics.py'
       - run: node scripts/test-performance-rankings.mjs
-      - run: node scripts/test-official-nav-consumers.mjs && node scripts/test-abtc-nav-consumers.mjs && node scripts/test-amundi-reit-nav-consumers.mjs && node scripts/test-nikkei-nav-consumers.mjs && node scripts/test-dws-income-consumers.mjs && node scripts/test-qualified-return-windows.mjs && node scripts/test-wisdomtree-nav-consumers.mjs && node scripts/test-remainder-nav-consumers.mjs && node scripts/test-wfns-distribution-consumers.mjs && node scripts/test-remainder-financial.mjs
+      - run: node scripts/test-official-nav-consumers.mjs && node scripts/test-abtc-nav-consumers.mjs && node scripts/test-amundi-reit-nav-consumers.mjs && node scripts/test-nikkei-nav-consumers.mjs && node scripts/test-copper-manual-nav-consumers.mjs && node scripts/test-exact-share-annual-consumers.mjs && node scripts/test-dws-income-consumers.mjs && node scripts/test-qualified-return-windows.mjs && node scripts/test-wisdomtree-nav-consumers.mjs && node scripts/test-remainder-nav-consumers.mjs && node scripts/test-wfns-distribution-consumers.mjs && node scripts/test-remainder-financial.mjs
       - run: node scripts/test-audit-history-quality.mjs && node scripts/test-reusable-data-contracts.mjs && node scripts/test-soxx-conventions.mjs && node scripts/test-dated-records.mjs && node scripts/test-shared-history-art.mjs
       - run: node scripts/build-tool-links.mjs && node scripts/test-tools-roadmap.mjs
       - run: python -m unittest discover -s scripts -p 'test_qualified_listings.py'
@@ -138,7 +140,9 @@ jobs:
       - run: node scripts/test-index-proxy-identity.mjs
       - run: node scripts/test-shared-listing-identities.mjs
       - run: node scripts/test-selected-data.mjs && node scripts/test-selected-records.mjs
-      - run: node scripts/test-tool-projections.mjs
+      # Canonical + Vite SSR copies exceed Node20’s default 2 GiB heap with
+      # the current catalogue. Keep every parity/route assertion unchanged.
+      - run: node --max-old-space-size=4096 scripts/test-tool-projections.mjs
       - run: node scripts/test-light-registries.mjs
       - run: node scripts/test-browser-shards.mjs
       - run: node scripts/test-broker-automation.mjs
@@ -402,6 +406,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_presentation_actors.py'
       - run: python -m unittest discover -s scripts -p "test_partial_official_publications.py"
       - run: python -m unittest discover -s scripts -p 'test_extended_scpi.py'
+      - run: python -m unittest discover -s scripts -p 'test_scpi_current_bulletins.py'
       - run: python -m unittest discover -s scripts -p 'test_insurance.py'
       - run: python -m unittest discover -s scripts -p 'test_publication_periods.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_expansion.py'

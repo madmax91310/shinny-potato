@@ -239,8 +239,8 @@ const { getInstrumentAnnualPerformance } = await import('../src/data/instrument-
 const { getInstrumentComparatorReturns } = await import('../src/data/instrument-comparator-returns.js');
 assert.equal(getInstrumentAnnualPerformance(silverOfficial.isin).currency,'USD');
 assert.deepEqual(getInstrumentComparatorReturns(silverOfficial.isin), Object.fromEntries(silverOfficial.r.slice(3).map((value,i)=>[`y${2023+i}`,value])));
-assert.ok(dataLabels(ASSETS.find(a=>a.id==='bitcoin')).includes('Historique reconstitué'));
-assert.ok(dataLabels(ASSETS.find(a=>a.id==='quality_dividend')).includes('Historique reconstitué'));
+assert.deepEqual(dataLabels(ASSETS.find(a=>a.id==='bitcoin')),['Données en USD']);
+assert(!dataLabels(ASSETS.find(a=>a.id==='quality_dividend')).includes('Historique reconstitué'));
 assert.ok(dataLabels(ASSETS.find(a=>a.id==='quality_dividend')).includes('Indice modifié'));
 console.log('OK : séries officielles USD distinguées des proxies, argent sans conversion.');
 

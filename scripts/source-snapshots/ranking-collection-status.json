@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-30T13:15:21.753165+00:00",
+  "checkedAt": "2026-10-30T21:06:16.381166+00:00",
   "attemptedIds": [],
   "fxFailed": false,
   "crossFxFailed": false,
@@ -7,11 +7,11 @@
     "TWD": {
       "id": "fx:TWD",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00",
-      "sourceUrl": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01%2F01%2F1999&to=10%2F29%2F2026&filetype=csv&label=include&layout=seriescolumn&type=package",
+      "checkedAt": "2026-10-30T18:02:05.585162+00:00",
+      "sourceUrl": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01%2F01%2F1999&to=10%2F30%2F2026&filetype=csv&label=include&layout=seriescolumn&type=package",
       "sourceAttempts": [
         {
-          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-29",
+          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-30",
           "error": "The read operation timed out"
         },
         {
@@ -19,7 +19,7 @@
           "error": "The read operation timed out"
         },
         {
-          "sourceUrl": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01%2F01%2F1999&to=10%2F29%2F2026&filetype=csv&label=include&layout=seriescolumn&type=package",
+          "sourceUrl": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01%2F01%2F1999&to=10%2F30%2F2026&filetype=csv&label=include&layout=seriescolumn&type=package",
           "status": "downloaded",
           "sha256": "a83befb1c2526ea354520a4af0a60140e6fb5363c9b37525f33a3b6990a1169d"
         }
@@ -28,7 +28,7 @@
     "ECB": {
       "id": "fx:ECB",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-10-30T18:02:05.585162+00:00"
     }
   },
   "series": [

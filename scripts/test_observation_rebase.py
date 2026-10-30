@@ -48,6 +48,8 @@ class ObservationRebaseTests(unittest.TestCase):
                      'public/data/investors/other.json',
                      'src/pages/hey-grok/App.css',
                      'src/pages/investment-calculator/lib.js', 'src/data/monthly-fx.json',
+                     'scripts/source-snapshots/inflation-automated.json',
+                     'scripts/collect_presentation_actors.py', 'src/data/inflation-monthly.js',
                      ACTOR_OUTPUT, *CURRENT_REVIEW_OUTPUTS]:
             p = self.f.local / name
             p.parent.mkdir(parents=True, exist_ok=True)
@@ -150,6 +152,23 @@ class ObservationRebaseTests(unittest.TestCase):
         self.f.advance_remote('src/data/automated-scpi.json')
         self.assert_refused('scripts/collect_scpi.py','etf')
 
+    def test_etf_actor_race_preserves_both_validated_outputs(self):
+        self.f.advance_remote(ACTOR_OUTPUT)
+        result = self.publish('etf')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + ACTOR_OUTPUT), 'concurrent update')
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
+
+    def test_etf_actor_race_cannot_bypass_financial_validation(self):
+        self.assert_refused(ACTOR_OUTPUT, 'etf', validation='false')
+
+    def test_etf_actor_parser_and_financial_inputs_stay_protected(self):
+        self.f.advance_remote(ACTOR_OUTPUT)
+        for path in ('scripts/collect_presentation_actors.py', 'src/data/automated-etf-monthly.json',
+                     'scripts/monthly-automation.json'):
+            with self.subTest(path=path):
+                self.assert_refused(path, 'etf')
+
     def test_index_collection_cannot_reuse_changed_collection_inputs(self):
         self.assert_refused('src/data/automated-etf-monthly.json','indices')
 
@@ -158,6 +177,45 @@ class ObservationRebaseTests(unittest.TestCase):
         result = self.publish('publication')
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(self.f.git(self.f.remote, 'show', 'master:src/data/automated-scpi.json'), 'concurrent update')
+
+    def assert_inflation_receipt_independent(self,kind):
+        self.f.advance_remote('scripts/source-snapshots/inflation-automated.json')
+        result=self.publish(kind)
+        self.assertEqual(result.returncode,0,result.stderr)
+
+    def test_market_inflation_receipt_is_independent(self):
+        self.assert_inflation_receipt_independent('market')
+
+    def test_publication_inflation_receipt_is_independent(self):
+        self.assert_inflation_receipt_independent('publication')
+
+    def test_actor_inflation_receipt_is_independent(self):
+        self.assert_inflation_receipt_independent('actors')
+
+    def test_actor_independence_never_bypasses_revalidation(self):
+        self.assert_refused('scripts/source-snapshots/inflation-automated.json','actors',validation='false')
+
+    def test_actor_registry_and_parser_and_active_inflation_stay_protected(self):
+        for path in (ACTOR_OUTPUT,'scripts/collect_presentation_actors.py','src/data/inflation-monthly.js'):
+            with self.subTest(path=path):
+                self.assert_refused(path,'actors')
+
+    def test_scpi_actor_race_preserves_both_outputs_after_financial_validation(self):
+        self.f.advance_remote(ACTOR_OUTPUT)
+        result=self.publish('scpi')
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.assertEqual(self.f.git(self.f.remote,'show','master:'+ACTOR_OUTPUT),'concurrent update')
+        self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'validated update')
+
+    def test_scpi_actor_race_cannot_bypass_failed_financial_validation(self):
+        self.assert_refused(ACTOR_OUTPUT,'scpi',validation='false')
+
+    def test_scpi_actor_parser_and_own_registry_remain_protected(self):
+        for path in ('scripts/collect_presentation_actors.py','src/data/automated-scpi.json','scripts/collect_scpi.py'):
+            with self.subTest(path=path):self.assert_refused(path,'scpi')
+
+    def test_publication_active_inflation_and_inputs_remain_protected(self):
+        self.assert_refused('src/data/inflation-monthly.js','publication')
 
     def assert_refused(self, path, kind='scpi', validation='true'):
         self.f.advance_remote(path)
@@ -381,6 +439,28 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
             self.assertEqual(workflow.count("      - '" + path + "'"), 2)
         self.assertIn("run: python -m unittest discover -s scripts -p 'test_observation_rebase.py'", workflow)
 
+
+    def test_etf_acquisition_graph_does_not_read_actor_output(self):
+        self.python_graph(['collect_etf_pilot.py', 'collect_amundi_etf.py',
+                           'collect_ssga_etf.py', 'refresh_additional_etf.py',
+                           'collect_presentation_performance.py', 'collect_annual_fx.py',
+                           'collect_performance_currency.py', 'refresh_index_sources.py'], [ACTOR_OUTPUT])
+        pending = [ROOT / 'scripts/export-etf-pilot-baseline.mjs']
+        seen = set()
+        while pending:
+            path = pending.pop().resolve()
+            if path in seen:continue
+            seen.add(path)
+            self.assertNotEqual(path, ROOT / ACTOR_OUTPUT)
+            if path.suffix not in ('.js', '.mjs'):continue
+            text = path.read_text()
+            self.assertNotIn(pathlib.Path(ACTOR_OUTPUT).name, text, str(path))
+            for relative in re.findall(r"(?:from\s*|import\s*|import\s*\(\s*)['\"](\.[^'\"]+)['\"]", text):
+                pending.append(path.parent / relative)
+        self.assertGreater(len(seen), 1)
+
+    def test_scpi_acquisition_graph_does_not_read_actor_output(self):
+        self.python_graph(['collect_scpi.py'],[ACTOR_OUTPUT])
 
     def test_publication_collectors_do_not_read_actor_presentations(self):
         self.python_graph(['refresh_purchasing_power.py', 'refresh_anniversary_levels.py',

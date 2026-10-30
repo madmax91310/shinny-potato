@@ -82,8 +82,11 @@ export const PORTFOLIO_RETURNS_BY_ISIN = Object.freeze({
 
 export function getInstrumentReturnValues(isin) {
   const historical = HISTORICAL_AUTOMATED_PERFORMANCE[isin]?.values;
-  if (historical?.every(Number.isFinite)) return historical;
   const proxy = SIMULATION_PROXIES[isin];
+  // A partial exact-share calendar is not permission to fill its missing
+  // years with an archived benchmark, spot price or another share class.
+  // Explicit simulation proxies retain their separate admission policy.
+  if (historical?.every(Number.isFinite) || (!proxy && historical?.some(Number.isFinite))) return historical;
   const values = proxy ? proxy.values ?? VERIFIED_RETURNS[proxy.referenceIsin]?.values : VERIFIED_RETURNS[isin]?.values ?? PORTFOLIO_RETURNS_BY_ISIN[isin];
   if (!values && historical) return historical;
   if (!values) throw new Error(`Rendements absents pour ${isin}`);
@@ -162,12 +165,13 @@ export function getInstrumentCalendarReturns(isin, fallbackValues, { allowProxy 
   try { archive = fallbackValues ?? getInstrumentReturnValues(isin); } catch { archive = legacy?.values; }
   const actual = performance?.years ?? {};
   const hasFullActualWindow = latestCommonYears([actual]).length > 0;
-  const proxyHistory = proxy || REVIEWED_PERFORMANCE_META[isin]?.portfolioHistoryBasis === 'proxy';
+  const proxyHistory = proxy || (REVIEWED_PERFORMANCE_META[isin]?.portfolioHistoryBasis === 'proxy' && !Object.values(actual).some(Number.isFinite));
   if (proxyHistory && !hasFullActualWindow) {
     if (proxy?.referenceIsin && allowProxy) return getInstrumentCalendarReturns(proxy.referenceIsin, undefined, { allowProxy: false });
     return calendarMap(proxy?.values ?? archive);
   }
-  const result = proxyHistory ? {} : calendarMap(archive);
+  const hasExactCalendar = performance?.basis === 'fund' && performance.currency === (legacy?.currency ?? record.currency) && Object.values(actual).some(Number.isFinite);
+  const result = proxyHistory || hasExactCalendar ? {} : calendarMap(archive);
   if (performance?.basis === 'fund' && performance.currency === (legacy?.currency ?? record.currency)) {
     for (const [year, value] of Object.entries(performance.years)) {
       if (/^20\d{2}$/.test(year) && Number.isFinite(value) && value > -100 && Number(year) < new Date().getUTCFullYear()) result[year] = value;

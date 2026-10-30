@@ -1,0 +1,994 @@
+{
+  "checkedAt": "2026-10-30T21:53:29.833537+00:00",
+  "version": {
+    "sha": "d1e072fec40884de4fbb69d1c843a727cf0c6c79",
+    "dataSha": "20253887d3dc613255b4eaf6b03f33d22ac865e9",
+    "lane": "validated-code-data",
+    "builtAt": "2026-10-30T21:51:33.901Z"
+  },
+  "inventoryBlob": "88e365b056bac57a4e0246c355a87e8773111e14",
+  "inputFiles": [
+    {
+      "path": "public/data/investors/ackman.json",
+      "sha": "308079da6aef828858db181be510eee6a6038e85",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/aschenbrenner.json",
+      "sha": "b2b67c373bc0e8041cd79e43d37b4a374693bd7d",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/baker-bros.json",
+      "sha": "1c5f7576ec3f81ee34c04b9a2e18c0205bde24e0",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/berkshire.json",
+      "sha": "669da0e8a9a13920b4f6330c0b298d64536d2ebe",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/cathie-wood.json",
+      "sha": "ed9c91960ba3abc6b69a33544317e9bb437576f4",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/dorsey.json",
+      "sha": "5af49d1916a538d155252d163d6e0781689aca2c",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/druckenmiller.json",
+      "sha": "b40c121f02a6b018888c46f2c75d40f5c06ebc87",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/einhorn.json",
+      "sha": "cd38c2583eb6556bd51cb1fe4297bf32872fa7f9",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/gates-trust.json",
+      "sha": "4549c7d63d11874dec88d07b5a378826f2311efc",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/gavin-baker.json",
+      "sha": "7fbabc9adf505dc4866e53a29d27ad8eb003aea5",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/gayner.json",
+      "sha": "01b3499b6794a7644053da6c2bbfd51db7daa5da",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/gerstner.json",
+      "sha": "50f85fe7fd2aaf1c0a8c4477ab77622be1eea186",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/halvorsen.json",
+      "sha": "28ab44f1a3cc6fb664749cb253feabe306a108ab",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/hohn.json",
+      "sha": "a9ba9585802d37fd02cdccf4e1b1ead5a96a8ccd",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/icahn.json",
+      "sha": "80ba2cb44ba110c89d1b9b5718295de0294330d5",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/klarman.json",
+      "sha": "36c49f8131c4f059a581a7d77da505b97114cfe6",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/laffont.json",
+      "sha": "0d516459048c43a083ab19f08d70676397632e2c",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/li-lu.json",
+      "sha": "dc2d8489e7e1b25fb7dd1d4639eeb394886dde00",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/loeb.json",
+      "sha": "ac8d85c37b82729faac13c7c926be6cc8e3fa0ca",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/marks.json",
+      "sha": "fe01b8b570233e4feb6999b0968fe8002c6275c2",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/morfit.json",
+      "sha": "78500300ac7bac9e89b401d2ddf99ec565afaf2a",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/pabrai.json",
+      "sha": "92fde4822555660dead1e3026b61b9885e10d30e",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/renaissance.json",
+      "sha": "11327fe1778e1154023a628cbebadd9b179ee878",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/review-metadata.json",
+      "sha": "df51d9ebf3ce4fae43fe14026b5a2508de0a9af5",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/tepper.json",
+      "sha": "c866c552fc8e1299caa17fce85999995396f9a95",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/terry-smith.json",
+      "sha": "523bf3c9569e8f995ad70d73c3ae543ab4b15127",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/thiel.json",
+      "sha": "f4b0330502182ba4ddafb5a1a7b6b6f0472c5c10",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/vinall.json",
+      "sha": "391bc42b1c4bb7d17332e826d57e4434efcb5870",
+      "verified": true
+    },
+    {
+      "path": "public/data/investors/watsa.json",
+      "sha": "d2d64bd0d62e02dbe3f983c9f5f32aa5b4bcdf72",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/anniversary-indices.json",
+      "sha": "41351158e419e791e48fd4444db1c5572399a794",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/automation-recovery-2026-10-10.json",
+      "sha": "aa7cbfb38cf221de839d4e5d09cdd5485e7a373c",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/bitcoin-automated.json",
+      "sha": "7c88dc2fc9186abade8f9d188c33d59d38ad560c",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/calculator-certified-2026-09-30.json",
+      "sha": "69d6f30720d394788fa4f1c8eb376bb866d1d573",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/calculator-companies-2026-10-02.json",
+      "sha": "b066cd960e4ac849d156d5f1c83da38baab7fbae",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/calculator-monthly-2026-10-02.json",
+      "sha": "af87cad854fd9f0b085c3d26954555fd867f65d7",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/calculator-msci-additions-2026-10-02.json",
+      "sha": "6081ac0162562101c2e988a59429b6ca254ff089",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/calculator-msci-world-2026-10-02.json",
+      "sha": "e1a5b6c1383cadc5905949003dc05c5b0d74e634",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/calculator-stoxx600-2026-10-02.json",
+      "sha": "1cb90c892192071076c7744ceba97706531d189d",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/calculator-unverifiable-before-2026-09-30.json",
+      "sha": "13d6d85115f3ac19479a0738673e27e886413f95",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/calculator-worldbank-gold-2026-09-29.json",
+      "sha": "adb0911f65b97f685f7d6215b87402475e11866f",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/calculator-worldbank-gold-2026-10-03.json",
+      "sha": "e8b7dec60983259ab3476c5d03de0bb6354fa250",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/calculator-yahoo-2026-09-29.json",
+      "sha": "c8855f477f4e433500b8166788dd05776ef4d959",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/catalog-expansion-monthly-validation.json",
+      "sha": "6b103360909e4983e57030bcf31e8c840fa68138",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/companies-additions-2026-10-03.json",
+      "sha": "f6388656cc5f230a1b635be2fb705ea3ace355fe",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/company-alphabet-history.json",
+      "sha": "3e0c8c547d6579878b9e3be947852a329fbdd1c3",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/company-balance-excerpts.json",
+      "sha": "8153ca76a0e3e4cae73a8983006e8c53ef15983e",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/company-coverage-statements.json",
+      "sha": "650a320bbb9bff710f6b9c91f480db10c050f47d",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/company-decision-statements-2026-10-12.json",
+      "sha": "e55a0e1adc7a88cd2347e7818b0272fa53a0788f",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/company-extended-publications-2026-10-07.json",
+      "sha": "fff1d3d8abcca09ddbbdac18d72fd6e028aedfb4",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/company-publications-2026-10-07.json",
+      "sha": "9056e0af0cf31b5f99d07c3822eba6a055bf28c9",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/company-share-notes.json",
+      "sha": "3431f23a432c8db0f1e8b8b1c859fd9a48bae5ec",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/comparison-etf-details-2026-10-05.json",
+      "sha": "4be267268f6e64c55fe39799bcfc29e13b1078ea",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/data-review-2026-10-02.json",
+      "sha": "cb93a696d1639ffeda63576d0bf803bcd2173dcb",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/dca-equity-identity-review-2026-10-16.json",
+      "sha": "fb6fa3b4969fe08f1cf80d45fa7f8031d3e5472e",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/dca-equity-identity-review-2026-10-20.json",
+      "sha": "930f72a975528b0003622dcdc538587774b008cb",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/dca-history-identity-review-2026-10-16.json",
+      "sha": "3e8fd9b841bd6c38c4353eb4360e71e08934b2fb",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/diversification-history-2026-10-05.json",
+      "sha": "53a01d2f185db158f0612506e9a0d04b3a4ba9b6",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/etf-additions-2026-10-01.json",
+      "sha": "864615c10b5851fa43aec68fd8551fd3598d7958",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/etf-anniversary-initial.json",
+      "sha": "38f8259018a14b9fc0f1c8d787aaac86e408c9f9",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/etf-aum-2026-09-29.json",
+      "sha": "7d895e6765e931e2b850ba874a2c136b3a718cb4",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/etf-completeness-2026-10-04.json",
+      "sha": "b0cd8d85050f6d02d6a39499a0e5028208835356",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/etf-pilot-2026-10-05.json",
+      "sha": "7b7e99201721537199d4eede61344e260df48fa1",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/etf-review-2026-10-02.json",
+      "sha": "5bcc0aa4886e8843526f4613a36068d656ceb5c1",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/gaming-medical-2026-10-05.json",
+      "sha": "c82444e6090e7ef7df519dd0dadb8bd2f686f035",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/global-equity-identities-2026-10-17.json",
+      "sha": "fcd0761cd554830beb651f30bab2042f65fc2469",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/global-equity-qualification-2026-10-17.json",
+      "sha": "ce3c630da8cf53a8c12b3e9b4d92f50fa25409ec",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/household-benchmarks-2026-10-03.json",
+      "sha": "83a68d487071bfaa607c49c48e04c6d19ae70ca4",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/index-comparison-emerging-series-2026-10-04.json",
+      "sha": "080c94bedbaa445ef58136c2ca9700bc87d659c4",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/index-comparison-returns-2026-10-04.json",
+      "sha": "ff882efce430bcaf82f0b285dbd6d6ff18f53a3e",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/inflation-automated.json",
+      "sha": "baa4018eaef37f903e30c9fe63c50012405fe5bf",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/instrument-listings-2026-09-30.json",
+      "sha": "03813cc4cdce8b0437df3786bfe46029b2667d32",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/instrument-profiles-2026-09-30.json",
+      "sha": "11f1a3035b068cc189322d3b274c92fa5654cdbd",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/instrument-supports-2026-10-03.json",
+      "sha": "d8488fcb9c5e375c69ef117194d3b26d7a983fbb",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/investors-2026-10-03.json",
+      "sha": "9362666dfe9bd1085531be64e062c6d49f7cad65",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/live-data-connections-2026-10-20.json",
+      "sha": "5120bb7bbc987a578075d0eacb602e5f7962cf62",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/monthly-automated-round4.json",
+      "sha": "fd91fb369758f0e77a98d86e855722d9f7cce65e",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/monthly-automated.json",
+      "sha": "bce4f285244bba662c1e0e228d3dced47c6c8bcc",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/monthly-collection-status.json",
+      "sha": "296039bd8d770844de92458ef853ec6d9c9ace85",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/monthly-history-additions-2026-10-03.json",
+      "sha": "f909f75635d69b5f41446fb8fffecf52ac6b07b4",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/monthly-lifestrategy.json",
+      "sha": "2503909b7ea6a6ba2a42c3299eb4debaec54b4ee",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/monthly-qualification-status.json",
+      "sha": "fdb7d55a5634f6b48c60b6898f9cc72be4459818",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/nasdaq-price-legacy.json",
+      "sha": "0225a4ba735d8db64f24f0bf95c5beda9cf67212",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/non-bond-monthly-active.json",
+      "sha": "73310bcf364f108c8be196f87b1264d90300e22b",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/non-bond-monthly-validation.json",
+      "sha": "a0e9d08e6f1c77aea2670b7fb13d837cf3e257ca",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/property-infrastructure-2026-10-05.json",
+      "sha": "b8a5b11681ee3343dd90a021c0be82f6109db78d",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/ranking-collection-status.json",
+      "sha": "f6f7522e6dbf05a63515b528afb01019883aa081",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/ranking-histories.json",
+      "sha": "1ba3244b79228e6a54689836a3387f41aca2a485",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/remaining-sources-2026-10-10.json",
+      "sha": "4b4f48712ef36e9bd504d56cbdeb3961dfb60f68",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/roadmap-monthly-validation.json",
+      "sha": "9d76641fcb1f03bf90f9897c446898d79f36567b",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/silver-returns-2026-10-03.json",
+      "sha": "dedc82f95d21f9ce883e8c41985040b992592fe8",
+      "verified": true
+    },
+    {
+      "path": "scripts/source-snapshots/world-factors-2026-10-05.json",
+      "sha": "b32505ac2ecf9e077341506b7d03e01541c360cc",
+      "verified": true
+    },
+    {
+      "path": "src/data/anniversary-index-history.json",
+      "sha": "a5e535fdfccff92c4ce787367aa224768640092c",
+      "verified": true
+    },
+    {
+      "path": "src/data/anniversary-levels.json",
+      "sha": "f1b2651bcaefc95d4649b594e66d25ebff3be887",
+      "verified": true
+    },
+    {
+      "path": "src/data/annual-fx.json",
+      "sha": "fc105083de7fdfa67c1d551b102e5cf175d363a0",
+      "verified": true
+    },
+    {
+      "path": "src/data/auto-history-identities.json",
+      "sha": "ed6ef8dfac260910a311de0e1f59588a9157cf5a",
+      "verified": true
+    },
+    {
+      "path": "src/data/automated-broker-tariffs.json",
+      "sha": "754dbd9a0d034c6972ad0ed9cdbe5d44207a6d11",
+      "verified": true
+    },
+    {
+      "path": "src/data/automated-economic.json",
+      "sha": "88eaaed8581ecd5b147363af5f606889053ab599",
+      "verified": true
+    },
+    {
+      "path": "src/data/automated-etf-monthly.json",
+      "sha": "5f9c46fe8579c5f4600871e8519eed6a439d5872",
+      "verified": true
+    },
+    {
+      "path": "src/data/automated-etf.json",
+      "sha": "f99cd7304775248f40bc46037b82ee04de370ef3",
+      "verified": true
+    },
+    {
+      "path": "src/data/automated-indices.json",
+      "sha": "79fe81e47b459b131ef96258797c913ccaddc97d",
+      "verified": true
+    },
+    {
+      "path": "src/data/automated-instrument-metadata.json",
+      "sha": "d2f041ce691365b6dc89194eff59f48007715cad",
+      "verified": true
+    },
+    {
+      "path": "src/data/automated-insurance.json",
+      "sha": "ce1e7b288eae105542a0e27fb585ab6ba4699aa1",
+      "verified": true
+    },
+    {
+      "path": "src/data/automated-monthly.json",
+      "sha": "eb5b254cc8d32c64bad17909702464ff8d7a22c9",
+      "verified": true
+    },
+    {
+      "path": "src/data/automated-practical-sheets.json",
+      "sha": "66bf8f5d19f72b70c9454c6df07e8e41cbc7e3f3",
+      "verified": true
+    },
+    {
+      "path": "src/data/automated-presentation-actors.json",
+      "sha": "60f9f4be93451fbdd197a5597a33cf41b3a432f6",
+      "verified": true
+    },
+    {
+      "path": "src/data/automated-regulatory.json",
+      "sha": "63b38a86b3dcdebfb47e0a3ee31a497e19e34fef",
+      "verified": true
+    },
+    {
+      "path": "src/data/automated-scpi.json",
+      "sha": "96a82ce851fd3f56c7796ef520106359f0212261",
+      "verified": true
+    },
+    {
+      "path": "src/data/automation-workflows.json",
+      "sha": "bc9262f1a748b87e6ab5d684d2e75761ebd4d132",
+      "verified": true
+    },
+    {
+      "path": "src/data/benchmark-changes.json",
+      "sha": "3e6aff39d437de41c83e6a8ef9f5e035d83c23d8",
+      "verified": true
+    },
+    {
+      "path": "src/data/bitcoin-yahoo-monthly.json",
+      "sha": "326a7ac2f8c06f75e772dd2d56f02a2fe1f119da",
+      "verified": true
+    },
+    {
+      "path": "src/data/data-source-conditions.json",
+      "sha": "264d1ef1f8ca6c7ec26e29396cc8e0741c1aac0d",
+      "verified": true
+    },
+    {
+      "path": "src/data/dca-complete-holdings.json",
+      "sha": "2dd924384c3427fa9360015b08a12b059b8625ad",
+      "verified": true
+    },
+    {
+      "path": "src/data/dca-equity-exposures.json",
+      "sha": "2cf771b98f889aec9120beb1688667711bdd7212",
+      "verified": true
+    },
+    {
+      "path": "src/data/dca-holdings-status.json",
+      "sha": "ea2c76f701ef93dec077b9698a52d52c2e997431",
+      "verified": true
+    },
+    {
+      "path": "src/data/dca-security-classifications.json",
+      "sha": "9bb4275587695929afc48a0e11c9910c4235e3c9",
+      "verified": true
+    },
+    {
+      "path": "src/data/dynamic-data-consumers.json",
+      "sha": "be8bbab9da3f8757a1e2245780d20fab414f8146",
+      "verified": true
+    },
+    {
+      "path": "src/data/equity-candidates.json",
+      "sha": "9c1339f7bd834985ab6c1a2ea2042d5a3f1696e1",
+      "verified": true
+    },
+    {
+      "path": "src/data/equity-duel-returns.json",
+      "sha": "90cb2b5d594712cd6eb20dd5636840265e0c386b",
+      "verified": true
+    },
+    {
+      "path": "src/data/equity-history-links.json",
+      "sha": "132b27f0dfb0f28892041dacbca6ac7afc9faa71",
+      "verified": true
+    },
+    {
+      "path": "src/data/etf-presentation-reviewed-ids.json",
+      "sha": "87c4467fc0c35e2829b857561123fdf47fd45719",
+      "verified": true
+    },
+    {
+      "path": "src/data/exposure-etf-expansion-records.json",
+      "sha": "db5dd22f3619dd842ad9188988ef0d951065383c",
+      "verified": true
+    },
+    {
+      "path": "src/data/exposure-sleeves.json",
+      "sha": "9f8588863fa233a9b5fe6a50560f587ac7954a6c",
+      "verified": true
+    },
+    {
+      "path": "src/data/financial-history-restrictions.json",
+      "sha": "522daccfbe0e2549eca5b2c866a6fc4e15ce73ce",
+      "verified": true
+    },
+    {
+      "path": "src/data/financial-source-repairs.json",
+      "sha": "f533379275831ad1a92d4d8ee43c9668964e8d55",
+      "verified": true
+    },
+    {
+      "path": "src/data/freshness-policy.json",
+      "sha": "f412e1cbf865d9f6ced1d0c1afc132ed156ee710",
+      "verified": true
+    },
+    {
+      "path": "src/data/global-equities.json",
+      "sha": "ce5c7191941103077adfafa862e4ca5f0953f88f",
+      "verified": true
+    },
+    {
+      "path": "src/data/history-window-restrictions.json",
+      "sha": "f837293556809bfecf1e01f5eac910dc8da9c6dc",
+      "verified": true
+    },
+    {
+      "path": "src/data/index-company-identities.json",
+      "sha": "8152d33cc38dd24f5e83107f11b1f09f12dd9ea1",
+      "verified": true
+    },
+    {
+      "path": "src/data/index-company-observations.json",
+      "sha": "2ee79e521f7958bedef57530fc0520eff0bb6988",
+      "verified": true
+    },
+    {
+      "path": "src/data/index-company-qualified.json",
+      "sha": "b3bc885ecb770f31b60ae2f9111519c4e8a17e36",
+      "verified": true
+    },
+    {
+      "path": "src/data/instrument-metadata-status.json",
+      "sha": "2a18d723a38ba17cd77d51032b714d486017c1c0",
+      "verified": true
+    },
+    {
+      "path": "src/data/lifestrategy.json",
+      "sha": "6abd1ba5a41e0c1c0df8e8f475015e7407273f7a",
+      "verified": true
+    },
+    {
+      "path": "src/data/monthly-duel-returns.json",
+      "sha": "9fef3dc608ca0646037a5def3b781cc8ad553ef3",
+      "verified": true
+    },
+    {
+      "path": "src/data/monthly-fx.json",
+      "sha": "9d7637c4723aeced9b2d3ad31e9ac0a59ec44a7a",
+      "verified": true
+    },
+    {
+      "path": "src/data/native-index-composition-contracts.json",
+      "sha": "3e2d37dc8829e1adeca092fd9044dc2cfc339769",
+      "verified": true
+    },
+    {
+      "path": "src/data/non-bond-company-histories.json",
+      "sha": "288732cbdaf47b8894be159fc38ada47d10987c5",
+      "verified": true
+    },
+    {
+      "path": "src/data/non-bond-etf-records.json",
+      "sha": "1357708ef79afc5a3c060ba4c9f744b8e887eecc",
+      "verified": true
+    },
+    {
+      "path": "src/data/non-bond-levels.json",
+      "sha": "dae7deb455e9a878cee71cd0e2ccbd95c707c9ef",
+      "verified": true
+    },
+    {
+      "path": "src/data/non-bond-monthly-records.json",
+      "sha": "973cf4de1cf14afff5cfb84cc58c04a3c765c790",
+      "verified": true
+    },
+    {
+      "path": "src/data/non-bond-qualified-records.json",
+      "sha": "3254e54cc7c088ef1862ea30ce036b457ad6677b",
+      "verified": true
+    },
+    {
+      "path": "src/data/official-performance-currencies.json",
+      "sha": "8a29089880e0d3b3a008c361c5f490cda5b83435",
+      "verified": true
+    },
+    {
+      "path": "src/data/performance-links.json",
+      "sha": "b757b5fd49eb49b93e84a38fe3c2d9940a323402",
+      "verified": true
+    },
+    {
+      "path": "src/data/purchasing-power-observations.json",
+      "sha": "c5d2c8ab0e2bf0a724e6f1ca11a5c20c550bba10",
+      "verified": true
+    },
+    {
+      "path": "src/data/qualified-exposure-etfs.json",
+      "sha": "88e5c826025dbe21d3c26dbd8a1014dcd287e169",
+      "verified": true
+    },
+    {
+      "path": "src/data/qualified-listing-records.json",
+      "sha": "833820abf826a34b54fbcdea13310e393286765a",
+      "verified": true
+    },
+    {
+      "path": "src/data/ranking-annual.json",
+      "sha": "9c42c5f54962541d1fcb4d769bc6d83cf50c6019",
+      "verified": true
+    },
+    {
+      "path": "src/data/ranking-ftse.json",
+      "sha": "701312f59f9372db718a9645adaf47f8bf2ef7b8",
+      "verified": true
+    },
+    {
+      "path": "src/data/ranking-histories.json",
+      "sha": "f8fd0ba0df01fa78f969d54c5077cf798014c6a2",
+      "verified": true
+    },
+    {
+      "path": "src/data/ranking-index-annual.json",
+      "sha": "9b7dfd124175b9a3cac746f794b936a969516180",
+      "verified": true
+    },
+    {
+      "path": "src/data/retired-automations.json",
+      "sha": "eaaf3eab312e3cf6bd357fc8bc4181dcb68ab2aa",
+      "verified": true
+    },
+    {
+      "path": "src/data/reviewed-broker-profiles.json",
+      "sha": "943fa864d56082d74b500c35205470cb26fd46a6",
+      "verified": true
+    },
+    {
+      "path": "src/data/security-identifier-observations.json",
+      "sha": "eebcf9da7e5c2d7ebfa1c8bd25611e0ae2cf8e45",
+      "verified": true
+    },
+    {
+      "path": "src/data/shared-listing-identities.json",
+      "sha": "cfdce2b59fb9c87a44d56afecf6c5b2a487f7a1b",
+      "verified": true
+    },
+    {
+      "path": "src/data/simulation-links.json",
+      "sha": "c06ac49f77fc5ec3c5ebc42c8d7dbd2ae43c4675",
+      "verified": true
+    },
+    {
+      "path": "src/data/tool-links.json",
+      "sha": "d3e47f80e56a89d705f7da7205d78eb3f12bfb35",
+      "verified": true
+    },
+    {
+      "path": "src/data/vanguard-equity-underliers.json",
+      "sha": "97a3a7fdae700c99e244f9bf72a7e44806fff47c",
+      "verified": true
+    },
+    {
+      "path": "src/data/worldbank-gold-monthly.json",
+      "sha": "8fdb367be6b79e1980d536086395eebcf664e806",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/catalog.json",
+      "sha": "7053e21677d3d166bfd0fcdd473f51979baa2f58",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/exposures-extra-0.json",
+      "sha": "8753f3b1667d6b2c81e09502db000bdafc902fa3",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/exposures-extra-1.json",
+      "sha": "34a6a27424389c1dec803f7f0ee5f4e71fba0130",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/exposures-extra-2.json",
+      "sha": "cc3713d2844e08b80fd6cfbf09aede5a81e2406a",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/exposures.json",
+      "sha": "835ec51f15f5a78be4a2b8b7f26e2431656abfb3",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-0.json",
+      "sha": "fc496fd5ea337cf5f9a3b2b01a65e06c3dc90c30",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-1.json",
+      "sha": "28917b4adf2c4f3c00e172ea6f5785221b4a8b20",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-10.json",
+      "sha": "1b4ce508b09cc66e465f6baeb44547387b137c28",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-11.json",
+      "sha": "72efccfee9446efdfd43a365fa6c77c3e7f39637",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-12.json",
+      "sha": "8c90ef44f5f69b0aae311c9637733782bcfd0afa",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-13.json",
+      "sha": "15251c53f1bcd7a69221eb2c18df9cc41aa4c65b",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-14.json",
+      "sha": "7d07915c81009e0c81deb88c11193afeee8c2cca",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-15.json",
+      "sha": "8ffa3cbb338a941269e75cec0c89387e6e16b0d0",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-16.json",
+      "sha": "764af58e1e54306695b906913d9e727bb7c5d474",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-17.json",
+      "sha": "1a894f91f2b60dd7c362f2a6279a84bfb281be39",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-18.json",
+      "sha": "24ecab19bbb92bcac6c6705488e06f3ceb1e6f6f",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-19.json",
+      "sha": "f8275264158bcfb00e9757f1b21c6c7277114847",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-2.json",
+      "sha": "a72ac546f865eb3d39f4f844bcc8b85d925b3527",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-20.json",
+      "sha": "5cd8f4a166acd0955f7eebab7bb7c6fa195eb374",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-21.json",
+      "sha": "c60f0f33408734e9be690eb9714047755c919647",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-22.json",
+      "sha": "0acfb26de7590c5e1036563b38d9676fbff1c51a",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-23.json",
+      "sha": "a43feb45883f4b38c950d9952f1f96ef06c8bd2c",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-24.json",
+      "sha": "70b5cd029e8cad52dadd0957d6a9ee5068017b07",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-25.json",
+      "sha": "42ef207aa3935cdf3890c55a6cb4bcb5e3e09e80",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-26.json",
+      "sha": "1f8ea1c3657e707282e79022d08be62368c1901a",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-27.json",
+      "sha": "e38e6eba8ab35480534200972b5fb363ff6e162b",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-28.json",
+      "sha": "15959e9e26c51116af291ec33ae7b0959dcd4296",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-29.json",
+      "sha": "149f11b393b52f38efd13d9ce6cdd8ffc0dd6454",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-3.json",
+      "sha": "30307df8f172a758b6b02856c362070e183054db",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-30.json",
+      "sha": "39dd0a1438bd89a704d713cac8af3aa0abd300d7",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-31.json",
+      "sha": "fec4640832b4fa55b56f11ff764d0e6ccd94c09c",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-4.json",
+      "sha": "34a6faa72ba6a5d326dced73587c1532885d3358",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-5.json",
+      "sha": "a3d65aa6be97861943be169e4b6f185a2a6b2ea6",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-6.json",
+      "sha": "b3746e5959509761cd1cf1b30a68e698ae114e0a",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-7.json",
+      "sha": "2906caf885f65945390885da50b1c9ffa1c5bf99",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-8.json",
+      "sha": "2b63ce1b7e7c4290491ca5d47d23f8be30e9333c",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-9.json",
+      "sha": "47e9f270111b8787b6d5c6b5017e4b7c52a2ccec",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings-manifest.json",
+      "sha": "fe15628d03982374753c622b0626cbd8493a214c",
+      "verified": true
+    },
+    {
+      "path": "src/pages/dca-profiles/holdings.json",
+      "sha": "6064866bb1384b52ddb53e6faba0ed77ea3be0ce",
+      "verified": true
+    }
+  ],
+  "noWorkingDataModified": true,
+  "allInputsMatched": true
+}

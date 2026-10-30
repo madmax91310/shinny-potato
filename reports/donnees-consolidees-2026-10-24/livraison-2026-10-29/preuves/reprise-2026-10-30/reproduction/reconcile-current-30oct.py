@@ -1,4 +1,4 @@
-import csv,gzip,json,pathlib,collections,datetime,hashlib,shutil,os
+import csv,gzip,json,pathlib,collections,datetime,hashlib,shutil,os,re
 csv.field_size_limit(16*1024*1024)
 base=pathlib.Path('/workspace/finalisation-donnees-20261027'); root=pathlib.Path('/dev/shm/data-automation-20261028'); source=pathlib.Path(os.environ.get('RECONCILE_SNAPSHOT_DIR',str(root/'public'))); out=root/'consolidated-30oct';out.mkdir(exist_ok=True)
 def source_bytes(name):
@@ -21,7 +21,10 @@ for raw in allrows.values():
 # These are structural investigation buckets, never a proof that all fields share one fault.
 def category(r):
  kind=r['kind'];cause=r.get('cause','');key=r['id']
- if kind=='connection':return 'raccordement / qualification documentaire', 'Document exact du produit ou de la condition toujours nécessaire ; ne pas déduire les champs depuis un contrôle global.'
+ if kind=='connection':
+  if 'Recoupement externe' in r.get('field',''):return 'condition vivante encore manuelle', 'Confirmation officielle précise CTO/PEA requise ; la corroboration externe datée conserve son échéance, aucun renouvellement automatique ni négation déduite d’un silence.'
+  if 'USD Accumulating' in cause:return 'convention de part non qualifiée', 'Table de la part USD distribuante exacte IE00BM8R0J59 requise ; le rendement de la part Accumulating ne peut pas la remplacer.'
+  return 'raccordement / qualification documentaire', 'Document exact du véhicule, de la part ou de la condition toujours nécessaire ; ne pas déduire les champs depuis un contrôle global.'
  if kind=='qualification':return 'preuve / qualification incomplète', 'Contrat non certifié individuellement ; ne démontre pas une panne de la donnée.'
  if kind=='monitoring':return 'preuve de supervision', 'Les deux anciens périmètres incomplets restent historiques ; nouveau workflow vert insuffisant pour réécrire ces tentatives.'
  if kind=='history':return 'trace historique', 'Conserver la preuve initiale et la résolution explicite si présente.'
@@ -88,7 +91,20 @@ with gzip.open(base/'causes-consolidees.csv.gz','rt',encoding='utf-8-sig',newlin
  for row in reader:
   if not row['groupe_structurel'].startswith('reprise30oct:'):writer.writerow(row)
  groups=collections.defaultdict(list)
- for r in active.values():groups[category(r)[0]].append(r)
+ def unit(r):
+  cat=category(r)[0]
+  if r['kind']=='connection':return cat+' | '+r.get('name','')+' | '+r.get('field','')
+  if 'contradictoire' in r.get('cause',''):
+   m=re.search(r'etf:([A-Z]{2}[A-Z0-9]{9}\d):(countries|sectors|aum|holdings)',r['cause']);stamp=re.search(r'\((20\d{2}-\d{2}-\d{2})\)',r['cause'])
+   if m:return cat+' | '+m[1]+' | '+m[2]+' | '+(stamp[1]if stamp else 'période à qualifier')
+  if r['kind']=='failure':return cat+' | '+r.get('name','')+' | '+r.get('field','')
+  return cat
+ for r in active.values():groups[unit(r)].append(r)
+ assert len({x['id']for rs in groups.values()for x in rs})==len(active)
+ assert sum(len(rs)for rs in groups.values())==len(active)
  for cat,rs in sorted(groups.items()):writer.writerow({'groupe_structurel':'reprise30oct:'+cat,'nombre_identites':len(rs),'classes_actuelles':json.dumps(collections.Counter(r['kind']for r in rs),ensure_ascii=False),'statuts_finaux':'Actifs au relevé '+a['generatedAt'],'identites_exactes':json.dumps([r['id']for r in rs],ensure_ascii=False),'impacts_individuels':json.dumps([{k:r.get(k)for k in ['id','name','field','tools','stage','cause','runUrl']}for r in rs],ensure_ascii=False),'preuve_commune':json.dumps(proof,ensure_ascii=False),'limite_regroupement':'Catégorie d’investigation, pas certification d’une cause commune ni preuve que tous les calculs listés sont affectés.'})
+# Current groups are investigation/repair units, never a blanket attribution of
+# a provider failure to every member of a structural category.
+# The row identities and source/field/tool impacts remain exact.
 summary={**proof,'initialIdentitiesPreserved':661,'previousLedgerIdentitiesPreserved':n,'newPublicIdentitiesAdded':new,'additionalMatrixIdentities':new_usage,'ledgerIdentities':n+new+new_usage,'activeByClass':dict(collections.Counter(r['kind']for r in active.values())),'allByClass':dict(collections.Counter(r['kind']for r in allrows.values())),'investigationCategories':{k:len(v)for k,v in groups.items()},'financial79':{'qualifiedMonthly':70,'refusedMonthly':9,'oldQuoteDivergences':77,'residuals':2},'completeAutomationClaimed':False}
 (out/'actualisation-30oct.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n');print(json.dumps({k:v for k,v in summary.items()if k not in ['sourceHashes','code']},ensure_ascii=False,indent=2))

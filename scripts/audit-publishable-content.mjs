@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { HISTORICAL_AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js'
 // Vérifie les champs éditoriaux partagés avant publication. Ce contrôle détecte des oublis
 // et empêche le retour de deux erreurs factuelles corrigées ; il ne remplace jamais la
 // confrontation des chiffres aux documents de l'émetteur.
@@ -108,10 +109,17 @@ for (const profile of PROFILES) for (const combo of Object.values(profile.riskCo
     }
   }
 }
-for (const [id, expected] of [['bitcoin', 303.16], ['ethereum', 469.25]]) {
-  const asset = ASSETS.find(item => item.id === id)
-  if (!asset || asset.r[0] !== expected || !/2020.*précède.*ETP/i.test(asset.confidenceNote ?? '')) {
-    failures.push(`${id} CoinShares : cours spot 2020 ou provenance non signalée`)
+// These two existing choices now consume exact CoinShares product series.
+// Their first complete calendar year is2022; spot returns must never fill2020/21.
+for (const id of ['bitcoin','ethereum']) {
+  const asset=ASSETS.find(item=>item.id===id),source=asset&&HISTORICAL_AUTOMATED_PERFORMANCE[asset.isin]
+  if(!asset || !source || source.basis!=='fund' || source.currency!=='USD'
+    || !source.source?.startsWith('https://www-api.coinshares.com/api/v2/Widgets?')
+    || !source.source.includes(asset.isin) || !/exact ETP return.*fees/i.test(source.method??'')
+    || JSON.stringify(asset.r)!==JSON.stringify(source.values)
+    || asset.r[0]!==null || asset.r[1]!==null || asset.calendarReturns?.[2020]!==undefined || asset.calendarReturns?.[2021]!==undefined
+    || !/ETP CoinShares.*dollars.*années complètes/i.test(asset.confidenceNote??'')) {
+      failures.push(`${id} CoinShares : calendrier exact, convention, années complètes ou provenance divergents`)
   }
 }
 const bearMarkets = FACTS.find(fact => fact.id === 'corrections-27-bear-markets')

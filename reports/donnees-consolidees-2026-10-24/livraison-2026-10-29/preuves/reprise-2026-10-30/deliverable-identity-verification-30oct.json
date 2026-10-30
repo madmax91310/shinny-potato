@@ -1,0 +1,34 @@
+{
+  "checks": [
+    {
+      "file": "matrice-donnees-usages.csv.gz",
+      "before": 33381,
+      "after": 34931,
+      "allPriorIdentitiesPreserved": true
+    },
+    {
+      "file": "suivi-consolide.csv.gz",
+      "before": 46216,
+      "after": 46613,
+      "allPriorIdentitiesPreserved": true
+    },
+    {
+      "file": "restant-a-verifier.csv.gz",
+      "before": 35335,
+      "after": 35336,
+      "allPriorIdentitiesPreserved": true
+    },
+    {
+      "file": "perimetre-initial-complet.csv.gz",
+      "before": 661,
+      "after": 661,
+      "allPriorIdentitiesPreserved": true
+    }
+  ],
+  "financialCases": 79,
+  "qualifiedMonthly": 70,
+  "refusedMonthly": 9,
+  "actions": 19,
+  "routes": 24,
+  "notAnIndependentCatalogueCertification": true
+}

@@ -1,9 +1,12 @@
+import preparedLotTwo from './prepared-profiles-lot-2-2026-10-30.json' with { type: 'json' }
+import preparedProfiles from './prepared-profiles-2026-10-30.json' with { type: 'json' }
 import additionalProfiles from './additional-profiles-2026-10-30.json' with { type: 'json' }
 
 // Témoignages publics, contrôlés le 30/10/2026. Les dates décrivent les
 // publications, pas une actualisation des budgets des personnes.
-// Aucun métier ou poste manquant n'est reconstruit. Les prénoms fictifs du texte
-// sont déclarés séparément dans BUDGET_EDITORIAL, sans modifier les témoignages.
+// Les blocs historiques conservent les données déclarées. Les imports prepared
+// portent les compléments autorisés et leur provenance, séparés des observations.
+// Les prénoms fictifs du texte sont déclarés dans BUDGET_EDITORIAL.
 export const BUDGET_PROFILES = [
   {
     id: 'reddit-actif-2026-09-27', name: 'Un actif', age: null, job: '', location: '',
@@ -722,6 +725,8 @@ export const BUDGET_PROFILES = [
     "question": "Tu profiterais de cette période pour préparer un départ ou investir sur le long terme ?"
   },
   ...additionalProfiles,
+  ...preparedProfiles,
+  ...preparedLotTwo,
 
 ]
 
@@ -807,3 +812,8 @@ export const BUDGET_EDITORIAL = {
   "finary-bois-18-2025-10-16": {"alias":"Enzo","story":"Il prépare son premier appartement. Son budget moyen de 1 373 € est une prévision : selon les fourchettes de loyer et de courses, les dépenses iraient de 1 223 à 1 523 €."},
   "mustachian-ingenieur-28-2025-08-16": {"alias":"Romain","story":"Ses ressources moyennes comprennent aussi des ventes de cartes, des dividendes et un héritage. Il annonce environ 3 750 CHF d’épargne moyenne ; les dépenses arrondies donnent un reste de 3 749 CHF. Cet écart de 1 CHF vient du tableau de moyennes, sans dépense ajoutée pour le masquer."},
 }
+
+// Versions préparées : provenance et hypothèses conservées dans le registre.
+for (const profile of preparedProfiles) BUDGET_EDITORIAL[profile.id] = { alias: profile.name, story: profile.context }
+
+for (const profile of preparedLotTwo) BUDGET_EDITORIAL[profile.id] = { alias: profile.name, story: profile.context }
