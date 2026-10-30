@@ -2,7 +2,14 @@ import {metadataFieldAttempt} from './report-asset-fields.mjs'
 import assert from 'node:assert/strict'
 import {fieldQualification,registryQualification,qualifyCoverage} from './lib/data-qualification.mjs'
 import {buildDataAutomationInventory} from './data-automation-inventory.mjs'
+await import('./test-holdings-consumer-qualification.mjs')
 const report=buildDataAutomationInventory()
+for(const row of report.connections.filter(row=>row.consumerQualification)){
+ const q=row.consumerQualification
+ assert.equal(q.sourceContacted,false)
+ assert.deepEqual(q.expectedAssetIds,[...new Set(q.outcomes.map(result=>result.asset))])
+ if(row.actionState==='current')assert(q.outcomes.every(result=>result.status==='evaluated'&&result.complete))
+}
 assert.equal(report.fields.length,Object.values(report.summary.fieldKinds).reduce((a,b)=>a+b,0))
 assert.equal(report.registries.length,Object.values(report.summary.registryRoles).reduce((a,b)=>a+b,0))
 assert(report.fields.every(f=>f.nature?.reason),'Every catalog field retains a qualification reason')

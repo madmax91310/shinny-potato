@@ -184,6 +184,14 @@
       "paths": [
         "src/pages/tweet-midi/data/dilemmes-data.json"
       ]
+    },
+    {
+      "role": "manual-observation",
+      "reviewedAt": "2026-10-30",
+      "reason": "Témoignages budgétaires personnels publiés à une période explicite ; les montants déclarés ou prévus et leurs sources restent des archives datées, pas des chiffres vivants à actualiser. Les calculs du solde et les saisies locales ne constituent pas une nouvelle observation de ces personnes.",
+      "paths": [
+        "src/pages/budget-profiles/data.js"
+      ]
     }
   ]
 }

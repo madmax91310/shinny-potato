@@ -4,9 +4,10 @@
     {
       "pattern": "src/pages/dca-profiles/holdings-*.json",
       "consumers": [
-        "src/pages/dca-profiles/holdings-loader.js"
+        "src/pages/dca-profiles/holdings-loader.js",
+        "scripts/data-automation-inventory.mjs"
       ],
-      "mechanism": "import.meta.glob ?url puis fetch",
+      "mechanism": "import.meta.glob ?url puis fetch ; inventaire : lecture des mêmes fragments et qualification par le moteur de recouvrement",
       "producer": "scripts/build-dca-exposures.mjs"
     },
     {

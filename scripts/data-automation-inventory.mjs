@@ -18,6 +18,10 @@ import exposureSleeves from '../src/data/exposure-sleeves.json' with {type:'json
 import { buildAssetFieldReport } from './report-asset-fields.mjs'
 import metadata from '../src/data/automated-instrument-metadata.json' with {type:'json'}
 import attempts from '../src/data/instrument-metadata-status.json' with {type:'json'}
+import sourceHoldings from '../src/data/dca-complete-holdings.json' with {type:'json'}
+import {references as holdingReferences} from '../src/pages/dca-profiles/records.js'
+import {ASSETS as holdingAssets} from '../src/pages/dca-profiles/data.js'
+import {holdingsConsumerQualifications,applyHoldingsConsumerQualification} from './lib/holdings-consumer-qualification.mjs'
 const ROOT=fileURLToPath(new URL('../',import.meta.url))
 const read=p=>readFileSync(resolve(ROOT,p),'utf8')
 function files(dir){return readdirSync(resolve(ROOT,dir),{withFileTypes:true}).flatMap(e=>e.isDirectory()?files(`${dir}/${e.name}`):[`${dir}/${e.name}`])}
@@ -133,7 +137,11 @@ export function buildDataAutomationInventory(){
    missingReason:field.qualificationMissing||null,
    action:nature.kind==='archive'?nature.reason:nature.kind==='simulation'||nature.kind==='editorial'?nature.reason:evidence.sourceStatus==='archive-unverifiable'?'Archive non recertifiable conservée avec sa qualification ; ne pas l’utiliser comme observation actuelle.':!evidence.sourceUrls?.length?'Compléter la provenance ou confirmer le statut éditorial/archive.':!evidence.checkedAt?'Qualifier la date de contrôle ; la génération du rapport ne renouvelle pas la preuve.':registry?.mode==='manual-or-editorial'?'Qualifier la mise à jour manuelle et séparer rédaction, hypothèses et chiffres vivants.':'Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.'}
  }))
- const connections=coverage.rows.map(row=>connectNativeIndexCandidates(qualifyCoverage(row,{record:AUTOMATED_ETF[row.id],holdingStatus:row.field==='completeHoldings'?holdingsStatus[row.id]:null,holdingSource:row.field==='completeHoldings'?holdingSources[row.id]:null,metadataStatus:attempts[row.id]})))
+ const holdingManifest=JSON.parse(read('src/pages/dca-profiles/holdings-manifest.json'))
+ if(!Object.values(holdingManifest).every(bucket=>Number.isSafeInteger(bucket)&&bucket>=0))throw Error('Invalid holdings projection manifest')
+ const projectedHoldings=Object.assign({},...[...new Set(Object.values(holdingManifest))].map(bucket=>JSON.parse(read(`src/pages/dca-profiles/holdings-${bucket}.json`))))
+ const consumerHoldings=holdingsConsumerQualifications({references:holdingReferences,assets:holdingAssets,holdings:projectedHoldings,sourceRecords:sourceHoldings})
+ const connections=coverage.rows.map(row=>applyHoldingsConsumerQualification(connectNativeIndexCandidates(qualifyCoverage(row,{record:AUTOMATED_ETF[row.id],holdingStatus:row.field==='completeHoldings'?holdingsStatus[row.id]:null,holdingSource:row.field==='completeHoldings'?holdingSources[row.id]:null,metadataStatus:attempts[row.id]})),consumerHoldings[row.id]))
  for(const f of fields.filter(f=>f.requiresConnection))connections.push({type:f.type,id:f.id,name:f.name,field:`catalog:${f.field}`,label:f.field,observationState:'manual',actionState:'connector-needed',requiresAction:true,priority:2,sourceUrl:f.sourceUrls[0]??null,configuredSourceUrls:f.sourceUrls,checkedAt:f.checkedAt,lastSuccessAt:null,lastAttemptAt:null,tools:f.consumers.map(c=>c.path),reason:f.missingReason??f.nature.reason,nextAction:f.type==='instrument'?'Recollecter la table liée à la part exacte, qualifier la période et brancher sa valeur au registre commun.':'Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.'})
  const accessPath='public/data/pending-source-checks.json'
  const access=existsSync(resolve(ROOT,accessPath))?JSON.parse(read(accessPath)):null
