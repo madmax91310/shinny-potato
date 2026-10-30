@@ -152,6 +152,23 @@ class ObservationRebaseTests(unittest.TestCase):
         self.f.advance_remote('src/data/automated-scpi.json')
         self.assert_refused('scripts/collect_scpi.py','etf')
 
+    def test_etf_actor_race_preserves_both_validated_outputs(self):
+        self.f.advance_remote(ACTOR_OUTPUT)
+        result = self.publish('etf')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + ACTOR_OUTPUT), 'concurrent update')
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
+
+    def test_etf_actor_race_cannot_bypass_financial_validation(self):
+        self.assert_refused(ACTOR_OUTPUT, 'etf', validation='false')
+
+    def test_etf_actor_parser_and_financial_inputs_stay_protected(self):
+        self.f.advance_remote(ACTOR_OUTPUT)
+        for path in ('scripts/collect_presentation_actors.py', 'src/data/automated-etf-monthly.json',
+                     'scripts/monthly-automation.json'):
+            with self.subTest(path=path):
+                self.assert_refused(path, 'etf')
+
     def test_index_collection_cannot_reuse_changed_collection_inputs(self):
         self.assert_refused('src/data/automated-etf-monthly.json','indices')
 
@@ -422,6 +439,25 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
             self.assertEqual(workflow.count("      - '" + path + "'"), 2)
         self.assertIn("run: python -m unittest discover -s scripts -p 'test_observation_rebase.py'", workflow)
 
+
+    def test_etf_acquisition_graph_does_not_read_actor_output(self):
+        self.python_graph(['collect_etf_pilot.py', 'collect_amundi_etf.py',
+                           'collect_ssga_etf.py', 'refresh_additional_etf.py',
+                           'collect_presentation_performance.py', 'collect_annual_fx.py',
+                           'collect_performance_currency.py', 'refresh_index_sources.py'], [ACTOR_OUTPUT])
+        pending = [ROOT / 'scripts/export-etf-pilot-baseline.mjs']
+        seen = set()
+        while pending:
+            path = pending.pop().resolve()
+            if path in seen:continue
+            seen.add(path)
+            self.assertNotEqual(path, ROOT / ACTOR_OUTPUT)
+            if path.suffix not in ('.js', '.mjs'):continue
+            text = path.read_text()
+            self.assertNotIn(pathlib.Path(ACTOR_OUTPUT).name, text, str(path))
+            for relative in re.findall(r"(?:from\s*|import\s*|import\s*\(\s*)['\"](\.[^'\"]+)['\"]", text):
+                pending.append(path.parent / relative)
+        self.assertGreater(len(seen), 1)
 
     def test_scpi_acquisition_graph_does_not_read_actor_output(self):
         self.python_graph(['collect_scpi.py'],[ACTOR_OUTPUT])
