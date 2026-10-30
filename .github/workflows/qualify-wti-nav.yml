@@ -1,0 +1,42 @@
+name: Qualify existing WisdomTree issuer routes
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/qualify-wti-nav.yml'
+      - 'scripts/wisdomtree_performance_history.py'
+      - 'scripts/download-wisdomtree-performance.mjs'
+      - 'scripts/official-nav-remainder-sources.json'
+      - 'scripts/test_wisdomtree_performance_history.py'
+permissions:
+  contents: read
+jobs:
+  exact-wti-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: python -m pip install beautifulsoup4
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: npm ci
+      - run: if ! test -x /usr/bin/google-chrome && ! test -x /usr/bin/chromium; then npx playwright install --with-deps chromium; fi
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_performance_history.py'
+      - id: source
+        continue-on-error: true
+        run: python scripts/collect_official_share_history.py --only etc_wti_crude_oilNav etfIE00BDVPNG13Nav --output "$RUNNER_TEMP/wti-qualification.json" --capture-dir "$RUNNER_TEMP/wti-source-bodies"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: exact-wti-source-qualification
+          path: |
+            ${{ runner.temp }}/wti-qualification.json
+            ${{ runner.temp }}/wti-source-bodies/
+          if-no-files-found: error
+          retention-days: 35
+      - if: always()
+        run: test '${{ steps.source.outcome }}' = 'success'
