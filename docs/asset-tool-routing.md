@@ -115,11 +115,11 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc | FR0010755611 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Emergent EMEA (MSCI Emerging EMEA) ESG Transition UCITS ETF | FR0011440478 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | BNP Paribas Easy S&P 500 UCITS ETF (Acc) | FR0011550185 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
-| BNP Paribas Easy STOXX Europe 600 UCITS ETF | FR0011550193 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
+| BNP Paribas Easy STOXX Europe 600 UCITS ETF | FR0011550193 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Amundi PEA Immobilier Europe UCITS ETF Acc | FR0011869304 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Inde (MSCI India) UCITS ETF | FR0011869320 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Chine (MSCI China) Screened UCITS ETF | FR0011871078 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
-| Amundi PEA Nasdaq-100 UCITS ETF | FR0011871110 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
+| Amundi PEA Nasdaq-100 UCITS ETF | FR0011871110 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Amundi PEA S&P 500 UCITS ETF | FR0011871128 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Euro Court Terme UCITS ETF Acc | FR0013346681 | Oui | — | manual | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
 | Amundi CAC 40 UCITS ETF | FR0013380607 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
@@ -128,13 +128,13 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Amundi PEA Amérique Latine (MSCI Emerging Latin America Selection) UCITS ETF | FR0013412004 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Asie Emergente (MSCI Emerging Asia) Screened UCITS ETF | FR0013412012 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF | FR0013412020 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
-| Amundi PEA MSCI Europe UCITS ETF (Acc) | FR0013412038 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
+| Amundi PEA MSCI Europe UCITS ETF (Acc) | FR0013412038 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Amundi PEA US Tech Screened UCITS ETF - Acc | FR0013412269 | — | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi Physical Gold ETC | FR0013416716 | Oui | Oui | automatic | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
 | Dassault Systèmes | FR0014003TT8 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Michelin | FR001400AJ45 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Amundi PEA Luxe Monde UCITS ETF | FR001400S9V0 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
-| Amundi PEA Monde (MSCI World) UCITS ETF | FR001400U5Q4 | Oui | Oui | automatic | Oui / Oui | Partielle | — / — / Oui | — |
+| Amundi PEA Monde (MSCI World) UCITS ETF | FR001400U5Q4 | Oui | Oui | automatic | Oui / Oui | Complète | — / — / Oui | — |
 | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc | FR001400ZGO4 | Oui | — | missing | Oui / Oui | Partielle | — / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc) | FR0014017NX3 | Oui | Oui | automatic | Oui / Oui | Partielle | — / — / — | — |
 | Diageo | GB0002374006 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -160,7 +160,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | HKEX | HK0388045442 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | iShares MSCI Europe Small Cap UCITS ETF | IE0000N55FP4 | Oui | — | automatic | Oui / Oui | Complète | — / — / — | — |
 | Invesco FTSE All-World UCITS ETF Distributing | IE0000QLH0G6 | Oui | Oui | missing | Oui / Oui | Complète | Oui / Oui / Oui | Historique court — 2 année(s) complète(s) ; 6 requises en génération automatique |
-| iShares MSCI World Swap PEA UCITS ETF (Acc) | IE0002XZSHO1 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / — / — | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
+| iShares MSCI World Swap PEA UCITS ETF (Acc) | IE0002XZSHO1 | Oui | Oui | missing | Oui / Oui | Complète | Oui / — / — | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | WisdomTree Europe Defence UCITS ETF | IE0002Y8CX98 | Oui | Oui | missing | Oui / Oui | Complète | — / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | Avantis Global Small Cap Value UCITS ETF USD Acc | IE0003R87OG3 | Oui | Oui | missing | Oui / Oui | Complète | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
 | JPM Global Equity Premium Income Active UCITS ETF USD (Dist) | IE0003UVYC20 | Oui | Oui | missing | Oui / Oui | Complète | Oui / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
@@ -418,10 +418,10 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Xtrackers EURO STOXX 50 UCITS ETF 1C | LU0380865021 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Amundi Core STOXX Europe 600 UCITS ETF | LU0908500753 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Amundi FTSE EPRA NAREIT Global UCITS ETF | LU1437018838 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| Amundi Russell 2000 UCITS ETF EUR Acc | LU1681038672 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
+| Amundi Russell 2000 UCITS ETF EUR Acc | LU1681038672 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Amundi STOXX Europe 600 ESG UCITS ETF Acc | LU1681040223 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| Amundi MSCI World Swap UCITS ETF (Acc) | LU1681043599 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
-| Amundi MSCI Emerging Markets UCITS ETF | LU1681045370 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
+| Amundi MSCI World Swap UCITS ETF (Acc) | LU1681043599 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| Amundi MSCI Emerging Markets UCITS ETF | LU1681045370 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Amundi Core EURO STOXX 50 UCITS ETF | LU1681047236 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Amundi S&P Global Luxury UCITS ETF | LU1681048630 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Amundi FTSE EPRA NAREIT Global UCITS ETF Dist | LU1737652823 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |

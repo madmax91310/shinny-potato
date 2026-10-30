@@ -1,8 +1,8 @@
 {
   "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
-  "checkedAt": "2026-10-29",
+  "checkedAt": "2026-10-30",
   "convention": "Units of currency per EUR, final ECB reference observation in each completed month",
-  "sha256": "c8523df51684f3db17a09bc59e3b3c58c3718269896eacb98e73ec648f5f3c76",
+  "sha256": "458ef998bf1d96198dbc91e83e54ed9b4911ff03500397cbf9b23d8b66cc34ac",
   "months": {
     "1999-01": {
       "asOf": "1999-01-29",
@@ -12700,12 +12700,12 @@
   },
   "derived": {
     "TWD": {
-      "sourceUrl": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01%2F01%2F1999&to=10%2F29%2F2026&filetype=csv&label=include&layout=seriescolumn&type=package",
+      "sourceUrl": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01%2F01%2F1999&to=10%2F30%2F2026&filetype=csv&label=include&layout=seriescolumn&type=package",
       "series": "DEXTAUS",
       "secondarySourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
-      "checkedAt": "2026-10-29",
+      "checkedAt": "2026-10-30",
       "sha256": "a83befb1c2526ea354520a4af0a60140e6fb5363c9b37525f33a3b6990a1169d",
-      "secondarySha256": "c8523df51684f3db17a09bc59e3b3c58c3718269896eacb98e73ec648f5f3c76",
+      "secondarySha256": "458ef998bf1d96198dbc91e83e54ed9b4911ff03500397cbf9b23d8b66cc34ac",
       "sourceSeries": "H10/H10/RXI_N.B.TA",
       "sourceDiscoveryUrl": "https://www.federalreserve.gov/datadownload/Choose.aspx?rel=H10",
       "seriesEquivalence": "Federal Reserve H.10 RXI_N.B.TA is the primary daily TWD per USD series republished as FRED DEXTAUS; independently checked over all common observations",
@@ -26073,7 +26073,7 @@
       },
       "sourceAttempts": [
         {
-          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-29",
+          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-30",
           "error": "The read operation timed out"
         },
         {
@@ -26081,7 +26081,7 @@
           "error": "The read operation timed out"
         },
         {
-          "sourceUrl": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01%2F01%2F1999&to=10%2F29%2F2026&filetype=csv&label=include&layout=seriescolumn&type=package",
+          "sourceUrl": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01%2F01%2F1999&to=10%2F30%2F2026&filetype=csv&label=include&layout=seriescolumn&type=package",
           "status": "downloaded",
           "sha256": "a83befb1c2526ea354520a4af0a60140e6fb5363c9b37525f33a3b6990a1169d"
         }
