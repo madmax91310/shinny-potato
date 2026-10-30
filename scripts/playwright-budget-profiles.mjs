@@ -22,6 +22,9 @@ function captureCanvasText() {
       }
 }
 
+// CI partitions the exhaustive roster by viewport; direct runs still check all three.
+const widths = process.argv[2] === undefined ? [1440, 390, 320] : [Number(process.argv[2])]
+assert(widths.every(width => [1440, 390, 320].includes(width)), 'Expected viewport 1440, 390 or 320')
 const base = process.env.BUDGET_PUBLIC_BASE ?? 'http://127.0.0.1:4403/shinny-potato'
 const server = process.env.BUDGET_PUBLIC_BASE ? null : spawn(process.execPath, ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', '4403', '--strictPort'], { stdio: 'ignore' })
 const output = 'test-artifacts/budget-profiles'; mkdirSync(output, { recursive: true })
@@ -30,7 +33,7 @@ try {
   if (server) await waitPreview(server, base)
   browser = await chromium.launch({ headless: true, ...(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {}) })
   const errors = [], results = []
-  for (const width of [1440, 390, 320]) {
+  for (const width of widths) {
     const context = await browser.newContext({ viewport: { width, height: 950 }, permissions: ['clipboard-read', 'clipboard-write'], reducedMotion: 'reduce' })
     await context.addInitScript(captureCanvasText)
     const page = await context.newPage()
@@ -203,6 +206,6 @@ try {
   await expect(blockedPage.getByText('Le statut publié n’a pas pu être enregistré. Le suivi précédent est conservé.', { exact: true })).toBeVisible()
   await blocked.close()
   assert.deepEqual(errors, [])
-  writeFileSync(`${output}/results.json`, JSON.stringify(results, null, 2))
+  writeFileSync(`${output}/results-${widths.join('-')}.json`, JSON.stringify(results, null, 2))
   console.log(`Budget browser: ${results.length} profile/viewport exports, clipboard, discovery, filters, drafts, invalidation and corrupt storage passed.`)
 } finally { await browser?.close(); server?.kill() }
