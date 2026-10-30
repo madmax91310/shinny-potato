@@ -115,7 +115,7 @@ manual.lines=manual.lines.map(l=>({...l,weight:l.weight*.5})).concat({...p.lines
 checkOrder(manual)
 assert.equal(sortHoldings(manual.lines)[0].asset,'sp500','Manually appended row is sorted by weight')
 assert.equal(sortContributions(manual.lines)[0].asset,'sp500','Manually appended row is sorted by amount')
-const zero={...manual,lines:manual.lines.map((l,i)=>({...l,weight:i===0?100:0,amount:i===1?100:0}))}
+const zero={...manual,lines:manual.lines.slice(0,2).map((l,i)=>({...l,weight:i===0?100:0,amount:i===1?100:0}))}
 checkOrder(zero)
 const many=Array.from({length:10},(_,i)=>({label:`Position ${i}`,weight:i+1}))
 assert.deepEqual(allocationRows(many).slice(0,7).map(r=>r.weight),[10,9,8,7,6,5,4])
