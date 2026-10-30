@@ -10,6 +10,13 @@ ROOT = Path(__file__).resolve().parents[1]
 MANUAL_WRITERS = set()
 
 class WorkflowContracts(unittest.TestCase):
+    def test_shared_reference_parser_repairs_trigger_the_ordinary_exposure_producer(self):
+        text=(ROOT/'.github/workflows/update-qualified-exposures.yml').read_text()
+        push=text.split('  push:',1)[1].split('  pull_request:',1)[0]
+        self.assertIn("'scripts/collect_exposure_sleeves.py'",push)
+        self.assertIn('python scripts/collect_exposure_sleeves.py --apply',text)
+        self.assertIn("cancel-in-progress: false",text)
+
     def test_tweet_midi_partitions_preserve_the_publication_gate(self):
         workflow = (ROOT/'.github/workflows/deploy-pages.yml').read_text()
         build = workflow.split('\n  build:\n')[1].split('\n  tweet-midi-checks:\n')[0]

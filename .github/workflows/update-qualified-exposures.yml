@@ -6,6 +6,7 @@ on:
   push:
     branches: [master]
     paths:
+      - 'scripts/collect_exposure_sleeves.py'
       - 'scripts/native_source_evidence.py'
       - 'scripts/test_native_source_evidence.py'
       - 'scripts/test_security_residual_identities.py'
