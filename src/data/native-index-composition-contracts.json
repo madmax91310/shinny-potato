@@ -39,6 +39,92 @@
       "minimumMembers": 100,
       "maximumMembers": 110,
       "scopeNote": "Complete issuer-published economic index exposure, not fund assets or substitute basket. Original rounded index weights; the publisher may delay the observation under index-provider licensing restrictions. Fund cash, fees, swaps and currency hedges excluded."
+    },
+    "msci-world-net": {
+      "methodCode": "invesco-published-economic-index-v1",
+      "benchmarkProvider": "MSCI",
+      "currency": "USD",
+      "scopeNote": "Complete issuer-published economic index exposure, not fund assets or substitute basket. Original rounded index weights; the publisher may delay the observation under index-provider licensing restrictions. Fund cash, fees, swaps and currency hedges excluded.",
+      "publisherIsin": "IE00B60SX394",
+      "publisherPageUrl": "https://www.invesco.com/uk/en/financial-products/etfs/invesco-msci-world-ucits-etf-acc.html",
+      "publisherShareName": "Invesco MSCI World UCITS ETF Acc",
+      "benchmarkName": "MSCI World Total Return (Net) Index",
+      "benchmarkRic": ".dMIWO00000NUS",
+      "benchmarkTicker": "NDDUWI",
+      "weightSourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+      "metadataSourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394?idType=isin",
+      "minimumMembers": 1000,
+      "maximumMembers": 2000,
+      "currencyWeightContract": {
+        "sourceUrl": "https://www.msci.com/eqb/methodology/meth_docs/MSCI_Index_Calculation_Methodology_May2026.pdf",
+        "sha256": "d7066c5f47cbeb96445cdba9289ce3a82fdcaabe9972677d81923aa9b8d1806f",
+        "version": "2026-05",
+        "section": "1.7 Conversion Of Indexes into Another Currency",
+        "rule": "Unhedged reporting-currency conversion multiplies the whole index by one FX scalar; constituent proportions are invariant. No return, price or fund-currency conversion is performed; currency hedges, ESG and leveraged variants are excluded."
+      }
+    },
+    "msci-europe-net": {
+      "methodCode": "invesco-published-economic-index-v1",
+      "benchmarkProvider": "MSCI",
+      "currency": "EUR",
+      "scopeNote": "Complete issuer-published economic index exposure, not fund assets or substitute basket. Original rounded index weights; the publisher may delay the observation under index-provider licensing restrictions. Fund cash, fees, swaps and currency hedges excluded.",
+      "publisherIsin": "IE00B60SWY32",
+      "publisherPageUrl": "https://www.invesco.com/uk/en/financial-products/etfs/invesco-msci-europe-ucits-etf-acc.html",
+      "publisherShareName": "Invesco MSCI Europe UCITS ETF Acc",
+      "benchmarkName": "MSCI Europe Total Return (Net) Index",
+      "benchmarkRic": ".dMIEU00000NEU",
+      "benchmarkTicker": "MSDEE15N",
+      "weightSourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWY32/holdings/index?idType=isin&loadType=initial",
+      "metadataSourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWY32?idType=isin",
+      "minimumMembers": 300,
+      "maximumMembers": 600
+    },
+    "msci-em-net": {
+      "methodCode": "invesco-published-economic-index-v1",
+      "benchmarkProvider": "MSCI",
+      "currency": "USD",
+      "scopeNote": "Complete issuer-published economic index exposure, not fund assets or substitute basket. Original rounded index weights; the publisher may delay the observation under index-provider licensing restrictions. Fund cash, fees, swaps and currency hedges excluded.",
+      "publisherIsin": "IE00B3DWVS88",
+      "publisherPageUrl": "https://www.invesco.com/uk/en/financial-products/etfs/invesco-msci-emerging-markets-ucits-etf-acc.html",
+      "publisherShareName": "Invesco MSCI Emerging Markets UCITS ETF Acc",
+      "benchmarkName": "MSCI Emerging Markets Total Return (Net) Index",
+      "benchmarkRic": ".dMIEF00000NUS",
+      "benchmarkTicker": "NDUEEGF",
+      "weightSourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B3DWVS88/holdings/index?idType=isin&loadType=initial",
+      "metadataSourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B3DWVS88?idType=isin",
+      "minimumMembers": 800,
+      "maximumMembers": 2000
+    },
+    "russell2000-equity-members": {
+      "methodCode": "invesco-published-economic-index-v1",
+      "currency": "USD",
+      "scopeNote": "Complete issuer-published economic index exposure, not fund assets or substitute basket. Original rounded index weights; the publisher may delay the observation under index-provider licensing restrictions. Fund cash, fees, swaps and currency hedges excluded.",
+      "publisherIsin": "IE00B60SX402",
+      "publisherPageUrl": "https://www.invesco.com/uk/en/financial-products/etfs/invesco-russell-2000-ucits-etf-acc.html",
+      "publisherShareName": "Invesco Russell 2000 UCITS ETF Acc",
+      "benchmarkName": "Russell 2000 Total Return Index",
+      "benchmarkRic": ".RUTTR",
+      "benchmarkTicker": "RU20INTR",
+      "benchmarkProvider": "FTSE International Limited",
+      "weightSourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX402/holdings/index?idType=isin&loadType=initial",
+      "metadataSourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX402?idType=isin",
+      "minimumMembers": 1500,
+      "maximumMembers": 2500,
+      "returnWeightContract": {
+        "documents": [
+          {
+            "sourceUrl": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/russell-us-indexes-construction-and-methodology.pdf",
+            "sha256": "26d2d051beb27a6a808af7c17a2e2871cc5388e669bedbb42cbc4d0d3ce47c76",
+            "version": "v7.2, August2026"
+          },
+          {
+            "sourceUrl": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/russell-index-calculation-methodology.pdf",
+            "sha256": "d9e4c50186666664257890de5a5c8cf9f7f52cc135a1eda85f8469e94733e266",
+            "version": "v1.2, September2026"
+          }
+        ],
+        "rule": "Equity-member weights use the same closing float-adjusted market values across the standard Russell2000 price/gross/net return series. Withholding tax changes the dividend return calculation, not these market values. Only equity weights are referenced; RU20INTR returns never replace RU20N30U returns. Hedged, capped, style and leveraged variants are excluded."
+      }
     }
   },
   "shares": {
@@ -62,6 +148,109 @@
       "indexId": "nasdaq100-notional-net",
       "hedged": false,
       "shareDocumentBase": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF"
+    },
+    "FR001400U5Q4": {
+      "indexId": "msci-world-net",
+      "hedged": false,
+      "shareDocumentKind": "amundi-index-factsheet",
+      "shareDocumentBase": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400U5Q4/FRA/FRA/INSTITUTIONNEL/ETF",
+      "shareTitle": "AMUNDI PEA MONDE (MSCI World) UCITS ETF Acc",
+      "shareBenchmarkLabel": "100% MSCI WORLD",
+      "objectiveTokens": [
+        "MSCI World Index (EUR) (dividendes nets réinvestis)"
+      ],
+      "shareCurrency": "EUR"
+    },
+    "LU1681043599": {
+      "indexId": "msci-world-net",
+      "hedged": false,
+      "shareDocumentKind": "amundi-index-factsheet",
+      "shareDocumentBase": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681043599/FRA/FRA/INSTITUTIONNEL/ETF",
+      "shareTitle": "Amundi MSCI World Swap UCITS ETF EUR Acc",
+      "shareBenchmarkLabel": "100% MSCI WORLD",
+      "objectiveTokens": [
+        "Indice MSCI World",
+        "Indice de rendement total net",
+        "(MSDEWIN)"
+      ],
+      "shareCurrency": "EUR"
+    },
+    "FR0013412038": {
+      "indexId": "msci-europe-net",
+      "hedged": false,
+      "shareDocumentKind": "amundi-index-factsheet",
+      "shareDocumentBase": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412038/FRA/FRA/INSTITUTIONNEL/ETF",
+      "shareTitle": "Amundi PEA MSCI Europe UCITS ETF Acc",
+      "shareBenchmarkLabel": "MSCI EUROPE",
+      "objectiveTokens": [
+        "dividendes nets réinvestis",
+        "libellé en euro"
+      ],
+      "shareCurrency": "EUR"
+    },
+    "LU1681045370": {
+      "indexId": "msci-em-net",
+      "hedged": false,
+      "shareDocumentKind": "amundi-index-factsheet",
+      "shareDocumentBase": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681045370/FRA/FRA/INSTITUTIONNEL/ETF",
+      "shareTitle": "Amundi MSCI Emerging Markets Swap UCITS ETF EUR Acc",
+      "shareBenchmarkLabel": "MSCI Emerging Markets",
+      "objectiveTokens": [
+        "Indice MSCI Emerging Markets",
+        "Indice de rendement total net",
+        "(NDUEEGF)"
+      ],
+      "shareCurrency": "EUR"
+    },
+    "IE0002XZSHO1": {
+      "indexId": "msci-world-net",
+      "hedged": false,
+      "shareDocumentKind": "blackrock-index-factsheet",
+      "shareDocumentBase": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+      "shareTitle": "iShares MSCI World Swap PEA UCITS ETF",
+      "shareBenchmarkLabel": "MSCI World Index",
+      "objectiveTokens": [
+        "rendement total net du MSCI World Index",
+        "Structure du produit : Synthétique"
+      ],
+      "shareCurrency": "EUR"
+    },
+    "IE000QDFFK00": {
+      "indexId": "nasdaq100-notional-net",
+      "hedged": false,
+      "shareDocumentKind": "bnp-index-factsheet",
+      "shareDocumentDiscoveryUrl": "https://www.analizy.pl/etf/IE000QDFFK00/bnp-paribas-easy-ii-nasdaq-100-ucits-etf-usd-acc",
+      "shareDocumentPrefix": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/",
+      "shareBenchmarkLabel": "NASDAQ-100 Notional Net Total Return Index",
+      "shareCurrency": "USD",
+      "referenceOnly": true
+    },
+    "IE00BD4TXV59": {
+      "indexId": "msci-world-net",
+      "hedged": false,
+      "shareDocumentKind": "ubs-index-factsheet",
+      "shareDocumentTemplates": [
+        "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-{monthEnd}-en.pdf",
+        "https://www.swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-{monthEnd}-en.pdf"
+      ],
+      "shareTitle": "UBS Core MSCI World UCITS ETF USD acc",
+      "shareBenchmarkLabel": "MSCI World Total Return Net",
+      "shareCurrency": "USD",
+      "referenceOnly": true
+    },
+    "LU1681038672": {
+      "indexId": "russell2000-equity-members",
+      "hedged": false,
+      "shareDocumentKind": "amundi-index-factsheet",
+      "shareDocumentBase": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF",
+      "shareTitle": "Amundi Russell 2000 UCITS ETF EUR Acc",
+      "shareBenchmarkLabel": "100% RUSSELL 2000",
+      "objectiveTokens": [
+        "Indice Russell 2000",
+        "(RU20N30U)"
+      ],
+      "shareCurrency": "EUR",
+      "targetBenchmark": "Russell2000 Net30% Total Return USD (RU20N30U)"
     }
   }
 }

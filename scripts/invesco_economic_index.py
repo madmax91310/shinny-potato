@@ -5,6 +5,7 @@ The exact subject share's current issuer document qualifies its benchmark; no
 physical ETF holdings, collateral weights or top ten fill missing index members.
 """
 import base64
+import copy
 import datetime as dt
 import hashlib
 import json
@@ -12,11 +13,17 @@ import math
 from pathlib import Path
 import re
 import subprocess
+import threading
+import urllib.error
+from functools import lru_cache
 from issuer_documents import download, document_date, pdf_text
 
 ROOT=Path(__file__).resolve().parents[1]
 CONTRACTS=json.loads((ROOT/'src/data/native-index-composition-contracts.json').read_text())
 METHOD='invesco-published-economic-index-v1'
+_ACQUISITION_LOCKS={}
+_LOCKS_LOCK=threading.Lock()
+_METHODOLOGY_LOCK=threading.Lock()
 
 def digest(raw):
     return hashlib.sha256(raw if isinstance(raw,bytes)else raw.encode()).hexdigest()
@@ -56,14 +63,14 @@ def parse_capture(capture,metadata_raw,isin,now):
                 benchmarkProvider=index['benchmarkProvider'],downloadData=True)
     table=capture['tableText']
     census=re.search(r'Showing\s+1\s+to\s+10\s+of\s+(\d+)',table)
-    date=re.search(r'\bas of\s+(\d{2}-[A-Za-z]{3}-\d{2})\b',table)
+    date=re.search(r'\bas of\s+(\d{2}-(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept?|Oct|Nov|Dec)-\d{2})\b',table)
     if (capture.get('indexId')!=share['indexId']or capture.get('sourceUrl')!=index['weightSourceUrl']
             or capture.get('pageUrl')!=index['publisherPageUrl']or capture.get('pageTitle')!=index['publisherShareName']
             or capture.get('sourceSha256')!=digest(raw)or capture.get('tableTextSha256')!=digest(table)
             or not re.fullmatch(r'[a-f0-9]{64}',capture.get('publisherPageSha256',''))
             or capture.get('widget')!=widget or capture.get('economicExposurePublished')is not True
             or capture.get('separateSubstituteBasketPublished')is not True
-            or not census or not date or dt.datetime.strptime(date[1],'%d-%b-%y').date().isoformat()!=stamp
+            or not census or not date or dt.datetime.strptime(date[1].replace('-Sept-','-Sep-'),'%d-%b-%y').date().isoformat()!=stamp
             or capture.get('publisherRowCount')!=int(census[1])):
         raise ValueError('Unqualified public economic-index table or census/date')
     rows=payload['holdings']
@@ -96,8 +103,50 @@ def parse_capture(capture,metadata_raw,isin,now):
             economicExposurePublished=True,separateSubstituteBasketPublished=True),
         unidentifiedSecurityCount=0,unidentifiedWeightPct=0)
 
+def qualify_subject_document(raw,isin,now,url):
+    share,_=contracts(isin)
+    text=pdf_text(raw);flat=' '.join(text.split())
+    objective=flat.split('Evolution de la performance',1)[0].split('PERFORMANCE',1)[0]
+    if (share['hedged']is not False or any(token not in flat for token in share['objectiveTokens'])
+            or re.search(r'\bhedged\b|couvert(?:ure)? de change|couvert en euros',objective,re.I)):
+        raise ValueError('Wrong net index, currency convention or unsupported hedged subject')
+    if share['shareDocumentKind']=='amundi-index-factsheet':
+        from collect_amundi_index_exposure import parse_document
+        labels=re.findall(r'^\s*Indice de référence[ \t]+([^\n]+?)[ \t]*$',text,re.M)
+        if (not flat.startswith(share['shareTitle'])or labels!=[share['shareBenchmarkLabel']]
+                or 'Devise de référence de la classe '+share['shareCurrency']not in flat):
+            raise ValueError('Wrong exact Amundi subject title, benchmark or currency')
+        parsed=parse_document(raw,{'isin':isin,'sourceUrl':url},now)
+        stamp=parsed['holdings']['asOf']
+    else:
+        from collect_document_etf import parse_legacy_factsheet
+        if share['shareTitle']not in flat or 'Indice de référence : '+share['shareBenchmarkLabel']not in flat:
+            raise ValueError('Wrong exact BlackRock benchmark')
+        parsed=parse_legacy_factsheet(text,pdf_text(raw,(300,300)),{'isin':isin,'currency':share['shareCurrency']},now)
+        if parsed['characteristics']['index']!=share['shareBenchmarkLabel']:raise ValueError('Changed BlackRock subject index')
+        stamp=parsed['aum']['asOf']
+    return stamp
+
 def qualify_subject(isin,now,fetch=download):
     share,_=contracts(isin)
+    if share.get('shareDocumentKind')=='ubs-index-factsheet':
+        from collect_remaining_documents import ubs_urls,ubs
+        errors=[]
+        for primary in ubs_urls(now):
+            for url in (primary,primary.replace('https://swissfunddata.ch/','https://www.swissfunddata.ch/')):
+                try:raw=fetch(url,headers={'User-Agent':'Mozilla/5.0','Accept':'application/pdf'})
+                except (urllib.error.URLError,TimeoutError,ConnectionError)as error:
+                    errors.append(f'{url}: {error}');continue
+                text=pdf_text(raw);flat=' '.join(text.split())
+                labels=re.findall(r'^\s*Index name[ \t]+([^\n]+?)[ \t]*$',text,re.M)
+                if share['shareTitle']not in flat or labels!=[share['shareBenchmarkLabel']]:
+                    raise ValueError('Wrong exact UBS share or net benchmark')
+                record=ubs(text,{'isin':isin,'currency':share['shareCurrency'],'sourceUrl':url},now,digest(raw),performance_text=pdf_text(raw,raw=True))
+                return raw,url,record['countries']['asOf'],None
+        raise ConnectionError('UBS current benchmark proof unavailable: '+'; '.join(errors))
+    if share.get('shareDocumentKind') in ('amundi-index-factsheet','blackrock-index-factsheet'):
+        url=share['shareDocumentBase'];raw=fetch(url)
+        return raw,url,qualify_subject_document(raw,isin,now,url),None
     if isin=='FR0011871110':
         url=share['shareDocumentBase'];raw=fetch(url);text=' '.join(pdf_text(raw).split())
         title='Amundi PEA Nasdaq-100 UCITS ETF Acc'
@@ -109,36 +158,101 @@ def qualify_subject(isin,now,fetch=download):
             raise ValueError('Wrong Amundi subject share or notional net benchmark')
         stamp=document_date(dates.pop(),now)
         return raw,url,stamp,None
-    if isin=='FR0011550193':
+    if isin=='FR0011550193'or share.get('shareDocumentKind')=='bnp-index-factsheet':
         from collect_bnp_etf import discover,parse
         instruments=json.loads((ROOT/'scripts/additional-etf-sources.json').read_text())['instruments']
         config=next(r for r in instruments if r['isin']==isin)
         discovery=share['shareDocumentDiscoveryUrl'];page=fetch(discovery)
         url,stamp=discover(page,config,now);raw=fetch(url)
         result=parse(pdf_text(raw),config,now,stamp)
-        if result['characteristics']['index']!='STOXX Europe 600 NR':raise ValueError('Wrong BNP economic benchmark')
+        expected=share.get('shareBenchmarkLabel','STOXX Europe 600 NR')
+        if result['characteristics']['index']!=expected:raise ValueError('Wrong BNP economic benchmark')
         return raw,url,stamp,dict(sourceUrl=discovery,sha256=digest(page))
     raise ValueError('Unqualified subject share')
 
+@lru_cache(maxsize=16)
+def _acquire_index(index_id,now,fetch):
+    index=CONTRACTS['indices'][index_id]
+    try:
+        metadata=fetch(index['metadataSourceUrl'])
+        result=subprocess.run(['node',str(ROOT/'scripts/capture-invesco-economic-index.mjs'),index_id],
+                              capture_output=True,text=True,timeout=100,check=False)
+        if result.returncode:raise ValueError('Public issuer economic-index capture: '+result.stderr[-1200:])
+        return metadata,json.loads(result.stdout)
+    except Exception as error:return error
+
+def acquire_index(index_id,now,fetch):
+    # Multiple subject parts share one dated publication; collapse concurrent
+    # cache misses instead of launching a browser for every part. No old-run cache.
+    with _LOCKS_LOCK:lock=_ACQUISITION_LOCKS.setdefault(index_id,threading.Lock())
+    with lock:result=_acquire_index(index_id,now,fetch)
+    if isinstance(result,Exception):raise result
+    return result
+
+@lru_cache(maxsize=4)
+def _currency_method(index_id,now,fetch):
+    try:raw=fetch(CONTRACTS['indices'][index_id]['currencyWeightContract']['sourceUrl'])
+    except Exception as error:return error
+    rule=CONTRACTS['indices'][index_id]['currencyWeightContract']
+    if digest(raw)!=rule['sha256']:raise ValueError('Changed MSCI currency methodology requires qualification')
+    text=' '.join(pdf_text(raw).split())
+    if (rule['section']not in text or 'MSCI Index Calculation Methodology | May 2026'not in text
+            or 'Calculation of the The World Index in EUR'not in text):
+        raise ValueError('Missing official unhedged reporting-currency conversion rule')
+    return raw,dict(sourceUrl=rule['sourceUrl'],sha256=digest(raw),version=rule['version'],
+                    checkedAt=now.isoformat(),rule=rule['rule'],originalWeightsUnchanged=True)
+
+def currency_method(index_id,now,fetch):
+    with _METHODOLOGY_LOCK:result=_currency_method(index_id,now,fetch)
+    if isinstance(result,Exception):raise result
+    return result
+
+@lru_cache(maxsize=4)
+def return_weight_method(index_id,now,fetch):
+    rule=CONTRACTS['indices'][index_id]['returnWeightContract'];raws=[];proofs=[]
+    for config in rule['documents']:
+        raw=fetch(config['sourceUrl'])
+        if digest(raw)!=config['sha256']:raise ValueError('Changed Russell return-weight methodology requires qualification')
+        raws.append(raw);proofs.append(dict(sourceUrl=config['sourceUrl'],sha256=digest(raw),version=config['version']))
+    texts=[' '.join(pdf_text(raw).split())for raw in raws]
+    if (not all(s in texts[0]for s in ['v7.2','August 2026','float-adjusted, market capitalization-weighted indexes','Net total return indexes based on specified withholding tax rates'])
+            or not all(s in texts[1]for s in ['v1.2','September 2026','price, total and net returns','AEMV equals the index float-adjusted market value based on the primary exchange closing prices'])):
+        raise ValueError('Missing official common equity-market-value / separate net-dividend rules')
+    return raws,dict(documents=proofs,checkedAt=now.isoformat(),rule=rule['rule'],originalWeightsUnchanged=True,
+                     targetReturnSeriesUnchanged=True)
+
 def collect(share,now,fetch=download,capture=None):
     isin=share['isin'];subject,index=contracts(isin)
-    if share.get('currency')!='EUR':raise ValueError('Wrong subject share currency')
+    if share.get('currency')!=subject.get('shareCurrency','EUR'):raise ValueError('Wrong subject share currency')
     raw,url,stamp,discovery=qualify_subject(isin,now,fetch)
     policy=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['etf.default']
     if (now.date()-dt.date.fromisoformat(stamp)).days>policy['dataDays']:raise ValueError('Subject benchmark proof is stale')
-    metadata=fetch(index['metadataSourceUrl'])
     if capture is None:
-        result=subprocess.run(['node',str(ROOT/'scripts/capture-invesco-economic-index.mjs'),subject['indexId']],
-                              capture_output=True,text=True,timeout=100,check=False)
-        if result.returncode:raise ValueError('Public issuer economic-index capture: '+result.stderr[-1200:])
-        capture=json.loads(result.stdout)
+        metadata,capture=acquire_index(subject['indexId'],now,fetch)
+    else:metadata=fetch(index['metadataSourceUrl'])
     from collect_physical_holdings import source_proof
     source_proof(share,'economic-index-capture',capture)
     source_proof(share,'economic-index-metadata',metadata)
     source_proof(share,'subject-benchmark',raw)
     record=parse_capture(capture,metadata,isin,now)
+    if subject.get('referenceOnly'):
+        record['approximation']=True
+        record['coverageProof']['referenceOnlyForSubject']=True
+        record['method']+=' Benchmark reference only for this physical fund; actual fund assets, cash and tracking differences are not observed. Full fund overlap is not certified.'
+    if index.get('currencyWeightContract'):
+        _,proof=currency_method(subject['indexId'],now,fetch)
+        source_proof(share,'unhedged-index-currency-method',proof)
+        record['coverageProof']['currencyWeightProof']=copy.deepcopy(proof)
+    if index.get('returnWeightContract'):
+        _,proof=return_weight_method(subject['indexId'],now,fetch)
+        source_proof(share,'equity-return-variant-method',proof)
+        record['coverageProof']['returnWeightProof']=copy.deepcopy(proof)
+        record['coverageProof']['targetBenchmark']=subject['targetBenchmark']
+        record['method']+=' '+index['returnWeightContract']['rule']
     record.update(shareSourceUrl=url,shareAsOf=stamp,shareSha256=digest(raw),
                   sourceUrls=[url,index['metadataSourceUrl'],index['weightSourceUrl'],index['publisherPageUrl']])
+    if index.get('currencyWeightContract'):record['sourceUrls'].append(index['currencyWeightContract']['sourceUrl'])
+    if index.get('returnWeightContract'):record['sourceUrls'].extend(d['sourceUrl']for d in index['returnWeightContract']['documents'])
     if discovery:
         record.update(shareDiscoverySourceUrl=discovery['sourceUrl'],shareDiscoverySha256=discovery['sha256'])
         record['sourceUrls'].append(discovery['sourceUrl'])
