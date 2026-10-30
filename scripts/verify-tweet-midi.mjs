@@ -98,6 +98,10 @@ function record(format, ok) {
 const shardIndex = Number(process.env.TWEET_MIDI_SHARD_INDEX ?? 0);
 const shardCount = Number(process.env.TWEET_MIDI_SHARD_COUNT ?? 1);
 const started = Date.now();
+if (process.argv.includes('--scope-manifest')) {
+  console.log('TWEET_MIDI_SCOPE ' + JSON.stringify({ poolSize: ALL_ITEMS.length }));
+  process.exit(0);
+}
 for (const index of shardIndices(ALL_ITEMS.length, shardIndex, shardCount)) {
   const item = ALL_ITEMS[index];
   totalChecked++;
