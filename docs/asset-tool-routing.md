@@ -65,7 +65,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | iShares STOXX Europe 600 Telecommunications UCITS ETF (DE) | DE000A0H08R2 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares STOXX Europe 600 Utilities UCITS ETF (DE) | DE000A0Q4R02 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Adidas | DE000A1EWWW0 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| Bitwise Physical Bitcoin ETP | DE000A27Z304 | Oui | Oui | automatic | Sans objet / Sans objet | — | Oui / — / Oui | — |
+| Bitwise Physical Bitcoin ETP | DE000A27Z304 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / — / Oui | — |
 | BASF | DE000BASF111 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Bayer | DE000BAY0017 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Siemens Energy | DE000ENER6Y0 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -151,8 +151,8 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Rolls-Royce | GB00B63H8491 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | National Grid | GB00BDR05C01 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | WisdomTree Physical Bitcoin | GB00BJYDH287 | Oui | Oui | automatic | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
-| CoinShares Physical Bitcoin ETP | GB00BLD4ZL17 | Oui | Oui | automatic | Sans objet / Sans objet | — | Oui / — / — | — |
-| CoinShares Ethereum Staking ETP | GB00BLD4ZM24 | Oui | Oui | automatic | Sans objet / Sans objet | — | Oui / — / Oui | — |
+| CoinShares Physical Bitcoin ETP | GB00BLD4ZL17 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / — / — | — |
+| CoinShares Ethereum Staking ETP | GB00BLD4ZM24 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / — / Oui | — |
 | GSK | GB00BN7SWP63 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Shell | GB00BP6MXD84 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Unilever | GB00BVZK7T90 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -302,8 +302,8 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Trane Technologies | IE00BK9ZQ967 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | WisdomTree Battery Solutions UCITS ETF USD Acc | IE00BKLF1R75 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Core MSCI EM IMI UCITS ETF | IE00BKM4GZ66 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
-| iShares MSCI World Quality Dividend Advanced UCITS ETF | IE00BKPSFC54 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| iShares MSCI AC Far East ex-Japan UCITS ETF | IE00BKPX3K41 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / — / — | — |
+| iShares MSCI World Quality Dividend Advanced UCITS ETF | IE00BKPSFC54 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| iShares MSCI AC Far East ex-Japan UCITS ETF | IE00BKPX3K41 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / — / — | — |
 | State Street SPDR MSCI Europe UCITS ETF | IE00BKWQ0Q14 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Vanguard FTSE North America UCITS ETF | IE00BKX55R35 | — | — | missing | Oui / Oui | Complète | — / — / — | — |
 | Global X Robotics & Artificial Intelligence UCITS ETF USD Acc | IE00BLCHJB90 | Oui | — | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
@@ -320,7 +320,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating | IE00BMVB5M21 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / — | — |
 | Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating | IE00BMVB5P51 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / — | — |
 | Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating | IE00BMVB5R75 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / — | — |
-| iShares MSCI Europe Information Technology Sector UCITS ETF | IE00BMW42413 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| iShares MSCI Europe Information Technology Sector UCITS ETF | IE00BMW42413 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Edge MSCI World Quality Factor UCITS ETF (Acc) | IE00BP3QZ601 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Edge MSCI World Momentum Factor UCITS ETF (Acc) | IE00BP3QZ825 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Edge MSCI World Value Factor UCITS ETF | IE00BP3QZB59 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
