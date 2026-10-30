@@ -1,0 +1,110 @@
+{
+  "checkedAt": "2026-10-30T02:54:38.618831+00:00",
+  "allInitialAndCurrentIdentitiesPreserved": true,
+  "initialDiagnostics": 5092,
+  "currentDiagnostics": 6486,
+  "ledgerIdentities": 46216,
+  "matrixContracts": 33381,
+  "sourceInputsVerified": 196,
+  "financialCases": 79,
+  "qualifiedMonthlyWindows": 70,
+  "refusedMonthlyWindows": 9,
+  "old661Preserved": true,
+  "actions19": {
+    "partiellement corrigée": 4,
+    "corrigée": 11,
+    "périmètre supprimé": 2,
+    "bloquée": 1,
+    "déjà résolue": 1
+  },
+  "toolRoutes": 23,
+  "publishedSourceRegistryMatchesOrdinaryRecord": true,
+  "reports": [
+    {
+      "name": "ETAT-REPRISE.json",
+      "bytes": 1497,
+      "sha256": "32054bd878d3992035373c422e3bc26c6b04dea0ee45865c22b0ed1fd163918d"
+    },
+    {
+      "name": "LIVRAISON.md",
+      "bytes": 57389,
+      "sha256": "cd2dc5ebe58bd19671b7e6bba2f78d72ec8c898c4a5a2287d1c1fdb7388587c0"
+    },
+    {
+      "name": "RAPPORT.md",
+      "bytes": 83884,
+      "sha256": "1c007725194685d15ebeb1d494e84f67ee2dd7364e311965aa94bf6960c8cad4"
+    },
+    {
+      "name": "README.md",
+      "bytes": 1752,
+      "sha256": "1f2305b6ba2a3298493bea9574289fb98c7ae281f18b91f06c6f59e43b15e06a"
+    },
+    {
+      "name": "bilan-par-outil.csv",
+      "bytes": 21750,
+      "sha256": "0b57c5d70d98fdd771bdd1966a98e008e79ca195509845c84949b651630bf0f2"
+    },
+    {
+      "name": "bilan.json",
+      "bytes": 4613,
+      "sha256": "037fe06100c765b1702646a4fd5f9040c4ff87039f5007d26f244df8c7adade2"
+    },
+    {
+      "name": "causes-consolidees.csv.gz",
+      "bytes": 307130,
+      "sha256": "5511c280a2a47f75fbef65a76188f21931f191499c01a768237e50578fc5d5fc"
+    },
+    {
+      "name": "chaines-donnees.csv.gz",
+      "bytes": 507348,
+      "sha256": "267fcc111ecf759f2f382b0f445a4c7edabb74b0ecf88fe736b9df9c0d308922"
+    },
+    {
+      "name": "collectes-controles.csv.gz",
+      "bytes": 45004,
+      "sha256": "6db292c3168193ccea2ba406f144a877f45ef9c2d37d55aa77469e890a01b109"
+    },
+    {
+      "name": "matrice-bilan.json",
+      "bytes": 1538,
+      "sha256": "d8c19e3fb10bae369dcf24607408886de21c484396ff4bb6fd57df580b771337"
+    },
+    {
+      "name": "matrice-donnees-usages.csv.gz",
+      "bytes": 1643351,
+      "sha256": "db769efe85414b01952eac6174f5e92a2c68f8a7ff95892d0d6a1494e3cc0bcc"
+    },
+    {
+      "name": "perimetre-initial-complet.csv.gz",
+      "bytes": 48575,
+      "sha256": "28907244c667e34e8331ebc0cbecc590bfafe408e10d6157622934df3e6febe4"
+    },
+    {
+      "name": "reconciliation-79-ecarts.csv",
+      "bytes": 1155219,
+      "sha256": "6cbbc447c4e3eefb0bc205dfc6014173ba8e833359300fbc606fdc3dc8d3ca85"
+    },
+    {
+      "name": "reconciliation-finale-identites.json",
+      "bytes": 1318,
+      "sha256": "87bf4f9a31f49da311a91178d4576947ec5f99fd6e8a0a3a61dc683ae92b592f"
+    },
+    {
+      "name": "restant-a-verifier.csv.gz",
+      "bytes": 686929,
+      "sha256": "047a094bd5b6630f6cc0c57390015ba3d29047c982473d9f9023771988b2d99a"
+    },
+    {
+      "name": "statut-19-actions.csv",
+      "bytes": 42865,
+      "sha256": "70fe233b85e4fcd1de9a0e151d78948fc34045d1110cb2fc3a5beeb4208c5d31"
+    },
+    {
+      "name": "suivi-consolide.csv.gz",
+      "bytes": 5212451,
+      "sha256": "c6523bea15787fe051c6cc039f4313a934611f2dab24bb1d1b15558b685f54a3"
+    }
+  ],
+  "limit": "Delivery reconciliation and bounded source proofs, not independent certification of the entire financial catalogue."
+}

@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-10-30T02:51:58.809941+00:00",
+  "publicVersion": {
+    "sha": "66c27cda4ef5154446d33b0fcaeed15db93f0dfd",
+    "builtAt": "2026-10-30T02:10:12Z"
+  },
+  "publishedInputs": "matrix-final-29oct/published-inputs.json",
+  "records": [
+    {
+      "id": "etfImie",
+      "sourceRun": 40972888484,
+      "event": "workflow_dispatch",
+      "recordCommit": "c4e3de21b941c919ec459941e9947bf51e9c9ae6",
+      "exactRecordEqualsPublishedInput": true,
+      "points": 179,
+      "isin": "IE00B3YLTY66",
+      "currency": "EUR",
+      "checkedAt": "2026-10-29",
+      "firstMonth": "2011-11",
+      "lastMonth": "2026-09",
+      "recordSha256": "bb3f99fc109174777455a4fd123c48ab122ef47382daa4a0077c99a45503c205",
+      "listingEvidenceId": "IE00B3YLTY66-XPAR-IMIE-EUR",
+      "browserProof": "browser-imie-public/results.json"
+    },
+    {
+      "id": "etfFR0013412269",
+      "sourceRun": 40981492633,
+      "event": "workflow_dispatch",
+      "recordCommit": "ff70a4968bb2296e7326bb9ed4e021bbcf767715",
+      "exactRecordEqualsPublishedInput": true,
+      "points": 89,
+      "isin": "FR0013412269",
+      "currency": "EUR",
+      "checkedAt": "2026-10-30",
+      "firstMonth": "2019-05",
+      "lastMonth": "2026-09",
+      "recordSha256": "e31909273c8e237952649271ee1708a5062d1b3473924fc6cf59ad97a51bedbe",
+      "listingEvidenceId": "FR0013412269-XPAR-PANX-EUR",
+      "browserProof": "browser-panx-public-final/results.json"
+    }
+  ],
+  "limit": "workflow_dispatch proves ordinary producer execution, not scheduled trigger; only exact target records bound, not the complete source catalogue",
+  "priorReceiptRetained": "imie-panx-ordinary-published-receipt.before-66c.json.gz"
+}

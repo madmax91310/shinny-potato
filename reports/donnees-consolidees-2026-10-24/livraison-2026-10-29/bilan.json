@@ -1,0 +1,118 @@
+{
+  "updatedAt": "2026-10-30T02:51:58.848594+00:00",
+  "publication": {
+    "sha": "66c27cda4ef5154446d33b0fcaeed15db93f0dfd",
+    "builtAt": "2026-10-30T02:10:12Z"
+  },
+  "exportAt": "2026-10-30T02:43:01.261Z",
+  "monitorCheckedAt": "2026-10-30T02:35:02.283378+00:00",
+  "diagnostics": {
+    "monitoring": 6,
+    "failure": 97,
+    "qualification": 4588,
+    "connection": 30,
+    "editorial": 798,
+    "waiting": 13,
+    "not-applicable": 423,
+    "history": 531
+  },
+  "diagnosticRows": 6486,
+  "matrix": {
+    "generatedAt": "2026-10-30T02:45:25.004011+00:00",
+    "denominateur": "Contrats logiques de champ ou série × outil, issus des consommateurs actuels ; pas nombre de points de marché ni certification de toutes les valeurs",
+    "usages": 33381,
+    "outils": 23,
+    "profils_identifiants_uniques": 3850,
+    "parts_isin_uniques": 673,
+    "statuts": {
+      "non applicable": 3728,
+      "B": 29621,
+      "A": 32
+    },
+    "types": {
+      "reference": 2738,
+      "live": 24011,
+      "history": 5961,
+      "archive": 489,
+      "simulation": 58,
+      "unavailable": 36,
+      "editorial": 88
+    },
+    "diagnostics": {
+      "non applicable": 3728,
+      "preuve documentaire ou qualification incomplète": 29554,
+      "raccordement manquant": 39,
+      "défaut réel de donnée ou de collecte": 28,
+      "preuve source et usage automatisé démontrés sur périmètre qualifié": 32
+    },
+    "limites": "B reste non résolu ; les références/hypothèses/archives ne sont pas des pannes. Les fenêtres historiques contestées restent dans les 79 cas, indépendamment de cette vue.",
+    "generatorCommit": "66c27cda4ef5154446d33b0fcaeed15db93f0dfd",
+    "sourceCommit": "66c27cda4ef5154446d33b0fcaeed15db93f0dfd",
+    "publishedVersion": {
+      "sha": "66c27cda4ef5154446d33b0fcaeed15db93f0dfd",
+      "builtAt": "2026-10-30T02:10:12Z"
+    },
+    "inputVerificationReceipt": "published-inputs.json",
+    "publishedInventoryContracts": 31792,
+    "additionalPubliclyObservedUsages": 2,
+    "additionalDynamicEquityUses": 822,
+    "additionalExistingRankingUses": 765,
+    "dynamicEquities": 411
+  },
+  "identityReconciliation": {
+    "checkedAt": "2026-10-30T02:48:54.215588+00:00",
+    "initialLedgerIdsBeforeProjection": 46216,
+    "preservedLedgerIdsAfterProjection": 46216,
+    "remainderProjectionRows": 35335,
+    "structuralGroups": 1235,
+    "remainderKinds": {
+      "action consolidée": 5,
+      "raccordement ou capacité à qualifier": 30,
+      "preuve ou qualification manquante ; panne non démontrée": 4578,
+      "attente normale déclarée": 14,
+      "fraîcheur / calendrier à qualifier": 40,
+      "donnée ou collecte en échec à investiguer": 74,
+      "échec primaire distinct du secours opérationnel et de la fraîcheur financière": 2,
+      "conflit financier ou documentaire": 55,
+      "limite documentaire à rapprocher": 585,
+      "ancienne divergence financière distincte du service": 79,
+      "preuve de supervision / étape à qualifier": 7,
+      "preuve documentaire ou qualification incomplète": 29554,
+      "défaut réel de donnée ou de collecte": 28,
+      "historique documentaire": 213,
+      "raccordement manquant": 39,
+      "preuve d’usage bornée ; qualification générique distincte": 32
+    },
+    "initialDiagnosticsPreserved": 5092,
+    "initial661Preserved": 661,
+    "financial79Preserved": 79,
+    "noAbsenceConsideredSourceRepair": true,
+    "notAnOutageCount": true,
+    "reportsNotAnIndependentCertificationOfAllCatalogData": true
+  },
+  "actions19": {
+    "partiellement corrigée": 4,
+    "corrigée": 11,
+    "périmètre supprimé": 2,
+    "bloquée": 1,
+    "déjà résolue": 1
+  },
+  "financial79": {
+    "qualified": 70,
+    "refused": 9,
+    "refusedShares": 6,
+    "oldQuoteDivergences": 77,
+    "residuals": 2,
+    "imieOutside79": true
+  },
+  "jpmNewSourcePublished": true,
+  "completeAutomationClaimed": false,
+  "limits": [
+    "No independent certification of all required financial fields",
+    "WisdomTree precise native books403inGitHub; retained valid dated observations",
+    "New iShares PEA primary regional route403inGitHub; PR1061draft not deployed; existing monthly PDF route works, September observations correctly cannot replace October values",
+    "Future scheduled runs not implied by successful workflow_dispatch",
+    "Nine monthly windows remain refused; old77quote divergences and2residuals kept separately",
+    "WTI official monthly endpoint failed403in latest full source run40968760633; valid previous observations remain dated, targetedIMIE retry did not recheckWTI"
+  ]
+}

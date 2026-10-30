@@ -1,0 +1,372 @@
+{
+  "checkedAt": "2026-10-30T02:44:40.383898+00:00",
+  "monitorUpdatedAt": "2026-10-30T02:33:19Z",
+  "derived": [
+    {
+      "id": "dca-holdings:IE00BMVB5K07",
+      "validationCheck": {
+        "id": "dca-holdings:IE00BMVB5K07",
+        "instrument": "IE00BMVB5K07",
+        "fields": [
+          "complete economic holdings",
+          "security identities",
+          "weights",
+          "asOf"
+        ],
+        "selected": true,
+        "phase": "validation",
+        "sourceAttempted": false,
+        "checkedAt": "2026-10-29",
+        "validatedAt": "2026-10-30T00:56:12.913677+00:00",
+        "asOf": "2026-09-30",
+        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+        "sha256": "991bb956e79cc9dcf25e5495a5d6100d231cff233acc683bcf91f7fbefce9b9c",
+        "basis": "fund",
+        "scope": "equity-lookthrough",
+        "completeFile": true,
+        "rows": 4235,
+        "publishedEquityWeightPct": 20.2026042,
+        "identifiedEquityWeightPct": 20.2026042,
+        "reason": "Transparisation calculée ; aucune nouvelle consultation du document du fonds déduite.",
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceUrls": [
+          "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf"
+        ],
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40982595758",
+        "recordedAt": "2026-10-30T01:17:05Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "dca-complete-holdings.json",
+          "sha256": "f198e649c78459170bc528c0ba40851f924a087828948ae4c772d468984e0ec6",
+          "reportedAt": null,
+          "schema": "statuses",
+          "artifactId": 12945881895,
+          "sourcePhaseStartedAt": "2026-10-30T00:54:31Z",
+          "sourcePhaseCompletedAt": "2026-10-30T00:59:38Z",
+          "scopeRef": "ff577f1cc449180a2ea708fbd25d81ef8bde1bd1e0862003b4f8a7669d302472",
+          "scopeSummary": {
+            "kind": "collect_dca_complete_holdings",
+            "expectedIdsCount": 183,
+            "requestedIdsCount": 183,
+            "networkRequestedIdsCount": 175
+          }
+        },
+        "sourceControlsRequalified": [
+          {
+            "originalSourceControl": {
+              "checkedAt": "2026-10-29T23:39:59.887102+00:00",
+              "recordedAt": "2026-10-29T23:43:15Z",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40971293330",
+              "evidence": {
+                "scopeExplicit": true,
+                "scopePlanVerified": true,
+                "producerContract": "producer-results-v1",
+                "file": "dca-complete-holdings.json",
+                "sha256": "644e4afd883c1fedbc3dd58a03cc0b47a38c14705ea8878090482386e27ca21a",
+                "reportedAt": null,
+                "schema": "statuses",
+                "artifactId": 12942381311,
+                "sourcePhaseStartedAt": "2026-10-29T23:38:34Z",
+                "sourcePhaseCompletedAt": "2026-10-29T23:43:15Z",
+                "scopeRef": "e55595d1e14956da269952b665e67511301095753e7044650497e93e76cbe307",
+                "scopeSummary": {
+                  "kind": "collect_dca_complete_holdings",
+                  "expectedIdsCount": 183,
+                  "requestedIdsCount": 183,
+                  "networkRequestedIdsCount": 178
+                }
+              },
+              "runId": 40971293330,
+              "attempt": 1,
+              "verifiedInAttempt": true,
+              "asOf": "2026-09-30"
+            },
+            "reason": "Derived look-through receipt, not a consultation of the issuer document; original clocks retained as historical evidence."
+          }
+        ]
+      },
+      "absentFromSourceChecks": true,
+      "publicRegistryCheckedAt": "2026-10-29",
+      "publicRegistryValidatedAt": "2026-10-30T00:56:12.913677+00:00",
+      "dataAsOf": "2026-09-30"
+    },
+    {
+      "id": "dca-holdings:IE00BMVB5M21",
+      "validationCheck": {
+        "id": "dca-holdings:IE00BMVB5M21",
+        "instrument": "IE00BMVB5M21",
+        "fields": [
+          "complete economic holdings",
+          "security identities",
+          "weights",
+          "asOf"
+        ],
+        "selected": true,
+        "phase": "validation",
+        "sourceAttempted": false,
+        "checkedAt": "2026-10-29",
+        "validatedAt": "2026-10-30T00:56:12.913677+00:00",
+        "asOf": "2026-09-30",
+        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+        "sha256": "42a9651a6eb5da760b803d38f8ec52334bfd1ba9bacc66947fece891b2a5ca83",
+        "basis": "fund",
+        "scope": "equity-lookthrough",
+        "completeFile": true,
+        "rows": 4235,
+        "publishedEquityWeightPct": 39.88401399,
+        "identifiedEquityWeightPct": 39.88401399,
+        "reason": "Transparisation calculée ; aucune nouvelle consultation du document du fonds déduite.",
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceUrls": [
+          "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf"
+        ],
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40982595758",
+        "recordedAt": "2026-10-30T01:17:05Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "dca-complete-holdings.json",
+          "sha256": "f198e649c78459170bc528c0ba40851f924a087828948ae4c772d468984e0ec6",
+          "reportedAt": null,
+          "schema": "statuses",
+          "artifactId": 12945881895,
+          "sourcePhaseStartedAt": "2026-10-30T00:54:31Z",
+          "sourcePhaseCompletedAt": "2026-10-30T00:59:38Z",
+          "scopeRef": "ff577f1cc449180a2ea708fbd25d81ef8bde1bd1e0862003b4f8a7669d302472",
+          "scopeSummary": {
+            "kind": "collect_dca_complete_holdings",
+            "expectedIdsCount": 183,
+            "requestedIdsCount": 183,
+            "networkRequestedIdsCount": 175
+          }
+        },
+        "sourceControlsRequalified": [
+          {
+            "originalSourceControl": {
+              "checkedAt": "2026-10-29T23:39:59.887102+00:00",
+              "recordedAt": "2026-10-29T23:43:15Z",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40971293330",
+              "evidence": {
+                "scopeExplicit": true,
+                "scopePlanVerified": true,
+                "producerContract": "producer-results-v1",
+                "file": "dca-complete-holdings.json",
+                "sha256": "644e4afd883c1fedbc3dd58a03cc0b47a38c14705ea8878090482386e27ca21a",
+                "reportedAt": null,
+                "schema": "statuses",
+                "artifactId": 12942381311,
+                "sourcePhaseStartedAt": "2026-10-29T23:38:34Z",
+                "sourcePhaseCompletedAt": "2026-10-29T23:43:15Z",
+                "scopeRef": "e55595d1e14956da269952b665e67511301095753e7044650497e93e76cbe307",
+                "scopeSummary": {
+                  "kind": "collect_dca_complete_holdings",
+                  "expectedIdsCount": 183,
+                  "requestedIdsCount": 183,
+                  "networkRequestedIdsCount": 178
+                }
+              },
+              "runId": 40971293330,
+              "attempt": 1,
+              "verifiedInAttempt": true,
+              "asOf": "2026-09-30"
+            },
+            "reason": "Derived look-through receipt, not a consultation of the issuer document; original clocks retained as historical evidence."
+          }
+        ]
+      },
+      "absentFromSourceChecks": true,
+      "publicRegistryCheckedAt": "2026-10-29",
+      "publicRegistryValidatedAt": "2026-10-30T00:56:12.913677+00:00",
+      "dataAsOf": "2026-09-30"
+    },
+    {
+      "id": "dca-holdings:IE00BMVB5P51",
+      "validationCheck": {
+        "id": "dca-holdings:IE00BMVB5P51",
+        "instrument": "IE00BMVB5P51",
+        "fields": [
+          "complete economic holdings",
+          "security identities",
+          "weights",
+          "asOf"
+        ],
+        "selected": true,
+        "phase": "validation",
+        "sourceAttempted": false,
+        "checkedAt": "2026-10-29",
+        "validatedAt": "2026-10-30T00:56:12.913677+00:00",
+        "asOf": "2026-09-30",
+        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+        "sha256": "96c12bb20a781bd042a6b2fff69a9c35debf9e215af2b4265d0b7bd19e7c09f7",
+        "basis": "fund",
+        "scope": "equity-lookthrough",
+        "completeFile": true,
+        "rows": 4237,
+        "publishedEquityWeightPct": 59.8788513,
+        "identifiedEquityWeightPct": 59.8788513,
+        "reason": "Transparisation calculée ; aucune nouvelle consultation du document du fonds déduite.",
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceUrls": [
+          "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf"
+        ],
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40982595758",
+        "recordedAt": "2026-10-30T01:17:05Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "dca-complete-holdings.json",
+          "sha256": "f198e649c78459170bc528c0ba40851f924a087828948ae4c772d468984e0ec6",
+          "reportedAt": null,
+          "schema": "statuses",
+          "artifactId": 12945881895,
+          "sourcePhaseStartedAt": "2026-10-30T00:54:31Z",
+          "sourcePhaseCompletedAt": "2026-10-30T00:59:38Z",
+          "scopeRef": "ff577f1cc449180a2ea708fbd25d81ef8bde1bd1e0862003b4f8a7669d302472",
+          "scopeSummary": {
+            "kind": "collect_dca_complete_holdings",
+            "expectedIdsCount": 183,
+            "requestedIdsCount": 183,
+            "networkRequestedIdsCount": 175
+          }
+        },
+        "sourceControlsRequalified": [
+          {
+            "originalSourceControl": {
+              "checkedAt": "2026-10-29T23:39:59.887102+00:00",
+              "recordedAt": "2026-10-29T23:43:15Z",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40971293330",
+              "evidence": {
+                "scopeExplicit": true,
+                "scopePlanVerified": true,
+                "producerContract": "producer-results-v1",
+                "file": "dca-complete-holdings.json",
+                "sha256": "644e4afd883c1fedbc3dd58a03cc0b47a38c14705ea8878090482386e27ca21a",
+                "reportedAt": null,
+                "schema": "statuses",
+                "artifactId": 12942381311,
+                "sourcePhaseStartedAt": "2026-10-29T23:38:34Z",
+                "sourcePhaseCompletedAt": "2026-10-29T23:43:15Z",
+                "scopeRef": "e55595d1e14956da269952b665e67511301095753e7044650497e93e76cbe307",
+                "scopeSummary": {
+                  "kind": "collect_dca_complete_holdings",
+                  "expectedIdsCount": 183,
+                  "requestedIdsCount": 183,
+                  "networkRequestedIdsCount": 178
+                }
+              },
+              "runId": 40971293330,
+              "attempt": 1,
+              "verifiedInAttempt": true,
+              "asOf": "2026-09-30"
+            },
+            "reason": "Derived look-through receipt, not a consultation of the issuer document; original clocks retained as historical evidence."
+          }
+        ]
+      },
+      "absentFromSourceChecks": true,
+      "publicRegistryCheckedAt": "2026-10-29",
+      "publicRegistryValidatedAt": "2026-10-30T00:56:12.913677+00:00",
+      "dataAsOf": "2026-09-30"
+    },
+    {
+      "id": "dca-holdings:IE00BMVB5R75",
+      "validationCheck": {
+        "id": "dca-holdings:IE00BMVB5R75",
+        "instrument": "IE00BMVB5R75",
+        "fields": [
+          "complete economic holdings",
+          "security identities",
+          "weights",
+          "asOf"
+        ],
+        "selected": true,
+        "phase": "validation",
+        "sourceAttempted": false,
+        "checkedAt": "2026-10-29",
+        "validatedAt": "2026-10-30T00:56:12.913677+00:00",
+        "asOf": "2026-09-30",
+        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+        "sha256": "d705b030d0869841aca88d638aa6efbae5fea651cacb277f6b35fe4f8342a2aa",
+        "basis": "fund",
+        "scope": "equity-lookthrough",
+        "completeFile": true,
+        "rows": 4310,
+        "publishedEquityWeightPct": 79.61981365,
+        "identifiedEquityWeightPct": 79.61981365,
+        "reason": "Transparisation calculée ; aucune nouvelle consultation du document du fonds déduite.",
+        "status": "succeeded",
+        "operationAttempted": true,
+        "sourceUrls": [
+          "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf"
+        ],
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40982595758",
+        "recordedAt": "2026-10-30T01:17:05Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "dca-complete-holdings.json",
+          "sha256": "f198e649c78459170bc528c0ba40851f924a087828948ae4c772d468984e0ec6",
+          "reportedAt": null,
+          "schema": "statuses",
+          "artifactId": 12945881895,
+          "sourcePhaseStartedAt": "2026-10-30T00:54:31Z",
+          "sourcePhaseCompletedAt": "2026-10-30T00:59:38Z",
+          "scopeRef": "ff577f1cc449180a2ea708fbd25d81ef8bde1bd1e0862003b4f8a7669d302472",
+          "scopeSummary": {
+            "kind": "collect_dca_complete_holdings",
+            "expectedIdsCount": 183,
+            "requestedIdsCount": 183,
+            "networkRequestedIdsCount": 175
+          }
+        },
+        "sourceControlsRequalified": [
+          {
+            "originalSourceControl": {
+              "checkedAt": "2026-10-29T23:39:59.887102+00:00",
+              "recordedAt": "2026-10-29T23:43:15Z",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40971293330",
+              "evidence": {
+                "scopeExplicit": true,
+                "scopePlanVerified": true,
+                "producerContract": "producer-results-v1",
+                "file": "dca-complete-holdings.json",
+                "sha256": "644e4afd883c1fedbc3dd58a03cc0b47a38c14705ea8878090482386e27ca21a",
+                "reportedAt": null,
+                "schema": "statuses",
+                "artifactId": 12942381311,
+                "sourcePhaseStartedAt": "2026-10-29T23:38:34Z",
+                "sourcePhaseCompletedAt": "2026-10-29T23:43:15Z",
+                "scopeRef": "e55595d1e14956da269952b665e67511301095753e7044650497e93e76cbe307",
+                "scopeSummary": {
+                  "kind": "collect_dca_complete_holdings",
+                  "expectedIdsCount": 183,
+                  "requestedIdsCount": 183,
+                  "networkRequestedIdsCount": 178
+                }
+              },
+              "runId": 40971293330,
+              "attempt": 1,
+              "verifiedInAttempt": true,
+              "asOf": "2026-09-30"
+            },
+            "reason": "Derived look-through receipt, not a consultation of the issuer document; original clocks retained as historical evidence."
+          }
+        ]
+      },
+      "absentFromSourceChecks": true,
+      "publicRegistryCheckedAt": "2026-10-29",
+      "publicRegistryValidatedAt": "2026-10-30T00:56:12.913677+00:00",
+      "dataAsOf": "2026-09-30"
+    }
+  ],
+  "publishedRegistryBlob": "12a3ad367f85091d2283beabd0a991215ca32f4e",
+  "limit": "Four calculated validations, not four source controls."
+}

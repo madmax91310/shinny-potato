@@ -1,0 +1,215 @@
+{
+  "checkedAt": "2026-10-30T01:40:45.408096+00:00",
+  "sourceRun": 40982595758,
+  "artifact": 12945881895,
+  "zipSha256": "815b38cf5b693d4607ceb38c551dca526f758608e87953cb8ccd1886da92fb9f",
+  "expected": 183,
+  "outcomes": 183,
+  "allExpectedExactlyOnce": true,
+  "sourceControlsSucceeded": 175,
+  "derivedValidationsSucceeded": 4,
+  "failed": [
+    {
+      "id": "dca-holdings:IE00BKLF1R75",
+      "instrument": "IE00BKLF1R75",
+      "fields": [
+        "complete economic holdings",
+        "security identities",
+        "weights",
+        "asOf"
+      ],
+      "selected": true,
+      "field": "Composition complète",
+      "error": "Date regression; access attempts: [{\"sourceUrl\": \"https://www.wisdomtree.com/api/fund-holdings/7369317\", \"status\": \"unavailable\", \"error\": \"Issuer API HTTP 403; public browser also failed: [{\\\"url\\\":\\\"https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc\\\",\\\"status\\\":\\\"unavailable\\\",\\\"error\\\":\\\"Public product page HTTP 403\\\"},{\\\"url\\\":\\\"https://www.wisdomtree.com/ie/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc\\\",\\\"status\\\":\\\"unavailable\\\",\\\"error\\\":\\\"Public product page HTTP 403\\\"},{\\\"url\\\":\\\"https://www.wisdomtree.com/api/fund-holdings/7369317\\\",\\\"status\\\":\\\"unavailable\\\",\\\"error\\\":\\\"Public issuer API unavailable in browser: HTTP 403\\\"}]\\n\"}, {\"sourceUrl\": \"https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB\", \"status\": \"validated-public-portfolio\"}]",
+      "status": "failed",
+      "operationAttempted": true,
+      "sourceAttempted": null
+    },
+    {
+      "id": "dca-holdings:IE000NDWFGA5",
+      "instrument": "IE000NDWFGA5",
+      "fields": [
+        "complete economic holdings",
+        "security identities",
+        "weights",
+        "asOf"
+      ],
+      "selected": true,
+      "field": "Composition complète",
+      "error": "could not convert string to float: ''",
+      "status": "failed",
+      "operationAttempted": true,
+      "sourceAttempted": null
+    },
+    {
+      "id": "dca-holdings:IE00BZ56SW52",
+      "instrument": "IE00BZ56SW52",
+      "fields": [
+        "complete economic holdings",
+        "security identities",
+        "weights",
+        "asOf"
+      ],
+      "selected": true,
+      "field": "Composition complète",
+      "error": "Date regression; access attempts: [{\"sourceUrl\": \"https://www.wisdomtree.com/api/fund-holdings/1000422\", \"status\": \"unavailable\", \"error\": \"Issuer API HTTP 403; public browser also failed: [{\\\"url\\\":\\\"https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc\\\",\\\"status\\\":\\\"unavailable\\\",\\\"error\\\":\\\"Public product page HTTP 403\\\"},{\\\"url\\\":\\\"https://www.wisdomtree.com/ie/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc\\\",\\\"status\\\":\\\"unavailable\\\",\\\"error\\\":\\\"Public product page HTTP 403\\\"},{\\\"url\\\":\\\"https://www.wisdomtree.com/api/fund-holdings/1000422\\\",\\\"status\\\":\\\"unavailable\\\",\\\"error\\\":\\\"Public issuer API unavailable in browser: HTTP 403\\\"}]\\n\"}, {\"sourceUrl\": \"https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB\", \"status\": \"validated-public-portfolio\"}]",
+      "status": "failed",
+      "operationAttempted": true,
+      "sourceAttempted": null
+    },
+    {
+      "id": "dca-holdings:IE00B441G979",
+      "instrument": "IE00B441G979",
+      "fields": [
+        "complete economic holdings",
+        "security identities",
+        "weights",
+        "asOf"
+      ],
+      "selected": true,
+      "field": "Composition complète",
+      "error": "Equity NAV weights 100.762180% exceed the existing 100.5% limit; published net NAV 100.000010%; excluded classes {\"Cash\": 0.35268, \"Cash Collateral and Margins\": 0.06606, \"Equity\": 0.0, \"FX\": -1e-05, \"Forwards\": -1.89321, \"Futures\": 0.0, \"Money Market\": 0.71231}; unsupported gross/net perimeter, no renormalisation",
+      "status": "failed",
+      "operationAttempted": true,
+      "sourceAttempted": null
+    }
+  ],
+  "jpm": [
+    {
+      "id": "dca-holdings:IE0003UVYC20",
+      "instrument": "IE0003UVYC20",
+      "fields": [
+        "complete economic holdings",
+        "security identities",
+        "weights",
+        "asOf"
+      ],
+      "selected": true,
+      "checkedAt": "2026-10-30T00:56:12.913677+00:00",
+      "asOf": "2026-10-29",
+      "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+      "sha256": "248c16af9b086154904d16aeadbd7bb5a6685148ccda0f93837226c8f693c032",
+      "basis": "fund",
+      "scope": "direct-equity-securities",
+      "completeFile": true,
+      "rows": 236,
+      "publishedEquityWeightPct": 99.77775411414972,
+      "identifiedEquityWeightPct": 99.77775411414972,
+      "sourceAttempted": true,
+      "status": "succeeded",
+      "operationAttempted": true
+    }
+  ],
+  "derived": [
+    {
+      "id": "dca-holdings:IE00BMVB5K07",
+      "instrument": "IE00BMVB5K07",
+      "fields": [
+        "complete economic holdings",
+        "security identities",
+        "weights",
+        "asOf"
+      ],
+      "selected": true,
+      "phase": "validation",
+      "sourceAttempted": false,
+      "checkedAt": "2026-10-29",
+      "validatedAt": "2026-10-30T00:56:12.913677+00:00",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+      "sha256": "991bb956e79cc9dcf25e5495a5d6100d231cff233acc683bcf91f7fbefce9b9c",
+      "basis": "fund",
+      "scope": "equity-lookthrough",
+      "completeFile": true,
+      "rows": 4235,
+      "publishedEquityWeightPct": 20.2026042,
+      "identifiedEquityWeightPct": 20.2026042,
+      "reason": "Transparisation calculée ; aucune nouvelle consultation du document du fonds déduite.",
+      "status": "succeeded",
+      "operationAttempted": true
+    },
+    {
+      "id": "dca-holdings:IE00BMVB5M21",
+      "instrument": "IE00BMVB5M21",
+      "fields": [
+        "complete economic holdings",
+        "security identities",
+        "weights",
+        "asOf"
+      ],
+      "selected": true,
+      "phase": "validation",
+      "sourceAttempted": false,
+      "checkedAt": "2026-10-29",
+      "validatedAt": "2026-10-30T00:56:12.913677+00:00",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+      "sha256": "42a9651a6eb5da760b803d38f8ec52334bfd1ba9bacc66947fece891b2a5ca83",
+      "basis": "fund",
+      "scope": "equity-lookthrough",
+      "completeFile": true,
+      "rows": 4235,
+      "publishedEquityWeightPct": 39.88401399,
+      "identifiedEquityWeightPct": 39.88401399,
+      "reason": "Transparisation calculée ; aucune nouvelle consultation du document du fonds déduite.",
+      "status": "succeeded",
+      "operationAttempted": true
+    },
+    {
+      "id": "dca-holdings:IE00BMVB5P51",
+      "instrument": "IE00BMVB5P51",
+      "fields": [
+        "complete economic holdings",
+        "security identities",
+        "weights",
+        "asOf"
+      ],
+      "selected": true,
+      "phase": "validation",
+      "sourceAttempted": false,
+      "checkedAt": "2026-10-29",
+      "validatedAt": "2026-10-30T00:56:12.913677+00:00",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+      "sha256": "96c12bb20a781bd042a6b2fff69a9c35debf9e215af2b4265d0b7bd19e7c09f7",
+      "basis": "fund",
+      "scope": "equity-lookthrough",
+      "completeFile": true,
+      "rows": 4237,
+      "publishedEquityWeightPct": 59.8788513,
+      "identifiedEquityWeightPct": 59.8788513,
+      "reason": "Transparisation calculée ; aucune nouvelle consultation du document du fonds déduite.",
+      "status": "succeeded",
+      "operationAttempted": true
+    },
+    {
+      "id": "dca-holdings:IE00BMVB5R75",
+      "instrument": "IE00BMVB5R75",
+      "fields": [
+        "complete economic holdings",
+        "security identities",
+        "weights",
+        "asOf"
+      ],
+      "selected": true,
+      "phase": "validation",
+      "sourceAttempted": false,
+      "checkedAt": "2026-10-29",
+      "validatedAt": "2026-10-30T00:56:12.913677+00:00",
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+      "sha256": "d705b030d0869841aca88d638aa6efbae5fea651cacb277f6b35fe4f8342a2aa",
+      "basis": "fund",
+      "scope": "equity-lookthrough",
+      "completeFile": true,
+      "rows": 4310,
+      "publishedEquityWeightPct": 79.61981365,
+      "identifiedEquityWeightPct": 79.61981365,
+      "reason": "Transparisation calculée ; aucune nouvelle consultation du document du fonds déduite.",
+      "status": "succeeded",
+      "operationAttempted": true
+    }
+  ],
+  "sourceRecordCommit": "3b2ea3628949d7ab4a6275c4bc0217f9d29e04cb",
+  "publicationProofSeparate": true
+}
