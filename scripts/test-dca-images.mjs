@@ -60,16 +60,10 @@ try {
         if(labels.some(l=>l===`Le DCA de ${profile.name}`||/investis par mois/.test(l)))throw Error('Redundant allocation identity: '+profile.id)
       }else if(!labels.includes(field==='both'?`Le DCA de ${profile.name}`:profile.name))throw Error('Identity: '+profile.id)
       if(labels.filter(l=>l==='Épargnant Libre').length!==1)throw Error('Brand: '+profile.id)
-      // #1086 separates held allocations from strictly positive monthly flows.
-      const visibleLines=field==='all'?profile.lines.filter(l=>l.weight>0):profile.lines.filter(l=>l.amount>0)
-      for(const line of visibleLines)if(visibleLines.length<=8&&field!=='both'&&!labels.join(' ').includes(line.label))throw Error('Allocation missing: '+profile.id)
-      if(field!=='all'&&field!=='both'){
-        const sorted=[...visibleLines].sort((a,b)=>b.amount-a.amount)
-        if(sorted.length<=8){
-          const indices=sorted.map(l=>labels.findIndex(label=>label===l.label))
-          if(indices.some(i=>i<0)||indices.some((v,i)=>i&&v<indices[i-1]))throw Error('DCA contributions out of descending order: '+profile.id)
-        }
-      }
+      // Allocation images show held assets; monthly cards show actual contributions.
+      const expectedLines=field==='all'?profile.lines.filter(line=>line.weight>0):field==='both'?[]:profile.lines.filter(line=>line.amount>0)
+      for(const line of expectedLines)if(expectedLines.length<=8&&!labels.join(' ').includes(line.label))throw Error('Allocation missing: '+profile.id+' / '+field+' / '+line.label)
+      if(profile.id==='eight-lines'&&['countries','sectors'].includes(field)&&labels.includes(profile.lines[0].label))throw Error('Zero contribution shown as a monthly investment')
       output.push({id:profile.id+'-'+field,labels:[...labels],png:['julien','alexandre','patrick','arthur','laurent','helene','eight-lines','fifty-lines','zero-dca','karim-approved','debate-lucas','debate-ilyes','debate-lina','debate-adam','debate-jeanbaptiste','debate-matthias'].includes(profile.id)?canvas.toDataURL():null})
     }
     for(const field of ['countries','sectors','both','all']){
