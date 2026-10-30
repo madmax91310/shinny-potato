@@ -10,6 +10,9 @@ import {QUALIFIED_FUND_CALENDARS} from '../src/data/qualified-annual-calendars.j
 import {qualifyPreferredManualNav,isQualifiedAnnualPortfolioFund,qualifiedManualMechanism} from '../src/data/annual-portfolio-funds.js'
 import {assetEditorial} from '../src/pages/portfolio-generator/asset-editorial.js'
 import {generatedDuelPool} from '../src/pages/portfolio-duels/generate.js'
+import {getRecipes} from '../src/pages/portfolio-generator/recipes.js'
+import {hasCompleteAutomaticWindow} from '../src/pages/portfolio-generator/performance.js'
+import {PROFILES} from '../src/pages/portfolio-generator/theses.js'
 import {buildManualPortfolio,renderTweetText} from '../src/pages/portfolio-generator/engine.js'
 import {buildCustomDuel,buildTweet} from '../src/pages/portfolio-duels/lib.js'
 import {convertCalendarReturn} from '../src/data/calendar-fx.js'
@@ -39,6 +42,7 @@ for(const[isin,source]of Object.entries(fixture.partialCalendars)){
  assert(Math.abs(duel.a.final-capital)<1e-7)
  for(const text of[renderTweetText(p),buildTweet(duel)]){assert(!/NaN|undefined/.test(text));assert(text.includes(String(years.at(-1))))}
 }
+for(const profile of PROFILES)for(const risk of Object.keys(profile.riskCombos))for(const recipe of getRecipes(profile.id,risk))for(const slot of recipe.assets)for(const id of slot.idOptions??[slot.id])assert(hasCompleteAutomaticWindow(getAsset(id)),profile.id+'/'+risk+'/'+recipe.id+'/'+id)
 // Null issuer calendars with explicitly reviewed simulation proxies remain
 // separate. No generic removal of existing automatic allocation permissions.
 for(const isin of['FR001400U5Q4','LU2970735911'])assert(getInstrumentReturnValues(isin).every(Number.isFinite))

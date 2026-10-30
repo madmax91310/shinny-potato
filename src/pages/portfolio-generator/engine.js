@@ -3,7 +3,7 @@ import { benchmarkKey } from '../../data/asset-selection.js';
 import { portfolioPostEditorial, portfolioPostName } from './postEditorial.js';
 import { ASSETS, getAsset } from '../../data/portfolio-assets.js';
 import { getInstrumentName } from '../../data/instruments.js';
-import { computeYearlyPerf, annualizedReturn, formatPerformance, performanceExcerpt, performanceYears, assetReturn, performanceNotes } from './performance.js';
+import { computeYearlyPerf, annualizedReturn, formatPerformance, performanceExcerpt, performanceYears, assetReturn, performanceNotes, hasCompleteAutomaticWindow } from './performance.js';
 import {
   PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS,
   isCompatible, getFrequencyCap, PRO_EUROPE_CORE_IDS,
@@ -122,10 +122,7 @@ function resolveAssetId(slot, usageCounts, historyLength) {
   // Qualify the existing options before frequency rotation. An unavailable
   // alternative must not crowd out the remaining qualified issuer once its
   // session cap is reached. Keep the six-year financial admission unchanged.
-  const eligible = slot.idOptions.filter(id => {
-    const perf = computeYearlyPerf([{ ...getAsset(id), pct: 100 }]);
-    return performanceYears(perf).length === 6 && Object.values(perf).every(Number.isFinite);
-  });
+  const eligible = slot.idOptions.filter(id => hasCompleteAutomaticWindow(getAsset(id)));
   // The final combined-window guard rejects recipes with no qualified option.
   if (!eligible.length) return slot.idOptions[0];
   // Choose an exposure first: multiple issuers must not give a theme extra tickets.
