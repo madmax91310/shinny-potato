@@ -70,6 +70,7 @@ try {
       labels=[];bounds=[]
       const canvas=await renderAnniversaryImage({mode:'simple',assetId:asset.id,yearsBack},String(current))
       if(!labels.includes('+50,0 %'))throw new Error(`${asset.id}: ratio changed`)
+      if(!labels.includes('AUJOURD’HUI'))throw new Error(`${asset.id}: current label missing`)
       if(labels.filter(v=>v==='ÉPARGNANT LIBRE').length!==1)throw new Error(`${asset.id}: signature count`)
       if(!labels.includes(ANNIVERSARY_ART[asset.id].title))throw new Error(`${asset.id}: mismatched title`)
       if(getMarketAsset(asset.id).currency!==asset.currency)throw new Error(`${asset.id}: displayed currency differs from history`)
