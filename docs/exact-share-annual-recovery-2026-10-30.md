@@ -28,3 +28,7 @@ Run ordinaire `41115036012` : acquisition des huit SCPI, validation et build ré
 ## Vérification
 
 `test-exact-share-annual-consumers.mjs` vérifie les huit identités, les périodes, les calculs EUR des deux moteurs, l'absence de complément par un argument legacy, les notes de provenance, les proxies explicites, l'absence de modification des données sources et les deux routes annuelles. Le contrôle est branché dans le CI existant. Les tests éditoriaux vérifient tous les profils et paliers avec six générations successives : ils ne dispensent pas de vérifier les parcours et exports publiés. Les preuves de publication et les limites fournisseurs restent consignées dans le bilan consolidé.
+
+## Publication : capacité mémoire de la recette de projections
+
+Le build de publication41115036936/job124276190438 s'arrête dans `test-tool-projections.mjs` à la limite V8 de2048MiB, après les tests précédents réussis ; ce n'est pas une erreur fournisseur ni un résultat financier divergent. Ce test charge ensemble les données canoniques, leurs copies Vite SSR et les parcours. Le seul processus de cette recette reçoit un plafond4096MiB, inférieur à la mémoire du runner ; aucune assertion ni périmètre de validation n'est supprimé. Le succès doit être vérifié en CI avant fusion : l'allocation mémoire n'est pas une preuve de réussite. Les seuils financiers et le moteur restent inchangés.

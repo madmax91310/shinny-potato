@@ -138,7 +138,9 @@ jobs:
       - run: node scripts/test-index-proxy-identity.mjs
       - run: node scripts/test-shared-listing-identities.mjs
       - run: node scripts/test-selected-data.mjs && node scripts/test-selected-records.mjs
-      - run: node scripts/test-tool-projections.mjs
+      # Canonical + Vite SSR copies exceed Node20’s default 2 GiB heap with
+      # the current catalogue. Keep every parity/route assertion unchanged.
+      - run: node --max-old-space-size=4096 scripts/test-tool-projections.mjs
       - run: node scripts/test-light-registries.mjs
       - run: node scripts/test-browser-shards.mjs
       - run: node scripts/test-broker-automation.mjs
