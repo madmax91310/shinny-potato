@@ -1,3 +1,5 @@
+import additionalProfiles from './additional-profiles-2026-10-30.json' with { type: 'json' }
+
 // Témoignages publics, contrôlés le 30/10/2026. Les dates décrivent les
 // publications, pas une actualisation des budgets des personnes.
 // Aucun métier ou poste manquant n'est reconstruit. Les prénoms fictifs du texte
@@ -719,6 +721,8 @@ export const BUDGET_PROFILES = [
     "hook": "Il touche 900 € et répartit 500 € entre épargne et investissements. Le contexte change tout : ses parents le logent et le nourrissent 👇",
     "question": "Tu profiterais de cette période pour préparer un départ ou investir sur le long terme ?"
   },
+  ...additionalProfiles,
+
 ]
 
 export const EXPENSE_CATEGORIES = [
@@ -792,4 +796,14 @@ export const BUDGET_EDITORIAL = {
     essential: ['Assurance automobile, essence et téléphone'],
     discretionary: ['Enveloppe sorties et plaisirs'],
   },
+  "finary-cyber-24-2026-08-27": {"alias":"Adrien","story":"Il débute dans la cybersécurité au Luxembourg. Son prêt étudiant de 15 000 € commencera à être remboursé dans trois ans."},
+  "finary-ingenieur-21-2025-03-08": {"alias":"Bastien","story":"Il étudie en alternance et donne des cours particuliers. Son loyer de 252 € est déjà net d’APL ; l’aide de ses parents fait partie de ses ressources."},
+  "finary-alternant-21-2025-05-08": {"alias":"Quentin","story":"Hébergé chez ses parents, il répartit 750 € entre son PEA, les cryptomonnaies et son Livret A. Les 130 € restants ne sont pas affectés dans son témoignage."},
+  "finary-locataire-25-2025-11-08": {"alias":"Julien","story":"Il prépare un premier investissement immobilier. Son budget personnel tient compte de sa part du logement et des 660 € de remboursement du prêt étudiant."},
+  "finary-batiment-21-2025-09-30": {"alias":"Antoine","story":"Son logement est gratuit pendant les deux prochaines années. Les montants proviennent de sa répartition déclarée de tout le salaire ; l’alimentation n’est pas détaillée séparément."},
+  "finary-etudiant-20-2025-03-19": {"alias":"Simon","story":"Il prépare son entrée en alternance en septembre 2025. Il prévoit de participer aux dépenses de son père à hauteur de 300 € et de consacrer 100 € aux extras."},
+  "finary-celibataire-31-2026-02-03": {"alias":"Sébastien","story":"Il verse 375 € sur son PEA et 250 € sur son Livret A. Il indique consacrer le reste aux dépenses courantes : l’enveloppe de 895 € est calculée, pas mesurée sur ses comptes."},
+  "finary-frontalier-37-2025-06-30": {"alias":"Paul","story":"Il travaille au Luxembourg et possède sa résidence principale à Thionville. Il annonce environ 1 800 € restant après ses versements ; le calcul donne 1 808 € avec les montants arrondis publiés."},
+  "finary-bois-18-2025-10-16": {"alias":"Enzo","story":"Il prépare son premier appartement. Son budget moyen de 1 373 € est une prévision : selon les fourchettes de loyer et de courses, les dépenses iraient de 1 223 à 1 523 €."},
+  "mustachian-ingenieur-28-2025-08-16": {"alias":"Romain","story":"Ses ressources moyennes comprennent aussi des ventes de cartes, des dividendes et un héritage. Il annonce environ 3 750 CHF d’épargne moyenne ; les dépenses arrondies donnent un reste de 3 749 CHF. Cet écart de 1 CHF vient du tableau de moyennes, sans dépense ajoutée pour le masquer."},
 }

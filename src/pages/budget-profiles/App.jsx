@@ -20,6 +20,7 @@ export default function App() {
   })
   const [record, setRecord] = useState(initial.value)
   const { profile, text, edited } = record
+  const money = value => euro(value, profile.currency)
   const [usageInitial] = useState(loadUsage), [used, setUsed] = useState(usageInitial.value)
   const [publishedInitial] = useState(loadPublished), [published, setPublished] = useState(publishedInitial.value)
   const [hidePublished, setHidePublished] = useState(false)
@@ -63,7 +64,7 @@ export default function App() {
     return <fieldset className="budget-lines"><legend>{title}</legend>
       {profile[key].map((row, index) => <div className="budget-row" key={index}>
         <label>Poste {index + 1}<input aria-label={`${title} · poste ${index + 1}`} maxLength={90} value={row.label} onChange={e => changeRow(key, index, { label: e.target.value })}/></label>
-        <label>Montant (€ / mois)<input aria-label={`${title} · montant ${index + 1}`} type="number" min="0" max="10000000" step="0.01" value={row.amount ?? ''} onChange={e => changeRow(key, index, { amount: number(e.target.value) })}/></label>
+        <label>Montant ({profile.currency || 'EUR'} / mois)<input aria-label={`${title} · montant ${index + 1}`} type="number" min="0" max="10000000" step="0.01" value={row.amount ?? ''} onChange={e => changeRow(key, index, { amount: number(e.target.value) })}/></label>
         <button type="button" className="dca-remove" aria-label={`Retirer ${title.toLowerCase()} ${index + 1}`} onClick={() => edit({ [key]: profile[key].filter((_, i) => i !== index) })}>×</button>
         {key === 'expenses' && <label className="budget-category">Catégorie<select value={row.category || 'other'} onChange={e => changeRow(key, index, { category: e.target.value })}>{EXPENSE_CATEGORIES.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}</select></label>}
       </div>)}
@@ -82,7 +83,7 @@ export default function App() {
           <label className="budget-check"><input type="checkbox" checked={hidePublished} onChange={e => setHidePublished(e.target.checked)}/>Masquer les profils publiés</label>
           <p className="dca-note">{filtered.length} profil{filtered.length > 1 ? 's' : ''} · {profiles.filter(p => published.includes(p.id)).length} publié(s) · du plus récent au plus ancien</p>
           {filtered.length ? <ChoicePicker aria-label="Choisir un profil budget" value={profile.id} onChange={e => choose(filtered.find(p => p.id === e.target.value))}>
-            {filtered.map(p => <option key={p.id} value={p.id}>{budgetDisplayName(p)} · {euro(analyzeBudget(p).income)} · {p.period}{published.includes(p.id) ? ' · publié' : ''}{used.includes(p.id) ? ' · utilisé' : ''}</option>)}
+            {filtered.map(p => <option key={p.id} value={p.id}>{budgetDisplayName(p)} · {euro(analyzeBudget(p).income, p.currency)} · {p.period}{published.includes(p.id) ? ' · publié' : ''}{used.includes(p.id) ? ' · utilisé' : ''}</option>)}
           </ChoicePicker> : <p role="status">Aucun profil ne correspond. Le budget ouvert reste affiché.</p>}
           <div className="dca-buttons"><Button variant="secondary" disabled={!filtered.some(p => p.id !== profile.id)} onClick={random}>Autre profil aléatoire</Button><Button variant="secondary" onClick={toggleUsed}>{used.includes(profile.id) ? 'Marquer non utilisé' : 'Marquer utilisé'}</Button></div>
           <h2>{budgetDisplayName(profile)}</h2>
@@ -90,7 +91,7 @@ export default function App() {
           <p>{[profile.job, profile.household, profile.location].filter(Boolean).join(' · ')}</p>
           <p>{budgetKind(profile)} · {profile.period}{profile.approximate && ' · montants approximatifs'}</p>
           <p>{profile.incomeNote}</p>
-          <dl className="budget-breakdown"><div><dt>Revenus mensuels</dt><dd>{euro(a.income)}</dd></div>{profile.expenses.map((row, i) => <div key={i}><dt>{row.label}</dt><dd>{euro(row.amount)}</dd></div>)}</dl>
+          <dl className="budget-breakdown"><div><dt>Revenus mensuels</dt><dd>{money(a.income)}</dd></div>{profile.expenses.map((row, i) => <div key={i}><dt>{row.label}</dt><dd>{money(row.amount)}</dd></div>)}</dl>
           <p>{profile.context}</p>
           <Button variant="secondary" onClick={adapt}>Adapter ce budget</Button>
         </>}
@@ -102,6 +103,7 @@ export default function App() {
             <label>Localisation générale<input maxLength={250} value={profile.location} onChange={e => edit({ location: e.target.value })}/></label>
             <label>Situation familiale / logement<input maxLength={250} value={profile.household} onChange={e => edit({ household: e.target.value })}/></label>
             <label>Mois du budget<input maxLength={250} value={profile.period} onChange={e => edit({ period: e.target.value })} placeholder="Octobre 2026"/></label>
+            <label>Devise<select aria-label="Devise du budget" value={profile.currency || 'EUR'} onChange={e => edit({ currency: e.target.value })}><option value="EUR">EUR · Euro</option><option value="CHF">CHF · Franc suisse</option></select></label>
             <label>Base des revenus<input maxLength={250} value={profile.incomeBasis} onChange={e => edit({ incomeBasis: e.target.value })}/></label>
           </div><label className="budget-check"><input type="checkbox" checked={profile.approximate} onChange={e => edit({ approximate: e.target.checked })}/>Montants approximatifs</label></details>
           {rows('income', 'Revenus')}{rows('expenses', 'Dépenses')}
@@ -111,7 +113,7 @@ export default function App() {
           <label>Contexte<textarea maxLength={3000} value={profile.context} onChange={e => edit({ context: e.target.value })}/></label>
         </>}
         {!!a.errors.length && <div className="dca-errors" role="alert">{a.errors.map(error => <p key={error}>{error}</p>)}</div>}
-        {!a.errors.length && <dl className="budget-totals"><div><dt>Dépenses</dt><dd>{euro(a.expenses)}</dd></div><div><dt>{a.available < 0 ? 'Déficit avant épargne' : 'Reste avant épargne'}</dt><dd>{euro(a.available)}</dd></div>{!!profile.savings.length && <div><dt>Solde après épargne prévue</dt><dd>{euro(a.balance)}</dd></div>}</dl>}
+        {!a.errors.length && <dl className="budget-totals"><div><dt>Dépenses</dt><dd>{money(a.expenses)}</dd></div><div><dt>{a.available < 0 ? 'Déficit avant épargne' : 'Reste avant épargne'}</dt><dd>{money(a.available)}</dd></div>{!!profile.savings.length && <div><dt>Solde après épargne prévue</dt><dd>{money(a.balance)}</dd></div>}</dl>}
         {profile.source && <details className="dca-evidence"><summary>Source et vérification du profil</summary>
           <a href={profile.source.url} target="_blank" rel="noreferrer">{profile.source.publisher} · {profile.source.title}</a>
           <p>Publié le {dateLabel(profile.publishedAt)}. Consulté le {dateLabel(profile.checkedAt)}.</p>

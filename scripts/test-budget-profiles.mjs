@@ -17,7 +17,7 @@ for (const p of BUDGET_PROFILES) {
   assert(!text.includes(p.period), 'Publication dates stay in the source panel, not the tweet')
   assert(!text.includes(p.source.publisher), 'Sources remain available in the separate source reply')
   assert(!text.includes('Situation familiale non précisée'))
-  for (const row of p.expenses) assert(text.includes(`${row.label} : ${euro(row.amount)}`), row.label)
+  for (const row of p.expenses) assert(text.includes(`${row.label} : ${euro(row.amount, p.currency)}`), row.label)
   const sections = budgetExpenseSections(p)
   assert.deepEqual(sections.flatMap(s => s.rows).map(r => r.label).sort(), p.expenses.map(r => r.label).sort(), 'Every expense appears once')
   if (p.kind === 'planned') assert(text.includes('Budget prévu'))
@@ -67,6 +67,38 @@ for (const [id, income, expenses, savings, balance] of [
   const actual = analyzeBudget(profile)
   assert.deepEqual([actual.income, actual.expenses, actual.savings, actual.balance], [income, expenses, savings, balance], id)
 }
+// Independent source ledgers for the ten added testimonies (no generated totals as expectations).
+for (const [id, income, expenses, savings, balance] of [
+  ['finary-cyber-24-2026-08-27', 2800, 900, 0, 1900],
+  ['finary-ingenieur-21-2025-03-08', 2550, 852, 300, 1398],
+  ['finary-alternant-21-2025-05-08', 1090, 210, 750, 130],
+  ['finary-locataire-25-2025-11-08', 2900, 2160, 0, 740],
+  ['finary-batiment-21-2025-09-30', 1500, 300, 1200, 0],
+  ['finary-etudiant-20-2025-03-19', 1200, 400, 0, 800],
+  ['finary-celibataire-31-2026-02-03', 2400, 1775, 625, 0],
+  ['finary-frontalier-37-2025-06-30', 6700, 3320, 1572, 1808],
+  ['finary-bois-18-2025-10-16', 2200, 1373, 0, 827],
+  ['mustachian-ingenieur-28-2025-08-16', 7393, 3644, 0, 3749],
+]) {
+  const profile = BUDGET_PROFILES.find(p => p.id === id)
+  assert(profile, id)
+  const actual = analyzeBudget(profile)
+  assert.deepEqual([actual.income, actual.expenses, actual.savings, actual.balance], [income, expenses, savings, balance], id)
+}
+const swiss = BUDGET_PROFILES.find(p => p.currency === 'CHF')
+assert.equal(swiss.capacity, 3750, 'The source rounded average savings must not become a fabricated transfer or be silently changed')
+assert.match(buildBudgetText(swiss), /revenus exceptionnels inclus/)
+assert.match(buildBudgetText(swiss), /écart de 1 CHF/)
+assert(!buildBudgetText(swiss).includes('€'), 'No euro label on the Swiss budget')
+assert.equal(euro(100, 'CHF'), '100 CHF')
+assert(validBudget({ ...swiss, kind: 'participant', source: null }), 'Swiss adaptations retain their currency')
+assert(!validBudget({ ...swiss, currency: 'USD' }))
+assert(!validBudget({ ...swiss, currency: null }))
+const futureApprentice = BUDGET_PROFILES.find(p => p.id === 'finary-etudiant-20-2025-03-19')
+assert.equal(futureApprentice.kind, 'planned')
+assert.match(buildBudgetText(futureApprentice), /septembre 2025/)
+assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-celibataire-31-2026-02-03')), /enveloppe calculée/)
+
 const apprentice = BUDGET_PROFILES.find(p => p.id === 'reddit-alternant-20-2025-09-03')
 assert.equal(apprentice.kind, 'planned')
 assert.match(buildBudgetText(apprentice), /Logé et nourri chez ses parents/)

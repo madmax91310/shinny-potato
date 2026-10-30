@@ -63,9 +63,9 @@ try {
       assert(imageText.includes(budgetDisplayName(profile)))
       for (const row of [...profile.income, ...profile.expenses, ...profile.savings]) {
         assert(imageText.includes(normalize(row.label)), `${profile.id}: missing complete label ${row.label}`)
-        assert(imageText.includes(normalize(euro(row.amount))), `${profile.id}: missing amount ${row.amount}`)
+        assert(imageText.includes(normalize(euro(row.amount, profile.currency))), `${profile.id}: missing amount ${row.amount}`)
       }
-      assert(imageText.includes(normalize(euro(Math.abs(analyzeBudget(profile).balance)))))
+      assert(imageText.includes(normalize(euro(Math.abs(analyzeBudget(profile).balance), profile.currency))))
       writeFileSync(`${output}/${width}-${profile.id}-export.png`, Buffer.from(previewBytes))
       await page.getByRole('button', { name: 'Copier le texte', exact: true }).click()
       assert.equal(await page.evaluate(() => navigator.clipboard.readText()), buildBudgetText(profile))
@@ -73,7 +73,7 @@ try {
       assert.equal(await page.evaluate(key => localStorage.getItem(key), PUBLISHED_KEY), null, 'Copying and exporting never declare publication')
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}: no horizontal overflow`)
       const a = analyzeBudget(profile)
-      await expect(page.locator('.budget-totals')).toContainText(euro(a.available))
+      await expect(page.locator('.budget-totals')).toContainText(euro(a.available, profile.currency))
       await page.screenshot({ path: `${output}/${width}-${profile.id}.png`, fullPage: true })
       results.push({ width, profile: profile.id, income: a.income, expenses: a.expenses, available: a.available, balance: a.balance, pngBytes: previewBytes.length })
     }
@@ -117,6 +117,14 @@ try {
     await page.getByRole('button', { name: 'Adapter ce budget', exact: true }).click()
     await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)).profile.id, DRAFT_KEY)).not.toBe(participationId)
     await expect(page.getByText('Participation à faire valider avant publication.')).toBeVisible()
+    if (BUDGET_PROFILES.at(-1).currency === 'CHF') {
+      await page.getByText('Présentation du profil', { exact: true }).click()
+      await expect(page.getByLabel('Devise du budget')).toHaveValue('CHF')
+      await page.getByLabel('Devise du budget').selectOption('EUR')
+      await expect.poll(() => page.getByLabel('Texte prêt à publier').inputValue()).toContain('€')
+      await page.getByLabel('Devise du budget').selectOption('CHF')
+      await expect.poll(() => page.getByLabel('Texte prêt à publier').inputValue()).toContain('CHF')
+    }
     await expect(page.getByText('Source et vérification du profil', { exact: true })).toHaveCount(0)
     await page.getByLabel('Dépenses · montant 1', { exact: true }).fill('')
     await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeDisabled()
@@ -125,7 +133,7 @@ try {
     await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeEnabled()
     await context.close()
   }
-  // Exercise the full editor contract, beyond today's ten source profiles.
+  // Exercise the full editor contract independently of the source roster.
   const extreme = {
     ...structuredClone(BUDGET_PROFILES[0]), id: 'participation-image-limit', kind: 'participant', source: null,
     name: 'Un prénom volontairement long pour vérifier la présentation complète',
@@ -139,6 +147,7 @@ try {
   }
   for (const deficit of [false, true]) {
     const fixture = structuredClone(extreme)
+    fixture.currency = deficit ? 'CHF' : 'EUR'
     if (deficit) fixture.income.forEach(row => { row.amount = 1 })
     const context = await browser.newContext({ viewport: { width: 390, height: 950 } })
     await context.addInitScript(captureCanvasText)
@@ -154,9 +163,9 @@ try {
     const imageText = compact(drawn.map(t => t.text).join(''))
     for (const row of [...fixture.income, ...fixture.expenses, ...fixture.savings]) {
       assert(imageText.includes(compact(row.label)), `Editor limit: complete long label ${row.label}`)
-      assert(imageText.includes(compact(euro(row.amount))))
+      assert(imageText.includes(compact(euro(row.amount, fixture.currency))))
     }
-    assert(imageText.includes(compact(euro(Math.abs(analyzeBudget(fixture).balance)))))
+    assert(imageText.includes(compact(euro(Math.abs(analyzeBudget(fixture).balance), fixture.currency))))
     if (deficit) assert(imageText.includes(compact('MANQUE APRÈS VERSEMENTS')))
     const downloadPromise = page.waitForEvent('download')
     await page.getByRole('button', { name: 'Télécharger le PNG', exact: true }).click()
