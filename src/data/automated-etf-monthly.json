@@ -207574,11 +207574,11 @@
       ]
     ],
     "anniversaryAvailable": false,
-    "checkedAt": "2026-10-29",
+    "checkedAt": "2026-10-30",
     "periodEnd": "2026-09",
     "sourceUrls": [
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=gro10k",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=tabular",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular",
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
     ],
     "sourceCredit": "WisdomTree",
@@ -207604,7 +207604,7 @@
       "unitQualification": "historical-reference-only"
     },
     "nativeValuationCurrency": "USD",
-    "lastOfficialValuation": "2026-10-27",
+    "lastOfficialValuation": "2026-10-29",
     "financialConvention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
     "calendarProof": {
       "controlledInstrument": "GB00B15KXV33",
@@ -207630,11 +207630,11 @@
       "requestedStart": "2020-12-01",
       "incomeTreatment": "Issuer exact-product NAV (TR); no additional cash",
       "navHistoryTransport": "official-dataspan-nav-tr",
-      "dailyObservations": 1452,
-      "sourceSnapshotDate": "2026-10-27",
+      "dailyObservations": 1454,
+      "sourceSnapshotDate": "2026-10-29",
       "issuerProductInception": "2006-09-22",
       "issuerChartInception": "2006-09-22",
-      "tablePublicationDate": "2026-10-27",
+      "tablePublicationDate": "2026-10-29",
       "closedTableCalendarChecks": [
         {
           "year": 2021,
@@ -207712,25 +207712,25 @@
       "actualNavTransport": "public-widget-http",
       "accessAttempts": [
         {
-          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=gro10k",
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k",
           "transport": "public-widget-http",
           "status": "received"
         },
         {
-          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=tabular",
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular",
           "transport": "public-widget-http",
           "status": "received"
         }
       ],
       "sourceRuntime": {
-        "runId": "40849049488",
+        "runId": "41060821361",
         "attempt": "1",
-        "event": "push",
-        "codeRevision": "bc838a4faa7fa879247ae4f66055f47d15533a63",
+        "event": "workflow_dispatch",
+        "codeRevision": "04280180c980b4252ac7c76d4e0394a3efd616f5",
         "kind": "github"
       },
       "calendarRegistry": "src/data/non-bond-etf-records.json",
-      "calendarRegistryPerformanceHash": "57f14d73cd6a1f0a4cab762cb7a62aed203272c8c3d140b62fabf26a6779fce7",
+      "calendarRegistryPerformanceHash": "27f67d0d7200b85a629a1fc23bf041cac0a74c58205da5bed0bb57930a7ed3fe",
       "calendarSource": {
         "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
         "sha256": "e8bbd5f4a33949849d608477bf4783f42bde72b10b5c98db2c83082ce59679a8",
@@ -207815,10 +207815,10 @@
       ]
     },
     "historyUnqualifiedReturnWindows": [],
-    "responseSha256": "7bd77504612bf9c8b47ea5dd0cfd790f463959bc1a2c323f5ea8c9c5aaca0719",
+    "responseSha256": "834e9eb98311957d941ab4a23d81a0fe1466910fda702294c7d4877405f00d9f",
     "rawSourceHashes": {
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=gro10k": "dee4782abf06c4c7d29260c65da648140f5ab8473162318a50615a69a3153b2f",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=CRUD&mode=tabular": "57b66f99609e2e599d0d657ac8d2b1341861663a58161ceccfea425eb9da11f9",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k": "a621b0122aedb31c946d625d336b46687e11fa944c2f32c84a9f58d54ddb03a1",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular": "b1f3111431e26e4441da4c3309586ee812d43895a2726e65d943b7faef5c096a",
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33": "e8bbd5f4a33949849d608477bf4783f42bde72b10b5c98db2c83082ce59679a8"
     }
   },
@@ -210575,11 +210575,11 @@
       ]
     ],
     "anniversaryAvailable": false,
-    "checkedAt": "2026-10-29",
+    "checkedAt": "2026-10-30",
     "periodEnd": "2026-09",
     "sourceUrls": [
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WTAI&mode=gro10k",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WTAI&mode=tabular",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=gro10k",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=tabular",
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13"
     ],
     "sourceCredit": "WisdomTree",
@@ -210605,7 +210605,7 @@
       "unitQualification": "historical-reference-only"
     },
     "nativeValuationCurrency": "USD",
-    "lastOfficialValuation": "2026-10-27",
+    "lastOfficialValuation": "2026-10-29",
     "financialConvention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
     "calendarProof": {
       "controlledInstrument": "IE00BDVPNG13",
@@ -210631,11 +210631,11 @@
       "requestedStart": "2018-12-01",
       "incomeTreatment": "Issuer exact-product NAV (TR); no additional cash",
       "navHistoryTransport": "official-dataspan-nav-tr",
-      "dailyObservations": 1947,
-      "sourceSnapshotDate": "2026-10-27",
+      "dailyObservations": 1949,
+      "sourceSnapshotDate": "2026-10-29",
       "issuerProductInception": "2018-11-30",
       "issuerChartInception": "2018-12-05",
-      "tablePublicationDate": "2026-10-28",
+      "tablePublicationDate": "2026-10-29",
       "closedTableCalendarChecks": [
         {
           "year": 2019,
@@ -210735,25 +210735,25 @@
       "actualNavTransport": "public-widget-http",
       "accessAttempts": [
         {
-          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WTAI&mode=gro10k",
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=gro10k",
           "transport": "public-widget-http",
           "status": "received"
         },
         {
-          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WTAI&mode=tabular",
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=tabular",
           "transport": "public-widget-http",
           "status": "received"
         }
       ],
       "sourceRuntime": {
-        "runId": "40849049488",
+        "runId": "41060821361",
         "attempt": "1",
-        "event": "push",
-        "codeRevision": "bc838a4faa7fa879247ae4f66055f47d15533a63",
+        "event": "workflow_dispatch",
+        "codeRevision": "04280180c980b4252ac7c76d4e0394a3efd616f5",
         "kind": "github"
       },
       "calendarRegistry": "src/data/exposure-etf-expansion-records.json",
-      "calendarRegistryPerformanceHash": "1f0694bf670f5342ac544d7fc67d443ca6d122b691171c900c2054d27a3a905a",
+      "calendarRegistryPerformanceHash": "fa0705118f6c81fd06e79fe7b23ca93a52bc182cf12b947f4a4b1bf6cd3ef74d",
       "calendarSource": {
         "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
         "sha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
@@ -210857,10 +210857,10 @@
       ]
     },
     "historyUnqualifiedReturnWindows": [],
-    "responseSha256": "7650a47b9be9ace0bbacac469004ea09b55648bbea9a8dc5a669ee7135dab1c6",
+    "responseSha256": "627f26c67b3757f47800c1a536b5a0b7cc738218801ab3b3e2cea4ba2a485bdc",
     "rawSourceHashes": {
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WTAI&mode=gro10k": "29e7b7fbfea5fc90f1c47597864ffd6638d8182b4070ef893994f7b38c81011d",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WTAI&mode=tabular": "db6d809a64463ad5b192b78172b96f33b83230bf2aa9504fe176f08fb3f597fc",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=gro10k": "f203a459c306f80802cbc6ae37c696f55eee7e1473a2124212b91023428d8a0d",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=tabular": "2a44dc2f9c3fccdf81e9aa7261a485950572062442f56cb32c605ade22819f71",
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297"
     }
   },
