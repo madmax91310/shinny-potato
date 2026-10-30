@@ -93,6 +93,10 @@ def collect_pdf_fields(share,now):
 
 
 def collect_one(share,now):
+    if share.get('preferProductApi') is True:
+        if share.get('documentType')!='21shares':reject('Unexpected product API document type')
+        from collect_product_calendars import collect_abtc_product_fields
+        return collect_abtc_product_fields(share,now)
     if not share.get('calendarApiBase'):
         return collect_pdf_fields(share,now)
     # The calendar API and factsheet are independent official publications.
