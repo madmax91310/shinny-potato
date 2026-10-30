@@ -22,6 +22,30 @@ assert.equal(analyzeBudget(couple).expenses, 2017)
 assert.equal(analyzeBudget(couple).available, 447)
 assert.equal(analyzeBudget(couple).balance, 347)
 assert.equal(analyzeBudget(BUDGET_PROFILES.find(p => p.id === 'reddit-salarie-26-2026-01-04')).available, 1205)
+
+// Source-ledger regressions: keep transfers, computed capacity and unallocated cash distinct.
+for (const [id, income, expenses, savings, balance] of [
+  ['finary-ingenieur-aero-2025-11-30', 3050, 2642, 408, 0],
+  ['finary-alternant-22-2025-05-15', 1500, 500, 1000, 0],
+  ['finary-fonctionnaire-30-2025-05-21', 2155, 1532.01, 0, 622.99],
+  ['finary-alternant-19-2025-09-27', 1221, 1020.99, 150, 50.01],
+  ['reddit-couple-35-2025-10-15', 5050, 4439, 0, 611],
+  ['reddit-tech-26-2026-02-06', 1900, 1070, 600, 230],
+  ['reddit-alternant-20-2025-09-03', 900, 400, 500, 0],
+]) {
+  const profile = BUDGET_PROFILES.find(p => p.id === id)
+  assert(profile, id)
+  const actual = analyzeBudget(profile)
+  assert.deepEqual([actual.income, actual.expenses, actual.savings, actual.balance], [income, expenses, savings, balance], id)
+}
+const apprentice = BUDGET_PROFILES.find(p => p.id === 'reddit-alternant-20-2025-09-03')
+assert.equal(apprentice.kind, 'planned')
+assert.match(buildBudgetText(apprentice), /Logé et nourri chez ses parents/)
+const couple35 = BUDGET_PROFILES.find(p => p.id === 'reddit-couple-35-2025-10-15')
+assert.equal(couple35.capacity, null)
+assert.equal(couple35.savings.length, 0)
+assert.equal(BUDGET_PROFILES.find(p => p.id === 'finary-fonctionnaire-30-2025-05-21').capacity, 622.99)
+
 // A capacity declaration is not a transfer and never reduces available cash.
 const fixture = { ...blankBudget(), name: 'Test', income: [{ label: 'Revenu', amount: 1000 }], expenses: [{ label: 'Dépense', amount: 800 }], capacity: 150 }
 assert.equal(analyzeBudget(fixture).balance, 200)
