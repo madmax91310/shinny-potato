@@ -151,7 +151,7 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Calendrier annuel | Non publié | La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués. |
 | instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Pays | Non publié | Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus. |
 | instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Secteurs | À qualifier | Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée. |
-| instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Positions pondérées | À qualifier | Composition de référence à qualifier ; aucune substitution par le panier détenu. |
+| instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Positions pondérées | Source contradictoire | Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, MSFT, NVDA, TSLA. |
 | instrument | WisdomTree Physical Gold (JE00B1VS3770) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | WisdomTree Physical Gold (JE00B1VS3770) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | WisdomTree Physical Gold (JE00B1VS3770) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
@@ -196,7 +196,7 @@ Une valeur absente ne signifie pas absence de plafond. Les offres bonus, les con
 
 | Contrat | Fonds | Champ | Dernier contrôle des sources | Motif |
 |---|---|---|---|---|
-| Lucya Cardif | Fonds général | Plafond en euros | 2026-10-29 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Lucya Cardif | Euro Private Strategies | Plafond en euros | 2026-10-29 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Placement-direct Vie | Actif général SwissLife | Quote-part maximale | 2026-10-29 | La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas. |
-| Placement-direct Vie | Actif général SwissLife | Plafond en euros | 2026-10-29 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Lucya Cardif | Fonds général | Plafond en euros | 2026-10-30 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Lucya Cardif | Euro Private Strategies | Plafond en euros | 2026-10-30 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Placement-direct Vie | Actif général SwissLife | Quote-part maximale | 2026-10-30 | La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas. |
+| Placement-direct Vie | Actif général SwissLife | Plafond en euros | 2026-10-30 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
