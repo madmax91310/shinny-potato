@@ -62,7 +62,11 @@ MARKET_READER_ONLY_CHANGES = {
 # outputs (SCPI race40834040536; publication race40849049401).
 # Coverage reports/build do: regenerate and validate those on the merged tree.
 # Keep this narrower than INDEPENDENT; other outputs have not been qualified.
-ETF_INDEPENDENT = {'src/data/automated-insurance.json', 'src/data/automated-scpi.json',
+# Run41127528853 refused only the actor presentation output. Neither the ETF
+# collectors nor their baseline read it; combined-tree financial validation and
+# report regeneration remain mandatory. Actor code/config changes stay protected.
+ETF_INDEPENDENT = {'src/data/automated-presentation-actors.json',
+                   'src/data/automated-insurance.json', 'src/data/automated-scpi.json',
                    'src/data/anniversary-levels.json', 'src/data/purchasing-power-observations.json',
                    'src/data/automated-broker-tariffs.json', 'src/data/automated-regulatory.json'}
 # This saved INSEE source receipt is not read by actor, anniversary or monthly
