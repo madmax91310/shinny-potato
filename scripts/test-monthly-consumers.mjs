@@ -1,3 +1,4 @@
+import './test-portfolio-support-evidence.mjs'
 import { spawnSync } from 'node:child_process';
 // A later month must reach every shared consumer without a code change.
 import assert from 'node:assert/strict';
