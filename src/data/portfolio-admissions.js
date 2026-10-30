@@ -14,3 +14,10 @@ export const AUTOMATIC_FACTOR_ADMISSIONS = factors.flatMap(([id, isin, factor]) 
     minPct: 5, maxPct: 20, peaRequired: false, exclusiveGroup: 'europe-factor', core: 'europe_pea_amundi' }]
 })
 export const AUTOMATIC_FACTOR_IDS = AUTOMATIC_FACTOR_ADMISSIONS.map(row => row.id)
+
+// Existing manual source policy; no permission for automatic construction.
+export const MANUAL_SOURCE_ROUTES = { GB00B15KXQ89: {
+  id: 'manual-GB00B15KXQ89', currency: 'USD', instrumentType: 'ETC', minimumYears: 6, category: 'matieres_premieres',
+  source: 'https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89',
+  note: 'Performances de la valeur liquidative de l’ETC en dollars, frais inclus ; elles peuvent différer de sa cotation.'
+} }

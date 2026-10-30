@@ -1,6 +1,10 @@
 import { CATALOG, buildCustomDuel } from './lib.js'
-// Annual-only admissions stay manual; generated Duel constructions retain their qualified pools.
-const byRole = (role) => CATALOG.filter((asset) => asset.role === role && !asset.annualManual)
+import {RESOURCE_DUEL_CHOICES} from '../../data/resource-selections.js'
+// New annual-only admissions stay manual. Preserve exact resource roles that
+// were already in the generated Duel pool before their source was repaired.
+export const generatedDuelPool = (role) => CATALOG.filter(asset => asset.role===role && (!asset.annualManual
+  || RESOURCE_DUEL_CHOICES.some(([id,isin,,,existingRole])=>asset.id===id && asset.isin===isin && role===existingRole)))
+const byRole = generatedDuelPool
 const pick = (items) => items[Math.floor(Math.random() * items.length)]
 
 function allocation() {
