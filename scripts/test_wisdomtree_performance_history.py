@@ -151,7 +151,7 @@ class DocumentedWidgetPath(unittest.TestCase):
   wti=next(s for s in configurations()if s.get('wisdomTicker')=='CRUD')
   self.assertEqual(urls(wti),[f'https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode={mode}'for mode in ['gro10k','tabular']])
   for source in configurations():
-   if source.get('navHistoryTransport')=='official-dataspan-nav-tr'and source.get('wisdomTicker')not in ('CRUD','WTAI','COPA','BRNT','WCLD','COCO','COFF','NGAS','WEAT'):
+   if source.get('navHistoryTransport')=='official-dataspan-nav-tr'and source.get('wisdomTicker')not in ('CRUD','WTAI','COPA','COCO','COFF','NGAS','WEAT'):
     self.assertTrue(all('/historical_performance/?'in u for u in urls(source)))
   ordinary=next(s for s in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']if s['id']==wti['id'])
   self.assertNotIn('wisdomPerformancePathStyle',ordinary)
@@ -173,10 +173,10 @@ class DocumentedWidgetPath(unittest.TestCase):
 
 
 class RemainingIssuerWidgets(unittest.TestCase):
- def test_all_seven_incident_routes_keep_exact_shared_identity_and_modes(self):
+ def test_five_successful_incident_routes_keep_exact_shared_identity_and_modes(self):
   from wisdomtree_performance_history import urls
-  sources=[s for s in configurations()if s.get('wisdomTicker')in {'COPA','BRNT','WCLD','COCO','COFF','NGAS','WEAT'}]
-  self.assertEqual(len(sources),7)
+  sources=[s for s in configurations()if s.get('wisdomTicker')in {'COPA','COCO','COFF','NGAS','WEAT'}]
+  self.assertEqual(len(sources),5)
   ordinary={s['id']:s for s in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']}
   for s in sources:
    with self.subTest(isin=s['isin']):
