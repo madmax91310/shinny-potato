@@ -8225,10 +8225,11 @@
         "checkedAt": "2026-10-30"
       },
       "urls": [
-        "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+        "https://www.vaneck.com/nl/en/library/fact-sheets/gdig-fact-sheet.pdf",
         "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf",
         "https://bourse.fortuneo.fr/trackers/cours-vaneck-s-p-global-mining-ucits-etf-a-usd-acc-GDIG-IE00BDFBTQ78-23",
         "https://www.justetf.com/fr/etf-profile.html?isin=IE00BDFBTQ78",
+        "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
         "https://bourse.fortuneo.fr/api/search?term=IE00BDFBTQ78"
       ]
     },
@@ -11517,18 +11518,6 @@
       "listings": [
         {
           "ticker": "XDWU",
-          "mic": "ETFP",
-          "exchange": "Borsa Italiana",
-          "currency": "EUR",
-          "symbol": "XDWU.MI",
-          "excerpt": "IE00BM67HQ30 | Borsa Italiana | XDWU IM | EUR | XDWU.MI",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
-          "checkedAt": "2026-10-30",
-          "sha256": "bf2805aa925bfadb49e21b55e48ac002e6dfa6f76829de20fc2bb8abbac9cd0c",
-          "evidenceId": "IE00BM67HQ30-ETFP-XDWU-EUR"
-        },
-        {
-          "ticker": "XDWU",
           "mic": "XETR",
           "exchange": "Xetra",
           "currency": "EUR",
@@ -11538,6 +11527,18 @@
           "checkedAt": "2026-10-30",
           "sha256": "bf2805aa925bfadb49e21b55e48ac002e6dfa6f76829de20fc2bb8abbac9cd0c",
           "evidenceId": "IE00BM67HQ30-XETR-XDWU-EUR"
+        },
+        {
+          "ticker": "XDWU",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "XDWU.MI",
+          "excerpt": "IE00BM67HQ30 | Borsa Italiana | XDWU IM | EUR | XDWU.MI",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-30",
+          "sha256": "bf2805aa925bfadb49e21b55e48ac002e6dfa6f76829de20fc2bb8abbac9cd0c",
+          "evidenceId": "IE00BM67HQ30-ETFP-XDWU-EUR"
         },
         {
           "ticker": "XDWU",
