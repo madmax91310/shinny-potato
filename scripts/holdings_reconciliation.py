@@ -7,11 +7,15 @@ import math
 import re
 
 
-class HoldingsPerimeterError(ValueError):
-    """A reconciled native book is evidence, but not an admitted net allocation."""
+class HoldingsSourceError(ValueError):
+    """Keep rejected source evidence separate from the retained financial book."""
     def __init__(self, message, diagnostic):
         super().__init__(message)
         self.diagnostic = diagnostic
+
+
+class HoldingsPerimeterError(HoldingsSourceError):
+    """A reconciled native book is evidence, but not an admitted net allocation."""
 
 
 def reconcile_positions(positions, selected, as_of):

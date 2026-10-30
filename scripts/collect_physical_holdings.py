@@ -7,10 +7,12 @@ import math
 import os
 from pathlib import Path
 import re
+import time
 from urllib.parse import urljoin, urlsplit
 from urllib.parse import urlencode
 from bs4 import BeautifulSoup
 from issuer_documents import download, document_date, public_page
+from holdings_reconciliation import HoldingsSourceError
 
 ISIN = re.compile(r'[A-Z]{2}[A-Z0-9]{9}\d')
 
@@ -103,7 +105,12 @@ def globalx_csv(raw, now):
                    f"asOf={row.get('AS_OF_DATE')!r})")
         value = row.get('NET_ASSETS')
         if value is None or not value.strip():
-            raise ValueError('Missing ' + context)
+            raise HoldingsSourceError('Missing ' + context, {
+                'kind':'missing-published-nav-weight', 'asOf':row['AS_OF_DATE'],
+                'recordNumber':record, 'name':row.get('NAME'),
+                'positionIsin':row.get('ISIN') or None,
+                'missingFields':[key for key in ['NET_ASSETS','MARKET_VALUE'] if not (row.get(key) or '').strip()],
+                'financialDataQualified':False, 'normalizationApplied':False})
         try:
             weight = float(value)
         except ValueError as exc:
@@ -134,7 +141,12 @@ def collect_globalx(share, now):
     url = globalx_page(page, share)
     raw = download(url)
     source_proof(share, 'globalx', raw)
-    rows, stamp = globalx_csv(raw, now)
+    try:
+        rows, stamp = globalx_csv(raw, now)
+    except HoldingsSourceError as error:
+        error.diagnostic.update(subjectIsin=share['isin'],sourceUrl=url,sha256=digest(raw),
+                                checkedAt=now.isoformat())
+        raise
     return observation(rows, stamp, url, raw, allow_unidentified=True,
                        identitySourceUrl=share['sourceUrl'], identitySha256=digest(page))
 
@@ -311,8 +323,16 @@ def collect_vanguard(share, now):
 
 
 def invesco_composition(body, now):
-    entries = body['holdings']
-    count = body['numberOfHoldings']
+    if not isinstance(body,dict):
+        raise ValueError('Invalid Invesco complete holdings response')
+    entries = body.get('holdings')
+    count = body.get('numberOfHoldings')
+    if entries is None and type(count) is int and count == 0 and body.get('effectiveDate') is None:
+        raise HoldingsSourceError('Invesco complete fund holdings unavailable: null portfolio, zero count and no observation date',
+            {'kind':'unavailable-complete-fund-file','asOf':None,'sourceRowCount':0,
+             'financialDataQualified':False,'normalizationApplied':False})
+    if not isinstance(entries,list):
+        raise ValueError('Invalid Invesco full holdings table')
     cash = [r for r in entries if r.get('name') == 'Cash and/or Derivatives' and not r.get('isin')]
     if type(count) is not int or count < 11 or len(cash) > 1 or len(entries) != count + len(cash):
         raise ValueError('Truncated Invesco full holdings')
@@ -335,10 +355,23 @@ def collect_invesco(share, now):
             or not re.search(r'(?:Fund base currency|Base currency)\s+' + share['currency'] + r'\b', text)):
         raise ValueError('Wrong Invesco exact physical share/currency')
     url = 'https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/' + share['isin'] + '/holdings/fund?idType=isin'
-    raw = download(url)
-    rows, stamp = invesco_composition(json.loads(raw), now)
-    return observation(rows, stamp, url, raw, identitySourceUrl=share['sourceUrl'],
-                       identitySha256=digest(raw_identity))
+    attempts=[]
+    for attempt in range(2):
+        raw = download(url)
+        source_proof(share,'invesco-'+str(attempt+1),raw)
+        try:
+            rows, stamp = invesco_composition(json.loads(raw), now)
+        except HoldingsSourceError as error:
+            attempts.append({'attempt':attempt+1,'sha256':digest(raw),'status':'missing-complete-fund-file'})
+            error.diagnostic.update(subjectIsin=share['isin'],sourceUrl=url,sha256=digest(raw),
+                                    checkedAt=now.isoformat(),sourceAttempts=list(attempts))
+            if attempt==0:
+                time.sleep(2)
+                continue
+            raise
+        attempts.append({'attempt':attempt+1,'sha256':digest(raw),'status':'validated'})
+        return observation(rows, stamp, url, raw, identitySourceUrl=share['sourceUrl'],
+                           identitySha256=digest(raw_identity),sourceAttempts=attempts)
 
 
 def vaneck_url(page, share):

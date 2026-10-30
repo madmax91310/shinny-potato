@@ -1,0 +1,36 @@
+[
+  {
+    "url": "https://stoxx.com/index/sxxr/?components=true",
+    "checkedAt": "2026-10-30T07:13:26.187320+00:00",
+    "status": 200,
+    "bytes": 115147,
+    "sha256": "899ea8baf2c5698e281bbec7900169efadd1de77fa4e672ced3b3934db248b11",
+    "file": "4f1d6a15bcc8.raw"
+  },
+  {
+    "url": "https://indexes.nasdaq.com/Index/Weighting/XNDXNNR",
+    "checkedAt": "2026-10-30T07:13:26.187954+00:00",
+    "status": 200,
+    "bytes": 55700,
+    "sha256": "9ab81eade2597299e889185eb9e52933a8aefd1228fc1a5aae830f58fb864c88",
+    "file": "24c839018923.raw"
+  },
+  {
+    "url": "https://docs.wisdomtreeconnect.com/docs-data.json",
+    "checkedAt": "2026-10-30T07:13:26.188800+00:00",
+    "error": "HTTP Error 403: Forbidden",
+    "status": 403
+  },
+  {
+    "url": "https://www.wisdomtree.com/api/fund-holdings/1000422",
+    "checkedAt": "2026-10-30T07:13:26.189488+00:00",
+    "error": "HTTP Error 403: Forbidden",
+    "status": 403
+  },
+  {
+    "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB",
+    "checkedAt": "2026-10-30T07:13:26.250146+00:00",
+    "error": "HTTP Error 403: Forbidden",
+    "status": 403
+  }
+]
