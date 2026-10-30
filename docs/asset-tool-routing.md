@@ -4,7 +4,7 @@ Généré le 2026-10-30 par `node scripts/audit-asset-tool-routing.mjs --write`.
 
 « Sans objet » ne signifie pas donnée manquante. « Complète » décrit la table collectée, pas la possibilité de calculer un recouvrement intégral : identification, fraîcheur et compatibilité restent contrôlées par le moteur. Un candidat historique possède une cotation documentée, mais sa série doit encore passer la collecte et les contrôles. Les actifs utilisés sont conservés.
 
-Actifs présentés sans historique automatique (Sans cotation : 1 · Collecte en attente : 1 · Historique court : 30) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
+Actifs présentés sans historique automatique (Sans cotation : 1 · Historique court : 30) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
 
 | Actif | ISIN | Fiche | Comparatif | Générateur | Pays / secteurs | Positions | Performance / Simulation / Anniversaire | Blocage |
 |---|---|---|---|---|---|---|---|---|
@@ -129,7 +129,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Collecte en
 | Amundi PEA Asie Emergente (MSCI Emerging Asia) Screened UCITS ETF | FR0013412012 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF | FR0013412020 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA MSCI Europe UCITS ETF (Acc) | FR0013412038 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
-| Amundi PEA US Tech Screened UCITS ETF - Acc | FR0013412269 | — | — | missing | Oui / Oui | Partielle | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
+| Amundi PEA US Tech Screened UCITS ETF - Acc | FR0013412269 | — | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi Physical Gold ETC | FR0013416716 | Oui | Oui | automatic | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
 | Dassault Systèmes | FR0014003TT8 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Michelin | FR001400AJ45 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |

@@ -8076,6 +8076,45 @@
     "responseSha256": "7b058eb22c27fc2f885143303b33503eeb623d6cacc5bd0ff671b52be32ed020",
     "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
+  "FR0013412269": {
+    "isin": "FR0013412269",
+    "currency": "EUR",
+    "years": {
+      "2020": 36.11198773725259,
+      "2021": 38.85926269418039,
+      "2022": -29.70446055864323,
+      "2023": 46.99355775342917,
+      "2024": 40.46953530783257,
+      "2025": 9.878393093784489
+    },
+    "calendarReturns": {
+      "2020": 36.11198773725259,
+      "2021": 38.85926269418039,
+      "2022": -29.70446055864323,
+      "2023": 46.99355775342917,
+      "2024": 40.46953530783257,
+      "2025": 9.878393093784489
+    },
+    "values": [
+      36.11198773725259,
+      38.85926269418039,
+      -29.70446055864323,
+      46.99355775342917,
+      40.46953530783257,
+      9.878393093784489
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/PANX.PA?period1=1556668800&period2=1790812800&interval=1d&events=div%2Csplits",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/PANX.PA?period1=1556668800&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/PANX.PA?period1=1556668800&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "checkedAt": "2026-10-30",
+    "listingEvidenceId": "FR0013412269-XPAR-PANX-EUR",
+    "basis": "market-price",
+    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+    "responseSha256": "aa35c1e8de7837ad1ee5d2b40d3a69cc7a52879f278e76b6166f82c1ae8329cd",
+    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
+  },
   "IE000L2SA8K5": {
     "isin": "IE000L2SA8K5",
     "currency": "USD",

@@ -15711,6 +15711,26 @@
       "wisdomListingId": 2741190,
       "wisdomInception": "2006-09-22",
       "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664"
+    },
+    {
+      "id": "etfFR0013412269",
+      "label": "Amundi PEA US Tech Screened UCITS ETF - Acc",
+      "isin": "FR0013412269",
+      "ticker": "PANX",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "parser": "yahoo",
+      "symbol": "PANX.PA",
+      "field": "adjclose",
+      "precision": 6,
+      "consumerScope": "catalog",
+      "listingEvidenceId": "FR0013412269-XPAR-PANX-EUR",
+      "instrumentType": "ETF",
+      "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+      "collectAnniversary": true,
+      "yahooInstrumentType": "ETF",
+      "periodStart": "2019-05",
+      "verifyMonthlyDisagreements": true
     }
   ]
 }

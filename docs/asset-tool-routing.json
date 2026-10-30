@@ -1,24 +1,24 @@
 {
-  "checkedAt": "2026-10-30T00:30:05.444Z",
+  "checkedAt": "2026-10-30T00:44:38.296Z",
   "summary": {
     "instruments": 674,
     "sheets": 258,
     "comparisons": 245,
     "practical": 21,
-    "duels": 638,
+    "duels": 639,
     "generatorAutomatic": 144,
     "dca": 673,
     "fullExposure": 609,
     "outsideExposure": 43,
-    "automaticHistories": 269,
-    "historyCandidates": 1,
+    "automaticHistories": 270,
+    "historyCandidates": 0,
     "unused": 0,
     "blockers": {
       "no-listing": 1,
       "listing-not-collectable": 0,
       "qualification-failed": 0,
       "qualification-pending": 0,
-      "collection-pending": 1,
+      "collection-pending": 0,
       "history-short": 30
     }
   },
@@ -5530,25 +5530,14 @@
       "name": "Amundi PEA US Tech Screened UCITS ETF - Acc",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": false,
       "comparison": false,
-      "generator": "missing",
-      "annualPerformance": false,
+      "generator": "manual",
+      "annualPerformance": true,
       "compositionOnly": false,
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-29T23:50:27.625576+00:00"
-      },
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -5570,8 +5559,19 @@
         "identifiedCoverage": 76.968357,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfFR0013412269",
+          "automatic": true,
+          "first": "2019-05",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {

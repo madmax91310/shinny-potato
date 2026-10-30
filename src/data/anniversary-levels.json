@@ -11231,5 +11231,22 @@
     "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
     "maxAgeDays": 7,
     "sha256": "daec083de1997e69b3cdb5b5fe45983a3d365a1fa815e29ce6a88851cf395f8b"
+  },
+  "etfFR0013412269": {
+    "value": 84.70999908447266,
+    "asOf": "2026-10-28",
+    "currency": "EUR",
+    "parser": "yahoo",
+    "symbol": "PANX.PA",
+    "indexCode": null,
+    "variant": null,
+    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/PANX.PA?period1=1792022400&period2=1793318400&interval=1d&events=splits",
+    "sha256": "c1c250ca8e8c6d3b714aad36455855d329299aea4a4ae7da10b03350b43d01f2",
+    "method": "Dernière séance terminée ; cours brut",
+    "maxAgeDays": 7,
+    "isin": "FR0013412269",
+    "ticker": "PANX",
+    "mic": "XPAR",
+    "listingEvidenceId": "FR0013412269-XPAR-PANX-EUR"
   }
 }
