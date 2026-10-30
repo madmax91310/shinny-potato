@@ -125,7 +125,7 @@ def collect(share, now, raw_identity):
                             'pageUrl':capture['pageUrl'], 'pageTitle':capture['pageTitle'],
                             'asOf':stamp, 'publisherRowCount':capture['publisherRowCount'],
                             'tableTextSha256':capture['tableTextSha256'],
-                            'zeroEquityRowCount':sum(p.get('isin') is not None and p['weight']==0
+                            'zeroEquityRowCount':sum(bool(p.get('isin')) and p['weight']==0
                                                      for p in json.loads(raw)['holdings']),
                             'normalizationApplied':False})
     result['method'] = ('Complete public economic securities table of the exact physical sampled fund, '
