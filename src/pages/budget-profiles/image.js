@@ -23,18 +23,6 @@ function panel(ctx, x, y, width, height) {
   ctx.fillStyle = C.panel; ctx.strokeStyle = '#23425e'; ctx.lineWidth = 1
   ctx.beginPath(); ctx.roundRect(x, y, width, height, 24); ctx.fill(); ctx.stroke()
 }
-function lines(ctx, value, x, y, width, size = 32) {
-  ctx.font = `400 ${size}px Arial`
-  const words = value.split(' '); let line = '', count = 0
-  for (const word of words) {
-    const next = [line, word].filter(Boolean).join(' ')
-    if (line && ctx.measureText(next).width > width) { text(ctx, line, x, y + count * (size + 12), width, size, C.muted, 400); count++; line = word }
-    else line = next
-  }
-  if (line) { text(ctx, line, x, y + count * (size + 12), width, size, C.muted, 400); count++ }
-  return count * (size + 12)
-}
-
 export async function renderBudgetImage(profile) {
   const a = analyzeBudget(profile)
   if (a.errors.length) throw new Error(a.errors.join(' '))
@@ -50,8 +38,11 @@ export async function renderBudgetImage(profile) {
   text(ctx, 'LE BUDGET DE', 55, 64, 1090, 30, C.muted, 700)
   text(ctx, profile.name, 50, 148, 1100, 68, C.ivory, 500, 'BudgetEditorial')
   text(ctx, [budgetKind(profile), profile.period].filter(Boolean).join(' · '), 55, 202, 1090, 34, C.muted, 400)
-  const details = [profile.job, profile.location, profile.household === 'Situation familiale non précisée' ? '' : profile.household].filter(Boolean).join(' · ')
-  lines(ctx, details, 55, 248, 1090, 30)
+  const age = profile.age && !profile.name.includes(String(profile.age)) ? `${profile.age} ans` : ''
+  const details = [age, profile.job, profile.location, profile.household === 'Situation familiale non précisée' ? '' : profile.household].filter(Boolean).join(' · ')
+  // Keep this line within the fixed header even for long participant metadata.
+  // The complete presentation remains in the text and form.
+  text(ctx, details, 55, 248, 1090, 30, C.muted, 400)
   const metrics = [
     { label: 'Revenus', value: a.income, color: C.yellow },
     { label: 'Dépenses', value: a.expenses, color: C.ivory },

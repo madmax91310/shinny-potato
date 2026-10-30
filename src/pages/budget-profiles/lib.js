@@ -43,7 +43,8 @@ export function analyzeBudget(profile) {
 export function buildBudgetText(profile) {
   const a = analyzeBudget(profile)
   if (a.errors.length) return ''
-  const intro = [profile.name, profile.job, profile.location, profile.household].filter(Boolean).join(' · ')
+  const age = profile.age && !profile.name.includes(String(profile.age)) ? `${profile.age} ans` : ''
+  const intro = [profile.name, age, profile.job, profile.location, profile.household === 'Situation familiale non précisée' ? '' : profile.household].filter(Boolean).join(' · ')
   const expenses = profile.expenses.map(row => `${EXPENSE_CATEGORIES.find(category => category.id === row.category)?.emoji || '🧾'} ${row.label} : ${euro(row.amount)}`).join('\n')
   const savings = profile.savings.map(row => `💰 ${row.label} : ${euro(row.amount)}`).join('\n')
   return [profile.hook || `${euro(a.income)} de revenus mensuels : comment se répartit ce budget ? 👇`,

@@ -25,6 +25,7 @@ assert.equal(analyzeBudget(BUDGET_PROFILES.find(p => p.id === 'reddit-salarie-26
 // A capacity declaration is not a transfer and never reduces available cash.
 const fixture = { ...blankBudget(), name: 'Test', income: [{ label: 'Revenu', amount: 1000 }], expenses: [{ label: 'Dépense', amount: 800 }], capacity: 150 }
 assert.equal(analyzeBudget(fixture).balance, 200)
+assert.match(buildBudgetText({ ...fixture, age: 32 }), /Test · 32 ans/)
 assert.equal(analyzeBudget({ ...fixture, savings: [{ label: 'Virement prévu', amount: 100 }] }).balance, 100)
 assert.equal(analyzeBudget({ ...fixture, income: [{ label: 'Revenu', amount: 0.30 }], expenses: [{ label: 'A', amount: 0.1 }, { label: 'B', amount: 0.2 }], capacity: null }).balance, 0)
 const deficit = { ...fixture, expenses: [{ label: 'Dépense', amount: 1200 }] }
