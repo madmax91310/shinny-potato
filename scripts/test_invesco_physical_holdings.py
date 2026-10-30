@@ -15,6 +15,26 @@ BOOKS = json.loads(gzip.decompress((Path(__file__).parent/
 
 
 class InvescoPhysical(unittest.TestCase):
+    def test_historical_fund_book_and_public_table_same_date_scope_corroboration(self):
+        historical=json.loads(gzip.decompress((Path(__file__).parent/
+            'fixtures/invesco-physical/historical-scope-corroboration.json.gz').read_bytes()))
+        raw=base64.b64decode(historical['publicTableRawBase64'])
+        self.assertEqual(hashlib.sha256(raw).hexdigest(),historical['publicTableSha256'])
+        old=historical['previousQualifiedBook'];table=json.loads(raw)
+        self.assertEqual(old['asOf'],table['effectiveDate'])
+        self.assertEqual(old['basis'],'fund')
+        self.assertIn('/holdings/fund?',old['sourceUrl'])
+        self.assertEqual(len(old['rows']),1076)
+        by_isin={r['isin']:r['weight']for r in table['holdings']if r.get('isin')}
+        for row in old['rows']:
+            self.assertIn(row['isin'],by_isin)
+            self.assertLessEqual(abs(row['weightPct']-by_isin[row['isin']]),.005001)
+        original={r['isin']for r in old['rows']}
+        extra=[weight for isin,weight in by_isin.items()if isin not in original]
+        self.assertEqual(len(extra),1013)
+        self.assertLessEqual(max(extra),.005)
+        self.assertEqual(sum(r['name']=='Cash and/or Derivatives'for r in table['holdings']),1)
+
     def parse(self, book, isin='IE000716YHJ7', now=NOW):
         return parse_capture(book['capture'], book['metadataRaw'], isin, now)
 

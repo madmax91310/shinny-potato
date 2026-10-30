@@ -32,6 +32,8 @@ on:
       - 'scripts/discover_lg_holdings.py'
       - 'scripts/test_lg_discovery.py'
       - 'scripts/security_identifier_observations.py'
+      - 'scripts/test_venue_ticker_identities.py'
+      - 'scripts/fixtures/venue-ticker-identities/**'
       - 'scripts/test_security_candidate_names.py'
       - 'scripts/security-identity-sources.json'
       - 'scripts/security-identifier-candidates.json'
@@ -95,6 +97,8 @@ on:
       - 'scripts/discover_lg_holdings.py'
       - 'scripts/test_lg_discovery.py'
       - 'scripts/security_identifier_observations.py'
+      - 'scripts/test_venue_ticker_identities.py'
+      - 'scripts/fixtures/venue-ticker-identities/**'
       - 'scripts/security-identity-sources.json'
       - 'scripts/security-identifier-candidates.json'
       - 'scripts/test_wisdomtree_discovery.py'
@@ -173,6 +177,7 @@ jobs:
         run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_complete_api.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_public_rankings.py' && python -m unittest discover -s scripts -p 'test_dca_holdings_retention.py'
       - name: Validate exact native-index and dated-identity contracts
         run: python -m unittest discover -s scripts -p 'test_topix_holdings.py' && node scripts/test-native-index-compositions.mjs
+      - run: python -m unittest discover -s scripts -p 'test_venue_ticker_identities.py'
       - name: Refresh exact security identifier evidence
         id: identifiers
         continue-on-error: true
