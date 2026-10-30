@@ -1,3 +1,5 @@
+import { AUTOMATED_ETF } from './automated-etf.js'
+import { qualifiedManualMechanism } from './annual-portfolio-funds.js'
 import { MANUAL_SOURCE_ROUTES } from './portfolio-admissions.js'
 import RETURNS from './monthly-duel-returns.json' with { type: 'json' }
 import { INSTRUMENTS_BY_ISIN } from './instruments.js'
@@ -16,7 +18,7 @@ export const AUTOMATED_PORTFOLIO_FUNDS = Object.values(RETURNS).flatMap(record =
   const declaredRoute=MANUAL_SOURCE_ROUTES[record.isin]
   const manualRoute=declaredRoute?.instrumentType===identity.instrumentType?declaredRoute:null
   const cat=manualRoute?.category??(/\b(?:ETC|ETP|ETN)\b/.test(name)?'matieres_premieres':/bond|treasury|govt|overnight|court terme/i.test(name)?'obligataire':'actions_larges')
-  return [{...(manualRoute?{underlyingMechanism:manualRoute.mechanism,basis:record.basis}:{}),id:`manual-${record.isin}`,isin:record.isin,name,cat,emoji:'📊',manualOnly:!AUTOMATIC_RECIPE_ISINS.has(record.isin),automatedManual:true,distinctCandidate:true,
+  return [{...(manualRoute?{underlyingMechanism:qualifiedManualMechanism(record.isin,AUTOMATED_ETF[record.isin]?.characteristics),basis:record.basis}:{}),id:`manual-${record.isin}`,isin:record.isin,name,cat,emoji:'📊',manualOnly:!AUTOMATIC_RECIPE_ISINS.has(record.isin),automatedManual:true,distinctCandidate:true,
     returnCurrency:record.currency,calendarReturns:record.years,r:record.values,
     confidenceNote:record.note,desc:[name,'Composition manuelle sur la période commune réellement disponible.','Risque de perte en capital ; exposition à examiner avec le reste du portefeuille.']}]
 })

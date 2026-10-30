@@ -1,3 +1,4 @@
+import { AUTOMATED_ETF } from './automated-etf.js'
 import { MANUAL_SOURCE_ROUTES } from './portfolio-admissions.js'
 import { getInstrumentName } from './instruments.js'
 import { QUALIFIED_FUND_CALENDARS, qualifiedFundCalendars, currentAnnualEvidence, closedCalendarYears } from './qualified-annual-calendars.js'
@@ -46,11 +47,22 @@ const convertedManualCalendars = Object.values(qualifiedFundCalendars({ nativeCu
   .map(record => qualifyManualCurrencyCalendar(record)).filter(Boolean)
 // Explicit independent NAV route for the existing Copper manual choice.
 // This does not repair COPA.L, release its refused windows or grant an automatic role.
+// Optional structure description comes from the existing automated characteristics,
+// with its own evidence dates. It never gates an otherwise qualified annual return.
+export function qualifiedManualMechanism(isin, characteristics, now = new Date()) {
+  const route=MANUAL_SOURCE_ROUTES[isin]
+  if(!route || characteristics?.sourceUrl!==route.source || characteristics.replicationMethod!=='Synthétique'
+    || !Number.isFinite(characteristics.annualSwapRatePct) || characteristics.annualSwapRatePct<0
+    || !/^[a-f0-9]{64}$/.test(characteristics.sha256??'')
+    || !currentAnnualEvidence(characteristics.checkedAt,characteristics.asOf,'etf.default',now))return undefined
+  return {kind:'commodity-swap',checkedAt:characteristics.checkedAt,asOf:characteristics.asOf,
+    sourceUrl:characteristics.sourceUrl,sha256:characteristics.sha256}
+}
 export function qualifyPreferredManualNav(record, now = new Date()) {
   const route=MANUAL_SOURCE_ROUTES[record?.isin]
   if (!route || record.currency!==route.currency || record.instrumentType!==route.instrumentType
     || record.basis!=='fund-nav' || record.frequency!=='annual' || record.sourceUrls?.[0]!==route.source
-    || /proxy/i.test(record.method??'') || !/total return/i.test(record.method??'')
+    || /proxy/i.test(record.method??'') || !/total return/i.test(record.method??'') || !/net of fees/i.test(record.method??'')
     || !currentAnnualEvidence(record.checkedAt,record.asOf,'etf.performance',now)) return null
   const years=closedCalendarYears(record.years,now)
   const window=latestCommonYears([years],{length:route.minimumYears,minimum:route.minimumYears,now})
@@ -67,7 +79,7 @@ export const ANNUAL_PORTFOLIO_FUNDS = [...Object.values(QUALIFIED_FUND_CALENDARS
   return [{ id: navRoute?.id ?? recovery?.annualManualId ?? (record.manualCurrencyRoute ? `manual-${record.isin}` : EXISTING_MANUAL_IDS[record.isin]) ?? `nav-${record.isin}`, isin: record.isin, name: getInstrumentName(record.isin,'portfolio'), cat, emoji: '📊', manualOnly: true,
     ...(navRoute || recovery || record.manualCurrencyRoute ? { preferQualifiedAnnual: true } : {}),
     ...(record.manualCurrencyRoute ? { nativeReturnCurrency: record.originalCurrency, fxSourceUrls: record.fxSourceUrls, fxCheckedAt: record.fxCheckedAt, currencyQualifications: record.currencyQualifications } : {}),
-    ...(navRoute ? { underlyingMechanism: navRoute.mechanism } : {}),
+    ...(navRoute ? { underlyingMechanism: qualifiedManualMechanism(record.isin,AUTOMATED_ETF[record.isin]?.characteristics) } : {}),
     annualManual: true, distinctCandidate: true, basis: record.basis, source: record.sourceUrls[0], checkedAt: record.checkedAt,
     returnCurrency: record.currency, calendarReturns: record.years, r: HISTORICAL_YEARS.map(year => record.years[year] ?? null),
     confidenceNote: navRoute?.note ?? record.method,
