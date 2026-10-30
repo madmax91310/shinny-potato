@@ -36,6 +36,7 @@ const BASE_ANNIVERSARY_ART = Object.freeze({
     ['netflix', 'NETFLIX'], ['visa', 'VISA'], ['cocacola', 'COCA-COLA'],
   ].map(([id, title]) => [id, { title, kind: 'illustration', indexTitle: title }])),
   bitcoin: { title: 'BITCOIN', mark: 'bitcoin.svg', kind: 'logo' },
+  etfFR0011550185: { title: 'S&P 500', subtitle: 'BNP Paribas Easy · ETF ESE', kind: 'illustration', posterFundIdentity: true },
   ethereum: { title: 'ETHEREUM', mark: 'ethereum.svg', kind: 'logo' },
   nasdaq100: { title: 'NASDAQ-100', mark: 'nasdaq.svg', kind: 'illustration', unit: 'pts' },
   soxx: { title: 'SEMI-CONDUCTEURS', subtitle: 'ETF SOXX', mark: 'chip.svg', kind: 'illustration' },
