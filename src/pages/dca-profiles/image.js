@@ -8,7 +8,7 @@ const colors=['#ffd342','#3899ff','#63dfbd','#bd9eff','#ff9b70','#b7ce6e','#ec99
 export function allocationRows(lines){
  const ordered=sortHoldings(lines).map(l=>({name:l.label,weight:l.weight}))
  if(ordered.length<=8)return ordered.map((r,i)=>({...r,color:colors[i]}))
- return [...ordered.slice(0,7),{name:`${ordered.length-7} autres positions`,weight:ordered.slice(7).reduce((s,l)=>s+l.weight,0)}].map((r,i)=>({...r,color:colors[i]}))
+ return [...ordered.slice(0,7),{name:`${ordered.length-7} autres positions`,weight:ordered.slice(7).reduce((s,l)=>s+l.weight,0)}].sort((a,b)=>b.weight-a.weight).map((r,i)=>({...r,color:colors[i]}))
 }
 function text(ctx,value,x,y,width,size,color=C.ivory,weight=700,family='Arial'){
  value=String(value);ctx.font=`${weight} ${size}px ${family}`
@@ -201,7 +201,7 @@ export async function renderDcaImage(input,field='countries'){
  text(ctx,euro(a.monthly),56,495,720,160,C.yellow,700,'DcaEditorial')
  text(ctx,'investis par mois',66,552,710,40,C.ivory,700,'DcaEditorial')
  const contributions=sortContributions(p.lines)
- const displayLines=contributions.length>8?[...contributions.slice(0,7),{label:`${contributions.length-7} autres positions`,amount:contributions.slice(7).reduce((s,l)=>s+l.amount,0),weight:contributions.slice(7).reduce((s,l)=>s+l.weight,0)}]:contributions
+ const displayLines=contributions.length>8?sortContributions([...contributions.slice(0,7),{label:`${contributions.length-7} autres positions`,amount:contributions.slice(7).reduce((s,l)=>s+l.amount,0),weight:contributions.slice(7).reduce((s,l)=>s+l.weight,0)}]):contributions
  const rowHeight=Math.min(112,366/displayLines.length),top=597
  displayLines.forEach((l,i)=>{
   const y=top+i*rowHeight
