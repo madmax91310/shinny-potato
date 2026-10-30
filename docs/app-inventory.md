@@ -10,6 +10,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | Hey @Grok | /hey-grok |
 | Qui a vraiment gagné ? | /classements-performances |
 | Portefeuille & DCA | /le-dca-de |
+| Le budget de… | /le-budget-de |
 | Fiches pratiques | /fiches-pratiques |
 | Radar éditorial | /radar-editorial |
 | Simulateur de patrimoine | /simulateur-patrimoine |
