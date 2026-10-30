@@ -412,4 +412,75 @@ class CompleteHoldingsReceipts(unittest.TestCase):
             result=read_report(path,'update-qualified-exposures.yml')
         self.assertIn('_scopeWarning',result)
 
+
+
+
+class DerivedHoldingsControls(unittest.TestCase):
+    def report(self):
+        import gzip
+        original=json.loads(gzip.decompress((Path(__file__).parent/'fixtures/producer-reports/dca-holdings-40952108356.json.gz').read_bytes()))
+        native={k:v for k,v in original.items()if k not in ('producerStarted','resultContract')}
+        return c.finish(native,original['resultContract']['inputPlan'])
+    def derived(self):return next(r for r in self.report()['resultContract']['outcomes']if r.get('scope')=='equity-lookthrough')
+    def test_scope_declared_before_results_separates_four_derivations(self):
+        p=plans.build_plan('collect_dca_complete_holdings',[])
+        rows=[r for r in p['items']if r.get('phase')=='validation']
+        self.assertEqual(len(rows),4)
+        self.assertTrue(all(r['sourceAttempted']is False for r in rows))
+    def test_four_successful_derivations_do_not_certify_network_controls(self):
+        r=self.report()['resultContract'];derived=[x for x in r['outcomes']if x.get('scope')=='equity-lookthrough']
+        self.assertEqual(len(derived),4)
+        self.assertTrue(all(x['status']=='succeeded'and x['phase']=='validation'and x['sourceAttempted']is False for x in derived))
+        self.assertTrue(all(x['id']not in r['scope']['networkRequestedIds']for x in derived))
+        self.assertEqual(len(r['scope']['networkRequestedIds']),178)
+    def test_old_receipts_requalified_without_mutating_archive(self):
+        r=self.report()['resultContract']
+        for x in r['outcomes']:
+            if x.get('scope')=='equity-lookthrough':x.pop('phase');x['sourceAttempted']=True
+        before=copy.deepcopy(r);out=c.normalize_contract(r)
+        self.assertEqual(r,before)
+        self.assertTrue(all(x['phase']=='validation'and x['sourceAttempted']is False for x in out['successes']if x.get('scope')=='equity-lookthrough'))
+    def test_requalification_preserves_original_clock_failure_and_history(self):
+        from publish_automation_status import merge_proof_retry
+        from test_automation_product import event
+        w='update-qualified-exposures.yml';success=self.derived();key=success['id'];old={'checkedAt':'2026-10-20','recordedAt':'2026-10-21','runId':90,'evidence':{'sha256':'immutable'}}
+        state={'workflows':{w:{'runId':102,'sourceChecks':{key:old},'dataFailures':{key:{'cause':'Unproven source failure','phase':'collection'}}}}}
+        actual=merge_proof_retry(state,event(w,101),[{'successes':[success],'errors':[]}]);row=actual['workflows'][w]
+        self.assertNotIn(key,row['sourceChecks']);self.assertEqual(row['dataFailures'][key]['phase'],'collection')
+        self.assertEqual(row['validationChecks'][key]['sourceControlsRequalified'][0]['originalSourceControl'],old)
+        again=merge_proof_retry(actual,event(w,101),[{'successes':[success],'errors':[]}])['workflows'][w]
+        self.assertEqual(len(again['validationChecks'][key]['sourceControlsRequalified']),1)
+        self.assertEqual(state['workflows'][w]['sourceChecks'][key],old)
+    def test_derived_only_run_does_not_renew_last_collection_success(self):
+        from publish_automation_status import update_status
+        from test_automation_product import event,jobs
+        w='update-qualified-exposures.yml';old='2026-10-20T12:00:00Z'
+        state={'workflows':{w:{'monitorVersion':3,'lastCollectionSuccessAt':old}}}
+        out=update_status(state,event(w,101),jobs(w),[{'successes':[self.derived()],'errors':[]}])['workflows'][w]
+        self.assertEqual(out['lastCollectionSuccessAt'],old);self.assertFalse(out['sourceChecks'])
+
+    def test_reader_does_not_certify_the_historical_network_claim(self):
+        import gzip
+        output=self.report()
+        for row in output['resultContract']['outcomes']:
+            if row.get('scope')=='equity-lookthrough':row.pop('phase');row['sourceAttempted']=True
+        with tempfile.TemporaryDirectory()as folder:
+            path=Path(folder)/'dca-complete-holdings.json';path.write_text(json.dumps(output));before=path.read_bytes()
+            declared=Path(__file__).parent/'fixtures/producer-reports/dca-holdings-40952108356-plan.json.gz'
+            path.with_name('dca-complete-holdings.contract-plan.json').write_bytes(gzip.decompress(declared.read_bytes()))
+            report=read_report(path,'update-qualified-exposures.yml',json.loads(gzip.decompress(declared.read_bytes())))
+            self.assertEqual(path.read_bytes(),before)
+        rows=[r for r in report['successes']if r.get('scope')=='equity-lookthrough']
+        self.assertEqual(len(rows),4)
+        self.assertTrue(all(r['sourceAttempted']is False and r['phase']=='validation'and not r.get('verifiedInAttempt')for r in rows))
+
+    def test_native_validation_clock_is_not_overwritten_by_global_or_missing_clock(self):
+        p=plan(('A',));p['items'][0]['phase']='validation'
+        for global_date in [None,'2026-10-20']:
+            native={'successes':[{'id':'A','validatedAt':'2026-10-29T12:00:00Z','sourceAttempted':False,'phase':'validation'}],'errors':[]}
+            if global_date:native['checkedAt']=global_date
+            row=finished(native,p)['resultContract']['outcomes'][0]
+            self.assertEqual(row['validatedAt'],'2026-10-29T12:00:00Z')
+            self.assertFalse(row['sourceAttempted'])
+
 if __name__=='__main__':unittest.main()
