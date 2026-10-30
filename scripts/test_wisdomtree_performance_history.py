@@ -144,3 +144,19 @@ class OrdinaryBrowserTransport(unittest.TestCase):
   with patch('wisdomtree_performance_history.download',side_effect=error),patch('wisdomtree_performance_history.subprocess.run',return_value=subprocess.CompletedProcess([],1,b'',b'source403')),self.assertRaisesRegex(ValueError,'public browser performance failed'):acquire(s)
 
 if __name__=='__main__':unittest.main()
+
+class DocumentedWidgetPath(unittest.TestCase):
+ def test_only_the_wti_existing_share_changes_to_the_actual_issuer_widget_path(self):
+  from wisdomtree_performance_history import urls
+  wti=next(s for s in configurations()if s.get('wisdomTicker')=='CRUD')
+  self.assertEqual(urls(wti),[f'https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode={mode}'for mode in ['gro10k','tabular']])
+  for source in configurations():
+   if source.get('navHistoryTransport')=='official-dataspan-nav-tr'and source.get('wisdomTicker')!='CRUD':
+    self.assertTrue(all('/historical_performance/?'in u for u in urls(source)))
+  ordinary=next(s for s in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']if s['id']==wti['id'])
+  self.assertNotIn('wisdomPerformancePathStyle',ordinary)
+  self.assertEqual(urls(ordinary),urls(wti),'Ordinary producer must consume the shared route')
+  for key,value in [('isin','GB00B15KXQ89'),('wisdomClassId',1),('wisdomTicker','COPA'),('navCurrency','EUR')]:
+   with self.assertRaises(ValueError):urls({**ordinary,key:value})
+  for bad in ['unregistered','https://another.invalid/','../']:
+   with self.assertRaises(ValueError):urls({**wti,'wisdomPerformancePathStyle':bad})

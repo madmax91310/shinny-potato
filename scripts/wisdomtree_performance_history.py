@@ -17,6 +17,9 @@ from issuer_documents import download
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = 'https://dataspanapi.wisdomtree.com/funddetails/'
+# Shared transport configuration also serves the ordinary monthly registry.
+# Do not duplicate a routing override in multiple producer catalogues.
+PATH_STYLES = {row['id']: row for row in json.loads((ROOT/'scripts/official-nav-remainder-sources.json').read_text()) if row.get('wisdomPerformancePathStyle')}
 
 
 def acquire(source):
@@ -191,4 +194,10 @@ def urls(source):
     ticker = source['wisdomTicker']
     if not ticker.isalpha() or not ticker.isupper():
         raise ValueError('Invalid registered issuer ticker')
-    return [ORIGIN+'historical_performance/?entity='+ticker+'&mode='+mode for mode in ('gro10k', 'tabular')]
+    registered=PATH_STYLES.get(source.get('id'))
+    if registered and any(source.get(k)!=registered.get(k) for k in ('isin','wisdomClassId','wisdomTicker','navCurrency')):
+        raise ValueError('Issuer path identity differs from the shared registered share')
+    style=source.get('wisdomPerformancePathStyle',registered.get('wisdomPerformancePathStyle') if registered else 'canonical')
+    if style not in ('canonical','issuer-widget'):raise ValueError('Unqualified issuer performance path style')
+    path='historical_performance' + ('/' if style=='canonical' else '')
+    return [ORIGIN+path+'?entity='+ticker+'&mode='+mode for mode in ('gro10k', 'tabular')]
