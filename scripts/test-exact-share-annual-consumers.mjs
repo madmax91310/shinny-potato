@@ -3,6 +3,7 @@ import fs from 'node:fs'
 import {AUTOMATED_ETF,HISTORICAL_AUTOMATED_PERFORMANCE} from '../src/data/automated-etf.js'
 import {SIMULATION_PROXIES} from '../src/data/simulation-proxies.js'
 import {getInstrumentReturnValues,getInstrumentCalendarReturns} from '../src/data/instrument-returns.js'
+import {DATA_CATALOG} from '../src/data/catalog.js'
 import {ASSETS,getAsset} from '../src/data/portfolio-assets.js'
 import {CATALOG} from '../src/data/duel-assets.js'
 import {QUALIFIED_FUND_CALENDARS} from '../src/data/qualified-annual-calendars.js'
@@ -20,6 +21,9 @@ for(const[isin,source]of Object.entries(fixture.partialCalendars)){
  assert.equal(live.basis,'fund');assert.equal(live.currency,source.currency)
  const actual=getInstrumentReturnValues(isin),archive=HISTORICAL_AUTOMATED_PERFORMANCE[isin].values
  assert.deepEqual(actual,archive,isin+': keep exact-share gaps')
+ const catalog=DATA_CATALOG.find(r=>r.id===isin)
+ assert(catalog);assert(!catalog.fields.some(f=>f.label==='Historique de simulation 2020–2025'),isin+': old proxy is not the current source')
+ const currentField=catalog.fields.find(f=>f.label==='Rendements 2020–2025');assert(currentField);assert.equal(currentField.metadata.checkedAt,live.checkedAt)
  const map=getInstrumentCalendarReturns(isin,source.previous.legacySelected)
  for(let i=0;i<6;i++)assert.equal(map[2020+i],archive[i]??undefined,isin+': explicit fallback cannot backfill an exact calendar')
  const g=ASSETS.find(a=>a.isin===isin),d=CATALOG.find(a=>a.isin===isin)
@@ -43,7 +47,7 @@ for(const[isin,proxy]of Object.entries(SIMULATION_PROXIES))if(!HISTORICAL_AUTOMA
 }
 for(const[isin,source]of Object.entries(fixture.restoredAnnual)){
  const live=QUALIFIED_FUND_CALENDARS[isin],g=getAsset('manual-'+isin),d=CATALOG.find(a=>a.isin===isin)
- assert.deepEqual(live.years,source.years);assert(qualifyPreferredManualNav(live));assert(isQualifiedAnnualPortfolioFund(g));assert(isQualifiedAnnualPortfolioFund(d))
+ for(const[year,value]of Object.entries(source.years))assert.equal(live.years[year],value);assert(qualifyPreferredManualNav(live));assert(isQualifiedAnnualPortfolioFund(g));assert(isQualifiedAnnualPortfolioFund(d))
  assert.equal(g.manualOnly,true);assert.equal(g.cat,'actions_larges');assert.equal(d.id,'manual-'+isin)
  assert.equal(ASSETS.filter(a=>a.isin===isin).length,1);assert.equal(CATALOG.filter(a=>a.isin===isin).length,1)
  assert.equal(qualifiedManualMechanism(isin,{...AUTOMATED_ETF[isin]?.characteristics,replicationMethod:'Synthétique',annualSwapRatePct:0}),undefined)
@@ -51,7 +55,7 @@ for(const[isin,source]of Object.entries(fixture.restoredAnnual)){
  const before=fixture.preservedDuelRoles.find(a=>a.isin===isin)
  assert(before.inPool);assert.equal(d.role,before.role);assert(generatedDuelPool(before.role).some(a=>a.id===before.id&&a.isin===isin))
  const p=buildManualPortfolio([{id:g.id,pct:100}],'generaliste',[]),duel=buildCustomDuel({left:[{id:d.id,pct:100}],right:[{id:'msci_world_ishares',pct:100}]})
- assert.deepEqual(Object.keys(p.perf).map(Number),[2020,2021,2022,2023,2024,2025]);assert.deepEqual(duel.years,[2020,2021,2022,2023,2024,2025])
+ const expectedYears=Object.keys(live.years).map(Number).filter(y=>y<new Date().getUTCFullYear()).sort((a,b)=>a-b).slice(-6);assert.deepEqual(Object.keys(p.perf).map(Number),expectedYears);assert.deepEqual(duel.years,expectedYears)
  for(const y of duel.years){assert.equal(p.perf[y],live.years[y]);assert.equal(duel.a.annual[y],live.years[y])}
  for(const patch of[{currency:'USD'},{isin:'IE00B4K6B023'},{basis:'market-price'},{method:'calendar-year gross price return'},{method:'calendar-year proxy total return, net of fees'},{sourceUrls:['https://other.invalid']},{checkedAt:'2000-01-01'}])assert.equal(qualifyPreferredManualNav({...live,...patch}),null)
  const tweet=renderTweetText(p);assert(tweet.includes('2020')&&tweet.includes('2025'))
