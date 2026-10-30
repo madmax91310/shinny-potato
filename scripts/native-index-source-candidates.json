@@ -4,18 +4,29 @@
   "shares": {
     "FR0011550193": {
       "benchmark": "STOXX Europe 600 Net Return EUR",
-      "sourceUrls": ["https://stoxx.com/index/sxxr/?components=true", "https://stoxx.com/index/sxxr/?data=true"],
+      "sourceUrls": [
+        "https://stoxx.com/index/sxxr/?components=true",
+        "https://stoxx.com/index/sxxr/?data=true"
+      ],
       "requirements": "Composition native intégrale STOXX Europe 600 NR : identifiants, poids, date de photographie et lien au benchmark exact. Ni top 10 ni portefeuille d'un ETF physique différent."
     },
     "FR0011871110": {
       "benchmark": "NASDAQ-100 Notional Net Total Return",
-      "sourceUrls": ["https://indexes.nasdaqomx.com/Index/Weighting/NDX", "https://indexes.nasdaq.com/Index/Weighting/XNDXNNR", "https://www.nasdaq.com/NDX"],
+      "sourceUrls": [
+        "https://indexes.nasdaqomx.com/Index/Weighting/NDX",
+        "https://indexes.nasdaq.com/Index/Weighting/XNDXNNR",
+        "https://www.nasdaq.com/NDX"
+      ],
       "requirements": "Accès officiel à la composition pondérée intégrale ; qualifier le benchmark exact, la méthode, la date et les identifiants. Un aperçu sans poids ou la composition de QQQ ne suffisent pas."
     },
     "FR0011869304": {
       "benchmark": "FTSE EPRA Nareit Developed Europe Index Net TRI",
-      "sourceUrls": ["https://www.lseg.com/en/ftse-russell/indices/epra-nareit", "https://www.epra.com/research/monthly-reports"],
-      "requirements": "Composition exacte Developed Europe datée, identifiée et pondérée dans ce périmètre. Ni univers Europe incluant d'autres pays, ni poids relatifs au Developed mondial renormalisés."
+      "sourceUrls": [
+        "https://www.lseg.com/en/ftse-russell/indices/epra-nareit",
+        "https://www.epra.com/research/monthly-reports",
+        "https://www.lseg.com/en/ftse-russell/index-resources/constituent-weights"
+      ],
+      "requirements": "Composition exacte Developed Europe datée, identifiée et pondérée dans ce périmètre. Ni univers Europe incluant d'autres pays, ni poids relatifs au Developed mondial renormalisés. Le téléchargement EPRA officiel observé le30octobre publie les poids du30juin2026 sans ISIN ; sa réutilisation et distribution exigent une autorisation écrite/licence. Ne pas ingérer ces poids périmés ni rapprocher sur le nom seul."
     }
   }
 }
