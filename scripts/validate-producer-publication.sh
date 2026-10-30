@@ -35,7 +35,7 @@ case "$1" in
     node scripts/test-insurance.mjs
     ;;
   scpi)
-    for pattern in test_scpi.py test_iroko_snapshot.py 'test_corum*.py' test_extended_scpi.py test_publication_periods.py; do
+    for pattern in test_scpi.py test_iroko_snapshot.py 'test_corum*.py' test_extended_scpi.py test_scpi_current_bulletins.py test_publication_periods.py; do
       python3 -m unittest discover -s scripts -p "$pattern"
     done
     node scripts/test-scpi.mjs
