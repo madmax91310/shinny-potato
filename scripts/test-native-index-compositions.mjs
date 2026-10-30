@@ -63,3 +63,42 @@ for(const [isin,f]of Object.entries(issuerFixtures)){
  ])assert.equal(qualifiedNativeIndexComposition({...h,...patch},isin,issuerNow),false,JSON.stringify(patch))
 }
 console.log('Issuer economic-index references: 600/101 actual original rows, exact benchmarks, delayed dates and separate baskets; existing full-overlap excess guard unchanged.')
+
+const msciFixtures=JSON.parse(gunzipSync(readFileSync('scripts/fixtures/invesco-economic-index/msci-index-books.json.gz'))).books
+for(const [isin,f]of Object.entries(msciFixtures)){
+ const h={...f.qualifiedRecord,checkedAt:f.collectionCheckedAt},share=contracts.shares[isin],index=contracts.indices[share.indexId]
+ assert(qualifiedNativeIndexComposition(h,isin,issuerNow),isin+' exact MSCI reference and reporting-currency proof')
+ assert(qualifiedNativeIndexComposition(projectDcaHoldings(h,true,h.sourceUrl),isin,issuerNow),'MSCI source proof survives lazy projection')
+ const q=qualifyHoldings(h,{isin},{isin,synthetic:true},issuerNow)
+ assert.equal(q.valid,true);assert.equal(q.complete,index.currency==='EUR'||share.indexId==='msci-em-net')
+ assert.equal(q.sourceCoverage,h.rows.reduce((s,r)=>s+r.weightPct,0),'Original index weights unchanged across reporting currencies')
+ if(index.currencyWeightContract){
+  for(const patch of [undefined,{...h.coverageProof.currencyWeightProof,sha256:'f'.repeat(64)},
+   {...h.coverageProof.currencyWeightProof,originalWeightsUnchanged:false},
+   {...h.coverageProof.currencyWeightProof,checkedAt:'2026-10-29T00:00:00Z'}]){
+   assert.equal(qualifiedNativeIndexComposition({...h,coverageProof:{...h.coverageProof,currencyWeightProof:patch}},isin,issuerNow),false,'Missing or stale currency-method proof cannot admit EUR World')
+  }
+ }
+}
+console.log('Five MSCI parts: same original economic-index rows, qualified unhedged currency convention, source dates and full/partial weight guards preserved.')
+
+const physicalReferences=JSON.parse(gunzipSync(readFileSync('scripts/fixtures/invesco-economic-index/additional-reference-shares.json.gz'))).books
+for(const [isin,f]of Object.entries(physicalReferences)){
+ const h=f.qualifiedRecord
+ assert(qualifiedNativeIndexComposition(h,isin,issuerNow),'Exact physical-share benchmark reference')
+ assert(qualifiedNativeIndexComposition(projectDcaHoldings(h,false,h.sourceUrl),isin,issuerNow),'Physical target reference scope survives projection')
+ assert.equal(qualifyHoldings(h,{isin},{isin,synthetic:false},issuerNow).complete,false,'A complete index reference never certifies missing physical fund assets')
+ assert.equal(qualifiedNativeIndexComposition({...h,approximation:false},isin,issuerNow),false)
+ assert.equal(qualifiedNativeIndexComposition({...h,coverageProof:{...h.coverageProof,referenceOnlyForSubject:false}},isin,issuerNow),false)
+}
+console.log('UBS World/BNP Nasdaq: index reference only; missing physical fund holdings remain explicitly uncertified.')
+
+const russell=JSON.parse(gunzipSync(readFileSync('scripts/fixtures/invesco-economic-index/russell-equity-reference.json.gz'))).qualifiedRecord
+assert(qualifiedNativeIndexComposition(russell,'LU1681038672',issuerNow),'Russell equity weights require exact Net30 target and both official methodology proofs')
+assert(qualifiedNativeIndexComposition(projectDcaHoldings(russell,true,russell.sourceUrl),'LU1681038672',issuerNow))
+assert.equal(qualifyHoldings(russell,{isin:'LU1681038672'},{isin:'LU1681038672',synthetic:true},issuerNow).complete,true)
+for(const proof of [undefined,{...russell.coverageProof.returnWeightProof,targetReturnSeriesUnchanged:false},
+ {...russell.coverageProof.returnWeightProof,documents:russell.coverageProof.returnWeightProof.documents.slice(0,1)},
+ {...russell.coverageProof.returnWeightProof,checkedAt:'2026-10-29T00:00:00Z'}])
+ assert.equal(qualifiedNativeIndexComposition({...russell,coverageProof:{...russell.coverageProof,returnWeightProof:proof}},'LU1681038672',issuerNow),false)
+console.log('Russell equity reference: exact Net30 target, original weights and separate return series; changed, missing or stale methodology fails closed.')

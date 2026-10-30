@@ -38,6 +38,9 @@ try{
   ['fund-and-index',[['world',60],['FR0013411980',40]]],
   ['native-index-pair',[['FR0013411980',50],['FR0013411998',50]]],
   ['issuer-economic-indices',[['europe',35],['FR0011871110',35],['nasdaq',30]]],
+  ['msci-economic-indices',[['FR001400U5Q4',20],['LU1681043599',20],['IE0002XZSHO1',20],['FR0013412038',20],['LU1681045370',20]]],
+  ['russell-economic-reference',[['LU1681038672',50],['europe',50]]],
+  ['physical-fund-index-references',[['IE00BD4TXV59',50],['IE000QDFFK00',50]]],
   ['europe-pea-partial',[['europe',40],['FR0011869304',30],['FR0011871110',30]]],
   ['europe-only-no-identifiers',[['europe',100]]],
   ['outside-equity-only',[['gold',50],['btc',50]]],
@@ -102,5 +105,5 @@ try{
   }
  }
  assert.deepEqual(errors,[])
- console.log('Built site: 17 complete/partial/unidentified/inapplicable/native-index/issuer-index/mixed/reconciled/retained portfolios, identical analysis/canvas/download, desktop and mobile verified.')
+ console.log('Built site: 20 complete/partial/unidentified/inapplicable/native-index/issuer-index/mixed/reconciled/retained portfolios, identical analysis/canvas/download, desktop and mobile verified.')
 }finally{await browser?.close();server.kill()}
