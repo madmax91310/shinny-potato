@@ -1,0 +1,75 @@
+// Témoignages publics, contrôlés le 30/10/2026. Les dates décrivent les
+// publications, pas une actualisation des budgets des personnes.
+// Aucun prénom, métier ou poste manquant n'est reconstruit.
+export const BUDGET_PROFILES = [
+  {
+    id: 'reddit-actif-2026-09-27', name: 'Un actif', age: null, job: '', location: '',
+    household: 'Situation familiale non précisée', kind: 'declared', approximate: true,
+    publishedAt: '2026-09-27', checkedAt: '2026-10-30', period: 'Septembre 2026',
+    source: { publisher: 'Reddit · r/VosSous', title: 'Quel est le choix le plus judicieux', url: 'https://www.reddit.com/r/VosSous/comments/1wrad88/quel_est_le_choix_le_plus_judicieux/' },
+    incomeBasis: 'Net après impôt', incomeNote: 'Revenu annoncé autour de 1 600 €, variable de ± 200 €.',
+    income: [{ label: 'Revenu net après impôt', amount: 1600 }],
+    expenses: [
+      { label: 'Loyer, charges et courses', amount: 750, category: 'housing' },
+      { label: 'Téléphone', amount: 8, category: 'bills' },
+      { label: 'Assurance automobile', amount: 35, category: 'transport' },
+      { label: 'Carburant', amount: 200, category: 'transport' },
+      { label: 'Sorties et loisirs', amount: 300, category: 'leisure' },
+    ],
+    savings: [], capacity: 300,
+    context: 'La personne prépare un changement de travail et se demande si elle doit remplacer sa voiture de 2005. Elle déclare disposer de 5 000 € sur un Livret A.',
+    caveat: 'Les dépenses sont celles de son budget déclaré. Le poste logement inclut les courses : il reste groupé. La capacité annoncée est arrondie ; le solde calculé ne prouve pas une épargne réalisée.',
+    hook: 'Environ 1 600 € nets, une voiture de 2005 et un changement de travail à préparer. Voici son budget 👇',
+    question: 'Tu garderais la voiture tant qu’elle roule ou tu préparerais déjà son remplacement ?',
+  },
+  {
+    id: 'reddit-couple-nord-2026-07-09', name: 'Un couple dans le Nord', age: null, job: '', location: 'Agglomération lilloise',
+    household: 'Deux adultes · un enfant pendant les vacances', kind: 'planned', approximate: true,
+    publishedAt: '2026-07-09', checkedAt: '2026-10-30', period: 'Juillet 2026',
+    source: { publisher: 'Reddit · r/VosSous', title: 'Reprise en main des finances après avoir touché le fond', url: 'https://www.reddit.com/r/VosSous/comments/1urtc6n/reprise_en_main_des_finances_apr%C3%A8s_avoir_touch%C3%A9/' },
+    incomeBasis: 'Ressources du foyer', incomeNote: 'Budget proposé par l’autrice dans ses réponses, après une période de découvert.',
+    income: [{ label: 'Ressources mensuelles du couple', amount: 2464 }],
+    expenses: [
+      { label: 'Charges fixes regroupées', amount: 1367, category: 'bills' },
+      { label: 'Courses, hygiène et trois chats', amount: 500, category: 'food' },
+      { label: 'Provision pour les trajets familiaux', amount: 150, category: 'transport' },
+    ],
+    savings: [{ label: 'Épargne de sécurité prévue', amount: 100 }], capacity: null,
+    context: 'L’autrice propose 100 € d’épargne de sécurité et une réserve de 150 € pour les trajets en train liés aux vacances de son enfant. Après ces enveloppes, elle prévoit une marge de 347 € pour la santé, les loisirs et les autres dépenses.',
+    caveat: 'Budget prévisionnel explicitement proposé dans les commentaires de l’autrice. Les charges fixes restent regroupées : leur détail arrondi exclut certains crédits et ne permet pas une ventilation intégrale. Les 150 € sont une provision pour une dépense future, pas une épargne de long terme. Les 347 € sont une marge, pas une dépense attestée.',
+    hook: 'Après des mois de découvert, ce couple essaie de repartir avec un budget de 2 464 € par mois 👇',
+    question: 'Tu prévois une enveloppe chaque mois pour les dépenses qui ne tombent que quelques fois par an ?',
+  },
+  {
+    id: 'reddit-salarie-26-2026-01-04', name: 'Un salarié de 26 ans', age: 26, job: 'Premier CDI', location: '',
+    household: 'Hébergé chez ses parents', kind: 'planned', approximate: true,
+    publishedAt: '2026-01-04', checkedAt: '2026-10-30', period: 'Janvier 2026',
+    source: { publisher: 'Reddit · r/VosSous', title: 'Plan finance pour mon profil ?', url: 'https://www.reddit.com/r/VosSous/comments/1q3tkwk/plan_finance_pour_mon_profil/' },
+    incomeBasis: 'Net déclaré · impôt non précisé', incomeNote: 'Première paie reçue ; les dépenses et la capacité d’épargne constituent un budget prévu.',
+    income: [{ label: 'Salaire net déclaré', amount: 1700 }],
+    expenses: [
+      { label: 'Assurance automobile', amount: 95, category: 'transport' },
+      { label: 'Carburant', amount: 130, category: 'transport' },
+      { label: 'Salle de sport', amount: 40, category: 'leisure' },
+      { label: 'Abonnements', amount: 10, category: 'bills' },
+      { label: 'Courses et provisions', amount: 170, category: 'food' },
+      { label: 'Loisirs', amount: 50, category: 'leisure' },
+    ],
+    savings: [], capacity: 1200,
+    context: 'La personne vient de recevoir sa première paie et vit encore chez ses parents. Elle déclare 8 000 € sur un Livret A et souhaite atteindre 10 000 € de réserve avant d’investir.',
+    caveat: 'Les six lignes totalisent 495 €, arrondis à 500 € par l’auteur. Aucun loyer n’est ajouté. Le solde de 1 205 € est calculé ; les 1 200 € sont une capacité envisagée, pas un versement attesté.',
+    hook: '1 700 € nets pour un premier CDI, avec un logement chez ses parents. Voici le budget qu’il prévoit 👇',
+    question: 'Tu profiterais de cette période pour constituer une réserve ou préparer un départ de chez tes parents ?',
+  },
+]
+
+export const EXPENSE_CATEGORIES = [
+  { id: 'housing', label: 'Logement', emoji: '🏠' },
+  { id: 'food', label: 'Courses', emoji: '🛒' },
+  { id: 'transport', label: 'Transport', emoji: '🚗' },
+  { id: 'bills', label: 'Factures et abonnements', emoji: '📱' },
+  { id: 'health', label: 'Santé', emoji: '🩺' },
+  { id: 'credit', label: 'Crédits', emoji: '💳' },
+  { id: 'leisure', label: 'Loisirs', emoji: '🍿' },
+  { id: 'other', label: 'Autres dépenses', emoji: '🧾' },
+]

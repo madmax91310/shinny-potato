@@ -159,6 +159,7 @@ jobs:
       - run: node scripts/test-insurance.mjs
       - run: npm run test:radar
       - run: node scripts/test-wealth-simulator.mjs
+      - run: npm run test:budget
       - run: python -m unittest discover -s scripts -p "test_performance_currency.py"
       - run: node scripts/test-performance-currency.mjs
       - run: node scripts/test-cross-tool-currency.mjs
