@@ -47,6 +47,7 @@ try{
  ]){
   const lines=allocation.map(([asset,weight])=>({asset,isin:references[asset].isin,label:references[asset].name,weight,amount:0}))
   const expected=portfolioAnalytics(lines,references,holdings),group=selectConcentrationGroup(expected.groups)
+  for(const line of lines)if(holdings[line.asset]?.approximation)assert.equal(catalog[line.asset]?.holdings?.complete,false,'A benchmark-only physical reference cannot be labelled a complete fund composition in the catalogue')
   await page.evaluate(lines=>localStorage.setItem('epargnant-publication:v1:simple-exposure-draft',JSON.stringify({lines,field:'overlap',exposureLimit:4})),lines)
   await page.goto(base+'le-dca-de')
   await page.getByText('Voir l’analyse détaillée',{exact:true}).filter({visible:true}).click()

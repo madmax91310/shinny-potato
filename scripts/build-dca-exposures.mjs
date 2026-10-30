@@ -39,7 +39,7 @@ const records = Object.fromEntries(Object.entries(allMapping).map(([asset,isin])
  if(holdingStatus[isin])catalog[asset].holdingsStatus=holdingStatus[isin]
  const complete=fullHoldings[isin],partial=source?.holdings
  const h=projectDcaHoldings(selectDcaHoldings(complete,partial),synthetic,source?.sourceUrl)
- if(h)catalog[asset].holdings={asOf:h.asOf,complete:h.complete===true,identifiedCoverage:h.rows.filter(r=>/^[A-Z]{2}[A-Z0-9]{9}[0-9]$/.test(r.isin||'')).reduce((s,r)=>s+r.weightPct,0)}
+ if(h)catalog[asset].holdings={asOf:h.asOf,complete:h.complete===true&&h.approximation!==true,identifiedCoverage:h.rows.filter(r=>/^[A-Z]{2}[A-Z0-9]{9}[0-9]$/.test(r.isin||'')).reduce((s,r)=>s+r.weightPct,0)}
  if(h)holdings[asset]=h
 
  for(const field of ['countries','sectors']){

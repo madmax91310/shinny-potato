@@ -17,7 +17,7 @@ Suite de #1083 ; chaîne partagée `collect_dca_complete_holdings.py`, registre 
 
 Les huit parts réutilisent quatre publications (World, Europe, émergents, Russell) et le Nasdaq déjà collecté par #1083. Une seule acquisition de chaque publication est effectuée par cycle, même avec plusieurs parts simultanées ; succès et erreurs de transport sont partagés dans ce cycle seulement. Le cycle suivant interroge de nouveau la source. Chaque part conserve sa propre vérification documentaire actuelle du benchmark.
 
-Les clichés MSCI restent datés du **15 septembre**, conformément au délai du site ; ils ne sont pas présentés comme actualisés au 30 octobre. Le lecteur accepte le mois anglais réellement publié « Sept », sans modifier les poids ni les règles de fraîcheur. Les poids supérieurs à 100% restent partiels pour le recouvrement intégral selon le garde-fou existant. Les deux fonds physiques portent `approximation:true` et `referenceOnlyForSubject:true`, imposés aussi par le consommateur.
+Les clichés MSCI restent datés du **15 septembre**, conformément au délai du site ; ils ne sont pas présentés comme actualisés au 30 octobre. Le lecteur accepte le mois anglais réellement publié « Sept », sans modifier les poids ni les règles de fraîcheur. Les poids supérieurs à 100% restent partiels pour le recouvrement intégral selon le garde-fou existant. Les deux fonds physiques portent `approximation:true` et `referenceOnlyForSubject:true`, imposés aussi par le consommateur. Le résumé du catalogue conserve le statut partiel pour ces références physiques : une liste indicielle complète ne devient pas une composition complète du fonds.
 
 ### Devise de publication World
 
