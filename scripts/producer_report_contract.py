@@ -187,7 +187,7 @@ def finish(native, plan, *, completed=True):
                 # retained financial registry. No checkedAt/asOf is manufactured here.
                 value = {**value, 'operationAttempted':True, 'sourceAttempted':value.get('sourceAttempted',True if value['status']in ('succeeded','unchanged-verified')else None)}
         if item.get('phase')in ('qualification','validation') and value.get('kind')!='omission':
-            value={**value,'phase':item['phase'],'sourceAttempted':False,'validatedAt':native.get('checkedAt')}
+            value={**value,'phase':item['phase'],'sourceAttempted':False,'validatedAt':value.get('validatedAt')or native.get('checkedAt')}
         outcomes.append({**item, **value, 'id':identifier})
     diagnostics = [{**r,'phase':'validation','sourceAttempted':False}for r in _normalize_report(payload).get('errors',[])] if plan.get('retainNativeFailuresOnly') and native.get('contractDiagnosticsAttempted') is True and completed else []
     contract = {'schemaVersion':1, 'protocol':VERSION, 'inputPlan':plan, 'scope':{

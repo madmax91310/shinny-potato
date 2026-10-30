@@ -474,4 +474,13 @@ class DerivedHoldingsControls(unittest.TestCase):
         self.assertEqual(len(rows),4)
         self.assertTrue(all(r['sourceAttempted']is False and r['phase']=='validation'and not r.get('verifiedInAttempt')for r in rows))
 
+    def test_native_validation_clock_is_not_overwritten_by_global_or_missing_clock(self):
+        p=plan(('A',));p['items'][0]['phase']='validation'
+        for global_date in [None,'2026-10-20']:
+            native={'successes':[{'id':'A','validatedAt':'2026-10-29T12:00:00Z','sourceAttempted':False,'phase':'validation'}],'errors':[]}
+            if global_date:native['checkedAt']=global_date
+            row=finished(native,p)['resultContract']['outcomes'][0]
+            self.assertEqual(row['validatedAt'],'2026-10-29T12:00:00Z')
+            self.assertFalse(row['sourceAttempted'])
+
 if __name__=='__main__':unittest.main()
