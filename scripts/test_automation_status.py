@@ -6,7 +6,7 @@ import subprocess
 import tempfile
 import zipfile
 from unittest.mock import Mock
-from publish_automation_status import update_status, read_report, publication_summary, repair_publication_history, include_configured_workflows, normalize_report
+from publish_automation_status import update_status, read_report, publication_summary, repair_publication_history, include_configured_workflows, normalize_report, require_completed_job_evidence
 
 def run(id=1,conclusion='failure',workflow='update-economic-data.yml',**kwargs):
  return {'id':id,'path':'.github/workflows/'+workflow,'head_branch':'master','event':'schedule','status':'completed','conclusion':conclusion,'updated_at':f'2026-10-{id:02d}T10:00:00Z','html_url':f'https://github.com/test/repo/actions/runs/{id}',**kwargs}
@@ -225,6 +225,41 @@ class StatusTests(unittest.TestCase):
   failed=update_status(previous,run(2),[{'name':'refresh','conclusion':'failure','steps':[{'name':'collect','conclusion':'failure'}]}])['workflows']['update-economic-data.yml']
   self.assertEqual(failed['lastSuccessAt'],'2026-10-01T10:00:00Z')
   self.assertEqual(failed['failures'][0]['step'],'collect')
+
+class MissingTerminalJobsTests(unittest.TestCase):
+ def test_empty_and_missing_terminal_job_evidence_is_not_a_phase_result(self):
+  terminal=run(workflow='update-investor-13f.yml')
+  for jobs in ([], [{'name':'deploy','steps':[]}], [{'name':'update','conclusion':'failure','steps':[]}]):
+   with self.subTest(jobs=jobs):
+    with self.assertRaises(ValueError):require_completed_job_evidence(terminal,jobs,'update')
+  for conclusion in ('skipped','cancelled'):
+   require_completed_job_evidence(terminal,[{'name':'update','conclusion':conclusion,'steps':[]}],'update')
+
+ def test_real_13f_recording_failure_is_recovered_from_missing_jobs_same_attempt(self):
+  terminal=run(workflow='update-investor-13f.yml')
+  old=update_status({},terminal,[])
+  self.assertEqual(old['workflows']['update-investor-13f.yml']['recordingStatus'],'not-run')
+  jobs=[{'name':'update','conclusion':'failure','steps':[
+   {'name':'Collect observations: python -u scripts update-investor-13f.py --output  RUNNER_TEMP investor-observations.json','conclusion':'success'},
+   {'name':'Validate collected observations','conclusion':'success'},
+   {'name':'Commit validated observations','conclusion':'failure'}]}]
+  require_completed_job_evidence(terminal,jobs,'update')
+  repaired=update_status(old,terminal,jobs)
+  row=repaired['workflows']['update-investor-13f.yml']
+  self.assertEqual(row['recordingStatus'],'failure')
+  self.assertEqual(row['failures'],[{'job':'update','step':'Commit validated observations'}])
+  self.assertIsNone(row['lastCollectionSuccessAt'],'Job evidence cannot invent a source-control clock')
+  from automation_recovery import recovery_reason
+  import datetime as dt
+  self.assertEqual(recovery_reason(row,{'maxAgeHours':48},dt.datetime(2026,10,2,tzinfo=dt.timezone.utc)),'recording-failed')
+  self.assertEqual(update_status(repaired,terminal,[]),repaired,'A later empty response must not erase known terminal evidence')
+  retained=old['workflows']['update-investor-13f.yml']
+  retained['dataFailures']={'exact-manager':{'cause':'Quarter identity conflict','completedAt':'2026-09-30T10:00:00Z'}}
+  still=update_status(old,terminal,jobs)['workflows']['update-investor-13f.yml']
+  self.assertIn('exact-manager',still['dataFailures'],'Job hydration must not close a financial conflict')
+  self.assertNotEqual(still['publicationStatus'],'success')
+  newer=update_status(repaired,run(2,'success',workflow='update-investor-13f.yml'),jobs)
+  self.assertEqual(update_status(newer,terminal,jobs),newer,'An older attempt cannot replace newer evidence')
 
 class NewCollectorStatusTests(unittest.TestCase):
  def test_named_collection_jobs_are_independent_from_deploy(self):

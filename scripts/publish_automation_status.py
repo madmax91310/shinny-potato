@@ -828,7 +828,12 @@ def update_status(state, run, jobs, reports=None):
     reports = normalized
     inactive = {row['id'] for report in reports or [] for row in normalize_report(report).get('inactive', [])}
     retires_legacy_alert = bool(inactive & previous.get('dataFailures', {}).keys())
-    if stamp == old_stamp and previous.get('monitorVersion', 1) >= 3 and not retires_legacy_alert:
+    # A completed-run API response can temporarily omit every job. Re-read the
+    # same immutable attempt once its actual step evidence is available; never
+    # confuse this repair of job evidence with a new supplier consultation.
+    first_job_evidence = (not previous.get('stepResults') and
+                          any(job.get('steps') for job in jobs))
+    if stamp == old_stamp and previous.get('monitorVersion', 1) >= 3 and not retires_legacy_alert and not first_job_evidence:
         return merge_proof_retry(result,run,reports)
     if stamp < old_stamp or run['conclusion'] in ('cancelled', 'skipped', 'neutral'):
         return result
@@ -1027,6 +1032,24 @@ def update_status(state, run, jobs, reports=None):
     result['schemaVersion'] = 1
     result['updatedAt'] = run['updated_at']
     return result
+
+
+def require_completed_job_evidence(run, jobs, collection_job):
+    """A terminal run with an empty Jobs API response is not a phase proof."""
+    if run.get('status') != 'completed':
+        raise ValueError('Run terminal attendu pour les preuves de phases')
+    producers = [job for job in jobs if job.get('name') == collection_job
+                 or job.get('name', '').startswith(collection_job + ' (')]
+    if not jobs or not producers:
+        raise ValueError('Jobs terminaux incomplets : job producteur absent ; relecture requise')
+    for job in producers:
+        # Skipped jobs legitimately have no executed steps. A setup failure may
+        # have only setup steps; preserve those genuine failures as such.
+        if not job.get('conclusion') or (job.get('conclusion') not in ('skipped', 'cancelled', 'neutral') and not job.get('steps')):
+            raise ValueError('Jobs terminaux incomplets : étapes producteur absentes ; relecture requise')
+        if any(step.get('status') in ('queued', 'pending', 'in_progress') for step in job.get('steps', [])):
+            raise ValueError('Jobs terminaux incomplets : étapes encore intermédiaires ; relecture requise')
+    return jobs
 
 
 def checkout_snapshot(log):
@@ -1279,6 +1302,21 @@ def main():
                 runs.append({**legacy,'_phaseRetry':True})
             except (OSError,ValueError,KeyError,TypeError)as error:
                 state.setdefault('observerErrors',{})['phase-proof:'+workflow]={'cause':'Contrat de phase historique non relisible : '+str(error)[:250]}
+    # Recover the exact current attempt previously observed without any step
+    # evidence. Bounded metadata reads only, never dispatch or supplier requests.
+    incomplete_jobs = [(workflow, row) for workflow, row in state.get('workflows', {}).items()
+                       if workflow in REGISTRY and row.get('monitorVersion', 1) >= 3
+                       and row.get('runId') and not row.get('stepResults')
+                       and row.get('headSha') not in LEGACY_PHASE_CONTRACTS]
+    for workflow, row in incomplete_jobs[:4]:
+        try:
+            retry = api(f'/actions/runs/{row["runId"]}/attempts/{row.get("attempt",1)}')
+            if (retry.get('head_branch') != 'master' or retry.get('status') != 'completed'
+                    or retry.get('path', '').split('/')[-1] != workflow):
+                raise ValueError('Tentative producteur terminale non confirmée')
+            runs.append({**retry, '_jobEvidenceRetry': True})
+        except (urllib.error.URLError, OSError, ValueError, KeyError, TypeError) as error:
+            state.setdefault('observerErrors', {})['jobs-proof:' + workflow] = {'cause': 'Preuve des phases incomplète : ' + str(error)[:250]}
     runs=list({(r['id'],r.get('run_attempt',1)):r for r in runs}.values())
     pending_proofs = [(failure.get('lastProofReadAt',''),workflow,key,failure) for workflow,row in state.get('workflows',{}).items() if workflow in REPORT_ARTIFACTS for key,failure in row.get('proofFailures',{}).items() if failure.get('runId')]
     for _, workflow, key, failure in sorted(pending_proofs,key=lambda r:r[0])[:4]:
@@ -1306,6 +1344,7 @@ def main():
                 if len(batch) < 100:
                     break
                 page += 1
+            require_completed_job_evidence(run, jobs, REGISTRY[workflow]['collectionJob'])
             for job in jobs:
                 # Browser checks annotate the exact failed check ('Échec ...'): keep it so
                 # the incident names the test, not only the shard.
