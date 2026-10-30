@@ -3,7 +3,7 @@ import { BUDGET_EDITORIAL, BUDGET_PROFILES, EXPENSE_CATEGORIES } from './data.js
 export const MAX_BUDGET_LINES = 24
 export const euro = (value, currency = 'EUR') => Number(value).toLocaleString('fr-FR', { style: 'currency', currency, minimumFractionDigits: 0, maximumFractionDigits: 2 })
 export const dateLabel = date => new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${date}T12:00:00Z`))
-export const budgetKind = profile => profile.kind === 'planned' ? 'Budget prévu' : profile.kind === 'participant' ? 'Budget communiqué' : 'Budget déclaré'
+export const budgetKind = profile => profile.kind === 'prepared' ? 'Budget préparé' : profile.kind === 'planned' ? 'Budget prévu' : profile.kind === 'participant' ? 'Budget communiqué' : 'Budget déclaré'
 const cents = value => Math.round(value * 100)
 const validAmount = value => typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 10000000
 const safeText = (value, max) => typeof value === 'string' && value.length <= max
@@ -13,7 +13,7 @@ export function validBudget(profile) {
   return !!profile && safeText(profile.id, 100) && (profile.currency === undefined || ['EUR', 'CHF'].includes(profile.currency)) && safeText(profile.name, 70) &&
     (profile.age === null || Number.isInteger(profile.age) && profile.age >= 18 && profile.age <= 110) &&
     ['job', 'location', 'household', 'period', 'incomeBasis', 'incomeNote'].every(key => safeText(profile[key], 250)) &&
-    ['declared', 'planned', 'participant'].includes(profile.kind) && typeof profile.approximate === 'boolean' &&
+    ['declared', 'planned', 'participant', 'prepared'].includes(profile.kind) && typeof profile.approximate === 'boolean' &&
     ['income', 'expenses', 'savings'].every(key => Array.isArray(profile[key]) && profile[key].length <= MAX_BUDGET_LINES &&
       profile[key].every(row => row && safeText(row.label, 90) && (row.amount === null || validAmount(row.amount)))) &&
     (profile.capacity === null || validAmount(profile.capacity)) &&
@@ -101,7 +101,7 @@ export function refreshBudgetDraft(record) {
 }
 
 export function sourceReply(profile) {
-  return profile.source ? `${profile.source.publisher} — ${profile.source.title}\n${profile.source.url}${profile.publishedAt ? `\nPublié le ${dateLabel(profile.publishedAt)}.` : ''}\nMontants déclarés par la personne, sans vérification de ses comptes bancaires.` : ''
+  return profile.source ? `${profile.source.publisher} — ${profile.source.title}\n${profile.source.url}${profile.publishedAt ? `\nPublié le ${dateLabel(profile.publishedAt)}.` : ''}\n${profile.kind === 'prepared' ? 'Budget préparé avec compléments et arrondis ; les montants ne sont pas tous déclarés par l’auteur. ' + profile.caveat : 'Montants déclarés par la personne, sans vérification de ses comptes bancaires.'}` : ''
 }
 
 export function blankBudget() {

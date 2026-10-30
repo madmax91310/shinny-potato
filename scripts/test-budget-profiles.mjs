@@ -155,3 +155,14 @@ try {
   assert.equal(savePublished(['x']), false)
 } finally { globalThis.localStorage = previous }
 console.log(`Budget profiles: ${BUDGET_PROFILES.length} source ledgers, adaptive texts, expense coverage, reconciliation, draft migration and independent publication storage verified.`)
+
+// Prepared budgets must balance without posing as unmodified source statements.
+for (const p of BUDGET_PROFILES.filter(p => p.kind === 'prepared')) {
+  assert.equal(analyzeBudget(p).balance, 0, p.id)
+  assert.match(sourceReply(p), /compléments et arrondis/)
+  assert(!sourceReply(p).includes('Montants déclarés par la personne'))
+  assert(p.provenance?.method)
+}
+const preparedThomas = BUDGET_PROFILES.find(p => p.id === 'prepared-tom281-2026-10-30')
+assert.equal(preparedThomas.savings.find(r => r.label === 'Épargne de précaution').amount, 610)
+assert.equal(analyzeBudget(preparedThomas).income, 2530)
