@@ -1,3 +1,4 @@
+import { MANUAL_SOURCE_ROUTES } from './portfolio-admissions.js'
 import RETURNS from './monthly-duel-returns.json' with { type: 'json' }
 import { INSTRUMENTS_BY_ISIN } from './instruments.js'
 import { latestCommonYears } from './annual-window.js'
@@ -12,8 +13,10 @@ export const AUTOMATED_PORTFOLIO_FUNDS = Object.values(RETURNS).flatMap(record =
   const name=identity.name, expiry=name.match(/\b(?:Dec|December|décembre)\s+(20\d{2})\b/i)?.[1]
   if (expiry && new Date().getUTCFullYear()>Number(expiry)) return []
   // Broad display categories only; these never drive automatic risk recipes.
-  const cat=/\b(?:ETC|ETP|ETN)\b/.test(name)?'matieres_premieres':/bond|treasury|govt|overnight|court terme/i.test(name)?'obligataire':'actions_larges'
-  return [{id:`manual-${record.isin}`,isin:record.isin,name,cat,emoji:'📊',manualOnly:!AUTOMATIC_RECIPE_ISINS.has(record.isin),automatedManual:true,distinctCandidate:true,
+  const declaredRoute=MANUAL_SOURCE_ROUTES[record.isin]
+  const manualRoute=declaredRoute?.instrumentType===identity.instrumentType?declaredRoute:null
+  const cat=manualRoute?.category??(/\b(?:ETC|ETP|ETN)\b/.test(name)?'matieres_premieres':/bond|treasury|govt|overnight|court terme/i.test(name)?'obligataire':'actions_larges')
+  return [{...(manualRoute?{underlyingMechanism:manualRoute.mechanism,basis:record.basis}:{}),id:`manual-${record.isin}`,isin:record.isin,name,cat,emoji:'📊',manualOnly:!AUTOMATIC_RECIPE_ISINS.has(record.isin),automatedManual:true,distinctCandidate:true,
     returnCurrency:record.currency,calendarReturns:record.years,r:record.values,
     confidenceNote:record.note,desc:[name,'Composition manuelle sur la période commune réellement disponible.','Risque de perte en capital ; exposition à examiner avec le reste du portefeuille.']}]
 })

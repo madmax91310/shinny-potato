@@ -103,6 +103,11 @@ try {
       assert.deepEqual(JSON.parse(JSON.stringify(restored)), JSON.parse(JSON.stringify(value)), `${name}.${key}`)
     }
   }
+  // Source convention must survive the initial thin view, before selected-record hydration.
+  for(const asset of canonical['portfolio-assets'].ASSETS.filter(a=>a.underlyingMechanism)){
+    const thin=projected['portfolio-assets'].ASSETS.find(a=>a.id===asset.id)
+    for(const field of ['isin','cat','basis','underlyingMechanism'])assert.equal(thin[field],asset[field],`${asset.id}: lost source identity/convention ${field}`)
+  }
   for (const isin of Object.keys(canonical.instruments.INSTRUMENTS_BY_ISIN)) {
     for (const name of ['instruments', 'instrument-facts', 'instrument-listings', 'etf-ter','preferred-instrument-tickers']) {
       for (const [key, fn] of Object.entries(canonical[name])) {

@@ -1,5 +1,6 @@
+import { MANUAL_SOURCE_ROUTES } from './portfolio-admissions.js'
 import { getInstrumentName } from './instruments.js'
-import { QUALIFIED_FUND_CALENDARS, qualifiedFundCalendars, currentAnnualEvidence } from './qualified-annual-calendars.js'
+import { QUALIFIED_FUND_CALENDARS, qualifiedFundCalendars, currentAnnualEvidence, closedCalendarYears } from './qualified-annual-calendars.js'
 import FX from './monthly-fx.json' with { type: 'json' }
 import { monthlyFxEvidence } from './history-currency.js'
 import { convertCalendarReturn } from './calendar-fx.js'
@@ -43,18 +44,33 @@ export function qualifyManualCurrencyCalendar(calendar, fx = FX, now = new Date(
 }
 const convertedManualCalendars = Object.values(qualifiedFundCalendars({ nativeCurrencies: ['JPY'] }))
   .map(record => qualifyManualCurrencyCalendar(record)).filter(Boolean)
+// Explicit independent NAV route for the existing Copper manual choice.
+// This does not repair COPA.L, release its refused windows or grant an automatic role.
+export function qualifyPreferredManualNav(record, now = new Date()) {
+  const route=MANUAL_SOURCE_ROUTES[record?.isin]
+  if (!route || record.currency!==route.currency || record.instrumentType!==route.instrumentType
+    || record.basis!=='fund-nav' || record.frequency!=='annual' || record.sourceUrls?.[0]!==route.source
+    || /proxy/i.test(record.method??'') || !/total return/i.test(record.method??'')
+    || !currentAnnualEvidence(record.checkedAt,record.asOf,'etf.performance',now)) return null
+  const years=closedCalendarYears(record.years,now)
+  const window=latestCommonYears([years],{length:route.minimumYears,minimum:route.minimumYears,now})
+  if (window.length!==route.minimumYears || window.at(-1)!==Math.max(...Object.keys(years).map(Number))) return null
+  return route
+}
 export const ANNUAL_PORTFOLIO_FUNDS = [...Object.values(QUALIFIED_FUND_CALENDARS), ...convertedManualCalendars].flatMap(record => {
   const expiry=record.label.match(/\b(?:Dec|December|décembre)\s+(20\d{2})\b/i)?.[1]
   if(expiry && new Date().getUTCFullYear()>Number(expiry))return []
   if (latestCommonYears([record.years], { minimum: 3 }).length < 3) return []
   const cat = ['ETC', 'ETN', 'ETP'].includes(record.instrumentType) ? 'matieres_premieres' : 'actions_larges'
+  const navRoute=qualifyPreferredManualNav(record)
   const recovery = ANNUAL_RECOVERIES[record.isin]?.annualCurrency === record.currency ? ANNUAL_RECOVERIES[record.isin] : null
-  return [{ id: recovery?.annualManualId ?? (record.manualCurrencyRoute ? `manual-${record.isin}` : EXISTING_MANUAL_IDS[record.isin]) ?? `nav-${record.isin}`, isin: record.isin, name: getInstrumentName(record.isin,'portfolio'), cat, emoji: '📊', manualOnly: true,
-    ...(recovery || record.manualCurrencyRoute ? { preferQualifiedAnnual: true } : {}),
+  return [{ id: navRoute?.id ?? recovery?.annualManualId ?? (record.manualCurrencyRoute ? `manual-${record.isin}` : EXISTING_MANUAL_IDS[record.isin]) ?? `nav-${record.isin}`, isin: record.isin, name: getInstrumentName(record.isin,'portfolio'), cat, emoji: '📊', manualOnly: true,
+    ...(navRoute || recovery || record.manualCurrencyRoute ? { preferQualifiedAnnual: true } : {}),
     ...(record.manualCurrencyRoute ? { nativeReturnCurrency: record.originalCurrency, fxSourceUrls: record.fxSourceUrls, fxCheckedAt: record.fxCheckedAt, currencyQualifications: record.currencyQualifications } : {}),
+    ...(navRoute ? { underlyingMechanism: navRoute.mechanism } : {}),
     annualManual: true, distinctCandidate: true, basis: record.basis, source: record.sourceUrls[0], checkedAt: record.checkedAt,
     returnCurrency: record.currency, calendarReturns: record.years, r: HISTORICAL_YEARS.map(year => record.years[year] ?? null),
-    confidenceNote: record.method,
+    confidenceNote: navRoute?.note ?? record.method,
     desc: [record.label, 'Composition manuelle sur les années complètes communes.', 'Risque de perte en capital.'] }]
 })
 
