@@ -1,7 +1,7 @@
 import { BUDGET_EDITORIAL, BUDGET_PROFILES, EXPENSE_CATEGORIES } from './data.js'
 
 export const MAX_BUDGET_LINES = 24
-export const euro = value => Number(value).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0, maximumFractionDigits: 2 })
+export const euro = (value, currency = 'EUR') => Number(value).toLocaleString('fr-FR', { style: 'currency', currency, minimumFractionDigits: 0, maximumFractionDigits: 2 })
 export const dateLabel = date => new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${date}T12:00:00Z`))
 export const budgetKind = profile => profile.kind === 'planned' ? 'Budget prévu' : profile.kind === 'participant' ? 'Budget communiqué' : 'Budget déclaré'
 const cents = value => Math.round(value * 100)
@@ -10,7 +10,7 @@ const safeText = (value, max) => typeof value === 'string' && value.length <= ma
 const validDate = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value))
 
 export function validBudget(profile) {
-  return !!profile && safeText(profile.id, 100) && safeText(profile.name, 70) &&
+  return !!profile && safeText(profile.id, 100) && (profile.currency === undefined || ['EUR', 'CHF'].includes(profile.currency)) && safeText(profile.name, 70) &&
     (profile.age === null || Number.isInteger(profile.age) && profile.age >= 18 && profile.age <= 110) &&
     ['job', 'location', 'household', 'period', 'incomeBasis', 'incomeNote'].every(key => safeText(profile[key], 250)) &&
     ['declared', 'planned', 'participant'].includes(profile.kind) && typeof profile.approximate === 'boolean' &&
@@ -63,28 +63,29 @@ export function buildBudgetText(profile) {
   const a = analyzeBudget(profile)
   if (a.errors.length) return ''
   const e = editorialFor(profile), name = budgetDisplayName(profile)
+  const money = value => euro(value, profile.currency)
   const age = profile.age && !name.includes(String(profile.age)) ? `, ${profile.age} ans` : ''
   const household = profile.household === 'Situation familiale non précisée' ? '' : profile.household
   const presentation = [profile.job, household].filter(Boolean).join(' · ')
   const sections = budgetExpenseSections(profile)
   const expenses = sections.map(section => {
     const total = rowTotal(section.rows)
-    const rows = section.rows.map(row => `• ${EXPENSE_CATEGORIES.find(category => category.id === row.category)?.emoji || '🧾'} ${row.label} : ${euro(row.amount)}`).join('\n')
-    return `${section.emoji} ${section.title} : ${euro(total)} (${share(total, a.income)})\n${rows}`
+    const rows = section.rows.map(row => `• ${EXPENSE_CATEGORIES.find(category => category.id === row.category)?.emoji || '🧾'} ${row.label} : ${money(row.amount)}`).join('\n')
+    return `${section.emoji} ${section.title} : ${money(total)} (${share(total, a.income)})\n${rows}`
   }).join('\n\n')
-  const incomeRows = profile.income.length > 1 ? profile.income.map(row => `• ${row.label} : ${euro(row.amount)}`).join('\n') : ''
+  const incomeRows = profile.income.length > 1 ? profile.income.map(row => `• ${row.label} : ${money(row.amount)}`).join('\n') : ''
   const incomeNote = e && 'incomeNote' in e ? e.incomeNote : profile.incomeNote
-  const savings = profile.savings.map(row => `• ${row.label} : ${euro(row.amount)}`).join('\n')
+  const savings = profile.savings.map(row => `• ${row.label} : ${money(row.amount)}`).join('\n')
   return [
     `Budget de ${name}${age}${e ? '\n(prénom' + (name.includes(' et ') ? 's fictifs)' : ' fictif)') : ''}`,
     [presentation && `👤 ${presentation}`, profile.location && `📍 ${profile.location}`].filter(Boolean).join('\n'),
     profile.kind === 'planned' && 'Budget prévu',
-    [`💰 Revenus mensuels : ${profile.approximate ? 'environ ' : ''}${euro(a.income)}`, profile.incomeBasis, incomeRows, incomeNote].filter(Boolean).join('\n'),
+    [`💰 Revenus mensuels : ${profile.approximate ? 'environ ' : ''}${money(a.income)}`, profile.incomeBasis, incomeRows, incomeNote].filter(Boolean).join('\n'),
     expenses,
-    sections.length > 1 && `🧾 Total des dépenses : ${euro(a.expenses)} / mois`,
-    `👉 ${a.available < 0 ? 'Déficit avant épargne' : 'Reste avant épargne'} : ${euro(a.available)} / mois (${share(a.available, a.income)})`,
-    savings && `💰 Épargne et investissements ${profile.kind === 'planned' ? 'prévus' : 'au budget'} : ${euro(a.savings)} / mois\n${savings}\n${a.balance < 0 ? 'Manque après ces versements' : 'Solde après ces versements'} : ${euro(Math.abs(a.balance))}`,
-    profile.capacity !== null && `Capacité d’épargne ${profile.kind === 'planned' ? 'envisagée' : 'annoncée'} : environ ${euro(profile.capacity)} / mois.`,
+    sections.length > 1 && `🧾 Total des dépenses : ${money(a.expenses)} / mois`,
+    `👉 ${a.available < 0 ? 'Déficit avant épargne' : 'Reste avant épargne'} : ${money(a.available)} / mois (${share(a.available, a.income)})`,
+    savings && `💰 Épargne et investissements ${profile.kind === 'planned' ? 'prévus' : 'au budget'} : ${money(a.savings)} / mois\n${savings}\n${a.balance < 0 ? 'Manque après ces versements' : 'Solde après ces versements'} : ${money(Math.abs(a.balance))}`,
+    profile.capacity !== null && `Capacité d’épargne ${profile.kind === 'planned' ? 'envisagée' : 'annoncée'} : environ ${money(profile.capacity)} / mois.`,
     e?.note,
     e?.assets?.length && `🏦 Épargne déjà constituée :\n${e.assets.map(value => `• ${value}`).join('\n')}`,
     e ? e.story : profile.context,
@@ -104,7 +105,7 @@ export function sourceReply(profile) {
 }
 
 export function blankBudget() {
-  return { id: 'participation', name: '', age: null, job: '', location: '', household: '', kind: 'participant', approximate: false,
+  return { id: 'participation', currency: 'EUR', name: '', age: null, job: '', location: '', household: '', kind: 'participant', approximate: false,
     publishedAt: null, checkedAt: null, period: '', source: null, incomeBasis: 'Net après impôt', incomeNote: '',
     income: [{ label: 'Salaire net après impôt', amount: null }], expenses: [{ label: 'Loyer et charges', amount: null, category: 'housing' }],
     savings: [], capacity: null, context: '', caveat: '', hook: '', question: 'Quel poste pèse le plus dans ton budget ?' }
