@@ -1,6 +1,7 @@
 // Témoignages publics, contrôlés le 30/10/2026. Les dates décrivent les
 // publications, pas une actualisation des budgets des personnes.
-// Aucun prénom, métier ou poste manquant n'est reconstruit.
+// Aucun métier ou poste manquant n'est reconstruit. Les prénoms fictifs du texte
+// sont déclarés séparément dans BUDGET_EDITORIAL, sans modifier les témoignages.
 export const BUDGET_PROFILES = [
   {
     id: 'reddit-actif-2026-09-27', name: 'Un actif', age: null, job: '', location: '',
@@ -730,3 +731,65 @@ export const EXPENSE_CATEGORIES = [
   { id: 'leisure', label: 'Loisirs', emoji: '🍿' },
   { id: 'other', label: 'Autres dépenses', emoji: '🧾' },
 ]
+
+// Prénoms fictifs et mise en récit éditoriale des témoignages ci-dessus.
+// Les montants et situations restent ceux des sources ; aucune identité réelle
+// n'est déduite. Une ventilation incomplète conserve tous les postes groupés.
+export const BUDGET_EDITORIAL = {
+  'reddit-actif-2026-09-27': {
+    alias: 'Camille',
+    assets: ['5 000 € sur un Livret A'],
+    story: 'Camille prépare un changement de travail et se demande s’il faut remplacer sa voiture de 2005.',
+  },
+  'reddit-couple-nord-2026-07-09': {
+    alias: 'Julie et Alex',
+    incomeNote: '',
+    goal: 'Reprendre la main sur leur budget après une période de découvert et constituer une réserve de sécurité.',
+    note: 'La marge restante doit encore couvrir la santé, les loisirs et les autres dépenses.',
+  },
+  'reddit-salarie-26-2026-01-04': {
+    alias: 'Thomas',
+    incomeNote: '',
+    assets: ['8 000 € sur un Livret A'],
+    story: 'Thomas vient de recevoir sa première paie.',
+    goal: 'Atteindre 10 000 € de réserve avant de commencer à investir.',
+  },
+  'finary-ingenieur-aero-2025-11-30': {
+    alias: 'Mathieu',
+    goal: 'Comprendre comment rapprocher son budget de la règle 50/30/20.',
+  },
+  'finary-alternant-22-2025-05-15': {
+    alias: 'Lucas',
+    story: 'Lucas parcourt environ 450 km par semaine.',
+    note: 'Certains mois, une partie du versement sur le PEA vient du Livret A : ces versements ne sont donc pas intégralement une épargne nouvelle.',
+  },
+  'finary-fonctionnaire-30-2025-05-21': {
+    alias: 'Nicolas',
+    goal: 'Il envisage de verser 500 € par mois sur son PEA.',
+    note: 'Les vacances ne sont pas comprises dans ces dépenses : elles sont financées depuis le Livret A.',
+    essential: ['Remboursement du prêt familial', 'Courses', 'Énergie', 'Charges de copropriété', 'Assurance automobile', 'Carburant', 'Entretien automobile et contrôle technique', 'Entretien chaudière et climatisation', 'Assurance habitation', 'Internet fibre', 'Téléphone mobile', 'Taxe foncière du parking'],
+    discretionary: ['Restaurants', 'Dépenses plaisir', 'Cadeaux et divers mensualisés', 'Coiffeur', 'Netflix', 'Amazon Prime', 'Disney+'],
+  },
+  'finary-alternant-19-2025-09-27': {
+    alias: 'Hugo',
+    essential: ['Loyer', 'Charges du logement', 'Courses', 'Téléphone'],
+    discretionary: ['Loisirs et extras', 'iCloud'],
+  },
+  'reddit-couple-35-2025-10-15': {
+    alias: 'Clara et Louis',
+    goal: 'Se donner les moyens d’avoir un enfant.',
+    note: 'Le reste du tableau doit encore absorber des dépenses annuelles et des imprévus non entièrement détaillés.',
+    essential: ['Loyer', 'Électricité', 'Transports en commun', 'Loyers des deux mères à l’étranger', 'Frais bancaires', 'Téléphone de l’auteur', 'Internet', 'Téléphone de sa femme', 'Leasing automobile', 'Assurance automobile', 'Carburant', 'Courses', 'Achat du téléphone en dix fois'],
+    discretionary: ['Deux abonnements de sport', 'Google Drive', 'Cinéma UGC', 'Spotify', 'Canal+', 'Argent de poche de l’auteur', 'Argent de poche de sa femme', 'Sorties, restaurants, cafés et musées'],
+  },
+  'reddit-tech-26-2026-02-06': {
+    alias: 'Maxime',
+    note: 'Le solde reste sur le compte courant pour d’éventuels achats et prélèvements : ce n’est pas une épargne supplémentaire.',
+  },
+  'reddit-alternant-20-2025-09-03': {
+    alias: 'Léo',
+    story: 'Le surplus éventuel de l’enveloppe loisirs doit rejoindre son Livret A.',
+    essential: ['Assurance automobile, essence et téléphone'],
+    discretionary: ['Enveloppe sorties et plaisirs'],
+  },
+}

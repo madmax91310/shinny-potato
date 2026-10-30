@@ -1,4 +1,4 @@
-import { EXPENSE_CATEGORIES } from './data.js'
+import { BUDGET_EDITORIAL, BUDGET_PROFILES, EXPENSE_CATEGORIES } from './data.js'
 
 export const MAX_BUDGET_LINES = 24
 export const euro = value => Number(value).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0, maximumFractionDigits: 2 })
@@ -40,23 +40,63 @@ export function analyzeBudget(profile) {
     expenseShare: income > 0 ? expenses / income * 100 : 0 }
 }
 
+const editorialFor = profile => profile.kind === 'participant' ? null : BUDGET_EDITORIAL[profile.id]
+export const budgetDisplayName = profile => editorialFor(profile)?.alias || profile.name
+const share = (amount, income) => `${Math.round(amount / income * 100)} %`
+const rowTotal = rows => rows.reduce((sum, row) => sum + cents(row.amount), 0) / 100
+
+// Never infer constraints from the broad categories: restaurants and groceries,
+// for example, both use "food". Mixed or edited rows keep the unsplit version.
+export function budgetExpenseSections(profile) {
+  const e = editorialFor(profile)
+  if (!e?.essential?.length || !e?.discretionary?.length ||
+      !profile.expenses.every(row => Number(e.essential.includes(row.label)) + Number(e.discretionary.includes(row.label)) === 1)) {
+    return [{ title: 'Dépenses', emoji: '🧾', rows: profile.expenses }]
+  }
+  return [
+    { title: 'Dépenses contraintes', emoji: '🏠', rows: profile.expenses.filter(row => e.essential.includes(row.label)) },
+    { title: 'Dépenses non contraintes', emoji: '🎉', rows: profile.expenses.filter(row => e.discretionary.includes(row.label)) },
+  ]
+}
+
 export function buildBudgetText(profile) {
   const a = analyzeBudget(profile)
   if (a.errors.length) return ''
-  const age = profile.age && !profile.name.includes(String(profile.age)) ? `${profile.age} ans` : ''
-  const intro = [profile.name, age, profile.job, profile.location, profile.household === 'Situation familiale non précisée' ? '' : profile.household].filter(Boolean).join(' · ')
-  const expenses = profile.expenses.map(row => `${EXPENSE_CATEGORIES.find(category => category.id === row.category)?.emoji || '🧾'} ${row.label} : ${euro(row.amount)}`).join('\n')
-  const savings = profile.savings.map(row => `💰 ${row.label} : ${euro(row.amount)}`).join('\n')
-  return [profile.hook || `${euro(a.income)} de revenus mensuels : comment se répartit ce budget ? 👇`,
-    `👤 ${intro}`, `${budgetKind(profile)}${profile.period ? ` · ${profile.period}` : ''}${profile.approximate ? ' · montants approximatifs' : ''}`,
-    `💸 Revenus : ${euro(a.income)} / mois\n${profile.incomeBasis}${profile.incomeNote ? `\n${profile.incomeNote}` : ''}`,
-    expenses, `🧾 Total des dépenses : ${euro(a.expenses)} / mois`,
-    `🧮 ${a.available < 0 ? 'Déficit avant épargne' : 'Reste calculé avant épargne'} : ${euro(a.available)}`,
-    savings && `Épargne prévue au budget :\n${savings}\nSolde après ces versements : ${euro(a.balance)}`,
-    profile.capacity !== null && `💰 Capacité d’épargne annoncée : environ ${euro(profile.capacity)} / mois.`,
-    profile.context, profile.question,
-    profile.source && `Source : ${profile.source.publisher}${profile.publishedAt ? `, témoignage du ${dateLabel(profile.publishedAt)}` : ''}.`,
+  const e = editorialFor(profile), name = budgetDisplayName(profile)
+  const age = profile.age && !name.includes(String(profile.age)) ? `, ${profile.age} ans` : ''
+  const household = profile.household === 'Situation familiale non précisée' ? '' : profile.household
+  const presentation = [profile.job, household].filter(Boolean).join(' · ')
+  const sections = budgetExpenseSections(profile)
+  const expenses = sections.map(section => {
+    const total = rowTotal(section.rows)
+    const rows = section.rows.map(row => `• ${EXPENSE_CATEGORIES.find(category => category.id === row.category)?.emoji || '🧾'} ${row.label} : ${euro(row.amount)}`).join('\n')
+    return `${section.emoji} ${section.title} : ${euro(total)} (${share(total, a.income)})\n${rows}`
+  }).join('\n\n')
+  const incomeRows = profile.income.length > 1 ? profile.income.map(row => `• ${row.label} : ${euro(row.amount)}`).join('\n') : ''
+  const incomeNote = e && 'incomeNote' in e ? e.incomeNote : profile.incomeNote
+  const savings = profile.savings.map(row => `• ${row.label} : ${euro(row.amount)}`).join('\n')
+  return [
+    `Budget de ${name}${age}${e ? '\n(prénom' + (name.includes(' et ') ? 's fictifs)' : ' fictif)') : ''}`,
+    [presentation && `👤 ${presentation}`, profile.location && `📍 ${profile.location}`].filter(Boolean).join('\n'),
+    profile.kind === 'planned' && 'Budget prévu',
+    [`💰 Revenus mensuels : ${profile.approximate ? 'environ ' : ''}${euro(a.income)}`, profile.incomeBasis, incomeRows, incomeNote].filter(Boolean).join('\n'),
+    expenses,
+    sections.length > 1 && `🧾 Total des dépenses : ${euro(a.expenses)} / mois`,
+    `👉 ${a.available < 0 ? 'Déficit avant épargne' : 'Reste avant épargne'} : ${euro(a.available)} / mois (${share(a.available, a.income)})`,
+    savings && `💰 Épargne et investissements ${profile.kind === 'planned' ? 'prévus' : 'au budget'} : ${euro(a.savings)} / mois\n${savings}\n${a.balance < 0 ? 'Manque après ces versements' : 'Solde après ces versements'} : ${euro(Math.abs(a.balance))}`,
+    profile.capacity !== null && `Capacité d’épargne ${profile.kind === 'planned' ? 'envisagée' : 'annoncée'} : environ ${euro(profile.capacity)} / mois.`,
+    e?.note,
+    e?.assets?.length && `🏦 Épargne déjà constituée :\n${e.assets.map(value => `• ${value}`).join('\n')}`,
+    e ? e.story : profile.context,
+    e?.goal && `🎯 Objectif : ${e.goal}`,
+    profile.question && `💬 ${profile.question}`,
   ].filter(Boolean).join('\n\n')
+}
+
+// Refresh generated drafts after a text update, but never replace a personal text.
+export function refreshBudgetDraft(record) {
+  const profile = BUDGET_PROFILES.find(p => p.id === record.profile.id) || record.profile
+  return { ...record, profile, text: record.edited ? record.text : buildBudgetText(profile) }
 }
 
 export function sourceReply(profile) {

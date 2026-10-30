@@ -6,7 +6,7 @@ import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
 import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, euro } from '../src/pages/budget-profiles/lib.js'
-import { DRAFT_KEY, USAGE_KEY } from '../src/pages/budget-profiles/storage.js'
+import { DRAFT_KEY, PUBLISHED_KEY, USAGE_KEY } from '../src/pages/budget-profiles/storage.js'
 
 const base = process.env.BUDGET_PUBLIC_BASE ?? 'http://127.0.0.1:4403/shinny-potato'
 const server = process.env.BUDGET_PUBLIC_BASE ? null : spawn(process.execPath, ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', '4403', '--strictPort'], { stdio: 'ignore' })
@@ -39,13 +39,34 @@ try {
       assert((await image.evaluate(img => img.naturalWidth)) === 1200)
       await page.getByRole('button', { name: 'Copier le texte', exact: true }).click()
       assert.equal(await page.evaluate(() => navigator.clipboard.readText()), buildBudgetText(profile))
+      await expect(page.getByRole('checkbox', { name: 'Profil publié', exact: true })).not.toBeChecked()
+      assert.equal(await page.evaluate(key => localStorage.getItem(key), PUBLISHED_KEY), null, 'Copying and exporting never declare publication')
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}: no horizontal overflow`)
       const a = analyzeBudget(profile)
       await expect(page.locator('.budget-totals')).toContainText(euro(a.available))
       await page.screenshot({ path: `${output}/${width}-${profile.id}.png`, fullPage: true })
       results.push({ width, profile: profile.id, income: a.income, expenses: a.expenses, available: a.available, balance: a.balance, pngBytes: previewBytes.length })
     }
+    // Publication is a deliberate per-profile declaration, independent of usage.
+    const publication = page.getByRole('checkbox', { name: 'Profil publié', exact: true })
+    const lastId = BUDGET_PROFILES.at(-1).id
+    await publication.check()
+    await expect(page.getByText('Profil marqué comme publié.', { exact: true })).toBeVisible()
+    await expect(picker.locator(`[data-value="${lastId}"]`)).toContainText('publié')
+    assert.equal(await page.evaluate(key => localStorage.getItem(key), USAGE_KEY), null)
+    await page.reload(); await expect(publication).toBeChecked()
+    await picker.locator(`[data-value="${BUDGET_PROFILES[0].id}"]`).click()
+    await expect(publication).not.toBeChecked()
+    await picker.locator(`[data-value="${lastId}"]`).click()
+    await expect(publication).toBeChecked()
+    await page.getByLabel('Masquer les profils publiés', { exact: true }).check()
+    await expect(picker.locator(`[data-value="${lastId}"]`)).toHaveCount(0)
+    await expect(publication).toBeChecked() // The opened profile stays available to unmark.
+    await publication.uncheck()
+    await expect(picker.locator(`[data-value="${lastId}"]`)).toHaveCount(1)
+    await page.reload(); await expect(publication).not.toBeChecked()
     await page.getByRole('button', { name: 'Marquer utilisé', exact: true }).click()
+    await expect(publication).not.toBeChecked()
     await page.getByLabel('Masquer les profils déjà utilisés').check()
     await expect(picker.locator(`[data-value="${BUDGET_PROFILES.at(-1).id}"]`)).toHaveCount(0)
     await page.getByLabel('Rechercher un profil').fill('aucun-resultat-xyz')
@@ -55,6 +76,16 @@ try {
     await page.getByLabel('Texte prêt à publier').fill('Mon brouillon personnel')
     await page.reload(); await expect(page.getByLabel('Texte prêt à publier')).toHaveValue('Mon brouillon personnel')
     await page.getByRole('button', { name: 'Adapter ce budget', exact: true }).click()
+    await expect(publication).not.toBeChecked()
+    await publication.check()
+    await expect(publication).toBeChecked()
+    const participationId = await page.evaluate(key => JSON.parse(localStorage.getItem(key)).profile.id, DRAFT_KEY)
+    await page.getByRole('button', { name: 'Créer une participation', exact: true }).click()
+    await expect(publication).not.toBeChecked()
+    await page.getByRole('button', { name: 'Profils sourcés', exact: true }).click()
+    await picker.locator(`[data-value="${lastId}"]`).click()
+    await page.getByRole('button', { name: 'Adapter ce budget', exact: true }).click()
+    await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)).profile.id, DRAFT_KEY)).not.toBe(participationId)
     await expect(page.getByText('Participation à faire valider avant publication.')).toBeVisible()
     await expect(page.getByText('Source et vérification du profil', { exact: true })).toHaveCount(0)
     await page.getByLabel('Dépenses · montant 1', { exact: true }).fill('')
@@ -66,11 +97,31 @@ try {
   }
   // Corrupt records must survive loading and attempted writes.
   const context = await browser.newContext()
-  await context.addInitScript(({ draft, usage }) => { localStorage.setItem(draft, '{broken'); localStorage.setItem(usage, '{broken') }, { draft: DRAFT_KEY, usage: USAGE_KEY })
+  await context.addInitScript(({ draft, usage, published }) => { localStorage.setItem(draft, '{broken'); localStorage.setItem(usage, '{broken'); localStorage.setItem(published, '{broken') }, { draft: DRAFT_KEY, usage: USAGE_KEY, published: PUBLISHED_KEY })
   const page = await context.newPage(); await page.goto(base + '/le-budget-de')
   await expect(page.getByRole('alert')).toContainText('conservé sans modification')
   assert.equal(await page.evaluate(key => localStorage.getItem(key), DRAFT_KEY), '{broken')
+  await page.getByRole('checkbox', { name: 'Profil publié', exact: true }).click()
+  await expect(page.getByRole('checkbox', { name: 'Profil publié', exact: true })).not.toBeChecked()
+  await expect(page.getByText('Le statut publié n’a pas pu être enregistré. Le suivi précédent est conservé.', { exact: true })).toBeVisible()
+  assert.equal(await page.evaluate(key => localStorage.getItem(key), PUBLISHED_KEY), '{broken')
   await context.close()
+  const legacy = await browser.newContext()
+  await legacy.addInitScript(({ draft, usage, profile }) => {
+    localStorage.setItem(draft, JSON.stringify({ profile, text: 'Ancien texte généré', edited: false }))
+    localStorage.setItem(usage, JSON.stringify([profile.id]))
+  }, { draft: DRAFT_KEY, usage: USAGE_KEY, profile: BUDGET_PROFILES[0] })
+  const legacyPage = await legacy.newPage(); await legacyPage.goto(base + '/le-budget-de')
+  await expect(legacyPage.getByLabel('Texte prêt à publier')).toHaveValue(buildBudgetText(BUDGET_PROFILES[0]))
+  await expect(legacyPage.getByRole('checkbox', { name: 'Profil publié', exact: true })).not.toBeChecked()
+  await legacy.close()
+  const blocked = await browser.newContext()
+  await blocked.addInitScript(() => { Storage.prototype.setItem = () => { throw new Error('Storage blocked') } })
+  const blockedPage = await blocked.newPage(); await blockedPage.goto(base + '/le-budget-de')
+  await blockedPage.getByRole('checkbox', { name: 'Profil publié', exact: true }).click()
+  await expect(blockedPage.getByRole('checkbox', { name: 'Profil publié', exact: true })).not.toBeChecked()
+  await expect(blockedPage.getByText('Le statut publié n’a pas pu être enregistré. Le suivi précédent est conservé.', { exact: true })).toBeVisible()
+  await blocked.close()
   assert.deepEqual(errors, [])
   writeFileSync(`${output}/results.json`, JSON.stringify(results, null, 2))
   console.log(`Budget browser: ${results.length} profile/viewport exports, clipboard, discovery, filters, drafts, invalidation and corrupt storage passed.`)
