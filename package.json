@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "predev": "npm run generate:dev",
-    "prebuild": "npm run audit:architecture && node scripts/test-dca-usage-storage.mjs && node scripts/test-radar-read-state.mjs && node scripts/test-hey-grok.mjs && node scripts/test-tweet-bank-storage.mjs && node scripts/test-tweet-bank-curation.mjs && node scripts/test-export-resources.mjs && node scripts/test-etf-presentation-quality.mjs && npm run generate:app",
+    "prebuild": "npm run audit:architecture && node scripts/test-budget-profiles.mjs && node scripts/test-dca-usage-storage.mjs && node scripts/test-radar-read-state.mjs && node scripts/test-hey-grok.mjs && node scripts/test-tweet-bank-storage.mjs && node scripts/test-tweet-bank-curation.mjs && node scripts/test-export-resources.mjs && node scripts/test-etf-presentation-quality.mjs && npm run generate:app",
     "dev": "vite",
     "build": "vite build && node scripts/audit-route-bundles.mjs && node scripts/audit-published-coverage.mjs && node scripts/test-built-publication-manifest.mjs",
     "lint": "oxlint",
