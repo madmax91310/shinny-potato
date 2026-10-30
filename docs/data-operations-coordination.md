@@ -1,5 +1,10 @@
 # Coordination des données — 24 octobre 2026
 
+
+## 2026-10-30 — suites économiques #1083
+
+Lot `fix/remaining-economic-index-books-20261030` : adaptateur Invesco partagé, contrats natifs, huit raccordements, tests et preuves. Aucune chaîne DCA parallèle. Livres World/Europe/EM/Russell et deux références physiques strictement approximatives ; les autres livres physiques et règles du writer sont conservés. Pas de modification de `image.js`/`lib.js` : préserver le tri DCA livré par #1086 et coordonner avec les autres PR ouvertes. Voir `holdings-economic-index-remainder-2026-10-30.md` pour dates et blocages support par support.
+
 Reprise30octobre — dépendances du réenregistrement mensuel : `fix/monthly-reader-rebase-20261030` possède uniquement prepare-market-projections.sh, le nouvel adaptateur market_reader_revalidation.py et ses tests. Le garde partagé reste inchangé. Refus planifié41064230836 rejoué sur c27845f→968f2f9 : seule la migration exacte du verrou non-bond et son test de contrat sont qualifiés ; toute autre modification du workflow reste refusée. Les sept lecteurs Budget#1082 sont vérifiés hors graphe du baseline avant/après ; aucun fichier Budget ou Radar modifié. Les changements mixtes de découvertes/identités restent refusés. Régénération et validation financière complète restent obligatoires après admission. Aucun réseau fournisseur déclenché par ces tests ; reprise ordinaire ciblée après fusion.
 
 Lot indépendant Europe600,29octobre après #1045 : réponse officielle exacte DE0002635307/productId251931 acquise, SHA conservé dans le suivi consolidé. Seul libellé nouveau non traduit : secteur « Sonstige », traduction explicite « Other ». Pays et identités restent inchangés. Le normaliseur conserve tous les poids et dates ; une étiquette inconnue continue de lever une erreur. Aucun fichier des PR ouvertes #1042 éditorial/#1031 GlobalX ni du lot #1047 frais/enregistrement modifié. Six tests du producteur passent ; le rejeu de la vraie réponse reste distinct de la collecte et publication GitHub encore à prouver.

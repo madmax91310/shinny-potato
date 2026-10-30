@@ -28,11 +28,22 @@ export function qualifiedNativeIndexComposition(record,isin,now=new Date()){
 function qualifiedIssuerIndex(h,share,index,now){
  const stamp=day(h.asOf),shareStamp=day(h.shareAsOf),metadataStamp=day(h.metadataAsOf),control=Date.parse(h.checkedAt),today=+new Date(now)
  const p=h.coverageProof,rows=h.rows
- const subjectSource=share.shareDocumentBase?h.shareSourceUrl===share.shareDocumentBase:
+ const rule=index.currencyWeightContract,currencyProof=p?.currencyWeightProof
+ const currencyQualified=!rule||(currencyProof?.sourceUrl===rule.sourceUrl&&currencyProof.sha256===rule.sha256
+  &&currencyProof.version===rule.version&&currencyProof.checkedAt===h.checkedAt
+  &&currencyProof.rule===rule.rule&&currencyProof.originalWeightsUnchanged===true&&share.hedged===false)
+ const subjectSource=share.shareDocumentTemplates?share.shareDocumentTemplates.some(template=>h.shareSourceUrl===template.replace('{monthEnd}',h.shareAsOf?.replaceAll('-',''))):share.shareDocumentBase?h.shareSourceUrl===share.shareDocumentBase:
   typeof h.shareSourceUrl==='string'&&h.shareSourceUrl.startsWith(share.shareDocumentPrefix)
    &&h.shareSourceUrl===share.shareDocumentPrefix+h.shareAsOf
    &&h.shareDiscoverySourceUrl===share.shareDocumentDiscoveryUrl&&hash(h.shareDiscoverySha256)
- return h.methodCode===index.methodCode&&h.sourceUrl===index.weightSourceUrl&&hash(h.sha256)
+ const subjectScopeQualified=!share.referenceOnly||(h.approximation===true&&p?.referenceOnlyForSubject===true)
+ const returnRule=index.returnWeightContract,returnProof=p?.returnWeightProof
+ const returnQualified=!returnRule||(returnProof?.checkedAt===h.checkedAt&&returnProof.rule===returnRule.rule
+  &&returnProof.originalWeightsUnchanged===true&&returnProof.targetReturnSeriesUnchanged===true
+  &&Array.isArray(returnProof.documents)&&returnProof.documents.length===returnRule.documents.length
+  &&returnRule.documents.every((doc,i)=>['sourceUrl','sha256','version'].every(key=>returnProof.documents[i]?.[key]===doc[key]))
+  &&p.targetBenchmark===share.targetBenchmark&&share.hedged===false)
+ return returnQualified&&subjectScopeQualified&&currencyQualified&&h.methodCode===index.methodCode&&h.sourceUrl===index.weightSourceUrl&&hash(h.sha256)
   &&typeof h.method==='string'&&h.method.trim().length>0&&subjectSource&&hash(h.shareSha256)
   &&[stamp,shareStamp,metadataStamp,control].every(Number.isFinite)
   &&stamp<=control&&shareStamp<=control&&metadataStamp<=control&&control<=today&&metadataStamp>=stamp
