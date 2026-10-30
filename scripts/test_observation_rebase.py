@@ -183,6 +183,20 @@ class ObservationRebaseTests(unittest.TestCase):
             with self.subTest(path=path):
                 self.assert_refused(path,'actors')
 
+    def test_scpi_actor_race_preserves_both_outputs_after_financial_validation(self):
+        self.f.advance_remote(ACTOR_OUTPUT)
+        result=self.publish('scpi')
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.assertEqual(self.f.git(self.f.remote,'show','master:'+ACTOR_OUTPUT),'concurrent update')
+        self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'validated update')
+
+    def test_scpi_actor_race_cannot_bypass_failed_financial_validation(self):
+        self.assert_refused(ACTOR_OUTPUT,'scpi',validation='false')
+
+    def test_scpi_actor_parser_and_own_registry_remain_protected(self):
+        for path in ('scripts/collect_presentation_actors.py','src/data/automated-scpi.json','scripts/collect_scpi.py'):
+            with self.subTest(path=path):self.assert_refused(path,'scpi')
+
     def test_publication_active_inflation_and_inputs_remain_protected(self):
         self.assert_refused('src/data/inflation-monthly.js','publication')
 
@@ -408,6 +422,9 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
             self.assertEqual(workflow.count("      - '" + path + "'"), 2)
         self.assertIn("run: python -m unittest discover -s scripts -p 'test_observation_rebase.py'", workflow)
 
+
+    def test_scpi_acquisition_graph_does_not_read_actor_output(self):
+        self.python_graph(['collect_scpi.py'],[ACTOR_OUTPUT])
 
     def test_publication_collectors_do_not_read_actor_presentations(self):
         self.python_graph(['refresh_purchasing_power.py', 'refresh_anniversary_levels.py',

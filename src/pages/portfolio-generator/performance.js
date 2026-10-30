@@ -52,6 +52,13 @@ export function computeYearlyPerf(selection) {
   return perf
 }
 
+// Capability filter for options already admitted by a recipe. This does not
+// grant any allocation role or relax the required six-year common window.
+export function hasCompleteAutomaticWindow(asset) {
+  const perf=computeYearlyPerf([{...asset,pct:100}])
+  return performanceYears(perf).length===6 && Object.values(perf).every(Number.isFinite)
+}
+
 // Même capitalisation géométrique pour le tweet et l’image, sur toute la période.
 export function annualizedReturn(perf) {
   const YEARS = performanceYears(perf)

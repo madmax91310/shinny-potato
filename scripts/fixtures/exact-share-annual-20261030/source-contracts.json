@@ -1,0 +1,572 @@
+{
+  "baselineMaster": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+  "partialCalendars": {
+    "IE00BKPX3K41": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2021": -8.92,
+        "2022": -21.95,
+        "2023": 2.3,
+        "2024": 11.67,
+        "2025": 39.91
+      },
+      "checkedAt": "2026-10-30",
+      "previous": {
+        "isin": "IE00BKPX3K41",
+        "official": [
+          null,
+          -8.92,
+          -21.95,
+          2.3,
+          11.67,
+          39.91
+        ],
+        "legacySelected": [
+          25.1,
+          -8.92,
+          -21.95,
+          2.3,
+          11.67,
+          39.91
+        ],
+        "generator": [
+          {
+            "id": "actions_asie_ex_japon",
+            "manualOnly": false,
+            "calendarReturns": {
+              "2020": 25.1,
+              "2021": -8.92,
+              "2022": -21.95,
+              "2023": 2.3,
+              "2024": 11.67,
+              "2025": 39.91
+            }
+          }
+        ],
+        "duels": [
+          {
+            "id": "manual-IE00BKPX3K41",
+            "calendarReturns": {
+              "2020": 25.1,
+              "2021": -8.92,
+              "2022": -21.95,
+              "2023": 2.3,
+              "2024": 11.67,
+              "2025": 39.91
+            },
+            "currency": "USD"
+          }
+        ]
+      }
+    },
+    "IE00BMG6Z448": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2022": -19.35,
+        "2023": 19.73,
+        "2024": 3.64,
+        "2025": 34.83
+      },
+      "checkedAt": "2026-10-30",
+      "previous": {
+        "isin": "IE00BMG6Z448",
+        "official": [
+          null,
+          null,
+          -19.35,
+          19.73,
+          3.64,
+          34.83
+        ],
+        "legacySelected": [
+          null,
+          null,
+          -19.4,
+          19.7,
+          3.6,
+          34.8
+        ],
+        "generator": [
+          {
+            "id": "em_ex_china",
+            "manualOnly": true,
+            "calendarReturns": {
+              "2022": -19.35,
+              "2023": 19.73,
+              "2024": 3.64,
+              "2025": 34.83
+            }
+          }
+        ],
+        "duels": [
+          {
+            "id": "em_ex_china",
+            "calendarReturns": {
+              "2022": -19.35,
+              "2023": 19.73,
+              "2024": 3.64,
+              "2025": 34.83
+            },
+            "currency": "USD"
+          }
+        ]
+      }
+    },
+    "IE00BMW42413": {
+      "currency": "EUR",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2021": 36.57,
+        "2022": -28.76,
+        "2023": 35.04,
+        "2024": 7.93,
+        "2025": 9.64
+      },
+      "checkedAt": "2026-10-30",
+      "previous": {
+        "isin": "IE00BMW42413",
+        "official": [
+          null,
+          36.57,
+          -28.76,
+          35.04,
+          7.93,
+          9.64
+        ],
+        "legacySelected": [
+          11.61,
+          36.57,
+          -28.76,
+          35.04,
+          7.93,
+          9.64
+        ],
+        "generator": [
+          {
+            "id": "tech_europe",
+            "manualOnly": false,
+            "calendarReturns": {
+              "2020": 11.61,
+              "2021": 36.57,
+              "2022": -28.76,
+              "2023": 35.04,
+              "2024": 7.93,
+              "2025": 9.64
+            }
+          }
+        ],
+        "duels": [
+          {
+            "id": "manual-IE00BMW42413",
+            "calendarReturns": {
+              "2020": 11.61,
+              "2021": 36.57,
+              "2022": -28.76,
+              "2023": 35.04,
+              "2024": 7.93,
+              "2025": 9.64
+            },
+            "currency": "EUR"
+          }
+        ]
+      }
+    },
+    "IE00BKPSFC54": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2021": 15.79,
+        "2022": -7.28,
+        "2023": 17.16,
+        "2024": 9.76,
+        "2025": 23.97
+      },
+      "checkedAt": "2026-10-30",
+      "previous": {
+        "isin": "IE00BKPSFC54",
+        "official": [
+          null,
+          15.79,
+          -7.28,
+          17.16,
+          9.76,
+          23.97
+        ],
+        "legacySelected": [
+          0.12,
+          15.79,
+          -7.28,
+          17.16,
+          9.76,
+          23.97
+        ],
+        "generator": [
+          {
+            "id": "quality_dividend",
+            "manualOnly": false,
+            "calendarReturns": {
+              "2020": 0.12,
+              "2021": 15.79,
+              "2022": -7.28,
+              "2023": 17.16,
+              "2024": 9.76,
+              "2025": 23.97
+            }
+          }
+        ],
+        "duels": [
+          {
+            "id": "quality_dividend",
+            "calendarReturns": {
+              "2021": 15.79,
+              "2022": -7.28,
+              "2023": 17.16,
+              "2024": 9.76,
+              "2025": 23.97
+            },
+            "currency": "USD"
+          }
+        ]
+      }
+    },
+    "DE000A27Z304": {
+      "currency": "USD",
+      "basis": "fund",
+      "years": {
+        "2021": 55.46,
+        "2022": -64.67,
+        "2023": 150.42,
+        "2024": 120.73,
+        "2025": -9.68
+      },
+      "asOf": "2026-10-30",
+      "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+      "sha256": "4ed04d81c0b759c7383448c7a7cb1bb18ddbf53d7b67173933dbdc6b61df251b",
+      "method": "calendar-year exact ETP NAV total return, net of fees",
+      "checkedAt": "2026-10-30",
+      "modifiedAt": "2026-10-30",
+      "previous": {
+        "isin": "DE000A27Z304",
+        "official": [
+          null,
+          55.46,
+          -64.67,
+          150.42,
+          120.73,
+          -9.68
+        ],
+        "legacySelected": [
+          303.16,
+          55.46,
+          -64.67,
+          150.42,
+          120.73,
+          -9.68
+        ],
+        "generator": [
+          {
+            "id": "bitcoin_etcgroup",
+            "manualOnly": false,
+            "calendarReturns": {
+              "2020": 303.16,
+              "2021": 55.46,
+              "2022": -64.67,
+              "2023": 150.42,
+              "2024": 120.73,
+              "2025": -9.68
+            }
+          }
+        ],
+        "duels": [
+          {
+            "id": "manual-DE000A27Z304",
+            "calendarReturns": {
+              "2020": 303.16,
+              "2021": 55.46,
+              "2022": -64.67,
+              "2023": 150.42,
+              "2024": 120.73,
+              "2025": -9.68
+            },
+            "currency": "USD"
+          }
+        ]
+      }
+    },
+    "GB00BLD4ZL17": {
+      "currency": "USD",
+      "basis": "fund",
+      "years": {
+        "2022": -66.03,
+        "2023": 156.18,
+        "2024": 122.51,
+        "2025": -7.99
+      },
+      "asOf": "2026-10-29",
+      "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZL17%40%25,ISIN_KEYSTATS_GB00BLD4ZL17",
+      "sha256": "dbf1aed3cae70d382649eb6f9e15c344660a3f19ba16b99f31e1ca374dcc99b5",
+      "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
+      "checkedAt": "2026-10-30",
+      "modifiedAt": "2026-10-30",
+      "previous": {
+        "isin": "GB00BLD4ZL17",
+        "official": [
+          null,
+          null,
+          -66.03,
+          156.18,
+          122.51,
+          -7.99
+        ],
+        "legacySelected": [
+          303.16,
+          59.67,
+          -64.27,
+          155.42,
+          121.05,
+          -6.34
+        ],
+        "generator": [
+          {
+            "id": "bitcoin",
+            "manualOnly": false,
+            "calendarReturns": {
+              "2020": 303.16,
+              "2021": 59.67,
+              "2022": -64.27,
+              "2023": 155.42,
+              "2024": 121.05,
+              "2025": -6.34
+            }
+          }
+        ],
+        "duels": [
+          {
+            "id": "manual-GB00BLD4ZL17",
+            "calendarReturns": {
+              "2020": 303.16,
+              "2021": 59.67,
+              "2022": -64.27,
+              "2023": 155.42,
+              "2024": 121.05,
+              "2025": -6.34
+            },
+            "currency": "USD"
+          }
+        ]
+      }
+    },
+    "GB00BLD4ZM24": {
+      "currency": "USD",
+      "basis": "fund",
+      "years": {
+        "2022": -68.7,
+        "2023": 97.03,
+        "2024": 46.75,
+        "2025": -11.7
+      },
+      "asOf": "2026-10-29",
+      "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZM24%40%25,ISIN_KEYSTATS_GB00BLD4ZM24",
+      "sha256": "58dd2c8deddf74db385bccb6e3012ff930eb4c6119f6af6203ab0aae98806110",
+      "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
+      "checkedAt": "2026-10-30",
+      "modifiedAt": "2026-10-30",
+      "previous": {
+        "isin": "GB00BLD4ZM24",
+        "official": [
+          null,
+          null,
+          -68.7,
+          97.03,
+          46.75,
+          -11.7
+        ],
+        "legacySelected": [
+          469.25,
+          399.13,
+          -67.5,
+          90.64,
+          46.07,
+          -10.97
+        ],
+        "generator": [
+          {
+            "id": "ethereum",
+            "manualOnly": false,
+            "calendarReturns": {
+              "2020": 469.25,
+              "2021": 399.13,
+              "2022": -67.5,
+              "2023": 90.64,
+              "2024": 46.07,
+              "2025": -10.97
+            }
+          }
+        ],
+        "duels": [
+          {
+            "id": "manual-GB00BLD4ZM24",
+            "calendarReturns": {
+              "2020": 469.25,
+              "2021": 399.13,
+              "2022": -67.5,
+              "2023": 90.64,
+              "2024": 46.07,
+              "2025": -10.97
+            },
+            "currency": "USD"
+          }
+        ]
+      }
+    },
+    "IE00BJ5JP097": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2022": -9.65,
+        "2023": 17.41,
+        "2024": 25.25,
+        "2025": 29.53
+      },
+      "checkedAt": "2026-10-30",
+      "modifiedAt": "2026-10-27",
+      "previous": {
+        "isin": "IE00BJ5JP097",
+        "official": [
+          null,
+          null,
+          -9.65,
+          17.41,
+          25.25,
+          29.53
+        ],
+        "legacySelected": [
+          null,
+          null,
+          -9.6,
+          17.4,
+          25.3,
+          29.5
+        ],
+        "generator": [
+          {
+            "id": "financieres_monde",
+            "manualOnly": true,
+            "calendarReturns": {
+              "2022": -9.65,
+              "2023": 17.41,
+              "2024": 25.25,
+              "2025": 29.53
+            }
+          }
+        ],
+        "duels": [
+          {
+            "id": "financieres_monde",
+            "calendarReturns": {
+              "2022": -9.65,
+              "2023": 17.41,
+              "2024": 25.25,
+              "2025": 29.53
+            },
+            "currency": "USD"
+          }
+        ]
+      }
+    }
+  },
+  "restoredAnnual": {
+    "FR0013412004": {
+      "id": "annual-FR0013412004",
+      "isin": "FR0013412004",
+      "label": "Amundi PEA Amérique Latine (MSCI Emerging Latin America Selection) UCITS ETF",
+      "shortLabel": "Amundi PEA Amérique Latine (MSCI Emerging Latin America Selection) UCITS ETF",
+      "instrumentType": "ETF",
+      "frequency": "annual",
+      "basis": "fund-nav",
+      "currency": "EUR",
+      "years": {
+        "2020": -21.48,
+        "2021": -1.74,
+        "2022": 15.86,
+        "2023": 24.63,
+        "2024": -25.29,
+        "2025": 35.75
+      },
+      "pea": true,
+      "group": "Calendriers annuels · Stratégiques",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ],
+      "checkedAt": "2026-10-30",
+      "asOf": "2025-12-31",
+      "method": "calendar-year share total return, income reinvested, fund fees included"
+    },
+    "IE00B4K6B022": {
+      "id": "annual-IE00B4K6B022",
+      "isin": "IE00B4K6B022",
+      "label": "HSBC EURO STOXX 50",
+      "shortLabel": "HSBC EURO STOXX 50",
+      "instrumentType": "ETF",
+      "frequency": "annual",
+      "basis": "fund-nav",
+      "currency": "EUR",
+      "years": {
+        "2016": 3.6,
+        "2017": 9.6,
+        "2018": -11.9,
+        "2019": 29.7,
+        "2020": -2.8,
+        "2021": 24.1,
+        "2022": -9,
+        "2023": 22.8,
+        "2024": 11.6,
+        "2025": 21.8
+      },
+      "pea": true,
+      "group": "Calendriers annuels · Cœur de portefeuille",
+      "sourceUrls": [
+        "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/kiid"
+      ],
+      "checkedAt": "2026-10-30",
+      "asOf": "2026-03-03",
+      "method": "calendar-year exact-share NAV total return, income reinvested, net of ongoing charges (KIID precision 0.1%)"
+    }
+  },
+  "preservedDuelRoles": [
+    {
+      "id": "manual-FR0013412004",
+      "isin": "FR0013412004",
+      "role": "complement",
+      "inPool": true,
+      "calendarReturns": {
+        "2020": -20.847970056124165,
+        "2021": -1.9709973364900768,
+        "2022": 14.931771525178107,
+        "2023": 25.584454951405288
+      }
+    },
+    {
+      "id": "manual-IE00B4K6B022",
+      "isin": "IE00B4K6B022",
+      "role": "complement",
+      "inPool": true,
+      "calendarReturns": {
+        "2016": 3.522041700335077,
+        "2017": 9.676683786924901,
+        "2018": -10.968201318433247,
+        "2019": 27.77073772896701,
+        "2020": -2.3275970736916007,
+        "2021": 24.09369428342174,
+        "2022": -8.721749049060158
+      }
+    }
+  ]
+}
