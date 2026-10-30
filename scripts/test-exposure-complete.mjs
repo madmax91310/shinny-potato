@@ -33,9 +33,8 @@ assert(validateProfile({imageOnly:true,scope:'Portefeuille investi',lines:[...li
 const visible=allocationRows(lines)
 assert.equal(visible.length,8)
 assert.equal(visible.reduce((s,r)=>s+r.weight,0),100)
-// Publication rows, including the grouped remainder, follow descending weight.
-assert.equal(visible.find(row=>row.name===`${lines.length-7} autres positions`)?.weight,86)
-assert(visible.slice(1).every((row,index)=>visible[index].weight>=row.weight))
+assert.deepEqual(visible.map(r=>r.weight),[86,2,2,2,2,2,2,2],'Grouped allocations retain every weight and follow descending display order')
+assert.equal(visible[0].name,'43 autres positions')
 const now=new Date('2026-10-16'),a='US0378331005',b='US5949181045'
 const o={asOf:'2026-10-14',sourceUrl:'https://example.com/full',basis:'fund',complete:true,rows:[{name:'Apple',isin:a,weightPct:50},{name:'Microsoft',isin:b,weightPct:50}]}
 const refs={x:{isin:'IE00B4L5Y983'},y:{isin:'IE00B5BMR087'},z:{isin:a,name:'Apple',kind:'equity',countries:o}}
