@@ -7,6 +7,38 @@
       "identitySourcePrefix": "https://www.blackrock.com/jp/individual-en/en/products/279438/fund/",
       "minimumMembers": 1000,
       "maximumMembers": 5000
+    },
+    "stoxx600": {
+      "methodCode": "invesco-published-economic-index-v1",
+      "publisherIsin": "IE00B60SWW18",
+      "publisherPageUrl": "https://www.invesco.com/uk/en/financial-products/etfs/invesco-stoxx-europe-600-ucits-etf-acc.html",
+      "publisherShareName": "Invesco STOXX Europe 600 UCITS ETF Acc",
+      "benchmarkName": "STOXX® Europe 600 Total Return Index",
+      "benchmarkRic": ".STOXXR",
+      "benchmarkTicker": "SXXR",
+      "currency": "EUR",
+      "benchmarkProvider": "STOXX Limited",
+      "weightSourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWW18/holdings/index?idType=isin&loadType=initial",
+      "metadataSourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWW18?idType=isin",
+      "minimumMembers": 600,
+      "maximumMembers": 600,
+      "scopeNote": "Complete issuer-published economic index exposure, not fund assets or substitute basket. Original rounded index weights; the publisher may delay the observation under index-provider licensing restrictions. Fund cash, fees, swaps and currency hedges excluded."
+    },
+    "nasdaq100-notional-net": {
+      "methodCode": "invesco-published-economic-index-v1",
+      "publisherIsin": "IE00BNRQM384",
+      "publisherPageUrl": "https://www.invesco.com/uk/en/financial-products/etfs/invesco-nasdaq-100-swap-ucits-etf-acc.html",
+      "publisherShareName": "Invesco NASDAQ-100 Swap UCITS ETF Acc",
+      "benchmarkName": "NASDAQ - 100 Notional NTR Index",
+      "benchmarkRic": ".XNDXNNR",
+      "benchmarkTicker": "NNDX",
+      "currency": "USD",
+      "benchmarkProvider": "Nasdaq",
+      "weightSourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BNRQM384/holdings/index?idType=isin&loadType=initial",
+      "metadataSourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BNRQM384?idType=isin",
+      "minimumMembers": 100,
+      "maximumMembers": 110,
+      "scopeNote": "Complete issuer-published economic index exposure, not fund assets or substitute basket. Original rounded index weights; the publisher may delay the observation under index-provider licensing restrictions. Fund cash, fees, swaps and currency hedges excluded."
     }
   },
   "shares": {
@@ -19,6 +51,17 @@
       "indexId": "topix",
       "hedged": true,
       "shareDocumentBase": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF"
+    },
+    "FR0011550193": {
+      "indexId": "stoxx600",
+      "hedged": false,
+      "shareDocumentDiscoveryUrl": "https://www.analizy.pl/etf/FR0011550193/bnp-paribas-easy-stoxx-europe-600-ucits-etf-acc-eur",
+      "shareDocumentPrefix": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/"
+    },
+    "FR0011871110": {
+      "indexId": "nasdaq100-notional-net",
+      "hedged": false,
+      "shareDocumentBase": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF"
     }
   }
 }
