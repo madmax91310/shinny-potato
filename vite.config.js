@@ -19,6 +19,8 @@ export default defineConfig(async ({ isPreview }) => {
   const toolData=projectToolData()
   return {
   base,
+  // The managed preview forwards the dev server through this exact local host.
+  server: { allowedHosts: ['terminal.local'] },
   build: {
     manifest: true,
     rolldownOptions: { output: { codeSplitting: { groups: [

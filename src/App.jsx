@@ -10,6 +10,7 @@ const Home = lazy(() => import('./pages/Home'))
 const RankingIdeas = lazy(() => import('./pages/ranking-ideas/App'))
 const HeyGrok = lazy(() => import('./pages/hey-grok/App'))
 const DcaProfiles = lazy(() => import('./pages/dca-profiles/App'))
+const BudgetProfiles = lazy(() => import('./pages/budget-profiles/App'))
 const PracticalSheets = lazy(() => import('./pages/practical-sheets/App'))
 const EditorialRadar = lazy(() => import('./pages/editorial-radar/App'))
 const WealthSimulator = lazy(() => import('./pages/wealth-simulator/App'))
@@ -46,6 +47,7 @@ const TOOL_ELEMENTS = {
   '/hey-grok': <HeyGrok />,
   '/classements-performances': <PerformanceRankings />,
   '/le-dca-de': <DcaProfiles />,
+  '/le-budget-de': <BudgetProfiles />,
   '/fiches-pratiques': <PracticalSheets />,
   '/radar-editorial': <EditorialRadar />,
   '/simulateur-patrimoine': <WealthSimulator />,

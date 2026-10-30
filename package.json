@@ -58,6 +58,8 @@
     "test:index-concentration": "node scripts/build-index-company-compositions.mjs && node scripts/test-index-concentration.mjs",
     "audit:etf-presentations": "node scripts/test-etf-presentation-quality.mjs",
     "test:hey-grok": "node scripts/test-hey-grok.mjs",
+    "test:budget": "node scripts/test-budget-profiles.mjs",
+    "test:budget:browser": "node scripts/playwright-budget-profiles.mjs",
     "test:hey-grok:browser": "node scripts/playwright-hey-grok.mjs",
     "test:dca:usage-storage": "node scripts/test-dca-usage-storage.mjs",
     "test:export-resources": "node scripts/test-export-resources.mjs",
