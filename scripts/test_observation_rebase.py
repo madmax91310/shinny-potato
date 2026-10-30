@@ -48,6 +48,8 @@ class ObservationRebaseTests(unittest.TestCase):
                      'public/data/investors/other.json',
                      'src/pages/hey-grok/App.css',
                      'src/pages/investment-calculator/lib.js', 'src/data/monthly-fx.json',
+                     'scripts/source-snapshots/inflation-automated.json',
+                     'scripts/collect_presentation_actors.py', 'src/data/inflation-monthly.js',
                      ACTOR_OUTPUT, *CURRENT_REVIEW_OUTPUTS]:
             p = self.f.local / name
             p.parent.mkdir(parents=True, exist_ok=True)
@@ -158,6 +160,31 @@ class ObservationRebaseTests(unittest.TestCase):
         result = self.publish('publication')
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(self.f.git(self.f.remote, 'show', 'master:src/data/automated-scpi.json'), 'concurrent update')
+
+    def assert_inflation_receipt_independent(self,kind):
+        self.f.advance_remote('scripts/source-snapshots/inflation-automated.json')
+        result=self.publish(kind)
+        self.assertEqual(result.returncode,0,result.stderr)
+
+    def test_market_inflation_receipt_is_independent(self):
+        self.assert_inflation_receipt_independent('market')
+
+    def test_publication_inflation_receipt_is_independent(self):
+        self.assert_inflation_receipt_independent('publication')
+
+    def test_actor_inflation_receipt_is_independent(self):
+        self.assert_inflation_receipt_independent('actors')
+
+    def test_actor_independence_never_bypasses_revalidation(self):
+        self.assert_refused('scripts/source-snapshots/inflation-automated.json','actors',validation='false')
+
+    def test_actor_registry_and_parser_and_active_inflation_stay_protected(self):
+        for path in (ACTOR_OUTPUT,'scripts/collect_presentation_actors.py','src/data/inflation-monthly.js'):
+            with self.subTest(path=path):
+                self.assert_refused(path,'actors')
+
+    def test_publication_active_inflation_and_inputs_remain_protected(self):
+        self.assert_refused('src/data/inflation-monthly.js','publication')
 
     def assert_refused(self, path, kind='scpi', validation='true'):
         self.f.advance_remote(path)

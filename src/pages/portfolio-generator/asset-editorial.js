@@ -1,3 +1,4 @@
+import { MANUAL_SOURCE_ROUTES } from '../../data/portfolio-admissions.js'
 // Rôles éditoriaux des supports de la banque commune. Les jumeaux d’exposition
 // partagent un rôle ; un indice, un facteur ou un mécanisme différent a son propre texte.
 // Aucun rendement, frais ou statut fiscal n’est recopié ici.
@@ -279,8 +280,8 @@ for (const asset of ASSETS.filter(a => a.instrumentType === 'EQUITY')) {
  entries[asset.id].description = `Actions de ${asset.name}.`;
 }
 for(const asset of ASSETS.filter(a=>a.automatedManual || a.annualManual)) {
- if(asset.annualManual && asset.cat==='matieres_premieres') {
-  add(asset.id,'commodity',asset.name,'Cette ligne suit un métal physique après les frais du produit ; elle ne verse pas de revenu.');
+ if((asset.annualManual && asset.cat==='matieres_premieres') || (MANUAL_SOURCE_ROUTES[asset.isin] && asset.cat===MANUAL_SOURCE_ROUTES[asset.isin].category)) {
+  add(asset.id,'commodity',asset.name,commoditySourceExplanation(asset));
   entries[asset.id].description=asset.name;
   continue;
  }
@@ -288,7 +289,13 @@ for(const asset of ASSETS.filter(a=>a.automatedManual || a.annualManual)) {
  entries[asset.id].description=asset.name;
 }
 export const ASSET_EDITORIAL = Object.freeze(entries);
+export function commoditySourceExplanation(asset) {
+ if(MANUAL_SOURCE_ROUTES[asset.isin])return (asset.basis==='fund-nav'?'Les performances reposent sur la valeur liquidative de cet ETC. ':'')+'Il donne une exposition au cuivre'+(asset.underlyingMechanism?.kind==='commodity-swap'?' via un swap':'')+' ; les frais et le change influencent ses performances.'
+ return 'Cette ligne suit un métal physique après les frais du produit ; elle ne verse pas de revenu.'
+}
 export function assetEditorial(asset) {
+  // Selected records arrive after the initial light registry was evaluated.
+  if(MANUAL_SOURCE_ROUTES[asset.isin] && asset.cat===MANUAL_SOURCE_ROUTES[asset.isin].category)return {kind:'commodity',label:asset.name,description:asset.name,text:commoditySourceExplanation(asset)}
   const entry = ASSET_EDITORIAL[asset.id];
   if (!entry && asset.manualOnly && asset.id.startsWith('manual-')) return {kind:'fund',label:asset.name,description:asset.name,text:'Cette ligne suit la sélection et les règles propres au fonds. Sa place dans le portefeuille dépend de ses entreprises et de ses expositions, qui peuvent recouper les autres lignes.'};
   if (!entry) throw new Error(`Explication de portefeuille manquante pour ${asset.id}`);

@@ -126,7 +126,11 @@ const extraFunds = [
   // When the same share is also a manual Générateur asset (market-price calendar), both tools
   // must show one number: use that same market series here.
   const sharedManual = market && ASSETS.some(a => a.id === `manual-${isin}` && a.automatedManual)
-  const series = sharedManual && latestCommonYears([market.years],{minimum:3}).length>=3 ? market
+  const sharedAnnual = ANNUAL_PORTFOLIO_FUNDS.find(a=>a.isin===isin && a.preferQualifiedAnnual && ASSETS.some(p=>p.isin===isin && p.annualManual))
+  // Keep the existing Duel identity while retaining the whole qualified annual
+  // contract, not just numerically equal returns from a separate adapter.
+  const series = sharedAnnual ? {...sharedAnnual,id,currency:sharedAnnual.returnCurrency,values:sharedAnnual.r,note:sharedAnnual.confidenceNote}
+    : sharedManual && latestCommonYears([market.years],{minimum:3}).length>=3 ? market
     : latestCommonYears([officialYears],{minimum:3}).length>=3 ? official : market && latestCommonYears([market.years],{minimum:3}).length>=3 ? market : official
   if (!series?.source) throw new Error(`Historique de part absent : ${isin}`)
   return { id, isin, label, exposure, name: getInstrumentName(isin), role, group: ROLES[role],
