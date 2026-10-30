@@ -148,9 +148,11 @@ def main():
     for code in US_FUNDS:
         url=us_api.format(code)
         try:
-            body=json.loads(get(url,'br-us-'+code+'.json'))
+            raw=get(url,'br-us-'+code+'.json')
+            body=json.loads(raw)
             if str(body['productId'])!=code:raise ValueError('Classification source product mismatch')
             reference,rows,stamp=equity_rows(body,None,url,now,classification_only=True)
+            reference['responseSha256']=hashlib.sha256(raw.encode()).hexdigest()
             classification_references[code]=reference
             successful.add(code)
             for r in rows:
