@@ -423,7 +423,7 @@ def read_report(path, workflow, planned=None):
             for key in ('checkedAt','asOf','attemptedAt','lastSuccessAt','responseSha256'):
                 if key in record:row[key] = record[key]
             if record.get('sourceUrl'):row['sourceUrls'] = [record['sourceUrl']]
-            if kind == 'successes' and record.get('status') in ('succeeded','unchanged-verified') and record.get('checkedAt') and record.get('sourceAttempted') is not False and record.get('phase') not in ('qualification','validation'):
+            if kind == 'successes' and record.get('status') in ('succeeded','unchanged-verified') and record.get('checkedAt') and record.get('sourceAttempted') is not False and record.get('phase') not in ('qualification','validation') and not(row.get('sourceAttempted')is False and row.get('phase')in('qualification','validation')):
                 row['verifiedInAttempt'] = True
     for checked_at in [report.get('checkedAt'), *(r.get('checkedAt') for r in result.get('successes', []))]:
         if checked_at is not None and (not timestamp(checked_at) or timestamp(checked_at) > dt.datetime.now(dt.timezone.utc)):
@@ -516,6 +516,22 @@ def refresh_scope_proofs(state, run, reports):
     return state
 
 
+def validation_receipt(success, run, evidence, source_checks, previous):
+    """Keep derived calculations separate, retaining misclassified old receipts."""
+    result={**success,'runUrl':run['html_url'],'recordedAt':run['updated_at'],'evidence':evidence}
+    history=copy.deepcopy(previous.get('sourceControlsRequalified',[]))
+    derived=(run['path'].split('/')[-1]=='update-qualified-exposures.yml'
+             and success.get('scope')=='equity-lookthrough'
+             and success['id']=='dca-holdings:'+str(success.get('instrument','')))
+    if derived and success['id']in source_checks:
+        old=source_checks.pop(success['id'])
+        entry={'originalSourceControl':copy.deepcopy(old),
+               'reason':'Derived look-through receipt, not a consultation of the issuer document; original clocks retained as historical evidence.'}
+        if entry not in history:history.append(entry)
+    if history:result['sourceControlsRequalified']=history
+    return result
+
+
 def merge_proof_retry(state, run, reports):
     """Repair an immutable old proof without rolling back the current workflow snapshot."""
     result = copy.deepcopy(state)
@@ -531,7 +547,7 @@ def merge_proof_retry(state, run, reports):
             if success.get('sourceAttempted') is False and success.get('phase') in ('validation','qualification'):
                 local_checks=row.setdefault('validationChecks',{})
                 if timestamp(local_checks.get(success['id'],{}).get('recordedAt')) and timestamp(local_checks[success['id']]['recordedAt'])>timestamp(run['updated_at']):continue
-                local_checks[success['id']]={**success,'runUrl':run['html_url'],'recordedAt':run['updated_at'],'evidence':evidence}
+                local_checks[success['id']]=validation_receipt(success,run,evidence,row.setdefault('sourceChecks',{}),local_checks.get(success['id'],{}))
                 continue  # Local replay never repairs a collection or publication failure.
             identifier = bind_attempt(success['id'], run)
             if technical_proof(identifier):
@@ -876,7 +892,7 @@ def update_status(state, run, jobs, reports=None):
 
         for success in report.get('successes', []):
             if success.get('sourceAttempted') is False and success.get('phase') in ('qualification','validation'):
-                validation_checks[success['id']] = {**success, 'runUrl':run['html_url'], 'recordedAt':run['updated_at'], 'evidence':evidence}
+                validation_checks[success['id']] = validation_receipt(success,run,evidence,source_checks,validation_checks.get(success['id'],{}))
                 if data_failures.get(success['id'],{}).get('phase') == success.get('phase') or success['id'].startswith('qualification:') and success.get('phase')=='qualification':
                     data_failures.pop(success['id'],None)
                 continue
@@ -980,7 +996,8 @@ def update_status(state, run, jobs, reports=None):
     failed = failed or any(value == 'failure' for value in (collection_status, validation_status, recording_status, publication_status))
     result['workflows'] = entries
     source_successes = [(report, item) for report in reports for item in report.get('successes', [])
-                        if not item['id'].startswith(('report-read:', 'artifact-read:'))]
+                        if not item['id'].startswith(('report-read:', 'artifact-read:'))
+                        and not(item.get('sourceAttempted')is False and item.get('phase')in('qualification','validation'))]
     source_dates = [item.get('checkedAt') or report.get('_reportEvidence', {}).get('reportedAt')
                     for report, item in source_successes]
     prior_source_success = previous.get('lastCollectionSuccessAt') if previous.get('monitorVersion',1) >= 3 else None

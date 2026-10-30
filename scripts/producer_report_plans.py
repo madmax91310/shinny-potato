@@ -106,7 +106,10 @@ def build_plan(producer, args, report_stem=None, module=None):
         for key,isin in read('scripts/dca-equity-identities.json').items():add('dca-equity:'+key,isin,['country of risk','sector'])
     elif producer=='collect_dca_complete_holdings':
         configs={**read('scripts/dca-complete-holdings-sources.json'),**read('scripts/generated-holdings-sources.json')}
-        for isin in configs:add('dca-holdings:'+isin,isin,['complete economic holdings','security identities','weights','asOf'],not only or isin in only,'Outside requested holdings selection'if only and isin not in only else None)
+        for isin,config in configs.items():
+            derived=config.get('parser')=='lifestrategy-lookthrough'
+            add('dca-holdings:'+isin,isin,['complete economic holdings','security identities','weights','asOf'],not only or isin in only,'Outside requested holdings selection'if only and isin not in only else None,
+                **({'phase':'validation','sourceAttempted':False}if derived else{}))
     elif producer=='collect_vanguard_sleeves':
         for c in mod().SOURCES:add('vanguard-underlier:'+c[1],c[1],['countries','sectors','factsheet/API identity'])
     elif producer=='collect_exposure_sleeves':

@@ -76,7 +76,8 @@ def _complete_holdings_results(native):
                 raise ValueError('Missing response fingerprint')
             dt.datetime.fromisoformat(receipt['checkedAt'].replace('Z','+00:00'))
             dt.date.fromisoformat(receipt['asOf'])
-            if not isinstance(receipt.get('sourceUrl'),str) or not receipt['sourceUrl'].startswith('https://') or receipt.get('sourceAttempted')is False:
+            derived=receipt.get('scope')=='equity-lookthrough'
+            if not isinstance(receipt.get('sourceUrl'),str) or not receipt['sourceUrl'].startswith('https://') or not derived and receipt.get('sourceAttempted')is False:
                 raise ValueError('Source contact not demonstrated')
         except (ValueError,KeyError,AttributeError,TypeError) as error:
             errors.append({'id':identifier,'phase':'qualification','kind':'evidence-incomplete','sourceAttempted':None,
@@ -86,7 +87,8 @@ def _complete_holdings_results(native):
         # global list to the financial observation of each individual fund.
         fields=('checkedAt','asOf','sourceUrl','sha256','basis','scope','completeFile','rows',
                 'publishedEquityWeightPct','identifiedEquityWeightPct')
-        successes.append({**row,**{key:receipt[key]for key in fields if key in receipt},'sourceAttempted':True})
+        successes.append({**row,**{key:receipt[key]for key in fields if key in receipt},'sourceAttempted':not derived,
+                          **({'phase':'validation','reason':'Transparisation calculée ; aucune nouvelle consultation du document du fonds déduite.'}if derived else{})})
     return {'successes':successes,'errors':errors}
 
 
@@ -209,6 +211,10 @@ def normalize_contract(contract):
     validate_contract(contract)
     result = {'successes':[], 'errors':[], 'inactive':[], 'reportedResults':[]}
     for row in contract['outcomes']:
+        # Requalify the meaning of old immutable receipts without rewriting
+        # their dates, plan, outcomes or claiming a new supplier consultation.
+        if contract['scope']['kind']=='collect_dca_complete_holdings' and row.get('scope')=='equity-lookthrough':
+            row={**row,'phase':'validation','sourceAttempted':False}
         if row['id'] in contract['scope']['requestedIds'] and row.get('kind') != 'omission':
             result['reportedResults'].append('report-result:'+contract['scope']['kind']+':'+row['id'])
         if row['status'] in ('succeeded', 'unchanged-verified'):
