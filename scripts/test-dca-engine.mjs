@@ -118,7 +118,7 @@ assert.equal(sortContributions(manual.lines)[0].asset,'sp500','Manually appended
 const zero={...manual,lines:manual.lines.slice(0,2).map((l,i)=>({...l,weight:i===0?100:0,amount:i===1?100:0}))}
 checkOrder(zero)
 const many=Array.from({length:10},(_,i)=>({label:`Position ${i}`,weight:i+1}))
-assert.deepEqual(allocationRows(many).slice(0,7).map(r=>r.weight),[10,9,8,7,6,5,4])
-assert.equal(allocationRows(many).at(-1).weight,6)
+assert.deepEqual(allocationRows(many).map(r=>r.weight),[10,9,8,7,6,6,5,4])
+assert.equal(allocationRows(many).find(r=>r.name==='3 autres positions').weight,6)
 assert.deepEqual(many.map(l=>l.weight),[1,2,3,4,5,6,7,8,9,10])
 console.log('Tri DCA : tous les profils, saisie manuelle, modifications, égalités, zéros et image regroupée validés.')
