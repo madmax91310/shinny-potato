@@ -32,7 +32,7 @@ class RankedFields(unittest.TestCase):
                 data = self.payload(isin)
                 values, errors = parse_fields(data, self.share(isin), NOW, data[0]['ticker'])
                 self.assertEqual(errors, [])
-                self.assertEqual(set(values), {'holdings', 'sectors'})
+                self.assertEqual(set(values), {'holdings', 'sectors','countries'} if isin==self.ISIN else {'holdings','sectors'})
                 self.assertEqual(len(values['holdings']['rows']), 10)
                 self.assertLess(sum(r['weightPct'] for r in values['holdings']['rows']), 100)
                 self.assertEqual(values['holdings']['scope'], 'top-10')
@@ -49,30 +49,30 @@ class RankedFields(unittest.TestCase):
         for change in ({'pct': float('nan')}, {'pct':True}, {'name':'Unknown'}, {'dt':'2026-11-30T00:00:00Z'}, {'rankClassification':'Index'}):
             data=self.payload(); next(r for r in data if r['rankClassificationID']==2).update(change)
             values,errors=parse_fields(data,self.share(),NOW,data[0]['ticker'])
-            self.assertEqual(set(values), {'holdings'}); self.assertEqual([e['field'] for e in errors], ['sectors'])
+            self.assertEqual(set(values), {'holdings','countries'}); self.assertEqual([e['field'] for e in errors], ['sectors'])
     def test_partial_fund_ranking_keeps_the_independent_sector_table(self):
         data=self.payload(); data=[r for r in data if r['rankClassificationID']!=1 or r['ranking']<=9]
         values,errors=parse_fields(data,self.share(),NOW,data[0]['ticker'])
-        self.assertEqual(set(values), {'sectors'}); self.assertEqual([e['field'] for e in errors], ['holdings'])
+        self.assertEqual(set(values), {'sectors','countries'}); self.assertEqual([e['field'] for e in errors], ['holdings'])
     def test_issuer_row_order_does_not_change_top_ten(self):
         data=self.payload();expected=parse_fields(data,self.share(),NOW,data[0]['ticker'])[0]
         self.assertEqual(expected['holdings'],parse_fields(list(reversed(data)),self.share(),NOW,data[0]['ticker'])[0]['holdings'])
-    def test_newer_api_only_updates_two_fields_not_countries_aum_or_fees(self):
+    def test_newer_api_updates_only_qualified_fields_not_aum_or_fees(self):
         result={'countries':{'asOf':'2026-10-19','rows':[{'name':'US','weightPct':100}],'checkedAt':'2026-10-20'},
                 'aum':{'amount':123,'checkedAt':'2026-10-20'},'characteristics':{'terPct':.4,'asOf':'2026-09-30'},
                 'holdings':{'asOf':'2026-09-30','rows':[]}, 'sectors':{'asOf':'2026-09-30','rows':[]}}
         before=copy.deepcopy(result);out=augment_document(result,self.share(),NOW,b'actual PDF in this attempt',self.acquire())
-        for field in ('countries','aum','characteristics'):self.assertEqual(out[field],before[field])
-        for field in ('holdings','sectors'):
+        for field in ('aum','characteristics'):self.assertEqual(out[field],before[field])
+        for field in ('holdings','sectors','countries'):
             self.assertEqual(out[field]['asOf'],'2026-10-23');self.assertNotIn('checkedAt',out[field])
             self.assertEqual(out[field]['identityAsOf'],'2026-09-30')
-        self.assertEqual(out['sourceAttempts'][-1]['fields'],['holdings','sectors'])
+        self.assertEqual(out['sourceAttempts'][-1]['fields'],['holdings','sectors','countries'])
     def test_network_failure_preserves_all_values_and_dates_with_two_explicit_failures(self):
         result={'sectors':{'asOf':'2026-10-25','rows':[{'name':'Technology','weightPct':100}],'checkedAt':'2026-10-26'}}
         before=copy.deepcopy(result)
         def fail(*_):raise OSError('network unavailable')
         out=augment_document(result,self.share(),NOW,b'document',fail)
-        self.assertEqual(out['sectors'],before['sectors']);self.assertEqual({e['field']for e in out['collectionErrors']},{'holdings','sectors'})
+        self.assertEqual(out['sectors'],before['sectors']);self.assertEqual({e['field']for e in out['collectionErrors']},{'holdings','sectors','countries'})
     def test_qualified_alternative_listing_keeps_the_ordinary_etf_summary_contract(self):
         def acquire(*args):
             raw,url,identity,listing,_=self.acquire()(*args)
@@ -95,7 +95,7 @@ class RankedFields(unittest.TestCase):
         before=copy.deepcopy(result);out=augment_document(result,self.share(),NOW,b'document',self.acquire())
         for field in before:self.assertEqual(out[field],before[field])
         self.assertEqual(out['sourceAttempts'][-1]['fields'],[])
-        self.assertEqual(len(out['sourceAttempts'][-1]['deferred']),2)
+        self.assertEqual(len(out['sourceAttempts'][-1]['deferred']),3)
     def test_ordinary_product_page_failure_uses_document_and_two_qualified_api_fields(self):
         from collect_public_issuer import collect_one
         document={'isin':self.ISIN,'countries':{'asOf':'2026-09-30','rows':[{'name':'US','weightPct':100}]},
@@ -103,11 +103,12 @@ class RankedFields(unittest.TestCase):
         share={**self.share(),'parser':'wisdomtree-html','sourceUrl':'https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc'}
         with patch('collect_public_issuer.get_text',side_effect=urllib.error.URLError('HTTP 403')), patch('collect_public_issuer.download',return_value=b'PDF acquired in this attempt'), patch('collect_public_issuer.wisdomtree_factsheet',return_value=copy.deepcopy(document)), patch('wisdomtree_ranked_fields.augment_document',side_effect=lambda result,share,now,body:augment_document(result,share,now,body,self.acquire())):
             result=collect_one(share,NOW)
-        self.assertEqual(result['countries'],document['countries'])
+        self.assertEqual(result['countries']['asOf'],'2026-10-23')
+        self.assertEqual(result['countries']['rankClassificationID'],6)
         self.assertEqual(result['sectors']['asOf'],'2026-10-23')
         self.assertEqual(result['holdings']['asOf'],'2026-10-23')
         self.assertIn('403',result['sourceAttempts'][0]['reason'])
-        self.assertEqual(result['sourceAttempts'][-1]['fields'],['holdings','sectors'])
+        self.assertEqual(result['sourceAttempts'][-1]['fields'],['holdings','sectors','countries'])
 
 
 if __name__ == '__main__': unittest.main()

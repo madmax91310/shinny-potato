@@ -1,7 +1,7 @@
-"""Exact issuer Fund/Sector fields, independent of the country classifications.
+"""Exact issuer fields; country definitions require their own qualified policy.
 
-Only the six already qualified shares use this route. A top ten is never a
-complete portfolio, and neither Incorporated nor Aggregate Country is borrowed.
+A top ten is never a complete portfolio. Incorporated and Aggregate Country
+remain distinct; only Cloud has a rendered-primary country reconciliation.
 """
 import hashlib
 import http.client
@@ -48,6 +48,10 @@ def parse_fields(payload, share, now, listing):
                              'method': 'Exact issuer Fund Sector ranking; original percentages, not country or index groups'}
     except (KeyError, TypeError, ValueError) as error:
         errors.append({'field': 'sectors', 'reason': str(error)})
+    if config.get('countryAllocationDefinition'):
+        from wisdomtree_country_allocation import api_country
+        try:values['countries']=api_country(payload,share,now)
+        except (KeyError,TypeError,ValueError) as error:errors.append({'field':'countries','reason':str(error)})
     return values, errors
 
 
@@ -96,5 +100,5 @@ def augment_document(result, share, now, document_body, acquire=acquire_qualifie
     except (OSError, ValueError, TypeError, KeyError, http.client.HTTPException, subprocess.SubprocessError) as error:
         result.setdefault('collectionErrors', []).extend({'field': field, 'url': network_urls[-1] if network_urls else identity_url,
                                                           'phase': 'acquisition' if isinstance(error, (OSError, http.client.HTTPException)) else 'validation',
-                                                          'networkAttempted': bool(network_urls), 'reason': str(error)} for field in ('holdings', 'sectors'))
+                                                          'networkAttempted': bool(network_urls), 'reason': str(error)} for field in ('holdings', 'sectors', *(['countries'] if CLASS_CONFIG[share['isin']].get('countryAllocationDefinition') else [])))
     return result

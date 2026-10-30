@@ -106,9 +106,13 @@ def wisdomtree(text, share, now):
         if not candidates: result['unavailable'].append(field+': no published equity allocation'); continue
         t = only(candidates, title)
         dates = re.findall(r'\d{2}/\d{2}/\d{4}', t['context'])
-        # Country allocation shares the dated holdings section on this issuer page.
-        allocation_stamp = document_date(dates[-1],now) if dates else stamp
         rows = [r for r in t['rows'][1:] if r[0] != 'Remaining Portfolio']
+        if field=='countries':
+            from wisdomtree_country_allocation import primary_country
+            try:result[field]={**primary_country(text,share,rows,now),'sourceUrl':share['sourceUrl'],'sha256':digest}
+            except ValueError as error:result.setdefault('collectionErrors',[]).append({'field':field,'url':share['sourceUrl'],'phase':'validation','reason':str(error)})
+            continue
+        allocation_stamp = document_date(dates[-1],now) if dates else stamp
         result[field] = composition(rows, allocation_stamp, share, digest, complete=field!='holdings')
     result['unavailable'].append('performance: HTML calendar series not published; prior exact-share history preserved')
     return result

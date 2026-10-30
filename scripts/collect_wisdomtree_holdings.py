@@ -22,8 +22,9 @@ def known_shares():
             if share.get('documentType')=='wisdomtree-ucits':shares[share['isin']]=share
     return list(shares.values())
 
-def rankings(page):
-    chunks=[];found=[];securities=[]
+def flight_values(page):
+    """Decode the publisher's existing server component stream, without I/O."""
+    chunks=[]
     for script in BeautifulSoup(page,'html.parser').find_all('script'):
         t=script.string or ''
         if t.startswith('self.__next_f.push(')and t.endswith(')'):
@@ -31,6 +32,13 @@ def rankings(page):
                 v=json.loads(t[len('self.__next_f.push('):-1])
                 if len(v)==2 and v[0]==1 and isinstance(v[1],str):chunks.append(v[1])
             except (ValueError,TypeError):continue
+    for line in ''.join(chunks).splitlines():
+        try:yield json.loads(line.split(':',1)[1])
+        except (ValueError,IndexError):continue
+
+
+def rankings(page):
+    found=[];securities=[]
     def visit(v):
         if isinstance(v,dict):
             if v.get('sectionKey')=='holdings'and isinstance(v.get('ranking'),list):found.append(v)
@@ -38,9 +46,7 @@ def rankings(page):
             for x in v.values():visit(x)
         elif isinstance(v,list):
             for x in v:visit(x)
-    for line in ''.join(chunks).splitlines():
-        try:visit(json.loads(line.split(':',1)[1]))
-        except (ValueError,IndexError):continue
+    for value in flight_values(page):visit(value)
     unique={json.dumps(v,sort_keys=True):v for v in found}
     if len(unique)!=1:raise ValueError('Missing/contradictory complete WisdomTree rankings')
     result=next(iter(unique.values()));rows={}
