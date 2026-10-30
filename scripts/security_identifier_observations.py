@@ -102,24 +102,19 @@ def resolve_venue_tickers(items, share, source_url, source_hash, as_of, now):
             ticker,venue=labels
             jobs=[{'idType':'TICKER','idValue':ticker,'exchCode':venue,'currency':currency},
                   *[{'idType':'ID_ISIN','idValue':isin,'exchCode':venue,'currency':currency}for isin in candidates]]
+            proof={'sourceUrl':API,'checkedAt':now.isoformat(),'request':jobs,'issuerBinding':binding}
             try:
                 response=mapping_request(jobs)
-                proof={'sourceUrl':API,'checkedAt':now.isoformat(),'request':jobs,'response':response,
-                       'sha256':digest(response),'issuerBinding':binding}
+                proof.update(response=response,sha256=digest(response))
                 identity=venue_ticker_identity(proof,now,binding)
                 proofs[key]=proof;mappings[(label,currency)]=identity;used.append(proof)
             except Exception as error:
-                failure={'ticker':label,'sourceUrl':API,'checkedAt':now.isoformat(),'error':str(error)[:500]}
+                failure={**proof,'ticker':label,'error':str(error)[:500],
+                         'status':'rejected-identity-proof' if 'response'in proof else'unavailable-service'}
                 cache.setdefault('venueTickerLastAttempts',{})[key]=failure;failures.append(failure)
-                old_binding=previous.get('issuerBinding',{})
-                # An identity proof is not a financial observation. A still
-                # current exact listing proof may survive a failed renewal,
-                # with its original source binding and control clock intact.
-                if all(old_binding.get(k)==binding[k]for k in ['subjectIsin','sourceUrl','ticker','currency','assetClass']):
-                    try:
-                        identity=venue_ticker_identity(previous,now,old_binding)
-                        mappings[(label,currency)]=identity;used.append(previous)
-                    except (ValueError,KeyError,TypeError):pass
+                # Keep the historical proof unchanged for its original book.
+                # A different native hash requires its own successful proof;
+                # an outage or contradiction cannot rebind an old ticker ID.
         write_json_atomic(PATH,cache)
     return mappings,used,failures
 

@@ -53,7 +53,7 @@ class VenueTickerIdentities(unittest.TestCase):
                 with self.assertRaises(ValueError):ids.venue_ticker_identity(rebound,NOW,changed)
         with self.assertRaises(ValueError):ids.venue_ticker_identity(proof,NOW+dt.timedelta(days=365),binding)
 
-    def test_failed_renewal_retains_current_identity_proof_with_original_clock(self):
+    def test_failed_new_book_lookup_keeps_old_proof_but_does_not_rebind_it(self):
         subject='IE000YYE6WK5';book=FIXTURE['books'][subject]
         proof=next(p for p in FIXTURE['proofs'].values()if p['issuerBinding']['subjectIsin']==subject)
         binding=proof['issuerBinding'];share={'isin':subject}
@@ -65,11 +65,34 @@ class VenueTickerIdentities(unittest.TestCase):
                 # A different financial book requires a new independent proof.
                 mappings,used,failures=ids.resolve_venue_tickers(book['data']['Holdings'],share,
                     binding['sourceUrl'],'f'*64,binding['asOf'],NOW)
-            self.assertEqual(mappings,{('VVX US','USD'):'US92242T1016'})
-            self.assertEqual(used,[proof]);self.assertEqual(len(failures),1)
+            self.assertEqual(mappings,{})
+            self.assertEqual(used,[]);self.assertEqual(len(failures),1)
             after=json.loads(path.read_text())
             self.assertEqual(after['venueTickerObservations'],initial['venueTickerObservations'])
             self.assertTrue(any(r['Label']=='VVX US' and r['ISIN']==''for r in book['data']['Holdings']))
+
+    def test_authoritative_listing_conflict_never_falls_back_to_previous_identity(self):
+        subject='IE000YYE6WK5';book=FIXTURE['books'][subject]
+        proof=next(p for p in FIXTURE['proofs'].values()if p['issuerBinding']['subjectIsin']==subject)
+        binding=proof['issuerBinding'];responses=copy.deepcopy(proof['response'])
+        # Same published ticker, a different share: an explicit contradiction,
+        # not permission to apply the old cached ISIN to the new native book.
+        listing=responses[0]['data'][0]
+        listing.update(figi='BBG000000001',compositeFIGI='BBG000000001',shareClassFIGI='BBG000000002')
+        with tempfile.TemporaryDirectory()as tmp:
+            path=Path(tmp)/'cache.json';path.write_text(json.dumps({'schemaVersion':1,'observations':{},
+                'venueTickerObservations':{subject+'|VVX US|USD':proof}}))
+            with patch.object(ids,'PATH',path),patch('wisdomtree_api_holdings.mapping_request',return_value=responses):
+                mappings,used,failures=ids.resolve_venue_tickers(book['data']['Holdings'],{'isin':subject},
+                    binding['sourceUrl'],'f'*64,binding['asOf'],NOW)
+            self.assertEqual(mappings,{})
+            self.assertEqual(used,[]);self.assertEqual(len(failures),1)
+            self.assertEqual(json.loads(path.read_text())['venueTickerObservations'][subject+'|VVX US|USD'],proof)
+            attempt=json.loads(path.read_text())['venueTickerLastAttempts'][subject+'|VVX US|USD']
+            self.assertEqual(attempt['status'],'rejected-identity-proof')
+            self.assertEqual(attempt['response'],responses)
+            self.assertEqual(attempt['sha256'],ids.digest(responses))
+            self.assertEqual(attempt['issuerBinding']['sourceSha256'],'f'*64)
 
     def test_expired_proof_cannot_resolve_a_native_unknown_row_after_failed_renewal(self):
         subject='IE000YYE6WK5';book=FIXTURE['books'][subject]

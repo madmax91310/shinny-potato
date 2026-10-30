@@ -457,6 +457,7 @@ def collect_vaneck(share, now):
             native=[r for r in body['data']['Holdings'] if r.get('Label')==row['ticker'] and r.get('AssetClass')=='Stock']
             if len(native)==1:row['isin']=identities.get((row['ticker'],native[0].get('CurrencyCode')))
     source_proof(share,'vaneck-identities',proofs)
+    source_proof(share,'vaneck-identity-failures',failures)
     return observation(rows, stamp, url, raw, allow_unidentified=True,
                        identitySourceUrl=share['pageUrl'], identitySha256=digest(page),
                        identityHistory=proofs,identitySourceFailures=failures,
