@@ -7,3 +7,13 @@ Le client public officiel `https://perfchart.wisdomtree.eu/static/js/main.js`, r
 Exécuté localement :13régressions sur réponses réelles, dates/devises/identité/calendriers, puis collecte réelle70mois décembre2020–septembre2026. Ce n’est pas une preuve GitHub. Le contrôle CI supplémentaire est strictement en lecture seule, limité à cette part ; une qualification échouée reste rouge après conservation de ses résultats. Il n’a ni cron, ni écriture de données, ni permission de publication.
 
 Statut : proposition à qualifier depuisGitHub, pas source déclarée réparée. Après réussite, le producteur mensuel ordinaire devra encore collecter, enregistrer et publier la série, puis les consommateurs seront vérifiés. Les neuf fenêtres refusées d’autres parts et les anciennes divergences restent inchangées.
+
+## Qualification distante actuelle, 30 octobre après midi
+
+La même URL sans barre finale explicitement utilisée par le client officiel a maintenant été réellement acquise et qualifiée dans GitHub : run41052459517 à12:03:45UTC, puis run41053276149 à12:10:27UTC. Chacun valide70mois,2020-12→2026-09, de l'ETC exact GB00B15KXV33 enUSD. Le transport réellement employé est `public-widget-http`, avec les deux réponses gro10k/tabular et le document d'identité effectivement consultés ; ce n'est pas une réussite du secours navigateur. Empreinte de l'artefact initial :25c4dea6e9fe721b5a629d9740ce398c6acecf6c9edd2b6d690c4e58f4490526.
+
+Le second run est conservé en échec partiel : son étape supplémentaire de navigateur ordinaire depuis Products reçoit403 sur la page d'entrée. Cette piste n'est pas livrée ; le transport navigateur revient à sa version initiale, avec le choix de chemin propre à chaque source. Les huit autres routes et les gardes d'identité, devise, ancres et calendriers restent inchangés. Aucun challenge résolu, aucun cache devenu réussite et aucune hausse de seuil.
+
+Les refus de08:30 sont conservés et ne sont pas réécrits. Les succès actuels qualifient un accès disponible maintenant, sans démontrer que la barre finale était l'unique cause des anciens403. Le correctif adopte le chemin explicite du client émetteur pour le seulWTI. Une nouvelle panne doit toujours échouer et remonter ; le prochain cron fournisseur reste à observer.
+
+La collecte ordinaire master, son enregistrement, sa publication et sa consommation restent à vérifier après fusion. Aucun des neuf cas encore refusés sur les79 n'est débloqué par cette qualification WTI, qui concerne une autre série déjà utilisable sur ses périodes qualifiées. Les70fenêtres et les anciennes divergences restent distinctes.
