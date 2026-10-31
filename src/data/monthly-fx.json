@@ -12700,14 +12700,15 @@
   },
   "derived": {
     "TWD": {
-      "sourceUrl": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01%2F01%2F1999&to=10%2F30%2F2026&filetype=csv&label=include&layout=seriescolumn&type=package",
+      "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
       "series": "DEXTAUS",
       "secondarySourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
-      "checkedAt": "2026-10-30",
-      "sha256": "a83befb1c2526ea354520a4af0a60140e6fb5363c9b37525f33a3b6990a1169d",
+      "checkedAt": "2026-10-31",
+      "sha256": "17d087d0ebb2a0ac1a7c0feed844ecb5ca0410c4ae64582b2030233bdeb352e4",
       "secondarySha256": "458ef998bf1d96198dbc91e83e54ed9b4911ff03500397cbf9b23d8b66cc34ac",
       "sourceSeries": "H10/H10/RXI_N.B.TA",
-      "sourceDiscoveryUrl": "https://www.federalreserve.gov/datadownload/Choose.aspx?rel=H10",
+      "sourceDiscoveryUrl": "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm",
+      "sourceFormat": "Official complete H.10 SDMX XML ZIP",
       "seriesEquivalence": "Federal Reserve H.10 RXI_N.B.TA is the primary daily TWD per USD series republished as FRED DEXTAUS; independently checked over all common observations",
       "convention": "TWD per EUR = Federal Reserve H.10 noon buying rate (TWD per USD, FRED DEXTAUS) × ECB USD per EUR reference rate, latest day of each completed month published by both; decimal half-up rounding to four places",
       "observations": {
@@ -26073,7 +26074,7 @@
       },
       "sourceAttempts": [
         {
-          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-30",
+          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-31",
           "error": "The read operation timed out"
         },
         {
@@ -26081,9 +26082,9 @@
           "error": "The read operation timed out"
         },
         {
-          "sourceUrl": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01%2F01%2F1999&to=10%2F30%2F2026&filetype=csv&label=include&layout=seriescolumn&type=package",
+          "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
           "status": "downloaded",
-          "sha256": "a83befb1c2526ea354520a4af0a60140e6fb5363c9b37525f33a3b6990a1169d"
+          "sha256": "17d087d0ebb2a0ac1a7c0feed844ecb5ca0410c4ae64582b2030233bdeb352e4"
         }
       ]
     }
