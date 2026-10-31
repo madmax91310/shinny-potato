@@ -1,0 +1,61 @@
+{
+  "source": "reports/reliquat-2026-10-23/preuves/DE000A0H08P6-blackrock.json.gz",
+  "sourceBodySha256": "973ee284696f7b1c8a55042d00bd2b73ab2e716b6dc896b50097322b91f1130d",
+  "start": {
+    "date": "2018-12-28",
+    "nav": 26.3159,
+    "income": 17631.6503
+  },
+  "end": {
+    "date": "2019-12-30",
+    "nav": 35.4946,
+    "income": 24375.8537
+  },
+  "events": [
+    {
+      "date": "2019-10-15",
+      "cash": 0.086569,
+      "previousNav": 31.8683,
+      "exDateNav": 32.5545
+    },
+    {
+      "date": "2019-07-15",
+      "cash": 0.374603,
+      "previousNav": 31.3251,
+      "exDateNav": 30.9668
+    },
+    {
+      "date": "2019-04-15",
+      "cash": 0.075611,
+      "previousNav": 32.2221,
+      "exDateNav": 32.3806
+    },
+    {
+      "date": "2019-01-15",
+      "cash": 0.211425,
+      "previousNav": 27.9044,
+      "exDateNav": 27.6824
+    }
+  ],
+  "priceReturnPct": 34.87891350856327,
+  "cashReinvestedAtExDateNavPct": 38.24096793753513,
+  "previousNavBackAdjustmentPct": 38.25269841927346,
+  "issuerIncomeChartPct": 38.25055105590427,
+  "issuerAnnualCalendarPct": 37.807303,
+  "status": "Independent calculation candidate only. Completeness and cash convention require proof; no producer/data/threshold changed.",
+  "independentCandidateDates": {
+    "start": "2018-12-28",
+    "end": "2019-12-30",
+    "reason": "Latest common NAV/return observations only; not the annual calendar endpoints. Do not compare their reconstructed return to the published calendar as a financial discrepancy."
+  },
+  "issuerCalendarEndpoints": {
+    "start": "2018-12-31",
+    "end": "2019-12-31",
+    "startIncome": 17631.6503,
+    "endIncome": 24297.7018,
+    "dailyIncomeCalendarReturnPct": 37.80730326757897,
+    "officialAnnualReturnPct": 37.807303,
+    "navPresentAtCalendarEnd": false
+  },
+  "missingPiece": "Independent exact-share NAV for the true 2019 calendar endpoint, plus qualified complete cash/reinvestment convention. The December30 NAV cannot be moved to December31; April/July adjustment-factor contradictions remain separate."
+}

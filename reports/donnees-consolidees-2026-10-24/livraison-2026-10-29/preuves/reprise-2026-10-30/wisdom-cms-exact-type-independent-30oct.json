@@ -1,0 +1,18 @@
+{
+  "attemptedAt": "2026-10-30T10:16:45.176650+00:00",
+  "sourceUrl": "https://f8796olh.apicdn.sanity.io/v2025-02-19/data/query/global-prod?query=%2A%5BISIN%3D%3D%22IE00BJGWQN72%22+%7C%7C+isin%3D%3D%22IE00BJGWQN72%22%5D%7B_type%2CISIN%2Cisin%2CAUM%2CAUM_DateTime%2CfundCurrency%2CwtClassID%2C_updatedAt%7D",
+  "scope": "Single exact existing EU share IE00BJGWQN72; type assumption removed from the prior empty issuer-linked CMS query; no catalogue download",
+  "sourceTypeAssumed": false,
+  "financialDataQualified": false,
+  "status": 200,
+  "sha256": "6bd56ab67f8f53754affd4753979f399c00aae2b8785c499a5ff054edbd61c66",
+  "bytes": 175,
+  "response": {
+    "query": "*[ISIN==\"IE00BJGWQN72\" || isin==\"IE00BJGWQN72\"]{_type,ISIN,isin,AUM,AUM_DateTime,fundCurrency,wtClassID,_updatedAt}",
+    "result": [],
+    "syncTags": [
+      "s1:xLHwew"
+    ],
+    "ms": 0
+  }
+}

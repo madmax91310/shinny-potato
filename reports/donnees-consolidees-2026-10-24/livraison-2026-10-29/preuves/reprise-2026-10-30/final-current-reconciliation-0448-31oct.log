@@ -1,0 +1,207 @@
+
+RUN update-matrix-30oct.py
+{'usages': 33431, 'outils': 24, 'profils_identifiants_uniques': 3900, 'statuts': {'non applicable': 3792, 'B': 29562, 'A': 77}, 'initialMatrixContractsPreserved': 33381}
+
+RUN update-current-matrix-contracts-30oct.py
+{'usages': 34951, 'outils': 24, 'statuts': {'non applicable': 3792, 'B': 31114, 'A': 45}, 'currentPublishedContracts': 31762, 'currentContractsMatchedByMeaning': 30242, 'previousContractIdentitiesPreserved': 33431}
+
+RUN augment-final-scoped-contracts-30oct.py
+{'exact-share-annual-public-30oct/FR0013412004/results.json': 2, 'exact-share-annual-public-30oct/DE000A27Z304/results.json': 2, 'exact-share-annual-public-30oct/GB00BLD4ZM24/results.json': 2, 'exact-share-annual-public-30oct/GB00BLD4ZL17/results.json': 2, 'exact-share-annual-public-30oct/IE00B4K6B022/results.json': 2, 'exact-share-annual-public-30oct/IE00BKPX3K41/results.json': 2, 'exact-share-annual-public-30oct/IE00BMG6Z448/results.json': 2, 'exact-share-annual-public-30oct/IE00BMW42413/results.json': 2, 'exact-share-annual-public-30oct/IE00BJ5JP097/results.json': 2, 'exact-share-annual-public-30oct/IE00BKPSFC54/results.json': 2, 'copper-manual-nav-public-30oct/results.json': 2, 'five-wisdom-panx-ordinary-recording-30oct.json': 10, 'purchasing-public-independent-calculation-30oct.json': 1, 'browser-scpi-q3-public-30oct/results.json': 6}
+
+RUN augment-scheduled-source-proofs-30oct.py
+13 exact AUM fields /26 existing consumer contracts have individually scoped scheduled-source proof;6 full scheduled publications,7 source only
+
+RUN augment-scoped-source-consumers-31oct.py
+22 bounded data-use contracts:16AUM displays+1admission+3fee+2ABTC monthly uses; other fields not certified
+
+RUN update-actions-30oct.py
+{'partiellement corrigée': 5, 'corrigée': 10, 'périmètre supprimé': 2, 'bloquée': 1, 'déjà résolue': 1}
+
+RUN update-financial-30oct.py
+79 original identities preserved,70qualified/9refused;0new monthly windows; old divergences unchanged
+
+RUN update-mutualized-chains-30oct.py
+{'collectionRowsBefore': 71, 'collectionRowsNow': 94, 'chainsBefore': 8397, 'chainsNow': 8402, 'noWholeCatalogueCertification': True}
+
+RUN update-tool-bilan-30oct.py
+24 routes conserved; explicit scoped operation/partial/refusals, no catalogue-wide certification
+
+RUN reconcile-current-30oct.py
+{
+  "exportedAt": "2026-10-31T04:48:36.257Z",
+  "monitorCheckedAt": "2026-10-31T04:40:37.447577+00:00",
+  "initialIdentitiesPreserved": 661,
+  "previousLedgerIdentitiesPreserved": 46216,
+  "newPublicIdentitiesAdded": 382,
+  "additionalMatrixIdentities": 1570,
+  "ledgerIdentities": 48168,
+  "activeByClass": {
+    "monitoring": 7,
+    "failure": 24,
+    "qualification": 4773,
+    "connection": 30
+  },
+  "allByClass": {
+    "monitoring": 7,
+    "failure": 24,
+    "qualification": 4773,
+    "connection": 30,
+    "editorial": 812,
+    "waiting": 13,
+    "not-applicable": 423,
+    "history": 740
+  },
+  "investigationCategories": {
+    "preuve de supervision": 7,
+    "contrôle à renouveler | iShares MSCI World Swap PEA UCITS ETF (Acc) | Encours": 1,
+    "contrôle à renouveler | iShares S&P 500 Swap PEA UCITS ETF | Encours": 1,
+    "dernier échec source non dépassé ; non tenté dans la reprise conditionnelle | WisdomTree Artificial Intelligence UCITS ETF USD Acc | Historique mensuel": 1,
+    "classification partielle ; zéro non démontré | IE00BTJRMP35 | countries | 2026-10-29": 2,
+    "cause à qualifier | Global X Nasdaq 100 Covered Call UCITS ETF | Principales positions": 1,
+    "conflit financier à date identique | iShares Euro Dividend UCITS ETF | Éligibilité PEA": 1,
+    "convention historique non rapprochée | iShares Physical Palladium (IPDM) · VL | Historique mensuel": 1,
+    "champ financier fournisseur absent | Global X Uranium UCITS ETF USD Acc | Composition complète": 1,
+    "périmètre brut / net incompatible | iShares MSCI World EUR Hedged UCITS ETF (Acc) | Composition complète": 1,
+    "accès fournisseur refusé | WisdomTree Battery Solutions UCITS ETF USD Acc | Composition complète": 1,
+    "accès fournisseur refusé | WisdomTree Global Quality Dividend Growth UCITS ETF | Composition complète": 1,
+    "classification partielle ; zéro non démontré | IE000L6ZMMC4 | countries | 2026-10-29": 1,
+    "source Radar / propriétaire existant | Radar · economie | Sources du radar": 1,
+    "source Radar / propriétaire existant | Radar · etf | Sources du radar": 1,
+    "accès fournisseur refusé | Radar · pouvoir-achat | Sources du radar": 1,
+    "source Radar / propriétaire existant | radar-source:dares | Champs du collecteur": 1,
+    "source Radar / propriétaire existant | radar-source:drees | Champs du collecteur": 1,
+    "accès fournisseur refusé | radar-source:lbp-bank | Champs du collecteur": 1,
+    "accès fournisseur refusé | radar-source:notaires-france | Champs du collecteur": 1,
+    "accès fournisseur refusé | radar-source:revolut-news | Champs du collecteur": 1,
+    "source Radar / propriétaire existant | radar-source:trade-republic-news | Champs du collecteur": 1,
+    "source Radar / propriétaire existant | radar-source:vaneck | Champs du collecteur": 1,
+    "accès fournisseur refusé | radar-source:wisdomtree | Champs du collecteur": 1,
+    "preuve / qualification incomplète": 3963,
+    "preuve / qualification incomplète | IE00B1TXHL60 | sectors | 2026-10-22": 1,
+    "preuve / qualification incomplète | IE00B3T9LM79 | countries | 2026-10-28": 37,
+    "preuve / qualification incomplète | IE00B3T9LM79 | sectors | 2026-10-28": 5,
+    "preuve / qualification incomplète | IE00BGV5VN51 | countries | 2026-10-20": 3,
+    "preuve / qualification incomplète | IE00BGV5VN51 | countries | 2026-10-22": 5,
+    "preuve / qualification incomplète | IE00BGV5VN51 | countries | 2026-10-16": 3,
+    "preuve / qualification incomplète | IE00BGV5VN51 | countries | 2026-10-19": 1,
+    "preuve / qualification incomplète | IE00BGV5VN51 | countries | 2026-10-28": 2,
+    "preuve / qualification incomplète | IE00BTJRMP35 | countries | 2026-10-19": 12,
+    "preuve / qualification incomplète | IE00BTJRMP35 | countries | 2026-10-16": 4,
+    "preuve / qualification incomplète | IE00BTJRMP35 | countries | 2026-10-22": 23,
+    "preuve / qualification incomplète | IE00BTJRMP35 | countries | 2026-10-20": 4,
+    "preuve / qualification incomplète | IE00BTJRMP35 | countries | 2026-10-28": 9,
+    "preuve / qualification incomplète | IE00BTJRMP35 | countries | 2026-10-27": 9,
+    "preuve / qualification incomplète | IE0006WW1TQ4 | countries | 2026-10-19": 31,
+    "preuve / qualification incomplète | IE0006WW1TQ4 | countries | 2026-10-22": 46,
+    "preuve / qualification incomplète | IE0006WW1TQ4 | countries | 2026-10-13": 11,
+    "preuve / qualification incomplète | IE0006WW1TQ4 | countries | 2026-10-20": 5,
+    "preuve / qualification incomplète | IE0006WW1TQ4 | countries | 2026-10-16": 5,
+    "preuve / qualification incomplète | IE0006WW1TQ4 | countries | 2026-10-12": 9,
+    "preuve / qualification incomplète | IE0006WW1TQ4 | countries | 2026-10-28": 24,
+    "preuve / qualification incomplète | IE0006WW1TQ4 | countries | 2026-10-27": 24,
+    "preuve / qualification incomplète | IE00BM67HK77 | countries | 2026-10-19": 11,
+    "preuve / qualification incomplète | IE00BM67HK77 | countries | 2026-10-22": 12,
+    "preuve / qualification incomplète | IE00BM67HK77 | countries | 2026-10-20": 3,
+    "preuve / qualification incomplète | IE00BM67HK77 | countries | 2026-10-16": 3,
+    "preuve / qualification incomplète | IE00BM67HK77 | countries | 2026-10-27": 7,
+    "preuve / qualification incomplète | IE00BM67HK77 | countries | 2026-10-28": 7,
+    "preuve / qualification incomplète | IE00BM67HV82 | countries | 2026-10-20": 4,
+    "preuve / qualification incomplète | IE00BM67HV82 | countries | 2026-10-22": 18,
+    "preuve / qualification incomplète | IE00BM67HV82 | countries | 2026-10-19": 9,
+    "preuve / qualification incomplète | IE00BM67HV82 | countries | 2026-10-16": 4,
+    "preuve / qualification incomplète | IE00BM67HV82 | sectors | 2026-10-19": 2,
+    "preuve / qualification incomplète | IE00BM67HV82 | sectors | 2026-10-16": 2,
+    "preuve / qualification incomplète | IE00BM67HV82 | sectors | 2026-10-20": 2,
+    "preuve / qualification incomplète | IE00BM67HV82 | countries | 2026-10-27": 9,
+    "preuve / qualification incomplète | IE00BM67HV82 | countries | 2026-10-28": 9,
+    "preuve / qualification incomplète | IE00BM67HS53 | countries | 2026-10-19": 16,
+    "preuve / qualification incomplète | IE00BM67HS53 | countries | 2026-10-12": 13,
+    "preuve / qualification incomplète | IE00BM67HS53 | countries | 2026-10-13": 16,
+    "preuve / qualification incomplète | IE00BM67HS53 | countries | 2026-10-16": 4,
+    "preuve / qualification incomplète | IE00BM67HS53 | countries | 2026-10-20": 4,
+    "preuve / qualification incomplète | IE00BM67HS53 | countries | 2026-10-22": 20,
+    "preuve / qualification incomplète | IE00BM67HS53 | countries | 2026-10-28": 10,
+    "preuve / qualification incomplète | IE00BM67HS53 | countries | 2026-10-27": 11,
+    "preuve / qualification incomplète | IE00BM67HQ30 | countries | 2026-10-19": 2,
+    "preuve / qualification incomplète | IE00BM67HQ30 | countries | 2026-10-22": 4,
+    "preuve / qualification incomplète | IE00BM67HQ30 | countries | 2026-10-27": 2,
+    "preuve / qualification incomplète | IE00BM67HQ30 | countries | 2026-10-28": 2,
+    "preuve / qualification incomplète | IE00BLNMYC90 | sectors | 2026-10-20": 4,
+    "preuve / qualification incomplète | IE00BLNMYC90 | sectors | 2026-10-16": 4,
+    "preuve / qualification incomplète | IE00BLNMYC90 | countries | 2026-10-20": 7,
+    "preuve / qualification incomplète | IE00BLNMYC90 | countries | 2026-10-22": 11,
+    "preuve / qualification incomplète | IE00BLNMYC90 | sectors | 2026-10-19": 4,
+    "preuve / qualification incomplète | IE00BLNMYC90 | countries | 2026-10-13": 4,
+    "preuve / qualification incomplète | IE00BLNMYC90 | countries | 2026-10-12": 4,
+    "preuve / qualification incomplète | IE00BLNMYC90 | countries | 2026-10-07": 2,
+    "preuve / qualification incomplète | IE00BLNMYC90 | countries | 2026-10-16": 7,
+    "preuve / qualification incomplète | IE00BLNMYC90 | countries | 2026-10-19": 10,
+    "preuve / qualification incomplète | IE00BLNMYC90 | countries | 2026-10-27": 5,
+    "preuve / qualification incomplète | IE00BLNMYC90 | countries | 2026-10-28": 7,
+    "preuve / qualification incomplète | IE00BLNMYC90 | aum | 2026-10-23": 1,
+    "preuve / qualification incomplète | IE00BLNMYC90 | aum | 2026-10-22": 1,
+    "preuve / qualification incomplète | DE000A27Z304 | aum | 2026-10-19": 1,
+    "preuve / qualification incomplète | DE000A27Z304 | aum | 2026-10-20": 1,
+    "preuve / qualification incomplète | DE000A27Z304 | aum | 2026-10-23": 1,
+    "preuve / qualification incomplète | DE000A27Z304 | aum | 2026-10-21": 1,
+    "preuve / qualification incomplète | DE000A27Z304 | aum | 2026-10-30": 1,
+    "preuve / qualification incomplète | DE000A27Z304 | aum | 2026-10-29": 1,
+    "preuve / qualification incomplète | DE000A27Z304 | aum | 2026-10-27": 1,
+    "preuve / qualification incomplète | DE000A27Z304 | aum | 2026-10-26": 1,
+    "preuve / qualification incomplète | IE00BGV5VN51 | countries | 2026-10-13": 7,
+    "preuve / qualification incomplète | IE00BM67HV82 | countries | 2026-10-13": 12,
+    "preuve / qualification incomplète | IE00BM67HQ30 | countries | 2026-10-13": 2,
+    "preuve / qualification incomplète | IE00BM67HQ30 | countries | 2026-10-12": 2,
+    "preuve / qualification incomplète | DE000A27Z304 | aum | 2026-10-17": 1,
+    "preuve / qualification incomplète | IE00BGV5VN51 | countries | 2026-10-12": 5,
+    "preuve / qualification incomplète | IE00BM67HV82 | countries | 2026-10-12": 9,
+    "preuve / qualification incomplète | IE00BM67HV82 | sectors | 2026-10-12": 2,
+    "preuve / qualification incomplète | IE000L6ZMMC4 | countries | 2026-10-22": 56,
+    "preuve / qualification incomplète | IE000L6ZMMC4 | countries | 2026-10-20": 11,
+    "preuve / qualification incomplète | IE000L6ZMMC4 | countries | 2026-10-19": 41,
+    "preuve / qualification incomplète | IE000L6ZMMC4 | countries | 2026-10-16": 11,
+    "preuve / qualification incomplète | IE000L6ZMMC4 | countries | 2026-10-27": 26,
+    "preuve / qualification incomplète | IE000L6ZMMC4 | countries | 2026-10-28": 26,
+    "preuve / qualification incomplète | IE00BM67HK77 | countries | 2026-10-12": 9,
+    "preuve / qualification incomplète | IE00BM67HK77 | countries | 2026-10-13": 9,
+    "preuve / qualification incomplète | IE000L6ZMMC4 | countries | 2026-10-12": 11,
+    "preuve / qualification incomplète | IE000L6ZMMC4 | countries | 2026-10-13": 12,
+    "convention de part non qualifiée | Global X Nasdaq 100 Covered Call UCITS ETF | Rendements glissants à qualifier": 2,
+    "raccordement / qualification documentaire | Placement-direct Vie | Actif général SwissLife · Allocation maximale à confirmer": 2,
+    "raccordement / qualification documentaire | Anaxago | AxClimat I — part B · À compléter": 2,
+    "raccordement / qualification documentaire | Anaxago | AxClimat I — part E · À compléter": 2,
+    "raccordement / qualification documentaire | Bacchus Conseil | GFV Cave de Tain — Crozes-Hermitage · À compléter": 2,
+    "raccordement / qualification documentaire | France Valley | GFI France Valley Forêts · À compléter": 2,
+    "raccordement / qualification documentaire | France Valley | France Valley Foncière Europe · À compléter": 2,
+    "raccordement / qualification documentaire | France Valley | GFI France Valley Patrimoine · À compléter": 2,
+    "raccordement / qualification documentaire | Fundora | Fundora — Horizon · À compléter": 2,
+    "raccordement / qualification documentaire | Fundora | Fundora — Classique · À compléter": 2,
+    "raccordement / qualification documentaire | Hectarea | Obligations foncières Hectarea · À compléter": 2,
+    "raccordement / qualification documentaire | MyMarguerit | Cheptel MyMarguerit · À compléter": 2,
+    "condition vivante encore manuelle | Bourse Direct | Recoupement externe · cash": 1,
+    "condition vivante encore manuelle | BoursoBank · Découverte | Recoupement externe · cash": 1,
+    "condition vivante encore manuelle | Fortuneo · Starter | Recoupement externe · cash": 1,
+    "condition vivante encore manuelle | Fortuneo · Starter | Recoupement externe · dca": 1,
+    "condition vivante encore manuelle | Trade Republic | Recoupement externe · garde": 1,
+    "condition vivante encore manuelle | Trade Republic | Recoupement externe · pme": 1
+  },
+  "financial79": {
+    "qualifiedMonthly": 70,
+    "refusedMonthly": 9,
+    "oldQuoteDivergences": 77,
+    "residuals": 2
+  },
+  "completeAutomationClaimed": false
+}
+
+RUN append-consolidated-repair-results-30oct.py
+Scoped correction results in the same consolidated follow-up 13 48181
+
+RUN update-remainder-30oct.py
+{'priorIdentitiesPreserved': 35335, 'currentFollowupRows': 37018, 'notAnActiveOutageCount': True}
+
+RUN build-final-report-30oct.py
+Prepared consolidated final reports without dropping prior history or claiming complete automation
+
+RUN verify-consolidated-final-30oct.py
+{"verifiedAt": "2026-10-31T04:58:43.347710+00:00", "checks": [{"file": "perimetre-initial-complet.csv.gz", "priorIdentities": 661, "finalIdentities": 661, "allPriorIdentitiesPreserved": true, "unique": true, "sha256": "ac42fcd063bc5cd61bd2053f17f310ba6d34a8c1bfea56f2d25f9040d922b96b"}, {"file": "reconciliation-79-ecarts.csv", "priorIdentities": 79, "finalIdentities": 79, "allPriorIdentitiesPreserved": true, "unique": true, "sha256": "877344436a74a2eeb39b2854f7983a58da5e1b1718dee9e3fd8904be9a47b8ab"}, {"file": "statut-19-actions.csv", "priorIdentities": 19, "finalIdentities": 19, "allPriorIdentitiesPreserved": true, "unique": true, "sha256": "9d7906ee783ccd91fb15c065bdf3d05a7b897a15146d1d1c8e7420f1c4639f93"}, {"file": "bilan-par-outil.csv", "priorIdentities": 23, "finalIdentities": 24, "allPriorIdentitiesPreserved": true, "unique": true, "sha256": "bb30f9a1cb0af5ddbe83f18a015cc5612b1dd2605359c73b2fdf3885ed295474"}, {"file": "matrice-donnees-usages.csv.gz", "priorIdentities": 33381, "finalIdentities": 34951, "allPriorIdentitiesPreserved": true, "unique": true, "sha256": "b76d5de4737e6d642b7903d74c6a5b5975b7167c1ecf89ef4fea092b640fc821"}, {"file": "suivi-consolide.csv.gz", "priorIdentities": 46216, "finalIdentities": 48181, "allPriorIdentitiesPreserved": true, "unique": true, "sha256": "34bda1e55469c88a7b4a0d5dc7e5e8ea51f5cdc543bcc5d3cd0112dbc148dcbc"}, {"file": "restant-a-verifier.csv.gz", "priorIdentities": 35335, "finalIdentities": 37018, "allPriorIdentitiesPreserved": true, "unique": true, "sha256": "e2c4c130c5785f989ad8c75e51ee68ba72ad301bc9f395f523ac1c8a1ed445af"}], "financialWindows": {"constantCases": 79, "qualified": 70, "refused": 9, "newQualifiedMonthly": 0}, "notAnAutomationCoverageRate": true, "sourceAndConsumerProofsRemainScoped": true}

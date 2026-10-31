@@ -1,0 +1,691 @@
+{
+  "base": "https://madmax91310.github.io/shinny-potato",
+  "sourceProof": "etf-recording-order-actual-recovery-31oct.json",
+  "results": [
+    {
+      "isin": "CH0454664001",
+      "tool": "Présentation ETF",
+      "width": 1440,
+      "label": "Part : 618,39 M$ au 30/10/2026",
+      "aum": {
+        "amount": 618385969.835628,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+        "sha256": "ae760afbcbadcb45ec3515be16bc76349487ab3598b67331afbd901bf8a3de20",
+        "method": "Issuer product_details.total_nav; native USD product assets, not NAV-times-units",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "8e23db5a3fdcb6847c24f6cc4582ac12f1f16174b74bff07a7e0a7b2f5f8a974",
+      "textSha256": "50da93ed936815d1243332fda7fe1877b7569def97dd16b6951c7f9044171e83",
+      "checkedAt": "2026-10-31T01:30:42.353Z"
+    },
+    {
+      "isin": "CH0454664001",
+      "tool": "Présentation ETF",
+      "width": 390,
+      "label": "Part : 618,39 M$ au 30/10/2026",
+      "aum": {
+        "amount": 618385969.835628,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+        "sha256": "ae760afbcbadcb45ec3515be16bc76349487ab3598b67331afbd901bf8a3de20",
+        "method": "Issuer product_details.total_nav; native USD product assets, not NAV-times-units",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "8e23db5a3fdcb6847c24f6cc4582ac12f1f16174b74bff07a7e0a7b2f5f8a974",
+      "textSha256": "50da93ed936815d1243332fda7fe1877b7569def97dd16b6951c7f9044171e83",
+      "checkedAt": "2026-10-31T01:30:43.566Z"
+    },
+    {
+      "isin": "CH0454664001",
+      "tool": "Bibliothèque JSON",
+      "source": {
+        "amount": 618385969.835628,
+        "currency": "USD",
+        "scope": "Actif net de la part exacte",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+        "sha256": "ae760afbcbadcb45ec3515be16bc76349487ab3598b67331afbd901bf8a3de20",
+        "method": "Issuer product_details.total_nav; native USD product assets, not NAV-times-units",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31",
+        "amountMillions": 618.3859698356281,
+        "url": "https://api.primary.21shares.com/api/product_details/ABTC"
+      },
+      "sha256": "943b12f65f5c2b35d5d00b6495bfada9ce9a20354d529e5b51cf0336afa79f3c",
+      "version": {
+        "sha": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+        "dataSha": "4213389fd53845831b27587b08ec28cf20e66060",
+        "lane": "validated-data",
+        "builtAt": "2026-10-31T01:29:13.960Z"
+      },
+      "checkedAt": "2026-10-31T01:30:44.882Z"
+    },
+    {
+      "isin": "JE00B1VS3770",
+      "tool": "Présentation ETF",
+      "width": 1440,
+      "label": "Fonds : 6 635,14 M$ au 29/10/2026",
+      "aum": {
+        "amount": 6635141632,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2741017"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+        "identitySha256": "49ef74415799fcbce3e4327caf91421cc14fdc3af7dc78133d01df9ce7fbd2d1",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "b1db696353657473e0ca56ce534718e3532a0ea7e99f2bcc186afaf94e29143f",
+      "textSha256": "68385717706f1207adb2a711d5addf582389b7535aea66733ef4b4890104726c",
+      "checkedAt": "2026-10-31T01:30:46.768Z"
+    },
+    {
+      "isin": "JE00B1VS3770",
+      "tool": "Présentation ETF",
+      "width": 390,
+      "label": "Fonds : 6 635,14 M$ au 29/10/2026",
+      "aum": {
+        "amount": 6635141632,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2741017"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+        "identitySha256": "49ef74415799fcbce3e4327caf91421cc14fdc3af7dc78133d01df9ce7fbd2d1",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "b1db696353657473e0ca56ce534718e3532a0ea7e99f2bcc186afaf94e29143f",
+      "textSha256": "68385717706f1207adb2a711d5addf582389b7535aea66733ef4b4890104726c",
+      "checkedAt": "2026-10-31T01:30:47.976Z"
+    },
+    {
+      "isin": "JE00B1VS3770",
+      "tool": "Bibliothèque JSON",
+      "source": {
+        "amount": 6635141632,
+        "currency": "USD",
+        "scope": "Actif net du fonds",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2741017"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+        "identitySha256": "49ef74415799fcbce3e4327caf91421cc14fdc3af7dc78133d01df9ce7fbd2d1",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31",
+        "amountMillions": 6635.141632,
+        "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0"
+      },
+      "sha256": "55bca847da6cd79327af83fe3fc7d742d0ed204257ea15451eefb925580b3f2f",
+      "version": {
+        "sha": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+        "dataSha": "4213389fd53845831b27587b08ec28cf20e66060",
+        "lane": "validated-data",
+        "builtAt": "2026-10-31T01:29:13.960Z"
+      },
+      "checkedAt": "2026-10-31T01:30:49.197Z"
+    },
+    {
+      "isin": "GB00BJYDH287",
+      "tool": "Présentation ETF",
+      "width": 1440,
+      "label": "Fonds : 1 593,36 M$ au 29/10/2026",
+      "aum": {
+        "amount": 1593359360,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "3371846"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
+        "identitySha256": "95ebfd8527743eb82559f322974f45e67c7f8ab980eea6b3fc30b87a15d4b637",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "27b68c39953d7f021c033e418d6ddbcdd364b956a378bbd65adf360c26d6f804",
+      "textSha256": "a9132da0010761c0671a03fb7cd2e87636612129a5a3a067e80c57ce8f46d123",
+      "checkedAt": "2026-10-31T01:30:50.984Z"
+    },
+    {
+      "isin": "GB00BJYDH287",
+      "tool": "Présentation ETF",
+      "width": 390,
+      "label": "Fonds : 1 593,36 M$ au 29/10/2026",
+      "aum": {
+        "amount": 1593359360,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "3371846"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
+        "identitySha256": "95ebfd8527743eb82559f322974f45e67c7f8ab980eea6b3fc30b87a15d4b637",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "27b68c39953d7f021c033e418d6ddbcdd364b956a378bbd65adf360c26d6f804",
+      "textSha256": "a9132da0010761c0671a03fb7cd2e87636612129a5a3a067e80c57ce8f46d123",
+      "checkedAt": "2026-10-31T01:30:52.175Z"
+    },
+    {
+      "isin": "GB00BJYDH287",
+      "tool": "Bibliothèque JSON",
+      "source": {
+        "amount": 1593359360,
+        "currency": "USD",
+        "scope": "Actif net du fonds",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "3371846"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
+        "identitySha256": "95ebfd8527743eb82559f322974f45e67c7f8ab980eea6b3fc30b87a15d4b637",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31",
+        "amountMillions": 1593.35936,
+        "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0"
+      },
+      "sha256": "fcbbf12626f5300cb8e71b02de46948b07c1f301c8210aa8b63ec653e2d651d8",
+      "version": {
+        "sha": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+        "dataSha": "4213389fd53845831b27587b08ec28cf20e66060",
+        "lane": "validated-data",
+        "builtAt": "2026-10-31T01:29:13.960Z"
+      },
+      "checkedAt": "2026-10-31T01:30:53.391Z"
+    },
+    {
+      "isin": "GB00B15KXQ89",
+      "tool": "Présentation ETF",
+      "width": 1440,
+      "label": "Fonds : 1 912,36 M$ au 29/10/2026",
+      "aum": {
+        "amount": 1912362112,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2740790"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+        "identitySha256": "c89045facb7d2abef28fae55bf8e85684e926edfa9c3373b7fcb55d606c8cca0",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "8ded247af7d66fdd563abd2245cd32ddcc73f5aed1416e62a53dfe8999bc4696",
+      "textSha256": "313d00d69dc45a6386b5368bedba7916d4a8eacfb5076a2f7c099d110447c710",
+      "checkedAt": "2026-10-31T01:30:55.203Z"
+    },
+    {
+      "isin": "GB00B15KXQ89",
+      "tool": "Présentation ETF",
+      "width": 390,
+      "label": "Fonds : 1 912,36 M$ au 29/10/2026",
+      "aum": {
+        "amount": 1912362112,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2740790"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+        "identitySha256": "c89045facb7d2abef28fae55bf8e85684e926edfa9c3373b7fcb55d606c8cca0",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "8ded247af7d66fdd563abd2245cd32ddcc73f5aed1416e62a53dfe8999bc4696",
+      "textSha256": "313d00d69dc45a6386b5368bedba7916d4a8eacfb5076a2f7c099d110447c710",
+      "checkedAt": "2026-10-31T01:30:56.447Z"
+    },
+    {
+      "isin": "GB00B15KXQ89",
+      "tool": "Bibliothèque JSON",
+      "source": {
+        "amount": 1912362112,
+        "currency": "USD",
+        "scope": "Actif net du fonds",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2740790"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+        "identitySha256": "c89045facb7d2abef28fae55bf8e85684e926edfa9c3373b7fcb55d606c8cca0",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31",
+        "amountMillions": 1912.362112,
+        "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0"
+      },
+      "sha256": "8e4ddc60b3509f0fd85ab2fcab890404a9a89d71ec4d187a9b494a7dbc29dd1e",
+      "version": {
+        "sha": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+        "dataSha": "4213389fd53845831b27587b08ec28cf20e66060",
+        "lane": "validated-data",
+        "builtAt": "2026-10-31T01:29:13.960Z"
+      },
+      "checkedAt": "2026-10-31T01:30:57.674Z"
+    },
+    {
+      "isin": "IE0002Y8CX98",
+      "tool": "Présentation ETF",
+      "width": 1440,
+      "label": "Fonds : 4 581,73 M€ au 29/10/2026",
+      "aum": {
+        "amount": 4581734912,
+        "currency": "EUR",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "3474438"
+        ],
+        "nonNativeListingsExcluded": 2,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+        "identitySha256": "30ac82d29be5d8453df9ef0c390ac4d882749e6d6c1df6a85420ddc8d2e4c63b",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "4934f05976dbcbe9ebbd4784876df80ebba8d5330c1ebb1f3aca5b76d96d4e89",
+      "textSha256": "6911abe0ed333eb5eb79beeb425916d2a6e2f74da735dba19c10f0132af207d5",
+      "checkedAt": "2026-10-31T01:30:59.466Z"
+    },
+    {
+      "isin": "IE0002Y8CX98",
+      "tool": "Présentation ETF",
+      "width": 390,
+      "label": "Fonds : 4 581,73 M€ au 29/10/2026",
+      "aum": {
+        "amount": 4581734912,
+        "currency": "EUR",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "3474438"
+        ],
+        "nonNativeListingsExcluded": 2,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+        "identitySha256": "30ac82d29be5d8453df9ef0c390ac4d882749e6d6c1df6a85420ddc8d2e4c63b",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "4934f05976dbcbe9ebbd4784876df80ebba8d5330c1ebb1f3aca5b76d96d4e89",
+      "textSha256": "6911abe0ed333eb5eb79beeb425916d2a6e2f74da735dba19c10f0132af207d5",
+      "checkedAt": "2026-10-31T01:31:00.609Z"
+    },
+    {
+      "isin": "IE0002Y8CX98",
+      "tool": "Bibliothèque JSON",
+      "source": {
+        "amount": 4581734912,
+        "currency": "EUR",
+        "scope": "Actif net du fonds",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "3474438"
+        ],
+        "nonNativeListingsExcluded": 2,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+        "identitySha256": "30ac82d29be5d8453df9ef0c390ac4d882749e6d6c1df6a85420ddc8d2e4c63b",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31",
+        "amountMillions": 4581.734912,
+        "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0"
+      },
+      "sha256": "df6c1e3e94830637b3d4012cca5c6af6ef33e80362b3403b4a60c4f22f87ca37",
+      "version": {
+        "sha": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+        "dataSha": "4213389fd53845831b27587b08ec28cf20e66060",
+        "lane": "validated-data",
+        "builtAt": "2026-10-31T01:29:13.960Z"
+      },
+      "checkedAt": "2026-10-31T01:31:01.821Z"
+    },
+    {
+      "isin": "IE000W8WMSL2",
+      "tool": "Présentation ETF",
+      "width": 1440,
+      "label": "Fonds : 324,52 M$ au 29/10/2026",
+      "aum": {
+        "amount": 324516800,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "3578824"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+        "identitySha256": "326008744e0620d65c217d18d5b5af9ada7812ef9ba63bbcd00a351f20dd4eaa",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "68870e41d1ef73673460376aff36f88c3bad62a8499569b3d7bee52ff68adc67",
+      "textSha256": "6f2092fa00ce35db2758cec052ffe96a3b42c61de6cb1e98e98bda3aad39369a",
+      "checkedAt": "2026-10-31T01:31:03.667Z"
+    },
+    {
+      "isin": "IE000W8WMSL2",
+      "tool": "Présentation ETF",
+      "width": 390,
+      "label": "Fonds : 324,52 M$ au 29/10/2026",
+      "aum": {
+        "amount": 324516800,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "3578824"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+        "identitySha256": "326008744e0620d65c217d18d5b5af9ada7812ef9ba63bbcd00a351f20dd4eaa",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "68870e41d1ef73673460376aff36f88c3bad62a8499569b3d7bee52ff68adc67",
+      "textSha256": "6f2092fa00ce35db2758cec052ffe96a3b42c61de6cb1e98e98bda3aad39369a",
+      "checkedAt": "2026-10-31T01:31:04.838Z"
+    },
+    {
+      "isin": "IE000W8WMSL2",
+      "tool": "Bibliothèque JSON",
+      "source": {
+        "amount": 324516800,
+        "currency": "USD",
+        "scope": "Actif net du fonds",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "3578824"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+        "identitySha256": "326008744e0620d65c217d18d5b5af9ada7812ef9ba63bbcd00a351f20dd4eaa",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31",
+        "amountMillions": 324.5168,
+        "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0"
+      },
+      "sha256": "b057523d7b6a3c6987f05d8f24f21618504b47792a5b79a3905d0e46e5451402",
+      "version": {
+        "sha": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+        "dataSha": "4213389fd53845831b27587b08ec28cf20e66060",
+        "lane": "validated-data",
+        "builtAt": "2026-10-31T01:29:13.960Z"
+      },
+      "checkedAt": "2026-10-31T01:31:06.082Z"
+    },
+    {
+      "isin": "IE00BZ56SW52",
+      "tool": "Présentation ETF",
+      "width": 1440,
+      "label": "Fonds : 1 706,23 M$ au 29/10/2026",
+      "aum": {
+        "amount": 1706229376,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2000433"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+        "identitySha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "3689c1e772f13b78520852532160ed8396f73785ff4c76f3fe42144c760c8d4b",
+      "textSha256": "e84aef0aaf6b324567b00528ab3eb8c07236196f71f9757cc3f909b046b59ac0",
+      "checkedAt": "2026-10-31T01:31:07.798Z"
+    },
+    {
+      "isin": "IE00BZ56SW52",
+      "tool": "Présentation ETF",
+      "width": 390,
+      "label": "Fonds : 1 706,23 M$ au 29/10/2026",
+      "aum": {
+        "amount": 1706229376,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2000433"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+        "identitySha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "3689c1e772f13b78520852532160ed8396f73785ff4c76f3fe42144c760c8d4b",
+      "textSha256": "e84aef0aaf6b324567b00528ab3eb8c07236196f71f9757cc3f909b046b59ac0",
+      "checkedAt": "2026-10-31T01:31:08.987Z"
+    },
+    {
+      "isin": "IE00BZ56SW52",
+      "tool": "Bibliothèque JSON",
+      "source": {
+        "amount": 1706229376,
+        "currency": "USD",
+        "scope": "Actif net du fonds",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2000433"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+        "identitySha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31",
+        "amountMillions": 1706.229376,
+        "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0"
+      },
+      "sha256": "2798fa084548ff6874c44ad936db50ff90fff976aa8514fbc7d2d9dd035f343c",
+      "version": {
+        "sha": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+        "dataSha": "4213389fd53845831b27587b08ec28cf20e66060",
+        "lane": "validated-data",
+        "builtAt": "2026-10-31T01:29:13.960Z"
+      },
+      "checkedAt": "2026-10-31T01:31:10.231Z"
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "tool": "Présentation ETF",
+      "width": 1440,
+      "label": "Fonds : 400,64 M$ au 29/10/2026",
+      "aum": {
+        "amount": 400637024,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2921038"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+        "identitySha256": "7ab5627948d2b2b95c578d10e741db9738894ca076bb8ce4d67713fac91219ee",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "756222f314e0eccf0dc659740a7407e5a57fc7b28cc5a1e299545bab44ac6188",
+      "textSha256": "351e58d1fc68d988d170f3e903130f164eaaeee25099fa93cfb0a344fbee98e8",
+      "checkedAt": "2026-10-31T01:31:12.063Z"
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "tool": "Présentation ETF",
+      "width": 390,
+      "label": "Fonds : 400,64 M$ au 29/10/2026",
+      "aum": {
+        "amount": 400637024,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2921038"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+        "identitySha256": "7ab5627948d2b2b95c578d10e741db9738894ca076bb8ce4d67713fac91219ee",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "756222f314e0eccf0dc659740a7407e5a57fc7b28cc5a1e299545bab44ac6188",
+      "textSha256": "351e58d1fc68d988d170f3e903130f164eaaeee25099fa93cfb0a344fbee98e8",
+      "checkedAt": "2026-10-31T01:31:13.203Z"
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "tool": "Bibliothèque JSON",
+      "source": {
+        "amount": 400637024,
+        "currency": "USD",
+        "scope": "Actif net du fonds",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2921038"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+        "identitySha256": "7ab5627948d2b2b95c578d10e741db9738894ca076bb8ce4d67713fac91219ee",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31",
+        "amountMillions": 400.637024,
+        "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0"
+      },
+      "sha256": "5cbd88c11cab5b4f7bce32e45dc5364f638161cde931a260629ad8fe8d6f7217",
+      "version": {
+        "sha": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+        "dataSha": "4213389fd53845831b27587b08ec28cf20e66060",
+        "lane": "validated-data",
+        "builtAt": "2026-10-31T01:29:13.960Z"
+      },
+      "checkedAt": "2026-10-31T01:31:14.435Z"
+    }
+  ],
+  "errors": [],
+  "scope": "8 exact AUM fields from ordinary producer41154898443/source-record4213389, including ABTC/API and7shared-directory source controls recovered.16realPNG and8JSON verified;6representativePNG stored. Not certification of other fields, full books or monthly windows."
+}

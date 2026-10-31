@@ -1,0 +1,250 @@
+{
+  "checkedAt": "2026-10-31T03:13:13.547155+00:00",
+  "finalChecks": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T02:38:34Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124417954072",
+      "name": "current-snapshot",
+      "startedAt": "2026-10-31T02:38:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T02:40:25Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794990/job/124417664176",
+      "name": "validate",
+      "startedAt": "2026-10-31T02:36:54Z",
+      "status": "COMPLETED",
+      "workflowName": "Update editorial radar"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T02:39:22Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160795009/job/124417664760",
+      "name": "refresh",
+      "startedAt": "2026-10-31T02:36:49Z",
+      "status": "COMPLETED",
+      "workflowName": "Update publication observations"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T02:36:46Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794990/job/124417665334",
+      "name": "update",
+      "startedAt": "2026-10-31T02:36:46Z",
+      "status": "COMPLETED",
+      "workflowName": "Update editorial radar"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T02:39:22Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160795009/job/124418240324",
+      "name": "deploy",
+      "startedAt": "2026-10-31T02:39:23Z",
+      "status": "COMPLETED",
+      "workflowName": "Update publication observations"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T02:41:12Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124418063635",
+      "name": "scope",
+      "startedAt": "2026-10-31T02:38:37Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T02:36:46Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794990/job/124417665290",
+      "name": "report-failures",
+      "startedAt": "2026-10-31T02:36:46Z",
+      "status": "COMPLETED",
+      "workflowName": "Update editorial radar"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T02:44:25Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124418063661",
+      "name": "build",
+      "startedAt": "2026-10-31T02:38:36Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T02:40:41Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124418063656",
+      "name": "python-checks",
+      "startedAt": "2026-10-31T02:38:36Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T02:39:29Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124418063678",
+      "name": "exposure-browser-check",
+      "startedAt": "2026-10-31T02:38:37Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T02:54:30Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124419335659",
+      "name": "tweet-midi-checks (0)",
+      "startedAt": "2026-10-31T02:44:28Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T02:54:29Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124419335639",
+      "name": "tweet-midi-checks (1)",
+      "startedAt": "2026-10-31T02:44:28Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T02:54:37Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124419335837",
+      "name": "tweet-midi-checks (2)",
+      "startedAt": "2026-10-31T02:44:28Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T02:54:36Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124419335672",
+      "name": "tweet-midi-checks (3)",
+      "startedAt": "2026-10-31T02:44:28Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T03:08:15Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124419335636",
+      "name": "browser-checks (0)",
+      "startedAt": "2026-10-31T02:44:28Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T03:03:01Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124419335701",
+      "name": "browser-checks (1)",
+      "startedAt": "2026-10-31T02:44:28Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T03:01:18Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124419335603",
+      "name": "browser-checks (2)",
+      "startedAt": "2026-10-31T02:44:28Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T03:01:07Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124419335650",
+      "name": "browser-checks (3)",
+      "startedAt": "2026-10-31T02:44:28Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T02:45:47Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124419335585",
+      "name": "smoke",
+      "startedAt": "2026-10-31T02:44:28Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T03:08:16Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124424563243",
+      "name": "deploy",
+      "startedAt": "2026-10-31T03:08:16Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T03:08:16Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124424562760",
+      "name": "fallback-build",
+      "startedAt": "2026-10-31T03:08:16Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T03:08:16Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124424562967",
+      "name": "advisory-checks",
+      "startedAt": "2026-10-31T03:08:16Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T03:08:16Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160794937/job/124424562908",
+      "name": "deploy-fallback",
+      "startedAt": "2026-10-31T03:08:16Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-31T02:39:22Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41160795009/job/124418240488",
+      "name": "report-failures",
+      "startedAt": "2026-10-31T02:39:23Z",
+      "status": "COMPLETED",
+      "workflowName": "Update publication observations"
+    }
+  ],
+  "merge": {
+    "sha": "d6c1bd7f22d6f391cae145310788da5a2287546e",
+    "merged": true,
+    "message": "Pull Request successfully merged"
+  }
+}

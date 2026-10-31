@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-10-31T03:24:37.777304+00:00",
+  "kind": "read-only-source-qualification",
+  "expectedIdentities": [
+    "H10/H10/RXI_N.B.TA"
+  ],
+  "expectedFields": [
+    "CURRENCY",
+    "FREQ",
+    "FX",
+    "SERIES_NAME",
+    "UNIT",
+    "UNIT_MULT",
+    "TIME_PERIOD",
+    "OBS_VALUE",
+    "OBS_STATUS"
+  ],
+  "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
+  "status": "validated",
+  "publishesData": false,
+  "ecbConsulted": false,
+  "limit": "Current provider response and frozen historical equivalence; not ordinary collection, registration, publication or scheduled proof.",
+  "responseSha256": "17d087d0ebb2a0ac1a7c0feed844ecb5ca0410c4ae64582b2030233bdeb352e4",
+  "bytes": 2085508,
+  "observations": 10508,
+  "firstObservation": "1983-10-03",
+  "lastObservation": "2026-10-23",
+  "commonFrozenObservations": 6966,
+  "differences": []
+}

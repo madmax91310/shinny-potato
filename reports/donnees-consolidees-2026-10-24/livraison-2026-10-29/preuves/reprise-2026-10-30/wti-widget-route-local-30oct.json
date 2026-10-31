@@ -1,0 +1,1210 @@
+{
+  "checkedAt": "2026-10-30T07:55:35.720532+00:00",
+  "scope": {
+    "requestedIds": [
+      "etc_wti_crude_oilNav"
+    ],
+    "expectedIds": [
+      "etc_wti_crude_oilNav"
+    ]
+  },
+  "series": [
+    {
+      "id": "etc_wti_crude_oilNav",
+      "status": "validated",
+      "record": {
+        "id": "etc_wti_crude_oilNav",
+        "isin": "GB00B15KXV33",
+        "label": "WisdomTree WTI Crude Oil · VL",
+        "instrumentType": "ETC",
+        "consumerScope": "catalog",
+        "currency": "USD",
+        "periodStart": "2020-12",
+        "precision": 8,
+        "collectAnniversary": false,
+        "parser": "official-nav",
+        "field": "nav-total-return",
+        "valuationBasis": "fund-nav-total-return",
+        "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+        "navProvider": "wisdomtree",
+        "navCurrency": "USD",
+        "navHistoryTransport": "official-dataspan-nav-tr",
+        "wisdomClassId": 1000076,
+        "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil",
+        "calendarRegistry": "src/data/non-bond-etf-records.json",
+        "returnWindowQualification": "corroborated-calendars",
+        "requiredQualifiedCalendarYears": [
+          2023
+        ],
+        "wisdomTicker": "CRUD",
+        "wisdomPerformancePathStyle": "issuer-widget",
+        "wisdomProductName": "WisdomTree WTI Crude Oil",
+        "wisdomListingId": 2740803,
+        "wisdomInception": "2006-09-22",
+        "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+        "points": [
+          [
+            "2020-12",
+            4.33263549
+          ],
+          [
+            "2021-01",
+            4.62600495
+          ],
+          [
+            "2021-02",
+            5.44607436
+          ],
+          [
+            "2021-03",
+            5.3295941
+          ],
+          [
+            "2021-04",
+            5.71828378
+          ],
+          [
+            "2021-05",
+            5.96449335
+          ],
+          [
+            "2021-06",
+            6.58395297
+          ],
+          [
+            "2021-07",
+            6.72002276
+          ],
+          [
+            "2021-08",
+            6.33745316
+          ],
+          [
+            "2021-09",
+            6.95177234
+          ],
+          [
+            "2021-10",
+            7.56445167
+          ],
+          [
+            "2021-11",
+            6.27809322
+          ],
+          [
+            "2021-12",
+            7.15440236
+          ],
+          [
+            "2022-01",
+            8.25296125
+          ],
+          [
+            "2022-02",
+            8.95219051
+          ],
+          [
+            "2022-03",
+            9.83741951
+          ],
+          [
+            "2022-04",
+            10.3205087
+          ],
+          [
+            "2022-05",
+            11.34435765
+          ],
+          [
+            "2022-06",
+            10.68432825
+          ],
+          [
+            "2022-07",
+            10.41253833
+          ],
+          [
+            "2022-08",
+            9.74360986
+          ],
+          [
+            "2022-09",
+            8.65510105
+          ],
+          [
+            "2022-10",
+            9.53971988
+          ],
+          [
+            "2022-11",
+            9.2805297
+          ],
+          [
+            "2022-12",
+            9.25301035
+          ],
+          [
+            "2023-01",
+            9.12506056
+          ],
+          [
+            "2023-02",
+            8.89822062
+          ],
+          [
+            "2023-03",
+            8.76404029
+          ],
+          [
+            "2023-04",
+            8.89368095
+          ],
+          [
+            "2023-05",
+            8.00796163
+          ],
+          [
+            "2023-06",
+            8.36593101
+          ],
+          [
+            "2023-07",
+            9.63704992
+          ],
+          [
+            "2023-08",
+            9.90864965
+          ],
+          [
+            "2023-09",
+            10.61605884
+          ],
+          [
+            "2023-10",
+            9.92907966
+          ],
+          [
+            "2023-11",
+            9.49591992
+          ],
+          [
+            "2023-12",
+            9.00755013
+          ],
+          [
+            "2024-01",
+            9.48312999
+          ],
+          [
+            "2024-02",
+            9.71002937
+          ],
+          [
+            "2024-03",
+            10.42746882
+          ],
+          [
+            "2024-04",
+            10.43326847
+          ],
+          [
+            "2024-05",
+            9.98947918
+          ],
+          [
+            "2024-06",
+            10.54127858
+          ],
+          [
+            "2024-07",
+            10.19616944
+          ],
+          [
+            "2024-08",
+            9.77094992
+          ],
+          [
+            "2024-09",
+            9.25053993
+          ],
+          [
+            "2024-10",
+            9.47162976
+          ],
+          [
+            "2024-11",
+            9.39033962
+          ],
+          [
+            "2024-12",
+            9.9133389
+          ],
+          [
+            "2025-01",
+            10.11210875
+          ],
+          [
+            "2025-02",
+            9.8264393
+          ],
+          [
+            "2025-03",
+            10.12127923
+          ],
+          [
+            "2025-04",
+            8.31510116
+          ],
+          [
+            "2025-05",
+            8.66231025
+          ],
+          [
+            "2025-06",
+            9.35883036
+          ],
+          [
+            "2025-07",
+            10.18913954
+          ],
+          [
+            "2025-08",
+            9.61364926
+          ],
+          [
+            "2025-09",
+            9.45523028
+          ],
+          [
+            "2025-10",
+            9.2880202
+          ],
+          [
+            "2025-11",
+            8.97741079
+          ],
+          [
+            "2025-12",
+            8.85418095
+          ],
+          [
+            "2026-01",
+            10.02162933
+          ],
+          [
+            "2026-02",
+            10.42243883
+          ],
+          [
+            "2026-03",
+            14.22403479
+          ],
+          [
+            "2026-04",
+            15.98621282
+          ],
+          [
+            "2026-05",
+            14.76648442
+          ],
+          [
+            "2026-06",
+            12.54228611
+          ],
+          [
+            "2026-07",
+            14.48778445
+          ],
+          [
+            "2026-08",
+            15.00605387
+          ],
+          [
+            "2026-09",
+            16.94937202
+          ]
+        ],
+        "anniversaryAvailable": false,
+        "checkedAt": "2026-10-30",
+        "periodEnd": "2026-09",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k",
+          "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
+        ],
+        "sourceCredit": "WisdomTree",
+        "latestLevel": {
+          "value": 19.0396,
+          "asOf": "2026-10-27",
+          "currency": "USD",
+          "isin": "GB00B15KXV33",
+          "parser": "official-nav",
+          "valuationBasis": "fund-nav-total-return",
+          "nativeValue": 19.0396,
+          "nativeCurrency": "USD",
+          "fxAsOf": null,
+          "fxFactor": 1,
+          "sourceUrl": "https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export",
+          "sourceUrls": [
+            "https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export"
+          ],
+          "checkedAt": "2026-10-28",
+          "method": "Previously qualified exact-share NAV used only as an immutable scale anchor; not a new price consultation",
+          "maxAgeDays": 7,
+          "sha256": "82c42b5d648d89853b3692c03034b00533bdefcf8f8c274569ded0a11c3fb044",
+          "unitQualification": "historical-reference-only"
+        },
+        "nativeValuationCurrency": "USD",
+        "lastOfficialValuation": "2026-10-28",
+        "financialConvention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
+        "calendarProof": {
+          "controlledInstrument": "GB00B15KXV33",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2020-12-01",
+          "incomeTreatment": "Issuer exact-product NAV (TR); no additional cash",
+          "navHistoryTransport": "official-dataspan-nav-tr",
+          "dailyObservations": 1453,
+          "sourceSnapshotDate": "2026-10-28",
+          "issuerProductInception": "2006-09-22",
+          "issuerChartInception": "2006-09-22",
+          "tablePublicationDate": "2026-10-28",
+          "closedTableCalendarChecks": [
+            {
+              "year": 2021,
+              "start": "2020-12-31",
+              "end": "2021-12-31",
+              "startValue": 1067.8681640625,
+              "endValue": 1763.351318359375,
+              "dailyDerived": 65.12818507961155,
+              "published": 65.13,
+              "publishedDecimalPlaces": 2
+            },
+            {
+              "year": 2022,
+              "start": "2021-12-31",
+              "end": "2022-12-30",
+              "startValue": 1763.351318359375,
+              "endValue": 2280.596923828125,
+              "dailyDerived": 29.33309999450342,
+              "published": 29.33,
+              "publishedDecimalPlaces": 2
+            },
+            {
+              "year": 2023,
+              "start": "2022-12-30",
+              "end": "2023-12-29",
+              "startValue": 2280.596923828125,
+              "endValue": 2220.09814453125,
+              "dailyDerived": -2.6527607164936406,
+              "published": -2.65,
+              "publishedDecimalPlaces": 2
+            },
+            {
+              "year": 2024,
+              "start": "2023-12-29",
+              "end": "2024-12-31",
+              "startValue": 2220.09814453125,
+              "endValue": 2443.3486328125,
+              "dailyDerived": 10.055883737896053,
+              "published": 10.06,
+              "publishedDecimalPlaces": 2
+            },
+            {
+              "year": 2025,
+              "start": "2024-12-31",
+              "end": "2025-12-31",
+              "startValue": 2443.3486328125,
+              "endValue": 2182.297119140625,
+              "dailyDerived": -10.684169674606881,
+              "published": -10.68,
+              "publishedDecimalPlaces": 2
+            }
+          ],
+          "snapshotQualification": "Closed calendar dt/December valuation bounds matched individually at unchanged published two-decimal precision; current and rolling table returns are not used",
+          "excludedPreWindowObservations": 2718,
+          "suppliedExactSecurityStart": "2020-12-01",
+          "scaleProof": {
+            "anchor": {
+              "isin": "GB00B15KXV33",
+              "currency": "USD",
+              "date": "2026-10-27",
+              "nav": 19.0396,
+              "classId": 1000076,
+              "rawWorkbookSha256": "82c42b5d648d89853b3692c03034b00533bdefcf8f8c274569ded0a11c3fb044",
+              "workbook": "scripts/fixtures/wisdomtree-performance/GB00B15KXV33-qualified-nav.xlsx.gz",
+              "sourceUrl": "https://www.wisdomtree.com/api/fund-history/1000076/historical-data-export",
+              "sourceCheckedAt": "2026-10-28",
+              "recordCommit": "7b24cc0d55d4a7f6945226084704dd45a3f31030",
+              "method": "Previously qualified exact-share official NAV, immutable unit anchor only; not a new source consultation"
+            },
+            "sourcePerformanceLevel": 4692.70556640625,
+            "factor": 0.004057275644203869,
+            "method": "Official exact-product NAV(TR) performance units anchored to independently qualified same-day per-share NAV; no raw historical price claim",
+            "anchorIsFreshSourceCheck": false
+          },
+          "actualNavTransport": "public-widget-http",
+          "accessAttempts": [
+            {
+              "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k",
+              "transport": "public-widget-http",
+              "status": "received"
+            },
+            {
+              "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular",
+              "transport": "public-widget-http",
+              "status": "received"
+            }
+          ],
+          "sourceRuntime": {
+            "runId": null,
+            "attempt": null,
+            "event": null,
+            "codeRevision": null,
+            "kind": "local"
+          },
+          "calendarRegistry": "src/data/non-bond-etf-records.json",
+          "calendarRegistryPerformanceHash": "497c7810360b1f76de3ad9be6d49ac695d1fb6771623cdc4726508b02e194995",
+          "calendarSource": {
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+            "sha256": "e8bbd5f4a33949849d608477bf4783f42bde72b10b5c98db2c83082ce59679a8",
+            "asOf": "2026-09-30",
+            "checkedAt": null,
+            "method": "calendar-year exact ETP NAV total return, net of fees"
+          },
+          "calendarSourceConsultedByThisCollector": true,
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "productPageReferenceOnly": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil",
+          "historyUnqualifiedReturnWindows": [],
+          "qualifiedCalendarYears": [
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "qualificationScope": "Only independent corroborated return intervals; unresolved official daily/calendar differences remain refused. No price interpolation or threshold change.",
+          "checks": [
+            {
+              "year": 2021,
+              "start": "2020-12-31",
+              "end": "2021-12-31",
+              "startValue": 4.332635493271483,
+              "endValue": 7.154402356154275,
+              "dailyDerived": 65.12818507961155,
+              "published": 65.13,
+              "publishedDecimalPlaces": 2
+            },
+            {
+              "year": 2022,
+              "start": "2021-12-31",
+              "end": "2022-12-30",
+              "startValue": 7.154402356154275,
+              "endValue": 9.253010353294117,
+              "dailyDerived": 29.33309999450342,
+              "published": 29.33,
+              "publishedDecimalPlaces": 2
+            },
+            {
+              "year": 2023,
+              "start": "2022-12-30",
+              "end": "2023-12-29",
+              "startValue": 9.253010353294117,
+              "endValue": 9.007550129548841,
+              "dailyDerived": -2.6527607164936406,
+              "published": -2.65,
+              "publishedDecimalPlaces": 2
+            },
+            {
+              "year": 2024,
+              "start": "2023-12-29",
+              "end": "2024-12-31",
+              "startValue": 9.007550129548841,
+              "endValue": 9.913338898208979,
+              "dailyDerived": 10.055883737896053,
+              "published": 10.06,
+              "publishedDecimalPlaces": 2
+            },
+            {
+              "year": 2025,
+              "start": "2024-12-31",
+              "end": "2025-12-31",
+              "startValue": 9.913338898208979,
+              "endValue": 8.854180949905526,
+              "dailyDerived": -10.684169674606892,
+              "published": -10.68,
+              "publishedDecimalPlaces": 2
+            }
+          ]
+        },
+        "historyUnqualifiedReturnWindows": [],
+        "proofRows": [
+          {
+            "date": "2020-12-31",
+            "nav": 4.332635493271483,
+            "navCurrency": "USD",
+            "value": 4.332635493271483,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2021-01-29",
+            "nav": 4.626004951012215,
+            "navCurrency": "USD",
+            "value": 4.626004951012215,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2021-02-26",
+            "nav": 5.446074361503334,
+            "navCurrency": "USD",
+            "value": 5.446074361503334,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2021-03-31",
+            "nav": 5.329594098428818,
+            "navCurrency": "USD",
+            "value": 5.329594098428818,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2021-04-30",
+            "nav": 5.71828377961724,
+            "navCurrency": "USD",
+            "value": 5.71828377961724,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2021-05-28",
+            "nav": 5.964493351268971,
+            "navCurrency": "USD",
+            "value": 5.964493351268971,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2021-06-30",
+            "nav": 6.583952966544133,
+            "navCurrency": "USD",
+            "value": 6.583952966544133,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2021-07-30",
+            "nav": 6.720022758861227,
+            "navCurrency": "USD",
+            "value": 6.720022758861227,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2021-08-31",
+            "nav": 6.33745316496961,
+            "navCurrency": "USD",
+            "value": 6.33745316496961,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2021-09-30",
+            "nav": 6.951772342755612,
+            "navCurrency": "USD",
+            "value": 6.951772342755612,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2021-10-29",
+            "nav": 7.564451671950556,
+            "navCurrency": "USD",
+            "value": 7.564451671950556,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2021-11-30",
+            "nav": 6.278093221392369,
+            "navCurrency": "USD",
+            "value": 6.278093221392369,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2021-12-31",
+            "nav": 7.154402356154275,
+            "navCurrency": "USD",
+            "value": 7.154402356154275,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2022-01-31",
+            "nav": 8.252961245204673,
+            "navCurrency": "USD",
+            "value": 8.252961245204673,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2022-02-28",
+            "nav": 8.952190505231638,
+            "navCurrency": "USD",
+            "value": 8.952190505231638,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2022-03-31",
+            "nav": 9.83741950502676,
+            "navCurrency": "USD",
+            "value": 9.83741950502676,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2022-04-29",
+            "nav": 10.320508697331016,
+            "navCurrency": "USD",
+            "value": 10.320508697331016,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2022-05-31",
+            "nav": 11.344357649635128,
+            "navCurrency": "USD",
+            "value": 11.344357649635128,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2022-06-30",
+            "nav": 10.684328249555364,
+            "navCurrency": "USD",
+            "value": 10.684328249555364,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2022-07-29",
+            "nav": 10.41253832759266,
+            "navCurrency": "USD",
+            "value": 10.41253832759266,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2022-08-31",
+            "nav": 9.743609863941721,
+            "navCurrency": "USD",
+            "value": 9.743609863941721,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2022-09-30",
+            "nav": 8.655101052695542,
+            "navCurrency": "USD",
+            "value": 8.655101052695542,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2022-10-31",
+            "nav": 9.539719876270738,
+            "navCurrency": "USD",
+            "value": 9.539719876270738,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2022-11-30",
+            "nav": 9.280529697031245,
+            "navCurrency": "USD",
+            "value": 9.280529697031245,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2022-12-30",
+            "nav": 9.253010353294117,
+            "navCurrency": "USD",
+            "value": 9.253010353294117,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2023-01-31",
+            "nav": 9.125060560267395,
+            "navCurrency": "USD",
+            "value": 9.125060560267395,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2023-02-28",
+            "nav": 8.898220616688072,
+            "navCurrency": "USD",
+            "value": 8.898220616688072,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2023-03-31",
+            "nav": 8.764040290506554,
+            "navCurrency": "USD",
+            "value": 8.764040290506554,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2023-04-28",
+            "nav": 8.893680945233632,
+            "navCurrency": "USD",
+            "value": 8.893680945233632,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2023-05-31",
+            "nav": 8.00796162526178,
+            "navCurrency": "USD",
+            "value": 8.00796162526178,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2023-06-30",
+            "nav": 8.365931013922976,
+            "navCurrency": "USD",
+            "value": 8.365931013922976,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2023-07-31",
+            "nav": 9.63704991717011,
+            "navCurrency": "USD",
+            "value": 9.63704991717011,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2023-08-31",
+            "nav": 9.90864965433699,
+            "navCurrency": "USD",
+            "value": 9.90864965433699,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2023-09-29",
+            "nav": 10.616058841675926,
+            "navCurrency": "USD",
+            "value": 10.616058841675926,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2023-10-31",
+            "nav": 9.929079661700689,
+            "navCurrency": "USD",
+            "value": 9.929079661700689,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2023-11-30",
+            "nav": 9.495919921574593,
+            "navCurrency": "USD",
+            "value": 9.495919921574593,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2023-12-29",
+            "nav": 9.007550129548841,
+            "navCurrency": "USD",
+            "value": 9.007550129548841,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2024-01-31",
+            "nav": 9.48312999405556,
+            "navCurrency": "USD",
+            "value": 9.48312999405556,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2024-02-29",
+            "nav": 9.710029370383577,
+            "navCurrency": "USD",
+            "value": 9.710029370383577,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2024-03-28",
+            "nav": 10.427468824610504,
+            "navCurrency": "USD",
+            "value": 10.427468824610504,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2024-04-30",
+            "nav": 10.433268470337264,
+            "navCurrency": "USD",
+            "value": 10.433268470337264,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2024-05-31",
+            "nav": 9.989479183107177,
+            "navCurrency": "USD",
+            "value": 9.989479183107177,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2024-06-28",
+            "nav": 10.54127857617702,
+            "navCurrency": "USD",
+            "value": 10.54127857617702,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2024-07-31",
+            "nav": 10.196169443787477,
+            "navCurrency": "USD",
+            "value": 10.196169443787477,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2024-08-30",
+            "nav": 9.770949918886952,
+            "navCurrency": "USD",
+            "value": 9.770949918886952,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2024-09-30",
+            "nav": 9.250539932040054,
+            "navCurrency": "USD",
+            "value": 9.250539932040054,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2024-10-31",
+            "nav": 9.471629757183194,
+            "navCurrency": "USD",
+            "value": 9.471629757183194,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2024-11-29",
+            "nav": 9.390339624610627,
+            "navCurrency": "USD",
+            "value": 9.390339624610627,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2024-12-31",
+            "nav": 9.913338898208979,
+            "navCurrency": "USD",
+            "value": 9.913338898208979,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2025-01-31",
+            "nav": 10.112108754579939,
+            "navCurrency": "USD",
+            "value": 10.112108754579939,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2025-02-28",
+            "nav": 9.826439304705472,
+            "navCurrency": "USD",
+            "value": 9.826439304705472,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2025-03-31",
+            "nav": 10.121279227703484,
+            "navCurrency": "USD",
+            "value": 10.121279227703484,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2025-04-30",
+            "nav": 8.315101155602097,
+            "navCurrency": "USD",
+            "value": 8.315101155602097,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2025-05-30",
+            "nav": 8.662310245112172,
+            "navCurrency": "USD",
+            "value": 8.662310245112172,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2025-06-30",
+            "nav": 9.358830362344484,
+            "navCurrency": "USD",
+            "value": 9.358830362344484,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2025-07-31",
+            "nav": 10.189139540162742,
+            "navCurrency": "USD",
+            "value": 10.189139540162742,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2025-08-29",
+            "nav": 9.613649262917503,
+            "navCurrency": "USD",
+            "value": 9.613649262917503,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2025-09-30",
+            "nav": 9.455230280726788,
+            "navCurrency": "USD",
+            "value": 9.455230280726788,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2025-10-31",
+            "nav": 9.28802020445836,
+            "navCurrency": "USD",
+            "value": 9.28802020445836,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2025-11-28",
+            "nav": 8.977410792140104,
+            "navCurrency": "USD",
+            "value": 8.977410792140104,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2025-12-31",
+            "nav": 8.854180949905526,
+            "navCurrency": "USD",
+            "value": 8.854180949905526,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2026-01-30",
+            "nav": 10.021629328513407,
+            "navCurrency": "USD",
+            "value": 10.021629328513407,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2026-02-27",
+            "nav": 10.422438832979335,
+            "navCurrency": "USD",
+            "value": 10.422438832979335,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2026-03-31",
+            "nav": 14.224034792299927,
+            "navCurrency": "USD",
+            "value": 14.224034792299927,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2026-04-30",
+            "nav": 15.986212819451232,
+            "navCurrency": "USD",
+            "value": 15.986212819451232,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2026-05-29",
+            "nav": 14.766484423454328,
+            "navCurrency": "USD",
+            "value": 14.766484423454328,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2026-06-30",
+            "nav": 12.54228611341093,
+            "navCurrency": "USD",
+            "value": 12.54228611341093,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2026-07-31",
+            "nav": 14.48778445391009,
+            "navCurrency": "USD",
+            "value": 14.48778445391009,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2026-08-28",
+            "nav": 15.006053871258178,
+            "navCurrency": "USD",
+            "value": 15.006053871258178,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          },
+          {
+            "date": "2026-09-30",
+            "nav": 16.949372020426065,
+            "navCurrency": "USD",
+            "value": 16.949372020426065,
+            "currency": "USD",
+            "fxAsOf": null,
+            "fxFactor": 1
+          }
+        ],
+        "responseSha256": "19bb569d4fcf25ac0fa273d0a8bfb4e3c2f96ee526e13a67170aa750ce58b514",
+        "rawSourceHashes": {
+          "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k": "d70bf348d0c568e5a451d5d6525b702e20ff6492923a7c2f7445951e1fea7e4d",
+          "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular": "92cbb383a9cbbd6bf06cb193ac2e305228f47b731b3813bc41d219641618e867",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33": "e8bbd5f4a33949849d608477bf4783f42bde72b10b5c98db2c83082ce59679a8"
+        }
+      }
+    }
+  ]
+}

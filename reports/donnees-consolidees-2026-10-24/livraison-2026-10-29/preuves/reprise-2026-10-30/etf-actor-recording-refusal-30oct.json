@@ -1,0 +1,12 @@
+{
+  "observedAt": "2026-10-30T21:30:05.673486+00:00",
+  "run": 41127528853,
+  "job": 124309814515,
+  "collection": "validated and complete build succeeded; source results separately qualified",
+  "failedStep": "Commit validated observations",
+  "upstream": "d1e072fec40884de4fbb69d1c843a727cf0c6c79",
+  "blockedPath": "src/data/automated-presentation-actors.json",
+  "exactError": "Collection inputs may have changed; recollect from master: src/data/automated-presentation-actors.json",
+  "currentCorrection": "exact independent actor output only; Python acquisition and JS baseline graph tests; mandatory regeneration/build/financial revalidation maintained",
+  "productionBranchAfterFixObserved": false
+}

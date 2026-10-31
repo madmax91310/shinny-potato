@@ -1,0 +1,73 @@
+{
+  "verifiedAt": "2026-10-30T23:09:41.903Z",
+  "run": 41142238317,
+  "event": "push",
+  "sourceRevision": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+  "feedCheckedAt": "2026-10-30T23:05:55.019Z",
+  "sourceWireEvidence": "radar-post1102-production-30oct.json",
+  "countryCases": [
+    {
+      "entity": "IE00BTJRMP35",
+      "field": "countries:Australia",
+      "currentValue": 0.038644,
+      "period": "2026-10-29",
+      "checkedAt": "2026-10-30",
+      "currentAndAnchorUnchanged": true,
+      "originalConflictPreserved": true,
+      "resolvedAt": null,
+      "proposalLastSeen": [
+        "2026-10-30T22:54:25.533Z"
+      ],
+      "proposalNotRefreshedByThisProducer": true
+    },
+    {
+      "entity": "IE00BTJRMP35",
+      "field": "countries:Singapore",
+      "currentValue": 0.208854,
+      "period": "2026-10-29",
+      "checkedAt": "2026-10-30",
+      "currentAndAnchorUnchanged": true,
+      "originalConflictPreserved": true,
+      "resolvedAt": null,
+      "proposalLastSeen": [
+        "2026-10-30T22:54:25.533Z"
+      ],
+      "proposalNotRefreshedByThisProducer": true
+    },
+    {
+      "entity": "IE000L6ZMMC4",
+      "field": "countries:Uruguay",
+      "currentValue": 0.073144,
+      "period": "2026-10-29",
+      "checkedAt": "2026-10-30",
+      "currentAndAnchorUnchanged": true,
+      "originalConflictPreserved": true,
+      "resolvedAt": null,
+      "proposalLastSeen": [
+        "2026-10-30T22:54:25.533Z"
+      ],
+      "proposalNotRefreshedByThisProducer": true
+    }
+  ],
+  "additionalSectorCases": [
+    {
+      "entity": "IE00BM67HS53",
+      "field": "sectors:Agricultural Products & Services",
+      "preservedLegacyValue": 0,
+      "checkedAt": "2026-10-30",
+      "qualificationNowExplicit": true,
+      "notClaimedRepaired": true
+    },
+    {
+      "entity": "IE00BM67HS53",
+      "field": "sectors:Energy",
+      "preservedLegacyValue": 0,
+      "checkedAt": "2026-10-30",
+      "qualificationNowExplicit": true,
+      "notClaimedRepaired": true
+    }
+  ],
+  "sourceAndQualification": "Ordinary producer update job succeeded; unrelated provider failures remain explicit and make the overall run partial/failed. No source control date manufactured by this analysis.",
+  "notAnExplanationOfOldDifferences": true,
+  "noFinancialDataWrittenByThisVerification": true
+}

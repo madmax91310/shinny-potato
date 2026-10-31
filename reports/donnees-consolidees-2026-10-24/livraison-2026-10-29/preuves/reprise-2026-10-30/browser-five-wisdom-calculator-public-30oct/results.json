@@ -1,0 +1,768 @@
+{
+  "checkedAt": "2026-10-30T20:04:46.973Z",
+  "base": "https://madmax91310.github.io/shinny-potato",
+  "method": "Exact unchanged monthly NAV/TR levels, two existing source routes newly rechecked. NativeUSD or independent EUR conversion price/USDperEUR using each month final ECB observation. Lump1000*last/first; DCA sum1000*last/each month. No application calculation helper imported. No new79window qualified.",
+  "results": [
+    {
+      "id": "etfGB00B15KXQ89Nav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 1440,
+      "monthlyContributions": 1,
+      "expected": 1676.6892692420026,
+      "displayed": "1 677 $",
+      "pngBytes": 1942401,
+      "pngSha256": "1ee42e68e73f5a0425e932f7e28c19195dfadccbc28ad1f236b8b7e6caff2391",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etfGB00B15KXQ89Nav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 1440,
+      "monthlyContributions": 46,
+      "expected": 64585.7568294924,
+      "displayed": "64 586 $",
+      "pngBytes": 1974664,
+      "pngSha256": "f149ff8659ad01fca49dabe2ee5997757765241e22045817fb596e97b6502695",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etfGB00B15KXQ89Nav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1440,
+      "monthlyContributions": 1,
+      "expected": 1574.9509243271866,
+      "displayed": "1 575 €",
+      "pngBytes": 1933250,
+      "pngSha256": "1784eb8dfb5d06c9e672223d97e6fb2846d2d2fd9ee94d8c1302f586e3d7d716",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etfGB00B15KXQ89Nav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1440,
+      "monthlyContributions": 46,
+      "expected": 62828.2382207421,
+      "displayed": "62 828 €",
+      "pngBytes": 1965598,
+      "pngSha256": "4197aacfaded6d2605810e7ff6f8780b9bb120a6f0eb3f742f697a8fb6f3a78f",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_coffeeNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 1440,
+      "monthlyContributions": 1,
+      "expected": 2730.836491036406,
+      "displayed": "2 731 $",
+      "pngBytes": 2024585,
+      "pngSha256": "1a6e42e199961cf060e5f140df339d1fcb4422e3340dc846e6db295c8c836e35",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_coffeeNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 1440,
+      "monthlyContributions": 46,
+      "expected": 75498.78472843039,
+      "displayed": "75 499 $",
+      "pngBytes": 2057761,
+      "pngSha256": "42554decad7b9b140b501d0f08b78d83ac09d6488433730589d6d614a1b923f6",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_coffeeNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1440,
+      "monthlyContributions": 1,
+      "expected": 2565.13447938303,
+      "displayed": "2 565 €",
+      "pngBytes": 2021441,
+      "pngSha256": "83ca3bdc84018297e3d310dc9717f23f1dc690ba695188652aebb8f76069f942",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_coffeeNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1440,
+      "monthlyContributions": 46,
+      "expected": 73080.26115888644,
+      "displayed": "73 080 €",
+      "pngBytes": 2052140,
+      "pngSha256": "491e4e838cf49e371fbe6d3cf468bc480a71b8e9611890d0973f2fe3dae47236",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_cocoaNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 1440,
+      "monthlyContributions": 1,
+      "expected": 3471.9846502767373,
+      "displayed": "3 472 $",
+      "pngBytes": 2033289,
+      "pngSha256": "1f8c21066fb1729b27981d28e831dd86b73b121e5537da9ef88185183113dfe7",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_cocoaNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 1440,
+      "monthlyContributions": 46,
+      "expected": 65935.71986874595,
+      "displayed": "65 936 $",
+      "pngBytes": 2082475,
+      "pngSha256": "71a27cba7b1b44f8c92f6d3993e07acf5b48a3578ce6442b3dd9a29958810297",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_cocoaNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1440,
+      "monthlyContributions": 1,
+      "expected": 3261.3111651124336,
+      "displayed": "3 261 €",
+      "pngBytes": 2023553,
+      "pngSha256": "6d10945762dcf8cd207cc5a1be4ace76a849b7af2ede3fd1f5a43e99d2855434",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_cocoaNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1440,
+      "monthlyContributions": 46,
+      "expected": 63954.67224845062,
+      "displayed": "63 955 €",
+      "pngBytes": 2073258,
+      "pngSha256": "6d68118e23720aa466c864620ad9641493ffdead48ac3675a3d45955a92f8d3c",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_natural_gasNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 1440,
+      "monthlyContributions": 1,
+      "expected": 146.24276271840247,
+      "displayed": "146 $",
+      "pngBytes": 1777943,
+      "pngSha256": "c51d48577223b22fd881193a1e0c96143765c646cae4ac0650826f0fe6a3e147",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_natural_gasNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 1440,
+      "monthlyContributions": 46,
+      "expected": 26227.3353918319,
+      "displayed": "26 227 $",
+      "pngBytes": 1826982,
+      "pngSha256": "1a7bae77f9b9917aac235a23a718437e97b47a5ff8b0fd1998e2a521ebae4547",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_natural_gasNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1440,
+      "monthlyContributions": 1,
+      "expected": 137.3690274904871,
+      "displayed": "137 €",
+      "pngBytes": 1777491,
+      "pngSha256": "b5036c7679bcf417d6b254bdaa4c9eaffe1e5a245c63cae27eea5556f2c3ec04",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_natural_gasNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1440,
+      "monthlyContributions": 46,
+      "expected": 25866.886317742585,
+      "displayed": "25 867 €",
+      "pngBytes": 1831788,
+      "pngSha256": "5b04de332bf24253ef932a5410775132c17c2887131168b392c204b246468608",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_wheatNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 1440,
+      "monthlyContributions": 1,
+      "expected": 595.6443667478978,
+      "displayed": "596 $",
+      "pngBytes": 1979867,
+      "pngSha256": "d3bb07f9836996c1c0bbd338a69b6e4e1d44010bd5f4a2ba11c31a91e7db3cde",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_wheatNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 1440,
+      "monthlyContributions": 46,
+      "expected": 44277.921425584456,
+      "displayed": "44 278 $",
+      "pngBytes": 2007320,
+      "pngSha256": "c1df3b508c8830c00d6d1d6575a77e6ef475a0cf587b0a833d371845621dcc11",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_wheatNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1440,
+      "monthlyContributions": 1,
+      "expected": 559.5017891442604,
+      "displayed": "560 €",
+      "pngBytes": 1967008,
+      "pngSha256": "58f613d0c2602352a89460441d40f3a7cfecf76c1829329489d7693b892baa50",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_wheatNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1440,
+      "monthlyContributions": 46,
+      "expected": 43444.26980434044,
+      "displayed": "43 444 €",
+      "pngBytes": 1983846,
+      "pngSha256": "880c961e44fa7ee7723e9acb53b38370e226a8252c281154c0f9a8f58ad3d354",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etfGB00B15KXQ89Nav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 390,
+      "monthlyContributions": 1,
+      "expected": 1676.6892692420026,
+      "displayed": "1 677 $",
+      "pngBytes": 1942401,
+      "pngSha256": "1ee42e68e73f5a0425e932f7e28c19195dfadccbc28ad1f236b8b7e6caff2391",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etfGB00B15KXQ89Nav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 390,
+      "monthlyContributions": 46,
+      "expected": 64585.7568294924,
+      "displayed": "64 586 $",
+      "pngBytes": 1974664,
+      "pngSha256": "f149ff8659ad01fca49dabe2ee5997757765241e22045817fb596e97b6502695",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etfGB00B15KXQ89Nav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 1,
+      "expected": 1574.9509243271866,
+      "displayed": "1 575 €",
+      "pngBytes": 1933250,
+      "pngSha256": "1784eb8dfb5d06c9e672223d97e6fb2846d2d2fd9ee94d8c1302f586e3d7d716",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etfGB00B15KXQ89Nav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 46,
+      "expected": 62828.2382207421,
+      "displayed": "62 828 €",
+      "pngBytes": 1965598,
+      "pngSha256": "4197aacfaded6d2605810e7ff6f8780b9bb120a6f0eb3f742f697a8fb6f3a78f",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_coffeeNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 390,
+      "monthlyContributions": 1,
+      "expected": 2730.836491036406,
+      "displayed": "2 731 $",
+      "pngBytes": 2024585,
+      "pngSha256": "1a6e42e199961cf060e5f140df339d1fcb4422e3340dc846e6db295c8c836e35",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_coffeeNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 390,
+      "monthlyContributions": 46,
+      "expected": 75498.78472843039,
+      "displayed": "75 499 $",
+      "pngBytes": 2057761,
+      "pngSha256": "42554decad7b9b140b501d0f08b78d83ac09d6488433730589d6d614a1b923f6",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_coffeeNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 1,
+      "expected": 2565.13447938303,
+      "displayed": "2 565 €",
+      "pngBytes": 2021441,
+      "pngSha256": "83ca3bdc84018297e3d310dc9717f23f1dc690ba695188652aebb8f76069f942",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_coffeeNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 46,
+      "expected": 73080.26115888644,
+      "displayed": "73 080 €",
+      "pngBytes": 2052140,
+      "pngSha256": "491e4e838cf49e371fbe6d3cf468bc480a71b8e9611890d0973f2fe3dae47236",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_cocoaNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 390,
+      "monthlyContributions": 1,
+      "expected": 3471.9846502767373,
+      "displayed": "3 472 $",
+      "pngBytes": 2033289,
+      "pngSha256": "1f8c21066fb1729b27981d28e831dd86b73b121e5537da9ef88185183113dfe7",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_cocoaNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 390,
+      "monthlyContributions": 46,
+      "expected": 65935.71986874595,
+      "displayed": "65 936 $",
+      "pngBytes": 2082475,
+      "pngSha256": "71a27cba7b1b44f8c92f6d3993e07acf5b48a3578ce6442b3dd9a29958810297",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_cocoaNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 1,
+      "expected": 3261.3111651124336,
+      "displayed": "3 261 €",
+      "pngBytes": 2023553,
+      "pngSha256": "6d10945762dcf8cd207cc5a1be4ace76a849b7af2ede3fd1f5a43e99d2855434",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_cocoaNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 46,
+      "expected": 63954.67224845062,
+      "displayed": "63 955 €",
+      "pngBytes": 2073258,
+      "pngSha256": "6d68118e23720aa466c864620ad9641493ffdead48ac3675a3d45955a92f8d3c",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_natural_gasNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 390,
+      "monthlyContributions": 1,
+      "expected": 146.24276271840247,
+      "displayed": "146 $",
+      "pngBytes": 1777943,
+      "pngSha256": "c51d48577223b22fd881193a1e0c96143765c646cae4ac0650826f0fe6a3e147",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_natural_gasNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 390,
+      "monthlyContributions": 46,
+      "expected": 26227.3353918319,
+      "displayed": "26 227 $",
+      "pngBytes": 1826982,
+      "pngSha256": "1a7bae77f9b9917aac235a23a718437e97b47a5ff8b0fd1998e2a521ebae4547",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_natural_gasNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 1,
+      "expected": 137.3690274904871,
+      "displayed": "137 €",
+      "pngBytes": 1777491,
+      "pngSha256": "b5036c7679bcf417d6b254bdaa4c9eaffe1e5a245c63cae27eea5556f2c3ec04",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_natural_gasNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 46,
+      "expected": 25866.886317742585,
+      "displayed": "25 867 €",
+      "pngBytes": 1831788,
+      "pngSha256": "5b04de332bf24253ef932a5410775132c17c2887131168b392c204b246468608",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_wheatNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 390,
+      "monthlyContributions": 1,
+      "expected": 595.6443667478978,
+      "displayed": "596 $",
+      "pngBytes": 1979867,
+      "pngSha256": "d3bb07f9836996c1c0bbd338a69b6e4e1d44010bd5f4a2ba11c31a91e7db3cde",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_wheatNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 390,
+      "monthlyContributions": 46,
+      "expected": 44277.921425584456,
+      "displayed": "44 278 $",
+      "pngBytes": 2007320,
+      "pngSha256": "c1df3b508c8830c00d6d1d6575a77e6ef475a0cf587b0a833d371845621dcc11",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_wheatNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 1,
+      "expected": 559.5017891442604,
+      "displayed": "560 €",
+      "pngBytes": 1967008,
+      "pngSha256": "58f613d0c2602352a89460441d40f3a7cfecf76c1829329489d7693b892baa50",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    },
+    {
+      "id": "etc_wheatNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 46,
+      "expected": 43444.26980434044,
+      "displayed": "43 444 €",
+      "pngBytes": 1983846,
+      "pngSha256": "880c961e44fa7ee7723e9acb53b38370e226a8252c281154c0f9a8f58ad3d354",
+      "version": {
+        "sha": "15915362731a390e36af7838f9fc391ed3f939f5",
+        "dataSha": "2fff336538d5b54c03109790bdb1c57fca9ceddf",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T19:50:29Z"
+      }
+    }
+  ],
+  "errors": []
+}

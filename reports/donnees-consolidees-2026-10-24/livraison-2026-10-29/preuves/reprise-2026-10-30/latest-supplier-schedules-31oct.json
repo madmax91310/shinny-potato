@@ -1,0 +1,131 @@
+{
+  "checkedAt": "2026-10-31T02:43:34.383729+00:00",
+  "runs": [
+    {
+      "workflow": "collect-etf-pilot.yml",
+      "runs": [
+        {
+          "id": 41068013127,
+          "head_sha": "12ebe8fbdd46e582e2f0ccad1d1370447c96e5bf",
+          "event": "schedule",
+          "created_at": "2026-10-30T14:00:25Z",
+          "updated_at": "2026-10-30T17:08:54Z",
+          "status": "completed",
+          "conclusion": "success",
+          "run_attempt": 2
+        },
+        {
+          "id": 40888590947,
+          "head_sha": "4dd1b262501fed1ca5e2dfbc55d4930cf9a7663b",
+          "event": "schedule",
+          "created_at": "2026-10-29T14:08:50Z",
+          "updated_at": "2026-10-29T14:54:18Z",
+          "status": "completed",
+          "conclusion": "success",
+          "run_attempt": 1
+        }
+      ]
+    },
+    {
+      "workflow": "update-non-bond-expansion.yml",
+      "runs": [
+        {
+          "id": 41068552867,
+          "head_sha": "12ebe8fbdd46e582e2f0ccad1d1370447c96e5bf",
+          "event": "schedule",
+          "created_at": "2026-10-30T14:04:00Z",
+          "updated_at": "2026-10-30T15:15:34Z",
+          "status": "completed",
+          "conclusion": "success",
+          "run_attempt": 1
+        },
+        {
+          "id": 40889238529,
+          "head_sha": "4dd1b262501fed1ca5e2dfbc55d4930cf9a7663b",
+          "event": "schedule",
+          "created_at": "2026-10-29T14:12:50Z",
+          "updated_at": "2026-10-29T14:52:04Z",
+          "status": "completed",
+          "conclusion": "success",
+          "run_attempt": 1
+        }
+      ]
+    },
+    {
+      "workflow": "update-qualified-exposures.yml",
+      "runs": [
+        {
+          "id": 41072759860,
+          "head_sha": "23972598547f7fc261c68cd7e52f455f480511f9",
+          "event": "schedule",
+          "created_at": "2026-10-30T14:34:25Z",
+          "updated_at": "2026-10-30T16:55:09Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1
+        },
+        {
+          "id": 40893795840,
+          "head_sha": "23ef83f86bb7787eda6bf86e9f1984f71b27caf0",
+          "event": "schedule",
+          "created_at": "2026-10-29T14:40:12Z",
+          "updated_at": "2026-10-29T15:41:50Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1
+        }
+      ]
+    },
+    {
+      "workflow": "update-market-monthly.yml",
+      "runs": [
+        {
+          "id": 41064230836,
+          "head_sha": "66e121e941d22ad5cec9b9535391389c8ac51628",
+          "event": "schedule",
+          "created_at": "2026-10-30T13:33:26Z",
+          "updated_at": "2026-10-30T13:56:25Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1
+        },
+        {
+          "id": 40884415624,
+          "head_sha": "ec0027998e400d31a7748a6fa45fe36b748b0489",
+          "event": "schedule",
+          "created_at": "2026-10-29T13:42:31Z",
+          "updated_at": "2026-10-29T14:15:55Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1
+        }
+      ]
+    },
+    {
+      "workflow": "update-editorial-radar.yml",
+      "runs": [
+        {
+          "id": 41139291647,
+          "head_sha": "08567afe22343d45aadec70dc6464208b17ad5e8",
+          "event": "schedule",
+          "created_at": "2026-10-30T22:36:54Z",
+          "updated_at": "2026-10-30T22:37:48Z",
+          "status": "completed",
+          "conclusion": "success",
+          "run_attempt": 1
+        },
+        {
+          "id": 41107781922,
+          "head_sha": "136f23f835ac4bc430cb794f191fb907249f3ea2",
+          "event": "schedule",
+          "created_at": "2026-10-30T18:32:18Z",
+          "updated_at": "2026-10-30T18:34:25Z",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1
+        }
+      ]
+    }
+  ],
+  "limit": "Run metadata only. Individual source outcomes and publication must be proven separately; no post-corrective scheduled success inferred from a green run."
+}

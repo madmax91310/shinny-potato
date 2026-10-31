@@ -1,0 +1,542 @@
+{
+  "scope": "six exact country fields; PR execution, not master recording/publication or schedule",
+  "head": "6dc20f1525c6fe0608b1a8cec5247c1e6645c4c6",
+  "runs": [
+    41045490269,
+    41045490199
+  ],
+  "results": [
+    {
+      "isin": "IE00BDVPNG13",
+      "status": "validated",
+      "checkedAt": "2026-10-30T11:05:57.143418+00:00",
+      "field": {
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 77.3223
+          },
+          {
+            "name": "South Korea",
+            "weightPct": 6.1581
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 5.7621
+          },
+          {
+            "name": "China",
+            "weightPct": 3.7221
+          },
+          {
+            "name": "Israel",
+            "weightPct": 2.8212
+          },
+          {
+            "name": "Japan",
+            "weightPct": 2.1753
+          },
+          {
+            "name": "Taiwan",
+            "weightPct": 2.0389
+          }
+        ],
+        "asOf": "2026-10-23",
+        "basis": "fund",
+        "rankClassificationID": 6,
+        "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB",
+        "sha256": "a33af63545114be25caa47d870a315a0447b80b9ae2267cdb0d89175a8ae297f",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+        "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-30",
+        "modifiedAt": "2026-10-30"
+      },
+      "aumUnchangedControl": "2026-10-16",
+      "sourceAttempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB",
+          "status": "validated",
+          "fields": [
+            "holdings",
+            "sectors",
+            "countries"
+          ],
+          "deferred": []
+        }
+      ],
+      "report": "country-six-pr-12971574700-exposure-expansion.json.gz"
+    },
+    {
+      "isin": "IE00BKLF1R75",
+      "status": "validated",
+      "checkedAt": "2026-10-30T11:05:57.143418+00:00",
+      "field": {
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 25.6812
+          },
+          {
+            "name": "China",
+            "weightPct": 24.4429
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 12.1109
+          },
+          {
+            "name": "Japan",
+            "weightPct": 8.3463
+          },
+          {
+            "name": "South Korea",
+            "weightPct": 6.6366
+          },
+          {
+            "name": "Germany",
+            "weightPct": 5.5868
+          },
+          {
+            "name": "Belgium",
+            "weightPct": 2.7333
+          },
+          {
+            "name": "Finland",
+            "weightPct": 2.5519
+          },
+          {
+            "name": "Indonesia",
+            "weightPct": 1.9024
+          },
+          {
+            "name": "Norway",
+            "weightPct": 1.7983
+          },
+          {
+            "name": "Australia",
+            "weightPct": 1.7927
+          },
+          {
+            "name": "Israel",
+            "weightPct": 1.7536
+          },
+          {
+            "name": "Ireland",
+            "weightPct": 1.6576
+          },
+          {
+            "name": "Canada",
+            "weightPct": 0.8642
+          },
+          {
+            "name": "Brazil",
+            "weightPct": 0.7937
+          },
+          {
+            "name": "Chile",
+            "weightPct": 0.5294
+          },
+          {
+            "name": "Jersey",
+            "weightPct": 0.5114
+          },
+          {
+            "name": "France",
+            "weightPct": 0.3068
+          }
+        ],
+        "asOf": "2026-10-23",
+        "basis": "fund",
+        "rankClassificationID": 6,
+        "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB",
+        "sha256": "eaa0cb7e2da546de4cb54df7deddfb1f2ad63ff9505e661e01def8b64b4f4d31",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+        "identitySha256": "828e4fdc420e40c8455e1cbaefc5bba1094641ad4c41d7a71f3cf1da01dcbc46",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-30",
+        "modifiedAt": "2026-10-30"
+      },
+      "aumUnchangedControl": "2026-10-16",
+      "sourceAttempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB",
+          "status": "validated",
+          "fields": [
+            "holdings",
+            "sectors",
+            "countries"
+          ],
+          "deferred": []
+        }
+      ],
+      "report": "country-six-pr-12971574700-exposure-expansion.json.gz"
+    },
+    {
+      "isin": "IE0002Y8CX98",
+      "status": "validated",
+      "checkedAt": "2026-10-30T11:07:25.122852+00:00",
+      "field": {
+        "rows": [
+          {
+            "name": "France",
+            "weightPct": 32.5648
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 24.108
+          },
+          {
+            "name": "Germany",
+            "weightPct": 17.872
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 8.1515
+          },
+          {
+            "name": "Italy",
+            "weightPct": 7.4527
+          },
+          {
+            "name": "Norway",
+            "weightPct": 6.3594
+          },
+          {
+            "name": "Spain",
+            "weightPct": 1.7053
+          },
+          {
+            "name": "Czech Republic",
+            "weightPct": 0.6076
+          },
+          {
+            "name": "Cyprus",
+            "weightPct": 0.5247
+          },
+          {
+            "name": "Finland",
+            "weightPct": 0.266
+          },
+          {
+            "name": "Denmark",
+            "weightPct": 0.2329
+          },
+          {
+            "name": "Luxembourg",
+            "weightPct": 0.0932
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 0.0483
+          },
+          {
+            "name": "Poland",
+            "weightPct": 0.0135
+          }
+        ],
+        "asOf": "2026-10-23",
+        "basis": "fund",
+        "rankClassificationID": 6,
+        "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+        "sha256": "4d6bd523f4d0eee0b85e0d322fd6b93901b0e608b076b5d90c7a423f1a63a16e",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+        "identitySha256": "30ac82d29be5d8453df9ef0c390ac4d882749e6d6c1df6a85420ddc8d2e4c63b",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-30",
+        "modifiedAt": "2026-10-30"
+      },
+      "aumUnchangedControl": "2026-10-17",
+      "sourceAttempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+          "status": "validated",
+          "fields": [
+            "holdings",
+            "sectors",
+            "countries"
+          ],
+          "deferred": []
+        }
+      ],
+      "report": "country-six-pr-12972148639-additional-observation.json.gz"
+    },
+    {
+      "isin": "IE000W8WMSL2",
+      "status": "validated",
+      "checkedAt": "2026-10-30T11:07:25.122852+00:00",
+      "field": {
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 59.8324
+          },
+          {
+            "name": "Japan",
+            "weightPct": 15.7414
+          },
+          {
+            "name": "Canada",
+            "weightPct": 5.6996
+          },
+          {
+            "name": "Germany",
+            "weightPct": 3.708
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 3.3766
+          },
+          {
+            "name": "Finland",
+            "weightPct": 3.0414
+          },
+          {
+            "name": "South Korea",
+            "weightPct": 2.3295
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 1.5596
+          },
+          {
+            "name": "France",
+            "weightPct": 1.5134
+          },
+          {
+            "name": "Luxembourg",
+            "weightPct": 1.3079
+          },
+          {
+            "name": "Singapore",
+            "weightPct": 0.8458
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 0.6971
+          },
+          {
+            "name": "Poland",
+            "weightPct": 0.3474
+          }
+        ],
+        "asOf": "2026-10-23",
+        "basis": "fund",
+        "rankClassificationID": 6,
+        "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB",
+        "sha256": "a6d8e1d89cbfa11848f750943f186fda20b7336b312c176cf4a30b0e6b26a2fe",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+        "identitySha256": "326008744e0620d65c217d18d5b5af9ada7812ef9ba63bbcd00a351f20dd4eaa",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-30",
+        "modifiedAt": "2026-10-30"
+      },
+      "aumUnchangedControl": "2026-10-17",
+      "sourceAttempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB",
+          "status": "validated",
+          "fields": [
+            "holdings",
+            "sectors",
+            "countries"
+          ],
+          "deferred": []
+        }
+      ],
+      "report": "country-six-pr-12972148639-additional-observation.json.gz"
+    },
+    {
+      "isin": "IE00BZ56SW52",
+      "status": "validated",
+      "checkedAt": "2026-10-30T11:07:25.122852+00:00",
+      "field": {
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 61.5919
+          },
+          {
+            "name": "Japan",
+            "weightPct": 8.6506
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 5.5045
+          },
+          {
+            "name": "France",
+            "weightPct": 3.7899
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 3.4239
+          },
+          {
+            "name": "Germany",
+            "weightPct": 3.4085
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 2.1696
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 2.0708
+          },
+          {
+            "name": "Spain",
+            "weightPct": 1.816
+          },
+          {
+            "name": "Australia",
+            "weightPct": 1.2595
+          },
+          {
+            "name": "Denmark",
+            "weightPct": 1.148
+          },
+          {
+            "name": "Canada",
+            "weightPct": 1.1471
+          },
+          {
+            "name": "Ireland",
+            "weightPct": 0.7562
+          },
+          {
+            "name": "Austria",
+            "weightPct": 0.6424
+          },
+          {
+            "name": "Italy",
+            "weightPct": 0.6382
+          },
+          {
+            "name": "Singapore",
+            "weightPct": 0.5084
+          },
+          {
+            "name": "Finland",
+            "weightPct": 0.3593
+          },
+          {
+            "name": "Hong Kong",
+            "weightPct": 0.2569
+          },
+          {
+            "name": "Belgium",
+            "weightPct": 0.1995
+          },
+          {
+            "name": "Norway",
+            "weightPct": 0.1439
+          },
+          {
+            "name": "Israel",
+            "weightPct": 0.143
+          },
+          {
+            "name": "Portugal",
+            "weightPct": 0.0998
+          },
+          {
+            "name": "Bermuda",
+            "weightPct": 0.0964
+          },
+          {
+            "name": "Macau",
+            "weightPct": 0.0751
+          },
+          {
+            "name": "Puerto Rico",
+            "weightPct": 0.0567
+          },
+          {
+            "name": "Luxembourg",
+            "weightPct": 0.0295
+          },
+          {
+            "name": "Lithuania",
+            "weightPct": 0.0142
+          }
+        ],
+        "asOf": "2026-10-23",
+        "basis": "fund",
+        "rankClassificationID": 6,
+        "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+        "sha256": "96f0cca4506395b30023aef53748554878a39e18507d69553772194303179855",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+        "identitySha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-30",
+        "modifiedAt": "2026-10-30"
+      },
+      "aumUnchangedControl": "2026-10-17",
+      "sourceAttempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+          "status": "validated",
+          "fields": [
+            "holdings",
+            "sectors",
+            "countries"
+          ],
+          "deferred": []
+        }
+      ],
+      "report": "country-six-pr-12972148639-additional-observation.json.gz"
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "status": "validated",
+      "checkedAt": "2026-10-30T11:07:25.122852+00:00",
+      "field": {
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 92.5013
+          },
+          {
+            "name": "Israel",
+            "weightPct": 5.9539
+          },
+          {
+            "name": "Canada",
+            "weightPct": 1.5448
+          }
+        ],
+        "asOf": "2026-10-23",
+        "basis": "fund",
+        "rankClassificationID": 6,
+        "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB",
+        "sha256": "cec9cbf54d417ef9251e68cadc628e1614ea4ef0e2e6709be7d40677597fcfb1",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+        "identitySha256": "7ab5627948d2b2b95c578d10e741db9738894ca076bb8ce4d67713fac91219ee",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-30",
+        "modifiedAt": "2026-10-30"
+      },
+      "aumUnchangedControl": "2026-10-20",
+      "sourceAttempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB",
+          "status": "validated",
+          "fields": [
+            "holdings",
+            "sectors",
+            "countries"
+          ],
+          "deferred": []
+        }
+      ],
+      "report": "country-six-pr-12972148639-additional-observation.json.gz"
+    }
+  ]
+}

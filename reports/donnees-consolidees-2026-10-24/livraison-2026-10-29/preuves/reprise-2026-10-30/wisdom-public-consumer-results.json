@@ -1,0 +1,614 @@
+{
+  "base": "https://madmax91310.github.io/shinny-potato/",
+  "sourceDataCommit": "f4a8ae867b3c264863918251ac11d61245b98c84",
+  "checkedFiles": [
+    {
+      "file": "src/pages/dca-profiles/catalog.json",
+      "blob": "3a6c38165ec3286d5d4121769805461e1bf5386e"
+    },
+    {
+      "file": "src/pages/dca-profiles/holdings-manifest.json",
+      "blob": "fe15628d03982374753c622b0626cbd8493a214c"
+    },
+    {
+      "file": "src/pages/dca-profiles/exposures.json",
+      "blob": "268546729ea421717931ba777068cd008777c4d8"
+    },
+    {
+      "file": "src/pages/dca-profiles/exposures-extra-0.json",
+      "blob": "26cd94f88c4e0d6da4f4d114b1b4407b38d30b12"
+    },
+    {
+      "file": "src/pages/dca-profiles/exposures-extra-1.json",
+      "blob": "5ac647d27f7d038d9b2ab5772444558d74870fc8"
+    },
+    {
+      "file": "src/pages/dca-profiles/exposures-extra-2.json",
+      "blob": "cea0ac9a1e225dc86515c89a70fff859df2761a5"
+    },
+    {
+      "file": "src/pages/dca-profiles/holdings-19.json",
+      "blob": "677c22dafd1b7ed0966d489cd5bf859f42e91ab9"
+    },
+    {
+      "file": "src/pages/dca-profiles/holdings-24.json",
+      "blob": "0472d52a9b59d5056831c152b3576f0074e36844"
+    },
+    {
+      "file": "src/pages/dca-profiles/holdings-17.json",
+      "blob": "ebdf34d013628891639bf45f050f265bce307060"
+    },
+    {
+      "file": "src/pages/dca-profiles/holdings-14.json",
+      "blob": "84509f3ff714b16ac9a296d67119c96c0f26b235"
+    },
+    {
+      "file": "src/pages/dca-profiles/holdings-21.json",
+      "blob": "68584403cf42cfd79505fc40128d1232e8d4fd23"
+    }
+  ],
+  "results": [
+    {
+      "id": "IE00BDVPNG13",
+      "mode": "exposure",
+      "width": 1440,
+      "allocation": [
+        [
+          "IE00BDVPNG13",
+          50
+        ],
+        [
+          "sp500",
+          50
+        ]
+      ],
+      "coverage": 99.93367999999994,
+      "complete": true,
+      "pairs": [
+        {
+          "left": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+          "right": "iShares Core S&P 500 UCITS ETF",
+          "full": true,
+          "overlap": 25.490319999999993
+        }
+      ],
+      "pngSha256": "ee36d66cab5bc680f5ee250b30d5d18cbbde14d8ff7e8437f84f951e162d46bf",
+      "textSha256": null,
+      "version": {
+        "sha": "9e41b88239ddebcb842402e90bd6601ae1323823",
+        "dataSha": "f4a8ae867b3c264863918251ac11d61245b98c84",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T09:05:24.774Z"
+      },
+      "checkedAt": "2026-10-30T09:19:01.811Z"
+    },
+    {
+      "id": "IE00BDVPNG13",
+      "mode": "exposure",
+      "width": 390,
+      "allocation": [
+        [
+          "IE00BDVPNG13",
+          50
+        ],
+        [
+          "sp500",
+          50
+        ]
+      ],
+      "coverage": 99.93367999999994,
+      "complete": true,
+      "pairs": [
+        {
+          "left": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+          "right": "iShares Core S&P 500 UCITS ETF",
+          "full": true,
+          "overlap": 25.490319999999993
+        }
+      ],
+      "pngSha256": "ee36d66cab5bc680f5ee250b30d5d18cbbde14d8ff7e8437f84f951e162d46bf",
+      "textSha256": null,
+      "version": {
+        "sha": "9e41b88239ddebcb842402e90bd6601ae1323823",
+        "dataSha": "f4a8ae867b3c264863918251ac11d61245b98c84",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T09:05:24.774Z"
+      },
+      "checkedAt": "2026-10-30T09:19:05.989Z"
+    },
+    {
+      "id": "IE0002Y8CX98",
+      "mode": "exposure",
+      "width": 1440,
+      "allocation": [
+        [
+          "IE0002Y8CX98",
+          50
+        ],
+        [
+          "sp500",
+          50
+        ]
+      ],
+      "coverage": 99.93392999999992,
+      "complete": true,
+      "pairs": [
+        {
+          "left": "WisdomTree Europe Defence UCITS ETF",
+          "right": "iShares Core S&P 500 UCITS ETF",
+          "full": true,
+          "overlap": 0
+        }
+      ],
+      "pngSha256": "d2e9df30f99b97f779ebc5ba9285a8f175808214f29ce906e50e7eb84894d1c1",
+      "textSha256": null,
+      "version": {
+        "sha": "9e41b88239ddebcb842402e90bd6601ae1323823",
+        "dataSha": "f4a8ae867b3c264863918251ac11d61245b98c84",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T09:05:24.774Z"
+      },
+      "checkedAt": "2026-10-30T09:19:10.363Z"
+    },
+    {
+      "id": "IE0002Y8CX98",
+      "mode": "exposure",
+      "width": 390,
+      "allocation": [
+        [
+          "IE0002Y8CX98",
+          50
+        ],
+        [
+          "sp500",
+          50
+        ]
+      ],
+      "coverage": 99.93392999999992,
+      "complete": true,
+      "pairs": [
+        {
+          "left": "WisdomTree Europe Defence UCITS ETF",
+          "right": "iShares Core S&P 500 UCITS ETF",
+          "full": true,
+          "overlap": 0
+        }
+      ],
+      "pngSha256": "d2e9df30f99b97f779ebc5ba9285a8f175808214f29ce906e50e7eb84894d1c1",
+      "textSha256": null,
+      "version": {
+        "sha": "9e41b88239ddebcb842402e90bd6601ae1323823",
+        "dataSha": "f4a8ae867b3c264863918251ac11d61245b98c84",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T09:05:24.774Z"
+      },
+      "checkedAt": "2026-10-30T09:19:14.402Z"
+    },
+    {
+      "id": "IE000W8WMSL2",
+      "mode": "exposure",
+      "width": 1440,
+      "allocation": [
+        [
+          "IE000W8WMSL2",
+          50
+        ],
+        [
+          "sp500",
+          50
+        ]
+      ],
+      "coverage": 99.93402999999992,
+      "complete": false,
+      "pairs": [
+        {
+          "left": "WisdomTree Quantum Computing UCITS ETF",
+          "right": "iShares Core S&P 500 UCITS ETF",
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "f48a1b5ff0d414219624c8e34ee3889ae8bbd80a1b313e0d730eb9dcb49b1df7",
+      "textSha256": null,
+      "version": {
+        "sha": "9e41b88239ddebcb842402e90bd6601ae1323823",
+        "dataSha": "f4a8ae867b3c264863918251ac11d61245b98c84",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T09:05:24.774Z"
+      },
+      "checkedAt": "2026-10-30T09:19:18.633Z"
+    },
+    {
+      "id": "IE000W8WMSL2",
+      "mode": "exposure",
+      "width": 390,
+      "allocation": [
+        [
+          "IE000W8WMSL2",
+          50
+        ],
+        [
+          "sp500",
+          50
+        ]
+      ],
+      "coverage": 99.93402999999992,
+      "complete": false,
+      "pairs": [
+        {
+          "left": "WisdomTree Quantum Computing UCITS ETF",
+          "right": "iShares Core S&P 500 UCITS ETF",
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "f48a1b5ff0d414219624c8e34ee3889ae8bbd80a1b313e0d730eb9dcb49b1df7",
+      "textSha256": null,
+      "version": {
+        "sha": "9e41b88239ddebcb842402e90bd6601ae1323823",
+        "dataSha": "f4a8ae867b3c264863918251ac11d61245b98c84",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T09:05:24.774Z"
+      },
+      "checkedAt": "2026-10-30T09:19:22.641Z"
+    },
+    {
+      "id": "IE00BJGWQN72",
+      "mode": "exposure",
+      "width": 1440,
+      "allocation": [
+        [
+          "cloud",
+          50
+        ],
+        [
+          "sp500",
+          50
+        ]
+      ],
+      "coverage": 99.93387999999992,
+      "complete": true,
+      "pairs": [
+        {
+          "left": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+          "right": "iShares Core S&P 500 UCITS ETF",
+          "full": true,
+          "overlap": 2.4647699999999997
+        }
+      ],
+      "pngSha256": "504e8b7d746f0ad5f09787912ee510145ce4bf68abecd931ce6468091322f507",
+      "textSha256": null,
+      "version": {
+        "sha": "9e41b88239ddebcb842402e90bd6601ae1323823",
+        "dataSha": "f4a8ae867b3c264863918251ac11d61245b98c84",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T09:05:24.774Z"
+      },
+      "checkedAt": "2026-10-30T09:19:26.800Z"
+    },
+    {
+      "id": "IE00BJGWQN72",
+      "mode": "exposure",
+      "width": 390,
+      "allocation": [
+        [
+          "cloud",
+          50
+        ],
+        [
+          "sp500",
+          50
+        ]
+      ],
+      "coverage": 99.93387999999992,
+      "complete": true,
+      "pairs": [
+        {
+          "left": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+          "right": "iShares Core S&P 500 UCITS ETF",
+          "full": true,
+          "overlap": 2.4647699999999997
+        }
+      ],
+      "pngSha256": "504e8b7d746f0ad5f09787912ee510145ce4bf68abecd931ce6468091322f507",
+      "textSha256": null,
+      "version": {
+        "sha": "9e41b88239ddebcb842402e90bd6601ae1323823",
+        "dataSha": "f4a8ae867b3c264863918251ac11d61245b98c84",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T09:05:24.774Z"
+      },
+      "checkedAt": "2026-10-30T09:19:30.941Z"
+    },
+    {
+      "id": "four-shares",
+      "mode": "exposure",
+      "width": 1440,
+      "allocation": [
+        [
+          "IE00BDVPNG13",
+          25
+        ],
+        [
+          "IE0002Y8CX98",
+          25
+        ],
+        [
+          "IE000W8WMSL2",
+          25
+        ],
+        [
+          "cloud",
+          25
+        ]
+      ],
+      "coverage": 99.99990000000007,
+      "complete": false,
+      "pairs": [
+        {
+          "left": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+          "right": "WisdomTree Europe Defence UCITS ETF",
+          "full": true,
+          "overlap": 0
+        },
+        {
+          "left": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+          "right": "WisdomTree Quantum Computing UCITS ETF",
+          "full": false,
+          "overlap": null
+        },
+        {
+          "left": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+          "right": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+          "full": true,
+          "overlap": 11.671199999999999
+        },
+        {
+          "left": "WisdomTree Europe Defence UCITS ETF",
+          "right": "WisdomTree Quantum Computing UCITS ETF",
+          "full": false,
+          "overlap": null
+        },
+        {
+          "left": "WisdomTree Europe Defence UCITS ETF",
+          "right": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+          "full": true,
+          "overlap": 0
+        },
+        {
+          "left": "WisdomTree Quantum Computing UCITS ETF",
+          "right": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "29ce02e418773d0e3b64db62a72a0a9a37ee857ee1209d5ec6d7bad45f29f10e",
+      "textSha256": null,
+      "version": {
+        "sha": "9e41b88239ddebcb842402e90bd6601ae1323823",
+        "dataSha": "f4a8ae867b3c264863918251ac11d61245b98c84",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T09:05:24.774Z"
+      },
+      "checkedAt": "2026-10-30T09:19:34.871Z"
+    },
+    {
+      "id": "four-shares",
+      "mode": "exposure",
+      "width": 390,
+      "allocation": [
+        [
+          "IE00BDVPNG13",
+          25
+        ],
+        [
+          "IE0002Y8CX98",
+          25
+        ],
+        [
+          "IE000W8WMSL2",
+          25
+        ],
+        [
+          "cloud",
+          25
+        ]
+      ],
+      "coverage": 99.99990000000007,
+      "complete": false,
+      "pairs": [
+        {
+          "left": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+          "right": "WisdomTree Europe Defence UCITS ETF",
+          "full": true,
+          "overlap": 0
+        },
+        {
+          "left": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+          "right": "WisdomTree Quantum Computing UCITS ETF",
+          "full": false,
+          "overlap": null
+        },
+        {
+          "left": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+          "right": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+          "full": true,
+          "overlap": 11.671199999999999
+        },
+        {
+          "left": "WisdomTree Europe Defence UCITS ETF",
+          "right": "WisdomTree Quantum Computing UCITS ETF",
+          "full": false,
+          "overlap": null
+        },
+        {
+          "left": "WisdomTree Europe Defence UCITS ETF",
+          "right": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+          "full": true,
+          "overlap": 0
+        },
+        {
+          "left": "WisdomTree Quantum Computing UCITS ETF",
+          "right": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "29ce02e418773d0e3b64db62a72a0a9a37ee857ee1209d5ec6d7bad45f29f10e",
+      "textSha256": null,
+      "version": {
+        "sha": "9e41b88239ddebcb842402e90bd6601ae1323823",
+        "dataSha": "f4a8ae867b3c264863918251ac11d61245b98c84",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T09:05:24.774Z"
+      },
+      "checkedAt": "2026-10-30T09:19:38.769Z"
+    },
+    {
+      "id": "four-shares",
+      "mode": "dca",
+      "width": 1440,
+      "allocation": [
+        [
+          "IE00BDVPNG13",
+          25
+        ],
+        [
+          "IE0002Y8CX98",
+          25
+        ],
+        [
+          "IE000W8WMSL2",
+          25
+        ],
+        [
+          "cloud",
+          25
+        ]
+      ],
+      "coverage": 99.99990000000007,
+      "complete": false,
+      "pairs": [
+        {
+          "left": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+          "right": "WisdomTree Europe Defence UCITS ETF",
+          "full": true,
+          "overlap": 0
+        },
+        {
+          "left": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+          "right": "WisdomTree Quantum Computing UCITS ETF",
+          "full": false,
+          "overlap": null
+        },
+        {
+          "left": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+          "right": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+          "full": true,
+          "overlap": 11.671199999999999
+        },
+        {
+          "left": "WisdomTree Europe Defence UCITS ETF",
+          "right": "WisdomTree Quantum Computing UCITS ETF",
+          "full": false,
+          "overlap": null
+        },
+        {
+          "left": "WisdomTree Europe Defence UCITS ETF",
+          "right": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+          "full": true,
+          "overlap": 0
+        },
+        {
+          "left": "WisdomTree Quantum Computing UCITS ETF",
+          "right": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "41d27bd1d28cf48c2ede2ae7eff4d4b27c50fd135be2f2aa78ec426b7f78f92a",
+      "textSha256": "2061876afb28c8dcbd5fe6a02384ebfbeb4c48435714e3db9c12c0b7c4c97ebe",
+      "version": {
+        "sha": "9e41b88239ddebcb842402e90bd6601ae1323823",
+        "dataSha": "f4a8ae867b3c264863918251ac11d61245b98c84",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T09:05:24.774Z"
+      },
+      "checkedAt": "2026-10-30T09:19:42.844Z"
+    },
+    {
+      "id": "four-shares",
+      "mode": "dca",
+      "width": 390,
+      "allocation": [
+        [
+          "IE00BDVPNG13",
+          25
+        ],
+        [
+          "IE0002Y8CX98",
+          25
+        ],
+        [
+          "IE000W8WMSL2",
+          25
+        ],
+        [
+          "cloud",
+          25
+        ]
+      ],
+      "coverage": 99.99990000000007,
+      "complete": false,
+      "pairs": [
+        {
+          "left": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+          "right": "WisdomTree Europe Defence UCITS ETF",
+          "full": true,
+          "overlap": 0
+        },
+        {
+          "left": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+          "right": "WisdomTree Quantum Computing UCITS ETF",
+          "full": false,
+          "overlap": null
+        },
+        {
+          "left": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+          "right": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+          "full": true,
+          "overlap": 11.671199999999999
+        },
+        {
+          "left": "WisdomTree Europe Defence UCITS ETF",
+          "right": "WisdomTree Quantum Computing UCITS ETF",
+          "full": false,
+          "overlap": null
+        },
+        {
+          "left": "WisdomTree Europe Defence UCITS ETF",
+          "right": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+          "full": true,
+          "overlap": 0
+        },
+        {
+          "left": "WisdomTree Quantum Computing UCITS ETF",
+          "right": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+          "full": false,
+          "overlap": null
+        }
+      ],
+      "pngSha256": "41d27bd1d28cf48c2ede2ae7eff4d4b27c50fd135be2f2aa78ec426b7f78f92a",
+      "textSha256": "2061876afb28c8dcbd5fe6a02384ebfbeb4c48435714e3db9c12c0b7c4c97ebe",
+      "version": {
+        "sha": "9e41b88239ddebcb842402e90bd6601ae1323823",
+        "dataSha": "f4a8ae867b3c264863918251ac11d61245b98c84",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T09:05:24.774Z"
+      },
+      "checkedAt": "2026-10-30T09:19:46.971Z"
+    }
+  ],
+  "errors": [],
+  "localDraftOnly": true
+}

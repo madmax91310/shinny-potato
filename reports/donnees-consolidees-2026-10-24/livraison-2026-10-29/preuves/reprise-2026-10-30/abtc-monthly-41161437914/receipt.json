@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-10-31T03:13:21.221874+00:00",
+  "run": 41161437914,
+  "artifact": 13027114383,
+  "artifactSha256": "73cdabd97040e17def85f26061ff585c38d737d720e9bdf6ab60e8ec7cfa1d25",
+  "files": [
+    {
+      "name": "_temp/monthly-observation.json",
+      "bytes": 1388,
+      "sha256": "729df678af50e519e15d893a80ff16bbad0e06dd04cdf10847afac0cff9e604d"
+    },
+    {
+      "name": "_temp/derived-index-observation.json",
+      "bytes": 57617,
+      "sha256": "31cf732da6c8e46e625611e48093d3867ae857b3a3fc50c9099df0ba438b66d7"
+    },
+    {
+      "name": "_temp/derived-index-observation.contract-plan.json",
+      "bytes": 53318,
+      "sha256": "803d1055f48f5491bfe71dbdbcc3fac2cf711c161e3b0726f2cee9bfa06c4c0b"
+    },
+    {
+      "name": "_temp/listing-observation.json",
+      "bytes": 7636,
+      "sha256": "4e85bd634f4f6ca815ee0e00810342d933f5b037afd2a5ec1c3e0194c9a40046"
+    },
+    {
+      "name": "_temp/ranking-collection-status.json",
+      "bytes": 4596,
+      "sha256": "460fc04378fa9f8c5f76998311329a1f554def6954c816aeb41dfa99ee64e5da"
+    },
+    {
+      "name": "shinny-potato/shinny-potato/src/data/monthly-fx.json",
+      "bytes": 631406,
+      "sha256": "6bf30cbb237deb67a847e99a796d94b40a3a0175d938b2cfab0094e6e039c985"
+    },
+    {
+      "name": "_temp/cross-fx-evidence/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.json",
+      "bytes": 878,
+      "sha256": "979d4bcb3836cea349c3be49c490a6713f6a3e838fe74dd98d672b4e63f5b104"
+    },
+    {
+      "name": "_temp/cross-fx-evidence/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "transport": "GitHub connector artifact download, exact GitHub digest verified; GH CLI redirect unavailable"
+}

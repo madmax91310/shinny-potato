@@ -1,0 +1,1939 @@
+[
+  {
+    "id": "usage:IE00BM8R0J59:catalog:16",
+    "key": "usage:IE00BM8R0J59:catalog:16",
+    "name": "Global X Nasdaq 100 Covered Call UCITS ETF",
+    "asset": "IE00BM8R0J59",
+    "field": "Rendements glissants à qualifier",
+    "kind": "connection",
+    "stage": "Consommation",
+    "cause": "La table courante de performance est intitulée USD Accumulating. Les anciens rendements glissants ne sont pas recertifiés pour la part USD distribuante IE00BM8R0J59 ; ils restent en archive, sans substitution de part.",
+    "qualificationBlock": "connector-needed",
+    "present": true,
+    "action": "Recollecter la table liée à la part exacte, qualifier la période et brancher sa valeur au registre commun.",
+    "tools": [
+      "Bibliothèque de données",
+      "Duel de portefeuilles",
+      "Générateur de portefeuilles",
+      "Présentation d'ETF"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-20",
+    "attemptedAt": null,
+    "lastSuccessAt": "2026-10-20",
+    "sourceUrls": [
+      "https://globalxetfs.eu/funds/qyld/"
+    ],
+    "scope": "Part IE00BM8R0J59",
+    "currency": null,
+    "method": "Contrôle de la table émetteur : identité de la part distribuante non qualifiée",
+    "signals": [
+      {
+        "id": "usage:/bibliotheque-donnees:IE00BM8R0J59:catalog:16",
+        "key": "usage:IE00BM8R0J59:catalog:16",
+        "name": "Global X Nasdaq 100 Covered Call UCITS ETF",
+        "asset": "IE00BM8R0J59",
+        "field": "Rendements glissants à qualifier",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "La table courante de performance est intitulée USD Accumulating. Les anciens rendements glissants ne sont pas recertifiés pour la part USD distribuante IE00BM8R0J59 ; ils restent en archive, sans substitution de part.",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Recollecter la table liée à la part exacte, qualifier la période et brancher sa valeur au registre commun.",
+        "tools": [
+          "Bibliothèque de données"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-20",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-20",
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/qyld/"
+        ],
+        "scope": "Part IE00BM8R0J59",
+        "currency": null,
+        "method": "Contrôle de la table émetteur : identité de la part distribuante non qualifiée"
+      },
+      {
+        "id": "usage:/duels-portefeuilles:IE00BM8R0J59:catalog:16",
+        "key": "usage:IE00BM8R0J59:catalog:16",
+        "name": "Global X Nasdaq 100 Covered Call UCITS ETF",
+        "asset": "IE00BM8R0J59",
+        "field": "Rendements glissants à qualifier",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "La table courante de performance est intitulée USD Accumulating. Les anciens rendements glissants ne sont pas recertifiés pour la part USD distribuante IE00BM8R0J59 ; ils restent en archive, sans substitution de part.",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Recollecter la table liée à la part exacte, qualifier la période et brancher sa valeur au registre commun.",
+        "tools": [
+          "Duel de portefeuilles"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-20",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-20",
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/qyld/"
+        ],
+        "scope": "Part IE00BM8R0J59",
+        "currency": null,
+        "method": "Contrôle de la table émetteur : identité de la part distribuante non qualifiée"
+      },
+      {
+        "id": "usage:/generateur-portefeuilles:IE00BM8R0J59:catalog:16",
+        "key": "usage:IE00BM8R0J59:catalog:16",
+        "name": "Global X Nasdaq 100 Covered Call UCITS ETF",
+        "asset": "IE00BM8R0J59",
+        "field": "Rendements glissants à qualifier",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "La table courante de performance est intitulée USD Accumulating. Les anciens rendements glissants ne sont pas recertifiés pour la part USD distribuante IE00BM8R0J59 ; ils restent en archive, sans substitution de part.",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Recollecter la table liée à la part exacte, qualifier la période et brancher sa valeur au registre commun.",
+        "tools": [
+          "Générateur de portefeuilles"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-20",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-20",
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/qyld/"
+        ],
+        "scope": "Part IE00BM8R0J59",
+        "currency": null,
+        "method": "Contrôle de la table émetteur : identité de la part distribuante non qualifiée"
+      },
+      {
+        "id": "usage:/fiches-etf:IE00BM8R0J59:catalog:16",
+        "key": "usage:IE00BM8R0J59:catalog:16",
+        "name": "Global X Nasdaq 100 Covered Call UCITS ETF",
+        "asset": "IE00BM8R0J59",
+        "field": "Rendements glissants à qualifier",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "La table courante de performance est intitulée USD Accumulating. Les anciens rendements glissants ne sont pas recertifiés pour la part USD distribuante IE00BM8R0J59 ; ils restent en archive, sans substitution de part.",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Recollecter la table liée à la part exacte, qualifier la période et brancher sa valeur au registre commun.",
+        "tools": [
+          "Présentation d'ETF"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-20",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-20",
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/qyld/"
+        ],
+        "scope": "Part IE00BM8R0J59",
+        "currency": null,
+        "method": "Contrôle de la table émetteur : identité de la part distribuante non qualifiée"
+      }
+    ]
+  },
+  {
+    "id": "instrument:IE00BM8R0J59:catalog:Rendements glissants à qualifier",
+    "key": "instrument:IE00BM8R0J59:catalog:Rendements glissants à qualifier",
+    "name": "Global X Nasdaq 100 Covered Call UCITS ETF",
+    "asset": "IE00BM8R0J59",
+    "field": "Rendements glissants à qualifier",
+    "kind": "connection",
+    "cause": "La table courante de performance est intitulée USD Accumulating. Les anciens rendements glissants ne sont pas recertifiés pour la part USD distribuante IE00BM8R0J59 ; ils restent en archive, sans substitution de part.",
+    "action": "Recollecter la table liée à la part exacte, qualifier la période et brancher sa valeur au registre commun.",
+    "checkedAt": "2026-10-20",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/fiches-etf",
+      "/generateur-portefeuilles",
+      "/duels-portefeuilles"
+    ],
+    "sourceUrls": [
+      "https://globalxetfs.eu/funds/qyld/"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:instrument:IE00BM8R0J59:catalog:Rendements glissants à qualifier",
+        "key": "instrument:IE00BM8R0J59:catalog:Rendements glissants à qualifier",
+        "name": "Global X Nasdaq 100 Covered Call UCITS ETF",
+        "asset": "IE00BM8R0J59",
+        "field": "Rendements glissants à qualifier",
+        "kind": "connection",
+        "cause": "La table courante de performance est intitulée USD Accumulating. Les anciens rendements glissants ne sont pas recertifiés pour la part USD distribuante IE00BM8R0J59 ; ils restent en archive, sans substitution de part.",
+        "action": "Recollecter la table liée à la part exacte, qualifier la période et brancher sa valeur au registre commun.",
+        "checkedAt": "2026-10-20",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/fiches-etf",
+          "/generateur-portefeuilles",
+          "/duels-portefeuilles"
+        ],
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/qyld/",
+          "https://globalxetfs.eu/funds/qyld/"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "usage:insurance:placement-direct-vie:catalog:4",
+    "key": "usage:insurance:placement-direct-vie:catalog:4",
+    "name": "Placement-direct Vie",
+    "asset": "insurance:placement-direct-vie",
+    "field": "Actif général SwissLife · Allocation maximale à confirmer",
+    "kind": "connection",
+    "stage": "Consommation",
+    "cause": "La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas.",
+    "qualificationBlock": "connector-needed",
+    "present": true,
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "tools": [
+      "Bibliothèque de données",
+      "Fiches pratiques",
+      "Présentations"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": "2026-10-30",
+    "sourceUrls": [
+      "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+      "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
+      "https://static.placement-direct.fr/documents/fiche-synthetique-des-frais-placement-direct-vie.pdf"
+    ],
+    "scope": "Placement-direct Vie · Actif général SwissLife · gestion libre",
+    "currency": null,
+    "method": "Vérification de la notice et des sources publiques ; maximum explicite non publié.",
+    "signals": [
+      {
+        "id": "usage:/bibliotheque-donnees:insurance:placement-direct-vie:catalog:4",
+        "key": "usage:insurance:placement-direct-vie:catalog:4",
+        "name": "Placement-direct Vie",
+        "asset": "insurance:placement-direct-vie",
+        "field": "Actif général SwissLife · Allocation maximale à confirmer",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas.",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Bibliothèque de données"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+          "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
+          "https://static.placement-direct.fr/documents/fiche-synthetique-des-frais-placement-direct-vie.pdf"
+        ],
+        "scope": "Placement-direct Vie · Actif général SwissLife · gestion libre",
+        "currency": null,
+        "method": "Vérification de la notice et des sources publiques ; maximum explicite non publié."
+      },
+      {
+        "id": "usage:/fiches-pratiques:insurance:placement-direct-vie:catalog:4",
+        "key": "usage:insurance:placement-direct-vie:catalog:4",
+        "name": "Placement-direct Vie",
+        "asset": "insurance:placement-direct-vie",
+        "field": "Actif général SwissLife · Allocation maximale à confirmer",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas.",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Fiches pratiques"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+          "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
+          "https://static.placement-direct.fr/documents/fiche-synthetique-des-frais-placement-direct-vie.pdf"
+        ],
+        "scope": "Placement-direct Vie · Actif général SwissLife · gestion libre",
+        "currency": null,
+        "method": "Vérification de la notice et des sources publiques ; maximum explicite non publié."
+      },
+      {
+        "id": "usage:/presentations:insurance:placement-direct-vie:catalog:4",
+        "key": "usage:insurance:placement-direct-vie:catalog:4",
+        "name": "Placement-direct Vie",
+        "asset": "insurance:placement-direct-vie",
+        "field": "Actif général SwissLife · Allocation maximale à confirmer",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas.",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Présentations"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+          "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
+          "https://static.placement-direct.fr/documents/fiche-synthetique-des-frais-placement-direct-vie.pdf"
+        ],
+        "scope": "Placement-direct Vie · Actif général SwissLife · gestion libre",
+        "currency": null,
+        "method": "Vérification de la notice et des sources publiques ; maximum explicite non publié."
+      }
+    ]
+  },
+  {
+    "id": "usage:actor:anaxago:catalog:11",
+    "key": "usage:actor:anaxago:catalog:11",
+    "name": "Anaxago",
+    "asset": "actor:anaxago",
+    "field": "AxClimat I — part B · À compléter",
+    "kind": "connection",
+    "stage": "Consommation",
+    "cause": "DIC et règlement de la part : bases des frais, coûts sous-jacents, cession",
+    "qualificationBlock": "connector-needed",
+    "present": true,
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "tools": [
+      "Bibliothèque de données",
+      "Présentations"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": "2026-10-30",
+    "sourceUrls": [
+      "https://www.anaxago.com/investir-private-equity",
+      "https://www.anaxago.com/axclimat"
+    ],
+    "scope": "SLP de private equity européen ; souscriptions clôturées, présentation informative.",
+    "currency": null,
+    "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule.",
+    "signals": [
+      {
+        "id": "usage:/bibliotheque-donnees:actor:anaxago:catalog:11",
+        "key": "usage:actor:anaxago:catalog:11",
+        "name": "Anaxago",
+        "asset": "actor:anaxago",
+        "field": "AxClimat I — part B · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "DIC et règlement de la part : bases des frais, coûts sous-jacents, cession",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Bibliothèque de données"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.anaxago.com/investir-private-equity",
+          "https://www.anaxago.com/axclimat"
+        ],
+        "scope": "SLP de private equity européen ; souscriptions clôturées, présentation informative.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      },
+      {
+        "id": "usage:/presentations:actor:anaxago:catalog:11",
+        "key": "usage:actor:anaxago:catalog:11",
+        "name": "Anaxago",
+        "asset": "actor:anaxago",
+        "field": "AxClimat I — part B · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "DIC et règlement de la part : bases des frais, coûts sous-jacents, cession",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Présentations"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.anaxago.com/investir-private-equity",
+          "https://www.anaxago.com/axclimat"
+        ],
+        "scope": "SLP de private equity européen ; souscriptions clôturées, présentation informative.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      }
+    ]
+  },
+  {
+    "id": "usage:actor:anaxago:catalog:5",
+    "key": "usage:actor:anaxago:catalog:5",
+    "name": "Anaxago",
+    "asset": "actor:anaxago",
+    "field": "AxClimat I — part E · À compléter",
+    "kind": "connection",
+    "stage": "Consommation",
+    "cause": "DIC et règlement de la part : bases des frais, coûts sous-jacents, cession et échéancier de versement",
+    "qualificationBlock": "connector-needed",
+    "present": true,
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "tools": [
+      "Bibliothèque de données",
+      "Présentations"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": "2026-10-30",
+    "sourceUrls": [
+      "https://www.anaxago.com/investir-private-equity",
+      "https://www.anaxago.com/axclimat"
+    ],
+    "scope": "SLP de private equity européen ; souscriptions clôturées, présentation informative.",
+    "currency": null,
+    "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule.",
+    "signals": [
+      {
+        "id": "usage:/bibliotheque-donnees:actor:anaxago:catalog:5",
+        "key": "usage:actor:anaxago:catalog:5",
+        "name": "Anaxago",
+        "asset": "actor:anaxago",
+        "field": "AxClimat I — part E · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "DIC et règlement de la part : bases des frais, coûts sous-jacents, cession et échéancier de versement",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Bibliothèque de données"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.anaxago.com/investir-private-equity",
+          "https://www.anaxago.com/axclimat"
+        ],
+        "scope": "SLP de private equity européen ; souscriptions clôturées, présentation informative.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      },
+      {
+        "id": "usage:/presentations:actor:anaxago:catalog:5",
+        "key": "usage:actor:anaxago:catalog:5",
+        "name": "Anaxago",
+        "asset": "actor:anaxago",
+        "field": "AxClimat I — part E · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "DIC et règlement de la part : bases des frais, coûts sous-jacents, cession et échéancier de versement",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Présentations"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.anaxago.com/investir-private-equity",
+          "https://www.anaxago.com/axclimat"
+        ],
+        "scope": "SLP de private equity européen ; souscriptions clôturées, présentation informative.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      }
+    ]
+  },
+  {
+    "id": "usage:actor:bacchus:catalog:5",
+    "key": "usage:actor:bacchus:catalog:5",
+    "name": "Bacchus Conseil",
+    "asset": "actor:bacchus",
+    "field": "GFV Cave de Tain — Crozes-Hermitage · À compléter",
+    "kind": "connection",
+    "stage": "Consommation",
+    "cause": "Dossier du GFV : ticket, frais chiffrés, bail et dotation exacte",
+    "qualificationBlock": "connector-needed",
+    "present": true,
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "tools": [
+      "Bibliothèque de données",
+      "Présentations"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": "2026-10-30",
+    "sourceUrls": [
+      "https://bacchusconseil.com/gfv-gfa/",
+      "https://bacchusconseil.com/investir/",
+      "https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/",
+      "https://bacchusconseil.com/fonctionnement/"
+    ],
+    "scope": "Groupement nommé sur la page du domaine ; modalités du modèle Bacchus à confirmer dans son dossier.",
+    "currency": null,
+    "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule.",
+    "signals": [
+      {
+        "id": "usage:/bibliotheque-donnees:actor:bacchus:catalog:5",
+        "key": "usage:actor:bacchus:catalog:5",
+        "name": "Bacchus Conseil",
+        "asset": "actor:bacchus",
+        "field": "GFV Cave de Tain — Crozes-Hermitage · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "Dossier du GFV : ticket, frais chiffrés, bail et dotation exacte",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Bibliothèque de données"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://bacchusconseil.com/gfv-gfa/",
+          "https://bacchusconseil.com/investir/",
+          "https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/",
+          "https://bacchusconseil.com/fonctionnement/"
+        ],
+        "scope": "Groupement nommé sur la page du domaine ; modalités du modèle Bacchus à confirmer dans son dossier.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      },
+      {
+        "id": "usage:/presentations:actor:bacchus:catalog:5",
+        "key": "usage:actor:bacchus:catalog:5",
+        "name": "Bacchus Conseil",
+        "asset": "actor:bacchus",
+        "field": "GFV Cave de Tain — Crozes-Hermitage · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "Dossier du GFV : ticket, frais chiffrés, bail et dotation exacte",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Présentations"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://bacchusconseil.com/gfv-gfa/",
+          "https://bacchusconseil.com/investir/",
+          "https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/",
+          "https://bacchusconseil.com/fonctionnement/"
+        ],
+        "scope": "Groupement nommé sur la page du domaine ; modalités du modèle Bacchus à confirmer dans son dossier.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      }
+    ]
+  },
+  {
+    "id": "usage:actor:france-valley:catalog:11",
+    "key": "usage:actor:france-valley:catalog:11",
+    "name": "France Valley",
+    "asset": "actor:france-valley",
+    "field": "GFI France Valley Forêts · À compléter",
+    "kind": "connection",
+    "stage": "Consommation",
+    "cause": "DIC, statuts et bulletin du véhicule effectivement souscrit ; détail des charges",
+    "qualificationBlock": "connector-needed",
+    "present": true,
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "tools": [
+      "Bibliothèque de données",
+      "Présentations"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": "2026-10-30",
+    "sourceUrls": [
+      "https://www.france-valley.com/",
+      "https://www.france-valley.com/gfi-france-valley-patrimoine",
+      "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+    ],
+    "scope": "Gamme de GFI forestiers français ; le nom et les documents du GFI ouvert sont à confirmer.",
+    "currency": null,
+    "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule.",
+    "signals": [
+      {
+        "id": "usage:/bibliotheque-donnees:actor:france-valley:catalog:11",
+        "key": "usage:actor:france-valley:catalog:11",
+        "name": "France Valley",
+        "asset": "actor:france-valley",
+        "field": "GFI France Valley Forêts · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "DIC, statuts et bulletin du véhicule effectivement souscrit ; détail des charges",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Bibliothèque de données"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.france-valley.com/",
+          "https://www.france-valley.com/gfi-france-valley-patrimoine",
+          "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+        ],
+        "scope": "Gamme de GFI forestiers français ; le nom et les documents du GFI ouvert sont à confirmer.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      },
+      {
+        "id": "usage:/presentations:actor:france-valley:catalog:11",
+        "key": "usage:actor:france-valley:catalog:11",
+        "name": "France Valley",
+        "asset": "actor:france-valley",
+        "field": "GFI France Valley Forêts · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "DIC, statuts et bulletin du véhicule effectivement souscrit ; détail des charges",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Présentations"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.france-valley.com/",
+          "https://www.france-valley.com/gfi-france-valley-patrimoine",
+          "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+        ],
+        "scope": "Gamme de GFI forestiers français ; le nom et les documents du GFI ouvert sont à confirmer.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      }
+    ]
+  },
+  {
+    "id": "usage:actor:france-valley:catalog:17",
+    "key": "usage:actor:france-valley:catalog:17",
+    "name": "France Valley",
+    "asset": "actor:france-valley",
+    "field": "France Valley Foncière Europe · À compléter",
+    "kind": "connection",
+    "stage": "Consommation",
+    "cause": "DIC, statuts et bulletin du véhicule effectivement souscrit ; détail des charges",
+    "qualificationBlock": "connector-needed",
+    "present": true,
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "tools": [
+      "Bibliothèque de données",
+      "Présentations"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": "2026-10-30",
+    "sourceUrls": [
+      "https://www.france-valley.com/",
+      "https://www.france-valley.com/gfi-france-valley-patrimoine",
+      "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+    ],
+    "scope": "Produit forestier distinct du GFI Patrimoine ; documentation publique, souscription à confirmer.",
+    "currency": null,
+    "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule.",
+    "signals": [
+      {
+        "id": "usage:/bibliotheque-donnees:actor:france-valley:catalog:17",
+        "key": "usage:actor:france-valley:catalog:17",
+        "name": "France Valley",
+        "asset": "actor:france-valley",
+        "field": "France Valley Foncière Europe · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "DIC, statuts et bulletin du véhicule effectivement souscrit ; détail des charges",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Bibliothèque de données"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.france-valley.com/",
+          "https://www.france-valley.com/gfi-france-valley-patrimoine",
+          "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+        ],
+        "scope": "Produit forestier distinct du GFI Patrimoine ; documentation publique, souscription à confirmer.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      },
+      {
+        "id": "usage:/presentations:actor:france-valley:catalog:17",
+        "key": "usage:actor:france-valley:catalog:17",
+        "name": "France Valley",
+        "asset": "actor:france-valley",
+        "field": "France Valley Foncière Europe · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "DIC, statuts et bulletin du véhicule effectivement souscrit ; détail des charges",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Présentations"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.france-valley.com/",
+          "https://www.france-valley.com/gfi-france-valley-patrimoine",
+          "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+        ],
+        "scope": "Produit forestier distinct du GFI Patrimoine ; documentation publique, souscription à confirmer.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      }
+    ]
+  },
+  {
+    "id": "usage:actor:france-valley:catalog:5",
+    "key": "usage:actor:france-valley:catalog:5",
+    "name": "France Valley",
+    "asset": "actor:france-valley",
+    "field": "GFI France Valley Patrimoine · À compléter",
+    "kind": "connection",
+    "stage": "Consommation",
+    "cause": "Note d’information et bulletin de souscription actualisés ; conditions du marché secondaire",
+    "qualificationBlock": "connector-needed",
+    "present": true,
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "tools": [
+      "Bibliothèque de données",
+      "Présentations"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": "2026-10-30",
+    "sourceUrls": [
+      "https://www.france-valley.com/",
+      "https://www.france-valley.com/gfi-france-valley-patrimoine",
+      "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+    ],
+    "scope": "Parts du GFI Patrimoine, hors autres produits France Valley ; communication publicitaire, DIC sur demande.",
+    "currency": null,
+    "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule.",
+    "signals": [
+      {
+        "id": "usage:/bibliotheque-donnees:actor:france-valley:catalog:5",
+        "key": "usage:actor:france-valley:catalog:5",
+        "name": "France Valley",
+        "asset": "actor:france-valley",
+        "field": "GFI France Valley Patrimoine · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "Note d’information et bulletin de souscription actualisés ; conditions du marché secondaire",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Bibliothèque de données"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.france-valley.com/",
+          "https://www.france-valley.com/gfi-france-valley-patrimoine",
+          "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+        ],
+        "scope": "Parts du GFI Patrimoine, hors autres produits France Valley ; communication publicitaire, DIC sur demande.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      },
+      {
+        "id": "usage:/presentations:actor:france-valley:catalog:5",
+        "key": "usage:actor:france-valley:catalog:5",
+        "name": "France Valley",
+        "asset": "actor:france-valley",
+        "field": "GFI France Valley Patrimoine · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "Note d’information et bulletin de souscription actualisés ; conditions du marché secondaire",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Présentations"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.france-valley.com/",
+          "https://www.france-valley.com/gfi-france-valley-patrimoine",
+          "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+        ],
+        "scope": "Parts du GFI Patrimoine, hors autres produits France Valley ; communication publicitaire, DIC sur demande.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      }
+    ]
+  },
+  {
+    "id": "usage:actor:fundora:catalog:11",
+    "key": "usage:actor:fundora:catalog:11",
+    "name": "Fundora",
+    "asset": "actor:fundora",
+    "field": "Fundora — Horizon · À compléter",
+    "kind": "connection",
+    "stage": "Consommation",
+    "cause": "Frais complets des fonds sous-jacents et stratégie sélectionnée",
+    "qualificationBlock": "connector-needed",
+    "present": true,
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "tools": [
+      "Bibliothèque de données",
+      "Présentations"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": "2026-10-30",
+    "sourceUrls": [
+      "https://www.fundora.fr/",
+      "https://www.fundora.fr/questions"
+    ],
+    "scope": "Formule tarifaire grand public sous mandat ; stratégie et fonds à choisir séparément.",
+    "currency": null,
+    "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule.",
+    "signals": [
+      {
+        "id": "usage:/bibliotheque-donnees:actor:fundora:catalog:11",
+        "key": "usage:actor:fundora:catalog:11",
+        "name": "Fundora",
+        "asset": "actor:fundora",
+        "field": "Fundora — Horizon · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "Frais complets des fonds sous-jacents et stratégie sélectionnée",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Bibliothèque de données"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.fundora.fr/",
+          "https://www.fundora.fr/questions"
+        ],
+        "scope": "Formule tarifaire grand public sous mandat ; stratégie et fonds à choisir séparément.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      },
+      {
+        "id": "usage:/presentations:actor:fundora:catalog:11",
+        "key": "usage:actor:fundora:catalog:11",
+        "name": "Fundora",
+        "asset": "actor:fundora",
+        "field": "Fundora — Horizon · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "Frais complets des fonds sous-jacents et stratégie sélectionnée",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Présentations"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.fundora.fr/",
+          "https://www.fundora.fr/questions"
+        ],
+        "scope": "Formule tarifaire grand public sous mandat ; stratégie et fonds à choisir séparément.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      }
+    ]
+  },
+  {
+    "id": "usage:actor:fundora:catalog:5",
+    "key": "usage:actor:fundora:catalog:5",
+    "name": "Fundora",
+    "asset": "actor:fundora",
+    "field": "Fundora — Classique · À compléter",
+    "kind": "connection",
+    "stage": "Consommation",
+    "cause": "Frais complets des fonds sous-jacents et stratégie sélectionnée",
+    "qualificationBlock": "connector-needed",
+    "present": true,
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "tools": [
+      "Bibliothèque de données",
+      "Présentations"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": "2026-10-30",
+    "sourceUrls": [
+      "https://www.fundora.fr/",
+      "https://www.fundora.fr/questions"
+    ],
+    "scope": "Formule tarifaire grand public sous mandat ; stratégie et fonds à choisir séparément.",
+    "currency": null,
+    "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule.",
+    "signals": [
+      {
+        "id": "usage:/bibliotheque-donnees:actor:fundora:catalog:5",
+        "key": "usage:actor:fundora:catalog:5",
+        "name": "Fundora",
+        "asset": "actor:fundora",
+        "field": "Fundora — Classique · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "Frais complets des fonds sous-jacents et stratégie sélectionnée",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Bibliothèque de données"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.fundora.fr/",
+          "https://www.fundora.fr/questions"
+        ],
+        "scope": "Formule tarifaire grand public sous mandat ; stratégie et fonds à choisir séparément.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      },
+      {
+        "id": "usage:/presentations:actor:fundora:catalog:5",
+        "key": "usage:actor:fundora:catalog:5",
+        "name": "Fundora",
+        "asset": "actor:fundora",
+        "field": "Fundora — Classique · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "Frais complets des fonds sous-jacents et stratégie sélectionnée",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Présentations"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.fundora.fr/",
+          "https://www.fundora.fr/questions"
+        ],
+        "scope": "Formule tarifaire grand public sous mandat ; stratégie et fonds à choisir séparément.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      }
+    ]
+  },
+  {
+    "id": "usage:actor:hectarea:catalog:6",
+    "key": "usage:actor:hectarea:catalog:6",
+    "name": "Hectarea",
+    "asset": "actor:hectarea",
+    "field": "Obligations foncières Hectarea · À compléter",
+    "kind": "connection",
+    "stage": "Consommation",
+    "cause": "Montant des frais de petits retraits non publié.",
+    "qualificationBlock": "connector-needed",
+    "present": true,
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "tools": [
+      "Bibliothèque de données",
+      "Présentations"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": "2026-10-30",
+    "sourceUrls": [
+      "https://app.hectarea.io/club/investir/",
+      "https://www.hectarea.io/aide/fonctionnement",
+      "https://www.hectarea.io/aide/portefeuille",
+      "https://www.hectarea.io/aide/investir"
+    ],
+    "scope": "Offre obligataire dès 100 € ; exclut l’achat direct de terres dès 100 K€.",
+    "currency": null,
+    "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule.",
+    "signals": [
+      {
+        "id": "usage:/bibliotheque-donnees:actor:hectarea:catalog:6",
+        "key": "usage:actor:hectarea:catalog:6",
+        "name": "Hectarea",
+        "asset": "actor:hectarea",
+        "field": "Obligations foncières Hectarea · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "Montant des frais de petits retraits non publié.",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Bibliothèque de données"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://app.hectarea.io/club/investir/",
+          "https://www.hectarea.io/aide/fonctionnement",
+          "https://www.hectarea.io/aide/portefeuille",
+          "https://www.hectarea.io/aide/investir"
+        ],
+        "scope": "Offre obligataire dès 100 € ; exclut l’achat direct de terres dès 100 K€.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      },
+      {
+        "id": "usage:/presentations:actor:hectarea:catalog:6",
+        "key": "usage:actor:hectarea:catalog:6",
+        "name": "Hectarea",
+        "asset": "actor:hectarea",
+        "field": "Obligations foncières Hectarea · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "Montant des frais de petits retraits non publié.",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Présentations"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://app.hectarea.io/club/investir/",
+          "https://www.hectarea.io/aide/fonctionnement",
+          "https://www.hectarea.io/aide/portefeuille",
+          "https://www.hectarea.io/aide/investir"
+        ],
+        "scope": "Offre obligataire dès 100 € ; exclut l’achat direct de terres dès 100 K€.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      }
+    ]
+  },
+  {
+    "id": "usage:actor:mymarguerit:catalog:5",
+    "key": "usage:actor:mymarguerit:catalog:5",
+    "name": "MyMarguerit",
+    "asset": "actor:mymarguerit",
+    "field": "Cheptel MyMarguerit · À compléter",
+    "kind": "connection",
+    "stage": "Consommation",
+    "cause": "Minimum contractuel d’UC, coûts complets de régie/assurance, délai et prix de sortie",
+    "qualificationBlock": "connector-needed",
+    "present": true,
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "tools": [
+      "Bibliothèque de données",
+      "Présentations"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": "2026-10-30",
+    "sourceUrls": [
+      "https://www.mymarguerit.com/"
+    ],
+    "scope": "Conditions publiques du placement bovin ; l’UC décrite ici n’est pas un support d’assurance vie.",
+    "currency": null,
+    "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule.",
+    "signals": [
+      {
+        "id": "usage:/bibliotheque-donnees:actor:mymarguerit:catalog:5",
+        "key": "usage:actor:mymarguerit:catalog:5",
+        "name": "MyMarguerit",
+        "asset": "actor:mymarguerit",
+        "field": "Cheptel MyMarguerit · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "Minimum contractuel d’UC, coûts complets de régie/assurance, délai et prix de sortie",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Bibliothèque de données"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.mymarguerit.com/"
+        ],
+        "scope": "Conditions publiques du placement bovin ; l’UC décrite ici n’est pas un support d’assurance vie.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      },
+      {
+        "id": "usage:/presentations:actor:mymarguerit:catalog:5",
+        "key": "usage:actor:mymarguerit:catalog:5",
+        "name": "MyMarguerit",
+        "asset": "actor:mymarguerit",
+        "field": "Cheptel MyMarguerit · À compléter",
+        "kind": "connection",
+        "stage": "Consommation",
+        "cause": "Minimum contractuel d’UC, coûts complets de régie/assurance, délai et prix de sortie",
+        "qualificationBlock": "connector-needed",
+        "present": true,
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "tools": [
+          "Présentations"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": "2026-10-30",
+        "sourceUrls": [
+          "https://www.mymarguerit.com/"
+        ],
+        "scope": "Conditions publiques du placement bovin ; l’UC décrite ici n’est pas un support d’assurance vie.",
+        "currency": null,
+        "method": "Informations non qualifiées, à obtenir dans la documentation du véhicule."
+      }
+    ]
+  },
+  {
+    "id": "insurance:insurance:placement-direct-vie:catalog:Actif général SwissLife · Allocation maximale à confirmer",
+    "key": "insurance:insurance:placement-direct-vie:catalog:Actif général SwissLife · Allocation maximale à confirmer",
+    "name": "Placement-direct Vie",
+    "asset": "insurance:placement-direct-vie",
+    "field": "Actif général SwissLife · Allocation maximale à confirmer",
+    "kind": "connection",
+    "cause": "La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas.",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/presentations?famille=insurance",
+      "/fiches-pratiques"
+    ],
+    "sourceUrls": [
+      "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+      "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
+      "https://static.placement-direct.fr/documents/fiche-synthetique-des-frais-placement-direct-vie.pdf"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:insurance:insurance:placement-direct-vie:catalog:Actif général SwissLife · Allocation maximale à confirmer",
+        "key": "insurance:insurance:placement-direct-vie:catalog:Actif général SwissLife · Allocation maximale à confirmer",
+        "name": "Placement-direct Vie",
+        "asset": "insurance:placement-direct-vie",
+        "field": "Actif général SwissLife · Allocation maximale à confirmer",
+        "kind": "connection",
+        "cause": "La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas.",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/presentations?famille=insurance",
+          "/fiches-pratiques"
+        ],
+        "sourceUrls": [
+          "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+          "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+          "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
+          "https://static.placement-direct.fr/documents/fiche-synthetique-des-frais-placement-direct-vie.pdf"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "actor:actor:anaxago:catalog:AxClimat I — part B · À compléter",
+    "key": "actor:actor:anaxago:catalog:AxClimat I — part B · À compléter",
+    "name": "Anaxago",
+    "asset": "actor:anaxago",
+    "field": "AxClimat I — part B · À compléter",
+    "kind": "connection",
+    "cause": "DIC et règlement de la part : bases des frais, coûts sous-jacents, cession",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/presentations?famille=private-equity"
+    ],
+    "sourceUrls": [
+      "https://www.anaxago.com/investir-private-equity",
+      "https://www.anaxago.com/axclimat"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:actor:actor:anaxago:catalog:AxClimat I — part B · À compléter",
+        "key": "actor:actor:anaxago:catalog:AxClimat I — part B · À compléter",
+        "name": "Anaxago",
+        "asset": "actor:anaxago",
+        "field": "AxClimat I — part B · À compléter",
+        "kind": "connection",
+        "cause": "DIC et règlement de la part : bases des frais, coûts sous-jacents, cession",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/presentations?famille=private-equity"
+        ],
+        "sourceUrls": [
+          "https://www.anaxago.com/investir-private-equity",
+          "https://www.anaxago.com/investir-private-equity",
+          "https://www.anaxago.com/axclimat"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "actor:actor:anaxago:catalog:AxClimat I — part E · À compléter",
+    "key": "actor:actor:anaxago:catalog:AxClimat I — part E · À compléter",
+    "name": "Anaxago",
+    "asset": "actor:anaxago",
+    "field": "AxClimat I — part E · À compléter",
+    "kind": "connection",
+    "cause": "DIC et règlement de la part : bases des frais, coûts sous-jacents, cession et échéancier de versement",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/presentations?famille=private-equity"
+    ],
+    "sourceUrls": [
+      "https://www.anaxago.com/investir-private-equity",
+      "https://www.anaxago.com/axclimat"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:actor:actor:anaxago:catalog:AxClimat I — part E · À compléter",
+        "key": "actor:actor:anaxago:catalog:AxClimat I — part E · À compléter",
+        "name": "Anaxago",
+        "asset": "actor:anaxago",
+        "field": "AxClimat I — part E · À compléter",
+        "kind": "connection",
+        "cause": "DIC et règlement de la part : bases des frais, coûts sous-jacents, cession et échéancier de versement",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/presentations?famille=private-equity"
+        ],
+        "sourceUrls": [
+          "https://www.anaxago.com/investir-private-equity",
+          "https://www.anaxago.com/investir-private-equity",
+          "https://www.anaxago.com/axclimat"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "actor:actor:bacchus:catalog:GFV Cave de Tain — Crozes-Hermitage · À compléter",
+    "key": "actor:actor:bacchus:catalog:GFV Cave de Tain — Crozes-Hermitage · À compléter",
+    "name": "Bacchus Conseil",
+    "asset": "actor:bacchus",
+    "field": "GFV Cave de Tain — Crozes-Hermitage · À compléter",
+    "kind": "connection",
+    "cause": "Dossier du GFV : ticket, frais chiffrés, bail et dotation exacte",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/presentations?famille=vignobles"
+    ],
+    "sourceUrls": [
+      "https://bacchusconseil.com/gfv-gfa/",
+      "https://bacchusconseil.com/investir/",
+      "https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/",
+      "https://bacchusconseil.com/fonctionnement/"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:actor:actor:bacchus:catalog:GFV Cave de Tain — Crozes-Hermitage · À compléter",
+        "key": "actor:actor:bacchus:catalog:GFV Cave de Tain — Crozes-Hermitage · À compléter",
+        "name": "Bacchus Conseil",
+        "asset": "actor:bacchus",
+        "field": "GFV Cave de Tain — Crozes-Hermitage · À compléter",
+        "kind": "connection",
+        "cause": "Dossier du GFV : ticket, frais chiffrés, bail et dotation exacte",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/presentations?famille=vignobles"
+        ],
+        "sourceUrls": [
+          "https://bacchusconseil.com/gfv-gfa/",
+          "https://bacchusconseil.com/gfv-gfa/",
+          "https://bacchusconseil.com/investir/",
+          "https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/",
+          "https://bacchusconseil.com/fonctionnement/"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "broker:broker:bd:catalog:Recoupement externe · cash",
+    "key": "broker:broker:bd:catalog:Recoupement externe · cash",
+    "name": "Bourse Direct",
+    "asset": "broker:bd",
+    "field": "Recoupement externe · cash",
+    "kind": "connection",
+    "cause": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-13",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/comparatif-courtiers"
+    ],
+    "sourceUrls": [
+      "https://brokerchooser.com/fr/broker-reviews/bourse-direct-review",
+      "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:broker:broker:bd:catalog:Recoupement externe · cash",
+        "key": "broker:broker:bd:catalog:Recoupement externe · cash",
+        "name": "Bourse Direct",
+        "asset": "broker:bd",
+        "field": "Recoupement externe · cash",
+        "kind": "connection",
+        "cause": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-13",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/comparatif-courtiers"
+        ],
+        "sourceUrls": [
+          "https://brokerchooser.com/fr/broker-reviews/bourse-direct-review",
+          "https://brokerchooser.com/fr/broker-reviews/bourse-direct-review",
+          "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "broker:broker:bourso:catalog:Recoupement externe · cash",
+    "key": "broker:broker:bourso:catalog:Recoupement externe · cash",
+    "name": "BoursoBank · Découverte",
+    "asset": "broker:bourso",
+    "field": "Recoupement externe · cash",
+    "kind": "connection",
+    "cause": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-13",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/comparatif-courtiers"
+    ],
+    "sourceUrls": [
+      "https://sinvestir.fr/cto-boursobank-avis/",
+      "https://brokerchooser.com/fr/broker-reviews/boursobank-review"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:broker:broker:bourso:catalog:Recoupement externe · cash",
+        "key": "broker:broker:bourso:catalog:Recoupement externe · cash",
+        "name": "BoursoBank · Découverte",
+        "asset": "broker:bourso",
+        "field": "Recoupement externe · cash",
+        "kind": "connection",
+        "cause": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-13",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/comparatif-courtiers"
+        ],
+        "sourceUrls": [
+          "https://sinvestir.fr/cto-boursobank-avis/",
+          "https://sinvestir.fr/cto-boursobank-avis/",
+          "https://brokerchooser.com/fr/broker-reviews/boursobank-review"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "broker:broker:fortuneo:catalog:Recoupement externe · cash",
+    "key": "broker:broker:fortuneo:catalog:Recoupement externe · cash",
+    "name": "Fortuneo · Starter",
+    "asset": "broker:fortuneo",
+    "field": "Recoupement externe · cash",
+    "kind": "connection",
+    "cause": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-13",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/comparatif-courtiers"
+    ],
+    "sourceUrls": [
+      "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees",
+      "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:broker:broker:fortuneo:catalog:Recoupement externe · cash",
+        "key": "broker:broker:fortuneo:catalog:Recoupement externe · cash",
+        "name": "Fortuneo · Starter",
+        "asset": "broker:fortuneo",
+        "field": "Recoupement externe · cash",
+        "kind": "connection",
+        "cause": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-13",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/comparatif-courtiers"
+        ],
+        "sourceUrls": [
+          "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees",
+          "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees",
+          "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "broker:broker:fortuneo:catalog:Recoupement externe · dca",
+    "key": "broker:broker:fortuneo:catalog:Recoupement externe · dca",
+    "name": "Fortuneo · Starter",
+    "asset": "broker:fortuneo",
+    "field": "Recoupement externe · dca",
+    "kind": "connection",
+    "cause": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-13",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/comparatif-courtiers"
+    ],
+    "sourceUrls": [
+      "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
+      "https://www.lemonde.fr/argent/article/2025/09/26/comment-faire-des-investissements-programmes-sur-un-pea_6642989_1657007.html"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:broker:broker:fortuneo:catalog:Recoupement externe · dca",
+        "key": "broker:broker:fortuneo:catalog:Recoupement externe · dca",
+        "name": "Fortuneo · Starter",
+        "asset": "broker:fortuneo",
+        "field": "Recoupement externe · dca",
+        "kind": "connection",
+        "cause": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-13",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/comparatif-courtiers"
+        ],
+        "sourceUrls": [
+          "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
+          "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
+          "https://www.lemonde.fr/argent/article/2025/09/26/comment-faire-des-investissements-programmes-sur-un-pea_6642989_1657007.html"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "actor:actor:france-valley:catalog:France Valley Foncière Europe · À compléter",
+    "key": "actor:actor:france-valley:catalog:France Valley Foncière Europe · À compléter",
+    "name": "France Valley",
+    "asset": "actor:france-valley",
+    "field": "France Valley Foncière Europe · À compléter",
+    "kind": "connection",
+    "cause": "DIC, statuts et bulletin du véhicule effectivement souscrit ; détail des charges",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/presentations?famille=forets"
+    ],
+    "sourceUrls": [
+      "https://www.france-valley.com/",
+      "https://www.france-valley.com/gfi-france-valley-patrimoine",
+      "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:actor:actor:france-valley:catalog:France Valley Foncière Europe · À compléter",
+        "key": "actor:actor:france-valley:catalog:France Valley Foncière Europe · À compléter",
+        "name": "France Valley",
+        "asset": "actor:france-valley",
+        "field": "France Valley Foncière Europe · À compléter",
+        "kind": "connection",
+        "cause": "DIC, statuts et bulletin du véhicule effectivement souscrit ; détail des charges",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/presentations?famille=forets"
+        ],
+        "sourceUrls": [
+          "https://www.france-valley.com/",
+          "https://www.france-valley.com/",
+          "https://www.france-valley.com/gfi-france-valley-patrimoine",
+          "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "actor:actor:france-valley:catalog:GFI France Valley Forêts · À compléter",
+    "key": "actor:actor:france-valley:catalog:GFI France Valley Forêts · À compléter",
+    "name": "France Valley",
+    "asset": "actor:france-valley",
+    "field": "GFI France Valley Forêts · À compléter",
+    "kind": "connection",
+    "cause": "DIC, statuts et bulletin du véhicule effectivement souscrit ; détail des charges",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/presentations?famille=forets"
+    ],
+    "sourceUrls": [
+      "https://www.france-valley.com/",
+      "https://www.france-valley.com/gfi-france-valley-patrimoine",
+      "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:actor:actor:france-valley:catalog:GFI France Valley Forêts · À compléter",
+        "key": "actor:actor:france-valley:catalog:GFI France Valley Forêts · À compléter",
+        "name": "France Valley",
+        "asset": "actor:france-valley",
+        "field": "GFI France Valley Forêts · À compléter",
+        "kind": "connection",
+        "cause": "DIC, statuts et bulletin du véhicule effectivement souscrit ; détail des charges",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/presentations?famille=forets"
+        ],
+        "sourceUrls": [
+          "https://www.france-valley.com/",
+          "https://www.france-valley.com/",
+          "https://www.france-valley.com/gfi-france-valley-patrimoine",
+          "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "actor:actor:france-valley:catalog:GFI France Valley Patrimoine · À compléter",
+    "key": "actor:actor:france-valley:catalog:GFI France Valley Patrimoine · À compléter",
+    "name": "France Valley",
+    "asset": "actor:france-valley",
+    "field": "GFI France Valley Patrimoine · À compléter",
+    "kind": "connection",
+    "cause": "Note d’information et bulletin de souscription actualisés ; conditions du marché secondaire",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/presentations?famille=forets"
+    ],
+    "sourceUrls": [
+      "https://www.france-valley.com/",
+      "https://www.france-valley.com/gfi-france-valley-patrimoine",
+      "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:actor:actor:france-valley:catalog:GFI France Valley Patrimoine · À compléter",
+        "key": "actor:actor:france-valley:catalog:GFI France Valley Patrimoine · À compléter",
+        "name": "France Valley",
+        "asset": "actor:france-valley",
+        "field": "GFI France Valley Patrimoine · À compléter",
+        "kind": "connection",
+        "cause": "Note d’information et bulletin de souscription actualisés ; conditions du marché secondaire",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/presentations?famille=forets"
+        ],
+        "sourceUrls": [
+          "https://www.france-valley.com/",
+          "https://www.france-valley.com/",
+          "https://www.france-valley.com/gfi-france-valley-patrimoine",
+          "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "actor:actor:fundora:catalog:Fundora — Classique · À compléter",
+    "key": "actor:actor:fundora:catalog:Fundora — Classique · À compléter",
+    "name": "Fundora",
+    "asset": "actor:fundora",
+    "field": "Fundora — Classique · À compléter",
+    "kind": "connection",
+    "cause": "Frais complets des fonds sous-jacents et stratégie sélectionnée",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/presentations?famille=private-equity"
+    ],
+    "sourceUrls": [
+      "https://www.fundora.fr/",
+      "https://www.fundora.fr/questions"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:actor:actor:fundora:catalog:Fundora — Classique · À compléter",
+        "key": "actor:actor:fundora:catalog:Fundora — Classique · À compléter",
+        "name": "Fundora",
+        "asset": "actor:fundora",
+        "field": "Fundora — Classique · À compléter",
+        "kind": "connection",
+        "cause": "Frais complets des fonds sous-jacents et stratégie sélectionnée",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/presentations?famille=private-equity"
+        ],
+        "sourceUrls": [
+          "https://www.fundora.fr/",
+          "https://www.fundora.fr/",
+          "https://www.fundora.fr/questions"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "actor:actor:fundora:catalog:Fundora — Horizon · À compléter",
+    "key": "actor:actor:fundora:catalog:Fundora — Horizon · À compléter",
+    "name": "Fundora",
+    "asset": "actor:fundora",
+    "field": "Fundora — Horizon · À compléter",
+    "kind": "connection",
+    "cause": "Frais complets des fonds sous-jacents et stratégie sélectionnée",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/presentations?famille=private-equity"
+    ],
+    "sourceUrls": [
+      "https://www.fundora.fr/",
+      "https://www.fundora.fr/questions"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:actor:actor:fundora:catalog:Fundora — Horizon · À compléter",
+        "key": "actor:actor:fundora:catalog:Fundora — Horizon · À compléter",
+        "name": "Fundora",
+        "asset": "actor:fundora",
+        "field": "Fundora — Horizon · À compléter",
+        "kind": "connection",
+        "cause": "Frais complets des fonds sous-jacents et stratégie sélectionnée",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/presentations?famille=private-equity"
+        ],
+        "sourceUrls": [
+          "https://www.fundora.fr/",
+          "https://www.fundora.fr/",
+          "https://www.fundora.fr/questions"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "actor:actor:hectarea:catalog:Obligations foncières Hectarea · À compléter",
+    "key": "actor:actor:hectarea:catalog:Obligations foncières Hectarea · À compléter",
+    "name": "Hectarea",
+    "asset": "actor:hectarea",
+    "field": "Obligations foncières Hectarea · À compléter",
+    "kind": "connection",
+    "cause": "Montant des frais de petits retraits non publié.",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/presentations?famille=terres"
+    ],
+    "sourceUrls": [
+      "https://app.hectarea.io/club/investir/",
+      "https://www.hectarea.io/aide/fonctionnement",
+      "https://www.hectarea.io/aide/portefeuille",
+      "https://www.hectarea.io/aide/investir"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:actor:actor:hectarea:catalog:Obligations foncières Hectarea · À compléter",
+        "key": "actor:actor:hectarea:catalog:Obligations foncières Hectarea · À compléter",
+        "name": "Hectarea",
+        "asset": "actor:hectarea",
+        "field": "Obligations foncières Hectarea · À compléter",
+        "kind": "connection",
+        "cause": "Montant des frais de petits retraits non publié.",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/presentations?famille=terres"
+        ],
+        "sourceUrls": [
+          "https://app.hectarea.io/club/investir/",
+          "https://app.hectarea.io/club/investir/",
+          "https://www.hectarea.io/aide/fonctionnement",
+          "https://www.hectarea.io/aide/portefeuille",
+          "https://www.hectarea.io/aide/investir"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "actor:actor:mymarguerit:catalog:Cheptel MyMarguerit · À compléter",
+    "key": "actor:actor:mymarguerit:catalog:Cheptel MyMarguerit · À compléter",
+    "name": "MyMarguerit",
+    "asset": "actor:mymarguerit",
+    "field": "Cheptel MyMarguerit · À compléter",
+    "kind": "connection",
+    "cause": "Minimum contractuel d’UC, coûts complets de régie/assurance, délai et prix de sortie",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-30",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/presentations?famille=bovins"
+    ],
+    "sourceUrls": [
+      "https://www.mymarguerit.com/"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:actor:actor:mymarguerit:catalog:Cheptel MyMarguerit · À compléter",
+        "key": "actor:actor:mymarguerit:catalog:Cheptel MyMarguerit · À compléter",
+        "name": "MyMarguerit",
+        "asset": "actor:mymarguerit",
+        "field": "Cheptel MyMarguerit · À compléter",
+        "kind": "connection",
+        "cause": "Minimum contractuel d’UC, coûts complets de régie/assurance, délai et prix de sortie",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-30",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/presentations?famille=bovins"
+        ],
+        "sourceUrls": [
+          "https://www.mymarguerit.com/",
+          "https://www.mymarguerit.com/"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "broker:broker:tr:catalog:Recoupement externe · garde",
+    "key": "broker:broker:tr:catalog:Recoupement externe · garde",
+    "name": "Trade Republic",
+    "asset": "broker:tr",
+    "field": "Recoupement externe · garde",
+    "kind": "connection",
+    "cause": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-13",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/comparatif-courtiers"
+    ],
+    "sourceUrls": [
+      "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+      "https://extraetf.com/fr/ressources/pea-trade-republic"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:broker:broker:tr:catalog:Recoupement externe · garde",
+        "key": "broker:broker:tr:catalog:Recoupement externe · garde",
+        "name": "Trade Republic",
+        "asset": "broker:tr",
+        "field": "Recoupement externe · garde",
+        "kind": "connection",
+        "cause": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-13",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/comparatif-courtiers"
+        ],
+        "sourceUrls": [
+          "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+          "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+          "https://extraetf.com/fr/ressources/pea-trade-republic"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  },
+  {
+    "id": "broker:broker:tr:catalog:Recoupement externe · pme",
+    "key": "broker:broker:tr:catalog:Recoupement externe · pme",
+    "name": "Trade Republic",
+    "asset": "broker:tr",
+    "field": "Recoupement externe · pme",
+    "kind": "connection",
+    "cause": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+    "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+    "checkedAt": "2026-10-13",
+    "attemptedAt": null,
+    "lastSuccessAt": null,
+    "tools": [
+      "/comparatif-courtiers"
+    ],
+    "sourceUrls": [
+      "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+      "https://www.ideal-investisseur.fr/pea/trade-republic-8.html"
+    ],
+    "stage": "Raccordement",
+    "signals": [
+      {
+        "id": "connection:broker:broker:tr:catalog:Recoupement externe · pme",
+        "key": "broker:broker:tr:catalog:Recoupement externe · pme",
+        "name": "Trade Republic",
+        "asset": "broker:tr",
+        "field": "Recoupement externe · pme",
+        "kind": "connection",
+        "cause": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+        "action": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+        "checkedAt": "2026-10-13",
+        "attemptedAt": null,
+        "lastSuccessAt": null,
+        "tools": [
+          "/comparatif-courtiers"
+        ],
+        "sourceUrls": [
+          "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+          "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+          "https://www.ideal-investisseur.fr/pea/trade-republic-8.html"
+        ],
+        "stage": "Raccordement"
+      }
+    ]
+  }
+]

@@ -1,0 +1,69 @@
+{
+  "verifiedAt": "2026-10-31T04:58:43.347710+00:00",
+  "checks": [
+    {
+      "file": "perimetre-initial-complet.csv.gz",
+      "priorIdentities": 661,
+      "finalIdentities": 661,
+      "allPriorIdentitiesPreserved": true,
+      "unique": true,
+      "sha256": "ac42fcd063bc5cd61bd2053f17f310ba6d34a8c1bfea56f2d25f9040d922b96b"
+    },
+    {
+      "file": "reconciliation-79-ecarts.csv",
+      "priorIdentities": 79,
+      "finalIdentities": 79,
+      "allPriorIdentitiesPreserved": true,
+      "unique": true,
+      "sha256": "877344436a74a2eeb39b2854f7983a58da5e1b1718dee9e3fd8904be9a47b8ab"
+    },
+    {
+      "file": "statut-19-actions.csv",
+      "priorIdentities": 19,
+      "finalIdentities": 19,
+      "allPriorIdentitiesPreserved": true,
+      "unique": true,
+      "sha256": "9d7906ee783ccd91fb15c065bdf3d05a7b897a15146d1d1c8e7420f1c4639f93"
+    },
+    {
+      "file": "bilan-par-outil.csv",
+      "priorIdentities": 23,
+      "finalIdentities": 24,
+      "allPriorIdentitiesPreserved": true,
+      "unique": true,
+      "sha256": "bb30f9a1cb0af5ddbe83f18a015cc5612b1dd2605359c73b2fdf3885ed295474"
+    },
+    {
+      "file": "matrice-donnees-usages.csv.gz",
+      "priorIdentities": 33381,
+      "finalIdentities": 34951,
+      "allPriorIdentitiesPreserved": true,
+      "unique": true,
+      "sha256": "b76d5de4737e6d642b7903d74c6a5b5975b7167c1ecf89ef4fea092b640fc821"
+    },
+    {
+      "file": "suivi-consolide.csv.gz",
+      "priorIdentities": 46216,
+      "finalIdentities": 48181,
+      "allPriorIdentitiesPreserved": true,
+      "unique": true,
+      "sha256": "34bda1e55469c88a7b4a0d5dc7e5e8ea51f5cdc543bcc5d3cd0112dbc148dcbc"
+    },
+    {
+      "file": "restant-a-verifier.csv.gz",
+      "priorIdentities": 35335,
+      "finalIdentities": 37018,
+      "allPriorIdentitiesPreserved": true,
+      "unique": true,
+      "sha256": "e2c4c130c5785f989ad8c75e51ee68ba72ad301bc9f395f523ac1c8a1ed445af"
+    }
+  ],
+  "financialWindows": {
+    "constantCases": 79,
+    "qualified": 70,
+    "refused": 9,
+    "newQualifiedMonthly": 0
+  },
+  "notAnAutomationCoverageRate": true,
+  "sourceAndConsumerProofsRemainScoped": true
+}

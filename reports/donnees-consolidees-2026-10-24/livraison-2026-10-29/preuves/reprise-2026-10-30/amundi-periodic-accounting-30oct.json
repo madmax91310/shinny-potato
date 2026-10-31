@@ -1,0 +1,36 @@
+[
+  {
+    "isin": "FR0013411998",
+    "url": "https://www.amundietf.fr/pdfDocuments/periodic-report/FR0013411998/FRA/20251231",
+    "attemptedAt": "2026-10-30T11:19:26.776274+00:00",
+    "strategy": "New semiannual accounting route actually linked by issuer current document menu; exact part and financial period still require content validation, no zero distribution inferred from blanks",
+    "routeDiscovery": "amundi-official-document-menu-30oct.json",
+    "status": "acquired",
+    "bytes": 3069907,
+    "sha256": "4a4979e4420de2f8bdcfe53181b6db2f2eb33a1d64c1e516593067d578db2674",
+    "file": "FR0013411998-official-periodic-20251231-30oct",
+    "identityLimitation": "ISIN appears in the derivative inventory, not the share NAV table. Hedged EUR class NAV48.2923 must be bound separately to the exact instrument; no broad presence-of-ISIN shortcut.",
+    "financialLimitation": "Distribution table names both EUR classes but monetary cells are blank, not explicit zero. Not a sufficient cash calendar; 2025 remains refused."
+  },
+  {
+    "isin": "FR0013412004",
+    "url": "https://www.amundietf.fr/pdfDocuments/periodic-report/FR0013412004/FRA/20251231",
+    "attemptedAt": "2026-10-30T11:19:29.159431+00:00",
+    "strategy": "New semiannual accounting route actually linked by issuer current document menu; exact part and financial period still require content validation, no zero distribution inferred from blanks",
+    "routeDiscovery": "amundi-official-document-menu-30oct.json",
+    "status": "HTTP acquired; content not qualified",
+    "error": "First probe stopped at the exact-ISIN text assertion (empty AssertionError message); not an HTTP failure. Body not retained by that first probe. No distribution conclusion inferred."
+  },
+  {
+    "isin": "FR0013412004",
+    "url": "https://www.amundietf.fr/pdfDocuments/periodic-report/FR0013412004/FRA/20251231",
+    "attemptedAt": "2026-10-30T11:21:45.604352+00:00",
+    "strategy": "Single bounded evidence-retention replay after initial probe wrongly discarded a PDF lacking the ISIN text; preserve raw bytes before content qualification",
+    "status": "acquired; content to qualify",
+    "sha256": "e2f2b6fadb512db78f49742309d3592d32c41b86db488754e506ea1f6b57bfaa",
+    "bytes": 282817,
+    "exactIsinPresent": false,
+    "file": "FR0013412004-official-periodic-20251231-30oct",
+    "financialLimitation": "Only the fund/class name, no ISIN in this PDF. Distribution in the half-year has empty monetary cells, not explicit zero. Cash completeness and identity still need qualification; no 2025 monthly window restored."
+  }
+]

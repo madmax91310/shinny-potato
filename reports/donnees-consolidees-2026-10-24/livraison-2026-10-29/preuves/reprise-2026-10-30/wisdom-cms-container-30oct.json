@@ -1,0 +1,16 @@
+{
+  "url": "https://f8796olh.api.sanity.io/v2025-02-19/data/query/global-prod?query=%2A%5B_type+match+%22%2AListing%2A%22+%7C%7C+_type+match+%22%2Alisting%2A%22%5D%5B0...10%5D%7B_id%2C_type%7D",
+  "query": "*[_type match \"*Listing*\" || _type match \"*listing*\"][0...10]{_id,_type}",
+  "checkedAt": "2026-10-30T11:00:28.941844+00:00",
+  "strategy": "Publisher RSC _type is an embedded array row, not necessarily a top-level document; bounded public document identity projection only; no authentication",
+  "status": 200,
+  "sha256": "d505461a4fe70911e43972f5b3354cc865bac70ba1fd536cae1e191fc30fe212",
+  "response": {
+    "query": "*[_type match \"*Listing*\" || _type match \"*listing*\"][0...10]{_id,_type}",
+    "result": [],
+    "syncTags": [
+      "s1:xLHwew"
+    ],
+    "ms": 0
+  }
+}

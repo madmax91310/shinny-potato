@@ -1,0 +1,98 @@
+{
+  "base": "https://madmax91310.github.io/shinny-potato",
+  "sourceProof": "/dev/shm/data-automation-20261028/proofs-29oct/etf-post1105-41154898443/additional-observation.json",
+  "results": [
+    {
+      "isin": "CH0454664001",
+      "tool": "Présentation ETF",
+      "width": 1440,
+      "label": "Part : 618,39 M$ au 30/10/2026",
+      "aum": {
+        "amount": 618385969.835628,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+        "sha256": "ae760afbcbadcb45ec3515be16bc76349487ab3598b67331afbd901bf8a3de20",
+        "method": "Issuer product_details.total_nav; native USD product assets, not NAV-times-units",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "8e23db5a3fdcb6847c24f6cc4582ac12f1f16174b74bff07a7e0a7b2f5f8a974",
+      "textSha256": "50da93ed936815d1243332fda7fe1877b7569def97dd16b6951c7f9044171e83",
+      "checkedAt": "2026-10-31T01:33:55.009Z"
+    },
+    {
+      "isin": "CH0454664001",
+      "tool": "Présentation ETF",
+      "width": 390,
+      "label": "Part : 618,39 M$ au 30/10/2026",
+      "aum": {
+        "amount": 618385969.835628,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+        "sha256": "ae760afbcbadcb45ec3515be16bc76349487ab3598b67331afbd901bf8a3de20",
+        "method": "Issuer product_details.total_nav; native USD product assets, not NAV-times-units",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "pngAmountPrecision": "Existing template rounds displayed millions to integer; full source precision retained in text and JSON",
+      "pngSha256": "8e23db5a3fdcb6847c24f6cc4582ac12f1f16174b74bff07a7e0a7b2f5f8a974",
+      "textSha256": "50da93ed936815d1243332fda7fe1877b7569def97dd16b6951c7f9044171e83",
+      "checkedAt": "2026-10-31T01:33:56.189Z"
+    },
+    {
+      "isin": "CH0454664001",
+      "tool": "Bibliothèque JSON",
+      "source": {
+        "amount": 618385969.835628,
+        "currency": "USD",
+        "scope": "Actif net de la part exacte",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+        "sha256": "ae760afbcbadcb45ec3515be16bc76349487ab3598b67331afbd901bf8a3de20",
+        "method": "Issuer product_details.total_nav; native USD product assets, not NAV-times-units",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31",
+        "amountMillions": 618.3859698356281,
+        "url": "https://api.primary.21shares.com/api/product_details/ABTC"
+      },
+      "fee": {
+        "label": "Frais annuels (%)",
+        "registry": "src/data/etf-ter.js",
+        "value": "1,49",
+        "metadata": {
+          "sourceUrls": [
+            "https://api.primary.21shares.com/api/product_details/ABTC"
+          ],
+          "asOf": null,
+          "checkedAt": "2026-10-31",
+          "currency": null,
+          "scope": "Part CH0454664001",
+          "method": "TER publié sur le profil de la part, consulté par ISIN",
+          "note": "Frais observés au contrôle ; aucune date d’entrée en vigueur déduite de la consultation.",
+          "dateStatus": "not-published",
+          "periodStart": null,
+          "periodEnd": null,
+          "sourceStatus": "documented",
+          "sourceReason": null,
+          "reviewedAt": null,
+          "modifiedAt": null
+        }
+      },
+      "sha256": "943b12f65f5c2b35d5d00b6495bfada9ce9a20354d529e5b51cf0336afa79f3c",
+      "version": {
+        "sha": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+        "dataSha": "4213389fd53845831b27587b08ec28cf20e66060",
+        "lane": "validated-data",
+        "builtAt": "2026-10-31T01:29:13.960Z"
+      },
+      "checkedAt": "2026-10-31T01:33:57.531Z"
+    }
+  ],
+  "errors": [],
+  "scope": "ABTC exact AUM and annual fee: source/record/published sheet/copied text/2realPNG/libraryJSON. AUM native USD exact amount, scope/date/hash; fee1.49% with actualAPI control date and no manufactured effective date. Other fields and monthly windows not certified."
+}

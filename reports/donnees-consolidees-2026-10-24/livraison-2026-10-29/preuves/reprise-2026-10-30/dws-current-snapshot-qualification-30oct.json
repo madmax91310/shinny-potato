@@ -1,0 +1,207 @@
+{
+  "checkedAt": "2026-10-30T20:48:46.348679+00:00",
+  "status": "verified-compatible-current-snapshot",
+  "proof": {
+    "entity": "IE0006WW1TQ4",
+    "period": "2026-10-29",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
+    "sourceHash": "ab447832b473684cdf59365f8d32a2866a229a75e758983f16b0597101306d58",
+    "activeSourceHash": "ab447832b473684cdf59365f8d32a2866a229a75e758983f16b0597101306d58",
+    "stabilitySourceHash": "dab73de5f3892e7851f6e7b107e710310cf6c55f01992690e0b8e9bc289a92b6",
+    "stabilityScope": "complete-document-except-display-name-of-checksummed-isin-v1",
+    "evidenceRelation": "identical-document",
+    "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
+    "checkedAt": "2026-10-30T20:48:46.348679+00:00",
+    "allocations": {
+      "countries": [
+        {
+          "name": "Japan",
+          "weightPct": 21.037822
+        },
+        {
+          "name": "Canada",
+          "weightPct": 12.32977
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 10.671848
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 8.703613
+        },
+        {
+          "name": "France",
+          "weightPct": 7.761172
+        },
+        {
+          "name": "Germany",
+          "weightPct": 7.64145
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 6.244843
+        },
+        {
+          "name": "Australia",
+          "weightPct": 6.095184
+        },
+        {
+          "name": "Spain",
+          "weightPct": 3.199421
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 2.704475
+        },
+        {
+          "name": "Italy",
+          "weightPct": 2.699575
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 1.587248
+        },
+        {
+          "name": "Denmark",
+          "weightPct": 1.448336
+        },
+        {
+          "name": "Hong Kong",
+          "weightPct": 1.415345
+        },
+        {
+          "name": "Israel",
+          "weightPct": 1.011138
+        },
+        {
+          "name": "Finland",
+          "weightPct": 0.986554
+        },
+        {
+          "name": "Belgium",
+          "weightPct": 0.771328
+        },
+        {
+          "name": "Norway",
+          "weightPct": 0.564173
+        },
+        {
+          "name": "Luxembourg",
+          "weightPct": 0.522698
+        },
+        {
+          "name": "Ireland",
+          "weightPct": 0.469556
+        },
+        {
+          "name": "United States",
+          "weightPct": 0.401799
+        },
+        {
+          "name": "China",
+          "weightPct": 0.369419
+        },
+        {
+          "name": "Austria",
+          "weightPct": 0.30848
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 0.255503
+        },
+        {
+          "name": "New Zealand",
+          "weightPct": 0.187282
+        },
+        {
+          "name": "Portugal",
+          "weightPct": 0.166071
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.136575
+        },
+        {
+          "name": "Chile",
+          "weightPct": 0.125208
+        },
+        {
+          "name": "Zambia",
+          "weightPct": 0.068987
+        },
+        {
+          "name": "Jersey",
+          "weightPct": 0.046307
+        },
+        {
+          "name": "Macao",
+          "weightPct": 0.045567
+        },
+        {
+          "name": "Korea, Republic of",
+          "weightPct": 0.023251
+        }
+      ],
+      "sectors": [
+        {
+          "name": "Financials",
+          "weightPct": 27.340682
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 17.286406
+        },
+        {
+          "name": "Information Technology",
+          "weightPct": 10.523942
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 9.570332
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 7.413649
+        },
+        {
+          "name": "Materials",
+          "weightPct": 6.891182
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 6.436277
+        },
+        {
+          "name": "Energy",
+          "weightPct": 6.043918
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 3.694638
+        },
+        {
+          "name": "Communication Services",
+          "weightPct": 3.369091
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 1.293305
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.136575
+        }
+      ]
+    }
+  },
+  "old28OctoberCauseExplained": false,
+  "scope": "One exact fund, two fields. Latest29Oct snapshot independently compared, not an explanation or closure of old28Oct contradictions.",
+  "responses": [
+    {
+      "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
+      "sha256": "ab447832b473684cdf59365f8d32a2866a229a75e758983f16b0597101306d58",
+      "file": "dws-current-IE0006WW1TQ4-30oct-0.json.gz"
+    }
+  ]
+}

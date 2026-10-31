@@ -1,0 +1,264 @@
+{
+  "checkedAt": "2026-10-30T19:19:07.354Z",
+  "rows": [
+    {
+      "isin": "DE000A0H08P6",
+      "manual": {
+        "id": "europe-retail",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ]
+      },
+      "duel": {
+        "id": "europe-retail",
+        "basis": "fund",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ]
+      },
+      "calendar": {
+        "basis": "fund-nav",
+        "currency": "EUR",
+        "instrumentType": "ETF",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "checkedAt": "2026-10-30",
+        "asOf": "2025-12-31",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251959&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+        ]
+      }
+    },
+    {
+      "isin": "DE000A27Z304",
+      "manual": {
+        "id": "bitcoin_etcgroup",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ]
+      },
+      "duel": {
+        "id": "manual-DE000A27Z304",
+        "basis": "fund",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ]
+      },
+      "calendar": {
+        "basis": "fund-nav",
+        "currency": "USD",
+        "instrumentType": "ETP",
+        "method": "calendar-year exact ETP NAV total return, net of fees",
+        "checkedAt": "2026-10-30",
+        "asOf": "2026-10-30",
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "sourceUrls": [
+          "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/"
+        ]
+      }
+    },
+    {
+      "isin": "FR0010755611",
+      "manual": {
+        "id": "cl2",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ]
+      },
+      "duel": {
+        "id": "manual-FR0010755611",
+        "basis": "fund",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ]
+      },
+      "calendar": {
+        "basis": "fund-nav",
+        "currency": "EUR",
+        "instrumentType": "ETF",
+        "method": "calendar-year share total return, income reinvested, fund fees included",
+        "checkedAt": "2026-10-30",
+        "asOf": "2025-12-31",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "sourceUrls": [
+          "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+        ]
+      }
+    },
+    {
+      "isin": "FR0013411998",
+      "manual": {
+        "id": "topix_pea_hedged",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ]
+      },
+      "duel": {
+        "id": "manual-FR0013411998",
+        "basis": "fund",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ]
+      },
+      "calendar": {
+        "basis": "fund-nav",
+        "currency": "EUR",
+        "instrumentType": "ETF",
+        "method": "calendar-year share total return, income reinvested, fund fees included",
+        "checkedAt": "2026-10-30",
+        "asOf": "2025-12-31",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "sourceUrls": [
+          "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+        ]
+      }
+    },
+    {
+      "isin": "FR0013412004",
+      "manual": {
+        "id": "manual-FR0013412004",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023
+        ]
+      },
+      "duel": {
+        "id": "manual-FR0013412004",
+        "basis": "market-price",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023
+        ]
+      },
+      "calendar": {
+        "basis": "fund-nav",
+        "currency": "EUR",
+        "instrumentType": "ETF",
+        "method": "calendar-year share total return, income reinvested, fund fees included",
+        "checkedAt": "2026-10-30",
+        "asOf": "2025-12-31",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "sourceUrls": [
+          "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+        ]
+      }
+    },
+    {
+      "isin": "IE00B4K6B022",
+      "manual": {
+        "id": "manual-IE00B4K6B022",
+        "years": [
+          2020,
+          2021,
+          2022
+        ]
+      },
+      "duel": {
+        "id": "manual-IE00B4K6B022",
+        "basis": "market-price",
+        "years": [
+          2020,
+          2021,
+          2022
+        ]
+      },
+      "calendar": {
+        "basis": "fund-nav",
+        "currency": "EUR",
+        "instrumentType": "ETF",
+        "method": "calendar-year exact-share NAV total return, income reinvested, net of ongoing charges (KIID precision 0.1%)",
+        "checkedAt": "2026-10-30",
+        "asOf": "2026-03-03",
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "sourceUrls": [
+          "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/kiid"
+        ]
+      }
+    }
+  ]
+}

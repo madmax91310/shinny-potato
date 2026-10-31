@@ -1,0 +1,18 @@
+{
+  "attemptedAt": "2026-10-30T11:42:50.213405+00:00",
+  "scope": "New shared directory transport + exact Cloud AUM parser only; not the ordinary producer or publication",
+  "status": "validated-local-source",
+  "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+  "sha256": "678c59f4438eca1b14476496d0a916c715114bff303c19f69e522b6bac22f8d2",
+  "result": {
+    "amount": 400637024.0,
+    "currency": "USD",
+    "scope": "fund",
+    "asOf": "2026-10-29",
+    "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+    "controlledListingIds": [
+      "2921038"
+    ],
+    "nonNativeListingsExcluded": 1
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "checkedAt": "2026-10-31T04:52:50.468827+00:00",
+  "publicVersion": {
+    "sha": "9994d531a9cc942a08bd311fc38d99662a0f03ae",
+    "dataSha": "6694df723b35245437ca3fe9c653acea6ccc0c2c",
+    "lane": "validated-code-data",
+    "builtAt": "2026-10-31T04:35:40.816Z"
+  },
+  "financialReleasePR": 1097,
+  "financialMerge": "7492872fb2e20c2d45cd1df4c7ede788fef18c7e",
+  "testedFinancialHead": "2c2ff2dfff812dde2555d47b7f5ab97c83e9f8dc",
+  "financialCodeDifferencesFromTestedHead": [],
+  "dataDifferencesSeparatelyRecorded": [
+    "src/data/anniversary-levels.json",
+    "src/data/automated-etf-monthly.json",
+    "src/data/automated-etf.json",
+    "src/data/automated-indices.json",
+    "src/data/automated-presentation-actors.json",
+    "src/data/automated-scpi.json",
+    "src/data/dca-complete-holdings.json",
+    "src/data/dca-equity-exposures.json",
+    "src/data/dca-holdings-status.json",
+    "src/data/dca-security-classifications.json",
+    "src/data/equity-history-links.json",
+    "src/data/exposure-sleeves.json",
+    "src/data/monthly-fx.json",
+    "src/data/purchasing-power-observations.json",
+    "src/data/qualified-exposure-etfs.json",
+    "src/data/qualified-listing-records.json",
+    "src/data/ranking-annual.json",
+    "src/data/ranking-index-annual.json",
+    "src/data/security-identifier-observations.json",
+    "src/data/shared-listing-identities.json",
+    "src/data/vanguard-equity-underliers.json",
+    "src/pages/budget-profiles/data.js",
+    "src/pages/budget-profiles/prepared-profiles-lot-2-2026-10-30.json",
+    "src/pages/dca-profiles/catalog.json",
+    "src/pages/dca-profiles/exposures-extra-0.json",
+    "src/pages/dca-profiles/exposures-extra-1.json",
+    "src/pages/dca-profiles/exposures-extra-2.json",
+    "src/pages/dca-profiles/holdings-0.json",
+    "src/pages/dca-profiles/holdings-1.json",
+    "src/pages/dca-profiles/holdings-10.json",
+    "src/pages/dca-profiles/holdings-11.json",
+    "src/pages/dca-profiles/holdings-12.json",
+    "src/pages/dca-profiles/holdings-13.json",
+    "src/pages/dca-profiles/holdings-14.json",
+    "src/pages/dca-profiles/holdings-15.json",
+    "src/pages/dca-profiles/holdings-16.json",
+    "src/pages/dca-profiles/holdings-17.json",
+    "src/pages/dca-profiles/holdings-18.json",
+    "src/pages/dca-profiles/holdings-19.json",
+    "src/pages/dca-profiles/holdings-2.json",
+    "src/pages/dca-profiles/holdings-20.json",
+    "src/pages/dca-profiles/holdings-21.json",
+    "src/pages/dca-profiles/holdings-22.json",
+    "src/pages/dca-profiles/holdings-23.json",
+    "src/pages/dca-profiles/holdings-24.json",
+    "src/pages/dca-profiles/holdings-25.json",
+    "src/pages/dca-profiles/holdings-26.json",
+    "src/pages/dca-profiles/holdings-27.json",
+    "src/pages/dca-profiles/holdings-28.json",
+    "src/pages/dca-profiles/holdings-29.json",
+    "src/pages/dca-profiles/holdings-3.json",
+    "src/pages/dca-profiles/holdings-30.json",
+    "src/pages/dca-profiles/holdings-31.json",
+    "src/pages/dca-profiles/holdings-4.json",
+    "src/pages/dca-profiles/holdings-5.json",
+    "src/pages/dca-profiles/holdings-6.json",
+    "src/pages/dca-profiles/holdings-7.json",
+    "src/pages/dca-profiles/holdings-8.json",
+    "src/pages/dca-profiles/holdings-9.json",
+    "src/pages/dca-profiles/holdings.json"
+  ],
+  "fullProductionChecksRun": 41166439669,
+  "productionWorkflowStatus": "success",
+  "sourcePublicationBindings": [
+    {
+      "path": "src/data/anniversary-levels.json",
+      "expected": "40cca032903a511d3a7fc48e93cab19e58fae9e6",
+      "served": "40cca032903a511d3a7fc48e93cab19e58fae9e6",
+      "matches": true
+    },
+    {
+      "path": "src/data/auto-history-identities.json",
+      "expected": "ed6ef8dfac260910a311de0e1f59588a9157cf5a",
+      "served": "ed6ef8dfac260910a311de0e1f59588a9157cf5a",
+      "matches": true
+    },
+    {
+      "path": "src/data/automated-etf-monthly.json",
+      "expected": "ebc8e838ea46e6cb89ecae26fce04d6ae124a5ae",
+      "served": "ebc8e838ea46e6cb89ecae26fce04d6ae124a5ae",
+      "matches": true
+    },
+    {
+      "path": "src/data/automated-indices.json",
+      "expected": "14214c4eb49403cdeb7eb2f700a03dc01fcd69af",
+      "served": "14214c4eb49403cdeb7eb2f700a03dc01fcd69af",
+      "matches": true
+    },
+    {
+      "path": "src/data/automated-monthly.json",
+      "expected": "eb5b254cc8d32c64bad17909702464ff8d7a22c9",
+      "served": "eb5b254cc8d32c64bad17909702464ff8d7a22c9",
+      "matches": true
+    },
+    {
+      "path": "src/data/monthly-fx.json",
+      "expected": "470c8c4a29a46bd8e97b34e5e4c80f326c845992",
+      "served": "470c8c4a29a46bd8e97b34e5e4c80f326c845992",
+      "matches": true
+    },
+    {
+      "path": "src/data/qualified-listing-records.json",
+      "expected": "ad60a019832259e2125967e9cf3c5bb6ee4fb5ed",
+      "served": "ad60a019832259e2125967e9cf3c5bb6ee4fb5ed",
+      "matches": true
+    },
+    {
+      "path": "src/data/ranking-histories.json",
+      "expected": "f8fd0ba0df01fa78f969d54c5077cf798014c6a2",
+      "served": "f8fd0ba0df01fa78f969d54c5077cf798014c6a2",
+      "matches": true
+    },
+    {
+      "path": "src/data/shared-listing-identities.json",
+      "expected": "ff01b283a7098105465ee7e6ccd2f76649b91579",
+      "served": "ff01b283a7098105465ee7e6ccd2f76649b91579",
+      "matches": true
+    }
+  ],
+  "publicFinancialConsumerProof": "exact-share-annual-public-30oct/summary.json",
+  "additionalCorrectionsPending": [
+    "Nine monthly windows on six exact shares: official distributions/NAV/bounds still missing or contradicted",
+    "Four complete-holdings acquisitions and exact economic/index coverage still qualified separately; Quantum complete overlap remains blocked",
+    "Two PEA qualifications, manual/undocumented exact contractual conditions, QYLD exact-share convention",
+    "WTAI latest failed source report remains retained and was not selected in the last conditional run",
+    "Twelve INSEE child documents queued, not yet exercised as statistical source observations"
+  ],
+  "completeAutomationClaimed": false,
+  "sourceVersusCron": "Six exact AUM have a first-attempt scheduled source-to-publication proof; seven additional AUM have first-attempt source-only scheduled proof with recording failure retained. New31October source/record/publication runs are push or manual. No post-final-corrective cron newly observed; no supervision cron substituted for supplier evidence.",
+  "backendProducerReleases": [
+    {
+      "pr": 1099,
+      "merge": "fd9648c265cac2418be9ab149c2f18a11b220b6e",
+      "status": "merged and included in public frontend baseline; conditional concurrent recording guard verified in isolated Git tests, not claimed exercised in production"
+    },
+    {
+      "pr": 1100,
+      "merge": "a381449902adf17ab49ea674d2823acfa38f1893",
+      "ordinaryMonitorRun": 41140842347,
+      "status": "ordinary backfill succeeded, latest13F28 actual successful outcomes visible; missing-step reread conditional only proven by isolated replay of real GitHub evidence, not claimed exercised in production"
+    },
+    {
+      "pr": 1102,
+      "merge": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+      "ordinaryProducerRun": 41142238317,
+      "status": "producer update succeeded, genuine unrelated partial failures retained; producer feed consumed publicly on desktop/mobile with all3qualification issues. Frontend build SHA separate from backend execution SHA."
+    },
+    {
+      "pr": 1104,
+      "merge": "cdb627ba2588e1dec61f0f2dcbe5036fcadb62f7",
+      "ordinaryProducerRun": 41154898443,
+      "publicationRun": 41154898433,
+      "status": "Exact ABTC native AUM/fee API fields recorded, published and exercised publicly; API410 prior recovery and healthy PDF remain distinct."
+    },
+    {
+      "pr": 1105,
+      "merge": "2d0fcdf9859b3eba95524d64c76384df190e21c3",
+      "ordinaryProducerRun": 41154898443,
+      "status": "Targets-before-coverage recording defect repaired and ordinary recording/publication proven. Concurrent rebase branch remains isolated-Git/CI verification, not claimed raced in that production run."
+    },
+    {
+      "pr": 1106,
+      "merge": "d6c1bd7f22d6f391cae145310788da5a2287546e",
+      "ordinaryProducerRun": 41163406543,
+      "status": "Actual INSEE index acquired and12exact standalone children queued; no numerical data added, child acquisition unverified."
+    },
+    {
+      "pr": 1107,
+      "merge": "9994d531a9cc942a08bd311fc38d99662a0f03ae",
+      "ordinaryProducerRun": 41166439703,
+      "record": "6694df723b35245437ca3fe9c653acea6ccc0c2c",
+      "publicationRun": 41166439669,
+      "status": "Official H10 XML actually acquired/validated/recorded/published;333monthly cross rates unchanged. Existing shared reference, zero new current financial functions. FRED failures retained; empty selected history scope does not certify WTAI or684histories."
+    }
+  ],
+  "additionalBackendConsumerProof": "radar-unknown-public-30oct/results.json",
+  "archivePR": 1103,
+  "snapshotCapturedAt": "2026-10-31T04:48:47.334Z",
+  "sourcePublicationBindingScope": "Exact primary files at this checkpoint; file-byte publication proof, not certification of all fields or histories passed through unchanged. Per-field proofs and earlier checkpoints retained separately.",
+  "priorCheckpoint": "previous-release-checkpoint-30oct.json",
+  "archivePublicationNote": "This dated checkpoint precedes merging the final report-only archive. Its final deployed commit must be verified afterwards against build-info and unchanged source bindings; no future publication is asserted here.",
+  "nonFinancialDatedProfileCodeChanges": [
+    "src/pages/budget-profiles/data.js"
+  ]
+}

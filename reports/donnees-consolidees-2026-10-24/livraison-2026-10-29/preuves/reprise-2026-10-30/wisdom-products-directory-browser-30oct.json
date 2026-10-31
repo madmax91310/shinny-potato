@@ -1,0 +1,29 @@
+{
+  "url": "https://www.wisdomtree.com/gb/products",
+  "attemptedAt": "2026-10-30T11:28:29.157Z",
+  "strategy": "Ordinary issuer-linked collective directory; discover its public financial request and scope before implementing any AUM adapter",
+  "requests": [
+    {
+      "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+      "status": 200
+    }
+  ],
+  "financialResponses": [
+    {
+      "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+      "status": 200,
+      "bytes": 949563,
+      "sha256": "678c59f4438eca1b14476496d0a916c715114bff303c19f69e522b6bac22f8d2",
+      "file": "wisdom-products-directory-financial-0-30oct.json.gz"
+    }
+  ],
+  "status": 200,
+  "tables": 1,
+  "visibleLines": [
+    "WisdomTree Europe Product AUM",
+    "Download Data",
+    "Total Assets Under Management",
+    "WisdomTree Cloud Computing UCITS ETF - USD Acc\tKLWD\tUnleveraged\t0.40%\tUSD\tGBP\tAccumulating\t£33.39\t-2.33%\t$400,637,024",
+    "WisdomTree Cloud Computing UCITS ETF - USD Acc\tWCLD\tUnleveraged\t0.40%\tUSD\tUSD\tAccumulating\t$44.45\t-2.33%\t$400,637,024"
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "checkedAt": "2026-10-30T09:43:12.546318+00:00",
+  "sourceUrl": "https://madmax91310.github.io/shinny-potato/data/data-review-inbox.json",
+  "matches": [
+    {
+      "path": "/consumerUsage/tools/1/rows/906",
+      "row": {
+        "id": "IE000W8WMSL2",
+        "key": "catalog:3",
+        "state": "blocked"
+      }
+    },
+    {
+      "path": "/consumerUsage/tools/1/rows/907",
+      "row": {
+        "id": "IE000W8WMSL2",
+        "key": "coverage:countries",
+        "state": "blocked"
+      }
+    },
+    {
+      "path": "/consumerUsage/tools/1/rows/1184",
+      "row": {
+        "id": "radar:etf:IE000W8WMSL2:aum",
+        "key": "aum",
+        "state": "scheduled-evidence"
+      }
+    },
+    {
+      "path": "/consumerUsage/tools/1/rows/1185",
+      "row": {
+        "id": "radar:etf:IE000W8WMSL2:countries",
+        "key": "countries",
+        "state": "scheduled-evidence"
+      }
+    },
+    {
+      "path": "/consumerUsage/tools/3/rows/473",
+      "row": {
+        "id": "IE000W8WMSL2",
+        "key": "catalog:3",
+        "state": "blocked"
+      }
+    },
+    {
+      "path": "/consumerUsage/tools/15/rows/72",
+      "row": {
+        "id": "IE000W8WMSL2",
+        "key": "coverage:countries",
+        "state": "blocked"
+      }
+    },
+    {
+      "path": "/consumerUsage/tools/17/rows/539",
+      "row": {
+        "id": "IE000W8WMSL2",
+        "key": "catalog:3",
+        "state": "blocked"
+      }
+    },
+    {
+      "path": "/consumerUsage/tools/17/rows/540",
+      "row": {
+        "id": "IE000W8WMSL2",
+        "key": "coverage:countries",
+        "state": "blocked"
+      }
+    },
+    {
+      "path": "/consumerUsage/tools/21/rows/135",
+      "row": {
+        "id": "radar:etf:IE000W8WMSL2:aum",
+        "key": "aum",
+        "state": "scheduled-evidence"
+      }
+    },
+    {
+      "path": "/consumerUsage/tools/21/rows/136",
+      "row": {
+        "id": "radar:etf:IE000W8WMSL2:countries",
+        "key": "countries",
+        "state": "scheduled-evidence"
+      }
+    },
+    {
+      "path": "/backlog/4",
+      "row": {
+        "type": "instrument",
+        "id": "IE000W8WMSL2",
+        "name": "WisdomTree Quantum Computing UCITS ETF",
+        "field": "countries",
+        "label": "Pays",
+        "actionState": "check-overdue",
+        "reason": null,
+        "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+        "asOf": "2026-10-15",
+        "checkedAt": "2026-10-17",
+        "lastAttemptAt": null,
+        "lastSuccessAt": "2026-10-17",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc"
+      }
+    },
+    {
+      "path": "/backlog/35",
+      "row": {
+        "type": "instrument",
+        "id": "IE000W8WMSL2",
+        "name": "WisdomTree Quantum Computing UCITS ETF",
+        "field": "aum",
+        "label": "Encours",
+        "actionState": "check-overdue",
+        "reason": null,
+        "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+        "asOf": "2026-10-15",
+        "checkedAt": "2026-10-17",
+        "lastAttemptAt": null,
+        "lastSuccessAt": "2026-10-17",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc"
+      }
+    },
+    {
+      "path": "/assets/326",
+      "row": {
+        "id": "IE000W8WMSL2",
+        "type": "instrument",
+        "name": "WisdomTree Quantum Computing UCITS ETF"
+      }
+    },
+    {
+      "path": "/assets/326/fields/0/coverageReference",
+      "row": {
+        "id": "IE000W8WMSL2",
+        "field": "aum",
+        "state": "check-overdue",
+        "checkedAt": "2026-10-17"
+      }
+    },
+    {
+      "path": "/assets/533",
+      "row": {
+        "id": "radar:etf:IE000W8WMSL2:aum",
+        "type": "instrument",
+        "name": "WisdomTree Quantum Computing UCITS ETF"
+      }
+    },
+    {
+      "path": "/assets/534",
+      "row": {
+        "id": "radar:etf:IE000W8WMSL2:countries",
+        "type": "instrument",
+        "name": "WisdomTree Quantum Computing UCITS ETF"
+      }
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "checkedAt": "2026-10-31T02:22:51.688Z",
+  "results": [
+    {
+      "id": "silver-new-identity",
+      "allocation": [
+        [
+          "IE000UL6CLP7",
+          50
+        ],
+        [
+          "world",
+          50
+        ]
+      ],
+      "newIdentity": {
+        "isin": "CA38141A6025",
+        "name": "GOLDGROUP MINING INC",
+        "sourceWeightPct": 0.323,
+        "portfolioWeightPct": 0.16150000000000003,
+        "asOf": "2026-10-30",
+        "sourceRun": 41151066938,
+        "sourceRecord": "62fbee7ac293d7558b1d84bc62582f1e99fdaf91",
+        "orderInvariant": true
+      },
+      "qualifications": [
+        {
+          "asset": "IE000UL6CLP7",
+          "label": "Global X Silver Miners UCITS ETF USD Accumulating",
+          "isin": "IE000UL6CLP7",
+          "asOf": "2026-10-30",
+          "sourceUrl": "https://globalxetfs.eu/api/funds/silv/topholdingscsv",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.94200000000004,
+          "identifiedCoverage": 99.94200000000004,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.0579999999999643
+        },
+        {
+          "asset": "world",
+          "label": "iShares Core MSCI World UCITS ETF (Acc)",
+          "isin": "IE00B4L5Y983",
+          "asOf": "2026-10-29",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "valid": true,
+          "complete": true,
+          "reasons": [],
+          "sourceCoverage": 99.52960000000007,
+          "identifiedCoverage": 99.52960000000007,
+          "unidentifiedCoverage": 0,
+          "residualWeight": 0.4703999999999269
+        }
+      ],
+      "pairs": [
+        {
+          "left": "Global X Silver Miners UCITS ETF USD Accumulating",
+          "right": "iShares Core MSCI World UCITS ETF (Acc)",
+          "common": [
+            {
+              "isin": "CA9628791027",
+              "name": "WHEATON PRECIOUS METALS CORP",
+              "leftWeight": 15.107,
+              "rightWeight": 0.05945,
+              "portfolioWeight": 7.583224999999999
+            },
+            {
+              "isin": "CA6979001089",
+              "name": "PAN AMERICAN SILVER CORP",
+              "leftWeight": 12.497,
+              "rightWeight": 0.0198,
+              "portfolioWeight": 6.2584
+            },
+            {
+              "isin": "US1921085049",
+              "name": "COEUR MINING INC",
+              "leftWeight": 10.626,
+              "rightWeight": 0.01562,
+              "portfolioWeight": 5.320809999999999
+            },
+            {
+              "isin": "GB00B2QPKJ12",
+              "name": "FRESNILLO PLC",
+              "leftWeight": 4.382,
+              "rightWeight": 0.00744,
+              "portfolioWeight": 2.1947200000000002
+            }
+          ],
+          "companyCommon": [
+            {
+              "id": "CA9628791027",
+              "name": "WHEATON PRECIOUS METALS CORP",
+              "leftWeight": 15.107,
+              "rightWeight": 0.05945,
+              "leftSecurities": [
+                "CA9628791027"
+              ],
+              "rightSecurities": [
+                "CA9628791027"
+              ]
+            },
+            {
+              "id": "CA6979001089",
+              "name": "PAN AMERICAN SILVER CORP",
+              "leftWeight": 12.497,
+              "rightWeight": 0.0198,
+              "leftSecurities": [
+                "CA6979001089"
+              ],
+              "rightSecurities": [
+                "CA6979001089"
+              ]
+            },
+            {
+              "id": "US1921085049",
+              "name": "COEUR MINING INC",
+              "leftWeight": 10.626,
+              "rightWeight": 0.01562,
+              "leftSecurities": [
+                "US1921085049"
+              ],
+              "rightSecurities": [
+                "US1921085049"
+              ]
+            },
+            {
+              "id": "GB00B2QPKJ12",
+              "name": "FRESNILLO PLC",
+              "leftWeight": 4.382,
+              "rightWeight": 0.00744,
+              "leftSecurities": [
+                "GB00B2QPKJ12"
+              ],
+              "rightSecurities": [
+                "GB00B2QPKJ12"
+              ]
+            }
+          ],
+          "full": true,
+          "overlap": 0.10231,
+          "sources": [
+            {
+              "asOf": "2026-10-30",
+              "url": "https://globalxetfs.eu/api/funds/silv/topholdingscsv",
+              "basis": "fund",
+              "checkedAt": "2026-10-31T00:43:08.622684+00:00",
+              "sha256": "fa5d2c1ff47180737ddbd4f5eaf6a6210309bc27f95371ffba8ea306fb90a9b6",
+              "method": "Complete published physical equity securities; cash and non-equity positions excluded; original fund NAV weights, no renormalisation"
+            },
+            {
+              "asOf": "2026-10-29",
+              "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "basis": "fund",
+              "checkedAt": "2026-10-31T00:43:08.622684+00:00",
+              "sha256": "8fd3c4ecc6b915e467715b003dd8a1f8555f64dc06d0b174e3d9c32cba2827a9",
+              "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation"
+            }
+          ],
+          "identifiedCoverage": [
+            99.94200000000004,
+            99.52960000000007
+          ]
+        }
+      ],
+      "png": {
+        "bytes": 537528,
+        "sha256": "401dcb11267eef085d86a1d1a44cd0907956659a52db5456f7a3c1c9b1f64356"
+      },
+      "version": {
+        "sha": "4213389fd53845831b27587b08ec28cf20e66060",
+        "builtAt": "2026-10-31T01:48:48Z"
+      },
+      "mobilePNG": {
+        "bytes": 537528,
+        "sha256": "401dcb11267eef085d86a1d1a44cd0907956659a52db5456f7a3c1c9b1f64356"
+      }
+    }
+  ],
+  "errors": []
+}
