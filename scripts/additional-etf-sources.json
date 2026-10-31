@@ -926,8 +926,10 @@
       "provider": "21Shares",
       "parser": "document",
       "documentType": "21shares",
+      "preferProductApi": true,
       "calendarApiBase": "https://api.primary.21shares.com",
-      "sourceUrl": "https://cdn.21shares.com/uploads/current-documents/factsheets/all/Factsheet_ABTC.pdf",
+      "factsheetUrl": "https://cdn.21shares.com/uploads/current-documents/factsheets/all/Factsheet_ABTC.pdf",
+      "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
       "currency": "USD"
     },
     {

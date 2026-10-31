@@ -73,6 +73,7 @@ on:
       - 'scripts/collect_coinshares_aum.py'
       - 'scripts/collect_product_calendars.py'
       - 'scripts/test_product_calendars.py'
+      - 'scripts/test_abtc_product_fields.py'
       - 'scripts/collect_commodity_allocations.py'
       - 'scripts/test_commodity_allocations.py'
       - 'scripts/collect_annual_fx.py'
@@ -154,6 +155,7 @@ on:
       - 'scripts/collect_coinshares_aum.py'
       - 'scripts/collect_product_calendars.py'
       - 'scripts/test_product_calendars.py'
+      - 'scripts/test_abtc_product_fields.py'
       - 'scripts/collect_commodity_allocations.py'
       - 'scripts/test_commodity_allocations.py'
       - 'scripts/collect_annual_fx.py'
@@ -227,6 +229,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_presentation_performance.py'
       - run: node scripts/test-presentation-etf.mjs
       - run: python -m unittest discover -s scripts -p 'test_product_calendars.py'
+      - run: python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
       - run: python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
       - run: python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
