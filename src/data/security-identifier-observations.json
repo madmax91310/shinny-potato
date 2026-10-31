@@ -145990,7 +145990,7 @@
     },
     "IE00BDFBTQ78|USA CN|CAD": {
       "sourceUrl": "https://api.openfigi.com/v3/mapping",
-      "checkedAt": "2026-10-30T11:16:11.734948+00:00",
+      "checkedAt": "2026-10-31T14:00:47.883859+00:00",
       "request": [
         {
           "idType": "TICKER",
@@ -146005,6 +146005,15 @@
           "currency": "CAD"
         }
       ],
+      "issuerBinding": {
+        "subjectIsin": "IE00BDFBTQ78",
+        "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233154&ticker=UCTGDIG&reactlang=en&reactctr=uk",
+        "sourceSha256": "faad12eb0298c9a1e4b929b2a90a314cac4e543c8c247a2f4483810dbb5cfc8d",
+        "asOf": "2026-10-30",
+        "ticker": "USA CN",
+        "currency": "CAD",
+        "assetClass": "Stock"
+      },
       "response": [
         {
           "data": [
@@ -146039,20 +146048,11 @@
           ]
         }
       ],
-      "sha256": "df74961e23a616d5c91e24c9498e64be814f39c9807a2a5a90990edc110eab08",
-      "issuerBinding": {
-        "subjectIsin": "IE00BDFBTQ78",
-        "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233154&ticker=UCTGDIG&reactlang=en&reactctr=uk",
-        "sourceSha256": "4ca8ef6c6465b52554780ce27bcd1be6b2ea51e4dc696dee2b465e10ef1b0b78",
-        "asOf": "2026-10-29",
-        "ticker": "USA CN",
-        "currency": "CAD",
-        "assetClass": "Stock"
-      }
+      "sha256": "df74961e23a616d5c91e24c9498e64be814f39c9807a2a5a90990edc110eab08"
     },
     "IE00BDFBTQ78|MLX AU|AUD": {
       "sourceUrl": "https://api.openfigi.com/v3/mapping",
-      "checkedAt": "2026-10-30T11:16:11.734948+00:00",
+      "checkedAt": "2026-10-31T14:00:47.883859+00:00",
       "request": [
         {
           "idType": "TICKER",
@@ -146067,6 +146067,15 @@
           "currency": "AUD"
         }
       ],
+      "issuerBinding": {
+        "subjectIsin": "IE00BDFBTQ78",
+        "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233154&ticker=UCTGDIG&reactlang=en&reactctr=uk",
+        "sourceSha256": "faad12eb0298c9a1e4b929b2a90a314cac4e543c8c247a2f4483810dbb5cfc8d",
+        "asOf": "2026-10-30",
+        "ticker": "MLX AU",
+        "currency": "AUD",
+        "assetClass": "Stock"
+      },
       "response": [
         {
           "data": [
@@ -146101,20 +146110,11 @@
           ]
         }
       ],
-      "sha256": "136452c98895bc0b4eb02e148d4ec38ac4385e8ec415af63a90954d69cca5798",
-      "issuerBinding": {
-        "subjectIsin": "IE00BDFBTQ78",
-        "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233154&ticker=UCTGDIG&reactlang=en&reactctr=uk",
-        "sourceSha256": "4ca8ef6c6465b52554780ce27bcd1be6b2ea51e4dc696dee2b465e10ef1b0b78",
-        "asOf": "2026-10-29",
-        "ticker": "MLX AU",
-        "currency": "AUD",
-        "assetClass": "Stock"
-      }
+      "sha256": "136452c98895bc0b4eb02e148d4ec38ac4385e8ec415af63a90954d69cca5798"
     },
     "IE00BDFBTQ78|SLS CN|CAD": {
       "sourceUrl": "https://api.openfigi.com/v3/mapping",
-      "checkedAt": "2026-10-30T11:16:11.734948+00:00",
+      "checkedAt": "2026-10-31T14:00:47.883859+00:00",
       "request": [
         {
           "idType": "TICKER",
@@ -146129,6 +146129,15 @@
           "currency": "CAD"
         }
       ],
+      "issuerBinding": {
+        "subjectIsin": "IE00BDFBTQ78",
+        "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233154&ticker=UCTGDIG&reactlang=en&reactctr=uk",
+        "sourceSha256": "faad12eb0298c9a1e4b929b2a90a314cac4e543c8c247a2f4483810dbb5cfc8d",
+        "asOf": "2026-10-30",
+        "ticker": "SLS CN",
+        "currency": "CAD",
+        "assetClass": "Stock"
+      },
       "response": [
         {
           "data": [
@@ -146163,16 +146172,7 @@
           ]
         }
       ],
-      "sha256": "d503c76746d4b87a88bd1aa1e07486189d3d0dda66cc6b9d5febc49fd16ad8ef",
-      "issuerBinding": {
-        "subjectIsin": "IE00BDFBTQ78",
-        "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233154&ticker=UCTGDIG&reactlang=en&reactctr=uk",
-        "sourceSha256": "4ca8ef6c6465b52554780ce27bcd1be6b2ea51e4dc696dee2b465e10ef1b0b78",
-        "asOf": "2026-10-29",
-        "ticker": "SLS CN",
-        "currency": "CAD",
-        "assetClass": "Stock"
-      }
+      "sha256": "d503c76746d4b87a88bd1aa1e07486189d3d0dda66cc6b9d5febc49fd16ad8ef"
     },
     "IE00BDFBTQ78|ARU AU|AUD": {
       "sourceUrl": "https://api.openfigi.com/v3/mapping",
