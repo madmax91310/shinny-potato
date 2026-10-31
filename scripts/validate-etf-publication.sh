@@ -15,7 +15,10 @@ case "$mode" in
 esac
 if [[ "$mode" == prepare ]]; then
   npm ci --ignore-scripts
-  # These six owned reports read the combined tree, including insurance products.
+  # Rebuild acquisition targets before reports: a newly qualified source URL
+  # changes metadata provenance. These are projections, not new source checks.
+  node scripts/build-automation-targets.mjs
+  # These owned reports read the combined tree, including insurance products.
   # Never recollect or modify the four immutable financial observation registries.
   node scripts/report-automation-coverage.mjs --write
   node scripts/build-app-inventory.mjs
@@ -39,5 +42,5 @@ node scripts/test-comparison-etf-details.mjs
 npm run build
 if [[ "$mode" == check ]]; then
   # Build generators must agree with the exact prepared publication tree.
-  git diff --exit-code HEAD -- src/data/annual-fx.json src/data/official-performance-currencies.json src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json docs/asset-field-coverage.md public/data/asset-field-coverage.json docs/app-inventory.md
+  git diff --exit-code HEAD -- src/data/annual-fx.json src/data/official-performance-currencies.json src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json docs/asset-field-coverage.md public/data/asset-field-coverage.json docs/app-inventory.md scripts/instrument-metadata-sources.json scripts/generated-holdings-sources.json
 fi
