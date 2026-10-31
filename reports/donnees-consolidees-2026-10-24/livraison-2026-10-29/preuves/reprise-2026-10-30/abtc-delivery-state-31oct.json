@@ -1,0 +1,34 @@
+{
+  "updatedAt": "2026-10-31T00:05:04.541931+00:00",
+  "pr": 1104,
+  "head": "98cfee6b34a67c817e8d6f0c409836a433d87093",
+  "classification": {
+    "original410": "Performance API primary, proven by original producer report; exact endpoint not retained historically",
+    "factsheet": "HTTP200 SHA8e44e9f02d27f575211ab3711df8fc732514f8d3c2c4211aa519b2029879ca79, AUM2026-09-29; not a removed document",
+    "newFields": "Current AUM and fee acquired directly from the same exact issuer API used by its public client; freshness enhancement, not repair of a broken PDF",
+    "newErrorEvidence": "Future errors retain actual endpoint; no old URL retroactively invented"
+  },
+  "githubSourceProof": {
+    "productRun": 41145068324,
+    "anniversaryRun": 41145068358,
+    "event": "pull_request",
+    "scope": [
+      "CH0454664001:aum",
+      "CH0454664001:terPct",
+      "CH0454664001:annual NAV calendars",
+      "anniversary-etfCH0454664001",
+      "anniversary-etfCH0454664001Nav"
+    ],
+    "productionRecorded": false,
+    "publicationVerified": false,
+    "publicConsumersVerified": false
+  },
+  "sourceEvidence": [
+    "abtc-product-api-github-source-proof-30oct.json",
+    "abtc-anniversary-github-source-proof-30oct.json",
+    "abtc-etf-before-41135102229/additional-observation.json.gz",
+    "abtc-current-factsheet-recheck-30oct.json"
+  ],
+  "next": "Complete checks on98cfee6, merge, observe ordinary producers, recording, public exact field values and consumers before claiming complete delivery",
+  "newQualifiedMonthlyWindows": 0
+}

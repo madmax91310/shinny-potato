@@ -25,6 +25,9 @@ for key,q in by.items():
 for key,q in diag.items():
  if key in ids or not key.startswith('incident:')or q.get('presence_publique_30oct')!='True':continue
  rows.append({'id_suivi':key,'axe':'fiabilité et automatisation','probleme':q.get('probleme',''),'outils':q.get('outils',''),'origines':q.get('origines',''),'statut_final_30oct':q.get('statut_30oct',''),'nature_reliquat_final_30oct':q.get('categorie_30oct',''),'limite_usage_finale_30oct':q.get('piece_manquante_30oct',''),'preuve_finale_30oct':q.get('preuve_30oct','')});ids.add(key)
+for key,q in diag.items():
+ if key in ids or not key.startswith('repair30oct:') or q.get('reliquat_actif')!='True':continue
+ rows.append({'id_suivi':key,'axe':q.get('axe',''),'probleme':q.get('probleme',''),'outils':q.get('outils',''),'origines':q.get('origines',''),'statut_final_30oct':q.get('statut_30oct',''),'nature_reliquat_final_30oct':q.get('categorie_30oct',''),'limite_usage_finale_30oct':q.get('probleme',''),'preuve_finale_30oct':q.get('preuve_30oct','')});ids.add(key)
 assert {x['id_suivi']for x in old}<={x['id_suivi']for x in rows}
 with gzip.open(out/'restant-a-verifier.csv.gz','wt',encoding='utf-8-sig',newline='')as f:w=csv.DictWriter(f,fieldnames=names+extra,delimiter=';',lineterminator='\n');w.writeheader();w.writerows(rows)
 print({'priorIdentitiesPreserved':len(old),'currentFollowupRows':len(rows),'notAnActiveOutageCount':True})

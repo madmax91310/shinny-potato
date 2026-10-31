@@ -1,0 +1,17 @@
+{
+  "observedAt": "2026-10-30T22:57:01.402568+00:00",
+  "run": 41135102229,
+  "sourceArtifact": 13017624210,
+  "sourceArtifactSha256": "d7966ecd03090e4f94b0e06dad5937e3856675a8891e4cac0864bb309d2e61ef",
+  "sourceAndValidation": "succeeded including mandatory audits, full build and all41publishedfile hashes",
+  "recording": "refused safely",
+  "blockedUpstreamInputs": [
+    "scripts/publish_automation_status.py",
+    "scripts/test_automation_status.py"
+  ],
+  "upstreamChange": "PR#1100 merged during collection",
+  "publication": "not attempted",
+  "lastValidPublishedRun": 41130420592,
+  "notProviderFailure": true,
+  "nextAction": "Ordinary bounded recovery from stable master; preserve original source attempt and protected input guard; no blind publication of old observation"
+}

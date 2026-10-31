@@ -18,9 +18,15 @@ for raw in allrows.values():
  if key.startswith('history:') and stamp and key.endswith(':'+stamp):
   original=key[len('history:'):-len(stamp)-1]
   if original not in resolved_history or stamp>resolved_history[original]['resolvedAt']:resolved_history[original]=r
+dws_proposals={x['id']:x for x in json.loads((root/'proofs-29oct/dws-radar-proposals-vs-published-30oct.json').read_text())['rows']}
 # These are structural investigation buckets, never a proof that all fields share one fault.
 def category(r):
  kind=r['kind'];cause=r.get('cause','');key=r['id']
+ if key in dws_proposals:
+  x=dws_proposals[key]
+  if x['entity'] in {'IE00BTJRMP35','IE000L6ZMMC4'} and not x['exactProposalEqualsPublishedRegistry']:
+   return 'classification partielle ; zéro non démontré', 'PR#1102 : ne pas déduire zéro du pays absent tant que le portefeuille conserve un poids Non classé. Conserver conflit et valeurs datées ; qualification pays exacts manquante. Preuves dws-radar-proposals-vs-published-30oct.json et dws-nine-published-snapshots-reconciliation-30oct.json.'
+  return 'attente de stabilité documentée, pas panne de collecte', 'Photographie DWS réelle29octobre, source22:17 et18agrégats pays/secteurs égaux aux registres publics. Délai4h existant avant réconciliation, au plus tôt31octobre00:35UTC ; ancien écart non expliqué, incident non clôturé par cette analyse.97propositions explicites et9zéros sur sources entièrement classées distingués des3zéros non démontrés. Aucune tolérance changée.'
  if kind=='connection':
   if 'Recoupement externe' in r.get('field',''):return 'condition vivante encore manuelle', 'Confirmation officielle précise CTO/PEA requise ; la corroboration externe datée conserve son échéance, aucun renouvellement automatique ni négation déduite d’un silence.'
   if 'USD Accumulating' in cause:return 'convention de part non qualifiée', 'Table de la part USD distribuante exacte IE00BM8R0J59 requise ; le rendement de la part Accumulating ne peut pas la remplacer.'

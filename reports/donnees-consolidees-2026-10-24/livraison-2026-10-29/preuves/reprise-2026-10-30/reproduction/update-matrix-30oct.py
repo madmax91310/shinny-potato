@@ -1,4 +1,4 @@
-import csv,gzip,pathlib,json,collections,datetime
+import csv,gzip,pathlib,json,collections,datetime,os
 csv.field_size_limit(16*1024*1024)
 root=pathlib.Path('/dev/shm/data-automation-20261028');base=pathlib.Path('/workspace/finalisation-donnees-20261027');out=root/'consolidated-30oct';out.mkdir(exist_ok=True)
 extra=['preuve_intervention_30oct','usage_verifie_30oct','limite_preuve_30oct']
@@ -40,7 +40,7 @@ for r in rows:
 assert aum_contracts==30,aum_contracts
 
 # Newly introduced tool is reconciled incrementally, not mistaken for living market data.
-profiles=json.loads(__import__('subprocess').check_output(['node','--input-type=module','-e',"import {BUDGET_PROFILES} from './src/pages/budget-profiles/data.js';console.log(JSON.stringify(BUDGET_PROFILES))"],cwd=root/'bnp'))
+profiles=json.loads(__import__('subprocess').check_output(['node','--input-type=module','-e',"import {BUDGET_PROFILES} from './src/pages/budget-profiles/data.js';console.log(JSON.stringify(BUDGET_PROFILES))"],cwd=pathlib.Path(os.environ.get('BUDGET_SOURCE_ROOT',str(root/'bnp')))))
 for p in profiles:
  key='usage:/le-budget-de|'+p['id']+'|archive:published-budget'
  if key in initial_ids:continue

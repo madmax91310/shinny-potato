@@ -1,14 +1,12 @@
 {
-  "updatedAt": "2026-10-30T22:14:28.904740+00:00",
+  "updatedAt": "2026-10-31T00:05:04.588299+00:00",
   "scope": "chantier consolidé existant",
   "completeAutomationClaimed": false,
   "release": {
-    "checkedAt": "2026-10-30T21:53:59.094146+00:00",
+    "checkedAt": "2026-10-30T23:18:11.060756+00:00",
     "publicVersion": {
-      "sha": "d1e072fec40884de4fbb69d1c843a727cf0c6c79",
-      "dataSha": "20253887d3dc613255b4eaf6b03f33d22ac865e9",
-      "lane": "validated-code-data",
-      "builtAt": "2026-10-30T21:51:33.901Z"
+      "sha": "08567afe22343d45aadec70dc6464208b17ad5e8",
+      "builtAt": "2026-10-30T22:46:39Z"
     },
     "financialReleasePR": 1097,
     "financialMerge": "7492872fb2e20c2d45cd1df4c7ede788fef18c7e",
@@ -16,11 +14,16 @@
     "financialCodeDifferencesFromTestedHead": [],
     "dataDifferencesSeparatelyRecorded": [
       "src/data/anniversary-levels.json",
+      "src/data/automated-etf.json",
+      "src/data/automated-indices.json",
       "src/data/automated-presentation-actors.json",
       "src/data/automated-scpi.json",
-      "src/data/purchasing-power-observations.json"
+      "src/data/purchasing-power-observations.json",
+      "src/data/shared-listing-identities.json",
+      "src/pages/budget-profiles/data.js",
+      "src/pages/budget-profiles/prepared-profiles-lot-2-2026-10-30.json"
     ],
-    "fullProductionChecksRun": 41127528671,
+    "fullProductionChecksRun": 41139257040,
     "productionWorkflowStatus": "success",
     "sourcePublicationBindings": [
       {
@@ -74,12 +77,30 @@
       }
     ],
     "publicFinancialConsumerProof": "exact-share-annual-public-30oct/summary.json",
-    "additionalCorrectionsPending": [
-      1099,
-      1100
-    ],
+    "additionalCorrectionsPending": [],
     "completeAutomationClaimed": false,
-    "sourceVersusCron": "Ordinary push/manual/automatic-recovery evidence recorded separately; no unobserved post-fix supplier cron claimed."
+    "sourceVersusCron": "6 exact AUM with first-attempt source-to-publication schedule proven;7 further AUM have first-attempt source-only schedule proof with recording failure preserved. Ordinary push/manual/automatic-recovery evidence remains distinct.",
+    "backendProducerReleases": [
+      {
+        "pr": 1099,
+        "merge": "fd9648c265cac2418be9ab149c2f18a11b220b6e",
+        "status": "merged and included in public frontend baseline; conditional concurrent recording guard verified in isolated Git tests, not claimed exercised in production"
+      },
+      {
+        "pr": 1100,
+        "merge": "a381449902adf17ab49ea674d2823acfa38f1893",
+        "ordinaryMonitorRun": 41140842347,
+        "status": "ordinary backfill succeeded, latest13F28 actual successful outcomes visible; missing-step reread conditional only proven by isolated replay of real GitHub evidence, not claimed exercised in production"
+      },
+      {
+        "pr": 1102,
+        "merge": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+        "ordinaryProducerRun": 41142238317,
+        "status": "producer update succeeded, genuine unrelated partial failures retained; producer feed consumed publicly on desktop/mobile with all3qualification issues. Frontend build SHA separate from backend execution SHA."
+      }
+    ],
+    "additionalBackendConsumerProof": "radar-unknown-public-30oct/results.json",
+    "archivePR": 1103
   },
   "remaining": "restant-a-verifier.csv.gz",
   "matrix": "matrice-donnees-usages.csv.gz"

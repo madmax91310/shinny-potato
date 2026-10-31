@@ -1,3 +1,4 @@
+import {unknownAllocationGroups} from './radar-allocation-coverage.mjs'
 import {unpackRadarState} from './radar-state-codec.mjs'
 import {radarValue} from '../../src/lib/radar-format.js'
 import {reviewCompositions} from './radar-composition-review.mjs'
@@ -121,9 +122,17 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
     if (!rows.every(row => row.completeComposition === true && typeof row.value === 'number' &&
       row.sourceHash && row.sourceHash === sample.sourceHash && row.sourceUrl === sample.sourceUrl &&
       row.checkedAt === sample.checkedAt) || fields.size !== rows.length || total < 99 || total > 101) continue
-    for (const old of Object.values(state.current)) {
-      if (old.family !== 'etf' || old.entity !== sample.entity || old.scope !== sample.scope ||
-          !old.field.startsWith(prefix) || fields.has(old.field) || old.period > sample.period) continue
+    const omitted = Object.values(state.current).filter(old => old.family === 'etf' &&
+      old.entity === sample.entity && old.scope === sample.scope && old.field.startsWith(prefix) &&
+      !fields.has(old.field) && old.period <= sample.period)
+    const unknown = unknownAllocationGroups(rows.map(row => ({name: row.field.slice(prefix.length), weightPct: row.value})))
+    if (omitted.length && unknown.length) {
+      issues.push({family: sample.family, entity: sample.entity, field: prefix.slice(0,-1),
+        phase: 'qualification', sourceAttempted: false,
+        reason: `Classification incomplète (${unknown.map(row => `${row.name}: ${row.weightPct} %`).join(', ')}) : aucun zéro déduit pour ${omitted.map(row => row.fieldLabel).join(', ')} ; observations précédentes conservées avec leurs dates.`})
+      continue
+    }
+    for (const old of omitted) {
       valid.push({ ...sample, field: old.field, fieldLabel: old.fieldLabel, value: 0,
         absenceEvidence: 'Absent from a validated complete allocation' })
     }

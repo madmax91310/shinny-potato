@@ -1,0 +1,52 @@
+{
+  "reconstructedAt": "2026-10-30T23:33:35.828859+00:00",
+  "originalProbePreserved": "receipt-first-decoding-error.json",
+  "sourceRouteEvidence": "abtc-official-page-0-30oct.html.gz: EU_API_CONFIG and apiFetch explicit official failover",
+  "rows": [
+    {
+      "url": "https://api.primary.21shares.com/api/product_details/ABTC",
+      "originalProbeError": "UnicodeDecodeError",
+      "classification": "Probe attempted plain JSON parsing of gzip bytes; not a provider outage. Saved response decoded and bounded by existing issuer_json.",
+      "rawBytes": 1546,
+      "rawSha256": "f8b52bd7264cc881eb499ab35d7622ba5d74a79745ccda6e107096413e6d62b1",
+      "decodedBytes": 4287,
+      "decodedSha256": "8ac094546b6e8a24d94919b86076429bcaac68092203f363c76fdb6198da48bb",
+      "httpStatus": "Response acquired; numeric status not retained by initial failed decoder",
+      "notGithubProof": true
+    },
+    {
+      "url": "https://api.secondary.21shares.com/api/product_details/ABTC",
+      "originalProbeError": "UnicodeDecodeError",
+      "classification": "Probe attempted plain JSON parsing of gzip bytes; not a provider outage. Saved response decoded and bounded by existing issuer_json.",
+      "rawBytes": 1546,
+      "rawSha256": "1adc361091d7ac471fdb66b69c0040c494951f54f847f308395fa4cdb8ed2074",
+      "decodedBytes": 4287,
+      "decodedSha256": "3a73c9625c161a03467a223d6eff45c34a7e5d38f6328fb583912b452e62e686",
+      "httpStatus": "Response acquired; numeric status not retained by initial failed decoder",
+      "notGithubProof": true
+    },
+    {
+      "url": "https://api.secondary.21shares.com/api/product_valuation_history/ABTC",
+      "originalProbeError": "UnicodeDecodeError",
+      "classification": "Probe attempted plain JSON parsing of gzip bytes; not a provider outage. Saved response decoded and bounded by existing issuer_json.",
+      "rawBytes": 92863,
+      "rawSha256": "55d89f1103292393f21434c8e1a3a475b5e324257919ebda61f643978213e9e0",
+      "decodedBytes": 1172666,
+      "decodedSha256": "854da109e118092289d069efc3a2b3300bd6581a8b0c80e9f0af78901ad0ec71",
+      "httpStatus": "Response acquired; numeric status not retained by initial failed decoder",
+      "notGithubProof": true
+    },
+    {
+      "url": "https://api.secondary.21shares.com/api/product_performance_metrics/ABTC",
+      "originalProbeError": "UnicodeDecodeError",
+      "classification": "Probe attempted plain JSON parsing of gzip bytes; not a provider outage. Saved response decoded and bounded by existing issuer_json.",
+      "rawBytes": 3542,
+      "rawSha256": "ef6ea4b13dd937ed343ee3be3da7792d3beb4733d2a7f6f61a46e0947d361aae",
+      "decodedBytes": 10608,
+      "decodedSha256": "624e35ec4bd15d4c14dec55180b157799709f93302c0e463e14b176e8ce805f5",
+      "httpStatus": "Response acquired; numeric status not retained by initial failed decoder",
+      "notGithubProof": true
+    }
+  ],
+  "secondaryRouteActivated": false
+}

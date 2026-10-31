@@ -1,34 +1,69 @@
 {
+  "verifiedAt": "2026-10-30T23:20:35.814323+00:00",
   "checks": [
     {
+      "file": "perimetre-initial-complet.csv.gz",
+      "priorIdentities": 661,
+      "finalIdentities": 661,
+      "allPriorIdentitiesPreserved": true,
+      "unique": true,
+      "sha256": "e820db750f9c13d000025204e805adefb4437fd058efe4f76e1c646dabccd286"
+    },
+    {
+      "file": "reconciliation-79-ecarts.csv",
+      "priorIdentities": 79,
+      "finalIdentities": 79,
+      "allPriorIdentitiesPreserved": true,
+      "unique": true,
+      "sha256": "3c1b0c5c2b483fc1990c3541222f1b883232cb00fd377a580a87688e285a4432"
+    },
+    {
+      "file": "statut-19-actions.csv",
+      "priorIdentities": 19,
+      "finalIdentities": 19,
+      "allPriorIdentitiesPreserved": true,
+      "unique": true,
+      "sha256": "9d7906ee783ccd91fb15c065bdf3d05a7b897a15146d1d1c8e7420f1c4639f93"
+    },
+    {
+      "file": "bilan-par-outil.csv",
+      "priorIdentities": 23,
+      "finalIdentities": 24,
+      "allPriorIdentitiesPreserved": true,
+      "unique": true,
+      "sha256": "99b2d7bff86b871e0b79e2b7655487c02d97cb13edb9815967a4b8440439a3de"
+    },
+    {
       "file": "matrice-donnees-usages.csv.gz",
-      "before": 33381,
-      "after": 34931,
-      "allPriorIdentitiesPreserved": true
+      "priorIdentities": 33381,
+      "finalIdentities": 34951,
+      "allPriorIdentitiesPreserved": true,
+      "unique": true,
+      "sha256": "cce930347cc2642481e2d168a1f4270cb348f0edaf5d826dc397041e89e69359"
     },
     {
       "file": "suivi-consolide.csv.gz",
-      "before": 46216,
-      "after": 46613,
-      "allPriorIdentitiesPreserved": true
+      "priorIdentities": 46216,
+      "finalIdentities": 48173,
+      "allPriorIdentitiesPreserved": true,
+      "unique": true,
+      "sha256": "b92f92be410b5bc378105a6f92f3c6d432f5d22815133d7706c1d6292fa6631b"
     },
     {
       "file": "restant-a-verifier.csv.gz",
-      "before": 35335,
-      "after": 35336,
-      "allPriorIdentitiesPreserved": true
-    },
-    {
-      "file": "perimetre-initial-complet.csv.gz",
-      "before": 661,
-      "after": 661,
-      "allPriorIdentitiesPreserved": true
+      "priorIdentities": 35335,
+      "finalIdentities": 37123,
+      "allPriorIdentitiesPreserved": true,
+      "unique": true,
+      "sha256": "8150d7e1e9801703f831039dad1582b5d0d9b7bc8a6c87d1e101f0854609b78a"
     }
   ],
-  "financialCases": 79,
-  "qualifiedMonthly": 70,
-  "refusedMonthly": 9,
-  "actions": 19,
-  "routes": 24,
-  "notAnIndependentCatalogueCertification": true
+  "financialWindows": {
+    "constantCases": 79,
+    "qualified": 70,
+    "refused": 9,
+    "newQualifiedMonthly": 0
+  },
+  "notAnAutomationCoverageRate": true,
+  "sourceAndConsumerProofsRemainScoped": true
 }

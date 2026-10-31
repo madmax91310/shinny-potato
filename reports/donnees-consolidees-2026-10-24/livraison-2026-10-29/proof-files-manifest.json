@@ -1,22 +1,22 @@
 {
-  "createdAt": "2026-10-30T22:51:40.858896+00:00",
-  "base": "a381449902adf17ab49ea674d2823acfa38f1893",
-  "previousArchive": "0e1e359e8ce79881b4bb32bfb89762f47023c41d",
+  "createdAt": "2026-10-31T00:05:07.724700+00:00",
+  "base": "59efb3085c2fe92692a9f73a49710023ded14570",
+  "previousArchive": "d200b0ecedd54ef891db2537bd828cb27b41523f",
   "files": [
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/ETAT-REPRISE.json",
-      "bytes": 3461,
-      "sha256": "3ec1cdb8dff43a60c4928657168b5b652243172b07b3d5e6150b60242f35bf2a"
+      "bytes": 4840,
+      "sha256": "4032d32e6f4f2a39981a9d23af05fb3dacc088b142defef7817ca797d1c1b78c"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/LIVRAISON.md",
-      "bytes": 67101,
-      "sha256": "39e338e9bca38798b015b184d3cb87dd15a7fcf8fa5f7d6cb3cfacbe5cffad26"
+      "bytes": 72244,
+      "sha256": "d664ecbc2da7d58592241b65de0ec2f925fa91bef79fb46032c56a8e945db769"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/RAPPORT.md",
-      "bytes": 93596,
-      "sha256": "fe49b3faeb66179f43bef940005fe8277999f08db8e430c70fa0b4579609e85c"
+      "bytes": 98739,
+      "sha256": "72d5be3a5d785733044028419f6251d23639da4e725365415d72e0c89e586a3b"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/README.md",
@@ -25,58 +25,233 @@
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/actualisation-30oct.json",
-      "bytes": 13847,
-      "sha256": "5fef1035985d43fb81be7563cbc356b6f8158af676dbe584996fb97fbb8d3b66"
+      "bytes": 14386,
+      "sha256": "389b5d42a02ffe7f43919aa76052f10fea8221e1763cb131c41c37bbde9717d8"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/bilan-par-outil.csv",
-      "bytes": 41286,
-      "sha256": "6764484a9ed75e4acc25d2d1f4564471aa064bc87608a1097825d39711fd8565"
+      "bytes": 42699,
+      "sha256": "99b2d7bff86b871e0b79e2b7655487c02d97cb13edb9815967a4b8440439a3de"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/bilan.json",
-      "bytes": 27124,
-      "sha256": "87478e3a862cb6febd933e1953506a4fc212aed3bcfe836af43f9e63d4942055"
+      "bytes": 28791,
+      "sha256": "671e2055a06ac2cfd58d928d1dd7c741fed91f047197891cb00d0d4bc4a2b234"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/causes-consolidees.csv.gz",
-      "bytes": 474118,
-      "sha256": "fe56a19d47b3db6bb02fa6a8342a4a9eab16d6d2b8d8b0724c8f97e938df2abc"
+      "bytes": 474331,
+      "sha256": "5009b77d1c38b0781992994cd39694ea593e3a97681c5d198fc20fc6133ce4bb"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/chaines-donnees.csv.gz",
       "bytes": 509352,
-      "sha256": "fc1d4400a402bcebf67d971a7168286a47da62ddeb49d315c3103d70c6b82025"
+      "sha256": "1446c5f2b4014551cbf4d244a521f61a0c97b1de0e4275fed312cfa11ae0eb52"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/collectes-controles.csv.gz",
-      "bytes": 58001,
-      "sha256": "690c3800e7a82c6cec4e87a11aa0b0e963c5e2a015b4bda89e7ca2a5d5efaff3"
+      "bytes": 60695,
+      "sha256": "932e56e0aac2d41c9e95ded700713ae1e96ba9f1f081766ab34a62bb989ddcfe"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/liaison-identites-matrice.csv.gz",
-      "bytes": 416210,
-      "sha256": "f474d481cd9c3d31986ee7324a46c5bbd13d785c0a64e65ca287edb75e46576c"
+      "bytes": 416351,
+      "sha256": "73953fe62eee1234fa080da9aa1d7eb4e871eb446a1b73cfbf59a44686787fbd"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/matrice-bilan.json",
-      "bytes": 3907,
-      "sha256": "27c2be49358a25fa7ffad6622da9c576ada89beebd3050d54038976bcd66a725"
+      "bytes": 3614,
+      "sha256": "e52abc7ef5edaf541e08f465a981401920fd3aef0b36fbcec769d9bceec30ce1"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/matrice-donnees-usages.csv.gz",
-      "bytes": 2001206,
-      "sha256": "5e1684ca585744a97e6109e8aa5c91c8638fbfd75c3a32d3242c93d9dae5218a"
+      "bytes": 2004412,
+      "sha256": "cce930347cc2642481e2d168a1f4270cb348f0edaf5d826dc397041e89e69359"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/perimetre-initial-complet.csv.gz",
-      "bytes": 62613,
-      "sha256": "00f531e0e7232605b105892be9d31a18f24d0ce46188bda64df61705812ea150"
+      "bytes": 61951,
+      "sha256": "e820db750f9c13d000025204e805adefb4437fd058efe4f76e1c646dabccd286"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/ETAT-REPRISE.before-final-30oct.json.gz",
       "bytes": 49265,
       "sha256": "5fccbc4ddd0c75020cdb3921c6fc66dc7579fd3c095b3bbc1f851deca4b453e7"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-anniversary-github-source-proof-30oct.json",
+      "bytes": 1893,
+      "sha256": "3bad2eb1b0eb9fbc1e16c2ba6573ffd1f36606e9fdbd0c407e2d99439dba30b7"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-anniversary-pr-41145068358/anniversary-indices-observation.contract-plan.json.gz",
+      "bytes": 1094,
+      "sha256": "c958d152e71c9d4db049925c186ef517800d3ee85e06b322513d401df2a7f9ae"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-anniversary-pr-41145068358/anniversary-indices-observation.json.gz",
+      "bytes": 1159,
+      "sha256": "d643129f518f8102783725129177b563ca4a94ac429b99d86b2daac5c1302f63"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-anniversary-pr-41145068358/anniversary-observation.contract-plan.json.gz",
+      "bytes": 39685,
+      "sha256": "61ca4ce50bc02b74527cf1d93b1f264aeeb24ff2b5b3538198333c4d1bbfefa7"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-anniversary-pr-41145068358/anniversary-observation.json.gz",
+      "bytes": 157284,
+      "sha256": "bebd6fc202f345ada76b7b6570b7c189e54a8f67e77326daaeaa47cd280533f0"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-anniversary-pr-41145068358/artifact.zip",
+      "bytes": 201973,
+      "sha256": "f59af8a6e94b8fc929bd2e19bbb7934fa4f453dc7f51b021f5f9d4c4cb778b78"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-anniversary-pr-41145068358/purchasing-observation.json.gz",
+      "bytes": 700,
+      "sha256": "6573ff9833acb8809d93a511d58b3a38b9b41fb44b08b32e032c4e66ad380792"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-anniversary-pr-41145068358/receipt.json",
+      "bytes": 653,
+      "sha256": "6bed7fc566c46fe27deb8c9f1ea3d80455baa0f5d740536644f9126715f71f9d"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-current-factsheet-30oct.pdf.gz",
+      "bytes": 260322,
+      "sha256": "cd3c0dc890b5592245e01c0843fa71cff73f37f80fb96b3a368f6bc89a65d408"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-current-factsheet-recheck-30oct.json",
+      "bytes": 268,
+      "sha256": "9041875150cdd55eb29675ef1d4d5d0f2bd5c7af775b8df85d918e6f21dc3503"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-delivery-state-31oct.json",
+      "bytes": 1542,
+      "sha256": "ee494610f6036318422c92951ca8682c0d2aa5d78750ce20cb8f6ac8623d5846"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-etf-before-41135102229/additional-observation.json.gz",
+      "bytes": 82421,
+      "sha256": "8cce6a60169aa0c1899ab3b457137fe6f57a314e7bebeff5748c9a5d498a9758"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-etf-before-41135102229/receipt.json",
+      "bytes": 234,
+      "sha256": "9e5f042f97302f3aed180ebf2cff2cabf6925bb6a3f0dc8ae7aecdb9ce7951fd"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-etf-pr-41145068324/additional-observation.contract-plan.json.gz",
+      "bytes": 5623,
+      "sha256": "a38c1b65e33574ebd85d1fd8fcd8a6ad01dcff532d76f55f42c7470925a032dc"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-etf-pr-41145068324/additional-observation.json.gz",
+      "bytes": 82501,
+      "sha256": "3cb5828c2f254b9acc0a876d0ef47e9949af30ae91a3d0f5ac7ac15988c827a5"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-etf-pr-41145068324/receipt.json",
+      "bytes": 785,
+      "sha256": "026d04e4593de30fdc49bece446e827d16f9f7001dcfb1f26e0f4278a670c460"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-page-0-30oct.html.gz",
+      "bytes": 107050,
+      "sha256": "9c513ac6b5a45682f7b3e66d8ed18457ea538a9ee2fea2f050b80a0ecad82668"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-page-1-30oct.html.gz",
+      "bytes": 107050,
+      "sha256": "9c513ac6b5a45682f7b3e66d8ed18457ea538a9ee2fea2f050b80a0ecad82668"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-route-discovery-30oct.json",
+      "bytes": 1689,
+      "sha256": "739019766b0d66bb0209a79c093c73ea2e3e4b049114822c044201f90fdd45b7"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-secondary-30oct/primary-additional-attempts.json",
+      "bytes": 518,
+      "sha256": "ea008d77a47f1dca40efa8cdcd5fe0fa0656b6a9fab16127b7c24109a7f8a1d4"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-secondary-30oct/primary-product_details.decoded.json.gz",
+      "bytes": 1541,
+      "sha256": "547e4b1fdca325682cd35e3e65ac96e4482f1e2d79453b6374193864523e5bbf"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-secondary-30oct/primary-product_details.json.gz",
+      "bytes": 1569,
+      "sha256": "b30a08a48b39a69919e17f5a389cbb261d223e356796260c2619b739bb5f81fd"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-secondary-30oct/primary-product_performance_metrics.json.gz",
+      "bytes": 3567,
+      "sha256": "cb4420d1dcc5948facd721568ba59dbde719b5cb6a4da0c5d678f4d662b314d1"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-secondary-30oct/primary-product_valuation_history.json.gz",
+      "bytes": 91040,
+      "sha256": "b4ac609a3fbc8cd38f3b758bc97515abb0aa60c1f20c4935a7df8efd8951d3d1"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-secondary-30oct/qualified-calendar.json",
+      "bytes": 548,
+      "sha256": "6fee161c7f114caa4fdb11d6a9873e93326a133bb712e26c3cd136b11c7d2343"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-secondary-30oct/receipt-first-decoding-error.json",
+      "bytes": 797,
+      "sha256": "9ecaad4981ba8bce7181574de9a888d81894715e0040afc3b4881bf6e07e1155"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-secondary-30oct/receipt.json",
+      "bytes": 2935,
+      "sha256": "b954a8395463d2c28643d157e03379a422f69de805e658f6e0f805fd0de6ed57"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-secondary-30oct/secondary-product_details.decoded.json.gz",
+      "bytes": 1541,
+      "sha256": "c502146695b571f23f0bfc8546200e5fe0d55c10969fda55d65f3f6a7a523fa6"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-secondary-30oct/secondary-product_details.json.gz",
+      "bytes": 1569,
+      "sha256": "d2a17d733f8440532739a672e9db86c5209d044454c7b00e0a16cd90070c8a86"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-secondary-30oct/secondary-product_performance_metrics.decoded.json.gz",
+      "bytes": 3757,
+      "sha256": "8b3a29e71078de295dc15754cb7239f53913cb71b29618bced16223f18414791"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-secondary-30oct/secondary-product_performance_metrics.json.gz",
+      "bytes": 3565,
+      "sha256": "48ad4d25ae557ea39ca481f2bd2ea4c987ec37caf9e9e007ab49a6dfbf92fd32"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-secondary-30oct/secondary-product_valuation_history.decoded.json.gz",
+      "bytes": 93558,
+      "sha256": "75b226bbfe4060ad458d1ba72d2e6585ea76f144e1dda043cf2b5b9c664aecc3"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-official-secondary-30oct/secondary-product_valuation_history.json.gz",
+      "bytes": 91040,
+      "sha256": "64434ef67c7a1c1f126e624d2d86c1b47ce3323633f4386f91387df4be8157b7"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-product-api-github-source-proof-30oct.json",
+      "bytes": 2954,
+      "sha256": "ccaa0fb2983b187bbb360da133f6405e95f88280274209d586a0936acc558516"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/abtc-product-api-real-collection-30oct.json",
+      "bytes": 2325,
+      "sha256": "3691f3259cabfe6adee751b37b452981146b59a87587f93c4a236e942099f112"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/actors-41103969494/actor-observation.contract-plan.json.gz",
@@ -87,11 +262,6 @@
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/actors-41103969494/actor-observation.json.gz",
       "bytes": 1154,
       "sha256": "b4e7fec3fa45ba31abda2afb4f79df074f9be6026c758bbf3eb843a9b444a284"
-    },
-    {
-      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/actors-41103969494/artifact.zip",
-      "bytes": 2565,
-      "sha256": "f0940b870dbcd4802fa2b1c5b760f986d57c35eb8a573417d7c05281544fa713"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/actors-41103969494/receipt.json",
@@ -239,6 +409,11 @@
       "sha256": "9c89ba5ba221adeb1d9f5b6d6514899e4e6f0ae41eb35a2a0ff870c4e602212b"
     },
     {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/current-public-monitor-phase-verification-30oct.json",
+      "bytes": 17421,
+      "sha256": "cd037f31dbd53d24c33d1833089491543839047f6ea2024262cdf0c284118365"
+    },
+    {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/current-version-30oct.json",
       "bytes": 35087,
       "sha256": "e48bdc89bdf570e7edfacdf87efb1b970efd94725d495cb23fe7787816bfcc64"
@@ -250,8 +425,8 @@
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/deliverable-identity-verification-30oct.json",
-      "bytes": 752,
-      "sha256": "6b45b5fce2bcb82efc4cf13e24cce632f2ba434cfd24a03ef725f2847e4a2c24"
+      "bytes": 2135,
+      "sha256": "6e5900266b38296d240d05fdb8e1b52430f6cc467dc3238060132b69c620feaa"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/diagnostic-summary-real-replay-30oct.json",
@@ -262,6 +437,11 @@
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/diagnostics-all.before-final-monitor-30oct.json.gz",
       "bytes": 4984681,
       "sha256": "eee7936351552a9c4d65f7e4b3188a308d1473d834e2b9bfbbcc1329480eac7c"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/durable-source-archives-30oct.json",
+      "bytes": 4198,
+      "sha256": "6abacd87f543493005a2218cc388b3d88455cf67841228bf8b23efd430ae975e"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/dws-current-snapshot-qualification-30oct.json",
@@ -349,9 +529,94 @@
       "sha256": "e1f6562f0ef72053fff92eb366c948a6b67e9c780bf79bf0a80cc536d319e333"
     },
     {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-automatic-recovery-queued-30oct.json",
+      "bytes": 15495,
+      "sha256": "3840d58d01ef124ac7ed5799df0d24d4aae423934c2f991877074c931f04441b"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-cron-first-attempt-41068013127/additional-observation.contract-plan.json.gz",
+      "bytes": 5621,
+      "sha256": "89d5862b9cd64cdbdab5efc7b4dbbf2abd580aa751664a1feaff077299b64caa"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-cron-first-attempt-41068013127/additional-observation.json.gz",
+      "bytes": 82465,
+      "sha256": "ff23b4f350e2627d6a22f92c56dca3ca1f34ae6e27c6c6c6224dc217076b3c04"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-cron-first-attempt-41068013127/amundi-observation.contract-plan.json.gz",
+      "bytes": 1977,
+      "sha256": "d0029f9706dd84a8c7a04c7479c5c56ef91f743db2e0b8d54a2ffd29c3b78f4c"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-cron-first-attempt-41068013127/amundi-observation.json.gz",
+      "bytes": 62784,
+      "sha256": "35407419aad9304070b1f5017a9c9039b50fb5007f99d579c9a29c08861f4e69"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-cron-first-attempt-41068013127/artifact.zip",
+      "bytes": 11445219,
+      "sha256": "f4537cff15bb787a8807e952e1702578afe93fe43542f5eaf5c78d3ad04ef7da"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-cron-first-attempt-41068013127/index-observation.contract-plan.json.gz",
+      "bytes": 5455,
+      "sha256": "b71a0858aa55e5e79c68d52a939e55872453ef6932249718f5a40c9dafad2a7e"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-cron-first-attempt-41068013127/index-observation.json.gz",
+      "bytes": 30067,
+      "sha256": "872679b444b934e8c1b2a2fa4106f34502b353b0466f6d92372154d4fd9f882f"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-cron-first-attempt-41068013127/observation.contract-plan.json.gz",
+      "bytes": 2162,
+      "sha256": "a9e2344ae97eab215b94df94f505396f27d71591daf17db4e9cb6b517c50621f"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-cron-first-attempt-41068013127/observation.json.gz",
+      "bytes": 10838520,
+      "sha256": "b74080c25054829ce5211b1764e4ff1020b65b6338798a53d06d99bb3a29fca6"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-cron-first-attempt-41068013127/presentation-performance.contract-plan.json.gz",
+      "bytes": 984,
+      "sha256": "162ee3f404355cd7558af26fbdc73a7b4b88a40e63540a138898cab9a3656fd2"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-cron-first-attempt-41068013127/presentation-performance.json.gz",
+      "bytes": 1870,
+      "sha256": "d0aa9af1371fe69acd7c76ed763360e3b0244150c47703e6b8e1d25eb0f0dab9"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-cron-first-attempt-41068013127/receipt.json",
+      "bytes": 1113,
+      "sha256": "80a5f75602781c37d5b2ffe6ff7e6ed339066331e4434a3953369e2df380765c"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-cron-first-attempt-41068013127/run-attempt.json",
+      "bytes": 14605,
+      "sha256": "4dc1d005c6a4e3408c787a8b4e7014fc1c40881084079428873ffd8432682090"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-cron-first-attempt-41068013127/ssga-observation.contract-plan.json.gz",
+      "bytes": 1128,
+      "sha256": "e3f8d8e09a8477cb44a8b09698dd6748c179617202299431908d0e4bd641f923"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-cron-first-attempt-41068013127/ssga-observation.json.gz",
+      "bytes": 9397,
+      "sha256": "b652f2a74a08781b811ff8efa6a60a4658331e34749e05773d8dfc0dc038c00e"
+    },
+    {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-current-recording-30oct.json",
       "bytes": 7491,
       "sha256": "1432675190e0f9b2fd3c8cc3eda405fd28423355b9b8f88baa629774d2d1952a"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-post1099-recording-refusal-30oct.json",
+      "bytes": 786,
+      "sha256": "6a636cfcdb79da9271b0ca89a790b2bf9f2d2dce52da5d3732de1abbed87aead"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-recovery-41130420592/additional-observation.contract-plan.json.gz",
@@ -372,11 +637,6 @@
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-recovery-41130420592/amundi-observation.json.gz",
       "bytes": 62782,
       "sha256": "e3693d3e750fc7f4d7390971668c05abe84873a37d7c3470fe6d9f8f40db2404"
-    },
-    {
-      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-recovery-41130420592/artifact.zip",
-      "bytes": 11446544,
-      "sha256": "1220b2361d05dd9b67e98e6df4a1fe49fcd5484dcac4cd55e27ee6fa3344dc7b"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-recovery-41130420592/index-observation.contract-plan.json.gz",
@@ -422,11 +682,6 @@
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-recovery-41130420592/ssga-observation.json.gz",
       "bytes": 9393,
       "sha256": "2fa73971bcaa9fc1759cfe0b45192d64d12499f8bc5498d7ff7ee1e344556d99"
-    },
-    {
-      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-recovery-publication-41130420592/artifact.zip",
-      "bytes": 419,
-      "sha256": "b79bf232440749dd749dd67f587bf4d39837ac1dfd94f2936d17354c0e065f82"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/etf-recovery-publication-41130420592/data-publication-receipt.json.gz",
@@ -755,6 +1010,11 @@
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/final-release-proof-30oct.json",
+      "bytes": 4403,
+      "sha256": "64cdd61d9fdc36a656d8dd8548b684e3321c119447caa3b2e579652859a5deb1"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/financial-release-first-public-30oct.json",
       "bytes": 3066,
       "sha256": "fdc6b28e189a1a50d2f8895d4e976194c8265ee55e66643aeb69d8b07fd4e687"
     },
@@ -814,11 +1074,6 @@
       "sha256": "fe500a9731d6b8bfe6b2f86d1f8bd55789412ddedf5dab79340d44993ef1d05c"
     },
     {
-      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/investor-recovery-41132216612/artifact.zip",
-      "bytes": 3934,
-      "sha256": "5c1848d35b7c65f0a58f30db83abd7f7a0c883d0386ec2735359346dca68ea0e"
-    },
-    {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/investor-recovery-41132216612/investor-observations.contract-plan.json.gz",
       "bytes": 1704,
       "sha256": "cd99843b4edee0a6fe58899dcdc1055e5c7c2db221f2bd0f9f80d7670746beb4"
@@ -850,13 +1105,13 @@
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/matrix-inputs/matrice-bilan.json",
-      "bytes": 1366,
-      "sha256": "847427c753743f3e5c468b51ad4f8e725d20acc36708f83debc3a416f628037e"
+      "bytes": 1268,
+      "sha256": "89d6e57418bf4ec70769507123fd2e35ac40d6a46e5da3e1950e3704e8d78d67"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/matrix-inputs/published-inputs.json",
-      "bytes": 30654,
-      "sha256": "08710a561cd6bfbd6c4af40792356fe7ae2456fa5281dbd387b37b2c6e1a2b5a"
+      "bytes": 30556,
+      "sha256": "2f7fc33be75d8ef00ec50be20a97af1646601f4a6d2b9591627d21438b18b959"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/monitor-recovery-current-30oct.json.gz",
@@ -899,11 +1154,6 @@
       "sha256": "f959199a86762e4f61c3e75f48b147ef68dc27fefb0a1e27c8823308ad7abfca"
     },
     {
-      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/monthly-six-fx-41098996392/artifact.zip",
-      "bytes": 543140,
-      "sha256": "4251c8040cea678fa8163b387904ce2015c7e3cbf20bb5b0ab82a7ae24d4dac3"
-    },
-    {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/monthly-six-fx-41098996392/receipt.json",
       "bytes": 1752,
       "sha256": "c8529e06518f09c9a3c4ef36d8bb3ed7cb173823acca0fd0afb2df43290ec478"
@@ -912,11 +1162,6 @@
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/monthly-six-fx-41098996392/shinny-potato__shinny-potato__src__data__monthly-fx.json.gz",
       "bytes": 91491,
       "sha256": "4c43c93bfdd9a8e7d5162265b814fcd8db46ede3e3864621cba2ff3d37678ebc"
-    },
-    {
-      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/monthly-six-fx-publication-41098996392/artifact.zip",
-      "bytes": 597,
-      "sha256": "7979899bb076ae675ac17f11628d7dca088161e6d87d7e83e0ef9557c5617e07"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/monthly-six-fx-publication-41098996392/data-publication-receipt.json.gz",
@@ -937,6 +1182,41 @@
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/nine-window-annual-consumers-current-30oct.json",
       "bytes": 5920,
       "sha256": "d03a70e2dc36bb5aa1883f01ab587b877d18beb3c02da359e76a598c80cecdac"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/nonbond-cron-41068552867/12985188706-receipt.json",
+      "bytes": 266,
+      "sha256": "8f93d48ba2242087decef5ae4faa71d615fc08521df0bc9dde9d575d801abba9"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/nonbond-cron-41068552867/12985188706.zip",
+      "bytes": 95398,
+      "sha256": "6380d9f3d956adc589b2e32fc23bbdd3727822a058d40e58526e6f6437c00797"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/nonbond-cron-41068552867/12987195546-receipt.json",
+      "bytes": 199,
+      "sha256": "40995c48230bd8694b075340119128b23162b80f70ce062e07e9bf0f0e8f4b20"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/nonbond-cron-41068552867/12987195546.zip",
+      "bytes": 410,
+      "sha256": "0db3ae66bc265674cdd753c0808065f2d8534e81d0587fb59dd5459f091c05a9"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/nonbond-cron-41068552867/data-publication-receipt.json.gz",
+      "bytes": 257,
+      "sha256": "00dd8263ed9eaf25cee0397c139f565652925bac0e4be642c7b39ec614376220"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/nonbond-cron-41068552867/non-bond.contract-plan.json.gz",
+      "bytes": 3274,
+      "sha256": "2710aa055647c9d7bc570d83be7cee855f0c5c35db35a4a83ab26601e312ac44"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/nonbond-cron-41068552867/non-bond.json.gz",
+      "bytes": 86727,
+      "sha256": "faf11638ad32866ab97fbdabcc5012acb0fe79552ed5308f72c350fbb5b48a03"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/npm-cache-reclamation-30oct.json",
@@ -1010,8 +1290,28 @@
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/pr1102-final-checks-30oct.json",
-      "bytes": 6707,
-      "sha256": "b0eb1bc7e7ff369d89e65f8a198829ebdeb1bfa31089329fb1d059ceabdc41ab"
+      "bytes": 8210,
+      "sha256": "82cd3363d3798b7d9d8d62f18c2d0cb04d4920603009f0c2829ee00b84ce9286"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/pr1102-merge-30oct.json",
+      "bytes": 122,
+      "sha256": "a27fd1b53aa355b68f5e77d4865751b24a47534a2accbc1bb16a4ee55be9288e"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/pr1104-current-checks-30oct.json",
+      "bytes": 5934,
+      "sha256": "847764887e14f3b70051d189e6c8a979d92f5481ae0c96c3a190302f68106d28"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/pr1104-first-head-checks-30oct.json",
+      "bytes": 9392,
+      "sha256": "3a4c4457255a053f8cfd44df0e7985dfb05191f283f1a5293029fd45f81599f5"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/pr1104-superseded-validation-retirement-31oct.json",
+      "bytes": 296,
+      "sha256": "47478b28cea1b88fa00112bed927d86e6dc66bd08753dd405a90dec7d01e76a3"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/previous-full-monthly-41072651357/_temp__cross-fx-evidence__a83befb1c2526ea354520a4af0a60140e6fb5363c9b37525f33a3b6990a1169d.json.gz",
@@ -1044,11 +1344,6 @@
       "sha256": "f965b6c61d5a50f50fc312466667a052ca1bd8819c2c57fa2aece9c3e80828d9"
     },
     {
-      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/previous-full-monthly-41072651357/artifact.zip",
-      "bytes": 582506,
-      "sha256": "7dd5fc12cc6ab0a2f26cd4ef16c6e5e78a9e889a48455d9cfc3dbc1aae7d5878"
-    },
-    {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/previous-full-monthly-41072651357/receipt.json",
       "bytes": 1752,
       "sha256": "9138871025a0fd3cf16526d743773c3fbb728c30a7b84286d0f4d6a864856e38"
@@ -1059,54 +1354,64 @@
       "sha256": "4a4eeb45a77b35052f59848b9efb5c948e545c443e05263dab1b406fa8117abd"
     },
     {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/public-before-28oct-preservation-receipt.json",
+      "bytes": 1126,
+      "sha256": "fb3a9046ecd590d9a460e5edf021ae98879ae7a0a6f70e2dac78f56bae4c1888"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/public-before-28oct-preserved.tar.gz",
+      "bytes": 8951191,
+      "sha256": "a406d76565eba4d45975493e033b6d40dd8fb3d7c704587ba5acd409b9e0410f"
+    },
+    {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/public-final-30oct/asset-field-coverage.json.gz",
       "bytes": 152736,
-      "sha256": "f64864fabf08958150d59f1744f944afb6485578c0dfc1bfca021f070ef606a7"
+      "sha256": "ecd04770d43d3942208af6a9fe54dba42765235d5da29ff7fbecffdfffee08ac"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/public-final-30oct/automation-status.json.gz",
-      "bytes": 11849110,
-      "sha256": "c42b2fb807203ea64c5d35617defcc21b2eb1f2971a5725715904efbbb3bf940"
+      "bytes": 11994718,
+      "sha256": "75495ef0866f4e31114ca9624770bcc9357e60c394c4330233dd1179b99803f9"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/public-final-30oct/automation-status.wire.json.gz",
-      "bytes": 11180986,
-      "sha256": "b82d3d93def5e57aeea36270852efa1bd179d5b758af1bc1f02db05902157a9e"
+      "bytes": 11310140,
+      "sha256": "64d872c44b4ed1d9f222014bea495cf801f2bbf18937f3c589e6bdd61332b9f6"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/public-final-30oct/build-info.json",
-      "bytes": 186,
-      "sha256": "25a1b2c55b062cd3f76e8a4d76154d1453bc4fe73ad55de54a745fff1a418ed7"
+      "bytes": 92,
+      "sha256": "3f2a33762289cbfd41a0cc9728bc0854c23b3e1ca83f04626246f3647de713c7"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/public-final-30oct/capture.json",
-      "bytes": 57038,
-      "sha256": "5023080656a76f75e3828bbebb2f620192779a697c33d60b8243a95297aef7c7"
+      "bytes": 56988,
+      "sha256": "adad2a60011a8686dc31af722230549d9892649f263e92ae207b3e3cffb21f11"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/public-final-30oct/compressed-snapshot-manifest.json",
       "bytes": 885,
-      "sha256": "da78834b06de096ddd0b47da9c0061b454cfb8203368c0244061bb48fa13d675"
+      "sha256": "eb260248266c3b4b69479abf4be57b529d947012746a6fcd1f248ac11f0da32f"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/public-final-30oct/data-automation-inventory.json.gz",
-      "bytes": 1867132,
-      "sha256": "f7c3691b09e13ab83f246a2861732500a046c19782e2cf0fce701532e02a3d55"
+      "bytes": 1868111,
+      "sha256": "8e3df88ae33a2c40eac9f93e391ebc34bcd1b98e26f03fa0681550f4f0be8a95"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/public-final-30oct/data-review-inbox.json.gz",
-      "bytes": 144803,
-      "sha256": "e71cbb80276ecea981dae528c7b13fb0f407d29a329f36606bf45f7cd2d8e746"
+      "bytes": 144808,
+      "sha256": "73db73cf87ba6195193c92da3b6498566b5a4503ed7bbf7d3bf10a7930a217dd"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/public-final-30oct/diagnostics-action.json.gz",
-      "bytes": 4918581,
-      "sha256": "6a9c7c9c84ba3664e2e51a98cde0f302ba0f56fb27c871d7c51d7aca26b12ec0"
+      "bytes": 5014091,
+      "sha256": "61bd602f09bb6a8a2b44e42108cedb446acee5a04fcd91ee1420e9f4aac83eed"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/public-final-30oct/diagnostics-all.json.gz",
-      "bytes": 5832350,
-      "sha256": "c61c9bdc9294e651c7abc309a06afbd10c239769c5002b37c33650e206fe05e8"
+      "bytes": 5923651,
+      "sha256": "a3fb65b76270644fb574f6985211e20e402ccc7b63f63a0173b3aa8f67e3c2d4"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/public-final-30oct/financial-reconciliation.json",
@@ -1116,7 +1421,12 @@
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/public-final-30oct/publication-manifest.json",
       "bytes": 31752,
-      "sha256": "249f66ef7170adb92d667dede4d023d8e6e94e57f9c1422196689395bee9c3cb"
+      "sha256": "c03cd2c36132222b0e30fabbd71b2de48a98121c8e4efaaa906f745cc7871bd9"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/public-version-current-30oct.json",
+      "bytes": 186,
+      "sha256": "6f3b9958b8f3978989984b212988d8a030777fa5193c610409251ce9efe694bb"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/publication-41105179872/anniversary-indices-observation.contract-plan.json.gz",
@@ -1137,11 +1447,6 @@
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/publication-41105179872/anniversary-observation.json.gz",
       "bytes": 157488,
       "sha256": "6e41ecfb0a44718c9709e4e8b848f56a01f9c476482be8eb1bf9eb4bce269824"
-    },
-    {
-      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/publication-41105179872/artifact.zip",
-      "bytes": 201986,
-      "sha256": "c92a7b95dcb9ae479284be80f7dc30b6c9933689062eca03a7861dfa59a24ef7"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/publication-41105179872/purchasing-observation.json.gz",
@@ -1165,23 +1470,18 @@
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/published-derived-json-reconstruction-final-30oct.json",
-      "bytes": 9012,
-      "sha256": "ca24cc6a7d4ebd0044c1495b02846d9965a92c9d90bc00a80472c141236fcae4"
+      "bytes": 8974,
+      "sha256": "b6849632dff6036fe23ed6dd835ea88f2fe972d03a02c0227acb85125ef7f3d8"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/published-inputs-final-30oct.json",
-      "bytes": 30654,
-      "sha256": "08710a561cd6bfbd6c4af40792356fe7ae2456fa5281dbd387b37b2c6e1a2b5a"
+      "bytes": 30556,
+      "sha256": "2f7fc33be75d8ef00ec50be20a97af1646601f4a6d2b9591627d21438b18b959"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/purchasing-public-independent-calculation-30oct.json",
       "bytes": 651,
       "sha256": "5560a98da00bc062e8ad60e6e657b131a083d138891da39cea43c0b08a073b3b"
-    },
-    {
-      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/qualified-41115036520/artifact.zip",
-      "bytes": 36556923,
-      "sha256": "c8ff58507d2c1df823e4b9629187fe853edd2b022f6c8f5bed3e22e44f85cc76"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/qualified-41115036520/dca-complete-holdings.contract-plan.json.gz",
@@ -1239,11 +1539,6 @@
       "sha256": "2c8a4e445be8628fc804f7b483672625c2f8826d943bd8b091ce2d0b608ba781"
     },
     {
-      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/qualified-publication-41115036520/artifact.zip",
-      "bytes": 691,
-      "sha256": "f6555e48e1cbcf6d9d5b6c2a6be22f8b2f9d45b78bda4459f84543b82203f153"
-    },
-    {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/qualified-publication-41115036520/data-publication-receipt.json.gz",
       "bytes": 541,
       "sha256": "17942a3d900db2ca8317f67a29f8d4e8110d0b4b09cac42e65f906787da724fb"
@@ -1262,11 +1557,6 @@
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/quantum-inbox-current-30oct.json",
       "bytes": 4097,
       "sha256": "bce8b07affd6556b4ae2c75a228c3a8561c36b7319f7c664a446240bbf6d143a"
-    },
-    {
-      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/radar-current-41131132957/artifact.zip",
-      "bytes": 549189,
-      "sha256": "c1b2c29ac568b6a51656baac410e531405dc4a0ae6498af0317be96cde4bd857"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/radar-current-41131132957/editorial-radar__feed.contract-plan.json.gz",
@@ -1289,14 +1579,44 @@
       "sha256": "f7681422293761ca26192e1b4e5c626c9731493acd0238a563061633843889ef"
     },
     {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/radar-current-feed-post1100-30oct.json.gz",
+      "bytes": 522087,
+      "sha256": "24de8d823fe9fb0d6d319caeb234b247dcf8fe6e671ecc06583818353670a80a"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/radar-post1102-feed.json.gz",
+      "bytes": 522908,
+      "sha256": "3cac94d94ba65e1e01b9144a2fd2f7381ef613d248f3ac9f034351e2896c2f3f"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/radar-post1102-production-30oct.json",
+      "bytes": 591,
+      "sha256": "acc043bf22d17fc26d61148e28500c621d00e9856a911810d3e407699770f799"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/radar-post1102-state.json.gz",
+      "bytes": 3249017,
+      "sha256": "7829d59318de437b760386afbffb4a9ee28a05618534ab41244e4fb46c0aa3ae"
+    },
+    {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/radar-state-current-wire-30oct.json.gz",
       "bytes": 3248540,
       "sha256": "5e6d60727773b5b0836933e975750a57bad36e627e26562e9bae8c0c456fd38a"
     },
     {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/radar-unknown-ordinary-production-verification-30oct.json",
+      "bytes": 2304,
+      "sha256": "9810ffa50d3f2aa9abf9e2263701b5fdbca1a27480f3d2ac3a6196da610305ab"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/radar-unknown-public-30oct/results.json",
+      "bytes": 1862,
+      "sha256": "86e7c1a84c658f9d600a18f1861d918569106f3508d5dde56f1667c1ff69661d"
+    },
+    {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/reproduction/append-consolidated-repair-results-30oct.py",
-      "bytes": 4837,
-      "sha256": "5c70445fcf8e7a9ceee63d1f10913dd52a7754a4d778b7a7377390065d9a0d23"
+      "bytes": 5704,
+      "sha256": "8cd5255c0e845306081d61d1c511547db4dfb946465ebc9310db91de70d1f41f"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/reproduction/augment-final-scoped-contracts-30oct.py",
@@ -1304,9 +1624,14 @@
       "sha256": "e15db09421c7dc143749f9eae178152df4f29f818201bb66d15cd638619e779d"
     },
     {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/reproduction/augment-scheduled-source-proofs-30oct.py",
+      "bytes": 1756,
+      "sha256": "9380d596aee5338a50f891051af4454a44b89dfc21e7cd5d48c367350a6f2651"
+    },
+    {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/reproduction/build-final-report-30oct.py",
-      "bytes": 12325,
-      "sha256": "a12178cd584a40ad9b90ea7cf968ef38bc70bdae19cc8998f80574bd6e1eaeb3"
+      "bytes": 17513,
+      "sha256": "55aa90618ed1cf79f63512a48457eaf0e564a5027f29c42e2eab25e1a0ea841e"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/reproduction/rebuild-published-matrix-30oct.py",
@@ -1315,8 +1640,8 @@
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/reproduction/reconcile-current-30oct.py",
-      "bytes": 14497,
-      "sha256": "75f0caa7f893e1c79a123242e878a1d3033718e74d8898e07294eefb4762bd09"
+      "bytes": 15593,
+      "sha256": "5667a7741a6a50d8620c1d73890aa371c7baa5cf1bfd4011a969b56166e21993"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/reproduction/reconstruct-final-public-projections-30oct.py",
@@ -1345,23 +1670,28 @@
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/reproduction/update-matrix-30oct.py",
-      "bytes": 14697,
-      "sha256": "90ac8578f255854474ad72e9a4cc935ba378fea7236c56807883e7c1b6f10be2"
+      "bytes": 14756,
+      "sha256": "5d9109d6703a433bd8c2509a6001b82955ebf3cb8b52aa534ff5aa6683d8715e"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/reproduction/update-mutualized-chains-30oct.py",
-      "bytes": 10470,
-      "sha256": "3b880366d9590bb2109d7e02bfff2a1958510dcf45e969f1e4d1aefa5187b01b"
+      "bytes": 11548,
+      "sha256": "2e00fc4946992ceed69886dd6d32358590933baaaaddb8d17b1bf35d216a97ca"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/reproduction/update-remainder-30oct.py",
-      "bytes": 4410,
-      "sha256": "409a91b752880eab7c0c7bee48c2205d07af3f25d51e9eeac2fb2cb132a553c0"
+      "bytes": 4892,
+      "sha256": "1120f8530be28265ff1f1838bd5a963277f7791713d85a131d69ed6ed1879552"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/reproduction/update-tool-bilan-30oct.py",
-      "bytes": 13301,
-      "sha256": "b0b8ba48be49f18b0ef0376f5031c0439039fe7153d3b88e9d1b038ce14ab943"
+      "bytes": 14748,
+      "sha256": "39e066d4a6b46aaaf0a6c1816ac1e6fe59828fdc952003d9cecd8c4b3fe3b768"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/reproduction/verify-consolidated-final-30oct.py",
+      "bytes": 1942,
+      "sha256": "6ff6f8697a04b15f9aa328a6ded67ac2eaddfe3adf788f153065acc5f454692f"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/reproduction/verify-copper-manual-nav-30oct.mjs",
@@ -1414,6 +1744,16 @@
       "sha256": "3946b6e8c7b0c320a73d84d603e4c712b05569c1f22f930675625e3b92e58136"
     },
     {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/reproduction/verify-radar-unknown-producer-30oct.mjs",
+      "bytes": 3162,
+      "sha256": "e3eab01f5f6072688c25121163b2296f7261684273c4b06044f96666b42f97ec"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/reproduction/verify-radar-unknown-public-30oct.mjs",
+      "bytes": 2459,
+      "sha256": "a8c7b875a110e1cbba0b313f3a6826e1a08a38825609e83a4a31adc753fea829"
+    },
+    {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/reproduction/verify-scpi-q3-public-30oct.mjs",
       "bytes": 4175,
       "sha256": "74029ab7a395bdc89f397f55a205f0cac94f76452d19fcd47a771d3cb9bd5b16"
@@ -1464,6 +1804,16 @@
       "sha256": "aaddbcfe15778113dee38f8c1f89810567936cf4763a6e5833021271b13011bf"
     },
     {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/scheduled-41068013127-metadata-30oct.json",
+      "bytes": 17935,
+      "sha256": "3a4c69f940e86429f1ea68d268cd7ad7851af8c2f55464fdbefcb0e52a2753e2"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/scheduled-41068552867-metadata-30oct.json",
+      "bytes": 16942,
+      "sha256": "36ea82dd2891e74172f0732edcae98b0d863ffaae1d223c09877a38152457819"
+    },
+    {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/scheduled-runs-30oct.json",
       "bytes": 6164,
       "sha256": "26a07910c4ab358eb89e36bc9c74833e064637afa394e1a4f50d55c5f78c1d59"
@@ -1474,14 +1824,14 @@
       "sha256": "9cf0013d608f67c4dae17029132b1771b6e80576c709ebc3328fdaa4fd24f2ed"
     },
     {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/scheduled-runs-final-30oct.json",
+      "bytes": 46997,
+      "sha256": "c22cb7e56775915755e15082c533bfcb7005e126e1468b587740ea718836d663"
+    },
+    {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/scpi-automatic-recovery-run-30oct.json",
       "bytes": 13566,
       "sha256": "fa5fa9852f25af767e67332459e09e27a5567bbc5c4d9a41c6243ddd84d929fa"
-    },
-    {
-      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/scpi-post1097-41127528822/artifact.zip",
-      "bytes": 2954,
-      "sha256": "49d4c4c6a276777bbc07fce33aad0c3a4a409a22f9a0204d45ff5c2ac4e13ff0"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/scpi-post1097-41127528822/receipt.json",
@@ -1499,11 +1849,6 @@
       "sha256": "12d34fd9726d33cc15ca133ebe4f2b13c1fb1fa677135c2423159bb1a421b818"
     },
     {
-      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/scpi-recovery-41126561155/artifact.zip",
-      "bytes": 2952,
-      "sha256": "55f4a2e7451f231a1cb7a35b5a26db9f1eb5e8898a0301d23691cc7155b235df"
-    },
-    {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/scpi-recovery-41126561155/receipt.json",
       "bytes": 537,
       "sha256": "8fe8cd9ab66c7a35dd9695259b3c1f243e9e47a20ba312f7e67a222213c46513"
@@ -1519,11 +1864,6 @@
       "sha256": "5419f2e1849a68a3a6af6bd5d0c84e2b0bb2b848fe834f73bda20a6d457dda44"
     },
     {
-      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/scpi-recovery-publication-41126561155/artifact.zip",
-      "bytes": 301,
-      "sha256": "435af79d3100c4c366488252b7f4fdfc25dc997382ed2a30740853d7edb7a231"
-    },
-    {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/scpi-recovery-publication-41126561155/data-publication-receipt.json.gz",
       "bytes": 147,
       "sha256": "1aea41d3ae7ac1d1f3a0c8b2de17f576a6cda31f4a1c0763fbba89363446c3c9"
@@ -1534,6 +1874,16 @@
       "sha256": "6b2216c63e9774dc39cb4d696ec34bcb1b89f840d86588415d86e7e0f4873ce9"
     },
     {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/seven-native-aum-scheduled-source-only-proof-30oct.json",
+      "bytes": 20218,
+      "sha256": "26852a6d7b4bedb61efe6e7e5fdcf238dbba9db9b477bffb2bc90f6f01a71897"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/six-native-aum-scheduled-proof-30oct.json",
+      "bytes": 9227,
+      "sha256": "e307e9f58ecc4d08e87e35983748ba7eaafa3ff6694ff9da22b0037902e68581"
+    },
+    {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/targeted-six-plus-fx-dispatch-30oct.json",
       "bytes": 661,
       "sha256": "49b892c748146ffd11060477ab0e6a7d3bc79f297d5d76de8b899e66f6105a0f"
@@ -1542,6 +1892,21 @@
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/temporary-consumer-checkout-cleanup-30oct.json",
       "bytes": 643,
       "sha256": "8f5005bed6ff2725cbacca7b6b9b647c17926f8ffb2d36ba58ac84ee5e796564"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/terminal-job-monitor-branch-current-30oct.json",
+      "bytes": 3783,
+      "sha256": "bd5772aa64d42df942077a63e842dae3252f37d2af797c800ed3b58d7aa7bb53"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/terminal-job-monitor-branch-current-30oct.wire.json.gz",
+      "bytes": 11255570,
+      "sha256": "f89e4023429a1ee5590b768edcd9d3bf0d0ef2f24473f26b0ce3ca25903d8d42"
+    },
+    {
+      "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/terminal-job-ordinary-ingestion-proof-30oct.json",
+      "bytes": 173,
+      "sha256": "c3f072b5fa2e8fc9de6460510f75d10772f7466bf225263deca9b00692acd397"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/preuves/reprise-2026-10-30/terminal-job-real-case-replay-30oct.json",
@@ -1625,8 +1990,8 @@
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/restant-a-verifier.csv.gz",
-      "bytes": 1135438,
-      "sha256": "8cbf105dcaa260721f4832a7b320ba2bffa7fc25f4035703a363f99b9ec8bfce"
+      "bytes": 1136132,
+      "sha256": "8150d7e1e9801703f831039dad1582b5d0d9b7bc8a6c87d1e101f0854609b78a"
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/statut-19-actions.csv",
@@ -1635,8 +2000,8 @@
     },
     {
       "path": "reports/donnees-consolidees-2026-10-24/livraison-2026-10-29/suivi-consolide.csv.gz",
-      "bytes": 6291273,
-      "sha256": "f202a35691e1b7ca55f305a933a37581cc2b4075b5e9fda72b86d08bf668273b"
+      "bytes": 6290489,
+      "sha256": "b92f92be410b5bc378105a6f92f3c6d432f5d22815133d7706c1d6292fa6631b"
     }
   ],
   "completeAutomationClaimed": false,

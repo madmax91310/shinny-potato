@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-30T21:54:33.885728+00:00",
-  "denominateur": "Contrats logiques champ/série × usage :31762contrats de l’inventaire public,30profils de budgets archivés/hypothétiques et contrats historiques/ambigus conservés sans perte d’identité ; pas nombre d’actifs ni nombre de pannes. Les numéros de champs du catalogue ne sont pas une identité sémantique.",
-  "usages": 34931,
+  "generatedAt": "2026-10-30T23:18:38.969985+00:00",
+  "denominateur": "Contrats logiques de champ ou série × outil, issus des consommateurs actuels ; pas nombre de points de marché ni certification de toutes les valeurs",
+  "usages": 34951,
   "outils": 24,
-  "profils_identifiants_uniques": 3880,
+  "profils_identifiants_uniques": 3900,
   "parts_isin_uniques": 673,
   "statuts": {
-    "non applicable": 3772,
+    "non applicable": 3792,
     "B": 31075,
     "A": 84
   },
@@ -15,12 +15,12 @@
     "live": 25531,
     "history": 5961,
     "archive": 534,
-    "simulation": 43,
+    "simulation": 63,
     "unavailable": 36,
     "editorial": 88
   },
   "diagnostics": {
-    "non applicable": 3736,
+    "non applicable": 3756,
     "preuve documentaire ou qualification incomplète": 31012,
     "raccordement manquant": 39,
     "ancien proxy archivé, remplacé dans cet usage par le calendrier exact non vide": 30,
@@ -45,12 +45,12 @@
   "additionalExistingRankingUses": 765,
   "dynamicEquities": 411,
   "initialMatrixContractsPreserved": 33381,
-  "additionalDatedBudgetRecords": 30,
+  "additionalDatedBudgetRecords": 50,
   "updateScope": "3 preuves de chaînes intégrales renforcées, Quantum gardé partiel, 30 usages AUM et12 usages pays démontrés et 6 faux besoins bibliothèque requalifiés non applicables, budgets datés/hypothétiques rapprochés à leur nombre réellement publié. Les autres lignes restent à leur niveau de preuve daté ; ne pas confondre B avec panne.",
   "notAnAutomationCoverageRate": true,
   "currentPublishedContracts": 31762,
   "currentContractsMatchedByMeaning": 30242,
-  "previousContractIdentitiesPreserved": 33411,
+  "previousContractIdentitiesPreserved": 33431,
   "currentPublishedInputReceipt": "preuves/reprise-2026-10-30/published-inputs-final-30oct.json",
   "scopedCurrentProofsAdded": {
     "exact-share-annual-public-30oct/FR0013412004/results.json": 2,
@@ -68,8 +68,5 @@
     "purchasing-public-independent-calculation-30oct.json": 1,
     "browser-scpi-q3-public-30oct/results.json": 6
   },
-  "noCatalogueCertificationFromGreenJob": true,
-  "historicalOrAmbiguousContractRows": 3139,
-  "currentPublicationLinkedRows": 31762,
-  "notAllProfileIdentifiersAreAssets": true
+  "noCatalogueCertificationFromGreenJob": true
 }
