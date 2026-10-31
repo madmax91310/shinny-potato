@@ -1,5 +1,6 @@
 # Livrables consolidés — reprise du30octobre2026
 
+- PRODUCTION-31-OCTOBRE.md : bilan court de la photographie finale.
 - LIVRAISON.md et RAPPORT.md : résultat courant puis historique conservé.
 - bilan-par-outil.csv : 24outils/routes, fonctions opérationnelles/partielles/bloquées.
 - matrice-donnees-usages.csv.gz et matrice-bilan.json : matrice unique et dénominateurs.

@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "id": "GB00B15KXQ89",
+  "type": "instrument",
+  "name": "WisdomTree Copper",
+  "aliases": [
+    "GB00B15KXQ89",
+    "COPA"
+  ],
+  "consumers": [
+    {
+      "tool": "Présentation ETF",
+      "path": "/fiches-etf"
+    },
+    {
+      "tool": "Générateur de portefeuilles",
+      "path": "/generateur-portefeuilles"
+    },
+    {
+      "tool": "Duels de portefeuilles",
+      "path": "/duels-portefeuilles"
+    },
+    {
+      "tool": "Comparatif ETF",
+      "path": "/comparatif-etf"
+    }
+  ],
+  "fields": [
+    {
+      "label": "Identité",
+      "registry": "src/data/instruments.js",
+      "value": {
+        "name": "WisdomTree Copper",
+        "instrumentType": "ETC"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=GB00B15KXQ89"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-09-30",
+        "currency": null,
+        "scope": "Part GB00B15KXQ89",
+        "method": "Profil individuel justETF consulté par ISIN",
+        "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés.",
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Frais annuels (%)",
+      "registry": "src/data/etf-ter.js",
+      "value": "0,49",
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-31",
+        "currency": null,
+        "scope": "Part GB00B15KXQ89",
+        "method": "TER publié sur le profil de la part, consulté par ISIN",
+        "note": "Frais observés au contrôle ; aucune date d’entrée en vigueur déduite de la consultation.",
+        "dateStatus": "not-published",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Éligibilité PEA",
+      "registry": "src/data/instrument-pea.js",
+      "value": false,
+      "metadata": {
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-wt-copper-COPAP-GB00B15KXQ89-23"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "currency": null,
+        "scope": "Part GB00B15KXQ89",
+        "method": "Explicit exact-share PEA statement collected automatically.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Encours",
+      "registry": "src/data/instrument-aum.js",
+      "value": {
+        "sheet": "Fonds : 1 912,36 M$ au 29/10/2026",
+        "index": "Fonds : 1 912,36 M$ au 29/10/2026",
+        "source": {
+          "amount": 1912362112,
+          "currency": "USD",
+          "scope": "Actif net du fonds",
+          "asOf": "2026-10-29",
+          "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+          "controlledListingIds": [
+            "2740790"
+          ],
+          "nonNativeListingsExcluded": 1,
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+          "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+          "identitySha256": "c89045facb7d2abef28fae55bf8e85684e926edfa9c3373b7fcb55d606c8cca0",
+          "identityAsOf": "2026-09-30",
+          "checkedAt": "2026-10-31",
+          "modifiedAt": "2026-10-31",
+          "amountMillions": 1912.362112,
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0"
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0"
+        ],
+        "asOf": "2026-10-29",
+        "checkedAt": "2026-10-31",
+        "currency": "USD",
+        "scope": "Actif net du fonds",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "note": "Date publiée par l’émetteur ; la consultation reste distincte.",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": "2026-10-31"
+      }
+    },
+    {
+      "label": "Cotation XLON",
+      "registry": "src/data/instrument-listings.js",
+      "value": {
+        "ticker": "COPA",
+        "mic": "XLON",
+        "exchange": "London Stock Exchange",
+        "currency": "USD",
+        "symbol": "COPA.L",
+        "excerpt": "GB00B15KXQ89 | LSE USD COPA COPA LN COPA.L B15KXQ8 GB00B15KXQ89 A0KRKR 27/09/2006",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89/",
+        "checkedAt": "2026-10-30",
+        "sha256": "c89045facb7d2abef28fae55bf8e85684e926edfa9c3373b7fcb55d606c8cca0",
+        "evidenceId": "GB00B15KXQ89-XLON-COPA-USD"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89/"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "currency": "USD",
+        "scope": "Part GB00B15KXQ89 ; London Stock Exchange",
+        "method": "Devise de négociation, distincte de celle des rendements.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Rendements 2020–2025",
+      "registry": "src/data/instrument-returns.js",
+      "value": [
+        22.02,
+        25.72,
+        -14.93,
+        2.97,
+        4.41,
+        37.21
+      ],
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
+        ],
+        "asOf": "2025-12-31",
+        "checkedAt": "2026-10-31",
+        "currency": "USD",
+        "scope": "Part GB00B15KXQ89",
+        "method": "Rendements calendaires NAV de la part exacte ; années complètes uniquement",
+        "note": null,
+        "dateStatus": "dated",
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": "2026-10-23"
+      }
+    }
+  ]
+}

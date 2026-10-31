@@ -1,0 +1,380 @@
+{
+  "checkedAt": "2026-10-31T01:29:03.649849+00:00",
+  "run": 41154898443,
+  "event": "push",
+  "pr": 1105,
+  "codeMerge": "2d0fcdf9859b3eba95524d64c76384df190e21c3",
+  "record": "4213389fd53845831b27587b08ec28cf20e66060",
+  "etfRegistryBlob": "9ec83516bc09554acb94e251c923d92cfb84b17e",
+  "sourceArtifact": 13024947359,
+  "sourceArtifactSha256": "db6dd6772f11dd79d71ac0a32e279157630ed6e15c31b052ca49b3f26cf5667f",
+  "recordingPreviouslyFailedRun": 41150996233,
+  "rows": [
+    {
+      "isin": "CH0454664001",
+      "sourceStatus": "validated",
+      "aum": {
+        "amount": 618385969.835628,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+        "sha256": "ae760afbcbadcb45ec3515be16bc76349487ab3598b67331afbd901bf8a3de20",
+        "method": "Issuer product_details.total_nav; native USD product assets, not NAV-times-units",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "recordedIdentically": true,
+      "sourceAttempts": [
+        {
+          "url": "https://api.primary.21shares.com/api/product_details/ABTC",
+          "status": "validated",
+          "sha256": "ae760afbcbadcb45ec3515be16bc76349487ab3598b67331afbd901bf8a3de20"
+        }
+      ]
+    },
+    {
+      "isin": "JE00B1VS3770",
+      "sourceStatus": "validated",
+      "aum": {
+        "amount": 6635141632.0,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2741017"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+        "identitySha256": "49ef74415799fcbce3e4327caf91421cc14fdc3af7dc78133d01df9ce7fbd2d1",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "recordedIdentically": true,
+      "sourceAttempts": [
+        {
+          "url": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold",
+          "reason": "HTTP Error 403: Forbidden"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+          "status": "validated"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ],
+          "sharedCurrentResponse": true
+        }
+      ]
+    },
+    {
+      "isin": "GB00BJYDH287",
+      "sourceStatus": "validated",
+      "aum": {
+        "amount": 1593359360.0,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "3371846"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
+        "identitySha256": "95ebfd8527743eb82559f322974f45e67c7f8ab980eea6b3fc30b87a15d4b637",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "recordedIdentically": true,
+      "sourceAttempts": [
+        {
+          "url": "https://www.wisdomtree.com/gb/products/digital-assets/wisdomtree-physical-bitcoin",
+          "reason": "HTTP Error 403: Forbidden"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
+          "status": "validated"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ],
+          "sharedCurrentResponse": true
+        }
+      ]
+    },
+    {
+      "isin": "GB00B15KXQ89",
+      "sourceStatus": "validated",
+      "aum": {
+        "amount": 1912362112.0,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2740790"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+        "identitySha256": "c89045facb7d2abef28fae55bf8e85684e926edfa9c3373b7fcb55d606c8cca0",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "recordedIdentically": true,
+      "sourceAttempts": [
+        {
+          "url": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper",
+          "reason": "HTTP Error 403: Forbidden"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+          "status": "validated"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ],
+          "sharedCurrentResponse": true
+        }
+      ]
+    },
+    {
+      "isin": "IE0002Y8CX98",
+      "sourceStatus": "validated",
+      "aum": {
+        "amount": 4581734912.0,
+        "currency": "EUR",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "3474438"
+        ],
+        "nonNativeListingsExcluded": 2,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+        "identitySha256": "30ac82d29be5d8453df9ef0c390ac4d882749e6d6c1df6a85420ddc8d2e4c63b",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "recordedIdentically": true,
+      "sourceAttempts": [
+        {
+          "url": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+          "reason": "Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.eu/en-ie/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+          "status": "validated"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+          "status": "validated",
+          "fields": [
+            "holdings",
+            "sectors",
+            "countries"
+          ],
+          "deferred": []
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ],
+          "sharedCurrentResponse": true
+        }
+      ]
+    },
+    {
+      "isin": "IE000W8WMSL2",
+      "sourceStatus": "validated",
+      "aum": {
+        "amount": 324516800.0,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "3578824"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+        "identitySha256": "326008744e0620d65c217d18d5b5af9ada7812ef9ba63bbcd00a351f20dd4eaa",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "recordedIdentically": true,
+      "sourceAttempts": [
+        {
+          "url": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
+          "reason": "HTTP Error 403: Forbidden"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+          "status": "validated"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB",
+          "status": "validated",
+          "fields": [
+            "holdings",
+            "sectors",
+            "countries"
+          ],
+          "deferred": []
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ],
+          "sharedCurrentResponse": true
+        }
+      ]
+    },
+    {
+      "isin": "IE00BZ56SW52",
+      "sourceStatus": "validated",
+      "aum": {
+        "amount": 1706229376.0,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2000433"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+        "identitySha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "recordedIdentically": true,
+      "sourceAttempts": [
+        {
+          "url": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
+          "reason": "HTTP Error 403: Forbidden"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+          "status": "validated"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+          "status": "validated",
+          "fields": [
+            "holdings",
+            "sectors",
+            "countries"
+          ],
+          "deferred": []
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ],
+          "sharedCurrentResponse": true
+        }
+      ]
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "sourceStatus": "validated",
+      "aum": {
+        "amount": 400637024.0,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-29",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2921038"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+        "identitySha256": "7ab5627948d2b2b95c578d10e741db9738894ca076bb8ce4d67713fac91219ee",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-10-31",
+        "modifiedAt": "2026-10-31"
+      },
+      "recordedIdentically": true,
+      "sourceAttempts": [
+        {
+          "url": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
+          "reason": "HTTP Error 403: Forbidden"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+          "status": "validated"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB",
+          "status": "validated",
+          "fields": [
+            "holdings",
+            "sectors",
+            "countries"
+          ],
+          "deferred": []
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ],
+          "sharedCurrentResponse": true
+        }
+      ]
+    }
+  ],
+  "ABTCAnnualCalendarValuesUnchanged": true,
+  "publicationVerified": true,
+  "publicConsumersVerified": true,
+  "scheduledProof": false,
+  "meaning": "One common recording-order fault actually recovered; seven shared-directory AUM source failures independently recovered in ordinary source passage. Does not erase earlier403 or certify every field of these instruments.",
+  "publicationProof": "etf-post1105-publication-41154898443/publication-verified.json.gz",
+  "publicVersion": {
+    "sha": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+    "dataSha": "4213389fd53845831b27587b08ec28cf20e66060",
+    "lane": "validated-data",
+    "builtAt": "2026-10-31T01:29:13.960Z"
+  },
+  "consumerProof": "eight-native-aum-public-31oct/results.json",
+  "testedConsumerScope": "8 exact AUM \u00d72tools;16PNG+8JSON actual public downloads. Other fields not certified.",
+  "conditionalProductionRebaseObserved": false,
+  "conditionalRebaseProof": "Isolated byte-exact source URL reproduction plus30realGit regression scenarios; ordinary recorded421hasparent2d, no concurrent master change in this pass."
+}

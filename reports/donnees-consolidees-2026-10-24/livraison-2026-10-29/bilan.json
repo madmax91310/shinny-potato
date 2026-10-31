@@ -116,60 +116,50 @@
     "WTI official monthly endpoint failed403in latest full source run40968760633; valid previous observations remain dated, targetedIMIE retry did not recheckWTI"
   ],
   "reprise30octobre": {
-    "observedAt": "2026-10-31T00:05:04.588299+00:00",
+    "observedAt": "2026-10-31T04:58:38.015586+00:00",
     "public": {
-      "exportedAt": "2026-10-30T23:14:37.415Z",
-      "monitorCheckedAt": "2026-10-30T23:13:19.644424+00:00",
+      "exportedAt": "2026-10-31T04:48:36.257Z",
+      "monitorCheckedAt": "2026-10-31T04:40:37.447577+00:00",
       "code": {
-        "sha": "08567afe22343d45aadec70dc6464208b17ad5e8",
-        "builtAt": "2026-10-30T22:46:39Z"
+        "sha": "9994d531a9cc942a08bd311fc38d99662a0f03ae",
+        "dataSha": "6694df723b35245437ca3fe9c653acea6ccc0c2c",
+        "lane": "validated-code-data",
+        "builtAt": "2026-10-31T04:35:40.816Z"
       },
       "sourceHashes": {
-        "diagnostics-action.json": "955591f9d7426190d1a364bde135740ab583d5ce22bc48c38d36e67355209fbb",
-        "diagnostics-all.json": "4b2c5e7d5a655949479aadd9fb9029ed34ccf909b4010141f4964f84edd67715",
-        "automation-status.json": "bd536a6af8923f746db6f9a4acb080d245244010ea9c931d35b924bc8c84cab4",
-        "data-review-inbox.json": "9f1daa9363a350616add04a78d24cc4029d2169e237a964b906cceb675d34fdd",
-        "asset-field-coverage.json": "9f19cd829e6baa9c39d1a1903eef9cd47767055ff22e564b863310e92abc9e02"
+        "diagnostics-action.json": "43825df7a7b2c4ea16a2f48ca350f9c8b1bf0ab35f542634c5fb5987f64334f1",
+        "diagnostics-all.json": "2e817ecd3264883564df7f8663d5fab89f6ae9be3736f8fdfda8c60b09fc4eb0",
+        "automation-status.json": "435936a8f313a620205b4c3f41a1e366dcfbf91a7d1f7701921013072ff72bbe",
+        "data-review-inbox.json": "ce037b006eefb75b58e0166cb397d15fb8c8d289a9f869b277b31916e18caac6",
+        "asset-field-coverage.json": "e5bccc476b7311aa1b8d5ed02994675a22e6bb10c1875b9524ac0e2fcf99c101"
       },
       "initialIdentitiesPreserved": 661,
       "previousLedgerIdentitiesPreserved": 46216,
-      "newPublicIdentitiesAdded": 380,
+      "newPublicIdentitiesAdded": 382,
       "additionalMatrixIdentities": 1570,
-      "ledgerIdentities": 48173,
+      "ledgerIdentities": 48181,
       "activeByClass": {
         "monitoring": 7,
-        "failure": 134,
-        "qualification": 4768,
+        "failure": 24,
+        "qualification": 4773,
         "connection": 30
       },
       "allByClass": {
         "monitoring": 7,
-        "failure": 134,
-        "qualification": 4768,
+        "failure": 24,
+        "qualification": 4773,
         "connection": 30,
         "editorial": 812,
-        "waiting": 18,
+        "waiting": 13,
         "not-applicable": 423,
-        "history": 627
+        "history": 740
       },
       "investigationCategories": {
         "preuve de supervision": 7,
         "contrôle à renouveler | iShares MSCI World Swap PEA UCITS ETF (Acc) | Encours": 1,
         "contrôle à renouveler | iShares S&P 500 Swap PEA UCITS ETF | Encours": 1,
-        "attente de stabilité documentée, pas panne de collecte | IE00BGV5VN51 | countries | 2026-10-29": 5,
-        "attente de stabilité documentée, pas panne de collecte | IE00BTJRMP35 | countries | 2026-10-29": 12,
+        "dernier échec source non dépassé ; non tenté dans la reprise conditionnelle | WisdomTree Artificial Intelligence UCITS ETF USD Acc | Historique mensuel": 1,
         "classification partielle ; zéro non démontré | IE00BTJRMP35 | countries | 2026-10-29": 2,
-        "attente de stabilité documentée, pas panne de collecte | IE0006WW1TQ4 | countries | 2026-10-29": 24,
-        "attente de stabilité documentée, pas panne de collecte | IE00BM67HK77 | countries | 2026-10-29": 7,
-        "attente de stabilité documentée, pas panne de collecte | IE00BM67HV82 | countries | 2026-10-29": 9,
-        "attente de stabilité documentée, pas panne de collecte | IE00BM67HS53 | countries | 2026-10-29": 11,
-        "attente de stabilité documentée, pas panne de collecte | IE00BM67HQ30 | countries | 2026-10-29": 2,
-        "attente de stabilité documentée, pas panne de collecte | IE00BLNMYC90 | countries | 2026-10-29": 6,
-        "cause à qualifier | 21Shares Bitcoin ETP | performance": 1,
-        "cause à qualifier | 21Shares Bitcoin ETP | Champs du collecteur": 1,
-        "conflit financier à date identique | DE000A27Z304 | aum | 2026-10-30": 1,
-        "enregistrement protégé | Historiques mensuels des marchés | Exécution du collecteur": 1,
-        "enregistrement protégé | ETF et compositions d’indices | Exécution du collecteur": 1,
         "cause à qualifier | Global X Nasdaq 100 Covered Call UCITS ETF | Principales positions": 1,
         "conflit financier à date identique | iShares Euro Dividend UCITS ETF | Éligibilité PEA": 1,
         "convention historique non rapprochée | iShares Physical Palladium (IPDM) · VL | Historique mensuel": 1,
@@ -177,7 +167,6 @@
         "périmètre brut / net incompatible | iShares MSCI World EUR Hedged UCITS ETF (Acc) | Composition complète": 1,
         "accès fournisseur refusé | WisdomTree Battery Solutions UCITS ETF USD Acc | Composition complète": 1,
         "accès fournisseur refusé | WisdomTree Global Quality Dividend Growth UCITS ETF | Composition complète": 1,
-        "attente de stabilité documentée, pas panne de collecte | IE000L6ZMMC4 | countries | 2026-10-29": 30,
         "classification partielle ; zéro non démontré | IE000L6ZMMC4 | countries | 2026-10-29": 1,
         "source Radar / propriétaire existant | Radar · economie | Sources du radar": 1,
         "source Radar / propriétaire existant | Radar · etf | Sources du radar": 1,
@@ -190,7 +179,7 @@
         "source Radar / propriétaire existant | radar-source:trade-republic-news | Champs du collecteur": 1,
         "source Radar / propriétaire existant | radar-source:vaneck | Champs du collecteur": 1,
         "accès fournisseur refusé | radar-source:wisdomtree | Champs du collecteur": 1,
-        "preuve / qualification incomplète": 3959,
+        "preuve / qualification incomplète": 3963,
         "preuve / qualification incomplète | IE00B1TXHL60 | sectors | 2026-10-22": 1,
         "preuve / qualification incomplète | IE00B3T9LM79 | countries | 2026-10-28": 37,
         "preuve / qualification incomplète | IE00B3T9LM79 | sectors | 2026-10-28": 5,
@@ -258,6 +247,7 @@
         "preuve / qualification incomplète | DE000A27Z304 | aum | 2026-10-20": 1,
         "preuve / qualification incomplète | DE000A27Z304 | aum | 2026-10-23": 1,
         "preuve / qualification incomplète | DE000A27Z304 | aum | 2026-10-21": 1,
+        "preuve / qualification incomplète | DE000A27Z304 | aum | 2026-10-30": 1,
         "preuve / qualification incomplète | DE000A27Z304 | aum | 2026-10-29": 1,
         "preuve / qualification incomplète | DE000A27Z304 | aum | 2026-10-27": 1,
         "preuve / qualification incomplète | DE000A27Z304 | aum | 2026-10-26": 1,
@@ -305,10 +295,10 @@
         "residuals": 2
       },
       "completeAutomationClaimed": false,
-      "repairResultRows": 7
+      "repairResultRows": 13
     },
     "matrix": {
-      "generatedAt": "2026-10-30T23:18:38.969985+00:00",
+      "generatedAt": "2026-10-31T04:58:14.755022+00:00",
       "denominateur": "Contrats logiques de champ ou série × outil, issus des consommateurs actuels ; pas nombre de points de marché ni certification de toutes les valeurs",
       "usages": 34951,
       "outils": 24,
@@ -316,8 +306,8 @@
       "parts_isin_uniques": 673,
       "statuts": {
         "non applicable": 3792,
-        "B": 31075,
-        "A": 84
+        "B": 31067,
+        "A": 92
       },
       "types": {
         "reference": 2738,
@@ -330,10 +320,10 @@
       },
       "diagnostics": {
         "non applicable": 3756,
-        "preuve documentaire ou qualification incomplète": 31012,
+        "preuve documentaire ou qualification incomplète": 31007,
+        "défaut réel de donnée ou de collecte": 29,
         "raccordement manquant": 39,
         "ancien proxy archivé, remplacé dans cet usage par le calendrier exact non vide": 30,
-        "défaut réel de donnée ou de collecte": 24,
         "collecte, enregistrement, publication et usage du champ exact démontrés": 30,
         "non applicable au format effectivement exporté": 6,
         "chaîne automatisée et usage vérifiés sur le périmètre exact": 39,
@@ -377,7 +367,43 @@
         "purchasing-public-independent-calculation-30oct.json": 1,
         "browser-scpi-q3-public-30oct/results.json": 6
       },
-      "noCatalogueCertificationFromGreenJob": true
+      "noCatalogueCertificationFromGreenJob": true,
+      "scopedFields31oct": {
+        "uniqueInstruments": 8,
+        "uniqueDataFields": 10,
+        "dataUseContracts": 22,
+        "matchedIds": [
+          "usage:/bibliotheque-donnees|CH0454664001|catalog:1",
+          "usage:/bibliotheque-donnees|CH0454664001|catalog:4",
+          "usage:/bibliotheque-donnees|IE00BJGWQN72|catalog:4",
+          "usage:/bibliotheque-donnees|GB00B15KXQ89|catalog:3",
+          "usage:/bibliotheque-donnees|IE0002Y8CX98|catalog:3",
+          "usage:/bibliotheque-donnees|IE00BZ56SW52|catalog:4",
+          "usage:/bibliotheque-donnees|GB00BJYDH287|catalog:4",
+          "usage:/bibliotheque-donnees|JE00B1VS3770|catalog:4",
+          "usage:/bibliotheque-donnees|IE000W8WMSL2|catalog:3",
+          "usage:/comparatif-etf|CH0454664001|catalog:1",
+          "usage:/comparatif-etf|CH0454664001|catalog:4",
+          "usage:/fiches-etf|CH0454664001|catalog:1",
+          "usage:/fiches-etf|CH0454664001|catalog:4",
+          "usage:/fiches-etf|IE00BJGWQN72|catalog:4",
+          "usage:/fiches-etf|GB00B15KXQ89|catalog:3",
+          "usage:/fiches-etf|IE0002Y8CX98|catalog:3",
+          "usage:/fiches-etf|IE00BZ56SW52|catalog:4",
+          "usage:/fiches-etf|GB00BJYDH287|catalog:4",
+          "usage:/fiches-etf|JE00B1VS3770|catalog:4",
+          "usage:/fiches-etf|IE000W8WMSL2|catalog:3",
+          "usage:/calculateur-investissement|history:etfCH0454664001Nav|catalog:0",
+          "usage:/performance-depuis|history:etfCH0454664001Nav|catalog:0"
+        ],
+        "counts": {
+          "fee": 3,
+          "aum": 16,
+          "aum-gate": 1,
+          "history": 2
+        },
+        "notAnAutomationCoverageRate": true
+      }
     },
     "actions19": {
       "partiellement corrigée": 5,
@@ -387,10 +413,12 @@
       "déjà résolue": 1
     },
     "release": {
-      "checkedAt": "2026-10-30T23:18:11.060756+00:00",
+      "checkedAt": "2026-10-31T04:52:50.468827+00:00",
       "publicVersion": {
-        "sha": "08567afe22343d45aadec70dc6464208b17ad5e8",
-        "builtAt": "2026-10-30T22:46:39Z"
+        "sha": "9994d531a9cc942a08bd311fc38d99662a0f03ae",
+        "dataSha": "6694df723b35245437ca3fe9c653acea6ccc0c2c",
+        "lane": "validated-code-data",
+        "builtAt": "2026-10-31T04:35:40.816Z"
       },
       "financialReleasePR": 1097,
       "financialMerge": "7492872fb2e20c2d45cd1df4c7ede788fef18c7e",
@@ -398,72 +426,134 @@
       "financialCodeDifferencesFromTestedHead": [],
       "dataDifferencesSeparatelyRecorded": [
         "src/data/anniversary-levels.json",
+        "src/data/automated-etf-monthly.json",
         "src/data/automated-etf.json",
         "src/data/automated-indices.json",
         "src/data/automated-presentation-actors.json",
         "src/data/automated-scpi.json",
+        "src/data/dca-complete-holdings.json",
+        "src/data/dca-equity-exposures.json",
+        "src/data/dca-holdings-status.json",
+        "src/data/dca-security-classifications.json",
+        "src/data/equity-history-links.json",
+        "src/data/exposure-sleeves.json",
+        "src/data/monthly-fx.json",
         "src/data/purchasing-power-observations.json",
+        "src/data/qualified-exposure-etfs.json",
+        "src/data/qualified-listing-records.json",
+        "src/data/ranking-annual.json",
+        "src/data/ranking-index-annual.json",
+        "src/data/security-identifier-observations.json",
         "src/data/shared-listing-identities.json",
+        "src/data/vanguard-equity-underliers.json",
         "src/pages/budget-profiles/data.js",
-        "src/pages/budget-profiles/prepared-profiles-lot-2-2026-10-30.json"
+        "src/pages/budget-profiles/prepared-profiles-lot-2-2026-10-30.json",
+        "src/pages/dca-profiles/catalog.json",
+        "src/pages/dca-profiles/exposures-extra-0.json",
+        "src/pages/dca-profiles/exposures-extra-1.json",
+        "src/pages/dca-profiles/exposures-extra-2.json",
+        "src/pages/dca-profiles/holdings-0.json",
+        "src/pages/dca-profiles/holdings-1.json",
+        "src/pages/dca-profiles/holdings-10.json",
+        "src/pages/dca-profiles/holdings-11.json",
+        "src/pages/dca-profiles/holdings-12.json",
+        "src/pages/dca-profiles/holdings-13.json",
+        "src/pages/dca-profiles/holdings-14.json",
+        "src/pages/dca-profiles/holdings-15.json",
+        "src/pages/dca-profiles/holdings-16.json",
+        "src/pages/dca-profiles/holdings-17.json",
+        "src/pages/dca-profiles/holdings-18.json",
+        "src/pages/dca-profiles/holdings-19.json",
+        "src/pages/dca-profiles/holdings-2.json",
+        "src/pages/dca-profiles/holdings-20.json",
+        "src/pages/dca-profiles/holdings-21.json",
+        "src/pages/dca-profiles/holdings-22.json",
+        "src/pages/dca-profiles/holdings-23.json",
+        "src/pages/dca-profiles/holdings-24.json",
+        "src/pages/dca-profiles/holdings-25.json",
+        "src/pages/dca-profiles/holdings-26.json",
+        "src/pages/dca-profiles/holdings-27.json",
+        "src/pages/dca-profiles/holdings-28.json",
+        "src/pages/dca-profiles/holdings-29.json",
+        "src/pages/dca-profiles/holdings-3.json",
+        "src/pages/dca-profiles/holdings-30.json",
+        "src/pages/dca-profiles/holdings-31.json",
+        "src/pages/dca-profiles/holdings-4.json",
+        "src/pages/dca-profiles/holdings-5.json",
+        "src/pages/dca-profiles/holdings-6.json",
+        "src/pages/dca-profiles/holdings-7.json",
+        "src/pages/dca-profiles/holdings-8.json",
+        "src/pages/dca-profiles/holdings-9.json",
+        "src/pages/dca-profiles/holdings.json"
       ],
-      "fullProductionChecksRun": 41139257040,
+      "fullProductionChecksRun": 41166439669,
       "productionWorkflowStatus": "success",
       "sourcePublicationBindings": [
         {
+          "path": "src/data/anniversary-levels.json",
+          "expected": "40cca032903a511d3a7fc48e93cab19e58fae9e6",
+          "served": "40cca032903a511d3a7fc48e93cab19e58fae9e6",
+          "matches": true
+        },
+        {
+          "path": "src/data/auto-history-identities.json",
+          "expected": "ed6ef8dfac260910a311de0e1f59588a9157cf5a",
+          "served": "ed6ef8dfac260910a311de0e1f59588a9157cf5a",
+          "matches": true
+        },
+        {
           "path": "src/data/automated-etf-monthly.json",
-          "recordCommit": "15915362731a390e36af7838f9fc391ed3f939f5",
-          "expected": "5f9c46fe8579c5f4600871e8519eed6a439d5872",
-          "served": "5f9c46fe8579c5f4600871e8519eed6a439d5872",
+          "expected": "ebc8e838ea46e6cb89ecae26fce04d6ae124a5ae",
+          "served": "ebc8e838ea46e6cb89ecae26fce04d6ae124a5ae",
+          "matches": true
+        },
+        {
+          "path": "src/data/automated-indices.json",
+          "expected": "14214c4eb49403cdeb7eb2f700a03dc01fcd69af",
+          "served": "14214c4eb49403cdeb7eb2f700a03dc01fcd69af",
+          "matches": true
+        },
+        {
+          "path": "src/data/automated-monthly.json",
+          "expected": "eb5b254cc8d32c64bad17909702464ff8d7a22c9",
+          "served": "eb5b254cc8d32c64bad17909702464ff8d7a22c9",
           "matches": true
         },
         {
           "path": "src/data/monthly-fx.json",
-          "recordCommit": "15915362731a390e36af7838f9fc391ed3f939f5",
-          "expected": "9d7637c4723aeced9b2d3ad31e9ac0a59ec44a7a",
-          "served": "9d7637c4723aeced9b2d3ad31e9ac0a59ec44a7a",
+          "expected": "470c8c4a29a46bd8e97b34e5e4c80f326c845992",
+          "served": "470c8c4a29a46bd8e97b34e5e4c80f326c845992",
           "matches": true
         },
         {
-          "path": "src/data/dca-security-classifications.json",
-          "recordCommit": "991bdb81ecbabad0dffac331da66911adce6cad7",
-          "expected": "9bb4275587695929afc48a0e11c9910c4235e3c9",
-          "served": "9bb4275587695929afc48a0e11c9910c4235e3c9",
+          "path": "src/data/qualified-listing-records.json",
+          "expected": "ad60a019832259e2125967e9cf3c5bb6ee4fb5ed",
+          "served": "ad60a019832259e2125967e9cf3c5bb6ee4fb5ed",
           "matches": true
         },
         {
-          "path": "src/data/exposure-sleeves.json",
-          "recordCommit": "991bdb81ecbabad0dffac331da66911adce6cad7",
-          "expected": "9f8588863fa233a9b5fe6a50560f587ac7954a6c",
-          "served": "9f8588863fa233a9b5fe6a50560f587ac7954a6c",
+          "path": "src/data/ranking-histories.json",
+          "expected": "f8fd0ba0df01fa78f969d54c5077cf798014c6a2",
+          "served": "f8fd0ba0df01fa78f969d54c5077cf798014c6a2",
           "matches": true
         },
         {
-          "path": "src/data/automated-scpi.json",
-          "recordCommit": "d186ef91d436c8af5281bc1c6bd8c1d2ad16b151",
-          "expected": "96a82ce851fd3f56c7796ef520106359f0212261",
-          "served": "96a82ce851fd3f56c7796ef520106359f0212261",
-          "matches": true
-        },
-        {
-          "path": "public/data/investors/ackman.json",
-          "recordCommit": "20253887d3dc613255b4eaf6b03f33d22ac865e9",
-          "expected": "308079da6aef828858db181be510eee6a6038e85",
-          "served": "308079da6aef828858db181be510eee6a6038e85",
-          "matches": true
-        },
-        {
-          "path": "public/data/investors/review-metadata.json",
-          "recordCommit": "20253887d3dc613255b4eaf6b03f33d22ac865e9",
-          "expected": "df51d9ebf3ce4fae43fe14026b5a2508de0a9af5",
-          "served": "df51d9ebf3ce4fae43fe14026b5a2508de0a9af5",
+          "path": "src/data/shared-listing-identities.json",
+          "expected": "ff01b283a7098105465ee7e6ccd2f76649b91579",
+          "served": "ff01b283a7098105465ee7e6ccd2f76649b91579",
           "matches": true
         }
       ],
       "publicFinancialConsumerProof": "exact-share-annual-public-30oct/summary.json",
-      "additionalCorrectionsPending": [],
+      "additionalCorrectionsPending": [
+        "Nine monthly windows on six exact shares: official distributions/NAV/bounds still missing or contradicted",
+        "Four complete-holdings acquisitions and exact economic/index coverage still qualified separately; Quantum complete overlap remains blocked",
+        "Two PEA qualifications, manual/undocumented exact contractual conditions, QYLD exact-share convention",
+        "WTAI latest failed source report remains retained and was not selected in the last conditional run",
+        "Twelve INSEE child documents queued, not yet exercised as statistical source observations"
+      ],
       "completeAutomationClaimed": false,
-      "sourceVersusCron": "6 exact AUM with first-attempt source-to-publication schedule proven;7 further AUM have first-attempt source-only schedule proof with recording failure preserved. Ordinary push/manual/automatic-recovery evidence remains distinct.",
+      "sourceVersusCron": "Six exact AUM have a first-attempt scheduled source-to-publication proof; seven additional AUM have first-attempt source-only scheduled proof with recording failure retained. New31October source/record/publication runs are push or manual. No post-final-corrective cron newly observed; no supervision cron substituted for supplier evidence.",
       "backendProducerReleases": [
         {
           "pr": 1099,
@@ -481,10 +571,44 @@
           "merge": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
           "ordinaryProducerRun": 41142238317,
           "status": "producer update succeeded, genuine unrelated partial failures retained; producer feed consumed publicly on desktop/mobile with all3qualification issues. Frontend build SHA separate from backend execution SHA."
+        },
+        {
+          "pr": 1104,
+          "merge": "cdb627ba2588e1dec61f0f2dcbe5036fcadb62f7",
+          "ordinaryProducerRun": 41154898443,
+          "publicationRun": 41154898433,
+          "status": "Exact ABTC native AUM/fee API fields recorded, published and exercised publicly; API410 prior recovery and healthy PDF remain distinct."
+        },
+        {
+          "pr": 1105,
+          "merge": "2d0fcdf9859b3eba95524d64c76384df190e21c3",
+          "ordinaryProducerRun": 41154898443,
+          "status": "Targets-before-coverage recording defect repaired and ordinary recording/publication proven. Concurrent rebase branch remains isolated-Git/CI verification, not claimed raced in that production run."
+        },
+        {
+          "pr": 1106,
+          "merge": "d6c1bd7f22d6f391cae145310788da5a2287546e",
+          "ordinaryProducerRun": 41163406543,
+          "status": "Actual INSEE index acquired and12exact standalone children queued; no numerical data added, child acquisition unverified."
+        },
+        {
+          "pr": 1107,
+          "merge": "9994d531a9cc942a08bd311fc38d99662a0f03ae",
+          "ordinaryProducerRun": 41166439703,
+          "record": "6694df723b35245437ca3fe9c653acea6ccc0c2c",
+          "publicationRun": 41166439669,
+          "status": "Official H10 XML actually acquired/validated/recorded/published;333monthly cross rates unchanged. Existing shared reference, zero new current financial functions. FRED failures retained; empty selected history scope does not certify WTAI or684histories."
         }
       ],
       "additionalBackendConsumerProof": "radar-unknown-public-30oct/results.json",
-      "archivePR": 1103
+      "archivePR": 1103,
+      "snapshotCapturedAt": "2026-10-31T04:48:47.334Z",
+      "sourcePublicationBindingScope": "Exact primary files at this checkpoint; file-byte publication proof, not certification of all fields or histories passed through unchanged. Per-field proofs and earlier checkpoints retained separately.",
+      "priorCheckpoint": "previous-release-checkpoint-30oct.json",
+      "archivePublicationNote": "This dated checkpoint precedes merging the final report-only archive. Its final deployed commit must be verified afterwards against build-info and unchanged source bindings; no future publication is asserted here.",
+      "nonFinancialDatedProfileCodeChanges": [
+        "src/pages/budget-profiles/data.js"
+      ]
     },
     "completeAutomationClaimed": false
   }

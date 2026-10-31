@@ -14,7 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 PRIMARY = ['src/data/annual-fx.json', 'src/data/official-performance-currencies.json',
            'src/data/automated-etf.json', 'src/data/automated-indices.json']
 DERIVED = ['docs/automation-coverage.md', 'docs/automation-gaps.md', 'docs/automation-gaps.json',
-           'docs/asset-field-coverage.md', 'public/data/asset-field-coverage.json', 'docs/app-inventory.md']
+           'docs/asset-field-coverage.md', 'public/data/asset-field-coverage.json', 'docs/app-inventory.md',
+           'scripts/instrument-metadata-sources.json', 'scripts/generated-holdings-sources.json']
 INSURANCE = 'src/data/automated-insurance.json'
 SCPI = 'src/data/automated-scpi.json'
 PUBLICATION_OUTPUTS = ['src/data/anniversary-levels.json','src/data/purchasing-power-observations.json']
@@ -108,6 +109,24 @@ if command == 'npm run build' and os.environ.get('ETF_TEST_RACE'):
         self.assertEqual(receipt['commit'], self.f.git(self.f.remote, 'rev-parse', 'master'))
         for path in PRIMARY + ['public/data/asset-field-coverage.json']:
             self.assertEqual(receipt['files'][path], self.f.git(self.f.remote, 'rev-parse', 'master:' + path))
+
+    def test_target_projection_precedes_coverage_after_source_url_change(self):
+        self.f.advance_remote(INSURANCE)
+        result = self.publish()
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        commands = (self.f.root / 'checks').read_text()
+        self.assertLess(commands.index('node scripts/build-automation-targets.mjs'),
+                        commands.index('node scripts/report-automation-coverage.mjs --write'))
+        for path in DERIVED[-2:]:
+            self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'concurrent update')
+        workflow = (ROOT / '.github/workflows/collect-etf-pilot.yml').read_text()
+        self.assertLess(workflow.index('- run: node scripts/build-automation-targets.mjs'),
+                        workflow.index('- run: node scripts/report-automation-coverage.mjs --write'))
+
+    def test_target_generation_failure_prevents_recording(self):
+        self.f.advance_remote(INSURANCE)
+        before = self.f.git(self.f.remote, 'rev-parse', 'master')
+        self.assert_refused(self.publish(ETF_TEST_FAIL='node scripts/build-automation-targets.mjs'), before)
 
     def test_second_insurance_collision_during_revalidation_retries_safely(self):
         self.f.advance_remote(INSURANCE)
@@ -223,7 +242,7 @@ if command == 'npm run build' and os.environ.get('ETF_TEST_RACE'):
     def test_build_cannot_change_prepared_observations_or_reports(self):
         self.f.advance_remote(INSURANCE)
         before = self.f.git(self.f.remote, 'rev-parse', 'master')
-        for path in [PRIMARY[2], DERIVED[0]]:
+        for path in [PRIMARY[2], DERIVED[0], *DERIVED[-2:]]:
             with self.subTest(path=path):
                 self.assert_refused(self.publish(ETF_TEST_MUTATE=path), before)
 

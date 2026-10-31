@@ -1,13 +1,25 @@
 {
-  "checkedAt": "2026-10-30T23:15:41.517066+00:00",
-  "code": "08567afe22343d45aadec70dc6464208b17ad5e8",
-  "data": null,
-  "codeFiles": 962,
+  "checkedAt": "2026-10-31T04:56:17.935580+00:00",
+  "code": "9994d531a9cc942a08bd311fc38d99662a0f03ae",
+  "data": "6694df723b35245437ca3fe9c653acea6ccc0c2c",
+  "codeFiles": 967,
   "projections": [
     {
+      "path": "src/data/equity-history-links.json",
+      "expected": "e18338485c952758cc1ae794ca4ea2fa814f7fe1",
+      "actual": "e18338485c952758cc1ae794ca4ea2fa814f7fe1",
+      "matches": true
+    },
+    {
       "path": "src/data/ranking-annual.json",
-      "expected": "9c42c5f54962541d1fcb4d769bc6d83cf50c6019",
-      "actual": "9c42c5f54962541d1fcb4d769bc6d83cf50c6019",
+      "expected": "1fdb9e6594e406356ca2334f9cb8ce1892fb4bf4",
+      "actual": "1fdb9e6594e406356ca2334f9cb8ce1892fb4bf4",
+      "matches": true
+    },
+    {
+      "path": "src/data/ranking-index-annual.json",
+      "expected": "3c19047cebe93a1b5476419bded377ce830b0f42",
+      "actual": "3c19047cebe93a1b5476419bded377ce830b0f42",
       "matches": true
     },
     {
@@ -18,26 +30,26 @@
     },
     {
       "path": "src/pages/dca-profiles/catalog.json",
-      "expected": "7053e21677d3d166bfd0fcdd473f51979baa2f58",
-      "actual": "7053e21677d3d166bfd0fcdd473f51979baa2f58",
+      "expected": "97f2d19d1f839db86cdec655e0c18ccb9bf2b516",
+      "actual": "97f2d19d1f839db86cdec655e0c18ccb9bf2b516",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/exposures-extra-0.json",
-      "expected": "8753f3b1667d6b2c81e09502db000bdafc902fa3",
-      "actual": "8753f3b1667d6b2c81e09502db000bdafc902fa3",
+      "expected": "3472d423b003677793063eb998fa45415ea073d6",
+      "actual": "3472d423b003677793063eb998fa45415ea073d6",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/exposures-extra-1.json",
-      "expected": "34a6a27424389c1dec803f7f0ee5f4e71fba0130",
-      "actual": "34a6a27424389c1dec803f7f0ee5f4e71fba0130",
+      "expected": "1e233806589b314b1615136ef606491eadefedb7",
+      "actual": "1e233806589b314b1615136ef606491eadefedb7",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/exposures-extra-2.json",
-      "expected": "cc3713d2844e08b80fd6cfbf09aede5a81e2406a",
-      "actual": "cc3713d2844e08b80fd6cfbf09aede5a81e2406a",
+      "expected": "b561c3c3d4b8afff460aeed997ead008b7a7ecdd",
+      "actual": "b561c3c3d4b8afff460aeed997ead008b7a7ecdd",
       "matches": true
     },
     {
@@ -48,194 +60,194 @@
     },
     {
       "path": "src/pages/dca-profiles/holdings-0.json",
-      "expected": "fc496fd5ea337cf5f9a3b2b01a65e06c3dc90c30",
-      "actual": "fc496fd5ea337cf5f9a3b2b01a65e06c3dc90c30",
+      "expected": "31d8a73e08921ae17d73cab7867f4539cdfc7dce",
+      "actual": "31d8a73e08921ae17d73cab7867f4539cdfc7dce",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-1.json",
-      "expected": "28917b4adf2c4f3c00e172ea6f5785221b4a8b20",
-      "actual": "28917b4adf2c4f3c00e172ea6f5785221b4a8b20",
+      "expected": "9d6a10a9d2a87a95c87eccdfadc127ab4bea43cd",
+      "actual": "9d6a10a9d2a87a95c87eccdfadc127ab4bea43cd",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-10.json",
-      "expected": "1b4ce508b09cc66e465f6baeb44547387b137c28",
-      "actual": "1b4ce508b09cc66e465f6baeb44547387b137c28",
+      "expected": "55f3bc88e0eed015d4a9faf78aedd967bdc7e18d",
+      "actual": "55f3bc88e0eed015d4a9faf78aedd967bdc7e18d",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-11.json",
-      "expected": "72efccfee9446efdfd43a365fa6c77c3e7f39637",
-      "actual": "72efccfee9446efdfd43a365fa6c77c3e7f39637",
+      "expected": "36c666b62bf1315b4e928046c8a726f73cd03635",
+      "actual": "36c666b62bf1315b4e928046c8a726f73cd03635",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-12.json",
-      "expected": "8c90ef44f5f69b0aae311c9637733782bcfd0afa",
-      "actual": "8c90ef44f5f69b0aae311c9637733782bcfd0afa",
+      "expected": "29dcf88a0d93a6e0c051d7335e3d2af2bbe926e1",
+      "actual": "29dcf88a0d93a6e0c051d7335e3d2af2bbe926e1",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-13.json",
-      "expected": "15251c53f1bcd7a69221eb2c18df9cc41aa4c65b",
-      "actual": "15251c53f1bcd7a69221eb2c18df9cc41aa4c65b",
+      "expected": "59dff8d552c0cfd20d0c2b24ae3dec489c9aaa90",
+      "actual": "59dff8d552c0cfd20d0c2b24ae3dec489c9aaa90",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-14.json",
-      "expected": "7d07915c81009e0c81deb88c11193afeee8c2cca",
-      "actual": "7d07915c81009e0c81deb88c11193afeee8c2cca",
+      "expected": "1074e03f00b92e1c013c68c7e06fb3f3b2ee1d59",
+      "actual": "1074e03f00b92e1c013c68c7e06fb3f3b2ee1d59",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-15.json",
-      "expected": "8ffa3cbb338a941269e75cec0c89387e6e16b0d0",
-      "actual": "8ffa3cbb338a941269e75cec0c89387e6e16b0d0",
+      "expected": "380ca5efe50a56b49cd72bad71203251f118a38e",
+      "actual": "380ca5efe50a56b49cd72bad71203251f118a38e",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-16.json",
-      "expected": "764af58e1e54306695b906913d9e727bb7c5d474",
-      "actual": "764af58e1e54306695b906913d9e727bb7c5d474",
+      "expected": "000f39130301090e5c3387d435ce1d82e42cf5f5",
+      "actual": "000f39130301090e5c3387d435ce1d82e42cf5f5",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-17.json",
-      "expected": "1a894f91f2b60dd7c362f2a6279a84bfb281be39",
-      "actual": "1a894f91f2b60dd7c362f2a6279a84bfb281be39",
+      "expected": "8e3b64b31b91de26beb34fe4400817a8d254c23b",
+      "actual": "8e3b64b31b91de26beb34fe4400817a8d254c23b",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-18.json",
-      "expected": "24ecab19bbb92bcac6c6705488e06f3ceb1e6f6f",
-      "actual": "24ecab19bbb92bcac6c6705488e06f3ceb1e6f6f",
+      "expected": "a499ee331e0f5c78255599e7ac2c1fd65e8ad2d2",
+      "actual": "a499ee331e0f5c78255599e7ac2c1fd65e8ad2d2",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-19.json",
-      "expected": "f8275264158bcfb00e9757f1b21c6c7277114847",
-      "actual": "f8275264158bcfb00e9757f1b21c6c7277114847",
+      "expected": "f37d545ed93c389aef18b8e623a55ddc79a32259",
+      "actual": "f37d545ed93c389aef18b8e623a55ddc79a32259",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-2.json",
-      "expected": "a72ac546f865eb3d39f4f844bcc8b85d925b3527",
-      "actual": "a72ac546f865eb3d39f4f844bcc8b85d925b3527",
+      "expected": "26f08649a062b028a78f859e2c39d75dcc24f751",
+      "actual": "26f08649a062b028a78f859e2c39d75dcc24f751",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-20.json",
-      "expected": "5cd8f4a166acd0955f7eebab7bb7c6fa195eb374",
-      "actual": "5cd8f4a166acd0955f7eebab7bb7c6fa195eb374",
+      "expected": "7b57ce6f6ea862091bf2f2932aab6a80d115eeb1",
+      "actual": "7b57ce6f6ea862091bf2f2932aab6a80d115eeb1",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-21.json",
-      "expected": "c60f0f33408734e9be690eb9714047755c919647",
-      "actual": "c60f0f33408734e9be690eb9714047755c919647",
+      "expected": "e596b528bbda22bef793efb982ae1c601712677b",
+      "actual": "e596b528bbda22bef793efb982ae1c601712677b",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-22.json",
-      "expected": "0acfb26de7590c5e1036563b38d9676fbff1c51a",
-      "actual": "0acfb26de7590c5e1036563b38d9676fbff1c51a",
+      "expected": "b324be45fc06c2e928c8eb9246155bdd455de2a0",
+      "actual": "b324be45fc06c2e928c8eb9246155bdd455de2a0",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-23.json",
-      "expected": "a43feb45883f4b38c950d9952f1f96ef06c8bd2c",
-      "actual": "a43feb45883f4b38c950d9952f1f96ef06c8bd2c",
+      "expected": "ecffc6b94bf8ca868aefa47e70df451b251e3f5e",
+      "actual": "ecffc6b94bf8ca868aefa47e70df451b251e3f5e",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-24.json",
-      "expected": "70b5cd029e8cad52dadd0957d6a9ee5068017b07",
-      "actual": "70b5cd029e8cad52dadd0957d6a9ee5068017b07",
+      "expected": "7626a263f01f022e51513f3dd938d44457d70292",
+      "actual": "7626a263f01f022e51513f3dd938d44457d70292",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-25.json",
-      "expected": "42ef207aa3935cdf3890c55a6cb4bcb5e3e09e80",
-      "actual": "42ef207aa3935cdf3890c55a6cb4bcb5e3e09e80",
+      "expected": "70451645a071b379ac5627dce5bb53a5df293035",
+      "actual": "70451645a071b379ac5627dce5bb53a5df293035",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-26.json",
-      "expected": "1f8ea1c3657e707282e79022d08be62368c1901a",
-      "actual": "1f8ea1c3657e707282e79022d08be62368c1901a",
+      "expected": "927cbcb26b834febeba0c050357564f8fe4dbe86",
+      "actual": "927cbcb26b834febeba0c050357564f8fe4dbe86",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-27.json",
-      "expected": "e38e6eba8ab35480534200972b5fb363ff6e162b",
-      "actual": "e38e6eba8ab35480534200972b5fb363ff6e162b",
+      "expected": "6a9317e870509afde531f4f7692764a37f0a5ee4",
+      "actual": "6a9317e870509afde531f4f7692764a37f0a5ee4",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-28.json",
-      "expected": "15959e9e26c51116af291ec33ae7b0959dcd4296",
-      "actual": "15959e9e26c51116af291ec33ae7b0959dcd4296",
+      "expected": "2b9ebf1ea9d3af381dd1047c0bf4507b3cf5d028",
+      "actual": "2b9ebf1ea9d3af381dd1047c0bf4507b3cf5d028",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-29.json",
-      "expected": "149f11b393b52f38efd13d9ce6cdd8ffc0dd6454",
-      "actual": "149f11b393b52f38efd13d9ce6cdd8ffc0dd6454",
+      "expected": "fe99c04dc410ae33c07f3778bae3e481832527ce",
+      "actual": "fe99c04dc410ae33c07f3778bae3e481832527ce",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-3.json",
-      "expected": "30307df8f172a758b6b02856c362070e183054db",
-      "actual": "30307df8f172a758b6b02856c362070e183054db",
+      "expected": "c84b7ada85e02466d2b895f682eb15703cc85ced",
+      "actual": "c84b7ada85e02466d2b895f682eb15703cc85ced",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-30.json",
-      "expected": "39dd0a1438bd89a704d713cac8af3aa0abd300d7",
-      "actual": "39dd0a1438bd89a704d713cac8af3aa0abd300d7",
+      "expected": "cde4ef4a4745997702dc336b5efb7f814e6a5baf",
+      "actual": "cde4ef4a4745997702dc336b5efb7f814e6a5baf",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-31.json",
-      "expected": "fec4640832b4fa55b56f11ff764d0e6ccd94c09c",
-      "actual": "fec4640832b4fa55b56f11ff764d0e6ccd94c09c",
+      "expected": "1f75a2adcf10bdc31b6297b07544e1b83b6273a2",
+      "actual": "1f75a2adcf10bdc31b6297b07544e1b83b6273a2",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-4.json",
-      "expected": "34a6faa72ba6a5d326dced73587c1532885d3358",
-      "actual": "34a6faa72ba6a5d326dced73587c1532885d3358",
+      "expected": "88ad9adf4b906c0e189e2371681b986e0f81aceb",
+      "actual": "88ad9adf4b906c0e189e2371681b986e0f81aceb",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-5.json",
-      "expected": "a3d65aa6be97861943be169e4b6f185a2a6b2ea6",
-      "actual": "a3d65aa6be97861943be169e4b6f185a2a6b2ea6",
+      "expected": "1e80a85ee7f186081573dad619308ff9aa5e402e",
+      "actual": "1e80a85ee7f186081573dad619308ff9aa5e402e",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-6.json",
-      "expected": "b3746e5959509761cd1cf1b30a68e698ae114e0a",
-      "actual": "b3746e5959509761cd1cf1b30a68e698ae114e0a",
+      "expected": "ee7b40991925c62279208d8ba57ae03e8a1702d7",
+      "actual": "ee7b40991925c62279208d8ba57ae03e8a1702d7",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-7.json",
-      "expected": "2906caf885f65945390885da50b1c9ffa1c5bf99",
-      "actual": "2906caf885f65945390885da50b1c9ffa1c5bf99",
+      "expected": "ff12a4e49d760343ef4955b1304fa5cca8f308d7",
+      "actual": "ff12a4e49d760343ef4955b1304fa5cca8f308d7",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-8.json",
-      "expected": "2b63ce1b7e7c4290491ca5d47d23f8be30e9333c",
-      "actual": "2b63ce1b7e7c4290491ca5d47d23f8be30e9333c",
+      "expected": "895b1229fd2453794c6740864422bda816b7fd8a",
+      "actual": "895b1229fd2453794c6740864422bda816b7fd8a",
       "matches": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-9.json",
-      "expected": "47e9f270111b8787b6d5c6b5017e4b7c52a2ccec",
-      "actual": "47e9f270111b8787b6d5c6b5017e4b7c52a2ccec",
+      "expected": "ae7f66f8b3a3c8381151847fa956805829fc7b22",
+      "actual": "ae7f66f8b3a3c8381151847fa956805829fc7b22",
       "matches": true
     },
     {
@@ -246,8 +258,8 @@
     },
     {
       "path": "src/pages/dca-profiles/holdings.json",
-      "expected": "6064866bb1384b52ddb53e6faba0ed77ea3be0ce",
-      "actual": "6064866bb1384b52ddb53e6faba0ed77ea3be0ce",
+      "expected": "bccf219171ca9e019b44cc9629c44146b686bb1d",
+      "actual": "bccf219171ca9e019b44cc9629c44146b686bb1d",
       "matches": true
     }
   ],

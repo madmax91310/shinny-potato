@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-10-31T04:31:25.385Z",
+  "run": 41166439703,
+  "job": 124440231256,
+  "record": "6694df723b35245437ca3fe9c653acea6ccc0c2c",
+  "logCharacters": 546976,
+  "selectedLogLines": [
+    "2026-10-31T04:24:56.2187968Z ##[group]Run node scripts/compose-fallback-snapshot.mjs --published \"d6c1bd7f22d6f391cae145310788da5a2287546e\" --data \"6694df723b35245437ca3fe9c653acea6ccc0c2c\"",
+    "2026-10-31T04:24:56.2189157Z \u001b[36;1mnode scripts/compose-fallback-snapshot.mjs --published \"d6c1bd7f22d6f391cae145310788da5a2287546e\" --data \"6694df723b35245437ca3fe9c653acea6ccc0c2c\"\u001b[0m",
+    "2026-10-31T04:25:10.2998349Z Fallback snapshot: code d6c1bd7f (published) + 144 automation data file(s) from 6694df72.",
+    "2026-10-31T04:25:17.8069147Z DCA usage storage: full validation, observed-snapshot conflicts, refused access/quota, retries and legacy compatibility OK.",
+    "2026-10-31T04:25:24.9492457Z       \"not-published\": 6,",
+    "2026-10-31T04:25:24.9500210Z       \"not-published\": 5,",
+    "2026-10-31T04:25:24.9504694Z       \"not-published\": 5,",
+    "2026-10-31T04:25:31.9991827Z     \"historical-fallback\": 18,",
+    "2026-10-31T04:25:31.9996723Z     \"not-published\": 16,",
+    "2026-10-31T04:25:32.0007547Z     \"not-published\": 16,",
+    "2026-10-31T04:25:45.6845375Z \u001b[36;1mfor(const [path,blob] of Object.entries(required))assert.equal(execFileSync('git',['hash-object',path],{encoding:'utf8'}).trim(),blob,'Required data was held back or changed during generation: '+path)\u001b[0m",
+    "2026-10-31T04:25:45.7719264Z AssertionError [ERR_ASSERTION]: Required data was held back or changed during generation: src/data/monthly-fx.json"
+  ],
+  "publicationVerified": false,
+  "meaning": "Publish job success does not prove deployment. Full ordinary code gate requested; protection preserved.",
+  "unitTestFixtureLines": [
+    "2026-10-31T04:24:55.8180989Z Data needs the full code gate for changed financial consumers: src/pages/test.jsx"
+  ],
+  "interpretationLimit": "The test.jsx diagnostic belongs to the publisher unit tests, not an actual modified financial consumer. Actual composer withheld required monthly-fx blob; complete code publication is requested. No data publication claimed from successful job conclusion.",
+  "newDataIdentifiers": [
+    {
+      "id": "sourceFormat",
+      "oldMentions": [],
+      "newMentions": [
+        "9994d531a9cc942a08bd311fc38d99662a0f03ae:scripts/collect_ranking_sources.py",
+        "9994d531a9cc942a08bd311fc38d99662a0f03ae:scripts/test_h10_xml.py"
+      ]
+    }
+  ],
+  "actualChangedSrcFiles": [
+    "src/data/monthly-fx.json",
+    "src/data/shared-listing-identities.json"
+  ],
+  "reason": "New sourceFormat provenance key is absent from the published tree and declared in the qualified new collector code. Generic unknown-identifier protection keeps the old monthly-FX file until the complete code gate. No sourceFormat removal or relaxed protection."
+}

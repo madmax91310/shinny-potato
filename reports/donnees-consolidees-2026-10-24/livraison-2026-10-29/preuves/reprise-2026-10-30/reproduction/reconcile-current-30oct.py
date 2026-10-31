@@ -19,6 +19,8 @@ for raw in allrows.values():
   original=key[len('history:'):-len(stamp)-1]
   if original not in resolved_history or stamp>resolved_history[original]['resolvedAt']:resolved_history[original]=r
 dws_proposals={x['id']:x for x in json.loads((root/'proofs-29oct/dws-radar-proposals-vs-published-30oct.json').read_text())['rows']}
+dws_confirmation=json.loads((root/'proofs-29oct/dws-stability-actual-resolution-31oct.json').read_text())
+dws_resolved={x['initialId']:x for x in dws_confirmation['rows'] if x.get('resolvedAt')}
 # These are structural investigation buckets, never a proof that all fields share one fault.
 def category(r):
  kind=r['kind'];cause=r.get('cause','');key=r['id']
@@ -26,7 +28,9 @@ def category(r):
   x=dws_proposals[key]
   if x['entity'] in {'IE00BTJRMP35','IE000L6ZMMC4'} and not x['exactProposalEqualsPublishedRegistry']:
    return 'classification partielle ; zéro non démontré', 'PR#1102 : ne pas déduire zéro du pays absent tant que le portefeuille conserve un poids Non classé. Conserver conflit et valeurs datées ; qualification pays exacts manquante. Preuves dws-radar-proposals-vs-published-30oct.json et dws-nine-published-snapshots-reconciliation-30oct.json.'
-  return 'attente de stabilité documentée, pas panne de collecte', 'Photographie DWS réelle29octobre, source22:17 et18agrégats pays/secteurs égaux aux registres publics. Délai4h existant avant réconciliation, au plus tôt31octobre00:35UTC ; ancien écart non expliqué, incident non clôturé par cette analyse.97propositions explicites et9zéros sur sources entièrement classées distingués des3zéros non démontrés. Aucune tolérance changée.'
+  return 'confirmation DWS à rapprocher de l’identité courante, pas panne de collecte déduite', 'Photographie DWS29octobre recoupée ;106des109identités initiales confirmées après stabilité par les passages31octobre00:44. Leur résolution positive est rapprochée individuellement avant cette branche. Une réapparition active reste distincte et prioritaire ; trois catégories absentes avec Non classé demeurent non qualifiées. Les anciennes valeurs ne sont pas expliquées par cette confirmation.'
+ if key=='collection:update-market-monthly.yml:history:etfIE00BDVPNG13Nav':
+  return 'dernier échec source non dépassé ; non tenté dans la reprise conditionnelle', 'WTAI :403 dans le lot41140644021 dont l’enregistrement n’a pas abouti. Le passage41166439703 déclare expectedIds=[] et zéro historique tenté ; il ne prouve aucun retour fournisseur. Le dernier état enregistré du sélecteur reste distinct des échecs conservés dans le moniteur. Données antérieures disponibles ; prochaine collecte pleine programmée2novembre06:15UTC, ou nouvelle voie officielle qualifiée nécessaire si le403 persiste. Ne pas relancer massivement ni compter réparé.'
  if kind=='connection':
   if 'Recoupement externe' in r.get('field',''):return 'condition vivante encore manuelle', 'Confirmation officielle précise CTO/PEA requise ; la corroboration externe datée conserve son échéance, aucun renouvellement automatique ni négation déduite d’un silence.'
   if 'USD Accumulating' in cause:return 'convention de part non qualifiée', 'Table de la part USD distribuante exacte IE00BM8R0J59 requise ; le rendement de la part Accumulating ne peut pas la remplacer.'
@@ -48,6 +52,9 @@ def category(r):
  return 'cause à qualifier',cause
 columns=['presence_publique_30oct','classe_publique_30oct','categorie_30oct','statut_30oct','preuve_30oct','piece_manquante_30oct','reliquat_actif_avant_30oct']
 def fields(key):
+ if key in dws_resolved and key not in active:
+  x=dws_resolved[key]
+  return dict(zip(columns,['False','history','confirmation source indépendante démontrée','résolu dans le producteur après stabilité ; ancienne divergence conservée séparément',json.dumps({'proof':'dws-stability-actual-resolution-31oct.json','conflictKey':x['conflictKey'],'resolvedAt':x['resolvedAt'],'resolution':x['resolution'],'currentControl':x['currentControl'],'publicExportedAt':a['generatedAt']},ensure_ascii=False,separators=(',',':')),'Aucune pièce manquante pour cette confirmation ; ne certifie pas les catégories absentes ou les anciennes valeurs.']))
  r=active.get(key)or allrows.get(key)or resolved_history.get(key)
  if not r:return dict(zip(columns,['absent de cet export','','','absence seule : aucune résolution revendiquée',json.dumps(proof,ensure_ascii=False,separators=(',',':')),'Conserver les preuves antérieures ; absence ne démontre pas la réparation.']))
  cat,missing=category(r);present=key in active
@@ -63,7 +70,7 @@ def reconciled_domain(row):
  identity=row['id_suivi']
  if identity in matrix_by_id:
   m=matrix_by_id[identity];row.setdefault('statut_donnees_avant_30oct',row.get('statut_donnees',''))
-  row.update(statut_donnees=m['etat']+' : '+m['nature_ecart'],statut_30oct=m['etat']+' : '+m['nature_ecart'],categorie_30oct=m['nature_ecart'],preuve_30oct=m.get('preuve_intervention_30oct')or m.get('preuve',''),piece_manquante_30oct=m.get('blocage',''),reliquat_actif=str(m['etat']=='B'),statut_supervision='Contrat donnée×usage ; une qualification B ne constitue pas un incident fournisseur par défaut.')
+  row.update(statut_donnees=m['etat']+' : '+m['nature_ecart'],statut_30oct=m['etat']+' : '+m['nature_ecart'],categorie_30oct=m['nature_ecart'],preuve_30oct=m.get('preuve_intervention_31oct')or m.get('preuve_intervention_30oct')or m.get('preuve',''),piece_manquante_30oct=m.get('blocage',''),reliquat_actif=str(m['etat']=='B'),statut_supervision='Contrat donnée×usage ; une qualification B ne constitue pas un incident fournisseur par défaut.')
  if identity in action_by_id:
   a=action_by_id[identity];row.setdefault('statut_donnees_avant_30oct',row.get('statut_donnees',''))
   row.update(statut_donnees=a['statut'],statut_30oct=a['statut'],preuve_30oct=a.get('preuve_production_30oct',''),reliquat_actif=str(a['statut']in ['partiellement corrigée','bloquée']))

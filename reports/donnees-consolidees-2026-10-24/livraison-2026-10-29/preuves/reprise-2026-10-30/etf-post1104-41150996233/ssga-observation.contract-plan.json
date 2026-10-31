@@ -1,0 +1,420 @@
+{
+  "producerStarted": "producer-results-v1",
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "etf-ssga-observation-IE00B3YLTY66",
+          "instrument": "IE00B3YLTY66",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-ssga-observation-IE00BJ38QD84",
+          "instrument": "IE00BJ38QD84",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-ssga-observation-IE00B3T9LM79",
+          "instrument": "IE00B3T9LM79",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-ssga-observation-IE00B44Z5B48",
+          "instrument": "IE00B44Z5B48",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-ssga-observation-IE00B469F816",
+          "instrument": "IE00B469F816",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-ssga-observation-IE00B5M1WJ87",
+          "instrument": "IE00B5M1WJ87",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-ssga-observation-IE00B6YX5D40",
+          "instrument": "IE00B6YX5D40",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-ssga-observation-IE00B9CQXS71",
+          "instrument": "IE00B9CQXS71",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-ssga-observation-IE00BYTRR863",
+          "instrument": "IE00BYTRR863",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        }
+      ],
+      "mode": "full",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "collect_ssga_etf",
+      "reportStem": "ssga-observation",
+      "declaredAt": "2026-10-31T00:37:33.243422+00:00",
+      "nonce": "0a7c8c03-83b0-45be-87d0-db50b30c408e",
+      "codeSha": "cdb627ba2588e1dec61f0f2dcbe5036fcadb62f7",
+      "durablePlan": true,
+      "runId": "41150996233",
+      "attempt": "1",
+      "sha256": "b47c9065785ede1ef25e525d12a260a343753c235418d049700f8d5667294101"
+    },
+    "scope": {
+      "kind": "collect_ssga_etf",
+      "mode": "full",
+      "expectedIds": [
+        "etf-ssga-observation-IE00B3YLTY66",
+        "etf-ssga-observation-IE00BJ38QD84",
+        "etf-ssga-observation-IE00B3T9LM79",
+        "etf-ssga-observation-IE00B44Z5B48",
+        "etf-ssga-observation-IE00B469F816",
+        "etf-ssga-observation-IE00B5M1WJ87",
+        "etf-ssga-observation-IE00B6YX5D40",
+        "etf-ssga-observation-IE00B9CQXS71",
+        "etf-ssga-observation-IE00BYTRR863"
+      ],
+      "requestedIds": [
+        "etf-ssga-observation-IE00B3YLTY66",
+        "etf-ssga-observation-IE00BJ38QD84",
+        "etf-ssga-observation-IE00B3T9LM79",
+        "etf-ssga-observation-IE00B44Z5B48",
+        "etf-ssga-observation-IE00B469F816",
+        "etf-ssga-observation-IE00B5M1WJ87",
+        "etf-ssga-observation-IE00B6YX5D40",
+        "etf-ssga-observation-IE00B9CQXS71",
+        "etf-ssga-observation-IE00BYTRR863"
+      ],
+      "items": [
+        {
+          "id": "etf-ssga-observation-IE00B3YLTY66",
+          "instrument": "IE00B3YLTY66",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-ssga-observation-IE00BJ38QD84",
+          "instrument": "IE00BJ38QD84",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-ssga-observation-IE00B3T9LM79",
+          "instrument": "IE00B3T9LM79",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-ssga-observation-IE00B44Z5B48",
+          "instrument": "IE00B44Z5B48",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-ssga-observation-IE00B469F816",
+          "instrument": "IE00B469F816",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-ssga-observation-IE00B5M1WJ87",
+          "instrument": "IE00B5M1WJ87",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-ssga-observation-IE00B6YX5D40",
+          "instrument": "IE00B6YX5D40",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-ssga-observation-IE00B9CQXS71",
+          "instrument": "IE00B9CQXS71",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-ssga-observation-IE00BYTRR863",
+          "instrument": "IE00BYTRR863",
+          "fields": [
+            "issuer share observation",
+            "individual collectionErrors",
+            "unavailable/retained fields"
+          ],
+          "selected": true
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-10-31T00:37:33.243422+00:00",
+      "planSha256": "b47c9065785ede1ef25e525d12a260a343753c235418d049700f8d5667294101",
+      "attemptedIds": [],
+      "attemptUnknownIds": [
+        "etf-ssga-observation-IE00B3YLTY66",
+        "etf-ssga-observation-IE00BJ38QD84",
+        "etf-ssga-observation-IE00B3T9LM79",
+        "etf-ssga-observation-IE00B44Z5B48",
+        "etf-ssga-observation-IE00B469F816",
+        "etf-ssga-observation-IE00B5M1WJ87",
+        "etf-ssga-observation-IE00B6YX5D40",
+        "etf-ssga-observation-IE00B9CQXS71",
+        "etf-ssga-observation-IE00BYTRR863"
+      ],
+      "networkRequestedIds": [],
+      "networkAttemptUnknownIds": [
+        "etf-ssga-observation-IE00B3YLTY66",
+        "etf-ssga-observation-IE00BJ38QD84",
+        "etf-ssga-observation-IE00B3T9LM79",
+        "etf-ssga-observation-IE00B44Z5B48",
+        "etf-ssga-observation-IE00B469F816",
+        "etf-ssga-observation-IE00B5M1WJ87",
+        "etf-ssga-observation-IE00B6YX5D40",
+        "etf-ssga-observation-IE00B9CQXS71",
+        "etf-ssga-observation-IE00BYTRR863"
+      ],
+      "runId": "41150996233",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "0a7c8c03-83b0-45be-87d0-db50b30c408e"
+    },
+    "outcomes": [
+      {
+        "id": "etf-ssga-observation-IE00B3YLTY66",
+        "instrument": "IE00B3YLTY66",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : issuer share observation, individual collectionErrors, unavailable/retained fields",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "etf-ssga-observation-IE00BJ38QD84",
+        "instrument": "IE00BJ38QD84",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : issuer share observation, individual collectionErrors, unavailable/retained fields",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "etf-ssga-observation-IE00B3T9LM79",
+        "instrument": "IE00B3T9LM79",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : issuer share observation, individual collectionErrors, unavailable/retained fields",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "etf-ssga-observation-IE00B44Z5B48",
+        "instrument": "IE00B44Z5B48",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : issuer share observation, individual collectionErrors, unavailable/retained fields",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "etf-ssga-observation-IE00B469F816",
+        "instrument": "IE00B469F816",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : issuer share observation, individual collectionErrors, unavailable/retained fields",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "etf-ssga-observation-IE00B5M1WJ87",
+        "instrument": "IE00B5M1WJ87",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : issuer share observation, individual collectionErrors, unavailable/retained fields",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "etf-ssga-observation-IE00B6YX5D40",
+        "instrument": "IE00B6YX5D40",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : issuer share observation, individual collectionErrors, unavailable/retained fields",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "etf-ssga-observation-IE00B9CQXS71",
+        "instrument": "IE00B9CQXS71",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : issuer share observation, individual collectionErrors, unavailable/retained fields",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "etf-ssga-observation-IE00BYTRR863",
+        "instrument": "IE00BYTRR863",
+        "fields": [
+          "issuer share observation",
+          "individual collectionErrors",
+          "unavailable/retained fields"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : issuer share observation, individual collectionErrors, unavailable/retained fields",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

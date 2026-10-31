@@ -1,0 +1,130 @@
+{
+  "run": 41152322685,
+  "artifact": 13023955022,
+  "head": "6938377b1b3b9b98a19dccaed9b8cdd0bd63d9c2",
+  "sourceFailures": [
+    {
+      "id": "etf-additional-observation-JE00B1VS3770",
+      "instrument": "JE00B1VS3770",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "name": "ETF JE00B1VS3770",
+      "field": "aum",
+      "error": "Public issuer directory acquisition failed: HTTP Error 403: Forbidden",
+      "status": "failed",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+      "operationAttempted": true,
+      "sourceAttempted": null
+    },
+    {
+      "id": "etf-additional-observation-GB00BJYDH287",
+      "instrument": "GB00BJYDH287",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "name": "ETF GB00BJYDH287",
+      "field": "aum",
+      "error": "Public issuer directory acquisition failed: HTTP Error 403: Forbidden",
+      "status": "failed",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
+      "operationAttempted": true,
+      "sourceAttempted": null
+    },
+    {
+      "id": "etf-additional-observation-GB00B15KXQ89",
+      "instrument": "GB00B15KXQ89",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "name": "ETF GB00B15KXQ89",
+      "field": "aum",
+      "error": "Public issuer directory acquisition failed: HTTP Error 403: Forbidden",
+      "status": "failed",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+      "operationAttempted": true,
+      "sourceAttempted": null
+    },
+    {
+      "id": "etf-additional-observation-IE0002Y8CX98",
+      "instrument": "IE0002Y8CX98",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "name": "ETF IE0002Y8CX98",
+      "field": "aum",
+      "error": "Public issuer directory acquisition failed: HTTP Error 403: Forbidden",
+      "status": "failed",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+      "operationAttempted": true,
+      "sourceAttempted": null
+    },
+    {
+      "id": "etf-additional-observation-IE000W8WMSL2",
+      "instrument": "IE000W8WMSL2",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "name": "ETF IE000W8WMSL2",
+      "field": "aum",
+      "error": "Public issuer directory acquisition failed: HTTP Error 403: Forbidden",
+      "status": "failed",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+      "operationAttempted": true,
+      "sourceAttempted": null
+    },
+    {
+      "id": "etf-additional-observation-IE00BZ56SW52",
+      "instrument": "IE00BZ56SW52",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "name": "ETF IE00BZ56SW52",
+      "field": "aum",
+      "error": "Public issuer directory acquisition failed: HTTP Error 403: Forbidden",
+      "status": "failed",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+      "operationAttempted": true,
+      "sourceAttempted": null
+    },
+    {
+      "id": "etf-additional-observation-IE00BJGWQN72",
+      "instrument": "IE00BJGWQN72",
+      "fields": [
+        "issuer share observation",
+        "individual collectionErrors",
+        "unavailable/retained fields"
+      ],
+      "selected": true,
+      "name": "ETF IE00BJGWQN72",
+      "field": "aum",
+      "error": "Public issuer directory acquisition failed: HTTP Error 403: Forbidden",
+      "status": "failed",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+      "operationAttempted": true,
+      "sourceAttempted": null
+    }
+  ],
+  "ABTCStatus": "validated",
+  "meaning": "Read-only supplier verification partial because shared issuer directory HTTP403. Actual failures preserved; not a financial audit/test failure. ETF refresh tests and validation succeeded; publication skipped in PR. Other tested changes can proceed independently, no source success invented or workflow threshold modified.",
+  "noRerunIdentical403": true,
+  "checkedAt": "2026-10-31T00:58:10.265387+00:00"
+}

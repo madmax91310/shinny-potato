@@ -129,6 +129,7 @@ jobs:
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_ranking_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'
+      - run: python -m unittest discover -s scripts -p 'test_h10_fx.py'
       - run: python -m unittest discover -s scripts -p 'test_market_transport.py'
       - run: python -m unittest discover -s scripts -p 'test_invesco_characteristics.py'
       - run: node scripts/test-performance-rankings.mjs

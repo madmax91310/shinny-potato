@@ -52,14 +52,14 @@ class ProductCalendars(unittest.TestCase):
         with self.assertRaises(ValueError):collect_abtc_calendar({**share('CH0454664001'),'calendarApiBase':'https://example.com'},NOW)
 
     def test_abtc_calendar_failure_preserves_factsheet(self):
-        s=share('CH0454664001');healthy={'aum':{'amount':123},'characteristics':{'terPct':1.49},'unavailable':['performance: unavailable']}
+        s={**share('CH0454664001'),'preferProductApi':False,'sourceUrl':share('CH0454664001')['factsheetUrl']};healthy={'aum':{'amount':123},'characteristics':{'terPct':1.49},'unavailable':['performance: unavailable']}
         with patch('collect_document_etf.download',return_value=b'%PDF-test'),patch('collect_document_etf.pdf_text',return_value='text'),patch('collect_document_etf.parse',return_value=healthy),patch('collect_product_calendars.collect_abtc_calendar',side_effect=ValueError('unadjusted split')):
             r=document_collect(s,NOW)
         self.assertEqual(r['aum']['amount'],123);self.assertEqual(r['characteristics']['terPct'],1.49)
         self.assertNotIn('performance',r);self.assertEqual(r['collectionErrors'][0]['field'],'performance')
 
     def test_abtc_factsheet_failure_preserves_calendar(self):
-        s=share('CH0454664001')
+        s={**share('CH0454664001'),'preferProductApi':False,'sourceUrl':share('CH0454664001')['factsheetUrl']}
         calendar=abtc_calendar(*self.abtc_payloads(),s,NOW,'official-url')
         with patch('collect_document_etf.download',side_effect=TimeoutError('factsheet timeout')),patch('collect_product_calendars.collect_abtc_calendar',return_value=calendar):
             r=document_collect(s,NOW)

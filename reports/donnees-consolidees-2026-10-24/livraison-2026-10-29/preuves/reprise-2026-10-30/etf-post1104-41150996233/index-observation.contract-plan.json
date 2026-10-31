@@ -1,0 +1,3983 @@
+{
+  "producerStarted": "producer-results-v1",
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "index-acwi-imi-composition",
+          "instrument": "acwi-imi",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-acwi-imi-returns",
+          "instrument": "acwi-imi",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-russell-2000-composition",
+          "instrument": "russell-2000",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-russell-2000-returns",
+          "instrument": "russell-2000",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-momentum-composition",
+          "instrument": "msci-world-momentum",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-momentum-returns",
+          "instrument": "msci-world-momentum",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-minimum-volatility-usd-composition",
+          "instrument": "msci-world-minimum-volatility-usd",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-minimum-volatility-usd-returns",
+          "instrument": "msci-world-minimum-volatility-usd",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-epra-nareit-developed-dividend-plus-composition",
+          "instrument": "ftse-epra-nareit-developed-dividend-plus",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-epra-nareit-developed-dividend-plus-returns",
+          "instrument": "ftse-epra-nareit-developed-dividend-plus",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-global-core-infrastructure-composition",
+          "instrument": "ftse-global-core-infrastructure",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-global-core-infrastructure-returns",
+          "instrument": "ftse-global-core-infrastructure",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-em-standard-composition",
+          "instrument": "em-standard",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-em-standard-returns",
+          "instrument": "em-standard",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-all-world-composition",
+          "instrument": "ftse-all-world",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-all-world-returns",
+          "instrument": "ftse-all-world",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-small-cap-composition",
+          "instrument": "world-small-cap",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-small-cap-returns",
+          "instrument": "world-small-cap",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-ex-usa-composition",
+          "instrument": "world-ex-usa",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-ex-usa-returns",
+          "instrument": "world-ex-usa",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-em-esg-composition",
+          "instrument": "em-esg",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-em-esg-returns",
+          "instrument": "em-esg",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-russell-1000-composition",
+          "instrument": "russell-1000",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-russell-1000-returns",
+          "instrument": "russell-1000",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-asia-screened-composition",
+          "instrument": "msci-em-asia-screened",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-asia-screened-returns",
+          "instrument": "msci-em-asia-screened",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-em-composition",
+          "instrument": "ftse-em",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-em-returns",
+          "instrument": "ftse-em",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-all-world-high-dividend-yield-composition",
+          "instrument": "ftse-all-world-high-dividend-yield",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-all-world-high-dividend-yield-returns",
+          "instrument": "ftse-all-world-high-dividend-yield",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-china-50-composition",
+          "instrument": "ftse-china-50",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-china-50-returns",
+          "instrument": "ftse-china-50",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-acwi-composition",
+          "instrument": "acwi",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-acwi-returns",
+          "instrument": "acwi",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-composition",
+          "instrument": "world",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-returns",
+          "instrument": "world",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-mscieurope-composition",
+          "instrument": "mscieurope",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-mscieurope-returns",
+          "instrument": "mscieurope",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-usa-composition",
+          "instrument": "msci-usa",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-usa-returns",
+          "instrument": "msci-usa",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-india-composition",
+          "instrument": "msci-india",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-india-returns",
+          "instrument": "msci-india",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-ex-china-composition",
+          "instrument": "msci-em-ex-china",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-ex-china-returns",
+          "instrument": "msci-em-ex-china",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-enhanced-value-composition",
+          "instrument": "msci-world-enhanced-value",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-enhanced-value-returns",
+          "instrument": "msci-world-enhanced-value",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-sector-neutral-quality-composition",
+          "instrument": "msci-world-sector-neutral-quality",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-sector-neutral-quality-returns",
+          "instrument": "msci-world-sector-neutral-quality",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-growth-composition",
+          "instrument": "msci-world-growth",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-growth-returns",
+          "instrument": "msci-world-growth",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-high-dividend-yield-advanced-select-composition",
+          "instrument": "msci-world-high-dividend-yield-advanced-select",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-high-dividend-yield-advanced-select-returns",
+          "instrument": "msci-world-high-dividend-yield-advanced-select",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-china-composition",
+          "instrument": "msci-china",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-china-returns",
+          "instrument": "msci-china",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-china-a-composition",
+          "instrument": "msci-china-a",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-china-a-returns",
+          "instrument": "msci-china-a",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-japan-imi-composition",
+          "instrument": "msci-japan-imi",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-japan-imi-returns",
+          "instrument": "msci-japan-imi",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-emea-esg-composition",
+          "instrument": "msci-em-emea-esg",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-emea-esg-returns",
+          "instrument": "msci-em-emea-esg",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-latin-america-composition",
+          "instrument": "msci-em-latin-america",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-latin-america-returns",
+          "instrument": "msci-em-latin-america",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-imi-composition",
+          "instrument": "msci-em-imi",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-imi-returns",
+          "instrument": "msci-em-imi",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-nikkei225-composition",
+          "instrument": "nikkei225",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-nikkei225-returns",
+          "instrument": "nikkei225",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-stoxx600-composition",
+          "instrument": "stoxx600",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-stoxx600-returns",
+          "instrument": "stoxx600",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-eurostoxx50-composition",
+          "instrument": "eurostoxx50",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-eurostoxx50-returns",
+          "instrument": "eurostoxx50",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-sp-global-dividend-aristocrats-composition",
+          "instrument": "sp-global-dividend-aristocrats",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-sp-global-dividend-aristocrats-returns",
+          "instrument": "sp-global-dividend-aristocrats",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-sp-euro-dividend-aristocrats-composition",
+          "instrument": "sp-euro-dividend-aristocrats",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-sp-euro-dividend-aristocrats-returns",
+          "instrument": "sp-euro-dividend-aristocrats",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-topix-composition",
+          "instrument": "topix",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-topix-returns",
+          "instrument": "topix",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-latin-america-selection-composition",
+          "instrument": "msci-em-latin-america-selection",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-latin-america-selection-returns",
+          "instrument": "msci-em-latin-america-selection",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-sp500-pea-composition",
+          "instrument": "sp500-pea",
+          "fields": [
+            "composition"
+          ],
+          "selected": true,
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-sp500-pea-returns",
+          "instrument": "sp500-pea",
+          "fields": [
+            "returns"
+          ],
+          "selected": true,
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-bitcoin-composition",
+          "instrument": "bitcoin",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Non applicable : composition explicitly disabled",
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-bitcoin-returns",
+          "instrument": "bitcoin",
+          "fields": [
+            "returns"
+          ],
+          "selected": true,
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-ethereum-composition",
+          "instrument": "ethereum",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Non applicable : composition explicitly disabled",
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-ethereum-returns",
+          "instrument": "ethereum",
+          "fields": [
+            "returns"
+          ],
+          "selected": true,
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-gold-physical-composition",
+          "instrument": "gold-physical",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Non applicable : composition explicitly disabled"
+        },
+        {
+          "id": "index-gold-physical-returns",
+          "instrument": "gold-physical",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-silver-physical-composition",
+          "instrument": "silver-physical",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Non applicable : composition explicitly disabled"
+        },
+        {
+          "id": "index-silver-physical-returns",
+          "instrument": "silver-physical",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-nasdaq-pea-composition",
+          "instrument": "nasdaq-pea",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-nasdaq-pea-returns",
+          "instrument": "nasdaq-pea",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-sp500-equal-weight-composition",
+          "instrument": "sp500-equal-weight",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-sp500-equal-weight-returns",
+          "instrument": "sp500-equal-weight",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-industrials-composition",
+          "instrument": "msci-world-industrials",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-industrials-returns",
+          "instrument": "msci-world-industrials",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-consumer-staples-composition",
+          "instrument": "msci-world-consumer-staples",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-consumer-staples-returns",
+          "instrument": "msci-world-consumer-staples",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-materials-composition",
+          "instrument": "msci-world-materials",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-materials-returns",
+          "instrument": "msci-world-materials",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-utilities-composition",
+          "instrument": "msci-world-utilities",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-utilities-returns",
+          "instrument": "msci-world-utilities",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-islamic-composition",
+          "instrument": "world-islamic",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-islamic-returns",
+          "instrument": "world-islamic",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-health-care-composition",
+          "instrument": "msci-world-health-care",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-health-care-returns",
+          "instrument": "msci-world-health-care",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-financials-composition",
+          "instrument": "msci-world-financials",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-financials-returns",
+          "instrument": "msci-world-financials",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-energy-composition",
+          "instrument": "msci-world-energy",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-energy-returns",
+          "instrument": "msci-world-energy",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-consumer-discretionary-composition",
+          "instrument": "msci-world-consumer-discretionary",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-consumer-discretionary-returns",
+          "instrument": "msci-world-consumer-discretionary",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-communication-services-composition",
+          "instrument": "msci-world-communication-services",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-communication-services-returns",
+          "instrument": "msci-world-communication-services",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        }
+      ],
+      "mode": "full",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "refresh_index_sources",
+      "reportStem": "index-observation",
+      "declaredAt": "2026-10-31T00:39:13.209982+00:00",
+      "nonce": "cdce2600-a5e4-4c16-95b9-1f85c3baae13",
+      "codeSha": "cdb627ba2588e1dec61f0f2dcbe5036fcadb62f7",
+      "durablePlan": true,
+      "runId": "41150996233",
+      "attempt": "1",
+      "sha256": "c3c35892edf8e9dcdf412d13e6ad095a3a72e5de86db1cf2ad4dc3eeb112cc3d"
+    },
+    "scope": {
+      "kind": "refresh_index_sources",
+      "mode": "full",
+      "expectedIds": [
+        "index-acwi-imi-composition",
+        "index-acwi-imi-returns",
+        "index-russell-2000-composition",
+        "index-russell-2000-returns",
+        "index-msci-world-momentum-composition",
+        "index-msci-world-momentum-returns",
+        "index-msci-world-minimum-volatility-usd-composition",
+        "index-msci-world-minimum-volatility-usd-returns",
+        "index-ftse-epra-nareit-developed-dividend-plus-composition",
+        "index-ftse-epra-nareit-developed-dividend-plus-returns",
+        "index-ftse-global-core-infrastructure-composition",
+        "index-ftse-global-core-infrastructure-returns",
+        "index-em-standard-composition",
+        "index-em-standard-returns",
+        "index-ftse-all-world-composition",
+        "index-ftse-all-world-returns",
+        "index-world-small-cap-composition",
+        "index-world-small-cap-returns",
+        "index-world-ex-usa-composition",
+        "index-world-ex-usa-returns",
+        "index-em-esg-composition",
+        "index-em-esg-returns",
+        "index-russell-1000-composition",
+        "index-russell-1000-returns",
+        "index-msci-em-asia-screened-composition",
+        "index-msci-em-asia-screened-returns",
+        "index-ftse-em-composition",
+        "index-ftse-em-returns",
+        "index-ftse-all-world-high-dividend-yield-composition",
+        "index-ftse-all-world-high-dividend-yield-returns",
+        "index-ftse-china-50-composition",
+        "index-ftse-china-50-returns",
+        "index-acwi-composition",
+        "index-acwi-returns",
+        "index-world-composition",
+        "index-world-returns",
+        "index-mscieurope-composition",
+        "index-mscieurope-returns",
+        "index-msci-usa-composition",
+        "index-msci-usa-returns",
+        "index-msci-india-composition",
+        "index-msci-india-returns",
+        "index-msci-em-ex-china-composition",
+        "index-msci-em-ex-china-returns",
+        "index-msci-world-enhanced-value-composition",
+        "index-msci-world-enhanced-value-returns",
+        "index-msci-world-sector-neutral-quality-composition",
+        "index-msci-world-sector-neutral-quality-returns",
+        "index-msci-world-growth-composition",
+        "index-msci-world-growth-returns",
+        "index-msci-world-high-dividend-yield-advanced-select-composition",
+        "index-msci-world-high-dividend-yield-advanced-select-returns",
+        "index-msci-china-composition",
+        "index-msci-china-returns",
+        "index-msci-china-a-composition",
+        "index-msci-china-a-returns",
+        "index-msci-japan-imi-composition",
+        "index-msci-japan-imi-returns",
+        "index-msci-em-emea-esg-composition",
+        "index-msci-em-emea-esg-returns",
+        "index-msci-em-latin-america-composition",
+        "index-msci-em-latin-america-returns",
+        "index-msci-em-imi-composition",
+        "index-msci-em-imi-returns",
+        "index-nikkei225-composition",
+        "index-nikkei225-returns",
+        "index-stoxx600-composition",
+        "index-stoxx600-returns",
+        "index-eurostoxx50-composition",
+        "index-eurostoxx50-returns",
+        "index-sp-global-dividend-aristocrats-composition",
+        "index-sp-global-dividend-aristocrats-returns",
+        "index-sp-euro-dividend-aristocrats-composition",
+        "index-sp-euro-dividend-aristocrats-returns",
+        "index-topix-composition",
+        "index-topix-returns",
+        "index-msci-em-latin-america-selection-composition",
+        "index-msci-em-latin-america-selection-returns",
+        "index-sp500-pea-composition",
+        "index-sp500-pea-returns",
+        "index-bitcoin-composition",
+        "index-bitcoin-returns",
+        "index-ethereum-composition",
+        "index-ethereum-returns",
+        "index-gold-physical-composition",
+        "index-gold-physical-returns",
+        "index-silver-physical-composition",
+        "index-silver-physical-returns",
+        "index-nasdaq-pea-composition",
+        "index-nasdaq-pea-returns",
+        "index-sp500-equal-weight-composition",
+        "index-sp500-equal-weight-returns",
+        "index-msci-world-industrials-composition",
+        "index-msci-world-industrials-returns",
+        "index-msci-world-consumer-staples-composition",
+        "index-msci-world-consumer-staples-returns",
+        "index-msci-world-materials-composition",
+        "index-msci-world-materials-returns",
+        "index-msci-world-utilities-composition",
+        "index-msci-world-utilities-returns",
+        "index-world-islamic-composition",
+        "index-world-islamic-returns",
+        "index-msci-world-health-care-composition",
+        "index-msci-world-health-care-returns",
+        "index-msci-world-financials-composition",
+        "index-msci-world-financials-returns",
+        "index-msci-world-energy-composition",
+        "index-msci-world-energy-returns",
+        "index-msci-world-consumer-discretionary-composition",
+        "index-msci-world-consumer-discretionary-returns",
+        "index-msci-world-communication-services-composition",
+        "index-msci-world-communication-services-returns"
+      ],
+      "requestedIds": [
+        "index-acwi-imi-composition",
+        "index-acwi-imi-returns",
+        "index-russell-2000-composition",
+        "index-russell-2000-returns",
+        "index-msci-world-momentum-composition",
+        "index-msci-world-momentum-returns",
+        "index-msci-world-minimum-volatility-usd-composition",
+        "index-msci-world-minimum-volatility-usd-returns",
+        "index-ftse-epra-nareit-developed-dividend-plus-composition",
+        "index-ftse-epra-nareit-developed-dividend-plus-returns",
+        "index-ftse-global-core-infrastructure-composition",
+        "index-ftse-global-core-infrastructure-returns",
+        "index-em-standard-composition",
+        "index-em-standard-returns",
+        "index-ftse-all-world-composition",
+        "index-ftse-all-world-returns",
+        "index-world-small-cap-composition",
+        "index-world-small-cap-returns",
+        "index-world-ex-usa-composition",
+        "index-world-ex-usa-returns",
+        "index-em-esg-composition",
+        "index-em-esg-returns",
+        "index-russell-1000-composition",
+        "index-russell-1000-returns",
+        "index-msci-em-asia-screened-composition",
+        "index-msci-em-asia-screened-returns",
+        "index-ftse-em-composition",
+        "index-ftse-em-returns",
+        "index-ftse-all-world-high-dividend-yield-composition",
+        "index-ftse-all-world-high-dividend-yield-returns",
+        "index-ftse-china-50-composition",
+        "index-ftse-china-50-returns",
+        "index-acwi-composition",
+        "index-acwi-returns",
+        "index-world-composition",
+        "index-world-returns",
+        "index-mscieurope-composition",
+        "index-mscieurope-returns",
+        "index-msci-usa-composition",
+        "index-msci-usa-returns",
+        "index-msci-india-composition",
+        "index-msci-india-returns",
+        "index-msci-em-ex-china-composition",
+        "index-msci-em-ex-china-returns",
+        "index-msci-world-enhanced-value-composition",
+        "index-msci-world-enhanced-value-returns",
+        "index-msci-world-sector-neutral-quality-composition",
+        "index-msci-world-sector-neutral-quality-returns",
+        "index-msci-world-growth-composition",
+        "index-msci-world-growth-returns",
+        "index-msci-world-high-dividend-yield-advanced-select-composition",
+        "index-msci-world-high-dividend-yield-advanced-select-returns",
+        "index-msci-china-composition",
+        "index-msci-china-returns",
+        "index-msci-china-a-composition",
+        "index-msci-china-a-returns",
+        "index-msci-japan-imi-composition",
+        "index-msci-japan-imi-returns",
+        "index-msci-em-emea-esg-composition",
+        "index-msci-em-emea-esg-returns",
+        "index-msci-em-latin-america-composition",
+        "index-msci-em-latin-america-returns",
+        "index-msci-em-imi-composition",
+        "index-msci-em-imi-returns",
+        "index-nikkei225-composition",
+        "index-nikkei225-returns",
+        "index-stoxx600-composition",
+        "index-stoxx600-returns",
+        "index-eurostoxx50-composition",
+        "index-eurostoxx50-returns",
+        "index-sp-global-dividend-aristocrats-composition",
+        "index-sp-global-dividend-aristocrats-returns",
+        "index-sp-euro-dividend-aristocrats-composition",
+        "index-sp-euro-dividend-aristocrats-returns",
+        "index-topix-composition",
+        "index-topix-returns",
+        "index-msci-em-latin-america-selection-composition",
+        "index-msci-em-latin-america-selection-returns",
+        "index-sp500-pea-composition",
+        "index-sp500-pea-returns",
+        "index-bitcoin-returns",
+        "index-ethereum-returns",
+        "index-gold-physical-returns",
+        "index-silver-physical-returns",
+        "index-nasdaq-pea-composition",
+        "index-nasdaq-pea-returns",
+        "index-sp500-equal-weight-composition",
+        "index-sp500-equal-weight-returns",
+        "index-msci-world-industrials-composition",
+        "index-msci-world-industrials-returns",
+        "index-msci-world-consumer-staples-composition",
+        "index-msci-world-consumer-staples-returns",
+        "index-msci-world-materials-composition",
+        "index-msci-world-materials-returns",
+        "index-msci-world-utilities-composition",
+        "index-msci-world-utilities-returns",
+        "index-world-islamic-composition",
+        "index-world-islamic-returns",
+        "index-msci-world-health-care-composition",
+        "index-msci-world-health-care-returns",
+        "index-msci-world-financials-composition",
+        "index-msci-world-financials-returns",
+        "index-msci-world-energy-composition",
+        "index-msci-world-energy-returns",
+        "index-msci-world-consumer-discretionary-composition",
+        "index-msci-world-consumer-discretionary-returns",
+        "index-msci-world-communication-services-composition",
+        "index-msci-world-communication-services-returns"
+      ],
+      "items": [
+        {
+          "id": "index-acwi-imi-composition",
+          "instrument": "acwi-imi",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-acwi-imi-returns",
+          "instrument": "acwi-imi",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-russell-2000-composition",
+          "instrument": "russell-2000",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-russell-2000-returns",
+          "instrument": "russell-2000",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-momentum-composition",
+          "instrument": "msci-world-momentum",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-momentum-returns",
+          "instrument": "msci-world-momentum",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-minimum-volatility-usd-composition",
+          "instrument": "msci-world-minimum-volatility-usd",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-minimum-volatility-usd-returns",
+          "instrument": "msci-world-minimum-volatility-usd",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-epra-nareit-developed-dividend-plus-composition",
+          "instrument": "ftse-epra-nareit-developed-dividend-plus",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-epra-nareit-developed-dividend-plus-returns",
+          "instrument": "ftse-epra-nareit-developed-dividend-plus",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-global-core-infrastructure-composition",
+          "instrument": "ftse-global-core-infrastructure",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-global-core-infrastructure-returns",
+          "instrument": "ftse-global-core-infrastructure",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-em-standard-composition",
+          "instrument": "em-standard",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-em-standard-returns",
+          "instrument": "em-standard",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-all-world-composition",
+          "instrument": "ftse-all-world",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-all-world-returns",
+          "instrument": "ftse-all-world",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-small-cap-composition",
+          "instrument": "world-small-cap",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-small-cap-returns",
+          "instrument": "world-small-cap",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-ex-usa-composition",
+          "instrument": "world-ex-usa",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-ex-usa-returns",
+          "instrument": "world-ex-usa",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-em-esg-composition",
+          "instrument": "em-esg",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-em-esg-returns",
+          "instrument": "em-esg",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-russell-1000-composition",
+          "instrument": "russell-1000",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-russell-1000-returns",
+          "instrument": "russell-1000",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-asia-screened-composition",
+          "instrument": "msci-em-asia-screened",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-asia-screened-returns",
+          "instrument": "msci-em-asia-screened",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-em-composition",
+          "instrument": "ftse-em",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-em-returns",
+          "instrument": "ftse-em",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-all-world-high-dividend-yield-composition",
+          "instrument": "ftse-all-world-high-dividend-yield",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-all-world-high-dividend-yield-returns",
+          "instrument": "ftse-all-world-high-dividend-yield",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-china-50-composition",
+          "instrument": "ftse-china-50",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-ftse-china-50-returns",
+          "instrument": "ftse-china-50",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-acwi-composition",
+          "instrument": "acwi",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-acwi-returns",
+          "instrument": "acwi",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-composition",
+          "instrument": "world",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-returns",
+          "instrument": "world",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-mscieurope-composition",
+          "instrument": "mscieurope",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-mscieurope-returns",
+          "instrument": "mscieurope",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-usa-composition",
+          "instrument": "msci-usa",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-usa-returns",
+          "instrument": "msci-usa",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-india-composition",
+          "instrument": "msci-india",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-india-returns",
+          "instrument": "msci-india",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-ex-china-composition",
+          "instrument": "msci-em-ex-china",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-ex-china-returns",
+          "instrument": "msci-em-ex-china",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-enhanced-value-composition",
+          "instrument": "msci-world-enhanced-value",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-enhanced-value-returns",
+          "instrument": "msci-world-enhanced-value",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-sector-neutral-quality-composition",
+          "instrument": "msci-world-sector-neutral-quality",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-sector-neutral-quality-returns",
+          "instrument": "msci-world-sector-neutral-quality",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-growth-composition",
+          "instrument": "msci-world-growth",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-growth-returns",
+          "instrument": "msci-world-growth",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-high-dividend-yield-advanced-select-composition",
+          "instrument": "msci-world-high-dividend-yield-advanced-select",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-high-dividend-yield-advanced-select-returns",
+          "instrument": "msci-world-high-dividend-yield-advanced-select",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-china-composition",
+          "instrument": "msci-china",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-china-returns",
+          "instrument": "msci-china",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-china-a-composition",
+          "instrument": "msci-china-a",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-china-a-returns",
+          "instrument": "msci-china-a",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-japan-imi-composition",
+          "instrument": "msci-japan-imi",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-japan-imi-returns",
+          "instrument": "msci-japan-imi",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-emea-esg-composition",
+          "instrument": "msci-em-emea-esg",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-emea-esg-returns",
+          "instrument": "msci-em-emea-esg",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-latin-america-composition",
+          "instrument": "msci-em-latin-america",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-latin-america-returns",
+          "instrument": "msci-em-latin-america",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-imi-composition",
+          "instrument": "msci-em-imi",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-imi-returns",
+          "instrument": "msci-em-imi",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-nikkei225-composition",
+          "instrument": "nikkei225",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-nikkei225-returns",
+          "instrument": "nikkei225",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-stoxx600-composition",
+          "instrument": "stoxx600",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-stoxx600-returns",
+          "instrument": "stoxx600",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-eurostoxx50-composition",
+          "instrument": "eurostoxx50",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-eurostoxx50-returns",
+          "instrument": "eurostoxx50",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-sp-global-dividend-aristocrats-composition",
+          "instrument": "sp-global-dividend-aristocrats",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-sp-global-dividend-aristocrats-returns",
+          "instrument": "sp-global-dividend-aristocrats",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-sp-euro-dividend-aristocrats-composition",
+          "instrument": "sp-euro-dividend-aristocrats",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-sp-euro-dividend-aristocrats-returns",
+          "instrument": "sp-euro-dividend-aristocrats",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-topix-composition",
+          "instrument": "topix",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-topix-returns",
+          "instrument": "topix",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-latin-america-selection-composition",
+          "instrument": "msci-em-latin-america-selection",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-em-latin-america-selection-returns",
+          "instrument": "msci-em-latin-america-selection",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-sp500-pea-composition",
+          "instrument": "sp500-pea",
+          "fields": [
+            "composition"
+          ],
+          "selected": true,
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-sp500-pea-returns",
+          "instrument": "sp500-pea",
+          "fields": [
+            "returns"
+          ],
+          "selected": true,
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-bitcoin-composition",
+          "instrument": "bitcoin",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Non applicable : composition explicitly disabled",
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-bitcoin-returns",
+          "instrument": "bitcoin",
+          "fields": [
+            "returns"
+          ],
+          "selected": true,
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-ethereum-composition",
+          "instrument": "ethereum",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Non applicable : composition explicitly disabled",
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-ethereum-returns",
+          "instrument": "ethereum",
+          "fields": [
+            "returns"
+          ],
+          "selected": true,
+          "phase": "validation",
+          "sourceAttempted": false
+        },
+        {
+          "id": "index-gold-physical-composition",
+          "instrument": "gold-physical",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Non applicable : composition explicitly disabled"
+        },
+        {
+          "id": "index-gold-physical-returns",
+          "instrument": "gold-physical",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-silver-physical-composition",
+          "instrument": "silver-physical",
+          "fields": [
+            "composition"
+          ],
+          "selected": false,
+          "reason": "Non applicable : composition explicitly disabled"
+        },
+        {
+          "id": "index-silver-physical-returns",
+          "instrument": "silver-physical",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-nasdaq-pea-composition",
+          "instrument": "nasdaq-pea",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-nasdaq-pea-returns",
+          "instrument": "nasdaq-pea",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-sp500-equal-weight-composition",
+          "instrument": "sp500-equal-weight",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-sp500-equal-weight-returns",
+          "instrument": "sp500-equal-weight",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-industrials-composition",
+          "instrument": "msci-world-industrials",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-industrials-returns",
+          "instrument": "msci-world-industrials",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-consumer-staples-composition",
+          "instrument": "msci-world-consumer-staples",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-consumer-staples-returns",
+          "instrument": "msci-world-consumer-staples",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-materials-composition",
+          "instrument": "msci-world-materials",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-materials-returns",
+          "instrument": "msci-world-materials",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-utilities-composition",
+          "instrument": "msci-world-utilities",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-utilities-returns",
+          "instrument": "msci-world-utilities",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-islamic-composition",
+          "instrument": "world-islamic",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-world-islamic-returns",
+          "instrument": "world-islamic",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-health-care-composition",
+          "instrument": "msci-world-health-care",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-health-care-returns",
+          "instrument": "msci-world-health-care",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-financials-composition",
+          "instrument": "msci-world-financials",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-financials-returns",
+          "instrument": "msci-world-financials",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-energy-composition",
+          "instrument": "msci-world-energy",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-energy-returns",
+          "instrument": "msci-world-energy",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-consumer-discretionary-composition",
+          "instrument": "msci-world-consumer-discretionary",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-consumer-discretionary-returns",
+          "instrument": "msci-world-consumer-discretionary",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-communication-services-composition",
+          "instrument": "msci-world-communication-services",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-world-communication-services-returns",
+          "instrument": "msci-world-communication-services",
+          "fields": [
+            "returns"
+          ],
+          "selected": true
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-10-31T00:39:13.209982+00:00",
+      "planSha256": "c3c35892edf8e9dcdf412d13e6ad095a3a72e5de86db1cf2ad4dc3eeb112cc3d",
+      "attemptedIds": [],
+      "attemptUnknownIds": [
+        "index-acwi-imi-composition",
+        "index-acwi-imi-returns",
+        "index-russell-2000-composition",
+        "index-russell-2000-returns",
+        "index-msci-world-momentum-composition",
+        "index-msci-world-momentum-returns",
+        "index-msci-world-minimum-volatility-usd-composition",
+        "index-msci-world-minimum-volatility-usd-returns",
+        "index-ftse-epra-nareit-developed-dividend-plus-composition",
+        "index-ftse-epra-nareit-developed-dividend-plus-returns",
+        "index-ftse-global-core-infrastructure-composition",
+        "index-ftse-global-core-infrastructure-returns",
+        "index-em-standard-composition",
+        "index-em-standard-returns",
+        "index-ftse-all-world-composition",
+        "index-ftse-all-world-returns",
+        "index-world-small-cap-composition",
+        "index-world-small-cap-returns",
+        "index-world-ex-usa-composition",
+        "index-world-ex-usa-returns",
+        "index-em-esg-composition",
+        "index-em-esg-returns",
+        "index-russell-1000-composition",
+        "index-russell-1000-returns",
+        "index-msci-em-asia-screened-composition",
+        "index-msci-em-asia-screened-returns",
+        "index-ftse-em-composition",
+        "index-ftse-em-returns",
+        "index-ftse-all-world-high-dividend-yield-composition",
+        "index-ftse-all-world-high-dividend-yield-returns",
+        "index-ftse-china-50-composition",
+        "index-ftse-china-50-returns",
+        "index-acwi-composition",
+        "index-acwi-returns",
+        "index-world-composition",
+        "index-world-returns",
+        "index-mscieurope-composition",
+        "index-mscieurope-returns",
+        "index-msci-usa-composition",
+        "index-msci-usa-returns",
+        "index-msci-india-composition",
+        "index-msci-india-returns",
+        "index-msci-em-ex-china-composition",
+        "index-msci-em-ex-china-returns",
+        "index-msci-world-enhanced-value-composition",
+        "index-msci-world-enhanced-value-returns",
+        "index-msci-world-sector-neutral-quality-composition",
+        "index-msci-world-sector-neutral-quality-returns",
+        "index-msci-world-growth-composition",
+        "index-msci-world-growth-returns",
+        "index-msci-world-high-dividend-yield-advanced-select-composition",
+        "index-msci-world-high-dividend-yield-advanced-select-returns",
+        "index-msci-china-composition",
+        "index-msci-china-returns",
+        "index-msci-china-a-composition",
+        "index-msci-china-a-returns",
+        "index-msci-japan-imi-composition",
+        "index-msci-japan-imi-returns",
+        "index-msci-em-emea-esg-composition",
+        "index-msci-em-emea-esg-returns",
+        "index-msci-em-latin-america-composition",
+        "index-msci-em-latin-america-returns",
+        "index-msci-em-imi-composition",
+        "index-msci-em-imi-returns",
+        "index-nikkei225-composition",
+        "index-nikkei225-returns",
+        "index-stoxx600-composition",
+        "index-stoxx600-returns",
+        "index-eurostoxx50-composition",
+        "index-eurostoxx50-returns",
+        "index-sp-global-dividend-aristocrats-composition",
+        "index-sp-global-dividend-aristocrats-returns",
+        "index-sp-euro-dividend-aristocrats-composition",
+        "index-sp-euro-dividend-aristocrats-returns",
+        "index-topix-composition",
+        "index-topix-returns",
+        "index-msci-em-latin-america-selection-composition",
+        "index-msci-em-latin-america-selection-returns",
+        "index-sp500-pea-composition",
+        "index-sp500-pea-returns",
+        "index-bitcoin-returns",
+        "index-ethereum-returns",
+        "index-gold-physical-returns",
+        "index-silver-physical-returns",
+        "index-nasdaq-pea-composition",
+        "index-nasdaq-pea-returns",
+        "index-sp500-equal-weight-composition",
+        "index-sp500-equal-weight-returns",
+        "index-msci-world-industrials-composition",
+        "index-msci-world-industrials-returns",
+        "index-msci-world-consumer-staples-composition",
+        "index-msci-world-consumer-staples-returns",
+        "index-msci-world-materials-composition",
+        "index-msci-world-materials-returns",
+        "index-msci-world-utilities-composition",
+        "index-msci-world-utilities-returns",
+        "index-world-islamic-composition",
+        "index-world-islamic-returns",
+        "index-msci-world-health-care-composition",
+        "index-msci-world-health-care-returns",
+        "index-msci-world-financials-composition",
+        "index-msci-world-financials-returns",
+        "index-msci-world-energy-composition",
+        "index-msci-world-energy-returns",
+        "index-msci-world-consumer-discretionary-composition",
+        "index-msci-world-consumer-discretionary-returns",
+        "index-msci-world-communication-services-composition",
+        "index-msci-world-communication-services-returns"
+      ],
+      "networkRequestedIds": [],
+      "networkAttemptUnknownIds": [
+        "index-acwi-imi-composition",
+        "index-acwi-imi-returns",
+        "index-russell-2000-composition",
+        "index-russell-2000-returns",
+        "index-msci-world-momentum-composition",
+        "index-msci-world-momentum-returns",
+        "index-msci-world-minimum-volatility-usd-composition",
+        "index-msci-world-minimum-volatility-usd-returns",
+        "index-ftse-epra-nareit-developed-dividend-plus-composition",
+        "index-ftse-epra-nareit-developed-dividend-plus-returns",
+        "index-ftse-global-core-infrastructure-composition",
+        "index-ftse-global-core-infrastructure-returns",
+        "index-em-standard-composition",
+        "index-em-standard-returns",
+        "index-ftse-all-world-composition",
+        "index-ftse-all-world-returns",
+        "index-world-small-cap-composition",
+        "index-world-small-cap-returns",
+        "index-world-ex-usa-composition",
+        "index-world-ex-usa-returns",
+        "index-em-esg-composition",
+        "index-em-esg-returns",
+        "index-russell-1000-composition",
+        "index-russell-1000-returns",
+        "index-msci-em-asia-screened-composition",
+        "index-msci-em-asia-screened-returns",
+        "index-ftse-em-composition",
+        "index-ftse-em-returns",
+        "index-ftse-all-world-high-dividend-yield-composition",
+        "index-ftse-all-world-high-dividend-yield-returns",
+        "index-ftse-china-50-composition",
+        "index-ftse-china-50-returns",
+        "index-acwi-composition",
+        "index-acwi-returns",
+        "index-world-composition",
+        "index-world-returns",
+        "index-mscieurope-composition",
+        "index-mscieurope-returns",
+        "index-msci-usa-composition",
+        "index-msci-usa-returns",
+        "index-msci-india-composition",
+        "index-msci-india-returns",
+        "index-msci-em-ex-china-composition",
+        "index-msci-em-ex-china-returns",
+        "index-msci-world-enhanced-value-composition",
+        "index-msci-world-enhanced-value-returns",
+        "index-msci-world-sector-neutral-quality-composition",
+        "index-msci-world-sector-neutral-quality-returns",
+        "index-msci-world-growth-composition",
+        "index-msci-world-growth-returns",
+        "index-msci-world-high-dividend-yield-advanced-select-composition",
+        "index-msci-world-high-dividend-yield-advanced-select-returns",
+        "index-msci-china-composition",
+        "index-msci-china-returns",
+        "index-msci-china-a-composition",
+        "index-msci-china-a-returns",
+        "index-msci-japan-imi-composition",
+        "index-msci-japan-imi-returns",
+        "index-msci-em-emea-esg-composition",
+        "index-msci-em-emea-esg-returns",
+        "index-msci-em-latin-america-composition",
+        "index-msci-em-latin-america-returns",
+        "index-msci-em-imi-composition",
+        "index-msci-em-imi-returns",
+        "index-nikkei225-composition",
+        "index-nikkei225-returns",
+        "index-stoxx600-composition",
+        "index-stoxx600-returns",
+        "index-eurostoxx50-composition",
+        "index-eurostoxx50-returns",
+        "index-sp-global-dividend-aristocrats-composition",
+        "index-sp-global-dividend-aristocrats-returns",
+        "index-sp-euro-dividend-aristocrats-composition",
+        "index-sp-euro-dividend-aristocrats-returns",
+        "index-topix-composition",
+        "index-topix-returns",
+        "index-msci-em-latin-america-selection-composition",
+        "index-msci-em-latin-america-selection-returns",
+        "index-sp500-pea-composition",
+        "index-sp500-pea-returns",
+        "index-bitcoin-returns",
+        "index-ethereum-returns",
+        "index-gold-physical-returns",
+        "index-silver-physical-returns",
+        "index-nasdaq-pea-composition",
+        "index-nasdaq-pea-returns",
+        "index-sp500-equal-weight-composition",
+        "index-sp500-equal-weight-returns",
+        "index-msci-world-industrials-composition",
+        "index-msci-world-industrials-returns",
+        "index-msci-world-consumer-staples-composition",
+        "index-msci-world-consumer-staples-returns",
+        "index-msci-world-materials-composition",
+        "index-msci-world-materials-returns",
+        "index-msci-world-utilities-composition",
+        "index-msci-world-utilities-returns",
+        "index-world-islamic-composition",
+        "index-world-islamic-returns",
+        "index-msci-world-health-care-composition",
+        "index-msci-world-health-care-returns",
+        "index-msci-world-financials-composition",
+        "index-msci-world-financials-returns",
+        "index-msci-world-energy-composition",
+        "index-msci-world-energy-returns",
+        "index-msci-world-consumer-discretionary-composition",
+        "index-msci-world-consumer-discretionary-returns",
+        "index-msci-world-communication-services-composition",
+        "index-msci-world-communication-services-returns"
+      ],
+      "runId": "41150996233",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "cdce2600-a5e4-4c16-95b9-1f85c3baae13"
+    },
+    "outcomes": [
+      {
+        "id": "index-acwi-imi-composition",
+        "instrument": "acwi-imi",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-acwi-imi-returns",
+        "instrument": "acwi-imi",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-russell-2000-composition",
+        "instrument": "russell-2000",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-russell-2000-returns",
+        "instrument": "russell-2000",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-momentum-composition",
+        "instrument": "msci-world-momentum",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-momentum-returns",
+        "instrument": "msci-world-momentum",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-minimum-volatility-usd-composition",
+        "instrument": "msci-world-minimum-volatility-usd",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-minimum-volatility-usd-returns",
+        "instrument": "msci-world-minimum-volatility-usd",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-ftse-epra-nareit-developed-dividend-plus-composition",
+        "instrument": "ftse-epra-nareit-developed-dividend-plus",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-ftse-epra-nareit-developed-dividend-plus-returns",
+        "instrument": "ftse-epra-nareit-developed-dividend-plus",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-ftse-global-core-infrastructure-composition",
+        "instrument": "ftse-global-core-infrastructure",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-ftse-global-core-infrastructure-returns",
+        "instrument": "ftse-global-core-infrastructure",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-em-standard-composition",
+        "instrument": "em-standard",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-em-standard-returns",
+        "instrument": "em-standard",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-ftse-all-world-composition",
+        "instrument": "ftse-all-world",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-ftse-all-world-returns",
+        "instrument": "ftse-all-world",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-world-small-cap-composition",
+        "instrument": "world-small-cap",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-world-small-cap-returns",
+        "instrument": "world-small-cap",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-world-ex-usa-composition",
+        "instrument": "world-ex-usa",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-world-ex-usa-returns",
+        "instrument": "world-ex-usa",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-em-esg-composition",
+        "instrument": "em-esg",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-em-esg-returns",
+        "instrument": "em-esg",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-russell-1000-composition",
+        "instrument": "russell-1000",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-russell-1000-returns",
+        "instrument": "russell-1000",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-em-asia-screened-composition",
+        "instrument": "msci-em-asia-screened",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-em-asia-screened-returns",
+        "instrument": "msci-em-asia-screened",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-ftse-em-composition",
+        "instrument": "ftse-em",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-ftse-em-returns",
+        "instrument": "ftse-em",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-ftse-all-world-high-dividend-yield-composition",
+        "instrument": "ftse-all-world-high-dividend-yield",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-ftse-all-world-high-dividend-yield-returns",
+        "instrument": "ftse-all-world-high-dividend-yield",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-ftse-china-50-composition",
+        "instrument": "ftse-china-50",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-ftse-china-50-returns",
+        "instrument": "ftse-china-50",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-acwi-composition",
+        "instrument": "acwi",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-acwi-returns",
+        "instrument": "acwi",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-world-composition",
+        "instrument": "world",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-world-returns",
+        "instrument": "world",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-mscieurope-composition",
+        "instrument": "mscieurope",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-mscieurope-returns",
+        "instrument": "mscieurope",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-usa-composition",
+        "instrument": "msci-usa",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-usa-returns",
+        "instrument": "msci-usa",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-india-composition",
+        "instrument": "msci-india",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-india-returns",
+        "instrument": "msci-india",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-em-ex-china-composition",
+        "instrument": "msci-em-ex-china",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-em-ex-china-returns",
+        "instrument": "msci-em-ex-china",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-enhanced-value-composition",
+        "instrument": "msci-world-enhanced-value",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-enhanced-value-returns",
+        "instrument": "msci-world-enhanced-value",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-sector-neutral-quality-composition",
+        "instrument": "msci-world-sector-neutral-quality",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-sector-neutral-quality-returns",
+        "instrument": "msci-world-sector-neutral-quality",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-growth-composition",
+        "instrument": "msci-world-growth",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-growth-returns",
+        "instrument": "msci-world-growth",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-high-dividend-yield-advanced-select-composition",
+        "instrument": "msci-world-high-dividend-yield-advanced-select",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-high-dividend-yield-advanced-select-returns",
+        "instrument": "msci-world-high-dividend-yield-advanced-select",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-china-composition",
+        "instrument": "msci-china",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-china-returns",
+        "instrument": "msci-china",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-china-a-composition",
+        "instrument": "msci-china-a",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-china-a-returns",
+        "instrument": "msci-china-a",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-japan-imi-composition",
+        "instrument": "msci-japan-imi",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-japan-imi-returns",
+        "instrument": "msci-japan-imi",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-em-emea-esg-composition",
+        "instrument": "msci-em-emea-esg",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-em-emea-esg-returns",
+        "instrument": "msci-em-emea-esg",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-em-latin-america-composition",
+        "instrument": "msci-em-latin-america",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-em-latin-america-returns",
+        "instrument": "msci-em-latin-america",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-em-imi-composition",
+        "instrument": "msci-em-imi",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-em-imi-returns",
+        "instrument": "msci-em-imi",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-nikkei225-composition",
+        "instrument": "nikkei225",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-nikkei225-returns",
+        "instrument": "nikkei225",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-stoxx600-composition",
+        "instrument": "stoxx600",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-stoxx600-returns",
+        "instrument": "stoxx600",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-eurostoxx50-composition",
+        "instrument": "eurostoxx50",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-eurostoxx50-returns",
+        "instrument": "eurostoxx50",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-sp-global-dividend-aristocrats-composition",
+        "instrument": "sp-global-dividend-aristocrats",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-sp-global-dividend-aristocrats-returns",
+        "instrument": "sp-global-dividend-aristocrats",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-sp-euro-dividend-aristocrats-composition",
+        "instrument": "sp-euro-dividend-aristocrats",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-sp-euro-dividend-aristocrats-returns",
+        "instrument": "sp-euro-dividend-aristocrats",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-topix-composition",
+        "instrument": "topix",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-topix-returns",
+        "instrument": "topix",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-em-latin-america-selection-composition",
+        "instrument": "msci-em-latin-america-selection",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-em-latin-america-selection-returns",
+        "instrument": "msci-em-latin-america-selection",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-sp500-pea-composition",
+        "instrument": "sp500-pea",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "phase": "reporting",
+        "sourceAttempted": null,
+        "status": "failed",
+        "operationAttempted": null,
+        "kind": "omission",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-sp500-pea-returns",
+        "instrument": "sp500-pea",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "phase": "reporting",
+        "sourceAttempted": null,
+        "status": "failed",
+        "operationAttempted": null,
+        "kind": "omission",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-bitcoin-composition",
+        "instrument": "bitcoin",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Non applicable : composition explicitly disabled",
+        "phase": "validation",
+        "sourceAttempted": false,
+        "operationAttempted": false,
+        "status": "not-applicable",
+        "validatedAt": null
+      },
+      {
+        "id": "index-bitcoin-returns",
+        "instrument": "bitcoin",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "phase": "reporting",
+        "sourceAttempted": null,
+        "status": "failed",
+        "operationAttempted": null,
+        "kind": "omission",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-ethereum-composition",
+        "instrument": "ethereum",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Non applicable : composition explicitly disabled",
+        "phase": "validation",
+        "sourceAttempted": false,
+        "operationAttempted": false,
+        "status": "not-applicable",
+        "validatedAt": null
+      },
+      {
+        "id": "index-ethereum-returns",
+        "instrument": "ethereum",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "phase": "reporting",
+        "sourceAttempted": null,
+        "status": "failed",
+        "operationAttempted": null,
+        "kind": "omission",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-gold-physical-composition",
+        "instrument": "gold-physical",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Non applicable : composition explicitly disabled",
+        "operationAttempted": false,
+        "status": "not-applicable",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-gold-physical-returns",
+        "instrument": "gold-physical",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-silver-physical-composition",
+        "instrument": "silver-physical",
+        "fields": [
+          "composition"
+        ],
+        "selected": false,
+        "reason": "Non applicable : composition explicitly disabled",
+        "operationAttempted": false,
+        "status": "not-applicable",
+        "sourceAttempted": false
+      },
+      {
+        "id": "index-silver-physical-returns",
+        "instrument": "silver-physical",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-nasdaq-pea-composition",
+        "instrument": "nasdaq-pea",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-nasdaq-pea-returns",
+        "instrument": "nasdaq-pea",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-sp500-equal-weight-composition",
+        "instrument": "sp500-equal-weight",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-sp500-equal-weight-returns",
+        "instrument": "sp500-equal-weight",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-industrials-composition",
+        "instrument": "msci-world-industrials",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-industrials-returns",
+        "instrument": "msci-world-industrials",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-consumer-staples-composition",
+        "instrument": "msci-world-consumer-staples",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-consumer-staples-returns",
+        "instrument": "msci-world-consumer-staples",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-materials-composition",
+        "instrument": "msci-world-materials",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-materials-returns",
+        "instrument": "msci-world-materials",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-utilities-composition",
+        "instrument": "msci-world-utilities",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-utilities-returns",
+        "instrument": "msci-world-utilities",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-world-islamic-composition",
+        "instrument": "world-islamic",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-world-islamic-returns",
+        "instrument": "world-islamic",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-health-care-composition",
+        "instrument": "msci-world-health-care",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-health-care-returns",
+        "instrument": "msci-world-health-care",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-financials-composition",
+        "instrument": "msci-world-financials",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-financials-returns",
+        "instrument": "msci-world-financials",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-energy-composition",
+        "instrument": "msci-world-energy",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-energy-returns",
+        "instrument": "msci-world-energy",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-consumer-discretionary-composition",
+        "instrument": "msci-world-consumer-discretionary",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-consumer-discretionary-returns",
+        "instrument": "msci-world-consumer-discretionary",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-communication-services-composition",
+        "instrument": "msci-world-communication-services",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : composition",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "index-msci-world-communication-services-returns",
+        "instrument": "msci-world-communication-services",
+        "fields": [
+          "returns"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : returns",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

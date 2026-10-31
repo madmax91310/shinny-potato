@@ -159,6 +159,18 @@ def issuer_json(body, max_bytes=6_000_000):
     return json.loads(body)
 
 
+def abtc_product_identity(product, share, now):
+    if product.get('success') is not True:
+        reject('Unsuccessful 21Shares product response')
+    info = product['data']
+    if (share['isin'] != 'CH0454664001' or info['details']['isin'] != share['isin'] or
+            info['ticker'] != 'ABTC' or share['currency'] != 'USD' or info['currency']['short_name'] != 'USD'):
+        reject('Wrong ABTC calendar share/currency')
+    stamp = document_date(info['valuation_date'], now, max_age=10)
+    document_date(product['lastUpdated'].split('T')[0], now, max_age=10)
+    return info, stamp
+
+
 def abtc_calendar(product, history, metrics, share, now, url):
     """Adjusted issuer NAV, independently checked against its monthly returns.
 
@@ -167,11 +179,8 @@ def abtc_calendar(product, history, metrics, share, now, url):
     """
     if not all(p.get('success') is True for p in (product, history, metrics)):
         reject('Unsuccessful 21Shares API response')
-    info=product['data'];rows=history['data'];perf=metrics['data']
-    if (share['isin']!='CH0454664001' or info['details']['isin']!=share['isin'] or
-            info['ticker']!='ABTC' or share['currency']!='USD' or info['currency']['short_name']!='USD'):
-        reject('Wrong ABTC calendar share/currency')
-    stamp=document_date(info['valuation_date'],now,max_age=10)
+    info,stamp=abtc_product_identity(product,share,now)
+    rows=history['data'];perf=metrics['data']
     for payload in (product,history,metrics):
         document_date(payload['lastUpdated'].split('T')[0],now,max_age=10)
     launch=dt.date.fromisoformat(info['inception_date'])
@@ -230,7 +239,7 @@ def abtc_calendar(product, history, metrics, share, now, url):
         'calendar-year exact ETP USD NAV return, net of fees, issuer-adjusted for share splits; monthly issuer returns cross-checked; derived from rounded issuer NAV levels')
 
 
-def collect_abtc_calendar(share, now):
+def collect_abtc_calendar(share, now, product=None):
     base=share['calendarApiBase']
     if base not in ('https://api.primary.21shares.com','https://api.secondary.21shares.com'):
         reject('Unexpected 21Shares calendar API source')
@@ -238,7 +247,49 @@ def collect_abtc_calendar(share, now):
     urls=[base+'/api/'+endpoint+'/ABTC' for endpoint in
           ('product_details','product_valuation_history','product_performance_metrics')]
     with ThreadPoolExecutor(max_workers=3) as pool:
-        payloads=list(pool.map(lambda url:issuer_json(download(url,max_bytes=6_000_000)),urls))
+        payloads=([product] if product is not None else []) + list(pool.map(
+            lambda url:issuer_json(download(url,max_bytes=6_000_000)),urls[1:] if product is not None else urls))
     result=abtc_calendar(*payloads,share,now,urls[1])
     result['validationSources']=urls[::2]
+    return result
+
+
+def collect_abtc_product_fields(share, now):
+    """Live fields mapped explicitly by the issuer's public product-page client.
+
+    AUM is supplied total_nav, never reconstructed from units × rounded NAV.
+    A fee check has no invented effective date borrowed from valuation_date.
+    """
+    base=share['calendarApiBase']
+    if base not in ('https://api.primary.21shares.com','https://api.secondary.21shares.com'):
+        reject('Unexpected 21Shares product API source')
+    url=base+'/api/product_details/ABTC'
+    body=download(url,max_bytes=6_000_000)
+    product=issuer_json(body)
+    info,stamp=abtc_product_identity(product,share,now)
+    digest=proof(body)
+    result={**share,'productId':share['isin'],'sourceUrl':url,'unavailable':[],
+            'collectionErrors':[],'sourceAttempts':[{'url':url,'status':'validated','sha256':digest}]}
+    try:
+        amount=info['total_nav']
+        if isinstance(amount,bool) or not isinstance(amount,(int,float)) or not math.isfinite(amount) or amount<=0:
+            reject('Invalid ABTC supplied product AUM')
+        result['aum']={'amount':amount,'currency':'USD','scope':'share-class','asOf':stamp,
+            'sourceUrl':url,'sha256':digest,'method':'Issuer product_details.total_nav; native USD product assets, not NAV-times-units'}
+    except (KeyError,TypeError,ValueError) as error:
+        result['collectionErrors'].append({'field':'aum','url':url,'reason':str(error)})
+    try:
+        fee=info['details']['annual_fee']
+        if isinstance(fee,bool) or not isinstance(fee,(int,float)) or not math.isfinite(fee) or not 0<=fee<=.05:
+            reject('Invalid ABTC annual fee fraction')
+        from decimal import Decimal
+        result['characteristics']={'terPct':float(Decimal(str(fee))*100),'sourceUrl':url,'sha256':digest}
+    except (KeyError,TypeError,ValueError) as error:
+        result['exposureOnly']=True
+        result['collectionErrors'].append({'field':'characteristics','url':url,'reason':str(error)})
+    try:
+        # Reuse this execution's actual product response, not a persisted cache.
+        result['performance']=collect_abtc_calendar(share,now,product=product)
+    except (OSError,ValueError,KeyError,TypeError) as error:
+        result['collectionErrors'].append({'field':'performance','url':getattr(error,'url',base),'reason':str(error)})
     return result

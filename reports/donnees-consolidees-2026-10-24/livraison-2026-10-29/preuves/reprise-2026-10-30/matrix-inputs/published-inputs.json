@@ -1,10 +1,12 @@
 {
-  "checkedAt": "2026-10-30T23:15:37.660823+00:00",
+  "checkedAt": "2026-10-31T04:56:13.811770+00:00",
   "version": {
-    "sha": "08567afe22343d45aadec70dc6464208b17ad5e8",
-    "builtAt": "2026-10-30T22:46:39Z"
+    "sha": "9994d531a9cc942a08bd311fc38d99662a0f03ae",
+    "dataSha": "6694df723b35245437ca3fe9c653acea6ccc0c2c",
+    "lane": "validated-code-data",
+    "builtAt": "2026-10-31T04:35:40.816Z"
   },
-  "inventoryBlob": "cee25f4aa6a444f81071253426d2afedc7d90479",
+  "inventoryBlob": "524a551a3819dd2d1a9cbe60381f7ebb03f365d3",
   "inputFiles": [
     {
       "path": "public/data/investors/ackman.json",
@@ -388,12 +390,12 @@
     },
     {
       "path": "scripts/source-snapshots/monthly-automated.json",
-      "sha": "bce4f285244bba662c1e0e228d3dced47c6c8bcc",
+      "sha": "2b66f0b8c7c0f0949c2902fa431c374d21176092",
       "verified": true
     },
     {
       "path": "scripts/source-snapshots/monthly-collection-status.json",
-      "sha": "296039bd8d770844de92458ef853ec6d9c9ace85",
+      "sha": "4d7dea9f525fbaf4d305c2883592565adc1096cf",
       "verified": true
     },
     {
@@ -433,7 +435,7 @@
     },
     {
       "path": "scripts/source-snapshots/ranking-collection-status.json",
-      "sha": "f6f7522e6dbf05a63515b528afb01019883aa081",
+      "sha": "d3c9fdb244d6ce389d64d9167db0ae827146052f",
       "verified": true
     },
     {
@@ -468,7 +470,7 @@
     },
     {
       "path": "src/data/anniversary-levels.json",
-      "sha": "2797c002c86fbe4ab1c1384fe1d943cc43e80f00",
+      "sha": "40cca032903a511d3a7fc48e93cab19e58fae9e6",
       "verified": true
     },
     {
@@ -493,17 +495,17 @@
     },
     {
       "path": "src/data/automated-etf-monthly.json",
-      "sha": "5f9c46fe8579c5f4600871e8519eed6a439d5872",
+      "sha": "ebc8e838ea46e6cb89ecae26fce04d6ae124a5ae",
       "verified": true
     },
     {
       "path": "src/data/automated-etf.json",
-      "sha": "f99cd7304775248f40bc46037b82ee04de370ef3",
+      "sha": "9ec83516bc09554acb94e251c923d92cfb84b17e",
       "verified": true
     },
     {
       "path": "src/data/automated-indices.json",
-      "sha": "79fe81e47b459b131ef96258797c913ccaddc97d",
+      "sha": "14214c4eb49403cdeb7eb2f700a03dc01fcd69af",
       "verified": true
     },
     {
@@ -563,22 +565,22 @@
     },
     {
       "path": "src/data/dca-complete-holdings.json",
-      "sha": "2dd924384c3427fa9360015b08a12b059b8625ad",
+      "sha": "28617e121250d6d71c1bbb06e63d130f003e3ed8",
       "verified": true
     },
     {
       "path": "src/data/dca-equity-exposures.json",
-      "sha": "2cf771b98f889aec9120beb1688667711bdd7212",
+      "sha": "66a0c0944d77198720ebcb58c9eaff1c23fbee5d",
       "verified": true
     },
     {
       "path": "src/data/dca-holdings-status.json",
-      "sha": "ea2c76f701ef93dec077b9698a52d52c2e997431",
+      "sha": "b2b32d8bcda8fad53b3c413f130f101c594e3e3f",
       "verified": true
     },
     {
       "path": "src/data/dca-security-classifications.json",
-      "sha": "9bb4275587695929afc48a0e11c9910c4235e3c9",
+      "sha": "8fab45ac0ec35e5b1d9d66c112ba62b3a8767e86",
       "verified": true
     },
     {
@@ -598,7 +600,7 @@
     },
     {
       "path": "src/data/equity-history-links.json",
-      "sha": "132b27f0dfb0f28892041dacbca6ac7afc9faa71",
+      "sha": "e18338485c952758cc1ae794ca4ea2fa814f7fe1",
       "verified": true
     },
     {
@@ -613,7 +615,7 @@
     },
     {
       "path": "src/data/exposure-sleeves.json",
-      "sha": "9f8588863fa233a9b5fe6a50560f587ac7954a6c",
+      "sha": "ae6409840487558c53bf73877abfc2bb29f8322c",
       "verified": true
     },
     {
@@ -673,7 +675,7 @@
     },
     {
       "path": "src/data/monthly-fx.json",
-      "sha": "9d7637c4723aeced9b2d3ad31e9ac0a59ec44a7a",
+      "sha": "470c8c4a29a46bd8e97b34e5e4c80f326c845992",
       "verified": true
     },
     {
@@ -718,22 +720,22 @@
     },
     {
       "path": "src/data/purchasing-power-observations.json",
-      "sha": "6eb32b456f4fbdb8f1b7e67072e31d33055b35d3",
+      "sha": "f82bd6712409fbc29b3b50b3dac8e95b6c7d1caf",
       "verified": true
     },
     {
       "path": "src/data/qualified-exposure-etfs.json",
-      "sha": "88e5c826025dbe21d3c26dbd8a1014dcd287e169",
+      "sha": "2d1ea735e7dc678c84557a7ad86ddb93112df06e",
       "verified": true
     },
     {
       "path": "src/data/qualified-listing-records.json",
-      "sha": "833820abf826a34b54fbcdea13310e393286765a",
+      "sha": "ad60a019832259e2125967e9cf3c5bb6ee4fb5ed",
       "verified": true
     },
     {
       "path": "src/data/ranking-annual.json",
-      "sha": "9c42c5f54962541d1fcb4d769bc6d83cf50c6019",
+      "sha": "1fdb9e6594e406356ca2334f9cb8ce1892fb4bf4",
       "verified": true
     },
     {
@@ -748,7 +750,7 @@
     },
     {
       "path": "src/data/ranking-index-annual.json",
-      "sha": "9b7dfd124175b9a3cac746f794b936a969516180",
+      "sha": "3c19047cebe93a1b5476419bded377ce830b0f42",
       "verified": true
     },
     {
@@ -763,12 +765,12 @@
     },
     {
       "path": "src/data/security-identifier-observations.json",
-      "sha": "eebcf9da7e5c2d7ebfa1c8bd25611e0ae2cf8e45",
+      "sha": "ec1f0a1995da02b635d8be5004407f06c29511df",
       "verified": true
     },
     {
       "path": "src/data/shared-listing-identities.json",
-      "sha": "cfdce2b59fb9c87a44d56afecf6c5b2a487f7a1b",
+      "sha": "ff01b283a7098105465ee7e6ccd2f76649b91579",
       "verified": true
     },
     {
@@ -783,7 +785,7 @@
     },
     {
       "path": "src/data/vanguard-equity-underliers.json",
-      "sha": "97a3a7fdae700c99e244f9bf72a7e44806fff47c",
+      "sha": "4d290731f29347c065c6c7203070c23dfe9bde2e",
       "verified": true
     },
     {
@@ -793,22 +795,22 @@
     },
     {
       "path": "src/pages/dca-profiles/catalog.json",
-      "sha": "7053e21677d3d166bfd0fcdd473f51979baa2f58",
+      "sha": "97f2d19d1f839db86cdec655e0c18ccb9bf2b516",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/exposures-extra-0.json",
-      "sha": "8753f3b1667d6b2c81e09502db000bdafc902fa3",
+      "sha": "3472d423b003677793063eb998fa45415ea073d6",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/exposures-extra-1.json",
-      "sha": "34a6a27424389c1dec803f7f0ee5f4e71fba0130",
+      "sha": "1e233806589b314b1615136ef606491eadefedb7",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/exposures-extra-2.json",
-      "sha": "cc3713d2844e08b80fd6cfbf09aede5a81e2406a",
+      "sha": "b561c3c3d4b8afff460aeed997ead008b7a7ecdd",
       "verified": true
     },
     {
@@ -818,162 +820,162 @@
     },
     {
       "path": "src/pages/dca-profiles/holdings-0.json",
-      "sha": "fc496fd5ea337cf5f9a3b2b01a65e06c3dc90c30",
+      "sha": "31d8a73e08921ae17d73cab7867f4539cdfc7dce",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-1.json",
-      "sha": "28917b4adf2c4f3c00e172ea6f5785221b4a8b20",
+      "sha": "9d6a10a9d2a87a95c87eccdfadc127ab4bea43cd",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-10.json",
-      "sha": "1b4ce508b09cc66e465f6baeb44547387b137c28",
+      "sha": "55f3bc88e0eed015d4a9faf78aedd967bdc7e18d",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-11.json",
-      "sha": "72efccfee9446efdfd43a365fa6c77c3e7f39637",
+      "sha": "36c666b62bf1315b4e928046c8a726f73cd03635",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-12.json",
-      "sha": "8c90ef44f5f69b0aae311c9637733782bcfd0afa",
+      "sha": "29dcf88a0d93a6e0c051d7335e3d2af2bbe926e1",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-13.json",
-      "sha": "15251c53f1bcd7a69221eb2c18df9cc41aa4c65b",
+      "sha": "59dff8d552c0cfd20d0c2b24ae3dec489c9aaa90",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-14.json",
-      "sha": "7d07915c81009e0c81deb88c11193afeee8c2cca",
+      "sha": "1074e03f00b92e1c013c68c7e06fb3f3b2ee1d59",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-15.json",
-      "sha": "8ffa3cbb338a941269e75cec0c89387e6e16b0d0",
+      "sha": "380ca5efe50a56b49cd72bad71203251f118a38e",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-16.json",
-      "sha": "764af58e1e54306695b906913d9e727bb7c5d474",
+      "sha": "000f39130301090e5c3387d435ce1d82e42cf5f5",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-17.json",
-      "sha": "1a894f91f2b60dd7c362f2a6279a84bfb281be39",
+      "sha": "8e3b64b31b91de26beb34fe4400817a8d254c23b",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-18.json",
-      "sha": "24ecab19bbb92bcac6c6705488e06f3ceb1e6f6f",
+      "sha": "a499ee331e0f5c78255599e7ac2c1fd65e8ad2d2",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-19.json",
-      "sha": "f8275264158bcfb00e9757f1b21c6c7277114847",
+      "sha": "f37d545ed93c389aef18b8e623a55ddc79a32259",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-2.json",
-      "sha": "a72ac546f865eb3d39f4f844bcc8b85d925b3527",
+      "sha": "26f08649a062b028a78f859e2c39d75dcc24f751",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-20.json",
-      "sha": "5cd8f4a166acd0955f7eebab7bb7c6fa195eb374",
+      "sha": "7b57ce6f6ea862091bf2f2932aab6a80d115eeb1",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-21.json",
-      "sha": "c60f0f33408734e9be690eb9714047755c919647",
+      "sha": "e596b528bbda22bef793efb982ae1c601712677b",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-22.json",
-      "sha": "0acfb26de7590c5e1036563b38d9676fbff1c51a",
+      "sha": "b324be45fc06c2e928c8eb9246155bdd455de2a0",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-23.json",
-      "sha": "a43feb45883f4b38c950d9952f1f96ef06c8bd2c",
+      "sha": "ecffc6b94bf8ca868aefa47e70df451b251e3f5e",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-24.json",
-      "sha": "70b5cd029e8cad52dadd0957d6a9ee5068017b07",
+      "sha": "7626a263f01f022e51513f3dd938d44457d70292",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-25.json",
-      "sha": "42ef207aa3935cdf3890c55a6cb4bcb5e3e09e80",
+      "sha": "70451645a071b379ac5627dce5bb53a5df293035",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-26.json",
-      "sha": "1f8ea1c3657e707282e79022d08be62368c1901a",
+      "sha": "927cbcb26b834febeba0c050357564f8fe4dbe86",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-27.json",
-      "sha": "e38e6eba8ab35480534200972b5fb363ff6e162b",
+      "sha": "6a9317e870509afde531f4f7692764a37f0a5ee4",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-28.json",
-      "sha": "15959e9e26c51116af291ec33ae7b0959dcd4296",
+      "sha": "2b9ebf1ea9d3af381dd1047c0bf4507b3cf5d028",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-29.json",
-      "sha": "149f11b393b52f38efd13d9ce6cdd8ffc0dd6454",
+      "sha": "fe99c04dc410ae33c07f3778bae3e481832527ce",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-3.json",
-      "sha": "30307df8f172a758b6b02856c362070e183054db",
+      "sha": "c84b7ada85e02466d2b895f682eb15703cc85ced",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-30.json",
-      "sha": "39dd0a1438bd89a704d713cac8af3aa0abd300d7",
+      "sha": "cde4ef4a4745997702dc336b5efb7f814e6a5baf",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-31.json",
-      "sha": "fec4640832b4fa55b56f11ff764d0e6ccd94c09c",
+      "sha": "1f75a2adcf10bdc31b6297b07544e1b83b6273a2",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-4.json",
-      "sha": "34a6faa72ba6a5d326dced73587c1532885d3358",
+      "sha": "88ad9adf4b906c0e189e2371681b986e0f81aceb",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-5.json",
-      "sha": "a3d65aa6be97861943be169e4b6f185a2a6b2ea6",
+      "sha": "1e80a85ee7f186081573dad619308ff9aa5e402e",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-6.json",
-      "sha": "b3746e5959509761cd1cf1b30a68e698ae114e0a",
+      "sha": "ee7b40991925c62279208d8ba57ae03e8a1702d7",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-7.json",
-      "sha": "2906caf885f65945390885da50b1c9ffa1c5bf99",
+      "sha": "ff12a4e49d760343ef4955b1304fa5cca8f308d7",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-8.json",
-      "sha": "2b63ce1b7e7c4290491ca5d47d23f8be30e9333c",
+      "sha": "895b1229fd2453794c6740864422bda816b7fd8a",
       "verified": true
     },
     {
       "path": "src/pages/dca-profiles/holdings-9.json",
-      "sha": "47e9f270111b8787b6d5c6b5017e4b7c52a2ccec",
+      "sha": "ae7f66f8b3a3c8381151847fa956805829fc7b22",
       "verified": true
     },
     {
@@ -983,7 +985,7 @@
     },
     {
       "path": "src/pages/dca-profiles/holdings.json",
-      "sha": "6064866bb1384b52ddb53e6faba0ed77ea3be0ce",
+      "sha": "bccf219171ca9e019b44cc9629c44146b686bb1d",
       "verified": true
     }
   ],

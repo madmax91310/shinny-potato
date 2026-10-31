@@ -57030,7 +57030,7 @@
     },
     "B59RGY2": {
       "sourceUrl": "https://api.openfigi.com/v3/mapping",
-      "checkedAt": "2026-10-30T00:55:50.795823+00:00",
+      "checkedAt": "2026-10-31T00:42:30.088846+00:00",
       "request": [
         {
           "idType": "ID_SEDOL",
@@ -61436,6 +61436,18 @@
               "securityDescription": "MRK1PLN"
             },
             {
+              "figi": "BBG026CX69T1",
+              "name": "MERCK & CO. INC.",
+              "ticker": "6MKD",
+              "exchCode": "TQ",
+              "compositeFIGI": "BBG026CX69S2",
+              "securityType": "Common Stock",
+              "marketSector": "Equity",
+              "shareClassFIGI": "BBG001S5TC52",
+              "securityType2": "Common Stock",
+              "securityDescription": "6MKD"
+            },
+            {
               "figi": "BBG026CX9ZB9",
               "name": "MERCK & CO. INC.",
               "ticker": "6MKD",
@@ -61450,7 +61462,7 @@
           ]
         }
       ],
-      "sha256": "5ed46a24e4d09f1d280f4077fa95a47d9c11b5dc1cafd4d7a150a842fd519d4c",
+      "sha256": "0cb2aafdde5cb6b768a20591450f3e57b511442034b465053ac0b93c2c648b2e",
       "status": "qualification-required",
       "error": "Missing or ambiguous exact FIGI crosswalk",
       "candidateSource": {
@@ -132425,7 +132437,7 @@
   "lastAttempts": {
     "B59RGY2": {
       "sourceUrl": "https://api.openfigi.com/v3/mapping",
-      "checkedAt": "2026-10-30T00:55:50.795823+00:00",
+      "checkedAt": "2026-10-31T00:42:30.088846+00:00",
       "request": [
         {
           "idType": "ID_SEDOL",
@@ -136831,6 +136843,18 @@
               "securityDescription": "MRK1PLN"
             },
             {
+              "figi": "BBG026CX69T1",
+              "name": "MERCK & CO. INC.",
+              "ticker": "6MKD",
+              "exchCode": "TQ",
+              "compositeFIGI": "BBG026CX69S2",
+              "securityType": "Common Stock",
+              "marketSector": "Equity",
+              "shareClassFIGI": "BBG001S5TC52",
+              "securityType2": "Common Stock",
+              "securityDescription": "6MKD"
+            },
+            {
               "figi": "BBG026CX9ZB9",
               "name": "MERCK & CO. INC.",
               "ticker": "6MKD",
@@ -136845,7 +136869,7 @@
           ]
         }
       ],
-      "sha256": "5ed46a24e4d09f1d280f4077fa95a47d9c11b5dc1cafd4d7a150a842fd519d4c",
+      "sha256": "0cb2aafdde5cb6b768a20591450f3e57b511442034b465053ac0b93c2c648b2e",
       "status": "qualification-required",
       "error": "Missing or ambiguous exact FIGI crosswalk",
       "candidateSource": {

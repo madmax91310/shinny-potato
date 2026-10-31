@@ -1,0 +1,63 @@
+{
+  "verifiedAt": "2026-10-31T00:33:47.594701+00:00",
+  "run": 41141924192,
+  "event": "automatic bot workflow_dispatch, not schedule",
+  "sourceCheckedAt": "2026-10-30T23:22:04.260652+00:00",
+  "recordCommit": "59efb3085c2fe92692a9f73a49710023ded14570",
+  "publicVersion": {
+    "sha": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+    "dataSha": "59efb3085c2fe92692a9f73a49710023ded14570",
+    "lane": "validated-code-data",
+    "builtAt": "2026-10-30T23:52:53.237Z"
+  },
+  "actualPublicEtfBlob": "e0f962b3ce0f61e83b10bc9f436c08cea2ef28c3",
+  "sourceURL": "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
+  "isin": "CH0454664001",
+  "performance": {
+    "currency": "USD",
+    "basis": "fund",
+    "years": {
+      "2020": 277.89,
+      "2021": 65.02,
+      "2022": -65.41,
+      "2023": 151.83,
+      "2024": 114.17,
+      "2025": -4.71
+    },
+    "asOf": "2026-10-30",
+    "sourceUrl": "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
+    "sha256": "b69ad512ed8af0b317b6a9db1ddd3459f60239f7bd50df1640bd3a1931da3850",
+    "method": "calendar-year exact ETP USD NAV return, net of fees, issuer-adjusted for share splits; monthly issuer returns cross-checked; derived from rounded issuer NAV levels",
+    "validationSources": [
+      "https://api.primary.21shares.com/api/product_details/ABTC",
+      "https://api.primary.21shares.com/api/product_performance_metrics/ABTC"
+    ],
+    "checkedAt": "2026-10-30",
+    "modifiedAt": "2026-10-30"
+  },
+  "outcome": {
+    "id": "etf-additional-observation-CH0454664001",
+    "instrument": "CH0454664001",
+    "fields": [
+      "issuer share observation",
+      "individual collectionErrors",
+      "unavailable/retained fields"
+    ],
+    "selected": true,
+    "status": "succeeded",
+    "sourceUrl": "https://cdn.21shares.com/uploads/current-documents/factsheets/all/Factsheet_ABTC.pdf",
+    "operationAttempted": true,
+    "sourceAttempted": true
+  },
+  "sourceRecordingPublicationAllVerified": true,
+  "originalFailure": {
+    "run": 41135102229,
+    "field": "performance",
+    "source": "https://api.primary.21shares.com",
+    "error": "HTTP410Gone",
+    "preciseEndpointNotRetainedHistorically": true
+  },
+  "causeExplanation": "Provider access recovered between real observations; no claim the old error was repaired by code or by changing a PDF.",
+  "separateEnhancement": "PR1104 current AUM/fee product API is not yet recorded in this source run; old monthly PDF observations remain.",
+  "noNewQualifiedMonthlyCase": true
+}

@@ -8,7 +8,8 @@ for x in old:
  key=x['id_suivi'];assert key not in ids;ids.add(key);x.update(statut_final_30oct=x['statut_final_29oct'],nature_reliquat_final_30oct=x['nature_reliquat_final_29oct'],limite_usage_finale_30oct=x['limite_usage_finale_29oct'],preuve_finale_30oct=x['preuve_finale_29oct'])
  if key in by:
   q=by[key]
-  if q.get('preuve_intervention_30oct'):x.update(statut_final_30oct='corrigé et vérifié sur le périmètre exact'if q['etat']=='A'else'non applicable'if q['etat']=='non applicable'else'limite financière conservée',nature_reliquat_final_30oct=q['nature_ecart'],limite_usage_finale_30oct=q.get('limite_preuve_30oct',''),preuve_finale_30oct=q['preuve_intervention_30oct'])
+  evidence=q.get('preuve_intervention_31oct')or q.get('preuve_intervention_30oct')
+  if evidence:x.update(statut_final_30oct='corrigé et vérifié sur le périmètre exact'if q['etat']=='A'else'non applicable'if q['etat']=='non applicable'else'limite financière conservée',nature_reliquat_final_30oct=q['nature_ecart'],limite_usage_finale_30oct=q.get('limite_preuve_31oct')or q.get('limite_preuve_30oct',''),preuve_finale_30oct=evidence)
  elif key in acts:
   q=acts[key];x.update(statut_final_30oct=q['statut'],limite_usage_finale_30oct=q['limitation'],preuve_finale_30oct=q['preuve_production_30oct']or q['preuves'])
  elif key in diag and diag[key].get('presence_publique_30oct'):

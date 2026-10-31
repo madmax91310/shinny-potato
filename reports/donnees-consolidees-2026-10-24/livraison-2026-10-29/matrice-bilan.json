@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-30T23:18:38.969985+00:00",
+  "generatedAt": "2026-10-31T04:58:14.755022+00:00",
   "denominateur": "Contrats logiques de champ ou série × outil, issus des consommateurs actuels ; pas nombre de points de marché ni certification de toutes les valeurs",
   "usages": 34951,
   "outils": 24,
@@ -7,8 +7,8 @@
   "parts_isin_uniques": 673,
   "statuts": {
     "non applicable": 3792,
-    "B": 31075,
-    "A": 84
+    "B": 31067,
+    "A": 92
   },
   "types": {
     "reference": 2738,
@@ -21,10 +21,10 @@
   },
   "diagnostics": {
     "non applicable": 3756,
-    "preuve documentaire ou qualification incomplète": 31012,
+    "preuve documentaire ou qualification incomplète": 31007,
+    "défaut réel de donnée ou de collecte": 29,
     "raccordement manquant": 39,
     "ancien proxy archivé, remplacé dans cet usage par le calendrier exact non vide": 30,
-    "défaut réel de donnée ou de collecte": 24,
     "collecte, enregistrement, publication et usage du champ exact démontrés": 30,
     "non applicable au format effectivement exporté": 6,
     "chaîne automatisée et usage vérifiés sur le périmètre exact": 39,
@@ -68,5 +68,41 @@
     "purchasing-public-independent-calculation-30oct.json": 1,
     "browser-scpi-q3-public-30oct/results.json": 6
   },
-  "noCatalogueCertificationFromGreenJob": true
+  "noCatalogueCertificationFromGreenJob": true,
+  "scopedFields31oct": {
+    "uniqueInstruments": 8,
+    "uniqueDataFields": 10,
+    "dataUseContracts": 22,
+    "matchedIds": [
+      "usage:/bibliotheque-donnees|CH0454664001|catalog:1",
+      "usage:/bibliotheque-donnees|CH0454664001|catalog:4",
+      "usage:/bibliotheque-donnees|IE00BJGWQN72|catalog:4",
+      "usage:/bibliotheque-donnees|GB00B15KXQ89|catalog:3",
+      "usage:/bibliotheque-donnees|IE0002Y8CX98|catalog:3",
+      "usage:/bibliotheque-donnees|IE00BZ56SW52|catalog:4",
+      "usage:/bibliotheque-donnees|GB00BJYDH287|catalog:4",
+      "usage:/bibliotheque-donnees|JE00B1VS3770|catalog:4",
+      "usage:/bibliotheque-donnees|IE000W8WMSL2|catalog:3",
+      "usage:/comparatif-etf|CH0454664001|catalog:1",
+      "usage:/comparatif-etf|CH0454664001|catalog:4",
+      "usage:/fiches-etf|CH0454664001|catalog:1",
+      "usage:/fiches-etf|CH0454664001|catalog:4",
+      "usage:/fiches-etf|IE00BJGWQN72|catalog:4",
+      "usage:/fiches-etf|GB00B15KXQ89|catalog:3",
+      "usage:/fiches-etf|IE0002Y8CX98|catalog:3",
+      "usage:/fiches-etf|IE00BZ56SW52|catalog:4",
+      "usage:/fiches-etf|GB00BJYDH287|catalog:4",
+      "usage:/fiches-etf|JE00B1VS3770|catalog:4",
+      "usage:/fiches-etf|IE000W8WMSL2|catalog:3",
+      "usage:/calculateur-investissement|history:etfCH0454664001Nav|catalog:0",
+      "usage:/performance-depuis|history:etfCH0454664001Nav|catalog:0"
+    ],
+    "counts": {
+      "fee": 3,
+      "aum": 16,
+      "aum-gate": 1,
+      "history": 2
+    },
+    "notAnAutomationCoverageRate": true
+  }
 }

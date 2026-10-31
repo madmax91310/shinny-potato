@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 1,
+  "id": "IE00BZ56SW52",
+  "type": "instrument",
+  "name": "WisdomTree Global Quality Dividend Growth UCITS ETF",
+  "aliases": [
+    "IE00BZ56SW52",
+    "WisdomTree Global Quality Dividend Growth UCITS ETF USD Acc",
+    "GGRA"
+  ],
+  "consumers": [
+    {
+      "tool": "Présentation ETF",
+      "path": "/fiches-etf"
+    },
+    {
+      "tool": "Générateur de portefeuilles",
+      "path": "/generateur-portefeuilles"
+    },
+    {
+      "tool": "Duels de portefeuilles",
+      "path": "/duels-portefeuilles"
+    },
+    {
+      "tool": "Impact des frais",
+      "path": "/impact-frais"
+    },
+    {
+      "tool": "Comparatif ETF",
+      "path": "/comparatif-etf"
+    }
+  ],
+  "fields": [
+    {
+      "label": "Identité",
+      "registry": "src/data/instruments.js",
+      "value": {
+        "name": "WisdomTree Global Quality Dividend Growth UCITS ETF",
+        "labels": {
+          "sheet": "WisdomTree Global Quality Dividend Growth UCITS ETF USD Acc"
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=IE00BZ56SW52"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-09-30",
+        "currency": null,
+        "scope": "Part IE00BZ56SW52",
+        "method": "Profil individuel justETF consulté par ISIN",
+        "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés.",
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Frais annuels (%)",
+      "registry": "src/data/etf-ter.js",
+      "value": "0,38",
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-31",
+        "currency": null,
+        "scope": "Part IE00BZ56SW52",
+        "method": "TER publié sur le profil de la part, consulté par ISIN",
+        "note": "Frais observés au contrôle ; aucune date d’entrée en vigueur déduite de la consultation.",
+        "dateStatus": "not-published",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Caractéristiques",
+      "registry": "src/data/instrument-facts.js",
+      "value": {
+        "distribution": "Capitalisant",
+        "location": "Irlande, Réplication physique, sans couverture de change",
+        "benchmark": "WisdomTree Global Developed Quality Dividend Growth Index (TR)",
+        "incomePolicy": "accumulating",
+        "replicationMethod": "Physical",
+        "domicile": "Irlande",
+        "currencyHedge": false,
+        "reviewedAt": "11/10/2026",
+        "instrumentType": "ETF",
+        "positionsLabel": "Exposition suivie : WisdomTree Global Developed Quality Dividend Growth Index (TR)",
+        "characteristicsSource": {
+          "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+          "checkedAt": "2026-10-11"
+        },
+        "automatedFields": {
+          "distribution": {
+            "checkedAt": "2026-10-30",
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52/",
+            "sha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f"
+          },
+          "domicile": {
+            "checkedAt": "2026-10-29",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BZ56SW52",
+            "sha256": "1405a55de4be4e29f16bf10cde6e52a75f9777e0357f7e69e030764c00c2bc2c"
+          },
+          "replicationMethod": {
+            "checkedAt": "2026-10-30",
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52/",
+            "sha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f"
+          },
+          "currencyHedge": {
+            "checkedAt": "2026-10-29",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BZ56SW52",
+            "sha256": "1405a55de4be4e29f16bf10cde6e52a75f9777e0357f7e69e030764c00c2bc2c"
+          }
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-11",
+        "currency": null,
+        "scope": "Part IE00BZ56SW52",
+        "method": "Caractéristiques de la part ; aucune inférence sur la cotation.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Éligibilité PEA",
+      "registry": "src/data/instrument-pea.js",
+      "value": false,
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52/"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "currency": null,
+        "scope": "Part IE00BZ56SW52",
+        "method": "Explicit exact-share PEA statement collected automatically.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Encours",
+      "registry": "src/data/instrument-aum.js",
+      "value": {
+        "sheet": "Fonds : 1 706,23 M$ au 29/10/2026",
+        "index": "Fonds : 1 706,23 M$ au 29/10/2026",
+        "source": {
+          "amount": 1706229376,
+          "currency": "USD",
+          "scope": "Actif net du fonds",
+          "asOf": "2026-10-29",
+          "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+          "controlledListingIds": [
+            "2000433"
+          ],
+          "nonNativeListingsExcluded": 1,
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+          "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+          "identitySha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
+          "identityAsOf": "2026-09-30",
+          "checkedAt": "2026-10-31",
+          "modifiedAt": "2026-10-31",
+          "amountMillions": 1706.229376,
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0"
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0"
+        ],
+        "asOf": "2026-10-29",
+        "checkedAt": "2026-10-31",
+        "currency": "USD",
+        "scope": "Actif net du fonds",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "note": "Date publiée par l’émetteur ; la consultation reste distincte.",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": "2026-10-31"
+      }
+    },
+    {
+      "label": "Cotation XPAR",
+      "registry": "src/data/instrument-listings.js",
+      "value": {
+        "ticker": "GGRA",
+        "mic": "XPAR",
+        "exchange": "Euronext Paris",
+        "currency": "EUR",
+        "excerpt": "IE00BZ56SW52 | Euronext(FR) EUR GGRA GGRA FP GGRG.PA BMCZH94 IE00BZ56SW52 A2AG1E 23/10/2023",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52/",
+        "checkedAt": "2026-10-30",
+        "sha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
+        "evidenceId": "IE00BZ56SW52-XPAR-GGRA-EUR"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52/"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "currency": "EUR",
+        "scope": "Part IE00BZ56SW52 ; Euronext Paris",
+        "method": "Devise de négociation, distincte de celle des rendements.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Rendements 2020–2025",
+      "registry": "src/data/instrument-returns.js",
+      "value": [
+        16.26,
+        19.29,
+        -13.88,
+        18.26,
+        8.98,
+        16.33
+      ],
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52"
+        ],
+        "asOf": "2025-12-31",
+        "checkedAt": "2026-10-31",
+        "currency": "USD",
+        "scope": "Part IE00BZ56SW52",
+        "method": "Rendements calendaires NAV de la part exacte ; années complètes uniquement",
+        "note": null,
+        "dateStatus": "dated",
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": "2026-10-26"
+      }
+    }
+  ]
+}
