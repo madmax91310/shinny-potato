@@ -530585,7 +530585,7 @@
     "navProvider": "21shares",
     "navCurrency": "USD",
     "sourceUrl": "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
-    "checkedAt": "2026-10-29",
+    "checkedAt": "2026-10-31",
     "periodEnd": "2026-09",
     "sourceUrls": [
       "https://api.primary.21shares.com/api/product_details/ABTC",
@@ -530595,16 +530595,16 @@
     ],
     "sourceCredit": "21Shares",
     "latestLevel": {
-      "value": 23.76897511901554,
-      "asOf": "2026-10-28",
+      "value": 22.787325456498387,
+      "asOf": "2026-10-30",
       "currency": "EUR",
       "isin": "CH0454664001",
       "parser": "official-nav",
       "valuationBasis": "fund-nav-total-return",
-      "nativeValue": 26.462,
+      "nativeValue": 25.458,
       "nativeCurrency": "USD",
-      "fxAsOf": "2026-10-28",
-      "fxFactor": 0.898230485942693,
+      "fxAsOf": "2026-10-30",
+      "fxFactor": 0.8950948800572861,
       "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
       "sourceUrls": [
         "https://api.primary.21shares.com/api/product_details/ABTC",
@@ -530612,13 +530612,13 @@
         "https://api.primary.21shares.com/api/product_performance_metrics/ABTC",
         "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
       ],
-      "checkedAt": "2026-10-29",
+      "checkedAt": "2026-10-31",
       "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
       "maxAgeDays": 7,
-      "sha256": "9d5d811df28d3a2aa20b2780d940a295df0ebcf2887a0660bd20ff9de4ea3dd0"
+      "sha256": "d53992ba63cbb9f54d0260545a2f2bc6f0c1a0eb4a7176886d871a443632c4ca"
     },
     "nativeValuationCurrency": "USD",
-    "lastOfficialValuation": "2026-10-28",
+    "lastOfficialValuation": "2026-10-30",
     "financialConvention": "exact-share accumulated net NAV; no exchange-price claim",
     "calendarProof": {
       "shareInception": "2019-02-25",
@@ -531539,12 +531539,12 @@
         "fxFactor": 0.8806693086745927
       }
     ],
-    "responseSha256": "9d5d811df28d3a2aa20b2780d940a295df0ebcf2887a0660bd20ff9de4ea3dd0",
+    "responseSha256": "d53992ba63cbb9f54d0260545a2f2bc6f0c1a0eb4a7176886d871a443632c4ca",
     "rawSourceHashes": {
-      "https://api.primary.21shares.com/api/product_details/ABTC": "4931263823f81c2ed4c4014edeb0c3de19299fde5d48623f5e50dfd9615a0e24",
-      "https://api.primary.21shares.com/api/product_valuation_history/ABTC": "122709975836eab23a276ecaf2a1b0fa09c548c86be41fa65d804418f7467cac",
-      "https://api.primary.21shares.com/api/product_performance_metrics/ABTC": "199d440b729baea55e16c086d0ff20a5c20c3f6dc1d62c0afd1b834989efa712",
-      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "a0ed665213649d1f28e21a4e2b81cfcb79434648d3bf1bd2d498ed066cd3871b"
+      "https://api.primary.21shares.com/api/product_details/ABTC": "41d934e76b5ffcbe09604658ba828dd9ed9db267ed7e7a8264a5f7b7e176d22a",
+      "https://api.primary.21shares.com/api/product_valuation_history/ABTC": "0f156fdd9be0c28b38116506ca900afe7921a36baa794c2c42ee58476c6da517",
+      "https://api.primary.21shares.com/api/product_performance_metrics/ABTC": "1a462fdd1aea07e7159ef8be04997c558b9d5d8c9922903cb98a4e88b96cb220",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "11764c276d0702f36e8e324f1a94eab76a85d3b5e86e0b20e6e42417dcc7d7aa"
     }
   },
   "etfLU1737652823Nav": {
