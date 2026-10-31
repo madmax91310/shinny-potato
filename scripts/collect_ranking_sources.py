@@ -156,7 +156,8 @@ def parse_cross_fx(fred_body, ecb_body, now, currency='TWD', series='DEXTAUS', s
     return {'sourceUrl': source_url or CROSS_SERIES[currency], 'series': series, 'secondarySourceUrl': ECB,
             'checkedAt': now.date().isoformat(), 'sha256': hashlib.sha256(fred_body).hexdigest(),
             'secondarySha256': hashlib.sha256(ecb_body).hexdigest(),
-            **({'sourceSeries':'H10/H10/RXI_N.B.TA','sourceDiscoveryUrl':'https://www.federalreserve.gov/datadownload/Choose.aspx?rel=H10',
+            **({'sourceSeries':'H10/H10/RXI_N.B.TA','sourceDiscoveryUrl':('https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm' if fred_body.startswith(b'PK\x03\x04') else 'https://www.federalreserve.gov/datadownload/Choose.aspx?rel=H10'),
+                'sourceFormat':'Official complete H.10 SDMX XML ZIP' if fred_body.startswith(b'PK\x03\x04') else 'Official H.10 DDP CSV',
                 'seriesEquivalence':'Federal Reserve H.10 RXI_N.B.TA is the primary daily TWD per USD series republished as FRED DEXTAUS; independently checked over all common observations'} if is_h10 else {}),
             'convention': f'{currency} per EUR = Federal Reserve H.10 noon buying rate ({currency} per USD, FRED {series}) '
                           '× ECB USD per EUR reference rate, latest day of each completed month published by both; decimal half-up rounding to four places',
@@ -218,8 +219,8 @@ def cross_fx_document(currency, now, fetch=None):
     # Request only the period consumed by EUR conversions, instead of all data since 1971.
     window = canonical + '&cosd=1999-01-01&coed=' + now.date().isoformat()
     attempts = []
-    from h10_fx import source_url
-    for url, timeout in [(window, 25), (canonical, 60), (source_url(now), 30)]:
+    from h10_fx import source_url, XML_SOURCE
+    for url, timeout in [(window, 25), (canonical, 60), (XML_SOURCE, 30), (source_url(now), 30)]:
         requested_at = dt.datetime.now(UTC).isoformat()
         try:
             body = fetch(url, max_bytes=4_000_000, timeout=timeout, max_attempts=2)
@@ -232,7 +233,11 @@ def cross_fx_document(currency, now, fetch=None):
                 write_json_atomic(directory / (digest + '.json'), {'sourceUrl':url,
                     'collectionStartedAt':now.isoformat(), 'attemptedAt':requested_at,
                     'receivedAt':dt.datetime.now(UTC).isoformat(), 'sha256':digest, 'bytes':len(body),
-                    'sourceAttempts':attempts, 'qualification':'pending-parser-validation'})
+                    'sourceAttempts':attempts, 'qualification':'pending-parser-validation' if body.strip() else 'empty-response'})
+            if not body.strip():
+                attempts.append({'sourceUrl':url, 'status':'empty-response',
+                                 'sha256':digest, 'error':'Empty source response'})
+                continue
             return body, url, attempts + [{'sourceUrl':url, 'status':'downloaded', 'sha256':digest}]
         except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
             attempts.append({'sourceUrl':url, 'error':str(error)})

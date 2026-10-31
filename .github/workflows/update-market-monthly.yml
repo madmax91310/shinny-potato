@@ -63,6 +63,13 @@ on:
       - 'scripts/test_h10_fx.py'
   pull_request:
     paths:
+      - 'scripts/collect_ranking_sources.py'
+      - 'scripts/h10_fx.py'
+      - 'scripts/test_h10_fx.py'
+      - 'scripts/test_h10_xml.py'
+      - 'scripts/test_cross_fx_fallback.py'
+      - 'scripts/qualify_h10_xml.py'
+      - 'scripts/fixtures/h10-xml/**'
       - '.github/workflows/update-market-monthly.yml'
       - 'scripts/observation_rebase_guard.py'
       - 'scripts/test_observation_rebase.py'
@@ -106,6 +113,19 @@ jobs:
         id: collect
         continue-on-error: true
         run: python scripts/collect_official_share_history.py --missing-source-controls --output "$RUNNER_TEMP/new-nav-controls.json" --capture-dir "$RUNNER_TEMP/new-nav-control-sources"
+      - name: Qualify the official complete H10 XML release (read-only)
+        id: collectfx
+        continue-on-error: true
+        run: python scripts/qualify_h10_xml.py --output "$RUNNER_TEMP/h10-xml-controls.json"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: h10-xml-source-controls
+          path: |
+            ${{ runner.temp }}/h10-xml-controls.json
+            ${{ runner.temp }}/h10-xml-controls.zip
+          if-no-files-found: error
+          retention-days: 35
       - name: Verify exact IMIE split comparison against current real sources
         run: |
           node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/imie-baseline.json"
@@ -129,7 +149,7 @@ jobs:
           retention-days: 35
       - name: Preserve a failed qualification after its evidence upload
         if: always()
-        run: test "${{ steps.collect.outcome }}" = 'success'
+        run: test "${{ steps.collect.outcome }}" = 'success' && test "${{ steps.collectfx.outcome }}" = 'success'
   refresh:
     concurrency:
       # Serialize writers of automated-indices.json; keep PR validations independent.
