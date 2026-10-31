@@ -291,5 +291,5 @@ def collect_abtc_product_fields(share, now):
         # Reuse this execution's actual product response, not a persisted cache.
         result['performance']=collect_abtc_calendar(share,now,product=product)
     except (OSError,ValueError,KeyError,TypeError) as error:
-        result['collectionErrors'].append({'field':'performance','url':base,'reason':str(error)})
+        result['collectionErrors'].append({'field':'performance','url':getattr(error,'url',base),'reason':str(error)})
     return result

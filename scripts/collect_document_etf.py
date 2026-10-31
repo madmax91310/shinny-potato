@@ -112,7 +112,7 @@ def collect_one(share,now):
             result['performance'] = collect_abtc_calendar(share, now)
             result['unavailable'] = [s for s in result['unavailable'] if not s.startswith('performance:')]
         except (urllib.error.URLError, TimeoutError, ValueError, KeyError, TypeError, OSError) as error:
-            result.setdefault('collectionErrors', []).append({'field':'performance','url':share['calendarApiBase'],'reason':str(error)})
+            result.setdefault('collectionErrors', []).append({'field':'performance','url':getattr(error,'url',share['calendarApiBase']),'reason':str(error)})
     return result
 
 

@@ -72,7 +72,7 @@ class AbtcProductFields(unittest.TestCase):
         payloads=[json.loads((FIX/('abtc-'+name+'.json')).read_text())for name in ['product_details','history','product_performance_metrics']]
         now=dt.datetime(2026,10,7,tzinfo=UTC);by={name:body for name,body in zip(['product_details','product_valuation_history','product_performance_metrics'],payloads)};calls=[]
         def fetch(url,**kwargs):calls.append(url);return json.dumps(by[url.split('/')[-2]]).encode()
-        with patch('collect_product_calendars.download',side_effect=fetch),patch('collect_document_etf.download',side_effect=AssertionError('Gone PDF must not be used')):
+        with patch('collect_product_calendars.download',side_effect=fetch),patch('collect_document_etf.download',side_effect=AssertionError('API fields must not download a PDF')):
             r=collect_one(SHARE,now)
         self.assertEqual(len(calls),3);self.assertEqual(len(set(calls)),3)
         self.assertEqual(r['performance']['years'],abtc_calendar(*payloads,SHARE,now,'reference')['years'])
@@ -91,5 +91,26 @@ class AbtcProductFields(unittest.TestCase):
     def test_network_failure_never_turns_into_a_source_success(self):
         with patch('collect_product_calendars.download',side_effect=HTTPError('api',503,'failed',None,None)),self.assertRaises(HTTPError):collect_one(SHARE,NOW)
         with patch('collect_product_calendars.download',return_value=b'{}'),self.assertRaises(ValueError):collect_one(SHARE,NOW)
+
+    def test_calendar_failure_keeps_actual_endpoint_and_valid_product_fields(self):
+        endpoint='https://api.primary.21shares.com/api/product_valuation_history/ABTC'
+        with patch('collect_product_calendars.download',return_value=json.dumps(self.live()).encode()),patch('collect_product_calendars.collect_abtc_calendar',side_effect=HTTPError(endpoint,410,'Gone',None,None)):
+            r=collect_one(SHARE,NOW)
+        self.assertEqual(r['collectionErrors'][0]['url'],endpoint)
+        self.assertEqual(r['aum']['asOf'],'2026-10-30');self.assertNotIn('performance',r)
+
+    def test_anniversary_failure_does_not_misattribute_generic410_or_re_date_old_nav(self):
+        from refresh_anniversary_levels import refresh
+        endpoint='https://api.primary.21shares.com/api/product_valuation_history/ABTC'
+        old={'etfCH0454664001Nav':{'value':23,'asOf':'2026-10-06','checkedAt':'2026-10-07'}}
+        original=copy.deepcopy(old)
+        def failed(config,now):raise HTTPError(endpoint,410,'Gone',None,None)
+        merged,report=refresh(old,NOW,collect=failed,selected=[{'id':'etfCH0454664001Nav'}])
+        self.assertEqual(old,original);self.assertEqual(merged,old)
+        self.assertIn(endpoint,report['errors'][0]['error'])
+        self.assertEqual(report['errors'][0]['sourceUrl'],endpoint)
+        self.assertEqual(report['errors'][0]['lastSuccessAt'],'2026-10-07')
+        self.assertTrue(report['outcomes'][0]['sourceAttempted'])
+        self.assertEqual(report['outcomes'][0]['status'],'failed')
 
 if __name__=='__main__':unittest.main()
