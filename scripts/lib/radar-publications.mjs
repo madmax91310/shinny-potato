@@ -222,6 +222,9 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
   if (!summary || !/\d/.test(summary)) {
     const book = !listing.observation && !listing.lastValidObservation && inseeBookChapters(html,source,url)
     if (book) return {rejected:`Sommaire d’ouvrage, sans résumé statistique propre : ${book.chapters.length} chapitres ménages découverts, extraction individuelle différée.`,title,publishedAt,bookDiscovery:book}
+    // Same admission rule as below: an out-of-scope INSEE reference does not
+    // become a collector failure solely because it has no numerical abstract.
+    if(source.host==='www.insee.fr'&&!statisticalTopic(title))return {rejected:'Publication hors des thèmes ménages suivis',title,publishedAt}
     throw new Error('Résumé statistique chiffré absent : extraction à adapter')
   }
   if (!statisticalTopic(title)) return { rejected: 'Publication hors des thèmes ménages suivis', title, publishedAt }

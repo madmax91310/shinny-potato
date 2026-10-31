@@ -82,3 +82,8 @@ const changed=await collectPublications(now,async()=>new Response(book),retained
 assert.equal(changed.state.documents[url].status,'error')
 assert.deepEqual(changed.state.documents[url].observation,oldObservation,'Changed index does not erase/re-date a previously qualified numerical observation')
 assert.equal(changed.state.documents[url].bookDiscovery,undefined)
+
+const outOfScope=book.replaceAll('Emploi, chômage, revenus du travail','Objectif 7 : énergie propre et d’un coût abordable').replaceAll('sommaire-seul','not-a-pure-index')
+assert.equal(parsePublication(outOfScope,source,url,now).rejected,'Publication hors des thèmes ménages suivis','Existing theme filter runs before an unnecessary abstract becomes an error')
+const poverty=await fixture('insee-odd-poverty-9090671')
+assert.throws(()=>parsePublication(poverty,source,'https://www.insee.fr/fr/statistiques/9090671',now),/Résumé statistique chiffré absent/,'A financially relevant reference without qualified figures remains blocked; no invented summary')
