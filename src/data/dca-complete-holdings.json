@@ -3038,8 +3038,135 @@
       "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
     },
     "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+    "compositionFacts": {
+      "asOf": "2026-10-30",
+      "basis": "fund",
+      "method": "same-snapshot-equity-country-of-risk-and-sector",
+      "countries": {
+        "asOf": "2026-10-30",
+        "rows": [
+          {
+            "name": "United Kingdom",
+            "weightPct": 23.269740000000002
+          },
+          {
+            "name": "France",
+            "weightPct": 14.61087
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 14.516179999999999
+          },
+          {
+            "name": "Germany",
+            "weightPct": 13.076670000000002
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 7.630210000000001
+          },
+          {
+            "name": "Spain",
+            "weightPct": 5.671319999999999
+          },
+          {
+            "name": "Italy",
+            "weightPct": 5.182609999999999
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 4.873239999999999
+          },
+          {
+            "name": "Denmark",
+            "weightPct": 2.70598
+          },
+          {
+            "name": "Belgium",
+            "weightPct": 1.90293
+          },
+          {
+            "name": "Finland",
+            "weightPct": 1.7936100000000006
+          },
+          {
+            "name": "Norway",
+            "weightPct": 1.3400500000000002
+          },
+          {
+            "name": "Poland",
+            "weightPct": 0.99852
+          },
+          {
+            "name": "Ireland",
+            "weightPct": 0.68763
+          },
+          {
+            "name": "Austria",
+            "weightPct": 0.59942
+          },
+          {
+            "name": "Greece",
+            "weightPct": 0.49322000000000005
+          },
+          {
+            "name": "Portugal",
+            "weightPct": 0.30723999999999996
+          }
+        ]
+      },
+      "sectors": {
+        "asOf": "2026-10-30",
+        "rows": [
+          {
+            "name": "Financials",
+            "weightPct": 24.543760000000017
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 18.09815999999999
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 13.458670000000003
+          },
+          {
+            "name": "Information Technology",
+            "weightPct": 8.48516
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 8.385059999999998
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 6.361549999999999
+          },
+          {
+            "name": "Energy",
+            "weightPct": 6.248640000000002
+          },
+          {
+            "name": "Materials",
+            "weightPct": 5.431820000000003
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 4.895319999999998
+          },
+          {
+            "name": "Communication Services",
+            "weightPct": 2.7466100000000004
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 1.0046899999999999
+          }
+        ]
+      }
+    },
     "sha256": "f1e1c372cdc6443ea2aa65358f4c9b9594ba0401731778fe554e9e394a01dca2",
-    "checkedAt": "2026-11-01T14:35:11.373610+00:00"
+    "checkedAt": "2026-11-01T15:57:10.619423+00:00"
   },
   "DE000A0F5UJ7": {
     "asOf": "2026-10-30",

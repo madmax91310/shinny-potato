@@ -7,6 +7,7 @@ from pathlib import Path
 import unittest
 from unittest.mock import patch
 from unittest.mock import Mock
+from data_automation import ResponseFormatError
 from invesco_economic_index import collect,contracts,digest,parse_capture,qualify_metadata,qualify_subject
 
 FIX=json.loads(gzip.decompress((Path(__file__).with_name('fixtures')/'invesco-economic-index/public-index-books.json.gz').read_bytes()))['books']
@@ -180,3 +181,43 @@ class RussellEquityReference(unittest.TestCase):
             return_weight_method('russell2000-equity-members',NOW,Mock(side_effect=ConnectionError('Rules unavailable')))
 
 if __name__=='__main__':unittest.main()
+
+
+class UbsMonthlyPublication(unittest.TestCase):
+    def test_explicit_unpublished_month_uses_older_exact_document_without_redating(self):
+        now = dt.datetime(2026, 11, 1, tzinfo=dt.timezone.utc)
+        fixture = EXTRA['IE00BD4TXV59']
+        attempts = []
+        def fetch(url, **kwargs):
+            if '20261031' in url:
+                raise ResponseFormatError('Expected official PDF at '+url+'; received Dokument nicht gefunden | Swiss Fund Data at '+url)
+            return b'%PDF-September-original'
+        def extract(body, rectangle=None, raw=False):
+            return fixture['subjectRawText'] if raw else fixture['subjectText']
+        with patch('invesco_economic_index.pdf_text', side_effect=extract):
+            body, url, as_of, _ = qualify_subject('IE00BD4TXV59', now, fetch, attempts=attempts)
+        self.assertEqual(as_of, '2026-09-30')
+        self.assertIn('20260930', url)
+        self.assertEqual([r['status'] for r in attempts], ['waiting-publication', 'waiting-publication', 'validated'])
+        self.assertEqual(attempts[-1]['asOf'], as_of)
+        self.assertEqual(attempts[-1]['sha256'], digest(body))
+
+    def test_unknown_html_and_changed_financial_identity_never_select_an_older_pdf(self):
+        now = dt.datetime(2026, 11, 1, tzinfo=dt.timezone.utc)
+        fetch = Mock(side_effect=ResponseFormatError('Expected official PDF; received anti-robot challenge'))
+        with self.assertRaises(ResponseFormatError):
+            qualify_subject('IE00BD4TXV59', now, fetch)
+        self.assertEqual(fetch.call_count, 1)
+        fetch = Mock(return_value=b'%PDF-wrong-identity')
+        with patch('invesco_economic_index.pdf_text', return_value='Another fund'), self.assertRaisesRegex(ValueError, 'Wrong exact UBS'):
+            qualify_subject('IE00BD4TXV59', now, fetch)
+        self.assertEqual(fetch.call_count, 1)
+
+    def test_missing_all_candidates_remains_a_bounded_failure(self):
+        attempts = []
+        def missing(url, **kwargs):
+            raise ResponseFormatError('Expected official PDF at '+url+'; received Dokument nicht gefunden | Swiss Fund Data at '+url)
+        with self.assertRaisesRegex(ConnectionError, 'UBS current benchmark proof unavailable'):
+            qualify_subject('IE00BD4TXV59', dt.datetime(2027, 1, 1, tzinfo=dt.timezone.utc), missing, attempts=attempts)
+        self.assertEqual(len(attempts), 6)
+        self.assertTrue(all(r['status']=='waiting-publication' for r in attempts))
