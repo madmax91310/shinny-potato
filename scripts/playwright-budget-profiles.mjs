@@ -59,6 +59,7 @@ try {
       assert((await image.evaluate(img => img.naturalWidth)) === 1200)
       const drawn = await page.evaluate(() => window.budgetCanvasText)
       assert(drawn.length > 0, 'Inspect the real canvas text, not only its PNG dimensions')
+      if (profile.approximate) assert(drawn.some(t => t.text.startsWith('≈ ')), 'Approximate amounts stay qualified in the main figure, without a disclaimer line')
       for (const t of drawn) {
         assert(t.left >= 30 && t.right <= 1170 && t.y >= 0 && t.y + t.size <= t.height, `${profile.id}: text exceeds the image: ${JSON.stringify(t)}`)
         assert(!t.text.includes('…'), `${profile.id}: no truncated content`)

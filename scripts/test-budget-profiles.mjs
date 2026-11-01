@@ -107,6 +107,9 @@ assert.equal(futureApprentice.kind, 'planned')
 assert.match(buildBudgetText(futureApprentice), /septembre 2025/)
 assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-celibataire-31-2026-02-03')), /enveloppe calculée/)
 
+assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-batiment-21-2025-09-30')), /deux années suivant ce budget/)
+assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-ingenieur-aero-2025-11-30')), /50\/30\/20/)
+
 const apprentice = BUDGET_PROFILES.find(p => p.id === 'reddit-alternant-20-2025-09-03')
 assert.equal(apprentice.kind, 'planned')
 assert.match(buildBudgetText(apprentice), /Logé et nourri chez ses parents/)

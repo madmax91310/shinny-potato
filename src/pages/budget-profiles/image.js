@@ -51,9 +51,9 @@ function icon(ctx, kind, x, y, size = 44) {
   ctx.strokeStyle = C.ink; ctx.lineWidth = 2.6; ctx.lineCap = 'round'; ctx.lineJoin = 'round'
   ctx.stroke(new Path2D(paths[kind] || paths.other)); ctx.restore()
 }
-function planCard(ctx, money, title, total, rows, color, kind, subtitle = 'PAR MOIS', compact = false) {
+function planCard(ctx, money, title, total, rows, color, kind, subtitle = 'PAR MOIS', compact = false, approximate = false) {
   font(ctx, 76, 800)
-  const value = money(total), valueWidth = ctx.measureText(value).width
+  const value = `${approximate ? '≈ ' : ''}${money(total)}`, valueWidth = ctx.measureText(value).width
   const titleWidth = CW - PAD * 2 - 88 - valueWidth - 30
   const stacked = titleWidth < 380
   const titleLines = lines(ctx, title, stacked ? CW - PAD * 2 - 88 : titleWidth, 38, 800)
@@ -106,12 +106,12 @@ export async function renderBudgetImage(profile, mode = 'detailed') {
   const headerHeight = 146 + titleHeight + detailsHeight + plannedHeight + 24
   const compact = profile.income.length + profile.expenses.length + profile.savings.length > 48
   const cards = [
-    planCard(ctx, money, 'RESSOURCES', a.income, profile.income, C.income, 'income', presentation.basis || 'PAR MOIS', compact),
-    planCard(ctx, money, 'DÉPENSES', a.expenses, budgetImageExpenses(profile, mode), C.expenses, 'expenses', 'PAR MOIS', compact),
+    planCard(ctx, money, 'RESSOURCES', a.income, profile.income, C.income, 'income', presentation.basis || 'PAR MOIS', compact, profile.approximate),
+    planCard(ctx, money, 'DÉPENSES', a.expenses, budgetImageExpenses(profile, mode), C.expenses, 'expenses', 'PAR MOIS', compact, profile.approximate),
   ]
-  if (profile.savings.length) cards.push(planCard(ctx, money, 'VERSEMENTS', a.savings, profile.savings, C.savings, 'savings', 'PAR MOIS', compact))
-  if (profile.capacity !== null) cards.push(planCard(ctx, money, profile.kind === 'planned' ? 'CAPACITÉ ENVISAGÉE' : 'CAPACITÉ ANNONCÉE', profile.capacity, [], C.savings, 'savings', 'PAR MOIS', compact))
-  cards.push(planCard(ctx, money, a.balance < 0 ? (profile.savings.length ? 'MANQUE APRÈS VERSEMENTS' : 'DÉFICIT AVANT VERSEMENTS') : (presentation.balanceLabel === 'Reste disponible après versements' ? 'RESTE DISPONIBLE' : presentation.balanceLabel.toLocaleUpperCase('fr')), Math.abs(a.balance), [], a.balance < 0 ? C.deficit : C.balance, 'balance'))
+  if (profile.savings.length) cards.push(planCard(ctx, money, 'VERSEMENTS', a.savings, profile.savings, C.savings, 'savings', 'PAR MOIS', compact, profile.approximate))
+  if (profile.capacity !== null) cards.push(planCard(ctx, money, profile.kind === 'planned' ? 'CAPACITÉ ENVISAGÉE' : 'CAPACITÉ ANNONCÉE', profile.capacity, [], C.savings, 'savings', 'PAR MOIS', compact, profile.approximate))
+  cards.push(planCard(ctx, money, a.balance < 0 ? (profile.savings.length ? 'MANQUE APRÈS VERSEMENTS' : 'DÉFICIT AVANT VERSEMENTS') : (presentation.balanceLabel === 'Reste disponible après versements' ? 'RESTE DISPONIBLE' : presentation.balanceLabel.toLocaleUpperCase('fr')), Math.abs(a.balance), [], a.balance < 0 ? C.deficit : C.balance, 'balance', 'PAR MOIS', compact, profile.approximate))
   canvas.height = headerHeight + cards.reduce((h, p) => h + p.height + GAP, 0) + 82
   ctx.fillStyle = C.background; ctx.fillRect(0, 0, W, canvas.height)
   draw(ctx, profile.kind === 'prepared' ? 'EXEMPLE DE BUDGET' : 'LE BUDGET DE', 65, 38, 66, C.ivory, 800)
