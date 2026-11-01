@@ -64,6 +64,11 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
     keys=['isin','issueName','holdingPercent','assetClass','countryOfRisk','sectorName','ticker','marketCurrencyCode','exchange']
     cols=[p[k]['value'] for k in keys]
     if len({len(c) for c in cols})!=1:raise ValueError('Misaligned holdings')
+    # Reuse only the literal issuer labels already qualified for this exact
+    # German share. The allocations use the holdings' own date and weights.
+    translated_allocations = localized and isin == 'DE0002635307'
+    if translated_allocations:
+        from collect_ishares_german import COUNTRIES, SECTORS
     rows=[]; securities=[]; allocations={'countries':{},'sectors':{}}; classified=True
     positions=[];selected=[]
     for security,name,weight,kind,country,sector,ticker,currency,exchange in zip(*cols):
@@ -73,7 +78,10 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
         if kind!='Equity' or weight==0:continue
         selected.append(len(positions)-1)
         rows.append({'isin':security,'name':name,'weightPct':weight})
-        if localized or not all(isinstance(v,str) and v.strip() and v not in ('-', 'Unknown', 'Other') for v in (country,sector)):
+        if translated_allocations:
+            country = COUNTRIES.get(country.strip()) if isinstance(country,str) else None
+            sector = SECTORS.get(sector.strip()) if isinstance(sector,str) else None
+        if (localized and not translated_allocations) or not all(isinstance(v,str) and v.strip() and v not in ('-', 'Unknown', 'Other') for v in (country,sector)):
             classified=False
         else:
             for field,label in [('countries',country),('sectors',sector)]:
