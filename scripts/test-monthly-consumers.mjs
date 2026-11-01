@@ -37,7 +37,17 @@ try {
   }
   const archivalBitcoin=JSON.parse(readFileSync('scripts/source-snapshots/calculator-monthly-2026-10-02.json')).records.bitcoin.points;
   const archivalGold=JSON.parse(readFileSync('scripts/source-snapshots/calculator-worldbank-gold-2026-10-03.json')).points;
-  const archive=spawnSync(process.execPath,['--input-type=module','-e',"import assert from 'node:assert/strict'; import { ASSETS } from './src/data/market-history.js'; for(const asset of Object.values(ASSETS)) assert.equal(asset.points.at(-1).date,'2026-09');"], {cwd:directory,encoding:'utf8',env:{...process.env,MONTHLY_ARCHIVE_AUDIT:'1',MONTHLY_ARCHIVE_SERIES:JSON.stringify({bitcoin:archivalBitcoin,or:archivalGold})}});
+  const archive=spawnSync(process.execPath,['--input-type=module','-e',`
+    import assert from 'node:assert/strict';
+    import { ASSETS, BASELINE_ASSETS } from './src/data/market-history.js';
+    const captures=JSON.parse(process.env.MONTHLY_ARCHIVE_SERIES);
+    // Only the explicitly captured assets replay those immutable captures.
+    // Unrelated live index references may legitimately have a later month.
+    for(const [id,baseline] of Object.entries(BASELINE_ASSETS)) {
+      const expected=captures[id]?.map(([date,price])=>({date,price}))??baseline.points;
+      assert.deepEqual(ASSETS[id].points,expected,id+': archive audit must not consume the simulated new automation month');
+    }
+  `], {cwd:directory,encoding:'utf8',env:{...process.env,MONTHLY_ARCHIVE_AUDIT:'1',MONTHLY_ARCHIVE_SERIES:JSON.stringify({bitcoin:archivalBitcoin,or:archivalGold})}});
   assert.equal(archive.status,0,archive.stderr);
   const load=path=>import(pathToFileURL(join(directory,path)));
   const { ASSETS }=await load('src/data/market-history.js');

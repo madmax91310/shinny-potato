@@ -1,4 +1,5 @@
 import { INVESTORS } from "../src/pages/investor-portfolio/data.js"
+import investorReviews from '../public/data/investors/review-metadata.json' with { type: 'json' }
 import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
@@ -41,9 +42,20 @@ assert.equal(reminderCandidates(offerReview('2026-10-21')).length, 1)
 
 const real = buildReview('2026-10-03')
 assert.deepEqual(planReminders(real), [], 'Catalogue réel audité cette semaine : aucun rappel prématuré')
-assert.equal(real.schedule.filter(x => x.id.startsWith('investor:') && x.nextReviewAt === '2026-11-14').length, INVESTORS.length)
-assert.equal(reminderCandidates(buildReview('2026-11-06')).filter(x => x.id.startsWith('investor:')).length, 0)
-assert.equal(reminderCandidates(buildReview('2026-11-07')).filter(x => x.id.startsWith('investor:')).length, INVESTORS.length)
+const investorDeadlines = new Map(investorReviews.map(payload => {
+  const [year,month]=payload.data.snapshot.periodEnd.split('-').map(Number);
+  // 45 days after the end of the following quarter, independently of the
+  // polling date. Managers legitimately report different quarters.
+  return ['investor:'+payload.data.identity.slug,new Date(Date.UTC(year,month+3,45)).toISOString().slice(0,10)];
+}));
+assert.deepEqual([...investorDeadlines.keys()].sort(),INVESTORS.map(([slug])=>'investor:'+slug).sort());
+for(const [id,due] of investorDeadlines)assert.equal(real.schedule.find(row=>row.id===id)?.nextReviewAt,due,id);
+for(const due of new Set(investorDeadlines.values()))for(const offset of [-8,-7,0,1]) {
+  const date=new Date(Date.parse(due+'T00:00:00Z')+offset*86400000).toISOString().slice(0,10);
+  const actual=reminderCandidates(buildReview(date)).filter(x=>x.id.startsWith('investor:')).map(x=>x.id).sort();
+  const expected=[...investorDeadlines].filter(([,deadline])=>Date.parse(deadline+'T00:00:00Z')-Date.parse(date+'T00:00:00Z')<=7*86400000).map(([id])=>id).sort();
+  assert.deepEqual(actual,expected,date+': quarter-specific reminder window');
+}
 
 const planned = planReminders(review('2026-10-25'))
 for (const state of ['open', 'closed']) assert.equal(planReminders(review('2026-11-20'), [{ state, body: planned[0].body }]).length, 0, `Déduplication d'une issue ${state}`)
