@@ -49,9 +49,10 @@ try {
     await page.goto(base + '/'); await expect(page.getByRole('link', { name: /Le budget de…/ }).first()).toBeVisible()
     await page.getByRole('link', { name: /Le budget de…/ }).first().click()
     await expect(page.getByRole('heading', { name: 'Le budget de…', exact: true, level: 1 })).toBeVisible()
+    assert.equal(await page.locator('select').count(), 0, 'Default budget uses the shared button selectors')
     const picker = page.getByRole('group', { name: 'Choisir un profil budget' })
     for (const profile of BUDGET_PROFILES) {
-      await page.getByLabel('Version de l’image', { exact: true }).selectOption('detailed')
+      await page.getByRole('group', { name: 'Version de l’image', exact: true }).locator('[data-value="detailed"]').click()
       await picker.locator(`[data-value="${profile.id}"]`).click()
       const image = page.getByRole('region', { name: 'Image du budget' }).locator('img')
       await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(buildBudgetText(profile))
@@ -88,7 +89,7 @@ try {
       assert.deepEqual(await page.evaluate(key => JSON.parse(localStorage.getItem(key)).published, WORKSPACE_KEY), [], 'Copying and exporting never declare publication')
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}: no horizontal overflow`)
       // Verify the optional summary from the actual render, then its selected download.
-      await page.getByLabel('Version de l’image', { exact: true }).selectOption('summary')
+      await page.getByRole('group', { name: 'Version de l’image', exact: true }).locator('[data-value="summary"]').click()
       await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeEnabled()
       const summaryDrawn = await page.evaluate(() => window.budgetCanvasText)
       assertNoCanvasTextOverlap(summaryDrawn, `${profile.id} summary`)

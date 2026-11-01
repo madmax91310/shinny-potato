@@ -24,10 +24,10 @@ try {
   await picker.locator(`[data-value="${q.id}"]`).click();await picker.locator(`[data-value="${p.id}"]`).click()
   await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(custom)
   await page.getByText('Filtrer les profils',{exact:true}).click()
-  for(const [label,value] of [['Pays de résidence','France'],['Ressources mensuelles par devise','EUR:2500:4000'],['Configuration du foyer','couple'],['Enfants au foyer','yes'],['Logement','tenant']])await page.getByLabel(label,{exact:true}).selectOption(value)
+  for(const [label,value] of [['Pays de résidence','France'],['Ressources mensuelles par devise','EUR:2500:4000'],['Configuration du foyer','couple'],['Enfants au foyer','yes'],['Logement','tenant']])await page.getByRole('group',{name:label,exact:true}).locator(`[data-value="${value}"]`).click()
   await expect(picker.locator('[data-value]')).toHaveCount(1)
   await expect(picker.locator('[data-value]')).toHaveAttribute('data-value','reddit-famille-bourges-2026-07-12')
-  await page.getByLabel('Ressources mensuelles par devise',{exact:true}).selectOption('CHF:2500:4000')
+  await page.getByRole('group',{name:'Ressources mensuelles par devise',exact:true}).locator('[data-value="CHF:2500:4000"]').click()
   await expect(page.getByText('Aucun profil ne correspond. Le budget ouvert reste affiché.')).toBeVisible()
   await page.getByRole('button',{name:'Effacer les filtres',exact:true}).click()
   await page.getByLabel('À publier prochainement',{exact:true}).check()
@@ -62,7 +62,7 @@ try {
   // Transfer to a separate browser profile, with no previous personal draft.
   const other=await browser.newContext({viewport:{width,height:950}}),otherPage=await other.newPage();await otherPage.goto(base+'/le-budget-de');await otherPage.getByText('Brouillons et transfert entre appareils',{exact:true}).click();await upload(otherPage,incoming)
   if(await otherPage.getByLabel('Gestion des conflits',{exact:true}).count())await otherPage.getByLabel('Gestion des conflits',{exact:true}).selectOption('use-imported')
-  await otherPage.getByRole('button',{name:'Appliquer cet import',exact:true}).click();await otherPage.getByLabel('Reprendre un brouillon',{exact:true}).selectOption(p.id);await expect(otherPage.getByLabel('Texte prêt à publier')).toHaveValue('Version de mon autre appareil');await other.close()
+  await otherPage.getByRole('button',{name:'Appliquer cet import',exact:true}).click();await otherPage.getByRole('group',{name:'Reprendre un brouillon',exact:true}).locator(`[data-value="${p.id}"]`).click();await expect(otherPage.getByLabel('Texte prêt à publier')).toHaveValue('Version de mon autre appareil');await other.close()
   // The legacy bytes remain intact and a corrupt v2 record can be explicitly archived.
   await page.evaluate(key=>localStorage.setItem(key,'{damaged-workspace'),WORKSPACE_KEY);await page.reload()
   await expect(page.getByRole('alert')).toContainText('conservé sans modification');await page.getByText('Brouillons et transfert entre appareils',{exact:true}).click();await upload(page,incoming)
