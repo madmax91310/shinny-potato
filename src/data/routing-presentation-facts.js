@@ -16,7 +16,7 @@ export const ROUTING_PRESENTATION_FACTS = Object.fromEntries(ROUTING_PRESENTATIO
  const benchmark = c.index?.replace(/<[^>]*>/g,'') || null
  const source = {url:c.sourceUrl??record.sourceUrl,checkedAt:c.checkedAt,...(c.asOf?{asOf:c.asOf}:{})}
  const location = [c.domicile,c.replicationMethod].filter(Boolean).map(frenchCharacteristic).join(', ') || null
- return [row.isin,{benchmark, incomePolicy, distribution, location, domicile:c.domicile??null,
+ return [row.isin,{automatedFields:record.characteristicChecks?.index?{benchmark:record.characteristicChecks.index}:{},benchmark, incomePolicy, distribution, location, domicile:c.domicile??null,
   replicationMethod:c.replicationMethod??null, positionsLabel:benchmark?`Exposition suivie : ${benchmark}`:row.verdict,
   instrumentType:/\bETC\b|Copper/.test(row.whatIs+' '+row.hook)?'ETC':'ETF',
   reviewedAt:c.checkedAt.split('-').reverse().join('/'), characteristicsSource:source,

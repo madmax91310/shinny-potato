@@ -1,3 +1,4 @@
+import { INVESTOR_MODELS, MODEL_ASSET_CLASSES, modelNatureLabel } from './investor-models.js'
 import { COMPANY_INDEX_IDS } from './index-company-facts.js'
 import { QUALIFIED_METRICS } from './qualified-exposure-metrics.js';
 import { marketCalendarPerformance } from './market-calendar-performance.js';
@@ -75,6 +76,9 @@ function instrument(isin, identity) {
   if (commodities) fields.push(field('Allocation matières premières de l’indice suivi', 'automated-etf', commodities.rows, { ...commodities, note: 'Groupes de matières premières publiés par Invesco ; ni secteurs actions, ni panier de swap. Les arrondis signés publiés restent conservés.' }));
   if (ETF_TER_BY_ISIN[isin] != null) fields.push(field('Frais annuels (%)', 'etf-ter', ETF_TER_BY_ISIN[isin], { ...ETF_TER_EVIDENCE[isin], scope }) );
   const facts = INSTRUMENT_FACTS_BY_ISIN[isin];
+  const record = AUTOMATED_ETF[isin], benchmarkProof = record?.characteristicChecks?.index;
+  if (!facts?.benchmark && record?.characteristics?.index && benchmarkProof?.checkedAt) fields.push(field('Indice suivi', 'automated-etf', record.characteristics.index,
+    { ...benchmarkProof, scope, method: 'Objectif de la part exacte ; preuve propre à ce champ, distincte du contrôle des frais et des compositions.' }));
   if (facts) fields.push(field('Caractéristiques', 'instrument-facts', facts, { ...facts.characteristicsSource, dateStatus: 'not-applicable', scope, method: 'Caractéristiques de la part ; aucune inférence sur la cotation.' }));
   const pea = PEA_REVIEWS_BY_ISIN[isin];
   if (pea) fields.push(field('Éligibilité PEA', 'instrument-pea', pea.eligible, { ...pea, dateStatus: 'not-applicable', scope }));
@@ -165,6 +169,13 @@ export const DATA_CATALOG = Object.freeze([
   ...HOUSEHOLD_STATISTICS.map((value) => ({ id: `household:${value.id}`, type: 'household', name: value.title,
     aliases: [value.id, value.category, value.headline, 'Insee', 'ménages'], consumers: [{ tool: 'La France en 100 ménages', path: `/france-100-menages` }],
     fields: [field('Statistique de ménages', 'household-statistics', value, value.metadata)] })),
+  ...INVESTOR_MODELS.map(model => ({ id: `investor-model:${model.id}`, type: 'portfolio', name: model.name,
+    aliases: [model.author, modelNatureLabel(model), model.publication, ...model.rows.map(row => MODEL_ASSET_CLASSES[row.classId])],
+    consumers: [{ tool: 'Portefeuille d’investisseur', path: '/portefeuilles-investisseurs' }],
+    fields: [field('Allocation cible documentée', 'investor-models', model, {
+      sourceUrls: model.sourceUrls, checkedAt: model.checkedAt, asOf: null, dateStatus: 'not-applicable',
+      scope: model.scope, method: model.method, note: `${model.publication} ; ${model.locator}. ${model.caution}`,
+    })] })),
   ...Object.entries(INSTRUMENTS_BY_ISIN).map(([isin, identity]) => instrument(isin, identity)),
   ...Object.entries(INDEX_FACTS).map(([id, history]) => index(id, history)),
   ...Object.entries(INDEX_RETURNS).filter(([id]) => !INDEX_FACTS[id]).map(([id, history]) => ({

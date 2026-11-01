@@ -1,3 +1,4 @@
+import { MODEL_INVESTORS, investorModel, modelNatureLabel } from '../../data/investor-models.js'
 import History from './History.jsx'
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
@@ -9,8 +10,10 @@ import Button from '../../design-system/Button'
 import { ATTRIBUTION, buildTweet, dateFR, holdingName, INVESTORS, loadPortfolio, percentage } from './data.js'
 import { renderPortfolioImage } from './image.js'
 import { investorPortrait } from './portrait.js'
-import { INVESTOR_PROFILES, investorIntroduction } from '../../data/investor-profiles.js'
+import { INVESTOR_PROFILES, investorIntroduction as profileIntroduction } from '../../data/investor-profiles.js'
 import './style.css'
+
+const investorIntroduction = slug => investorModel(slug)?.intro ?? profileIntroduction(slug)
 
 export default function InvestorPortfolio() {
   const [slug, setSlug] = useState('tepper')
@@ -36,6 +39,9 @@ export default function InvestorPortfolio() {
     return () => controller.abort()
   }, [slug])
 
+  const model = investorModel(slug)
+  const sources = INVESTOR_PROFILES[slug]?.sourceUrls ?? model?.sourceUrls ?? []
+
   function updateIntro(value) {
     setIntro(value)
     setCopied(false)
@@ -54,35 +60,36 @@ export default function InvestorPortfolio() {
     try {
       const link = document.createElement('a')
       link.href = await renderPortfolioImage(portfolio)
-      link.download = `portefeuille-${slug}-${portfolio.snapshot.periodEnd}.png`
+      link.download = `portefeuille-${slug}-${model ? "allocation-modele" : portfolio.snapshot.periodEnd}.png`
       startPublicationDownload(link)
     } catch (problem) { setError(problem.message); notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') }
     finally { setExporting(false) }
   }
 
   return <div className="ip-scope">
-    <PageHeader title="Portefeuille d’investisseur" subtitle="La dernière photographie 13F disponible, un tweet modifiable et un visuel assorti." />
+    <PageHeader title="Portefeuille d’investisseur" subtitle="Déclarations 13F et allocations modèles publiées, avec texte modifiable et visuel assorti." />
     <ToolWorkspace renderImage={() => renderPortfolioImage(portfolio)} imageDisabled={!portfolio} imageAlt={`Portefeuille ${portfolio?.identity.displayName ?? "investisseur"}`}>
     <section className="ip-panel tool-settings">
       <label htmlFor="ip-investor">Choisir un investisseur</label>
       <ChoicePicker id="ip-investor" value={slug} onChange={(event) => setSlug(event.target.value)}>
-        {INVESTORS.map(([key, name]) => <option key={key} value={key}>{name}</option>)}
+        <optgroup label="Déclarations de sociétés ou de fonds · 13F">{INVESTORS.map(([key, name]) => <option key={key} value={key}>{name}</option>)}</optgroup>
+        <optgroup label="Méthodes · allocations modèles et adaptations">{MODEL_INVESTORS.map(([key, name]) => <option key={key} value={key}>{name}</option>)}</optgroup>
       </ChoicePicker>
       <p className="ip-bio">{intro.trim() || investorIntroduction(slug)}</p>
-      {loading && <p role="status">Chargement des déclarations…</p>}
+      {loading && <p role="status">Chargement du portefeuille…</p>}
       {error && <p role="alert" className="ip-error">{error}</p>}
     </section>
     <section className="ip-panel tool-preview">
       {portfolio && <>
         <div className="ip-meta">
           <strong>{portfolio.identity.displayName} · {portfolio.identity.entityName}</strong>
-          <span>Positions au {dateFR(portfolio.snapshot.periodEnd)}{portfolio.snapshot.filedAt && ` · déposées le ${dateFR(portfolio.snapshot.filedAt)}`}</span>
-          <span>{portfolio.holdings.length} positions affichées · poids hors options</span>
+          {model ? <><span>{modelNatureLabel(model)} · {model.publication}</span><span>{model.scope}</span><span>Source contrôlée le {dateFR(model.checkedAt)} · {model.locator}</span></> : <span>Positions au {dateFR(portfolio.snapshot.periodEnd)}{portfolio.snapshot.filedAt && ` · déposées le ${dateFR(portfolio.snapshot.filedAt)}`}</span>}
+          <span>{portfolio.holdings.length} {model ? 'classes d’actifs · poids cibles' : 'positions affichées · poids hors options'}</span>
         </div>
         <div className="ip-grid">
-          <div className="ip-preview" aria-label="Répartition des cinq principales positions">
-            {portfolio.holdings.slice(0, 5).map((row, i) => <div className="ip-row" key={`${row.ticker}-${i}`}>
-              <span className="ip-dot" style={{ background: ['#dcba75', '#54d5b0', '#6da9e7', '#d9928b', '#a89bd9'][i] }} />
+          <div className="ip-preview" aria-label={model ? "Répartition cible complète" : "Répartition des cinq principales positions"}>
+            {(model ? portfolio.holdings : portfolio.holdings.slice(0, 5)).map((row, i) => <div className="ip-row" key={`${row.ticker}-${i}`}>
+              <span className="ip-dot" style={{ background: ['#dcba75', '#54d5b0', '#6da9e7', '#d9928b', '#a89bd9'][i % 5] }} />
               <span>{holdingName(row)} <small>{row.ticker}</small></span><strong>{percentage(row.weight)}</strong>
             </div>)}
           </div>
@@ -90,7 +97,7 @@ export default function InvestorPortfolio() {
             <label htmlFor="ip-intro">Présentation de l’investisseur (modifiable)</label>
             <textarea id="ip-intro" value={intro} onChange={(event) => updateIntro(event.target.value)} rows="3" />
             <Button type="button" variant="secondary" onClick={() => { updateIntro(investorIntroduction(slug)); notifyPublication('Présentation d’origine rétablie.') }}>Rétablir la présentation</Button>
-        <p className="ip-note">Source de la présentation proposée : {INVESTOR_PROFILES[slug]?.sourceUrls.map((url, i) => <span key={url}>{i > 0 && ' · '}<a href={url} target="_blank" rel="noreferrer">{new URL(url).hostname} ↗</a></span>)}</p>
+        <p className="ip-note">Source de la présentation proposée : {sources.map((url, i) => <span key={url}>{i > 0 && ' · '}<a href={url} target="_blank" rel="noreferrer">{new URL(url).hostname} ↗</a></span>)}</p>
             <label htmlFor="ip-draft">Tweet modifiable</label>
             <textarea id="ip-draft" value={draft} onChange={(event) => setDraft(event.target.value)} rows="16" />
           </div>
@@ -99,13 +106,14 @@ export default function InvestorPortfolio() {
           <Button type="button" onClick={copy}>{copied ? '✅ Copié' : '📋 Copier le tweet'}</Button>
           <Button type="button" variant="secondary" onClick={download} disabled={exporting}>{exporting ? 'Création du PNG…' : '⬇️ Télécharger le PNG'}</Button>
         </WorkspaceActions>
-        <p className="ip-note">Les catégories d’actions d’une même entreprise sont regroupées : deux catégories ne constituent pas deux entreprises différentes.</p>
+        {!model && <><p className="ip-note">Les catégories d’actions d’une même entreprise sont regroupées : deux catégories ne constituent pas deux entreprises différentes.</p>
         <p className="ip-note">Le visuel reprend les chiffres chargés et peut différer si tu modifies manuellement le tweet. Les déclarations 13F paraissent après la fin du trimestre et ne montrent pas toutes les positions du gestionnaire.</p>
         <p className="ip-note">Photo de {investorPortrait(portfolio.identity.slug).person} : <a href={investorPortrait(portfolio.identity.slug).source} target="_blank" rel="noreferrer">{investorPortrait(portfolio.identity.slug).author} ↗</a> · {investorPortrait(portfolio.identity.slug).license}</p>
-        <History portfolio={portfolio} />
-        <p className="ip-credit">{portfolio.identity.dataProvider === 'FolioFact' ? 'Données : FolioFact · déclarations SEC 13F' : portfolio.identity.dataProvider === 'SEC' ? 'Données : SEC EDGAR' : ATTRIBUTION} · <a href={portfolio.sourceUrl} target="_blank" rel="noreferrer">Voir {portfolio.identity.dataProvider === 'FolioFact' ? 'FolioFact' : portfolio.identity.dataProvider === 'SEC' ? 'la déclaration' : 'Tracefour'} ↗</a></p>
+        <History portfolio={portfolio} /></>}
+        {model && <><p className="ip-note">{model.method}</p><p className="ip-note">{model.caution}</p><p className="ip-note">Cibles théoriques, sans performance ni conversion en produits UCITS. Le visuel utilise les poids du modèle ; une modification manuelle du texte ne modifie pas ces cibles.</p></>}
+        <p className="ip-credit">{model ? "Source : publication de la méthode" : portfolio.identity.dataProvider === 'FolioFact' ? 'Données : FolioFact · déclarations SEC 13F' : portfolio.identity.dataProvider === 'SEC' ? 'Données : SEC EDGAR' : ATTRIBUTION} · <a href={portfolio.sourceUrl} target="_blank" rel="noreferrer">Voir {model ? 'la publication' : portfolio.identity.dataProvider === 'FolioFact' ? 'FolioFact' : portfolio.identity.dataProvider === 'SEC' ? 'la déclaration' : 'Tracefour'} ↗</a></p>
       </>}
-      {!portfolio && <p role="status">{loading ? 'Chargement des déclarations…' : 'Choisis un investisseur dans les réglages.'}</p>}
+      {!portfolio && <p role="status">{loading ? 'Chargement du portefeuille…' : 'Choisis un investisseur dans les réglages.'}</p>}
     </section>
     </ToolWorkspace>
   </div>

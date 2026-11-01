@@ -20,6 +20,7 @@ export function compositionEvidenceLabel(composition) {
 }
 export const COMPOSITION_LABELS = {
   ...FRENCH_CHARACTERISTIC_LABELS,
+  Australia: 'Australie', Grains: 'Céréales', 'Precious metals': 'Métaux précieux', 'Other/Cash': 'Autres / liquidités',
   Treasury: 'Emprunts d’État', 'Cash and/or Derivatives': 'Liquidités / dérivés',
   Italy: 'Italie', Spain: 'Espagne',
   'Information Technology': 'Technologie', Technology: 'Technologie', Financials: 'Finance', 'Consumer Discretionary': 'Conso. cyclique',
