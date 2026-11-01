@@ -36,3 +36,8 @@ jobs:
       - run: npm run build
       - run: node scripts/test-tweet-discovery.mjs
         working-directory: .
+      - run: npm ci
+        working-directory: .
+      - run: npx playwright install --with-deps chromium
+        working-directory: .
+      - run: node tests/browser.mjs

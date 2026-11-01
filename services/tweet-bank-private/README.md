@@ -41,3 +41,18 @@ La confiance dans `oai-authenticated-user-id` suppose le passage par le dispatch
 Sites authentifié ; ne pas exposer directement le Worker. La politique du Site
 existant a été relue (accès personnalisé, propriétaire seul, aucun visiteur
 externe). Aucun accès, compte ou secret n'a été modifié pendant l'audit.
+
+## Reprise des lectures et sauvegardes
+
+Le client borne les requêtes à 15 secondes. Une interruption conserve le texte
+édité et rend la sauvegarde réessayable ; avant de répéter une écriture dont la
+réponse a été perdue, vérifier par actualisation si elle a été enregistrée.
+Les trois réponses de synchronisation sont validées avant de remplacer ensemble
+la photographie affichée/exportable. Une préférence de schéma invalide ne peut
+plus vider silencieusement la liste des tweets reçue en parallèle.
+
+`node tests/browser.mjs` lance uniquement la prévisualisation locale avec SQLite
+en mémoire et une identité de test. Chromium vérifie à 390/1440 px : texte spécial
+littéral, sauvegarde bloquée, conservation/reprise du brouillon, synchronisation
+invalide et JSON téléchargé avec les dernières lignes valides. Le workflow privé
+installe Playwright depuis le lock racine et exécute cette recette.
