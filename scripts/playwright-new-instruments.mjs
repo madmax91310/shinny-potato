@@ -47,7 +47,11 @@ try{
    const text=await page.locator('pre').innerText();for(const isin of c.funds)assert(text.includes(isin));const image=await preview(page);await tab(page,'Texte');await png(page,page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}),`${c.id}-${width}`,image);await layout(page,c.id)
   }
   for(const s of SOURCES){
-   await page.goto(base+'calculateur-investissement?asset='+s.id,{waitUntil:'networkidle'});assert.equal(await page.getByRole('group',{name:'Choisir un actif',exact:true}).getAttribute('data-value'),s.id);await part(page,'Aperçu');await png(page,page.getByRole('button',{name:'📊 Télécharger une image',exact:true}),`${s.id}-calculator-${width}`,await preview(page));await layout(page,s.id+' calculator')
+   await page.goto(base+'calculateur-investissement?asset='+s.id,{waitUntil:'networkidle'});const picker=page.getByRole('group',{name:'Choisir un actif',exact:true});assert.equal(await picker.getAttribute('data-value'),s.id);
+   if(IDENTITIES.find(f=>f.isin===s.isin)?.assetClass==='Fixed Income'){
+    await part(page,'Réglages');await search(picker,s.isin);await picker.getByRole('button',{name:'Parcourir',exact:true}).click();await picker.getByRole('button',{name:'Obligations et monétaire',exact:true}).click();assert(await picker.locator(`[data-option][data-value="${s.id}"]`).count(),s.id+': fixed income classification');assert.equal(await picker.getAttribute('data-value'),s.id)
+   }
+   await part(page,'Aperçu');await png(page,page.getByRole('button',{name:'📊 Télécharger une image',exact:true}),`${s.id}-calculator-${width}`,await preview(page));await layout(page,s.id+' calculator')
    await page.goto(base+'tweet-midi',{waitUntil:'networkidle'});await page.getByRole('button',{name:'Il y a X ans',exact:true}).click();await choose(page.locator('#subject-select'),s.id);await choose(page.locator('#secondary-select'),'1');await page.getByRole('button',{name:'🔄 Générer',exact:true}).click();await part(page,'Aperçu');await tab(page,'Texte');assert((await page.locator('pre').innerText()).includes('Valeur liquidative'));await png(page,page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}),`${s.id}-anniversary-${width}`,await preview(page));await layout(page,s.id+' anniversary')
   }
   for(const {isin} of IDENTITIES){

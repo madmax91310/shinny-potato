@@ -14,7 +14,7 @@ import {getPreferredInstrumentListing,getInstrumentListings} from '../src/data/i
 import {getInstrumentFacts} from '../src/data/instrument-facts.js'
 import {ETF_TER_BY_ISIN} from '../src/data/etf-ter.js'
 import {ETFS} from '../src/data/etf-cards.js'
-import {instrumentOption} from '../src/data/asset-selection.js'
+import {instrumentOption,exposureGroup} from '../src/data/asset-selection.js'
 import {filterAssetOptions} from '../src/lib/asset-picker-preferences.js'
 import {buildText,buildFactRows} from '../src/pages/etf-sheets/lib.js'
 import {AUTOMATED_ETF} from '../src/data/automated-etf.js'
@@ -53,6 +53,7 @@ for(const identity of IDENTITIES){
  const listing=getPreferredInstrumentListing(isin);assert(listing?.sourceUrl&&listing.checkedAt)
  const option=instrumentOption(etf)
  if(identity.assetClass==='Fixed Income')assert.equal(option.group,'Obligations et monétaire')
+ if(identity.portfolioCategory==='emergents'&&!/volatility/i.test(identity.name))assert.equal(exposureGroup(identity),'Émergents')
  for(const query of [isin,identity.name,listing.ticker])assert(filterAssetOptions([option],{query}).some(r=>r.id===id),query)
  const art=getETFArt(id);assert(fs.existsSync(`public/asset-art/${art.scene}`))
  assert.deepEqual(getManualDuelArt(identity),art)
