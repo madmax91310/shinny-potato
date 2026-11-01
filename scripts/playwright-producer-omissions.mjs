@@ -57,7 +57,7 @@ try{
  for(const [name,width,height]of[['desktop',1440,1000],['mobile',390,844]]){
   await page.setViewportSize({width,height});assert.match(await page.locator('body').innerText(),/Résultat attendu absent/)
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2))
-  await page.screenshot({path:'test-artifacts/producer-omissions/'+name+'.png',fullPage:true})
+  await page.getByRole('region',{name:'Tous les problèmes de données',exact:true}).screenshot({path:'test-artifacts/producer-omissions/'+name+'.png'})
  }
  await page.locator('article.dr-item').filter({hasText:'Résultat attendu absent'}).filter({hasText:model.missing}).first().getByRole('button',{name:'Copier le diagnostic complet'}).click()
  const diagnostic=await page.evaluate(()=>navigator.clipboard.readText());await writeFile('test-artifacts/producer-omissions/diagnostic.txt',diagnostic);assert(diagnostic.includes(model.missing));assert(diagnostic.includes('expectedIds'))
@@ -66,7 +66,7 @@ try{
  await recording.waitFor();assert.match(await recording.innerText(),/enregistrement/i)
  for(const [name,width,height]of[['desktop',1440,1000],['mobile',390,844]]){
   await page.setViewportSize({width,height});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2))
-  await page.screenshot({path:'test-artifacts/producer-omissions/13f-'+name+'.png',fullPage:true})
+  await recording.screenshot({path:'test-artifacts/producer-omissions/13f-'+name+'.png'})
  }
  assert.deepEqual(errors,[])
  await writeFile('test-artifacts/producer-omissions/results.json',JSON.stringify({mode:model.mode,missing:model.missing,errors,viewports:['desktop','mobile'],greenWorkflowWithMissingIndividualResult:true,unchanged13FSourceChecks:28,sourceSuccessDoesNotCloseRecordingFailure:true},null,2))

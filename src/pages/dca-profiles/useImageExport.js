@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { MAX_POSITIONS } from './engine.js'
 import { renderDcaImage } from './image.js'
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 
 // Text edits and editorial approval do not change the image. Key every render to
 // its inputs so a late response can never make an obsolete allocation exportable.
-export function useImageExport(profile, field, enabled) {
+export function useImageExport(profile, field, enabled, maxPositions=MAX_POSITIONS) {
   const { approved: _approved, ...imageProfile } = profile
-  const key = JSON.stringify([imageProfile, field])
+  const key = JSON.stringify([imageProfile, field, maxPositions])
   const [result, setResult] = useState(null)
   const [attempt, setAttempt] = useState(0)
   const retry = useCallback(() => setAttempt(n => n + 1), [])
@@ -18,7 +19,7 @@ export function useImageExport(profile, field, enabled) {
     const debounce = setTimeout(async () => {
       try {
         const blob = await Promise.race([
-          renderDcaImage(JSON.parse(key)[0], JSON.parse(key)[1]).then(canvas => new Promise((resolve, reject) => {
+          renderDcaImage(JSON.parse(key)[0], JSON.parse(key)[1],JSON.parse(key)[2]).then(canvas => new Promise((resolve, reject) => {
             canvas.toBlob(value => value ? resolve(value) : reject(new Error('PNG indisponible')), 'image/png')
           })), timeout,
         ])

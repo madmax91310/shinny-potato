@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import {readFileSync} from 'node:fs'
 import {equityUniverse} from './dca-equity-universe.mjs'
-import {references,validateProfile} from '../src/pages/dca-profiles/engine.js'
+import {references,validateProfile,MAX_EXPOSURE_POSITIONS} from '../src/pages/dca-profiles/engine.js'
 import {sharedPositions} from '../src/pages/dca-profiles/verification.js'
 import {allocationRows} from '../src/pages/dca-profiles/image.js'
 import {searchAssets} from '../src/pages/dca-profiles/management.js'
@@ -28,7 +28,7 @@ for(const [asset,r] of Object.entries(universe)){
  }
 }
 const lines=Object.entries(references).slice(0,50).map(([asset,r])=>({asset,isin:r.isin,label:r.name,weight:2,amount:0}))
-assert.deepEqual(validateProfile({imageOnly:true,scope:'Portefeuille investi',lines}),[])
+assert.deepEqual(validateProfile({imageOnly:true,scope:'Portefeuille investi',lines},MAX_EXPOSURE_POSITIONS),[])
 assert(validateProfile({imageOnly:true,scope:'Portefeuille investi',lines:[...lines,lines[0]]}).length)
 const visible=allocationRows(lines)
 assert.equal(visible.length,8)

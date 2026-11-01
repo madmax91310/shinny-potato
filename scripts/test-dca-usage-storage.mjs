@@ -9,7 +9,7 @@ function fixture(raw = null) {
   }
   return { state, storage }
 }
-for (const raw of ['{broken', '', 'null', '{}', '["julien",42]', '["julien",null]', JSON.stringify(['x'.repeat(100)])]) {
+for (const raw of ['{broken', '', 'null', '{}', '["julien",42]', '["julien",null]', JSON.stringify(['x'.repeat(100)]), JSON.stringify({version:2,entries:[{id:'julien',publishedAt:'yesterday'}]}), JSON.stringify({version:2,entries:[{id:'julien',publishedAt:'2026-02-30T00:00:00.000Z'}]}), JSON.stringify({version:3,entries:[]})]) {
   const { state, storage } = fixture(raw), initial = readUsageHistory(storage)
   assert(!initial.readable)
   const next = toggleUsageHistory(initial, 'julien', storage)
@@ -22,7 +22,7 @@ for (const raw of [null, '[]', '[ "older", "older" ]', '["", "future-route"]']) 
   const { state, storage } = fixture(raw), initial = readUsageHistory(storage)
   assert(initial.readable); assert.equal(state.writes, 0); assert.equal(state.raw, raw)
   const saved = toggleUsageHistory(initial, 'julien', storage)
-  assert.equal(saved.error, ''); assert.deepEqual(JSON.parse(state.raw), [...initial.ids, 'julien'])
+  assert.equal(saved.error, ''); assert.deepEqual(JSON.parse(state.raw).entries.map(entry=>entry.id), [...initial.ids, 'julien']); assert.equal(JSON.parse(state.raw).version,2); assert(saved.entries.at(-1).publishedAt); assert(initial.entries.every(entry=>entry.publishedAt===null))
   const reload = readUsageHistory(storage)
   assert.deepEqual(reload.ids, saved.ids)
   assert.deepEqual(toggleUsageHistory(reload, 'julien', storage).ids, initial.ids)

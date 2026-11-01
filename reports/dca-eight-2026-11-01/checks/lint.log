@@ -1,0 +1,5 @@
+src/pages/dca-profiles/AllocationEditor.jsx:9:17: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/pages/dca-profiles/AllocationEditor.jsx:12:17: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/pages/dca-profiles/DcaApp.jsx:45:8: warning react-hooks(exhaustive-deps): React Hook useEffect has a missing dependency: 'initial.damagedDraft' help: Either include it or remove the dependency array.
+src/pages/dca-profiles/DcaApp.jsx:58:89: warning react-hooks(exhaustive-deps): React Hook useCallback has a missing dependency: 'image' help: Either include it or remove the dependency array.
+src/pages/dca-profiles/DcaApp.jsx:58:104: warning react-hooks(exhaustive-deps): React Hook useCallback has unnecessary dependency: image.retry help: Either include it or remove the dependency array.

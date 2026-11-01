@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Button from '../../design-system/Button'
 import { readSaved, readSavedState, writeSaved } from './management.js'
-import { validateProfile } from './engine.js'
+import { validateProfile, MAX_EXPOSURE_POSITIONS, MAX_POSITIONS } from './engine.js'
 import { exportPortfolio, importPortfolio, MAX_PORTFOLIO_FILE_BYTES } from './portable-portfolios.js'
 export default function Portfolios({profile, draft = '', field, onLoad, resetSignal = 0}) {
   const [items, setItems] = useState([]), [title, setTitle] = useState(''), [selected, setSelected] = useState(''), [feedback, setFeedback] = useState('')
@@ -23,7 +23,7 @@ export default function Portfolios({profile, draft = '', field, onLoad, resetSig
       if(file.size>MAX_PORTFOLIO_FILE_BYTES) throw Error('Fichier de portefeuille trop volumineux.')
       const item=importPortfolio(await file.text())
       if(!!item.profile.imageOnly!==!!profile.imageOnly) throw Error('Ouvre ce fichier dans le parcours correspondant : '+(item.profile.imageOnly?'Actifs & expositions.':'Le DCA d’un abonné.'))
-      setImported(item);setFeedback('Fichier vérifié. Ouvre-le pour remplacer le brouillon affiché ; les sauvegardes nommées sont conservées.')
+      setImported(item);setFeedback((!profile.imageOnly&&item.profile.lines.length>MAX_POSITIONS?'Ce portefeuille dépasse huit positions. Toutes les lignes sont conservées ; sa publication reste bloquée. ':'')+'Fichier vérifié. Ouvre-le pour remplacer le brouillon affiché ; les sauvegardes nommées sont conservées.')
     } catch(error) { setFeedback(error.message) }
   }
   useEffect(() => {setSelected('');setTitle('');setImported(null)}, [resetSignal])
@@ -49,10 +49,10 @@ export default function Portfolios({profile, draft = '', field, onLoad, resetSig
   }
   return <details className="dca-saved" onToggle={e => {if(e.currentTarget.open) refresh()}}><summary>Mes portefeuilles</summary>
     <label>Nom de la sauvegarde<input maxLength={80} value={title} onChange={e => setTitle(e.target.value)}/></label>
-    <div className="dca-buttons"><Button variant="secondary" disabled={!!validateProfile(profile).length} onClick={() => save()}>{selected ? 'Mettre à jour la sauvegarde' : 'Enregistrer ce portefeuille'}</Button>{selected && <Button variant="secondary" disabled={!!validateProfile(profile).length} onClick={() => save(true)}>Enregistrer une copie</Button>}</div>
-    <div className="dca-buttons"><Button variant="secondary" disabled={!!validateProfile(profile).length} onClick={download}>Exporter ce portefeuille</Button><label>Importer un portefeuille JSON<input aria-label="Importer un portefeuille JSON" type="file" accept="application/json,.json" onChange={upload}/></label></div>
+    <div className="dca-buttons"><Button variant="secondary" disabled={!!validateProfile(profile,MAX_EXPOSURE_POSITIONS).length} onClick={() => save()}>{selected ? 'Mettre à jour la sauvegarde' : 'Enregistrer ce portefeuille'}</Button>{selected && <Button variant="secondary" disabled={!!validateProfile(profile,MAX_EXPOSURE_POSITIONS).length} onClick={() => save(true)}>Enregistrer une copie</Button>}</div>
+    <div className="dca-buttons"><Button variant="secondary" disabled={!!validateProfile(profile,MAX_EXPOSURE_POSITIONS).length} onClick={download}>Exporter ce portefeuille</Button><label>Importer un portefeuille JSON<input aria-label="Importer un portefeuille JSON" type="file" accept="application/json,.json" onChange={upload}/></label></div>
     {imported && <div><p>{imported.title} · {imported.profile.lines.length} positions</p><button type="button" onClick={()=>{onLoad({...imported,id:crypto.randomUUID()});setImported(null);setSelected('');setTitle(imported.title);setFeedback('Portefeuille importé ouvert. Une nouvelle validation est nécessaire avant publication.')}}>Ouvrir le fichier importé</button><button type="button" onClick={()=>setImported(null)}>Annuler l’import</button></div>}
-    {items.filter(item => !!item.profile.imageOnly === !!profile.imageOnly).map(item => <div className="dca-saved-row" key={item.id}><span>{item.title}</span><button aria-label={`Ouvrir ${item.title}`} onClick={() => {onLoad(structuredClone(item)); setSelected(item.id); setTitle(item.title); setFeedback('Portefeuille ouvert.')}}>Ouvrir</button><button aria-label={`Supprimer ${item.title}`} onClick={() => remove(item.id)}>Supprimer</button></div>)}
+    {items.filter(item => !!item.profile.imageOnly === !!profile.imageOnly).map(item => <div className="dca-saved-row" key={item.id}><span>{item.title}{!profile.imageOnly&&item.profile.lines.length>MAX_POSITIONS?` · ${item.profile.lines.length} positions · publication bloquée`:""}</span><button aria-label={`Ouvrir ${item.title}`} onClick={() => {onLoad(structuredClone(item)); setSelected(item.id); setTitle(item.title); setFeedback('Portefeuille ouvert.')}}>Ouvrir</button><button aria-label={`Supprimer ${item.title}`} onClick={() => remove(item.id)}>Supprimer</button></div>)}
     <p role="status">{feedback}</p><p className="dca-note">Brouillon enregistré automatiquement sur cet appareil. Tes sauvegardes nommées restent distinctes. Les allocations sont dans « Analyser une allocation », les profils dans « Le DCA de… ».</p>
   </details>
 }
