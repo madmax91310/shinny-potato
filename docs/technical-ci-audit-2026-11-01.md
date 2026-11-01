@@ -39,6 +39,17 @@ GitHub Global Security Advisories, consultation le 1 novembre 2026). Les patchs
 et le fichier lock sont la protection durable ; le test synthétique garde une
 régression directement pertinente pour les sessions de développement.
 
+6. **Déclenchement sans effet sur l'application publique.** Une PR limitée au
+   dossier du service indépendant et à son workflow privé lançait aussi tous les
+   contrôles Pages. Le portail distingue maintenant ce cas exact, tout en créant
+   ses checks (jobs publics explicitement ignorés, workflow privé API/build/
+   navigateur inchangé). Un fichier public, une dépendance, un autre workflow,
+   une base manquante, une erreur Git ou un périmètre mixte rétablit le portail
+   complet. Tous les push master et appels producteurs gardent le portail complet.
+   Pas de paths-ignore qui laisserait un check requis indéfiniment en attente.
+   Le besoin est démontré par #1120/#1124 : aucun import de ces modules serveur
+   dans la SPA ; catalogue et découverte sont générés du canonique vers le service.
+
 ## Mesures et portée du gain
 
 API jobs et steps de trois exécutions réussies et douze artefacts réels
@@ -61,7 +72,10 @@ n'est ni retiré par ce diff ni compté dans la comparaison de périmètre const
 
 Le maximum du travail planifié baisse de 72 à 160 s sur les trois traces. Le
 travail total reste identique : **aucune économie de minutes de calcul annoncée**
-pour cette répartition. La somme réelle des jobs des runs de référence est de
+pour cette répartition. La sélection des PR privées évite en revanche les jobs
+publics sans effet sur leur résultat : leur coût historique complet ne doit pas
+être présenté comme une économie mesurée tant qu’un run de cette voie n’a pas
+été observé. Le workflow privé continue à exécuter sa propre recette complète. La somme réelle des jobs des runs de référence est de
 132,75 / 131,70 / 136,58 minutes ; le portail est principalement limité par les
 lots navigateur après le build. Le gain de temps réel dépendra de la contention
 et de la nouvelle CI ; un premier run sera une vérification, pas une preuve

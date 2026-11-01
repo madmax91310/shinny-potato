@@ -44,6 +44,7 @@ jobs:
     timeout-minutes: 5
     outputs:
       current: ${{ steps.head.outputs.current }}
+      public_required: ${{ steps.surface.outputs.required }}
       commit_sha: ${{ steps.head.outputs.commit_sha }}
     steps:
       - uses: actions/checkout@v7.0.1
@@ -61,6 +62,10 @@ jobs:
           PAGES_DEFINITION_SHA: ${{ github.workflow_sha }}
           PAGES_GATE_RECEIPT: ${{ runner.temp }}/pages-gate-definition.json
         run: node scripts/resolve-pages-snapshot.mjs
+      - id: surface
+        env:
+          PUBLIC_VALIDATION_BASE: ${{ github.event.pull_request.base.sha }}
+        run: node scripts/public-validation-scope.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: steps.head.outputs.current == 'true'
         with:
@@ -75,7 +80,7 @@ jobs:
   # Pull requests, code changes and any uncertainty keep the full gate.
   scope:
     needs: current-snapshot
-    if: needs.current-snapshot.outputs.current == 'true'
+    if: needs.current-snapshot.outputs.current == 'true' && needs.current-snapshot.outputs.public_required == 'true'
     runs-on: ubuntu-26.04
     permissions:
       contents: read
@@ -111,7 +116,7 @@ jobs:
       contents: read
       pages: write
     needs: current-snapshot
-    if: needs.current-snapshot.outputs.current == 'true'
+    if: needs.current-snapshot.outputs.current == 'true' && needs.current-snapshot.outputs.public_required == 'true'
     # Explicitly validate the next ubuntu-latest image before its rollout.
     runs-on: ubuntu-26.04
     outputs:
@@ -147,7 +152,7 @@ jobs:
       # the current catalogue. Keep every parity/route assertion unchanged.
       - run: node --max-old-space-size=4096 scripts/test-tool-projections.mjs
       - run: node scripts/test-light-registries.mjs
-      - run: node scripts/test-browser-shards.mjs && node scripts/test-ci-browser-runner.mjs && node scripts/test-vite-file-boundary.mjs
+      - run: node scripts/test-browser-shards.mjs && node scripts/test-ci-browser-runner.mjs && node scripts/test-vite-file-boundary.mjs && node scripts/test-public-validation-scope.mjs
       - run: node scripts/test-broker-automation.mjs
       - run: node scripts/test-lifestrategy.mjs
       - run: node scripts/test-resource-selections.mjs
@@ -325,7 +330,7 @@ jobs:
 
   python-checks:
     needs: current-snapshot
-    if: needs.current-snapshot.outputs.current == 'true'
+    if: needs.current-snapshot.outputs.current == 'true' && needs.current-snapshot.outputs.public_required == 'true'
     runs-on: ubuntu-26.04
     permissions:
       contents: read
@@ -530,7 +535,7 @@ jobs:
 
   exposure-browser-check:
     needs: current-snapshot
-    if: needs.current-snapshot.outputs.current == 'true'
+    if: needs.current-snapshot.outputs.current == 'true' && needs.current-snapshot.outputs.public_required == 'true'
     runs-on: ubuntu-26.04
     permissions:
       contents: read
