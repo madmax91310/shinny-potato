@@ -56,3 +56,44 @@ en mémoire et une identité de test. Chromium vérifie à 390/1440 px : texte s
 littéral, sauvegarde bloquée, conservation/reprise du brouillon, synchronisation
 invalide et JSON téléchargé avec les dernières lignes valides. Le workflow privé
 installe Playwright depuis le lock racine et exécute cette recette.
+
+## Sauvegarde manuelle et restauration
+
+Une écriture atomique ou un export n'est pas une sauvegarde automatique.
+« Exporter mes données » conserve l'export v2 de la dernière photographie affichée,
+utile même après une actualisation échouée. « Créer une sauvegarde » télécharge un
+JSON v3 lu dans une transaction serveur cohérente : textes personnels, favoris,
+dates de publication, identifiants et versions, y compris les préférences des
+anciennes versions supprimées. Les archives publiques ne sont pas recopiées.
+Aucune sauvegarde automatique n'est configurée ou vérifiée par ce dépôt.
+
+Procédure :
+
+1. Cliquer sur « Créer une sauvegarde », vérifier le téléchargement du JSON et
+   conserver le fichier dans un emplacement privé. Un refus réseau ou de taille
+   n'est pas annoncé comme un téléchargement réussi.
+2. Depuis le **même compte**, choisir « Restaurer une sauvegarde », sélectionner
+   le fichier et confirmer l'ajout des éléments absents. Les exports v2 existants
+   sont reconnus ; les versions inconnues et les données incomplètes sont refusées.
+3. Vérifier le message puis actualiser : les textes, favoris et dates doivent être
+   retrouvés. Une interruption peut perdre la réponse après enregistrement :
+   actualiser avant de réessayer. Une répétition du même fichier est idempotente.
+
+La restauration n'efface aucune ligne et n'écrase aucun contenu différent déjà
+présent. Un conflit, même sur une préférence après insertion d'un texte, annule
+toute la transaction. Conserver les deux fichiers pour comparer les versions en
+cas de conflit. Le propriétaire authentifié borne toutes les écritures ; un
+fichier d'un autre compte ou mêlant des propriétaires est refusé.
+
+La limite est de 1 Mio UTF-8 et 10 000 lignes cumulées, avec lecture bornée à 10 s.
+Un instantané trop volumineux pour être restauré est refusé dès sa création ;
+l'export v2 complet reste disponible. Aucun schéma D1 n'est modifié.
+
+Recette isolée reproductible : Node 24+, `npm test`, `npm run build`, puis depuis
+la racine `npm ci` et `npx playwright install --with-deps chromium firefox webkit`,
+enfin `node services/tweet-bank-private/tests/browser.mjs`. SQLite reste en mémoire
+avec une identité synthétique. Les tests interrompent réellement une transaction,
+rejouent les formats v2/v3, les conflits, la corruption, le mélange de comptes et
+la perte de réponse après commit. La recette JSON/restauration/presse-papiers
+refusé tourne sur Chromium 390/1440 et Firefox/WebKit 390 ; les anciens scénarios
+longs de délai restent uniquement sur Chromium.
