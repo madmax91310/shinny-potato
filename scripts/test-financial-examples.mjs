@@ -27,10 +27,10 @@ assert.equal(convertCalendarReturn(10,2021,'USD','EUR',fx),null)
 console.log('Independent examples: dated DCA flows, zero/single month, immutable override, geometric annualization/loss/gap and two-boundary FX.')
 
 const {derive}=await import('../src/pages/investment-calculator/lib.js')
-const state={assetId:'apple',startYear:2020,startMonth:1,amountRaw:'100',mode:'lump',overridePriceRaw:''}
+const state={assetId:'custom',startYear:2020,startMonth:1,amountRaw:'100',mode:'lump',overridePriceRaw:'',customStart:'100',customEnd:'200'}
 for(const raw of ['-1','0','1e309','NaN','100oops'])assert.throws(()=>derive({...state,amountRaw:raw}),/nombre fini/)
 assert.throws(()=>derive({...state,amountRaw:'1e308'}),/capacité de calcul/)
-assert.throws(()=>derive({...state,overridePriceRaw:'1e309'}),/nombre fini/)
+assert.throws(()=>derive({...state,assetId:'apple',overridePriceRaw:'1e309'}),/nombre fini/)
 assert.throws(()=>derive({...state,assetId:'custom',customStart:'1e309',customEnd:'100'}),/nombre fini/)
 assert.equal(derive({...state,amountRaw:''}).result.finalValue,0,'empty amount remains the neutral form state')
 assert(Number.isFinite(derive(state).result.finalValue),'ordinary input recovers')
