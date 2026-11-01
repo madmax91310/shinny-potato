@@ -37,7 +37,9 @@ try {
   }
   const archivalBitcoin=JSON.parse(readFileSync('scripts/source-snapshots/calculator-monthly-2026-10-02.json')).records.bitcoin.points;
   const archivalGold=JSON.parse(readFileSync('scripts/source-snapshots/calculator-worldbank-gold-2026-10-03.json')).points;
-  const archive=spawnSync(process.execPath,['--input-type=module','-e',"import assert from 'node:assert/strict'; import { ASSETS } from './src/data/market-history.js'; for(const asset of Object.values(ASSETS)) assert.equal(asset.points.at(-1).date,'2026-09');"], {cwd:directory,encoding:'utf8',env:{...process.env,MONTHLY_ARCHIVE_AUDIT:'1',MONTHLY_ARCHIVE_SERIES:JSON.stringify({bitcoin:archivalBitcoin,or:archivalGold})}});
+  // Only the injected captures are historical fixtures; unrelated live series
+  // may advance independently. Compare full observations rather than one frozen month.
+  const archive=spawnSync(process.execPath,['--input-type=module','-e',"import assert from 'node:assert/strict'; import { ASSETS } from './src/data/market-history.js'; const captures=JSON.parse(process.env.MONTHLY_ARCHIVE_SERIES); for(const [id,points] of Object.entries(captures)) assert.deepEqual(ASSETS[id].points,points.map(([date,price])=>({date,price})),id+' must replay its immutable capture exactly');"], {cwd:directory,encoding:'utf8',env:{...process.env,MONTHLY_ARCHIVE_AUDIT:'1',MONTHLY_ARCHIVE_SERIES:JSON.stringify({bitcoin:archivalBitcoin,or:archivalGold})}});
   assert.equal(archive.status,0,archive.stderr);
   const load=path=>import(pathToFileURL(join(directory,path)));
   const { ASSETS }=await load('src/data/market-history.js');
