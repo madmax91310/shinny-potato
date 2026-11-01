@@ -1,6 +1,6 @@
 import { AUTOMATED_ETF } from './automated-etf.js'
 import { MANUAL_SOURCE_ROUTES } from './portfolio-admissions.js'
-import { getInstrumentName } from './instruments.js'
+import { getInstrumentName, INSTRUMENTS_BY_ISIN } from './instruments.js'
 import { QUALIFIED_FUND_CALENDARS, qualifiedFundCalendars, currentAnnualEvidence, closedCalendarYears } from './qualified-annual-calendars.js'
 import FX from './monthly-fx.json' with { type: 'json' }
 import { monthlyFxEvidence } from './history-currency.js'
@@ -73,7 +73,8 @@ export const ANNUAL_PORTFOLIO_FUNDS = [...Object.values(QUALIFIED_FUND_CALENDARS
   const expiry=record.label.match(/\b(?:Dec|December|décembre)\s+(20\d{2})\b/i)?.[1]
   if(expiry && new Date().getUTCFullYear()>Number(expiry))return []
   if (latestCommonYears([record.years], { minimum: 3 }).length < 3) return []
-  const cat = ['ETC', 'ETN', 'ETP'].includes(record.instrumentType) ? 'matieres_premieres' : 'actions_larges'
+  const cat = ['ETC', 'ETN', 'ETP'].includes(record.instrumentType) ? 'matieres_premieres'
+    : INSTRUMENTS_BY_ISIN[record.isin]?.portfolioCategory ?? (INSTRUMENTS_BY_ISIN[record.isin]?.assetClass === 'Fixed Income' ? 'obligataire' : 'actions_larges')
   const navRoute=qualifyPreferredManualNav(record)
   const mechanism=navRoute ? qualifiedManualMechanism(record.isin,AUTOMATED_ETF[record.isin]?.characteristics) : undefined
   const recovery = ANNUAL_RECOVERIES[record.isin]?.annualCurrency === record.currency ? ANNUAL_RECOVERIES[record.isin] : null

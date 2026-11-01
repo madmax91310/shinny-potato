@@ -27,6 +27,7 @@ MARKET_READER_ONLY_CHANGES = {
     'services/tweet-bank-private/worker/index.js',
     'services/tweet-bank-private/worker/page.js',
     'services/tweet-bank-private/tests/browser.mjs',
+    'services/tweet-bank-private/scripts/preview.mjs',
     '.github/workflows/test-tweet-bank-private.yml',
     # Actual refusal40884415624 after #1043: these exact downstream proof
     # readers/fixtures and their regressions are not monthly acquisition inputs.

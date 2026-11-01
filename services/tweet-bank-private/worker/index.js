@@ -60,6 +60,51 @@ export async function api(request, env, user) {
  return saved?json({tweet:{...saved,formats:JSON.parse(saved.formats)}}):json({error:'Ce tweet a changé sur un autre appareil. Ton texte reste dans le formulaire : copie-le avant de recharger la liste.'},409)
 }
 const archiveIds = new Set(CATALOG.tweets.map(t=>t.id))
+// A manual, owner-bound backup. D1 batch executes all statements in one
+// transaction; a conflicting upsert violates NOT NULL and rolls back the batch.
+const BACKUP_LIMIT = 1024 * 1024
+const uuid = id => typeof id==='string' && /^[a-f0-9-]{36}$/.test(id)
+const timestamp = x => typeof x==='string' && Number.isFinite(Date.parse(x)) && new Date(x).toISOString()===x
+const exactKeys = (row,keys) => row && typeof row==='object' && !Array.isArray(row) && Object.keys(row).every(k=>keys.includes(k))
+export async function backupApi(request,env,user) {
+ if(!user)return json({error:'Connexion requise.'},401)
+ if(!env.DB)return json({error:'Sauvegarde indisponible.'},503)
+ if(request.method==='GET') {
+  const [own,prefs]=await env.DB.batch([
+   env.DB.prepare('SELECT * FROM tweets WHERE owner=? ORDER BY id').bind(user),
+   env.DB.prepare('SELECT * FROM tweet_preferences WHERE owner=? ORDER BY tweet_id').bind(user),
+  ])
+  const backup={version:3,owner:user,exportedAt:new Date().toISOString(),tweets:own.results.map(r=>({...r,formats:JSON.parse(r.formats)})),preferences:prefs.results}
+  if(new TextEncoder().encode(JSON.stringify(backup)).byteLength>BACKUP_LIMIT)return json({error:'La sauvegarde dépasse la limite de 1 Mio. Conserve ton export complet ; aucune donnée modifiée.'},413)
+  return json(backup)
+ }
+ if(request.method!=='POST')return json({error:'Méthode refusée.'},405)
+ if(request.headers.get('Origin')!==new URL(request.url).origin||!request.headers.get('Content-Type')?.startsWith('application/json'))return json({error:'Requête refusée.'},403)
+ const parsed=await readJsonBody(request,BACKUP_LIMIT);if(parsed.error)return parsed.error
+ const b=parsed.value
+ if(!exactKeys(b,['version','owner','exportedAt','tweets','preferences'])||![2,3].includes(b.version)||!timestamp(b.exportedAt)||!Array.isArray(b.tweets)||!Array.isArray(b.preferences)||b.tweets.length+b.preferences.length>10000)return json({error:'Sauvegarde invalide ou version non prise en charge. Aucune donnée modifiée.'},400)
+ if((b.version===3&&b.owner!==user)||(b.owner!==undefined&&b.owner!==user)||[...b.tweets,...b.preferences].some(r=>r?.owner!==user))return json({error:'Cette sauvegarde appartient à un autre compte ou mélange des propriétaires. Aucune donnée modifiée.'},403)
+ const tweetsValid=b.tweets.every(r=>exactKeys(r,['owner','id','text','category','formats','last_published','created_at','updated_at','version'])&&uuid(r.id)&&typeof r.text==='string'&&r.text.trim()&&r.text.length<=32000&&CATEGORIES.includes(r.category)&&Array.isArray(r.formats)&&r.formats.every(f=>FORMATS.includes(f))&&new Set(r.formats).size===r.formats.length&&validDate(r.last_published)&&timestamp(r.created_at)&&timestamp(r.updated_at)&&Number.isSafeInteger(r.version)&&r.version>0)
+ const prefsValid=b.preferences.every(r=>exactKeys(r,['owner','tweet_id','favorite','last_published','version','updated_at'])&&typeof r.tweet_id==='string'&&(uuid(r.tweet_id)||(r.tweet_id.startsWith('archive:')&&r.tweet_id.length<=256))&&[0,1].includes(r.favorite)&&validDate(r.last_published)&&timestamp(r.updated_at)&&Number.isSafeInteger(r.version)&&r.version>0)
+ if(!tweetsValid||!prefsValid||new Set(b.tweets.map(r=>r.id)).size!==b.tweets.length||new Set(b.preferences.map(r=>r.tweet_id)).size!==b.preferences.length)return json({error:'Sauvegarde incohérente. Aucune donnée modifiée.'},400)
+ const field = key => `json_extract(item.value,'$.${key}')`
+ const tweetFields=['text','category','formats','last_published','created_at','updated_at','version']
+ const prefFields=['favorite','last_published','version','updated_at']
+ try {
+  await env.DB.batch([
+   env.DB.prepare(`INSERT INTO tweets(owner,id,${tweetFields.join(',')}) SELECT ?,${['id',...tweetFields].map(field).join(',')} FROM json_each(?) AS item WHERE true
+    ON CONFLICT(owner,id) DO UPDATE SET id=CASE WHEN ${tweetFields.map(k=>`tweets.${k}=excluded.${k}`).join(' AND ')} THEN excluded.id ELSE NULL END`).bind(user,JSON.stringify(b.tweets)),
+   // Preferences of deleted personal versions remain useful history, just like
+   // archive IDs absent from today's catalogue. Preserve them without a lookup.
+   env.DB.prepare(`INSERT INTO tweet_preferences(owner,tweet_id,${prefFields.join(',')}) SELECT ?,${['tweet_id',...prefFields].map(field).join(',')} FROM json_each(?) AS item WHERE true
+    ON CONFLICT(owner,tweet_id) DO UPDATE SET tweet_id=CASE WHEN ${prefFields.map(k=>`tweet_preferences.${k}=excluded.${k}`).join(' AND ')} THEN excluded.tweet_id ELSE NULL END`).bind(user,JSON.stringify(b.preferences)),
+  ])
+ }catch(error){
+  if(/NOT NULL constraint failed/.test([error.message,error.cause?.message].join(' ')))return json({error:'Restauration refusée : un élément a changé. Aucune donnée modifiée. Conserve les deux sauvegardes pour les comparer.'},409)
+  throw error
+ }
+ return json({restored:true})
+}
 const discoveryCode = 'export const THEMES = {'+Object.entries(Discovery.THEMES).map(([k,v])=>JSON.stringify(k)+':'+v.toString()).join(',')+'};\n'+Object.entries(Discovery).filter(([,v])=>typeof v==='function').map(([k,v])=>'export '+v.toString()).join('\n')
 export async function preferencesApi(request,env,user) {
  if(!user)return json({error:'Connexion requise.'},401)
@@ -98,6 +143,7 @@ export default {async fetch(request,env){
  try{
   if(path==='/api/tweets')return await api(request,env,user)
   if(path==='/api/preferences')return await preferencesApi(request,env,user)
+  if(path==='/api/backup')return await backupApi(request,env,user)
   if(path==='/api/catalog'){if(!user)return json({error:'Connexion requise.'},401);return await catalogResponse(env)}
   if(path==='/discovery.js'){if(!user)return json({error:'Connexion requise.'},401);return new Response(discoveryCode,{headers:{'Content-Type':'text/javascript','Cache-Control':'no-store'}})}
   if(path!=='/')return new Response('Introuvable',{status:404})

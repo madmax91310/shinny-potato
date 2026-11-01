@@ -94,18 +94,18 @@ def blackrock_nav(body, isin, currency, now):
     # Chart and calendar currencies are checked independently of the fund base currency.
     if chart['currencySymbol']['value'] != currency or calendar['returnsByCurrency']['value']['annualNav'] != currency:
         raise ValueError('Official chart/calendar currency mismatch')
+    inception = facts.get('inceptionDate', {}).get('value')
+    start = dt.datetime.strptime(str(inception), '%Y%m%d').date().isoformat() if inception else None
     def points(key):
         p = chart[key]
         if len(p['asOfDate']) != len(p['value']):
             raise ValueError('Misaligned official daily observations')
-        return dated([(dt.datetime.strptime(str(d), '%Y%m%d').date().isoformat(), v)
-                      for d, v in zip(p['asOfDate'], p['value']) if v is not None], now)
+        rows = [(dt.datetime.strptime(str(d), '%Y%m%d').date().isoformat(), v)
+                for d, v in zip(p['asOfDate'], p['value']) if v is not None]
+        # The exact share did not exist before this date. Bound the series
+        # before validating values; never repair a zero inside its real life.
+        return dated([(d,v) for d,v in rows if not start or d >= start], now)
     nav, total = points('navData'), points('performanceData')
-    inception = facts.get('inceptionDate', {}).get('value')
-    if inception:
-        start = dt.datetime.strptime(str(inception), '%Y%m%d').date().isoformat()
-        nav = {d: v for d, v in nav.items() if d >= start}
-        total = {d: v for d, v in total.items() if d >= start}
     years, types = {}, calendar['returnTypes']['value']
     column = unique([i for i, t in enumerate(types) if t == 'annualNav'], 'annual NAV return')
     for p in calendar.values():

@@ -1,3 +1,4 @@
+import { instrumentSearchText } from '../../data/asset-selection.js'
 import { compatibleIndexReturns } from '../../lib/return-convention.js'
 import { convertPerformanceEntries, performanceCurrencies, performanceDisplayBasis } from './performanceCurrency.js'
 import { formatPerformancePct, performancePeriod } from './performanceFormat.js'
@@ -198,10 +199,10 @@ const COMPARATIF_ETF_SUBJECTS_FLAT = [{ categorie: null, items: COMPARATIF_ETF_S
 // ANNIVERSAIRE_ELIGIBLE_ASSETS/ANNIVERSAIRE_EXCLUDED_IDS dans marketHistory.js) ; Performance
 // depuis garde la liste complète, jamais restreinte (aucune comparaison externe demandée).
 const ANNIVERSAIRE_SUBJECTS_FLAT = [
-  { categorie: null, items: ANNIVERSAIRE_ELIGIBLE_ASSETS.map((a) => ({ id: a.id, label: `${a.icon} ${a.label}${a.anniversaryVariant ? ` — ${a.anniversaryVariant}` : ""}` })) },
+  { categorie: null, items: ANNIVERSAIRE_ELIGIBLE_ASSETS.map((a) => ({ id: a.id, isin: a.isin, search: instrumentSearchText(ASSETS[a.id] ?? a), label: `${a.icon} ${a.label}${a.anniversaryVariant ? ` — ${a.anniversaryVariant}` : ""}` })) },
 ];
 const PERFORMANCE_DEPUIS_SUBJECTS_FLAT = [
-  { categorie: null, items: MARKET_ASSETS.filter(a => performanceYears.get(a.id)?.length).map((a) => ({ id: a.id, isin:a.isin, search:ASSETS[a.id]?.ticker??'', label: `${a.icon} ${historyOptionLabel(a.id, ASSETS[a.id])}` })) },
+  { categorie: null, items: MARKET_ASSETS.filter(a => performanceYears.get(a.id)?.length).map((a) => ({ id: a.id, isin:a.isin, search:instrumentSearchText(ASSETS[a.id] ?? a), label: `${a.icon} ${historyOptionLabel(a.id, ASSETS[a.id])}` })) },
 ];
 
 function getSubjectsForFormat(format) {
