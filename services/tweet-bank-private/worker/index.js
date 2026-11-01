@@ -1,7 +1,7 @@
 import CATALOG from './catalog.js'
 import PAGE from './page.js'
 import * as Discovery from './discovery.js'
-const CATEGORIES = ['Storytelling','Bilan patrimoine','Guide ETF','Pédagogie','Engagement & débat','Actu & humour','Simulation & chiffres','Fiches pratiques','Histoires de marché']
+const CATEGORIES = ['Storytelling','Bilan patrimoine','Guide ETF','Pédagogie','Engagement & débat','Actu & humour','Simulation & chiffres','Fiches pratiques','Histoires de marché','hey grok']
 const FORMATS = ['Preuve vendredi soir','Bilan de la semaine','Explication pédagogique']
 const json = (data,status=200) => new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}})
 const validDate = x => x === '' || (typeof x==='string' && /^\d{4}-\d{2}-\d{2}$/.test(x) && Number.isFinite(Date.parse(x)) && new Date(x).toISOString().slice(0,10)===x)
