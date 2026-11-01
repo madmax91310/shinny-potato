@@ -31,12 +31,12 @@ try {
   // titles and exact hrefs in the shared check.
   assert.deepEqual(snapshot, [
     [0,'morning',[]], [0,'midday',['/performance-depuis']], [0,'evening',['/tweets-factsheets','/generateur-portefeuilles']],
-    [1,'morning',[]], [1,'midday',['/classements-performances']], [1,'evening',['/le-dca-de']],
+    [1,'morning',[]], [1,'midday',['/classements-performances']], [1,'evening',['/le-dca-de','/le-budget-de']],
     [2,'morning',[]], [2,'midday',['/calculateur-investissement']], [2,'evening',['/comparatif-courtiers','/hey-grok']],
     [3,'morning',[]], [3,'midday',['/classements-performances']], [3,'evening',['/banque-tweets']],
-    [4,'morning',[]], [4,'midday',['/fiches-etf']], [4,'evening',[]],
+    [4,'morning',[]], [4,'midday',['/fiches-etf','/comparatif-etf']], [4,'evening',['/le-budget-de']],
     [5,'morning',[]], [5,'midday',[]], [5,'evening',[]],
-    [6,'morning',['/il-y-a-x-ans']], [6,'midday',['/portefeuilles-investisseurs']], [6,'evening',['/fiches-pratiques','/faits-marquants-marches']],
+    [6,'morning',['/banque-tweets']], [6,'midday',['/portefeuilles-investisseurs']], [6,'evening',['/fiches-pratiques','/faits-marquants-marches','/il-y-a-x-ans']],
   ])
   assert.equal(await page.getByRole('link', {name:/Vrai ou faux|Cas concrets|Comparateur indices|Dilemme/}).count(), 0)
   assert.equal(await page.locator('.workspace-tool-card[href$="/tweet-midi"]').count(), 0)
@@ -45,7 +45,7 @@ try {
   await page.getByRole('tab', {name:/^Mardi/}).click()
   // Scheduled DCA links open the publication, including after reload. Switching
   // modes updates the URL so browser back restores the selected tool.
-  await page.locator('[data-day="1"] [data-period="evening"] .workspace-tool-card').click()
+  await page.locator('[data-day="1"] [data-period="evening"] .workspace-tool-card[href$="?mode=dca"]').click()
   await page.getByRole('heading', {name:'Le DCA d’un abonné',exact:true,level:1}).waitFor()
   assert.equal(new URL(page.url()).searchParams.get('mode'), 'dca')
   await page.reload({waitUntil:'networkidle'})
@@ -54,6 +54,18 @@ try {
   await page.getByRole('heading', {name:'Actifs & expositions',exact:true,level:1}).waitFor()
   await page.goBack()
   await page.getByRole('heading', {name:'Le DCA d’un abonné',exact:true,level:1}).waitFor()
+  // The Sunday shortcut opens the real filtered bank, including after reload.
+  await page.goto(base+'/', {waitUntil:'networkidle'})
+  await page.getByRole('button', {name:'Calendrier',exact:true}).click()
+  await page.getByRole('tab', {name:/^Dimanche/}).click()
+  await page.locator('.workspace-tool-card[href*="category=Question%20dimanche"]').click()
+  assert.equal(new URL(page.url()).searchParams.get('category'), 'Question dimanche')
+  for (const reload of [false, true]) {
+    if (reload) await page.reload({waitUntil:'networkidle'})
+    await page.locator('.tb-scope.is-sunday').waitFor()
+    assert(await page.locator('.tb-tweet').count() > 0)
+    assert((await page.locator('.tb-tag-cat').allTextContents()).every(text => text === 'Question dimanche'))
+  }
   for (const path of ['/classements-performances','/tweets-factsheets','/calculateur-investissement']) {
     const tool=TOOLS.find(item=>item.to===path)
     await page.goto(base+path, {waitUntil:'networkidle'})
