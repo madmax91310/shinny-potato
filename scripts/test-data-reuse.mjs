@@ -4,8 +4,6 @@ import { DATA_CATALOG } from '../src/data/catalog.js'
 import { CATALOG } from '../src/data/duel-assets.js'
 import { buildDuel } from '../src/pages/portfolio-duels/lib.js'
 import { DUELS } from '../src/pages/portfolio-duels/data.js'
-import { FEE_COMPARISON_ASSETS } from '../src/data/fee-comparison-assets.js'
-import { buildTweetText as fees, computeComparison } from '../src/pages/fee-impact/lib.js'
 import { buildTweetText as factTweet } from '../src/pages/market-facts/lib.js'
 import { ALLOCATION_CASES, weightedExposure } from '../src/data/allocation-cases.js'
 import { PROFILES } from '../src/pages/portfolio-generator/theses.js'
@@ -43,21 +41,14 @@ assert.equal(buildDuel(DUELS.find(x => x.id === 'semiconducteurs_monde-contre-bl
 assert.equal(buildDuel(DUELS.find(x => x.id === 'world-avec-quality_dividend')).years[0], 2021)
 for (const record of DATA_CATALOG.filter(x => x.type === 'instrument')) {
   assert.equal(record.consumers.some(c => c.path === '/duels-portefeuilles'), CATALOG.some(x => x.isin === record.id))
-  assert.equal(record.consumers.some(c => c.path === '/impact-frais'), FEE_COMPARISON_ASSETS.some(x => x.isin === record.id))
 }
-const a = FEE_COMPARISON_ASSETS.find(x => x.isin === 'FR001400U5Q4')
-const b = FEE_COMPARISON_ASSETS.find(x => x.isin === 'IE00BP3QZ601')
-const state = { amount: 100, years: 10, returnRate: 7, fee1: a.fee, fee2: b.fee, isin1: a.isin, isin2: b.isin }
-assert.match(fees(state), /sans comparer leurs performances réelles/)
-assert(fees(state).includes(a.isin) && fees(state).includes(b.isin))
-assert.equal(computeComparison({...state, fee2: a.fee}).ecart, 0)
 assert.equal(Number(weightedExposure(72.14, 63.59, .5).toFixed(2)), 67.87) // (72,14 + 63,59)/2 arrondi à deux décimales.
 assert.equal(Number(weightedExposure(72.14, 0, .2).toFixed(2)), 57.71) // 80 % × 72,14 % + 20 % × 0 %.
 const options = new Set(PROFILES.flatMap(p => Object.values(p.riskCombos).flatMap(c => c.assets.flatMap(a => a.idOptions ?? [a.id]))))
 for (const id of ['monetaire_xeon', 'oblig_0_1_ishares', 'oblig_global_agg_eur_hedged', 'actions_india_ishares', 'infrastructure_ishares', 'sect_financieres', 'smallcap_monde', 'oblig_hy_ishares_acc', 'oblig_em_local_ishares_acc']) assert(options.has(id), `Option automatique absente : ${id}`)
 console.log('Réutilisation : drawdown, récupération, séries courtes, frais, compositions, consommateurs et options automatiques OK.')
 
-// Individual fee source controls reach catalogue and fee-comparison consumers.
+// Individual fee source controls reach catalogue consumers.
 const {buildFeeFieldEvidence} = await import('../src/data/fee-field-evidence.js');
 const buildEtfTerEvidence = (_isin, record, reference) => buildFeeFieldEvidence(record, reference);
 const oldFeeProof = {checkedAt:'2026-10-20',asOf:'2026-10-19',sourceUrl:'https://issuer.test/page'};
@@ -88,4 +79,3 @@ assert.deepEqual(realFee.sourceUrls,['https://dataspanapi.wisdomtree.com/pdr/doc
 assert.equal(normalizeFeeEvidence(realFee).asOf,null,'No fee effective date inferred from the observation or document');
 const catalogueFee=DATA_CATALOG.find(a=>a.id==='IE00BJGWQN72').fields.find(f=>f.label==='Frais annuels (%)');
 assert.equal(catalogueFee.metadata.checkedAt,currentFeeEvidence.IE00BJGWQN72.checkedAt);
-assert.equal(FEE_COMPARISON_ASSETS.find(a=>a.isin==='IE00BJGWQN72').evidence.checkedAt,currentFeeEvidence.IE00BJGWQN72.checkedAt);

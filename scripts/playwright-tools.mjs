@@ -133,8 +133,8 @@ async function testWorkspaceNavigation(page) {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.screenshot({ path: 'test-artifacts/weekly-home/desktop.png', fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.locator('.workspace-tool-card[href$="/impact-frais"]').click();
-  await page.getByRole('heading', { name: "Impact des frais", exact: true }).waitFor();
+  await page.locator('.workspace-tool-card[href$="/comparatif-courtiers"]').click();
+  await page.getByRole('heading', { name: "Comparatif courtiers", exact: true }).waitFor();
   await page.locator('.workspace-mobile-menu summary').click();
   await page.locator('.workspace-mobile-menu').getByRole('link', { name: "Présentation d'ETF", exact: true }).click();
   await page.getByRole('group', { name: 'Choisir un ETF', exact: true }).waitFor();
@@ -774,49 +774,6 @@ async function testTweetMidi(page) {
   record("Tweet Midi", failed.length === 0, failed.length ? `formats sans contenu suffisant: ${failed.join(", ")}` : `${formats.length} formats cyclés`);
 }
 
-async function testFeeImpact(page) {
-  await page.goto(`${BASE}/impact-frais`, { waitUntil: "networkidle" });
-  const preview = page.locator('.fi-preview-text');
-  const initial = await preview.innerText();
-  let editorialOk = /^💸 21\s442\s€ de moins après 20 ans/.test(initial)
-    && /148\s612\s€/.test(initial) && /127\s170\s€/.test(initial)
-    && /Dans les deux cas, tu as versé 72\s000\s€/.test(initial)
-    && initial.includes('ils comprennent aussi ces gains manqués')
-    && initial.includes('Tu connais le montant des frais annuels de tes placements ?')
-    && initial.includes('Hypothèse de rendement constant')
-    && !/Brouillon|à compléter|Quand je vois ça|Tu connais celui/.test(initial);
-  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
-    configurable: true, value: { writeText: async text => { window.__feeCopiedText = text; } },
-  }));
-  await page.getByRole('button', { name: 'Copier le texte', exact: true }).click();
-  editorialOk &&= await page.evaluate(expected => window.__feeCopiedText === expected, initial);
-  // Les couleurs suivent le niveau des frais, même si les scénarios sont inversés.
-  await page.getByRole('button', { name: '1,5 %', exact: true }).first().click();
-  await page.getByRole('button', { name: '0,20 %', exact: true }).last().click();
-  editorialOk &&= /🔴 Avec 1,5 %/.test(await preview.innerText()) && /🟢 Avec 0,20 %/.test(await preview.innerText());
-  await page.getByRole('button', { name: '0,20 %', exact: true }).first().click();
-  editorialOk &&= (await preview.innerText()).includes('capitaux simulés sont identiques') && !(await preview.innerText()).includes('gains manqués');
-  await page.locator('#fi-punchline').fill('Ma conclusion personnalisée');
-  editorialOk &&= (await preview.innerText()).includes('Ma conclusion personnalisée');
-  await page.getByRole('button', { name: '500 €', exact: true }).click();
-  await page.waitForFunction(() => document.querySelector('#fi-punchline').value === '');
-  editorialOk &&= !(await preview.innerText()).includes('Ma conclusion personnalisée');
-  await page.getByRole("button", { name: /Aléatoire/i }).click();
-  await page.waitForTimeout(150);
-  const text = await page.locator("body").innerText();
-  const canvas = page.locator(".fi-image");
-  const drawing = await canvas.evaluate((node) => ({ width: node.width, height: node.height, png: node.toDataURL("image/png").startsWith("data:image/png;base64,") }));
-  const [download] = await Promise.all([
-    page.waitForEvent("download"),
-    page.getByRole("button", { name: "Télécharger l’image PNG" }).click(),
-  ]);
-  const file = await stat(await download.path());
-  const ok = editorialOk && /Avec [\d,]+\s*%\s+de frais/.test(text)
-    && drawing.width === 1600 && drawing.height === 1600 && drawing.png
-    && download.suggestedFilename() === "epargnant-libre-impact-des-frais.png" && file.size > 10000;
-  record("Impact des frais", ok, "texte validé, chiffres, copie, frais inversés/égaux, personnalisation, génération et PNG");
-}
-
 async function testMarketFacts(page) {
   await page.goto(`${BASE}/faits-marquants-marches`, { waitUntil: "networkidle" });
   const select = page.locator("[data-selector]").first();
@@ -1205,19 +1162,7 @@ async function testInvestorIntroductions(page) {
 }
 
 async function testDataReuse(page) {
-  await page.goto(`${BASE}/impact-frais`, { waitUntil: 'networkidle' });
-  await page.getByText('Utiliser les frais d’un ETF', { exact: true }).click();
-  await choose(page.getByLabel('ETF du scénario 1', { exact: true }), 'FR001400U5Q4');
-  await choose(page.getByLabel('ETF du scénario 2', { exact: true }), 'IE00BP3QZ601');
   const checks = {};
-  checks.preview = (await page.locator('.fi-preview-text').innerText()).includes('FR001400U5Q4')
-    && (await page.locator('.fi-preview-text').innerText()).includes('sans comparer leurs performances réelles');
-  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async text => { window.__reuseCopied = text; } } }));
-  await page.getByRole('button', { name: 'Copier le texte', exact: true }).click();
-  checks.clipboard = (await page.evaluate(() => window.__reuseCopied)).includes('IE00BP3QZ601');
-  await page.setViewportSize({ width: 390, height: 844 });
-  checks.mobile = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
-  await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto(`${BASE}/duels-portefeuilles`, { waitUntil: 'networkidle' });
   // Reuse the saved three-line allocation and replace its complement with XEON.
   await page.getByRole('button', { name: 'Composer A et B', exact: true }).click();
@@ -1241,7 +1186,7 @@ async function testDataReuse(page) {
   await page.goto(`${BASE}/banque-tweets`, { waitUntil: 'networkidle' });
   await page.getByRole('button', {name:'Pédagogie',exact:true}).click();
   checks.editorialCase = (await page.locator('.tb-tweet-text').allTextContents()).includes(CASES.find(item => item.id === 'world-europe-chiffre').text);
-  record('Réutilisation des données', Object.values(checks).every(Boolean), JSON.stringify(checks) + ' · ' + 'ETF et copie frais, mobile, nouvelles périodes des duels, faits mensuels, banque et cas chiffré');
+  record('Réutilisation des données', Object.values(checks).every(Boolean), JSON.stringify(checks) + ' · ' + 'Nouvelles périodes des duels, faits mensuels, banque et cas chiffré');
 }
 
 async function testAssetSelection(page) {
@@ -1374,7 +1319,6 @@ try {
   await testBrokerComparator(page);
   await testTweetMidi(page);
   await testLexicon(page);
-  await testFeeImpact(page);
   await testDataReuse(page);
   await testMarketFacts(page);
   await testTweetBank(page);

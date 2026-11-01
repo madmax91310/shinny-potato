@@ -23,9 +23,6 @@ export const TOOLS = [
   { to: '/radar-editorial', title: 'Radar éditorial',
     publicationDay: 'Veille en journée', icon: '📡', accent: '#65d5b0',
     description: 'Repère les changements sourcés et prépare des idées pour tes prochains posts.', status: 'disponible' },
-  { to: '/simulateur-patrimoine', title: 'Simulateur de patrimoine',
-    publicationDay: 'Publication ponctuelle', icon: '📊', accent: '#65d5b0',
-    description: 'Projette ton patrimoine par enveloppe et exporte des comparaisons pour X.', status: 'disponible' },
   { to: '/presentations', title: 'Présentations',
     publicationDay: 'Publication ponctuelle', icon: '🛡️', accent: '#65d5b0',
     description: 'Assurance-vie, SCPI et acteurs du non coté ou des actifs réels : texte et visuel personnalisés.', status: 'disponible' },
@@ -128,15 +125,6 @@ export const TOOLS = [
     description: 'Deux choix de placement pour ouvrir la discussion.', status: 'disponible',
   },
   {
-    to: '/impact-frais',
-    title: 'Impact des frais',
-    publicationDay: 'Publication ponctuelle',
-    icon: '🧮',
-    accent: '#fbbf24',
-    description: "Compare le capital final entre deux niveaux de frais de gestion (TER), en euros, sur simulation d'intérêts composés — hypothèse pédagogique, pas une donnée de marché.",
-    status: 'disponible',
-  },
-  {
     to: '/faits-marquants-marches',
     title: 'Histoires de marchés',
     publicationDay: 'Publication ponctuelle',
@@ -171,11 +159,9 @@ const TOOL_SUMMARIES = {
   '/le-budget-de': 'Le budget d’une personne ou d’un foyer, avec ses dépenses, son texte et son image.',
   '/fiches-pratiques':'Les différences utiles pour comprendre et choisir un placement.',
   '/radar-editorial': 'Les changements sourcés qui peuvent devenir tes prochains posts.',
-  '/simulateur-patrimoine': 'Ton patrimoine aujourd’hui et demain, avec des comparaisons pour X.',
   '/presentations': 'Un acteur, son offre et ce que tu détiens réellement.',
   '/comparatif-courtiers': 'Frais, PEA et services des courtiers en face à face.',
   '/calculateur-investissement': 'Ce que serait devenu ton investissement au fil du temps.',
-  '/impact-frais': 'Mesure ce que les frais changent à ton capital final.',
   '/generateur-portefeuilles': 'Explore des allocations selon le profil et le risque.',
   '/duels-portefeuilles': 'Deux portefeuilles, deux façons d’investir.',
   '/portefeuilles-investisseurs': 'Les positions déclarées de grands investisseurs.',
@@ -196,7 +182,7 @@ const TOOL_SUMMARIES = {
 
 // Les mêmes groupes alimentent l’accueil et la navigation.
 export const TOOL_GROUPS = [
-  { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/classements-performances', '/simulateur-patrimoine', '/comparatif-courtiers', '/calculateur-investissement', '/impact-frais'] },
+  { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/classements-performances', '/comparatif-courtiers', '/calculateur-investissement'] },
   { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/le-dca-de', '/le-budget-de', '/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
   { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/idees-classements', '/hey-grok', '/fiches-pratiques', '/radar-editorial', '/presentations', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
   { id: 'data', title: 'Gérer les données', description: 'Retrouver les sources et les prochaines mises à jour.', paths: ['/bibliotheque-donnees', '/donnees-a-revoir'] },
@@ -215,7 +201,7 @@ export const WEEKLY_ORDER = [
   '/portefeuilles-investisseurs', '/faits-marquants-marches',
   '/il-y-a-x-ans', '/pouvoir-achat',
   '/le-dca-de', '/le-budget-de', '/comparatif-courtiers',
-  '/simulateur-patrimoine', '/impact-frais', '/hey-grok', '/banque-tweets', '/bibliotheque-donnees', '/donnees-a-revoir',
+  '/hey-grok', '/banque-tweets', '/bibliotheque-donnees', '/donnees-a-revoir',
 ]
 export const HOME_TOOLS = TOOL_GROUPS.flatMap(group => group.tools.map(tool => ({ ...tool, group: group.id })))
   .sort((a, b) => WEEKLY_ORDER.indexOf(a.to) - WEEKLY_ORDER.indexOf(b.to))

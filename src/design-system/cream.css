@@ -57,14 +57,6 @@
 .workspace .pd-editor-side .choice-picker-grid { grid-template-columns: minmax(0,1fr); }
 .workspace .company-evidence { padding: 16px; margin-top: 16px; border: 1px solid var(--ui-line); border-radius: 14px; background: var(--ui-surface); }
 .workspace .company-evidence a { color: var(--ui-accent); }
-.workspace .wealth-panel { background: var(--ui-surface); border-color: var(--ui-line); }
-.workspace :is(.wealth-tabs button,.wealth-import,.wealth-remove,.wealth-event > button) { background: var(--ui-surface); border-color: var(--ui-line); min-height: 44px; }
-.workspace .wealth-tabs button[aria-pressed="true"] { background: var(--ui-accent-soft); border-color: var(--ui-accent); color: var(--ui-accent); }
-.workspace .wealth-warning { background: #fbf0d8; color: #694c14; }
-.workspace .wealth-simulator a, .workspace .wealth-metrics strong { color: var(--ui-accent); }
-.workspace .wealth-metrics small { color: var(--ui-muted); }
-.workspace :is(.wealth-metrics > div,.wealth-event,.wealth-simulator th,.wealth-simulator td) { border-color: var(--ui-line); }
-.workspace .wealth-chart svg text { fill: var(--ui-muted); }
 .workspace .radar-card { background: var(--ui-surface); border-color: var(--ui-line); border-left-color: var(--ui-accent); }
 @media (max-width:900px) {
   .workspace-masthead { padding: 10px 16px; }

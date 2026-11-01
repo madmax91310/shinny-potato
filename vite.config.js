@@ -8,9 +8,9 @@ const base = '/shinny-potato/'
 export default defineConfig(async ({ isPreview }) => {
   // Preview serves a validated dist; deriving financial inputs belongs to dev/build.
   if (isPreview) return { base }
-  const [{projectSelectedData},{projectLightRegistries},{projectToolData},{projectFeeCatalog},split] = await Promise.all([
+  const [{projectSelectedData},{projectLightRegistries},{projectToolData},split] = await Promise.all([
     import('./scripts/project-selected-data.mjs'), import('./scripts/project-light-registries.mjs'),
-    import('./scripts/project-tool-data.mjs'), import('./scripts/project-fee-catalog.mjs'),
+    import('./scripts/project-tool-data.mjs'),
     import('./scripts/split-etf-records.mjs'),
   ])
   const issuerParts=split.splitEtfRecords()
@@ -45,7 +45,7 @@ export default defineConfig(async ({ isPreview }) => {
     ] } } },
   },
   // Data projections are marked so route budgets measure code, not monthly data growth.
-  plugins: [...[projectSelectedData(), projectLightRegistries(), toolData.plugin, projectFeeCatalog()].map(withDataMarks), react(), tailwindcss(),
+  plugins: [...[projectSelectedData(), projectLightRegistries(), toolData.plugin].map(withDataMarks), react(), tailwindcss(),
     ...[issuerParts.plugin, metadataParts.plugin, characteristicParts.plugin].map(withDataMarks), dataBytesReport()],
   }
 })

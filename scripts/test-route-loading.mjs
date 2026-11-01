@@ -33,48 +33,55 @@ try {
   const started = new Promise(resolve => { requestedTool = resolve })
   const gate = new Promise(resolve => { release = resolve })
   await page.route('**/assets/*.js', async route => { requestedTool(); await gate; await route.continue() })
-  await page.locator('.workspace-tool-card[href$="/impact-frais"]').click()
+  await page.locator('.workspace-tool-card[href$="/comparatif-courtiers"]').click()
   try {
     await started
     // A click must visibly acknowledge navigation even while the module waits.
     await page.getByRole('status').filter({ hasText: 'Chargement de l’outil' }).waitFor()
     assert(await page.getByRole('link', { name: '← Tous les outils', exact: true }).isVisible())
   } finally { release() }
-  await page.getByText('Utiliser les frais d’un ETF', { exact: true }).waitFor()
+  await page.getByRole('heading', {name:'Comparatif courtiers',exact:true}).waitFor()
   await page.unroute('**/assets/*.js')
   assert(requested.size > new Set([...initialFiles, ...homeFiles]).size, 'Navigation did not fetch deferred code')
-  assert(![...requested].some(file => /etf-issuer|market-monthly|instrument-returns/.test(file)), 'Fee tool must not fetch issuer holdings or historical returns')
+  assert(![...requested].some(file => /etf-issuer|market-monthly|instrument-returns/.test(file)), 'Broker comparator must not fetch issuer holdings or historical returns')
   await page.locator('.workspace-sidebar nav').getByRole('link', { name: 'Accueil', exact: true }).click()
   await page.getByRole('heading', { name: 'Mes outils' }).waitFor()
   await page.goBack()
-  await page.getByText('Utiliser les frais d’un ETF', { exact: true }).waitFor()
+  await page.getByRole('heading', {name:'Comparatif courtiers',exact:true}).waitFor()
 
   const slow = await browser.newPage()
   let releaseSlow
   const slowGate = new Promise(resolve => { releaseSlow = resolve })
   const manifest = JSON.parse(await readFile('dist/.vite/manifest.json', 'utf8'))
-  const feeChunk = manifest['src/pages/fee-impact/App.jsx'].file
-  await slow.route(`**/${feeChunk}`, async route => { await slowGate; await route.continue() })
-  await slow.goto(`${base}/impact-frais`, { waitUntil: 'domcontentloaded' })
+  for (const removed of ['fee-impact', 'wealth-simulator']) assert(!Object.keys(manifest).some(path => path.includes(`/pages/${removed}/`)), `${removed}: removed code must not be bundled`)
+  for (const removed of ['/impact-frais', '/simulateur-patrimoine']) {
+    await slow.goto(`${base}${removed}?old=1#saved`, {waitUntil:'networkidle'})
+    assert.equal(new URL(slow.url()).pathname, '/shinny-potato/')
+    await slow.getByRole('heading', {name:'Mes outils',exact:true}).waitFor()
+    assert.equal(await slow.locator(`a[href$="${removed}"]`).count(), 0)
+  }
+  const brokerChunk = manifest['src/pages/broker-comparator/App.jsx'].file
+  await slow.route(`**/${brokerChunk}`, async route => { await slowGate; await route.continue() })
+  await slow.goto(`${base}/comparatif-courtiers`, { waitUntil: 'domcontentloaded' })
   try {
     await slow.getByRole('status').filter({ hasText: 'Chargement de l’outil' }).waitFor()
     assert(await slow.locator('.workspace-sidebar nav').getByRole('link', { name: 'Accueil', exact: true }).isVisible())
   } finally { releaseSlow() }
-  await slow.getByText('Utiliser les frais d’un ETF', { exact: true }).waitFor()
+  await slow.getByRole('heading', {name:'Comparatif courtiers',exact:true}).waitFor()
   await slow.close()
 
   // Rejected chunks and render exceptions must leave an actionable fallback.
   for (const failure of ['network', 'render']) {
     const broken = await browser.newPage()
-    await broken.route(`**/${feeChunk}`, route => failure === 'network'
+    await broken.route(`**/${brokerChunk}`, route => failure === 'network'
       ? route.abort('failed')
       : route.fulfill({contentType:'application/javascript', body:'export default function Broken(){throw new Error("render fixture")}'}))
-    await broken.goto(`${base}/impact-frais`, {waitUntil:'networkidle'})
+    await broken.goto(`${base}/comparatif-courtiers`, {waitUntil:'networkidle'})
     await broken.getByRole('alert').filter({hasText:'L’outil n’a pas pu s’afficher'}).waitFor()
     assert(await broken.locator('.workspace-sidebar nav').getByRole('link',{name:'Accueil',exact:true}).isVisible())
-    await broken.unroute(`**/${feeChunk}`)
+    await broken.unroute(`**/${brokerChunk}`)
     await broken.getByRole('button',{name:'Réessayer',exact:true}).click()
-    await broken.getByText('Utiliser les frais d’un ETF',{exact:true}).waitFor()
+    await broken.getByRole('heading', {name:'Comparatif courtiers',exact:true}).waitFor()
     await broken.close()
   }
 

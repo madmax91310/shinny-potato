@@ -45,11 +45,11 @@ for(const width of [1440,390]){
   await page.waitForFunction(()=>JSON.parse(localStorage.getItem('epargnant-libre:home-favorites')).includes('/le-dca-de'))
   assert((await page.evaluate(()=>JSON.parse(localStorage.getItem('epargnant-libre:home-favorites')))).includes('/older-route'))
   // A committed favorite must survive an immediate reload, without waiting on storage.
-  const favorite=page.getByRole('button',{name:'Favori : Impact des frais',exact:true})
+  const favorite=page.getByRole('button',{name:'Favori : Comparatif courtiers',exact:true})
   for(let attempt=0;attempt<6;attempt++){
    const active=await favorite.getAttribute('aria-pressed')==='true'
    await favorite.click()
-   assert.equal(await page.locator('.home-favorites a[href$="/impact-frais"]').count(),active?0:1)
+   assert.equal(await page.locator('.home-favorites a[href$="/comparatif-courtiers"]').count(),active?0:1)
    await page.reload({waitUntil:'networkidle'})
    assert.equal(await favorite.getAttribute('aria-pressed'),String(!active))
   }
