@@ -4,7 +4,7 @@ import { readPreference, writePreference } from '../../lib/publication-preferenc
 import { lazy, Suspense, useEffect, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import { ASSETS } from './data.js'
-import { MAX_POSITIONS, analyzeProfile, references, pct } from './engine.js'
+import { MAX_EXPOSURE_POSITIONS, analyzeProfile, references, pct } from './engine.js'
 import { exposureDisplay, exposureView } from './exposure.js'
 import AllocationEditor, { newLine, confirmLines } from './AllocationEditor.jsx'
 import ImageExport from './ImageExport.jsx'
@@ -13,7 +13,7 @@ import Portfolios from './Portfolios.jsx'
 import { useImageExport } from './useImageExport.js'
 const Analytics = lazy(() => import('./Analytics.jsx'))
 const draftKey='simple-exposure-draft'
-const validDraft=d=>d&&Array.isArray(d.lines)&&d.lines.length<=MAX_POSITIONS&&d.lines.every(l=>l&&Object.hasOwn(ASSETS,l.asset)&&typeof l.label==='string'&&l.label.length<=250&&(l.weight===null||Number.isFinite(l.weight)))&&['all','both','countries','sectors','overlap'].includes(d.field)&&[3,4,6].includes(d.exposureLimit)
+const validDraft=d=>d&&Array.isArray(d.lines)&&d.lines.length<=MAX_EXPOSURE_POSITIONS&&d.lines.every(l=>l&&Object.hasOwn(ASSETS,l.asset)&&typeof l.label==='string'&&l.label.length<=250&&(l.weight===null||Number.isFinite(l.weight)))&&['all','both','countries','sectors','overlap'].includes(d.field)&&[3,4,6].includes(d.exposureLimit)
 export default function SimpleExposure({isin}){
  const [saved]=useState(()=>{const asset=Object.keys(references).find(key=>references[key]?.isin===isin&&ASSETS[key]);return asset?{lines:[newLine(asset,100)],field:'all',exposureLimit:4}:readPreference(draftKey,null,validDraft)})
  const [lines,setLines]=useState(()=>confirmLines(saved?.lines.map(l=>({...l,weight:l.weight===null?NaN:l.weight}))||[])),[field,setField]=useState(saved?.field||'all')
@@ -24,17 +24,17 @@ export default function SimpleExposure({isin}){
  useEffect(()=>{setSaveError(!writePreference(draftKey,{lines,field,exposureLimit,showCompanies,analysisView},validDraft))},[lines,field,exposureLimit,showCompanies,analysisView])
  const profile={id:'expositions',name:'',scope:'Portefeuille investi',imageOnly:true,lines,exposureLimit,showCompanies,analysisView}
  const records=useSelectedRecords(lines.map(line=>line.asset),exposureRecords)
- const analysis=analyzeProfile(profile)
+ const analysis=analyzeProfile(profile,MAX_EXPOSURE_POSITIONS)
  const total=profile.lines.reduce((sum,line)=>sum+(Number.isFinite(line.weight)?line.weight:0),0)
  const totalHint=total<100?`Il manque ${pct(100-total)} dans l’allocation.`:`${pct(total-100)} en trop dans l’allocation.`
  const reason=!lines.length?'Ajoute un actif pour préparer ton image.':!records.ready?(records.error?'Les expositions n’ont pas pu être chargées.': 'Chargement des expositions…'):analysis.errors.map(error=>error.includes('totaliser 100')?totalHint:error).join(' ')
- const image=useImageExport(profile,field,!reason)
+ const image=useImageExport(profile,field,!reason,MAX_EXPOSURE_POSITIONS)
  return <div className="dca-profiles-scope dca-simple">
   <PageHeader title="Actifs & expositions" subtitle="Saisis ton allocation, retrouve tes expositions et télécharge ton image."/>
   {saveError&&<p role="alert">Le brouillon ne peut pas être enregistré. Les données locales existantes sont conservées ; garde tes modifications avant de quitter la page.</p>}
   <div className="dca-simple-grid">
    <section className="dca-simple-card" aria-label="Composer les expositions">
-    <AllocationEditor lines={lines} onChange={setLines}/>
+    <AllocationEditor maxPositions={MAX_EXPOSURE_POSITIONS} lines={lines} onChange={setLines}/>
     <ImageOptions field={field} onFieldChange={setField} limit={exposureLimit} onLimitChange={setExposureLimit} showCompanies={showCompanies} onCompaniesChange={setShowCompanies}/>
     <Portfolios profile={profile} field={field} onLoad={item=>{setLines(confirmLines(item.profile.lines));setExposureLimit(item.profile.exposureLimit||4);setField(item.field);setShowCompanies(item.profile.showCompanies===true);setAnalysisView(item.profile.analysisView)}}/>
    </section>

@@ -68,7 +68,7 @@ try{
   await section.getByRole('heading',{name:'Répartition de la poche actions',exact:true}).waitFor()
   await section.getByText(/exclut les liquidités/).waitFor()
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false)
-  await page.screenshot({path:`test-artifacts/data-automation-inventory/${width}.png`,fullPage:true})
+  await section.screenshot({path:`test-artifacts/data-automation-inventory/${width}.png`})
   for(const isin of ['IE00BLCHJB90','IE000NDWFGA5','IE00BMH5Y871','IE000UL6CLP7','IE0003R87OG3','IE0003Z9E2Y3','IE00BM8R0J59']){
    await page.goto(`${base}/fiches-etf?isin=${isin}`,{waitUntil:'networkidle'})
    if(await page.getByRole('button',{name:'Aperçu',exact:true}).isVisible())await page.getByRole('button',{name:'Aperçu',exact:true}).click()

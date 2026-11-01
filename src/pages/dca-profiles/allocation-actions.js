@@ -1,7 +1,7 @@
-import { MAX_POSITIONS } from './engine.js'
+import { MAX_EXPOSURE_POSITIONS } from './engine.js'
 
 function checked(lines) {
-  if (!Array.isArray(lines) || !lines.length || lines.length > MAX_POSITIONS ||
+  if (!Array.isArray(lines) || !lines.length || lines.length > MAX_EXPOSURE_POSITIONS ||
     lines.some(line => !line || !line.asset) || new Set(lines.map(line => line.isin || line.asset)).size !== lines.length)
     throw Error('Choisis entre 1 et 50 actifs distincts.')
 }

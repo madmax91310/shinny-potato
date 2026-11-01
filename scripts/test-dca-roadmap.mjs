@@ -2,9 +2,10 @@ import assert from 'node:assert/strict'
 import { equalWeights, assignRemainder } from '../src/pages/dca-profiles/allocation-actions.js'
 import { exportPortfolio, importPortfolio } from '../src/pages/dca-profiles/portable-portfolios.js'
 import { PROFILES, ASSETS } from '../src/pages/dca-profiles/data.js'
-import { prepareProfile, references } from '../src/pages/dca-profiles/engine.js'
+import { prepareProfile, references, validateProfile, publicationReady, MAX_EXPOSURE_POSITIONS } from '../src/pages/dca-profiles/engine.js'
 import { qualifyHoldings } from '../src/pages/dca-profiles/holdings-qualification.js'
 import { sharedPositions } from '../src/pages/dca-profiles/verification.js'
+import { readSaved, writeSaved, migrateProfile } from '../src/pages/dca-profiles/management.js'
 import { buildTweetText } from '../src/pages/dca-profiles/lib.js'
 
 for (const n of [1,2,3,8,50]) {
@@ -59,3 +60,25 @@ assert.equal(mixed.pairs.length,0);assert.match(mixed.incompatiblePairs[0].reaso
 const dated=sharedPositions([line,b],refs,now,{a:h,b:{...h,asOf:'2026-08-01'}})
 assert.equal(dated.pairs.length,0);assert.match(dated.incompatiblePairs[0].reasons[0],/éloignées/)
 console.log('DCA roadmap: 1/2/3/8/50-line actions, versioned lossless transport, legacy selection, invalid imports and consent revocation; shared precise partial/stale/scope qualification verified.')
+
+// The DCA publication boundary is eight; transport keeps historical books whole.
+for (const n of [8,9,50]) {
+ const lines=equalWeights(Object.keys(ASSETS).slice(0,n).map((asset,i)=>({asset,isin:references[asset]?.isin,label:asset,weight:1,amount:i*37})))
+ const profile={...prepareProfile(PROFILES[0]),lines,mode:'participant',approved:true}
+ assert.equal(validateProfile(profile).length===0,n===8)
+ assert.equal(publicationReady(profile),n===8)
+ assert.equal(!!buildTweetText(profile),n===8)
+ assert.deepEqual(validateProfile({...profile,imageOnly:true},MAX_EXPOSURE_POSITIONS),[])
+ const record={id:'legacy',title:'Ancien portefeuille',profile,field:'all',draft:'Texte personnalisé exact\n🟡'}
+ const imported=importPortfolio(exportPortfolio(record))
+ assert.deepEqual(imported.profile.lines,lines)
+ assert.equal(imported.draft,record.draft)
+ let raw=null; const storage={getItem:()=>raw,setItem:(_,value)=>{raw=value}}
+ writeSaved(storage,[record]);const restored=readSaved(storage)[0]
+ assert.deepEqual(restored.profile.lines,lines)
+ assert.equal(restored.draft,record.draft)
+ if(n>8)assert.match(validateProfile(profile).join(' '),/conservées/)
+}
+const migrated=migrateProfile({lines:[{asset:'novo-nordisk',weight:23.75,amount:438.19}]})
+assert.deepEqual(migrated.lines,[{asset:'novo',weight:23.75,amount:438.19}])
+console.log('DCA: eight accepted, ninth blocked, 9/50-line legacy saves and JSON preserved, weights/flows unchanged; exposure capacity remains fifty.')

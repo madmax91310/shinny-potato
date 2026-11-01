@@ -45,6 +45,7 @@ try {
     }
     const output=[]
     const cases=[...PROFILES,
+      ...[1,2,4,8].map(n=>({...prepareProfile(PROFILES[0]),id:`long-${n}`,lines:Object.keys(ASSETS).slice(0,n).map((asset,i)=>({asset,label:`${ASSETS[asset][1]} — allocation diversifiée de long terme`,weight:n===8?[40,20,15,10,7,5,2.99,.01][i]:100/n,amount:i===1&&n!==8?0:i<4?1000000:234567.89,isin:''}))})),
       {...prepareProfile(PROFILES[0]),id:'fifty-lines',name:'Portefeuille complet',lines:Object.entries(references).slice(0,50).map(([asset,r])=>({asset,label:r.name,emoji:'📊',weight:2,amount:10,isin:r.isin}))},
       {...prepareProfile(PROFILES[0]),id:'eight-lines',name:'Pseudonyme long pour vérifier le rendu mobile',lines:Object.keys(ASSETS).slice(0,8).map((asset,i)=>({asset,label:ASSETS[asset][1],emoji:ASSETS[asset][0],weight:12.5,amount:i?1000000:0,isin:''}))},
       {...prepareProfile(PROFILES[0]),id:'zero-dca',lines:prepareProfile(PROFILES[0]).lines.map(l=>({...l,amount:0}))},
@@ -53,7 +54,7 @@ try {
     for(const [index,{raw,field}] of cases.flatMap(raw=>['countries','sectors','both','all'].map(field=>({raw,field}))).entries()){
       const profile=raw.lines.every(l=>Number.isFinite(l.weight))?raw:prepareProfile(raw,index)
       labels=[];boxes=[]
-      const canvas=await renderDcaImage(profile,field)
+      const canvas=await renderDcaImage(profile,field,profile.id==='fifty-lines'?50:8)
       if(field==='all'&&!labels.includes('Répartition des actifs'))throw Error('Missing allocation donut')
       if(labels.some(l=>/fictif|simulé|inventé|polémique|controversial|problématique|risqué|provocateur|undefined|\bNaN\b/i.test(l)))throw Error(profile.id+' unwanted text')
       if(field==='all'){
@@ -64,7 +65,7 @@ try {
       const expectedLines=field==='all'?profile.lines.filter(line=>line.weight>0):field==='both'?[]:profile.lines.filter(line=>line.amount>0)
       for(const line of expectedLines)if(expectedLines.length<=8&&!labels.join(' ').includes(line.label))throw Error('Allocation missing: '+profile.id+' / '+field+' / '+line.label)
       if(profile.id==='eight-lines'&&['countries','sectors'].includes(field)&&labels.includes(profile.lines[0].label))throw Error('Zero contribution shown as a monthly investment')
-      output.push({id:profile.id+'-'+field,labels:[...labels],png:['julien','alexandre','patrick','arthur','laurent','helene','eight-lines','fifty-lines','zero-dca','karim-approved','debate-lucas','debate-ilyes','debate-lina','debate-adam','debate-jeanbaptiste','debate-matthias'].includes(profile.id)?canvas.toDataURL():null})
+      output.push({id:profile.id+'-'+field,labels:[...labels],png:['julien','alexandre','patrick','arthur','laurent','helene','long-1','long-2','long-4','long-8','eight-lines','fifty-lines','zero-dca','karim-approved','debate-lucas','debate-ilyes','debate-lina','debate-adam','debate-jeanbaptiste','debate-matthias'].includes(profile.id)?canvas.toDataURL():null})
     }
     for(const field of ['countries','sectors','both','all']){
       labels=[];boxes=[]
@@ -78,15 +79,15 @@ try {
     CanvasRenderingContext2D.prototype.fillText=original
     return output
   })
-  assert.equal(records.length,620)
+  assert.equal(records.length,636)
   await mkdir('test-artifacts/dca',{recursive:true})
   for(const record of records.filter(r=>r.png))await writeFile(`test-artifacts/dca/${record.id}.png`,Buffer.from(record.png.split(',')[1],'base64'))
   const preview=page.locator('.dca-publication-column .dca-simple-preview img')
   await preview.waitFor()
   const originalWeight=await page.getByLabel('Poids position 1',{exact:true}).inputValue()
-  const originalCount=await page.locator('.dca-line-with-flow').count()
+  const originalCount=await page.locator('.dca-position').count()
   await page.getByRole('button',{name:'Créer une participation',exact:true}).click()
-  assert.equal(await page.locator('.dca-line-with-flow').count(),originalCount)
+  assert.equal(await page.locator('.dca-position').count(),originalCount)
   await page.getByLabel('Pseudonyme',{exact:true}).fill('Test participation')
   await page.getByLabel('DCA position 1',{exact:true}).fill('300')
   await preview.waitFor()
@@ -132,7 +133,7 @@ try {
   assert.equal(await page.locator('.dca-saved:visible .dca-saved-row').count(),1)
   await page.getByRole('button',{name:'Profils préparés',exact:true}).click()
   await page.locator('.dca-prepared > summary').click()
-  await page.getByRole('button',{name:'Marquer utilisé',exact:true}).click()
+  await page.getByRole('button',{name:'Marquer publié',exact:true}).click()
   await page.locator('.dca-filters summary').click()
   await page.getByRole('group',{name:'Budget mensuel',exact:true}).locator('[data-option][data-value="small"]').click()
   await page.getByRole('group',{name:'Contient au moins',exact:true}).locator('[data-option][data-value="equity"]').click()
@@ -145,6 +146,6 @@ try {
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Mobile has no horizontal overflow')
   await page.screenshot({path:'test-artifacts/dca/mobile.png',fullPage:true})
   assert.equal(await page.getByRole('group',{name:/Support position/}).count(),0,'No second ISIN confirmation')
-  console.log('620 DCA images and simplified workflow: participant draft export, text-independent PNG, stale image protection, saves, automatic restore, filters and mobile verified.')
+  console.log('636 DCA images and simplified workflow: participant draft export, text-independent PNG, stale image protection, saves, automatic restore, filters and mobile verified.')
 } finally {await browser?.close();server.kill('SIGTERM')}
 

@@ -151,3 +151,6 @@
  .dca-simple .dca-line-with-flow>label:last-of-type{grid-column:1/3;grid-row:2}
  .dca-simple .dca-line-with-flow>button{grid-column:3;grid-row:1/3}
 }
+
+.dca-simple .dca-flow-line{grid-template-columns:minmax(0,1fr) minmax(125px,160px)}
+.dca-simple .dca-flow-line label span{font-size:.75rem;white-space:nowrap}

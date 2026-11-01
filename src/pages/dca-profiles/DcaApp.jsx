@@ -7,7 +7,7 @@ import Button from '../../design-system/Button'
 import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { ALL_PROFILES, ASSETS } from './data.js'
 import { buildTweetText, pickUnseenProfile } from './lib.js'
-import { MAX_POSITIONS, prepareProfile, analyzeProfile, PROFILE_SCOPES, references, euro, pct } from './engine.js'
+import { MAX_POSITIONS, MAX_EXPOSURE_POSITIONS, prepareProfile, analyzeProfile, PROFILE_SCOPES, references, euro, pct } from './engine.js'
 import { filterProfiles, profileSelection, migrateProfile, preserveLocalRecord } from './management.js'
 import { readUsageHistory, toggleUsageHistory } from './usage-history.js'
 import AllocationEditor, { confirmLines } from './AllocationEditor.jsx'
@@ -24,7 +24,7 @@ function initialDraft(){
   raw=localStorage.getItem(draftKey)
   if(!raw)return {profile:profiles[0],draft:buildTweetText(profiles[0]),field:'all'}
   const saved=JSON.parse(raw),p=migrateProfile(saved?.profile)
-  if(!p||typeof p.id!=='string'||typeof p.name!=='string'||p.name.length>45||!PROFILE_SCOPES.includes(p.scope)||!Array.isArray(p.lines)||p.lines.length>MAX_POSITIONS||!p.lines.every(l=>l&&ASSETS[l.asset]&&typeof l.label==='string'&&l.label.length<=250&&(l.weight===null||Number.isFinite(l.weight))&&(p.imageOnly&&l.amount===undefined||l.amount===null||Number.isFinite(l.amount)))||typeof saved.draft!=='string'||saved.draft.length>20000)throw Error()
+  if(!p||typeof p.id!=='string'||typeof p.name!=='string'||p.name.length>45||!PROFILE_SCOPES.includes(p.scope)||!Array.isArray(p.lines)||p.lines.length>MAX_EXPOSURE_POSITIONS||!p.lines.every(l=>l&&ASSETS[l.asset]&&typeof l.label==='string'&&l.label.length<=250&&(l.weight===null||Number.isFinite(l.weight))&&(p.imageOnly&&l.amount===undefined||l.amount===null||Number.isFinite(l.amount)))||typeof saved.draft!=='string'||saved.draft.length>20000)throw Error()
   return {...saved,profile:{...p,approved:false,lines:confirmLines(p.lines.map(l=>({...l,weight:l.weight===null?NaN:l.weight,amount:p.imageOnly&&!Number.isFinite(l.amount)?0:l.amount===null?NaN:l.amount})))},field:['all','both','countries','sectors','overlap'].includes(saved.field)?saved.field:'all'}
  }catch{return {profile:profiles[0],draft:buildTweetText(profiles[0]),field:'all',damagedDraft:raw,error:'L’ancien brouillon est illisible. Il est conservé sur cet appareil.'}}
 }
@@ -37,6 +37,7 @@ export default function DcaApp(){
  const [filters,setFilters]=useState({selection:profileSelection(initial.profile),budget:'',lines:'',kind:'',unused:false})
  const [usage,setUsage]=useState(()=>readUsageHistory())
  const used=usage.ids
+ const publishedAt=usage.entries.find(entry=>entry.id===profile.id)?.publishedAt
  const seen=useRef(new Set([profile.id])),preparedPicker=useRef(null)
  useEffect(()=>{
   try{
@@ -89,12 +90,13 @@ export default function DcaApp(){
  <div className="dca-fields"><label>Budget mensuel<ChoicePicker aria-label="Budget mensuel" value={filters.budget} onChange={e=>setFilter('budget',e.target.value)}><option value="">Tous les budgets</option><option value="small">Jusqu’à 200 €</option><option value="medium">Plus de 200 à 500 €</option><option value="large">Plus de 500 à 1 000 €</option><option value="high">Plus de 1 000 €</option></ChoicePicker></label>
  <label>Nombre de placements<ChoicePicker aria-label="Nombre de placements" value={filters.lines} onChange={e=>setFilter('lines',e.target.value)}><option value="">Tous</option>{[2,3,4,5].map(n=><option key={n} value={n}>{n} placements</option>)}</ChoicePicker></label>
  <label>Contient au moins<ChoicePicker aria-label="Contient au moins" value={filters.kind} onChange={e=>setFilter('kind',e.target.value)}><option value="">Tous les types</option><option value="thematic">Un ETF sectoriel ou thématique</option><option value="equity">Une action en direct</option><option value="crypto">Une crypto</option><option value="metal">Un métal précieux</option></ChoicePicker></label></div>
- <label><input type="checkbox" checked={filters.unused} onChange={e=>setFilter('unused',e.target.checked)}/>Masquer les profils déjà utilisés</label>
+ <label><input type="checkbox" checked={filters.unused} onChange={e=>setFilter('unused',e.target.checked)}/>Afficher les profils non publiés</label>
  <button className="dca-remove" onClick={()=>setFilters({selection:filters.selection,budget:'',lines:'',kind:'',unused:false})}>Effacer les filtres</button></details>
- {filtered.length?<ChoicePicker key={filters.selection} aria-label="Choisir un profil DCA" value={profile.id} onChange={e=>select(filtered.find(p=>p.id===e.target.value))}>{filtered.map(p=><option key={p.id} value={p.id}>{p.name} · {p.monthly} €/mois{used.includes(p.id)?' · utilisé':''}</option>)}</ChoicePicker>:<p role="status">Aucun profil ne correspond à ces filtres dans cette sélection. Modifie les filtres ou change de sélection.</p>}
- <div className="dca-buttons"><Button variant="secondary" disabled={!filtered.some(p=>p.id!==profile.id)} onClick={()=>select(pickUnseenProfile(filtered,profile.id,seen.current))}>Autre profil aléatoire</Button><Button variant="secondary" onClick={toggleUsed}>{used.includes(profile.id)?'Marquer non utilisé':'Marquer utilisé'}</Button></div>
+ {filtered.length?<ChoicePicker key={filters.selection} aria-label="Choisir un profil DCA" value={profile.id} onChange={e=>select(filtered.find(p=>p.id===e.target.value))}>{filtered.map(p=><option key={p.id} value={p.id}>{p.name} · {p.monthly} €/mois{used.includes(p.id)?' · déjà publié':''}</option>)}</ChoicePicker>:<p role="status">Aucun profil ne correspond à ces filtres dans cette sélection. Modifie les filtres ou change de sélection.</p>}
+ <div className="dca-buttons"><Button variant="secondary" disabled={!filtered.some(p=>p.id!==profile.id)} onClick={()=>select(pickUnseenProfile(filtered,profile.id,seen.current))}>Autre profil aléatoire</Button><Button variant="secondary" onClick={toggleUsed}>{used.includes(profile.id)?'Annuler le marquage publié':'Marquer publié'}</Button></div>
  {!filtered.some(p=>p.id===profile.id)&&<p className="dca-note">Le profil affiché reste ouvert, mais ne fait pas partie des résultats filtrés.</p>}
    </details>}
+   <p className="dca-note">{used.includes(profile.id)?`Déjà publié · ${publishedAt?new Date(publishedAt).toLocaleString('fr-FR'):'date inconnue (ancien marquage)'}`:'Non publié'} · Historique local à cet appareil.</p>
    <label>Pseudonyme<input maxLength={45} value={profile.name} onChange={e=>edit({name:e.target.value})}/></label>
    <details><summary>Présentation facultative</summary><div className="dca-fields">
     <label>Âge<input type="number" min="18" max="100" value={profile.age||''} onChange={e=>edit({age:Math.min(100,Math.max(0,Number(e.target.value)))})}/></label>
@@ -102,7 +104,7 @@ export default function DcaApp(){
     <label>Localisation générale<input maxLength={60} value={profile.location||''} onChange={e=>edit({location:e.target.value})}/></label>
     <label>Revenu net mensuel (facultatif)<input type="number" min="0" value={profile.income||''} onChange={e=>edit({income:Math.max(0,Number(e.target.value))})}/></label>
    </div></details>
-   <AllocationEditor lines={profile.lines} onChange={lines=>edit({lines})} dca={!profile.imageOnly}/>
+   <AllocationEditor ordered lines={profile.lines} onChange={lines=>edit({lines})} dca={!profile.imageOnly}/>
    {!profile.imageOnly&&<p className="dca-note">Versements : {euro(profile.lines.reduce((s,l)=>s+(Number.isFinite(l.amount)?l.amount:0),0))} / mois</p>}
    <ImageOptions field={field} onFieldChange={changeImageField} limit={profile.exposureLimit||4} onLimitChange={exposureLimit=>editImage({exposureLimit})} showCompanies={profile.showCompanies===true} onCompaniesChange={showCompanies=>editImage({showCompanies})}/>
    <details><summary>Détails du portefeuille</summary>
@@ -118,8 +120,8 @@ export default function DcaApp(){
    </ImageExport>
    <section className="dca-simple-card dca-text-card">
     <label htmlFor="dca-draft">Texte prêt à publier</label><textarea id="dca-draft" value={draft} onChange={e=>{draftEdited.current=true;setDraft(e.target.value);setProfile({...profile,approved:false})}}/>
-    <div className="dca-buttons"><Button onClick={copy} disabled={!draft.trim()}>Copier le texte</Button><Button variant="secondary" onClick={()=>{draftEdited.current=false;setDraft(buildTweetText(profile));setProfile({...profile,approved:false})}}>Rétablir le texte</Button></div>
-    {profile.mode==='participant'&&<label className="dca-consent"><input type="checkbox" checked={!!profile.approved} onChange={e=>setProfile({...profile,approved:e.target.checked})}/>La personne a validé le texte, le visuel et les informations à publier.</label>}
+    <div className="dca-buttons"><Button onClick={copy} disabled={!draft.trim()||profile.lines.length>MAX_POSITIONS}>Copier le texte</Button><Button variant="secondary" disabled={profile.lines.length>MAX_POSITIONS} onClick={()=>{draftEdited.current=false;setDraft(buildTweetText(profile));setProfile({...profile,approved:false})}}>Rétablir le texte</Button></div>
+    {profile.mode==='participant'&&<label className="dca-consent"><input type="checkbox" disabled={!!a.errors.length} checked={!!profile.approved} onChange={e=>setProfile({...profile,approved:e.target.checked})}/>La personne a validé le texte, le visuel et les informations à publier.</label>}
     {profile.mode==='participant'&&!profile.approved&&<p className="dca-note">Brouillon à faire valider avant publication. Le téléchargement reste disponible.</p>}
     <p role="status" aria-live="polite">{feedback}</p>
    </section>
