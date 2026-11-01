@@ -36,7 +36,10 @@ try{
   await section.getByRole('textbox',{name:'Rechercher un écart financier'}).fill(residual.isin)
   assert((await section.innerText()).includes(residual.reason),'The proved correction and remaining residual must reach the real review screen')
  }
- await page.screenshot({path:out+'/review-desktop.png',fullPage:true})
+ // The review inventory can exceed Chromium's maximum bitmap dimensions.
+ // Keep the evidence panel in the viewport; every functional assertion stays above.
+ await section.scrollIntoViewIfNeeded()
+ await page.screenshot({path:out+'/review-desktop.png',fullPage:false})
  let pngCount=0
  for(const width of [1280,390]){
   await page.setViewportSize({width,height:900})
