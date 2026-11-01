@@ -114,6 +114,7 @@ jobs:
   build:
     permissions:
       contents: read
+      deployments: read
       pages: write
     needs: current-snapshot
     if: needs.current-snapshot.outputs.current == 'true' && needs.current-snapshot.outputs.public_required == 'true'
@@ -612,6 +613,7 @@ jobs:
   deploy:
     permissions:
       contents: read
+      deployments: read
       pages: write
       id-token: write
     needs: [scope, build, tweet-midi-checks, python-checks, browser-checks, exposure-browser-check, smoke]
@@ -777,6 +779,7 @@ jobs:
   deploy-fallback:
     permissions:
       contents: read
+      deployments: read
       pages: write
       id-token: write
     needs: fallback-build
