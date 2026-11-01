@@ -38,7 +38,7 @@ try {
   const records=new Map(Object.values(original.ASSETS).map(asset=>{const body=JSON.stringify(asset);return [createHash('sha256').update(body).digest('hex').slice(0,20),asset]}))
   const previousFetch=globalThis.fetch
   let requests=0
-  globalThis.fetch=async url=>{requests++;const hash=String(url).match(/\/data\/history\/([a-f0-9]+)\.json$/)?.[1];assert(records.has(hash),`Unknown selected history URL: ${url}`);return{ok:true,json:async()=>JSON.parse(JSON.stringify(records.get(hash)))}}
+  globalThis.fetch=async url=>{requests++;const hash=String(url).match(/\/data\/history\/([a-f0-9]+)\.json$/)?.[1];assert(records.has(hash),`Unknown selected history URL: ${url}`);return new Response(JSON.stringify(records.get(hash)))}
   try {
     for(const [id,asset] of Object.entries(original.ASSETS)){
       assert.equal(calculator.ASSETS[id].historyPending,true)

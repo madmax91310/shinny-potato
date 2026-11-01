@@ -5,7 +5,7 @@ import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
 import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
-import { analyzeBudget, budgetDisplayName, budgetImageExpenses, buildBudgetText, euro } from '../src/pages/budget-profiles/lib.js'
+import { analyzeBudget, budgetDisplayName, budgetImageExpenses, buildBudgetText, euro, sourceReply } from '../src/pages/budget-profiles/lib.js'
 import { DRAFT_KEY, PUBLISHED_KEY, USAGE_KEY, WORKSPACE_KEY } from '../src/pages/budget-profiles/storage.js'
 
 function captureCanvasText() {
@@ -88,6 +88,11 @@ try {
       writeFileSync(`${output}/${width}-${profile.id}-export.png`, Buffer.from(previewBytes))
       await page.getByRole('button', { name: 'Copier le texte', exact: true }).click()
       assert.equal(await page.evaluate(() => navigator.clipboard.readText()), buildBudgetText(profile))
+      const sourceDetails = page.getByText('Source et vérification du profil', { exact: true }).locator('..')
+      if (!(await sourceDetails.evaluate(node => node.open))) await sourceDetails.locator('summary').first().click()
+      await page.getByRole('button', { name: 'Copier la source pour une réponse', exact: true }).click()
+      assert.equal(await page.evaluate(() => navigator.clipboard.readText()), sourceReply(profile))
+      assert(!/prépar|compléments|arrondis|prénoms? fictifs?|l’auteur|sa femme|vérification|\.json|PR\s*#/i.test(sourceReply(profile)), 'The optional copied source also excludes production notes')
       await expect(page.getByRole('checkbox', { name: 'Profil publié', exact: true })).not.toBeChecked()
       assert.deepEqual(await page.evaluate(key => JSON.parse(localStorage.getItem(key)).published, WORKSPACE_KEY), [], 'Copying and exporting never declare publication')
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}: no horizontal overflow`)

@@ -27,3 +27,32 @@ Le build Worker assemble ses modules en un seul artefact sans dépendance. Toute
 Une carte peut réunir plusieurs versions ; le sélecteur conserve l'accès à chaque original et à ses actions. Recherche et origine retrouvent toutes les versions. Le filtre favoris retrouve le groupe si une version est favorite ; le repos utilise la publication la plus récente du groupe, y compris lorsqu'elle concerne une autre origine. Les modifications, suppressions et préférences visent toujours l'identifiant de la version sélectionnée. Les exports conservent tous les originaux et toutes les préférences.
 
 `node scripts/test-tweet-bank-curation.mjs` (à la racine) vérifie ces invariants sans recopier de contenu privé dans le dépôt. Aucune date de contrôle financier n'est renouvelée par un simple reclassement.
+
+## Limites des requêtes (audit technique du 1 novembre 2026)
+
+Les écritures authentifiées et de même origine lisent au maximum 100 000 octets
+pour un tweet, 4 000 pour une préférence et pendant 10 secondes. La limite est
+appliquée pendant la lecture, même sans Content-Length ; une entrée refusée
+annule le flux et ne touche pas D1. Avant correction, un flux de dix blocs de
+65 536 octets était intégralement consommé avant le 413. Les tests API couvrent
+les flux sans fin, les octets UTF-8, le JSON incomplet et la lecture bloquée.
+
+La confiance dans `oai-authenticated-user-id` suppose le passage par le dispatch
+Sites authentifié ; ne pas exposer directement le Worker. La politique du Site
+existant a été relue (accès personnalisé, propriétaire seul, aucun visiteur
+externe). Aucun accès, compte ou secret n'a été modifié pendant l'audit.
+
+## Reprise des lectures et sauvegardes
+
+Le client borne les requêtes à 15 secondes. Une interruption conserve le texte
+édité et rend la sauvegarde réessayable ; avant de répéter une écriture dont la
+réponse a été perdue, vérifier par actualisation si elle a été enregistrée.
+Les trois réponses de synchronisation sont validées avant de remplacer ensemble
+la photographie affichée/exportable. Une préférence de schéma invalide ne peut
+plus vider silencieusement la liste des tweets reçue en parallèle.
+
+`node tests/browser.mjs` lance uniquement la prévisualisation locale avec SQLite
+en mémoire et une identité de test. Chromium vérifie à 390/1440 px : texte spécial
+littéral, sauvegarde bloquée, conservation/reprise du brouillon, synchronisation
+invalide et JSON téléchargé avec les dernières lignes valides. Le workflow privé
+installe Playwright depuis le lock racine et exécute cette recette.
