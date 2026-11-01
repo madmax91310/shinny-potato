@@ -13,6 +13,6 @@ export const NEW_INSTRUMENT_FACTS = Object.fromEntries(IDENTITIES.map(({ isin })
     location: [facts.domicile, facts.replicationMethod].filter(Boolean).map(frenchCharacteristic).join(' · '),
     characteristicsSource: { url: facts.sourceUrl ?? record?.sourceUrl, checkedAt: facts.checkedAt },
     automatedFields: { benchmark: record?.characteristicChecks?.index },
-    reviewedAt: facts.checkedAt?.split('-').reverse().join('/'),
+    reviewedAt: '01/11/2026', // Editorial review; automated checks keep their separate clock above.
   }]
 }))
