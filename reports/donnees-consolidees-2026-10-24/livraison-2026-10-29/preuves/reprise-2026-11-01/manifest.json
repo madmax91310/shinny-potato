@@ -1,4 +1,5 @@
 {
+  "checkedAt": "2026-11-01",
   "files": [
     {
       "path": "blackrock-october-tail/7cbc5f557c361a5938ceb3d45ab9fe443f16b72cd2abbee39f6c56c505e2fd64.json.gz",
@@ -46,6 +47,11 @@
       "sha256": "c25961d01723c84d7455374f3d46e77f53afd141835e2a96da723347622cc02b"
     },
     {
+      "path": "build-amundi-rolling-95acd18.log.gz",
+      "bytes": 75901,
+      "sha256": "90af79db9f62ea540bb63a50288a6dcc1ea22094789ea59ef8181990887e6998"
+    },
+    {
       "path": "build-c874165.log.gz",
       "bytes": 75453,
       "sha256": "ca4e6f86079c4a5d63f6dfffba0fb30b2497e6320c35c4b03c78927467712223"
@@ -74,6 +80,16 @@
       "path": "build-wisdomtree-browser-final.log.gz",
       "bytes": 75549,
       "sha256": "4f5c9b87e76715b0b83c6a3b5e9f8d142ad0757a44a3ca8ce8b1ba018d076caa"
+    },
+    {
+      "path": "build-wisdomtree-browser-merged-master.log.gz",
+      "bytes": 75547,
+      "sha256": "ece97bf8454e8db606cd9f6c3e35a6771fccc9bbb4bd8443357f0aee2ee77ace"
+    },
+    {
+      "path": "causes-1nov.csv",
+      "bytes": 1597751,
+      "sha256": "88295513c9d28a46e2208e20618d86bf488c32d470e6adf0f519dd5f08a26421"
     },
     {
       "path": "current-tool-registry.json",
@@ -211,6 +227,21 @@
       "sha256": "c6b3539f62ff9976535ef8e3ebb219f4fda69e63c058a90e5a665b8086de37e3"
     },
     {
+      "path": "monthly-752-first-41348779291-summary.json",
+      "bytes": 14730,
+      "sha256": "c8620f87a37d58004c01a726040a341db2dd771571ca835bb58ea261da0b49e0"
+    },
+    {
+      "path": "monthly-752-first-41348779291.zip",
+      "bytes": 2142119,
+      "sha256": "1f48a75ad4eec96090205fd324239071f597a05e77d85dc19022f5ffefc34b77"
+    },
+    {
+      "path": "monthly-752-first-recording-proof.json",
+      "bytes": 241331,
+      "sha256": "ef506e4b91b7a9bc8a8ba9486a1a8007dc6dc79c9503f010a76fe0925b14d879"
+    },
+    {
       "path": "monthly-fx-first-41338564974.summary.json",
       "bytes": 31236,
       "sha256": "fcc808dda140e777dea1a93cdc10a1f4f6274248619e669911701db3f0042bf4"
@@ -219,6 +250,11 @@
       "path": "monthly-fx-first-41338564974.zip",
       "bytes": 2142112,
       "sha256": "153b799dad19b9c2ed1804fc6afdd9245c13fdcf774ed4703752b95ed9e40148"
+    },
+    {
+      "path": "monthly-october-publication-proof.json",
+      "bytes": 1434,
+      "sha256": "a60ea6c8ebed3cd6338700834bf064cb6f854102e8fd790123839d9670f7541d"
     },
     {
       "path": "monthly-period-catchup-planner.json",
@@ -281,6 +317,21 @@
       "sha256": "22ae050dff63c8c6703c858234f747f552f7c549c14e7f8844db619e69fa7df2"
     },
     {
+      "path": "ordinary-ishares-primary-components-41348779398.json",
+      "bytes": 964,
+      "sha256": "8263c68c62fdfc4fec04671962bc22c2c9c19a7288b6d232423d22daa3783d30"
+    },
+    {
+      "path": "ordinary-primary-IE00B5BMR087-41348779398.json.gz",
+      "bytes": 250332,
+      "sha256": "5145358754943e5964834140629f7f1e7bc2e899302a7b1c8cd765f4aedc2c76"
+    },
+    {
+      "path": "ordinary-primary-IE00B6R52259-41348779398.json.gz",
+      "bytes": 331340,
+      "sha256": "4749f59e2385c8484e9dca07b1941531e3b5685668e5ed43128d75e8120103ed"
+    },
+    {
       "path": "pr1127-validated-checks.json",
       "bytes": 13690,
       "sha256": "db15abea15bdbd771d1669e0e657fae0f1305b8039c4f43e4929773473435861"
@@ -289,6 +340,16 @@
       "path": "pr1129-validated-checks.json",
       "bytes": 13241,
       "sha256": "d6715e5a2b7cfb71e667849e71ecc6984180046128184013f09e9ef8d8887483"
+    },
+    {
+      "path": "pr1131-91ee-validated-checks.json",
+      "bytes": 8440,
+      "sha256": "12c98365c246314edb461ebe106dd9dfd0290d56c1987a89199de2e2746a0336"
+    },
+    {
+      "path": "pr1131-validated-checks.json",
+      "bytes": 8507,
+      "sha256": "6082915f9d2cc719291c8e11a8b7f0b61b95b27f7b812515d33b6632155788a4"
     },
     {
       "path": "public-exposure-recovery/IE0007Y8Y157-1440.png",
@@ -361,6 +422,141 @@
       "sha256": "71121e3886a0407a92c132664fb78cb0e641665e969a3be888911ab7c264f09a"
     },
     {
+      "path": "public-final/asset-field-coverage.json.gz",
+      "bytes": 153236,
+      "sha256": "a4210aeee47716f39b2692528b51fbde2d03539847990d5ee64f15ac24b2ae47"
+    },
+    {
+      "path": "public-final/automation-status.json.gz",
+      "bytes": 14103154,
+      "sha256": "c3dd0e9cb4129f9ef603c7ebf4ee1f329c077df4c9c2b2e74cb41fc3daa1a7bd"
+    },
+    {
+      "path": "public-final/automation-status.wire.json.gz",
+      "bytes": 13247297,
+      "sha256": "04db02fed08921dff28814f27eacd6288837c89d32ce7ff47a9763836c0543c5"
+    },
+    {
+      "path": "public-final/build-info.json",
+      "bytes": 171,
+      "sha256": "f9219061a70320c86e7bb288fe9f6b46fbff4151b97d4b96d7f8030e6f7f2128"
+    },
+    {
+      "path": "public-final/capture.json",
+      "bytes": 51309,
+      "sha256": "313cb059c3d8de672aeb35fdae72f829b07405dec85e61f18d2782f9c9a23d59"
+    },
+    {
+      "path": "public-final/data-review-inbox.json.gz",
+      "bytes": 152494,
+      "sha256": "b5d985ae760d206fcfe55398e12cec2bab368026edda5e37c9908b7421f3dd8a"
+    },
+    {
+      "path": "public-final/diagnostics-action.json.gz",
+      "bytes": 6353842,
+      "sha256": "b7983aeeab42dc2bcbfc8fb6f1388ceb19c4e1b64aba41b3acaf4edfd1858a03"
+    },
+    {
+      "path": "public-final/diagnostics-all.json.gz",
+      "bytes": 7621961,
+      "sha256": "039fd1d84d22095d615bb3be7fc99a6f6f6623d2bd7b68f93a5881470d747c18"
+    },
+    {
+      "path": "public-final/financial-reconciliation.json",
+      "bytes": 417677,
+      "sha256": "18b898a174a18699f702824761ab1c4197f0f855613f5430ad0118a5bd5f1aa9"
+    },
+    {
+      "path": "public-final/publication-manifest.json",
+      "bytes": 31771,
+      "sha256": "d0575767c52a79616f6531c8751d84b147472abd011fbc4e62c3c54408b07faf"
+    },
+    {
+      "path": "public-final-histories-usd/calculator-adobe.png",
+      "bytes": 1995563,
+      "sha256": "3b555bcc2a1225f62e393e30aed4557ef9b59ae15b2202fd6e5f21eb1b5c2c33"
+    },
+    {
+      "path": "public-final-histories-usd/calculator-paypal.png",
+      "bytes": 1807127,
+      "sha256": "cc68b87a0ffb6ed2bd3b8b5eda8231bb2eb10beb91f5a09c7fe4751afcea8d2b"
+    },
+    {
+      "path": "public-final-histories-usd/calculator-sbux.png",
+      "bytes": 1995074,
+      "sha256": "8f684057ebcbd1301e1d66fcb25bd18c6adac3401787dc541f70833ee91ae282"
+    },
+    {
+      "path": "public-final-histories-usd/comparison-paypal.png",
+      "bytes": 364814,
+      "sha256": "b55d028877926be7576de599964a884afdf10d052e994f451c90b79f3438666e"
+    },
+    {
+      "path": "public-final-histories-usd/proof.json",
+      "bytes": 10675,
+      "sha256": "46ac34db0be3aa0d2da0bb973625588520610f00a7b812b52d2f97e3e4d71c57"
+    },
+    {
+      "path": "public-final-korea-eur/calculator-etfIE00B5W4TY14.png",
+      "bytes": 1943065,
+      "sha256": "66c5847cd2eff85f6cffc5579eaad78de394b4acd7bf08e3a4572a81e02b8acf"
+    },
+    {
+      "path": "public-final-korea-eur/comparison-etfIE00B5W4TY14.png",
+      "bytes": 381559,
+      "sha256": "56c026def0a34b0295fc4cc6e54d364a15fa81c1d08ea450a66a2f0a6cb5a42d"
+    },
+    {
+      "path": "public-final-korea-eur/proof.json",
+      "bytes": 2914,
+      "sha256": "8eb5845c7fd5811757a7fee09dbdcdfdc565b897568e2f2c9fc1cc9aaa2fe291"
+    },
+    {
+      "path": "public-final-paypal-eur/calculator-paypal.png",
+      "bytes": 1807034,
+      "sha256": "6c6fb6d7294f613d35ddd6389173b50bcc6b3ef44dae3e40288a4e2ba0de2221"
+    },
+    {
+      "path": "public-final-paypal-eur/comparison-paypal.png",
+      "bytes": 366293,
+      "sha256": "b7a7a6ff7c440fdb01bf3c397f343802890353b7264b413705be7725306727e5"
+    },
+    {
+      "path": "public-final-paypal-eur/proof.json",
+      "bytes": 2646,
+      "sha256": "53a877bb03ea91a2909c455ece1fe92b0491cf6a74686d1eab156294e76580ce"
+    },
+    {
+      "path": "public-final-paypal-mobile-eur/calculator-paypal.png",
+      "bytes": 1807034,
+      "sha256": "6c6fb6d7294f613d35ddd6389173b50bcc6b3ef44dae3e40288a4e2ba0de2221"
+    },
+    {
+      "path": "public-final-paypal-mobile-eur/comparison-paypal.png",
+      "bytes": 366293,
+      "sha256": "b7a7a6ff7c440fdb01bf3c397f343802890353b7264b413705be7725306727e5"
+    },
+    {
+      "path": "public-final-paypal-mobile-eur/proof.json",
+      "bytes": 2726,
+      "sha256": "c6a248fab0379e5f9d55baf89de889bb4fa68116f92b9d4d5a8fd7554607ec78"
+    },
+    {
+      "path": "public-final-sbux-eur/calculator-sbux.png",
+      "bytes": 1989111,
+      "sha256": "41d2abe704bf1c8079ac70865cee5a9acd183e9e8079d2753ee9b353c9d84c96"
+    },
+    {
+      "path": "public-final-sbux-eur/comparison-sbux.png",
+      "bytes": 367703,
+      "sha256": "eeb08361f256e66602d7e11ab9ee9d75fe8e4091616154236896d9b469a0b342"
+    },
+    {
+      "path": "public-final-sbux-eur/proof.json",
+      "bytes": 2692,
+      "sha256": "f11e7d72e76913a59fc88a37eac0ee0e54512398708f5db7ca760d16e127e00f"
+    },
+    {
       "path": "public-nonbond-mobile-final/calculator-adobe.png",
       "bytes": 1995563,
       "sha256": "3b555bcc2a1225f62e393e30aed4557ef9b59ae15b2202fd6e5f21eb1b5c2c33"
@@ -426,6 +622,16 @@
       "sha256": "70fbf7df6f6b9f62efe572d3324d70c9a2b4ea78bb5ab02b91a539fd1cdd2b56"
     },
     {
+      "path": "publication-after-fx-41356639048-summary.json",
+      "bytes": 8823,
+      "sha256": "b22961e897f64f5d2608656d858a599cd2a4b692629ead8c4b7839883b97f054"
+    },
+    {
+      "path": "publication-after-fx-41356639048.zip",
+      "bytes": 200970,
+      "sha256": "d755887da3e826136f971b0506c415f329475f04c2165f25feafa3096a063e42"
+    },
+    {
       "path": "publication-ordinary-41348779315-summary.json",
       "bytes": 73034,
       "sha256": "7d7173424df27d2561b6e7cbdf2ff292ca8be664edae89b505cc2a59f1c243f5"
@@ -456,6 +662,16 @@
       "sha256": "20e40b2c8bad0a8ecede0a70651d8890080897a9f57a9adf7ec5e6222e5663d9"
     },
     {
+      "path": "rapprochement-bilan-1nov.json",
+      "bytes": 1072,
+      "sha256": "a57508f21c5eeb2b8d37255c322eaf2f44eaeafd510956cab5d8694e0d1cae71"
+    },
+    {
+      "path": "reconciliation-diagnostics-1nov.csv",
+      "bytes": 8197524,
+      "sha256": "ee5f148961ccd8ffd1e98ed124ca26f31177e9911741f467e810e554c40bd03d"
+    },
+    {
       "path": "repaired-composition-pr-source-proof.json",
       "bytes": 4251,
       "sha256": "ef48a7408dd7c0115abb8288d086dc6b22519e75ecdf056c74a9aed78a1721a6"
@@ -469,6 +685,31 @@
       "path": "sp-github-source-proof.json",
       "bytes": 1439,
       "sha256": "a8111a960c2792e08b00aaa0f85c84cc444625a6d1b0b7ba65043d720d56fb4d"
+    },
+    {
+      "path": "sp-official-named-pdf-alternative/declared-pdf-qualification.json",
+      "bytes": 3583,
+      "sha256": "e15cedee1b3a0d5cb42d388eb2012dfe27a302217285e7584d9d6da8afbc0c32"
+    },
+    {
+      "path": "sp-official-named-pdf-alternative/global-pdf-api-comparison.json",
+      "bytes": 6680,
+      "sha256": "0690075baf6300b807e3c9c4562051bf8de1db9961f81f88725039b26fb269ff"
+    },
+    {
+      "path": "sp-official-named-pdf-alternative/receipts.json",
+      "bytes": 2611,
+      "sha256": "7f2e0d18f6c460512fbbf8d6e16759b66537765df68184f0f0f21bc0c2924210"
+    },
+    {
+      "path": "sp-official-named-pdf-alternative/sp-euro-dividend-aristocrats-declared.pdf.gz",
+      "bytes": 720218,
+      "sha256": "6a8ac85313f615a79dcff469da588e3189e00eabc3df21b2ff2c1dd3ee9ba15c"
+    },
+    {
+      "path": "sp-official-named-pdf-alternative/sp-global-dividend-aristocrats-declared.pdf.gz",
+      "bytes": 709710,
+      "sha256": "03763442e85c5085ba65c769a5f93ede885a353f5f852a3115c0ddd86d832572"
     },
     {
       "path": "starbucks-live-nasdaq-source-control.json",
@@ -562,8 +803,13 @@
     },
     {
       "path": "verification/README.md",
-      "bytes": 3006,
-      "sha256": "e8e5d832f46252630718bfe68c01abaa7d35bb0bac5e9329fc60750d0bee9f7f"
+      "bytes": 3715,
+      "sha256": "a9b037527e7eb7a1f223579f6d03e208c3fafb86533fb33b10d173d26b360d28"
+    },
+    {
+      "path": "verification/append-delivery-proof.py",
+      "bytes": 6896,
+      "sha256": "4058fdd87a7d072bc03f4b5ad203df159c231e5a72ba5ad8915a619b4211162a"
     },
     {
       "path": "verification/capture-public.mjs",
@@ -592,8 +838,8 @@
     },
     {
       "path": "verification/verify-public-histories.mjs",
-      "bytes": 7948,
-      "sha256": "575b77a70977e47006e21c038e5202a97fc3cdb47083800f4788e0e4de6f5945"
+      "bytes": 9281,
+      "sha256": "2c852d7b637589fe6b168774a8305fdec465c3298967aa59372466d8d4c3dc49"
     },
     {
       "path": "verification/verify-public-retained-anniversaries.mjs",
@@ -696,5 +942,5 @@
       "sha256": "a86daca0ee6b771d9426b832d505bf43f29a9b017ef76047d5ec16b0d969865c"
     }
   ],
-  "limit": "Preuves datées et bornées ; aucune réussite globale ne certifie les champs ni étapes non exercés."
+  "limit": "Empreintes de conservation ; chaque preuve garde sa portée source/validation/enregistrement/publication/consommation. Aucun succès global déduit."
 }

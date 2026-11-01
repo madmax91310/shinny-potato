@@ -132,5 +132,23 @@
       "B": 242
     },
     "qualificationStateLimit": "Les états A/B de la matrice restent les qualifications historiques conservées, pas une certification actuelle. Les nouvelles preuves sont dans les colonnes1nov bornées à chaque usage."
+  },
+  "publication1nov": {
+    "sourceRun": 41348779291,
+    "recordCommit": "06a8557f7cfdf03ae72570981d536f532767d575",
+    "validatedSeries": 679,
+    "expectedSeries": 684,
+    "failedSeries": [
+      "etcPalladium",
+      "etfIE00B2QWCY14",
+      "etf_clean_energy",
+      "etf_financials",
+      "etf_world_communication"
+    ],
+    "sourceOutcomeConsumerRowsMatched": 3830,
+    "independentBrowserCalculations": 19,
+    "publicInputsProof": "preuves/reprise-2026-11-01/monthly-october-publication-proof.json",
+    "qualificationStatesPreserved": true,
+    "coverageLimit": "Comptes de séries, de contrats et de recettes distincts ; aucun taux global de certification."
   }
 }
