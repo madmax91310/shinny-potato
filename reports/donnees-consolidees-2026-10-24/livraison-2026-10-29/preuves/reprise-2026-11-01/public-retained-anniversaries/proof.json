@@ -1,0 +1,203 @@
+{
+  "checkedAt": "2026-11-01T21:28:57.320Z",
+  "buildInfo": {
+    "sha": "91ab124dbe66766a4db6ab2d92ab968429878c45",
+    "builtAt": "2026-11-01T20:40:39Z"
+  },
+  "rows": [
+    {
+      "id": "etcPalladium",
+      "sourceSeriesPath": "src/data/automated-etf-monthly.json",
+      "sourceSeriesBlob": "ebc8e838ea46e6cb89ecae26fce04d6ae124a5ae",
+      "level": {
+        "value": 28.680903,
+        "asOf": "2026-10-29",
+        "currency": "USD",
+        "isin": "IE00B4556L06",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 28.680903,
+        "nativeCurrency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1,
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+        ],
+        "checkedAt": "2026-10-31T13:51:04.292815+00:00",
+        "method": "Valeur liquidative officielle ajustée : rendement réinvesti publié de la part exacte, recalé sur sa NAV à date identique ; conversion BCE explicite si nécessaire ; aucun dividende ajouté une seconde fois",
+        "maxAgeDays": 7,
+        "sha256": "9ababa101711674caf281742a1eec87f4c920043060e2b48b694df6872576e74"
+      },
+      "historyMonth": "2025-11",
+      "historicalPrice": 41.40344998,
+      "independentPriceEvolutionPct": -30.72822913584652,
+      "text": "⚪ Il y a 1 an, l’ETC iShares Physical Palladium (IPDM) · VL valait 41 $. Depuis, son prix a reculé de 30,7 % 👇\n\n📅 Novembre 2025 : 41 $\n📅 Valeur liquidative du 29/10/2026 : 29 $\n\n📈 Évolution sur la période : -30,7 %\n\n💬 À l’époque, tu suivais déjà l’ETC iShares Physical Palladium (IPDM) · VL ?\n\nBlackRock iShares",
+      "downloads": [
+        {
+          "width": 1440,
+          "bytes": 2350841,
+          "sha256": "661af4f5ec8ddafab679c54a6fcd1d164141440e621d397fbfebd0c1b9fa7c64"
+        },
+        {
+          "width": 390,
+          "bytes": 2350841,
+          "sha256": "661af4f5ec8ddafab679c54a6fcd1d164141440e621d397fbfebd0c1b9fa7c64"
+        }
+      ],
+      "limit": "Retained dated level still usable, not a new successful source control and not a qualification of the missing October income-return tail."
+    },
+    {
+      "id": "etf_world_communication",
+      "sourceSeriesPath": "src/data/automated-etf-monthly.json",
+      "sourceSeriesBlob": "ebc8e838ea46e6cb89ecae26fce04d6ae124a5ae",
+      "level": {
+        "value": 7.32678,
+        "asOf": "2026-10-30",
+        "currency": "USD",
+        "isin": "IE00BJ5JP436",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-price",
+        "nativeValue": 7.32678,
+        "nativeCurrency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1,
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+        ],
+        "checkedAt": "2026-10-31T13:51:04.292815+00:00",
+        "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "a2d7670c84af5f74f3e76e0a545dd71ccbaee4686c15d09a42a8c7025af3a342"
+      },
+      "historyMonth": "2025-11",
+      "historicalPrice": 7.950726,
+      "independentPriceEvolutionPct": -7.847660704192294,
+      "text": "🌍 Il y a 1 an, l’ETF iShares MSCI World Communication Services Sector Advanced UCITS ETF · VL valait 8 $. Depuis, son prix a reculé de 7,8 % 👇\n\nValeurs liquidatives publiées · hors distributions\n\n📅 Novembre 2025 : 8 $\n📅 Valeur liquidative du 30/10/2026 : 7 $\n\n📈 Évolution sur la période : -7,8 %\n\n💬 À l’époque, tu suivais déjà l’ETF iShares MSCI World Communication Services Sector Advanced UCITS ETF · VL ?\n\nBlackRock iShares",
+      "downloads": [
+        {
+          "width": 1440,
+          "bytes": 2353761,
+          "sha256": "800b37b90035e49c33989ffe3753a037198b3537c2d739c8addb8f385d4a73ad"
+        }
+      ],
+      "limit": "Retained dated level still usable, not a new successful source control and not a qualification of the missing October income-return tail."
+    },
+    {
+      "id": "etf_clean_energy",
+      "sourceSeriesPath": "src/data/automated-etf-monthly.json",
+      "sourceSeriesBlob": "ebc8e838ea46e6cb89ecae26fce04d6ae124a5ae",
+      "level": {
+        "value": 7.9011072323666305,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "IE00B1XNHC34",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-price",
+        "nativeValue": 8.827117,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-10-31T13:51:04.292815+00:00",
+        "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "af0f6e16222167a1ac10517eeb15038b52562b59dafff83c746cbd6912eba3dc"
+      },
+      "historyMonth": "2025-11",
+      "historicalPrice": 8.36730071,
+      "independentPriceEvolutionPct": -5.571611368959273,
+      "text": "🌍 Il y a 1 an, l’ETF iShares Global Clean Energy Transition UCITS ETF · VL valait 8 €. Depuis, son prix a reculé de 5,6 % 👇\n\nValeurs liquidatives publiées · hors distributions\n\n📅 Novembre 2025 : 8 €\n📅 Valeur liquidative du 30/10/2026 : 8 €\n\n📈 Évolution sur la période : -5,6 %\n\n💬 À l’époque, tu suivais déjà l’ETF iShares Global Clean Energy Transition UCITS ETF · VL ?\n\nBlackRock iShares",
+      "downloads": [
+        {
+          "width": 1440,
+          "bytes": 2333266,
+          "sha256": "2bdf65d6794ee89dcfef0b148afc2a0839848e0c4ce930114177abd3ebc61f5a"
+        }
+      ],
+      "limit": "Retained dated level still usable, not a new successful source control and not a qualification of the missing October income-return tail."
+    },
+    {
+      "id": "etf_financials",
+      "sourceSeriesPath": "src/data/automated-etf-monthly.json",
+      "sourceSeriesBlob": "ebc8e838ea46e6cb89ecae26fce04d6ae124a5ae",
+      "level": {
+        "value": 8.38717,
+        "asOf": "2026-10-30",
+        "currency": "USD",
+        "isin": "IE00BJ5JP097",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-price",
+        "nativeValue": 8.38717,
+        "nativeCurrency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1,
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+        ],
+        "checkedAt": "2026-10-31T13:51:04.292815+00:00",
+        "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "59920ea3eb0b04169df3eac386e4cb3d53ff7dff632b4d7dca8e2754d67d75b2"
+      },
+      "historyMonth": "2025-11",
+      "historicalPrice": 7.504013,
+      "independentPriceEvolutionPct": 11.769129397830191,
+      "text": "🌍 Il y a 1 an, l’ETF iShares MSCI World Financials Sector Advanced UCITS ETF · VL valait 8 $. Depuis, son prix a progressé de +11,8 % 👇\n\nValeurs liquidatives publiées · hors distributions\n\n📅 Novembre 2025 : 8 $\n📅 Valeur liquidative du 30/10/2026 : 8 $\n\n📈 Évolution sur la période : +11,8 %\n\n💬 À l’époque, tu suivais déjà l’ETF iShares MSCI World Financials Sector Advanced UCITS ETF · VL ?\n\nBlackRock iShares",
+      "downloads": [
+        {
+          "width": 1440,
+          "bytes": 2354353,
+          "sha256": "218aba1d99dc2140858065c0d2e2085252f8d0d6df07860dbcc7eb4c179c5947"
+        }
+      ],
+      "limit": "Retained dated level still usable, not a new successful source control and not a qualification of the missing October income-return tail."
+    },
+    {
+      "id": "etfIE00B2QWCY14",
+      "sourceSeriesPath": "src/data/automated-etf-monthly.json",
+      "sourceSeriesBlob": "ebc8e838ea46e6cb89ecae26fce04d6ae124a5ae",
+      "level": {
+        "value": 101.70590583601863,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "IE00B2QWCY14",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-price",
+        "nativeValue": 113.625838,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-10-31T13:51:04.292815+00:00",
+        "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "7873c051a4ef842066cce6951f5a7f7596b339f05f54366fcffe81b9ce2d1c80"
+      },
+      "historyMonth": "2025-11",
+      "historicalPrice": 84.76903078,
+      "independentPriceEvolutionPct": 19.98002678593165,
+      "text": "📊 Il y a 1 an, l’ETF iShares S&P SmallCap 600 UCITS ETF · VL valait 85 €. Depuis, son prix a progressé de +20,0 % 👇\n\nValeurs liquidatives publiées · hors distributions\n\n📅 Novembre 2025 : 85 €\n📅 Valeur liquidative du 30/10/2026 : 102 €\n\n📈 Évolution sur la période : +20,0 %\n\n💬 À l’époque, tu suivais déjà l’ETF iShares S&P SmallCap 600 UCITS ETF · VL ?\n\nBlackRock iShares",
+      "downloads": [
+        {
+          "width": 1440,
+          "bytes": 2362503,
+          "sha256": "f73da75d8e9edda61b5b21f4dc28cf07d91a22fd90d7fc416763698d5e1d8b19"
+        }
+      ],
+      "limit": "Retained dated level still usable, not a new successful source control and not a qualification of the missing October income-return tail."
+    }
+  ],
+  "errors": [],
+  "limit": "Five actually consumed retained observations, independent arithmetic and six PNGs; the latest collection failures remain distinct."
+}

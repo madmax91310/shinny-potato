@@ -58,6 +58,10 @@ for row in rows:
         row.update(preuve_intervention_1nov='preuves/reprise-2026-11-01/public-exposure-recovery-quantified/proof.json',
                    usage_verifie_1nov='Sélection publique exacte ; concentration top5/top10 recomptée sur les poids du manifeste ; analyse et sixPNG ordinateur/mobile concordent avec les aperçus.',
                    limite_preuve_1nov='Aucun poids renormalisé ; WorldHedged conserve98,70072%actions. Pas de certification indépendante des pays/secteurs, des recouvrements ou de toutes les positions fournisseur.')
+    if row['route'] == '/il-y-a-x-ans' and row['actif_identifiant'] in {'history:'+id for id in ['etcPalladium','etf_world_communication','etf_clean_energy','etf_financials','etfIE00B2QWCY14']}:
+        row.update(preuve_intervention_1nov='preuves/reprise-2026-11-01/public-retained-anniversaries/proof.json',
+                   usage_verifie_1nov='Niveau conservé du29/30octobre réellement utilisé ; évolution du prix depuis novembre2025 recomptée ; conventions et6PNG vérifiés.',
+                   limite_preuve_1nov='Aucun nouveau contrôle source réussi : date de contrôle31octobre conservée. Le refus de collecte1novembre et les bornes réinvesties mensuelles manquantes restent ouverts.')
 existing = set(initial_ids)
 budgets = ['reddit-famille-bourges-2026-07-12', 'budget-conseil-personne_seule-2025-2026',
            'budget-conseil-monoparent_1enfant-2025-2026', 'budget-conseil-monoparent_2enfants-2025-2026']
@@ -112,6 +116,11 @@ for row in summaries:
         row['fonctionnement_demontre_1nov'] = 'WorldHedged, iSharesQuantum et VanEckQuantum : sélection exacte, top5/top10 recomptés depuis les poids du manifeste public, analyse et6PNG ordinateur/mobile identiques aux aperçus.'
         row['blocages_1nov'] = 'WorldHedged reste98,70072%actions identifiées ; pas de renormalisation. Les autres positions partielles, livres WisdomTree incomplets et Uranium restent distincts.'
         row['preuve_1nov'] = 'preuves/reprise-2026-11-01/public-exposure-recovery-quantified/proof.json'
+    elif route == '/il-y-a-x-ans':
+        row['fonctionnement_demontre_1nov'] = 'Cinq parts aux NAV conservées29/30octobre : sélection, dates, prix hors distributions quand applicable, évolution indépendante et6PNG publics.'
+        row['actualisation_partielle_1nov'] = 'Le producteur41348779315 réussit651éléments mais conserve19échecs :14dépendancesFXoctobre et5qualifications NAV/TR. Les niveaux antérieurs datés restent utilisables.'
+        row['blocages_1nov'] = 'Refus de nouvelle collecte distinct de la disponibilité du dernier niveau qualifié ; aucune date de réussite renouvelée artificiellement.'
+        row['preuve_1nov'] = 'preuves/reprise-2026-11-01/public-retained-anniversaries/proof.json ; publication-ordinary-41348779315-summary.json'
     elif route == '/tweets-factsheets':
         row['fonctionnement_demontre_1nov'] = 'STOXX600 : ventilations du même livre physique exact daté30octobre ; sélection, aperçu et troisPNG ordinateur/mobile.'
         row['blocages_1nov'] = 'Approximation physique explicite, pas composition officielle exacte de l’indice ; renouvellement primaire S&P403 non réparé.'
