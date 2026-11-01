@@ -23,6 +23,7 @@ try {
   const load = file => import(pathToFileURL(join(dir, 'src', file)))
   const { ASSETS, LATEST_YM } = await load('data/market-history.js')
   const { MARKET_HISTORY_REVIEW } = await load('data/market-history-review.js')
+  const { INFLATION_MONTHLY } = await load('data/inflation-monthly.js')
   const { derive, buildTweetText } = await load('pages/investment-calculator/lib.js')
   const { getAssetMaxDate } = await load('pages/tweet-midi/data/marketHistory.js')
   assert.equal(ASSETS.or.points.at(-1).date, next)
@@ -41,7 +42,9 @@ try {
   assert(buildTweetText(state, result).includes(gold.attribution))
   assert.equal(derive({ ...state, assetId: 'bitcoin' }).endYm, ASSETS.bitcoin.points.at(-1).date)
   // A more recent USD series must not extend custom EUR comparisons beyond INSEE.
-  assert(derive({ ...state, assetId: 'custom', customStart: '100', customEnd: '110' }).endYm <= prior)
+  const inflationEnd = Object.keys(INFLATION_MONTHLY).sort().at(-1)
+  const customEnd = [inflationEnd, LATEST_YM].sort()[0]
+  assert.equal(derive({ ...state, assetId: 'custom', customStart: '100', customEnd: '110' }).endYm, customEnd)
   console.log(`Gold: synthetic ${next} reaches registry, review, calculator and Tweet Midi; other asset dates preserved.`)
 } finally {
   rmSync(dir, { recursive: true, force: true })
