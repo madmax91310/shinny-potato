@@ -1,3 +1,5 @@
+import {buildCustomDuel} from '../src/pages/portfolio-duels/lib.js'
+import ANNUAL_FX from '../src/data/annual-fx.json' with {type:'json'}
 import {getETFArt} from '../src/pages/etf-sheets/visualIdentity.js'
 import {getManualDuelArt} from '../src/pages/portfolio-duels/visualIdentity.js'
 import {CATALOG as DUEL_ASSETS} from '../src/data/duel-assets.js'
@@ -113,3 +115,20 @@ for (const fund of IDENTITIES) {
   }
 }
 console.log('Toutes les cotations officielles des nouveaux fonds sont recherchables.')
+
+for(const fund of IDENTITIES){
+ const asset=DUEL_ASSETS.find(a=>a.isin===fund.isin)
+ const result=buildCustomDuel({left:[{id:asset.id,pct:100}],right:[{id:asset.id,pct:100}]})
+ let capital=10000
+ for(const year of result.years){
+  const raw=QUALIFIED_FUND_CALENDARS[fund.isin].years[year]
+  const ratio=fund.currency==='USD'?ANNUAL_FX.years[year-1].value/ANNUAL_FX.years[year].value:1
+  const annual=((1+raw/100)*ratio-1)*100
+  assert(Math.abs(result.a.annual[year]-annual)<1e-9)
+  capital*=1+annual/100
+ }
+ assert.equal(result.currency,'EUR')
+ assert(Math.abs(result.a.final-capital)<1e-7)
+ assert.equal(result.a.final,result.b.final)
+}
+console.log('Duels manuels : 21 calendriers, change historique de décembre et capitalisation rapprochés.')

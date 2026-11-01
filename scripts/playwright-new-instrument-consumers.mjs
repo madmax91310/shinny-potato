@@ -10,6 +10,7 @@ import {ANNUAL_ASSETS} from '../src/pages/performance-rankings/data.js'
 const port=4402,base=`http://127.0.0.1:${port}/shinny-potato/`,out='test-artifacts/new-instrument-consumers'
 const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port',String(port)],{stdio:'ignore'});let browser
 async function part(page,name){const b=page.locator('.workspace-view-switch').getByRole('button',{name,exact:true});if(await b.isVisible())await b.click()}
+async function compactSearch(picker,query){const toggle=picker.getByRole('button',{name:'Modifier',exact:true});if(await toggle.count() && await toggle.getAttribute('aria-expanded')==='false')await toggle.click();await picker.getByRole('searchbox').fill(query)}
 async function download(page,button,id){const [file]=await Promise.all([page.waitForEvent('download'),button.click()]);await file.saveAs(out+'/'+id+'.png');const b=await readFile(out+'/'+id+'.png');assert.equal(b.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert(b.length>10000)}
 try{
  await mkdir(out,{recursive:true});for(let i=0;i<100;i++){try{if((await fetch(base)).ok)break}catch{}await new Promise(r=>setTimeout(r,100))}
@@ -33,12 +34,12 @@ try{
   const left=page.getByRole('group',{name:'Actif 1 du portefeuille A',exact:true})
   for(const identity of IDENTITIES){
    const asset=DUEL_ASSETS.find(a=>a.isin===identity.isin);assert(asset)
-   await left.getByRole('searchbox').fill(identity.isin);await choose(left,asset.id);await part(page,'Aperçu')
+   await compactSearch(left,identity.isin);await choose(left,asset.id);await part(page,'Aperçu')
    await page.waitForFunction(name=>document.querySelector('#pd-tweet')?.value.includes(name),identity.name)
    assert(!/NaN|undefined/.test(await page.locator('#pd-tweet').inputValue()));await part(page,'Réglages')
   }
-  await left.getByRole('searchbox').fill('IE00BZ6V7883');await choose(left,DUEL_ASSETS.find(a=>a.isin==='IE00BZ6V7883').id)
-  const right=page.getByRole('group',{name:'Actif 1 du portefeuille B',exact:true});await right.getByRole('searchbox').fill('IE00B14X4S71');await choose(right,DUEL_ASSETS.find(a=>a.isin==='IE00B14X4S71').id)
+  await compactSearch(left,'IE00BZ6V7883');await choose(left,DUEL_ASSETS.find(a=>a.isin==='IE00BZ6V7883').id)
+  const right=page.getByRole('group',{name:'Actif 1 du portefeuille B',exact:true});await compactSearch(right,'IE00B14X4S71');await choose(right,DUEL_ASSETS.find(a=>a.isin==='IE00B14X4S71').id)
   await part(page,'Aperçu');await page.waitForFunction(()=>document.querySelector('#pd-tweet')?.value.includes('Mortgage'))
   await download(page,page.getByRole('button',{name:'🖼️ Télécharger l’image PNG',exact:true}),'duel-'+width)
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.close()
