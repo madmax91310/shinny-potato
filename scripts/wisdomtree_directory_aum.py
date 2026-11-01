@@ -127,7 +127,8 @@ def augment_aum(result,share,now,fetch=download,*,browser_fetch=None):
         for attempt in attempts:
             if attempt['status']=='unavailable':
                 result.setdefault('collectionErrors',[]).append({'field':'aum-primary-http','url':url,
-                    'phase':'acquisition','reason':attempt['reason'],'qualifiedFallbackAvailable':True})
+                    'phase':'acquisition','reason':'Primary HTTP directory access failed: '+attempt['reason']+'; exact native AUM independently qualified via the ordinary public browser',
+                    'qualifiedFallbackAvailable':True})
         if prior and prior.get('asOf','')>=value['asOf']:
             if prior['asOf']==value['asOf'] and any(prior.get(k)!=value.get(k)for k in ('amount','currency','scope')):
                 result.pop('aum',None)

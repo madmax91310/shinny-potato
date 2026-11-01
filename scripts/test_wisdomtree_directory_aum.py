@@ -97,6 +97,11 @@ class DirectoryAum(unittest.TestCase):
    self.assertEqual([e['field']for e in result['collectionErrors']],['aum-primary-http'])
    self.assertTrue(result['collectionErrors'][0]['qualifiedFallbackAvailable'])
    self.assertEqual([a['status']for a in result['sourceAttempts'][-1]['transportAttempts']],['unavailable','downloaded'])
+  from publish_automation_status import normalize_report
+  report=normalize_report({'_collector':'additional','shares':[{'isin':self.share['isin'],'status':'validated',**results[0]}]})
+  self.assertEqual(report['successes'],[])
+  self.assertEqual(report['errors'][0]['field'],'aum-primary-http')
+
  def test_successful_primary_never_invokes_browser(self):
   browser=__import__('unittest.mock',fromlist=['Mock']).Mock(side_effect=AssertionError('unexpected browser'))
   payload,url,digest=acquire(NOW,lambda *a,**k:self.raw,browser_fetch=browser)
