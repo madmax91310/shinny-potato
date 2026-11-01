@@ -66,3 +66,13 @@ Contrôles supplémentaires : `node scripts/test-dca-selections.mjs` (également
 `npm run test:dca`) et `CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-dca-selections.mjs`.
 `test-dca-images.mjs` couvre les 150 profils dans les quatre mises en page existantes,
 ainsi que les cas limites historiques (620 rendus), avec contrôle des textes et débordements.
+
+## DCA à huit positions et suivi Publié (1er novembre 2026)
+
+`MAX_POSITIONS = 8` est le contrat DCA, même en mode sans identité. Le moteur partagé prend une limite explicite : `MAX_EXPOSURE_POSITIONS = 50` pour Actifs & expositions, le stockage et le transport de récupération. Ces deux derniers acceptent les anciens portefeuilles trop longs intégralement ; l'éditeur explique le blocage de publication et laisse retirer des lignes. Aucune troncature. La limite des 50 sauvegardes nommées reste indépendante. Les poids et versements ne sont pas recalculés à la migration.
+
+L'éditeur DCA présente allocation et versements en deux listes, liées au même tableau. L'ordre visuel se fige au focus du groupe et se recalcule à sa sortie ou avec Entrée. Les clés d'actifs et l'ordre canonique des données sont conservés ; les égalités restent stables. Les positions détenues sans flux restent dans l'allocation, les zéros mensuels restent éditables mais ne sont pas publiés. Le texte personnalisé reste conservé lors de l'édition (le premier descriptif historique de ce README est remplacé par ce comportement).
+
+L'historique garde la clé `el-dca-used-v1` : lecture des anciens tableaux d'IDs sans écriture au montage, puis écriture v2 `{version:2,entries:[{id,publishedAt}]}` au marquage explicite. `publishedAt: null` signifie date ancienne inconnue. Date du nouveau marquage, annulation et filtre des non-publiés ; historique local à l'appareil. Copie/téléchargement ne le modifient pas. Une donnée illisible ou un changement entre lecture et écriture empêche toute réécriture partielle.
+
+Recette : `npm run test:dca`, `node scripts/test-dca-usage-storage.mjs`, build, puis `CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-dca-eight.mjs` et `node scripts/playwright-dca-usage-storage.mjs`. `test-dca-images.mjs` couvre désormais 636 rendus, dont 1/2/4/8 positions avec noms longs, petits poids, gros montants, égalités et zéros. Les anciennes allocations de 50 positions restent testées dans le parcours d'expositions. [Roadmap courante](../../../docs/portefeuille-dca-roadmap.md).

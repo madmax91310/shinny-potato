@@ -40,8 +40,8 @@ for (const width of [1440, 390]) {
     }
     // Inject faults before React reads storage, on every navigation/reload.
     await context.addInitScript(() => { window.usageFault = sessionStorage.getItem('usage-test-fault') })
-    const mark = () => page.getByRole('button', { name: 'Marquer utilisé', exact: true })
-    const unmark = () => page.getByRole('button', { name: 'Marquer non utilisé', exact: true })
+    const mark = () => page.getByRole('button', { name: 'Marquer publié', exact: true })
+    const unmark = () => page.getByRole('button', { name: 'Annuler le marquage publié', exact: true })
     const raw = () => page.evaluate(() => window.rawUsage())
     const picker = page.getByRole('group', { name: 'Choisir un profil DCA', exact: true })
 
@@ -60,20 +60,22 @@ for (const width of [1440, 390]) {
     await mark().click()
     // No wait for localStorage before reload: the event must commit synchronously.
     await page.reload(); await open()
-    assert.deepEqual(JSON.parse(await raw()), [id])
+    assert.deepEqual(JSON.parse(await raw()).entries.map(entry=>entry.id), [id])
     assert(await unmark().isVisible())
+    assert(JSON.parse(await raw()).entries[0].publishedAt)
+    assert(await page.getByText(/Déjà publié ·/).isVisible())
     await unmark().click(); await page.reload(); await open()
-    assert.deepEqual(JSON.parse(await raw()), [])
+    assert.deepEqual(JSON.parse(await raw()).entries.map(entry=>entry.id), [])
     assert(await mark().isVisible())
 
     const valid = '[ "older-profile", "older-profile" ]'
     await seed(valid)
     assert.equal(await raw(), valid, 'valid legacy bytes unchanged on mount')
     await mark().click(); await page.reload(); await open()
-    assert.deepEqual(JSON.parse(await raw()), ['older-profile', 'older-profile', id])
+    assert.deepEqual(JSON.parse(await raw()).entries.map(entry=>entry.id), ['older-profile', 'older-profile', id])
     assert(await unmark().isVisible())
     await page.locator('.dca-filters > summary').click()
-    await page.getByRole('checkbox', { name: 'Masquer les profils déjà utilisés', exact: true }).check()
+    await page.getByRole('checkbox', { name: 'Afficher les profils non publiés', exact: true }).check()
     assert.equal(await picker.locator(`[data-option][data-value="${id}"]`).count(), 0)
 
     const partial = JSON.stringify([id, 42])
@@ -95,7 +97,7 @@ for (const width of [1440, 390]) {
     await page.getByRole('alert').filter({ hasText: 'historique' }).waitFor()
     await page.evaluate(() => { window.usageFault = '' })
     await mark().click()
-    assert.deepEqual(JSON.parse(await raw()), ['older-profile', 'older-profile', id])
+    assert.deepEqual(JSON.parse(await raw()).entries.map(entry=>entry.id), ['older-profile', 'older-profile', id])
 
     await seed(valid)
     const other = await context.newPage(); await other.goto(base)
@@ -107,7 +109,7 @@ for (const width of [1440, 390]) {
     await page.reload(); await open()
     assert(await unmark().isVisible())
     await unmark().click()
-    assert.deepEqual(JSON.parse(await raw()), ['another-tab'])
+    assert.deepEqual(JSON.parse(await raw()).entries.map(entry=>entry.id), ['another-tab'])
     await other.close()
 
     await seed(valid)

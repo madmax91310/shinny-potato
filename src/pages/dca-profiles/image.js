@@ -1,6 +1,6 @@
 import { exposureRecords } from './records.js'
 import { exposureView } from './exposure.js'
-import { analyzeProfile, prepareProfile, euro, pct, references } from './engine.js'
+import { MAX_POSITIONS, analyzeProfile, prepareProfile, euro, pct, references } from './engine.js'
 import { incomeLabel, sortHoldings, sortContributions } from './lib.js'
 import { portfolioAnalytics, analyzedLines, analysisView, selectConcentrationGroup } from './analytics.js'
 const C={navy:'#071d36',ivory:'#fff4df',yellow:'#ffd342',muted:'#9eb7d2',panel:'#0d263e'}
@@ -80,12 +80,12 @@ function fullPortfolio(ctx,p,a){
  const crowded=holdings.length>4
  // Keep identity and monthly contributions in the tweet; reserve this panel for holdings.
  const lift=p.imageOnly?0:90
- const cy=(crowded?435:p.imageOnly?469:490)-lift,r=crowded?120:p.imageOnly?230:185
+ const cy=crowded?345:(p.imageOnly?469:490)-lift,r=crowded?120:p.imageOnly?230:185
  ring(ctx,holdings,368,cy,r,r*.67)
  centered(ctx,'100 %',368,cy+12,r*1.7,crowded?42:64)
  centered(ctx,'du portefeuille',368,cy+48,r*1.55,crowded?18:26,C.muted,400)
- const percentages=integerPercentages(holdings),top=(crowded?575:holdings.length===4?725:775)-lift
- const gap=Math.min(62,(915-top)/Math.max(holdings.length-1,1)),size=crowded?(p.imageOnly?19:23):holdings.length===4?23:28
+ const percentages=integerPercentages(holdings),top=crowded?500:(holdings.length===4?725:775)-lift
+ const gap=Math.min(62,(915-top)/Math.max(holdings.length-1,1)),size=crowded?26:holdings.length===4?23:28
  holdings.forEach((row,i)=>{
   const y=top+i*gap
   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(83,y-9,7,0,Math.PI*2);ctx.fill()
@@ -168,11 +168,11 @@ async function loadDcaFont(){
  if(!fontReady)fontReady=new FontFace('DcaEditorial',`url("${import.meta.env.BASE_URL}asset-art/editorial.woff2")`,{weight:'500'}).load().then(font=>document.fonts.add(font)).catch(()=>{fontReady=undefined;return false})
  return fontReady
 }
-export async function renderDcaImage(input,field='countries'){
+export async function renderDcaImage(input,field='countries',maxPositions=MAX_POSITIONS){
  await loadDcaFont()
  const p=input.lines.every(l=>Number.isFinite(l.weight))?input:prepareProfile(input)
  await Promise.all([...new Set(p.lines.map(line=>line.asset))].map(id=>exposureRecords.load(id)))
- const a=analyzeProfile(p)
+ const a=analyzeProfile(p,maxPositions)
  if(a.errors.length)throw Error(a.errors.join(' '))
  const baseHeight=['all','overlap'].includes(field)?1000:p.imageOnly?960:1067
  const includeCompanies=p.showCompanies===true&&field!=='overlap'
@@ -197,17 +197,17 @@ export async function renderDcaImage(input,field='countries'){
  text(ctx,p.name,62,161,710,96,C.ivory,700,'DcaEditorial')
  text(ctx,[p.age&&`${p.age} ans`,p.job].filter(Boolean).join(' · '),66,212,710,30,C.ivory,400)
  if(p.income)text(ctx,`${incomeLabel(p)} : ${euro(p.income)} / mois`,66,263,710,32,C.ivory,400)
- text(ctx,'CHAQUE MOIS',66,341,710,26,C.muted)
- text(ctx,euro(a.monthly),56,495,720,160,C.yellow,700,'DcaEditorial')
- text(ctx,'investis par mois',66,552,710,40,C.ivory,700,'DcaEditorial')
- const contributions=sortContributions(p.lines)
+ const contributions=sortContributions(p.lines),crowded=contributions.length>4
+ text(ctx,'CHAQUE MOIS',66,crowded?311:341,710,26,C.muted)
+ text(ctx,euro(a.monthly),56,crowded?415:495,720,crowded?110:160,C.yellow,700,'DcaEditorial')
+ text(ctx,'investis par mois',66,crowded?465:552,710,40,C.ivory,700,'DcaEditorial')
  const displayLines=contributions.length>8?sortContributions([...contributions.slice(0,7),{label:`${contributions.length-7} autres positions`,amount:contributions.slice(7).reduce((s,l)=>s+l.amount,0),weight:contributions.slice(7).reduce((s,l)=>s+l.weight,0)}]):contributions
- const rowHeight=Math.min(112,366/displayLines.length),top=597
+ const top=crowded?505:597,rowHeight=Math.min(112,(963-top)/displayLines.length)
  displayLines.forEach((l,i)=>{
   const y=top+i*rowHeight
   rule(ctx,66,y,710)
-  text(ctx,euro(l.amount),66,y+rowHeight*.66,220,Math.min(49,rowHeight*.55),C.yellow,700,'DcaEditorial')
-  text(ctx,l.label,312,y+rowHeight*.62,464,Math.min(31,rowHeight*.45),C.ivory,700,'DcaEditorial')
+  text(ctx,euro(l.amount),66,y+rowHeight*.66,235,Math.min(49,rowHeight*.65),C.yellow,700,'DcaEditorial')
+  wrappedLabel(ctx,l.label,324,y+rowHeight*.42,450,Math.min(31,rowHeight*.44))
  })
  text(ctx,'Son portefeuille',865,112,670,65,C.ivory,700,'DcaEditorial')
  text(ctx,field==='sectors'?'Exposition sectorielle':'Exposition géographique',880,163,650,32,C.muted,400)
