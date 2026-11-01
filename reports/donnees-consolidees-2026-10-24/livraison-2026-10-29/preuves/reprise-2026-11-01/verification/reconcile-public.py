@@ -45,6 +45,10 @@ def category(row):
         return 'trace historique'
     if kind == 'connection':
         return 'raccordement ou qualification manquante'
+    if cause == "'2026-10'":
+        return 'dépendance de change mensuel absente ; panne distincte de la NAV source'
+    if 'Monthly NAV/return end not independently qualified' in cause:
+        return 'qualification de nouvelle période manquante ; anciennes périodes préservées'
     if 'Résolution historique non démontrée' in cause or 'Producteur interrompu avant son compte rendu' in cause:
         return 'preuve historique incomplète ; aucune panne actuelle déduite'
     if kind in ('qualification', 'monitoring'):

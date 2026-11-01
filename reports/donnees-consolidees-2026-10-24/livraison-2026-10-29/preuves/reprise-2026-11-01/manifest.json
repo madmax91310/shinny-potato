@@ -121,9 +121,19 @@
       "sha256": "80cc7854fd113c323c0fbf4aca6a1642ca07fdd40968dc3bc19fa7dfdb9f931c"
     },
     {
+      "path": "monthly-precatchup-41333315930.zip",
+      "bytes": 2141584,
+      "sha256": "98e9871753648d93ae7c1f2b964741ddcc832f3097a7d56af12d0f091a2fe855"
+    },
+    {
       "path": "monthly-production-41328255102.zip",
       "bytes": 2103088,
       "sha256": "09186811b87b6a3c4a3f34b9006261587be2e0ea3e127209832528be72352582"
+    },
+    {
+      "path": "nav-fx-affected-scope.json",
+      "bytes": 2840,
+      "sha256": "d6438cdcab25685090b88a063be278c50e7a370dad22221b136e3856a4ebe9eb"
     },
     {
       "path": "nav-fx-order-source/c470f28773e404ee79594a57d664f1ee25a8d4f1f6b252ff2300a4d3de3cd591.json.gz",
@@ -132,8 +142,8 @@
     },
     {
       "path": "nav-fx-order-source/proof.json",
-      "bytes": 3289,
-      "sha256": "9b0d89807e03a00c230059a52ec1f3c19cd2d9b2747f50e450bd6d1035b53199"
+      "bytes": 3595,
+      "sha256": "1d3ee995dbc94561797e698bfd465ee509d7ecf7b4e033bb794a71fcf314a4d8"
     },
     {
       "path": "nav-fx-order-source/qualified-record.json",
@@ -164,6 +174,16 @@
       "path": "qyld-official-current.html.gz",
       "bytes": 49226,
       "sha256": "84ec013847d3edb6789db1bf7770fda23047498e5b92e21cac540654541f8323"
+    },
+    {
+      "path": "radar-official-rss-alternative/dares.gz",
+      "bytes": 33319,
+      "sha256": "f9721c8728463e3f23336528fecd53eed5887b7f1305a29fcc47f16e83b1ee13"
+    },
+    {
+      "path": "radar-official-rss-alternative/proof.json",
+      "bytes": 1022,
+      "sha256": "20e40b2c8bad0a8ecede0a70651d8890080897a9f57a9adf7ec5e6222e5663d9"
     },
     {
       "path": "repaired-composition-pr-source-proof.json",
@@ -257,8 +277,13 @@
     },
     {
       "path": "verification/reconcile-public.py",
-      "bytes": 8454,
-      "sha256": "1d55ee2a3b5da16b96b3a89744756fcc3a36971c8f36f64aa60ec428cda80b51"
+      "bytes": 8740,
+      "sha256": "ef759ff021f264c1ddfdc45efa30bc75271ee046a48227f7719873435d48caa2"
+    },
+    {
+      "path": "verification/update-consolidated.py",
+      "bytes": 7891,
+      "sha256": "ce9c6088db73d40643fea25d0201d512a15d83fa0d27429385916e81c70b45a3"
     },
     {
       "path": "verification/verify-stoxx.mjs",

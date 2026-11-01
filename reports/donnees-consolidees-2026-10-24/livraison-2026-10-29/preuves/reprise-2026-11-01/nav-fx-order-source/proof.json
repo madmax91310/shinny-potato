@@ -4,7 +4,7 @@
   "instrument": {
     "id": "etfIE00B5W4TY14",
     "isin": "IE00B5W4TY14",
-    "label": "iShares MSCI Korea UCITS ETF \u00b7 VL",
+    "label": "iShares MSCI Korea UCITS ETF · VL",
     "instrumentType": "ETF",
     "consumerScope": "catalog",
     "currency": "EUR",
@@ -14,7 +14,7 @@
     "parser": "official-nav",
     "field": "nav-total-return",
     "valuationBasis": "fund-nav-total-return",
-    "method": "Valeur liquidative officielle de la part exacte capitalisante, nette des frais du fonds ; conversion mensuelle BCE explicite si n\u00e9cessaire ; ancienne cotation archiv\u00e9e s\u00e9par\u00e9ment",
+    "method": "Valeur liquidative officielle de la part exacte capitalisante, nette des frais du fonds ; conversion mensuelle BCE explicite si nécessaire ; ancienne cotation archivée séparément",
     "navProvider": "blackrock",
     "navCurrency": "USD",
     "productId": 253733,
@@ -51,7 +51,7 @@
           "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
         ],
         "checkedAt": "2026-11-01",
-        "method": "Valeur liquidative officielle de la part exacte, revenus capitalis\u00e9s ; conversion BCE si n\u00e9cessaire",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
         "maxAgeDays": 7,
         "sha256": "7d8bc6a2fe455a5f03dc34256d2ca60977674bfe4e8a68ac0e90d4db4b8b4e9d"
       },
@@ -65,5 +65,16 @@
         "fxFactor": 0.8950948800572861
       }
     }
-  ]
+  ],
+  "ordinaryCollectedEcbCorroboration": {
+    "runId": 41328255102,
+    "asOf": "2026-10-30",
+    "rates": {
+      "EUR": 1.0,
+      "USD": 1.1172
+    },
+    "factor": 0.8950948800572861,
+    "sameAsIndependentlyFetchedDailyFixing": true,
+    "rawSourceSha256": "458ef998bf1d96198dbc91e83e54ed9b4911ff03500397cbf9b23d8b66cc34ac"
+  }
 }
