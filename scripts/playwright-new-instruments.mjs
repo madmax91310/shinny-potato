@@ -6,8 +6,9 @@ import {choose} from './card-selection.mjs'
 import IDENTITIES from '../src/data/new-instrument-identities.json' with {type:'json'}
 import SOURCES from './new-instrument-nav-sources.json' with {type:'json'}
 import COMPARISONS from '../src/data/new-instrument-comparisons.json' with {type:'json'}
+import {ASSETS as CALCULATOR_ASSETS} from '../src/data/calculator-history.js'
 import {ETFS} from '../src/data/etf-cards.js'
-import {getPreferredInstrumentListing,getInstrumentListings} from '../src/data/instrument-listings.js'
+import {getInstrumentListings} from '../src/data/instrument-listings.js'
 import {buildText} from '../src/pages/etf-sheets/lib.js'
 import {QUALIFIED_FUND_CALENDARS} from '../src/data/qualified-annual-calendars.js'
 import {ASSETS as PERFORMANCE} from '../src/pages/tweet-midi/data/performanceHistory.js'
@@ -52,6 +53,12 @@ try{
   for(const {isin} of IDENTITIES){
    const asset=Object.values(PERFORMANCE).find(a=>a.isin===isin),year=Object.keys(QUALIFIED_FUND_CALENDARS[isin].years).sort().at(-1)
    await page.goto(base+'performance-depuis?asset='+asset.id,{waitUntil:'networkidle'});assert.equal(await page.locator('#subject-select').getAttribute('data-value'),asset.id);await choose(page.locator('#secondary-select'),year);await page.getByRole('button',{name:'🔄 Générer',exact:true}).click();await part(page,'Aperçu');await tab(page,'Texte');assert((await page.locator('pre').innerText()).includes('VL'));await png(page,page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}),`${isin}-performance-${width}`,await preview(page));await layout(page,isin+' performance')
+  }
+  const annualOnly = IDENTITIES.find(f => !Object.values(CALCULATOR_ASSETS).some(a => a.isin === f.isin))
+  if(annualOnly){
+   await page.goto(base+'calculateur-investissement?asset=annual-'+annualOnly.isin,{waitUntil:'networkidle'})
+   assert((await page.getByRole('alert').innerText()).includes('Aucun autre actif n’a été substitué'))
+   assert.equal(await page.getByRole('button',{name:'📊 Télécharger une image',exact:true}).count(),0)
   }
   await page.goto(base+'bibliotheque-donnees?q=IE00BZ6V7883&id=IE00BZ6V7883',{waitUntil:'networkidle'});const [download]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Exporter la fiche JSON',exact:true}).click()]);await download.saveAs(`${out}/MBS-${width}.json`);const record=JSON.parse(await readFile(`${out}/MBS-${width}.json`,'utf8'));assert.equal(record.id,'IE00BZ6V7883');assert(record.fields.find(f=>f.label==='Identité').metadata.sourceUrls.length);await layout(page,'library')
   await context.close()
