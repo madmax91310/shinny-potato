@@ -39,6 +39,9 @@ class LocalizedComplete(CompleteRealEstate):
     def test_exact_german_share_same_snapshot_allocations(self):
         body = self.german_fixture()
         original = copy.deepcopy(body)
+        configured = json.loads(Path(__file__).with_name('dca-complete-holdings-sources.json').read_text())['DE0002635307']
+        self.assertIn('portfolioId=251931', configured['url'])
+        self.assertIn('locale=de_DE', configured['url'])
         record, securities = self.parse_german(body)
         self.assertEqual(body, original)
         self.assertEqual(securities, [], 'No change to the security-classification pipeline')
