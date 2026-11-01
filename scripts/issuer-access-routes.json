@@ -55,5 +55,19 @@
     "qualification": "Exact embedded shareClassId/ISIN/USD Acc/launch and NAV header; full CSV bound to the same-date current catalogue NAV, all completed annual calendars checked. Exclude issuer pre-launch rows, never infer a launch from the first CSV row.",
     "access": "Public fund-centre export linked by the publisher client. A generic HTTP200 catalogue without static-data is not a share identity. Use the exact direct document route without a cookie-jar regional redirect.",
     "reuse": "Existing publisher conditions apply; HTTP access is not a licence; reuse authorisation not independently verified."
+  },
+  "nasdaq": {
+    "historicalCloseCorroboration": {
+      "policy": "nasdaq-sbux-common-stock-historical-close",
+      "recordId": "sbux",
+      "isin": "US8552441094",
+      "symbol": "SBUX",
+      "currency": "USD",
+      "stockType": "Common Stock",
+      "exchange": "NASDAQ-GS",
+      "identityUrl": "https://api.nasdaq.com/api/quote/SBUX/info?assetclass=stocks",
+      "historyUrlTemplate": "https://api.nasdaq.com/api/quote/SBUX/historical?assetclass=stocks&fromdate={from_date}&todate={to_date}&limit=100"
+    },
+    "note": "Supplementary current-month close corroboration for this exact Nasdaq common stock only. Historical/adjusted prices are not replaced. The terminal indicative quote remains distinct; an unavailable official response cannot certify a close. Access/reuse conditions remain unverified in the common conditions registry."
   }
 }

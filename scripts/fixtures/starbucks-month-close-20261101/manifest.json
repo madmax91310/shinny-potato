@@ -1,0 +1,45 @@
+{
+  "capturedAt": "2026-11-01T19:16:31.710654+00:00",
+  "serialization": "Decoded actual supplier JSON, canonical sorted keys and compact separators; numeric values unchanged. No fixture is published as production data.",
+  "config": {
+    "id": "sbux",
+    "label": "Starbucks",
+    "tweetPhrase": "Starbucks",
+    "icon": "\ud83d\udcc8",
+    "currency": "USD",
+    "timezone": "America/New_York",
+    "symbol": "SBUX",
+    "terminalCloseCorroboration": "nasdaq-sbux-common-stock-historical-close",
+    "parser": "yahoo",
+    "field": "adjclose",
+    "precision": 6,
+    "collectAnniversary": true,
+    "consumerScope": "equity",
+    "instrumentType": "EQUITY",
+    "periodStart": "2015-01",
+    "method": "Derni\u00e8re cl\u00f4ture quotidienne ajust\u00e9e des divisions et dividendes ; cl\u00f4ture brute recoup\u00e9e avec la bougie mensuelle Yahoo. Devise de cotation, sans conversion."
+  },
+  "responses": {
+    "daily": {
+      "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SBUX?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+      "sha256": "751b51c7cb4152f92245d4a25e62530fd7e80cd91ed89531608ccb01bdb82295",
+      "bytes": 321241
+    },
+    "monthly": {
+      "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SBUX?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits",
+      "sha256": "66a09cb980f4fcbc2646c5cefb9e6178d78b28cfc75dc0fc02ce8a56ffa34a6b",
+      "bytes": 19065
+    },
+    "nasdaq-info": {
+      "sourceUrl": "https://api.nasdaq.com/api/quote/SBUX/info?assetclass=stocks",
+      "sha256": "d0187a3f0020dcdf6e2816bf26e18a83800853c438e1dc731079307363fd987b",
+      "bytes": 1010
+    },
+    "nasdaq-history": {
+      "sourceUrl": "https://api.nasdaq.com/api/quote/SBUX/historical?assetclass=stocks&fromdate=2026-10-01&todate=2026-10-31&limit=100",
+      "sha256": "18bcdbdbc1cde716beaa9e7443efcb103defec66b501d49211abc094ceaf267f",
+      "bytes": 2673
+    }
+  },
+  "captureClock": "Local acquisition output modification time, not the observed financial session date"
+}
