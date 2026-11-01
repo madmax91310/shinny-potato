@@ -3,13 +3,14 @@ import { AUTOMATED_ETF } from '../../../data/automated-etf.js'
 import { multiAssetAllocationLines } from '../../../data/lifestrategy.js'
 import { getInstrumentPeaStatus } from '../../../data/instruments.js'
 import { getPreferredInstrumentListing } from '../../../data/instrument-listings.js'
-import { comparisonProductType } from './comparisonPolicy.js'
+import { comparisonProductType, assertComparisonRequirements } from './comparisonPolicy.js'
 import { getComparisonPerformance, getComparisonYears } from '../../tweet-midi/comparisonPerformance.js'
 import { comparisonPct } from './comparisonDetails.js'
 import { getComparisonComposition, COMPOSITION_LABELS } from './comparisonComposition.js'
 import { COMPARISON_HOOKS, getEtfExposureCopy } from './exposureCopy.js'
 
 export function buildTweetText(theme) {
+  assertComparisonRequirements(theme)
   const types = [...new Set(theme.etfs.map(comparisonProductType))]
   const mixed = types.length > 1
   const single = theme.etfs.length === 1

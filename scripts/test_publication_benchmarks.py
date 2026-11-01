@@ -34,6 +34,11 @@ class PublicationBenchmarks(unittest.TestCase):
                 share = next(s for s in config if s['isin'] == isin)
                 result = (silver if isin == 'IE000UL6CLP7' else globalx_physical)(text, share, NOW)
                 self.assertEqual(result['characteristics']['index'], expected)
+                if isin == 'IE000UL6CLP7':
+                    qualification = result['fieldQualification']['sectors']
+                    self.assertEqual(qualification['status'], 'not-published')
+                    self.assertEqual(qualification['asOf'], '2026-10-30')
+                    self.assertEqual(qualification['checkedAt'], '2026-11-01')
                 # The observation stays in October, although the check is in November.
                 self.assertEqual(result['characteristics']['asOf'], '2026-10-30')
                 merged = merge_collection({'checkedAt': '2026-11-01', 'shares': [result]}, {}, {})[isin]

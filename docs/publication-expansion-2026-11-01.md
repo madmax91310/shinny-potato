@@ -18,7 +18,7 @@ La relecture du code actuel du Générateur a écarté Permanent Portfolio, Gold
 
 La recherche a récupéré **23 réponses officielles avec l’ISIN présent**, ainsi que huit documents/pages/images pour les modèles. [Reçus, URL, empreintes, tailles et exclusions](publication-expansion-sources-2026-11-01.json). Les tableaux en image de Faber et Core-4 ont été ouverts visuellement ; les numéros de pages PDF et imprimées sont distingués. Les reçus ne recertifient pas globalement tous les champs des instruments. Les observations d’encours, devises, frais, PEA, positions et performances continuent de porter leurs preuves et dates propres dans les registres. Aucun chiffre vivant ne figure dans les nouvelles descriptions.
 
-**Bilan d’identité : aucun nouvel ISIN.** Les 23 actifs ci-dessous existaient ; douze n’étaient dans aucun comparatif au relevé initial. Quatre étaient insuffisamment documentés pour leur benchmark exact (BOTZ, URNU, BUG, SILV) : ils sont maintenant complétés par collecte. Les autres ajouts sont des raccordements éditoriaux.
+**Bilan d’identité : aucun nouvel ISIN.** Les 21 actifs ci-dessous existaient ; onze n’étaient dans aucun comparatif au relevé initial. Quatre étaient insuffisamment documentés pour leur benchmark exact (BOTZ, URNU, BUG, SILV) : ils sont maintenant complétés par collecte. Les autres ajouts sont des raccordements éditoriaux.
 
 | Nouvelle question | Parts exactes concernées | Calendriers annuels communs publiables au contrôle |
 |---|---|---|
@@ -30,7 +30,6 @@ La recherche a récupéré **23 réponses officielles avec l’ISIN présent**, 
 | Matières premières : contrats ou entreprises minières | Invesco Bloomberg Commodity UCITS ETF — `IE00BD6FTQ80`<br>iShares Diversified Commodity Swap UCITS ETF — `IE00BDFL4P12`<br>VanEck S&P Global Mining UCITS ETF — `IE00BDFBTQ78` | 2025, 2024, 2023 |
 | Robotique : Global X ou iShares | Global X Robotics & Artificial Intelligence UCITS ETF USD Acc — `IE00BLCHJB90`<br>iShares Automation & Robotics UCITS ETF — `IE00BYZK4552` | Aucun : comparaison qualitative, sans rendement substitué |
 | Cybersécurité : Global X ou L&G | Global X Cybersecurity UCITS ETF USD Acc — `IE00BMH5Y871`<br>L&G Cyber Security UCITS ETF — `IE00BYPLS672` | Aucun : comparaison qualitative, sans rendement substitué |
-| Nasdaq-100 : capitalisation ou vente d’options | Global X Nasdaq 100 Covered Call UCITS ETF — `IE00BM8R0J59`<br>iShares Nasdaq 100 UCITS ETF — `IE00B53SZB19` | 2025, 2024, 2023 |
 | Crédit euro : investment grade ou haut rendement | Amundi Core EUR High Yield Bond UCITS ETF — `LU2970735911`<br>iShares Core € Corp Bond UCITS ETF (Dist) — `IE00B3F81R35` | Aucun : comparaison qualitative, sans rendement substitué |
 | Europe : marché large ou autonomie stratégique | Amundi European Strategic Autonomy UCITS ETF Acc — `LU3180074463`<br>iShares Core MSCI Europe UCITS ETF — `IE00B4K48X80` | Aucun : comparaison qualitative, sans rendement substitué |
 
@@ -38,17 +37,19 @@ La recherche a récupéré **23 réponses officielles avec l’ISIN présent**, 
 
 | Consommateur | Raccordement du lot |
 |---|---|
-| Présentation ETF | Les 23 fiches existantes sont conservées ; indice exact complété automatiquement pour les quatre Global X. |
-| Comparatif ETF | 11 nouvelles questions, 23 parts ; recherche par nom, ISIN et ticker, génération, texte et PNG. Une sélection mêlant ETF et ETC dit « produits », sans renommer l’ETC en ETF. |
-| Fiches pratiques | Les mêmes 11 sélections et descriptions, frais partagés, recherche ISIN/ticker, texte et image. |
+| Présentation ETF | Les 21 fiches existantes sont conservées ; indice exact complété automatiquement pour les quatre Global X. |
+| Comparatif ETF | 10 nouvelles questions, 21 parts ; recherche par nom, ISIN et ticker, génération, texte et PNG. Une sélection mêlant ETF et ETC dit « produits », sans renommer l’ETC en ETF. |
+| Fiches pratiques | Les mêmes 10 sélections et descriptions, frais partagés, recherche ISIN/ticker, texte et image. |
 | Coulisses des indices | Aucun raccordement nouveau : une preuve d’objectif de fonds n’est pas une composition d’indice. |
-| Le DCA de… / Actifs & expositions | Les 23 références existent déjà. Tests partagés complets rejoués ; aucune ventilation ni composition complète inventée à partir d’un top 10. |
+| Le DCA de… / Actifs & expositions | Les 21 références existent déjà. Tests partagés complets rejoués ; aucune ventilation ni composition complète inventée à partir d’un top 10. |
 | Classements | Aucune admission nouvelle ni nouvelle série ; calendriers, fenêtres et change existants conservés. Tests des consommateurs rejoués. |
 | Performance depuis / Calculateur | Raccordements existants et contrôles de fenêtre conservés. En particulier, les parts récentes restent sans période admissible lorsque les preuves l’exigent. Aucun proxy ajouté. |
 | Il y a X ans | Aucun prix brut ni convention de cours ajouté ; les refus restent séparés de ceux des outils de rendement. |
 | Générateur / Duels | Aucune recette, pondération, série ou admission modifiée. Pas de nouvelle famille quasi identique. Le stress test des recettes n’est donc pas requis pour ce lot. |
 | Bibliothèque de données | Huit nouvelles fiches de modèles recherchables par auteur, méthode et classes ; JSON issu des objets canoniques, provenance et portée conservées. |
 | Portefeuille d’investisseur | 28 déclarations 13F préservées ; huit modèles ou adaptations dans un groupe distinct, toutes les lignes dans le texte, l’aperçu et le PNG. |
+
+Les deux sélections qui affirment une éligibilité PEA exigent une preuve positive de la part concernée au moment de générer texte et image. Un statut inconnu ou contraire bloque la publication, dans les comparatifs comme dans les fiches pratiques.
 
 Les raccordements historiques préexistants ne valent pas promesse que chaque fenêtre soit publiable. Le contrôle financier continue de refuser les périodes non rapprochées, les calendriers incomplets et les historiques d’une autre part.
 
@@ -71,7 +72,7 @@ Les cibles sont vérifiées en unités exactes : 7Twelve utilise douze unités s
 
 ## Actualisation durable et conservation des preuves
 
-Les 23 produits utilisent leurs collecteurs existants (Amundi, DWS, iShares, State Street, Invesco, VanEck, L&G, Global X), leurs workflows programmés et leurs registres communs. Aucun second stock de TER ou d’encours. `globalx_sections.objective_benchmark` ajoute une lecture bornée au ticker exact, dans le texte visible de l’objectif : ni texte RSC caché, ni produit voisin. Un objectif absent n’émet pas ce champ ; un conflit est rejeté. Les collecteurs `collect_presentation_etf` et `collect_priority_issuer_etf` en bénéficient dans les deux workflows déjà utilisés.
+Les 21 produits utilisent leurs collecteurs existants (Amundi, DWS, iShares, State Street, Invesco, VanEck, L&G, Global X), leurs workflows programmés et leurs registres communs. Aucun second stock de TER ou d’encours. `globalx_sections.objective_benchmark` ajoute une lecture bornée au ticker exact, dans le texte visible de l’objectif : ni texte RSC caché, ni produit voisin. Un objectif absent n’émet pas ce champ ; un conflit est rejeté. Les collecteurs `collect_presentation_etf` et `collect_priority_issuer_etf` en bénéficient dans les deux workflows déjà utilisés.
 
 Les quatre indices officiels collectés :
 - BOTZ : Indxx Global Robotics & Artificial Intelligence Thematic v2 Index ;
@@ -79,11 +80,13 @@ Les quatre indices officiels collectés :
 - BUG : Indxx Cybersecurity v2 Index ;
 - SILV : Solactive Global Silver Miners Total Return v2 Index.
 
-L’intégration ne modifie que `characteristics` et leur provenance pour ces quatre parts. Les encours, compositions, séries, frais numériques et leurs dates restent identiques au commit de base. Les tests rejouent les réponses officielles compressées et rapprochent leurs empreintes. Ils vérifient aussi qu’une lecture partielle ultérieure garde le dernier indice valide et son ancienne preuve, et qu’une panne conserve intégralement l’observation précédente.
+L’intégration ne modifie que `characteristics` et leur provenance pour ces quatre parts, ainsi que la preuve datée de non-publication sectorielle de SILV. Les encours, compositions, séries, frais numériques et leurs dates restent identiques au commit de base. Les tests rejouent les réponses officielles compressées et rapprochent leurs empreintes. Ils vérifient aussi qu’une lecture partielle ultérieure garde le dernier indice valide et son ancienne preuve, et qu’une panne conserve intégralement l’observation précédente.
 
 Les allocations modèles sont des références fixes à une publication ou une adaptation explicitée, pas des poids actuels à collecter. Leur qualification commune est `reference` ; une nouvelle version exige une revue, sans écraser cette version ni renouveler sa date avec le build. Aucun nouveau cron n’est nécessaire.
 
 ## Exclusions
+
+Exclusion après contrôle CI : le sujet Nasdaq/vente d’options (QYLD `IE00BM8R0J59` et Nasdaq-100 `IE00B53SZB19`) faisait partie des 23 parts recherchées, mais ne fait pas partie des **21 parts / 10 sélections livrées**. Le registre conserve une composition de référence contradictoire, des ventilations économiques non qualifiées et aucun calendrier total-return de la part USD distribuante. Aucun panier de substitution ou rendement capitalisant ne les remplace ; l’audit de raccordement reste strict. Pour SILV, la preuve négative sectorielle porte désormais la date des faits de la page officielle (30 octobre), séparément du contrôle du 1er novembre ; une nouvelle collecte réévalue toujours la publication éventuelle.
 
 Pas de nouvelles parts World proches, de nouvelles déclarations 13F généralistes, de doublons des quatre familles déjà présentes dans le Générateur, de reconstitution des tableaux Merriman refusés, de rendement de fonds étendu avant création, de nouvelle conversion historique, de panier de substitution présenté comme exposition économique ou de composition d’indice déduite d’un fonds. Pas de modification du calendrier ni de réactivation d’un outil retiré.
 
@@ -94,16 +97,16 @@ Base finale intégrée : `2220833` (master, #1115, #1118 et #1119 conservées). 
 Vérifications locales exécutées :
 
 - `npm ci` ; build complet sur master intégré, architecture, précontrôles éditoriaux, budgets et manifeste public. La route Données à revoir reste sous 892 ko de code ; les libellés de classes d’actifs sont des données JSON partagées.
-- `test-publication-models.mjs` : huit méthodes, 23 actifs, onze sélections, sources, poids exacts, JSON partagé, refus des cibles invalides, qualification des références, recherche ISIN, benchmark et preuve propre à chaque champ. Les contrôles des calendriers ne figent pas leur absence actuelle : de futures années validées restent admissibles.
+- `test-publication-models.mjs` : huit méthodes, 21 actifs, dix sélections, sources, poids exacts, JSON partagé, refus des cibles invalides, qualification des références, recherche ISIN, benchmark et preuve propre à chaque champ. Les contrôles des calendriers ne figent pas leur absence actuelle : de futures années validées restent admissibles.
 - Collecteurs : `test_publication_benchmarks.py`, `test_globalx_sections.py`, `test_presentation_etf.py`, `test_priority_issuer_etf.py` ; réponses réelles rejouées, identités, objectifs visibles, conflits, omission, panne et conservation des dates. Tests raccordés au workflow émetteurs existant.
 - Audits et suites : catalogue des instruments, catalogue de données, cohérence ETF, provenance des portefeuilles, présentations ETF, comparatifs, fiches pratiques, caractéristiques automatisées, qualification des données, DCA complet, classements et fenêtres financières. Contrats du portail et planification des lots navigateur contrôlés.
-- Chromium, recette dédiée à **1440 / 390 / 360 px** : huit modèles, onze comparatifs et onze fiches pratiques ; **90 téléchargements PNG** inspectés et identiques à leur aperçu octet pour octet ; export JSON 7Twelve égal à la source ; recherche de chaque part par ISIN et des tickers préférés ; copie exacte, périodes absentes conservées, ETF/ETC distingués, contrôles des boîtes de texte et des débordements.
+- Chromium, recette dédiée à **1440 / 390 / 360 px** : huit modèles, dix comparatifs et dix fiches pratiques ; **84 téléchargements PNG** inspectés et identiques à leur aperçu octet pour octet ; export JSON 7Twelve égal à la source ; recherche de chaque part par ISIN et des tickers préférés ; copie exacte, périodes absentes conservées, ETF/ETC distingués, contrôles des boîtes de texte et des débordements.
 - Chromium, anciens investisseurs : 28 portraits distincts et exports, poids et dates, panne d’image puis reprise, et mobile (`test-investor-screenprint.mjs`).
 - Chromium, recette générale : **18/18 outils OK**, dont 258 fiches ETF, 55 duels, 28 déclarations 13F, calculateur, bibliothèques, indices et réserves ; aucun échec annoncé comme succès. Cette recette complète inclut les nouvelles sélections déjà raccordées.
 - Inspection visuelle des extrêmes à 2 et 12 lignes, du modèle adapté et des comparatifs à 2 et 3 produits. La hauteur du PNG des modèles longs augmente pour conserver les noms et les douze cibles en une colonne ; les autres styles restent ceux des outils.
 - Lint ciblé et contrôle d’espacement du périmètre livré.
 
-Les contrôles financiers constituent des tests de périmètre et de conventions ; ils ne certifient pas tous les cours historiques du dépôt. Les rapprochements non résolus et exclusions antérieures restent visibles. La CI de la PR doit encore confirmer l’instantané poussé avant de déclarer le portail GitHub vert.
+Les contrôles financiers constituent des tests de périmètre et de conventions ; ils ne certifient pas tous les cours historiques du dépôt. Les rapprochements non résolus et exclusions antérieures restent visibles. La CI de la PR doit encore confirmer l’instantané poussé avant de déclarer le portail GitHub vert. Sur le premier instantané, le workflow publication signale aussi une série FTSE All-World mensuelle officielle incomplète/périmée (collecteur préexistant, dernière observation conservée) ; ce signal externe n’est ni masqué ni traité comme une réussite.
 
 ### Exemples de recette datés
 

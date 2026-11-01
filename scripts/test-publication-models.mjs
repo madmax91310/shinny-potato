@@ -1,3 +1,6 @@
+import { TOPICS } from '../src/data/practical-sheet-topics.js'
+import { assertComparisonRequirements } from '../src/pages/etf-tweets/lib/comparisonPolicy.js'
+import { getComparisonPaperCards } from '../src/pages/tweet-midi/comparatifEtfImage.js'
 import { fieldQualification } from './lib/data-qualification.mjs'
 import { filterAssetOptions } from '../src/lib/asset-picker-preferences.js'
 import { COMPARATIF_ETF_SUBJECTS } from '../src/pages/tweet-midi/data/comparatifEtf.js'
@@ -71,10 +74,9 @@ for (const selection of PUBLICATION_SELECTIONS) {
   const years = getComparisonYears(selection.funds)
   assert(years.every(year => year < new Date().getUTCFullYear()))
 }
-assert.equal(isins.size, 23)
+assert.equal(isins.size, 21)
 assert.equal(getInstrumentFacts('IE00B4NCWG09').instrumentType, 'ETC')
 assert(buildTweetText(DEFAULT_THEMES.find(t => t.id === 'silver-metal-miners')).includes('Un ETC n’est pas un ETF UCITS'))
-assert(buildTweetText(DEFAULT_THEMES.find(t => t.id === 'nasdaq-income-growth')).includes('limitent la participation'))
 assert(getComparisonYears(['IE000L6ZMMC4', 'IE00B3YLTY66']).every(year => year >= 2027), 'No complete calendar before the new share; future valid observations stay admissible')
 console.log(`${INVESTOR_MODELS.length} model allocations, ${PUBLICATION_SELECTIONS.length} selections / ${isins.size} assets: source scopes, exact weights, incomplete cases, shared exports and periods verified.`)
 
@@ -88,3 +90,16 @@ for (const isin of ['IE00BLCHJB90', 'IE000NDWFGA5', 'IE00BMH5Y871', 'IE000UL6CLP
   assert.equal(field.metadata.checkedAt, record.characteristicChecks.index.checkedAt)
   assert.equal(field.metadata.asOf, record.characteristicChecks.index.asOf ?? null)
 }
+
+// Unknown or contradictory PEA status cannot coexist with an affirmative caption.
+const blockedTheme = { ...DEFAULT_THEMES.find(t => t.id === 'cash-pea-cto'), peaRequired: ['UNKNOWN'] }
+assert.throws(() => assertComparisonRequirements(blockedTheme))
+assert.throws(() => buildTweetText(blockedTheme))
+assert.throws(() => getComparisonPaperCards(blockedTheme))
+assert.throws(() => assertComparisonRequirements({ peaRequired: ['IE00B4NCWG09'] }))
+
+const peaTopic = TOPICS.find(topic => topic.id === 'cash-pea-cto'), requiredPea = peaTopic.peaRequired
+try {
+  peaTopic.peaRequired = ['UNKNOWN']
+  assert.throws(() => buildSheet(peaTopic.id))
+} finally { peaTopic.peaRequired = requiredPea }

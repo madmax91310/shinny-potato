@@ -152,5 +152,5 @@ try {
   }
   assert.deepEqual(errors, [])
   await writeFile(`${dir}/report.json`, JSON.stringify(report, null, 2))
-  console.log('Chromium 1440/390/360 px: 8 models, 23 assets / 11 comparisons + practical sheets; 90 PNG downloads inspected and identical to previews, source JSON, searches, text/copy, absent calendars and layouts verified.')
+  console.log('Chromium 1440/390/360 px: 8 models, 21 assets / 10 comparisons + practical sheets; 84 PNG downloads inspected and identical to previews, source JSON, searches, text/copy, absent calendars and layouts verified.')
 } finally { await browser?.close(); server.kill('SIGTERM') }

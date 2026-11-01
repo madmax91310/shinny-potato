@@ -1,4 +1,4 @@
-import { isComparisonEtc, comparisonProductType } from '../etf-tweets/lib/comparisonPolicy.js'
+import { isComparisonEtc, comparisonProductType, assertComparisonRequirements } from '../etf-tweets/lib/comparisonPolicy.js'
 import { LIFESTRATEGY_RECORDS } from '../../data/lifestrategy.js'
 import { downloadPublicationBlob } from '../../design-system/downloadBlob.js'
 import { getComparisonComposition, COMPOSITION_LABELS, compositionEvidenceLabel } from '../etf-tweets/lib/comparisonComposition.js'
@@ -30,6 +30,7 @@ const observationSection = (title, observation) => ({ title,
     .map(row=>({label:COMPOSITION_LABELS[row.name ?? row.label] ?? row.name ?? row.label,value:comparisonPercent(row.weightPct)})) })
 
 export function getComparisonPaperCards(theme) {
+  assertComparisonRequirements(theme)
   if (!theme?.etfs?.length) throw new Error('Sélection ETF vide')
   return theme.etfs.map(fund => {
     const pea = getInstrumentPeaStatus(fund.isin)

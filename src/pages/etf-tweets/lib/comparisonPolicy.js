@@ -1,3 +1,4 @@
+import { affirmInstrumentPea } from '../../../data/instruments.js'
 import { INSTRUMENT_FACTS_BY_ISIN } from '../../../data/instrument-facts.js'
 
 // Classification par produit : un thème (IA, défense, énergies propres…) peut
@@ -45,4 +46,8 @@ export function getComparisonReplication(etf) {
   if (/synthetic/i.test(method ?? '')) return 'synthétique'
   if (/physical/i.test(method ?? '')) return 'physique'
   return null
+}
+
+export function assertComparisonRequirements(theme) {
+  for (const isin of theme.peaRequired ?? []) affirmInstrumentPea(isin, true, 'Éligibilité PEA requise pour cette sélection')
 }
