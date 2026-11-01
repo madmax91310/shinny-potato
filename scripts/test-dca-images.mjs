@@ -45,7 +45,7 @@ try {
     }
     const output=[]
     const cases=[...PROFILES,
-      ...[1,2,4,8].map(n=>({...prepareProfile(PROFILES[0]),id:`long-${n}`,lines:Object.keys(ASSETS).slice(0,n).map((asset,i)=>({asset,label:`${ASSETS[asset][1]} — allocation diversifiée de long terme`,weight:n===8?[40,20,15,10,7,5,2.99,.01][i]:100/n,amount:i===1?0:i<4?1000000:234567.89,isin:''}))})),
+      ...[1,2,4,8].map(n=>({...prepareProfile(PROFILES[0]),id:`long-${n}`,lines:Object.keys(ASSETS).slice(0,n).map((asset,i)=>({asset,label:`${ASSETS[asset][1]} — allocation diversifiée de long terme`,weight:n===8?[40,20,15,10,7,5,2.99,.01][i]:100/n,amount:i===1&&n!==8?0:i<4?1000000:234567.89,isin:''}))})),
       {...prepareProfile(PROFILES[0]),id:'fifty-lines',name:'Portefeuille complet',lines:Object.entries(references).slice(0,50).map(([asset,r])=>({asset,label:r.name,emoji:'📊',weight:2,amount:10,isin:r.isin}))},
       {...prepareProfile(PROFILES[0]),id:'eight-lines',name:'Pseudonyme long pour vérifier le rendu mobile',lines:Object.keys(ASSETS).slice(0,8).map((asset,i)=>({asset,label:ASSETS[asset][1],emoji:ASSETS[asset][0],weight:12.5,amount:i?1000000:0,isin:''}))},
       {...prepareProfile(PROFILES[0]),id:'zero-dca',lines:prepareProfile(PROFILES[0]).lines.map(l=>({...l,amount:0}))},

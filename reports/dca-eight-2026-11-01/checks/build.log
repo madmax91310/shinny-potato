@@ -385,7 +385,7 @@ Preparing app inputs: node scripts/data-automation-inventory.mjs --write
   }
 }
 Preparing app inputs: node scripts/build-data-review-inbox.mjs
-Review inbox: 142 backlog rows, 1731643 bytes, full inventory 41070085 bytes.
+Review inbox: 142 backlog rows, 1731293 bytes, full inventory 41076949 bytes.
 Preparing app inputs: node scripts/build-tweet-bank-catalog.mjs
 95 archived tweets projected without rewriting their text or review policy.
 Preparing app inputs: python3 scripts/data_publication.py manifest --output public/data/publication-manifest.json
@@ -1890,7 +1890,6 @@ dist/data/history/e8b38585387244b3139e.json                  2.46 kB │ gzip:  
 dist/data/catalog/909216b530853d8a46c3.json                  2.48 kB │ gzip:   1.05 kB
 dist/data/exposures/20555b3d403730d36899.json                2.48 kB │ gzip:   0.89 kB
 dist/data/exposures/a6cd3e566a5f960f9f94.json                2.49 kB │ gzip:   0.90 kB
-dist/data/history/89c5e7da5205b96678fc.json                  2.49 kB │ gzip:   0.67 kB
 dist/data/exposures/138b66bd3c0c7739e875.json                2.49 kB │ gzip:   0.97 kB
 dist/data/history/679eb6605d9cf39e0d8e.json                  2.49 kB │ gzip:   0.69 kB
 dist/data/exposures/04ebf34f55c07600e61f.json                2.50 kB │ gzip:   0.92 kB
@@ -1905,6 +1904,7 @@ dist/data/catalog/b3a490a66118e2cac125.json                  2.54 kB │ gzip:  
 dist/data/exposures/a62659546c452b56989a.json                2.55 kB │ gzip:   0.91 kB
 dist/data/catalog/d3b43c5af00a505f1fe3.json                  2.55 kB │ gzip:   1.27 kB
 dist/data/exposures/c50bb6b138b459e0e177.json                2.55 kB │ gzip:   0.94 kB
+dist/data/history/0dc9292776968a4ae676.json                  2.55 kB │ gzip:   0.68 kB
 dist/data/exposures/a3a901c8248646b02a3c.json                2.55 kB │ gzip:   0.94 kB
 dist/data/exposures/dd6e8465367b04748f60.json                2.56 kB │ gzip:   0.91 kB
 dist/data/exposures/fa5958c7a86dff6e5338.json                2.57 kB │ gzip:   0.95 kB
@@ -2076,7 +2076,6 @@ dist/data/etf-sheets/4bc1bf4b4f9718ca9f2d.json               3.37 kB │ gzip:  
 dist/data/etf-sheets/764a24394b4c1b0fc885.json               3.37 kB │ gzip:   1.61 kB
 dist/data/etf-sheets/2ef1146819f0ace5353f.json               3.37 kB │ gzip:   1.67 kB
 dist/data/etf-sheets/03dc13812d234689caca.json               3.38 kB │ gzip:   1.59 kB
-dist/data/history/0d8a730aaca284303b5f.json                  3.38 kB │ gzip:   0.80 kB
 dist/data/etf-sheets/734bd2f4d73c1dd1f301.json               3.38 kB │ gzip:   1.63 kB
 dist/data/catalog/ced7f6683d431f722c50.json                  3.39 kB │ gzip:   1.06 kB
 dist/data/history/84d5ce01031046cb0d22.json                  3.39 kB │ gzip:   1.12 kB
@@ -2087,6 +2086,7 @@ dist/data/etf-sheets/5ad359ad131cec75f3d5.json               3.41 kB │ gzip:  
 dist/data/history/f8cc9b460a949292c287.json                  3.41 kB │ gzip:   0.81 kB
 dist/data/catalog/dcf69eae9c3acfe0c468.json                  3.41 kB │ gzip:   1.23 kB
 dist/data/etf-sheets/255727f2be2a990140ac.json               3.42 kB │ gzip:   1.62 kB
+dist/data/history/48cd1aae6222158c07ae.json                  3.45 kB │ gzip:   0.81 kB
 dist/data/etf-sheets/fd8b8655e573ed167dbb.json               3.45 kB │ gzip:   1.59 kB
 dist/data/etf-sheets/59deeb00f171aab58675.json               3.45 kB │ gzip:   1.65 kB
 dist/data/etf-sheets/f6ecd5cca1d825387c0a.json               3.46 kB │ gzip:   1.74 kB
@@ -2152,7 +2152,6 @@ dist/data/catalog/7da95a21d46ea804ae1d.json                  3.77 kB │ gzip:  
 dist/data/history/7e9e1d863802e1b92cbe.json                  3.78 kB │ gzip:   0.89 kB
 dist/data/catalog/81bc7a0a75664f624d50.json                  3.78 kB │ gzip:   1.72 kB
 dist/data/catalog/f974416bb073b304c148.json                  3.78 kB │ gzip:   1.27 kB
-dist/data/catalog/a294af5f5c752b390613.json                  3.79 kB │ gzip:   1.08 kB
 dist/data/etf-sheets/7c5d96cdff2f591e052e.json               3.79 kB │ gzip:   1.77 kB
 dist/data/etf-sheets/806ec75ca6b8f94d6dcf.json               3.80 kB │ gzip:   1.75 kB
 dist/data/etf-sheets/c058538c4b6a83def598.json               3.80 kB │ gzip:   1.76 kB
@@ -2168,6 +2167,7 @@ dist/data/etf-sheets/8f4652f20fb4dda8862e.json               3.85 kB │ gzip:  
 dist/data/etf-sheets/d84c71f687025eb300c9.json               3.85 kB │ gzip:   1.79 kB
 dist/data/catalog/d01c4f164232fbd494a6.json                  3.85 kB │ gzip:   1.21 kB
 dist/data/etf-sheets/1f08210da04ab51957df.json               3.86 kB │ gzip:   1.64 kB
+dist/data/catalog/ca36331b9bc95cb25d5b.json                  3.86 kB │ gzip:   1.09 kB
 dist/data/catalog/b309ee587c01756025f1.json                  3.86 kB │ gzip:   1.46 kB
 dist/data/etf-sheets/a56b9f4bd4501bbbed01.json               3.87 kB │ gzip:   1.90 kB
 dist/data/catalog/cc77d3c7e874eef91bcd.json                  3.88 kB │ gzip:   1.10 kB
@@ -2215,11 +2215,11 @@ dist/data/catalog/c0db4cad18889f27b58b.json                  4.19 kB │ gzip:  
 dist/data/catalog/f67323a41f4f4d1266ae.json                  4.19 kB │ gzip:   1.19 kB
 dist/data/exposures/30aada65c80c88039dae.json                4.19 kB │ gzip:   1.39 kB
 dist/data/etf-sheets/bef0faba0ed2499af728.json               4.19 kB │ gzip:   1.97 kB
-dist/data/catalog/21cdcc80e712da86f83e.json                  4.21 kB │ gzip:   0.96 kB
+dist/data/catalog/456dbe0e72b6b04f4978.json                  4.21 kB │ gzip:   0.96 kB
 dist/data/etf-sheets/ca5cecd6d04d11f1e0d9.json               4.22 kB │ gzip:   2.01 kB
 dist/data/catalog/3dfec5f7b5f98b080bd6.json                  4.22 kB │ gzip:   1.29 kB
-dist/data/etf-sheets/66e44837c5e94981f9d6.json               4.22 kB │ gzip:   1.92 kB
-dist/data/etf-sheets/c72521a260bf4a0aedc5.json               4.24 kB │ gzip:   1.96 kB
+dist/data/etf-sheets/e0c88a6e3c98e66ecdba.json               4.24 kB │ gzip:   1.94 kB
+dist/data/etf-sheets/6353e2355a05c7961b63.json               4.25 kB │ gzip:   1.97 kB
 dist/data/etf-sheets/076f24a6b609714eb7e7.json               4.26 kB │ gzip:   1.99 kB
 dist/data/catalog/a84a9b5728ef2e127602.json                  4.26 kB │ gzip:   1.19 kB
 dist/data/etf-sheets/7bb5238d6b1c4849b912.json               4.27 kB │ gzip:   2.01 kB
@@ -2267,10 +2267,10 @@ dist/data/history/06b81af315318c36f076.json                  4.47 kB │ gzip:  
 dist/data/history/ed64fdc0627f227327cd.json                  4.47 kB │ gzip:   0.92 kB
 dist/data/catalog/00c752013f070e8703a0.json                  4.48 kB │ gzip:   1.61 kB
 dist/data/etf-sheets/53113012b0dbb71b5ee1.json               4.48 kB │ gzip:   1.69 kB
-dist/data/etf-sheets/6e8aa19a34362d20775d.json               4.48 kB │ gzip:   1.96 kB
+dist/data/etf-sheets/97ea9885a1b4a3c23ebe.json               4.48 kB │ gzip:   1.96 kB
 dist/data/etf-sheets/ed46982b5469b3dd2a73.json               4.48 kB │ gzip:   1.87 kB
 dist/data/etf-sheets/3dc19be9dc93c281f219.json               4.48 kB │ gzip:   1.73 kB
-dist/data/etf-sheets/237b39ac6fc800f2f2a7.json               4.49 kB │ gzip:   1.95 kB
+dist/data/etf-sheets/0ae1a3eabb12e6bd94e4.json               4.49 kB │ gzip:   1.95 kB
 dist/data/catalog/005a5e761872dc579c4d.json                  4.49 kB │ gzip:   1.61 kB
 dist/data/etf-sheets/0e96ddf125bb60917bc6.json               4.49 kB │ gzip:   1.87 kB
 dist/data/catalog/1071752280688eb66fa7.json                  4.50 kB │ gzip:   1.39 kB
@@ -2299,7 +2299,6 @@ dist/data/etf-sheets/7a294219aa8b69b75374.json               4.54 kB │ gzip:  
 dist/data/etf-sheets/49b640384d4ef4bf356b.json               4.54 kB │ gzip:   1.93 kB
 dist/data/etf-sheets/2076c4f422117313d511.json               4.55 kB │ gzip:   1.90 kB
 dist/data/etf-sheets/eab9a6869baa698e36a4.json               4.55 kB │ gzip:   1.77 kB
-dist/data/etf-sheets/9a5d7e8bc9db43bd7d2c.json               4.55 kB │ gzip:   1.86 kB
 dist/data/history/ad469b385abdbb48a744.json                  4.55 kB │ gzip:   1.24 kB
 dist/data/etf-sheets/77db6c5c170cf0235f76.json               4.55 kB │ gzip:   1.76 kB
 dist/data/etf-sheets/18930c748dd5ec66e37a.json               4.56 kB │ gzip:   2.00 kB
@@ -2314,6 +2313,7 @@ dist/data/history/f4e46864e6e31b15d286.json                  4.57 kB │ gzip:  
 dist/data/history/28aaab5fc6dc6dea9dfe.json                  4.57 kB │ gzip:   0.72 kB
 dist/data/etf-sheets/51452fb44779ba41de3f.json               4.57 kB │ gzip:   1.90 kB
 dist/data/etf-sheets/9b78066344c83e9bfe22.json               4.57 kB │ gzip:   1.92 kB
+dist/data/etf-sheets/409288cb419a852888cd.json               4.57 kB │ gzip:   1.82 kB
 dist/data/etf-sheets/f68168a713d45a69d8fd.json               4.57 kB │ gzip:   1.92 kB
 dist/data/etf-sheets/911aa35a5f7c2a1a1574.json               4.58 kB │ gzip:   1.82 kB
 dist/data/catalog/ff890dfa9066f01e9953.json                  4.58 kB │ gzip:   1.13 kB
@@ -2321,7 +2321,7 @@ dist/data/etf-sheets/4a2dd1ed724152fcd582.json               4.58 kB │ gzip:  
 dist/data/etf-sheets/a40f022f8abf0834fce7.json               4.58 kB │ gzip:   1.94 kB
 dist/data/catalog/744b98faaeb0f8b3408d.json                  4.59 kB │ gzip:   1.40 kB
 dist/data/etf-sheets/fbe93ca4debf47a5b607.json               4.59 kB │ gzip:   2.06 kB
-dist/data/etf-sheets/aba7c80954c0f461c32c.json               4.59 kB │ gzip:   2.02 kB
+dist/data/etf-sheets/e20a72c4051386e8bb6e.json               4.59 kB │ gzip:   2.03 kB
 dist/data/etf-sheets/42429bbd22695b672455.json               4.60 kB │ gzip:   1.92 kB
 dist/data/etf-sheets/cee9171d6f73a00fc482.json               4.60 kB │ gzip:   1.76 kB
 dist/data/etf-sheets/8f00b87cb4888c1992d2.json               4.60 kB │ gzip:   1.88 kB
@@ -2342,20 +2342,18 @@ dist/data/etf-sheets/5362aa2889c505311ece.json               4.64 kB │ gzip:  
 dist/data/etf-sheets/45b535914e2caf26e57e.json               4.64 kB │ gzip:   1.93 kB
 dist/data/etf-sheets/69bb32a4c33e7ffdf762.json               4.64 kB │ gzip:   1.89 kB
 dist/data/catalog/5f152a0925cc3fd1859c.json                  4.64 kB │ gzip:   1.39 kB
-dist/data/etf-sheets/98ab6508333d668b2d1d.json               4.64 kB │ gzip:   1.93 kB
 dist/data/etf-sheets/c0b0ef38225eae47652f.json               4.64 kB │ gzip:   2.02 kB
 dist/data/etf-sheets/92e6d35251c83d8e369e.json               4.64 kB │ gzip:   1.94 kB
-dist/data/etf-sheets/b04348eb936a0cc3abff.json               4.64 kB │ gzip:   2.10 kB
+dist/data/etf-sheets/c07e491459ae2ae3186a.json               4.64 kB │ gzip:   2.10 kB
 dist/data/etf-sheets/59ad88114fa8efa12d72.json               4.65 kB │ gzip:   1.78 kB
-dist/data/etf-sheets/0d5b6b73ae09bbc178ac.json               4.65 kB │ gzip:   2.12 kB
+dist/data/etf-sheets/b14356c5d1206dc0ae4c.json               4.65 kB │ gzip:   2.12 kB
 dist/data/etf-sheets/5717a78cb03c364bdac2.json               4.65 kB │ gzip:   1.95 kB
 dist/data/catalog/f676f5a268d141f87144.json                  4.66 kB │ gzip:   1.46 kB
+dist/data/etf-sheets/197e15fa4cdba64acd0f.json               4.67 kB │ gzip:   1.88 kB
 dist/data/catalog/d47fd8006158c7e74030.json                  4.67 kB │ gzip:   1.21 kB
 dist/data/etf-sheets/484800ec86ea6d4408ae.json               4.67 kB │ gzip:   1.94 kB
 dist/data/catalog/571702839c5f6547da50.json                  4.67 kB │ gzip:   1.12 kB
 dist/data/etf-sheets/b2d315dcf20505d4b66f.json               4.67 kB │ gzip:   1.97 kB
-dist/data/catalog/c218d376f4624edff242.json                  4.67 kB │ gzip:   1.20 kB
-dist/data/etf-sheets/86720a4aaf6bd19c2768.json               4.68 kB │ gzip:   1.95 kB
 dist/data/etf-sheets/803f01e499cad4749c56.json               4.68 kB │ gzip:   1.96 kB
 dist/data/etf-sheets/ca3a649f3d31cb826ada.json               4.68 kB │ gzip:   1.96 kB
 dist/data/etf-sheets/3b703c85c4912add6f21.json               4.69 kB │ gzip:   1.97 kB
@@ -2367,6 +2365,7 @@ dist/data/catalog/d3e25b232453ac0d99e5.json                  4.70 kB │ gzip:  
 dist/data/etf-sheets/501720697c10479b2db2.json               4.70 kB │ gzip:   2.02 kB
 dist/data/history/d8b9b291dc7c19ee3fdb.json                  4.70 kB │ gzip:   1.19 kB
 dist/data/etf-sheets/63c1c30b623d11ea5e1b.json               4.71 kB │ gzip:   1.94 kB
+dist/data/etf-sheets/c8e2632d77bac463f61d.json               4.71 kB │ gzip:   1.90 kB
 dist/data/catalog/c516289bd41bf1ac76ff.json                  4.71 kB │ gzip:   1.22 kB
 dist/data/history/e27cf6f50d4cc7090d86.json                  4.72 kB │ gzip:   0.93 kB
 dist/data/etf-sheets/4d06503a951221a33bc2.json               4.72 kB │ gzip:   2.01 kB
@@ -2378,17 +2377,18 @@ dist/data/catalog/df7eb53d6e261e1b9d1c.json                  4.73 kB │ gzip:  
 dist/data/etf-sheets/09773bf331106ebef3ca.json               4.73 kB │ gzip:   2.03 kB
 dist/data/exposures/b11f2e75d2981eb90cb7.json                4.74 kB │ gzip:   1.71 kB
 dist/data/history/2913abdcae79fd34bc01.json                  4.74 kB │ gzip:   0.93 kB
-dist/data/etf-sheets/63c439453cd4f2b10eb7.json               4.74 kB │ gzip:   2.15 kB
+dist/data/etf-sheets/d5646b53be9e97c40646.json               4.74 kB │ gzip:   2.15 kB
 dist/data/catalog/994d213451452cc9e001.json                  4.74 kB │ gzip:   1.52 kB
 dist/data/etf-sheets/d0731b8788999fb69d53.json               4.74 kB │ gzip:   2.00 kB
 dist/data/catalog/67e5868cd200b3641577.json                  4.74 kB │ gzip:   1.80 kB
 dist/data/history/98496040d5fb6aa87c51.json                  4.74 kB │ gzip:   0.79 kB
+dist/data/catalog/766ab2483d3b0622153a.json                  4.74 kB │ gzip:   1.22 kB
 dist/data/history/3ac625273e5f488ba301.json                  4.75 kB │ gzip:   1.58 kB
 dist/data/history/49376df9bc7d2f1b2d8b.json                  4.75 kB │ gzip:   0.93 kB
 dist/data/etf-sheets/b363e07befe8dacf2435.json               4.77 kB │ gzip:   1.84 kB
 dist/data/catalog/b306c1a421baaa29868b.json                  4.77 kB │ gzip:   1.11 kB
 dist/data/etf-sheets/238dfc38ffbf25fef66a.json               4.77 kB │ gzip:   2.01 kB
-dist/data/catalog/d4fd4780c0d75de9829c.json                  4.77 kB │ gzip:   1.04 kB
+dist/data/catalog/028e99411145c320cbfd.json                  4.77 kB │ gzip:   1.04 kB
 dist/data/catalog/acdaa5e24d2e70bd839c.json                  4.78 kB │ gzip:   1.12 kB
 dist/data/history/5d86dc30234a9a6f7cb5.json                  4.78 kB │ gzip:   1.22 kB
 dist/data/history/665d974c7129df2dc455.json                  4.80 kB │ gzip:   0.99 kB
@@ -2397,8 +2397,8 @@ dist/data/catalog/c9d95a258de1bb1f6b47.json                  4.80 kB │ gzip:  
 dist/data/history/001287fdcf46bae4f5ff.json                  4.80 kB │ gzip:   1.19 kB
 dist/data/catalog/6f8faf6bed254754aecc.json                  4.80 kB │ gzip:   1.75 kB
 dist/data/history/2d15bf16debea562da9d.json                  4.81 kB │ gzip:   1.05 kB
-dist/data/catalog/60693cfc24d4c9cf2ad6.json                  4.82 kB │ gzip:   1.09 kB
-dist/data/etf-sheets/ce04b69ba92b997c4dea.json               4.82 kB │ gzip:   2.18 kB
+dist/data/catalog/bc716c0f8736bf461634.json                  4.82 kB │ gzip:   1.09 kB
+dist/data/etf-sheets/6a68e5a0f1ebda5879f0.json               4.82 kB │ gzip:   2.19 kB
 dist/data/etf-sheets/2518b611592a2c1a3b6c.json               4.83 kB │ gzip:   2.02 kB
 dist/data/catalog/52f8f329d9269f41092c.json                  4.83 kB │ gzip:   1.45 kB
 dist/data/catalog/71266635248785f8e152.json                  4.83 kB │ gzip:   1.48 kB
@@ -2411,7 +2411,7 @@ dist/data/history/22441b354585ee1c3ae3.json                  4.88 kB │ gzip:  
 dist/data/history/4a7cab8b5644fd71638e.json                  4.88 kB │ gzip:   0.97 kB
 dist/data/etf-sheets/1dd0cd34d83041ff2f65.json               4.89 kB │ gzip:   2.05 kB
 dist/data/etf-sheets/a7010a35c815a36f305e.json               4.89 kB │ gzip:   1.94 kB
-dist/data/catalog/9eda2a4918c8d51a2bc4.json                  4.90 kB │ gzip:   1.06 kB
+dist/data/catalog/12ce873d199d08291ca6.json                  4.90 kB │ gzip:   1.06 kB
 dist/data/history/f44e75aeb1cee1885b08.json                  4.91 kB │ gzip:   0.98 kB
 dist/data/etf-sheets/981e940db6cc44608b7e.json               4.91 kB │ gzip:   1.99 kB
 dist/data/etf-sheets/796e719608a11f55368f.json               4.92 kB │ gzip:   1.95 kB
@@ -2433,9 +2433,9 @@ dist/data/catalog/d6d9718c4ddec76aafde.json                  5.06 kB │ gzip:  
 dist/data/history/357089d51dc6f4c71bf1.json                  5.08 kB │ gzip:   0.80 kB
 dist/data/history/72e2561d1f7dfa4597e3.json                  5.09 kB │ gzip:   1.65 kB
 dist/data/catalog/745c09425cb846581cc7.json                  5.09 kB │ gzip:   1.70 kB
-dist/data/catalog/34d00c6c10d11386ee17.json                  5.11 kB │ gzip:   1.11 kB
+dist/data/catalog/3aca1cf072f530cd726c.json                  5.11 kB │ gzip:   1.11 kB
 dist/data/catalog/04393b7b090f8e77653d.json                  5.14 kB │ gzip:   1.72 kB
-dist/data/catalog/a518fd07277cbabb1636.json                  5.14 kB │ gzip:   1.10 kB
+dist/data/catalog/11bb9d16d73717f8bd69.json                  5.14 kB │ gzip:   1.10 kB
 dist/data/history/2dbc0fcf426f36ac04f8.json                  5.16 kB │ gzip:   1.27 kB
 dist/data/history/73e1d2a26b4ea0f340b3.json                  5.17 kB │ gzip:   1.02 kB
 dist/data/catalog/a8cc342d7a055d0fdf5b.json                  5.19 kB │ gzip:   1.70 kB
@@ -2477,7 +2477,7 @@ dist/data/history/69f9f2b4a38d688636bb.json                  5.67 kB │ gzip:  
 dist/data/catalog/17620acb8684be54ac51.json                  5.67 kB │ gzip:   1.89 kB
 dist/data/history/e46ad5b8a098bce2112b.json                  5.68 kB │ gzip:   0.85 kB
 dist/data/history/8c6b5dc234966fe69107.json                  5.71 kB │ gzip:   1.03 kB
-dist/data/catalog/0c5a9ace0ca05dd829dc.json                  5.71 kB │ gzip:   1.37 kB
+dist/data/catalog/2c78dbb755a1e5ca3d09.json                  5.71 kB │ gzip:   1.37 kB
 dist/data/catalog/5d5cef70714582c9af43.json                  5.72 kB │ gzip:   1.28 kB
 dist/data/catalog/81e5ba579daace0601b6.json                  5.73 kB │ gzip:   1.35 kB
 dist/data/catalog/4b352b017295fc7b084e.json                  5.76 kB │ gzip:   1.34 kB
@@ -2487,7 +2487,7 @@ dist/data/history/8b795d9e8aebf8cda7d7.json                  5.80 kB │ gzip:  
 dist/data/history/d79db112461bd5a920e7.json                  5.80 kB │ gzip:   1.63 kB
 dist/data/history/bec9aae1511296335f65.json                  5.81 kB │ gzip:   1.30 kB
 dist/data/catalog/516f7c8a00d09271dce1.json                  5.83 kB │ gzip:   1.57 kB
-dist/data/catalog/36198f73bc0660057c03.json                  5.85 kB │ gzip:   1.21 kB
+dist/data/catalog/b2dd7be2ea740b3898b1.json                  5.85 kB │ gzip:   1.21 kB
 dist/data/catalog/36eb6747080ea01ccfcd.json                  5.85 kB │ gzip:   1.55 kB
 dist/data/history/4a452fbfcebc19330ef1.json                  5.85 kB │ gzip:   1.28 kB
 dist/data/history/deb787b81d9b38226fbe.json                  5.86 kB │ gzip:   1.66 kB
@@ -2496,10 +2496,10 @@ dist/data/catalog/1a4e2e810d5119b176fc.json                  5.90 kB │ gzip:  
 dist/data/catalog/3438c9c5c64bff499aad.json                  5.90 kB │ gzip:   1.91 kB
 dist/data/catalog/0d1720f52406621e61bb.json                  5.91 kB │ gzip:   2.60 kB
 dist/data/catalog/a33fed794104be405ce9.json                  5.91 kB │ gzip:   1.97 kB
-dist/data/catalog/9ee81400fecdf961ad2d.json                  5.92 kB │ gzip:   1.22 kB
+dist/data/catalog/3b217ecf853e60626cb5.json                  5.92 kB │ gzip:   1.22 kB
 dist/data/catalog/61e5f6fbe64b7f94eeea.json                  5.93 kB │ gzip:   1.48 kB
 dist/data/history/7677bf83a2dabf228db0.json                  5.93 kB │ gzip:   1.03 kB
-dist/data/catalog/a4baeba5a18f52c55336.json                  5.93 kB │ gzip:   1.52 kB
+dist/data/catalog/d57ae9bfcaba75cc5619.json                  5.93 kB │ gzip:   1.52 kB
 dist/data/catalog/ef6a6cc085b59eed64a7.json                  5.94 kB │ gzip:   1.44 kB
 dist/data/history/e37c1c81a5999f402098.json                  5.94 kB │ gzip:   1.84 kB
 dist/data/catalog/ada87cbfec9be111ad08.json                  5.96 kB │ gzip:   1.84 kB
@@ -2516,14 +2516,14 @@ dist/data/catalog/d10ee058be791d6c88e9.json                  6.01 kB │ gzip:  
 dist/data/catalog/8e4aa139a8db8d10cbda.json                  6.03 kB │ gzip:   1.97 kB
 dist/data/catalog/bc6f93a762f056c95f08.json                  6.03 kB │ gzip:   1.34 kB
 dist/data/exposures/05e7df22556f18d082b1.json                6.04 kB │ gzip:   1.93 kB
-dist/data/catalog/1c501ec155792ad60146.json                  6.05 kB │ gzip:   1.34 kB
 dist/data/catalog/3246fb179490c9f8d2fb.json                  6.05 kB │ gzip:   1.35 kB
+dist/data/catalog/fa3ae0d53b22e581f9df.json                  6.05 kB │ gzip:   1.34 kB
 dist/data/history/45d5b5f17de993485596.json                  6.05 kB │ gzip:   1.42 kB
-dist/data/catalog/9bfa6072b827cdcd95a0.json                  6.08 kB │ gzip:   1.37 kB
+dist/data/catalog/1b3098263afdf1450f51.json                  6.08 kB │ gzip:   1.37 kB
 dist/data/catalog/9397fe423a6c062eb825.json                  6.10 kB │ gzip:   1.83 kB
 dist/data/catalog/498f10eedae8191c6b7a.json                  6.12 kB │ gzip:   1.49 kB
 dist/data/catalog/ecdb9296f2929b472521.json                  6.13 kB │ gzip:   1.50 kB
-dist/data/catalog/0d7f9f0ffbcf4a8bafdb.json                  6.13 kB │ gzip:   1.50 kB
+dist/data/catalog/c9bdcb40f30cae27eeef.json                  6.13 kB │ gzip:   1.50 kB
 dist/data/catalog/fac3c1e8f7bbc3ba782d.json                  6.16 kB │ gzip:   1.70 kB
 dist/data/catalog/7644dfe24e7e2f8af79c.json                  6.17 kB │ gzip:   1.76 kB
 dist/data/history/28cf138d34ae8fa5b4fa.json                  6.17 kB │ gzip:   1.11 kB
@@ -2533,8 +2533,6 @@ dist/data/catalog/f17e1a491ab3ef84bd9a.json                  6.21 kB │ gzip:  
 dist/data/catalog/f710843c387d55755dca.json                  6.22 kB │ gzip:   1.98 kB
 dist/data/catalog/7eeb720404fec78934fe.json                  6.22 kB │ gzip:   1.39 kB
 dist/data/catalog/6e39640644f60c20bd19.json                  6.22 kB │ gzip:   1.75 kB
-dist/data/history/b0fed16317eaaa8e3f3e.json                  6.23 kB │ gzip:   1.05 kB
-dist/data/history/0af88a7cf433fcad1cf3.json                  6.23 kB │ gzip:   1.08 kB
 dist/data/catalog/600a70f08218060fff6f.json                  6.24 kB │ gzip:   1.50 kB
 dist/data/exposures/45ded05995425a824473.json                6.24 kB │ gzip:   2.01 kB
 dist/data/catalog/b92c10b7f53d1d29eeef.json                  6.25 kB │ gzip:   1.48 kB
@@ -2544,6 +2542,8 @@ dist/data/history/b9817799e18faf33f124.json                  6.26 kB │ gzip:  
 dist/data/catalog/be6c017f1a2b052bf24b.json                  6.27 kB │ gzip:   1.94 kB
 dist/data/catalog/a6e4fdaf5aa0a9a8dad2.json                  6.28 kB │ gzip:   1.86 kB
 dist/data/catalog/18a31d6ac6e4a57c5005.json                  6.30 kB │ gzip:   1.78 kB
+dist/data/history/ff2af66c9d21b1945852.json                  6.30 kB │ gzip:   1.05 kB
+dist/data/history/be5de02ab1ec868d818e.json                  6.30 kB │ gzip:   1.09 kB
 dist/data/catalog/9f6e274bc3e2316bbbca.json                  6.31 kB │ gzip:   1.75 kB
 dist/data/history/f0017674dd956cd18ed9.json                  6.31 kB │ gzip:   1.87 kB
 dist/data/exposures/d136451a7d2f0a0d144c.json                6.31 kB │ gzip:   2.05 kB
@@ -2565,8 +2565,6 @@ dist/data/catalog/5d7a8d84a837680692c5.json                  6.48 kB │ gzip:  
 dist/data/history/127e0ab4c0019b8ffde6.json                  6.49 kB │ gzip:   0.92 kB
 dist/data/history/0007b3ba021c943e7d37.json                  6.51 kB │ gzip:   1.11 kB
 dist/data/catalog/899f54648358640bede1.json                  6.52 kB │ gzip:   1.77 kB
-dist/data/history/660a1a4cfdbdde5666cd.json                  6.52 kB │ gzip:   1.12 kB
-dist/data/history/746547309bae3472378b.json                  6.52 kB │ gzip:   1.14 kB
 dist/data/history/2e6467989d18af4742c9.json                  6.53 kB │ gzip:   0.93 kB
 dist/data/catalog/16f13770264c7eab6889.json                  6.53 kB │ gzip:   1.73 kB
 dist/data/history/cce2ab62826a3abb1df4.json                  6.54 kB │ gzip:   1.39 kB
@@ -2578,11 +2576,11 @@ dist/data/history/3f3d8f6e27e99808a270.json                  6.57 kB │ gzip:  
 dist/data/history/5cb2e5c08710db3f1d36.json                  6.57 kB │ gzip:   2.03 kB
 dist/data/catalog/7456864f19aff64ba61e.json                  6.57 kB │ gzip:   1.87 kB
 dist/data/catalog/fbaad14aca6770bdf12c.json                  6.58 kB │ gzip:   1.47 kB
-dist/data/history/200ef12a1ad418f885cd.json                  6.58 kB │ gzip:   1.15 kB
 dist/data/catalog/811c98bafa58000459f6.json                  6.58 kB │ gzip:   1.50 kB
-dist/data/history/4a94df030d0d8ab80552.json                  6.58 kB │ gzip:   1.13 kB
 dist/data/catalog/0aa024b0a7a12f99403a.json                  6.58 kB │ gzip:   1.62 kB
 dist/data/catalog/ac1e44e2a762a27ab97f.json                  6.58 kB │ gzip:   1.78 kB
+dist/data/history/9dbc85312a7f79701567.json                  6.58 kB │ gzip:   1.15 kB
+dist/data/history/14a80fbda1cdc60fb62e.json                  6.59 kB │ gzip:   1.13 kB
 dist/data/catalog/0f0f06aa7ff326fab843.json                  6.59 kB │ gzip:   1.64 kB
 dist/data/history/d0f77dbb969cab9620b0.json                  6.59 kB │ gzip:   2.06 kB
 dist/data/catalog/943fbac0c11199506ac1.json                  6.60 kB │ gzip:   2.04 kB
@@ -2593,6 +2591,8 @@ dist/data/history/9d35c93014c05a5dd54b.json                  6.63 kB │ gzip:  
 dist/data/history/cc4368b64821b7ef7f4a.json                  6.63 kB │ gzip:   2.07 kB
 dist/data/history/f5452be50856c55909e9.json                  6.63 kB │ gzip:   2.06 kB
 dist/data/history/3641d20d7d7bd5cc92dd.json                  6.64 kB │ gzip:   1.66 kB
+dist/data/history/081ea2d3826ec3edb5f8.json                  6.65 kB │ gzip:   1.16 kB
+dist/data/history/2f6fc4ae97548aaa1a72.json                  6.65 kB │ gzip:   1.13 kB
 dist/data/history/b2f9f1f3ed7733ae32f1.json                  6.66 kB │ gzip:   1.64 kB
 dist/data/history/4995f0db1724f10bc610.json                  6.67 kB │ gzip:   1.61 kB
 dist/data/history/f41cf2d729f05de1a150.json                  6.68 kB │ gzip:   1.70 kB
@@ -2625,13 +2625,13 @@ dist/data/catalog/76ab347d450f1aa49c03.json                  6.93 kB │ gzip:  
 dist/data/history/7c5e6c8239e146eb0577.json                  6.94 kB │ gzip:   1.17 kB
 dist/data/history/9af439f1a65b19400c3a.json                  6.94 kB │ gzip:   1.22 kB
 dist/data/catalog/bc060ca1b38c77543f79.json                  6.94 kB │ gzip:   2.13 kB
+dist/data/catalog/7ce57825d95010ce2e60.json                  6.95 kB │ gzip:   1.85 kB
 dist/data/catalog/f304de0f9094d9def721.json                  6.96 kB │ gzip:   2.77 kB
 dist/data/catalog/e5ace9a5424e636d60fe.json                  6.97 kB │ gzip:   1.53 kB
 dist/data/catalog/37c52f84823ae7a2ed2b.json                  6.98 kB │ gzip:   1.49 kB
 dist/data/catalog/8ba59c3077c69dfb4f06.json                  6.99 kB │ gzip:   2.31 kB
 dist/data/catalog/c63387021ac116ea8884.json                  6.99 kB │ gzip:   1.56 kB
 dist/data/catalog/90f91c3c8a474e0e2494.json                  7.00 kB │ gzip:   1.46 kB
-dist/data/catalog/9a9d584903fca2492aa5.json                  7.00 kB │ gzip:   1.85 kB
 dist/data/history/4c9c028a538a681e8f3c.json                  7.00 kB │ gzip:   1.63 kB
 dist/data/history/8265fe8e5b4ea5f841fd.json                  7.00 kB │ gzip:   1.09 kB
 dist/data/history/2f7bce590a4247a65c1a.json                  7.01 kB │ gzip:   1.72 kB
@@ -2640,7 +2640,7 @@ dist/data/history/25f5554625b6efc209c9.json                  7.03 kB │ gzip:  
 dist/data/history/3e0fec4a80b0daef4bac.json                  7.03 kB │ gzip:   1.58 kB
 dist/data/history/52b981b8136d44e4f346.json                  7.04 kB │ gzip:   1.39 kB
 dist/data/catalog/f6c8283c97d8cdc50bbc.json                  7.05 kB │ gzip:   1.58 kB
-dist/data/catalog/f54eff31cd3a0f3bc95a.json                  7.05 kB │ gzip:   1.75 kB
+dist/data/catalog/1f53f4d3d66603e72808.json                  7.05 kB │ gzip:   1.75 kB
 dist/data/history/829fed159b93fae57204.json                  7.05 kB │ gzip:   1.20 kB
 dist/data/catalog/e40c0e29f6cf2873c76d.json                  7.05 kB │ gzip:   2.29 kB
 dist/data/history/2cf2a977cfb963cb0f54.json                  7.05 kB │ gzip:   1.71 kB
@@ -2657,7 +2657,7 @@ dist/data/history/abb406d862f61c731860.json                  7.11 kB │ gzip:  
 dist/data/history/3cf877bc3537650158a2.json                  7.11 kB │ gzip:   1.65 kB
 dist/data/history/8c8b7db6e2717211b41c.json                  7.12 kB │ gzip:   1.62 kB
 dist/data/catalog/ef1a1b1924f60747df59.json                  7.12 kB │ gzip:   2.35 kB
-dist/data/catalog/d479afd2dd621535ffff.json                  7.13 kB │ gzip:   1.64 kB
+dist/data/catalog/379d5ad91bf5c1d3222c.json                  7.13 kB │ gzip:   1.64 kB
 dist/data/history/7ca0a0b54acf44b73039.json                  7.14 kB │ gzip:   1.66 kB
 dist/data/history/0abfd14d4dd7b3b3a383.json                  7.15 kB │ gzip:   1.20 kB
 dist/data/history/4307c9b8b2bddf3f0f66.json                  7.16 kB │ gzip:   0.90 kB
@@ -2686,81 +2686,81 @@ dist/data/catalog/084f8c4ca9c22c461649.json                  7.36 kB │ gzip:  
 dist/data/catalog/a00b2f1730980b523f54.json                  7.40 kB │ gzip:   2.17 kB
 dist/data/catalog/bf725ab5977e496459c8.json                  7.42 kB │ gzip:   1.74 kB
 dist/data/catalog/d016e4ebb90c0cf6005e.json                  7.43 kB │ gzip:   1.89 kB
-dist/data/catalog/fe7d4807b5367f10a0dc.json                  7.43 kB │ gzip:   1.40 kB
+dist/data/catalog/a08b751fd287ef127a7e.json                  7.43 kB │ gzip:   1.40 kB
 dist/data/catalog/a32be4b2384432f58fed.json                  7.43 kB │ gzip:   1.60 kB
 dist/data/catalog/e1cd35b013a7538416de.json                  7.45 kB │ gzip:   1.54 kB
 dist/data/history/87a5327f744ee4f5ceae.json                  7.45 kB │ gzip:   1.21 kB
-dist/data/catalog/eddd858e587d1de769a5.json                  7.48 kB │ gzip:   1.47 kB
 dist/data/catalog/8534c8f90abc833d67a9.json                  7.49 kB │ gzip:   2.26 kB
 dist/data/catalog/a92a6fa16d310c0e0a27.json                  7.49 kB │ gzip:   2.04 kB
 dist/data/catalog/272b7f34d5b2eb08eb15.json                  7.50 kB │ gzip:   2.35 kB
 dist/data/catalog/95c7f8eb61c80619db5d.json                  7.51 kB │ gzip:   2.08 kB
-dist/data/catalog/f167284ee582677784f9.json                  7.51 kB │ gzip:   1.50 kB
 dist/data/history/b725c4ba3383e2e6eaab.json                  7.52 kB │ gzip:   1.84 kB
 dist/data/history/78e68074b1d351a956cb.json                  7.53 kB │ gzip:   1.47 kB
 dist/data/history/de4917188c5cdef9d1ed.json                  7.53 kB │ gzip:   1.24 kB
 dist/data/catalog/8a4ff46316e7f904e4d6.json                  7.53 kB │ gzip:   1.57 kB
+dist/data/catalog/87ed25f3ac1901004774.json                  7.55 kB │ gzip:   1.48 kB
 dist/data/history/25fe2035bb0f29b2f4af.json                  7.56 kB │ gzip:   1.92 kB
 dist/data/catalog/6674185426ca18e3e408.json                  7.58 kB │ gzip:   2.29 kB
 dist/data/catalog/82e6b62fe47d066e453e.json                  7.58 kB │ gzip:   1.62 kB
+dist/data/catalog/d5dbf90be413b4eb153b.json                  7.59 kB │ gzip:   1.52 kB
 dist/data/catalog/f9487106b4ced37be614.json                  7.59 kB │ gzip:   2.24 kB
 dist/data/history/f67677ecae9e5eed3329.json                  7.62 kB │ gzip:   1.66 kB
 dist/data/catalog/958f670710a431ba43b9.json                  7.62 kB │ gzip:   1.64 kB
 dist/data/catalog/27f2023bf86da9e2b639.json                  7.62 kB │ gzip:   2.16 kB
 dist/data/catalog/ef3f3f962fac3e42dbd2.json                  7.63 kB │ gzip:   1.64 kB
 dist/data/history/705a8b2ca9831e052d46.json                  7.63 kB │ gzip:   1.22 kB
-dist/data/catalog/0cfb980da5f66e2d889d.json                  7.63 kB │ gzip:   1.60 kB
+dist/data/catalog/9216248e13058ce02d45.json                  7.63 kB │ gzip:   1.60 kB
 dist/data/history/bf35db8a373ddc482420.json                  7.64 kB │ gzip:   1.89 kB
 dist/data/catalog/6e1c60d96b22e7f1da54.json                  7.64 kB │ gzip:   1.63 kB
-dist/data/catalog/07aa4ef636a9f7e7828d.json                  7.65 kB │ gzip:   1.70 kB
 dist/data/history/1bafa8395297c456858c.json                  7.66 kB │ gzip:   1.27 kB
 dist/data/catalog/4d53f0062172ac36a29c.json                  7.67 kB │ gzip:   1.57 kB
 dist/data/catalog/e44bfa2b8dfa91d7696e.json                  7.68 kB │ gzip:   2.35 kB
 dist/data/catalog/c9a2c2a9ace414c7d625.json                  7.68 kB │ gzip:   2.16 kB
+dist/data/catalog/743a3956c153701d646e.json                  7.68 kB │ gzip:   1.70 kB
 dist/data/catalog/3c3c1b184ba334ff35ed.json                  7.69 kB │ gzip:   1.55 kB
 dist/data/catalog/110164869b50e8cd7c96.json                  7.69 kB │ gzip:   1.53 kB
 dist/data/catalog/c438c7092fbf1de13489.json                  7.71 kB │ gzip:   1.70 kB
 dist/data/catalog/c67b905c6fcf783b18e8.json                  7.71 kB │ gzip:   2.04 kB
 dist/data/catalog/0e00985e4ebd46614848.json                  7.73 kB │ gzip:   2.14 kB
 dist/data/catalog/e839d70fff9acc466bb2.json                  7.74 kB │ gzip:   2.04 kB
-dist/data/catalog/94c02becf598f240b05d.json                  7.75 kB │ gzip:   1.67 kB
+dist/data/catalog/dc0232a299cf8f1c51a2.json                  7.75 kB │ gzip:   1.67 kB
 dist/data/catalog/36ad6200241fba906f18.json                  7.76 kB │ gzip:   2.00 kB
 dist/data/catalog/14efba6061c58985a852.json                  7.77 kB │ gzip:   1.54 kB
-dist/data/catalog/d1b5e27cd9610a090fae.json                  7.77 kB │ gzip:   1.55 kB
 dist/data/catalog/d2e66995b23b49ce13ac.json                  7.77 kB │ gzip:   2.43 kB
 dist/data/catalog/e441a42c0b6ce756f9cc.json                  7.78 kB │ gzip:   1.66 kB
 dist/data/catalog/a3f940bcc7cddff9642c.json                  7.79 kB │ gzip:   1.54 kB
 dist/data/catalog/f735f51860af77fb83c2.json                  7.79 kB │ gzip:   1.61 kB
-dist/data/catalog/8d8ca5c88a13bedb2ca2.json                  7.80 kB │ gzip:   1.57 kB
 dist/data/catalog/c411e38ece8ee8021734.json                  7.81 kB │ gzip:   2.41 kB
 dist/data/catalog/ec68b31979842cceb1ad.json                  7.83 kB │ gzip:   2.42 kB
-dist/data/catalog/094f26e5d82b37a6a70e.json                  7.83 kB │ gzip:   1.58 kB
+dist/data/catalog/f6a3fd6de481ebf23dfb.json                  7.84 kB │ gzip:   1.56 kB
 dist/data/catalog/8929b2a4e026163dce6a.json                  7.85 kB │ gzip:   1.66 kB
 dist/data/catalog/8a4edde778ed77bd45ce.json                  7.85 kB │ gzip:   2.38 kB
 dist/data/history/5e7fbaaa053e36f195b7.json                  7.86 kB │ gzip:   1.08 kB
 dist/data/catalog/686caed3c8ea2654a9c7.json                  7.86 kB │ gzip:   2.39 kB
 dist/data/history/f2424e71bbe5aa3a8657.json                  7.86 kB │ gzip:   1.07 kB
+dist/data/catalog/a7e3d2b49b6eb8eac49d.json                  7.86 kB │ gzip:   1.58 kB
 dist/data/history/22438cb34f8568072edc.json                  7.86 kB │ gzip:   2.13 kB
-dist/data/catalog/30891ff23c1f1c850be7.json                  7.87 kB │ gzip:   1.55 kB
-dist/data/catalog/36021b8755ad7fd260fd.json                  7.87 kB │ gzip:   1.66 kB
+dist/data/catalog/b8b10fb42fcc3d58daaf.json                  7.87 kB │ gzip:   1.66 kB
 dist/data/history/580dc15a88de84d5d6e0.json                  7.90 kB │ gzip:   1.19 kB
 dist/data/history/23ee45bdafe60342e6a0.json                  7.90 kB │ gzip:   1.68 kB
 dist/data/catalog/2591f8e460c0398238cb.json                  7.90 kB │ gzip:   1.81 kB
 dist/data/catalog/45f39751a8e361bb2bd4.json                  7.90 kB │ gzip:   2.41 kB
+dist/data/catalog/bd1f974bf99683fc208f.json                  7.91 kB │ gzip:   1.59 kB
 dist/data/catalog/eed56d360ce305db774a.json                  7.91 kB │ gzip:   1.55 kB
 dist/data/catalog/402818bec7d06ff7fe17.json                  7.93 kB │ gzip:   1.59 kB
 dist/data/catalog/13acf7de717e0bd86b27.json                  7.94 kB │ gzip:   1.71 kB
 dist/data/history/a94d0fe032bab022250b.json                  7.94 kB │ gzip:   1.56 kB
+dist/data/catalog/455bbecdfbc5bc5626ca.json                  7.94 kB │ gzip:   1.94 kB
+dist/data/catalog/eaa05b27650839534649.json                  7.95 kB │ gzip:   1.56 kB
 dist/data/catalog/8b2f55c10a4607a95f4b.json                  7.95 kB │ gzip:   2.15 kB
 dist/data/catalog/dd2c5c94c7a4c8889f1a.json                  7.95 kB │ gzip:   2.43 kB
 dist/data/catalog/35c54c8253db7ce097ea.json                  7.96 kB │ gzip:   2.06 kB
 dist/data/catalog/ad233ec85fc8f4e5e94a.json                  7.96 kB │ gzip:   2.10 kB
 dist/data/catalog/2f2dbfbef840c77b8844.json                  7.98 kB │ gzip:   1.55 kB
-dist/data/catalog/41257b11a5cc0ef9a85f.json                  7.98 kB │ gzip:   1.92 kB
 dist/data/catalog/b4601386b544c97c5e48.json                  8.00 kB │ gzip:   2.08 kB
 dist/data/catalog/3f03ee1c07729a82db2a.json                  8.01 kB │ gzip:   1.94 kB
 dist/data/catalog/7e0b07dad7572fc806fc.json                  8.02 kB │ gzip:   2.14 kB
-dist/data/catalog/f20424f5d183237882c6.json                  8.03 kB │ gzip:   1.56 kB
+dist/data/catalog/93b7f2b7e10f0e773580.json                  8.03 kB │ gzip:   1.56 kB
 dist/data/history/e9fd48cb84e482034a8a.json                  8.04 kB │ gzip:   1.20 kB
 dist/data/catalog/268cab18a1ccfab9b61e.json                  8.05 kB │ gzip:   2.14 kB
 dist/data/catalog/3dfb99a87ea7c622e56d.json                  8.05 kB │ gzip:   1.93 kB
@@ -2798,7 +2798,7 @@ dist/data/catalog/17bc0b9e32e0c39542c8.json                  8.41 kB │ gzip:  
 dist/data/catalog/b2e8b2d9b6c9022dbe81.json                  8.42 kB │ gzip:   2.41 kB
 dist/data/catalog/c1d785f9010d36308341.json                  8.43 kB │ gzip:   2.42 kB
 dist/data/catalog/bddcec45efc123fdf992.json                  8.44 kB │ gzip:   2.44 kB
-dist/data/catalog/cf0b753a5dc16e55a214.json                  8.44 kB │ gzip:   1.79 kB
+dist/data/catalog/14176d3a8b90618629f3.json                  8.44 kB │ gzip:   1.79 kB
 dist/data/catalog/a1f93c7ed4b6926b3ed9.json                  8.45 kB │ gzip:   2.47 kB
 dist/data/catalog/ea6fc99cf8adcf7b065e.json                  8.46 kB │ gzip:   1.63 kB
 dist/data/catalog/ea57fe32566e88bb1434.json                  8.46 kB │ gzip:   2.43 kB
@@ -2848,13 +2848,13 @@ dist/data/catalog/953a61ed7842c751d076.json                  8.97 kB │ gzip:  
 dist/data/history/2b2a5882c30033060d2d.json                  8.99 kB │ gzip:   2.11 kB
 dist/data/history/16771b5ee0cb283c9efb.json                  9.00 kB │ gzip:   1.33 kB
 dist/data/catalog/07f4481a14c1596ddc9e.json                  9.02 kB │ gzip:   2.00 kB
-dist/data/catalog/ba345913ee1e4712c19f.json                  9.04 kB │ gzip:   1.09 kB
+dist/data/catalog/98cb3a9b1d5f6186eb8c.json                  9.04 kB │ gzip:   1.09 kB
 dist/data/catalog/627fed2009ed0dfe28f8.json                  9.06 kB │ gzip:   1.99 kB
 dist/data/catalog/15eb72bd6bd09a0d4b71.json                  9.07 kB │ gzip:   2.05 kB
 dist/data/catalog/cab599f35cf034d7cc01.json                  9.08 kB │ gzip:   2.58 kB
 dist/data/catalog/b42dade4604be5a180d7.json                  9.09 kB │ gzip:   2.11 kB
 dist/data/catalog/b070228ee1cbdcae4ce2.json                  9.10 kB │ gzip:   2.18 kB
-dist/data/catalog/03d4372ca8e25b947b78.json                  9.11 kB │ gzip:   2.39 kB
+dist/data/catalog/c21bf9bdab728cbdcccf.json                  9.11 kB │ gzip:   2.39 kB
 dist/data/history/667bb428250d0ef554e7.json                  9.13 kB │ gzip:   1.79 kB
 dist/data/catalog/6ef9c561073e29806b0e.json                  9.15 kB │ gzip:   1.79 kB
 dist/data/catalog/2c282e08ac866df8d373.json                  9.16 kB │ gzip:   2.21 kB
@@ -2895,7 +2895,7 @@ dist/data/catalog/93325cd401a9c4719f84.json                  9.59 kB │ gzip:  
 dist/data/history/623bf59c50483abd801e.json                  9.59 kB │ gzip:   1.41 kB
 dist/data/history/a77904e48ac490c7b760.json                  9.61 kB │ gzip:   2.06 kB
 dist/data/catalog/254db23dbe470cfcc78f.json                  9.61 kB │ gzip:   1.95 kB
-dist/data/catalog/92ee3ccd893e7134b6ca.json                  9.61 kB │ gzip:   1.23 kB
+dist/data/catalog/74dd1c97fe262c234db6.json                  9.61 kB │ gzip:   1.23 kB
 dist/data/catalog/702e4f7d19058b502907.json                  9.62 kB │ gzip:   2.13 kB
 dist/data/history/806658a190b15cb0e407.json                  9.62 kB │ gzip:   2.17 kB
 dist/data/history/d9721dcafba456ec9e1b.json                  9.62 kB │ gzip:   2.14 kB
@@ -2950,11 +2950,11 @@ dist/data/history/0650ede78fdaf9011149.json                  9.87 kB │ gzip:  
 dist/data/catalog/f07c63ea01e07da297bc.json                  9.91 kB │ gzip:   2.11 kB
 dist/data/history/608f7f2f74aabf4cf847.json                  9.93 kB │ gzip:   1.47 kB
 dist/data/catalog/bd11d0634ebe97815010.json                  9.93 kB │ gzip:   2.02 kB
-dist/data/history/49fbfb93c7885e1c081d.json                  9.93 kB │ gzip:   1.66 kB
 dist/data/history/6118e5dd9b6774a3eb85.json                  9.94 kB │ gzip:   2.08 kB
 dist/data/catalog/c67390396ac46dbdc6f6.json                  9.95 kB │ gzip:   2.01 kB
 dist/data/catalog/2a5404af5fbe15357ec2.json                  9.97 kB │ gzip:   2.17 kB
 dist/data/history/267a2a40954a44bed64f.json                  9.99 kB │ gzip:   2.07 kB
+dist/data/history/3a3a0b01e333b9df9ff1.json                 10.00 kB │ gzip:   1.67 kB
 dist/data/history/00a01ad9af8147790bc4.json                 10.00 kB │ gzip:   2.34 kB
 dist/data/history/f5fa49dd0a237dc4f742.json                 10.01 kB │ gzip:   2.04 kB
 dist/data/history/c3fc34791db0868ae5c8.json                 10.02 kB │ gzip:   2.18 kB
@@ -2964,7 +2964,7 @@ dist/data/catalog/b4366a8b5e8d2aa4b7c2.json                 10.04 kB │ gzip:  
 dist/data/history/7322d005063adb028514.json                 10.05 kB │ gzip:   2.13 kB
 dist/data/history/87bd7b0e9c20fbb8800d.json                 10.05 kB │ gzip:   2.17 kB
 dist/data/history/8ad862a3ad36ad5f8f3a.json                 10.06 kB │ gzip:   1.43 kB
-dist/data/catalog/e6b6473a85eb57e67dd2.json                 10.06 kB │ gzip:   2.47 kB
+dist/data/catalog/28ebeb6ba801d256739e.json                 10.06 kB │ gzip:   2.47 kB
 dist/data/catalog/89064cc3c6dc0de2d6c9.json                 10.08 kB │ gzip:   1.90 kB
 dist/data/history/1503d9939399910596e5.json                 10.09 kB │ gzip:   2.14 kB
 dist/data/history/f9e6cdf2547e47433cb8.json                 10.10 kB │ gzip:   1.45 kB
@@ -2979,7 +2979,7 @@ dist/data/catalog/df21ac9b151d971868b7.json                 10.18 kB │ gzip:  
 dist/data/catalog/4fb9bfde106ef55c1892.json                 10.18 kB │ gzip:   1.76 kB
 dist/data/catalog/255aa7e14618306958a6.json                 10.19 kB │ gzip:   2.04 kB
 dist/data/catalog/798cd560f222e8c3c28e.json                 10.19 kB │ gzip:   1.77 kB
-dist/data/catalog/ea5cc30778b490030400.json                 10.19 kB │ gzip:   1.85 kB
+dist/data/catalog/90a4d1f93c49a791cce6.json                 10.19 kB │ gzip:   1.85 kB
 dist/data/catalog/a9b14096c497ad38d67d.json                 10.19 kB │ gzip:   1.74 kB
 dist/data/history/ee666a2430455ef8c4ac.json                 10.21 kB │ gzip:   2.23 kB
 dist/data/history/383ce1138607bdb786bd.json                 10.21 kB │ gzip:   2.12 kB
@@ -3021,7 +3021,6 @@ dist/data/history/e950ff2d47bf1638be11.json                 10.38 kB │ gzip:  
 dist/data/history/1d9b20e5e47c28ec6ad0.json                 10.38 kB │ gzip:   2.18 kB
 dist/data/history/4ae761eab0065f91dd6d.json                 10.38 kB │ gzip:   2.04 kB
 dist/data/history/73429b4bbe7b5c0b458b.json                 10.39 kB │ gzip:   2.27 kB
-dist/data/history/56147c46f9afd04c8222.json                 10.39 kB │ gzip:   2.56 kB
 dist/data/history/84a0be86b841dbaab260.json                 10.39 kB │ gzip:   2.25 kB
 dist/data/catalog/f8d777d57053c7dda2f6.json                 10.39 kB │ gzip:   2.19 kB
 dist/data/history/9c5607a554e4f06423ce.json                 10.40 kB │ gzip:   2.22 kB
@@ -3035,6 +3034,7 @@ dist/data/history/9804683715d99a76417c.json                 10.44 kB │ gzip:  
 dist/data/history/dfdd74ba470443feac12.json                 10.44 kB │ gzip:   2.32 kB
 dist/data/catalog/cafe890ee3ab40e86e4b.json                 10.45 kB │ gzip:   2.10 kB
 dist/data/history/bdc0ea91490dc232bdc3.json                 10.45 kB │ gzip:   2.28 kB
+dist/data/history/e73f4efb911fe7e407fd.json                 10.45 kB │ gzip:   2.58 kB
 dist/data/history/3fe42412466e3ae33f22.json                 10.45 kB │ gzip:   2.22 kB
 dist/data/catalog/2438fbffb2d5bfce01af.json                 10.47 kB │ gzip:   1.97 kB
 dist/data/history/487eda0b7a08f4c210f3.json                 10.47 kB │ gzip:   1.45 kB
@@ -3042,10 +3042,8 @@ dist/data/history/abb5835fc64222cc3ca6.json                 10.47 kB │ gzip:  
 dist/data/history/915c71c5143856461449.json                 10.47 kB │ gzip:   2.38 kB
 dist/data/history/629b7617ab8074c08bf9.json                 10.47 kB │ gzip:   2.23 kB
 dist/data/history/6c58d16901aa155ea88d.json                 10.47 kB │ gzip:   2.35 kB
-dist/data/history/f7fcd6e2765e30ca6c39.json                 10.48 kB │ gzip:   2.60 kB
 dist/data/catalog/5ca4cc7ce0894bae7d58.json                 10.48 kB │ gzip:   2.76 kB
 dist/data/history/9f2cc5091187c05ac9ad.json                 10.49 kB │ gzip:   2.35 kB
-dist/data/history/0286951a1399b955e974.json                 10.49 kB │ gzip:   2.68 kB
 dist/data/history/a5c18f27bf716aae6bfa.json                 10.49 kB │ gzip:   2.34 kB
 dist/data/history/687cfec7b38e4d609eb5.json                 10.50 kB │ gzip:   1.38 kB
 dist/data/history/2078e75f2c7a877534e4.json                 10.50 kB │ gzip:   2.34 kB
@@ -3081,9 +3079,11 @@ dist/data/history/1f767cfaad286fd9ebad.json                 10.55 kB │ gzip:  
 dist/data/history/225568330d7b9a7f437e.json                 10.55 kB │ gzip:   2.33 kB
 dist/data/catalog/faca8dac6e1bd24cefc3.json                 10.55 kB │ gzip:   2.71 kB
 dist/data/history/8302c878e07baad2e70d.json                 10.55 kB │ gzip:   2.31 kB
+dist/data/history/b8a74b3446cdc715768b.json                 10.55 kB │ gzip:   2.60 kB
 dist/data/history/e7d47d99f9ab6e42bedc.json                 10.55 kB │ gzip:   2.31 kB
 dist/data/history/ad120c487fc822343c0e.json                 10.55 kB │ gzip:   2.27 kB
 dist/data/history/016b64314e303e61743e.json                 10.56 kB │ gzip:   2.44 kB
+dist/data/history/3ed5914472a30b2d71b8.json                 10.56 kB │ gzip:   2.69 kB
 dist/data/history/6251af091942bde45fb5.json                 10.56 kB │ gzip:   2.33 kB
 dist/data/history/a0e352e4ac6f07d49996.json                 10.56 kB │ gzip:   2.23 kB
 dist/data/history/1b89410172b869a654f2.json                 10.57 kB │ gzip:   2.36 kB
@@ -3297,7 +3297,6 @@ dist/data/history/91475697873e7a55d372.json                 10.86 kB │ gzip:  
 dist/data/catalog/d8a2e16cf5212d92b2f1.json                 10.86 kB │ gzip:   2.84 kB
 dist/data/history/49fd628d6dad53caf5bf.json                 10.86 kB │ gzip:   1.83 kB
 dist/data/catalog/a7756ac1c8619b89593e.json                 10.86 kB │ gzip:   2.88 kB
-dist/data/history/bd9be4bdbbaa065d85c3.json                 10.86 kB │ gzip:   2.58 kB
 dist/data/history/fd095c57b771877a17c0.json                 10.86 kB │ gzip:   2.42 kB
 dist/data/history/8f4830d66c1e668a5dca.json                 10.87 kB │ gzip:   2.43 kB
 dist/data/history/0f50e74ea1ad73d7bea7.json                 10.87 kB │ gzip:   2.40 kB
@@ -3354,6 +3353,7 @@ dist/data/history/a0c5b37f01577fa46474.json                 10.92 kB │ gzip:  
 dist/data/history/05c4aeaf859505c36b0f.json                 10.93 kB │ gzip:   2.48 kB
 dist/data/catalog/a63ab908752fe2b5be44.json                 10.93 kB │ gzip:   2.93 kB
 dist/data/history/d9eb6b05076869abfb41.json                 10.93 kB │ gzip:   2.59 kB
+dist/data/history/e5ed2998927a160d5036.json                 10.93 kB │ gzip:   2.57 kB
 dist/data/history/82880358908a5a683b37.json                 10.94 kB │ gzip:   1.33 kB
 dist/data/history/f99cc8a8379c11ca4ae2.json                 10.94 kB │ gzip:   2.47 kB
 dist/data/history/4727782b51e7855f4a33.json                 10.94 kB │ gzip:   1.55 kB
@@ -3381,32 +3381,28 @@ dist/data/catalog/1ca6a6a9afa3d5198929.json                 11.01 kB │ gzip:  
 dist/data/catalog/375c5a11a22697d768e8.json                 11.01 kB │ gzip:   1.87 kB
 dist/data/catalog/56fef44efa2b1aa76c65.json                 11.01 kB │ gzip:   2.18 kB
 dist/data/catalog/f65f87332e6824d096fc.json                 11.01 kB │ gzip:   2.85 kB
-dist/data/history/aaa655433cee26f9768f.json                 11.02 kB │ gzip:   2.55 kB
 dist/data/history/684409d388471a6ee8b5.json                 11.02 kB │ gzip:   2.02 kB
 dist/data/catalog/a8550ab8f297c94f87d1.json                 11.02 kB │ gzip:   1.86 kB
-dist/data/history/cc932c713c9700ee0c29.json                 11.02 kB │ gzip:   1.62 kB
-dist/data/history/d44946c845d8b9c2c224.json                 11.02 kB │ gzip:   2.59 kB
 dist/data/history/81c966b4251cad8f8740.json                 11.03 kB │ gzip:   1.90 kB
 dist/data/catalog/f40e4b0240eb0bf395e5.json                 11.03 kB │ gzip:   2.17 kB
 dist/data/history/f7fa9a331d4c9c3a708f.json                 11.04 kB │ gzip:   1.57 kB
-dist/data/history/e07660b8add6d40448f9.json                 11.04 kB │ gzip:   2.58 kB
 dist/data/history/b334152916c5c64df60b.json                 11.04 kB │ gzip:   1.55 kB
-dist/data/history/6556a88de27692a617c3.json                 11.04 kB │ gzip:   2.62 kB
 dist/data/history/0cf48fba3086a45d0e53.json                 11.04 kB │ gzip:   1.57 kB
 dist/data/catalog/267fdc25b0ddb255aa6c.json                 11.04 kB │ gzip:   2.92 kB
 dist/data/history/f5d84ce8a589494d458b.json                 11.05 kB │ gzip:   2.50 kB
 dist/data/history/138d99e8eddd8e99e4bf.json                 11.06 kB │ gzip:   2.59 kB
-dist/data/history/7989e9a5763769069d68.json                 11.07 kB │ gzip:   2.63 kB
-dist/data/history/7a201a3ed76c4506c032.json                 11.07 kB │ gzip:   2.60 kB
 dist/data/catalog/dcfba3f8914479d24101.json                 11.08 kB │ gzip:   2.92 kB
 dist/data/catalog/e4f7056cc60fde94f69f.json                 11.08 kB │ gzip:   2.97 kB
 dist/data/catalog/11e588298a73872c520c.json                 11.08 kB │ gzip:   2.90 kB
 dist/data/catalog/ef5d1247e312511c09c5.json                 11.08 kB │ gzip:   2.79 kB
 dist/data/history/2dbd0321ae63bafa65ff.json                 11.08 kB │ gzip:   2.14 kB
 dist/data/catalog/92d658f854d259d34993.json                 11.09 kB │ gzip:   2.94 kB
+dist/data/history/cb921ebfb97e0ebfb89d.json                 11.09 kB │ gzip:   2.60 kB
+dist/data/history/ecf7dd63170688a21780.json                 11.09 kB │ gzip:   2.56 kB
 dist/data/catalog/4b7a5335b14243f7eb75.json                 11.09 kB │ gzip:   2.74 kB
-dist/data/history/ed30af34cd3f374eaa76.json                 11.10 kB │ gzip:   2.60 kB
+dist/data/history/94c290d1e0c5af5c9db1.json                 11.10 kB │ gzip:   1.63 kB
 dist/data/catalog/674f22d67bd78d4a08ee.json                 11.10 kB │ gzip:   3.06 kB
+dist/data/history/9b739386e45cbfdcb4ce.json                 11.10 kB │ gzip:   2.64 kB
 dist/data/catalog/dd59fa0369e271305f05.json                 11.10 kB │ gzip:   2.83 kB
 dist/data/history/00178d7d6fc8d2af0e48.json                 11.10 kB │ gzip:   2.65 kB
 dist/data/history/b56d8f1491f2a2a3dca5.json                 11.10 kB │ gzip:   2.60 kB
@@ -3418,20 +3414,23 @@ dist/data/catalog/fde437dd4e577b417047.json                 11.11 kB │ gzip:  
 dist/data/catalog/e5ed930dc7202e9a4a2d.json                 11.12 kB │ gzip:   2.22 kB
 dist/data/catalog/c1b861316ddf38603fff.json                 11.12 kB │ gzip:   2.85 kB
 dist/data/history/4dfa52a1cdfedc3f2200.json                 11.12 kB │ gzip:   2.66 kB
+dist/data/history/54131608f14276e58e45.json                 11.12 kB │ gzip:   2.59 kB
 dist/data/history/6a7092cd4ecdebb35a2b.json                 11.12 kB │ gzip:   2.59 kB
 dist/data/catalog/5b107f44bf3eec3ca82e.json                 11.13 kB │ gzip:   2.92 kB
 dist/data/history/8a4f6531c1ac33f406c7.json                 11.13 kB │ gzip:   2.66 kB
 dist/data/history/b9e25ef7706345e66ad9.json                 11.13 kB │ gzip:   1.62 kB
+dist/data/history/b5598c5917c80b78f6a8.json                 11.14 kB │ gzip:   2.63 kB
 dist/data/catalog/36bd83f77c6ad372d522.json                 11.14 kB │ gzip:   2.46 kB
+dist/data/history/8e8f037ae0b7c3b03266.json                 11.15 kB │ gzip:   2.60 kB
 dist/data/history/10d9bf500f5dcc102bd3.json                 11.15 kB │ gzip:   1.62 kB
 dist/data/history/85f41347cae0ea4b49e8.json                 11.15 kB │ gzip:   1.59 kB
-dist/data/catalog/daef5a5499cdc1d15439.json                 11.16 kB │ gzip:   2.61 kB
+dist/data/catalog/b566abd5c65625546423.json                 11.16 kB │ gzip:   2.61 kB
 dist/data/history/7e51ef74bf410440f665.json                 11.16 kB │ gzip:   2.58 kB
 dist/data/catalog/4274123447673ffa0e05.json                 11.16 kB │ gzip:   1.88 kB
 dist/data/catalog/d8651055dd70917af190.json                 11.16 kB │ gzip:   3.05 kB
 dist/data/history/bc3e44ddaf428d5d2e52.json                 11.17 kB │ gzip:   1.54 kB
 dist/data/catalog/32eda4edd61bce06f42b.json                 11.17 kB │ gzip:   2.21 kB
-dist/data/history/a97caa2b9e0bb2e1cf90.json                 11.18 kB │ gzip:   2.65 kB
+dist/data/history/47b9d1aad6ced6c7aeb8.json                 11.17 kB │ gzip:   2.59 kB
 dist/data/catalog/2efcb40fa78e38031428.json                 11.18 kB │ gzip:   2.82 kB
 dist/data/catalog/6a7d0bb141da467d480a.json                 11.18 kB │ gzip:   1.90 kB
 dist/data/history/f97c4972a5334d9b9f57.json                 11.18 kB │ gzip:   2.61 kB
@@ -3440,19 +3439,19 @@ dist/data/history/ddaaadf6398e9b92564d.json                 11.20 kB │ gzip:  
 dist/data/catalog/8e11ad8aee8a8d451f6b.json                 11.20 kB │ gzip:   2.77 kB
 dist/data/history/91549b058331d82bd982.json                 11.20 kB │ gzip:   2.71 kB
 dist/data/history/84a4376fc6ee740ff8b1.json                 11.21 kB │ gzip:   2.73 kB
-dist/data/catalog/c060e121ba6603948c21.json                 11.22 kB │ gzip:   2.76 kB
+dist/data/catalog/3423a461eb5d3023e545.json                 11.22 kB │ gzip:   2.76 kB
 dist/data/history/05b0aea62de91d0d8556.json                 11.23 kB │ gzip:   2.71 kB
 dist/data/catalog/ec77221dd1223ea2c261.json                 11.24 kB │ gzip:   1.90 kB
+dist/data/history/aacabdc7b8a47026166a.json                 11.24 kB │ gzip:   2.66 kB
 dist/data/history/cb68a605819bd28cddc3.json                 11.25 kB │ gzip:   2.74 kB
 dist/data/catalog/0326ff1eb1b0b7e2c819.json                 11.25 kB │ gzip:   2.92 kB
 dist/data/history/a708076fc8acba6e18c7.json                 11.26 kB │ gzip:   2.64 kB
 dist/data/history/4786d8b42276fcad4216.json                 11.26 kB │ gzip:   2.72 kB
-dist/data/catalog/742e45da586439fd0952.json                 11.26 kB │ gzip:   2.79 kB
+dist/data/catalog/f3e209ea40167992878b.json                 11.26 kB │ gzip:   2.80 kB
 dist/data/history/f1a0668e76a960eada07.json                 11.26 kB │ gzip:   2.68 kB
 dist/data/catalog/a95e8093d17105d41303.json                 11.27 kB │ gzip:   2.84 kB
 dist/data/catalog/b9adcdc0d6678ba57cf9.json                 11.27 kB │ gzip:   1.95 kB
 dist/data/history/156f52872b86f84c387e.json                 11.27 kB │ gzip:   1.85 kB
-dist/data/catalog/28727b6d994ecf150ac3.json                 11.27 kB │ gzip:   2.09 kB
 dist/data/history/fbd3f90dd74898146831.json                 11.27 kB │ gzip:   2.64 kB
 dist/data/catalog/2e208cbd1bfdb024e221.json                 11.29 kB │ gzip:   2.30 kB
 dist/data/history/5c45d04faa300390e5f1.json                 11.29 kB │ gzip:   1.88 kB
@@ -3461,11 +3460,12 @@ dist/data/catalog/8c76acea446a3494470b.json                 11.30 kB │ gzip:  
 dist/data/catalog/1b971d85ea78debc52c0.json                 11.32 kB │ gzip:   2.89 kB
 dist/data/catalog/6f8e215896aedc96846a.json                 11.33 kB │ gzip:   1.87 kB
 dist/data/history/1490c0967209265cebde.json                 11.33 kB │ gzip:   2.84 kB
-dist/data/catalog/727937ea69093037b9ec.json                 11.33 kB │ gzip:   2.81 kB
+dist/data/catalog/e400044ce872f9071f5c.json                 11.33 kB │ gzip:   2.81 kB
 dist/data/history/9b75e6709c02949ddcb1.json                 11.33 kB │ gzip:   1.64 kB
 dist/data/catalog/d947309048fae7567d08.json                 11.34 kB │ gzip:   2.04 kB
 dist/data/history/9378dbb0436070aad5d6.json                 11.34 kB │ gzip:   2.77 kB
 dist/data/catalog/ce44ee150ee51478783d.json                 11.34 kB │ gzip:   2.81 kB
+dist/data/catalog/b6e5b9dfb42e025d07e6.json                 11.34 kB │ gzip:   2.10 kB
 dist/data/history/4037b06cdcd4da944d66.json                 11.35 kB │ gzip:   1.59 kB
 dist/data/catalog/c1ed7f41726d9d6c87ca.json                 11.36 kB │ gzip:   1.86 kB
 dist/data/catalog/98abb4cf9297523e326b.json                 11.36 kB │ gzip:   2.97 kB
@@ -3507,7 +3507,6 @@ dist/data/catalog/ec0f51426f7d1e026471.json                 11.52 kB │ gzip:  
 dist/data/history/8ff98bc0beac6578f7cd.json                 11.52 kB │ gzip:   2.07 kB
 dist/data/catalog/530df6957b9962e16890.json                 11.52 kB │ gzip:   3.07 kB
 dist/data/history/96fa4c2a3b6aeec1fbba.json                 11.53 kB │ gzip:   2.64 kB
-dist/data/history/ddeb23c4a187c46cec16.json                 11.53 kB │ gzip:   2.67 kB
 dist/data/catalog/efee87b8f33f00d0cb9d.json                 11.53 kB │ gzip:   2.96 kB
 dist/data/catalog/da29a8bc9d41f03cc5ef.json                 11.54 kB │ gzip:   3.10 kB
 dist/data/catalog/7c187f976385149b466a.json                 11.55 kB │ gzip:   3.04 kB
@@ -3521,6 +3520,7 @@ dist/data/catalog/2f6dda289dd22c76f565.json                 11.58 kB │ gzip:  
 dist/data/catalog/8c0e2ec8ea507b6f0eea.json                 11.59 kB │ gzip:   1.83 kB
 dist/data/history/6b109e087ece28ab08f9.json                 11.60 kB │ gzip:   1.76 kB
 dist/data/catalog/e6402dd68e9cd309a716.json                 11.60 kB │ gzip:   3.08 kB
+dist/data/history/b2f57cfe2f9962144cae.json                 11.60 kB │ gzip:   2.70 kB
 dist/data/catalog/ce20e9310f59dc11a027.json                 11.60 kB │ gzip:   2.23 kB
 dist/data/history/06972afcca8e8980ebd0.json                 11.61 kB │ gzip:   1.62 kB
 dist/data/catalog/161c0e6e6d8ad89c617f.json                 11.61 kB │ gzip:   2.92 kB
@@ -3535,7 +3535,6 @@ dist/data/catalog/1ded99e1cb9a65917ec1.json                 11.62 kB │ gzip:  
 dist/data/catalog/73a9523e8cc588551e2b.json                 11.62 kB │ gzip:   2.80 kB
 dist/data/catalog/59a6ee983adefb55c542.json                 11.63 kB │ gzip:   2.94 kB
 dist/data/history/15b41f63b6bff3a232a1.json                 11.63 kB │ gzip:   1.85 kB
-dist/data/catalog/ac6ca70c1a348186a64d.json                 11.63 kB │ gzip:   2.95 kB
 dist/data/catalog/3124849c5bc6684e70d5.json                 11.64 kB │ gzip:   2.16 kB
 dist/data/catalog/5e8bd4d4a2f8eec4f68d.json                 11.64 kB │ gzip:   2.99 kB
 dist/data/catalog/65791b81824e6d29b62a.json                 11.64 kB │ gzip:   1.91 kB
@@ -3547,10 +3546,9 @@ dist/data/catalog/00115092c13d41455ce7.json                 11.67 kB │ gzip:  
 dist/data/catalog/86b93211c99f053a3c15.json                 11.67 kB │ gzip:   2.71 kB
 dist/data/catalog/fb772b2aaa126f1ff252.json                 11.68 kB │ gzip:   3.11 kB
 dist/data/catalog/ef383e96b372367d7990.json                 11.68 kB │ gzip:   3.03 kB
-dist/data/catalog/a40a040e6be55b860b80.json                 11.68 kB │ gzip:   2.98 kB
+dist/data/catalog/99a4da6e13d5b5ab03f3.json                 11.69 kB │ gzip:   2.97 kB
 dist/data/catalog/a6bf45fbf4faba688664.json                 11.69 kB │ gzip:   3.03 kB
 dist/data/catalog/99fd06bcc66a96008fca.json                 11.70 kB │ gzip:   3.08 kB
-dist/data/catalog/9f1d0aa242b3f8cddc97.json                 11.70 kB │ gzip:   3.06 kB
 dist/data/catalog/f5917b5af68f48e77ff7.json                 11.71 kB │ gzip:   3.04 kB
 dist/data/catalog/07dd204c462762d92578.json                 11.72 kB │ gzip:   3.12 kB
 dist/data/catalog/093b464561a88c550b1a.json                 11.72 kB │ gzip:   1.96 kB
@@ -3567,10 +3565,12 @@ dist/data/catalog/c4b56ff449b883ef8e06.json                 11.74 kB │ gzip:  
 dist/data/catalog/d8a032e8d7b622d9140e.json                 11.74 kB │ gzip:   3.05 kB
 dist/data/catalog/1e2b0d97565e619868a4.json                 11.75 kB │ gzip:   3.07 kB
 dist/data/catalog/beed00f0cb2665fa22b3.json                 11.75 kB │ gzip:   3.15 kB
+dist/data/catalog/20117ecdca3e77d006b1.json                 11.76 kB │ gzip:   2.99 kB
 dist/data/catalog/7f45c8fb022a5e0b228d.json                 11.76 kB │ gzip:   3.08 kB
 dist/data/catalog/932565f43cec0a3f14a8.json                 11.76 kB │ gzip:   2.02 kB
 dist/data/catalog/bfc9d14d0696773051aa.json                 11.77 kB │ gzip:   3.07 kB
 dist/data/catalog/21a8c9c4d814ca2fd873.json                 11.77 kB │ gzip:   2.11 kB
+dist/data/catalog/eb860f2ba4f5087dcae8.json                 11.77 kB │ gzip:   3.08 kB
 dist/data/catalog/c95e3583c3e0f59df2f4.json                 11.78 kB │ gzip:   2.32 kB
 dist/data/catalog/fd1e128b8a182dc333e0.json                 11.78 kB │ gzip:   2.95 kB
 dist/data/catalog/7cce380e200eea17dcf0.json                 11.78 kB │ gzip:   2.93 kB
@@ -3804,7 +3804,6 @@ dist/data/catalog/4f35228d6a2f134ce8c6.json                 12.15 kB │ gzip:  
 dist/data/catalog/e67273a0030640698ed0.json                 12.15 kB │ gzip:   3.20 kB
 dist/data/catalog/c2468fa66eead6bc1b15.json                 12.16 kB │ gzip:   3.22 kB
 dist/data/catalog/d70690e532d2e95d50e4.json                 12.16 kB │ gzip:   3.25 kB
-dist/data/catalog/cf606329ab3919cab705.json                 12.16 kB │ gzip:   3.05 kB
 dist/data/catalog/d0c827ccf19b91a02eca.json                 12.16 kB │ gzip:   3.16 kB
 dist/data/catalog/bedf33721a6122cd8da2.json                 12.16 kB │ gzip:   3.23 kB
 dist/data/catalog/1250d3b0c33516bcb8ae.json                 12.17 kB │ gzip:   2.01 kB
@@ -3843,6 +3842,7 @@ dist/data/catalog/5044fc821d6f7576cd26.json                 12.22 kB │ gzip:  
 dist/data/catalog/dac4114fd6a350491922.json                 12.22 kB │ gzip:   3.30 kB
 dist/data/catalog/b95a4d5f983d9665b6a5.json                 12.22 kB │ gzip:   3.23 kB
 dist/data/catalog/fe43370c1e8fae76614c.json                 12.23 kB │ gzip:   3.28 kB
+dist/data/catalog/40d6b52221196b9a1901.json                 12.23 kB │ gzip:   3.05 kB
 dist/data/catalog/7565ae73ac258e7d26e1.json                 12.23 kB │ gzip:   3.25 kB
 dist/data/catalog/2421729973ba9514621e.json                 12.23 kB │ gzip:   2.08 kB
 dist/data/catalog/78b93070ce3f24f96939.json                 12.23 kB │ gzip:   3.30 kB
@@ -3862,42 +3862,42 @@ dist/data/catalog/9a41d53caf703eb5c00a.json                 12.27 kB │ gzip:  
 dist/data/catalog/e03aa1d5c9448a3e5069.json                 12.27 kB │ gzip:   3.26 kB
 dist/data/catalog/1b6f5eb36e7900d7f2da.json                 12.31 kB │ gzip:   2.02 kB
 dist/data/catalog/1795b78385c94e60ffd5.json                 12.31 kB │ gzip:   3.06 kB
-dist/data/catalog/24ebbe1bb2cbb21e0324.json                 12.32 kB │ gzip:   3.06 kB
 dist/data/catalog/d1402f3a37b64e76e733.json                 12.33 kB │ gzip:   2.19 kB
 dist/data/catalog/d5818dbca4ec82b16a6f.json                 12.33 kB │ gzip:   2.43 kB
 dist/data/catalog/7de209b10ee1f702538e.json                 12.33 kB │ gzip:   2.45 kB
-dist/data/catalog/9ee6265a989e265cba32.json                 12.33 kB │ gzip:   3.05 kB
-dist/data/catalog/88200b4667b636166b5d.json                 12.33 kB │ gzip:   2.07 kB
 dist/data/catalog/5eee753747fcbe881d30.json                 12.33 kB │ gzip:   2.00 kB
-dist/data/catalog/344322d0c87e22fa93eb.json                 12.33 kB │ gzip:   3.02 kB
 dist/data/catalog/c048024968e52e6c38e3.json                 12.33 kB │ gzip:   2.97 kB
-dist/data/catalog/d5f9798d3a5a575e5572.json                 12.35 kB │ gzip:   3.09 kB
 dist/data/catalog/a876347c13012ec44f97.json                 12.36 kB │ gzip:   2.00 kB
-dist/data/catalog/0f8d0bded9ac130108e2.json                 12.38 kB │ gzip:   3.07 kB
 dist/data/catalog/d566b96a10118f2dc6bf.json                 12.38 kB │ gzip:   3.07 kB
-dist/data/catalog/fd69f50b3c868a90bb8f.json                 12.39 kB │ gzip:   3.09 kB
+dist/data/catalog/35880303606db1b6908c.json                 12.39 kB │ gzip:   3.07 kB
 dist/data/catalog/792e2d790ff3165fcad6.json                 12.40 kB │ gzip:   3.08 kB
-dist/data/catalog/92a47f0d624211f5d48a.json                 12.40 kB │ gzip:   3.06 kB
 dist/data/catalog/160c0267e34c63129974.json                 12.40 kB │ gzip:   3.14 kB
+dist/data/catalog/5fa8d643bc2548ad5476.json                 12.41 kB │ gzip:   3.04 kB
+dist/data/catalog/ef4c5f83a8ffadd5344b.json                 12.41 kB │ gzip:   2.08 kB
+dist/data/catalog/72ad367780ad9231f83f.json                 12.41 kB │ gzip:   3.06 kB
 dist/data/catalog/fe0bcb3b8e70c805356f.json                 12.41 kB │ gzip:   3.12 kB
 dist/data/catalog/81b82249dae6c11d3672.json                 12.41 kB │ gzip:   2.33 kB
+dist/data/catalog/2f8f2b628f028aa3955b.json                 12.42 kB │ gzip:   3.11 kB
 dist/data/catalog/b7551baaf5a52602103e.json                 12.42 kB │ gzip:   2.46 kB
 dist/data/catalog/a46ff230dc9365de4565.json                 12.42 kB │ gzip:   3.12 kB
 dist/data/catalog/8e3adadf0ad81503e102.json                 12.43 kB │ gzip:   2.59 kB
 dist/data/catalog/b44c59a143b555ce6e81.json                 12.44 kB │ gzip:   2.07 kB
 dist/data/catalog/0ba51538d5bd6fce12a8.json                 12.44 kB │ gzip:   3.13 kB
 dist/data/catalog/b3cd463e8b1b5bbd76f0.json                 12.44 kB │ gzip:   2.29 kB
+dist/data/catalog/b2abb3427ab2524b4383.json                 12.45 kB │ gzip:   3.08 kB
 dist/data/catalog/a886cbc3cb7a073556ed.json                 12.45 kB │ gzip:   3.11 kB
+dist/data/catalog/fa8ecfc67c84397e16f4.json                 12.46 kB │ gzip:   3.10 kB
 dist/data/catalog/e3c3c0cb0149875ef6d0.json                 12.47 kB │ gzip:   2.02 kB
 dist/data/catalog/df19f60744182c637bf6.json                 12.47 kB │ gzip:   2.32 kB
+dist/data/catalog/c06f5cc1230f7a3345ce.json                 12.47 kB │ gzip:   3.05 kB
 dist/data/catalog/49b3f3a5256c2ea8f0b0.json                 12.48 kB │ gzip:   2.01 kB
-dist/data/catalog/985fc5cc0916cc43993b.json                 12.48 kB │ gzip:   3.12 kB
 dist/data/catalog/5a67b34eea9b448c9cac.json                 12.49 kB │ gzip:   2.34 kB
 dist/data/catalog/90fa429ae1f874fbd5af.json                 12.49 kB │ gzip:   2.55 kB
 dist/data/catalog/751ba1f4c0c2ff0fb114.json                 12.50 kB │ gzip:   3.18 kB
 dist/data/catalog/dd1062f9b5383b3cb171.json                 12.50 kB │ gzip:   3.20 kB
 dist/data/catalog/19ffd37e49971b8a5f0e.json                 12.52 kB │ gzip:   3.01 kB
 dist/data/catalog/1e472665d3d2c2130637.json                 12.54 kB │ gzip:   2.01 kB
+dist/data/catalog/c3535d247fbda1c28294.json                 12.54 kB │ gzip:   3.13 kB
 dist/data/catalog/425be3083b039731b63f.json                 12.55 kB │ gzip:   3.06 kB
 dist/data/catalog/c356a6b3cfae19b6012d.json                 12.55 kB │ gzip:   3.25 kB
 dist/data/catalog/747f38932d6c5cca5e87.json                 12.57 kB │ gzip:   2.43 kB
@@ -3935,11 +3935,11 @@ dist/data/catalog/bcc6de2b92fc50e807a1.json                 12.77 kB │ gzip:  
 dist/data/catalog/cc0f8a82576cec43df53.json                 12.77 kB │ gzip:   2.03 kB
 dist/data/catalog/c9739aed6d27243ed2e3.json                 12.78 kB │ gzip:   3.18 kB
 dist/data/catalog/2adc7ad6af234875b790.json                 12.79 kB │ gzip:   3.09 kB
-dist/data/catalog/4bbe80ac4b174f16a5e5.json                 12.83 kB │ gzip:   3.15 kB
 dist/data/catalog/b13602fce4ff2d28a874.json                 12.84 kB │ gzip:   2.22 kB
 dist/data/catalog/df5ae464c2e6b5bf18dd.json                 12.87 kB │ gzip:   2.02 kB
 dist/data/catalog/0741dc10707ccebe23e1.json                 12.87 kB │ gzip:   2.02 kB
 dist/data/catalog/78b03710dcde51c95f46.json                 12.89 kB │ gzip:   2.53 kB
+dist/data/catalog/217669e8c901bb19d06b.json                 12.90 kB │ gzip:   3.17 kB
 dist/data/catalog/607a427beb092da58ba5.json                 12.90 kB │ gzip:   2.15 kB
 dist/data/catalog/9fd47e6f6a4b0576e70e.json                 12.96 kB │ gzip:   3.12 kB
 dist/data/catalog/d9912db83b7b83ac1800.json                 13.00 kB │ gzip:   2.24 kB
@@ -3958,8 +3958,8 @@ dist/data/catalog/3d9189a3ec62842905b1.json                 13.39 kB │ gzip:  
 dist/data/catalog/a030785b86a0c2ce7958.json                 13.43 kB │ gzip:   2.55 kB
 dist/data/history/e43b572070c91e96dbea.json                 13.44 kB │ gzip:   2.00 kB
 dist/data/catalog/ddbf564751ec7b0f63c6.json                 13.49 kB │ gzip:   2.32 kB
+dist/data/catalog/a406259f870db8060f54.json                 13.50 kB │ gzip:   2.46 kB
 dist/data/history/8b1d6fcaa2da3b09b690.json                 13.58 kB │ gzip:   3.19 kB
-dist/data/catalog/9b17ac408972eb46de04.json                 13.58 kB │ gzip:   2.42 kB
 dist/data/catalog/e51c7621a859ceb72def.json                 13.61 kB │ gzip:   3.94 kB
 dist/data/history/7dbe28c7f6f600567319.json                 13.67 kB │ gzip:   2.01 kB
 dist/data/catalog/42faf0b3b4156a668ff1.json                 13.68 kB │ gzip:   2.33 kB
@@ -4006,7 +4006,7 @@ dist/data/history/3cd9821779f57270139b.json                 15.78 kB │ gzip:  
 dist/data/catalog/d55e83ab775ecc7e85a2.json                 15.86 kB │ gzip:   3.73 kB
 dist/data/catalog/c76ea1e393e3ef45a659.json                 15.89 kB │ gzip:   3.20 kB
 dist/data/catalog/b7c4ab6ada79e2dd7268.json                 15.89 kB │ gzip:   2.32 kB
-dist/data/catalog/74e2930e160f5f68ae4b.json                 15.94 kB │ gzip:   2.15 kB
+dist/data/catalog/7d4adc3b39dcba9b8fb6.json                 15.94 kB │ gzip:   2.15 kB
 dist/data/catalog/ef64b6f97a59c3747f76.json                 16.24 kB │ gzip:   2.62 kB
 dist/data/catalog/2022a8718a3581e5af29.json                 16.27 kB │ gzip:   2.62 kB
 dist/data/catalog/ceb1588a95e65568bb13.json                 16.29 kB │ gzip:   2.67 kB
@@ -4023,25 +4023,25 @@ dist/data/history/190631a2b3577054f141.json                 17.46 kB │ gzip:  
 dist/data/catalog/3b88258dbd6ad84f8a94.json                 17.63 kB │ gzip:   3.02 kB
 dist/data/catalog/a76ddc8f2f0ae5942af6.json                 17.64 kB │ gzip:   3.02 kB
 dist/data/catalog/23f1be0e0addb0c59fa7.json                 17.64 kB │ gzip:   3.01 kB
-dist/data/catalog/9c832ea1071fe7aac3ae.json                 17.65 kB │ gzip:   3.03 kB
 dist/data/catalog/f5ee670324c3d396fba4.json                 17.65 kB │ gzip:   5.83 kB
 dist/data/catalog/b8aa751d903a623ca475.json                 17.67 kB │ gzip:   3.03 kB
 dist/data/catalog/64c47a2af3d006640e03.json                 17.68 kB │ gzip:   3.04 kB
 dist/data/catalog/cab9af9c2884702a12d0.json                 17.69 kB │ gzip:   3.03 kB
 dist/data/catalog/ba753f87458f12919804.json                 17.73 kB │ gzip:   2.78 kB
 dist/data/catalog/d6dbedfa17964d24d2cf.json                 17.76 kB │ gzip:   2.55 kB
-dist/.vite/data-bytes.json                                  18.05 kB │ gzip:   4.36 kB
+dist/data/catalog/7bee0fcbf88922c35aa8.json                 17.88 kB │ gzip:   2.99 kB
+dist/.vite/data-bytes.json                                  18.05 kB │ gzip:   4.35 kB
 dist/data/history/ccde92722890af3f1236.json                 18.26 kB │ gzip:   4.79 kB
 dist/data/catalog/0098b623725138e4f0d9.json                 18.52 kB │ gzip:   2.92 kB
 dist/data/catalog/a6af5eddc68ac4677577.json                 18.84 kB │ gzip:   3.92 kB
 dist/data/catalog/ac8ba3e8aca4da6d437f.json                 18.99 kB │ gzip:   7.01 kB
-dist/data/catalog/6528114697d800d6ca94.json                 19.01 kB │ gzip:   3.09 kB
 dist/data/catalog/6ad833e5a17cea71eeb5.json                 19.14 kB │ gzip:   2.85 kB
 dist/data/catalog/2f17bbbb34179317cadc.json                 19.17 kB │ gzip:   3.12 kB
 dist/data/catalog/45c2873f9091d56fab1a.json                 19.17 kB │ gzip:   3.16 kB
 dist/data/catalog/bcecbae13cfa18f32e51.json                 19.21 kB │ gzip:   3.14 kB
 dist/data/catalog/8046d3e44c407493762f.json                 19.23 kB │ gzip:   2.61 kB
 dist/data/catalog/1368323ffb9f44b4a6e3.json                 19.26 kB │ gzip:   2.63 kB
+dist/data/catalog/8fa42ee337ca36646dae.json                 19.35 kB │ gzip:   3.06 kB
 dist/data/catalog/13da5b8d18eb6a230c36.json                 19.44 kB │ gzip:   3.22 kB
 dist/data/catalog/01f6c190600969bafdec.json                 19.55 kB │ gzip:   3.39 kB
 dist/data/catalog/254012900a0e9c837206.json                 19.75 kB │ gzip:   5.28 kB
@@ -4069,8 +4069,8 @@ dist/data/catalog/f2ece634ef9781eaa0e3.json                 21.24 kB │ gzip:  
 dist/data/catalog/080fede1cdebafb1afb7.json                 21.26 kB │ gzip:   3.21 kB
 dist/data/catalog/cb687e799c3138092aef.json                 21.31 kB │ gzip:   2.98 kB
 dist/data/catalog/a72fc78dc3223c0fe5d1.json                 21.49 kB │ gzip:   3.33 kB
-dist/data/catalog/f926b263a3edab1018e2.json                 21.72 kB │ gzip:   3.24 kB
 dist/data/catalog/ef7e80c2fa89277e016f.json                 21.76 kB │ gzip:   3.29 kB
+dist/data/catalog/391ce30afd9a883acbad.json                 22.17 kB │ gzip:   3.29 kB
 dist/data/catalog/08824af38548e7fd5425.json                 22.56 kB │ gzip:   3.09 kB
 dist/data/catalog/6ee8dd0eb77882bde116.json                 22.59 kB │ gzip:   3.14 kB
 dist/data/catalog/dcccf39d213e1b8ccf84.json                 22.66 kB │ gzip:   3.13 kB
@@ -4155,13 +4155,13 @@ dist/assets/App-Cz9u4EWl.css                                 9.62 kB │ gzip:  
 dist/assets/App-CWW6jQnm.css                                11.38 kB │ gzip:   2.74 kB
 dist/assets/dca-profiles-DqoWA3r4.css                       16.81 kB │ gzip:   3.55 kB
 dist/assets/index-DOYuX5n3.css                             100.65 kB │ gzip:  19.01 kB
-dist/assets/insurance-QuecppAX.js                            0.19 kB │ gzip:   0.14 kB
-dist/assets/App-Br5dMibo.js                                  0.26 kB │ gzip:   0.20 kB
-dist/assets/downloadBlob-C88ey9iE.js                         0.26 kB │ gzip:   0.21 kB
+dist/assets/insurance-DpJ2wFdz.js                            0.19 kB │ gzip:   0.14 kB
+dist/assets/App-5DIoEC5q.js                                  0.26 kB │ gzip:   0.20 kB
+dist/assets/downloadBlob-DDjtwm1n.js                         0.26 kB │ gzip:   0.21 kB
 dist/assets/simulation-rates-BuL60z4W.js                     0.29 kB │ gzip:   0.20 kB
-dist/assets/WorkspaceActions-v9NGWuUO.js                     0.30 kB │ gzip:   0.23 kB
+dist/assets/WorkspaceActions-BgO2Nx-O.js                     0.30 kB │ gzip:   0.23 kB
 dist/assets/usePublicationPreference-CEM69ySs.js             0.34 kB │ gzip:   0.24 kB
-dist/assets/App-BhCxi4W7.js                                  0.43 kB │ gzip:   0.29 kB
+dist/assets/App-B4MGnYQ0.js                                  0.43 kB │ gzip:   0.30 kB
 dist/assets/jsx-runtime-NZYk81nU.js                          0.43 kB │ gzip:   0.30 kB
 dist/assets/ScoreDetails-Cg59P91j.js                         0.47 kB │ gzip:   0.32 kB
 dist/assets/RelatedStages-oHllKBVH.js                        0.49 kB │ gzip:   0.32 kB
@@ -4169,107 +4169,107 @@ dist/assets/AssetToolDestinations-BDriJyWZ.js                0.50 kB │ gzip:  
 dist/assets/art-resources-DVUDbTle.js                        0.50 kB │ gzip:   0.37 kB
 dist/assets/etf-issuer-records-BPopNHxu.js                   0.52 kB │ gzip:   0.23 kB
 dist/assets/companies-4j3NGU2z.js                            0.52 kB │ gzip:   0.34 kB
-dist/assets/downloadImage-DuqbTBWW.js                        0.52 kB │ gzip:   0.37 kB
+dist/assets/downloadImage-CwFPWlEN.js                        0.52 kB │ gzip:   0.37 kB
 dist/assets/use-selected-records-Bxd7fga4.js                 0.53 kB │ gzip:   0.36 kB
 dist/assets/history-selection-DfJFRHE2.js                    0.54 kB │ gzip:   0.32 kB
 dist/assets/SettingsDetails-R4h4-PDv.js                      0.56 kB │ gzip:   0.34 kB
-dist/assets/comparatif-DZ2KY7Tt.js                           0.59 kB │ gzip:   0.36 kB
+dist/assets/comparatif-kxg5E56w.js                           0.59 kB │ gzip:   0.36 kB
 dist/assets/CalendarDetails-Dlw0VyCC.js                      0.60 kB │ gzip:   0.38 kB
-dist/assets/App-DaBLyJdi.js                                  0.64 kB │ gzip:   0.40 kB
+dist/assets/App-DYK6gjkg.js                                  0.64 kB │ gzip:   0.40 kB
 dist/assets/fact-labels-C8aRGe2P.js                          0.66 kB │ gzip:   0.38 kB
 dist/assets/annual-window-BQR6GLvo.js                        0.67 kB │ gzip:   0.41 kB
-dist/assets/performance-BRGtJoo0.js                          0.69 kB │ gzip:   0.41 kB
+dist/assets/performance-3m8yzDpV.js                          0.69 kB │ gzip:   0.41 kB
 dist/assets/rolldown-runtime-hePW80VL.js                     0.71 kB │ gzip:   0.42 kB
 dist/assets/OfferConditions-x6sYqrBw.js                      0.71 kB │ gzip:   0.46 kB
-dist/assets/App-BZqoVI8Q.js                                  0.73 kB │ gzip:   0.45 kB
-dist/assets/App-Bd9fZPX6.js                                  0.77 kB │ gzip:   0.47 kB
-dist/assets/performanceHistory-PdSVsL6e.js                   0.77 kB │ gzip:   0.48 kB
+dist/assets/App-CWzVudTl.js                                  0.73 kB │ gzip:   0.45 kB
+dist/assets/App-DtuyWpRS.js                                  0.77 kB │ gzip:   0.47 kB
+dist/assets/performanceHistory-3CSmunIP.js                   0.77 kB │ gzip:   0.48 kB
 dist/assets/publication-preferences-BvCJOYoS.js              0.78 kB │ gzip:   0.36 kB
 dist/assets/simulation-proxies-6kLTl1em.js                   0.81 kB │ gzip:   0.49 kB
 dist/assets/ActionMenu-J8aMp2Ws.js                           0.82 kB │ gzip:   0.45 kB
-dist/assets/App-CyCtFlN6.js                                  0.88 kB │ gzip:   0.52 kB
+dist/assets/App-DZyjdiz0.js                                  0.88 kB │ gzip:   0.52 kB
 dist/assets/AssetToolLinks-CwsOdTNQ.js                       1.03 kB │ gzip:   0.57 kB
 dist/assets/preload-helper-Dp3WIDEx.js                       1.21 kB │ gzip:   0.68 kB
 dist/assets/index-history-conventions-DJrrmNpV.js            1.22 kB │ gzip:   0.28 kB
 dist/assets/ConditionsDetails-BCjuPmen.js                    1.43 kB │ gzip:   0.73 kB
 dist/assets/RadarFilters-FD1-G-YL.js                         1.46 kB │ gzip:   0.66 kB
 dist/assets/Button-Bt7_jTId.js                               1.47 kB │ gzip:   0.78 kB
-dist/assets/PortfolioExposureComparison-CvrZD5vC.js          1.55 kB │ gzip:   0.86 kB
+dist/assets/PortfolioExposureComparison-B5oGm-d3.js          1.55 kB │ gzip:   0.86 kB
 dist/assets/presentation-51_mVSty.js                         1.59 kB │ gzip:   0.86 kB
 dist/assets/official-performance-currencies-DQwzPCYM.js      1.66 kB │ gzip:   0.73 kB
-dist/assets/PortfolioExposure-3Mwe6t03.js                    1.90 kB │ gzip:   1.01 kB
+dist/assets/PortfolioExposure-BHctAFpr.js                    1.90 kB │ gzip:   1.01 kB
 dist/assets/french-characteristics-DSxPMFhn.js               1.91 kB │ gzip:   0.93 kB
 dist/assets/EtfAnnouncement-BmY1jU_g.js                      1.91 kB │ gzip:   0.84 kB
-dist/assets/AllocationEditor-Dyi-gETn.js                     1.93 kB │ gzip:   0.89 kB
+dist/assets/AllocationEditor-Cp3Hdbgc.js                     1.93 kB │ gzip:   0.89 kB
 dist/assets/portfolio-admissions-CH3QUYoB.js                 1.95 kB │ gzip:   0.72 kB
 dist/assets/exposure-observations-Bdvir_sb.js                2.01 kB │ gzip:   1.10 kB
-dist/assets/crisisImage-ikpOZ1NR.js                          2.07 kB │ gzip:   1.17 kB
-dist/assets/_virtual_tool-data_ASSETS-CRtZHsCr.js            2.40 kB │ gzip:   0.68 kB
+dist/assets/crisisImage-CPdqLzPK.js                          2.07 kB │ gzip:   1.17 kB
+dist/assets/_virtual_tool-data_ASSETS-BAJLi_mC.js            2.40 kB │ gzip:   0.68 kB
 dist/assets/PublicationEvidence-JoEJ-War.js                  2.42 kB │ gzip:   1.09 kB
 dist/assets/resource-selections-ekwHbDzF.js                  2.42 kB │ gzip:   1.06 kB
 dist/assets/ChoicePicker-B5psTUi8.js                         2.50 kB │ gzip:   1.14 kB
-dist/assets/purchasingPowerImage-CCncHnfk.js                 2.65 kB │ gzip:   1.43 kB
+dist/assets/purchasingPowerImage-CV6q6gso.js                 2.65 kB │ gzip:   1.43 kB
 dist/assets/light-helpers-BZ1YS6n7.js                        2.65 kB │ gzip:   1.39 kB
-dist/assets/PublicationActions-DoPuFJ68.js                   2.65 kB │ gzip:   1.30 kB
+dist/assets/PublicationActions-DDRm2UVm.js                   2.65 kB │ gzip:   1.31 kB
 dist/assets/RadarSourceDetails-CBSB8-HN.js                   2.71 kB │ gzip:   1.32 kB
 dist/assets/PurchasingNews-Duf4l16H.js                       3.00 kB │ gzip:   1.25 kB
 dist/assets/index-concentration-core-DwN1teXS.js             3.33 kB │ gzip:   1.67 kB
 dist/assets/client-CwWUQr4D.js                               3.41 kB │ gzip:   1.55 kB
 dist/assets/HousingDetails-Dla29x2F.js                       3.43 kB │ gzip:   1.65 kB
-dist/assets/HistoricalContext-BwLSJyiu.js                    3.64 kB │ gzip:   1.80 kB
-dist/assets/performanceImage-DuWZF6gV.js                     3.75 kB │ gzip:   1.95 kB
-dist/assets/canvasImage-BnmHA0Kq.js                          3.78 kB │ gzip:   1.93 kB
+dist/assets/HistoricalContext-BLTuiw1H.js                    3.64 kB │ gzip:   1.80 kB
+dist/assets/performanceImage-CnB5Yrhh.js                     3.75 kB │ gzip:   1.95 kB
+dist/assets/canvasImage-DosxlVlX.js                          3.78 kB │ gzip:   1.93 kB
 dist/assets/lib-Cu8kY5M0.js                                  4.01 kB │ gzip:   2.01 kB
 dist/assets/distinct-asset-selections-CyQv2p9B.js            4.70 kB │ gzip:   2.06 kB
-dist/assets/canvasImage-CyBF-cOE.js                          5.09 kB │ gzip:   2.61 kB
-dist/assets/comparisonComposition-B-mNHBzB.js                5.19 kB │ gzip:   2.21 kB
+dist/assets/canvasImage-CVOIpQwx.js                          5.09 kB │ gzip:   2.61 kB
+dist/assets/comparisonComposition-Cuc-LOUR.js                5.19 kB │ gzip:   2.21 kB
 dist/assets/investment-series-BpriS89y.js                    5.26 kB │ gzip:   2.20 kB
 dist/assets/etf-ter-c979_pmv.js                              5.35 kB │ gzip:   2.10 kB
-dist/assets/anniversaryImage-ptOKkj_a.js                     5.61 kB │ gzip:   2.73 kB
+dist/assets/anniversaryImage-BmQc_zKg.js                     5.61 kB │ gzip:   2.73 kB
 dist/assets/readableNews-DeuwDD15.js                         5.67 kB │ gzip:   2.42 kB
-dist/assets/asset-selection-Uyu2bjuO.js                      6.26 kB │ gzip:   3.26 kB
+dist/assets/asset-selection-Dp6KksWl.js                      6.26 kB │ gzip:   3.26 kB
 dist/assets/holdings-loader-C7das9qp.js                      6.67 kB │ gzip:   2.85 kB
-dist/assets/ToolWorkspace-yPSTb2xv.js                        6.78 kB │ gzip:   2.70 kB
+dist/assets/ToolWorkspace-I-hFOOQR.js                        6.78 kB │ gzip:   2.69 kB
 dist/assets/react-CwJFpaho.js                                7.53 kB │ gzip:   2.88 kB
-dist/assets/App-CYeiCNfx.js                                  8.28 kB │ gzip:   3.35 kB
+dist/assets/App-By-mB4lY.js                                  8.28 kB │ gzip:   3.35 kB
 dist/assets/SignalDetails-DG00SjKs.js                        8.30 kB │ gzip:   2.80 kB
 dist/assets/AssetPicker-Dcu2u_Eg.js                          8.34 kB │ gzip:   2.81 kB
-dist/assets/ficheLexiqueImage-L1de5Qiv.js                    8.88 kB │ gzip:   4.20 kB
-dist/assets/Home-CwZtU-tf.js                                 9.24 kB │ gzip:   3.57 kB
-dist/assets/anniversaryArt-Bk63zLKD.js                       9.49 kB │ gzip:   3.08 kB
+dist/assets/ficheLexiqueImage-C4-cERMQ.js                    8.88 kB │ gzip:   4.20 kB
+dist/assets/Home-DDNygVVI.js                                 9.24 kB │ gzip:   3.57 kB
+dist/assets/anniversaryArt-2VkdJuV8.js                       9.49 kB │ gzip:   3.08 kB
 dist/assets/radar-policy-DSjWrUMK.js                         9.62 kB │ gzip:   4.09 kB
 dist/assets/regulatory-data-DUxcOSIg.js                      9.66 kB │ gzip:   2.17 kB
 dist/assets/non-bond-expansion-sources-ZC8kpfrU.js           9.70 kB │ gzip:   2.22 kB
 dist/assets/calendar-fx-DVNhAWKp.js                         10.59 kB │ gzip:   4.41 kB
 dist/assets/simulation-links-L2xmE-qC.js                    10.90 kB │ gzip:   4.80 kB
-dist/assets/comparatifEtfImage-Dr7FZmyR.js                  11.72 kB │ gzip:   5.14 kB
+dist/assets/comparatifEtfImage-BvEwh5KR.js                  11.72 kB │ gzip:   5.14 kB
 dist/assets/tools-CN7wVgAC.js                               13.98 kB │ gzip:   4.61 kB
-dist/assets/DcaApp-BtIOAUmE.js                              14.48 kB │ gzip:   5.11 kB
-dist/assets/App-Y8GittpA.js                                 14.59 kB │ gzip:   6.89 kB
+dist/assets/DcaApp-3lLuD_y2.js                              14.48 kB │ gzip:   5.11 kB
+dist/assets/App-4_T_2BNy.js                                 14.59 kB │ gzip:   6.89 kB
 dist/assets/radar-material-DOyCFGBr.js                      15.46 kB │ gzip:   6.61 kB
-dist/assets/imageExport-BZt_-G8R.js                         15.60 kB │ gzip:   6.44 kB
+dist/assets/imageExport-bKFpZdiJ.js                         15.60 kB │ gzip:   6.44 kB
 dist/assets/dilemmes-CeylHa1l.js                            16.19 kB │ gzip:   5.41 kB
-dist/assets/App-ChCDiFt_.js                                 16.94 kB │ gzip:   6.44 kB
-dist/assets/App-D6ojo9DO.js                                 16.95 kB │ gzip:   5.89 kB
+dist/assets/App-BkvQ4mhQ.js                                 16.94 kB │ gzip:   6.44 kB
+dist/assets/App-D1fRvddz.js                                 16.95 kB │ gzip:   5.89 kB
 dist/assets/radar-editorial-ccD7Pk1D.js                     17.90 kB │ gzip:   6.76 kB
 dist/assets/performance-links--KPyAX0o.js                   18.70 kB │ gzip:   7.85 kB
-dist/assets/App-tU3-TGEB.js                                 18.90 kB │ gzip:   6.76 kB
-dist/assets/App-nLXHipSb.js                                 20.51 kB │ gzip:   7.40 kB
+dist/assets/App-CKM7-l7z.js                                 18.90 kB │ gzip:   6.76 kB
+dist/assets/App-DGysoUC9.js                                 20.51 kB │ gzip:   7.40 kB
 dist/assets/economic-data-Bk6rpXVD.js                       21.34 kB │ gzip:   3.43 kB
 dist/assets/Analytics-DgYSpy-7.js                           23.32 kB │ gzip:   6.99 kB
 dist/assets/history-assets-43-DmxZXnHX.js                   23.86 kB │ gzip:   9.64 kB
-dist/assets/automated-insurance-Bqa872Bc.js                 24.73 kB │ gzip:   4.13 kB
+dist/assets/automated-insurance-CH4UDNpR.js                 24.73 kB │ gzip:   4.13 kB
 dist/assets/review-metadata-1-CW_yY4qI.js                   26.19 kB │ gzip:   5.06 kB
-dist/assets/useImageExport-bi-TDEX8.js                      32.27 kB │ gzip:  11.98 kB
-dist/assets/App-_ycp6Sd_.js                                 33.45 kB │ gzip:  10.88 kB
+dist/assets/useImageExport-D8snOg_o.js                      32.35 kB │ gzip:  12.00 kB
+dist/assets/App-1bGwM2jL.js                                 33.45 kB │ gzip:  10.88 kB
 dist/assets/ranking-index-annual--SdIj2ow.js                33.52 kB │ gzip:   6.83 kB
 dist/assets/official-index-history-DJXIWq5k.js              34.52 kB │ gzip:  11.95 kB
-dist/assets/App-BPPZslnz.js                                 36.35 kB │ gzip:  13.72 kB
+dist/assets/App-BOjDXAge.js                                 36.35 kB │ gzip:  13.72 kB
 dist/assets/etf-issuer-part-8-AQnW8bR8.js                   37.06 kB │ gzip:   7.24 kB
 dist/assets/chunk-62JRHF6Z-CzhExzvF.js                      38.09 kB │ gzip:  13.68 kB
 dist/assets/review-metadata-14-BNWL3-AS.js                  39.17 kB │ gzip:   6.26 kB
-dist/assets/engine-D_RJdEI8.js                              39.23 kB │ gzip:  12.71 kB
-dist/assets/history-browser-C1_fBHVO.js                     40.33 kB │ gzip:  15.56 kB
+dist/assets/engine-B56fdMFS.js                              39.23 kB │ gzip:  12.69 kB
+dist/assets/history-browser-D05RVwAD.js                     40.33 kB │ gzip:  15.56 kB
 dist/assets/history-assets-24-B6TBeOla.js                   41.55 kB │ gzip:  17.71 kB
 dist/assets/analytics-BC3XJTbO.js                           42.24 kB │ gzip:  11.60 kB
 dist/assets/history-assets-25-DVVeQipy.js                   42.50 kB │ gzip:  16.11 kB
@@ -4300,8 +4300,8 @@ dist/assets/history-assets-21-ConXNFsW.js                   46.39 kB │ gzip:  
 dist/assets/ficheLexique-CSuOwmUa.js                        46.64 kB │ gzip:  14.70 kB
 dist/assets/history-assets-31-D4F4SMA2.js                   46.87 kB │ gzip:  19.38 kB
 dist/assets/history-assets-13-CAZBtDLR.js                   47.05 kB │ gzip:  10.67 kB
-dist/assets/history-assets-17-_IByF3jx.js                   47.34 kB │ gzip:  18.13 kB
-dist/assets/history-assets-2-B4fbET1A.js                    47.74 kB │ gzip:  19.27 kB
+dist/assets/history-assets-17-G5frHlAD.js                   47.46 kB │ gzip:  18.17 kB
+dist/assets/history-assets-2-B7QcwIDV.js                    47.78 kB │ gzip:  19.27 kB
 dist/assets/history-assets-4-Bp5AUdYc.js                    48.36 kB │ gzip:  13.45 kB
 dist/assets/review-metadata-4-D8qhSDc2.js                   49.97 kB │ gzip:   3.73 kB
 dist/assets/history-assets-10-iwgCrP2t.js                   50.48 kB │ gzip:  12.65 kB
@@ -4316,15 +4316,15 @@ dist/assets/history-assets-6-fh7b8L1z.js                    53.10 kB │ gzip:  
 dist/assets/history-assets-0-CgFOc6dC.js                    53.66 kB │ gzip:  22.58 kB
 dist/assets/history-assets-15-B7mGkvF_.js                   54.36 kB │ gzip:  15.74 kB
 dist/assets/history-assets-14-CiSKZIwQ.js                   55.04 kB │ gzip:  11.92 kB
-dist/assets/App-Bkj7lPjE.js                                 55.74 kB │ gzip:  17.97 kB
+dist/assets/App-ZrQNpQcx.js                                 55.74 kB │ gzip:  17.97 kB
 dist/assets/history-assets-9-B-orEBKZ.js                    57.00 kB │ gzip:  13.79 kB
-dist/assets/history-assets-16-_d-lEyca.js                   57.69 kB │ gzip:  17.09 kB
-dist/assets/review-metadata-5-9NuYx5BF.js                   59.52 kB │ gzip:   5.56 kB
+dist/assets/history-assets-16-iNeQdCHE.js                   57.90 kB │ gzip:  17.14 kB
+dist/assets/review-metadata-5-BEe1pCxQ.js                   59.04 kB │ gzip:   5.58 kB
 dist/assets/characteristic-metadata-part-1-lBe3mk-B.js      60.11 kB │ gzip:  10.24 kB
-dist/assets/review-metadata-0-gjdaIRqM.js                   62.57 kB │ gzip:  10.50 kB
-dist/assets/review-metadata-3-DPN0jrtd.js                   63.84 kB │ gzip:   5.67 kB
+dist/assets/review-metadata-0-BgnmxpjH.js                   62.57 kB │ gzip:  10.50 kB
+dist/assets/review-metadata-3-CjNA7xX_.js                   64.40 kB │ gzip:   5.71 kB
 dist/assets/etf-issuer-part-6-CpU9aHs6.js                   64.43 kB │ gzip:  12.29 kB
-dist/assets/App-CgQlgAIG.js                                 64.78 kB │ gzip:  19.85 kB
+dist/assets/App-DLpd1CYh.js                                 64.78 kB │ gzip:  19.85 kB
 dist/assets/etf-issuer-part-7-CIJ02tDd.js                   68.09 kB │ gzip:  13.38 kB
 dist/assets/review-metadata-9-D98GATHQ.js                   68.71 kB │ gzip:   6.93 kB
 dist/assets/review-metadata-8-D_v4uUJn.js                   71.84 kB │ gzip:   6.57 kB
@@ -4339,58 +4339,58 @@ dist/assets/instruments-DNZSja9W.js                         91.67 kB │ gzip:  
 dist/assets/etf-issuer-part-4-BHnpbCnP.js                   97.65 kB │ gzip:  21.88 kB
 dist/assets/etf-issuer-part-2-BBXmlN-r.js                  100.55 kB │ gzip:  22.06 kB
 dist/assets/etf-issuer-part-0-DSOWSTt4.js                  104.90 kB │ gzip:  20.46 kB
-dist/assets/review-metadata-10-NuwvNWJO.js                 114.74 kB │ gzip:  11.98 kB
+dist/assets/review-metadata-10-D2GcOPkT.js                 114.74 kB │ gzip:  12.00 kB
 dist/assets/characteristic-metadata-part-0-B-2q1r3n.js     115.43 kB │ gzip:  23.80 kB
 dist/assets/review-metadata-13-Bhx_QNn5.js                 125.55 kB │ gzip:   8.27 kB
-dist/assets/App-BKKc85aJ.js                                127.25 kB │ gzip:  33.84 kB
-dist/assets/review-metadata-12-Ct-rNzWv.js                 129.04 kB │ gzip:   8.59 kB
+dist/assets/App-DrTXbHQj.js                                127.28 kB │ gzip:  33.83 kB
+dist/assets/review-metadata-12-DN0DFZ37.js                 129.04 kB │ gzip:   8.62 kB
 dist/assets/review-metadata-11-BYBXJTuo.js                 131.15 kB │ gzip:   9.91 kB
 dist/assets/dca-catalog-7lB-iiEV.js                        136.79 kB │ gzip:  25.22 kB
-dist/assets/App-Dp9Z4qep.js                                137.12 kB │ gzip:  37.58 kB
+dist/assets/App-HiTxooik.js                                137.12 kB │ gzip:  37.58 kB
 dist/assets/ranking-long-histories-Cc9rMkhl.js             141.56 kB │ gzip:  48.25 kB
 dist/assets/automated-practical-sheets-SdCqRxqs.js         142.45 kB │ gzip:  40.72 kB
 dist/assets/portfolio-assets-C8Eb_enp.js                   152.86 kB │ gzip:  42.39 kB
-dist/assets/App-BBL5EzWu.js                                158.42 kB │ gzip:  34.48 kB
+dist/assets/App-DUuhUsFw.js                                158.42 kB │ gzip:  34.48 kB
 dist/assets/engine-D1r1JEFK.js                             171.29 kB │ gzip:  48.84 kB
-dist/assets/App-CGihE93X.js                                172.19 kB │ gzip:  57.56 kB
-dist/assets/App-CjYwn_Y3.js                                177.18 kB │ gzip:  54.54 kB
-dist/assets/index-CnpXG2My.js                              210.56 kB │ gzip:  67.50 kB
-dist/assets/App-DJtxq9Et.js                                217.73 kB │ gzip:  28.68 kB
+dist/assets/App-Bzb0Xnfz.js                                172.19 kB │ gzip:  57.56 kB
+dist/assets/App-CyW5cd5R.js                                177.18 kB │ gzip:  54.54 kB
+dist/assets/index-C1CmtBe5.js                              210.56 kB │ gzip:  67.49 kB
+dist/assets/App-C4sD9eIY.js                                217.73 kB │ gzip:  28.69 kB
 dist/assets/data-CmYHXwJt.js                               224.39 kB │ gzip:  44.91 kB
-dist/assets/instrument-facts-CmPivAr5.js                   230.17 kB │ gzip:  38.87 kB
-dist/assets/instrument-listings-27ZiccKZ.js                233.64 kB │ gzip:  49.61 kB
-dist/assets/App-BuCJ3eKB.js                                237.45 kB │ gzip:  43.75 kB
-dist/assets/annualPerformance-BZvmANnc.js                  256.45 kB │ gzip:  61.24 kB
-dist/assets/App-CMTzAp1v.js                                291.54 kB │ gzip:  72.42 kB
-dist/assets/App-2CfEJXWt.js                                302.28 kB │ gzip:  83.36 kB
-dist/assets/App-GUFy7p__.js                                304.25 kB │ gzip:  92.83 kB
-dist/assets/App-DjYBw2OX.js                                333.11 kB │ gzip:  66.33 kB
-dist/assets/etf-history-identities-COQJYNkP.js             341.97 kB │ gzip:  29.90 kB
+dist/assets/instrument-facts-DtfmPDky.js                   229.14 kB │ gzip:  38.67 kB
+dist/assets/instrument-listings-BXgAbf_T.js                234.35 kB │ gzip:  49.83 kB
+dist/assets/App-Bt5djFNE.js                                237.45 kB │ gzip:  43.77 kB
+dist/assets/annualPerformance-BhZDBE0H.js                  256.45 kB │ gzip:  61.23 kB
+dist/assets/App-DD99CyYO.js                                291.54 kB │ gzip:  72.42 kB
+dist/assets/App-BQZgv3xT.js                                302.53 kB │ gzip:  83.41 kB
+dist/assets/App-B0qndLXR.js                                304.25 kB │ gzip:  92.83 kB
+dist/assets/App-BXI_cLtA.js                                333.11 kB │ gzip:  66.36 kB
+dist/assets/etf-history-identities-CocIXQbE.js             341.97 kB │ gzip:  29.90 kB
 dist/assets/ranking-calculations-sYaDRUiT.js               349.10 kB │ gzip:  99.78 kB
-dist/assets/selected-annual-market-NfyRegsH.js             353.59 kB │ gzip:  44.78 kB
-dist/assets/anniversaryEditorial-BSYs_KYa.js               381.07 kB │ gzip:  65.60 kB
-dist/assets/etf-card-metadata-BD4vzJUg.js                  382.41 kB │ gzip:  93.38 kB
-dist/assets/EtfDevelopment-MJdVLvtB.js                     382.91 kB │ gzip:  59.26 kB
-dist/assets/portfolio-exposure-V9IKDMq9.js                 389.56 kB │ gzip:  55.72 kB
-dist/assets/calculator-history-BT1G_sgj.js                 438.75 kB │ gzip:  58.39 kB
+dist/assets/selected-annual-market-Lt-AWqCr.js             353.59 kB │ gzip:  44.80 kB
+dist/assets/anniversaryEditorial-B7pFp-_v.js               381.07 kB │ gzip:  65.62 kB
+dist/assets/etf-card-metadata-CZuOhNGQ.js                  381.96 kB │ gzip:  93.43 kB
+dist/assets/EtfDevelopment-Bl_PNM-f.js                     382.92 kB │ gzip:  59.27 kB
+dist/assets/portfolio-exposure-BiZt0PNR.js                 389.56 kB │ gzip:  55.73 kB
+dist/assets/calculator-history-D_L53nd5.js                 438.75 kB │ gzip:  58.42 kB
 dist/assets/tool-links-CsRAOUxg.js                         456.27 kB │ gzip:  34.63 kB
-dist/assets/comparatifEtf-CJZ6mhTn.js                      496.51 kB │ gzip:  91.18 kB
-dist/assets/automated-etf-CTNy8e6O.js                      504.31 kB │ gzip:  82.87 kB
-dist/assets/selected-annual-returns-MVfRKfXR.js            522.02 kB │ gzip:  85.18 kB
-dist/assets/App-C_R32guR.js                                598.49 kB │ gzip: 139.71 kB
-dist/assets/anniversaire-B7fBjFC2.js                       660.72 kB │ gzip:  86.81 kB
-dist/assets/App-B0hvRqeu.js                                695.79 kB │ gzip: 131.79 kB
+dist/assets/comparatifEtf-CQlrnE0r.js                      496.52 kB │ gzip:  91.19 kB
+dist/assets/automated-etf-OdzR2ldG.js                      504.31 kB │ gzip:  82.95 kB
+dist/assets/selected-annual-returns-BgwDG7m5.js            522.03 kB │ gzip:  85.19 kB
+dist/assets/App-DSh8_H0s.js                                598.49 kB │ gzip: 139.71 kB
+dist/assets/anniversaire-Dpm7CL4U.js                       660.72 kB │ gzip:  86.85 kB
+dist/assets/App-DBl6muyu.js                                695.79 kB │ gzip: 131.81 kB
 
-✓ built in 7.71s
 [plugin builtin:vite-reporter] 
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
-[33m[PLUGIN_TIMINGS] [0mYour build spent 70% of 7.7s inside plugin hooks (5.4s).
+✓ built in 7.36s
+[33m[PLUGIN_TIMINGS] [0mYour build spent 68% of 7.3s inside plugin hooks (5.0s).
 Measured inside the callback, so queue time is excluded and time the callback itself awaited is not:
-  - @tailwindcss/vite:generate:build transform (49%, 3.7s, 30 calls)
-Those rows are 49% of the build; the rest of the 70% is below.
+  - @tailwindcss/vite:generate:build transform (49%, 3.6s, 30 calls)
+Those rows are 49% of the build; the rest of the 68% is below.
 Not measurable — 1 hook whose calls overlap, so elapsed time covers work other calls were doing. Profile with `node --cpu-prof`:
   - vite:asset load (32 calls)
 See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
@@ -4398,30 +4398,30 @@ See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more det
 Route bundles: 29 lazy tools; initial JS 272.53 kB, gzip 89.25 kB; largest chunk 695.80 kB.
 Route total: src/pages/broker-comparator/App.jsx: 522.7 kB (144.3 kB gzip), 13 files; code 756.6/804 kB, data 162.5 kB
 Route total: src/pages/budget-profiles/App.jsx: 438.4 kB (127.3 kB gzip), 12 files; code 714.8/720 kB, data 116.8 kB
-Route total: src/pages/data-review/App.jsx: 1928.7 kB (326.8 kB gzip), 28 files; code 890.5/892 kB, data 1870.6 kB
+Route total: src/pages/data-review/App.jsx: 1928.8 kB (326.9 kB gzip), 28 files; code 890.5/892 kB, data 1871.0 kB
 Route total: src/pages/data-search/App.jsx: 573.5 kB (166.0 kB gzip), 12 files; code 656.8/672 kB, data 340.4 kB
-Route total: src/pages/dca-profiles/App.jsx: 685.0 kB (199.2 kB gzip), 20 files; code 794.8/805 kB, data 399.9 kB
+Route total: src/pages/dca-profiles/App.jsx: 685.1 kB (199.2 kB gzip), 20 files; code 795.1/805 kB, data 399.9 kB
 Route total: src/pages/editorial-radar/App.jsx: 294.4 kB (97.4 kB gzip), 10 files; code 662.2/703 kB, data 0.0 kB
-Route total: src/pages/etf-sheets/App.jsx: 2688.9 kB (610.5 kB gzip), 44 files; code 889.7/906 kB, data 3076.0 kB
+Route total: src/pages/etf-sheets/App.jsx: 2687.9 kB (610.4 kB gzip), 44 files; code 889.7/906 kB, data 3074.6 kB
 Route total: src/pages/factsheet-tweets/App.jsx: 1392.6 kB (339.4 kB gzip), 26 files; code 983.7/2102 kB, data 1002.7 kB
-Route total: src/pages/fee-impact/App.jsx: 538.7 kB (131.9 kB gzip), 18 files; code 700.5/724 kB, data 274.6 kB
-Route total: src/pages/france-100-menages/App.jsx: 373.6 kB (119.4 kB gzip), 16 files; code 737.0/1930 kB, data 21.8 kB
+Route total: src/pages/fee-impact/App.jsx: 538.7 kB (132.0 kB gzip), 18 files; code 700.5/724 kB, data 274.6 kB
+Route total: src/pages/france-100-menages/App.jsx: 373.6 kB (119.3 kB gzip), 16 files; code 737.0/1930 kB, data 21.8 kB
 Route total: src/pages/hey-grok/App.jsx: 457.1 kB (147.1 kB gzip), 12 files; code 915.0/930 kB, data 0.0 kB
-Route total: src/pages/investment-calculator/App.jsx: 1202.3 kB (293.8 kB gzip), 26 files; code 805.7/850 kB, data 979.2 kB
+Route total: src/pages/investment-calculator/App.jsx: 1202.3 kB (293.9 kB gzip), 26 files; code 805.7/850 kB, data 979.2 kB
 Route total: src/pages/investor-portfolio/App.jsx: 323.1 kB (109.5 kB gzip), 14 files; code 691.4/725 kB, data 11.3 kB
-Route total: src/pages/market-facts/App.jsx: 588.2 kB (177.9 kB gzip), 12 files; code 658.7/699 kB, data 321.7 kB
-Route total: src/pages/performance-rankings/App.jsx: 3344.2 kB (1050.0 kB gzip), 63 files; code 809.1/847 kB, data 3951.1 kB
+Route total: src/pages/market-facts/App.jsx: 588.5 kB (178.0 kB gzip), 12 files; code 658.7/699 kB, data 322.0 kB
+Route total: src/pages/performance-rankings/App.jsx: 3343.5 kB (1049.9 kB gzip), 63 files; code 809.1/847 kB, data 3950.3 kB
 Route total: src/pages/portfolio-duels/App.jsx: 1252.5 kB (335.6 kB gzip), 22 files; code 756.4/775 kB, data 1129.9 kB
-Route total: src/pages/portfolio-generator/App.jsx: 1479.0 kB (417.3 kB gzip), 27 files; code 1035.7/1105 kB, data 1176.9 kB
-Route total: src/pages/practical-sheets/App.jsx: 1390.3 kB (334.3 kB gzip), 25 files; code 780.2/793 kB, data 1366.5 kB
-Route total: src/pages/presentations/App.jsx: 438.9 kB (133.8 kB gzip), 16 files; code 744.6/1935 kB, data 107.0 kB
+Route total: src/pages/portfolio-generator/App.jsx: 1478.0 kB (417.1 kB gzip), 27 files; code 1035.7/1105 kB, data 1175.5 kB
+Route total: src/pages/practical-sheets/App.jsx: 1390.0 kB (334.3 kB gzip), 25 files; code 780.2/793 kB, data 1365.8 kB
+Route total: src/pages/presentations/App.jsx: 438.9 kB (133.8 kB gzip), 16 files; code 744.6/1935 kB, data 107.1 kB
 Route total: src/pages/ranking-ideas/App.jsx: 299.7 kB (99.9 kB gzip), 11 files; code 647.0/650 kB, data 17.3 kB
-Route total: src/pages/tweet-bank/App.jsx: 1852.4 kB (412.9 kB gzip), 26 files; code 693.0/694 kB, data 2198.4 kB
-Route total: src/pages/tweet-midi/App.jsx: 7266.3 kB (1812.0 kB gzip), 111 files; code 1153.9/1307 kB, data 8843.4 kB
-Route total: src/pages/tweet-midi/formats/anniversaire/App.jsx: 1814.5 kB (393.5 kB gzip), 27 files; code 771.9/810 kB, data 1752.5 kB
-Route total: src/pages/tweet-midi/formats/comparatif/App.jsx: 3598.9 kB (801.3 kB gzip), 51 files; code 997.5/1189 kB, data 4108.8 kB
+Route total: src/pages/tweet-bank/App.jsx: 1852.4 kB (413.0 kB gzip), 26 files; code 693.0/694 kB, data 2198.4 kB
+Route total: src/pages/tweet-midi/App.jsx: 7265.9 kB (1812.3 kB gzip), 111 files; code 1153.9/1307 kB, data 8842.9 kB
+Route total: src/pages/tweet-midi/formats/anniversaire/App.jsx: 1814.5 kB (393.6 kB gzip), 27 files; code 771.9/810 kB, data 1752.5 kB
+Route total: src/pages/tweet-midi/formats/comparatif/App.jsx: 3598.1 kB (801.4 kB gzip), 51 files; code 997.5/1189 kB, data 4107.8 kB
 Route total: src/pages/tweet-midi/formats/dilemme/App.jsx: 743.0 kB (228.7 kB gzip), 23 files; code 761.7/786 kB, data 466.4 kB
-Route total: src/pages/tweet-midi/formats/lexique/App.jsx: 879.3 kB (266.8 kB gzip), 27 files; code 887.6/896 kB, data 482.3 kB
+Route total: src/pages/tweet-midi/formats/lexique/App.jsx: 879.3 kB (266.7 kB gzip), 27 files; code 887.6/896 kB, data 482.3 kB
 Route total: src/pages/tweet-midi/formats/performance/App.jsx: 1687.6 kB (367.9 kB gzip), 28 files; code 762.4/773 kB, data 1764.0 kB
 Route total: src/pages/tweet-midi/formats/pouvoir/App.jsx: 772.1 kB (233.2 kB gzip), 23 files; code 772.6/788 kB, data 493.9 kB
 Route total: src/pages/wealth-simulator/App.jsx: 352.2 kB (112.9 kB gzip), 18 files; code 713.7/1897 kB, data 32.4 kB

@@ -39,7 +39,7 @@ export default function AllocationEditor({lines, onChange, dca = false, ordered 
     group:references[key]?.kind === 'equity' ? 'Actions' : exposureGroup({name:catalog[key]?.name || ASSETS[key][1]}),
     badges:references[key]?.pea === true ? ['PEA'] : [],
   }))
-  function edit(asset, patch) { onChange(lines.map(line => line.asset === asset ? {...line, ...patch} : line)) }
+  function edit(asset, patch) { if(patch.asset && patch.asset!==asset) setEditing(null); onChange(lines.map(line => line.asset === asset ? {...line, ...patch} : line)) }
   return <>
     <h2>Mon allocation</h2>
     <p className="dca-note">Personnalise chaque ligne avec « Changer l’actif », ou ajoute un support. {Object.keys(ASSETS).length} actifs disponibles par nom, ticker ou ISIN.</p>
@@ -57,7 +57,7 @@ export default function AllocationEditor({lines, onChange, dca = false, ordered 
       <div><strong>{line.label}</strong><small>{line.isin}</small><button type="button" className="dca-change-asset" aria-label={`Changer l’actif position ${index+1}`} aria-expanded={changing===line.asset} onClick={()=>setChanging(changing===line.asset?null:line.asset)}>{changing===line.asset?'Annuler':'Changer l’actif'}</button></div>
       <label><span className="sr-only">Poids position {index+1}</span><input aria-label={`Poids position ${index+1}`} type="number" min="0" max="100" step="0.01" value={Number.isFinite(line.weight) ? line.weight : ''} onChange={e => edit(line.asset, {weight:e.target.value === '' ? NaN : Number(e.target.value)})} /><span>%</span></label>
 
-      <button aria-label={`Retirer ${line.label}`} onClick={() => onChange(lines.filter((_,i) => i !== index))}>×</button>
+      <button aria-label={`Retirer ${line.label}`} onClick={() => {setEditing(null);onChange(lines.filter((_,i) => i !== index))}}>×</button>
      </div>
      {changing===line.asset&&<div className="dca-replace-asset">
       <p className="dca-note">Le nouvel actif conserve le poids{dca?' et le versement mensuel':''} de cette ligne.</p>

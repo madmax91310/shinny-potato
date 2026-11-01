@@ -63,13 +63,13 @@ function ring(ctx,rows,cx,cy,r,inner){
 }
 function panel(ctx,x,y,width,height){ctx.fillStyle=C.panel;ctx.strokeStyle='#23425e';ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(x,y,width,height,24);ctx.fill();ctx.stroke()}
 function centered(ctx,value,x,y,width,size,color=C.ivory,weight=700){ctx.save();ctx.textAlign='center';text(ctx,value,x,y,width,size,color,weight,'DcaEditorial');ctx.restore()}
-function wrappedLabel(ctx,value,x,y,width,size){
- ctx.font=`400 ${size}px Arial`
- if(ctx.measureText(value).width<=width){text(ctx,value,x,y,width,size,C.ivory,400);return}
+function wrappedLabel(ctx,value,x,y,width,size,family='Arial',weight=400){
+ ctx.font=`${weight} ${size}px ${family}`
+ if(ctx.measureText(value).width<=width){text(ctx,value,x,y,width,size,C.ivory,weight,family);return}
  const words=value.split(' ');let first=''
  while(words.length&&ctx.measureText((first+' '+words[0]).trim()).width<=width)first=(first+' '+words.shift()).trim()
- text(ctx,first||words.shift(),x,y-8,width,size,C.ivory,400)
- text(ctx,words.join(' '),x,y+size-8,width,size,C.ivory,400)
+ text(ctx,first||words.shift(),x,y-8,width,size,C.ivory,weight,family)
+ text(ctx,words.join(' '),x,y+size*1.25-8,width,size,C.ivory,weight,family)
 }
 function fullPortfolio(ctx,p,a){
  centered(ctx,'Épargnant Libre',800,83,1480,49)
@@ -207,7 +207,7 @@ export async function renderDcaImage(input,field='countries',maxPositions=MAX_PO
   const y=top+i*rowHeight
   rule(ctx,66,y,710)
   text(ctx,euro(l.amount),66,y+rowHeight*.66,235,Math.min(49,rowHeight*.65),C.yellow,700,'DcaEditorial')
-  wrappedLabel(ctx,l.label,324,y+rowHeight*.42,450,Math.min(31,rowHeight*.44))
+  wrappedLabel(ctx,l.label,324,y+rowHeight*.42,450,Math.min(31,rowHeight*.40),'DcaEditorial',700)
  })
  text(ctx,'Son portefeuille',865,112,670,65,C.ivory,700,'DcaEditorial')
  text(ctx,field==='sectors'?'Exposition sectorielle':'Exposition géographique',880,163,650,32,C.muted,400)

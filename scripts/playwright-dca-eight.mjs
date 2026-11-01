@@ -44,6 +44,14 @@ for(const width of [1440,390]){
   await page.getByRole('spinbutton',{name:'DCA position 8',exact:true}).fill('50')
   await page.getByRole('spinbutton',{name:'DCA position 8',exact:true}).press('Enter')
   assert.equal(await holdings.locator('input[type=number]').count(),8)
+  // Replacing an asset removes the focused picker: commit its order explicitly.
+  for(const asset of ['silver','world']){
+   await page.getByRole('button',{name:'Changer l’actif position 1',exact:true}).click()
+   await page.getByRole('searchbox',{name:'Rechercher : Remplacer l’actif position 1',exact:true}).fill(references[asset].isin)
+   await page.getByRole('group',{name:'Remplacer l’actif position 1',exact:true}).locator(`[data-option][data-value="${asset}"]`).click()
+   assert.deepEqual(await values(holdings),[30,20,15,10,8,7,6,4])
+   assert.equal(await page.getByRole('spinbutton',{name:'DCA position 1',exact:true}).inputValue(),'100')
+  }
   const first=holdings.locator('input').first(),weight=page.getByRole('spinbutton',{name:'Poids position 1',exact:true})
   await weight.fill('35')
   assert.equal(await first.inputValue(),'30','No jump during typing')
