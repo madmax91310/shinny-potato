@@ -19,7 +19,7 @@ class OfficialClosingPrice(unittest.TestCase):
     def setUp(self):
         manifest = json.loads((FIXTURES/'manifest.json').read_text())
         self.config = next(row for row in json.loads((FIXTURES.parents[1]/'monthly-automation.json').read_text())['series'] if row['id'] == 'sbux')
-        self.assertEqual(self.config['terminalCloseCorroboration'], manifest['config']['terminalCloseCorroboration'])
+        self.assertEqual(self.config, {k:v for k,v in manifest['config'].items() if k != 'terminalCloseCorroboration'})
         self.raw = {}
         for name, proof in manifest['responses'].items():
             body = gzip.decompress((FIXTURES/(name+'.json.gz')).read_bytes())
@@ -35,8 +35,9 @@ class OfficialClosingPrice(unittest.TestCase):
         return collect_yahoo(config or self.config, NOW, lambda url: copy.deepcopy(raw[url]))
 
     def test_distinct_quote_never_reprices_or_readjusts_the_history(self):
-        with self.assertRaisesRegex(ValueError, 'Shifted/duplicate'):
-            self.collect(config={k:v for k,v in self.config.items() if k != 'terminalCloseCorroboration'})
+        with patch('nasdaq_month_close.supports', return_value=False):
+            with self.assertRaisesRegex(ValueError, 'Shifted/duplicate'):
+                self.collect()
         result = self.collect()
         healthy = copy.deepcopy(self.raw)
         block = healthy[self.monthly]['chart']['result'][0]
@@ -85,11 +86,13 @@ class OfficialClosingPrice(unittest.TestCase):
         from nasdaq_month_close import qualify
         block = self.raw[self.monthly]['chart']['result'][0]
         canonical, quote = block['indicators']['quote'][0]['close'][-2:]
-        for key in ('id','symbol','currency','timezone','consumerScope','instrumentType','terminalCloseCorroboration'):
+        for key in ('id','symbol','currency','timezone','consumerScope','instrumentType','isin'):
             with self.subTest(key=key):
                 with self.assertRaises(ValueError):
                     qualify({**self.config,key:'OTHER'}, dt.date(2026,10,30), canonical,
                             canonical, quote, block['meta'], lambda _: self.fail('Wrong instrument must not consult Nasdaq'))
+        with patch('nasdaq_month_close.POLICY', 'unqualified-route'):
+            with self.assertRaises(ValueError):self.collect()
         raw = copy.deepcopy(self.raw)
         # Both Yahoo historical candles agree, but not with the exact decimal
         # or binary32 representation of the Nasdaq cent quotation.

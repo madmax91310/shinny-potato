@@ -9,17 +9,29 @@ import datetime as dt
 from decimal import Decimal, InvalidOperation
 import hashlib
 import json
+from pathlib import Path
 import re
 import struct
 from zoneinfo import ZoneInfo
 
 POLICY = 'nasdaq-sbux-common-stock-historical-close'
 INFO = 'https://api.nasdaq.com/api/quote/SBUX/info?assetclass=stocks'
+HISTORY = 'https://api.nasdaq.com/api/quote/SBUX/historical?assetclass=stocks&fromdate={from_date}&todate={to_date}&limit=100'
+
+
+def supports(config):
+    identity = tuple(config.get(k) for k in ('id', 'symbol', 'currency', 'timezone', 'parser', 'field', 'consumerScope', 'instrumentType'))
+    if identity != ('sbux', 'SBUX', 'USD', 'America/New_York', 'yahoo', 'adjclose', 'equity', 'EQUITY') or config.get('isin') not in (None,'US8552441094'):
+        return False
+    routes = json.loads(Path(__file__).with_name('issuer-access-routes.json').read_text())
+    rule = routes.get('nasdaq',{}).get('historicalCloseCorroboration',{})
+    return rule == {'policy':POLICY, 'recordId':'sbux','isin':'US8552441094',
+                    'symbol':'SBUX','currency':'USD','stockType':'Common Stock','exchange':'NASDAQ-GS',
+                    'identityUrl':INFO,'historyUrlTemplate':HISTORY}
 
 
 def qualify(config, session, canonical, daily_close, quote, meta, fetch):
-    identity = tuple(config.get(k) for k in ('id', 'symbol', 'currency', 'timezone', 'parser', 'field', 'consumerScope', 'instrumentType'))
-    if identity != ('sbux', 'SBUX', 'USD', 'America/New_York', 'yahoo', 'adjclose', 'equity', 'EQUITY') or config.get('terminalCloseCorroboration') != POLICY:
+    if not supports(config):
         raise ValueError('Unqualified Nasdaq terminal-close policy or instrument')
     if canonical != daily_close or meta.get('priceHint') != 2 or meta.get('currency') != 'USD' or meta.get('symbol') != 'SBUX' or meta.get('exchangeName') != 'NMS':
         raise ValueError('Nasdaq corroboration requires the exact agreeing USD historical candles')
@@ -54,8 +66,7 @@ def qualify(config, session, canonical, daily_close, quote, meta, fetch):
     first = session.replace(day=1)
     following = (first.replace(day=28) + dt.timedelta(days=4)).replace(day=1)
     last = following - dt.timedelta(days=1)
-    history_url = ('https://api.nasdaq.com/api/quote/SBUX/historical?assetclass=stocks'
-                   f'&fromdate={first.isoformat()}&todate={last.isoformat()}&limit=100')
+    history_url = HISTORY.format(from_date=first.isoformat(), to_date=last.isoformat())
     bodies = {INFO: fetch(INFO), history_url: fetch(history_url)}
     for body in bodies.values():
         if body.get('status', {}).get('rCode') != 200 or body['status'].get('bCodeMessage') or not isinstance(body.get('data'), dict):
@@ -83,6 +94,7 @@ def qualify(config, session, canonical, daily_close, quote, meta, fetch):
         raise ValueError('Official Nasdaq close differs from historical daily/monthly candles')
     return {
         'kind': 'exact-stock-official-historical-close',
+        'policy': POLICY,
         'isin': 'US8552441094', 'symbol': 'SBUX', 'market': 'NASDAQ-GS', 'currency': 'USD',
         'sessionDate': session.isoformat(), 'officialClose': float(official_close),
         'canonicalHistoricalClose': canonical, 'dailyHistoricalClose': daily_close,

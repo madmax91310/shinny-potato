@@ -128,9 +128,9 @@ def collect_yahoo(config, now, fetch=get_json):
                         and dt.datetime.fromtimestamp(stamp, UTC).astimezone(ZoneInfo(zone)).date() == day):
                     reject('Shifted/duplicate Yahoo monthly candle')
                 if close != buckets[key] or close != final_close:
-                    if not config.get('terminalCloseCorroboration') or buckets[key] != final_close:
+                    from nasdaq_month_close import qualify, supports
+                    if not supports(config) or buckets[key] != final_close:
                         reject('Shifted/duplicate Yahoo monthly candle')
-                    from nasdaq_month_close import qualify
                     terminal_close_corroboration = qualify(config, day, buckets[key], final_close,
                                                           close, monthly_data['meta'], fetch)
                 terminal_quote = {'timestamp': stamp, 'sessionDate': day.isoformat(),
