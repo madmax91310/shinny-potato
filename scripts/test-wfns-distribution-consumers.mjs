@@ -32,7 +32,11 @@ console.log('WFNS: original cash repair and unresolved quote preserved; independ
 const amundi=ASSETS.etfFR0007054358, previousAmundi=JSON.parse(gunzipSync(fs.readFileSync('reports/amundi-distributions-2026-10-23/original-record.json.gz'))).active
 assert.equal(amundi.isin,'FR0007054358');assert.equal(amundi.currency,'EUR');assert.equal(amundi.ticker,'LYSX');assert.equal(amundi.mic,'XETR')
 assert.equal(amundi.points[0].date,previousAmundi.points[0][0],'No earlier history inferred from the creation-date ambiguity')
-assert.deepEqual(amundi.anniversaryPoints,previousAmundi.anniversaryPoints.map(([date,price])=>({date,price})))
+// The archived raw quotations are immutable evidence of the cash repair.
+// Later validated months extend the series without rewriting that evidence.
+const archivedAnniversary=previousAmundi.anniversaryPoints.map(([date,price])=>({date,price}))
+const archivedEnd=archivedAnniversary.at(-1).date
+assert.deepEqual(amundi.anniversaryPoints.filter(point=>point.date<=archivedEnd),archivedAnniversary)
 const fixed2020=-2.885047490153836
 assert(Math.abs((amundi.points.find(p=>p.date==='2020-12').price/amundi.points.find(p=>p.date==='2019-12').price-1)*100-fixed2020)<1e-8)
 assert.throws(()=>periodReturn(RANKING_ASSETS.etfFR0007054358,'2019-12','2020-12'),/rapprochement financier non résolu/)
