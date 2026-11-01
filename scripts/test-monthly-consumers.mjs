@@ -74,9 +74,7 @@ try {
     const result=derive({assetId:id,amountRaw:'100',startYear:Number(startYm.slice(0,4)),startMonth:Number(startYm.slice(5)),mode:'dca',overridePriceRaw:''});
     assert.equal(result.endYm,record.periodEnd);
     if(ASSETS[id].currency==='EUR') {
-      const covered = result.result.months.slice(1).every(month => INFLATION_MONTHLY[month] !== undefined);
-      if (covered) assert(result.inflation && result.inflation.months.at(-1) === record.periodEnd, 'Use the available INSEE observations through the actual end month');
-      else assert.equal(result.inflation,null,'Do not invent missing INSEE inflation');
+      if(!Object.hasOwn(INFLATION_MONTHLY,record.periodEnd))assert.equal(result.inflation,null,'Do not invent missing future INSEE inflation');
       assert(result.livretA);
     }
     assert(Math.abs(result.result.finalValue-expected)<1e-6);

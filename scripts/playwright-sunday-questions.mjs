@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict'
+import { mkdirSync } from 'node:fs'
 import parseTweet from 'twitter-text/dist/parseTweet.js'
 import { chromium } from 'playwright'
 import { staticBrowser, staticBase } from './static-browser.mjs'
 import { SUNDAY_QUESTIONS, SUNDAY_THEMES } from '../src/pages/tweet-bank/sunday-questions.js'
 import { LAST_PUBLICATION_KEY } from '../src/pages/tweet-bank/storage.js'
 const publicBase=process.env.SUNDAY_PUBLIC_URL
+mkdirSync('test-artifacts/sunday-questions', { recursive: true })
 for (const width of [1440,390]) {
   let browser,context,page
   if (publicBase) {
@@ -77,7 +79,7 @@ for (const width of [1440,390]) {
     await page.getByRole('searchbox').fill('')
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No horizontal overflow')
     assert(await page.locator('.tb-tweet-text').evaluateAll(elements=>elements.every(el=>el.scrollHeight<=el.clientHeight+2)),'Full question text visible')
-    await page.screenshot({path:`/workspace/sunday-${publicBase?'public':'local'}-${width}.png`,fullPage:false})
+    await page.screenshot({path:`test-artifacts/sunday-questions/sunday-${publicBase?'public':'local'}-${width}.png`,fullPage:false})
     await card.getByLabel('Publié',{exact:true}).check()
     await page.getByRole('button',{name:'Tirer une question non publiée',exact:true}).isDisabled().then(value=>assert(value))
     await page.getByLabel('Non publiées',{exact:true}).check()

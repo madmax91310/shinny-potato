@@ -17,6 +17,7 @@ import threading
 import urllib.error
 from functools import lru_cache
 from issuer_documents import download, document_date, pdf_text
+from data_automation import ResponseFormatError
 
 ROOT=Path(__file__).resolve().parents[1]
 CONTRACTS=json.loads((ROOT/'src/data/native-index-composition-contracts.json').read_text())
@@ -127,7 +128,7 @@ def qualify_subject_document(raw,isin,now,url):
         stamp=parsed['aum']['asOf']
     return stamp
 
-def qualify_subject(isin,now,fetch=download):
+def qualify_subject(isin,now,fetch=download,*,attempts=None):
     share,_=contracts(isin)
     if share.get('shareDocumentKind')=='ubs-index-factsheet':
         from collect_remaining_documents import ubs_urls,ubs
@@ -136,12 +137,23 @@ def qualify_subject(isin,now,fetch=download):
             for url in (primary,primary.replace('https://swissfunddata.ch/','https://www.swissfunddata.ch/')):
                 try:raw=fetch(url,headers={'User-Agent':'Mozilla/5.0','Accept':'application/pdf'})
                 except (urllib.error.URLError,TimeoutError,ConnectionError)as error:
-                    errors.append(f'{url}: {error}');continue
+                    errors.append(f'{url}: {error}')
+                    if attempts is not None:attempts.append({'sourceUrl':url,'status':'failed','error':str(error)})
+                    continue
+                except ResponseFormatError as error:
+                    # The publisher returns HTTP 200 with its explicit missing-
+                    # document page before a monthly PDF is published. Neither
+                    # other HTML nor a changed financial PDF permits fallback.
+                    if 'received Dokument nicht gefunden | Swiss Fund Data at ' not in str(error):raise
+                    errors.append(f'{url}: document not published')
+                    if attempts is not None:attempts.append({'sourceUrl':url,'status':'waiting-publication','error':str(error)})
+                    continue
                 text=pdf_text(raw);flat=' '.join(text.split())
                 labels=re.findall(r'^\s*Index name[ \t]+([^\n]+?)[ \t]*$',text,re.M)
                 if share['shareTitle']not in flat or labels!=[share['shareBenchmarkLabel']]:
                     raise ValueError('Wrong exact UBS share or net benchmark')
                 record=ubs(text,{'isin':isin,'currency':share['shareCurrency'],'sourceUrl':url},now,digest(raw),performance_text=pdf_text(raw,raw=True))
+                if attempts is not None:attempts.append({'sourceUrl':url,'status':'validated','asOf':record['countries']['asOf'],'sha256':digest(raw)})
                 return raw,url,record['countries']['asOf'],None
         raise ConnectionError('UBS current benchmark proof unavailable: '+'; '.join(errors))
     if share.get('shareDocumentKind') in ('amundi-index-factsheet','blackrock-index-factsheet'):
@@ -224,7 +236,8 @@ def return_weight_method(index_id,now,fetch):
 def collect(share,now,fetch=download,capture=None):
     isin=share['isin'];subject,index=contracts(isin)
     if share.get('currency')!=subject.get('shareCurrency','EUR'):raise ValueError('Wrong subject share currency')
-    raw,url,stamp,discovery=qualify_subject(isin,now,fetch)
+    subject_attempts=[]
+    raw,url,stamp,discovery=qualify_subject(isin,now,fetch,attempts=subject_attempts)
     policy=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['etf.default']
     if (now.date()-dt.date.fromisoformat(stamp)).days>policy['dataDays']:raise ValueError('Subject benchmark proof is stale')
     if capture is None:
@@ -253,6 +266,7 @@ def collect(share,now,fetch=download,capture=None):
                   sourceUrls=[url,index['metadataSourceUrl'],index['weightSourceUrl'],index['publisherPageUrl']])
     if index.get('currencyWeightContract'):record['sourceUrls'].append(index['currencyWeightContract']['sourceUrl'])
     if index.get('returnWeightContract'):record['sourceUrls'].extend(d['sourceUrl']for d in index['returnWeightContract']['documents'])
+    if len(subject_attempts)>1:record['shareSourceAttempts']=subject_attempts
     if discovery:
         record.update(shareDiscoverySourceUrl=discovery['sourceUrl'],shareDiscoverySha256=discovery['sha256'])
         record['sourceUrls'].append(discovery['sourceUrl'])
