@@ -51,12 +51,8 @@ try {
  assert.equal(payload.filters.kind,'action')
  assert(Number.isFinite(Date.parse(payload.generatedAt)))
  for(const entry of [
-  {path:'impact-frais',button:'Télécharger l’image PNG',kind:'png',name:/^epargnant-libre-impact-des-frais\.png$/},
   {path:'comparatif-courtiers',button:'Télécharger l’image PNG',kind:'png',name:/^duel-courtiers-.+\.png$/},
   {path:'fiches-pratiques',button:'Télécharger l’image PNG',kind:'png',name:/^epargnant-libre-.+\.png$/},
-  {path:'simulateur-patrimoine',button:'Télécharger l’image',kind:'png',name:/^projection-patrimoine\.png$/},
-  {path:'simulateur-patrimoine',button:'Exporter JSON',kind:'wealth',name:/^simulation-patrimoine\.json$/},
-  {path:'simulateur-patrimoine',button:'Exporter les projections CSV',kind:'csv',name:/^projection-patrimoine\.csv$/},
   {path:'france-100-menages',button:'Exporter le JSON',kind:'household',name:/^france-100-menages-.+\.json$/},
   {path:'bibliotheque-donnees',button:'Exporter la fiche JSON',kind:'record',name:/^donnees-.+\.json$/},
  ]){
@@ -70,15 +66,13 @@ try {
   if(entry.kind==='png'){
    assert.equal(bytes.subarray(1,4).toString(),'PNG')
    assert(bytes.readUInt32BE(16)>300 && bytes.readUInt32BE(20)>300)
-  }else if(entry.kind==='csv')assert(bytes.toString().startsWith('patrimoine;annee;capital;capital_reel;'))
-  else {
+  } else {
    const data=JSON.parse(bytes.toString())
-   if(entry.kind==='wealth')assert(data.version===1 && data.portfolios.a && data.portfolios.b)
-   else {assert.equal(data.schemaVersion,1);assert.equal(typeof data.id,'string')}
+   assert.equal(data.schemaVersion,1);assert.equal(typeof data.id,'string')
   }
  }
  assert.deepEqual(errors,[])
- console.log(`Export lifecycle ${width}px: injected click failure releases link/URL; retry downloads PNG equal to preview; direct JSON failure/retry and eight PNG/JSON/CSV consumer downloads OK.`)
+ console.log(`Export lifecycle ${width}px: injected click failure releases link/URL; retry downloads PNG equal to preview; direct JSON failure/retry and active PNG/JSON consumer downloads OK.`)
 } finally {await browser.close()}
 
 }

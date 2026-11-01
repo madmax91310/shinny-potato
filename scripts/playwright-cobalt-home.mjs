@@ -35,9 +35,9 @@ try {
   await page.getByRole('button',{name:'Effacer',exact:true}).click()
   assert.equal(await page.locator('.workspace-tool-card').count(), HOME_TOOLS.length)
   // Favoriting moves a tool into the favorites group without duplicating it.
-  const favorite = page.getByRole('button',{name:'Favori : Impact des frais',exact:true})
+  const favorite = page.getByRole('button',{name:'Favori : Comparatif courtiers',exact:true})
   await favorite.click()
-  assert.equal(await page.locator('.home-favorites a[href$="/impact-frais"]').count(),1)
+  assert.equal(await page.locator('.home-favorites a[href$="/comparatif-courtiers"]').count(),1)
   await page.reload({waitUntil:'networkidle'})
   assert.equal(await favorite.getAttribute('aria-pressed'),'true')
   await favorite.focus()
@@ -78,8 +78,8 @@ try {
   await page.getByRole('link',{name:'← Tous les outils',exact:true}).click()
   await page.locator('.home-overview').waitFor()
   assert.equal(await page.locator('.workspace-tool-card').count(), HOME_TOOLS.length)
-  await page.locator('.workspace-tool-card[href$="/impact-frais"]').click()
-  await page.getByRole('heading',{name:'Impact des frais',exact:true,level:1}).waitFor()
+  await page.locator('.workspace-tool-card[href$="/comparatif-courtiers"]').click()
+  await page.getByRole('heading',{name:'Comparatif courtiers',exact:true,level:1}).waitFor()
   await page.getByRole('link',{name:'← Tous les outils',exact:true}).click()
   await page.locator('.home-overview').waitFor()
   await page.getByRole('button',{name:'Calendrier',exact:true}).click()
@@ -127,7 +127,7 @@ try {
         Object.defineProperty(Storage.prototype,'setItem',{value(){throw new DOMException('blocked','QuotaExceededError')}})
       } else {
         localStorage.setItem('epargnant-libre:home-view', kind === 'corrupt' ? '{' : JSON.stringify('unknown'))
-        localStorage.setItem('epargnant-libre:home-favorites',kind === 'corrupt' ? '{' : JSON.stringify(['/dilemme','/impact-frais','/impact-frais','/removed']))
+        localStorage.setItem('epargnant-libre:home-favorites',kind === 'corrupt' ? '{' : JSON.stringify(['/dilemme','/impact-frais','/simulateur-patrimoine','/comparatif-courtiers','/comparatif-courtiers','/removed']))
       }
     }, fixture)
     const isolated = await context.newPage()
@@ -137,7 +137,7 @@ try {
     await isolated.getByRole('button',{name:'Calendrier',exact:true}).click()
     await isolated.getByRole('tab',{name:/^Lundi/}).click()
     await isolated.getByRole('button',{name:'Vue d’ensemble',exact:true}).click()
-    await isolated.getByRole('button',{name:'Favori : Impact des frais',exact:true}).click()
+    await isolated.getByRole('button',{name:'Favori : Comparatif courtiers',exact:true}).click()
     assert.equal(await isolated.locator('.workspace-tool-card').count(), HOME_TOOLS.length)
     await context.close()
   }

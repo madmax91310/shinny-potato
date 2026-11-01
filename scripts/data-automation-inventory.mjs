@@ -125,7 +125,7 @@ export function buildDataAutomationInventory(){
   const nature=fieldQualification(field,record)
   const matchingCoverage=catalogCoverage(field,record,coverageMap,AUTOMATED_ETF)
   return {id:record.id,type:record.type,name:record.name,field:field.label,fieldIndex:index,registry:field.registry,
-   consumers:record.consumers.filter(c=>c.path!=='/impact-frais'||['Identité','Frais annuels (%)'].includes(field.label)),mode:registry?.mode??'unmapped',upstreamWorkflows:registry?.upstreamWorkflows??[],
+   consumers:record.consumers,mode:registry?.mode??'unmapped',upstreamWorkflows:registry?.upstreamWorkflows??[],
    qualification:'source-configuration-only',nature,valuePresent:field.value!==null&&field.value!==undefined&&(!Array.isArray(field.value)||field.value.length>0),
    coverageReference:matchingCoverage?{id:matchingCoverage.id,field:matchingCoverage.field,state:matchingCoverage.state,checkedAt:matchingCoverage.checkedAt}:null,
    provenanceGap:['live','history'].includes(nature.kind)&&(!evidence.sourceUrls?.length||!evidence.checkedAt),

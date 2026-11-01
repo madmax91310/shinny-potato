@@ -13333,7 +13333,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
         "checkedAt": "2026-11-01",
-        "sha256": "aaa506dd448539a68989951323ab6d977edeafcc30caaed8fa6633902c5e62f7",
+        "sha256": "8fd9c0b071b240d11a6a1d58ca890c4a0e1f145b9f7de4b5a235829e0e913dc2",
         "label": "Composition officielle automatisée · Nikkei 225"
       },
       "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
@@ -13458,7 +13458,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
         "checkedAt": "2026-11-01",
-        "sha256": "cd17bfdc7a22945019e4ac618c24637f1468605aed40191fedb3a333f5bf8e04",
+        "sha256": "780fef03de5e103d7b17561f1f7e355715774988231b0240591fae7fd58b51a6",
         "label": "Rendements calendaires officiels automatisés · Nikkei 225"
       },
       "performance": {
@@ -16162,7 +16162,7 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
         "checkedAt": "2026-11-01",
-        "sha256": "28aaaaec05b7cc86160cc15b9f1ce9744d1a7f75582224449ae301c7ff8ee88b",
+        "sha256": "409d4139a85bd96e56bcdd8df5b5860743afc2a8b5ab4c8b845e83244f67e49e",
         "label": "Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income"
       },
       "performance": {
@@ -16391,7 +16391,8 @@
         "sha256": "0220f17aa1f43fe31b65907892a6694235b4c5ce7b7af48ef16a64735f4fcdd9",
         "label": "Données publiques numériques S&P DJI",
         "retrievedAt": "2026-11-01T07:19:50.451868+00:00",
-        "transport": "official-response-handoff"
+        "transport": "official-response-handoff",
+        "primaryAccessError": "HTTP Error 403: Forbidden"
       },
       "provenance": "Données publiques utilisées par la page S&P DJI de l’indice exact. Dates d’effet, identités, classification, totaux des pays/secteurs et poids cumulé du top dix contrôlés. Rendements conservés séparément."
     },
@@ -16944,7 +16945,8 @@
         "sha256": "5406ab25d9dc9b1707a755ac739d7ac6e646519ebed22a4b81a110d466243de8",
         "label": "Données publiques numériques S&P DJI",
         "retrievedAt": "2026-11-01T07:19:50.451868+00:00",
-        "transport": "official-response-handoff"
+        "transport": "official-response-handoff",
+        "primaryAccessError": "HTTP Error 403: Forbidden"
       },
       "provenance": "Données publiques utilisées par la page S&P DJI de l’indice exact. Dates d’effet, identités, classification, totaux des pays/secteurs et poids cumulé du top dix contrôlés. Rendements conservés séparément."
     },
@@ -17216,7 +17218,7 @@
       "source": {
         "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
         "checkedAt": "2026-11-01",
-        "sha256": "11b3b1fff494e32e8e1ff6db9cc55dcb0ea092c44eb12c7a1a6043d8ffe175e3",
+        "sha256": "4c437514335f5e955c65c060ccf175720d95c0d2cd6c87b39b3958f356a7dfb7",
         "label": "Rendements calendaires officiels automatisés · TOPIX"
       },
       "performance": {

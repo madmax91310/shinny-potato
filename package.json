@@ -42,8 +42,6 @@
     "audit:etf-completeness": "node scripts/audit-etf-completeness.mjs",
     "audit:index-completeness": "node scripts/audit-index-completeness.mjs",
     "report:automation": "node scripts/report-automation-coverage.mjs",
-    "test:wealth": "node scripts/test-wealth-simulator.mjs",
-    "test:wealth:browser": "node scripts/playwright-wealth.mjs",
     "test:radar": "node scripts/test-dws-reconciliation.mjs && node scripts/test-editorial-radar.mjs && node scripts/test-radar-editorial.mjs && node scripts/test-radar-notifications.mjs && node scripts/test-purchasing-power-news.mjs && node scripts/test-radar-publications.mjs && node scripts/test-radar-extensions.mjs && node scripts/test-radar-consumer.mjs && node scripts/test-radar-coverage.mjs && node scripts/test-radar-depth.mjs && node scripts/test-radar-audit-fixes.mjs && node scripts/test-radar-source-recovery.mjs && node scripts/test-radar-publication-policy.mjs && node scripts/test-browser-radar-chrome.mjs && node scripts/test-radar-observation-reliability.mjs && node scripts/test-radar-workflow-state.mjs && node scripts/test-radar-composition-verification.mjs && node scripts/test-radar-state-codec.mjs",
     "test:radar:browser": "node scripts/playwright-radar.mjs && node scripts/playwright-radar-audit.mjs && node scripts/playwright-radar-reliability.mjs",
     "inventory": "node scripts/build-app-inventory.mjs",

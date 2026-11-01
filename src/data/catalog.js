@@ -12,7 +12,6 @@ import { AUTOMATED_ETF, HISTORICAL_AUTOMATED_PERFORMANCE as AUTOMATED_PERFORMANC
 import { VERIFIED_RETURNS } from './verified-returns.js';
 import { SIMULATION_PROXIES } from './simulation-proxies.js';
 import { CATALOG as DUEL_ASSETS } from './duel-assets.js';
-import { FEE_COMPARISON_ASSETS } from './fee-comparison-assets.js';
 import { MONTHLY_MARKET_STORY_IDS } from './market-story-selection.js';
 import { ALLOCATION_CASE_DEFINITIONS } from './allocation-cases.js';
 import { INSTRUMENTS_BY_ISIN } from './instruments.js';
@@ -62,7 +61,6 @@ ASSETS.forEach((x) => {
 
 });
 DUEL_ASSETS.forEach(x => use(x.isin, 'Duels de portefeuilles', '/duels-portefeuilles'));
-FEE_COMPARISON_ASSETS.forEach(x => use(x.isin, 'Impact des frais', '/impact-frais'));
 DEFAULT_THEMES.forEach((t) => t.etfs.forEach((x) => use(x.isin, 'Comparatif ETF', '/comparatif-etf')));
 SHEETS.forEach((x) => use(x.isin, 'Coulisses des indices', '/tweets-factsheets'));
 ['IE00B1FZS913','IE00B2NPKV68'].forEach(isin => use(isin, 'Banque de tweets', '/banque-tweets'));

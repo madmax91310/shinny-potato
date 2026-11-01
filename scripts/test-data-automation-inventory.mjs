@@ -40,7 +40,6 @@ assert.equal(report.assets.length,report.summary.assetAutomation.profiles,'read-
 
 for (const r of report.registries.filter(r=>/holdings-\d+\.json$/.test(r.path))) assert(r.consumers.length>0, `Dynamic fragment has real consumers: ${r.path}`)
 assert(report.registries.find(r=>r.path==='src/data/dca-complete-holdings.json').dynamicBindings.length)
-assert(report.fields.filter(f=>f.consumers.some(c=>c.path==='/impact-frais')).every(f=>['Identité','Frais annuels (%)'].includes(f.field)))
 const {sourceConditions}=await import('./lib/source-conditions.mjs')
 assert.equal(sourceConditions('https://new-source.test/http-200').reuseStatus,'unverified')
 assert.equal(sourceConditions('https://new-source.test/http-200').license,null)
