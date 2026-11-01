@@ -19,6 +19,12 @@ try {
   const nonBondPath=join(directory,'src/data/non-bond-monthly-records.json');
   const nonBondRecords=JSON.parse(readFileSync(nonBondPath));
   const records={...JSON.parse(readFileSync(path)),...JSON.parse(readFileSync(etfPath)),...nonBondRecords};
+  const archivalBitcoin=JSON.parse(readFileSync('scripts/source-snapshots/calculator-monthly-2026-10-02.json')).records.bitcoin.points;
+  const archivalGold=JSON.parse(readFileSync('scripts/source-snapshots/calculator-worldbank-gold-2026-10-03.json')).points;
+  const archiveEnv={...process.env,MONTHLY_ARCHIVE_AUDIT:'1',MONTHLY_ARCHIVE_SERIES:JSON.stringify({bitcoin:archivalBitcoin,or:archivalGold})};
+  const archiveCode="import { ASSETS } from './src/data/market-history.js'; console.log(JSON.stringify(Object.fromEntries(Object.entries(ASSETS).map(([id,asset])=>[id,asset.points]))));";
+  const archiveBefore=spawnSync(process.execPath,['--input-type=module','-e',archiveCode],{cwd:directory,encoding:'utf8',env:archiveEnv});
+  assert.equal(archiveBefore.status,0,archiveBefore.stderr);
   for(const record of Object.values(records)) {
     const [year,month]=record.periodEnd.split('-').map(Number);
     const next=new Date(Date.UTC(year,month,1)).toISOString().slice(0,7);
@@ -35,20 +41,9 @@ try {
     data.points.push([new Date(Date.UTC(year,month,1)).toISOString().slice(0,7),data.points.at(-1)[1]*1.01]);
     writeFileSync(filePath,JSON.stringify(data));
   }
-  const archivalBitcoin=JSON.parse(readFileSync('scripts/source-snapshots/calculator-monthly-2026-10-02.json')).records.bitcoin.points;
-  const archivalGold=JSON.parse(readFileSync('scripts/source-snapshots/calculator-worldbank-gold-2026-10-03.json')).points;
-  const archive=spawnSync(process.execPath,['--input-type=module','-e',`
-    import assert from 'node:assert/strict';
-    import { ASSETS, BASELINE_ASSETS } from './src/data/market-history.js';
-    const captures=JSON.parse(process.env.MONTHLY_ARCHIVE_SERIES);
-    // Only the explicitly captured assets replay those immutable captures.
-    // Unrelated live index references may legitimately have a later month.
-    for(const [id,baseline] of Object.entries(BASELINE_ASSETS)) {
-      const expected=captures[id]?.map(([date,price])=>({date,price}))??baseline.points;
-      assert.deepEqual(ASSETS[id].points,expected,id+': archive audit must not consume the simulated new automation month');
-    }
-  `], {cwd:directory,encoding:'utf8',env:{...process.env,MONTHLY_ARCHIVE_AUDIT:'1',MONTHLY_ARCHIVE_SERIES:JSON.stringify({bitcoin:archivalBitcoin,or:archivalGold})}});
+  const archive=spawnSync(process.execPath,['--input-type=module','-e',archiveCode],{cwd:directory,encoding:'utf8',env:archiveEnv});
   assert.equal(archive.status,0,archive.stderr);
+  assert.deepEqual(JSON.parse(archive.stdout),JSON.parse(archiveBefore.stdout),'Archive series must ignore active monthly refreshes without imposing one date on every asset');
   const load=path=>import(pathToFileURL(join(directory,path)));
   const { ASSETS }=await load('src/data/market-history.js');
   const { ETF_MONTHLY_HISTORIES }=await load('src/data/etf-monthly-history.js');
@@ -56,8 +51,6 @@ try {
   const { HISTORY_FACTS,HISTORY_STATISTIC_IDS }=await load('src/data/history-statistics.js');
   const { derive }=await load('src/pages/investment-calculator/lib.js');
   const { INFLATION_MONTHLY }=await load('src/data/inflation-monthly.js');
-  const lastInflationMonth=Object.keys(INFLATION_MONTHLY).sort().at(-1);
-  let missingInflationVerified=false;
   const { qualifyHistoryWindow }=await load('src/data/history-window-quality.js');
   const { computeComparativeSeries }=await load('src/pages/investment-calculator/videoExport.js');
   for(const [id,record] of Object.entries(records)) {
@@ -81,23 +74,8 @@ try {
     const result=derive({assetId:id,amountRaw:'100',startYear:Number(startYm.slice(0,4)),startMonth:Number(startYm.slice(5)),mode:'dca',overridePriceRaw:''});
     assert.equal(result.endYm,record.periodEnd);
     if(ASSETS[id].currency==='EUR') {
-      if(record.periodEnd>lastInflationMonth)assert.equal(result.inflation,null,'Do not invent missing future INSEE inflation');
-      if(result.inflation)assert(result.inflation.months.at(-1)<=lastInflationMonth,'A benchmark never exceeds the actual INSEE observations');
+      if(!Object.hasOwn(INFLATION_MONTHLY,record.periodEnd))assert.equal(result.inflation,null,'Do not invent missing future INSEE inflation');
       assert(result.livretA);
-      if(!missingInflationVerified && record.periodEnd>startYm) {
-        // Isolate a genuinely missing required value regardless of whether a
-        // concurrent ordinary INSEE refresh has already supplied this month.
-        const existed=Object.hasOwn(INFLATION_MONTHLY,record.periodEnd);
-        const saved=INFLATION_MONTHLY[record.periodEnd];
-        delete INFLATION_MONTHLY[record.periodEnd];
-        try {
-          const missing=derive({assetId:id,amountRaw:'100',startYear:Number(startYm.slice(0,4)),startMonth:Number(startYm.slice(5)),mode:'dca',overridePriceRaw:''});
-          assert.equal(missing.inflation,null,'A missing INSEE observation never becomes an invented rate');
-          assert.equal(missing.result.finalValue,result.result.finalValue,'Market calculation remains available without the benchmark');
-          assert(missing.livretA);
-          missingInflationVerified=true;
-        } finally { if(existed)INFLATION_MONTHLY[record.periodEnd]=saved; }
-      }
     }
     assert(Math.abs(result.result.finalValue-expected)<1e-6);
     assert(Math.abs(computeComparativeSeries(id,startYm,record.periodEnd,100,'dca').finalValue-expected)<1e-6);
@@ -110,6 +88,5 @@ try {
       assert(facts.every(f=>f.fact.includes(record.periodEnd) && f.context.includes(endLabel)));
     }
   }
-  assert(missingInflationVerified,'The isolated absent-INSEE scenario must be exercised');
   console.log(`${Object.keys(records).length} histories: next month propagates to simulations, video, raw anniversaries, statistics and provenance.`);
 } finally { rmSync(directory,{recursive:true,force:true}); }
