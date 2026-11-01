@@ -107,6 +107,6 @@ for(const engine of ['chromium','firefox','webkit']){
    await png(page,()=>dialog.getByRole('button',{name:'⬇️ Télécharger',exact:true}).click(),`${engine}-etf`)
   }
   assert.deepEqual(errors,[])
-  console.log(`${engine}: PNG decoded, JSON read, legacy draft/reload, denied clipboard, quota/recovery, repeated exports and resource cleanup passed`)
+  console.log(`${engine}: PNG decoded, JSON read, legacy draft/reload, native clipboard paste and denied clipboard, quota/recovery, repeated exports and resource cleanup passed`)
  }finally{await context.close();await browser.close()}
 }

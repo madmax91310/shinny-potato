@@ -520,7 +520,9 @@ jobs:
       - uses: actions/cache@v4
         if: steps.portable-engines.outputs.extra == 'true'
         with:
-          path: ~/.cache/ms-playwright
+          path: |
+            ~/.cache/ms-playwright/firefox-*
+            ~/.cache/ms-playwright/webkit-*
           key: portable-engines-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
       - if: steps.portable-engines.outputs.extra == 'true'
         run: npx playwright install --with-deps firefox webkit
