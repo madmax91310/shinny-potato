@@ -152,3 +152,21 @@ class NewInstruments(unittest.TestCase):
             self.assertEqual(hashlib.sha256(body).hexdigest(),row['pageSha256'])
             self.assertIn(row['isin'].encode(),body)
             self.assertRegex(body.lower(),rb'emerging\s+markets')
+
+    def test_benchmark_changes_have_corroborating_exact_share_documents(self):
+        receipts=json.loads((ROOT/'docs/new-instruments-sources-2026-11-01.json').read_text())['observations']
+        changes=json.loads((ROOT/'src/data/benchmark-changes.json').read_text())['shares']
+        for row in receipts:
+            if row['isin'] not in changes: continue
+            proof=row['benchmarkCorroboration']
+            change=changes[row['isin']]
+            self.assertEqual(change['corroborationUrl'],proof['sourceUrl'])
+            self.assertNotEqual(change['sourceUrl'],change['corroborationUrl'])
+            self.assertEqual(change['effectiveDate'],proof['effectiveDate'])
+            pdf=gzip.open(ROOT/proof['fixture'],'rb').read()
+            text=gzip.open(ROOT/proof['extractedTextFixture'],'rb').read()
+            self.assertTrue(pdf.startswith(b'%PDF'))
+            self.assertEqual(hashlib.sha256(pdf).hexdigest(),proof['sha256'])
+            self.assertEqual(hashlib.sha256(text).hexdigest(),proof['extractedTextSha256'])
+            self.assertIn(row['isin'].encode(),text)
+            self.assertIn(proof['dateText'].encode(),text)
