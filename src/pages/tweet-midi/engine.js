@@ -85,6 +85,9 @@ const POOL_PERFORMANCE_DEPUIS = MARKET_ASSETS.flatMap((asset) =>
 // bas, et l'ordre d'affichage final est décidé à la génération selon la performance) × la valeur
 // (années en arrière / année de départ) réellement valide pour LES DEUX actifs à la fois, jamais
 // pour un seul (contrainte du brief).
+let anniversaryComparisons
+function getAnniversaryComparisons() {
+  if (anniversaryComparisons) return anniversaryComparisons
 const POOL_ANNIVERSAIRE_COMPARATIF = [];
 for (let i = 0; i < ANNIVERSAIRE_ELIGIBLE_ASSETS.length; i++) {
   const yearsBackA = new Set(anniversaryYears.get(ANNIVERSAIRE_ELIGIBLE_ASSETS[i].id));
@@ -105,10 +108,15 @@ for (let i = 0; i < ANNIVERSAIRE_ELIGIBLE_ASSETS.length; i++) {
     });
   }
 }
+  return anniversaryComparisons = POOL_ANNIVERSAIRE_COMPARATIF
+}
 // Depuis la refonte du 29/08/2026 (détail annuel des deux actifs, cf. buildPerformanceDepuisComparatifText),
 // une année de départ n'est valide pour la paire que si elle l'est pour CHAQUE actif pris seul
 // (cf. getAnnualReturnStartYears) — même exigence que le mode Simple, jamais la condition plus
 // faible "au moins un point la même année" d'avant la refonte.
+let performanceComparisons
+function getPerformanceComparisons() {
+  if (performanceComparisons) return performanceComparisons
 const POOL_PERFORMANCE_DEPUIS_COMPARATIF = [];
 for (let i = 0; i < MARKET_ASSETS.length; i++) {
   const yearsA = new Set(performanceYears.get(MARKET_ASSETS[i].id));
@@ -129,6 +137,9 @@ for (let i = 0; i < MARKET_ASSETS.length; i++) {
       }
     });
   }
+}
+
+  return performanceComparisons = POOL_PERFORMANCE_DEPUIS_COMPARATIF
 }
 
 // Pool "Pouvoir d'achat" : combinatoire (montant × année × mode/poste), comme Anniversaire/
@@ -156,21 +167,26 @@ for (const amount of PA_AMOUNT_PRESETS) {
   }
 }
 
-const ALL_ITEMS = [
-  ...POOL_DILEMME, ...POOL_FICHE_LEXIQUE, ...POOL_COMPARATIF_ETF,
-  ...POOL_ANNIVERSAIRE, ...POOL_PERFORMANCE_DEPUIS,
-  ...POOL_ANNIVERSAIRE_COMPARATIF, ...POOL_PERFORMANCE_DEPUIS_COMPARATIF,
-  ...POOL_POUVOIR_ACHAT,
-];
+// Simple routes never allocate the quadratic pair pools. Audit consumers and
+// explicit all-format requests still receive the same complete, memoized array.
+let allItemsCache
+function allItems() {
+  return allItemsCache ??= [
+    ...POOL_DILEMME, ...POOL_FICHE_LEXIQUE, ...POOL_COMPARATIF_ETF,
+    ...POOL_ANNIVERSAIRE, ...POOL_PERFORMANCE_DEPUIS,
+    ...getAnniversaryComparisons(), ...getPerformanceComparisons(),
+    ...POOL_POUVOIR_ACHAT,
+  ]
+}
 
 function poolForFormat(format, mode = MODES.SIMPLE) {
   if (format === FORMATS.DILEMME) return POOL_DILEMME;
   if (format === FORMATS.FICHE_LEXIQUE) return POOL_FICHE_LEXIQUE;
   if (format === FORMATS.COMPARATIF_ETF) return POOL_COMPARATIF_ETF;
-  if (format === FORMATS.ANNIVERSAIRE) return mode === MODES.COMPARATIF ? POOL_ANNIVERSAIRE_COMPARATIF : POOL_ANNIVERSAIRE;
-  if (format === FORMATS.PERFORMANCE_DEPUIS) return mode === MODES.COMPARATIF ? POOL_PERFORMANCE_DEPUIS_COMPARATIF : POOL_PERFORMANCE_DEPUIS;
+  if (format === FORMATS.ANNIVERSAIRE) return mode === MODES.COMPARATIF ? getAnniversaryComparisons() : POOL_ANNIVERSAIRE;
+  if (format === FORMATS.PERFORMANCE_DEPUIS) return mode === MODES.COMPARATIF ? getPerformanceComparisons() : POOL_PERFORMANCE_DEPUIS;
   if (format === FORMATS.POUVOIR_ACHAT) return POOL_POUVOIR_ACHAT;
-  return ALL_ITEMS;
+  return allItems();
 }
 
 // ── Sujets d'étape 2, par format ──────────────────────────────────────────────────────────
@@ -261,19 +277,19 @@ function pickFromPoolWithHistory(pool, history) {
 
 // Un panier par format et mode : leur taille ne change pas leur poids au tirage.
 const ALEATOIRE_BUCKETS = [
-  POOL_DILEMME,
-  POOL_FICHE_LEXIQUE,
-  POOL_COMPARATIF_ETF,
-  POOL_ANNIVERSAIRE,
-  POOL_ANNIVERSAIRE_COMPARATIF,
-  POOL_PERFORMANCE_DEPUIS,
-  POOL_PERFORMANCE_DEPUIS_COMPARATIF,
-  POOL_POUVOIR_ACHAT,
+  () => POOL_DILEMME,
+  () => POOL_FICHE_LEXIQUE,
+  () => POOL_COMPARATIF_ETF,
+  () => POOL_ANNIVERSAIRE,
+  getAnniversaryComparisons,
+  () => POOL_PERFORMANCE_DEPUIS,
+  getPerformanceComparisons,
+  () => POOL_POUVOIR_ACHAT,
 ];
 
 function pickNext(format, history, mode = MODES.SIMPLE) {
   if (format === FORMATS.ALEATOIRE) {
-    const bucket = ALEATOIRE_BUCKETS[Math.floor(Math.random() * ALEATOIRE_BUCKETS.length)];
+    const bucket = ALEATOIRE_BUCKETS[Math.floor(Math.random() * ALEATOIRE_BUCKETS.length)]();
     return pickFromPoolWithHistory(bucket, history);
   }
   return pickFromPoolWithHistory(poolForFormat(format, mode), history);
@@ -546,5 +562,5 @@ function buildTweetText(item, extra = {}) {
   return "";
 }
 
-return { getPerformanceCurrencies, ALL_ITEMS, poolForFormat, getSubjectsForFormat, getSecondaryOptionsForFormat, pickNext, pickForSelection, buildDilemmeText, getMarketAsset, buildAnniversaireText, buildPerformanceDepuisText, buildAnniversaireComparatifText, getPerformanceEntries, buildPerformanceDepuisComparatifText, buildPouvoirAchatText, buildTweetText };
+return { getPerformanceCurrencies, get ALL_ITEMS() { return allItems() }, poolForFormat, getSubjectsForFormat, getSecondaryOptionsForFormat, pickNext, pickForSelection, buildDilemmeText, getMarketAsset, buildAnniversaireText, buildPerformanceDepuisText, buildAnniversaireComparatifText, getPerformanceEntries, buildPerformanceDepuisComparatifText, buildPouvoirAchatText, buildTweetText };
 }

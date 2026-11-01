@@ -31,6 +31,7 @@ for (const p of BUDGET_PROFILES) {
   if (p.kind === 'planned') assert(text.includes('Budget prévu'))
   if (p.age === null) assert(!/\d+ ans/.test(text.split('\n')[0]))
   assert(sourceReply(p).includes(p.source.url))
+  assert(!/prépar|compléments|arrondis|prénoms? fictifs?|l’auteur|sa femme|vérification|\.json|PR\s*#/i.test(sourceReply(p)), `${p.id}: source replies must also be ready to publish`)
   assert(!buildBudgetText(p).includes('abonné'), 'A public witness must not become a received subscriber testimony')
 }
 assert.equal(new Set(BUDGET_PROFILES.map(budgetDisplayName)).size, BUDGET_PROFILES.length)
@@ -143,7 +144,8 @@ console.log(`Budget profiles: ${BUDGET_PROFILES.length} source ledgers and edito
 // Prepared budgets must balance without posing as unmodified source statements.
 for (const p of BUDGET_PROFILES.filter(p => p.kind === 'prepared')) {
   assert.equal(analyzeBudget(p).balance, p.provenance?.expectedBalance ?? 0, p.id)
-  assert.match(sourceReply(p), p.provenance?.type === 'reference' ? /Exemple de référence/ : /compléments et arrondis/)
+  assert.match(sourceReply(p), /^Exemple de budget — source : /)
+  assert.match(buildBudgetText(p), /^Exemple de budget /)
   assert(!sourceReply(p).includes('Montants déclarés par la personne'))
   assert(p.provenance?.method)
 }
