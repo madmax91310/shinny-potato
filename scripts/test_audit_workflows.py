@@ -10,6 +10,20 @@ ROOT = Path(__file__).resolve().parents[1]
 MANUAL_WRITERS = set()
 
 class WorkflowContracts(unittest.TestCase):
+    def test_monthly_fx_dependency_precedes_nav_admission_and_collection(self):
+        text = (ROOT/'.github/workflows/update-market-monthly.yml').read_text()
+        refresh = text.split('\n  refresh:\n', 1)[1]
+        fx = refresh.index('python scripts/collect_ranking_sources.py --apply')
+        for consumer in ('python scripts/qualify_monthly_candidates.py',
+                         'node scripts/export-monthly-baseline.mjs',
+                         'python scripts/refresh_monthly_history.py --baseline'):
+            self.assertLess(fx, refresh.index(consumer), consumer)
+        block = refresh.split('      - name: Refresh exact ranking histories and ECB conversion\n', 1)[1].split('      - name:', 1)[0]
+        self.assertIn('continue-on-error: true', block)
+        self.assertIn('inputs.listings_only != true', block)
+        self.assertIn('REQUESTED_RANKING_SOURCES: ${{ inputs.ranking_sources }}', block)
+        self.assertEqual(refresh.count('python scripts/collect_ranking_sources.py --apply'), 1)
+
     def test_shared_reference_parser_repairs_trigger_the_ordinary_exposure_producer(self):
         text=(ROOT/'.github/workflows/update-qualified-exposures.yml').read_text()
         push=text.split('  push:',1)[1].split('  pull_request:',1)[0]
@@ -233,7 +247,7 @@ class ExplicitRankingRecovery(unittest.TestCase):
     def test_explicit_scope_does_not_trigger_catalogue_or_skip_requested_fx(self):
         import os, subprocess, textwrap
         workflow=(ROOT/'.github/workflows/update-market-monthly.yml').read_text()
-        step=workflow.split('      - name: Refresh exact ranking histories and ECB conversion')[1].split('      - run: node scripts/build-equity-history-links.mjs')[0]
+        step=re.split(r'(?m)^      - ', workflow.split('      - name: Refresh exact ranking histories and ECB conversion', 1)[1], maxsplit=1)[0]
         self.assertIn("github.event_name == 'push'",step)
         command=textwrap.dedent(step.split('        run: |\n')[1])
         for selected,retry,expected in [('fx','true',['--only','fx']),('fx','false',['--only','fx']),('','true',['--retry-failed']),('','false',[])]:
