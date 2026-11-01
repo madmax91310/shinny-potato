@@ -1,0 +1,69 @@
+{
+  "checkedAt": "2026-11-01T18:10:25.750778+00:00",
+  "environment": "isolated source qualification; no production record changed",
+  "instrument": {
+    "id": "etfIE00B5W4TY14",
+    "isin": "IE00B5W4TY14",
+    "label": "iShares MSCI Korea UCITS ETF \u00b7 VL",
+    "instrumentType": "ETF",
+    "consumerScope": "catalog",
+    "currency": "EUR",
+    "periodStart": "2015-01",
+    "precision": 8,
+    "collectAnniversary": true,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "Valeur liquidative officielle de la part exacte capitalisante, nette des frais du fonds ; conversion mensuelle BCE explicite si n\u00e9cessaire ; ancienne cotation archiv\u00e9e s\u00e9par\u00e9ment",
+    "navProvider": "blackrock",
+    "navCurrency": "USD",
+    "productId": 253733,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data"
+  },
+  "sameSupplierResponses": {
+    "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true": "c470f28773e404ee79594a57d664f1ee25a8d4f1f6b252ff2300a4d3de3cd591"
+  },
+  "results": [
+    {
+      "stage": "before-stored-september-fx",
+      "status": "failed",
+      "type": "KeyError",
+      "reason": "'2026-10'"
+    },
+    {
+      "stage": "after-ordinary-collected-october-fx",
+      "status": "validated",
+      "periodEnd": "2026-10",
+      "latestLevel": {
+        "value": 390.17430898675264,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "IE00B5W4TY14",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 435.902738,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalis\u00e9s ; conversion BCE si n\u00e9cessaire",
+        "maxAgeDays": 7,
+        "sha256": "7d8bc6a2fe455a5f03dc34256d2ca60977674bfe4e8a68ac0e90d4db4b8b4e9d"
+      },
+      "lastMonthlyProof": {
+        "date": "2026-10-30",
+        "nav": 435.902738,
+        "navCurrency": "USD",
+        "value": 390.17430898675264,
+        "currency": "EUR",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861
+      }
+    }
+  ]
+}

@@ -1,0 +1,4799 @@
+{
+  "checkedAt": "2026-11-01T17:21:26.301118+00:00",
+  "verification": "Real committed configuration/status + isolated selector execution; no network or new financial observation",
+  "beforeCommit": "1bd82f0a1b57ef52272ec1479a1cde733c6fd408",
+  "afterSourceSha256": "21c88c3f3f84e091fa2a491770c406c7a8ed0b22290c93d5bc986a5d8e6368fa",
+  "previousSelected": 0,
+  "selectedAfter": 684,
+  "expectedPeriodEnd": "2026-10",
+  "series": [
+    {
+      "id": "ethereum",
+      "isin": null,
+      "symbol": "ETH-USD",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stoxx600",
+      "isin": "EU0009658210",
+      "symbol": "SXXR",
+      "parser": "stoxx",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "sp500",
+      "isin": null,
+      "symbol": "^SP500TR",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "msciWorld",
+      "isin": null,
+      "symbol": null,
+      "parser": "msci",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "nasdaq100",
+      "isin": null,
+      "symbol": "XNDX",
+      "parser": "fred",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "soxx",
+      "isin": null,
+      "symbol": "SOXX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "silver",
+      "isin": null,
+      "symbol": "SI=F",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "apple",
+      "isin": null,
+      "symbol": "AAPL",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "microsoft",
+      "isin": null,
+      "symbol": "MSFT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "broadcom",
+      "isin": null,
+      "symbol": "AVGO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "tesla",
+      "isin": null,
+      "symbol": "TSLA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "msciEmerging",
+      "isin": null,
+      "symbol": null,
+      "parser": "msci",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "msciWorldSmallCap",
+      "isin": null,
+      "symbol": null,
+      "parser": "msci",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "msciAcwiImi",
+      "isin": null,
+      "symbol": null,
+      "parser": "msci",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "msciWorldExUsa",
+      "isin": null,
+      "symbol": null,
+      "parser": "msci",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "msciAcwi",
+      "isin": null,
+      "symbol": null,
+      "parser": "msci",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "berkshire",
+      "isin": null,
+      "symbol": "BRK-B",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "asml",
+      "isin": null,
+      "symbol": "ASML.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "costco",
+      "isin": null,
+      "symbol": "COST",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "mcdonalds",
+      "isin": null,
+      "symbol": "MCD",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "airliquide",
+      "isin": null,
+      "symbol": "AI.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "schneider",
+      "isin": null,
+      "symbol": "SU.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "hermes",
+      "isin": null,
+      "symbol": "RMS.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "loreal",
+      "isin": null,
+      "symbol": "OR.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "intel",
+      "isin": null,
+      "symbol": "INTC",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "paypal",
+      "isin": null,
+      "symbol": "PYPL",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "cac40",
+      "isin": null,
+      "symbol": "^FCHI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "lvmh",
+      "isin": null,
+      "symbol": "MC.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "nvidia",
+      "isin": null,
+      "symbol": "NVDA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "amazon",
+      "isin": null,
+      "symbol": "AMZN",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "google",
+      "isin": null,
+      "symbol": "GOOGL",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "meta",
+      "isin": null,
+      "symbol": "META",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "nestle",
+      "isin": null,
+      "symbol": "NSRGY",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "sap",
+      "isin": null,
+      "symbol": "SAP",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "visa",
+      "isin": null,
+      "symbol": "V",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "netflix",
+      "isin": null,
+      "symbol": "NFLX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "cocacola",
+      "isin": null,
+      "symbol": "KO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "euroMoney",
+      "isin": null,
+      "symbol": "XEON.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "euroGovShort",
+      "isin": null,
+      "symbol": "IEGE.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "euroGov13",
+      "isin": null,
+      "symbol": "IBGS.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "globalBondEur",
+      "isin": null,
+      "symbol": "AGGH.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "euroInflationBond",
+      "isin": null,
+      "symbol": "IBCI.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "euroCorporateBond",
+      "isin": null,
+      "symbol": "IEAC.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "euroHighYieldBond",
+      "isin": null,
+      "symbol": "IHYG.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfImie",
+      "isin": "IE00B3YLTY66",
+      "symbol": "IMIE.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfVwce",
+      "isin": "IE00BK5BQT80",
+      "symbol": "VWCE.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfEqualWeight",
+      "isin": "IE00BLNMYC90",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfMinVol",
+      "isin": "IE00B8FHGS14",
+      "symbol": "MVOL.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfWqdv",
+      "isin": "IE00BYYHSQ67",
+      "symbol": "WQDV.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfTdiv",
+      "isin": "NL0011683594",
+      "symbol": "TDIV.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfEpra",
+      "isin": "LU1437018838",
+      "symbol": "EPRA.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfCmod",
+      "isin": "IE00BD6FTQ80",
+      "symbol": "CMOD.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfSemi",
+      "isin": "IE000I8KRLL9",
+      "symbol": "SEMI.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLock",
+      "isin": "IE00BG0J4C88",
+      "symbol": "LOCK.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfAvantisSmallValue",
+      "isin": "IE0003R87OG3",
+      "symbol": "AVWS.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etcPlatinum",
+      "isin": "IE00B4LHWP62",
+      "symbol": "IPLT.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etcPalladium",
+      "isin": "IE00B4556L06",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_water_ishares",
+      "isin": "IE00B1TXK627",
+      "symbol": "DH2O.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_agribusiness_ishares",
+      "isin": "IE00B6R52143",
+      "symbol": "ISAG.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_world_staples",
+      "isin": "IE00BJ5JP329",
+      "symbol": "WCSS.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_world_discretionary",
+      "isin": "IE00BJ5JP212",
+      "symbol": "WCDS.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_world_energy",
+      "isin": "IE00BJ5JP105",
+      "symbol": "WENS.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_world_communication",
+      "isin": "IE00BJ5JP436",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_private_equity_ishares",
+      "isin": "IE00B1TXHL60",
+      "symbol": "IQQL.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_timber_ishares",
+      "isin": "IE00B27YCF74",
+      "symbol": "WOOD.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIndustrials",
+      "isin": "IE00BM67HV82",
+      "symbol": "XDWI.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_clean_energy",
+      "isin": "IE00B1XNHC34",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_financials",
+      "isin": "IE00BJ5JP097",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_gold_miners",
+      "isin": "IE00BQQP9F84",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_health",
+      "isin": "IE00BJ5JNZ06",
+      "symbol": "WHCS.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_infrastructure",
+      "isin": "IE00B1FZS467",
+      "symbol": "IDIN.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_momentum",
+      "isin": "IE00BP3QZ825",
+      "symbol": "IWMO.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_quality",
+      "isin": "IE00BP3QZ601",
+      "symbol": "IWQU.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_robotics",
+      "isin": "IE00BYZK4552",
+      "symbol": "RBOT.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_smallcap",
+      "isin": "IE00BF4RFH31",
+      "symbol": "WSML.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etf_value",
+      "isin": "IE00BP3QZB59",
+      "symbol": "IWVL.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfWorldMaterials",
+      "isin": "IE00BJ5JP766",
+      "symbol": "WMTS.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfHealthcareInnovation",
+      "isin": "IE00BYZK4776",
+      "symbol": "HEAL.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfWorldUtilities",
+      "isin": "IE00BM67HQ30",
+      "symbol": "XDWU.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfCloudWisdomtree",
+      "isin": "IE00BJGWQN72",
+      "symbol": "WCLD.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfWorldMultifactor",
+      "isin": "IE00BZ0PKT83",
+      "symbol": "IFSW.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIbondsEuro2028",
+      "isin": "IE0008UEVOE0",
+      "symbol": "B28A.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etcSilverPhysical",
+      "isin": "IE00B4NCWG09",
+      "symbol": "ISLN.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfSilverMiners",
+      "isin": "IE000UL6CLP7",
+      "symbol": "SILV.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLifeStrategy20",
+      "isin": "IE00BMVB5K07",
+      "symbol": "V20A.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLifeStrategy40",
+      "isin": "IE00BMVB5M21",
+      "symbol": "V40A.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLifeStrategy60",
+      "isin": "IE00BMVB5P51",
+      "symbol": "V60A.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLifeStrategy80",
+      "isin": "IE00BMVB5R75",
+      "symbol": "V80A.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfEmSmallCap",
+      "isin": "IE00B3F81G20",
+      "symbol": "IEMS.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfCopperMiners",
+      "isin": "IE0003Z9E2Y3",
+      "symbol": "COPX.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfEuropeConstruction",
+      "isin": "DE000A0H08F7",
+      "symbol": "EXV8.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfWorldTech",
+      "isin": "IE00BJ5JNY98",
+      "symbol": "WITS.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfAiBigData",
+      "isin": "IE00BGV5VN51",
+      "symbol": "XAIX.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfWorldExUs",
+      "isin": "IE0006WW1TQ4",
+      "symbol": "EXUS.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfEmExChina",
+      "isin": "IE00BMG6Z448",
+      "symbol": "EXCH.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "walmart",
+      "isin": null,
+      "symbol": "WMT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "oracle",
+      "isin": null,
+      "symbol": "ORCL",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "salesforce",
+      "isin": null,
+      "symbol": "CRM",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "amd",
+      "isin": null,
+      "symbol": "AMD",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "qualcomm",
+      "isin": null,
+      "symbol": "QCOM",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "texas-instruments",
+      "isin": null,
+      "symbol": "TXN",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "applied-materials",
+      "isin": null,
+      "symbol": "AMAT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "lam-research",
+      "isin": null,
+      "symbol": "LRCX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "micron",
+      "isin": null,
+      "symbol": "MU",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "ibm",
+      "isin": null,
+      "symbol": "IBM",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "servicenow",
+      "isin": null,
+      "symbol": "NOW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "intuit",
+      "isin": null,
+      "symbol": "INTU",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "palantir",
+      "isin": null,
+      "symbol": "PLTR",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "goldman-sachs",
+      "isin": null,
+      "symbol": "GS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "bank-of-america",
+      "isin": null,
+      "symbol": "BAC",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "morgan-stanley",
+      "isin": null,
+      "symbol": "MS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "blackrock",
+      "isin": null,
+      "symbol": "BLK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "american-express",
+      "isin": null,
+      "symbol": "AXP",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "charles-schwab",
+      "isin": null,
+      "symbol": "SCHW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "chevron",
+      "isin": null,
+      "symbol": "CVX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "conocophillips",
+      "isin": null,
+      "symbol": "COP",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "abbvie",
+      "isin": null,
+      "symbol": "ABBV",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "merck",
+      "isin": null,
+      "symbol": "MRK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "eli-lilly",
+      "isin": null,
+      "symbol": "LLY",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "abbott",
+      "isin": null,
+      "symbol": "ABT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "thermo-fisher",
+      "isin": null,
+      "symbol": "TMO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "ge-aerospace",
+      "isin": null,
+      "symbol": "GE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "honeywell",
+      "isin": null,
+      "symbol": "HON",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "siemens",
+      "isin": null,
+      "symbol": "SIE.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "allianz",
+      "isin": null,
+      "symbol": "ALV.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "munich-re",
+      "isin": null,
+      "symbol": "MUV2.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "deutsche-telekom",
+      "isin": null,
+      "symbol": "DTE.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "deutsche-boerse",
+      "isin": null,
+      "symbol": "DB1.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "airbus",
+      "isin": null,
+      "symbol": "AIR.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "safran",
+      "isin": null,
+      "symbol": "SAF.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "dassault-systemes",
+      "isin": null,
+      "symbol": "DSY.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "essilorluxottica",
+      "isin": null,
+      "symbol": "EL.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "axa",
+      "isin": null,
+      "symbol": "CS.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "bnp-paribas",
+      "isin": null,
+      "symbol": "BNP.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "santander",
+      "isin": null,
+      "symbol": "SAN.MC",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "iberdrola",
+      "isin": null,
+      "symbol": "IBE.MC",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "inditex",
+      "isin": null,
+      "symbol": "ITX.MC",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "ferrari",
+      "isin": null,
+      "symbol": "RACE.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "infineon",
+      "isin": null,
+      "symbol": "IFX.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "adidas",
+      "isin": null,
+      "symbol": "ADS.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "bmw",
+      "isin": null,
+      "symbol": "BMW.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "bayer",
+      "isin": null,
+      "symbol": "BAYN.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "danone",
+      "isin": null,
+      "symbol": "BN.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "samsung",
+      "isin": null,
+      "symbol": "005930.KS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "sk-hynix",
+      "isin": null,
+      "symbol": "000660.KS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "thales",
+      "isin": null,
+      "symbol": "HO.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "legrand",
+      "isin": null,
+      "symbol": "LR.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "saint-gobain",
+      "isin": null,
+      "symbol": "SGO.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "michelin",
+      "isin": null,
+      "symbol": "ML.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "novo-nordisk",
+      "isin": null,
+      "symbol": "NOVO-B.CO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "novartis",
+      "isin": null,
+      "symbol": "NOVN.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "astrazeneca",
+      "isin": null,
+      "symbol": "AZN",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "abb",
+      "isin": null,
+      "symbol": "ABBN.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "sp-global",
+      "isin": null,
+      "symbol": "SPGI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "moodys",
+      "isin": null,
+      "symbol": "MCO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "intuitive-surgical",
+      "isin": null,
+      "symbol": "ISRG",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "deere",
+      "isin": null,
+      "symbol": "DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "palo-alto-networks",
+      "isin": null,
+      "symbol": "PANW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "linde",
+      "isin": null,
+      "symbol": "LIN",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "tsmc",
+      "isin": null,
+      "symbol": "TSM",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "sony",
+      "isin": null,
+      "symbol": "6758.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "toyota",
+      "isin": null,
+      "symbol": "7203.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "nintendo",
+      "isin": null,
+      "symbol": "7974.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "tencent",
+      "isin": null,
+      "symbol": "0700.HK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "hd",
+      "isin": null,
+      "symbol": "HD",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "low",
+      "isin": null,
+      "symbol": "LOW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "sbux",
+      "isin": null,
+      "symbol": "SBUX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "cl",
+      "isin": null,
+      "symbol": "CL",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "mdlz",
+      "isin": null,
+      "symbol": "MDLZ",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "syk",
+      "isin": null,
+      "symbol": "SYK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "unp",
+      "isin": null,
+      "symbol": "UNP",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "lmt",
+      "isin": null,
+      "symbol": "LMT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "rsg",
+      "isin": null,
+      "symbol": "RSG",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "adp",
+      "isin": null,
+      "symbol": "ADP",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "adi",
+      "isin": null,
+      "symbol": "ADI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "nem",
+      "isin": null,
+      "symbol": "NEM",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etn",
+      "isin": null,
+      "symbol": "ETN",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "tt",
+      "isin": null,
+      "symbol": "TT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "regn",
+      "isin": null,
+      "symbol": "REGN",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "vrtx",
+      "isin": null,
+      "symbol": "VRTX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "zts",
+      "isin": null,
+      "symbol": "ZTS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "msci",
+      "isin": null,
+      "symbol": "MSCI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "fds",
+      "isin": null,
+      "symbol": "FDS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "cdns",
+      "isin": null,
+      "symbol": "CDNS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfAmundiWater",
+      "isin": "FR0010527275",
+      "symbol": "WAT.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfAmundiLuxury",
+      "isin": "LU1681048630",
+      "symbol": "GLUX.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLgArtificialIntelligence",
+      "isin": "IE00BK5BCD43",
+      "symbol": "AIAI.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLgBattery",
+      "isin": "IE00BF0M2Z96",
+      "symbol": "BATT.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfUsaSmallValue",
+      "isin": "IE00BSPLC413",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfWorldMidEqual",
+      "isin": "IE00BP3QZD73",
+      "symbol": "IWSZ.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfEmValue",
+      "isin": "IE00BG0SKF03",
+      "symbol": "EMVL.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfEuroUltrashort",
+      "isin": "IE00BCRY6557",
+      "symbol": "ERNE.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfWorldMaterialsDws",
+      "isin": "IE00BM67HS53",
+      "symbol": "XDWM.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B4L5Y983",
+      "isin": "IE00B4L5Y983",
+      "symbol": "IWDA.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0013411998",
+      "isin": "FR0013411998",
+      "symbol": "PTPXH.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B53L3W79",
+      "isin": "IE00B53L3W79",
+      "symbol": "CSX5.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B5BMR087",
+      "isin": "IE00B5BMR087",
+      "symbol": "CSPX.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B579F325",
+      "isin": "IE00B579F325",
+      "symbol": "SGLD.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B42NKQ00",
+      "isin": "IE00B42NKQ00",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfCH0454664001",
+      "isin": "CH0454664001",
+      "symbol": "ABTC.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU1931975079",
+      "isin": "LU1931975079",
+      "symbol": "ETFCOR.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BFZPF546",
+      "isin": "IE00BFZPF546",
+      "symbol": "EMGA.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BM67HK77",
+      "isin": "IE00BM67HK77",
+      "symbol": "XDWH.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BK95B138",
+      "isin": "IE00BK95B138",
+      "symbol": "SNA2.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE0007Y8Y157",
+      "isin": "IE0007Y8Y157",
+      "symbol": "QUTM.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B4JNQZ49",
+      "isin": "IE00B4JNQZ49",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0013412012",
+      "isin": "FR0013412012",
+      "symbol": "PAASI.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0011550193",
+      "isin": "FR0011550193",
+      "symbol": "ETZ.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BYPLS672",
+      "isin": "IE00BYPLS672",
+      "symbol": "ISPY.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0013412004",
+      "isin": "FR0013412004",
+      "symbol": "PALAT.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0014017NX3",
+      "isin": "FR0014017NX3",
+      "symbol": "GPEA.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR001400S9V0",
+      "isin": "FR001400S9V0",
+      "symbol": "MLUX.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BYTRR863",
+      "isin": "IE00BYTRR863",
+      "symbol": "WNRG.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B5M1WJ87",
+      "isin": "IE00B5M1WJ87",
+      "symbol": "EUDV.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR001400U5Q4",
+      "isin": "FR001400U5Q4",
+      "symbol": "DCAM.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BZCQB185",
+      "isin": "IE00BZCQB185",
+      "symbol": "NDIA.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0013380607",
+      "isin": "FR0013380607",
+      "symbol": "CACC.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BMW42413",
+      "isin": "IE00BMW42413",
+      "symbol": "ESIT.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B4WXJJ64",
+      "isin": "IE00B4WXJJ64",
+      "symbol": "SEGA.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE000DQLYVB9",
+      "isin": "IE000DQLYVB9",
+      "symbol": "SPEA.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0013412038",
+      "isin": "FR0013412038",
+      "symbol": "PCEU.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BK5BCH80",
+      "isin": "IE00BK5BCH80",
+      "symbol": "RENW.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BJ38QD84",
+      "isin": "IE00BJ38QD84",
+      "symbol": "R2US.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU2970735911",
+      "isin": "LU2970735911",
+      "symbol": "AEHY.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE0003UVYC20",
+      "isin": "IE0003UVYC20",
+      "symbol": "JEPG.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B40B8R38",
+      "isin": "IE00B40B8R38",
+      "symbol": "IUCS.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU1737652823",
+      "isin": "LU1737652823",
+      "symbol": "10AJ.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B6YX5D40",
+      "isin": "IE00B6YX5D40",
+      "symbol": "USDV.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE000M7V94E1",
+      "isin": "IE000M7V94E1",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0010342592",
+      "isin": "FR0010342592",
+      "symbol": "LQQ.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BZ163G84",
+      "isin": "IE00BZ163G84",
+      "symbol": "VECP.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BKPSFC54",
+      "isin": "IE00BKPSFC54",
+      "symbol": "WQDA.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE000RDRMSD1",
+      "isin": "IE000RDRMSD1",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B8GKDB10",
+      "isin": "IE00B8GKDB10",
+      "symbol": "VHYL.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU1834988518",
+      "isin": "LU1834988518",
+      "symbol": "TNO.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B2NPKV68",
+      "isin": "IE00B2NPKV68",
+      "symbol": "IUS7.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B43HR379",
+      "isin": "IE00B43HR379",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BYWQWR46",
+      "isin": "IE00BYWQWR46",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B4KBBD01",
+      "isin": "IE00B4KBBD01",
+      "symbol": "IUUS.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR001400ZGO4",
+      "isin": "FR001400ZGO4",
+      "symbol": "PEMS.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BK5BR733",
+      "isin": "IE00BK5BR733",
+      "symbol": "VFEA.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B5W4TY14",
+      "isin": "IE00B5W4TY14",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU1834983550",
+      "isin": "LU1834983550",
+      "symbol": "BRES.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BZ56SW52",
+      "isin": "IE00BZ56SW52",
+      "symbol": "GGRA.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BYXG2H39",
+      "isin": "IE00BYXG2H39",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE000YYE6WK5",
+      "isin": "IE000YYE6WK5",
+      "symbol": "DFNS.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BDFBTQ78",
+      "isin": "IE00BDFBTQ78",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B3T9LM79",
+      "isin": "IE00B3T9LM79",
+      "symbol": "EUCO.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BDFL4P12",
+      "isin": "IE00BDFL4P12",
+      "symbol": "ICOM.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE000YU9K6K2",
+      "isin": "IE000YU9K6K2",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BKPX3K41",
+      "isin": "IE00BKPX3K41",
+      "symbol": "IS3Z.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU1834986900",
+      "isin": "LU1834986900",
+      "symbol": "HLT.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BK5BR626",
+      "isin": "IE00BK5BR626",
+      "symbol": "VHYA.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B3WJKG14",
+      "isin": "IE00B3WJKG14",
+      "symbol": "IUIT.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0013412020",
+      "isin": "FR0013412020",
+      "symbol": "PAEEM.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE0000N55FP4",
+      "isin": "IE0000N55FP4",
+      "symbol": "ESCE.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BM8R0J59",
+      "isin": "IE00BM8R0J59",
+      "symbol": "QYLE.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B9CQXS71",
+      "isin": "IE00B9CQXS71",
+      "symbol": "ZPRG.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B6R52259",
+      "isin": "IE00B6R52259",
+      "symbol": "IUSQ.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0010755611",
+      "isin": "FR0010755611",
+      "symbol": "CL2.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0011440478",
+      "isin": "FR0011440478",
+      "symbol": "PLEM.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0011869320",
+      "isin": "FR0011869320",
+      "symbol": "PINR.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0011871110",
+      "isin": "FR0011871110",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0011871128",
+      "isin": "FR0011871128",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B1FZS350",
+      "isin": "IE00B1FZS350",
+      "symbol": "IWDP.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B1FZS913",
+      "isin": "IE00B1FZS913",
+      "symbol": "IBGL.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B44Z5B48",
+      "isin": "IE00B44Z5B48",
+      "symbol": "ACWE.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B4L5YX21",
+      "isin": "IE00B4L5YX21",
+      "symbol": "IJPA.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B52MJY50",
+      "isin": "IE00B52MJY50",
+      "symbol": "CPXJ.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BKM4GZ66",
+      "isin": "IE00BKM4GZ66",
+      "symbol": "EMIM.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU1681043599",
+      "isin": "LU1681043599",
+      "symbol": "CW8.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU1681045370",
+      "isin": "LU1681045370",
+      "symbol": "AEEM.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU1681047236",
+      "isin": "LU1681047236",
+      "symbol": "C50.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfNL0009690239",
+      "isin": "NL0009690239",
+      "symbol": "TRET.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BF3N7094",
+      "isin": "IE00BF3N7094",
+      "symbol": "HIGH.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfDE000A27Z304",
+      "isin": "DE000A27Z304",
+      "symbol": "BTCE.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfGB00BLD4ZL17",
+      "isin": "GB00BLD4ZL17",
+      "symbol": "BITC.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE0002XZSHO1",
+      "isin": "IE0002XZSHO1",
+      "symbol": "WPEA.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B469F816",
+      "isin": "IE00B469F816",
+      "symbol": "EMRG.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B4ND3602",
+      "isin": "IE00B4ND3602",
+      "symbol": "IGLN.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B53SZB19",
+      "isin": "IE00B53SZB19",
+      "symbol": "SXRV.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BJ5JP659",
+      "isin": "IE00BJ5JP659",
+      "symbol": "WINS.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0010524777",
+      "isin": "FR0010524777",
+      "symbol": "NRJ.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfGB00BJYDH287",
+      "isin": "GB00BJYDH287",
+      "symbol": "BTCW.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfGB00BLD4ZM24",
+      "isin": "GB00BLD4ZM24",
+      "symbol": "ETHE.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfJE00B1VS3770",
+      "isin": "JE00B1VS3770",
+      "symbol": "PHAU.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0013416716",
+      "isin": "FR0013416716",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "roche",
+      "isin": "CH0012032113",
+      "symbol": "RO.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "ubs",
+      "isin": "CH0244767585",
+      "symbol": "UBSG.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "zurich",
+      "isin": "CH0011075394",
+      "symbol": "ZURN.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "swiss-re",
+      "isin": "CH0126881561",
+      "symbol": "SREN.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "bbva",
+      "isin": "ES0113211835",
+      "symbol": "BBVA.MC",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "unilever",
+      "isin": "GB00BVZK7T90",
+      "symbol": "UNA.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "diageo",
+      "isin": "GB0002374006",
+      "symbol": "DGE.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "relx",
+      "isin": "GB00B2B0DG97",
+      "symbol": "REL.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "lseg",
+      "isin": "GB00B0SWJX34",
+      "symbol": "LSEG.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "rolls-royce",
+      "isin": "GB00B63H8491",
+      "symbol": "RR.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "bae-systems",
+      "isin": "GB0002634946",
+      "symbol": "BA.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "rheinmetall",
+      "isin": "DE0007030009",
+      "symbol": "RHM.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "dhl",
+      "isin": "DE0005552004",
+      "symbol": "DHL.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "basf",
+      "isin": "DE000BASF111",
+      "symbol": "BAS.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "enel",
+      "isin": "IT0003128367",
+      "symbol": "ENEL.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "alibaba",
+      "isin": "KYG017191142",
+      "symbol": "9988.HK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "jd",
+      "isin": "KYG8208B1014",
+      "symbol": "9618.HK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "meituan",
+      "isin": "KYG596691041",
+      "symbol": "3690.HK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "xiaomi",
+      "isin": "KYG9830T1067",
+      "symbol": "1810.HK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "byd",
+      "isin": "CNE100000296",
+      "symbol": "1211.HK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "catl",
+      "isin": "CNE100003662",
+      "symbol": "300750.SZ",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "keyence",
+      "isin": "JP3236200006",
+      "symbol": "6861.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "hitachi",
+      "isin": "JP3788600009",
+      "symbol": "6501.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "mitsubishi-electric",
+      "isin": "JP3902400005",
+      "symbol": "6503.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "tokyo-electron",
+      "isin": "JP3571400005",
+      "symbol": "8035.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "advantest",
+      "isin": "JP3122400009",
+      "symbol": "6857.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "mitsubishi-corp",
+      "isin": "JP3898400001",
+      "symbol": "8058.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "softbank-group",
+      "isin": "JP3436100006",
+      "symbol": "9984.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "recruit",
+      "isin": "JP3970300004",
+      "symbol": "6098.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "reliance",
+      "isin": "INE002A01018",
+      "symbol": "RELIANCE.NS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "hdfc-bank",
+      "isin": "INE040A01034",
+      "symbol": "HDFCBANK.NS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "icici-bank",
+      "isin": "INE090A01021",
+      "symbol": "ICICIBANK.NS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "infosys",
+      "isin": "INE009A01021",
+      "symbol": "INFY.NS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "tcs",
+      "isin": "INE467B01029",
+      "symbol": "TCS.NS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "dbs",
+      "isin": "SG1L01001701",
+      "symbol": "D05.SI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "csco",
+      "isin": "US17275R1023",
+      "symbol": "CSCO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "arista",
+      "isin": "US0404132054",
+      "symbol": "ANET",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "dell",
+      "isin": "US24703L2025",
+      "symbol": "DELL",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "crowdstrike",
+      "isin": "US22788C1053",
+      "symbol": "CRWD",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "fortinet",
+      "isin": "US34959E1091",
+      "symbol": "FTNT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "snps",
+      "isin": "US8716071076",
+      "symbol": "SNPS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "klac",
+      "isin": "US4824801009",
+      "symbol": "KLAC",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "uber",
+      "isin": "US90353T1007",
+      "symbol": "UBER",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "airbnb",
+      "isin": "US0090661010",
+      "symbol": "ABNB",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "cme",
+      "isin": "US12572Q1058",
+      "symbol": "CME",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "ice",
+      "isin": "US45866F1049",
+      "symbol": "ICE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "pfe",
+      "isin": "US7170811035",
+      "symbol": "PFE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "amgn",
+      "isin": "US0311621009",
+      "symbol": "AMGN",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "gilead",
+      "isin": "US3755581036",
+      "symbol": "GILD",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockAN8068571086",
+      "isin": "AN8068571086",
+      "symbol": "SLB",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE0008471009",
+      "isin": "IE0008471009",
+      "symbol": "EUEA.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockCH0038863350",
+      "isin": "CH0038863350",
+      "symbol": "NESN.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockCH0114405324",
+      "isin": "CH0114405324",
+      "symbol": "GRMN",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockDE0007164600",
+      "isin": "DE0007164600",
+      "symbol": "SAP.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockFR0000120271",
+      "isin": "FR0000120271",
+      "symbol": "TTE.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockFR0000120578",
+      "isin": "FR0000120578",
+      "symbol": "SAN.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockFR0000124141",
+      "isin": "FR0000124141",
+      "symbol": "VIE.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockFR0000125486",
+      "isin": "FR0000125486",
+      "symbol": "DG.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockFR0000133308",
+      "isin": "FR0000133308",
+      "symbol": "ORA.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockFR0010208488",
+      "isin": "FR0010208488",
+      "symbol": "ENGI.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockIE00BFRT3W74",
+      "isin": "IE00BFRT3W74",
+      "symbol": "ALLE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS00724F1012",
+      "isin": "US00724F1012",
+      "symbol": "ADBE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS00846U1016",
+      "isin": "US00846U1016",
+      "symbol": "A",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS00971T1016",
+      "isin": "US00971T1016",
+      "symbol": "AKAM",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS0311001004",
+      "isin": "US0311001004",
+      "symbol": "AME",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS0527691069",
+      "isin": "US0527691069",
+      "symbol": "ADSK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS0536111091",
+      "isin": "US0536111091",
+      "symbol": "AVY",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS0865161014",
+      "isin": "US0865161014",
+      "symbol": "BBY",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS09857L1089",
+      "isin": "US09857L1089",
+      "symbol": "BKNG",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS1011371077",
+      "isin": "US1011371077",
+      "symbol": "BSX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS1101221083",
+      "isin": "US1101221083",
+      "symbol": "BMY",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS11133T1034",
+      "isin": "US11133T1034",
+      "symbol": "BR",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS12514G1085",
+      "isin": "US12514G1085",
+      "symbol": "CDW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS12541W2098",
+      "isin": "US12541W2098",
+      "symbol": "CHRW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS1491231015",
+      "isin": "US1491231015",
+      "symbol": "CAT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS1713401024",
+      "isin": "US1713401024",
+      "symbol": "CHD",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS1924461023",
+      "isin": "US1924461023",
+      "symbol": "CTSH",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS1999081045",
+      "isin": "US1999081045",
+      "symbol": "FIX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS2310211063",
+      "isin": "US2310211063",
+      "symbol": "CMI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS23331A1097",
+      "isin": "US23331A1097",
+      "symbol": "DHI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS2546871060",
+      "isin": "US2546871060",
+      "symbol": "DIS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS2566771059",
+      "isin": "US2566771059",
+      "symbol": "DG",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS25754A2015",
+      "isin": "US25754A2015",
+      "symbol": "DPZ",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS2600031080",
+      "isin": "US2600031080",
+      "symbol": "DOV",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS26875P1012",
+      "isin": "US26875P1012",
+      "symbol": "EOG",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS2786421030",
+      "isin": "US2786421030",
+      "symbol": "EBAY",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS2788651006",
+      "isin": "US2788651006",
+      "symbol": "ECL",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS28176E1082",
+      "isin": "US28176E1082",
+      "symbol": "EW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS29414B1044",
+      "isin": "US29414B1044",
+      "symbol": "EPAM",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS3021301094",
+      "isin": "US3021301094",
+      "symbol": "EXPD",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS30233Q1085",
+      "isin": "US30233Q1085",
+      "symbol": "XOM",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS3032501047",
+      "isin": "US3032501047",
+      "symbol": "FICO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS3156161024",
+      "isin": "US3156161024",
+      "symbol": "FFIV",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS35671D8570",
+      "isin": "US35671D8570",
+      "symbol": "FCX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS3666511072",
+      "isin": "US3666511072",
+      "symbol": "IT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS3695501086",
+      "isin": "US3695501086",
+      "symbol": "GD",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS3724601055",
+      "isin": "US3724601055",
+      "symbol": "GPC",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS3841091040",
+      "isin": "US3841091040",
+      "symbol": "GGG",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS4262811015",
+      "isin": "US4262811015",
+      "symbol": "JKHY",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS4278661081",
+      "isin": "US4278661081",
+      "symbol": "HSY",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS43300A2033",
+      "isin": "US43300A2033",
+      "symbol": "HLT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS4404521001",
+      "isin": "US4404521001",
+      "symbol": "HRL",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS4456581077",
+      "isin": "US4456581077",
+      "symbol": "JBHT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS45073V1089",
+      "isin": "US45073V1089",
+      "symbol": "ITT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS45168D1046",
+      "isin": "US45168D1046",
+      "symbol": "IDXX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS4523081093",
+      "isin": "US4523081093",
+      "symbol": "ITW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS46625H1005",
+      "isin": "US46625H1005",
+      "symbol": "JPM",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS4781601046",
+      "isin": "US4781601046",
+      "symbol": "JNJ",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS49338L1035",
+      "isin": "US49338L1035",
+      "symbol": "KEYS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS4943681035",
+      "isin": "US4943681035",
+      "symbol": "KMB",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS5018892084",
+      "isin": "US5018892084",
+      "symbol": "LKQ",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS5261071071",
+      "isin": "US5261071071",
+      "symbol": "LII",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS5339001068",
+      "isin": "US5339001068",
+      "symbol": "LECO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS5500211090",
+      "isin": "US5500211090",
+      "symbol": "LULU",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS5719032022",
+      "isin": "US5719032022",
+      "symbol": "MAR",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS5732841060",
+      "isin": "US5732841060",
+      "symbol": "MLM",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS5745991068",
+      "isin": "US5745991068",
+      "symbol": "MAS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS57636Q1040",
+      "isin": "US57636Q1040",
+      "symbol": "MA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS5926881054",
+      "isin": "US5926881054",
+      "symbol": "MTD",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS6098391054",
+      "isin": "US6098391054",
+      "symbol": "MPWR",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS64110D1046",
+      "isin": "US64110D1046",
+      "symbol": "NTAP",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS6541061031",
+      "isin": "US6541061031",
+      "symbol": "NKE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS6556631025",
+      "isin": "US6556631025",
+      "symbol": "NDSN",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS6558441084",
+      "isin": "US6558441084",
+      "symbol": "NSC",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS6668071029",
+      "isin": "US6668071029",
+      "symbol": "NOC",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS6703461052",
+      "isin": "US6703461052",
+      "symbol": "NUE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS68902V1070",
+      "isin": "US68902V1070",
+      "symbol": "OTIS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS6935061076",
+      "isin": "US6935061076",
+      "symbol": "PPG",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS7010941042",
+      "isin": "US7010941042",
+      "symbol": "PH",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS7043261079",
+      "isin": "US7043261079",
+      "symbol": "PAYX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS70432V1026",
+      "isin": "US70432V1026",
+      "symbol": "PAYC",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS7134481081",
+      "isin": "US7134481081",
+      "symbol": "PEP",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS73278L1052",
+      "isin": "US73278L1052",
+      "symbol": "POOL",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS7427181091",
+      "isin": "US7427181091",
+      "symbol": "PG",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS7458671010",
+      "isin": "US7458671010",
+      "symbol": "PHM",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS74762E1029",
+      "isin": "US74762E1029",
+      "symbol": "PWR",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS74834L1008",
+      "isin": "US74834L1008",
+      "symbol": "DGX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS75513E1010",
+      "isin": "US75513E1010",
+      "symbol": "RTX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS7611521078",
+      "isin": "US7611521078",
+      "symbol": "RMD",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS7703231032",
+      "isin": "US7703231032",
+      "symbol": "RHI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS7757111049",
+      "isin": "US7757111049",
+      "symbol": "ROL",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS7782961038",
+      "isin": "US7782961038",
+      "symbol": "ROST",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS8064071025",
+      "isin": "US8064071025",
+      "symbol": "HSIC",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS83088M1027",
+      "isin": "US83088M1027",
+      "symbol": "SWKS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS8318652091",
+      "isin": "US8318652091",
+      "symbol": "AOS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS8330341012",
+      "isin": "US8330341012",
+      "symbol": "SNA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS8545021011",
+      "isin": "US8545021011",
+      "symbol": "SWK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS8725401090",
+      "isin": "US8725401090",
+      "symbol": "TJX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS87612E1064",
+      "isin": "US87612E1064",
+      "symbol": "TGT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS8807701029",
+      "isin": "US8807701029",
+      "symbol": "TER",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS9022521051",
+      "isin": "US9022521051",
+      "symbol": "TYL",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS90384S3031",
+      "isin": "US90384S3031",
+      "symbol": "ULTA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS9113121068",
+      "isin": "US9113121068",
+      "symbol": "UPS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS91324P1021",
+      "isin": "US91324P1021",
+      "symbol": "UNH",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS92343E1029",
+      "isin": "US92343E1029",
+      "symbol": "VRSN",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS92343V1044",
+      "isin": "US92343V1044",
+      "symbol": "VZ",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS92345Y1064",
+      "isin": "US92345Y1064",
+      "symbol": "VRSK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS9291601097",
+      "isin": "US9291601097",
+      "symbol": "VMC",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS9297401088",
+      "isin": "US9297401088",
+      "symbol": "WAB",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS94106L1098",
+      "isin": "US94106L1098",
+      "symbol": "WM",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS9418481035",
+      "isin": "US9418481035",
+      "symbol": "WAT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS95082P1057",
+      "isin": "US95082P1057",
+      "symbol": "WCC",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS98419M1009",
+      "isin": "US98419M1009",
+      "symbol": "XYL",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS9884981013",
+      "isin": "US9884981013",
+      "symbol": "YUM",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS9892071054",
+      "isin": "US9892071054",
+      "symbol": "ZBRA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockGB0009895292",
+      "isin": "GB0009895292",
+      "symbol": "AZN.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "brookfield",
+      "isin": "CA11271J1075",
+      "symbol": "BN.TO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "canadian-national-railway",
+      "isin": "CA1363751027",
+      "symbol": "CNR.TO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "enbridge",
+      "isin": "CA29250N1050",
+      "symbol": "ENB.TO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "royal-bank-of-canada",
+      "isin": "CA7800871021",
+      "symbol": "RY.TO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "shopify",
+      "isin": "CA82509L1076",
+      "symbol": "SHOP.TO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "toronto-dominion",
+      "isin": "CA8911605092",
+      "symbol": "TD.TO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "givaudan",
+      "isin": "CH0010645932",
+      "symbol": "GIVN.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "holcim",
+      "isin": "CH0012214059",
+      "symbol": "HOLN.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "lonza",
+      "isin": "CH0013841017",
+      "symbol": "LONN.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "richemont",
+      "isin": "CH0210483332",
+      "symbol": "CFR.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "sika",
+      "isin": "CH0418792922",
+      "symbol": "SIKA.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "kweichow-moutai",
+      "isin": "CNE0000018R8",
+      "symbol": "600519.SS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "china-construction-bank",
+      "isin": "CNE1000002H1",
+      "symbol": "0939.HK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "icbc",
+      "isin": "CNE1000003G1",
+      "symbol": "1398.HK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "ping-an",
+      "isin": "CNE1000003X6",
+      "symbol": "2318.HK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "deutsche-bank",
+      "isin": "DE0005140008",
+      "symbol": "DBK.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "mercedes-benz",
+      "isin": "DE0007100000",
+      "symbol": "MBG.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "volkswagen",
+      "isin": "DE0007664039",
+      "symbol": "VOW3.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "siemens-energy",
+      "isin": "DE000ENER6Y0",
+      "symbol": "ENR.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "siemens-healthineers",
+      "isin": "DE000SHL1006",
+      "symbol": "SHL.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "dsv",
+      "isin": "DK0060079531",
+      "symbol": "DSV.CO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "orsted",
+      "isin": "DK0060094928",
+      "symbol": "ORSTED.CO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "novonesis",
+      "isin": "DK0060336014",
+      "symbol": "NSIS-B.CO",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "nordea",
+      "isin": "FI4000297767",
+      "symbol": "NDA-FI.HE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "credit-agricole",
+      "isin": "FR0000045072",
+      "symbol": "ACA.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "carrefour",
+      "isin": "FR0000120172",
+      "symbol": "CA.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "bouygues",
+      "isin": "FR0000120503",
+      "symbol": "EN.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "pernod-ricard",
+      "isin": "FR0000120693",
+      "symbol": "RI.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "kering",
+      "isin": "FR0000121485",
+      "symbol": "KER.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "capgemini",
+      "isin": "FR0000125338",
+      "symbol": "CAP.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "publicis",
+      "isin": "FR0000130577",
+      "symbol": "PUB.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "societe-generale",
+      "isin": "FR0000130809",
+      "symbol": "GLE.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "renault",
+      "isin": "FR0000131906",
+      "symbol": "RNO.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "bat",
+      "isin": "GB0002875804",
+      "symbol": "BATS.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "hsbc",
+      "isin": "GB0005405286",
+      "symbol": "HSBA.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "rio-tinto",
+      "isin": "GB0007188757",
+      "symbol": "RIO.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "gsk",
+      "isin": "GB00BN7SWP63",
+      "symbol": "GSK.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "shell",
+      "isin": "GB00BP6MXD84",
+      "symbol": "SHEL.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "aia",
+      "isin": "HK0000069689",
+      "symbol": "1299.HK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "hkex",
+      "isin": "HK0388045442",
+      "symbol": "0388.HK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "accenture",
+      "isin": "IE00B4BNMY34",
+      "symbol": "ACN",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "medtronic",
+      "isin": "IE00BTN1Y115",
+      "symbol": "MDT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "larsen-toubro",
+      "isin": "INE018A01030",
+      "symbol": "LT.NS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "hindustan-unilever",
+      "isin": "INE030A01027",
+      "symbol": "HINDUNILVR.NS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "sun-pharma",
+      "isin": "INE044A01036",
+      "symbol": "SUNPHARMA.NS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "sbi",
+      "isin": "INE062A01020",
+      "symbol": "SBIN.NS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "itc",
+      "isin": "INE154A01025",
+      "symbol": "ITC.NS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "axis-bank",
+      "isin": "INE238A01034",
+      "symbol": "AXISBANK.NS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "bharti-airtel",
+      "isin": "INE397D01024",
+      "symbol": "BHARTIARTL.NS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "generali",
+      "isin": "IT0000062072",
+      "symbol": "G.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "intesa-sanpaolo",
+      "isin": "IT0000072618",
+      "symbol": "ISP.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "eni",
+      "isin": "IT0003132476",
+      "symbol": "ENI.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "unicredit",
+      "isin": "IT0005239360",
+      "symbol": "UCG.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "glencore",
+      "isin": "JE00B4T3BW64",
+      "symbol": "GLEN.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "itochu",
+      "isin": "JP3143600009",
+      "symbol": "8001.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "shin-etsu",
+      "isin": "JP3371200001",
+      "symbol": "4063.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "takeda",
+      "isin": "JP3463000004",
+      "symbol": "4502.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "daiichi-sankyo",
+      "isin": "JP3475350009",
+      "symbol": "4568.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "kddi",
+      "isin": "JP3496400007",
+      "symbol": "9433.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "chugai",
+      "isin": "JP3519400000",
+      "symbol": "4519.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "disco",
+      "isin": "JP3548600000",
+      "symbol": "6146.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "nidec",
+      "isin": "JP3734800000",
+      "symbol": "6594.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "ntt",
+      "isin": "JP3735400008",
+      "symbol": "9432.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "fast-retailing",
+      "isin": "JP3802300008",
+      "symbol": "9983.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "hoya",
+      "isin": "JP3837800006",
+      "symbol": "7741.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "honda",
+      "isin": "JP3854600008",
+      "symbol": "7267.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "smfg",
+      "isin": "JP3890350006",
+      "symbol": "8316.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "mitsui",
+      "isin": "JP3893600001",
+      "symbol": "8031.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "mufg",
+      "isin": "JP3902900004",
+      "symbol": "8306.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "murata",
+      "isin": "JP3914400001",
+      "symbol": "6981.T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "kia",
+      "isin": "KR7000270009",
+      "symbol": "000270.KS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "hyundai-motor",
+      "isin": "KR7005380001",
+      "symbol": "005380.KS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "naver",
+      "isin": "KR7035420009",
+      "symbol": "035420.KS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "netease",
+      "isin": "KYG6427A1022",
+      "symbol": "9999.HK",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "heineken",
+      "isin": "NL0000009165",
+      "symbol": "HEIA.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "philips",
+      "isin": "NL0000009538",
+      "symbol": "PHIA.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stmicroelectronics",
+      "isin": "NL0000226223",
+      "symbol": "STMPA.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "asm-international",
+      "isin": "NL0000334118",
+      "symbol": "ASM.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "wolters-kluwer",
+      "isin": "NL0000395903",
+      "symbol": "WKL.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "ing",
+      "isin": "NL0011821202",
+      "symbol": "INGA.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "adyen",
+      "isin": "NL0012969182",
+      "symbol": "ADYEN.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "prosus",
+      "isin": "NL0013654783",
+      "symbol": "PRX.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stellantis",
+      "isin": "NL00150001Q9",
+      "symbol": "STLAM.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "equinor",
+      "isin": "NO0010096985",
+      "symbol": "EQNR.OL",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "volvo",
+      "isin": "SE0000115446",
+      "symbol": "VOLV-B.ST",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "investor-ab",
+      "isin": "SE0015811963",
+      "symbol": "INVE-B.ST",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "atlas-copco",
+      "isin": "SE0017486889",
+      "symbol": "ATCO-A.ST",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "uob",
+      "isin": "SG1M31001969",
+      "symbol": "U11.SI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "ocbc",
+      "isin": "SG1S04926220",
+      "symbol": "O39.SI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "t",
+      "isin": "US00206R1023",
+      "symbol": "T",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "applovin",
+      "isin": "US03831W1080",
+      "symbol": "APP",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "boeing",
+      "isin": "US0970231058",
+      "symbol": "BA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "csx",
+      "isin": "US1264081035",
+      "symbol": "CSX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "citigroup",
+      "isin": "US1729674242",
+      "symbol": "C",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "cmcsa",
+      "isin": "US20030N1019",
+      "symbol": "CMCSA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "dhr",
+      "isin": "US2358511028",
+      "symbol": "DHR",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "emr",
+      "isin": "US2910111044",
+      "symbol": "EMR",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "marvell",
+      "isin": "US5738741041",
+      "symbol": "MRVL",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "oxy",
+      "isin": "US6745991058",
+      "symbol": "OXY",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "philip-morris",
+      "isin": "US7181721090",
+      "symbol": "PM",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "shw",
+      "isin": "US8243481061",
+      "symbol": "SHW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "tmus",
+      "isin": "US8725901040",
+      "symbol": "TMUS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "3m",
+      "isin": "US88579Y1010",
+      "symbol": "MMM",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "wells-fargo",
+      "isin": "US9497461015",
+      "symbol": "WFC",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfDE0002635307",
+      "isin": "DE0002635307",
+      "symbol": "EXSA.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfDE000A0H08Q4",
+      "isin": "DE000A0H08Q4",
+      "symbol": "EXV3.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE0008470928",
+      "isin": "IE0008470928",
+      "symbol": "EUN1.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE000C6ITGC8",
+      "isin": "IE000C6ITGC8",
+      "symbol": "QANT.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE000U9ODG19",
+      "isin": "IE000U9ODG19",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B02KXK85",
+      "isin": "IE00B02KXK85",
+      "symbol": "FXC.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B0M62S72",
+      "isin": "IE00B0M62S72",
+      "symbol": "IDVY.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B0M63623",
+      "isin": "IE00B0M63623",
+      "symbol": "ITWN.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B1YZSC51",
+      "isin": "IE00B1YZSC51",
+      "symbol": "IMEU.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B2QWCY14",
+      "isin": "IE00B2QWCY14",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B3VWMM18",
+      "isin": "IE00B3VWMM18",
+      "symbol": "CSEMUS.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B4K48X80",
+      "isin": "IE00B4K48X80",
+      "symbol": "IMAE.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B52SFT06",
+      "isin": "IE00B52SFT06",
+      "symbol": "CSUS.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B53QG562",
+      "isin": "IE00B53QG562",
+      "symbol": "CSEMU.SW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BD1F4L37",
+      "isin": "IE00BD1F4L37",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BD1F4M44",
+      "isin": "IE00BD1F4M44",
+      "symbol": "IUVL.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BD1F4N50",
+      "isin": "IE00BD1F4N50",
+      "symbol": "IUMO.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BGL86Z12",
+      "isin": "IE00BGL86Z12",
+      "symbol": "ECAR.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BJ5JPG56",
+      "isin": "IE00BJ5JPG56",
+      "symbol": "ICHN.AS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BQN1K562",
+      "isin": "IE00BQN1K562",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BQN1K786",
+      "isin": "IE00BQN1K786",
+      "symbol": "IEMO.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BQN1K901",
+      "isin": "IE00BQN1K901",
+      "symbol": "IEVL.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BQT3WG13",
+      "isin": "IE00BQT3WG13",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BYX2JD69",
+      "isin": "IE00BYX2JD69",
+      "symbol": "SUSW.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BYZK4669",
+      "isin": "IE00BYZK4669",
+      "symbol": "AGED.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "ab-inbev",
+      "isin": "BE0974293251",
+      "symbol": "ABI.BR",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "bp",
+      "isin": "GB0007980591",
+      "symbol": "BP.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "national-grid",
+      "isin": "GB00BDR05C01",
+      "symbol": "NG.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "kotak-mahindra",
+      "isin": "INE237A01036",
+      "symbol": "KOTAKBANK.NS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "bajaj-finance",
+      "isin": "INE296A01032",
+      "symbol": "BAJFINANCE.NS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "fdx",
+      "isin": "US31428X1063",
+      "symbol": "FDX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "bhp",
+      "isin": "AU000000BHP4",
+      "symbol": "BHP.AX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "commonwealth-bank",
+      "isin": "AU000000CBA7",
+      "symbol": "CBA.AX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "csl",
+      "isin": "AU000000CSL8",
+      "symbol": "CSL.AX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "macquarie",
+      "isin": "AU000000MQG1",
+      "symbol": "MQG.AX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0007054358",
+      "isin": "FR0007054358",
+      "symbol": "LYSX.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0007056841",
+      "isin": "FR0007056841",
+      "symbol": "DJE.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0011869304",
+      "isin": "FR0011869304",
+      "symbol": "PMEH.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0011871078",
+      "isin": "FR0011871078",
+      "symbol": "PASI.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0013346681",
+      "isin": "FR0013346681",
+      "symbol": "OBLI.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0013411980",
+      "isin": "FR0013411980",
+      "symbol": "PTPXE.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfGB00B15KXQ89",
+      "isin": "GB00B15KXQ89",
+      "symbol": "COPA.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE0002Y8CX98",
+      "isin": "IE0002Y8CX98",
+      "symbol": "EUDF.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE0003XJA0J9",
+      "isin": "IE0003XJA0J9",
+      "symbol": "WEBN.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE0009HF1MK9",
+      "isin": "IE0009HF1MK9",
+      "symbol": "WEBG.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE000W8WMSL2",
+      "isin": "IE000W8WMSL2",
+      "symbol": "WQTM.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE000XZSV718",
+      "isin": "IE000XZSV718",
+      "symbol": "SPYL.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BDVPNG13",
+      "isin": "IE00BDVPNG13",
+      "symbol": "WTAI.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BFY0GT14",
+      "isin": "IE00BFY0GT14",
+      "symbol": "SWRD.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BKLF1R75",
+      "isin": "IE00BKLF1R75",
+      "symbol": "W1TA.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BKWQ0Q14",
+      "isin": "IE00BKWQ0Q14",
+      "symbol": "ERO.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BMC38736",
+      "isin": "IE00BMC38736",
+      "symbol": "SMH.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU0908500753",
+      "isin": "LU0908500753",
+      "symbol": "LYP6.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU1681038672",
+      "isin": "LU1681038672",
+      "symbol": "RS2K.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU1681040223",
+      "isin": "LU1681040223",
+      "symbol": "AME6.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU1829219390",
+      "isin": "LU1829219390",
+      "symbol": "BNKE.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU1834983634",
+      "isin": "LU1834983634",
+      "symbol": "CHM.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU2089238385",
+      "isin": "LU2089238385",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU3038520774",
+      "isin": "LU3038520774",
+      "symbol": "DEFS.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU3180074463",
+      "isin": "LU3180074463",
+      "symbol": "INDEP.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE000L6ZMMC4",
+      "isin": "IE000L6ZMMC4",
+      "symbol": "ALLW.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BJ0KDQ92",
+      "isin": "IE00BJ0KDQ92",
+      "symbol": "XDWD.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BK1PV551",
+      "isin": "IE00BK1PV551",
+      "symbol": "XDWL.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BTJRMP35",
+      "isin": "IE00BTJRMP35",
+      "symbol": "XMME.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU0274209237",
+      "isin": "LU0274209237",
+      "symbol": "XMEU.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU0328475792",
+      "isin": "LU0328475792",
+      "symbol": "XSX6.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU0380865021",
+      "isin": "LU0380865021",
+      "symbol": "XESC.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU1875395870",
+      "isin": "LU1875395870",
+      "symbol": "XDJE.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU2196470426",
+      "isin": "LU2196470426",
+      "symbol": "XNKY.DE",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU2903252349",
+      "isin": "LU2903252349",
+      "symbol": "SCWX.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE000NDWFGA5",
+      "isin": "IE000NDWFGA5",
+      "symbol": "URNU.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B3RBWM25",
+      "isin": "IE00B3RBWM25",
+      "symbol": "VWRD.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B3VVMM84",
+      "isin": "IE00B3VVMM84",
+      "symbol": "VDEM.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B3XXRP09",
+      "isin": "IE00B3XXRP09",
+      "symbol": "VUSD.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B945VV12",
+      "isin": "IE00B945VV12",
+      "symbol": "VEUD.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BFMXXD54",
+      "isin": "IE00BFMXXD54",
+      "symbol": "VUAA.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BK5BQV03",
+      "isin": "IE00BK5BQV03",
+      "symbol": "VHVE.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BK5BQX27",
+      "isin": "IE00BK5BQX27",
+      "symbol": "VWCG.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BLCHJB90",
+      "isin": "IE00BLCHJB90",
+      "symbol": "BOTZ.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BMH5Y871",
+      "isin": "IE00BMH5Y871",
+      "symbol": "BUG.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0011550185",
+      "isin": "FR0011550185",
+      "symbol": "ESE.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE0000QLH0G6",
+      "isin": "IE0000QLH0G6",
+      "symbol": "FTWD.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE000716YHJ7",
+      "isin": "IE000716YHJ7",
+      "symbol": "FWRA.L",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE000QDFFK00",
+      "isin": "IE000QDFFK00",
+      "symbol": "ANAU.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00B4K6B022",
+      "isin": "IE00B4K6B022",
+      "symbol": "50E.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BD4TXV59",
+      "isin": "IE00BD4TXV59",
+      "symbol": "WRDA.MI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "stockUS45167R1041",
+      "isin": "US45167R1041",
+      "symbol": "IEX",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "cameco",
+      "isin": "CA13321L1085",
+      "symbol": "CCJ",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "nu",
+      "isin": "KYG6683N1034",
+      "symbol": "NU",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "nebius",
+      "isin": "NL0009805522",
+      "symbol": "NBIS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "saab-b",
+      "isin": "SE0021921269",
+      "symbol": "SAAB-B.ST",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "ast-spacemobile",
+      "isin": "US00217D1000",
+      "symbol": "ASTS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "cloudflare",
+      "isin": "US18915M1071",
+      "symbol": "NET",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "coinbase",
+      "isin": "US19260Q1076",
+      "symbol": "COIN",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "constellation-energy",
+      "isin": "US21037T1097",
+      "symbol": "CEG",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "datadog",
+      "isin": "US23804L1035",
+      "symbol": "DDOG",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "duolingo",
+      "isin": "US26603R1068",
+      "symbol": "DUOL",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "ge-vernova",
+      "isin": "US36828A1016",
+      "symbol": "GEV",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "mercadolibre",
+      "isin": "US58733R1023",
+      "symbol": "MELI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "strategy",
+      "isin": "US5949724083",
+      "symbol": "MSTR",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "reddit",
+      "isin": "US75734B1008",
+      "symbol": "RDDT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "robinhood",
+      "isin": "US7707001027",
+      "symbol": "HOOD",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "rocket-lab",
+      "isin": "US7731211089",
+      "symbol": "RKLB",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "snowflake",
+      "isin": "US8334451098",
+      "symbol": "SNOW",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "sofi",
+      "isin": "US83406F1021",
+      "symbol": "SOFI",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "vertiv",
+      "isin": "US92537N1081",
+      "symbol": "VRT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "zscaler",
+      "isin": "US98980G1022",
+      "symbol": "ZS",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "spotify",
+      "isin": "LU1778762911",
+      "symbol": "SPOT",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0010342592Nav",
+      "isin": "FR0010342592",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0007054358Nav",
+      "isin": "FR0007054358",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU2196470426Nav",
+      "isin": "LU2196470426",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfCH0454664001Nav",
+      "isin": "CH0454664001",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU1737652823Nav",
+      "isin": "LU1737652823",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfLU1875395870Nav",
+      "isin": "LU1875395870",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfGB00B15KXQ89Nav",
+      "isin": "GB00B15KXQ89",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etc_brent_crude_oilNav",
+      "isin": "JE00B78CGV99",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etc_wti_crude_oilNav",
+      "isin": "GB00B15KXV33",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etc_coffeeNav",
+      "isin": "JE00BN7KB557",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BK5BCD43Nav",
+      "isin": "IE00BK5BCD43",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BK5BCH80Nav",
+      "isin": "IE00BK5BCH80",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0011550185Nav",
+      "isin": "FR0011550185",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfIE00BDVPNG13Nav",
+      "isin": "IE00BDVPNG13",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfCloudWisdomtreeNav",
+      "isin": "IE00BJGWQN72",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etc_cocoaNav",
+      "isin": "JE00B2QXZK10",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etc_natural_gasNav",
+      "isin": "JE00BN7KB334",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etc_wheatNav",
+      "isin": "JE00BN7KB664",
+      "symbol": null,
+      "parser": "official-nav",
+      "retainedPeriodEnd": "2026-09"
+    },
+    {
+      "id": "etfFR0013412269",
+      "isin": "FR0013412269",
+      "symbol": "PANX.PA",
+      "parser": "yahoo",
+      "retainedPeriodEnd": "2026-09"
+    }
+  ]
+}
