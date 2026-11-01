@@ -26,7 +26,15 @@ Le producteur ETFordinaire41348779398 a réellement relu les **tables sectoriell
 
 Nouvelle piste S&P : les deux vrais PDF officiels déclarés sont accessibles200, contrairement à l’APIcomposition403. LePDFGlobal qualifie pays/secteurs/nombre88 au30octobre ; ils recoupent l’API à la précision imprimée. Il ne publie pas les dix poids individuels. LePDFEuro reste refusé par le parseur de composition tronquée. Aucun de ces documents n’est publié comme composition complète ; aucun contrôle récent n’est attribué aux poids du relais conservé. Le secours API garde son vrai contrôle du1novembre07:19 et sa durée48h ; son renouvellement autonome n’est pas démontré.
 
-Un défaut de test de publication est reproduit dans41353592332 : l’archive Amundi septembre était comparée à toute la série vivante prolongée d’octobre. #1133 conserve l’égalité stricte de chaque ancien point, rapproche la suite du registre exactEUR/ISIN, contrôle unicité/ordre/bornes et préserve le refus financier2020. Les douze suites de consommateursNAV et le build local passent ; fusion/déploiement à confirmer après saCI.
+Un défaut de test de publication est reproduit dans41353592332 : l’archive Amundi septembre était comparée à toute la série vivante prolongée d’octobre. #1133 conserve l’égalité stricte de chaque ancien point, rapproche la suite du registre exactEUR/ISIN, contrôle unicité/ordre/bornes et préserve le refus financier2020. Les douze suites de consommateursNAV, le build et les14contrôlesCI passent ; #1133 est fusionnée en246849a. Sa publication terminale reste une étape distincte à vérifier.
+
+Complément d’enregistrement du1novembre22:57UTC : le producteurETF ordinaire41356552885 a enregistré les **7encours** concernés ena89719f. Montants natifs, devises, dates et empreintes sont rapprochés individuellement du registre ; transportHTTPprimaire pour les7, aucune panne provoquée pour exercer le secours. Leur publication et leurs fiches restent à rapprocher du reçu public.
+
+Le producteurBitcoin existant41359191599, lancé manuellement une seule fois, a validé et enregistré **142mois**2015-01→2026-10 enfb50512 : les141anciens mois sont strictement identiques, seul octobre est ajouté,77434,75USD recoupés avec la clôtureUTC31octobre. Aucune correction de prix ni preuve de cron prétendue ; publication/consommateurs distincts à vérifier. Le premier passage programmé reste le2novembre.
+
+Une nouvelle vérification publique QYLD après hydratationJavaScript retrouve les20positions de référence visibles et les deux jeux contradictoires, ainsi que la table glissante USDAccumulating. Cette sonde locale ne constitue pas un contrôle fournisseurGitHub ni une résolution. Les portefeuilles physiques d’un fonds synthétique ne sont pas utilisés comme exposition économique de son indice.
+
+Les30diagnosticsconnection comprennent12produits/conditions documentaires apparaissant dans deux vues, et6recoupements externes manuels de conditions courtiers. Ces six preuves ne signifient pas que les tarifs primaires automatisés sont en panne. Les identités et leur cause exacte sont conservées dans l’export.
 
 ## Réconciliation et limites
 

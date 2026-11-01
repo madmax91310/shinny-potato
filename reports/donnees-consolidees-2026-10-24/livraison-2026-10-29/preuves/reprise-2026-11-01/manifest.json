@@ -2,6 +2,16 @@
   "checkedAt": "2026-11-01",
   "files": [
     {
+      "path": "bitcoin-ordinary-41359191599-recording-proof.json",
+      "bytes": 1056,
+      "sha256": "3d82006b354a37abf8e09cac6c43794e88d3fba342e25ac07db8d09c1ac8b5d9"
+    },
+    {
+      "path": "bitcoin-ordinary-41359191599.zip",
+      "bytes": 180664,
+      "sha256": "ed9c7d83be2438b8ff548e28b0483e57fbc961923477d619ab0483666b5c3dcc"
+    },
+    {
       "path": "blackrock-october-tail/7cbc5f557c361a5938ceb3d45ab9fe443f16b72cd2abbee39f6c56c505e2fd64.json.gz",
       "bytes": 73416,
       "sha256": "772aa397f66930fb4e0ca8f6cfe0e41609b31c9516522c7a6157c58aa3c1ba74"
@@ -145,6 +155,16 @@
       "path": "github-41348646379-additional-observation.json.gz",
       "bytes": 82094,
       "sha256": "bb3b666b273b5c0c881a9a95d2a228eb7f746ef92c728692e4d5e6a3ebc7ce91"
+    },
+    {
+      "path": "github-41356552885-additional-observation.contract-plan.json.gz",
+      "bytes": 5618,
+      "sha256": "643c9c04159ad1f4b72ca069a9b5107bce92662989decc84d1ab52b0abd06b1a"
+    },
+    {
+      "path": "github-41356552885-additional-observation.json.gz",
+      "bytes": 82171,
+      "sha256": "2546b2c2b7c8ce9cb7903ed93c5350f4b3c504d7315b09950a18ec97da916aa6"
     },
     {
       "path": "h10-real-month-boundary-replay-20261101.json",
@@ -350,6 +370,11 @@
       "path": "pr1131-validated-checks.json",
       "bytes": 8507,
       "sha256": "6082915f9d2cc719291c8e11a8b7f0b61b95b27f7b812515d33b6632155788a4"
+    },
+    {
+      "path": "pr1133-validated-checks.json",
+      "bytes": 5644,
+      "sha256": "bce7c54f46ad05ae4fc35c2cb98b8a76e35b6bf3957c098ba0e27e29eabf1413"
     },
     {
       "path": "public-exposure-recovery/IE0007Y8Y157-1440.png",
@@ -647,6 +672,16 @@
       "sha256": "e0400bb5b0364df7ee9917ff6410390f3133f9bc122fd0028879e69916b15bb8"
     },
     {
+      "path": "qyld-hydrated-public/hydrated.html.gz",
+      "bytes": 57388,
+      "sha256": "32610f776aef7e4123788a658025a5c4c6d4d95d4349923dc59a37f2b0b7a5d8"
+    },
+    {
+      "path": "qyld-hydrated-public/probe.json",
+      "bytes": 47661,
+      "sha256": "28047df9c964a5804dedffc15dc261c3c94cc01e668e2ab55bd4ff6a79bf5165"
+    },
+    {
       "path": "qyld-official-current.html.gz",
       "bytes": 49226,
       "sha256": "84ec013847d3edb6789db1bf7770fda23047498e5b92e21cac540654541f8323"
@@ -847,6 +882,11 @@
       "sha256": "9815d5860ec9ecf6f874ba5e1f0d0b9329731fd9ad51f03afe4c75df2d9f9032"
     },
     {
+      "path": "verification/verify-public-wisdomtree-aum.mjs",
+      "bytes": 5095,
+      "sha256": "725524f923d9a292859b7b385a29067234fcabe798bfa9cb0be0cf1826f62bbe"
+    },
+    {
       "path": "verification/verify-stoxx.mjs",
       "bytes": 4251,
       "sha256": "324422ebc50cea73c2ed4f916ed025b1d1b0d444890ebabd5bc86d1784e4764c"
@@ -897,6 +937,11 @@
       "sha256": "0daa8505976bd5fc3171a01692dba4b5df7f5f0c9cd6051f7f96ab35cd52ee6b"
     },
     {
+      "path": "wisdomtree-ordinary-after-merge-41356552885.json",
+      "bytes": 9842,
+      "sha256": "13c37c70e5fdd69ca3fff44a48fe314ce6ee900bc45b44322a638231dafa9f9a"
+    },
+    {
       "path": "workflow-and-followup-identities.json",
       "bytes": 593,
       "sha256": "4815002243afe37712dfd54dc6889c224b9161ca0a27a83606cf503ef2f2ee2b"
@@ -942,5 +987,5 @@
       "sha256": "a86daca0ee6b771d9426b832d505bf43f29a9b017ef76047d5ec16b0d969865c"
     }
   ],
-  "limit": "Empreintes de conservation ; chaque preuve garde sa portée source/validation/enregistrement/publication/consommation. Aucun succès global déduit."
+  "limit": "Chaque preuve conserve sa date et son étage. Le reçu terminal de publication/consommation est distinct des succès source et enregistrement ; aucune certification globale."
 }
