@@ -18,7 +18,7 @@ try{
   await new Promise(r=>setTimeout(r,100))
  }
  assert(ready,'Preview did not become available within 30 seconds')
- browser=await chromium.launch({headless:true})
+ browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']}:{})})
  const page=await browser.newPage({viewport:{width:1280,height:900},acceptDownloads:true}),errors=[]
  page.on('pageerror',e=>errors.push(e.message))
  await page.route('https://api.github.com/**/actions/workflows/automation-status.yml/runs?**',r=>r.fulfill({json:{workflow_runs:[{id:1,head_branch:'master',event:'schedule',status:'completed',conclusion:'success'}]}}))
@@ -36,10 +36,8 @@ try{
   await section.getByRole('textbox',{name:'Rechercher un écart financier'}).fill(residual.isin)
   assert((await section.innerText()).includes(residual.reason),'The proved correction and remaining residual must reach the real review screen')
  }
- // The review inventory can exceed Chromium's maximum bitmap dimensions.
- // Keep the evidence panel in the viewport; every functional assertion stays above.
- await section.scrollIntoViewIfNeeded()
- await page.screenshot({path:out+'/review-desktop.png',fullPage:false})
+ // Capture the financial evidence region; the entire review can exceed Chromium's bitmap limit.
+ await section.screenshot({path:out+'/review-desktop.png'})
  let pngCount=0
  for(const width of [1280,390]){
   await page.setViewportSize({width,height:900})
@@ -63,7 +61,7 @@ try{
   const brokerDownload=page.waitForEvent('download');await page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}).click()
   await (await brokerDownload).saveAs(`${out}/ibkr-${width}.png`);pngCount++
   await page.goto(base+'/le-dca-de?isin=IE00BK5BQT80',{waitUntil:'networkidle'})
-  await page.getByRole('searchbox',{name:'Ajouter un actif'}).fill('IE00BFMXXD54')
+  await page.getByRole('searchbox',{name:'Rechercher : Ajouter un actif',exact:true}).fill('IE00BFMXXD54')
   await page.getByRole('button',{name:/IE00BFMXXD54/}).click()
   const weights=page.getByRole('spinbutton');await weights.nth(0).fill('50');await weights.nth(1).fill('50')
   await page.getByAltText('Répartition et expositions du portefeuille').waitFor()
