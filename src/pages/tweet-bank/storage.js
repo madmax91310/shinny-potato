@@ -1,3 +1,4 @@
+import { SUNDAY_THEMES } from './sunday-questions.js'
 // These unversioned maps are the existing on-device format. Keep keys and unknown
 // fields/IDs so loading a newer draft never strips user content.
 export const LAST_PUBLICATION_KEY = 'pc-tweet-bank-last-pub'
@@ -6,7 +7,7 @@ const objectMap = value => value !== null && typeof value === 'object' && !Array
 function validRecord(key, value) {
   if (!objectMap(value)) return false
   if (key === LAST_PUBLICATION_KEY) return Object.values(value).every(date => typeof date === 'string' || date === null)
-  if (key === DRAFTS_KEY) return Object.values(value).every(draft => objectMap(draft) && (draft.text === undefined || typeof draft.text === 'string') &&
+  if (key === DRAFTS_KEY) return Object.entries(value).every(([id, draft]) => objectMap(draft) && (draft.question === undefined || (objectMap(draft.question) && id.startsWith('sunday:personal:') && draft.question.id === id && draft.question.personal === true && draft.question.category === 'Question dimanche' && typeof draft.question.text === 'string' && SUNDAY_THEMES.includes(draft.question.theme))) && (draft.text === undefined || typeof draft.text === 'string') &&
     ['asOf', 'checkedAt', 'verifiedText', 'verifiedAsOf'].every(field => draft[field] == null || typeof draft[field] === 'string'))
   return false
 }
