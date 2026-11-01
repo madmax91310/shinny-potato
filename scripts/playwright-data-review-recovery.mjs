@@ -36,7 +36,9 @@ try{
   await section.getByRole('textbox',{name:'Rechercher un écart financier'}).fill(residual.isin)
   assert((await section.innerText()).includes(residual.reason),'The proved correction and remaining residual must reach the real review screen')
  }
- await page.screenshot({path:out+'/review-desktop.png',fullPage:true})
+ // Capture the financial evidence actually asserted above. The full review
+ // page grows with its live catalogue and can exceed Chromium bitmap limits.
+ await section.screenshot({path:out+'/review-desktop.png'})
  let pngCount=0
  for(const width of [1280,390]){
   await page.setViewportSize({width,height:900})
