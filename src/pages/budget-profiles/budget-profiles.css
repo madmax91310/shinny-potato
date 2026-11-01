@@ -20,3 +20,5 @@
 .budget-profiles-scope .budget-backup ul{max-height:240px;overflow:auto;padding-left:20px}
 
 .budget-profiles-scope .budget-import-text{white-space:pre-wrap;overflow-wrap:anywhere}
+
+@media(max-width:500px){.budget-profiles-scope .dca-simple-preview img{width:calc(100% + 32px);max-width:none;margin-inline:-16px;border-radius:0}}

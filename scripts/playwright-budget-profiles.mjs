@@ -22,6 +22,13 @@ function captureCanvasText() {
       }
 }
 
+function assertNoCanvasTextOverlap(drawn, label) {
+  for (let i = 0; i < drawn.length; i++) for (const b of drawn.slice(i + 1)) {
+    const a = drawn[i]
+    assert(!(Math.min(a.right, b.right) - Math.max(a.left, b.left) > 1 && Math.min(a.y + a.size, b.y + b.size) - Math.max(a.y, b.y) > 2), `${label}: overlapping text ${JSON.stringify([a, b])}`)
+  }
+}
+
 // CI partitions the exhaustive roster by viewport; direct runs still check all three.
 const widths = process.argv[2] === undefined ? [1440, 390, 320] : [Number(process.argv[2])]
 assert(widths.every(width => [1440, 390, 320].includes(width)), 'Expected viewport 1440, 390 or 320')
@@ -59,6 +66,7 @@ try {
       assert((await image.evaluate(img => img.naturalWidth)) === 1200)
       const drawn = await page.evaluate(() => window.budgetCanvasText)
       assert(drawn.length > 0, 'Inspect the real canvas text, not only its PNG dimensions')
+      assertNoCanvasTextOverlap(drawn, profile.id)
       if (profile.approximate) assert(drawn.some(t => t.text.startsWith('≈ ')), 'Approximate amounts stay qualified in the main figure, without a disclaimer line')
       for (const t of drawn) {
         assert(t.left >= 30 && t.right <= 1170 && t.y >= 0 && t.y + t.size <= t.height, `${profile.id}: text exceeds the image: ${JSON.stringify(t)}`)
@@ -83,6 +91,7 @@ try {
       await page.getByLabel('Version de l’image', { exact: true }).selectOption('summary')
       await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeEnabled()
       const summaryDrawn = await page.evaluate(() => window.budgetCanvasText)
+      assertNoCanvasTextOverlap(summaryDrawn, `${profile.id} summary`)
       const summaryText = normalize(summaryDrawn.map(t => t.text).join(' '))
       for (const row of [...profile.income, ...budgetImageExpenses(profile, 'summary'), ...profile.savings]) {
         assert(summaryText.includes(normalize(row.label)), `${profile.id}: missing summary label ${row.label}`)
@@ -180,6 +189,7 @@ try {
     const dimensions = await image.evaluate(img => [img.naturalWidth, img.naturalHeight])
     assert(dimensions[1] < 16384, 'The maximum valid editor budget fits a supported canvas')
     const drawn = await page.evaluate(() => window.budgetCanvasText)
+    assertNoCanvasTextOverlap(drawn, 'Editor limit')
     for (const t of drawn) assert(t.left >= 30 && t.right <= 1170 && t.y >= 0 && t.y + t.size <= t.height, `Editor limit: ${JSON.stringify(t)}`)
     const compact = text => text.replace(/\s/g, '')
     const imageText = compact(drawn.map(t => t.text).join(''))

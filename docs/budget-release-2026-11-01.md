@@ -34,7 +34,7 @@ La présentation publique et les labels sont explicitement revus par profil. Auc
 
 ## Images et interface
 
-Modèle 3 conservé : graphite, lavande, pêche, menthe, crème. Retours mesurés, colonne réservée aux montants, aucune ellipse. Les lignes courantes passent à 42 px ; les saisies exceptionnelles de 49 à 72 lignes conservent le minimum fixe de 36 px précédemment validé, avec montants placés sous les libellés longs. Pas de réduction progressive de police. Les montants approximatifs portent ≈ dans le montant principal, sans nouvelle petite ligne de disclaimer. La durée limitée du logement gratuit d’Antoine reste dans le contexte principal. Les deux cas extrêmes restent sous 16 384 px de hauteur.
+Modèle 3 conservé : graphite, lavande, pêche, menthe, crème. Retours mesurés, colonne réservée aux montants, aucune ellipse. Les lignes courantes passent à 52 px ; l’image occupe davantage de largeur dans l’aperçu mobile. Les saisies exceptionnelles de 37 à 72 lignes conservent le minimum fixe de 36 px précédemment validé, avec montants placés sous les libellés longs. Pas de réduction progressive de police. Les montants approximatifs portent ≈ dans le montant principal, sans nouvelle petite ligne de disclaimer. La durée limitée du logement gratuit d’Antoine reste dans le contexte principal. Les deux cas extrêmes restent sous 16 384 px de hauteur.
 
 Le choix Détaillée / Synthétique est explicite. La synthèse regroupe les catégories documentées dans leur ordre d'apparition, laisse les postes non classés visibles et ne regroupe pas les versements financiers. Elle utilise les mêmes calculs en centimes. Le changement de version invalide l'ancien aperçu ; le téléchargement utilise son blob exact.
 
