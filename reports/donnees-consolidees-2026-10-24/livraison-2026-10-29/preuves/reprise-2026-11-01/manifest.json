@@ -98,8 +98,8 @@
     },
     {
       "path": "causes-1nov.csv",
-      "bytes": 1597751,
-      "sha256": "88295513c9d28a46e2208e20618d86bf488c32d470e6adf0f519dd5f08a26421"
+      "bytes": 1599361,
+      "sha256": "c1a1962d04699b381f977cf6f12b9c8fee68bb68e4ef3e6cd76dadcfa120b03d"
     },
     {
       "path": "current-tool-registry.json",
@@ -699,12 +699,12 @@
     {
       "path": "rapprochement-bilan-1nov.json",
       "bytes": 1072,
-      "sha256": "a57508f21c5eeb2b8d37255c322eaf2f44eaeafd510956cab5d8694e0d1cae71"
+      "sha256": "418491f5c9ac3ae51e8655f22d2ec1994e37012e8bd0e8562a16cdc1e3d5f1bc"
     },
     {
       "path": "reconciliation-diagnostics-1nov.csv",
-      "bytes": 8197524,
-      "sha256": "ee5f148961ccd8ffd1e98ed124ca26f31177e9911741f467e810e554c40bd03d"
+      "bytes": 8198451,
+      "sha256": "5c7ddab0ed49a9316d3a360ea817231d26318bfd64975096c970838baa3910d7"
     },
     {
       "path": "repaired-composition-pr-source-proof.json",
@@ -853,8 +853,8 @@
     },
     {
       "path": "verification/reconcile-public.py",
-      "bytes": 8740,
-      "sha256": "ef759ff021f264c1ddfdc45efa30bc75271ee046a48227f7719873435d48caa2"
+      "bytes": 9288,
+      "sha256": "33de64089ef79b092d00984c33e7a54bac9c7a10bf1b762a8d80ba34c0c7dc26"
     },
     {
       "path": "verification/update-consolidated.py",
@@ -987,5 +987,5 @@
       "sha256": "a86daca0ee6b771d9426b832d505bf43f29a9b017ef76047d5ec16b0d969865c"
     }
   ],
-  "limit": "Chaque preuve conserve sa date et son étage. Le reçu terminal de publication/consommation est distinct des succès source et enregistrement ; aucune certification globale."
+  "limit": "Chaque preuve garde sa date, son périmètre et son étage ; aucun succès global ni source déduit du cache."
 }

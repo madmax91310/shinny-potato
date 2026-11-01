@@ -44,7 +44,11 @@ def category(row):
     if kind == 'history':
         return 'trace historique'
     if kind == 'connection':
-        return 'raccordement ou qualification manquante'
+        if 'corroborée manuellement' in cause:
+            return 'preuve externe manuelle ; état du tarif primaire à examiner séparément'
+        if 'USD Accumulating' in cause:
+            return 'convention de part non qualifiée ; ancien chiffre non recertifié'
+        return 'pièce documentaire du produit manquante ; raccordement conditionné'
     if cause == "'2026-10'":
         return 'dépendance de change mensuel absente ; panne distincte de la NAV source'
     if 'Monthly NAV/return end not independently qualified' in cause:
@@ -63,6 +67,9 @@ def category(row):
 def group(row):
     key, cause = row.get('id', row.get('key', '')), row.get('cause', '')
     if key.startswith('calendar:data:history:'):
+        identity = key[len('calendar:data:history:'):].rsplit(':', 1)[0]
+        if identity in ('bitcoin', 'or', 'ftseAllWorld'):
+            return 'calendrier-producteur-distinct-' + identity
         return 'couverture-du-dernier-mois-clos'
     if 'Shifted/duplicate Yahoo monthly candle' in cause:
         return 'cotation-terminale-yahoo'
@@ -84,7 +91,9 @@ def group(row):
         return 'preuves-historiques-a-conserver'
     if key.startswith('radar:') or 'update-editorial-radar' in key:
         return 'radar-' + (row.get('dataId') or key)
-    if "'2026-10'" == cause or '2026-10' in cause and 'Monthly NAV/return end not independently qualified' in cause:
+    if cause == "'2026-10'":
+        return 'dependance-change-bce-octobre'
+    if '2026-10' in cause and 'Monthly NAV/return end not independently qualified' in cause:
         return 'borne-mensuelle-nav-non-qualifiee'
     if key.startswith('usage:'):
         return 'contrats-consommateurs-' + (row.get('category') or 'qualification')
