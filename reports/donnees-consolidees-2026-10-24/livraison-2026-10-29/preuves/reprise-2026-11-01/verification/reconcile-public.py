@@ -154,7 +154,7 @@ for key in dict.fromkeys([*old, *new]):
 
 def write_csv(path, records):
     with path.open('w', encoding='utf-8-sig', newline='') as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(records[0]), delimiter=';')
+        writer = csv.DictWriter(handle, fieldnames=list(records[0]), delimiter=';', lineterminator='\n')
         writer.writeheader()
         writer.writerows(records)
 
