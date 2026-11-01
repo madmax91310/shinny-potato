@@ -40198,8 +40198,9 @@
     "characteristics": {
       "asOf": "2026-10-30",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "c859ef4307a935679be2fc83d99bac5d38254c793635f54e70d43fe362cc1ab1",
+      "sha256": "88abed58246074f99dbb2a40ebe3b28dc250de5196ef222027a8a81ef2f0da7b",
       "terPct": 0.65,
+      "index": "Solactive Global Silver Miners Total Return v2 Index",
       "checkedAt": "2026-11-01",
       "modifiedAt": "2026-11-01"
     },
@@ -40348,9 +40349,10 @@
     "fieldQualification": {
       "sectors": {
         "status": "not-published",
+        "asOf": "2026-10-30",
         "checkedAt": "2026-11-01",
         "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-        "sha256": "c859ef4307a935679be2fc83d99bac5d38254c793635f54e70d43fe362cc1ab1",
+        "sha256": "88abed58246074f99dbb2a40ebe3b28dc250de5196ef222027a8a81ef2f0da7b",
         "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
         "evidence": {
           "datedCountryTable": true,
@@ -40362,6 +40364,11 @@
     "qualificationCheckedAt": "2026-11-01",
     "characteristicChecks": {
       "terPct": {
+        "checkedAt": "2026-11-01",
+        "sourceUrl": "https://globalxetfs.eu/funds/silv/",
+        "asOf": "2026-10-30"
+      },
+      "index": {
         "checkedAt": "2026-11-01",
         "sourceUrl": "https://globalxetfs.eu/funds/silv/",
         "asOf": "2026-10-30"

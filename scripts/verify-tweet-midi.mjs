@@ -29,6 +29,7 @@ import assert from 'node:assert/strict';
 import { shardIndices } from './tweet-midi-shards.mjs';
 import './test-anniversary-editorial.mjs';
 import './test-lexicon-editorial.mjs';
+import { getInstrumentFacts } from '../src/data/instrument-facts.js';
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js';
 import { getComparatifEtfText } from '../src/pages/tweet-midi/data/comparatifEtf.js';
 import { buildTweetText as buildEtfTweet } from '../src/pages/etf-tweets/lib/tweetFormat.js';
@@ -39,7 +40,11 @@ for (const theme of DEFAULT_THEMES) {
   const text = getComparatifEtfText(theme.id);
   assert.doesNotMatch(text, /^(?:⚖️ Comparatif|📋 Présentation) /u);
   assert.match(text.split('\n')[0], /\?$/u);
-  assert.match(text, /Voici .* (?:ETF|ETC)/u);
+  assert.match(text, /Voici .* (?:ETF|ETC|ETP)/u);
+  if (theme.etfs.every(fund => getInstrumentFacts(fund.isin).instrumentType === 'ETP')) {
+    assert.match(text, /Voici .* ETP/u);
+    assert.doesNotMatch(text.split('\n')[0], /\bETF\b/u);
+  }
   assert.equal((text.match(/^🆔 ISIN : /gmu) ?? []).length, theme.etfs.length);
   for (const fund of theme.etfs) {
     assert.ok(text.includes(`ISIN : ${fund.isin}`));

@@ -29,6 +29,10 @@ def globalx_physical(text, share, now):
     digest = proof(text.encode())
     result = base(share, stamp, digest)
     result['characteristics']['terPct'] = ter
+    from globalx_sections import objective_benchmark
+    benchmark = objective_benchmark(Page(text), qualified[share['isin']])
+    if benchmark:
+        result['characteristics']['index'] = benchmark
     result['aum'] = dict(amount=amount, currency=currency, scope='fund', asOf=stamp, sourceUrl=share['sourceUrl'], sha256=digest)
     for field, title, header in [('countries', 'Country Breakdown', ['', 'Country', 'Weight (%)']),
                                  ('sectors', 'Sector Breakdown', ['', 'Sector', 'Weight (%)']),

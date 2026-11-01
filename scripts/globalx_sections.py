@@ -29,3 +29,20 @@ def fact_sections(text, page_type):
             raise ResponseFormatError('Incomplete or ambiguous Global X section: ' + title)
         sections.append(list(next(iter(candidates))))
     return tuple(sections)
+
+
+def objective_benchmark(page, ticker):
+    """Read this product's visible objective, never related funds or RSC text.
+
+    Missing wording omits the field so the merge retains its last valid proof.
+    Conflicting visible objectives fail rather than selecting one arbitrarily.
+    """
+    import re
+    prefix = (r'^The Global X .+? UCITS ETF \(' + re.escape(ticker)
+              + r' LN\) seeks to provide investment results that correspond generally '
+              r'to the price and yield performance, before fees and expenses, of the ')
+    values = {match.group(1) for token in page.tokens
+              if (match := re.fullmatch(prefix + r'([^\n]{3,200} Index)\.', token))}
+    if len(values) > 1:
+        raise ValueError('Conflicting Global X objective benchmarks')
+    return next(iter(values), None)

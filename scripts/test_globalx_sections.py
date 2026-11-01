@@ -7,7 +7,7 @@ import unittest
 from bs4 import BeautifulSoup
 from collect_public_issuer import Page, globalx
 from collect_priority_issuer_etf import silver
-from globalx_sections import fact_sections
+from globalx_sections import fact_sections, objective_benchmark
 from issuer_documents import proof
 
 FIX = Path(__file__).parent / 'fixtures/official-documents/globalx-streamed'
@@ -17,6 +17,19 @@ NOW = dt.datetime(2026, 10, 28, tzinfo=dt.timezone.utc)
 class StreamedFacts(unittest.TestCase):
     def response(self, name):
         return gzip.open(FIX/(name+'.html.gz'), 'rt').read()
+
+    def test_visible_objective_benchmark_not_related_funds(self):
+        text = ('<div>The Global X Uranium UCITS ETF (URNU LN) seeks to provide investment results '
+                'that correspond generally to the price and yield performance, before fees and expenses, '
+                'of the Solactive Global Uranium &amp; Nuclear Components Total Return v2 Index.</div>')
+        expected = 'Solactive Global Uranium & Nuclear Components Total Return v2 Index'
+        self.assertEqual(objective_benchmark(Page(text), 'URNU'), expected)
+        self.assertEqual(objective_benchmark(Page(text + text), 'URNU'), expected)
+        self.assertIsNone(objective_benchmark(Page(text), 'BOTZ'))
+        self.assertIsNone(objective_benchmark(Page('<script>' + text + '</script>'), 'URNU'))
+        self.assertIsNone(objective_benchmark(Page(text.replace('before fees', 'after fees')), 'URNU'))
+        with self.assertRaises(ValueError):
+            objective_benchmark(Page(text + text.replace('Total Return v2', 'Changed')), 'URNU')
 
     def test_actual_responses_and_raw_provenance(self):
         for name, isin, parser, fee, aum in [

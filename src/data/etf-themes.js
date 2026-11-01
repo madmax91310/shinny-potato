@@ -1,3 +1,4 @@
+import { PUBLICATION_SELECTIONS } from './publication-selections.js'
 import { DISTINCT_ASSET_SELECTIONS } from './distinct-asset-selections.js'
 import { RESOURCE_COMPARISONS } from './resource-selections.js'
 import { QUALIFIED_ETF_COMPARISONS } from './qualified-etf-comparisons.js';
@@ -747,7 +748,7 @@ const reusedTheme = (id, nom, emoji, transition, products, cloture, question) =>
     nom: getInstrumentName(isin, 'tweet'), frais: formatEtfTer(isin), differenciateur, isCopperEtc: isin === 'GB00B15KXQ89' })),
 })
 const COMPARISON_THEMES = [...existingThemes,
- ...QUALIFIED_ETF_COMPARISONS.map(d=>({...reusedTheme(d.id,d.nom,d.emoji,d.hook,d.funds.map((isin,i)=>[isin,d.descriptions?.[i] ?? QUALIFIED_EXPOSURE_SHEETS.find(r=>r.isin===isin)?.whatIs ?? 'Grandes et moyennes entreprises des pays développés.']),d.cloture,d.question),...([...RESOURCE_COMPARISONS,...DISTINCT_ASSET_SELECTIONS].some(c=>c.id===d.id)?{hook:d.hook,comparisonNote:d.cloture,includeComparisonNote:true}:{})})),
+ ...QUALIFIED_ETF_COMPARISONS.map(d=>({peaRequired:d.peaRequired,...reusedTheme(d.id,d.nom,d.emoji,d.hook,d.funds.map((isin,i)=>[isin,d.descriptions?.[i] ?? QUALIFIED_EXPOSURE_SHEETS.find(r=>r.isin===isin)?.whatIs ?? 'Grandes et moyennes entreprises des pays développés.']),d.cloture,d.question),...([...RESOURCE_COMPARISONS,...DISTINCT_ASSET_SELECTIONS,...PUBLICATION_SELECTIONS].some(c=>c.id===d.id)?{hook:d.hook,comparisonNote:d.cloture,includeComparisonNote:true}:{})})),
  reusedTheme('world-acwi-cto','MSCI World ou MSCI ACWI · CTO','🌍','Les pays développés seuls, ou les marchés émergents dans le même ETF ?',
   [['IE00B4L5Y983','MSCI World : grandes et moyennes entreprises des pays développés.'],['IE00B6R52259','MSCI ACWI : grandes et moyennes entreprises des pays développés et émergents.']],
   'L’ACWI ajoute les marchés émergents au périmètre du World. Les deux indices laissent les petites capitalisations à part et partagent de nombreuses entreprises.', 'Tu préfères intégrer les émergents dans un seul ETF ou les ajouter séparément ?'),
@@ -894,10 +895,12 @@ export const EXPOSURE_THEMES = [...byGroup].sort(([a], [b]) => a.localeCompare(b
   const chunks = Array.from({ length: Math.ceil(ordered.length / 4) }, (_, i) => ordered.slice(i * 4, i * 4 + 4))
   const cloture = 'Une même famille d’exposition ne veut pas dire un même indice : composition, devise et méthode de réplication se vérifient avant toute comparaison de performance.'
   return chunks.map((chunk, i) => {
-    const transition = chunk.length > 1 ? `${chunk.length} ETF « ${group} » de nos fiches, classés par frais croissants :` : `Un ETF « ${group} » de nos fiches, à découvrir :`
+    const types = [...new Set(chunk.map(card => getInstrumentFacts(card.isin).instrumentType ?? 'ETF'))]
+    const kind = types.length === 1 ? types[0] : 'produit'
+    const transition = chunk.length > 1 ? `${chunk.length} ${kind === 'produit' ? 'produits' : kind} « ${group} » de nos fiches, classés par frais croissants :` : `Un ${kind} « ${group} » de nos fiches, à découvrir :`
     return createTheme({ id: `selection-${slug(group)}${chunks.length > 1 ? `-${i + 1}` : ''}`, nom: `${group} · sélection${chunks.length > 1 ? ` ${i + 1}` : ''}`, emoji: GROUP_EMOJI[group] ?? '📊', derived: 'exposure', group,
       // Every theme needs a distinct question: the selection rank is part of it when a group spans several themes.
-      hook: `${GROUP_EMOJI[group] ?? '📊'} ${chunk.length > 1 ? `Quel ETF « ${group} » choisir${chunks.length > 1 ? ` parmi la sélection ${i + 1}` : ''} ?` : `Connais-tu cet ETF « ${group} » ?`}`, transition, cloture, comparisonNote: `${transition.replace(/ :$/, '.')} ${cloture}`,
+      hook: `${GROUP_EMOJI[group] ?? '📊'} ${chunk.length > 1 ? `Quel ${kind} « ${group} » choisir${chunks.length > 1 ? ` parmi la sélection ${i + 1}` : ''} ?` : `Connais-tu ${kind === 'produit' ? 'ce' : 'cet'} ${kind} « ${group} » ?`}`, transition, cloture, comparisonNote: `${transition.replace(/ :$/, '.')} ${cloture}`,
       etfs: chunk.map(card => derivedEtf(card.isin, [getInstrumentFacts(card.isin).benchmark ? `indice suivi : ${getInstrumentFacts(card.isin).benchmark}` : card.verdict || card.whatIs, peaWording(card.isin)].filter(Boolean).join(' ; '))),
       ctaEngagement: 'Lequel correspond à ta stratégie ?' })
   })
