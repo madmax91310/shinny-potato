@@ -52,34 +52,44 @@ régression directement pertinente pour les sessions de développement.
 
 ## Mesures et portée du gain
 
-API jobs et steps de trois exécutions réussies et douze artefacts réels
-browser-durations téléchargés, chacun avec code de sortie de chaque commande.
-Les médianes de trois mesures par commande alimentent le plan ; le tableau
-ci-dessous rejoue **les mêmes durées** avant/après affectation. C'est un replay
-déterministe, pas trois nouvelles exécutions du nouveau workflow.
+API jobs et steps de quatre exécutions réussies et seize artefacts réels
+browser-durations téléchargés, chacun avec le résultat de chaque commande. Le
+quatrième run, 41334291165, est celui des budgets fusionnés pendant l'audit : il
+mesure réellement les six demi-lots et la nouvelle recette de transfert. Les
+médianes disponibles par commande alimentent le plan ; aucune durée de quinze
+secondes supposée pour ces demi-lots coûteux.
 
-| Run source | Maximum du travail navigateur avant | Après répartition | Somme travail avant/après |
+Le tableau rejoue **les mêmes durées** avant/après affectation. C'est un replay
+déterministe, pas quatre nouvelles exécutions du nouveau workflow. Les trois
+anciennes traces ne mesurent pas le nouveau périmètre budgets : la comparaison
+y est limitée aux commandes communes. Le quatrième couvre le périmètre actuel,
+hors nouveaux tests récits/chargeur, qui restent conservés mais non mesurés dans
+ces sources historiques.
+
+| Run source | Maximum du travail comparable avant | Après répartition | Somme travail avant/après |
 |---|---:|---:|---:|
-| 41331119939 | 1 275,323 s | 1 202,960 s | 4 608,401 s / identique |
-| 41328488296 | 1 287,924 s | 1 127,547 s | 4 373,391 s / identique |
-| 41327475687 | 1 322,820 s | 1 183,284 s | 4 600,581 s / identique |
+| 41331119939 | 1136.585 s | 1131.824 s | 4156.037 s / identique |
+| 41328488296 | 1132.936 s | 1117.261 s | 3917.346 s / identique |
+| 41327475687 | 1177.569 s | 1180.138 s | 4125.369 s / identique |
+| 41334291165 | 1570.113 s | 1349.812 s | 5064.344 s / identique |
 
-Détails bruts agrégés : `technical-ci-replay-2026-11-01.json`. Les coûts de setup,
-artefacts et attente sont exclus de ce replay. Le contrôle des nouveaux récits
-est conservé mais n'a pas encore de durée dans ces anciens runs. L'ancien
-`playwright-wealth` n'est plus dans master au début de cette correction ; il
-n'est ni retiré par ce diff ni compté dans la comparaison de périmètre constant.
+Détails : `technical-ci-replay-2026-11-01.json`. Les coûts de setup, artefacts et
+attente sont exclus. L'ancien `playwright-wealth` n'est plus dans master au début
+de cette correction ; il n'est ni retiré par ce diff ni compté dans le replay.
 
-Le maximum du travail planifié baisse de 72 à 160 s sur les trois traces. Le
-travail total reste identique : **aucune économie de minutes de calcul annoncée**
-pour cette répartition. La sélection des PR privées évite en revanche les jobs
-publics sans effet sur leur résultat : leur coût historique complet ne doit pas
-être présenté comme une économie mesurée tant qu’un run de cette voie n’a pas
-été observé. Le workflow privé continue à exécuter sa propre recette complète. La somme réelle des jobs des runs de référence est de
-132,75 / 131,70 / 136,58 minutes ; le portail est principalement limité par les
-lots navigateur après le build. Le gain de temps réel dépendra de la contention
-et de la nouvelle CI ; un premier run sera une vérification, pas une preuve
-statistique indépendante. Tarifs et facturation non consultés : pas d'euros.
+Sur l'ancien périmètre commun, les variations sont comprises entre −3 et +16 s :
+pas de gain notable revendiqué. Sur la trace budgets actuelle, le maximum du
+travail planifié baisse de 220 s ; il n'existe qu'un échantillon de ce périmètre,
+donc **aucun gain réel de durée CI annoncé** avant observation de plusieurs runs.
+L'intérêt confirmé est de planifier désormais toutes les commandes, y compris
+les 17 auparavant hors plan, à partir de durées réelles et de les instrumenter.
+
+Le travail total reste identique : aucune économie de minutes de calcul annoncée
+pour la répartition. La sélection des PR privées évite en revanche les jobs
+publics sans effet sur leur résultat ; une voie privée réelle devra être observée
+avant de chiffrer ses minutes évitées. Le workflow privé continue sa recette
+complète. Sommes historiques des jobs des trois premiers runs : 132,75 / 131,70 /
+136,58 minutes. Tarifs et minutes facturées non lus : pas d'euros.
 
 ## Protections et décisions conservées
 
