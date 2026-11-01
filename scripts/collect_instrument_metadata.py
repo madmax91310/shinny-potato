@@ -691,6 +691,10 @@ def collect(source,now,fetch=download,on_document=None):
                 fields={};errors.append({'sourceUrl':url,'error':str(error)})
             listing_rows=parse_listings(body,source,url,checked)
             if listing_rows:fields['listings']=listing_rows
+            if 'fields' in source:
+                if not source['fields'] or any(field not in FIELDS for field in source['fields']):
+                    raise ValueError('Unsupported metadata field route')
+                fields={field:value for field,value in fields.items() if field in source['fields']}
             if not fields:raise ValueError('No explicit supported metadata fields')
             for field,value in fields.items():
                 if field in ('pea','currencyHedge'):
@@ -739,7 +743,7 @@ def field_diagnostics(source, values, failures, old, now):
     """Separate the attempt date from actual field evidence and retained values."""
     errors=[{'sourceUrl':row.get('sourceUrl'),'error':row.get('error')} for row in failures]
     result={}
-    for field in FIELDS:
+    for field in source.get('fields', FIELDS):
         observed=values.get(field)
         retained=old.get(field,{})
         conflict=next((failure for failure in failures if failure.get('qualificationRequired') and failure.get('field')==field),None)
@@ -798,11 +802,12 @@ def main():
             for field,value in values.items():
                 old[field]=merge_field_observation(field,old.get(field),value)
             records[isin]=old
-            missing=[field for field in FIELDS if field not in values]
+            declared=next(s for s in sources if s['isin']==isin)
+            missing=[field for field in declared.get('fields',FIELDS) if field not in values]
             prior=status.get(isin,{})
             first_pending={field:prior.get('firstPendingAt',{}).get(field,prior.get('checkedAt',now.isoformat()) if field in prior.get('pending',[]) else now.isoformat()) for field in missing}
             status[isin]={'checkedAt':now.isoformat(),'observed':list(values),'pending':missing,'firstPendingAt':first_pending,'errors':failures,
-                          'fields':field_diagnostics(next(s for s in sources if s['isin']==isin),values,failures,old,now)}
+                          'fields':field_diagnostics(declared,values,failures,old,now)}
             for field in missing:
                 if field not in old and renewal_overdue({'checkedAt':first_pending[field]},now):
                     errors.append({'id':f'{isin}:{field}:qualification','field':field,'error':'Qualification de publication requise : champ jamais observé ; vérifier la source exacte ou documenter explicitement sa non-publication.'})

@@ -1,3 +1,4 @@
+import { instrumentSearchText } from '../../data/asset-selection.js'
 import { useCallback, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader.jsx'
@@ -160,7 +161,7 @@ export default function App() {
   const reference = SOURCES[otherIds[0]]
   const universe = bank === 'annual' ? Object.values(ANNUAL_ASSETS) : ELIGIBLE
   const options = universe.filter(a => !otherIds.includes(a.id) && !otherIds.some(id => ['index-net', 'index-gross'].includes(SOURCES[id]?.basis) && ['index-net', 'index-gross'].includes(a.basis) && SOURCES[id].basis !== a.basis) && (!reference || (bank !== 'annual' || a.basis === reference.basis)) && (currency !== 'original' || !reference || a.currency === reference.currency))
-    .map(a => ({ ...a, label: a.shortLabel, name: a.label, detail: `${a.label} · ${a.currency} · ${a.frequency === 'annual' ? 'Calendrier NAV / indice officiel' : a.points[0].date + ' → ' + a.points.at(-1).date}`, badges: [a.instrumentType === 'EQUITY' ? 'Action' : a.instrumentType ?? (a.isin ? 'ETF' : a.priceUnit === 'points' ? 'Indice' : a.priceMethod === 'adjusted' ? 'Action' : 'Actif')] }))
+    .map(a => ({ ...a, search: instrumentSearchText(a), label: a.shortLabel, name: a.label, detail: `${a.label} · ${a.currency} · ${a.frequency === 'annual' ? 'Calendrier NAV / indice officiel' : a.points[0].date + ' → ' + a.points.at(-1).date}`, badges: [a.instrumentType === 'EQUITY' ? 'Action' : a.instrumentType ?? (a.isin ? 'ETF' : a.priceUnit === 'points' ? 'Indice' : a.priceMethod === 'adjusted' ? 'Action' : 'Actif')] }))
   async function download() {
     setBusy(true); setStatus('')
     try {

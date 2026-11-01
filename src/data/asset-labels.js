@@ -6,7 +6,7 @@ export function exposureGroup(asset) {
   if (asset.instrumentType === 'EQUITY' || asset.kind === 'equity') return 'Actions individuelles'
   if (asset.cat === 'multi_actifs' || asset.category === 'Multi-actifs' || /lifestrategy/i.test(asset.name ?? asset.label ?? '')) return 'Multi-actifs'
   const text = normalizeSearch(`${asset.name ?? asset.label ?? asset.title ?? ''} ${asset.benchmark ?? ''}`)
-  if (asset.cat === 'obligataire' || /bond|treasury|oblig|€str|overnight|fonds euros/.test(text)) return 'Obligations et monétaire'
+  if (asset.assetClass === 'Fixed Income' || asset.category === 'Obligataires' || asset.cat === 'obligataire' || /bond|treasury|oblig|€str|overnight|fonds euros/.test(text)) return 'Obligations et monétaire'
   if (asset.cat === 'crypto' || /bitcoin|ethereum|crypto/.test(text)) return 'Crypto'
   if (asset.cat === 'matieres_premieres' || /gold|silver|\bargent\b|palladium|platinum|platine|commodity|commodities|copper|\bor\b/.test(text)) return 'Matières premières'
   if (asset.cat === 'immobilier' || /property|epra|reit|immobili|scpi|gpr/.test(text)) return 'Immobilier'

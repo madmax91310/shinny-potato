@@ -1,30 +1,7 @@
 // Ces traductions s'appliquent aux caractéristiques, jamais aux noms de produits.
-const LABELS = {
-  Ireland: 'Irlande', Physical: 'Réplication physique', Synthetic: 'Réplication synthétique',
-  Optimised: 'Réplication optimisée',
-  'Physical (Optimised)': 'Réplication physique optimisée',
-  'Physical (Replicated)': 'Réplication physique intégrale',
-  'Physical (Sampled)': 'Réplication physique échantillonnée',
-  'Direct Replication (physically)': 'Réplication physique directe',
-  'Direct(Physical)': 'Réplication physique directe',
-  'Indirect(Swap Based)': 'Réplication synthétique par swap',
-  'Physical (Full replication)': 'Réplication physique intégrale',
-  'Physical (Optimised sampling)': 'Réplication physique optimisée',
-  'Synthetic - fully funded collateralised swap': 'Swap intégralement financé et garanti',
-  Germany: 'Allemagne', Switzerland: 'Suisse', 'United Kingdom': 'Royaume-Uni',
-  'United States': 'États-Unis', Japan: 'Japon', Netherlands: 'Pays-Bas',
-  Italy: 'Italie', Spain: 'Espagne', Sweden: 'Suède', Denmark: 'Danemark',
-  Finland: 'Finlande', Belgium: 'Belgique', Norway: 'Norvège', Austria: 'Autriche',
-  China: 'Chine', Taiwan: 'Taïwan', 'South Korea': 'Corée du Sud', 'Korea (South)': 'Corée du Sud',
-  India: 'Inde', Australia: 'Australie', Brazil: 'Brésil', Mexico: 'Mexique',
-  'South Africa': 'Afrique du Sud', 'Saudi Arabia': 'Arabie saoudite',
-  'Information Technology': 'Technologie', Technology: 'Technologie', Financials: 'Finance',
-  'Consumer Discretionary': 'Consommation cyclique', 'Consumer Staples': 'Consommation de base',
-  'Communication Services': 'Communication', Industrials: 'Industrie',
-  'Health Care': 'Santé', Healthcare: 'Santé', Materials: 'Matériaux', Utilities: 'Services publics',
-  Energy: 'Énergie', 'Real Estate': 'Immobilier', Other: 'Autres', Others: 'Autres',
-  'Cash and/or Derivatives': 'Liquidités et dérivés', Cash: 'Liquidités', Treasury: 'Emprunts d’État',
-}
+import LABELS from './french-characteristics.json' with {type:'json'}
+export const FRENCH_CHARACTERISTIC_LABELS = Object.freeze(LABELS)
+
 const lookup = new Map(Object.entries(LABELS).map(([key, value]) => [key.toLowerCase(), value]))
 export function frenchCharacteristic(value = '') {
   return lookup.get(value.toLowerCase()) ?? value
