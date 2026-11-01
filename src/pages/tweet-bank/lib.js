@@ -34,6 +34,8 @@ export function filterAndSortTweets(tweets, lastPub, filters) {
     if (filters.month && filters.month !== "Tous" && t.month !== filters.month) return false
     if (filters.category && filters.category !== "Toutes" && t.category !== filters.category) return false
     if (filters.format && filters.format !== "Tous" && !(t.formats || []).includes(filters.format)) return false
+    if (filters.theme && t.theme !== filters.theme) return false
+    if (filters.unpublished && lastPub[t.id]) return false
     if (filters.hideCooldown && isInCooldown(lastPub[t.id])) return false
     if (filters.search && filters.search.trim()) {
       if (!matchesTweet(t, filters.search)) return false
@@ -57,4 +59,10 @@ export function filterAndSortTweets(tweets, lastPub, filters) {
 
 export function countAvailable(tweets, lastPub, drafts = {}) {
   return tweets.filter((t) => !isInCooldown(lastPub[t.id]) && contentValidity(t, drafts[t.id]).ready).length
+}
+
+// Draw only from the visible, never-published questions; cooldown expiry does not reset publication.
+export function randomUnpublishedQuestion(questions, lastPub, random = Math.random) {
+  const candidates = questions.filter(t => t.category === 'Question dimanche' && !lastPub[t.id])
+  return candidates.length ? candidates[Math.floor(random() * candidates.length)] : null
 }

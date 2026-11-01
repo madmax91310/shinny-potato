@@ -99,11 +99,37 @@ def collect_yahoo(config, now, fetch=get_json):
         if start.date() <= day < end.date():
             final[day.strftime('%Y-%m')] = (day, close, adjusted)
     buckets = {}
-    for day, close, _ in monthly:
+    terminal_quote = None
+    monthly_data = raw['1mo']['chart']['result'][0]
+    for index, (day, close, _) in enumerate(monthly):
         key = day.strftime('%Y-%m')
         if start.date() <= day < end.date():
             if day.day != 1 or key in buckets:
-                reject('Shifted/duplicate Yahoo monthly candle')
+                # Yahoo can append its regular-market quote to an otherwise
+                # complete monthly chart at a month boundary. This is not a
+                # second monthly observation: require the exact quote marker,
+                # canonical month, final daily session and three equal closes.
+                stamp = monthly_data['timestamp'][-1]
+                market_time = monthly_data['meta'].get('regularMarketTime')
+                final_day, final_close, _ = final.get(key, (None, None, None))
+                raw_shifted_rows = sum(
+                    dt.datetime.fromtimestamp(number(value), UTC).astimezone(ZoneInfo(zone)).date().day != 1
+                    and dt.datetime.fromtimestamp(number(value), UTC).astimezone(ZoneInfo(zone)).strftime('%Y-%m') == key
+                    for value in monthly_data['timestamp'])
+                if not (index == len(monthly)-1 and day.day != 1
+                        and raw_shifted_rows == 1
+                        and key == month_shift(end, -1).strftime('%Y-%m')
+                        and key in buckets and final_day == day
+                        and close == buckets[key] == final_close
+                        and type(market_time) is int and stamp == market_time
+                        and monthly_data['indicators']['quote'][0]['close'][-1] == close
+                        and dt.datetime.fromtimestamp(stamp, UTC).astimezone(ZoneInfo(zone)).date() == day):
+                    reject('Shifted/duplicate Yahoo monthly candle')
+                terminal_quote = {'timestamp': stamp, 'sessionDate': day.isoformat(),
+                                  'close': close, 'monthlyDate': key+'-01',
+                                  'monthlyClose': buckets[key], 'dailyClose': final_close,
+                                  'reason': 'Final regular-market quote duplicates the independently checked canonical monthly close; no financial point added or changed'}
+                continue
             buckets[key] = close
     points, proof_rows, anniversary = [], [], []
     expected = list(months(config['periodStart'], end))
@@ -191,6 +217,8 @@ def collect_yahoo(config, now, fetch=get_json):
     }} if excluded else {})
     result = {**qualification, **({'verifiedDailyWindowMonths':sorted(window_months)} if window_months else {}), 'points': points, 'anniversaryPoints': anniversary, 'sourceUrls': list(urls.values())+[v['url'] for v in windows.values()],
             'timezone': zone, 'proofRows': proof_rows, 'rawResponse': raw}
+    if terminal_quote:
+        result['terminalMonthlyQuoteEvidence'] = terminal_quote
     if split_notice:
         result['splitComparisonEvidence']=split_notice
         result['sourceUrls'].append(split_notice['sourceUrl'])

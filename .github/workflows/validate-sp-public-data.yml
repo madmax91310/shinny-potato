@@ -34,13 +34,18 @@ jobs:
           import datetime as dt, json, pathlib, sys
           sys.path.insert(0, 'scripts')
           from collect_sp_composition import collect
-          from sp_public_feed import read_response
           from data_automation import UTC
           configurations = json.loads(pathlib.Path('scripts/index-automation.json').read_text())['indices']
           for config in configurations:
               if not config.get('compositionDataUrl'): continue
-              handoff = read_response(config, dt.datetime.now(UTC))
               facts = collect(config, dt.datetime.now(UTC))
-              assert len(handoff['holdings']) == 10
-              print(config['id'], facts['asOf'], facts['constituents'], 'top ten:', len(facts['holdings']))
+              # collect validates live responses first, and enforces the same
+              # 48-hour handoff limit if the primary access actually fails.
+              assert len(facts['holdings']) == 10
+              print(json.dumps({'id': config['id'], 'asOf': facts['asOf'],
+                  'constituents': facts['constituents'], 'topTen': len(facts['holdings']),
+                  'transport': facts['source'].get('transport', 'official-direct-response'),
+                  'checkedAt': facts['source']['checkedAt'],
+                  'retrievedAt': facts['source'].get('retrievedAt'),
+                  'primaryAccessError': facts['source'].get('primaryAccessError')}))
           PY
