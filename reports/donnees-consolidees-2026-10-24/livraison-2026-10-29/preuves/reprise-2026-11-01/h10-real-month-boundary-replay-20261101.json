@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-11-01T15:12:09.328460+00:00",
+  "sourceMode": "Real ECB acquisition plus the previously acquired, unmodified official H10 fixture; ordinary GitHub source replay still required",
+  "ecbSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+  "ecbSha256": "458ef998bf1d96198dbc91e83e54ed9b4911ff03500397cbf9b23d8b66cc34ac",
+  "fedSource": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
+  "fedSha256": "17d087d0ebb2a0ac1a7c0feed844ecb5ca0410c4ae64582b2030233bdeb352e4",
+  "qualifiedMonths": 333,
+  "oldObservationsPreservedExactly": true,
+  "lastQualifiedMonth": "2026-09",
+  "pendingMonths": [
+    {
+      "month": "2026-10",
+      "latestAvailableAsOf": "2026-10-23",
+      "reason": "Awaiting a qualified month-end observation within the existing H.10 weekly release window"
+    }
+  ],
+  "noOctoberRateInvented": true
+}
