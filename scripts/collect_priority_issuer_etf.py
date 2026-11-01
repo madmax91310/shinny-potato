@@ -45,6 +45,10 @@ def silver(text, share, now):
     if currency != 'USD': reject('Silver Miners AUM currency changed')
     digest = proof(text.encode()); result = base(share, stamp, digest)
     result['characteristics']['terPct'] = ter
+    from globalx_sections import objective_benchmark
+    benchmark = objective_benchmark(Page(text), 'SILV')
+    if benchmark:
+        result['characteristics']['index'] = benchmark
     result['aum'] = dict(amount=amount, currency=currency, scope='fund', asOf=stamp, sourceUrl=share['sourceUrl'], sha256=digest)
     chunks = []
     for m in re.finditer(r'self\.__next_f\.push\((.*?)\)</script>', text):

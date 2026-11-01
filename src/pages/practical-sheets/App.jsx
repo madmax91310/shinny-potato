@@ -1,3 +1,4 @@
+import { selectionSearch } from '../../data/selection-search.js'
 import { downloadPublicationBlob } from '../../design-system/downloadBlob.js'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -44,7 +45,7 @@ export default function App() {
   <PageHeader title="Fiches pratiques" subtitle="Une question, les différences utiles et une image à garder." />
   <ToolWorkspace className="practical-columns" imageContent={<div className="practical-image-panel">{result.sheet && <canvas ref={canvas} role="img" aria-label={topic.title} className="practical-image" />}{imageError && <p role="alert">{imageError}</p>}</div>} actions={<><Button onClick={copy} disabled={blocked}>{copied?'Copié ✓':'Copier le texte'}</Button><Button variant="secondary" onClick={download} disabled={blocked}>Télécharger l’image PNG</Button></>}>
    <section className="tool-settings practical-settings">
-    <AssetPicker label="Choisir une fiche" items={TOPICS.map(t=>({id:t.id,label:t.title,group:t.family,detail:t.hook}))} value={id} onChange={choose} />
+    <AssetPicker label="Choisir une fiche" items={TOPICS.map(t=>({id:t.id,label:t.title,group:t.family,detail:t.hook,search:selectionSearch(t.products)}))} value={id} onChange={choose} />
     {topic.mode==='funds' && <fieldset className="practical-panel"><legend>Parts à comparer</legend><p>{maxFunds===2?'Deux ETF World, avec une éligibilité PEA documentée. Décoche une part pour en choisir une autre.':'Deux ou trois ETF de cette famille, avec une éligibilité PEA documentée.'}</p>{options.map(o=><label className="practical-check" key={o.isin}><input type="checkbox" checked={selection.includes(o.isin)} disabled={!selection.includes(o.isin)&&selection.length>=maxFunds} onChange={e=>setIsins(e.target.checked?[...selection,o.isin]:selection.filter(i=>i!==o.isin))} /><span>{o.name}<small>{o.ticker} · {o.isin}</small></span></label>)}</fieldset>}
     {topic.mode==='gold' && <fieldset className="practical-panel"><legend>Contrat à examiner</legend><div className="practical-contracts">{INSURANCE.map(c=><button key={c.id} type="button" aria-pressed={contractId===c.id} onClick={()=>setContractId(c.id)}>{c.name}</button>)}</div></fieldset>}
     {['fees','delay','switch'].includes(topic.mode) && <fieldset className="practical-panel"><legend>Ton scénario</legend>{fields.map(([key,label,min,max])=><label className="practical-field" key={key}>{label}<input aria-label={label} type="number" step="any" min={min} max={max} value={Number.isNaN(scenario[key])?'':scenario[key]} onChange={e=>setScenario({...scenario,[key]:e.target.value===''?NaN:Number(e.target.value)})} /></label>)}</fieldset>}

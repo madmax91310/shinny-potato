@@ -3,16 +3,18 @@ import { AUTOMATED_ETF } from '../../../data/automated-etf.js'
 import { multiAssetAllocationLines } from '../../../data/lifestrategy.js'
 import { getInstrumentPeaStatus } from '../../../data/instruments.js'
 import { getPreferredInstrumentListing } from '../../../data/instrument-listings.js'
-import { isComparisonEtc } from './comparisonPolicy.js'
+import { comparisonProductType } from './comparisonPolicy.js'
 import { getComparisonPerformance, getComparisonYears } from '../../tweet-midi/comparisonPerformance.js'
 import { comparisonPct } from './comparisonDetails.js'
 import { getComparisonComposition, COMPOSITION_LABELS } from './comparisonComposition.js'
 import { COMPARISON_HOOKS, getEtfExposureCopy } from './exposureCopy.js'
 
 export function buildTweetText(theme) {
-  const isEtc = theme.etfs.length > 0 && theme.etfs.every(isComparisonEtc)
+  const types = [...new Set(theme.etfs.map(comparisonProductType))]
+  const mixed = types.length > 1
   const single = theme.etfs.length === 1
-  const kind = isEtc ? 'ETC' : 'ETF'
+  const kind = mixed ? 'produit' : types[0] ?? 'ETF'
+  const products = mixed ? `produits (${types.join(' et ')})` : kind
   if (theme.peaOnly && theme.etfs.some(etf => getInstrumentPeaStatus(etf.isin) !== true)) {
     throw new Error(`Comparatif PEA : part non éligible ou non vérifiée dans ${theme.id}`)
   }
@@ -20,7 +22,7 @@ export function buildTweetText(theme) {
   const hook = (COMPARISON_HOOKS[theme.id] ? '' : theme.hook?.trim()) || `${theme.emoji || '📊'} ${question}`
   const count = ['zéro', 'un', 'deux', 'trois', 'quatre', 'cinq'][theme.etfs.length] ?? theme.etfs.length
   const lines = [hook, '']
-  lines.push(`Voici ${count} ${kind}${theme.peaOnly ? ' éligibles au PEA' : ''} ${single ? 'à découvrir' : 'à comparer'} 👇`, '')
+  lines.push(`Voici ${count} ${products}${theme.peaOnly ? ' éligibles au PEA' : ''} ${single ? 'à découvrir' : 'à comparer'} 👇`, '')
 
   const years = getComparisonYears(theme.etfs.map(etf => etf.isin))
   theme.etfs.forEach((etf, index) => {

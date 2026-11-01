@@ -1,4 +1,4 @@
-import { isComparisonEtc } from '../etf-tweets/lib/comparisonPolicy.js'
+import { isComparisonEtc, comparisonProductType } from '../etf-tweets/lib/comparisonPolicy.js'
 import { LIFESTRATEGY_RECORDS } from '../../data/lifestrategy.js'
 import { downloadPublicationBlob } from '../../design-system/downloadBlob.js'
 import { getComparisonComposition, COMPOSITION_LABELS, compositionEvidenceLabel } from '../etf-tweets/lib/comparisonComposition.js'
@@ -27,7 +27,7 @@ function summary(fund) {
 const observationSection = (title, observation) => ({ title,
   evidence: observation?.asOf ? `Fonds · ${observation.asOf.split('-').reverse().join('/')}` : null,
   rows: [...(observation?.rows ?? [])].sort((a,b)=>b.weightPct-a.weightPct).slice(0,3)
-    .map(row=>({label:row.name ?? row.label,value:comparisonPercent(row.weightPct)})) })
+    .map(row=>({label:COMPOSITION_LABELS[row.name ?? row.label] ?? row.name ?? row.label,value:comparisonPercent(row.weightPct)})) })
 
 export function getComparisonPaperCards(theme) {
   if (!theme?.etfs?.length) throw new Error('Sélection ETF vide')
@@ -62,7 +62,7 @@ export function getComparisonPaperCards(theme) {
     if (description.startsWith(`${id.name} :`)) description = description.slice(id.name.length+2).trim()
     description = description.charAt(0).toLocaleUpperCase('fr')+description.slice(1)
     return { ...id, metricLabel:'Frais / an', metric:{value:`${fund.frais.replace(/\s*%$/,'')} %`},
-      badge:pea === null ? null : pea ? 'PEA' : 'CTO', productType:isComparisonEtc(fund)?'ETC':'ETF', summary:description, sections }
+      badge:pea === null ? null : pea ? 'PEA' : 'CTO', productType:comparisonProductType(fund), summary:description, sections }
   })
 }
 export async function renderComparatifEtfImage(theme) {

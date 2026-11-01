@@ -1,3 +1,5 @@
+import { investorModel } from '../../data/investor-models.js'
+import { modelPortfolio, buildModelTweet } from './models.js'
 import { investorIntroduction } from '../../data/investor-profiles.js'
 import { INVESTORS } from '../../data/investor-roster.js'
 export { INVESTORS } from '../../data/investor-roster.js'
@@ -174,6 +176,7 @@ export function movementExcerpt(snapshot) {
 }
 
 export function buildTweet(portfolio, intro = '') {
+  if (portfolio.kind === 'model') return buildModelTweet(portfolio, intro, percentage)
   const { identity, snapshot } = portfolio
   const editorial = portfolioEditorial(portfolio)
   const icon = ['🥇', '🥈', '🥉', '📍', '📍']
@@ -190,6 +193,7 @@ export function buildTweet(portfolio, intro = '') {
 }
 
 export async function loadPortfolio(slug, signal) {
+  if (investorModel(slug)) return modelPortfolio(slug)
   if (!INVESTORS.some(([key]) => key === slug)) throw new Error('Investisseur inconnu.')
   const url = `${import.meta.env.BASE_URL}data/investors/${slug}.json`
   const response = await fetch(url, { signal, cache: 'no-cache' })

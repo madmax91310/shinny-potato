@@ -18,6 +18,7 @@ export function compositionEvidenceLabel(composition) {
     composition.asOf?.split('-').reverse().join('/')].filter(Boolean).join(' · ')
 }
 export const COMPOSITION_LABELS = {
+  Australia: 'Australie', Grains: 'Céréales', 'Precious metals': 'Métaux précieux', 'Other/Cash': 'Autres / liquidités',
   Treasury: 'Emprunts d’État', 'Cash and/or Derivatives': 'Liquidités / dérivés',
   Italy: 'Italie', Spain: 'Espagne',
   'Information Technology': 'Technologie', Technology: 'Technologie', Financials: 'Finance', 'Consumer Discretionary': 'Conso. cyclique',

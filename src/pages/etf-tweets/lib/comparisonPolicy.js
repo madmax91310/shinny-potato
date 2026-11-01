@@ -16,13 +16,20 @@ const SECTOR_FUNDS = new Set([
 // Compléments vérifiés pour les trois parts absentes du registre des fiches.
 // Ne déduire la réplication ni du statut PEA ni de la composition affichée.
 const REVIEWED_REPLICATION = {
-  IE00BDFBTQ78: { method: 'Physical', source: 'https://www.vaneck.com/fr/fr/library/fact-sheets/gdig-fact-sheet/', checkedAt: '2026-10-06' },
   LU1834983634: { method: 'Synthetic', source: 'https://www.amundi.cz/produkty/dl/doc/monthly-factsheet/LU1834983634/CES/CZE/RETAIL/AMUNDI/20260430', checkedAt: '2026-10-06' },
   IE00BM67HS53: { method: 'Physical', source: 'https://etf.dws.com/download/asset/ed8fa918-6200-4e76-b472-a3bf2040e855', checkedAt: '2026-10-06' },
 }
 
+export function comparisonProductType(etf) {
+  const documented = INSTRUMENT_FACTS_BY_ISIN[etf.isin]?.instrumentType
+  if (['ETF', 'ETC', 'ETP'].includes(documented)) return documented
+  if (etf.isCopperEtc || /\bETC\b/i.test(etf.nom ?? '')) return 'ETC'
+  if (/\bETP\b/i.test(etf.nom ?? '')) return 'ETP'
+  return 'ETF'
+}
+
 export function isComparisonEtc(etf) {
-  return Boolean(etf.isCopperEtc || /\bETC\b/i.test(etf.nom ?? ''))
+  return comparisonProductType(etf) === 'ETC'
 }
 
 export function getComparisonPolicy(etf) {
