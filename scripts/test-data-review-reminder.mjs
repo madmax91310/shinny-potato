@@ -1,4 +1,4 @@
-import { INVESTORS } from "../src/pages/investor-portfolio/data.js"
+import investorReviews from '../public/data/investors/review-metadata.json' with { type: 'json' }
 import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
@@ -41,9 +41,22 @@ assert.equal(reminderCandidates(offerReview('2026-10-21')).length, 1)
 
 const real = buildReview('2026-10-03')
 assert.deepEqual(planReminders(real), [], 'Catalogue réel audité cette semaine : aucun rappel prématuré')
-assert.equal(real.schedule.filter(x => x.id.startsWith('investor:') && x.nextReviewAt === '2026-11-14').length, INVESTORS.length)
-assert.equal(reminderCandidates(buildReview('2026-11-06')).filter(x => x.id.startsWith('investor:')).length, 0)
-assert.equal(reminderCandidates(buildReview('2026-11-07')).filter(x => x.id.startsWith('investor:')).length, INVESTORS.length)
+// Each collector may advance its own quarter. A refreshed profile must not be
+// forced back to the old cohort's deadline (e.g. Gayner already has Q3).
+const investorRows = real.schedule.filter(x => x.id.startsWith('investor:'))
+assert.deepEqual(new Set(investorRows.map(x => x.id)), new Set(investorReviews.map(p => `investor:${p.data.identity.slug}`)))
+for (const payload of investorReviews) {
+  const [year, month] = payload.data.snapshot.periodEnd.split('-').map(Number)
+  const deadline = new Date(Date.UTC(year, month + 3, 0))
+  deadline.setUTCDate(deadline.getUTCDate() + 45)
+  const row = investorRows.find(x => x.id === `investor:${payload.data.identity.slug}`)
+  assert.equal(row.nextReviewAt, deadline.toISOString().slice(0, 10))
+  const before = new Date(deadline); before.setUTCDate(before.getUTCDate() - 8)
+  const start = new Date(deadline); start.setUTCDate(start.getUTCDate() - 7)
+  const isolated = today => ({ today, schedule: [row], items: [] })
+  assert.equal(reminderCandidates(isolated(before.toISOString().slice(0, 10))).length, 0)
+  assert.equal(reminderCandidates(isolated(start.toISOString().slice(0, 10))).length, 1)
+}
 
 const planned = planReminders(review('2026-10-25'))
 for (const state of ['open', 'closed']) assert.equal(planReminders(review('2026-11-20'), [{ state, body: planned[0].body }]).length, 0, `Déduplication d'une issue ${state}`)
