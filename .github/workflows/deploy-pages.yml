@@ -24,9 +24,7 @@ on:
 
 permissions:
   contents: read
-  pages: write
   deployments: read
-  id-token: write
 
 concurrency:
   # Producers and master pushes share one full validation queue. The selector
@@ -109,6 +107,9 @@ jobs:
         run: node scripts/classify-deploy-scope.mjs --published-url "https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/build-info.json"
 
   build:
+    permissions:
+      contents: read
+      pages: write
     needs: current-snapshot
     if: needs.current-snapshot.outputs.current == 'true'
     # Explicitly validate the next ubuntu-latest image before its rollout.
@@ -146,7 +147,7 @@ jobs:
       # the current catalogue. Keep every parity/route assertion unchanged.
       - run: node --max-old-space-size=4096 scripts/test-tool-projections.mjs
       - run: node scripts/test-light-registries.mjs
-      - run: node scripts/test-browser-shards.mjs
+      - run: node scripts/test-browser-shards.mjs && node scripts/test-ci-browser-runner.mjs && node scripts/test-vite-file-boundary.mjs
       - run: node scripts/test-broker-automation.mjs
       - run: node scripts/test-lifestrategy.mjs
       - run: node scripts/test-resource-selections.mjs
@@ -500,43 +501,7 @@ jobs:
           path: ~/.cache/ms-playwright
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
-      - run: node scripts/playwright-review-product.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-data-review-recovery.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-removed-ai.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-data-automation-inventory.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-acwi-allocation-recovery.mjs
-        if: matrix.shard == 1
-      - run: node scripts/playwright-remainder-nav.mjs
-        env:
-          TEST_NAV_IDS: etfFR0007054358Nav,etfIE00BK5BCD43Nav,etfIE00BK5BCH80Nav,etfLU1875395870Nav,etfGB00B15KXQ89Nav,etc_brent_crude_oilNav,etc_wti_crude_oilNav,etc_coffeeNav
-        if: matrix.shard == 1
-      - run: node scripts/playwright-official-nav.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-currency-consistency.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-distinct-asset-routing.mjs
-        if: matrix.shard == 1
-      - run: node scripts/playwright-routing-additions.mjs
-        if: matrix.shard == 1
-      - run: node scripts/playwright-model-portfolios.mjs
-        if: matrix.shard == 1
-      - run: node scripts/test-simple-exposure.mjs
-        if: matrix.shard == 1
       - run: node scripts/run-browser-checks.mjs ${{ matrix.shard }} 4
-      - run: node scripts/playwright-etf-completeness.mjs
-        if: matrix.shard == 0
-      - run: node scripts/test-asset-picker-preferences.mjs && node scripts/playwright-asset-picker-modes.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-tool-links.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-equity-monthly.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-nasdaq-total-return.mjs
-        if: matrix.shard == 0
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -640,6 +605,10 @@ jobs:
           exit 1
 
   deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     needs: [scope, build, tweet-midi-checks, python-checks, browser-checks, exposure-browser-check, smoke]
     if: >-
       always() && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
@@ -801,6 +770,10 @@ jobs:
           retention-days: 2
 
   deploy-fallback:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     needs: fallback-build
     if: always() && needs.fallback-build.result == 'success'
     runs-on: ubuntu-26.04
