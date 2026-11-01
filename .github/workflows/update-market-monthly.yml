@@ -2,7 +2,7 @@ name: Update active monthly market histories
 on:
   schedule:
     - cron: '15 6 2,4,8,16 * *'
-    # Recover transient failures daily without downloading healthy histories.
+    # Recover failures and missing closed months; current histories are skipped.
     - cron: '45 6 * * *'
   workflow_dispatch:
     inputs:
@@ -19,7 +19,7 @@ on:
         type: boolean
         default: false
       retry_failed:
-        description: 'Reprendre uniquement les sources échouées ou manquantes ; conserver les données déjà qualifiées'
+        description: 'Reprendre les sources échouées ou dont le dernier mois clos manque ; ignorer les séries à jour'
         type: boolean
         default: false
   push:
