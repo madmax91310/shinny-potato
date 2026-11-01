@@ -1,3 +1,6 @@
+import {getETFArt} from '../src/pages/etf-sheets/visualIdentity.js'
+import {getManualDuelArt} from '../src/pages/portfolio-duels/visualIdentity.js'
+import {CATALOG as DUEL_ASSETS} from '../src/data/duel-assets.js'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import IDENTITIES from '../src/data/new-instrument-identities.json' with {type:'json'}
@@ -49,6 +52,9 @@ for(const identity of IDENTITIES){
  const option=instrumentOption(etf)
  if(identity.assetClass==='Fixed Income')assert.equal(option.group,'Obligations et monétaire')
  for(const query of [isin,identity.name,listing.ticker])assert(filterAssetOptions([option],{query}).some(r=>r.id===id),query)
+ const art=getETFArt(id);assert(fs.existsSync(`public/asset-art/${art.scene}`))
+ assert.deepEqual(getManualDuelArt(identity),art)
+ assert(DUEL_ASSETS.some(a=>a.isin===isin),`${isin}: manual duel admission`)
  const text=buildText(etf)
  assert(text.includes(isin)&&text.includes(listing.ticker)&&text.includes(ETF_TER_BY_ISIN[isin]))
  assert(text.includes('Ce que tu achètes')&&text.includes('Le point de vigilance'))
@@ -66,7 +72,7 @@ for(const identity of IDENTITIES){
  assert(PERFORMANCE[annualId]||Object.values(PERFORMANCE).some(a=>a.isin===isin))
  if(PERFORMANCE[annualId])assert(getAnnualReturns(annualId,Number(Object.keys(calendar.years).sort().at(-1))).length)
  const portfolio=PORTFOLIO.find(a=>a.isin===isin)
- if(portfolio){assert(portfolio.manualOnly);assert.equal(portfolio.cat,identity.assetClass==='Fixed Income'?'obligataire':'actions_larges')}
+ if(portfolio){assert(portfolio.manualOnly);assert.equal(portfolio.cat,identity.portfolioCategory)}
 }
 for(const source of NAV_SOURCES){
  const a=MONTHLY[source.id];assert(a&&a.isin===source.isin)

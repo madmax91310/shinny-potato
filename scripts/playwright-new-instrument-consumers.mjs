@@ -1,3 +1,4 @@
+import {CATALOG as DUEL_ASSETS} from '../src/data/duel-assets.js'
 import assert from 'node:assert/strict'
 import {chromium} from 'playwright'
 import {spawn} from 'node:child_process'
@@ -26,7 +27,21 @@ try{
   const picker=page.getByRole('group',{name:'Ajouter un actif',exact:true})
   for(const {isin} of IDENTITIES){const asset=ASSETS.find(a=>a.isin===isin);assert(asset?.manualOnly);await picker.getByRole('searchbox').fill(isin);await picker.locator(`[data-option][data-value="${asset.id}"]`).click();assert((await page.locator('.pg-manual-selection-name').innerText()).includes(asset.name));await page.getByRole('button',{name:'Retirer '+asset.name,exact:true}).click()}
   for(const isin of ['IE00B52SF786','IE00B1FZSC47']){const asset=ASSETS.find(a=>a.isin===isin);await picker.getByRole('searchbox').fill(isin);await picker.locator(`[data-option][data-value="${asset.id}"]`).click();await page.getByRole('spinbutton',{name:'Pourcentage pour '+asset.name,exact:true}).fill('50')}
-  await page.getByRole('button',{name:'Générer le tweet',exact:true}).click();await part(page,'Aperçu');await page.locator('.pg-image-download').waitFor();await download(page,page.locator('.pg-image-download'),'manual-'+width);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:out+'/manual-'+width+'-page.png',fullPage:true});await page.close()
+  await page.getByRole('button',{name:'Générer le tweet',exact:true}).click();await part(page,'Aperçu');await page.locator('.pg-image-download').waitFor();await download(page,page.locator('.pg-image-download'),'manual-'+width);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:out+'/manual-'+width+'-page.png',fullPage:true})
+  const initialDuel=DUEL_ASSETS.find(a=>a.isin===IDENTITIES[0].isin)
+  await page.goto(base+'duels-portefeuilles?asset='+initialDuel.id,{waitUntil:'networkidle'});await part(page,'Réglages')
+  const left=page.getByRole('group',{name:'Actif 1 du portefeuille A',exact:true})
+  for(const identity of IDENTITIES){
+   const asset=DUEL_ASSETS.find(a=>a.isin===identity.isin);assert(asset)
+   await left.getByRole('searchbox').fill(identity.isin);await choose(left,asset.id);await part(page,'Aperçu')
+   await page.waitForFunction(name=>document.querySelector('#pd-tweet')?.value.includes(name),identity.name)
+   assert(!/NaN|undefined/.test(await page.locator('#pd-tweet').inputValue()));await part(page,'Réglages')
+  }
+  await left.getByRole('searchbox').fill('IE00BZ6V7883');await choose(left,DUEL_ASSETS.find(a=>a.isin==='IE00BZ6V7883').id)
+  const right=page.getByRole('group',{name:'Actif 1 du portefeuille B',exact:true});await right.getByRole('searchbox').fill('IE00B14X4S71');await choose(right,DUEL_ASSETS.find(a=>a.isin==='IE00B14X4S71').id)
+  await part(page,'Aperçu');await page.waitForFunction(()=>document.querySelector('#pd-tweet')?.value.includes('Mortgage'))
+  await download(page,page.getByRole('button',{name:'🖼️ Télécharger l’image PNG',exact:true}),'duel-'+width)
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.close()
  }
- assert.deepEqual(errors,[]);await writeFile(out+'/result.json',JSON.stringify({instruments:IDENTITIES.length,widths:[1440,390],pngDownloads:4,errors},null,2));console.log('All new annual ranking and manual-generator choices searched and selected on desktop/mobile; two coherent native-currency portfolios/rankings, four downloaded PNGs inspected.')
+ assert.deepEqual(errors,[]);await writeFile(out+'/result.json',JSON.stringify({instruments:IDENTITIES.length,widths:[1440,390],pngDownloads:6,errors},null,2));console.log('All new annual ranking and manual-generator and manual-duel choices searched and selected on desktop/mobile; two coherent native-currency portfolios/rankings, six downloaded PNGs inspected.')
 }finally{await browser?.close();server.kill('SIGTERM')}

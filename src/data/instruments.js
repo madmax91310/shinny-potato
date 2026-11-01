@@ -16,7 +16,7 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // preuves émetteurs/places et devises de négociation contrôlées le 30/09/2026.
 import { PEA_REVIEWS_BY_ISIN } from './instrument-pea.js';
 export const INSTRUMENTS_BY_ISIN = Object.freeze({
-  ...Object.fromEntries(NEW_IDENTITIES.map(({isin,name,instrumentType,assetClass}) => [isin,Object.freeze({name,instrumentType,assetClass})])),
+  ...Object.fromEntries(NEW_IDENTITIES.map(({isin,name,instrumentType,assetClass,portfolioCategory}) => [isin,Object.freeze({name,instrumentType,assetClass,portfolioCategory})])),
   ...Object.fromEntries(Object.entries(VANGUARD_UNDERLIERS).map(([isin,r])=>[isin,Object.freeze({name:r.name,instrumentType:'ETF'})])),
   ...Object.fromEntries(Object.values(EQUITY_LINKS).map(r => [r.isin, Object.freeze({name:r.label,instrumentType:'EQUITY'})])),
   ...Object.fromEntries(GLOBAL_EQUITIES.map(r => [r.isin, Object.freeze({name:r.label,instrumentType:'EQUITY'})])),

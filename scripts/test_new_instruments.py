@@ -143,3 +143,12 @@ class NewInstruments(unittest.TestCase):
         position = next(i for i,d in enumerate(chart['asOfDate']) if d>=20180531)
         chart['value'][position] = 0
         with self.assertRaises(ValueError): blackrock_nav(body, 'IE00BFM6T814', 'USD', NOW)
+
+    def test_emerging_navigation_uses_official_country_risks(self):
+        receipts=json.loads((ROOT/'docs/new-instruments-sources-2026-11-01.json').read_text())['observations']
+        for row in receipts:
+            if not row.get('navigationFixture'): continue
+            body=gzip.open(ROOT/row['navigationFixture'],'rb').read()
+            self.assertEqual(hashlib.sha256(body).hexdigest(),row['pageSha256'])
+            self.assertIn(row['isin'].encode(),body)
+            self.assertRegex(body.lower(),rb'emerging\s+markets')

@@ -74,7 +74,7 @@ export const ANNUAL_PORTFOLIO_FUNDS = [...Object.values(QUALIFIED_FUND_CALENDARS
   if(expiry && new Date().getUTCFullYear()>Number(expiry))return []
   if (latestCommonYears([record.years], { minimum: 3 }).length < 3) return []
   const cat = ['ETC', 'ETN', 'ETP'].includes(record.instrumentType) ? 'matieres_premieres'
-    : INSTRUMENTS_BY_ISIN[record.isin]?.assetClass === 'Fixed Income' ? 'obligataire' : 'actions_larges'
+    : INSTRUMENTS_BY_ISIN[record.isin]?.portfolioCategory ?? (INSTRUMENTS_BY_ISIN[record.isin]?.assetClass === 'Fixed Income' ? 'obligataire' : 'actions_larges')
   const navRoute=qualifyPreferredManualNav(record)
   const mechanism=navRoute ? qualifiedManualMechanism(record.isin,AUTOMATED_ETF[record.isin]?.characteristics) : undefined
   const recovery = ANNUAL_RECOVERIES[record.isin]?.annualCurrency === record.currency ? ANNUAL_RECOVERIES[record.isin] : null

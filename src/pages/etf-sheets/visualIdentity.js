@@ -1,3 +1,4 @@
+import NEW_IDENTITIES from '../../data/new-instrument-identities.json' with {type:'json'}
 import { LIFESTRATEGY_SHEETS } from '../../data/lifestrategy.js';
 import {ROUND3_FUND_SHEETS} from '../../data/round3-fund-sheets.js';
 import { QUALIFIED_EXPOSURE_SHEETS } from '../../data/qualified-exposure-sheets.js'
@@ -50,7 +51,7 @@ const routingScenes = {
 for (const [theme, isins] of Object.entries(routingScenes))
  entries.push(...isins.split(' ').map(isin => [`presentation-${isin.toLowerCase()}`, {theme,scene:`etf-night/${theme}.webp`,kind:'illustration'}]))
 if (new Set(entries.map(([id]) => id)).size !== entries.length) throw new Error('Identité ETF dupliquée')
-export const ETF_ART = Object.freeze(Object.fromEntries([...entries, ...ROUND3_FUND_SHEETS.map(r=>[r.id,{theme:r.scene,scene:`etf-night/${r.scene}.webp`,kind:'illustration'}]), ...[...QUALIFIED_EXPOSURE_SHEETS, ...LIFESTRATEGY_SHEETS, ...NON_BOND_SHEETS].map(r=>[r.id,{theme:r.scene,scene:`etf-night/${r.scene}.webp`,kind:'illustration'}])]))
+export const ETF_ART = Object.freeze(Object.fromEntries([...entries, ...NEW_IDENTITIES.map(r=>[r.id,{theme:r.scene,scene:`etf-night/${r.scene}.webp`,kind:'illustration'}]), ...ROUND3_FUND_SHEETS.map(r=>[r.id,{theme:r.scene,scene:`etf-night/${r.scene}.webp`,kind:'illustration'}]), ...[...QUALIFIED_EXPOSURE_SHEETS, ...LIFESTRATEGY_SHEETS, ...NON_BOND_SHEETS].map(r=>[r.id,{theme:r.scene,scene:`etf-night/${r.scene}.webp`,kind:'illustration'}])]))
 export function getETFArt(id) {
   const art = ETF_ART[id]
   if (!art) throw new Error(`Illustration non vérifiée pour ${id}`)

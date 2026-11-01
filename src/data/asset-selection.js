@@ -22,6 +22,7 @@ export function instrumentOption(asset) {
   return {
     ...asset, id: asset.id ?? asset.isin, name, label: shortAssetName(name),
     group: exposureGroup({ ...asset, name, benchmark: facts.benchmark,
+      cat: asset.cat ?? INSTRUMENTS_BY_ISIN[asset.isin]?.portfolioCategory,
       assetClass: INSTRUMENTS_BY_ISIN[asset.isin]?.assetClass ?? asset.assetClass }),
     detail: facts.benchmark ?? '',
     search: instrumentSearchText({...asset, name}),
