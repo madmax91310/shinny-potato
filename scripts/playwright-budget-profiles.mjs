@@ -39,8 +39,8 @@ try {
     await context.addInitScript(captureCanvasText)
     const page = await context.newPage()
     page.on('pageerror', e => errors.push(e.message))
-    await page.goto(base + '/'); await expect(page.getByRole('link', { name: 'Le budget de… Publication ponctuelle', exact: true })).toBeVisible()
-    await page.getByRole('link', { name: 'Le budget de… Publication ponctuelle', exact: true }).click()
+    await page.goto(base + '/'); await expect(page.getByRole('link', { name: /Le budget de…/ }).first()).toBeVisible()
+    await page.getByRole('link', { name: /Le budget de…/ }).first().click()
     await expect(page.getByRole('heading', { name: 'Le budget de…', exact: true, level: 1 })).toBeVisible()
     const picker = page.getByRole('group', { name: 'Choisir un profil budget' })
     for (const profile of BUDGET_PROFILES) {

@@ -6,7 +6,7 @@ Base de travail : `master`, `da245d2f967c4dfd761ca1a4ed2bcff6caeaf836`. Aucun AG
 
 Le build-info public initial annonçait `sha=16fd8b562535a1fc3e0c1a38e55c9576f45f0bdb`, `dataSha=88f92ed4719b1343b98703c61a47dc5d7b971418`, voie `validated-data`, construction du 1er novembre à 12:17 UTC. Cette observation n'est pas une preuve de déploiement du présent changement.
 
-Les PR #1082, #1085, #1093, #1098 et #1101 sont fusionnées. Les PR ouvertes ont été relues : #1108 et #1042 concernent la banque de tweets, #1061 les encours ETF ; #1109/#1111/#1112 concernent les collectes et leurs tests. #1110 concerne le DCA et sa feuille de style importée par cet outil. Les points communs à préserver lors d'une actualisation de branche sont package.json, la liste des recettes navigateur et les styles DCA. Aucun autre outil ni format n'est modifié ici.
+Les PR #1082, #1085, #1093, #1098 et #1101 sont fusionnées. Les PR ouvertes ont été relues : #1108 et #1042 concernent la banque de tweets, #1061 les encours ETF ; #1109/#1111/#1112 concernent les collectes et leurs tests. #1110 concerne le DCA et sa feuille de style importée par cet outil. Les points communs à préserver lors d'une actualisation de branche sont package.json, la liste des recettes navigateur et les styles DCA. Aucun autre outil ni format n'est modifié ici. La PR calendrier #1114 a également été relue ; la découverte navigateur du budget s'appuie sur son titre, sans figer son ancien créneau.
 
 ## Inventaire et fidélité financière
 
@@ -83,3 +83,7 @@ Recette Chromium : tous les profils aux largeurs 1440, 390 et 320, deux versions
 Relecture visuelle : couple à 21 dépenses, Inès et financement de l'entreprise, référence monoparentale CHF et petit reste à affecter, très forte rémunération CHF, absence d'épargne, noms longs et déficit. Les polices restent fixes et toutes les informations sont présentes.
 
 Build complet, contrôles d'architecture, budgets inchangés et manifeste public exécutés. Le statut final de CI, la fusion et le code/dataSha effectivement publiés doivent être contrôlés sur GitHub et build-info.json ; ils ne se déduisent pas du build local. Aucune publication sur X.
+
+### Dépendance de validation constatée
+
+Le premier portail de cette PR (`41319497051`) a reproduit `27 !== 28` dans test-data-review-reminder.mjs. Le défaut a aussi été reproduit localement. Les trois correctifs de tests de #1113, commit `299015df89989dd37f32817046ab62ac4d8e2428`, sont repris à l'identique après lecture : échéances individuelles 13F, borne INSEE propre au calcul personnalisé, invariance intégrale des archives sans mois figé. Ces tests restent stricts et n'altèrent ni donnée, ni calcul, ni seuil financier. Ils constituent une dépendance nécessaire du portail ; la branche concurrente est préservée.
