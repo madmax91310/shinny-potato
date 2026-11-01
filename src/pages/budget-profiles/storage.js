@@ -103,7 +103,7 @@ export function restoreBudgetBackup(incoming, strategy, expectedSnapshot, drafts
     const localIds = idsIn(local), incomingIds = idsIn(incoming)
     const take = new Set([...incomingIds].filter(id => strategy === 'use-imported' || !localIds.has(id)))
     const value = { version: 2,
-      drafts: [...local.drafts.filter(d => !take.has(d.profile.id)), ...incoming.drafts.filter(d => take.has(d.profile.id))],
+      drafts: [...local.drafts.filter(d => !take.has(d.profile.id) || !incoming.drafts.some(imported => imported.profile.id === d.profile.id)), ...incoming.drafts.filter(d => take.has(d.profile.id))],
       activeId: local.activeId || incoming.activeId,
       ...Object.fromEntries(['used', 'published', 'queued'].map(key => [key, [...new Set([...local[key].filter(id => !take.has(id)), ...incoming[key].filter(id => take.has(id))])]])) }
     if (!validWorkspace(value)) return false

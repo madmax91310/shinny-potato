@@ -24,6 +24,9 @@ try {
   snapshot = budgetStorageSnapshot()
   assert(restoreBudgetBackup(incoming, 'use-imported', snapshot)); assert.equal(findSavedDraft(p.id).text, 'Autre appareil'); assert.deepEqual(loadPublished().value, [])
   assert(listBudgetRecoveries().some(v => v.workspace.drafts.some(d => d.text === custom.text)), 'Replaced personal drafts remain restorable from the UI'); assert(exportBudgetBackup().recovery[WORKSPACE_KEY]); assert([...memory.keys()].some(key => key.startsWith('el-budget-recovery-')))
+  const personalBeforeFlagsOnly = findSavedDraft(p.id).text
+  snapshot = budgetStorageSnapshot(); assert(restoreBudgetBackup({ ...incoming, drafts: [], activeId: null, used: [p.id], published: [], queued: [] }, 'use-imported', snapshot))
+  assert.equal(findSavedDraft(p.id).text, personalBeforeFlagsOnly, 'An import containing only statuses must never delete a local draft')
   snapshot = budgetStorageSnapshot(); const before = JSON.parse(memory.get(WORKSPACE_KEY)); before.queued.push('other-tab'); memory.set(WORKSPACE_KEY, JSON.stringify(before))
   assert.equal(saveDraft(custom), false, 'Concurrent tab never silently overwritten'); assert.equal(restoreBudgetBackup(incoming, 'use-imported', snapshot), false)
   loadWorkspace(); assert(saveDraft(custom))
