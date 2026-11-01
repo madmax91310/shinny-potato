@@ -1,16 +1,16 @@
 import { BUDGET_EDITORIAL, BUDGET_PROFILES, EXPENSE_CATEGORIES } from './data.js'
 
 export const MAX_BUDGET_LINES = 24
-export const euro = (value, currency = 'EUR') => Number(value).toLocaleString('fr-FR', { style: 'currency', currency, minimumFractionDigits: 0, maximumFractionDigits: 2 })
+export const euro = (value, currency = 'EUR') => Number(value).toLocaleString('fr-FR', { style: 'currency', currency, minimumFractionDigits: Number.isInteger(Math.round(Number(value) * 100) / 100) ? 0 : 2, maximumFractionDigits: 2 })
 export const dateLabel = date => new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${date}T12:00:00Z`))
-export const budgetKind = profile => profile.kind === 'prepared' ? 'Budget préparé' : profile.kind === 'planned' ? 'Budget prévu' : profile.kind === 'participant' ? 'Budget communiqué' : 'Budget déclaré'
+export const budgetKind = profile => profile.kind === 'prepared' ? 'Exemple de budget' : profile.kind === 'planned' ? 'Budget prévu' : profile.kind === 'participant' ? 'Budget communiqué' : 'Budget déclaré'
 const cents = value => Math.round(value * 100)
 const validAmount = value => typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 10000000
 const safeText = (value, max) => typeof value === 'string' && value.length <= max
 const validDate = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value))
 
 export function validBudget(profile) {
-  return !!profile && safeText(profile.id, 100) && (profile.currency === undefined || ['EUR', 'CHF'].includes(profile.currency)) && safeText(profile.name, 70) &&
+  return !!profile && safeText(profile.id, 100) && profile.id.length > 0 && (profile.currency === undefined || ['EUR', 'CHF'].includes(profile.currency)) && safeText(profile.name, 70) &&
     (profile.age === null || Number.isInteger(profile.age) && profile.age >= 18 && profile.age <= 110) &&
     ['job', 'location', 'household', 'period', 'incomeBasis', 'incomeNote'].every(key => safeText(profile[key], 250)) &&
     ['declared', 'planned', 'participant', 'prepared'].includes(profile.kind) && typeof profile.approximate === 'boolean' &&
@@ -21,7 +21,13 @@ export function validBudget(profile) {
     (profile.source === null || typeof profile.source === 'object' && ['publisher', 'title', 'url'].every(key => safeText(profile.source[key], 1500)) && /^https:\/\//.test(profile.source.url)) &&
     (profile.publishedAt === null || validDate(profile.publishedAt)) &&
     (profile.checkedAt === null || validDate(profile.checkedAt)) &&
-    (!profile.source || validDate(profile.publishedAt) && validDate(profile.checkedAt))
+    (!profile.source || validDate(profile.checkedAt)) &&
+    ['preparedAt', 'editorialReviewedAt'].every(key => profile[key] === undefined || validDate(profile[key])) &&
+    (profile.country === undefined || safeText(profile.country, 100)) &&
+    (profile.family === undefined || ['', 'single', 'couple', 'other'].includes(profile.family)) &&
+    (profile.children === undefined || ['', 'yes', 'no'].includes(profile.children)) &&
+    (profile.housing === undefined || ['', 'tenant', 'owner', 'other'].includes(profile.housing)) &&
+    (profile.budgetAsOf === undefined || typeof profile.budgetAsOf === 'string' && (/^\d{4}$/.test(profile.budgetAsOf) || validDate(profile.budgetAsOf)))
 }
 
 export function analyzeBudget(profile) {
@@ -40,7 +46,7 @@ export function analyzeBudget(profile) {
     expenseShare: income > 0 ? expenses / income * 100 : 0 }
 }
 
-const editorialFor = profile => profile.kind === 'participant' ? null : BUDGET_EDITORIAL[profile.id]
+export const editorialFor = profile => profile.kind === 'participant' ? null : BUDGET_EDITORIAL[profile.id]
 export const budgetDisplayName = profile => editorialFor(profile)?.alias || profile.name
 const share = (amount, income) => `${Math.round(amount / income * 100)} %`
 const rowTotal = rows => rows.reduce((sum, row) => sum + cents(row.amount), 0) / 100
@@ -59,49 +65,97 @@ export function budgetExpenseSections(profile) {
   ]
 }
 
+export function budgetPublicPresentation(profile) {
+  const e = editorialFor(profile)
+  return {
+    name: budgetDisplayName(profile),
+    balanceLabel: e?.balanceLabel || 'Reste disponible après versements',
+    job: e?.publicJob ?? profile.job,
+    household: e?.publicHousehold ?? (profile.household === 'Situation familiale non précisée' ? '' : profile.household),
+    incomeNote: e?.publicIncomeNote ?? profile.incomeNote,
+    story: e?.publicStory ?? profile.context,
+    basis: profile.kind === 'prepared' ? (e?.publicBasis || 'Montants mensuels') : profile.incomeBasis,
+    question: e?.question ?? profile.question,
+  }
+}
+
+export const budgetPossessive = name => /^(?:[aàâäeéèêëiîïoôöuùûüyœ]|h(?:ugo|adrien))/i.test(name) ? `d’${name}` : `de ${name}`
+export function budgetHeading(profile) {
+  const name = budgetDisplayName(profile)
+  const prefix = profile.kind === 'prepared' ? 'Exemple de budget' : profile.kind === 'planned' ? 'Budget prévu' : 'Budget'
+  return `${prefix} ${budgetPossessive(name)}${profile.age && !name.includes(' et ') && !name.includes(String(profile.age)) ? `, ${profile.age} ans` : ''}`
+}
+
 export function buildBudgetText(profile) {
   const a = analyzeBudget(profile)
   if (a.errors.length) return ''
-  const e = editorialFor(profile), name = budgetDisplayName(profile)
+  const e = editorialFor(profile), p = budgetPublicPresentation(profile)
   const money = value => euro(value, profile.currency)
-  const age = profile.age && !name.includes(String(profile.age)) ? `, ${profile.age} ans` : ''
-  const household = profile.household === 'Situation familiale non précisée' ? '' : profile.household
-  const presentation = [profile.job, household].filter(Boolean).join(' · ')
+  const presentation = [p.job, p.household, profile.location].filter(Boolean).join(' · ')
   const sections = budgetExpenseSections(profile)
   const expenses = sections.map(section => {
     const total = rowTotal(section.rows)
-    const rows = section.rows.map(row => `• ${EXPENSE_CATEGORIES.find(category => category.id === row.category)?.emoji || '🧾'} ${row.label} : ${money(row.amount)}`).join('\n')
+    // The section emoji supplies the rhythm; mixed posts need no misleading icon.
+    const rows = section.rows.map(row => `• ${row.label} : ${money(row.amount)}`).join('\n')
     return `${section.emoji} ${section.title} : ${money(total)} (${share(total, a.income)})\n${rows}`
   }).join('\n\n')
-  const incomeRows = profile.income.length > 1 ? profile.income.map(row => `• ${row.label} : ${money(row.amount)}`).join('\n') : ''
-  const incomeNote = e && 'incomeNote' in e ? e.incomeNote : profile.incomeNote
+  const textBasis = p.basis === 'Montants mensuels' || profile.income.length === 1 && profile.income[0].label.toLocaleLowerCase('fr').includes(p.basis.toLocaleLowerCase('fr')) ? '' : p.basis
+  const incomeRows = profile.income.map(row => `• ${row.label} : ${money(row.amount)}`).join('\n')
   const savings = profile.savings.map(row => `• ${row.label} : ${money(row.amount)}`).join('\n')
   return [
-    `Budget de ${name}${age}${e ? '\n(prénom' + (name.includes(' et ') ? 's fictifs)' : ' fictif)') : ''}`,
-    [presentation && `👤 ${presentation}`, profile.location && `📍 ${profile.location}`].filter(Boolean).join('\n'),
-    profile.kind === 'planned' && 'Budget prévu',
-    [`💰 Revenus mensuels : ${profile.approximate ? 'environ ' : ''}${money(a.income)}`, profile.incomeBasis, incomeRows, incomeNote].filter(Boolean).join('\n'),
+    budgetHeading(profile) + (profile.period ? ` — ${profile.period}` : ''),
+    presentation && `👤 ${presentation}`,
+    [`💰 Ressources mensuelles : ${profile.approximate ? 'environ ' : ''}${money(a.income)}`, textBasis, incomeRows, p.incomeNote].filter(Boolean).join('\n'),
     expenses,
-    sections.length > 1 && `🧾 Total des dépenses : ${money(a.expenses)} / mois`,
-    `👉 ${a.available < 0 ? 'Déficit avant épargne' : 'Reste avant épargne'} : ${money(a.available)} / mois (${share(a.available, a.income)})`,
-    savings && `💰 Épargne et investissements ${profile.kind === 'planned' ? 'prévus' : 'au budget'} : ${money(a.savings)} / mois\n${savings}\n${a.balance < 0 ? 'Manque après ces versements' : 'Solde après ces versements'} : ${money(Math.abs(a.balance))}`,
+    `🧾 Total des dépenses : ${money(a.expenses)} / mois`,
+    `👉 ${a.available < 0 ? 'Déficit avant versements' : 'Reste avant versements'} : ${money(Math.abs(a.available))} / mois (${share(a.available, a.income)})`,
+    savings && `🌱 Épargne, investissements et autres affectations : ${money(a.savings)} / mois\n${savings}`,
+    `${a.balance < 0 ? 'Manque après versements' : p.balanceLabel} : ${money(Math.abs(a.balance))} / mois`,
     profile.capacity !== null && `Capacité d’épargne ${profile.kind === 'planned' ? 'envisagée' : 'annoncée'} : environ ${money(profile.capacity)} / mois.`,
-    e?.note,
     e?.assets?.length && `🏦 Épargne déjà constituée :\n${e.assets.map(value => `• ${value}`).join('\n')}`,
-    e ? e.story : profile.context,
-    e?.goal && `🎯 Objectif : ${e.goal}`,
-    profile.question && `💬 ${profile.question}`,
+    p.story,
+    p.question && `💬 ${p.question}`,
   ].filter(Boolean).join('\n\n')
 }
 
+// Group only expense categories, once each, keeping mixed or unclassified rows
+// visible verbatim. Financial transfers are deliberately never merged together.
+export function budgetImageExpenses(profile, mode = 'detailed') {
+  if (mode !== 'summary') return profile.expenses
+  const groups = new Map(), result = []
+  for (const row of profile.expenses) {
+    if (!row.category || row.category === 'other') { result.push(row); continue }
+    let group = groups.get(row.category)
+    if (!group) {
+      group = { label: EXPENSE_CATEGORIES.find(c => c.id === row.category)?.label || row.category, amount: 0, category: row.category, members: [] }
+      groups.set(row.category, group); result.push(group)
+    }
+    group.amount += cents(row.amount); group.members.push(row)
+  }
+  return result.map(group => group.members ? (group.members.length === 1 ? group.members[0] : { label: group.label, amount: group.amount / 100, category: group.category }) : group)
+}
+
+export function matchesBudgetFilters(profile, filters) {
+  for (const key of ['country', 'family', 'children', 'housing']) {
+    if (filters[key] && (profile[key] || 'unknown') !== filters[key]) return false
+  }
+  if (filters.income) {
+    const [currency, min, max] = filters.income.split(':')
+    const income = analyzeBudget(profile).income
+    if ((profile.currency || 'EUR') !== currency || income < Number(min) || income >= Number(max)) return false
+  }
+  return true
+}
+export const compareBudgetRecency = (a, b) => (b.budgetAsOf || '').localeCompare(a.budgetAsOf || '') || a.id.localeCompare(b.id)
+
 // Refresh generated drafts after a text update, but never replace a personal text.
 export function refreshBudgetDraft(record) {
-  const profile = BUDGET_PROFILES.find(p => p.id === record.profile.id) || record.profile
+  const profile = record.profile.kind === 'participant' ? record.profile : BUDGET_PROFILES.find(p => p.id === record.profile.id) || record.profile
   return { ...record, profile, text: record.edited ? record.text : buildBudgetText(profile) }
 }
 
 export function sourceReply(profile) {
-  return profile.source ? `${profile.source.publisher} — ${profile.source.title}\n${profile.source.url}${profile.publishedAt ? `\nPublié le ${dateLabel(profile.publishedAt)}.` : ''}\n${profile.kind === 'prepared' ? 'Budget préparé avec compléments et arrondis ; les montants ne sont pas tous déclarés par l’auteur. ' + profile.caveat : 'Montants déclarés par la personne, sans vérification de ses comptes bancaires.'}` : ''
+  return profile.source ? `${profile.source.publisher} — ${profile.source.title}\n${profile.source.url}${profile.publishedAt ? `\nPublié le ${dateLabel(profile.publishedAt)}.` : ''}\n${profile.provenance?.type === 'reference' ? 'Exemple de référence publié, sans témoignage individuel. ' + profile.caveat : profile.kind === 'prepared' ? 'Budget préparé avec compléments et arrondis ; les montants ne sont pas tous déclarés par l’auteur. ' + profile.caveat : 'Montants déclarés par la personne, sans vérification de ses comptes bancaires.'}` : ''
 }
 
 export function blankBudget() {

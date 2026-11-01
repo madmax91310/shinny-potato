@@ -5,14 +5,14 @@ import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
 import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
-import { analyzeBudget, budgetDisplayName, buildBudgetText, euro } from '../src/pages/budget-profiles/lib.js'
-import { DRAFT_KEY, PUBLISHED_KEY, USAGE_KEY } from '../src/pages/budget-profiles/storage.js'
+import { analyzeBudget, budgetDisplayName, budgetImageExpenses, buildBudgetText, euro } from '../src/pages/budget-profiles/lib.js'
+import { DRAFT_KEY, PUBLISHED_KEY, USAGE_KEY, WORKSPACE_KEY } from '../src/pages/budget-profiles/storage.js'
 
 function captureCanvasText() {
       const original = CanvasRenderingContext2D.prototype.fillText
       window.budgetCanvasText = []
       CanvasRenderingContext2D.prototype.fillText = function (text, x, y, ...args) {
-        if (String(text) === 'LE BUDGET DE') window.budgetCanvasText = []
+        if (['LE BUDGET DE', 'EXEMPLE DE BUDGET'].includes(String(text))) window.budgetCanvasText = []
         if (this.canvas.width === 1200) {
           const width = this.measureText(text).width
           const left = x - (this.textAlign === 'right' ? width : this.textAlign === 'center' ? width / 2 : 0)
@@ -25,8 +25,9 @@ function captureCanvasText() {
 // CI partitions the exhaustive roster by viewport; direct runs still check all three.
 const widths = process.argv[2] === undefined ? [1440, 390, 320] : [Number(process.argv[2])]
 assert(widths.every(width => [1440, 390, 320].includes(width)), 'Expected viewport 1440, 390 or 320')
-const base = process.env.BUDGET_PUBLIC_BASE ?? 'http://127.0.0.1:4403/shinny-potato'
-const server = process.env.BUDGET_PUBLIC_BASE ? null : spawn(process.execPath, ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', '4403', '--strictPort'], { stdio: 'ignore' })
+const port = widths.length === 1 ? ({ 1440: 4470, 390: 4471, 320: 4472 })[widths[0]] : 4470
+const base = process.env.BUDGET_PUBLIC_BASE ?? `http://127.0.0.1:${port}/shinny-potato`
+const server = process.env.BUDGET_PUBLIC_BASE ? null : spawn(process.execPath, ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', String(port), '--strictPort'], { stdio: 'ignore' })
 const output = 'test-artifacts/budget-profiles'; mkdirSync(output, { recursive: true })
 let browser
 try {
@@ -43,6 +44,7 @@ try {
     await expect(page.getByRole('heading', { name: 'Le budget de…', exact: true, level: 1 })).toBeVisible()
     const picker = page.getByRole('group', { name: 'Choisir un profil budget' })
     for (const profile of BUDGET_PROFILES) {
+      await page.getByLabel('Version de l’image', { exact: true }).selectOption('detailed')
       await picker.locator(`[data-value="${profile.id}"]`).click()
       const image = page.getByRole('region', { name: 'Image du budget' }).locator('img')
       await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(buildBudgetText(profile))
@@ -60,6 +62,7 @@ try {
       for (const t of drawn) {
         assert(t.left >= 30 && t.right <= 1170 && t.y >= 0 && t.y + t.size <= t.height, `${profile.id}: text exceeds the image: ${JSON.stringify(t)}`)
         assert(!t.text.includes('…'), `${profile.id}: no truncated content`)
+        assert(!/prénoms? fictifs?|scénario mensuel préparé|l’auteur|sa femme|placeholder|\.json|PR #/i.test(t.text), `${profile.id}: internal mention on image`)
       }
       const normalize = text => text.replace(/\s+/g, ' ').trim()
       const imageText = normalize(drawn.map(t => t.text).join(' '))
@@ -73,8 +76,23 @@ try {
       await page.getByRole('button', { name: 'Copier le texte', exact: true }).click()
       assert.equal(await page.evaluate(() => navigator.clipboard.readText()), buildBudgetText(profile))
       await expect(page.getByRole('checkbox', { name: 'Profil publié', exact: true })).not.toBeChecked()
-      assert.equal(await page.evaluate(key => localStorage.getItem(key), PUBLISHED_KEY), null, 'Copying and exporting never declare publication')
+      assert.deepEqual(await page.evaluate(key => JSON.parse(localStorage.getItem(key)).published, WORKSPACE_KEY), [], 'Copying and exporting never declare publication')
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}: no horizontal overflow`)
+      // Verify the optional summary from the actual render, then its selected download.
+      await page.getByLabel('Version de l’image', { exact: true }).selectOption('summary')
+      await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeEnabled()
+      const summaryDrawn = await page.evaluate(() => window.budgetCanvasText)
+      const summaryText = normalize(summaryDrawn.map(t => t.text).join(' '))
+      for (const row of [...profile.income, ...budgetImageExpenses(profile, 'summary'), ...profile.savings]) {
+        assert(summaryText.includes(normalize(row.label)), `${profile.id}: missing summary label ${row.label}`)
+        assert(summaryText.includes(normalize(euro(row.amount, profile.currency))))
+      }
+      for (const t of summaryDrawn) assert(t.left >= 30 && t.right <= 1170 && t.y >= 0 && t.y + t.size <= t.height, `Summary bounds: ${JSON.stringify(t)}`)
+      const summaryBytes = await page.evaluate(async url => [...new Uint8Array(await (await fetch(url)).arrayBuffer())], await image.getAttribute('src'))
+      const summaryDownload = page.waitForEvent('download'); await page.getByRole('button', { name: 'Télécharger le PNG', exact: true }).click()
+      assert.deepEqual(readFileSync(await (await summaryDownload).path()), Buffer.from(summaryBytes))
+      writeFileSync(`${output}/${width}-${profile.id}-summary.png`, Buffer.from(summaryBytes))
+      await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(buildBudgetText(profile))
       const a = analyzeBudget(profile)
       await expect(page.locator('.budget-totals')).toContainText(euro(a.available, profile.currency))
       await page.screenshot({ path: `${output}/${width}-${profile.id}.png`, fullPage: true })
@@ -86,7 +104,7 @@ try {
     await publication.check()
     await expect(page.getByText('Profil marqué comme publié.', { exact: true })).toBeVisible()
     await expect(picker.locator(`[data-value="${lastId}"]`)).toContainText('publié')
-    assert.equal(await page.evaluate(key => localStorage.getItem(key), USAGE_KEY), null)
+    assert.deepEqual(await page.evaluate(key => JSON.parse(localStorage.getItem(key)).used, WORKSPACE_KEY), [])
     await page.reload(); await expect(publication).toBeChecked()
     await picker.locator(`[data-value="${BUDGET_PROFILES[0].id}"]`).click()
     await expect(publication).not.toBeChecked()
@@ -112,13 +130,13 @@ try {
     await expect(publication).not.toBeChecked()
     await publication.check()
     await expect(publication).toBeChecked()
-    const participationId = await page.evaluate(key => JSON.parse(localStorage.getItem(key)).profile.id, DRAFT_KEY)
+    const participationId = await page.evaluate(key => JSON.parse(localStorage.getItem(key)).activeId, WORKSPACE_KEY)
     await page.getByRole('button', { name: 'Créer une participation', exact: true }).click()
     await expect(publication).not.toBeChecked()
     await page.getByRole('button', { name: 'Profils sourcés', exact: true }).click()
     await picker.locator(`[data-value="${lastId}"]`).click()
     await page.getByRole('button', { name: 'Adapter ce budget', exact: true }).click()
-    await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)).profile.id, DRAFT_KEY)).not.toBe(participationId)
+    await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)).activeId, WORKSPACE_KEY)).not.toBe(participationId)
     await expect(page.getByText('Participation à faire valider avant publication.')).toBeVisible()
     if (BUDGET_PROFILES.at(-1).currency === 'CHF') {
       await page.getByText('Présentation du profil', { exact: true }).click()

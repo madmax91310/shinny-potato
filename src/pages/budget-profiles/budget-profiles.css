@@ -14,3 +14,9 @@
 .budget-profiles-scope textarea{min-height:120px}
 .budget-profiles-scope .dca-text-card textarea{min-height:420px}
 @media(max-width:500px){.budget-profiles-scope .budget-row{grid-template-columns:minmax(0,1fr) 105px 28px}.budget-profiles-scope .budget-breakdown>div{font-size:.9rem}}
+.budget-profiles-scope .budget-filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px}
+.budget-profiles-scope .budget-provenance{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.85rem;max-height:400px;overflow:auto}
+.budget-profiles-scope .budget-backup{display:grid;gap:12px}
+.budget-profiles-scope .budget-backup ul{max-height:240px;overflow:auto;padding-left:20px}
+
+.budget-profiles-scope .budget-import-text{white-space:pre-wrap;overflow-wrap:anywhere}

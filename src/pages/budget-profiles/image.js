@@ -1,4 +1,4 @@
-import { analyzeBudget, budgetDisplayName, euro } from './lib.js'
+import { analyzeBudget, budgetPublicPresentation, budgetImageExpenses, euro } from './lib.js'
 
 // Model 3: fixed readable type, measured wrapping, cards and canvas grow together.
 // No ellipsis or fixed line count: a participant may use all 24 rows per section.
@@ -51,7 +51,7 @@ function icon(ctx, kind, x, y, size = 44) {
   ctx.strokeStyle = C.ink; ctx.lineWidth = 2.6; ctx.lineCap = 'round'; ctx.lineJoin = 'round'
   ctx.stroke(new Path2D(paths[kind] || paths.other)); ctx.restore()
 }
-function planCard(ctx, money, title, total, rows, color, kind, subtitle = 'PAR MOIS') {
+function planCard(ctx, money, title, total, rows, color, kind, subtitle = 'PAR MOIS', compact = false) {
   font(ctx, 76, 800)
   const value = money(total), valueWidth = ctx.measureText(value).width
   const titleWidth = CW - PAD * 2 - 88 - valueWidth - 30
@@ -60,11 +60,16 @@ function planCard(ctx, money, title, total, rows, color, kind, subtitle = 'PAR M
   const titleHeight = titleLines.length * 47
   const subtitleLines = lines(ctx, subtitle, stacked ? CW - PAD * 2 - 88 : titleWidth, 26, 500)
   const headerHeight = Math.max(104, titleHeight + subtitleLines.length * 33 + 12) + (stacked ? 94 : 0)
+  // Two fixed type scales, never progressively shrink to fit. The editor's
+  // exceptional 49–72 rows retain the previously validated 36px minimum.
+  const labelSize = compact ? 36 : 42, amountSize = compact ? 40 : 44, rowStep = compact ? 45 : 52
   const rowPlans = rows.map(row => {
-    font(ctx, 40, 700)
+    font(ctx, amountSize, 700)
     const amount = money(row.amount), amountWidth = ctx.measureText(amount).width
-    const label = lines(ctx, row.label, CW - PAD * 2 - 72 - amountWidth - 34, 36, 600)
-    return { ...row, amount, label, height: Math.max(72, label.length * 45 + 28) }
+    let label = lines(ctx, row.label, CW - PAD * 2 - 72 - amountWidth - 34, labelSize, 600)
+    const stacked = label.length >= 3
+    if (stacked) label = lines(ctx, row.label, CW - PAD * 2 - 72, labelSize, 600)
+    return { ...row, amount, label, stacked, labelSize, amountSize, rowStep, height: Math.max(72, label.length * rowStep + (compact ? 20 : 28) + (stacked ? amountSize + 10 : 0)) }
   })
   return { titleLines, value, stacked, headerHeight, rows: rowPlans, color, kind, subtitleLines,
     height: PAD + headerHeight + rowPlans.reduce((h, r) => h + r.height, 0) + (rowPlans.length ? 15 : 0) + PAD }
@@ -79,37 +84,40 @@ function card(ctx, p, y) {
   for (const row of p.rows) {
     ctx.fillStyle = '#ffffff80'; ctx.fillRect(X + PAD, top, CW - PAD * 2, 2)
     icon(ctx, row.category || 'other', X + PAD, top + 18, 38)
-    row.label.forEach((line, i) => draw(ctx, line, X + PAD + 72, top + 19 + i * 45, 36))
-    draw(ctx, row.amount, X + CW - PAD, top + 17, 40, C.ink, 700, 'right')
+    row.label.forEach((line, i) => draw(ctx, line, X + PAD + 72, top + 19 + i * row.rowStep, row.labelSize))
+    draw(ctx, row.amount, X + CW - PAD, top + 17 + (row.stacked ? row.label.length * row.rowStep + 6 : 0), row.amountSize, C.ink, 700, 'right')
     top += row.height
   }
 }
-export async function renderBudgetImage(profile) {
+export async function renderBudgetImage(profile, mode = 'detailed') {
   const a = analyzeBudget(profile)
   const money = value => euro(value, profile.currency)
   if (a.errors.length) throw new Error(a.errors.join(' '))
   const canvas = document.createElement('canvas'); canvas.width = W
   const ctx = canvas.getContext('2d')
-  const name = budgetDisplayName(profile)
-  const title = name + (profile.age && !name.includes(String(profile.age)) ? `, ${profile.age} ans` : '')
-  const details = [profile.job, profile.location, profile.household === 'Situation familiale non précisée' ? '' : profile.household].filter(Boolean).join(' · ')
+  const presentation = budgetPublicPresentation(profile)
+  const name = presentation.name
+  const title = name + (profile.age && !name.includes(' et ') && !name.includes(String(profile.age)) ? `, ${profile.age} ans` : '')
+  const details = [presentation.job, presentation.household, profile.location].filter(Boolean).join(' · ')
   const titleHeight = lines(ctx, title, W - 130, 112, 800).length * 138
   const detailsHeight = lines(ctx, details, W - 130, 38, 500).length * 47
-  const plannedHeight = profile.kind === 'planned' ? 46 : 0
+  const contextLabel = [profile.kind === 'planned' ? 'Budget prévu' : '', profile.period].filter(Boolean).join(' · ')
+  const plannedHeight = lines(ctx, contextLabel, W - 130, 34, 600).length * 42
   const headerHeight = 146 + titleHeight + detailsHeight + plannedHeight + 24
+  const compact = profile.income.length + profile.expenses.length + profile.savings.length > 48
   const cards = [
-    planCard(ctx, money, 'RESSOURCES', a.income, profile.income, C.income, 'income', profile.incomeBasis || 'PAR MOIS'),
-    planCard(ctx, money, 'DÉPENSES', a.expenses, profile.expenses, C.expenses, 'expenses'),
+    planCard(ctx, money, 'RESSOURCES', a.income, profile.income, C.income, 'income', presentation.basis || 'PAR MOIS', compact),
+    planCard(ctx, money, 'DÉPENSES', a.expenses, budgetImageExpenses(profile, mode), C.expenses, 'expenses', 'PAR MOIS', compact),
   ]
-  if (profile.savings.length) cards.push(planCard(ctx, money, 'VERSEMENTS PRÉVUS', a.savings, profile.savings, C.savings, 'savings'))
-  if (profile.capacity !== null) cards.push(planCard(ctx, money, profile.kind === 'planned' ? 'CAPACITÉ ENVISAGÉE' : 'CAPACITÉ ANNONCÉE', profile.capacity, [], C.savings, 'savings'))
-  cards.push(planCard(ctx, money, a.balance < 0 ? (profile.savings.length ? 'MANQUE APRÈS VERSEMENTS' : 'DÉFICIT AVANT ÉPARGNE') : 'RESTE DISPONIBLE', Math.abs(a.balance), [], a.balance < 0 ? C.deficit : C.balance, 'balance'))
+  if (profile.savings.length) cards.push(planCard(ctx, money, 'VERSEMENTS', a.savings, profile.savings, C.savings, 'savings', 'PAR MOIS', compact))
+  if (profile.capacity !== null) cards.push(planCard(ctx, money, profile.kind === 'planned' ? 'CAPACITÉ ENVISAGÉE' : 'CAPACITÉ ANNONCÉE', profile.capacity, [], C.savings, 'savings', 'PAR MOIS', compact))
+  cards.push(planCard(ctx, money, a.balance < 0 ? (profile.savings.length ? 'MANQUE APRÈS VERSEMENTS' : 'DÉFICIT AVANT VERSEMENTS') : (presentation.balanceLabel === 'Reste disponible après versements' ? 'RESTE DISPONIBLE' : presentation.balanceLabel.toLocaleUpperCase('fr')), Math.abs(a.balance), [], a.balance < 0 ? C.deficit : C.balance, 'balance'))
   canvas.height = headerHeight + cards.reduce((h, p) => h + p.height + GAP, 0) + 82
   ctx.fillStyle = C.background; ctx.fillRect(0, 0, W, canvas.height)
-  draw(ctx, 'LE BUDGET DE', 65, 38, 66, C.ivory, 800)
+  draw(ctx, profile.kind === 'prepared' ? 'EXEMPLE DE BUDGET' : 'LE BUDGET DE', 65, 38, 66, C.ivory, 800)
   block(ctx, title, 65, 118, W - 130, 112, C.ivory, 800)
   block(ctx, details, 65, 126 + titleHeight, W - 130, 38, C.muted, 500)
-  if (plannedHeight) draw(ctx, 'BUDGET PRÉVU', 65, 134 + titleHeight + detailsHeight, 30, C.ivory, 700)
+  if (plannedHeight) block(ctx, contextLabel, 65, 134 + titleHeight + detailsHeight, W - 130, 34, C.ivory, 600)
   let y = headerHeight
   for (const p of cards) { card(ctx, p, y); y += p.height + GAP }
   draw(ctx, 'Épargnant Libre', W / 2, canvas.height - 56, 32, C.ivory, 500, 'center')
