@@ -1,4 +1,4 @@
-import {REVIEWED_EXPOSURE_COPY} from '../../../data/etf-presentation-copy.js'
+import NEW_COMPARISONS from '../../../data/new-instrument-comparisons.json' with {type:'json'}
 import NEW_COPY from '../../../data/new-instrument-copy.json' with {type:'json'}
 import { PUBLICATION_SELECTIONS } from '../../../data/publication-selections.js'
 import { PRESENTATION_ETF_ADDITIONS } from '../../../data/presentation-etf-additions.js'
@@ -14,7 +14,7 @@ const ACWI = 'Il couvre les grandes et moyennes entreprises des pays développé
 const EURO50 = 'Il suit 50 grandes entreprises de la zone euro. Il couvre moins de marchés que le MSCI Europe ou le STOXX Europe 600 : le Royaume-Uni et la Suisse n’en font pas partie.'
 const TECH_EUROPE = 'Il cible les entreprises technologiques du STOXX Europe 600. Tu investis dans un secteur européen précis, plutôt que dans l’ensemble du marché européen.'
 export const ETF_EXPOSURE_COPY = {
- IE00B4L5YX21: REVIEWED_EXPOSURE_COPY['support-actions_japon'].whatIs,
+ ...Object.fromEntries(NEW_COMPARISONS.flatMap(c=>c.funds.map((isin,i)=>[isin,c.descriptions[i]]))),
  ...Object.fromEntries(Object.entries(NEW_COPY).map(([isin,copy])=>[isin,copy.whatIs])),
  ...Object.fromEntries(PUBLICATION_SELECTIONS.flatMap(selection => selection.funds.map((isin, i) => [isin, selection.descriptions[i]]))),
  IE00BF0M2Z96:'Il cible des entreprises de la chaîne de valeur des batteries, des matériaux aux technologies de stockage. Tu détiens des actions ; leur résultat ne suit pas directement le prix d’un métal.',
