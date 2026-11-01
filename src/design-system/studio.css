@@ -43,7 +43,7 @@
 .workspace :is(.pd-modes button,.pd-add,.pd-editor-line button,.hh-controls button,.hh-actions button,.cc-choice,.bc-duel-chip) { background: var(--ui-soft); border-color: var(--ui-line); color: var(--ui-ink); }
 .workspace :is(.pd-modes .pd-mode-active,.cc-choice-active,.bc-duel-chip.active) { background: var(--ui-accent-soft); color: var(--ui-accent); border-color: var(--ui-accent); }
 .workspace :is(.hh-panel-head,.pd-table td,.pd-table th,.bc-row,.bc-head-row,.fs-editor-top,.ip-row) { border-color: var(--ui-line); }
-.workspace .publication-image-stage :is(.fi-image-panel,.bc-versus) { padding: 0; background: transparent; border: 0; }
+.workspace .publication-image-stage :is(.bc-versus) { padding: 0; background: transparent; border: 0; }
 .workspace .publication-image-stage canvas { width: 100%; height: auto; }
 .workspace .workspace-actions .pg-image-download { background: var(--ui-soft); color: var(--ui-ink); border: 1px solid var(--ui-line); border-radius: 9px; padding: 12px 14px; text-align: center; }
 .workspace :is(.es-lightbox-panel,.fs-image-dialog,.ic-image-panel) { background: var(--ui-surface); color: var(--ui-ink); }
@@ -63,7 +63,6 @@
 
 .workspace .ic-scope { --ic-surface: var(--ui-surface); --ic-surface-raised: var(--ui-soft); --ic-surface-hover: var(--ui-soft); --ic-border: var(--ui-line); --ic-border-soft: var(--ui-line); --ic-ink: var(--ui-ink); --ic-ink-dim: var(--ui-muted); --ic-ink-faint: var(--ui-muted); --ic-accent: var(--ui-accent); --ic-accent-bright: var(--ui-accent); --ic-positive: #23664e; --ic-negative: #a52d46; }
 
-.workspace .fi-scope { --fi-surface: var(--ui-surface); --fi-surface-raised: var(--ui-soft); --fi-surface-hover: var(--ui-soft); --fi-border: var(--ui-line); --fi-border-soft: var(--ui-line); --fi-ink: var(--ui-ink); --fi-ink-dim: var(--ui-muted); --fi-ink-faint: var(--ui-muted); --fi-accent: var(--ui-accent); --fi-accent-bright: var(--ui-accent); --fi-positive: #23664e; --fi-negative: #a52d46; --fi-warning: #806216; }
 
 .workspace .mf-scope { --mf-surface: var(--ui-surface); --mf-border: var(--ui-line); --mf-border-soft: var(--ui-line); --mf-text: var(--ui-ink); --mf-text-dim: var(--ui-muted); --mf-text-faint: var(--ui-muted); --mf-accent: var(--ui-accent); --mf-accent-bright: var(--ui-accent); }
 
