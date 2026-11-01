@@ -1,4 +1,5 @@
 import { ROUTING_PRESENTATIONS } from './routing-presentations.js';
+import { NEW_INSTRUMENT_SHEETS } from './new-instrument-sheets.js';
 import { getInstrumentFacts } from './instrument-facts.js';
 import { NON_BOND_SHEETS } from './non-bond-expansion.js';
 import { LIFESTRATEGY_SHEETS } from './lifestrategy.js';
@@ -71,6 +72,14 @@ export const CATEGORY_EMOJI = {
   };
 
 export const ETFS = [
+  ...NEW_INSTRUMENT_SHEETS.map(r => ({ ...r,
+    name: getInstrumentName(r.isin, 'sheet'), listing: getPreferredInstrumentListing(r.isin),
+    ter: formatEtfTer(r.isin, 'sheet'), positions: getInstrumentPositions(r.isin),
+    aum: getInstrumentAum(r.isin, 'sheet'), distribution: getInstrumentDistribution(r.isin),
+    pea: getInstrumentPea(r.isin), cto: true, location: getInstrumentLocation(r.isin),
+    source: getInstrumentFacts(r.isin).characteristicsSource?.url,
+    lastVerified: getInstrumentFacts(r.isin).reviewedAt,
+  })),
   ...ROUTING_PRESENTATIONS.map(r => ({...r, presentationOnly:true, isNew:true,
     hook:`${getInstrumentName(r.isin,'sheet')} : ${r.hook.charAt(0).toLocaleLowerCase('fr-FR')}${r.hook.slice(1)}`,
     name:getInstrumentName(r.isin,'sheet'), listing:getPreferredInstrumentListing(r.isin),

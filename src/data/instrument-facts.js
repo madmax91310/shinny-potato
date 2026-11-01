@@ -1,4 +1,5 @@
 import { ROUTING_PRESENTATION_FACTS as ROUTING_FACTS } from './routing-presentation-facts.js';
+import { NEW_INSTRUMENT_FACTS } from './new-instrument-facts.js';
 export const ROUTING_PRESENTATION_FACTS = ROUTING_FACTS;
 import { AUTOMATED_ETF } from './automated-etf.js';
 import { applyAutomatedCharacteristics } from './automated-characteristics.js';
@@ -23,6 +24,7 @@ export { getInstrumentListings } from './instrument-listings.js';
 // PEA reste dans instruments.js : le statut ne se déduit ni du domicile ni de l'indice.
 // Les ETC et ETP gardent leur nature distincte des fonds ETF.
 const MANUAL_INSTRUMENT_FACTS = {
+  ...NEW_INSTRUMENT_FACTS,
   "FR0013412269": {
   "distribution": "Capitalisation et/ou distribution",
   "location": "France, réplication synthétique (swap)",

@@ -95,6 +95,20 @@
     "node scripts/playwright-budget-portability.mjs": 16.378,
     "node scripts/playwright-budget-profiles.mjs 1440 1 2": 125.189,
     "node scripts/playwright-budget-profiles.mjs 320 1 2": 124.113,
-    "node scripts/playwright-budget-profiles.mjs 390 1 2": 190.102
+    "node scripts/playwright-budget-profiles.mjs 390 1 2": 190.102,
+    "node scripts/playwright-new-instruments.mjs": 411.2,
+    "node scripts/playwright-new-instrument-consumers.mjs": 60
+  },
+  "localObservations": {
+    "date": "2026-11-01",
+    "environment": "cloud executor; guidance for scheduling, not a GitHub runtime promise",
+    "node scripts/playwright-new-instruments.mjs": {
+      "seconds": 411.2,
+      "method": "Measured first downloaded PNG to completed report plus five seconds setup; final full command is rechecked by the CI."
+    },
+    "node scripts/playwright-new-instrument-consumers.mjs": {
+      "seconds": 60,
+      "method": "Conservative local scheduling estimate from the exercised desktop/mobile selectors and four PNG downloads."
+    }
   }
 }

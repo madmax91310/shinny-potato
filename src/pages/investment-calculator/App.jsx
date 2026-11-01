@@ -1,3 +1,4 @@
+import { instrumentSearchText, instrumentOption } from '../../data/asset-selection.js'
 import { downloadImage } from '../../design-system/downloadImage.js'
 import { historyCurrencies } from '../../data/history-currency.js'
 import { useSelectedHistory } from '../../lib/useSelectedHistory.js'
@@ -11,7 +12,6 @@ import { copyPublicationText } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
 import AssetPicker from '../../design-system/AssetPicker'
-import { exposureGroup } from '../../data/asset-labels.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import SettingsDetails from '../../design-system/SettingsDetails'
 import { useEffect, useMemo, useState } from 'react'
@@ -379,7 +379,7 @@ function InvestmentEditor({state,setState}){
             <div className="ic-field">
               <div className="ic-select-wrap">
                 <AssetPicker className="ic-control" label="Choisir un actif" value={state.assetId}
-                  items={ASSET_ORDER.map(id => ({ id, isin:ASSETS[id].isin, search:ASSETS[id].ticker??'', label: historyOptionLabel(id, ASSETS[id]), group: exposureGroup(ASSETS[id]) }))}
+                  items={ASSET_ORDER.map(id => ({ id, isin:ASSETS[id].isin, search:instrumentSearchText(ASSETS[id]), label: historyOptionLabel(id, ASSETS[id]), group: instrumentOption(ASSETS[id]).group }))}
                   emptyOption={{ id: 'custom', label: 'Autre (saisie manuelle)' }}
                   onChange={(id) => {
                     const requestedStart = `${state.startYear}-${String(state.startMonth).padStart(2, '0')}`

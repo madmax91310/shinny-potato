@@ -1,7 +1,9 @@
+import NEW_COMPARISONS from './new-instrument-comparisons.json' with {type:'json'}
 import { PUBLICATION_SELECTIONS } from './publication-selections.js'
 import { RESOURCE_COMPARISONS } from './resource-selections.js'
 import { DISTINCT_ASSET_SELECTIONS } from './distinct-asset-selections.js'
 export const QUALIFIED_ETF_COMPARISONS = [
+ ...NEW_COMPARISONS,
  ...PUBLICATION_SELECTIONS,
  ...DISTINCT_ASSET_SELECTIONS,
  {id:'usa-small-value',nom:'Petites capitalisations américaines : classique ou value',emoji:'🔎',hook:'Même marché américain, mais une autre sélection de petites entreprises : que change le filtre value ?',funds:['IE00BJ38QD84','IE00BSPLC413'],descriptions:['Petites entreprises du Russell 2000.','Petites entreprises américaines repondérées selon leur valorisation.'],cloture:'Les univers et les pondérations diffèrent. Le biais value peut sous-performer longtemps ; ce filtre ne constitue pas une protection contre les baisses.',question:'Tu préférerais suivre le marché ou ajouter un filtre de valorisation ?'},
