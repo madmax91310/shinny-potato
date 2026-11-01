@@ -155,7 +155,9 @@ export function refreshBudgetDraft(record) {
 }
 
 export function sourceReply(profile) {
-  return profile.source ? `${profile.source.publisher} — ${profile.source.title}\n${profile.source.url}${profile.publishedAt ? `\nPublié le ${dateLabel(profile.publishedAt)}.` : ''}\n${profile.provenance?.type === 'reference' ? 'Exemple de référence publié, sans témoignage individuel. ' + profile.caveat : profile.kind === 'prepared' ? 'Budget préparé avec compléments et arrondis ; les montants ne sont pas tous déclarés par l’auteur. ' + profile.caveat : 'Montants déclarés par la personne, sans vérification de ses comptes bancaires.'}` : ''
+  if (!profile.source) return ''
+  const prefix = profile.kind === 'prepared' ? 'Exemple de budget — source' : profile.kind === 'planned' ? 'Budget prévu — source' : 'Source'
+  return `${prefix} : ${profile.source.publisher}\n${profile.source.url}`
 }
 
 export function blankBudget() {
