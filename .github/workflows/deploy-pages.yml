@@ -164,7 +164,6 @@ jobs:
       - run: node scripts/test-scpi.mjs
       - run: node scripts/test-insurance.mjs
       - run: npm run test:radar
-      - run: node scripts/test-wealth-simulator.mjs
       - run: python -m unittest discover -s scripts -p "test_performance_currency.py"
       - run: node scripts/test-performance-currency.mjs
       - run: node scripts/test-cross-tool-currency.mjs
@@ -223,7 +222,6 @@ jobs:
       - run: node scripts/test-world-factors-step-one.mjs
       - run: node scripts/test-property-infrastructure-step-two.mjs
       - run: node scripts/test-data-reuse.mjs
-      - run: node scripts/test-fee-impact-editorial.mjs
       - run: npm run audit:data-catalog
       - run: npm run audit:data-provenance
       - run: node scripts/test-index-comparison-copy.mjs

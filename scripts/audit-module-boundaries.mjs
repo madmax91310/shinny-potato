@@ -13,7 +13,6 @@ const pureRoots = [
   'src/pages/presentation-shared/image-model.js',
   'src/pages/performance-rankings/engine.js',
   'src/pages/dca-profiles/engine.js',
-  'src/pages/wealth-simulator/lib.js',
 ]
 const browserObjects = new Set(['document', 'navigator', 'localStorage', 'sessionStorage'])
 

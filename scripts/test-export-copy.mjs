@@ -100,24 +100,6 @@ try {
     await check('purchasing-power', () => renderPurchasingPowerImage({mode:'brut',amount:1000,startYear:2020}), (_, text) => !text.includes('/  POUVOIR'))
     const { drawBrokerVersus } = await module('pages/broker-comparator/versus-image.js')
     await check('brokers', async () => { const canvas=document.createElement('canvas'); await drawBrokerVersus(canvas, 'tr', 'bourso'); return canvas }, (_,text) => !text.includes('DUEL DE COURTIERS'))
-    const { drawFeeImpactImage } = await module('pages/fee-impact/imageExport.js')
-    const { simulateCapitalSeries, computeComparison, fmtEUR: feeEUR } = await module('pages/fee-impact/lib.js')
-    for (const [name, amount, years, fee1, fee2] of [
-      ['fees', 400, 30, .2, 2], ['fees-short', 100, .5, .1, .5],
-      ['fees-inverted', 500, 10, 2, .2], ['fees-equal', 300, 20, .2, .2],
-      ['fees-close', 100, 10, .1, .2], ['fees-long', 1000, 50, .2, 2],
-    ]) {
-      const state = { amount, years, returnRate: 7, fee1, fee2 }
-      const comparison = computeComparison(state)
-      await check(name, () => {
-        const canvas = document.createElement('canvas'); canvas.width = 1600; canvas.height = 1600
-        drawFeeImpactImage(canvas.getContext('2d'), state,
-          simulateCapitalSeries(amount, years, 7, fee1), simulateCapitalSeries(amount, years, 7, fee2), comparison)
-        return canvas
-      }, (words, text) => words.includes(feeEUR(comparison.ecart))
-        && words.includes(feeEUR(comparison.capital1)) && words.includes(feeEUR(comparison.capital2))
-        && !/SIMULATION|Deux scénarios|Frais annuels :|Les mêmes versements|ÉCART$|hors fiscalité|début de mois/.test(text))
-    }
     const { normalizePortfolio } = await module('pages/investor-portfolio/data.js')
     const { renderPortfolioImage: renderInvestor } = await module('pages/investor-portfolio/image.js')
     const payload=await fetch('/shinny-potato/data/investors/ackman.json').then(response=>response.json())

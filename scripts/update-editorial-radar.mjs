@@ -65,7 +65,7 @@ export function collectObservationsSync(root = ROOT) {
   }
   const economic = load('src/data/automated-economic.json')
   const savings = Object.values(economic?.savings ?? {}).sort((a, b) => a.effectiveAt.localeCompare(b.effectiveAt)).at(-1)
-  if (savings) add({ family: 'epargne', entity: 'livret-a', label: 'Livret A', sourceUrl: savings.sourceUrl, checkedAt: savings.checkedAt, scope: 'Taux réglementé · date d’effet indiquée', tool: '/simulateur-patrimoine' }, 'rate', 'Taux annuel', savings.rate, savings, { unit: '%', priority: 'high' })
+  if (savings) add({ family: 'epargne', entity: 'livret-a', label: 'Livret A', sourceUrl: savings.sourceUrl, checkedAt: savings.checkedAt, scope: 'Taux réglementé · date d’effet indiquée', tool: '/fiches-pratiques?fiche=livret-euro' }, 'rate', 'Taux annuel', savings.rate, savings, { unit: '%', priority: 'high' })
   for (const [id, r] of Object.entries(economic?.households ?? {})) add({ family: 'economie', entity: id, ...householdMetadata(id, r), scope: `${r.population} · ${id}`, tool: '/france-100-menages', maxAgeDays: 400 }, 'value', 'Repère publié', r.value, r, { period: `${r.year}`, rule: 'publication' })
   for (const [id, r] of Object.entries(economic?.benchmarks ?? {})) add({ family: 'epargne', entity: id.split(':')[0], label: id.startsWith('scpi') ? 'SCPI · moyenne du marché' : 'Fonds euros · moyenne du marché', scope: r.method, tool: '/pouvoir-achat', maxAgeDays: 400 }, 'annual', 'Rendement annuel publié', r.value, r, { unit: '%', period: `${r.year}`, rule: 'publication' })
   const regulatory = load('src/data/automated-regulatory.json')
