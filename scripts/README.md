@@ -499,7 +499,8 @@ exerce restauration, édition/rechargement et stockage refusé/corrompu en deskt
 ce contrôle fait aussi partie des shards CI. Le module ne migre ni ne réinitialise
 les données : une lecture invalide garde les octets existants.
 
-`npm run test:dca:usage-storage` protège le tableau historique `el-dca-used-v1`
+`npm run test:dca:usage-storage` protège la clé historique `el-dca-used-v1`,
+les anciens tableaux d’IDs et leur migration vers les marquages Publié datés v2
 dans `dca-profiles/usage-history.js`. Après un build terminé,
 `node scripts/playwright-dca-usage-storage.mjs` exerce le clic réel, les filtres,
 le rechargement immédiat, les anciens IDs, les lectures/écritures refusées et le

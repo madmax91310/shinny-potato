@@ -1,5 +1,19 @@
 # Portefeuille & DCA — décisions et roadmap
 
+## État requalifié au 1er novembre 2026
+
+| Statut | Périmètre | Résultat / prochaine condition |
+| --- | --- | --- |
+| Terminé | Limite DCA | Huit positions acceptées, neuvième refusée. Anciens brouillons/sauvegardes/imports jusqu'à 50 lignes conservés et éditables, sorties bloquées tant que le nombre dépasse huit. Actifs & expositions garde 50 positions. |
+| Terminé | Tri dans la saisie | Deux listes liées aux mêmes positions : allocation par poids et versements par montants décroissants ; stabilité pendant la frappe et les égalités, reclassement à la sortie du groupe/Entrée, y compris après restauration/import. |
+| Terminé | Images et texte | Style et squelette validés conservés ; espacement et retours à la ligne ajustés jusqu'à huit positions, zéros mensuels exclus. Matrice de 636 rendus et exports réels ordinateur/mobile. |
+| Terminé | Suivi Publié | Historique existant migré vers des marquages datés, dates anciennes inconnues, annulation et filtre Non publiés ; stockage local, erreurs et conflits préservés. Aucun marquage à la copie ou au téléchargement. |
+| Déjà livré avant ce lot | Publications, filtres, sauvegardes, JSON | Tri du texte et des images #1086 ; filtres, sauvegardes nommées et transport JSON réutilisés. Aucun historique parallèle. |
+| Restant | Surveillance des données | Observer les prochains passages des workflows communs ; les nouvelles acquisitions contrôlées ici ne prétendent pas être enregistrées/publiées. |
+| Bloqué par les sources | Compositions et identités | Onze références utilisées restent partielles au nouvel inventaire. Résidus, DUMMY/CVR sans ISIN, HEG sans identifiant natif, immobilier PEA partiel. Benchmarks Europe/PEA complets et qualification des autres refus nécessaires ; ni poids étirés ni seuils abaissés. |
+
+[Bilan, inventaire recalculé, acquisitions officielles et recette](../reports/dca-eight-2026-11-01/README.md). Les nombres des sections historiques ci-dessous décrivent leur propre photographie et ne sont pas des compteurs de blocages actuels.
+
 Suite autorisée du 29 octobre 2026 : motifs de qualification des compositions et incompatibilités de paires centralisés, diagnostic brut/net refusé conservé avec ses propres preuves, surveillance du contenu de sept routes officielles Europe/PEA. Les refus ne deviennent pas des compositions admises. Répartition à parts égales et affectation explicite du solde ajoutées ; import/export JSON versionné avec texte/options conservés, sauvegardes nommées intactes et approbation révoquée à l’ouverture. Aucun changement du générateur de texte, du dessin des images, des profils ou des seuils. [Bilan de cette suite](../reports/dca-roadmap-2026-10-29/README.md).
 
 Complément #1050, 29 octobre 2026 : 21 identifiants supplémentaires confirmés par requêtes indépendantes, renouvelés dans la voie existante. Battery est entièrement identifiée avec sa somme publiée de100,0004% conservée ; GGRA reste partielle à97,1431%, seul le SEDOL Merck demeure inconnu. ACWI DUMMY et SmallCap CVR restent des positions distinctes sans ISIN publié. Les résidus comptables BlackRock/DWS sont conservés et expliqués dans les sources de l'analyse ; les contrats de change éclairent le refus WorldHedged sans relâcher le plafond. Les trois recherches d'indices Europe/PEA sont désormais surveillées automatiquement sur cinq routes officielles, toujours sans admission financière faute de composition complète qualifiée. [Bilan et preuves du lot](../reports/priority-compositions-2026-10-29/README.md).

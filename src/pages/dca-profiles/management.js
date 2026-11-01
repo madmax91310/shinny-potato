@@ -1,5 +1,5 @@
 import { ASSETS } from './data.js'
-import { validateProfile, references } from './engine.js'
+import { validateProfile, MAX_EXPOSURE_POSITIONS, references } from './engine.js'
 const legacyAliases={'novo-nordisk':'novo','saint-gobain':'saintgobain',linde:'lin',moodys:'mco'}
 export const profileSelection = profile => profile?.selection === 'controversial' ? 'controversial' : 'classic'
 export function migrateProfile(profile){return profile&&Array.isArray(profile.lines)?{...profile,selection:profileSelection(profile),lines:profile.lines.map(line=>({...line,asset:legacyAliases[line.asset]||line.asset}))}:profile}
@@ -17,7 +17,7 @@ export function filterProfiles(profiles,filters,used=[]){return profiles.filter(
  && (!filters.unused || !used.includes(p.id))
 })}
 export function validSaved(record){
- try{return record&&typeof record.id==='string'&&record.id.length<=100&&typeof record.title==='string'&&record.title.length<=80&&typeof record.draft==='string'&&record.draft.length<=20000&&['countries','sectors','both','all','overlap'].includes(record.field)&&!validateProfile(record.profile).length}catch{return false}
+ try{return record&&typeof record.id==='string'&&record.id.length<=100&&typeof record.title==='string'&&record.title.length<=80&&typeof record.draft==='string'&&record.draft.length<=20000&&['countries','sectors','both','all','overlap'].includes(record.field)&&!validateProfile(record.profile,MAX_EXPOSURE_POSITIONS).length}catch{return false}
 }
 export function readSavedState(storage,{recoverInvalidRoot=false}={}){
  const raw=storage.getItem(SAVED_KEY)
