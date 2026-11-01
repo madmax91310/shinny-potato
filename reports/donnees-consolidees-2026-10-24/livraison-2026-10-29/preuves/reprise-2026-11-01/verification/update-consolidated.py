@@ -26,7 +26,7 @@ def read_csv(path):
 
 def write_csv(path, fields, rows):
     out = io.StringIO(newline='')
-    writer = csv.DictWriter(out, fieldnames=fields, delimiter=';', extrasaction='raise')
+    writer = csv.DictWriter(out, fieldnames=fields, delimiter=';', lineterminator='\n', extrasaction='raise')
     writer.writeheader()
     writer.writerows(rows)
     raw = out.getvalue().encode('utf-8-sig')
@@ -128,13 +128,16 @@ extras = ['qualification_publique_1nov', 'voies_publiques_1nov', 'preuve_etat_pu
 fields += [f for f in extras if f not in fields]
 qualified = 0
 for row in comparisons:
-    observed = open_rows[row['id']]
+    # The legacy `id` identifies a series, not a unique comparison. Preserve it;
+    # reconcile the exact share/year pair against the public case identity.
+    case_id = row['isin'] + '/' + row['year']
+    observed = open_rows[case_id]
     windows = (observed.get('currentConsumer') or {}).get('windows', [])
     admitted = any((w.get('qualification') or {}).get('qualified') for w in windows)
     qualified += admitted
     row.update(qualification_publique_1nov=str(admitted),
                voies_publiques_1nov=json.dumps(windows, ensure_ascii=False),
-               preuve_etat_publie_1nov='preuves/reprise-2026-11-01/public-final/financial-reconciliation.json#' + row['id'],
+               preuve_etat_publie_1nov='preuves/reprise-2026-11-01/public-final/financial-reconciliation.json#' + case_id,
                limite_intervention_1nov='Renouvellement et rattrapage mensuels distincts ; aucune ancienne divergence ni fenêtre refusée déclarée résolue par la correction Yahoo, H10 ou BCE.')
 write_csv(path, fields, comparisons)
 print(json.dumps({'consolidatedRowsBefore': len(original_ids), 'consolidatedRowsAfter': len(ledger),
