@@ -3,12 +3,12 @@
   "symbol": "BTC-USD",
   "currency": "USD",
   "method": "Yahoo monthly close verified against UTC final daily close; complete months only",
-  "checkedAt": "2026-10-05",
+  "checkedAt": "2026-11-01",
   "periodStart": "2015-01",
-  "periodEnd": "2026-09",
+  "periodEnd": "2026-10",
   "sourceUrls": [
-    "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo",
-    "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1d"
+    "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1mo",
+    "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1d"
   ],
   "points": [
     [
@@ -574,6 +574,10 @@
     [
       "2026-09",
       83553.85
+    ],
+    [
+      "2026-10",
+      77434.75
     ]
   ]
 }
