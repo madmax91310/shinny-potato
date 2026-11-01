@@ -1,17 +1,44 @@
 {
-  "checkedAt": "2026-10-31T13:05:56.158803+00:00",
-  "attemptedIds": [],
+  "checkedAt": "2026-11-01T20:53:45.411390+00:00",
+  "attemptedIds": [
+    "long-msciWorld",
+    "long-msciEmerging",
+    "long-msciWorldSmallCap",
+    "long-msciAcwi",
+    "long-msciWorldExUsa",
+    "long-sp500",
+    "long-apple",
+    "long-microsoft",
+    "long-nvidia",
+    "long-amazon",
+    "long-google",
+    "long-meta",
+    "long-euroGov13",
+    "long-euroCorporateBond",
+    "long-euroHighYieldBond",
+    "long-globalBondEur",
+    "gold-invesco-usd",
+    "long-msciEurope",
+    "long-msciUsa",
+    "world-net",
+    "emerging-net",
+    "japan-net",
+    "acwi-gross",
+    "aerospace-paris-eur",
+    "fx:TWD",
+    "fx:ECB"
+  ],
   "fxFailed": false,
   "crossFxFailed": false,
   "fxSources": {
     "TWD": {
       "id": "fx:TWD",
       "status": "validated",
-      "checkedAt": "2026-10-31T03:58:00.511789+00:00",
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00",
       "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
       "sourceAttempts": [
         {
-          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-31",
+          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-11-01",
           "error": "The read operation timed out"
         },
         {
@@ -23,134 +50,141 @@
           "status": "downloaded",
           "sha256": "17d087d0ebb2a0ac1a7c0feed844ecb5ca0410c4ae64582b2030233bdeb352e4"
         }
+      ],
+      "pendingMonths": [
+        {
+          "month": "2026-10",
+          "latestAvailableAsOf": "2026-10-23",
+          "reason": "Awaiting a qualified month-end observation within the existing H.10 weekly release window"
+        }
       ]
     },
     "ECB": {
       "id": "fx:ECB",
       "status": "validated",
-      "checkedAt": "2026-10-31T03:58:00.511789+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     }
   },
   "series": [
     {
       "id": "acwi-gross",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "aerospace-paris-eur",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "emerging-net",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "gold-invesco-usd",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "japan-net",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-amazon",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-apple",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-euroCorporateBond",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-euroGov13",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-euroHighYieldBond",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-globalBondEur",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-google",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-meta",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-microsoft",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-msciAcwi",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-msciEmerging",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-msciEurope",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-msciUsa",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-msciWorld",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-msciWorldExUsa",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-msciWorldSmallCap",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-nvidia",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "long-sp500",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     },
     {
       "id": "world-net",
       "status": "validated",
-      "checkedAt": "2026-10-29T09:30:00.330008+00:00"
+      "checkedAt": "2026-11-01T20:53:45.411390+00:00"
     }
   ]
 }

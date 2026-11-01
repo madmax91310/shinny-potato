@@ -12632,7 +12632,7 @@
   },
   "sp500-pea": {
     "returns": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "currency": "USD",
       "variant": "TOTAL",
       "values": [
@@ -12664,19 +12664,19 @@
       "periodStart": "2020-01-01",
       "periodEnd": "2025-12-31",
       "source": {
-        "url": "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "url": "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
         "sourceUrls": [
-          "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
-          "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+          "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+          "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits"
         ],
-        "checkedAt": "2026-10-29",
-        "sha256": "f78bb294d232fcc6f5e4d833ef8a635300c298f3667daea4d85bd6148c19c8f6",
+        "checkedAt": "2026-11-01",
+        "sha256": "9688cce97e0b0bd5f75188db859bbbb0df40a2bdd551ef9e51204bda14b73cca",
         "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
       },
       "performance": {
         "kind": "indice",
         "detail": "S&P 500 · USD · dividendes réinvestis",
-        "date": "2026-09-30"
+        "date": "2026-10-31"
       }
     },
     "returnsHistory": {
@@ -12726,6 +12726,54 @@
           "kind": "indice",
           "detail": "S&P 500 · USD · dividendes réinvestis",
           "date": "2026-09-30"
+        }
+      },
+      "2026-10-31": {
+        "asOf": "2026-10-31",
+        "currency": "USD",
+        "variant": "TOTAL",
+        "values": [
+          [
+            2025,
+            17.88
+          ],
+          [
+            2024,
+            25.02
+          ],
+          [
+            2023,
+            26.29
+          ],
+          [
+            2022,
+            -18.11
+          ],
+          [
+            2021,
+            28.71
+          ],
+          [
+            2020,
+            18.4
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "checkedAt": "2026-11-01",
+          "sha256": "9688cce97e0b0bd5f75188db859bbbb0df40a2bdd551ef9e51204bda14b73cca",
+          "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "S&P 500 · USD · dividendes réinvestis",
+          "date": "2026-10-31"
         }
       }
     },
@@ -13152,7 +13200,7 @@
   },
   "ethereum": {
     "returns": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "currency": "USD",
       "variant": "PRICE",
       "values": [
@@ -13184,19 +13232,19 @@
       "periodStart": "2020-01-01",
       "periodEnd": "2025-12-31",
       "source": {
-        "url": "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "url": "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1793491200&interval=1d&events=div%2Csplits",
         "sourceUrls": [
-          "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1790812800&interval=1d&events=div%2Csplits",
-          "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1790812800&interval=1mo&events=div%2Csplits"
+          "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1793491200&interval=1d&events=div%2Csplits",
+          "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1793491200&interval=1mo&events=div%2Csplits"
         ],
-        "checkedAt": "2026-10-29",
-        "sha256": "f78bb294d232fcc6f5e4d833ef8a635300c298f3667daea4d85bd6148c19c8f6",
+        "checkedAt": "2026-11-01",
+        "sha256": "9688cce97e0b0bd5f75188db859bbbb0df40a2bdd551ef9e51204bda14b73cca",
         "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
       },
       "performance": {
         "kind": "actif",
         "detail": "Ethereum · USD · cours spot",
-        "date": "2026-09-30"
+        "date": "2026-10-31"
       }
     },
     "returnsHistory": {
@@ -13246,6 +13294,54 @@
           "kind": "actif",
           "detail": "Ethereum · USD · cours spot",
           "date": "2026-09-30"
+        }
+      },
+      "2026-10-31": {
+        "asOf": "2026-10-31",
+        "currency": "USD",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            -10.97
+          ],
+          [
+            2024,
+            46.07
+          ],
+          [
+            2023,
+            90.64
+          ],
+          [
+            2022,
+            -67.5
+          ],
+          [
+            2021,
+            399.14
+          ],
+          [
+            2020,
+            469.25
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1793491200&interval=1d&events=div%2Csplits",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "checkedAt": "2026-11-01",
+          "sha256": "9688cce97e0b0bd5f75188db859bbbb0df40a2bdd551ef9e51204bda14b73cca",
+          "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
+        },
+        "performance": {
+          "kind": "actif",
+          "detail": "Ethereum · USD · cours spot",
+          "date": "2026-10-31"
         }
       }
     }
