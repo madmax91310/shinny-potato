@@ -95,7 +95,14 @@ def group(row):
         return 'dependance-change-bce-octobre'
     if '2026-10' in cause and 'Monthly NAV/return end not independently qualified' in cause:
         return 'borne-mensuelle-nav-non-qualifiee'
-    if key.startswith('usage:'):
+    if row.get('kind') == 'connection':
+        if 'corroborée manuellement' in cause:
+            return 'recoupements-externes-courtiers-manuels'
+        # The catalog and consumer views describe the same product/field. Keep
+        # different vehicles separate even when their missing-doc wording matches.
+        identity = '\x1f'.join([row.get('name', ''), row.get('field', ''), cause])
+        return 'raccordement-documentaire-' + hashlib.sha256(identity.encode()).hexdigest()[:12]
+    if key.startswith('usage:') and row.get('kind') != 'failure':
         return 'contrats-consommateurs-' + (row.get('category') or 'qualification')
     return str(row.get('category') or row.get('stage') or row.get('kind')) + ':' + hashlib.sha256(cause.encode()).hexdigest()[:12]
 
