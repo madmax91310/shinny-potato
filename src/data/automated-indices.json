@@ -13100,7 +13100,7 @@
   },
   "bitcoin": {
     "returns": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "currency": "USD",
       "variant": "PRICE",
       "values": [
@@ -13132,19 +13132,19 @@
       "periodStart": "2020-01-01",
       "periodEnd": "2025-12-31",
       "source": {
-        "url": "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo",
+        "url": "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1mo",
         "sourceUrls": [
-          "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo",
-          "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1d"
+          "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1mo",
+          "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1d"
         ],
-        "checkedAt": "2026-10-05",
-        "sha256": "f13a624ba98c7b66cb3e0999f73e538fc0b968e21a91e8224c4393d8c5c0762e",
+        "checkedAt": "2026-11-01",
+        "sha256": "9610a37c9a34a7ada9acd0be38fd415ac4f23ace22b90651697c9bf4269f6301",
         "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
       },
       "performance": {
         "kind": "actif",
         "detail": "Bitcoin · USD · cours spot",
-        "date": "2026-09-30"
+        "date": "2026-10-31"
       }
     },
     "returnsHistory": {
@@ -13194,6 +13194,54 @@
           "kind": "actif",
           "detail": "Bitcoin · USD · cours spot",
           "date": "2026-09-30"
+        }
+      },
+      "2026-10-31": {
+        "asOf": "2026-10-31",
+        "currency": "USD",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            -6.34
+          ],
+          [
+            2024,
+            121.05
+          ],
+          [
+            2023,
+            155.42
+          ],
+          [
+            2022,
+            -64.27
+          ],
+          [
+            2021,
+            59.67
+          ],
+          [
+            2020,
+            303.16
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1mo",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1mo",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1d"
+          ],
+          "checkedAt": "2026-11-01",
+          "sha256": "9610a37c9a34a7ada9acd0be38fd415ac4f23ace22b90651697c9bf4269f6301",
+          "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
+        },
+        "performance": {
+          "kind": "actif",
+          "detail": "Bitcoin · USD · cours spot",
+          "date": "2026-10-31"
         }
       }
     }
