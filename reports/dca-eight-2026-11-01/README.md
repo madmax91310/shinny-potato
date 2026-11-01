@@ -12,21 +12,21 @@ Base relue : `88f92ed` sur master. Aucune AGENTS.md dans le dépôt. Consignes :
 
 ## Données : nouveau constat, sans reprendre les anciens compteurs
 
-Inventaire recalculé après `build-dca-exposures.mjs` : 150 profils, 673 références sélectionnables. Classes de diagnostic : 131 compositions qualifiées complètes, 87 partielles, 454 sans composition de fonds applicable, une indisponible ; ces classes ne mesurent pas un taux d'automatisation. Onze références partielles sont effectivement utilisées dans les profils préparés (les occurrences ne sont pas une mesure d'usage des abonnés).
+Inventaire initial (`holdings-inventory-initial.json.gz`) : 131 compositions complètes et 87 partielles. Nouveau calcul après rebase sur `b32a7c7` et les collectes exactes de master (`holdings-inventory.json.gz`), via `build-dca-exposures.mjs` : 150 profils, 673 références sélectionnables. Classes de diagnostic : 127 compositions qualifiées complètes, 91 partielles, 454 sans composition de fonds applicable, une indisponible ; ces classes ne mesurent pas un taux d'automatisation. Onze références partielles sont effectivement utilisées dans les profils préparés (les occurrences ne sont pas une mesure d'usage des abonnés).
 
 | Support | Occurrences profils | Poids identifié / portefeuille total | Base et photographie conservées |
 | --- | ---: | ---: | --- |
-| iShares MSCI ACWI UCITS ETF USD (Acc) · `IE00B6R52259` | 33 | 99.636030 % | fund · 2026-10-29 |
+| iShares MSCI ACWI UCITS ETF USD (Acc) · `IE00B6R52259` | 33 | 99.637690 % | fund · 2026-10-30 |
 | Xtrackers MSCI Emerging Markets UCITS ETF · `IE00BTJRMP35` | 13 | 99.411629 % | fund · 2026-10-29 |
-| iShares MSCI World Small Cap UCITS ETF · `IE00BF4RFH31` | 8 | 99.508890 % | fund · 2026-10-29 |
-| iShares Global Infrastructure UCITS ETF USD (Dist) · `IE00B1FZS467` | 6 | 99.360550 % | fund · 2026-10-29 |
+| iShares MSCI World Small Cap UCITS ETF · `IE00BF4RFH31` | 8 | 99.503660 % | fund · 2026-10-30 |
+| iShares Global Infrastructure UCITS ETF USD (Dist) · `IE00B1FZS467` | 6 | 99.317830 % | fund · 2026-10-30 |
 | Amundi FTSE EPRA NAREIT Global UCITS ETF · `LU1437018838` | 3 | 99.494177 % | fund · 2026-10-28 |
-| iShares Global Timber & Forestry UCITS ETF · `IE00B27YCF74` | 2 | 99.487050 % | fund · 2026-10-29 |
+| iShares Global Timber & Forestry UCITS ETF · `IE00B27YCF74` | 2 | 99.486550 % | fund · 2026-10-30 |
 | Amundi PEA Immobilier Europe UCITS ETF Acc · `FR0011869304` | 1 | 45.178547 % | index · 2026-10-28 |
-| iShares MSCI EM Small Cap UCITS ETF USD (Dist) · `IE00B3F81G20` | 1 | 99.426420 % | fund · 2026-10-29 |
-| iShares MSCI World Consumer Staples Sector Advanced UCITS ETF · `IE00BJ5JP329` | 1 | 99.440630 % | fund · 2026-10-29 |
-| iShares MSCI EM ex-China UCITS ETF (Acc) · `IE00BMG6Z448` | 1 | 99.570880 % | fund · 2026-10-29 |
-| iShares Edge MSCI World Value Factor UCITS ETF · `IE00BP3QZB59` | 1 | 99.489930 % | fund · 2026-10-29 |
+| iShares MSCI EM Small Cap UCITS ETF USD (Dist) · `IE00B3F81G20` | 1 | 99.615440 % | fund · 2026-10-30 |
+| iShares MSCI World Consumer Staples Sector Advanced UCITS ETF · `IE00BJ5JP329` | 1 | 99.142220 % | fund · 2026-10-30 |
+| iShares MSCI EM ex-China UCITS ETF (Acc) · `IE00BMG6Z448` | 1 | 99.514840 % | fund · 2026-10-30 |
+| iShares Edge MSCI World Value Factor UCITS ETF · `IE00BP3QZB59` | 1 | 99.488750 % | fund · 2026-10-30 |
 
 La collecte partagée `collect_dca_complete_holdings.py --only IE00B6R52259 IE00BF4RFH31 IE00B3F81G20` a été réellement rejouée. Trois acquisitions officielles validées, photographies du 30 octobre ; résultats et empreintes dans `priority-source-recheck.json.gz`. Les tentatives initiales sans dépendances Python ont été rejetées, puis refaites après installation des mêmes dépendances que le workflow. Aucune date du registre n'a été renouvelée par ces tentatives. Ce contrôle de source ne vaut ni enregistrement ni publication de nouvelles données : la collecte quotidienne reste leur producteur.
 
@@ -42,6 +42,8 @@ Contrôles et artefacts dans `checks/`. Tests moteur, historique, actions/transp
 
 ## Réparation du portail CI
 
-Le premier passage de la PR #1110 a révélé deux tests devenus incompatibles avec les collectes légitimes : `test_index_composition_gate.py` jugeait les photographies du 30 octobre depuis un 14 octobre figé ; `test-data-review-reminder.mjs` supposait que les 28 investisseurs restaient tous au même trimestre, alors que Gayner était déjà passé au suivant. Horloge courante et cas futurs/périmés relatifs dans le premier ; échéances individuelles selon le trimestre réellement publié et fenêtre exacte de sept jours dans le second. Aucune donnée ni politique de fraîcheur modifiée. Les rejets de compositions futures/périmées et la conservation des dernières valeurs restent exercés.
+Les passages du portail de la PR #1110 ont révélé trois tests devenus incompatibles avec les collectes légitimes : `test_index_composition_gate.py` jugeait les photographies du 30 octobre depuis un 14 octobre figé ; `test-data-review-reminder.mjs` supposait que les 28 investisseurs restaient tous au même trimestre, alors que Gayner était déjà passé au suivant. Le correctif équivalent d’horloge a été fusionné indépendamment via #1112 pendant ce travail ; sa version et ses tests de bornes J/J−75/J+1/J−76 sont intégralement repris de master, sans seconde implémentation. Échéances individuelles selon le trimestre réellement publié et fenêtre exacte de sept jours dans le second. `test-gold-consumers.mjs` bornait aussi à tort le personnalisé EUR au mois de l’or : son assertion suit maintenant la véritable borne INSEE, indépendamment de la cadence de l’or. Aucune donnée ni politique de fraîcheur modifiée. Les rejets de compositions futures/périmées et la conservation des dernières valeurs restent exercés.
+
+Le workflow de fiches d’indices 41317496933 a également refusé le nouveau STOXX 600 pour dates incompatibles entre positions, pays et secteurs ; les dernières données admises restent conservées. Ce refus de source n’est pas contourné par le parcours DCA.
 
 Publication : la PR, les contrôles requis, le workflow Pages et le SHA public sont à consigner après livraison. Les blocages de source restent ouverts : aucune déclaration d'automatisation complète.
