@@ -17,6 +17,17 @@ MARKET_PROJECTION_INPUTS = {'src/data/worldbank-gold-monthly.json'}
 # and validation hooks still rebuild projections and check the combined tree.
 # Do not generalise this to collector code, configurations or other producers.
 MARKET_READER_ONLY_CHANGES = {
+    # Actual refusal41338564974 after#1120: this independent private CRUD service
+    # only consumes the already published tweet catalog. Market acquisition and
+    # baseline exports neither import it nor fetch its authenticated endpoints.
+    # The three related#1124 client/CI files have the same audited one-way scope.
+    # Exact files only; merged-tree preparation/financial checks remain mandatory.
+    'services/tweet-bank-private/README.md',
+    'services/tweet-bank-private/tests/api.mjs',
+    'services/tweet-bank-private/worker/index.js',
+    'services/tweet-bank-private/worker/page.js',
+    'services/tweet-bank-private/tests/browser.mjs',
+    '.github/workflows/test-tweet-bank-private.yml',
     # Actual refusal40884415624 after #1043: these exact downstream proof
     # readers/fixtures and their regressions are not monthly acquisition inputs.
     # Keep regeneration and financial validation on the combined tree mandatory.
