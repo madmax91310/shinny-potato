@@ -40,10 +40,10 @@ class WorkflowContracts(unittest.TestCase):
             if 'uses: actions/checkout@' in step or 'uses: actions/setup-node@' in step:
                 self.assertIn("if: github.event_name != 'pull_request'", step)
         # Preserve ancestry, producers and publication receipts: lazy blobs only affect transport.
-        for job_name in ('scope', 'deploy', 'fallback-build'):
+        for job_name in ('current-snapshot', 'scope', 'deploy', 'fallback-build'):
             job = re.split(r'(?m)^  [a-zA-Z0-9_-]+:\n', text.split('\n  '+job_name+':\n', 1)[1])[0]
             for step in job.split('      - ')[1:]:
-                if 'fetch-depth: 0' in step: self.assertIn('filter: blob:none', step)
+                if 'fetch-depth: 0' in step: self.assertEqual(step.count('filter: blob:none'), 1)
 
     def test_monthly_fx_dependency_precedes_nav_admission_and_collection(self):
         text = (ROOT/'.github/workflows/update-market-monthly.yml').read_text()
