@@ -1,6 +1,6 @@
 {
   "prices": {
-    "asOf": "2026-09",
+    "asOf": "2026-10",
     "baseYear": 2025,
     "annualLevels": {
       "general": {
@@ -59,11 +59,11 @@
       }
     },
     "latestLevels": {
-      "general": 103.07,
-      "alimentation": 101.83,
-      "energie": 120.13
+      "general": 103.47,
+      "alimentation": 101.42,
+      "energie": 122.43
     },
-    "provisional": false,
+    "provisional": true,
     "sources": {
       "general": {
         "seriesId": "011814630",
@@ -273,7 +273,8 @@
           "2026-06": 102.11,
           "2026-07": 102.68,
           "2026-08": 103.35,
-          "2026-09": 103.07
+          "2026-09": 103.07,
+          "2026-10": 103.47
         },
         "quality": {
           "2010-01": "DEF",
@@ -476,20 +477,12 @@
           "2026-06": "DEF",
           "2026-07": "DEF",
           "2026-08": "DEF",
-          "2026-09": "DEF"
+          "2026-09": "DEF",
+          "2026-10": "P"
         },
-        "pendingObservations": [
-          {
-            "month": "2026-10",
-            "value": 103.47,
-            "quality": "P",
-            "observationStatus": "P",
-            "reason": "official-provisional-incomplete-calendar-month",
-            "includedInActiveHistory": false
-          }
-        ],
-        "sha256": "78d4bd50ba2ef793b981c4edf414706214614c9b90cef9f024f54aa0664a6301",
-        "checkedAt": "2026-10-31T13:51:03.175463+00:00"
+        "pendingObservations": [],
+        "sha256": "8c946df04ea09b1c3f92055985925d86c3813884643ec547b012a833f95c8e45",
+        "checkedAt": "2026-11-01T14:29:15.710203+00:00"
       },
       "alimentation": {
         "seriesId": "011813717",
@@ -699,7 +692,8 @@
           "2026-06": 101.14,
           "2026-07": 101.29,
           "2026-08": 101.69,
-          "2026-09": 101.83
+          "2026-09": 101.83,
+          "2026-10": 101.42
         },
         "quality": {
           "2010-01": "DEF",
@@ -902,20 +896,12 @@
           "2026-06": "DEF",
           "2026-07": "DEF",
           "2026-08": "DEF",
-          "2026-09": "DEF"
+          "2026-09": "DEF",
+          "2026-10": "P"
         },
-        "pendingObservations": [
-          {
-            "month": "2026-10",
-            "value": 101.42,
-            "quality": "P",
-            "observationStatus": "P",
-            "reason": "official-provisional-incomplete-calendar-month",
-            "includedInActiveHistory": false
-          }
-        ],
-        "sha256": "b3fc82b716ef987d056dc54db364054edbb9e526a31bb28844bc95641ad4ebf3",
-        "checkedAt": "2026-10-31T13:51:03.175463+00:00"
+        "pendingObservations": [],
+        "sha256": "305ffc449d85a3da2315dd8dcaaece95b2ccbbd69e0aa53a7d05f1d0e0da24e7",
+        "checkedAt": "2026-11-01T14:29:15.710203+00:00"
       },
       "energie": {
         "seriesId": "011813864",
@@ -1125,7 +1111,8 @@
           "2026-06": 109.24,
           "2026-07": 111.75,
           "2026-08": 115.6,
-          "2026-09": 120.13
+          "2026-09": 120.13,
+          "2026-10": 122.43
         },
         "quality": {
           "2010-01": "DEF",
@@ -1328,23 +1315,15 @@
           "2026-06": "DEF",
           "2026-07": "DEF",
           "2026-08": "DEF",
-          "2026-09": "DEF"
+          "2026-09": "DEF",
+          "2026-10": "P"
         },
-        "pendingObservations": [
-          {
-            "month": "2026-10",
-            "value": 122.43,
-            "quality": "P",
-            "observationStatus": "P",
-            "reason": "official-provisional-incomplete-calendar-month",
-            "includedInActiveHistory": false
-          }
-        ],
-        "sha256": "11b84e3d64ac7a8da5713db626c1cb337b4046e739b182c9cfaeb4fdd0c16d81",
-        "checkedAt": "2026-10-31T13:51:03.175463+00:00"
+        "pendingObservations": [],
+        "sha256": "0199bf183399e14293d5637f0728c738d86ad7401dff30a3424533423de20ee4",
+        "checkedAt": "2026-11-01T14:29:15.710203+00:00"
       }
     },
-    "checkedAt": "2026-10-31T13:51:03.175463+00:00"
+    "checkedAt": "2026-11-01T14:29:15.710203+00:00"
   },
   "irl": {
     "asOf": "2026-Q3",
@@ -1563,10 +1542,10 @@
         "2026-Q3": "DEF"
       },
       "pendingObservations": [],
-      "sha256": "26d2e73133cecfb2fd52423316f4b5b3cf3619634bb0c4bf9b6c216188b0f4f8",
-      "checkedAt": "2026-10-31T13:51:03.175463+00:00"
+      "sha256": "052888b1c5864dcdb731e0decfdf12e40502adc90ba410a4eae8fa491a67fb88",
+      "checkedAt": "2026-11-01T14:29:15.710203+00:00"
     },
-    "checkedAt": "2026-10-31T13:51:03.175463+00:00"
+    "checkedAt": "2026-11-01T14:29:15.710203+00:00"
   },
   "smic": {
     "asOf": "2026-10",
@@ -2190,10 +2169,10 @@
         "2026-10": "DEF"
       },
       "pendingObservations": [],
-      "sha256": "b02c40e3ae7914fa52a8477277818d8f8a0f1054b3427e824c28de1359e7bcfc",
-      "checkedAt": "2026-10-31T13:51:03.175463+00:00"
+      "sha256": "b5a4935487e1d83550bd50231f88c8b86d1ecfda8cc08a2230d78af9552a471e",
+      "checkedAt": "2026-11-01T14:29:15.710203+00:00"
     },
-    "checkedAt": "2026-10-31T13:51:03.175463+00:00"
+    "checkedAt": "2026-11-01T14:29:15.710203+00:00"
   },
   "schemaVersion": 1
 }

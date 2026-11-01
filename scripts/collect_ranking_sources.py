@@ -145,17 +145,31 @@ def parse_cross_fx(fred_body, ecb_body, now, currency='TWD', series='DEXTAUS', s
     # The H.10 release is weekly: a month-end published less than eight days ago may still be
     # missing from FRED. Every older completed month is required; a newer one is taken when present.
     due = now.date() - dt.timedelta(days=8)
-    expected = [key for key in months('1999-01', dt.datetime(now.year, now.month, 1, tzinfo=UTC))
+    completed = list(months('1999-01', dt.datetime(now.year, now.month, 1, tzinfo=UTC)))
+    expected = [key for key in completed
                 if month_shift(dt.datetime.strptime(key, '%Y-%m'), 1).date() - dt.timedelta(days=1) <= due]
     if not set(expected).issubset(observed):
         reject('Incomplete cross-rate month-end coverage')
-    for key, row in observed.items():
+    pending = {}
+    for key, row in list(observed.items()):
         next_month = month_shift(dt.datetime.strptime(key, '%Y-%m'), 1).date()
         if (next_month - dt.date.fromisoformat(row['asOf'])).days > 7:
-            reject('Stale cross-rate month-end observation')
+            if key in expected:
+                reject('Stale cross-rate month-end observation')
+            # A recent completed month may contain only a partial H.10 week.
+            # Do not publish that partial rate or reject independent older
+            # months while the existing eight-day release window is open.
+            pending[key] = row['asOf']
+            del observed[key]
+    for key in completed:
+        if key not in expected and key not in observed:
+            pending.setdefault(key, None)
     return {'sourceUrl': source_url or CROSS_SERIES[currency], 'series': series, 'secondarySourceUrl': ECB,
             'checkedAt': now.date().isoformat(), 'sha256': hashlib.sha256(fred_body).hexdigest(),
             'secondarySha256': hashlib.sha256(ecb_body).hexdigest(),
+            **({'pendingMonths': [{'month':key, 'latestAvailableAsOf':stamp,
+                 'reason':'Awaiting a qualified month-end observation within the existing H.10 weekly release window'}
+                 for key,stamp in sorted(pending.items())]} if pending else {}),
             **({'sourceSeries':'H10/H10/RXI_N.B.TA','sourceDiscoveryUrl':('https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm' if fred_body.startswith(b'PK\x03\x04') else 'https://www.federalreserve.gov/datadownload/Choose.aspx?rel=H10'),
                 'sourceFormat':'Official complete H.10 SDMX XML ZIP' if fred_body.startswith(b'PK\x03\x04') else 'Official H.10 DDP CSV',
                 'seriesEquivalence':'Federal Reserve H.10 RXI_N.B.TA is the primary daily TWD per USD series republished as FRED DEXTAUS; independently checked over all common observations'} if is_h10 else {}),
@@ -285,6 +299,8 @@ def refresh_fx(old_fx, previous_status, now, retry=False, selected=True):
                 reject(f'{currency} cross-rate coverage would regress')
             derived[currency] = cross
             reports[currency] = {'id': 'fx:' + currency, 'status': 'validated', 'checkedAt': checked, 'sourceUrl':source_url, 'sourceAttempts':attempts}
+            if cross.get('pendingMonths'):
+                reports[currency]['pendingMonths'] = cross['pendingMonths']
             print(currency, 'cross FX:', len(cross['observations']), 'months', flush=True)
         except Exception as error:
             reports[currency] = {'id': 'fx:' + currency, 'status': 'failed', 'checkedAt': checked, 'reason': str(error),
