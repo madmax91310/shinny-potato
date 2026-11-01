@@ -23,6 +23,14 @@ CURRENT_REVIEW_OUTPUTS = [
     'src/pages/data-review/review-inbox.js',
 ]
 ACTOR_OUTPUT = 'src/data/automated-presentation-actors.json'
+PRIVATE_SERVICE_READERS = [
+    'services/tweet-bank-private/README.md',
+    'services/tweet-bank-private/tests/api.mjs',
+    'services/tweet-bank-private/worker/index.js',
+    'services/tweet-bank-private/worker/page.js',
+    'services/tweet-bank-private/tests/browser.mjs',
+    '.github/workflows/test-tweet-bank-private.yml',
+]
 
 
 class ObservationRebaseTests(unittest.TestCase):
@@ -50,7 +58,7 @@ class ObservationRebaseTests(unittest.TestCase):
                      'src/pages/investment-calculator/lib.js', 'src/data/monthly-fx.json',
                      'scripts/source-snapshots/inflation-automated.json',
                      'scripts/collect_presentation_actors.py', 'src/data/inflation-monthly.js',
-                     ACTOR_OUTPUT, *CURRENT_REVIEW_OUTPUTS]:
+                     ACTOR_OUTPUT, *CURRENT_REVIEW_OUTPUTS, *PRIVATE_SERVICE_READERS]:
             p = self.f.local / name
             p.parent.mkdir(parents=True, exist_ok=True)
             p.write_text('original\n')
@@ -64,6 +72,29 @@ class ObservationRebaseTests(unittest.TestCase):
         command = (f'{shlex.quote(sys.executable)} {shlex.quote(str(GUARD))} '
                    f'--kind {kind} --base "$VALIDATED_DATA_ORIGINAL_BASE" --upstream HEAD^ && {validation}')
         return self.f.publish({'VALIDATED_DATA_CHECK': command})
+
+    def test_private_service_race_preserves_both_changes_and_revalidates_latest_tree(self):
+        for path in PRIVATE_SERVICE_READERS:
+            self.f.advance_remote(path)
+        validation = ' && '.join(f'test "$(cat {shlex.quote(path)})" = "concurrent update"' for path in PRIVATE_SERVICE_READERS)
+        result = self.publish('market', validation)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
+        for path in PRIVATE_SERVICE_READERS:
+            self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'concurrent update')
+
+    def test_private_service_race_does_not_bypass_financial_revalidation(self):
+        self.assert_refused(PRIVATE_SERVICE_READERS[2], 'market', 'false')
+
+    def test_private_service_change_cannot_hide_changed_acquisition_input(self):
+        self.f.advance_remote(PRIVATE_SERVICE_READERS[2])
+        self.assert_refused('scripts/monthly-automation.json', 'market')
+
+    def test_private_service_change_does_not_allow_a_directory_or_other_producer(self):
+        self.assert_refused('services/tweet-bank-private/unqualified.js', 'market')
+
+    def test_private_service_is_not_assumed_independent_for_unexamined_producers(self):
+        self.assert_refused(PRIVATE_SERVICE_READERS[2], 'publication')
 
     def calendar_race(self, change, path='src/data/automated-etf.json'):
         config = {'series': [{'id': 'copperNav', 'parser': 'official-nav',
@@ -398,7 +429,7 @@ class ObservationRebaseTests(unittest.TestCase):
 
 
 class CurrentAcquisitionIndependence(unittest.TestCase):
-    def python_graph(self, roots, forbidden):
+    def python_graph(self, roots, forbidden, match_names=True):
         pending = [ROOT / 'scripts' / name for name in roots]
         seen = set()
         while pending:
@@ -408,7 +439,8 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
             text = path.read_text()
             for name in forbidden:
                 self.assertNotEqual(path, ROOT / name)
-                self.assertIsNone(re.search(r'(?<![\w-])' + re.escape(pathlib.Path(name).name) + r'(?![\w.])', text), str(path) + ': ' + name)
+                needle = pathlib.Path(name).name if match_names else name
+                self.assertIsNone(re.search(r'(?<![\w-])' + re.escape(needle) + r'(?![\w.])', text), str(path) + ': ' + name)
             for node in ast.walk(ast.parse(text)):
                 names = [node.module] if isinstance(node, ast.ImportFrom) else [a.name for a in node.names] if isinstance(node, ast.Import) else []
                 # The producer wrapper is imported dynamically at entry points.
@@ -417,6 +449,26 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
                     local = ROOT / 'scripts' / (name.split('.')[0] + '.py')
                     if local.is_file():pending.append(local)
         self.assertGreater(len(seen), len(roots))
+
+    def test_private_service_is_downstream_of_market_acquisition_and_baselines(self):
+        self.python_graph(['refresh_monthly_history.py','collect_ranking_sources.py',
+                           'qualify_monthly_candidates.py','refresh_qualified_listings.py'],
+                          PRIVATE_SERVICE_READERS, match_names=False)
+        pending = [ROOT/'scripts'/name for name in ['export-monthly-baseline.mjs','export-equity-candidates.mjs','export-monthly-candidates.mjs']]
+        seen = set()
+        while pending:
+            path = pending.pop().resolve()
+            if path in seen:
+                continue
+            seen.add(path)
+            self.assertNotIn(str(path.relative_to(ROOT)), PRIVATE_SERVICE_READERS)
+            if path.suffix not in ('.js','.mjs'):
+                continue
+            text = path.read_text()
+            self.assertNotIn('tweet-bank-private', text, str(path))
+            for relative in re.findall(r"(?:from\s*|import\s*|import\s*\(\s*)['\"](\.[^'\"]+)['\"]", text):
+                pending.append(path.parent/relative)
+        self.assertGreater(len(seen), 50)
 
     def test_market_collectors_and_baselines_do_not_read_exact_review_outputs(self):
         self.python_graph(['refresh_monthly_history.py', 'collect_ranking_sources.py',

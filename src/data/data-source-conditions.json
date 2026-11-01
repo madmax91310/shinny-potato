@@ -684,6 +684,19 @@
       "configurations": [
         "scripts/lib/radar-coverage.mjs"
       ]
+    },
+    {
+      "host": "api.nasdaq.com",
+      "access": "API publique de cotation et historique ; deux lectures bornées du même titre seulement pour la corroboration d’une clôture terminale SBUX. Aucun accès refusé contourné.",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "Nasdaq ; vérifier les conditions du jeu exact avant toute réutilisation hors de ce cadre.",
+      "termsUrl": "https://www.nasdaq.com/terms-of-use",
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/issuer-access-routes.json",
+        "scripts/nasdaq_month_close.py"
+      ]
     }
   ],
   "datasets": [
