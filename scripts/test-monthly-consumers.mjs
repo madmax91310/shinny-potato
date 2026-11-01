@@ -19,6 +19,12 @@ try {
   const nonBondPath=join(directory,'src/data/non-bond-monthly-records.json');
   const nonBondRecords=JSON.parse(readFileSync(nonBondPath));
   const records={...JSON.parse(readFileSync(path)),...JSON.parse(readFileSync(etfPath)),...nonBondRecords};
+  const archivalBitcoin=JSON.parse(readFileSync('scripts/source-snapshots/calculator-monthly-2026-10-02.json')).records.bitcoin.points;
+  const archivalGold=JSON.parse(readFileSync('scripts/source-snapshots/calculator-worldbank-gold-2026-10-03.json')).points;
+  const archiveEnv={...process.env,MONTHLY_ARCHIVE_AUDIT:'1',MONTHLY_ARCHIVE_SERIES:JSON.stringify({bitcoin:archivalBitcoin,or:archivalGold})};
+  const archiveCode="import { ASSETS } from './src/data/market-history.js'; console.log(JSON.stringify(Object.fromEntries(Object.entries(ASSETS).map(([id,asset])=>[id,asset.points]))));";
+  const archiveBefore=spawnSync(process.execPath,['--input-type=module','-e',archiveCode],{cwd:directory,encoding:'utf8',env:archiveEnv});
+  assert.equal(archiveBefore.status,0,archiveBefore.stderr);
   for(const record of Object.values(records)) {
     const [year,month]=record.periodEnd.split('-').map(Number);
     const next=new Date(Date.UTC(year,month,1)).toISOString().slice(0,7);
@@ -35,12 +41,9 @@ try {
     data.points.push([new Date(Date.UTC(year,month,1)).toISOString().slice(0,7),data.points.at(-1)[1]*1.01]);
     writeFileSync(filePath,JSON.stringify(data));
   }
-  const archivalBitcoin=JSON.parse(readFileSync('scripts/source-snapshots/calculator-monthly-2026-10-02.json')).records.bitcoin.points;
-  const archivalGold=JSON.parse(readFileSync('scripts/source-snapshots/calculator-worldbank-gold-2026-10-03.json')).points;
-  // Only the injected captures are historical fixtures; unrelated live series
-  // may advance independently. Compare full observations rather than one frozen month.
-  const archive=spawnSync(process.execPath,['--input-type=module','-e',"import assert from 'node:assert/strict'; import { ASSETS } from './src/data/market-history.js'; const captures=JSON.parse(process.env.MONTHLY_ARCHIVE_SERIES); for(const [id,points] of Object.entries(captures)) assert.deepEqual(ASSETS[id].points,points.map(([date,price])=>({date,price})),id+' must replay its immutable capture exactly');"], {cwd:directory,encoding:'utf8',env:{...process.env,MONTHLY_ARCHIVE_AUDIT:'1',MONTHLY_ARCHIVE_SERIES:JSON.stringify({bitcoin:archivalBitcoin,or:archivalGold})}});
+  const archive=spawnSync(process.execPath,['--input-type=module','-e',archiveCode],{cwd:directory,encoding:'utf8',env:archiveEnv});
   assert.equal(archive.status,0,archive.stderr);
+  assert.deepEqual(JSON.parse(archive.stdout),JSON.parse(archiveBefore.stdout),'Archive series must ignore active monthly refreshes without imposing one date on every asset');
   const load=path=>import(pathToFileURL(join(directory,path)));
   const { ASSETS }=await load('src/data/market-history.js');
   const { ETF_MONTHLY_HISTORIES }=await load('src/data/etf-monthly-history.js');

@@ -1,3 +1,4 @@
+import { INVESTORS } from '../src/data/investor-roster.js'
 import investorReviews from '../public/data/investors/review-metadata.json' with { type: 'json' }
 import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
@@ -41,21 +42,33 @@ assert.equal(reminderCandidates(offerReview('2026-10-21')).length, 1)
 
 const real = buildReview('2026-10-03')
 assert.deepEqual(planReminders(real), [], 'Catalogue réel audité cette semaine : aucun rappel prématuré')
-// Each collector may advance its own quarter. A refreshed profile must not be
-// forced back to the old cohort's deadline (e.g. Gayner already has Q3).
-const investorRows = real.schedule.filter(x => x.id.startsWith('investor:'))
-assert.deepEqual(new Set(investorRows.map(x => x.id)), new Set(investorReviews.map(p => `investor:${p.data.identity.slug}`)))
-for (const payload of investorReviews) {
+// Each portfolio advances independently when its next quarterly filing arrives.
+// Check identities as well as dates: a missing profile must never reduce the expectation.
+const investorIds = rows => rows.filter(x => x.id.startsWith('investor:')).map(x => x.id).sort()
+const rosterIds = INVESTORS.map(([slug]) => `investor:${slug}`).sort()
+const investorSchedule = real.schedule.filter(x => x.id.startsWith('investor:'))
+assert.deepEqual(investorIds(real.schedule), rosterIds)
+assert.deepEqual(investorReviews.map(x => `investor:${x.data.identity.slug}`).sort(), rosterIds)
+const expectedDeadlines = investorReviews.map(payload => {
   const [year, month] = payload.data.snapshot.periodEnd.split('-').map(Number)
+  // Last day of the following quarter, then the 45-day filing deadline.
   const deadline = new Date(Date.UTC(year, month + 3, 0))
   deadline.setUTCDate(deadline.getUTCDate() + 45)
-  const row = investorRows.find(x => x.id === `investor:${payload.data.identity.slug}`)
-  assert.equal(row.nextReviewAt, deadline.toISOString().slice(0, 10))
-  const before = new Date(deadline); before.setUTCDate(before.getUTCDate() - 8)
-  const start = new Date(deadline); start.setUTCDate(start.getUTCDate() - 7)
-  const isolated = today => ({ today, schedule: [row], items: [] })
-  assert.equal(reminderCandidates(isolated(before.toISOString().slice(0, 10))).length, 0)
-  assert.equal(reminderCandidates(isolated(start.toISOString().slice(0, 10))).length, 1)
+  return { id: `investor:${payload.data.identity.slug}`, date: deadline.toISOString().slice(0, 10) }
+})
+for (const { id, date } of expectedDeadlines) {
+  assert.equal(investorSchedule.find(x => x.id === id).nextReviewAt, date, `Échéance du trimestre propre à ${id}`)
+}
+for (const date of new Set(expectedDeadlines.map(x => x.date))) {
+  for (const daysBefore of [8, 7, 0, -1]) {
+    const today = new Date(`${date}T00:00:00Z`)
+    today.setUTCDate(today.getUTCDate() - daysBefore)
+    const iso = today.toISOString().slice(0, 10)
+    const windowEnd = new Date(today)
+    windowEnd.setUTCDate(windowEnd.getUTCDate() + 7)
+    const expected = expectedDeadlines.filter(x => x.date <= windowEnd.toISOString().slice(0, 10)).map(x => x.id).sort()
+    assert.deepEqual(investorIds(reminderCandidates(buildReview(iso))), expected, `Rappels trimestriels au ${iso}`)
+  }
 }
 
 const planned = planReminders(review('2026-10-25'))
