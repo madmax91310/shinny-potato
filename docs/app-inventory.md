@@ -13,7 +13,6 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | Le budget de… | /le-budget-de |
 | Fiches pratiques | /fiches-pratiques |
 | Radar éditorial | /radar-editorial |
-| Simulateur de patrimoine | /simulateur-patrimoine |
 | Présentations | /presentations |
 | Présentation d’un investisseur connu | /portefeuilles-investisseurs |
 | France en 100 ménages | /france-100-menages |
@@ -30,7 +29,6 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | Performance depuis | /performance-depuis |
 | Pouvoir d’achat | /pouvoir-achat |
 | Dilemme | /dilemme |
-| Impact des frais | /impact-frais |
 | Histoires de marchés | /faits-marquants-marches |
 | Banque de tweets | /banque-tweets |
 | Coulisses des indices | /tweets-factsheets |
@@ -46,6 +44,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | instrument | 672 |
 | insurance | 7 |
 | lexicon | 44 |
+| portfolio | 8 |
 | reference | 11 |
 | scpi | 8 |
 | series | 745 |

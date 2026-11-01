@@ -12,6 +12,7 @@ on:
       - '.github/workflows/update-non-bond-expansion.yml'
       - 'scripts/apply_etf_collection.py'
       - 'scripts/wisdomtree_directory_aum.py'
+      - 'scripts/download-wisdomtree-directory.mjs'
       - 'scripts/test_wisdomtree_directory_aum.py'
       - 'scripts/issuer-access-routes.json'
   pull_request:
@@ -25,6 +26,7 @@ on:
       - '.github/workflows/update-non-bond-expansion.yml'
       - 'scripts/apply_etf_collection.py'
       - 'scripts/wisdomtree_directory_aum.py'
+      - 'scripts/download-wisdomtree-directory.mjs'
       - 'scripts/test_wisdomtree_directory_aum.py'
       - 'scripts/issuer-access-routes.json'
 permissions:
@@ -57,6 +59,9 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: pip install -r scripts/company-requirements.txt openpyxl==3.1.5
       - run: npm ci
+      - name: Prepare the ordinary public issuer browser
+        run: |
+          if ! test -x /usr/bin/google-chrome && ! test -x /usr/bin/chromium; then npx playwright install --with-deps chromium; fi
       - run: python -m unittest discover -s scripts -p 'test_non_bond_expansion.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_refresh.py'

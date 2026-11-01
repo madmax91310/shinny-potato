@@ -12,7 +12,7 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 | Parts ETF mensuelles raccordées | 270 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
 | ETF/ETC/ETP | 259/262 instruments, au moins un champ | Quotidienne |
 | Actions individuelles (secteur et pays) | 410/410 actions ; secteur GICS et pays de risque issus des compositions complètes iShares ; données du 2026-10-30 | Quotidienne ; une action sortie des fonds sources garde sa dernière classification datée |
-| Comparatif ETF | 245/245 parts raccordées dans 139 blocs ; 235 calendriers actifs, 11 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
+| Comparatif ETF | 256/256 parts raccordées dans 149 blocs ; 238 calendriers actifs, 20 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
 | Compositions d’indices | 52 indices | 3 et 16 du mois |
 | Rendements annuels d’indices | 56 indices | 3 et 16 du mois |
 | Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |

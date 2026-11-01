@@ -1,3 +1,4 @@
+import { affirmInstrumentPea } from '../../data/instruments.js'
 import { PRACTICAL_EXAMPLES } from './editorial.js'
 import { TOPICS, FUND_GROUPS, DEFAULT_SCENARIO } from './data.js'
 import { PRACTICAL_ETF as AUTOMATED_ETF, PRACTICAL_INDEX_FACTS } from '../../data/practical-source-data.js'
@@ -90,6 +91,7 @@ export function calculateScenario(mode,input) {
  return {...s,a:grow(s.years,s.feeA),b:grow(s.years,s.feeB)}
 }
 function resourceTable(topic) {
+ for(const isin of topic.peaRequired??[]) affirmInstrumentPea(isin,true,'Éligibilité PEA requise pour cette fiche')
  const funds=topic.products.map((isin,i)=>({isin,name:getInstrumentName(isin),record:AUTOMATED_ETF[isin],description:topic.descriptions[i]}))
  if(funds.some(f=>!f.record?.characteristics || !Number.isFinite(f.record.characteristics.terPct))) throw new Error('Caractéristiques du produit absentes.')
  return {columns:funds.map(f=>f.name),rows:[['ISIN',...funds.map(f=>f.isin)],['Exposition',...funds.map(f=>f.description)],['Frais annuels',...funds.map(f=>formatEtfTer(f.isin)+' %')]],

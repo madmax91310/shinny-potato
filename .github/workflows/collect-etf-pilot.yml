@@ -59,6 +59,9 @@ on:
       - 'scripts/collect_public_issuer.py'
       - 'scripts/globalx_sections.py'
       - 'scripts/test_globalx_sections.py'
+      - 'scripts/test_publication_benchmarks.py'
+      - 'scripts/fixtures/publication-expansion/**'
+      - 'docs/publication-expansion-sources-2026-11-01.json'
       - 'scripts/fixtures/official-documents/globalx-streamed/**'
       - 'scripts/collect_priority_issuer_etf.py'
       - 'scripts/test_priority_issuer_etf.py'
@@ -66,6 +69,7 @@ on:
       - 'scripts/collect_vanguard_holdings.py'
       - 'scripts/test_priority_etf_completion.py'
       - 'scripts/*wisdomtree*.py'
+      - 'scripts/download-wisdomtree-directory.mjs'
       - 'scripts/wisdomtree-holdings-classes.json'
       - 'scripts/issuer-access-routes.json'
       - 'scripts/collect_lg_api.py'
@@ -141,6 +145,9 @@ on:
       - 'scripts/collect_public_issuer.py'
       - 'scripts/globalx_sections.py'
       - 'scripts/test_globalx_sections.py'
+      - 'scripts/test_publication_benchmarks.py'
+      - 'scripts/fixtures/publication-expansion/**'
+      - 'docs/publication-expansion-sources-2026-11-01.json'
       - 'scripts/fixtures/official-documents/globalx-streamed/**'
       - 'scripts/collect_priority_issuer_etf.py'
       - 'scripts/test_priority_issuer_etf.py'
@@ -148,6 +155,7 @@ on:
       - 'scripts/collect_vanguard_holdings.py'
       - 'scripts/test_priority_etf_completion.py'
       - 'scripts/*wisdomtree*.py'
+      - 'scripts/download-wisdomtree-directory.mjs'
       - 'scripts/wisdomtree-holdings-classes.json'
       - 'scripts/issuer-access-routes.json'
       - 'scripts/collect_lg_api.py'
@@ -211,6 +219,9 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
       - run: npm ci
+      - name: Prepare the ordinary public issuer browser
+        run: |
+          if ! test -x /usr/bin/google-chrome && ! test -x /usr/bin/chromium; then npx playwright install --with-deps chromium; fi
       - run: python -m unittest discover -s scripts -p 'test_etf_publication.py'
       - run: python -m unittest discover -s scripts -p 'test_observation_rebase.py'
       - run: node scripts/test-comparison-automation.mjs
@@ -223,6 +234,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+      - run: python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_etf.py'
@@ -237,6 +249,16 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+      - name: Qualify the exact public AUM browser route without publication
+        if: github.event_name == 'pull_request'
+        run: python scripts/wisdomtree_directory_aum.py --browser-control "$RUNNER_TEMP/wisdomtree-directory-control"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always() && github.event_name == 'pull_request'
+        with:
+          name: wisdomtree-directory-source-control
+          path: ${{ runner.temp }}/wisdomtree-directory-control/
+          if-no-files-found: error
       - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
       - run: python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
