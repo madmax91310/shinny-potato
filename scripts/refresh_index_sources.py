@@ -122,6 +122,16 @@ def collect_one(config, now, fetch=download):
     if 'facts' in result:
         try:
             validate_composition(result['facts'], config, now)
+            if result['facts'].get('source', {}).get('transport') == 'official-response-handoff':
+                source = result['facts']['source']
+                result['errors'].append({
+                    'field': 'composition', 'url': source['url'],
+                    'sourceAttempted': True,
+                    'reason': 'Direct S&P source control failed: '
+                    + source.get('primaryAccessError', 'retained official response used')
+                    + '; previously qualified composition retained without renewing its source clock ('
+                    + source.get('retrievedAt', source.get('checkedAt', 'unknown')) + ').',
+                })
         except (ValueError, TypeError, KeyError) as error:
             result.pop('facts')
             result['errors'].append({'field': 'composition', 'reason': str(error), 'url': config.get('sourceUrl', config.get('compositionSourceUrl'))})

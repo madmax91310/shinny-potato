@@ -132,7 +132,9 @@ def collect(config, now, fetch=download):
                     raise
                 from sp_public_feed import read_response
                 try:
-                    return read_response(config, now)
+                    retained = read_response(config, now)
+                    retained['source']['primaryAccessError'] = str(error)
+                    return retained
                 except Exception as feed_error:
                     reject(f'S&P direct download failed: {error}; official handoff failed: {feed_error}')
         else: body = fetch(config['compositionDataUrl'])
