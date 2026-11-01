@@ -10,6 +10,41 @@ ROOT = Path(__file__).resolve().parents[1]
 MANUAL_WRITERS = set()
 
 class WorkflowContracts(unittest.TestCase):
+    def test_python_installations_use_pinned_installer_and_shared_constraints(self):
+        for path in (ROOT/'.github/workflows').glob('*.yml'):
+            text = path.read_text()
+            for job in re.split(r'(?m)^  [a-zA-Z0-9_-]+:\n', text.split('\njobs:', 1)[1]):
+                calls = re.findall(r'(?m)^.*python -m pip install[^\n]*', job)
+                if not calls: continue
+                with self.subTest(workflow=path.name):
+                    self.assertIn('python-version: "3.12"', job.replace("'3.12'", '"3.12"'))
+                    self.assertEqual(sum('python-installer-requirements.txt' in line for line in calls), 1)
+                    self.assertIn('--require-hashes -r scripts/python-installer-requirements.txt', calls[0])
+                    for line in calls[1:]:
+                        self.assertIn('-c scripts/python-constraints.txt', line)
+        pins = (ROOT/'scripts/python-constraints.txt').read_text().lower()
+        self.assertIn('pillow==13.0.0', pins)
+        self.assertNotIn('pdfminer', pins)
+        installer = (ROOT/'scripts/python-installer-requirements.txt').read_text()
+        self.assertIn('pip==26.2', installer)
+        self.assertRegex(installer, r'--hash=sha256:[a-f0-9]{64}')
+        for filename in ('company-requirements.txt', 'economic-requirements.txt', 'requirements-gold.txt'):
+            requirements = (ROOT/'scripts'/filename).read_text()
+            self.assertIn('-c python-constraints.txt', requirements)
+
+    def test_pull_requests_keep_scope_gate_without_unused_repository_checkout(self):
+        text = (ROOT/'.github/workflows/deploy-pages.yml').read_text()
+        scope = text.split('\n  scope:\n', 1)[1].split('\n  build:\n', 1)[0]
+        self.assertIn('Keep full public validation for pull requests', scope)
+        for step in scope.split('      - ')[1:]:
+            if 'uses: actions/checkout@' in step or 'uses: actions/setup-node@' in step:
+                self.assertIn("if: github.event_name != 'pull_request'", step)
+        # Preserve ancestry, producers and publication receipts: lazy blobs only affect transport.
+        for job_name in ('scope', 'deploy', 'fallback-build'):
+            job = re.split(r'(?m)^  [a-zA-Z0-9_-]+:\n', text.split('\n  '+job_name+':\n', 1)[1])[0]
+            for step in job.split('      - ')[1:]:
+                if 'fetch-depth: 0' in step: self.assertIn('filter: blob:none', step)
+
     def test_monthly_fx_dependency_precedes_nav_admission_and_collection(self):
         text = (ROOT/'.github/workflows/update-market-monthly.yml').read_text()
         refresh = text.split('\n  refresh:\n', 1)[1]

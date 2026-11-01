@@ -515,6 +515,15 @@ jobs:
           path: ~/.cache/ms-playwright
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
+      - id: portable-engines
+        run: node scripts/browser-portability-engines.mjs ${{ matrix.shard }} 4
+      - uses: actions/cache@v4
+        if: steps.portable-engines.outputs.extra == 'true'
+        with:
+          path: ~/.cache/ms-playwright
+          key: portable-engines-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
+      - if: steps.portable-engines.outputs.extra == 'true'
+        run: npx playwright install --with-deps firefox webkit
       - run: node scripts/run-browser-checks.mjs ${{ matrix.shard }} 4
       - uses: actions/upload-artifact@v7.0.1
         if: always()
