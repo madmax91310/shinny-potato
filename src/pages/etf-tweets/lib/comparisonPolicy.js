@@ -13,7 +13,8 @@ const SECTOR_FUNDS = new Set([
   'IE00B1FZS350', // Immobilier coté (les infrastructures restent multisectorielles)
 ])
 
-// Compléments vérifiés pour les trois parts absentes du registre des fiches.
+// Deux anciens compléments. Les mines mondiales lisent désormais leur preuve
+// de réplication dans le registre commun, sans seconde valeur manuelle.
 // Ne déduire la réplication ni du statut PEA ni de la composition affichée.
 const REVIEWED_REPLICATION = {
   LU1834983634: { method: 'Synthetic', source: 'https://www.amundi.cz/produkty/dl/doc/monthly-factsheet/LU1834983634/CES/CZE/RETAIL/AMUNDI/20260430', checkedAt: '2026-10-06' },

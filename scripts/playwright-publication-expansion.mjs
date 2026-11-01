@@ -1,3 +1,4 @@
+import { getComparisonYears } from '../src/pages/tweet-midi/comparisonPerformance.js'
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
@@ -107,7 +108,7 @@ try {
       const tweet = await page.locator('pre').innerText()
       for (const isin of selection.funds) assert(tweet.includes(isin))
       assert(!/NaN|undefined|non renseign/.test(tweet))
-      if (selection.id === 'allworld-imi-perimeter') assert(!tweet.includes('📈 Performances annuelles'), 'No calendar before share inception')
+      if (!getComparisonYears(selection.funds).length) assert(!tweet.includes('📈 Performances annuelles'), 'No calendar is fabricated for a missing common period')
       if (selection.id === 'silver-metal-miners') assert(tweet.includes('produits (ETF et ETC)'))
       await page.getByRole('button', { name: 'Copier le texte', exact: true }).click()
       assert.equal(await page.evaluate(() => navigator.clipboard.readText()), tweet)
@@ -130,6 +131,14 @@ try {
       await downloaded(page, page.getByRole('button', { name: 'Télécharger l’image PNG', exact: true }), `${selection.id}-practical-${width}`, practicalPng)
       await noOverflow(page, selection.id + ' practical ' + width)
       report.push({ width, kind: 'selection', id: selection.id, exportsMatchPreview: true })
+    }
+    for (const isin of ['IE00BLCHJB90', 'IE000NDWFGA5', 'IE00BMH5Y871', 'IE000UL6CLP7']) {
+      await page.goto(base + 'bibliotheque-donnees?q=' + isin + '&id=' + isin, { waitUntil: 'networkidle' })
+      const field = page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Indice suivi', exact: true }) })
+      await field.waitFor()
+      assert((await field.locator('.ds-value').innerText()).endsWith('Index'))
+      assert((await field.innerText()).includes('preuve propre à ce champ'))
+      await noOverflow(page, 'Benchmark proof ' + isin + ' ' + width)
     }
     await page.goto(base + 'bibliotheque-donnees?type=portfolio&q=7Twelve', { waitUntil: 'networkidle' })
     await page.getByRole('button', { name: 'Exporter la fiche JSON', exact: true }).waitFor()

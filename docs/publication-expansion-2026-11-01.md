@@ -89,4 +89,24 @@ Pas de nouvelles parts World proches, de nouvelles déclarations 13F généralis
 
 ## Validation
 
-À compléter après les dernières vérifications et la CI de la PR.
+Base finale intégrée : `2220833` (master, #1115, #1118 et #1119 conservées). Les chantiers #1122 (chargement des données) et #1123 (répartition CI) ont été relus ; la nouvelle recette rejoint le manifeste navigateur existant, sans ajouter un job concurrent en dur. Aucun seuil de bundle relevé, aucune projection régénérée sans rapport dans le commit.
+
+Vérifications locales exécutées :
+
+- `npm ci` ; build complet sur master intégré, architecture, précontrôles éditoriaux, budgets et manifeste public. La route Données à revoir reste sous 892 ko de code ; les libellés de classes d’actifs sont des données JSON partagées.
+- `test-publication-models.mjs` : huit méthodes, 23 actifs, onze sélections, sources, poids exacts, JSON partagé, refus des cibles invalides, qualification des références, recherche ISIN, benchmark et preuve propre à chaque champ. Les contrôles des calendriers ne figent pas leur absence actuelle : de futures années validées restent admissibles.
+- Collecteurs : `test_publication_benchmarks.py`, `test_globalx_sections.py`, `test_presentation_etf.py`, `test_priority_issuer_etf.py` ; réponses réelles rejouées, identités, objectifs visibles, conflits, omission, panne et conservation des dates. Tests raccordés au workflow émetteurs existant.
+- Audits et suites : catalogue des instruments, catalogue de données, cohérence ETF, provenance des portefeuilles, présentations ETF, comparatifs, fiches pratiques, caractéristiques automatisées, qualification des données, DCA complet, classements et fenêtres financières. Contrats du portail et planification des lots navigateur contrôlés.
+- Chromium, recette dédiée à **1440 / 390 / 360 px** : huit modèles, onze comparatifs et onze fiches pratiques ; **90 téléchargements PNG** inspectés et identiques à leur aperçu octet pour octet ; export JSON 7Twelve égal à la source ; recherche de chaque part par ISIN et des tickers préférés ; copie exacte, périodes absentes conservées, ETF/ETC distingués, contrôles des boîtes de texte et des débordements.
+- Chromium, anciens investisseurs : 28 portraits distincts et exports, poids et dates, panne d’image puis reprise, et mobile (`test-investor-screenprint.mjs`).
+- Chromium, recette générale : **18/18 outils OK**, dont 258 fiches ETF, 55 duels, 28 déclarations 13F, calculateur, bibliothèques, indices et réserves ; aucun échec annoncé comme succès. Cette recette complète inclut les nouvelles sélections déjà raccordées.
+- Inspection visuelle des extrêmes à 2 et 12 lignes, du modèle adapté et des comparatifs à 2 et 3 produits. La hauteur du PNG des modèles longs augmente pour conserver les noms et les douze cibles en une colonne ; les autres styles restent ceux des outils.
+- Lint ciblé et contrôle d’espacement du périmètre livré.
+
+Les contrôles financiers constituent des tests de périmètre et de conventions ; ils ne certifient pas tous les cours historiques du dépôt. Les rapprochements non résolus et exclusions antérieures restent visibles. La CI de la PR doit encore confirmer l’instantané poussé avant de déclarer le portail GitHub vert.
+
+### Exemples de recette datés
+
+Captures du 1er novembre 2026, destinées à la revue ; les chiffres vivants de l’application continuent d’être résolus depuis les collecteurs.
+
+[Modèle 7Twelve complet](publication-expansion-2026-11-01/7twelve.png) · [ETF mines / ETC argent](publication-expansion-2026-11-01/argent-et-mines.png) · [Interface mobile, adaptation identifiée](publication-expansion-2026-11-01/mobile.png).

@@ -75,5 +75,16 @@ assert.equal(isins.size, 23)
 assert.equal(getInstrumentFacts('IE00B4NCWG09').instrumentType, 'ETC')
 assert(buildTweetText(DEFAULT_THEMES.find(t => t.id === 'silver-metal-miners')).includes('Un ETC n’est pas un ETF UCITS'))
 assert(buildTweetText(DEFAULT_THEMES.find(t => t.id === 'nasdaq-income-growth')).includes('limitent la participation'))
-assert.equal(getComparisonYears(['IE000L6ZMMC4', 'IE00B3YLTY66']).length, 0, 'No index history before the new share')
+assert(getComparisonYears(['IE000L6ZMMC4', 'IE00B3YLTY66']).every(year => year >= 2027), 'No complete calendar before the new share; future valid observations stay admissible')
 console.log(`${INVESTOR_MODELS.length} model allocations, ${PUBLICATION_SELECTIONS.length} selections / ${isins.size} assets: source scopes, exact weights, incomplete cases, shared exports and periods verified.`)
+
+// Benchmark evidence survives downstream projection; a TER check cannot renew it.
+for (const isin of ['IE00BLCHJB90', 'IE000NDWFGA5', 'IE00BMH5Y871', 'IE000UL6CLP7']) {
+  const record = AUTOMATED_ETF[isin], facts = getInstrumentFacts(isin)
+  assert.equal(facts.benchmark, record.characteristics.index)
+  assert.deepEqual(facts.automatedFields.benchmark, record.characteristicChecks.index)
+  const field = CATALOG.find(row => row.id === isin).fields.find(row => row.label === 'Indice suivi')
+  assert.equal(field.value, facts.benchmark)
+  assert.equal(field.metadata.checkedAt, record.characteristicChecks.index.checkedAt)
+  assert.equal(field.metadata.asOf, record.characteristicChecks.index.asOf ?? null)
+}

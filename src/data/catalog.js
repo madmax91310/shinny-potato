@@ -76,6 +76,9 @@ function instrument(isin, identity) {
   if (commodities) fields.push(field('Allocation matières premières de l’indice suivi', 'automated-etf', commodities.rows, { ...commodities, note: 'Groupes de matières premières publiés par Invesco ; ni secteurs actions, ni panier de swap. Les arrondis signés publiés restent conservés.' }));
   if (ETF_TER_BY_ISIN[isin] != null) fields.push(field('Frais annuels (%)', 'etf-ter', ETF_TER_BY_ISIN[isin], { ...ETF_TER_EVIDENCE[isin], scope }) );
   const facts = INSTRUMENT_FACTS_BY_ISIN[isin];
+  const record = AUTOMATED_ETF[isin], benchmarkProof = record?.characteristicChecks?.index;
+  if (!facts?.benchmark && record?.characteristics?.index && benchmarkProof?.checkedAt) fields.push(field('Indice suivi', 'automated-etf', record.characteristics.index,
+    { ...benchmarkProof, scope, method: 'Objectif de la part exacte ; preuve propre à ce champ, distincte du contrôle des frais et des compositions.' }));
   if (facts) fields.push(field('Caractéristiques', 'instrument-facts', facts, { ...facts.characteristicsSource, dateStatus: 'not-applicable', scope, method: 'Caractéristiques de la part ; aucune inférence sur la cotation.' }));
   const pea = PEA_REVIEWS_BY_ISIN[isin];
   if (pea) fields.push(field('Éligibilité PEA', 'instrument-pea', pea.eligible, { ...pea, dateStatus: 'not-applicable', scope }));
