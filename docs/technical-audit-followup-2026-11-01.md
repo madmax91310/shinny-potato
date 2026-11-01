@@ -37,6 +37,19 @@ Les PR concurrentes et les mises à jour qualifiées de master sont conservées.
 | CI2 — amélioration justifiée | Publications : checkout historique 147–222 s, contre 21–24 s avec blobs différés dans la sélection du même run | Transport historique, P2 | `filter: blob:none` avec `fetch-depth: 0` dans scope/deploy/fallback. Ascendance, reçus, qualification, verrous et producteurs conservés. Gain global à confirmer par les runs normaux. |
 | T2 — défaut concurrent constaté, correction réutilisée | Comparaison d’une série vivante avec une archive datée : nouveau mois qualifié bloquait le build #1132 | Faux rouge déterministe, P2 | PR concurrente #1133 fusionnée ; préfixe historique exact, série entière reliée au registre courant et ordre contrôlé. #1134 fermée en doublon, aucune donnée/borne financière abaissée. |
 
+Le run normal de #1135 a aussi révélé **T3, défaut confirmé du contrat partagé** :
+`build_plan('refresh_anniversary_levels', ['--only', 'source-A'])` refusait une
+configuration `{id: source-A, isin: TEST-ISIN-A}` avant tout accès réseau. Le CLI
+natif accepte pourtant l'identifiant de source ; le plan n'acceptait que les
+identifiants de rapport/ISIN et ne déclarait pas le sous-ensemble demandé.
+Trois workflows de qualification utilisaient ce contrat. Correction dans
+`producer_report_plans.py` : identifiants CLI exacts, sources non sélectionnées
+explicitement exclues, dérivation or toujours déclarée comme dans le collecteur,
+aucun ISIN/alias inconnu accepté à la place. Les 60 tests du contrat passent :
+reproduction minimale, omissions toujours bloquantes et lecture des vraies commandes
+`--only` des workflows, sans requête réseau ni nouvelle observation publiée.
+Les règles de qualification et les résultats financiers ne sont pas modifiés.
+
 ### Python : procédure reproductible et portée des avis
 
 Dépendances directes réellement importées : beautifulsoup4, Pillow, openpyxl, xlrd,

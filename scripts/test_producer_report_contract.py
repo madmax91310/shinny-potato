@@ -158,6 +158,41 @@ class ProducerEntryPoints(unittest.TestCase):
                     with patch('urllib.request.urlopen',side_effect=AssertionError('Planning must not query a source')):
                         p=plans.build_plan(name,[])
                     self.assertEqual(len({r['id']for r in p['items']}),len(p['items']));self.assertTrue(all(r.get('fields')for r in p['items']))
+    def test_anniversary_selection_uses_native_source_ids_and_preserves_omissions(self):
+        from types import SimpleNamespace
+        module=SimpleNamespace(configurations=lambda:[
+            {'id':'source-A','isin':'TEST-ISIN-A','currency':'EUR'},
+            {'id':'source-B','isin':'TEST-ISIN-B','currency':'USD'},
+        ])
+        p=plans.build_plan('refresh_anniversary_levels',['--only','source-A'],module=module)
+        selected=[r['id']for r in p['items']if r['selected']]
+        self.assertEqual(selected,['anniversary-source-A','anniversary-or'])
+        self.assertFalse(next(r for r in p['items']if r['id']=='anniversary-source-B')['selected'])
+        contract_plan=plan(tuple(r['id']for r in p['items']),set(selected))
+        result=c.normalize_contract(finished({'outcomes':[{'id':'anniversary-or','status':'not-attempted','sourceAttempted':False}]},contract_plan)['resultContract'])
+        self.assertEqual([r['expectedId']for r in result['errors']],['anniversary-source-A'])
+        self.assertFalse(result['successes'])
+        for invalid in ['unknown-source','TEST-ISIN-A','anniversary-source-A']:
+            with self.subTest(invalid=invalid):
+                self.assertRaisesRegex(ValueError,'Unknown producer target',plans.build_plan,'refresh_anniversary_levels',['--only',invalid],module=module)
+        full=plans.build_plan('refresh_anniversary_levels',[],module=module)
+        self.assertTrue(all(r['selected']for r in full['items']))
+
+    def test_anniversary_workflow_selections_match_predeclared_source_scope(self):
+        import re, shlex
+        commands=[]
+        for path in (plans.ROOT/'.github/workflows').glob('*.yml'):
+            commands.extend(re.findall(r'(?m)^.*run: python scripts/refresh_anniversary_levels.py (.*--only[^\n]+)',path.read_text()))
+        self.assertTrue(commands)
+        for command in commands:
+            args=shlex.split(command);selected=[]
+            for value in args[args.index('--only')+1:]:
+                if value.startswith('--'):break
+                selected.append(value)
+            with self.subTest(command=command),patch('urllib.request.urlopen',side_effect=AssertionError('No source request during planning')):
+                p=plans.build_plan('refresh_anniversary_levels',args)
+                self.assertEqual({r['id']for r in p['items']if r['selected']},{'anniversary-'+value for value in selected}|{'anniversary-or'})
+
     def test_targeted_metadata_accepts_existing_comma_separated_cli(self):
         sources=plans.read('scripts/instrument-metadata-sources.json')['instruments'];ids=[r['isin']for r in sources[:2]]
         p=plans.build_plan('collect_instrument_metadata',['--only',','.join(ids)])

@@ -118,7 +118,13 @@ def build_plan(producer, args, report_stem=None, module=None):
         for code in m.US_FUNDS:add('exposure-sleeve:'+code,code,['US holdings classification source'])
         for key in ['US8740391003','GB0009895292','IE000UL6CLP7','IE0003R87OG3','IE00BM8R0J59','avantis-AVDV','avantis-AVUV','morningstar-SILV']:add('exposure-sleeve:'+key,key,['economic sleeve classification'])
     elif producer=='refresh_anniversary_levels':
-        for c in mod().configurations():add('anniversary-'+c['id'],c.get('isin',c['id']),['dated closing level',c.get('field','close'),c.get('currency','')])
+        anniversary_sources=mod().configurations()
+        for c in anniversary_sources:
+            selected=not only or c['id']in only
+            add('anniversary-'+c['id'],c.get('isin',c['id']),['dated closing level',c.get('field','close'),c.get('currency','')],
+                selected,'Outside explicit anniversary selection'if not selected else None)
+        # The native collector always validates the existing EUR gold derivation,
+        # including in targeted mode; this is not a new external source control.
         add('anniversary-or','or',['derived EUR gold level; no new source control'])
     elif producer=='refresh_anniversary_indices':
         for c in mod().configurations():add('anniversary-index-'+c['id'],c['id'],['completed official monthly index levels',c.get('currency','USD')])
@@ -152,6 +158,7 @@ def build_plan(producer, args, report_stem=None, module=None):
     if only:
         selectable={r['instrument']for r in items}|{r['id']for r in items}
         if producer=='collect_qualified_exposures':selectable|={c['id']for c in cfg('qualified-exposure-sources')}
+        if producer=='refresh_anniversary_levels':selectable={c['id']for c in anniversary_sources}
         if set(only)-selectable:raise ValueError('Unknown producer target: '+','.join(set(only)-selectable))
     return {'items':items,'mode':'targeted'if only or any(flag in args for flag in ('--ids','--only-derived','--family','--fields','--limit'))else'full',
             'selectionReason':'Parsed CLI selection and producer input configuration, before collection',
