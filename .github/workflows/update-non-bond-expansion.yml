@@ -57,7 +57,8 @@ jobs:
         with:
           node-version: 20
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
-      - run: pip install -r scripts/company-requirements.txt openpyxl==3.1.5
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt -r scripts/company-requirements.txt openpyxl==3.1.5
       - run: npm ci
       - name: Prepare the ordinary public issuer browser
         run: |
