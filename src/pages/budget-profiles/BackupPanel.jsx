@@ -3,6 +3,8 @@ import Button from '../../design-system/Button'
 import { budgetDisplayName } from './lib.js'
 import { budgetStorageSnapshot, exportBudgetBackup, parseBudgetBackup, previewBudgetImport, restoreBudgetBackup, listBudgetRecoveries, validDraft } from './storage.js'
 
+const statusLabel = (workspace, id) => [['used', 'Utilisé'], ['published', 'Publié'], ['queued', 'À publier prochainement']].map(([key, label]) => `${label} : ${workspace[key].includes(id) ? 'oui' : 'non'}`).join(' · ')
+
 export default function BackupPanel({ onRestored, record, drafts }) {
   const [versions, setVersions] = useState(listBudgetRecoveries), [selectedVersion, setSelectedVersion] = useState('')
   const [pending, setPending] = useState(null), [message, setMessage] = useState(''), [strategy, setStrategy] = useState('keep-local')
@@ -37,7 +39,8 @@ export default function BackupPanel({ onRestored, record, drafts }) {
     {pending && <section aria-label="Aperçu de l’import">
       <p>{pending.preview.drafts} brouillon(s), dont {pending.preview.custom} texte(s) personnalisé(s) · {pending.preview.additions.length} nouveau(x) profil(s) · {pending.preview.conflicts.length} conflit(s).</p>
       <p>{pending.incoming.used.length} utilisé(s) · {pending.incoming.published.length} publié(s) · {pending.incoming.queued.length} à publier prochainement.</p>
-      <ul>{pending.incoming.drafts.map(d => <li key={d.profile.id}><details><summary>{budgetDisplayName(d.profile)} · {d.edited ? 'texte personnalisé' : 'texte automatique'}{pending.preview.conflicts.includes(d.profile.id) ? ' · conflit' : ''}</summary><p className="budget-import-text">{d.text}</p></details></li>)}</ul>
+      <ul>{pending.incoming.drafts.map(d => <li key={d.profile.id}><details><summary>{budgetDisplayName(d.profile)} · {d.edited ? 'texte personnalisé' : 'texte automatique'}{pending.preview.conflicts.includes(d.profile.id) ? ' · conflit' : ''}</summary><p>{statusLabel(pending.incoming, d.profile.id)}</p><p className="budget-import-text">{d.text}</p></details></li>)}</ul>
+      {pending.preview.ids.filter(id => !pending.incoming.drafts.some(d => d.profile.id === id)).map(id => <p key={id}>{id} · {statusLabel(pending.incoming, id)}{pending.preview.conflicts.includes(id) ? ' · conflit' : ''}</p>)}
       {pending.preview.conflicts.length > 0 && <label>Gestion des conflits<select aria-label="Gestion des conflits" value={strategy} onChange={e => setStrategy(e.target.value)}><option value="keep-local">Conserver les versions et statuts locaux</option><option value="use-imported">Prendre les versions et statuts du fichier</option></select></label>}
       {!pending.preview.readable && <p>Le stockage local contient des données illisibles. L’import les archivera pour récupération avant de les remplacer.</p>}
       <p>Les profils absents du fichier restent conservés. Toute version remplacée est archivée et récupérable dans un nouvel export.</p>
