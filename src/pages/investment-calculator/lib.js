@@ -15,6 +15,10 @@ export function indexAnchorPoints(assetId, endYm) {
 }
 
 export function derive(state) {
+  const inputs = [state.amountRaw, ...(state.assetId === 'custom' ? [state.customStart, state.customEnd] : [state.overridePriceRaw])]
+  if (inputs.some(raw => raw !== '' && raw !== undefined && (!Number.isFinite(Number(raw)) || Number(raw) <= 0))) {
+    throw Error('Montant ou prix invalide : saisis un nombre fini supérieur à 0.')
+  }
   if(ASSETS[state.assetId]?.allowPriceOverride===false && state.overridePriceRaw) throw Error('Un prix de part ne peut pas revaloriser cette série en unités de performance.')
   if(state.assetId!=='custom' && ASSETS[state.assetId]?.historyPending) throw Error('Charger l’historique avant le calcul')
   const amount = parseFloat(state.amountRaw) || 0
@@ -57,6 +61,10 @@ export function derive(state) {
     .every(month => month < '2017-01' ? Number.isFinite(INFLATION[Number(month.slice(0,4))]) : INFLATION_MONTHLY[month] !== undefined)
   const inflation = compareEuro && inflationComplete ? computeBenchmarkSeries(INFLATION, safeStartYm, endYm, amount, effectiveMode) : null
 
+  if ([result, livretA, inflation].filter(Boolean).some(value =>
+    ![value.finalValue, value.totalInvested, ...value.series, ...value.invested].every(Number.isFinite))) {
+    throw Error('Ces valeurs dépassent la capacité de calcul. Réduis le montant ou les prix saisis.')
+  }
   return { asset, currency: asset?.currency ?? 'EUR', amount, isCustom, effectiveMode, startYm: safeStartYm, endYm, result, livretA, inflation }
 }
 

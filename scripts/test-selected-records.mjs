@@ -18,8 +18,8 @@ plugin.configResolved({base:'/shinny-potato/'})
 plugin.generateBundle.call({emitFile:r=>files.set('/shinny-potato/'+r.fileName,JSON.parse(r.source))})
 const previous=globalThis.fetch
 let fail=false
-function uri(code){return 'data:text/javascript;base64,'+Buffer.from(code).toString('base64')}
-globalThis.fetch=async url=>{requests.push(url);if(fail){fail=false;return {ok:false}}return {ok:files.has(url),json:async()=>structuredClone(files.get(url))}}
+function uri(code){code=code.replace(/(['"])(?:\.\.\/)+lib\/record-loader\.js\1/g,JSON.stringify(pathToFileURL(resolve('src/lib/record-loader.js')).href));return 'data:text/javascript;base64,'+Buffer.from(code).toString('base64')}
+globalThis.fetch=async url=>{requests.push(url);if(fail){fail=false;return new Response('',{status:503})}return new Response(JSON.stringify(files.get(url)),{status:files.has(url)?200:404})}
 try{
  const loader=uri(plugin.transform('',resolve('src/data/history-browser.js')).code)
  const code=plugin.transform('',resolve('src/pages/tweet-midi/data/anniversaryHistory.js')).code
