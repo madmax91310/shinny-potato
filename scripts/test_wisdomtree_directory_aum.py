@@ -84,4 +84,61 @@ class DirectoryAum(unittest.TestCase):
   r=self.result();value=parse(self.payload,self.share,NOW);r['aum']={**value,'checkedAt':'2026-10-29'};before=copy.deepcopy(r['aum']);out=augment_aum(r,self.share,NOW,lambda *a,**kw:self.raw)
   self.assertEqual(out['aum'],before);self.assertEqual(out['sourceAttempts'][-1]['deferred'][0]['asOf'],'2026-10-29')
 
+ def test_public_browser_recovery_is_shared_and_does_not_repair_primary_access(self):
+  calls=[]
+  def primary(*args,**kwargs):calls.append('http');raise urllib.error.HTTPError(module.ROUTES['wisdomtree']['fundDirectory'],403,'Forbidden',{},None)
+  def browser(url):calls.append('browser');return self.raw
+  with ThreadPoolExecutor(max_workers=8)as pool:
+   results=list(pool.map(lambda _:augment_aum(self.result(),self.share,NOW,primary,browser_fetch=browser),self.shares))
+  self.assertEqual(calls,['http','browser'])
+  for result in results:
+   self.assertEqual(result['aum']['amount'],400637024);self.assertEqual(result['aum']['asOf'],'2026-10-29')
+   self.assertEqual(result['countries']['checkedAt'],'2026-10-20')
+   self.assertEqual([e['field']for e in result['collectionErrors']],['aum-primary-http'])
+   self.assertTrue(result['collectionErrors'][0]['qualifiedFallbackAvailable'])
+   self.assertEqual([a['status']for a in result['sourceAttempts'][-1]['transportAttempts']],['unavailable','downloaded'])
+ def test_successful_primary_never_invokes_browser(self):
+  browser=__import__('unittest.mock',fromlist=['Mock']).Mock(side_effect=AssertionError('unexpected browser'))
+  payload,url,digest=acquire(NOW,lambda *a,**k:self.raw,browser_fetch=browser)
+  self.assertEqual(payload,self.payload);browser.assert_not_called()
+ def test_modified_primary_format_does_not_trigger_browser(self):
+  for body in [b'[]',b'{}',b'not-json']:
+   module._RESPONSES.clear();calls=[]
+   with self.assertRaises(ValueError):acquire(NOW,lambda *a,**k:body,browser_fetch=lambda url:calls.append(url))
+   self.assertEqual(calls,[])
+ def test_both_transports_fail_once_and_recovery_uses_a_new_execution(self):
+  calls=[]
+  def primary(*a,**k):calls.append('http');raise OSError('isolated primary403')
+  def browser(url):calls.append('browser');raise OSError('isolated browser403')
+  for _ in range(2):
+   result=self.result();result['aum']={'amount':123,'currency':'USD','scope':'fund','asOf':'2026-10-27','checkedAt':'2026-10-28'};prior=copy.deepcopy(result['aum'])
+   result=augment_aum(result,self.share,NOW,primary,browser_fetch=browser)
+   self.assertEqual(result['aum'],prior);self.assertEqual(len(result['sourceAttempts'][-1]['transportAttempts']),2)
+   self.assertEqual([e['field']for e in result['collectionErrors']],['aum'])
+  self.assertEqual(calls,['http','browser'])
+  recovered=augment_aum(self.result(),self.share,NOW+dt.timedelta(days=1),primary,browser_fetch=lambda url:self.raw)
+  self.assertEqual(recovered['aum']['asOf'],'2026-10-29');self.assertNotIn('checkedAt',recovered['aum'])
+ def test_browser_result_cannot_regress_a_newer_retained_primary(self):
+  def primary(*a,**k):raise OSError('isolated primary403')
+  result=self.result();result['aum']={'amount':123,'currency':'USD','scope':'fund','asOf':'2026-10-30','checkedAt':'2026-10-30'};prior=copy.deepcopy(result['aum'])
+  out=augment_aum(result,self.share,NOW,primary,browser_fetch=lambda url:self.raw)
+  self.assertEqual(out['aum'],prior);self.assertEqual(out['sourceAttempts'][-1]['fields'],[])
+ def test_browser_envelope_identity_status_format_and_size_are_rechecked(self):
+  import base64,types
+  url=module.ROUTES['wisdomtree']['fundDirectory']
+  good={'url':url,'status':200,'contentType':'application/json; charset=utf-8','body':base64.b64encode(self.raw).decode()}
+  with patch('wisdomtree_directory_aum.subprocess.run',return_value=types.SimpleNamespace(stdout=json.dumps(good).encode())):
+   self.assertEqual(module.public_browser_directory(url),self.raw)
+  for change in [{'url':url+'&other=1'},{'status':403},{'contentType':'text/html'},{'body':'not base64'},{'body':''}]:
+   with self.subTest(change=change),patch('wisdomtree_directory_aum.subprocess.run',return_value=types.SimpleNamespace(stdout=json.dumps({**good,**change}).encode())):
+    with self.assertRaises((ValueError,__import__('binascii').Error)):module.public_browser_directory(url)
+  with patch('wisdomtree_directory_aum.subprocess.run')as run:
+   with self.assertRaises(ValueError):module.public_browser_directory('https://example.test/other')
+   run.assert_not_called()
+ def test_browser_body_still_requires_the_exact_native_financial_contract(self):
+  wrong=copy.deepcopy(self.payload);self.native(wrong)['AUM']=None
+  def primary(*a,**k):raise OSError('isolated primary403')
+  result=augment_aum(self.result(),self.share,NOW,primary,browser_fetch=lambda url:json.dumps(wrong).encode())
+  self.assertNotIn('aum',result);self.assertEqual(result['collectionErrors'][-1]['field'],'aum')
+
 if __name__=='__main__':unittest.main()
