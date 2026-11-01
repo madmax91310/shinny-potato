@@ -33,6 +33,9 @@ on:
       - 'scripts/refresh_index_sources.py'
       - 'scripts/index-automation.json'
       - 'scripts/refresh_monthly_history.py'
+      - 'scripts/nasdaq_month_close.py'
+      - 'scripts/test_nasdaq_month_close.py'
+      - 'scripts/fixtures/starbucks-month-close-20261101/**'
       - 'scripts/qualified_split_comparison.py'
       - 'scripts/lib/split-comparison-proof.mjs'
       - 'scripts/test-split-comparison-proof.mjs'
@@ -77,6 +80,9 @@ on:
       - 'scripts/refresh_index_sources.py'
       - 'scripts/index-automation.json'
       - 'scripts/*monthly*'
+      - 'scripts/nasdaq_month_close.py'
+      - 'scripts/test_nasdaq_month_close.py'
+      - 'scripts/fixtures/starbucks-month-close-20261101/**'
       - 'scripts/qualified_split_comparison.py'
       - 'scripts/lib/split-comparison-proof.mjs'
       - 'scripts/test-split-comparison-proof.mjs'
@@ -126,6 +132,17 @@ jobs:
             ${{ runner.temp }}/h10-xml-controls.zip
           if-no-files-found: error
           retention-days: 35
+      - name: Qualify the official Nasdaq closing-price source (read-only)
+        id: nasdaqclose
+        continue-on-error: true
+        run: python scripts/nasdaq_month_close.py --source-control-fixture scripts/fixtures/starbucks-month-close-20261101 --output "$RUNNER_TEMP/nasdaq-close-source-control.json"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: nasdaq-close-source-controls
+          path: ${{ runner.temp }}/nasdaq-close-source-control.json
+          if-no-files-found: error
+          retention-days: 35
       - name: Verify exact IMIE split comparison against current real sources
         run: |
           node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/imie-baseline.json"
@@ -149,7 +166,7 @@ jobs:
           retention-days: 35
       - name: Preserve a failed qualification after its evidence upload
         if: always()
-        run: test "${{ steps.collect.outcome }}" = 'success' && test "${{ steps.collectfx.outcome }}" = 'success'
+        run: test "${{ steps.collect.outcome }}" = 'success' && test "${{ steps.collectfx.outcome }}" = 'success' && test "${{ steps.nasdaqclose.outcome }}" = 'success'
   refresh:
     concurrency:
       # Serialize writers of automated-indices.json; keep PR validations independent.
@@ -202,6 +219,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
       - run: python -m unittest discover -s scripts -p 'test_yahoo_terminal_monthly_quote.py'
+      - run: python -m unittest discover -s scripts -p 'test_nasdaq_month_close.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_split_comparison.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
       - run: python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'
