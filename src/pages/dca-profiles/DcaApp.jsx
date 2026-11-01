@@ -120,7 +120,7 @@ export default function DcaApp(){
    </ImageExport>
    <section className="dca-simple-card dca-text-card">
     <label htmlFor="dca-draft">Texte prêt à publier</label><textarea id="dca-draft" value={draft} onChange={e=>{draftEdited.current=true;setDraft(e.target.value);setProfile({...profile,approved:false})}}/>
-    <div className="dca-buttons"><Button onClick={copy} disabled={!draft.trim()||profile.lines.length>MAX_POSITIONS}>Copier le texte</Button><Button variant="secondary" onClick={()=>{draftEdited.current=false;setDraft(buildTweetText(profile));setProfile({...profile,approved:false})}}>Rétablir le texte</Button></div>
+    <div className="dca-buttons"><Button onClick={copy} disabled={!draft.trim()||profile.lines.length>MAX_POSITIONS}>Copier le texte</Button><Button variant="secondary" disabled={profile.lines.length>MAX_POSITIONS} onClick={()=>{draftEdited.current=false;setDraft(buildTweetText(profile));setProfile({...profile,approved:false})}}>Rétablir le texte</Button></div>
     {profile.mode==='participant'&&<label className="dca-consent"><input type="checkbox" disabled={!!a.errors.length} checked={!!profile.approved} onChange={e=>setProfile({...profile,approved:e.target.checked})}/>La personne a validé le texte, le visuel et les informations à publier.</label>}
     {profile.mode==='participant'&&!profile.approved&&<p className="dca-note">Brouillon à faire valider avant publication. Le téléchargement reste disponible.</p>}
     <p role="status" aria-live="polite">{feedback}</p>

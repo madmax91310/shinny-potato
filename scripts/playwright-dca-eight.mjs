@@ -91,6 +91,7 @@ for(const width of [1440,390]){
   assert(await page.getByRole('alert').filter({hasText:'Publication bloquée'}).isVisible())
   assert(await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).isDisabled())
   assert(await page.getByRole('button',{name:'Copier le texte',exact:true}).isDisabled())
+  assert(await page.getByRole('button',{name:'Rétablir le texte',exact:true}).isDisabled(),'Oversized recovery must not replace the custom draft with an empty generated text')
   await page.getByRole('button',{name:'Exporter ce portefeuille',exact:true}).isEnabled().then(assert)
   await page.reload()
   await holdings.locator('input[type=number]').first().waitFor()
