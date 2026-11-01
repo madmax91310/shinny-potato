@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "predev": "npm run generate:dev",
-    "prebuild": "npm run audit:architecture && node scripts/test-budget-profiles.mjs && node scripts/test-dca-usage-storage.mjs && node scripts/test-radar-read-state.mjs && node scripts/test-hey-grok.mjs && node scripts/test-tweet-bank-storage.mjs && node scripts/test-tweet-bank-curation.mjs && node scripts/test-export-resources.mjs && node scripts/test-etf-presentation-quality.mjs && npm run generate:app",
+    "prebuild": "npm run audit:architecture && node scripts/test-record-loader.mjs && node scripts/test-financial-examples.mjs && node scripts/test-budget-profiles.mjs && node scripts/test-budget-portability.mjs && node scripts/test-dca-usage-storage.mjs && node scripts/test-radar-read-state.mjs && node scripts/test-hey-grok.mjs && node scripts/test-tweet-bank-storage.mjs && node scripts/test-tweet-bank-curation.mjs && node scripts/test-sunday-questions.mjs && node scripts/test-export-resources.mjs && node scripts/test-etf-presentation-quality.mjs && npm run generate:app",
     "dev": "vite",
     "build": "vite build && node scripts/audit-route-bundles.mjs && node scripts/audit-published-coverage.mjs && node scripts/test-built-publication-manifest.mjs",
     "lint": "oxlint",
@@ -42,8 +42,6 @@
     "audit:etf-completeness": "node scripts/audit-etf-completeness.mjs",
     "audit:index-completeness": "node scripts/audit-index-completeness.mjs",
     "report:automation": "node scripts/report-automation-coverage.mjs",
-    "test:wealth": "node scripts/test-wealth-simulator.mjs",
-    "test:wealth:browser": "node scripts/playwright-wealth.mjs",
     "test:radar": "node scripts/test-dws-reconciliation.mjs && node scripts/test-editorial-radar.mjs && node scripts/test-radar-editorial.mjs && node scripts/test-radar-notifications.mjs && node scripts/test-purchasing-power-news.mjs && node scripts/test-radar-publications.mjs && node scripts/test-radar-extensions.mjs && node scripts/test-radar-consumer.mjs && node scripts/test-radar-coverage.mjs && node scripts/test-radar-depth.mjs && node scripts/test-radar-audit-fixes.mjs && node scripts/test-radar-source-recovery.mjs && node scripts/test-radar-publication-policy.mjs && node scripts/test-browser-radar-chrome.mjs && node scripts/test-radar-observation-reliability.mjs && node scripts/test-radar-workflow-state.mjs && node scripts/test-radar-composition-verification.mjs && node scripts/test-radar-state-codec.mjs",
     "test:radar:browser": "node scripts/playwright-radar.mjs && node scripts/playwright-radar-audit.mjs && node scripts/playwright-radar-reliability.mjs",
     "inventory": "node scripts/build-app-inventory.mjs",
@@ -58,14 +56,15 @@
     "test:index-concentration": "node scripts/build-index-company-compositions.mjs && node scripts/test-index-concentration.mjs",
     "audit:etf-presentations": "node scripts/test-etf-presentation-quality.mjs",
     "test:hey-grok": "node scripts/test-hey-grok.mjs",
-    "test:budget": "node scripts/test-budget-profiles.mjs",
+    "test:budget": "node scripts/test-budget-profiles.mjs && node scripts/test-budget-portability.mjs",
     "test:budget:browser": "node scripts/playwright-budget-profiles.mjs",
     "test:hey-grok:browser": "node scripts/playwright-hey-grok.mjs",
     "test:dca:usage-storage": "node scripts/test-dca-usage-storage.mjs",
     "test:export-resources": "node scripts/test-export-resources.mjs",
     "generate:app": "node scripts/prepare-app-inputs.mjs build",
     "generate:dev": "node scripts/prepare-app-inputs.mjs dev",
-    "test:financial-windows": "node scripts/test-financial-window-safety.mjs"
+    "test:financial-windows": "node scripts/test-financial-window-safety.mjs",
+    "test:sunday:browser": "node scripts/playwright-sunday-questions.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",
@@ -83,6 +82,6 @@
     "playwright": "^1.63.0",
     "postcss": "^8.5.26",
     "tailwindcss": "^4.3.3",
-    "vite": "^8.2.0"
+    "vite": "~8.2.4"
   }
 }

@@ -1,10 +1,38 @@
 import CATALOG from './catalog.js'
 import PAGE from './page.js'
 import * as Discovery from './discovery.js'
-const CATEGORIES = ['Storytelling','Bilan patrimoine','Guide ETF','Pédagogie','Engagement & débat','Actu & humour','Simulation & chiffres','Fiches pratiques','Histoires de marché']
+const CATEGORIES = ['Storytelling','Bilan patrimoine','Guide ETF','Pédagogie','Engagement & débat','Actu & humour','Simulation & chiffres','Fiches pratiques','Histoires de marché','hey grok']
 const FORMATS = ['Preuve vendredi soir','Bilan de la semaine','Explication pédagogique']
 const json = (data,status=200) => new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}})
 const validDate = x => x === '' || (typeof x==='string' && /^\d{4}-\d{2}-\d{2}$/.test(x) && Number.isFinite(Date.parse(x)) && new Date(x).toISOString().slice(0,10)===x)
+// Bound bytes while reading: Content-Length may be absent or untrusted.
+async function readJsonBody(request, limit) {
+ const fail=(status,message)=>Object.assign(new Error(message),{status})
+ if(Number(request.headers.get('Content-Length'))>limit) {
+  void request.body?.cancel().catch(()=>{})
+  return {error:json({error:'Requête trop volumineuse.'},413)}
+ }
+ const reader=request.body?.getReader()
+ if(!reader)return {error:json({error:'Contenu invalide.'},400)}
+ let timer, size=0, text=''
+ const decoder=new TextDecoder('utf-8',{fatal:true})
+ const deadline=new Promise((_,reject)=>{timer=setTimeout(()=>reject(fail(408,'Lecture interrompue. Réessaie la sauvegarde.')),10000)})
+ try {
+  while(true) {
+   const {done,value}=await Promise.race([reader.read(),deadline])
+   if(done)break
+   size+=value.byteLength
+   if(size>limit)throw fail(413,'Requête trop volumineuse.')
+   text+=decoder.decode(value,{stream:true})
+  }
+  text+=decoder.decode()
+  return {value:JSON.parse(text)}
+ }catch(error){
+  // A stalled or hostile source must not delay the error response during cleanup.
+  void reader.cancel().catch(()=>{})
+  return {error:json({error:error.status?error.message:'Contenu invalide.'},error.status||400)}
+ }finally{clearTimeout(timer);reader.releaseLock()}
+}
 export async function api(request, env, user) {
  if(!user) return json({error:'Connexion requise.'},401)
  if(!env.DB) return json({error:'La sauvegarde est momentanément indisponible.'},503)
@@ -15,8 +43,8 @@ export async function api(request, env, user) {
  }
  if(!['PUT','DELETE'].includes(request.method))return json({error:'Méthode refusée.'},405)
  if(request.headers.get('Origin')!==url.origin || !request.headers.get('Content-Type')?.startsWith('application/json'))return json({error:'Requête refusée.'},403)
- const raw=await request.text();if(raw.length>100000)return json({error:'Texte trop volumineux.'},413)
- let b;try{b=JSON.parse(raw)}catch{return json({error:'Contenu invalide.'},400)}
+ const parsed=await readJsonBody(request,100000);if(parsed.error)return parsed.error
+ const b=parsed.value
  if(!b || typeof b!=='object' || !/^[a-f0-9-]{36}$/.test(b.id??'') || !Number.isSafeInteger(b.version) || b.version<0)return json({error:'Identifiant ou version invalide.'},400)
  if(request.method==='DELETE') {
   const row=await env.DB.prepare('DELETE FROM tweets WHERE owner = ? AND id = ? AND version = ? RETURNING id').bind(user,b.id,b.version).first()
@@ -42,8 +70,8 @@ export async function preferencesApi(request,env,user) {
  }
  if(request.method!=='PUT')return json({error:'Méthode refusée.'},405)
  if(request.headers.get('Origin')!==new URL(request.url).origin||!request.headers.get('Content-Type')?.startsWith('application/json'))return json({error:'Requête refusée.'},403)
- const raw=await request.text();if(raw.length>4000)return json({error:'Requête trop volumineuse.'},413)
- let b;try{b=JSON.parse(raw)}catch{return json({error:'Contenu invalide.'},400)}
+ const parsed=await readJsonBody(request,4000);if(parsed.error)return parsed.error
+ const b=parsed.value
  if(typeof b?.id==='string'&&b.id.startsWith('archive:')&&!archiveIds.has(b.id))await catalogResponse(env)
  if(!b||typeof b.id!=='string'||!(archiveIds.has(b.id)||/^[a-f0-9-]{36}$/.test(b.id))||typeof b.favorite!=='boolean'||!validDate(b.last_published)||!Number.isSafeInteger(b.version)||b.version<0)return json({error:'Préférences invalides.'},400)
  if(!archiveIds.has(b.id)&&!await env.DB.prepare('SELECT id FROM tweets WHERE owner=? AND id=?').bind(user,b.id).first())return json({error:'Tweet introuvable.'},404)

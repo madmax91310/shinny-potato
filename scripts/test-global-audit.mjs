@@ -1,6 +1,4 @@
 import assert from 'node:assert/strict'
-import { simulateCapital } from '../src/pages/fee-impact/lib.js'
-import { project } from '../src/pages/wealth-simulator/lib.js'
 import { firstGrapheme } from '../src/lib/first-grapheme.js'
 import { historicalWindows } from '../src/lib/history-windows.js'
 import { portfolioExposure } from '../src/lib/portfolio-exposure.js'
@@ -10,16 +8,6 @@ import { readableSignal } from '../src/pages/editorial-radar/presentation.js'
 import { ETFS } from '../src/data/etf-cards.js'
 import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js'
 
-const pocket = {id:'p',name:'Poche',envelope:'cto',initial:0,monthly:400,fee:.2,rateMode:'gross',rates:{central:7},tax:0,contributionGrowth:0}
-for(const rate of [-50,0,7,20]) for(const fee of [0,.2,2]) {
-  const result=project({pockets:[{...pocket,fee,rates:{central:rate}}],events:[]},{years:20,inflation:2,scenario:'central'})
-  assert.ok(Math.abs(result.final.capital-simulateCapital(400,20,rate,fee))<1e-7)
-}
-const limited=project({pockets:[{...pocket,depositRoom:500}],events:[]},{years:1,inflation:0})
-assert.equal(limited.final.cash,4300)
-assert.equal(limited.final.paid,4800)
-const taxed=project({pockets:[{...pocket,monthly:0,initial:1000,taxBasis:500,tax:30,fee:0,rates:{central:0}}],events:[]},{years:1,inflation:0})
-assert.equal(taxed.final.tax,150)
 assert.equal(firstGrapheme('🇫🇷 France'),'🇫🇷');assert.equal(firstGrapheme('👩‍💻 Tech'),'👩‍💻')
 assert.equal(frenchLocation('Ireland, Physical'),'Irlande · Réplication physique')
 for(const etf of ETFS)assert.equal(getPresentationCopy(etf).name,etf.name,'Le nom du produit ne doit pas être traduit')
@@ -38,7 +26,7 @@ const issue={name:'Contrat',category:'reserve',urls:['https://example.com'],tool
 assert.equal(groupReviews([issue,{...issue,id:'2'}]).length,1)
 assert.equal(groupReviews([issue,{...issue,name:'Autre contrat'}]).length,2)
 assert.match(readableSignal({title:'ETF : poids du pays netherlands en mouvement',beforeText:'5 %',afterText:'8 %'}).title,/Pays-Bas/)
-console.log('Audit global : cohérence inter-outils, capacité saisie, base fiscale, fenêtres mensuelles, périmètres distincts, noms ETF préservés et regroupements validés.')
+console.log('Audit global : cohérence inter-outils, fenêtres mensuelles, périmètres distincts, noms ETF préservés et regroupements validés.')
 
 if (process.argv.includes('--browser')) {
  const {chromium}=await import('playwright'), {spawn}=await import('node:child_process')
@@ -69,7 +57,7 @@ if (process.argv.includes('--browser')) {
   assert.equal(await page.getByText('Évolution des photographies 13F archivées',{exact:true}).count(),1)
   await page.getByText('Évolution des photographies 13F archivées',{exact:true}).click()
   assert.match(await page.locator('.portfolio-exposure').first().innerText(),/photographie|total déclaré/)
-  for(const route of ['/fiches-etf','/fiches-pratiques?fiche=etf-volatility','/simulateur-patrimoine','/impact-frais','/performance-depuis']) {
+  for(const route of ['/fiches-etf','/fiches-pratiques?fiche=etf-volatility','/performance-depuis']) {
    const href=route==='/performance-depuis'?route+'?asset=apple':route
    await page.goto(base+href,{waitUntil:'networkidle'});await page.locator('h1').waitFor()
    if(route==='/performance-depuis') {

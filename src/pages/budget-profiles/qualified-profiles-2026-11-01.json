@@ -1,0 +1,547 @@
+[
+  {
+    "id": "reddit-famille-bourges-2026-07-12",
+    "name": "Élise et Karim",
+    "age": null,
+    "job": "Étudiante salariée et salarié à temps plein",
+    "location": "Bourges",
+    "household": "Couple · un jeune enfant · locataires",
+    "kind": "planned",
+    "currency": "EUR",
+    "approximate": false,
+    "publishedAt": "2026-07-12",
+    "checkedAt": "2026-11-01",
+    "period": "Juillet 2026",
+    "budgetAsOf": "2026-07-12",
+    "country": "France",
+    "family": "couple",
+    "children": "yes",
+    "housing": "tenant",
+    "source": {
+      "publisher": "Reddit · r/VosSous",
+      "title": "J’ai besoin d’aide sur mon budget",
+      "url": "https://www.reddit.com/r/VosSous/comments/1uue6ca/jai_besoin_daide_sur_mon_budget/"
+    },
+    "incomeBasis": "Montants du budget · impôt non précisé",
+    "incomeNote": "Deux salaires de 2 110 € et 570 €, CAF de 196,60 € et bourse de 216,30 €. Les ventes Vinted variables et les 1 000 € de hausse de salaire espérée restent exclus.",
+    "income": [
+      {
+        "label": "Premier salaire",
+        "amount": 2110,
+        "category": "other"
+      },
+      {
+        "label": "Second salaire",
+        "amount": 570,
+        "category": "other"
+      },
+      {
+        "label": "Aides de la CAF",
+        "amount": 196.6,
+        "category": "other"
+      },
+      {
+        "label": "Bourse étudiante",
+        "amount": 216.3,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Loyer",
+        "amount": 246.9,
+        "category": "housing"
+      },
+      {
+        "label": "Téléphones et internet",
+        "amount": 103.97,
+        "category": "bills"
+      },
+      {
+        "label": "Électricité",
+        "amount": 154.13,
+        "category": "housing"
+      },
+      {
+        "label": "Alarme",
+        "amount": 30.9,
+        "category": "housing"
+      },
+      {
+        "label": "Assurance première voiture",
+        "amount": 151.54,
+        "category": "transport"
+      },
+      {
+        "label": "Assurance seconde voiture",
+        "amount": 105.3,
+        "category": "transport"
+      },
+      {
+        "label": "Carburant première voiture",
+        "amount": 150,
+        "category": "transport"
+      },
+      {
+        "label": "Carburant seconde voiture",
+        "amount": 50,
+        "category": "transport"
+      },
+      {
+        "label": "Assurance habitation",
+        "amount": 22.2,
+        "category": "housing"
+      },
+      {
+        "label": "Protection juridique",
+        "amount": 15.65,
+        "category": "bills"
+      },
+      {
+        "label": "Mutuelle",
+        "amount": 50,
+        "category": "health"
+      },
+      {
+        "label": "Prévoyance",
+        "amount": 49.32,
+        "category": "bills"
+      },
+      {
+        "label": "Courses avec épicerie solidaire",
+        "amount": 150,
+        "category": "food"
+      },
+      {
+        "label": "Nourriture des chats",
+        "amount": 39,
+        "category": "other"
+      },
+      {
+        "label": "Garde de l’enfant",
+        "amount": 270,
+        "category": "other"
+      },
+      {
+        "label": "Spotify",
+        "amount": 9.98,
+        "category": "leisure"
+      },
+      {
+        "label": "Regroupement de crédits",
+        "amount": 922.03,
+        "category": "credit"
+      },
+      {
+        "label": "Frais bancaires",
+        "amount": 15,
+        "category": "bills"
+      }
+    ],
+    "savings": [],
+    "capacity": null,
+    "context": "Le budget prévoit une marge après une période de découvert. Les courses sont réduites grâce à une épicerie solidaire. Le regroupement de crédits comprend notamment des frais de santé ; 150 € de remboursement automobile doivent prendre fin sept mois après ce budget.",
+    "caveat": "Transcription du tableau public, sans compléter les lignes vides par des montants inventés. Ressources 3092.90; dépenses 2535.92; reste projeté 556.98. Vinted non chiffré, hausse de salaire future exclue. La marge ne prouve pas une épargne réalisée. L’autrice précise dans les commentaires vivre à Bourges et avoir accès à une épicerie solidaire. Image source : https://i.redd.it/on60b03ulsch1.jpeg",
+    "hook": "",
+    "question": "Quelle marge garderais-tu pour éviter de retomber dans le découvert avec un jeune enfant ?"
+  },
+  {
+    "id": "budget-conseil-personne_seule-2025-2026",
+    "name": "une personne seule",
+    "age": null,
+    "job": "",
+    "location": "Suisse",
+    "household": "Une personne · dépenses de base, hors voiture et vacances",
+    "kind": "prepared",
+    "currency": "CHF",
+    "approximate": false,
+    "publishedAt": null,
+    "checkedAt": "2026-11-01",
+    "preparedAt": "2026-11-01",
+    "period": "Référence 2025–2026",
+    "budgetAsOf": "2025",
+    "country": "Suisse",
+    "family": "single",
+    "children": "no",
+    "housing": "tenant",
+    "source": {
+      "publisher": "Budget-conseil Suisse",
+      "title": "Exemples 2025/2026 · une personne seule · première colonne, page 1",
+      "url": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_personne_seule.pdf"
+    },
+    "incomeBasis": "Net de cotisations, avant impôts · sans treizième salaire",
+    "incomeNote": "Revenu net de référence, sans ventilation par type de ressource. Les impôts sont dans les dépenses.",
+    "income": [
+      {
+        "label": "Revenu net de référence",
+        "amount": 2500,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Logement",
+        "amount": 900,
+        "category": "housing"
+      },
+      {
+        "label": "Impôts",
+        "amount": 130,
+        "category": "other"
+      },
+      {
+        "label": "Assurance maladie de base",
+        "amount": 450,
+        "category": "health"
+      },
+      {
+        "label": "Assurance du foyer et responsabilité civile",
+        "amount": 20,
+        "category": "housing"
+      },
+      {
+        "label": "Télécoms et redevance audiovisuelle",
+        "amount": 120,
+        "category": "bills"
+      },
+      {
+        "label": "Électricité",
+        "amount": 60,
+        "category": "housing"
+      },
+      {
+        "label": "Transports publics",
+        "amount": 150,
+        "category": "transport"
+      },
+      {
+        "label": "Alimentation",
+        "amount": 370,
+        "category": "food"
+      },
+      {
+        "label": "Hygiène et entretien courant",
+        "amount": 40,
+        "category": "other"
+      },
+      {
+        "label": "Vêtements et chaussures",
+        "amount": 50,
+        "category": "other"
+      },
+      {
+        "label": "Coiffure, loisirs et argent de poche",
+        "amount": 100,
+        "category": "leisure"
+      },
+      {
+        "label": "Provision franchise et frais de santé",
+        "amount": 40,
+        "category": "health"
+      },
+      {
+        "label": "Provision soins dentaires et optiques",
+        "amount": 30,
+        "category": "health"
+      },
+      {
+        "label": "Cadeaux",
+        "amount": 20,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Réserve pour imprévus",
+        "amount": 20,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Cet exemple couvre les dépenses de base. La garde, les repas professionnels, une voiture et les vacances restent à financer selon les besoins. Les montants varient fortement selon le canton ; aucun versement réalisé n’est attribué à une personne.",
+    "caveat": "Première colonne du modèle 2025/2026. Jour de publication non indiqué. Les réserves pour soins et cadeaux restent des provisions de dépenses; seule la réserve explicite pour imprévus est isolée en affectation. Les repas à l’extérieur, assurances complémentaires, appareils, formation, prévoyance, animaux, voiture, vacances et garde éventuelle ne sont pas chiffrés. Pour un enfant dès 12 ans, la source prévoit 50 à 100 CHF supplémentaires d’alimentation. Le tableau original comporte une réserve de réutilisation commerciale, conservée ici comme information de provenance.",
+    "hook": "",
+    "question": "Quelle marge faudrait-il ajouter pour couvrir les dépenses irrégulières ?",
+    "provenance": {
+      "type": "reference",
+      "method": "Transposition des montants de la première colonne, sans ajout de dépense ni de ressource. Aucun témoignage individuel ni identité inventée. Version de la source 2025/2026, date exacte inconnue.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "budget-conseil-monoparent_1enfant-2025-2026",
+    "name": "un parent avec un enfant",
+    "age": null,
+    "job": "",
+    "location": "Suisse",
+    "household": "Un adulte · un enfant de moins de 12 ans · hors garde et vacances",
+    "kind": "prepared",
+    "currency": "CHF",
+    "approximate": false,
+    "publishedAt": null,
+    "checkedAt": "2026-11-01",
+    "preparedAt": "2026-11-01",
+    "period": "Référence 2025–2026",
+    "budgetAsOf": "2025",
+    "country": "Suisse",
+    "family": "single",
+    "children": "yes",
+    "housing": "tenant",
+    "source": {
+      "publisher": "Budget-conseil Suisse",
+      "title": "Exemples 2025/2026 · un parent avec un enfant · première colonne, page 1",
+      "url": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_monoparent_1enfant.pdf"
+    },
+    "incomeBasis": "Net de cotisations, avant impôts · sans treizième salaire",
+    "incomeNote": "Revenu net de référence, sans ventilation par type de ressource. Les impôts sont dans les dépenses.",
+    "income": [
+      {
+        "label": "Revenu net de référence",
+        "amount": 3300,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Logement",
+        "amount": 1150,
+        "category": "housing"
+      },
+      {
+        "label": "Impôts",
+        "amount": 50,
+        "category": "other"
+      },
+      {
+        "label": "Assurance maladie de base",
+        "amount": 570,
+        "category": "health"
+      },
+      {
+        "label": "Assurance du foyer et responsabilité civile",
+        "amount": 30,
+        "category": "housing"
+      },
+      {
+        "label": "Télécoms et redevance audiovisuelle",
+        "amount": 140,
+        "category": "bills"
+      },
+      {
+        "label": "Électricité",
+        "amount": 80,
+        "category": "housing"
+      },
+      {
+        "label": "Transports publics",
+        "amount": 160,
+        "category": "transport"
+      },
+      {
+        "label": "Alimentation",
+        "amount": 500,
+        "category": "food"
+      },
+      {
+        "label": "Hygiène et entretien courant",
+        "amount": 80,
+        "category": "other"
+      },
+      {
+        "label": "Vêtements de l’adulte",
+        "amount": 50,
+        "category": "other"
+      },
+      {
+        "label": "Coiffure et loisirs de l’adulte",
+        "amount": 100,
+        "category": "leisure"
+      },
+      {
+        "label": "Vêtements de l’enfant",
+        "amount": 50,
+        "category": "other"
+      },
+      {
+        "label": "Argent de poche de l’enfant",
+        "amount": 20,
+        "category": "leisure"
+      },
+      {
+        "label": "Provision franchise et frais de santé",
+        "amount": 50,
+        "category": "health"
+      },
+      {
+        "label": "Provision soins dentaires et optiques",
+        "amount": 40,
+        "category": "health"
+      },
+      {
+        "label": "Cadeaux",
+        "amount": 30,
+        "category": "other"
+      },
+      {
+        "label": "Loisirs, école et camps",
+        "amount": 60,
+        "category": "leisure"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Réserve pour imprévus",
+        "amount": 80,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Cet exemple couvre les dépenses de base. La garde, les repas professionnels, une voiture et les vacances restent à financer selon les besoins. Les montants varient fortement selon le canton ; aucun versement réalisé n’est attribué à une personne.",
+    "caveat": "Première colonne du modèle 2025/2026. Jour de publication non indiqué. Les réserves pour soins et cadeaux restent des provisions de dépenses; seule la réserve explicite pour imprévus est isolée en affectation. Les repas à l’extérieur, assurances complémentaires, appareils, formation, prévoyance, animaux, voiture, vacances et garde éventuelle ne sont pas chiffrés. Pour un enfant dès 12 ans, la source prévoit 50 à 100 CHF supplémentaires d’alimentation. Le tableau original comporte une réserve de réutilisation commerciale, conservée ici comme information de provenance.",
+    "hook": "",
+    "question": "Comment financerais-tu la garde et les vacances avec cette marge ?",
+    "provenance": {
+      "type": "reference",
+      "method": "Transposition des montants de la première colonne, sans ajout de dépense ni de ressource. Aucun témoignage individuel ni identité inventée. Version de la source 2025/2026, date exacte inconnue.",
+      "expectedBalance": 60
+    }
+  },
+  {
+    "id": "budget-conseil-monoparent_2enfants-2025-2026",
+    "name": "un parent avec deux enfants",
+    "age": null,
+    "job": "",
+    "location": "Suisse",
+    "household": "Un adulte · deux enfants de moins de 12 ans · hors garde et vacances",
+    "kind": "prepared",
+    "currency": "CHF",
+    "approximate": false,
+    "publishedAt": null,
+    "checkedAt": "2026-11-01",
+    "preparedAt": "2026-11-01",
+    "period": "Référence 2025–2026",
+    "budgetAsOf": "2025",
+    "country": "Suisse",
+    "family": "single",
+    "children": "yes",
+    "housing": "tenant",
+    "source": {
+      "publisher": "Budget-conseil Suisse",
+      "title": "Exemples 2025/2026 · un parent avec deux enfants · première colonne, page 1",
+      "url": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_monoparent_2enfants.pdf"
+    },
+    "incomeBasis": "Net de cotisations, avant impôts · sans treizième salaire",
+    "incomeNote": "Revenu net de référence, sans ventilation par type de ressource. Les impôts sont dans les dépenses.",
+    "income": [
+      {
+        "label": "Revenu net de référence",
+        "amount": 4000,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Logement",
+        "amount": 1300,
+        "category": "housing"
+      },
+      {
+        "label": "Impôts",
+        "amount": 20,
+        "category": "other"
+      },
+      {
+        "label": "Assurance maladie de base",
+        "amount": 690,
+        "category": "health"
+      },
+      {
+        "label": "Assurance du foyer et responsabilité civile",
+        "amount": 30,
+        "category": "housing"
+      },
+      {
+        "label": "Télécoms et redevance audiovisuelle",
+        "amount": 160,
+        "category": "bills"
+      },
+      {
+        "label": "Électricité",
+        "amount": 90,
+        "category": "housing"
+      },
+      {
+        "label": "Transports publics",
+        "amount": 170,
+        "category": "transport"
+      },
+      {
+        "label": "Alimentation",
+        "amount": 700,
+        "category": "food"
+      },
+      {
+        "label": "Hygiène et entretien courant",
+        "amount": 110,
+        "category": "other"
+      },
+      {
+        "label": "Vêtements de l’adulte",
+        "amount": 70,
+        "category": "other"
+      },
+      {
+        "label": "Coiffure et loisirs de l’adulte",
+        "amount": 140,
+        "category": "leisure"
+      },
+      {
+        "label": "Vêtements des enfants",
+        "amount": 140,
+        "category": "other"
+      },
+      {
+        "label": "Argent de poche des enfants",
+        "amount": 40,
+        "category": "leisure"
+      },
+      {
+        "label": "Provision franchise et frais de santé",
+        "amount": 60,
+        "category": "health"
+      },
+      {
+        "label": "Provision soins dentaires et optiques",
+        "amount": 50,
+        "category": "health"
+      },
+      {
+        "label": "Cadeaux",
+        "amount": 40,
+        "category": "other"
+      },
+      {
+        "label": "Loisirs, école et camps",
+        "amount": 80,
+        "category": "leisure"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Réserve pour imprévus",
+        "amount": 100,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Cet exemple couvre les dépenses de base. La garde, les repas professionnels, une voiture et les vacances restent à financer selon les besoins. Les montants varient fortement selon le canton ; aucun versement réalisé n’est attribué à une personne.",
+    "caveat": "Première colonne du modèle 2025/2026. Jour de publication non indiqué. Les réserves pour soins et cadeaux restent des provisions de dépenses; seule la réserve explicite pour imprévus est isolée en affectation. Les repas à l’extérieur, assurances complémentaires, appareils, formation, prévoyance, animaux, voiture, vacances et garde éventuelle ne sont pas chiffrés. Pour un enfant dès 12 ans, la source prévoit 50 à 100 CHF supplémentaires d’alimentation. Le tableau original comporte une réserve de réutilisation commerciale, conservée ici comme information de provenance.",
+    "hook": "",
+    "question": "Comment financerais-tu la garde et les vacances avec cette marge ?",
+    "provenance": {
+      "type": "reference",
+      "method": "Transposition des montants de la première colonne, sans ajout de dépense ni de ressource. Aucun témoignage individuel ni identité inventée. Version de la source 2025/2026, date exacte inconnue.",
+      "expectedBalance": 10
+    }
+  }
+]

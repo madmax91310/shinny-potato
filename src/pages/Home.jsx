@@ -111,7 +111,7 @@ export default function Home() {
         return tools.length > 0 && <section key={group.id} className="home-panel" data-group={group.id} aria-labelledby={`home-group-${group.id}`}><div className="home-section-heading"><h2 id={`home-group-${group.id}`}>{group.title}</h2><span>{tools.length}</span></div>{list(tools)}</section>
       })}
     </div> : <div className="home-calendar">
-      <p className="home-calendar-intro">Matin, midi et soir. Les formats des semaines A et B alternent : un seul est publié par créneau.</p>
+      <p className="home-calendar-intro">Matin, midi et soir. Les formats des semaines A et B alternent : un seul est publié par créneau. Le dimanche soir, trois formats tournent. Le budget remplace le DCA le mardi ou ton tweet personnel le vendredi, selon tes publications.</p>
       <div className="home-days" role="tablist" aria-label="Jour de la semaine">{EDITORIAL_WEEK.map(({ day }, index) => <button key={day} ref={node => { dayButtons.current[index] = node }} type="button" role="tab" id={`home-tab-${index}`} aria-controls={`home-day-${index}`} aria-selected={index === dayIndex} tabIndex={index === dayIndex ? 0 : -1} onClick={() => setDayIndex(index)} onKeyDown={event => {
         const next = event.key === 'Home' ? 0 : event.key === 'End' ? 6 : event.key === 'ArrowRight' ? (index + 1) % 7 : event.key === 'ArrowLeft' ? (index + 6) % 7 : null
         if (next !== null) { event.preventDefault(); setDayIndex(next); dayButtons.current[next].focus() }

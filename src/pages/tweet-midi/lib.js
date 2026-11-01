@@ -26,8 +26,9 @@ import comparisonEngine from './engines/comparatif.js'
 import { FORMATS } from './constants.js'
 export * from './constants.js'
 const engine = createFormatEngine({ ASSETS, historyOptionLabel, resolveAnniversaryLevel, anniversaryResult, anniversaryClosing, anniversaryComparisonNote, DILEMMES, SITUATIONS, FICHE_LEXIQUE_SUBJECTS, getFicheLexiqueText, COMPARATIF_ETF_SUBJECTS, getComparatifEtfText, TERMES, MONTHS_FULL, fmtEUR, fmtPct, MARKET_ASSETS, ANNIVERSAIRE_ELIGIBLE_ASSETS, getValidYearsBackOptions, getHistoricalPrice, ymForYearsBack, fmtYm, getAnnualReturnStartYears, getAnnualReturns, performanceBasis, PA_AMOUNT_PRESETS, PA_YEAR_MIN, PA_YEAR_MAX, PA_POSTE_ORDER, buildPouvoirAchatTweetText })
-export const { ALL_ITEMS, poolForFormat, getSubjectsForFormat, getSecondaryOptionsForFormat, pickNext, pickForSelection, buildDilemmeText, getMarketAsset, buildAnniversaireText, buildPerformanceDepuisText, buildAnniversaireComparatifText, getPerformanceEntries, buildPerformanceDepuisComparatifText, buildPouvoirAchatText, buildTweetText } = engine
+export const { poolForFormat, getSubjectsForFormat, getSecondaryOptionsForFormat, pickNext, pickForSelection, buildDilemmeText, getMarketAsset, buildAnniversaireText, buildPerformanceDepuisText, buildAnniversaireComparatifText, getPerformanceEntries, buildPerformanceDepuisComparatifText, buildPouvoirAchatText, buildTweetText } = engine
 const marketCurrencies = engine.getPerformanceCurrencies
 engine.getPerformanceCurrencies = item => item.format === FORMATS.COMPARATIF_ETF
   ? comparisonEngine.getPerformanceCurrencies(item) : marketCurrencies(item)
+export const ALL_ITEMS = /* @__PURE__ */ (() => engine.ALL_ITEMS)()
 export default engine

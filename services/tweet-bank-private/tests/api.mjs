@@ -45,3 +45,26 @@ const fallback=await broken.json();assert.equal(fallback.catalogSource,'snapshot
 const fresh=await worker.fetch(new Request('https://bank.test/api/catalog',{headers:{'oai-authenticated-user-id':'alice'}}),{CATALOG_FETCH:async()=>Response.json(catalog)})
 assert.equal((await fresh.json()).catalogSource,'published')
 console.log('Archive preferences: two devices, account isolation, stale-write conflicts, dates and explicit catalogue fallback verified.')
+
+// Exercise real streams: a post-read length check consumes the whole input.
+for (const [handler,limit] of [[api,100000],[preferencesApi,4000]]) {
+ let cancelled=false,pulled=0
+ const stream=new ReadableStream({pull(controller){pulled++;controller.enqueue(new Uint8Array(limit))},cancel(){cancelled=true}})
+ const headers={Origin:'https://bank.test','Content-Type':'application/json'}
+ const response=await handler(new Request('https://bank.test/api/tweets',{method:'PUT',headers,body:stream,duplex:'half'}),{DB},'alice')
+ assert.equal(response.status,413);assert(cancelled);assert(pulled<=3,'bounded input, including one prefetched chunk')
+ assert.equal((await handler(new Request('https://bank.test/api/tweets',{method:'PUT',headers,body:'{"bad":',duplex:'half'}),{DB},'alice')).status,400)
+ const before=await (await api(request('GET'),{DB},'alice')).json()
+ assert.equal((await handler(request('PUT',{...payload,text:'é'.repeat(limit)}),{DB},'alice')).status,413,'UTF-8 bytes are bounded')
+ assert.deepEqual(await (await api(request('GET'),{DB},'alice')).json(),before,'rejected input cannot alter saved data')
+}
+const {mock}=await import('node:test')
+mock.timers.enable({apis:['setTimeout']})
+try {
+ let cancelled=false
+ const stream=new ReadableStream({cancel(){cancelled=true}})
+ const stalled=api(new Request('https://bank.test/api/tweets',{method:'PUT',headers:{Origin:'https://bank.test','Content-Type':'application/json'},body:stream,duplex:'half'}),{DB},'alice')
+ mock.timers.tick(10000)
+ assert.equal((await stalled).status,408);assert(cancelled)
+}finally{mock.timers.reset()}
+console.log('Request streams: byte bounds, cancellation, malformed JSON, stalled input and unchanged saved rows verified.')

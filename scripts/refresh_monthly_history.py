@@ -485,8 +485,11 @@ def main():
     current={**json.loads(path.read_text()), **(json.loads(etf_path.read_text()) if etf_path.exists() else {})}
     status_path=ROOT/'scripts/source-snapshots/monthly-collection-status.json'
     status=json.loads(status_path.read_text()) if status_path.exists() else {'series':{}}
-    config=select_series(json.loads((ROOT/'scripts/monthly-automation.json').read_text()),status,args.only,args.retry_failed)
-    merged,report=refresh(config,current,json.loads(args.baseline.read_text()))
+    # One clock governs selection and financial month-end validation, including
+    # when an execution starts immediately before a month/year rollover.
+    now=dt.datetime.now(UTC)
+    config=select_series(json.loads((ROOT/'scripts/monthly-automation.json').read_text()),status,args.only,args.retry_failed,now=now)
+    merged,report=refresh(config,current,json.loads(args.baseline.read_text()),now=now)
     report['scope']={'requestedIds':[s['id']for s in config['series']],'expectedIds':[s['id']for s in config['series']],'selection':'failed-or-missing'if args.retry_failed else'explicit'if args.only is not None else'configured-universe'}
     if args.evidence_output:write_json_atomic(args.evidence_output,report)
     write_json_atomic(args.output,monitoring_report(report))
@@ -527,13 +530,18 @@ def main():
     if failed:raise SystemExit(1)
 
 
-def select_series(config,status,only=None,retry_failed=False):
+def select_series(config,status,only=None,retry_failed=False,now=None):
     ids={s['id'] for s in config['series']}
     if only is not None and (not only or set(only)-ids):
         reject('Unknown or empty monthly series selection')
     if retry_failed:
-        # Bootstrap the observation once; later daily checks only contact failures.
-        selected=({key for key,value in status.get('series',{}).items() if value['status']=='failed'} | (ids-set(status.get('series',{})))) if status.get('series') else ids
+        # A validated September history is missing October after rollover.
+        # Recover that required period once; current qualified series remain
+        # untouched on subsequent daily retries. Unknown coverage is not proof.
+        latest=month_shift((now or dt.datetime.now(UTC)).replace(day=1),-1).strftime('%Y-%m')
+        previous=status.get('series') or {}
+        selected={key for key in ids if previous.get(key,{}).get('status')!='validated'
+                  or previous.get(key,{}).get('periodEnd')!=latest}
         if only is not None:selected &= set(only)
     else:
         selected=set(only) if only is not None else ids
