@@ -1,10 +1,10 @@
 {
-  "checkedAt": "2026-11-01T21:20:08.091Z",
+  "checkedAt": "2026-11-01T22:16:21.869Z",
   "summary": {
     "instruments": 674,
     "sheets": 258,
-    "comparisons": 245,
-    "practical": 21,
+    "comparisons": 256,
+    "practical": 39,
     "duels": 639,
     "generatorAutomatic": 138,
     "dca": 673,
@@ -5148,11 +5148,13 @@
       "isin": "FR0013346681",
       "name": "Amundi PEA Euro Court Terme UCITS ETF Acc",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "cash-pea-cto"
+      ],
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "annualPerformance": true,
       "compositionOnly": false,
@@ -6838,11 +6840,13 @@
       "isin": "IE0000N55FP4",
       "name": "iShares MSCI Europe Small Cap UCITS ETF",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "small-europe-world"
+      ],
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "automatic",
       "annualPerformance": false,
       "compositionOnly": false,
@@ -7930,11 +7934,13 @@
       "isin": "IE000L6ZMMC4",
       "name": "Xtrackers FTSE All-World UCITS ETF 1C",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "allworld-imi-perimeter"
+      ],
       "duel": false,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "missing",
       "annualPerformance": false,
       "compositionOnly": false,
@@ -7991,7 +7997,8 @@
       "name": "VanEck Uranium and Nuclear Technologies UCITS ETF",
       "kind": "etf",
       "practical": [
-        "defence-nuclear-quantum-selection"
+        "defence-nuclear-quantum-selection",
+        "uranium-nuclear-chain"
       ],
       "duel": false,
       "qualification": {
@@ -8054,11 +8061,13 @@
       "isin": "IE000NDWFGA5",
       "name": "Global X Uranium UCITS ETF USD Acc",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "uranium-nuclear-chain"
+      ],
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "annualPerformance": true,
       "compositionOnly": false,
@@ -8372,11 +8381,13 @@
       "isin": "IE000UL6CLP7",
       "name": "Global X Silver Miners UCITS ETF USD Accumulating",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "silver-metal-miners"
+      ],
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "annualPerformance": true,
       "compositionOnly": false,
@@ -9519,7 +9530,9 @@
       "isin": "IE00B3F81R35",
       "name": "iShares Core € Corp Bond UCITS ETF (Dist)",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "credit-ig-highyield"
+      ],
       "duel": true,
       "qualification": null,
       "sheet": true,
@@ -9893,7 +9906,9 @@
       "isin": "IE00B3YLTY66",
       "name": "State Street SPDR MSCI All Country World Investable Market UCITS ETF (Acc)",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "allworld-imi-perimeter"
+      ],
       "duel": true,
       "qualification": null,
       "sheet": true,
@@ -10370,7 +10385,9 @@
       "isin": "IE00B4K48X80",
       "name": "iShares Core MSCI Europe UCITS ETF",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "autonomy-broad-europe"
+      ],
       "duel": true,
       "qualification": null,
       "sheet": true,
@@ -10656,7 +10673,9 @@
       "isin": "IE00B4NCWG09",
       "name": "iShares Physical Silver ETC",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "silver-metal-miners"
+      ],
       "duel": true,
       "qualification": null,
       "sheet": true,
@@ -11931,11 +11950,13 @@
       "isin": "IE00BD6FTQ80",
       "name": "Invesco Bloomberg Commodity UCITS ETF",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "commodity-contracts-equities"
+      ],
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "automatic",
       "annualPerformance": true,
       "compositionOnly": false,
@@ -12012,7 +12033,9 @@
       "isin": "IE00BDFBTQ78",
       "name": "VanEck S&P Global Mining UCITS ETF",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "commodity-contracts-equities"
+      ],
       "duel": true,
       "qualification": null,
       "sheet": true,
@@ -12061,11 +12084,13 @@
       "isin": "IE00BDFL4P12",
       "name": "iShares Diversified Commodity Swap UCITS ETF",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "commodity-contracts-equities"
+      ],
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "automatic",
       "annualPerformance": true,
       "compositionOnly": false,
@@ -12253,7 +12278,8 @@
       "name": "iShares MSCI World Small Cap UCITS ETF",
       "kind": "etf",
       "practical": [
-        "small-value-global-selection"
+        "small-value-global-selection",
+        "small-europe-world"
       ],
       "duel": true,
       "qualification": null,
@@ -14191,11 +14217,13 @@
       "isin": "IE00BLCHJB90",
       "name": "Global X Robotics & Artificial Intelligence UCITS ETF USD Acc",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "robotics-methods"
+      ],
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "annualPerformance": true,
       "compositionOnly": false,
@@ -14627,11 +14655,13 @@
       "isin": "IE00BMH5Y871",
       "name": "Global X Cybersecurity UCITS ETF USD Acc",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "cybersecurity-globalx-lg"
+      ],
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "annualPerformance": true,
       "compositionOnly": false,
@@ -15553,7 +15583,9 @@
       "isin": "IE00BYPLS672",
       "name": "L&G Cyber Security UCITS ETF",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "cybersecurity-globalx-lg"
+      ],
       "duel": true,
       "qualification": null,
       "sheet": true,
@@ -15848,7 +15880,8 @@
       "name": "iShares Automation & Robotics UCITS ETF",
       "kind": "etf",
       "practical": [
-        "cloud-robotics-batteries-selection"
+        "cloud-robotics-batteries-selection",
+        "robotics-methods"
       ],
       "duel": true,
       "qualification": null,
@@ -19109,7 +19142,9 @@
       "isin": "LU0290358497",
       "name": "Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "cash-pea-cto"
+      ],
       "duel": true,
       "qualification": null,
       "sheet": true,
@@ -20270,11 +20305,13 @@
       "isin": "LU2970735911",
       "name": "Amundi Core EUR High Yield Bond UCITS ETF",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "credit-ig-highyield"
+      ],
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "automatic",
       "annualPerformance": false,
       "compositionOnly": false,
@@ -20373,11 +20410,13 @@
       "isin": "LU3180074463",
       "name": "Amundi European Strategic Autonomy UCITS ETF Acc",
       "kind": "etf",
-      "practical": [],
+      "practical": [
+        "autonomy-broad-europe"
+      ],
       "duel": false,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "missing",
       "annualPerformance": false,
       "compositionOnly": false,
