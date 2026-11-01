@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "predev": "npm run generate:dev",
-    "prebuild": "npm run audit:architecture && npm run test:new-instruments && node scripts/test-record-loader.mjs && node scripts/test-financial-examples.mjs && node scripts/test-budget-profiles.mjs && node scripts/test-budget-portability.mjs && node scripts/test-dca-usage-storage.mjs && node scripts/test-radar-read-state.mjs && node scripts/test-hey-grok.mjs && node scripts/test-tweet-bank-storage.mjs && node scripts/test-tweet-bank-curation.mjs && node scripts/test-sunday-questions.mjs && node scripts/test-export-resources.mjs && node scripts/test-etf-presentation-quality.mjs && npm run generate:app",
+    "prebuild": "npm run audit:architecture && node scripts/test-record-loader.mjs && node scripts/test-financial-examples.mjs && node scripts/test-budget-profiles.mjs && node scripts/test-budget-portability.mjs && node scripts/test-dca-usage-storage.mjs && node scripts/test-radar-read-state.mjs && node scripts/test-hey-grok.mjs && node scripts/test-tweet-bank-storage.mjs && node scripts/test-tweet-bank-curation.mjs && node scripts/test-sunday-questions.mjs && node scripts/test-export-resources.mjs && node scripts/test-etf-presentation-quality.mjs && npm run generate:app && npm run test:new-instruments",
     "dev": "vite",
     "build": "vite build && node scripts/audit-route-bundles.mjs && node scripts/audit-published-coverage.mjs && node scripts/test-built-publication-manifest.mjs",
     "lint": "oxlint",
