@@ -55,6 +55,9 @@ try {
   const { MARKET_HISTORY_REVIEW }=await load('src/data/market-history-review.js');
   const { HISTORY_FACTS,HISTORY_STATISTIC_IDS }=await load('src/data/history-statistics.js');
   const { derive }=await load('src/pages/investment-calculator/lib.js');
+  const { INFLATION_MONTHLY }=await load('src/data/inflation-monthly.js');
+  const lastInflationMonth=Object.keys(INFLATION_MONTHLY).sort().at(-1);
+  let missingInflationVerified=false;
   const { qualifyHistoryWindow }=await load('src/data/history-window-quality.js');
   const { computeComparativeSeries }=await load('src/pages/investment-calculator/videoExport.js');
   for(const [id,record] of Object.entries(records)) {
@@ -77,7 +80,25 @@ try {
     }
     const result=derive({assetId:id,amountRaw:'100',startYear:Number(startYm.slice(0,4)),startMonth:Number(startYm.slice(5)),mode:'dca',overridePriceRaw:''});
     assert.equal(result.endYm,record.periodEnd);
-    if(ASSETS[id].currency==='EUR') { assert.equal(result.inflation,null,'Do not invent missing future INSEE inflation'); assert(result.livretA); }
+    if(ASSETS[id].currency==='EUR') {
+      if(record.periodEnd>lastInflationMonth)assert.equal(result.inflation,null,'Do not invent missing future INSEE inflation');
+      if(result.inflation)assert(result.inflation.months.at(-1)<=lastInflationMonth,'A benchmark never exceeds the actual INSEE observations');
+      assert(result.livretA);
+      if(!missingInflationVerified && record.periodEnd>startYm) {
+        // Isolate a genuinely missing required value regardless of whether a
+        // concurrent ordinary INSEE refresh has already supplied this month.
+        const existed=Object.hasOwn(INFLATION_MONTHLY,record.periodEnd);
+        const saved=INFLATION_MONTHLY[record.periodEnd];
+        delete INFLATION_MONTHLY[record.periodEnd];
+        try {
+          const missing=derive({assetId:id,amountRaw:'100',startYear:Number(startYm.slice(0,4)),startMonth:Number(startYm.slice(5)),mode:'dca',overridePriceRaw:''});
+          assert.equal(missing.inflation,null,'A missing INSEE observation never becomes an invented rate');
+          assert.equal(missing.result.finalValue,result.result.finalValue,'Market calculation remains available without the benchmark');
+          assert(missing.livretA);
+          missingInflationVerified=true;
+        } finally { if(existed)INFLATION_MONTHLY[record.periodEnd]=saved; }
+      }
+    }
     assert(Math.abs(result.result.finalValue-expected)<1e-6);
     assert(Math.abs(computeComparativeSeries(id,startYm,record.periodEnd,100,'dca').finalValue-expected)<1e-6);
     if(HISTORY_STATISTIC_IDS.includes(id)){
@@ -89,5 +110,6 @@ try {
       assert(facts.every(f=>f.fact.includes(record.periodEnd) && f.context.includes(endLabel)));
     }
   }
+  assert(missingInflationVerified,'The isolated absent-INSEE scenario must be exercised');
   console.log(`${Object.keys(records).length} histories: next month propagates to simulations, video, raw anniversaries, statistics and provenance.`);
 } finally { rmSync(directory,{recursive:true,force:true}); }

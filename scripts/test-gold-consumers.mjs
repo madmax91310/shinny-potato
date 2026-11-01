@@ -24,6 +24,7 @@ try {
   const { ASSETS, LATEST_YM } = await load('data/market-history.js')
   const { MARKET_HISTORY_REVIEW } = await load('data/market-history-review.js')
   const { derive, buildTweetText } = await load('pages/investment-calculator/lib.js')
+  const { INFLATION_MONTHLY } = await load('data/inflation-monthly.js')
   const { getAssetMaxDate } = await load('pages/tweet-midi/data/marketHistory.js')
   assert.equal(ASSETS.or.points.at(-1).date, next)
   // Gold is collected separately and may trail the market series: the shared latest
@@ -41,7 +42,10 @@ try {
   assert(buildTweetText(state, result).includes(gold.attribution))
   assert.equal(derive({ ...state, assetId: 'bitcoin' }).endYm, ASSETS.bitcoin.points.at(-1).date)
   // A more recent USD series must not extend custom EUR comparisons beyond INSEE.
-  assert(derive({ ...state, assetId: 'custom', customStart: '100', customEnd: '110' }).endYm <= prior)
+  const custom = derive({ ...state, assetId: 'custom', customStart: '100', customEnd: '110' })
+  assert(custom.endYm <= Object.keys(INFLATION_MONTHLY).sort().at(-1))
+  assert(custom.inflation, 'A custom comparison uses the actually available INSEE period, independently of gold publication lag')
+  assert.equal(custom.inflation.months.at(-1), custom.endYm)
   console.log(`Gold: synthetic ${next} reaches registry, review, calculator and Tweet Midi; other asset dates preserved.`)
 } finally {
   rmSync(dir, { recursive: true, force: true })
