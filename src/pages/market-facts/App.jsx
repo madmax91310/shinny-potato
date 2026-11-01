@@ -13,14 +13,14 @@ const narratives = FACTS.filter(fact => fact.kind !== 'measured-reference')
 
 
 
-function FactCard({ fact }) {
+function FactCard({ fact, text }) {
   const family = FAMILIES.find((f) => f.id === fact.family)
   return (
     <article className="mf-card" data-story-id={fact.id}>
       <p className="mf-card-kicker">
         {family?.emoji} {fact.category}
       </p>
-      <p className="mf-fact-text">{buildTweetText(fact)}</p>
+      <p className="mf-fact-text">{text}</p>
       <details className="mf-details">
         <summary>{fact.kind === 'measured-reference' ? 'Sources et conventions du repère' : 'Sources et réserves du récit'}</summary>
         {fact.sources ? <>
@@ -48,9 +48,13 @@ function FactCard({ fact }) {
 export default function App() {
   const [currentId, setCurrentId] = useState(narratives[0].id)
   const [copied, setCopied] = useState(false)
+  // Un brouillon par identifiant, conservé lors des changements de sélection.
+  const [drafts, setDrafts] = useState({})
   const seenThisSession = useRef([currentId])
 
   const currentFact = byId[currentId]
+  const originalText = buildTweetText(currentFact)
+  const currentText = drafts[currentId] ?? originalText
 
   const optgroups = useMemo(
     () => FAMILIES.map((fam) => ({ fam, facts: FACTS.filter((f) => f.family === fam.id) })),
@@ -77,7 +81,7 @@ export default function App() {
 
   async function copyCurrent() {
     try {
-      await copyPublicationText(buildTweetText(currentFact))
+      await copyPublicationText(currentText)
       setCopied(true)
       setTimeout(() => setCopied(false), 1800)
     } catch { setCopied(false) }
@@ -116,9 +120,23 @@ export default function App() {
 
       </div>
 
+      <details className="mf-editor">
+        <summary>Modifier le texte</summary>
+        <p id="mf-draft-help">Les modifications restent disponibles pendant cette session de l’outil. Les sources décrivent le récit d’origine.</p>
+        <label htmlFor="mf-draft">Texte de la publication</label>
+        <textarea id="mf-draft" aria-describedby="mf-draft-help" rows={16} value={currentText}
+          onChange={event => {
+            setDrafts(previous => ({ ...previous, [currentId]: event.target.value }))
+            setCopied(false)
+          }} />
+        <Button type="button" variant="secondary" disabled={currentText === originalText} onClick={() => {
+          setDrafts(previous => { const next = { ...previous }; delete next[currentId]; return next })
+          setCopied(false)
+        }}>Rétablir le texte d’origine</Button>
+      </details>
       </section>
       <section className="tool-preview">
-      <FactCard fact={currentFact} />
+      <FactCard fact={currentFact} text={currentText} />
 
       <p className="mf-disclaimer" style={{ marginTop: 22 }}>
         Les faits publiés sont distingués des calculs sur historiques mensuels : leur méthode figure dans les précisions. Les baisses calculées entre clôtures mensuelles peuvent sous-estimer les baisses au cours du mois.

@@ -222,6 +222,7 @@ jobs:
       - run: node scripts/test-world-factors-step-one.mjs
       - run: node scripts/test-property-infrastructure-step-two.mjs
       - run: node scripts/test-data-reuse.mjs
+      - run: node scripts/test-market-stories.mjs && node scripts/test-market-story-selection.mjs
       - run: npm run audit:data-catalog
       - run: npm run audit:data-provenance
       - run: node scripts/test-index-comparison-copy.mjs
