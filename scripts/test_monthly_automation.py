@@ -1,8 +1,13 @@
 """Synthetic regressions for market conventions, incomplete sources and preservation."""
 import copy
 import datetime as dt
+import json
+import pathlib
+import tempfile
+import sys
 import http.client
 import unittest
+from unittest.mock import patch
 import urllib.error
 from urllib.parse import urlparse, parse_qs
 from refresh_monthly_history import yahoo_chart, collect_yahoo, collect_msci, msci_rows, collect_stoxx, refresh, select_series, UTC
@@ -64,12 +69,12 @@ class Monthly(unittest.TestCase):
 
     def test_recovery_contacts_only_failed_sources_then_stops(self):
         config={'series':[dict(CONFIG,id='ok'),dict(CONFIG,id='bad')]}
-        status={'series':{'ok':{'status':'validated'},'bad':{'status':'failed'}}}
-        self.assertEqual([s['id'] for s in select_series(config,status,retry_failed=True)['series']],['bad'])
-        status['series']['bad']['status']='validated'
-        self.assertEqual(select_series(config,status,retry_failed=True)['series'],[])
-        self.assertEqual(select_series(config,{},retry_failed=True),config)
-        self.assertEqual(select_series(config,{},only=['bad'],retry_failed=True)['series'],[config['series'][1]])
+        status={'series':{'ok':{'status':'validated','periodEnd':'2026-01'},'bad':{'status':'failed'}}}
+        self.assertEqual([s['id'] for s in select_series(config,status,retry_failed=True,now=NOW)['series']],['bad'])
+        status['series']['bad'].update(status='validated',periodEnd='2026-01')
+        self.assertEqual(select_series(config,status,retry_failed=True,now=NOW)['series'],[])
+        self.assertEqual(select_series(config,{},retry_failed=True,now=NOW),config)
+        self.assertEqual(select_series(config,{},only=['bad'],retry_failed=True,now=NOW)['series'],[config['series'][1]])
         self.assertEqual([s['id'] for s in select_series(config,status,['bad'])['series']],['bad'])
         for only in [[],['typo']]:
             with self.assertRaises(ValueError):select_series(config,status,only)
@@ -94,7 +99,7 @@ class Monthly(unittest.TestCase):
             _,report=refresh({'series':[invalid]}, {}, {}, NOW, collect)
             self.assertEqual(report['series'][0]['status'],'failed')
         config={'series':[source,dict(CONFIG,id='old')]}
-        selected=select_series(config,{'series':{'old':{'status':'validated'}}},retry_failed=True)
+        selected=select_series(config,{'series':{'old':{'status':'validated','periodEnd':'2026-01'}}},retry_failed=True,now=NOW)
         self.assertEqual([s['id'] for s in selected['series']],['test'])
 
     def test_catalog_identity_change_preserves_prior_history(self):
@@ -246,5 +251,64 @@ class Monthly(unittest.TestCase):
         body=f"window.index_isin = 'EU0000000001'; <div id=\"overview-symbol\">TEST</div> EUR (Net Return) window.chart_data = [[{stamp},123.45]];".encode()
         self.assertEqual(collect_stoxx(config,NOW,lambda _:body)['points'],[['2026-01',123.45]])
         with self.assertRaises(ValueError):collect_stoxx(config,NOW,lambda _:body.replace(b'Net Return',b'Gross Return'))
+
+
+
+class ClosedMonthRecovery(unittest.TestCase):
+    def test_rollover_selects_only_missing_periods_then_stops(self):
+        config={'series':[dict(CONFIG,id=key)for key in ['due','current','failed','unrecorded']]}
+        status={'series':{'due':{'status':'validated','periodEnd':'2026-09'},
+                          'current':{'status':'validated','periodEnd':'2026-10'},
+                          'failed':{'status':'failed'},'retired':{'status':'failed'}}}
+        now=dt.datetime(2026,11,1,tzinfo=UTC)
+        selected=select_series(config,status,retry_failed=True,now=now)
+        self.assertEqual([s['id']for s in selected['series']],['due','failed','unrecorded'])
+        self.assertEqual(select_series(config,status,only=['current'],retry_failed=True,now=now)['series'],[])
+        self.assertEqual([s['id']for s in select_series(config,status,only=['due'],retry_failed=True,now=now)['series']],['due'])
+        self.assertEqual([s['id']for s in select_series(config,status,only=['current'],now=now)['series']],['current'])
+        for row in config['series']:status['series'][row['id']]={'status':'validated','periodEnd':'2026-10'}
+        self.assertEqual(select_series(config,status,retry_failed=True,now=now)['series'],[])
+
+    def test_month_and_year_boundaries_require_only_closed_months(self):
+        config={'series':[CONFIG]};status={'series':{'test':{'status':'validated','periodEnd':'2026-11'}}}
+        for now,expected in [(dt.datetime(2026,12,31,23,59,59,tzinfo=UTC),[]),
+                             (dt.datetime(2027,1,1,tzinfo=UTC),['test'])]:
+            self.assertEqual([s['id']for s in select_series(config,status,retry_failed=True,now=now)['series']],expected)
+        status['series']['test']['periodEnd']='2026-12'
+        self.assertEqual(select_series(config,status,retry_failed=True,now=dt.datetime(2027,1,1,tzinfo=UTC))['series'],[])
+
+    def test_unknown_invalid_or_future_coverage_cannot_silently_skip_a_source(self):
+        config={'series':[CONFIG]};now=dt.datetime(2026,11,1,tzinfo=UTC)
+        for period in [None,'','2026-13','2026-11',False]:
+            with self.subTest(period=period):
+                status={'series':{'test':{'status':'validated','periodEnd':period}}}
+                self.assertEqual(select_series(config,status,retry_failed=True,now=now)['series'],[CONFIG])
+
+    def test_main_uses_one_clock_for_selection_and_collection(self):
+        import refresh_monthly_history as monthly
+        reference=dt.datetime(2026,11,1,tzinfo=UTC)
+        clocks=[];observed=[]
+        class Clock(dt.datetime):
+            @classmethod
+            def now(cls,tz=None):
+                clocks.append(reference)
+                return reference if len(clocks)==1 else reference.replace(month=12)
+        class StopBeforeNetwork(Exception):pass
+        def collect(config,current,baseline,now=None):
+            observed.append((config,now));raise StopBeforeNetwork()
+        with tempfile.TemporaryDirectory()as directory:
+            root=pathlib.Path(directory)
+            for name,value in {
+                'src/data/automated-monthly.json':{},'baseline.json':{},
+                'scripts/monthly-automation.json':{'series':[CONFIG]},
+                'scripts/source-snapshots/monthly-collection-status.json':{'series':{'test':{'status':'validated','periodEnd':'2026-09'}}},
+            }.items():
+                path=root/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(value))
+            argv=['refresh_monthly_history','--retry-failed','--baseline',str(root/'baseline.json'),'--output',str(root/'report.json')]
+            with patch.object(monthly,'ROOT',root),patch.object(monthly.dt,'datetime',Clock),patch.object(monthly,'refresh',side_effect=collect),patch.object(sys,'argv',argv),self.assertRaises(StopBeforeNetwork):
+                monthly.main()
+        self.assertEqual(len(clocks),1)
+        self.assertEqual(observed,[({'series':[CONFIG]},reference)])
+
 
 if __name__=='__main__':unittest.main()
