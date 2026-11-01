@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
 import { chromium } from 'playwright';
-import stories from '../src/pages/market-facts/stories.json' with { type: 'json' };
+import november from '../src/pages/market-facts/additions-20261101.json' with { type: 'json' };
 import { FACTS } from '../src/pages/market-facts/data.js';
 import { buildTweetText } from '../src/pages/market-facts/lib.js';
 const narratives = FACTS.filter(fact => fact.kind !== 'measured-reference');
@@ -39,7 +39,7 @@ try {
       assert(await page.locator(`[data-option][data-value="${id}"]`).count(), `Sujet retrouvable : ${query}`);
     }
     await search.fill('');
-    for (const story of FACTS) {
+    for (const story of process.argv.includes('--additions') ? november : FACTS) {
       await page.locator(`[data-option][data-value="${story.id}"]`).click();
       if (width < 900) await page.getByRole('button', { name: 'Aperçu', exact: true }).click();
       await page.locator('.mf-fact-text').waitFor({ state: 'visible' });
@@ -59,6 +59,28 @@ try {
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}px débordement ${story.id}`);
       if (width < 900) await page.getByRole('button', { name: 'Réglages', exact: true }).click();
     }
+    // Copie et aperçu prennent le brouillon du bon identifiant, jamais celui du précédent.
+    for (const [index, story] of november.entries()) {
+      await search.fill(story.category.split(' : ')[0]);
+      assert(await page.locator(`[data-option][data-value="${story.id}"]`).count(), story.id);
+      await page.locator(`[data-option][data-value="${story.id}"]`).click();
+      const editor = page.locator('.mf-editor');
+      if (!(await editor.evaluate(node => node.open))) await editor.locator('summary').click();
+      const draft = `${story.text}\n\nPrécision de rédaction ${index + 1}.`;
+      await page.getByLabel('Texte de la publication', { exact: true }).fill(draft);
+      if (width < 900) await page.getByRole('button', { name: 'Aperçu', exact: true }).click();
+      assert.equal(await page.locator('.mf-fact-text').innerText(), draft);
+      await page.getByRole('button', { name: /Copier le texte|Copié/ }).click();
+      assert.equal(await page.evaluate(() => navigator.clipboard.readText()), draft);
+      if (width < 900) await page.getByRole('button', { name: 'Réglages', exact: true }).click();
+      await search.fill('');
+      await page.locator('[data-option][data-value="newton-south-sea-1720"]').click();
+      assert.equal(await page.getByLabel('Texte de la publication', { exact: true }).inputValue(), buildTweetText(FACTS.find(row => row.id === 'newton-south-sea-1720')));
+      await page.locator(`[data-option][data-value="${story.id}"]`).click();
+      assert.equal(await page.getByLabel('Texte de la publication', { exact: true }).inputValue(), draft);
+      await page.getByRole('button', { name: 'Rétablir le texte d’origine', exact: true }).click();
+      assert.equal(await page.getByLabel('Texte de la publication', { exact: true }).inputValue(), story.text);
+    }
     // Un repère reste accessible manuellement, mais ne remplace jamais une histoire tirée au sort.
     await page.reload({ waitUntil: 'networkidle' });
     const seen = new Set([await page.locator('.mf-card').getAttribute('data-story-id')]);
@@ -72,7 +94,7 @@ try {
     const previous = await page.locator('.mf-card').getAttribute('data-story-id');
     await page.getByRole('button', { name: '🔄 Histoire aléatoire', exact: true }).click();
     assert.notEqual(await page.locator('.mf-card').getAttribute('data-story-id'), previous);
-    await page.locator('[data-option][data-value="story:cisco-stocks-2001"]').click();
+    await page.locator('[data-option][data-value="story:yahoo-perimetre-2008"]').click();
     if (width < 900) await page.getByRole('button', { name: 'Aperçu', exact: true }).click();
     await page.evaluate(() => { document.activeElement?.blur(); scrollTo(0, 0); });
     await page.screenshot({ path: `test-artifacts/market-stories-${width}.png`, fullPage: true });
@@ -83,10 +105,10 @@ try {
     const popupPromise = page.waitForEvent('popup');
     await page.locator('.mf-sources a').first().click();
     const popup = await popupPromise;
-    await popup.waitForURL(stories[0].sources[0].url, { waitUntil: 'commit' });
+    await popup.waitForURL(november.find(row => row.id === 'story:yahoo-perimetre-2008').sources[0].url, { waitUntil: 'commit' });
     await popup.close();
     assert.deepEqual(errors, []);
-    console.log(`${width}px : ${FACTS.length} lectures/copies exactes, preuves, recherche, ouverture source, aucun débordement ; cycle de ${seen.size} récits sans répétition.`);
+    console.log(`${width}px : ${process.argv.includes('--additions') ? november.length : FACTS.length} lectures/copies exactes, preuves, recherche, ouverture source, aucun débordement ; cycle de ${seen.size} récits sans répétition.`);
     await context.close();
   }
 } finally {

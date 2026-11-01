@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react'
 import { renderBudgetImage } from './image.js'
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 
-export function useBudgetImage(profile, enabled) {
-  const key = JSON.stringify(profile)
+export function useBudgetImage(profile, enabled, mode = 'detailed') {
+  const key = JSON.stringify({ profile, mode })
   const [result, setResult] = useState(null), [attempt, setAttempt] = useState(0)
   useEffect(() => {
     if (!enabled) return
     let active = true, url
     const timer = setTimeout(async () => {
       try {
-        const canvas = await renderBudgetImage(JSON.parse(key))
+        const canvas = await renderBudgetImage(JSON.parse(key).profile, JSON.parse(key).mode)
         const blob = await new Promise((resolve, reject) => canvas.toBlob(value => value ? resolve(value) : reject(new Error()), 'image/png'))
         if (!active) return
         url = URL.createObjectURL(blob); setResult({ key, attempt, url })

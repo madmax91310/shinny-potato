@@ -1,0 +1,629 @@
+[
+  {
+    "id": "story:tokyo-secours-2020",
+    "category": "Tokyo : le secours qui ne prend pas le relais",
+    "family": "mecanismes",
+    "period": "1–2 octobre 2020",
+    "indices": [
+      "Tokyo Stock Exchange"
+    ],
+    "text": "Le 1er octobre 2020, la Bourse de Tokyo reste à l’arrêt toute la journée. Les entreprises sont toujours là, les investisseurs aussi, mais le système qui doit les relier ne fonctionne plus. 🖥️\n\nUne panne matérielle touche arrowhead, le système de négociation des actions. Un équipement de secours existe. Seulement, le basculement ne se fait pas correctement et les informations de marché ne peuvent plus être diffusées.\n\nLa Bourse pourrait tenter un redémarrage en journée. Elle consulte ses participants, puis renonce : reprendre les échanges pose aussi la question des ordres déjà reçus et de ce que chaque intermédiaire est capable de remettre en route sans confusion.\n\nTous les titres cotés sur ce marché restent donc à l’arrêt pendant la journée. Après remplacement du matériel et redémarrage, les échanges reprennent normalement le 2 octobre.\n\nL’incident conduit ensuite à travailler sur les règles de reprise, avec les utilisateurs du marché. La réparation d’une machine ne règle pas à elle seule le sort des instructions déjà envoyées.\n\nPour un investisseur, la possibilité de vendre dépend aussi de cette organisation invisible. Même avec un acheteur en face, il faut encore un marché capable de traiter l’ordre.\n\nPas un conseil financier.",
+    "sources": [
+      {
+        "url": "https://www.jpx.co.jp/english/news/1030/20201001-05.html",
+        "title": "Trading halt due to system glitch — Fifth report",
+        "organization": "Tokyo Stock Exchange / JPX",
+        "publishedAt": "2020-10-01",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Panne matérielle, échec du basculement et diffusion impossible des informations ; arrêt de tous les titres pour la journée après consultation des participants."
+        ]
+      },
+      {
+        "url": "https://www.jpx.co.jp/english/corporate/research-study/system-failure/b5b4pj000003rlat-att/english.pdf",
+        "title": "Council for Recurrence Prevention Measures — First meeting",
+        "organization": "Tokyo Stock Exchange / JPX",
+        "publishedAt": "2020-10-23",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Chronologie : remplacement du matériel et redémarrage le 1er octobre ; reprise normale le 2 ; difficulté à reprendre avec les ordres déjà reçus."
+        ]
+      },
+      {
+        "url": "https://www.jpx.co.jp/english/equities/trading/relaunch/",
+        "title": "Trading resumption through a system reboot",
+        "organization": "Tokyo Stock Exchange / JPX",
+        "publishedAt": null,
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Règles de reprise élaborées après la panne d’arrowhead du 1er octobre 2020."
+        ]
+      }
+    ],
+    "reserves": [
+      "Marché actions au comptant de Tokyo : ne pas étendre l’arrêt à tous les marchés japonais ni aux dérivés d’Osaka.",
+      "Documents du même opérateur, complémentaires et non confirmations indépendantes. Le PDF de la première réunion a été téléchargé et relu ; sa couverture est datée du 23 octobre 2020."
+    ],
+    "reviewedAt": "2026-11-01"
+  },
+  {
+    "id": "story:herstatt-reglement-1974",
+    "category": "Herstatt : les marks sont partis, les dollars attendent",
+    "family": "devises-crises",
+    "period": "26 juin 1974 ; septembre 2002",
+    "indices": [
+      "Bankhaus Herstatt",
+      "Deutsche mark / dollar"
+    ],
+    "text": "Les marks ont été payés. Les dollars n’arriveront pas comme prévu. Le 26 juin 1974, des banques découvrent qu’un échange de devises peut rester bloqué au milieu du trajet. 💱\n\nElles traitent avec Herstatt, une banque allemande active sur le marché des changes. Le règlement se fait dans deux circuits différents : les marks en Allemagne, les dollars aux États-Unis. Les horaires ne coïncident pas complètement.\n\nQuand les autorités ferment Herstatt, certaines contreparties lui ont déjà versé leurs marks de façon irrévocable. Mais elles n’ont pas encore reçu les dollars correspondants. La banque qui tient le compte new-yorkais d’Herstatt suspend les paiements en dollars.\n\nL’inquiétude dépasse les seules victimes directes. D’autres banques hésitent à envoyer de l’argent avant d’avoir la confirmation qu’elles ont reçu ce qui leur est dû. Le règlement des opérations devient lui-même un canal de propagation de la crise.\n\nCe risque portera le nom d’Herstatt. Il concerne le montant échangé, pas seulement une variation défavorable du taux de change.\n\nEn septembre 2002, CLS commence à fonctionner pour réduire ce risque en liant le paiement d’une devise à celui de l’autre. Entre accepter un prix et recevoir effectivement son argent, il reste toute une infrastructure à faire tenir.\n\nPas un conseil financier.",
+    "sources": [
+      {
+        "url": "https://www.bis.org/publ/qtrpdf/r_qt0212f.pdf",
+        "title": "Settlement risk in foreign exchange markets and CLS Bank",
+        "organization": "Banque des règlements internationaux — Gabriele Galati",
+        "publishedAt": "2002-12",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Pages 55–56 : fermeture d’Herstatt le 26 juin 1974, marks versés irrévocablement, dollars non reçus et suspension par le correspondant new-yorkais.",
+          "Pages 55 et suivantes : démarrage de CLS en septembre 2002 et paiement contre paiement ; risque portant sur le principal."
+        ]
+      },
+      {
+        "url": "https://www.newyorkfed.org/financial-services-and-infrastructure/financial-market-infrastructure-and-reform/managing-foreign-exchange",
+        "title": "Managing Foreign Exchange Risk",
+        "organization": "Federal Reserve Bank of New York",
+        "publishedAt": null,
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Chronologie Herstatt en juin 1974, travaux sur le risque de règlement et développement de CLS."
+        ]
+      }
+    ],
+    "reserves": [
+      "Ne pas confondre risque de change et risque de règlement. CLS réduit le risque sur les opérations qu’il règle ; aucune suppression universelle de tous les risques n’est affirmée.",
+      "Aucun montant de pertes définitives ni taux de récupération n’est déduit des paiements interrompus."
+    ],
+    "reviewedAt": "2026-11-01"
+  },
+  {
+    "id": "story:metallgesellschaft-echeances-1993",
+    "category": "Metallgesellschaft : se couvrir et manquer de cash",
+    "family": "mecanismes",
+    "period": "1991–1994",
+    "indices": [
+      "Metallgesellschaft",
+      "Pétrole"
+    ],
+    "text": "Metallgesellschaft promet du pétrole à prix fixe pendant des années. Pour se protéger d’une hausse des prix, le groupe prend des positions financières. C’est pourtant une baisse du pétrole qui va mettre sa trésorerie sous pression. 🛢️\n\nAu début des années 1990, sa filiale américaine développe des contrats de livraison à long terme. Si le pétrole monte, acheter les volumes promis coûtera plus cher. Elle cherche donc à compenser ce risque avec des contrats à terme et des swaps, des accords financiers liés aux prix du pétrole.\n\nMais une partie de cette couverture arrive à échéance bien avant les livraisons. Il faut la renouveler régulièrement. Et quand les cours baissent, les pertes sur les contrats à terme doivent être réglées au fil des jours.\n\nLes engagements commerciaux à prix fixe peuvent, eux, gagner en valeur : acheter le pétrole promis devient moins coûteux. Cet avantage futur ne fournit cependant pas le cash réclamé immédiatement sur la couverture.\n\nFin 1993 et début 1994, les pertes et les besoins de financement débouchent sur une recapitalisation d’urgence de la maison mère allemande.\n\nLe problème ne tient donc pas simplement à une prévision ratée sur le pétrole. Deux positions censées se compenser peuvent avoir des calendriers de paiement incompatibles. Il faut pouvoir financer l’intervalle.\n\nPas un conseil financier.",
+    "sources": [
+      {
+        "url": "https://www.bostonfed.org/publications/regional-review/2000/quarter-2/issues-in-finance-perils-and-pitfalls-in-risk-management.aspx",
+        "title": "Issues in Finance: Perils and Pitfalls in Risk Management",
+        "organization": "Federal Reserve Bank of Boston — Ralph C. Kimball",
+        "publishedAt": "2000",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Encadré Metallgesellschaft : contrats de livraison à prix fixe jusqu’à dix ans, futures courts renouvelés, pertes réglées quotidiennement et décalage des flux."
+        ]
+      },
+      {
+        "url": "https://www.federalreserve.gov/econres/ifdp/the-management-of-financial-risks-at-german-nonfinancial-firms-the-case-of-metallgesellschaft.htm",
+        "title": "The Management of Financial Risks at German Nonfinancial Firms: The Case of Metallgesellschaft",
+        "organization": "Federal Reserve — Allen B. Frankel et David E. Palmer",
+        "publishedAt": "1996-08",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Pertes fin 1993/début 1994, recapitalisation d’urgence et lacunes dans l’information du conseil de surveillance sur la stratégie."
+        ]
+      }
+    ],
+    "reserves": [
+      "Le caractère optimal de la couverture et le coût de sa liquidation ont fait débat : le récit ne tranche pas ce contrefactuel.",
+      "Aucun montant de perte n’est présenté comme exclusivement causé par les appels de marge ; les échéances et le renouvellement comptaient aussi."
+    ],
+    "reviewedAt": "2026-11-01"
+  },
+  {
+    "id": "story:brex-echantillons-1997",
+    "category": "Bre-X : l’or était dans les échantillons",
+    "family": "fraudes",
+    "period": "1993–1997",
+    "indices": [
+      "Bre-X",
+      "Busang"
+    ],
+    "text": "Bre-X annonce un immense gisement d’or en Indonésie. Mais quand un futur partenaire fore à son tour, il ne retrouve presque rien de ce que les premiers résultats promettaient. ⛏️\n\nCette petite société canadienne acquiert en 1993 des droits sur le site de Busang, à Bornéo. Au fil des annonces, les estimations de ressources grossissent et attirent les investisseurs. La valeur du projet repose sur l’or supposé présent sous terre, avant même son exploitation.\n\nEn mars 1997, Freeport-McMoRan réalise ses propres vérifications. Ses forages ne confirment pas la richesse annoncée. Un consultant indépendant, Strathcona, est chargé d’examiner l’écart entre les résultats.\n\nLe rapport rendu public en mai confirme le problème : les échantillons qui avaient nourri les annonces ont été falsifiés, avec de l’or ajouté. Trouver du métal dans un prélèvement ne suffisait donc pas à démontrer qu’il venait du gisement.\n\nL’effondrement du dossier entraîne la suspension des échanges puis une procédure de protection contre les créanciers. Le projet qui soutenait la valeur boursière ne correspondait pas aux résultats de nouveaux forages.\n\nCe qui a fait basculer l’affaire, ce n’était pas une autre prévision du prix de l’or. C’était la possibilité de refaire le test, avec des prélèvements qui ne dépendaient plus de la même chaîne de préparation.\n\nPas un conseil financier.",
+    "sources": [
+      {
+        "url": "https://nssc.novascotia.ca/before-you-invest/fraudster-friday-bre-x-ltd-gold-fraud",
+        "title": "Fraudster Friday: Bre-X Ltd. Gold Fraud",
+        "organization": "Nova Scotia Securities Commission",
+        "publishedAt": "2018-03-16",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Acquisition à Busang en 1993, vérifications Freeport en mars 1997, falsification par ajout d’or, suspension et protection contre les créanciers."
+        ]
+      },
+      {
+        "url": "https://www.the-independent.com/news/business/brex-president-alleges-fraud-1260514.html",
+        "title": "Bre-X president alleges fraud",
+        "organization": "The Independent",
+        "publishedAt": "1997-05-08",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Rapport de Strathcona, désaccord avec les tests Freeport et allégation de fraude remise à la police par le président de Bre-X."
+        ]
+      }
+    ],
+    "reserves": [
+      "Pas de cours historique : les regroupements/divisions d’actions rendent les comparaisons de prix délicates. Les estimations de ressources ne sont pas des réserves certifiées.",
+      "Aucune culpabilité pénale individuelle ni anecdote sur la mort du géologue n’est affirmée."
+    ],
+    "reviewedAt": "2026-11-01"
+  },
+  {
+    "id": "story:thomas-cook-retours-2019",
+    "category": "Thomas Cook : le billet retour après la faillite",
+    "family": "entreprises",
+    "period": "23 septembre–7 octobre 2019",
+    "indices": [
+      "Thomas Cook"
+    ],
+    "text": "Des vacanciers ont un billet retour, mais l’entreprise qui doit les ramener vient de s’arrêter. Le 23 septembre 2019, la faillite de Thomas Cook devient immédiatement un problème de transport. ✈️\n\nLe groupe vend des séjours et exploite aussi une compagnie aérienne. Les discussions pour éviter l’insolvabilité n’aboutissent pas. Au Royaume-Uni, 26 sociétés cessent leur activité, dont Thomas Cook Airlines, et les vols comme les voyages sont annulés.\n\nEnviron 150 000 clients se trouvent alors à l’étranger, dans 18 pays, selon l’estimation retenue par l’auditeur public britannique. Il ne suffit pas de leur rendre de l’argent : ils ont besoin de places dans des avions.\n\nLe gouvernement charge l’autorité de l’aviation civile d’organiser leur retour, y compris pour les clients sans protection ATOL, le dispositif britannique qui protège certains voyages avec vol.\n\nEntre le 23 septembre et le 7 octobre, l’opération réalise 746 vols de rapatriement au départ de 54 aéroports. Les autorités estiment que 94 % des passagers concernés sont rentrés à la date initialement prévue.\n\nL’intervention protège le retour des voyageurs ; elle ne sauve ni le groupe ni ses actionnaires. Une entreprise peut disparaître alors que les services qu’elle devait encore rendre doivent être organisés par d’autres.\n\nPas un conseil financier.",
+    "sources": [
+      {
+        "url": "https://www.nao.org.uk/reports/investigation-into-governments-response-to-the-collapse-of-thomas-cook/",
+        "title": "Investigation into government’s response to the collapse of Thomas Cook",
+        "organization": "National Audit Office",
+        "publishedAt": "2020-03-19",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "26 sociétés arrêtées le 23 septembre 2019 ; environ 150 000 clients dans 18 pays ; liquidation et mission confiée à la CAA."
+        ]
+      },
+      {
+        "url": "https://www.nao.org.uk/press-releases/investigation-into-governments-response-to-the-collapse-of-thomas-cook/",
+        "title": "Thomas Cook — communiqué de l’enquête",
+        "organization": "National Audit Office",
+        "publishedAt": "2020-03-19",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "746 vols depuis 54 aéroports entre le 23 septembre et le 7 octobre ; estimation DfT/CAA de 94 % revenus à la date prévue."
+        ]
+      },
+      {
+        "url": "https://www.gov.uk/government/speeches/thomas-cook-update",
+        "title": "Thomas Cook update",
+        "organization": "Department for Transport",
+        "publishedAt": "2019-09-26",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Déclaration prononcée le 25 septembre : extension du rapatriement aux clients non-ATOL ; décision d’insolvabilité et difficultés de capacité aérienne."
+        ]
+      }
+    ],
+    "reserves": [
+      "150 000 est l’estimation initiale des clients à l’étranger, pas un comptage de personnes effectivement rapatriées. 94 % est l’estimation des autorités rapportée par le NAO.",
+      "Le rapport et son communiqué constituent une seule enquête. La liquidation de 2019 ne signifie pas que la marque ne sera jamais réutilisée."
+    ],
+    "reviewedAt": "2026-11-01"
+  },
+  {
+    "id": "story:carillion-contrats-2018",
+    "category": "Carillion : des contrats publics, presque plus de trésorerie",
+    "family": "entreprises",
+    "period": "juillet 2017–15 janvier 2018",
+    "indices": [
+      "Carillion"
+    ],
+    "text": "Carillion construit des hôpitaux, entretient des bâtiments et fournit des repas scolaires. Être au cœur de services publics ne l’empêche pas de manquer d’argent. 🏗️\n\nLe groupe britannique arrive en 2017 avec des comptes audités et un dividende au titre de 2016. Puis, en juillet, il annonce une réduction de 845 millions de livres de la valeur de ses contrats. Les bénéfices attendus sur les chantiers ne ressemblent plus à ceux qui figuraient dans les comptes.\n\nEn septembre, la correction atteint 1,045 milliard de livres. Le carnet de commandes est toujours là, mais exécuter un contrat peut coûter plus cher que prévu. Accumuler les projets ne garantit pas que leur réalisation dégagera du cash.\n\nLe 15 janvier 2018, Carillion entre en liquidation. L’enquête parlementaire relève près de 7 milliards de livres de passifs pour seulement 29 millions de trésorerie.\n\nLe gouvernement doit organiser la continuité des services. Les contrats du secteur public sont transférés vers de nouvelles solutions, sans faire revivre pour autant l’entreprise qui les détenait.\n\nL’État était un client majeur ; il n’était pas une garantie sur les actions de son fournisseur. La solidité apparente d’un carnet de commandes dépend encore du prix auquel les travaux seront réellement terminés et payés.\n\nPas un conseil financier.",
+    "sources": [
+      {
+        "url": "https://publications.parliament.uk/pa/cm201719/cmselect/cmworpen/769/76904.htm",
+        "title": "Carillion — Introduction and timeline",
+        "organization": "House of Commons — commissions BEIS et Work and Pensions",
+        "publishedAt": "2018-05-16",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Introduction §1 : correction de 845 M£ en juillet puis 1 045 M£ en septembre 2017 ; près de 7 Md£ de passifs et 29 M£ de cash à la liquidation.",
+          "Activités hospitalières, scolaires et de construction ; comptes 2016 audités et dividende versé."
+        ]
+      },
+      {
+        "url": "https://www.gov.uk/government/news/carillion-contracts-complete-transfer",
+        "title": "Carillion contracts complete transfer",
+        "organization": "Insolvency Service",
+        "publishedAt": "2018-08-06",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Liquidation engagée le 15 janvier 2018 ; continuité des services publics et transfert des contrats."
+        ]
+      }
+    ],
+    "reserves": [
+      "Les passifs ne sont pas uniquement de la dette bancaire ; aucune comparaison directe avec un encours de prêts.",
+      "Les montants de correction sont ceux relevés par l’enquête de 2018 ; pas une estimation actualisée du coût final de la liquidation."
+    ],
+    "reviewedAt": "2026-11-01"
+  },
+  {
+    "id": "story:aol-time-warner-survaleur-2002",
+    "category": "AOL–Time Warner : effacer une valeur inscrite au bilan",
+    "family": "entreprises",
+    "period": "janvier 2000–2002",
+    "indices": [
+      "AOL Time Warner"
+    ],
+    "text": "Près de 100 milliards de dollars de dépréciations en une année. Chez AOL Time Warner, le chiffre est immense, mais ce n’est pas un virement de ce montant qui part soudainement du compte bancaire. 🧾\n\nAnnoncée en janvier 2000 et réalisée en janvier 2001, la fusion réunit l’accès à Internet d’AOL et les médias de Time Warner. Le rapprochement laisse au bilan une très importante survaleur, appelée « goodwill » : une valeur liée au prix payé pour l’acquisition, au-delà des actifs nets identifiables.\n\nPuis les valorisations et les perspectives se dégradent. En 2002, une nouvelle règle comptable impose de tester cette survaleur. Le rapport annuel publié à l’époque enregistre une première dépréciation d’environ 54 milliards de dollars liée à la fusion.\n\nD’autres corrections suivent. Sur l’ensemble de l’exercice, ce même rapport comptabilise près de 100 milliards de dépréciations du goodwill et d’autres actifs incorporels.\n\nCes écritures reconnaissent que les valeurs portées dans les comptes ne sont plus justifiées. Elles pèsent sur le résultat sans représenter autant de décaissements nouveaux cette année-là.\n\nLe rapprochement avait déjà été payé et les activités existaient toujours. Ce qui disparaissait du bilan, c’était une partie de la valeur qu’on leur avait attribuée au moment de l’opération.\n\nPas un conseil financier.",
+    "sources": [
+      {
+        "url": "https://www.sec.gov/Archives/edgar/data/1105705/000095014403004064/g81332e10vk.htm",
+        "title": "AOL Time Warner — Annual Report 2002, goodwill and intangible assets",
+        "organization": "AOL Time Warner / dépôt SEC",
+        "publishedAt": "2003",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Fusion réalisée le 11 janvier 2001, valorisée lors de l’annonce en janvier 2000. Note goodwill : 54,199 Md$ de charge initiale sans décaissement avec FAS 142 ; total 2002 goodwill/autres incorporels 99,773 Md$.",
+          "Chiffres de ce dépôt historique, avant les retraitements ultérieurs ; ne pas confondre dépréciations et perte nette annuelle."
+        ]
+      },
+      {
+        "url": "https://www.sec.gov/Archives/edgar/data/1105705/000095013002001845/d10k405.htm",
+        "title": "AOL Time Warner — Annual Report 2001, expected impairment under FAS 142",
+        "organization": "AOL Time Warner / dépôt SEC",
+        "publishedAt": "2002",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Annonce préalable d’une charge d’environ 54 Md$ lors de l’adoption de FAS 142, sans sortie de trésorerie."
+        ]
+      }
+    ],
+    "reserves": [
+      "Montants arrondis issus du rapport 2002 tel que publié ; les états comparatifs ont été retraités ensuite. Le récit ne donne pas de perte nette ni de rendement.",
+      "Les dépréciations ne sont pas toutes une mesure exclusive des synergies ratées ; règles comptables et valorisations interviennent. Deux dépôts du même émetteur."
+    ],
+    "reviewedAt": "2026-11-01"
+  },
+  {
+    "id": "story:yahoo-perimetre-2008",
+    "category": "Yahoo : deux prix qui n’achètent pas la même chose",
+    "family": "entreprises",
+    "period": "1 février 2008–13 juin 2017",
+    "indices": [
+      "Yahoo",
+      "Microsoft",
+      "Verizon"
+    ],
+    "text": "Yahoo refuse un rapprochement avec Microsoft, puis cède ses activités à Verizon pour bien moins cher. Le contraste est frappant. Comparer les deux chèques sans regarder ce qu’ils achètent raconte pourtant une histoire trompeuse. 🔍\n\nLe 1er février 2008, Microsoft propose environ 44,6 milliards de dollars pour l’ensemble des actions Yahoo, avec un paiement mêlant cash et actions Microsoft. Les discussions ne débouchent pas sur un accord et Microsoft retire sa proposition en mai.\n\nLe 25 juillet 2016, Verizon annonce un accord d’environ 4,83 milliards de dollars en numéraire pour les activités opérationnelles de Yahoo. La marque, les services Internet et la publicité changeraient de maison.\n\nMais cette vente exclut notamment la trésorerie de Yahoo et ses participations dans Alibaba et Yahoo Japan. Ces actifs restent du côté des anciens actionnaires. Le prix annoncé est ensuite réduit de 350 millions après la révélation de piratages, avant la réalisation de l’opération en juin 2017.\n\nIl y a bien eu une occasion de rapprochement abandonnée, puis une vente dans d’autres conditions. Cela n’autorise pas à présenter l’écart entre les deux montants comme une perte intégrale subie sur exactement la même entreprise.\n\nUn prix d’acquisition n’a de sens qu’avec la liste de ce qui passe réellement d’une main à l’autre.\n\nPas un conseil financier.",
+    "sources": [
+      {
+        "url": "https://news.microsoft.com/source/2008/02/01/microsoft-proposes-acquisition-of-yahoo-for-31-per-share/",
+        "title": "Microsoft Proposes Acquisition of Yahoo! for $31 per Share",
+        "organization": "Microsoft",
+        "publishedAt": "2008-02-01",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Proposition pour toutes les actions : 31 $ par action, valeur totale d’environ 44,6 Md$, moitié cash moitié actions en agrégé."
+        ]
+      },
+      {
+        "url": "https://news.microsoft.com/source/2008/05/03/microsoft-withdraws-proposal-to-acquire-yahoo/",
+        "title": "Microsoft Withdraws Proposal to Acquire Yahoo!",
+        "organization": "Microsoft",
+        "publishedAt": "2008-05-03",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Retrait annoncé le 3 mai après discussions ; il ne s’agit pas d’une acquisition réalisée."
+        ]
+      },
+      {
+        "url": "https://www.sec.gov/Archives/edgar/data/1011006/000119312516656036/d178500dex991.htm",
+        "title": "Verizon to acquire Yahoo’s operating business",
+        "organization": "Yahoo / Verizon — dépôt SEC",
+        "publishedAt": "2016-07-25",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Accord de 4,83 Md$ en cash, soumis à ajustements ; exclusion de cash, Alibaba, Yahoo Japan et d’autres actifs/passifs listés."
+        ]
+      },
+      {
+        "url": "https://www.sec.gov/Archives/edgar/data/732712/000073271217000009/a2017q310-q.htm",
+        "title": "Verizon — Form 10-Q, acquisition of Yahoo",
+        "organization": "Verizon / dépôt SEC",
+        "publishedAt": "2017",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Note acquisitions : réduction contractuelle de 350 M$ à environ 4,48 Md$ le 20 février ; réalisation le 13 juin 2017 ; passifs des violations de données répartis."
+        ]
+      }
+    ],
+    "reserves": [
+      "Ne pas calculer une perte de 89 % : périmètres, dates et modalités de paiement diffèrent. Les 4,83 Md$ datent de l’accord initial, pas du prix final ajusté.",
+      "Le texte ne prétend pas connaître ce qu’aurait valu Yahoo si la fusion de 2008 avait été réalisée."
+    ],
+    "reviewedAt": "2026-11-01"
+  },
+  {
+    "id": "story:palm-3com-prix-2000",
+    "category": "Palm : la filiale vaut plus que l’ensemble",
+    "family": "bulles-crises",
+    "period": "2 mars–27 juillet 2000",
+    "indices": [
+      "Palm",
+      "3Com"
+    ],
+    "text": "Acheter une action 3Com donne accès à sa participation dans Palm. Pourtant, le 2 mars 2000, le marché valorise cet ensemble moins cher que les seules actions Palm qu’il est prévu de distribuer. 📱\n\nPalm fabrique des assistants électroniques de poche. Sa maison mère, 3Com, met une petite partie du capital en Bourse et prévoit de remettre le reste à ses propres actionnaires, sous réserve notamment de l’accord fiscal attendu.\n\nLe ratio envisagé tourne autour de 1,5 action Palm pour une action 3Com. À la fin de la première séance, Palm vaut environ 95 dollars par action et 3Com environ 82 dollars. Les actions Palm promises valent donc à elles seules davantage que le titre qui permettrait de les recevoir, avec les autres activités de 3Com en plus.\n\nPourquoi personne ne corrige immédiatement l’écart ? Pour tenter de le verrouiller, il faudrait notamment vendre Palm à découvert : emprunter des actions, les vendre puis les rendre plus tard. Les titres disponibles à emprunter sont rares ou coûteux. Un calcul évident sur papier n’est pas forcément une opération réalisable au prix affiché.\n\nLa distribution a finalement lieu en juillet, à un ratio définitif de 1,4832 action Palm par action 3Com.\n\nCet épisode documenté par des chercheurs montre une limite très pratique de l’arbitrage : repérer deux prix incohérents et pouvoir les faire converger sont deux choses différentes.\n\nPas un conseil financier.",
+    "sources": [
+      {
+        "url": "https://www.chicagobooth.edu/review/can-market-add-and-subtract",
+        "title": "Can the Market Add and Subtract?",
+        "organization": "Chicago Booth Review — travaux d’Owen Lamont et Richard Thaler",
+        "publishedAt": "2002-01-01",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "IPO du 2 mars 2000 ; distribution envisagée autour de 1,5 Palm par 3Com, soumise à accord fiscal ; clôtures arrondies 95,06 $ et 81,81 $.",
+          "Contraintes de prêt de titres et coûts de vente à découvert expliquant la difficulté de l’arbitrage."
+        ]
+      },
+      {
+        "url": "https://www.sec.gov/Archives/edgar/data/738076/000091205702029644/a2085483z10-k.htm",
+        "title": "3Com — Form 10-K 2002, Palm separation",
+        "organization": "3Com / dépôt SEC",
+        "publishedAt": "2002",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Distribution le 27 juillet 2000 de 1,4832 action Palm par action 3Com ; mise en Bourse initiale le 2 mars 2000."
+        ]
+      }
+    ],
+    "reserves": [
+      "Le ratio de 1,5 était approximatif et anticipé, pas le ratio définitif. Pas de gain sans risque promis, ni de recommandation de vente à découvert.",
+      "Les cours sont ceux de la séance historique en USD, arrondis au dollar ; ils ne décrivent pas une performance totale."
+    ],
+    "reviewedAt": "2026-11-01"
+  },
+  {
+    "id": "story:railway-mania-appels-1845",
+    "category": "Railway Mania : le prix de l’action n’est pas tout à payer",
+    "family": "bulles-crises",
+    "period": "1844–1847",
+    "indices": [
+      "Chemins de fer britanniques"
+    ],
+    "text": "Dans l’Angleterre des années 1840, on peut s’engager sur une nouvelle ligne de chemin de fer en ne versant d’abord qu’une fraction du capital. Le reste sera demandé plus tard, quand les rails devront vraiment être posés. 🚂\n\nLes premières lignes rentables attirent les investisseurs. Des promoteurs créent des sociétés, vendent des souscriptions et demandent l’autorisation du Parlement pour leurs tracés. Selon la reconstitution des économistes de la Fed de New York, le versement initial peut n’être que de 10 %.\n\nCe petit paiement permet de prendre un engagement bien plus grand. Tant que les souscriptions se revendent facilement et que les prix montent, le capital restant à verser peut sembler être un problème pour plus tard.\n\nMais l’enthousiasme retombe à partir de la fin de 1845. Les autorisations et les travaux, eux, continuent. Le Parlement examine plus de 700 projets de loi ferroviaires en 1846. Les sociétés ont besoin de demander l’argent promis à leurs souscripteurs.\n\nLes besoins des chantiers arrivent alors dans un environnement financier plus difficile, qui débouche sur la crise commerciale de 1847. Les mauvaises récoltes et les tensions bancaires comptent aussi : tout ne vient pas du chemin de fer.\n\nL’engagement financier ne se limitait donc pas au premier chèque. Le chantier allait réclamer la suite, même si l’actionnaire avait cessé d’être enthousiaste.\n\nPas un conseil financier.",
+    "sources": [
+      {
+        "url": "https://libertystreeteconomics.newyorkfed.org/2015/06/crisis-chronicles-railway-mania-the-hungry-forties-and-the-commercial-crisis-of-1847/",
+        "title": "Crisis Chronicles: Railway Mania, the Hungry Forties, and the Commercial Crisis of 1847",
+        "organization": "Federal Reserve Bank of New York — James Narron et Donald P. Morgan",
+        "publishedAt": "2015-06-05",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Souscriptions avec 10 % initialement versés, solde appelé après autorisation et début des travaux ; emballement atténué fin 1845.",
+          "Crise de 1847 : interaction des chemins de fer, des récoltes et du système bancaire."
+        ]
+      },
+      {
+        "url": "https://www.parliament.uk/about/living-heritage/transformingsociety/transportcomms/roadsrail/overview/fireandsteam/",
+        "title": "Fire and steam",
+        "organization": "UK Parliament",
+        "publishedAt": null,
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Railway Mania 1844–1846 ; plus de 700 railway Bills examinés en 1846, et non 700 lignes toutes approuvées ou construites."
+        ]
+      }
+    ],
+    "reserves": [
+      "Les 10 % décrivent le mécanisme de souscription étudié, pas toutes les actions ferroviaires ni une règle du marché actuel.",
+      "Aucune causalité unique de la crise de 1847 et aucun rendement des souscripteurs ne sont avancés."
+    ],
+    "reviewedAt": "2026-11-01"
+  },
+  {
+    "id": "story:londres-big-bang-1986",
+    "category": "Londres : le jour où les commissions deviennent négociables",
+    "family": "mecanismes",
+    "period": "27 octobre 1986 et semaines suivantes",
+    "indices": [
+      "London Stock Exchange"
+    ],
+    "text": "À Londres, le coût d’un ordre de Bourse ne se négocie pas toujours avec son intermédiaire. Avant le « Big Bang » de 1986, les courtiers du Stock Exchange appliquent des commissions minimales fixes. 🏛️\n\nLe marché repose aussi sur une séparation des rôles : le courtier agit pour son client, tandis que le négociant achète et vend des titres pour son propre compte. L’accès à ces métiers est encadré par les règles de la place.\n\nLe 27 octobre 1986, la réforme change cet équilibre. Les commissions deviennent négociables et les mêmes sociétés peuvent cumuler les deux fonctions. Les banques et d’autres institutions financières peuvent rejoindre la Bourse et exploiter des sociétés de courtage.\n\nDe nombreuses maisons sont rachetées par des établissements britanniques ou étrangers. Le changement porte donc autant sur la propriété des intermédiaires que sur les outils de travail.\n\nLes écrans prennent une place centrale. Ils fonctionnent d’abord à côté du parquet, puis les échanges quittent celui-ci en quelques semaines, selon la description de l’administration fiscale britannique.\n\nLe « Big Bang » ne désigne pas une hausse soudaine de toutes les actions. Il transforme les règles qui organisent leur négociation. Derrière le prix payé pour un titre, il y a aussi la concurrence entre ceux qui permettent de l’acheter.\n\nPas un conseil financier.",
+    "sources": [
+      {
+        "url": "https://www.gov.uk/hmrc-internal-manuals/stamp-taxes-shares-manual/stsm121020",
+        "title": "STSM121020 — Financial markets: background: big bang",
+        "organization": "HM Revenue & Customs",
+        "publishedAt": "2016-03-07",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Commissions négociées remplaçant les minimums fixes ; accès des banques, rachats de maisons, cumul broker/dealer.",
+          "Échanges sur écrans d’abord parallèles au parquet puis abandon du parquet après quelques semaines."
+        ]
+      },
+      {
+        "url": "https://www.londonstockexchange.com/en/news/market-celebrations/2026/big-bang-at-40-defining-moment-london-capital-markets",
+        "title": "Big Bang at 40: Marking 40 years since a defining moment",
+        "organization": "London Stock Exchange",
+        "publishedAt": "2026-10-27",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Date de la réforme : 27 octobre 1986 ; transformation de l’organisation et de la technologie de marché."
+        ]
+      }
+    ],
+    "reserves": [
+      "L’écran de cotation de 1986 n’est pas assimilé au carnet d’ordres électronique automatisé moderne.",
+      "Le récit porte sur les règles historiques de Londres et ne promet pas un effet chiffré sur les coûts ou les rendements actuels."
+    ],
+    "reviewedAt": "2026-11-01"
+  },
+  {
+    "id": "story:suez-actions-1875",
+    "category": "Suez : acheter des actions avec un prêt relais",
+    "family": "banques",
+    "period": "novembre 1875–février 1876",
+    "indices": [
+      "Compagnie du canal de Suez",
+      "N M Rothschild & Sons"
+    ],
+    "text": "Pour prendre une participation dans le canal de Suez, le gouvernement britannique fait avancer l’argent par une banque privée. Le Parlement discutera ensuite du financement. Nous sommes en novembre 1875. 🚢\n\nLe khédive d’Égypte cherche à vendre ses actions dans la compagnie du canal. Le gouvernement de Benjamin Disraeli accepte l’achat et la maison Rothschild organise l’avance nécessaire, alors que le Parlement ne siège pas.\n\nL’expression « acheter le canal » est un raccourci. La transaction porte sur 176 602 actions de la compagnie, une participation importante mais pas la totalité de l’entreprise ni un transfert de souveraineté sur le territoire.\n\nLe 14 février 1876, le ministre des Finances présente les détails aux députés. Le prix, initialement annoncé à 4 millions de livres, a été ramené à environ 3,98 millions après vérification du nombre de titres. La rémunération des Rothschild s’ajoute : une commission de 2,5 %, soit environ 99 400 livres.\n\nLe débat concerne aussi la méthode. Pourquoi avoir engagé l’opération avant la discussion parlementaire ? L’intérêt stratégique revendiqué pour les actions ne fait pas disparaître la question de l’autorisation de dépenser.\n\nLe prêt avait permis de conclure rapidement. Il ne supprimait ni le prix de l’achat ni la nécessité de trouver ensuite son financement public. Même pour un État, disposer du cash au bon moment et financer durablement une acquisition restent deux opérations distinctes.\n\nPas un conseil financier.",
+    "sources": [
+      {
+        "url": "https://api.parliament.uk/historic-hansard/commons/1876/feb/14/supply-the-suez-canal-shares",
+        "title": "Supply — The Suez Canal Shares",
+        "organization": "House of Commons — Hansard",
+        "publishedAt": "1876-02-14",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Début du débat : 176 602 actions, prix ramené de 4 M£ à 3 976 582 £, commission de 2,5 % soit 99 414 £.",
+          "Accord de novembre 1875, avance Rothschild et discussion sur le financement public ainsi que le calendrier parlementaire."
+        ]
+      },
+      {
+        "url": "https://www.rothschildarchive.org/collections/archivists_choice/march_2015_suez_canal_loan_receipts_1876",
+        "title": "Archivist’s Choice — Suez Canal loan receipts, 1876",
+        "organization": "The Rothschild Archive",
+        "publishedAt": "2015-03",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Avance de la banque au gouvernement Disraeli en 1875, Parlement absent et remboursement ultérieur ; documents d’archives sur le financement."
+        ]
+      },
+      {
+        "url": "https://www.legislation.gov.uk/ukpga/Vict/39-40/67/pdfs/ukpga_18760067_en.pdf?view=extent",
+        "title": "Suez Canal (Shares) Act 1876 — Chapter 67",
+        "organization": "UK Parliament / legislation.gov.uk",
+        "publishedAt": "1876-08-15",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Loi reproduisant l’accord du 25 novembre 1875 : 176 602 actions, réduction proportionnelle du prix initial et paiements par Rothschild.",
+          "Vote de crédit et émission d’Exchequer bonds de 1876 distincts de l’avance initiale ; confirmation primaire de la chronologie de financement."
+        ]
+      }
+    ],
+    "reserves": [
+      "Livres nominales de l’époque ; aucun équivalent monétaire actuel ni rendement reconstruit. 3,98 M£ et 99 400 £ sont arrondis ; la commission est distincte du prix des actions.",
+      "Participation dans une compagnie, sans majorité ni achat du territoire. Les anecdotes de conversation et de garantie personnelle ont été écartées.",
+      "L’archive bancaire a été consultée via ses passages indexés ; ouverture web directe initialement en échec. Le détail chiffré vient du Hansard accessible intégralement."
+    ],
+    "reviewedAt": "2026-11-01"
+  },
+  {
+    "id": "story:salomon-encheres-1991",
+    "category": "Salomon : des clients qui n’avaient rien demandé",
+    "family": "fraudes",
+    "period": "février–août 1991 ; janvier 1992",
+    "indices": [
+      "Salomon Brothers",
+      "Emprunts du Trésor américain"
+    ],
+    "text": "Salomon Brothers veut acheter davantage de titres du Trésor américain. Sur certains formulaires d’enchères, des ordres apparaissent donc au nom de clients qui ne les ont pas autorisés. 📝\n\nLe Trésor vend ses emprunts aux enchères. Pour éviter qu’un acteur concentre trop de titres d’une même émission, il limite à 35 % la part attribuée à un seul acheteur, en tenant compte des règles sur ses positions déjà prises.\n\nLe 21 février 1991, Salomon présente une offre pour son propre compte et deux autres au nom de clients, sans leur autorisation. Après répartition des titres, la maison en obtient environ 57 % : les noms différents ont masqué un même bénéficiaire.\n\nLe scandale devient public pendant l’été. L’enjeu dépasse le profit d’une enchère : Salomon doit continuer à être accepté par ses contreparties et par les autorités pour exercer son métier.\n\nDans un discours de 2013, Jerome Powell, qui travaillait au Trésor à l’époque, décrit une firme passée tout près de la faillite. La crise est finalement résolue sans faillite ni sauvetage public. Un rapport conjoint du Trésor, de la SEC et de la Fed propose des réformes dès janvier 1992.\n\nLes titres achetés étaient des emprunts d’État. Cela ne rendait pas irréprochables les méthodes de l’intermédiaire. La qualité de l’émetteur et la fiabilité de celui qui négocie restent deux sujets séparés.\n\nPas un conseil financier.",
+    "sources": [
+      {
+        "url": "https://www.treasurydirect.gov/files/laws-and-regulations/gsa/gsa-reg-gsr-92-rpt.pdf",
+        "title": "Joint Report on the Government Securities Market — Appendix C",
+        "organization": "U.S. Treasury / SEC / Federal Reserve",
+        "publishedAt": "1992-01",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Annexe C, pages C-3/C-4 : enchère du 21 février 1991, trois offres dont deux non autorisées, environ 57 % attribués ; règle de 35 % et défaut de remontée rapide aux autorités.",
+          "Le plafond d’attribution et la reconnaissance des offres à un même rendement sont distincts ; recommandations de réforme dans le rapport."
+        ]
+      },
+      {
+        "url": "https://www.federalreserve.gov/newsevents/speech/powell20130304a.htm",
+        "title": "Ending Too Big to Fail",
+        "organization": "Federal Reserve — Jerome H. Powell",
+        "publishedAt": "2013-03-04",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Retour d’expérience sur Salomon en 1991 : fausses offres, forte pression et issue sans sauvetage public ni faillite."
+        ]
+      }
+    ],
+    "reserves": [
+      "57 % concerne l’enchère des titres à cinq ans du 21 février 1991, pas toutes les adjudications ni l’ensemble de la dette américaine.",
+      "Le plafond de 35 % n’est pas une interdiction générale de soumettre toute offre agrégée supérieure à 35 %. Aucun montant de pertes ou de sanction n’est extrapolé."
+    ],
+    "reviewedAt": "2026-11-01"
+  },
+  {
+    "id": "story:renault-volvo-accord-1993",
+    "category": "Renault–Volvo : une fusion annoncée puis retirée",
+    "family": "entreprises",
+    "period": "6 septembre–2 décembre 1993",
+    "indices": [
+      "Renault",
+      "Volvo"
+    ],
+    "text": "Les dirigeants annoncent une fusion. Trois mois plus tard, le conseil de Volvo retire le projet et son président démissionne. Le mariage avec Renault n’ira pas jusqu’au bout. 🚗\n\nLes deux constructeurs travaillent déjà ensemble depuis 1990. En septembre 1993, ils présentent le rapprochement de leurs activités automobiles comme la suite de cette alliance. Mais Renault appartient alors à l’État français, tandis que Volvo doit convaincre ses actionnaires.\n\nLa logique industrielle ne suffit pas à emporter leur accord. Le partage du pouvoir dans le futur ensemble suscite une opposition, notamment autour des droits particuliers prévus pour l’État français.\n\nL’étude de l’université de Virginie consacrée à l’opération identifie cette question du contrôle comme un facteur majeur du rejet. Ce n’est pas seulement un désaccord sur le nombre de voitures que les deux groupes pourraient produire ensemble.\n\nLe 2 décembre 1993, le conseil de Volvo retire la proposition avant d’obtenir l’approbation des actionnaires. Pehr Gyllenhammar, le président qui portait le projet, quitte ses fonctions avec plusieurs administrateurs.\n\nL’annonce n’avait donc pas rendu la fusion certaine. Pour un actionnaire, accepter une opération revient aussi à accepter les pouvoirs qui accompagneront ses nouveaux titres. Un accord entre dirigeants doit encore convaincre ceux dont il transforme la propriété.\n\nPas un conseil financier.",
+    "sources": [
+      {
+        "url": "https://www.hbs.edu/ris/Publication%20Files/An%20Analysis%20of%20Value%20Destriction%20and%20Recovery%20in%20the%20allience%20and%20proposed%20merger_dccf5d2b-ac22-44e8-a231-1450fdd0d691.pdf",
+        "title": "An analysis of value destruction and recovery in the alliance and proposed merger of Volvo and Renault",
+        "organization": "Robert F. Bruner, University of Virginia — Journal of Financial Economics ; copie Harvard Business School",
+        "publishedAt": "1999",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Pages 125–126 et 142–146 : alliance de 1990, annonce le 6 septembre 1993, Renault propriété de l’État et contestation des droits de contrôle français.",
+          "Page 126 : retrait du projet par le conseil le 2 décembre 1993, démission du président et de quatre administrateurs ; recherche fondée notamment sur les documents des groupes et vingt entretiens."
+        ]
+      },
+      {
+        "url": "https://www.ap4.se/globalassets/dokument/rapportarkiv/annual-report-2003.pdf",
+        "title": "Annual Report 2003 — Corporate Governance in Practice, The abortive Volvo–Renault merger",
+        "organization": "Fourth Swedish National Pension Fund (AP4)",
+        "publishedAt": "2004",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Page imprimée 11 : récit rétrospectif du fonds actionnaire, absence de soutien au projet et départ de Gyllenhammar en décembre 1993 ; mobilisation des institutionnels pour un nouveau conseil."
+        ]
+      }
+    ],
+    "reserves": [
+      "Le fonds AP4 est un acteur de l’épisode ; son témoignage rétrospectif est rapproché de l’étude universitaire, fondée notamment sur des entretiens. Le résumé SSRN a été complété par l’article intégral disponible chez Harvard.",
+      "Pas de vote final négatif inventé : c’est le conseil qui retire le projet. Ni valeur contrefactuelle de la fusion ni cause unique prétendument certaine."
+    ],
+    "reviewedAt": "2026-11-01"
+  },
+  {
+    "id": "story:cadbury-somerdale-2010",
+    "category": "Cadbury : l’usine que l’acheteur pensait garder",
+    "family": "entreprises",
+    "period": "septembre 2009–janvier 2011",
+    "indices": [
+      "Kraft Foods",
+      "Cadbury"
+    ],
+    "text": "Pendant son offre sur Cadbury, Kraft laisse entrevoir le maintien d’une usine britannique menacée de fermeture. Une semaine après le rachat, le groupe annonce qu’il ne pourra finalement pas la garder ouverte. 🍫\n\nCadbury avait déjà prévu de fermer Somerdale et de transférer sa production vers la Pologne. En septembre 2009, Kraft affirme croire qu’il pourrait continuer à exploiter le site. Cette perspective est répétée au cours de l’offre.\n\nLe 9 février 2010, le discours change. Kraft explique que le transfert industriel est trop avancé pour être inversé. L’usine ferme en janvier 2011.\n\nLe Takeover Panel, qui surveille les offres publiques britanniques, examine la communication de l’acquéreur. Il accepte que Kraft ait sincèrement cru pouvoir maintenir l’usine. Il juge cependant que les déclarations n’ont pas été préparées avec le niveau de soin et de précision exigé : Kraft ne connaissait pas assez le détail du transfert des équipements et de la production.\n\nLa distinction est précise. L’autorité ne dit pas qu’une conviction sincère autorise n’importe quelle annonce. Il faut aussi disposer d’une base suffisante pour la présenter publiquement dans une offre.\n\nPour les salariés comme pour les actionnaires, ce qui est dit pendant un rachat peut peser lourd avant que l’acheteur ait accès à tous les détails. Le degré de vérification derrière les mots compte autant que l’assurance avec laquelle ils sont prononcés.\n\nPas un conseil financier.",
+    "sources": [
+      {
+        "url": "https://publications.parliament.uk/pa/cm201012/cmselect/cmbis/871/87106.htm",
+        "title": "Is Kraft working for Cadbury? — The Takeover Panel decision",
+        "organization": "House of Commons — Business, Innovation and Skills Committee",
+        "publishedAt": "2011-05-23",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Paragraphes 18–24 : première déclaration en septembre 2009, répétitions, revirement le 9 février 2010, fermeture en janvier 2011.",
+          "Décision du Panel : croyance honnête acceptée mais déclarations non conformes au soin/précision de la règle 19.1, connaissance insuffisante du transfert."
+        ]
+      },
+      {
+        "url": "https://www.sec.gov/Archives/edgar/data/1103982/000119312510025939/d425.htm",
+        "title": "Kraft Foods — Form 425, Somerdale announcement of February 9",
+        "organization": "Kraft Foods / dépôt SEC",
+        "publishedAt": "2010-02-09",
+        "checkedAt": "2026-11-01",
+        "facts": [
+          "Communiqué d’origine : fermeture/transfert jugés trop avancés pour revenir en arrière après discussions avec Cadbury."
+        ]
+      }
+    ],
+    "reserves": [
+      "Kraft évoquait une croyance et des projets ; le récit ne la transforme pas en engagement juridiquement garanti. La fermeture avait été décidée auparavant par Cadbury.",
+      "Critique de la communication selon le Code des offres, pas condamnation pénale pour mensonge ni affirmation que l’acquisition était illégale."
+    ],
+    "reviewedAt": "2026-11-01"
+  }
+]

@@ -24,9 +24,7 @@ on:
 
 permissions:
   contents: read
-  pages: write
   deployments: read
-  id-token: write
 
 concurrency:
   # Producers and master pushes share one full validation queue. The selector
@@ -46,6 +44,7 @@ jobs:
     timeout-minutes: 5
     outputs:
       current: ${{ steps.head.outputs.current }}
+      public_required: ${{ steps.surface.outputs.required }}
       commit_sha: ${{ steps.head.outputs.commit_sha }}
     steps:
       - uses: actions/checkout@v7.0.1
@@ -63,6 +62,10 @@ jobs:
           PAGES_DEFINITION_SHA: ${{ github.workflow_sha }}
           PAGES_GATE_RECEIPT: ${{ runner.temp }}/pages-gate-definition.json
         run: node scripts/resolve-pages-snapshot.mjs
+      - id: surface
+        env:
+          PUBLIC_VALIDATION_BASE: ${{ github.event.pull_request.base.sha }}
+        run: node scripts/public-validation-scope.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: steps.head.outputs.current == 'true'
         with:
@@ -77,7 +80,7 @@ jobs:
   # Pull requests, code changes and any uncertainty keep the full gate.
   scope:
     needs: current-snapshot
-    if: needs.current-snapshot.outputs.current == 'true'
+    if: needs.current-snapshot.outputs.current == 'true' && needs.current-snapshot.outputs.public_required == 'true'
     runs-on: ubuntu-26.04
     permissions:
       contents: read
@@ -109,8 +112,12 @@ jobs:
         run: node scripts/classify-deploy-scope.mjs --published-url "https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/build-info.json"
 
   build:
+    permissions:
+      contents: read
+      deployments: read
+      pages: write
     needs: current-snapshot
-    if: needs.current-snapshot.outputs.current == 'true'
+    if: needs.current-snapshot.outputs.current == 'true' && needs.current-snapshot.outputs.public_required == 'true'
     # Explicitly validate the next ubuntu-latest image before its rollout.
     runs-on: ubuntu-26.04
     outputs:
@@ -146,7 +153,7 @@ jobs:
       # the current catalogue. Keep every parity/route assertion unchanged.
       - run: node --max-old-space-size=4096 scripts/test-tool-projections.mjs
       - run: node scripts/test-light-registries.mjs
-      - run: node scripts/test-browser-shards.mjs
+      - run: node scripts/test-browser-shards.mjs && node scripts/test-ci-browser-runner.mjs && node scripts/test-vite-file-boundary.mjs && node scripts/test-public-validation-scope.mjs
       - run: node scripts/test-broker-automation.mjs
       - run: node scripts/test-lifestrategy.mjs
       - run: node scripts/test-resource-selections.mjs
@@ -222,6 +229,7 @@ jobs:
       - run: node scripts/test-world-factors-step-one.mjs
       - run: node scripts/test-property-infrastructure-step-two.mjs
       - run: node scripts/test-data-reuse.mjs
+      - run: node scripts/test-market-stories.mjs && node scripts/test-market-story-selection.mjs
       - run: npm run audit:data-catalog
       - run: npm run audit:data-provenance
       - run: node scripts/test-index-comparison-copy.mjs
@@ -323,7 +331,7 @@ jobs:
 
   python-checks:
     needs: current-snapshot
-    if: needs.current-snapshot.outputs.current == 'true'
+    if: needs.current-snapshot.outputs.current == 'true' && needs.current-snapshot.outputs.public_required == 'true'
     runs-on: ubuntu-26.04
     permissions:
       contents: read
@@ -499,43 +507,7 @@ jobs:
           path: ~/.cache/ms-playwright
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
-      - run: node scripts/playwright-review-product.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-data-review-recovery.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-removed-ai.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-data-automation-inventory.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-acwi-allocation-recovery.mjs
-        if: matrix.shard == 1
-      - run: node scripts/playwright-remainder-nav.mjs
-        env:
-          TEST_NAV_IDS: etfFR0007054358Nav,etfIE00BK5BCD43Nav,etfIE00BK5BCH80Nav,etfLU1875395870Nav,etfGB00B15KXQ89Nav,etc_brent_crude_oilNav,etc_wti_crude_oilNav,etc_coffeeNav
-        if: matrix.shard == 1
-      - run: node scripts/playwright-official-nav.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-currency-consistency.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-distinct-asset-routing.mjs
-        if: matrix.shard == 1
-      - run: node scripts/playwright-routing-additions.mjs
-        if: matrix.shard == 1
-      - run: node scripts/playwright-model-portfolios.mjs
-        if: matrix.shard == 1
-      - run: node scripts/test-simple-exposure.mjs
-        if: matrix.shard == 1
       - run: node scripts/run-browser-checks.mjs ${{ matrix.shard }} 4
-      - run: node scripts/playwright-etf-completeness.mjs
-        if: matrix.shard == 0
-      - run: node scripts/test-asset-picker-preferences.mjs && node scripts/playwright-asset-picker-modes.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-tool-links.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-equity-monthly.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-nasdaq-total-return.mjs
-        if: matrix.shard == 0
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -564,7 +536,7 @@ jobs:
 
   exposure-browser-check:
     needs: current-snapshot
-    if: needs.current-snapshot.outputs.current == 'true'
+    if: needs.current-snapshot.outputs.current == 'true' && needs.current-snapshot.outputs.public_required == 'true'
     runs-on: ubuntu-26.04
     permissions:
       contents: read
@@ -639,6 +611,11 @@ jobs:
           exit 1
 
   deploy:
+    permissions:
+      contents: read
+      deployments: read
+      pages: write
+      id-token: write
     needs: [scope, build, tweet-midi-checks, python-checks, browser-checks, exposure-browser-check, smoke]
     if: >-
       always() && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
@@ -800,6 +777,11 @@ jobs:
           retention-days: 2
 
   deploy-fallback:
+    permissions:
+      contents: read
+      deployments: read
+      pages: write
+      id-token: write
     needs: fallback-build
     if: always() && needs.fallback-build.result == 'success'
     runs-on: ubuntu-26.04

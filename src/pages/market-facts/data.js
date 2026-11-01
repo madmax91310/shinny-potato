@@ -4,6 +4,8 @@ import { EDITORIAL, NEWTON_STORY } from './editorial.js';
 import { selectMonthlyMarketStories } from '../../data/market-story-selection.js';
 import STORIES from './stories.json' with { type: 'json' };
 import ADDITIONS from './additions-20261026.json' with { type: 'json' };
+// Lot du 01/11/2026 : faits historiques vérifiés, preuves datées dans chaque récit.
+import NOVEMBER_STORIES from './additions-20261101.json' with { type: 'json' };
 import REVIEWED_LEGACY from './reviewed-legacy.json' with { type: 'json' };
 import { MARKET_HISTORY_REVIEW } from '../../data/market-history-review.js';
 import { monthlyReference } from './lib.js';
@@ -170,6 +172,7 @@ export const FACTS = [
   NEWTON_STORY,
   ...STORIES,
   ...ADDITIONS,
+  ...NOVEMBER_STORIES,
   ...publishedFacts.filter(fact => fact.id !== 'records-1987-pire-seance'),
   ...selectMonthlyMarketStories(HISTORY_FACTS).map(selected => monthlyReference(
     HISTORY_FACTS.find(fact => fact.id === selected.id),

@@ -228,6 +228,25 @@ jobs:
 
       - run: node scripts/build-equity-history-links.mjs
         if: inputs.listings_only != true
+      # NAV qualification converts completed months with the shared BCE registry.
+      # Renew that dependency before both candidate admission and active histories.
+      - name: Refresh exact ranking histories and ECB conversion
+        id: rankings
+        if: github.event_name != 'pull_request' && inputs.listings_only != true
+        continue-on-error: true
+        env:
+          RETRY_FAILED: ${{ inputs.series != '' || inputs.retry_failed == true || github.event_name == 'push' || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
+          REQUESTED_RANKING_SOURCES: ${{ inputs.ranking_sources }}
+          CROSS_FX_EVIDENCE_DIR: ${{ runner.temp }}/cross-fx-evidence
+        run: |
+          args=()
+          if [ -n "$REQUESTED_RANKING_SOURCES" ]; then
+            requested="${REQUESTED_RANKING_SOURCES//,/ }"
+            read -r -a selected <<< "$requested"
+            if [ "${#selected[@]}" = '0' ]; then echo 'Empty explicit ranking scope'; exit 1; fi
+            args+=(--only "${selected[@]}")
+          elif [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
+          python scripts/collect_ranking_sources.py --apply --output "$RUNNER_TEMP/ranking-collection-status.json" "${args[@]}"
       - name: Qualify missing equity histories
         if: github.event_name != 'pull_request' && inputs.listings_only != true && inputs.series == ''
         run: |
@@ -257,23 +276,6 @@ jobs:
             args+=(--only "${selected[@]}")
           elif [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
           python scripts/refresh_monthly_history.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/monthly-observation.json" --apply "${args[@]}"
-      - name: Refresh exact ranking histories and ECB conversion
-        id: rankings
-        if: github.event_name != 'pull_request' && inputs.listings_only != true
-        continue-on-error: true
-        env:
-          RETRY_FAILED: ${{ inputs.series != '' || inputs.retry_failed == true || github.event_name == 'push' || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
-          REQUESTED_RANKING_SOURCES: ${{ inputs.ranking_sources }}
-          CROSS_FX_EVIDENCE_DIR: ${{ runner.temp }}/cross-fx-evidence
-        run: |
-          args=()
-          if [ -n "$REQUESTED_RANKING_SOURCES" ]; then
-            requested="${REQUESTED_RANKING_SOURCES//,/ }"
-            read -r -a selected <<< "$requested"
-            if [ "${#selected[@]}" = '0' ]; then echo 'Empty explicit ranking scope'; exit 1; fi
-            args+=(--only "${selected[@]}")
-          elif [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
-          python scripts/collect_ranking_sources.py --apply --output "$RUNNER_TEMP/ranking-collection-status.json" "${args[@]}"
       - run: node scripts/build-equity-history-links.mjs
         if: inputs.listings_only != true
       - run: node scripts/build-ranking-annual.mjs && node scripts/test-performance-rankings.mjs
