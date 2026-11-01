@@ -29,10 +29,13 @@ function assertNoCanvasTextOverlap(drawn, label) {
   }
 }
 
-// CI partitions the exhaustive roster by viewport; direct runs still check all three.
+// CI partitions by viewport and disjoint profile subsets; direct runs retain the full roster.
 const widths = process.argv[2] === undefined ? [1440, 390, 320] : [Number(process.argv[2])]
 assert(widths.every(width => [1440, 390, 320].includes(width)), 'Expected viewport 1440, 390 or 320')
-const port = widths.length === 1 ? ({ 1440: 4470, 390: 4471, 320: 4472 })[widths[0]] : 4470
+const partition = Number(process.argv[3] ?? 0), partitions = Number(process.argv[4] ?? 1)
+assert(Number.isInteger(partition) && Number.isInteger(partitions) && partitions > 0 && partition >= 0 && partition < partitions, 'Invalid profile partition')
+const roster = BUDGET_PROFILES.filter((_, index) => index % partitions === partition)
+const port = partition * 10 + (widths.length === 1 ? ({ 1440: 4470, 390: 4471, 320: 4472 })[widths[0]] : 4470)
 const base = process.env.BUDGET_PUBLIC_BASE ?? `http://127.0.0.1:${port}/shinny-potato`
 const server = process.env.BUDGET_PUBLIC_BASE ? null : spawn(process.execPath, ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', String(port), '--strictPort'], { stdio: 'ignore' })
 const output = 'test-artifacts/budget-profiles'; mkdirSync(output, { recursive: true })
@@ -51,7 +54,7 @@ try {
     await expect(page.getByRole('heading', { name: 'Le budget de…', exact: true, level: 1 })).toBeVisible()
     assert.equal(await page.locator('select').count(), 0, 'Default budget uses the shared button selectors')
     const picker = page.getByRole('group', { name: 'Choisir un profil budget' })
-    for (const profile of BUDGET_PROFILES) {
+    for (const profile of roster) {
       await page.getByRole('group', { name: 'Version de l’image', exact: true }).locator('[data-value="detailed"]').click()
       await picker.locator(`[data-value="${profile.id}"]`).click()
       const image = page.getByRole('region', { name: 'Image du budget' }).locator('img')
@@ -112,6 +115,7 @@ try {
     // Publication is a deliberate per-profile declaration, independent of usage.
     const publication = page.getByRole('checkbox', { name: 'Profil publié', exact: true })
     const lastId = BUDGET_PROFILES.at(-1).id
+    await picker.locator(`[data-value="${lastId}"]`).click()
     await publication.check()
     await expect(page.getByText('Profil marqué comme publié.', { exact: true })).toBeVisible()
     await expect(picker.locator(`[data-value="${lastId}"]`)).toContainText('publié')
