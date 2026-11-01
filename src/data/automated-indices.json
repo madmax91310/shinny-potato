@@ -13100,7 +13100,7 @@
   },
   "bitcoin": {
     "returns": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "currency": "USD",
       "variant": "PRICE",
       "values": [
@@ -13132,19 +13132,19 @@
       "periodStart": "2020-01-01",
       "periodEnd": "2025-12-31",
       "source": {
-        "url": "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo",
+        "url": "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1mo",
         "sourceUrls": [
-          "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo",
-          "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1d"
+          "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1mo",
+          "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1d"
         ],
-        "checkedAt": "2026-10-05",
-        "sha256": "f13a624ba98c7b66cb3e0999f73e538fc0b968e21a91e8224c4393d8c5c0762e",
+        "checkedAt": "2026-11-01",
+        "sha256": "9610a37c9a34a7ada9acd0be38fd415ac4f23ace22b90651697c9bf4269f6301",
         "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
       },
       "performance": {
         "kind": "actif",
         "detail": "Bitcoin · USD · cours spot",
-        "date": "2026-09-30"
+        "date": "2026-10-31"
       }
     },
     "returnsHistory": {
@@ -13194,6 +13194,54 @@
           "kind": "actif",
           "detail": "Bitcoin · USD · cours spot",
           "date": "2026-09-30"
+        }
+      },
+      "2026-10-31": {
+        "asOf": "2026-10-31",
+        "currency": "USD",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            -6.34
+          ],
+          [
+            2024,
+            121.05
+          ],
+          [
+            2023,
+            155.42
+          ],
+          [
+            2022,
+            -64.27
+          ],
+          [
+            2021,
+            59.67
+          ],
+          [
+            2020,
+            303.16
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1mo",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1mo",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1d"
+          ],
+          "checkedAt": "2026-11-01",
+          "sha256": "9610a37c9a34a7ada9acd0be38fd415ac4f23ace22b90651697c9bf4269f6301",
+          "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
+        },
+        "performance": {
+          "kind": "actif",
+          "detail": "Bitcoin · USD · cours spot",
+          "date": "2026-10-31"
         }
       }
     }
@@ -13429,7 +13477,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
         "checkedAt": "2026-11-01",
-        "sha256": "8fd9c0b071b240d11a6a1d58ca890c4a0e1f145b9f7de4b5a235829e0e913dc2",
+        "sha256": "bb31fe90a50020f517aef5f3f5d80b4ca6991b75f3bcf14229a53ba0b5a13350",
         "label": "Composition officielle automatisée · Nikkei 225"
       },
       "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
@@ -13554,7 +13602,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
         "checkedAt": "2026-11-01",
-        "sha256": "780fef03de5e103d7b17561f1f7e355715774988231b0240591fae7fd58b51a6",
+        "sha256": "84731aaebcabea66e98583f1b0e0a96a1365871837f2390398c9b558b3f4e3be",
         "label": "Rendements calendaires officiels automatisés · Nikkei 225"
       },
       "performance": {
@@ -13642,7 +13690,7 @@
       "source": {
         "url": "https://stoxx.com/index/sxxr/",
         "checkedAt": "2026-11-01",
-        "sha256": "faa0112895a40392d8eb1274ba2b8448adeda0bab300c37993e31b45260d6adb",
+        "sha256": "e9ae94e71d8198688cfe14b2b7effb75b1e1635fe26e120a26ecaf5479729ee4",
         "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
       },
       "performance": {
@@ -15034,7 +15082,7 @@
       "source": {
         "url": "https://stoxx.com/index/sx5t/",
         "checkedAt": "2026-11-01",
-        "sha256": "cb0f070022c26ad80f1be776f8dafda04dc00f904a3c3203bccf4f3385b3678d",
+        "sha256": "a8889f8bacbd1373123794a3d9911129fbe10be03635bbb0b623f38868eb9a4b",
         "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
       },
       "performance": {
@@ -16258,7 +16306,7 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
         "checkedAt": "2026-11-01",
-        "sha256": "409d4139a85bd96e56bcdd8df5b5860743afc2a8b5ab4c8b845e83244f67e49e",
+        "sha256": "28aaaaec05b7cc86160cc15b9f1ce9744d1a7f75582224449ae301c7ff8ee88b",
         "label": "Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income"
       },
       "performance": {
@@ -17314,7 +17362,7 @@
       "source": {
         "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
         "checkedAt": "2026-11-01",
-        "sha256": "4c437514335f5e955c65c060ccf175720d95c0d2cd6c87b39b3958f356a7dfb7",
+        "sha256": "262ee655b8c685f8a6769fcadad3c505bc0d2cdd1679a053c6ae5e620fb5af0b",
         "label": "Rendements calendaires officiels automatisés · TOPIX"
       },
       "performance": {
