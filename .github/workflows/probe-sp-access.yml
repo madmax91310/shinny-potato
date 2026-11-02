@@ -1,0 +1,31 @@
+name: Diagnose official S&P access without publication
+on:
+  push:
+    branches: [diagnostic/sp-official-access-20261102]
+    paths: ['.github/workflows/probe-sp-access.yml', 'scripts/probe_sp_official_access.py', 'scripts/probe-sp-browser.mjs']
+permissions:
+  contents: read
+jobs:
+  access:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Six current public official URLs, one request each
+        run: python scripts/probe_sp_official_access.py . "$RUNNER_TEMP/sp-access"
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Ordinary installed Chrome navigation, without challenge solving
+        run: node scripts/probe-sp-browser.mjs "$RUNNER_TEMP/sp-access"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: sp-official-access-evidence
+          path: ${{ runner.temp }}/sp-access/
+          if-no-files-found: error
+          retention-days: 35
