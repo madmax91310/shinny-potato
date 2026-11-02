@@ -74,7 +74,7 @@ for (const category of CATEGORIES) {
     assert(!/undefined|NaN|Infinity/.test(text), text)
     assert(text.includes('Le détail année par année dans l’image 👇'))
     assert(!text.includes('périodes glissantes'))
-    assert(text.includes('💬 Tu es exposé à l’un d’entre eux ?'))
+    assert(text.includes(assets.every(a => a.instrumentType === 'EQUITY' || (!a.isin && a.basis === 'adjusted')) ? '💬 Tu détiens l’une de ces actions ?' : '💬 Tu es exposé à l’un d’entre eux ?'))
   }
 }
 // A newly refreshed month automatically extends selectable dates and rolling windows.

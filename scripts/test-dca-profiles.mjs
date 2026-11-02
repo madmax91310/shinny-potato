@@ -24,7 +24,7 @@ for (const profile of PROFILES) {
 const julien = PROFILES[0]
 assert.equal(julien.monthly, 500)
 assert.equal(julien.lines.reduce((sum, line) => sum + line.amount, 0), 500)
-assert(buildTweetText(julien).includes('3200€'))
+assert(buildTweetText(julien).includes('3\u202f200 €'))
 let current = julien
 const seen = new Set([current.id])
 const cycle = new Set(seen)

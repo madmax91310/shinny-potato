@@ -95,7 +95,7 @@ export function companyLabel(name) {
 // Les accroches chiffrées suivent la composition reçue, y compris après actualisation.
 export function indexHook(sheet) {
   // Derived sheets have no written intro: the hook names the index and announces its composition.
-  let hook = INDEX_HOOKS[sheet.id] ?? sheet.intro ?? `Que contient vraiment le ${sheet.index} ? Ses pays, ses secteurs et ses principales lignes racontent où va l’argent investi.`
+  let hook = INDEX_HOOKS[sheet.id] ?? sheet.intro ?? `Quelles entreprises composent le ${sheet.index}, et quelle place occupent-elles ?`
   if (sheet.id === 'acwi') {
     const usa = sortedRows(sheet.countries).find(([name]) => /États-Unis|United States/i.test(name))?.[1]
     if (usa > 50) {
@@ -114,7 +114,9 @@ export function indexHook(sheet) {
     eurostoxx50: 'Regardons les principales entreprises de l’EURO STOXX 50 et la place qu’elles occupent 👇',
     stoxx600: 'Regardons les pays et les entreprises qui composent cet indice 👇',
     'world-ex-usa': 'Je t’explique ce que contient cet indice 👇',
-  }[sheet.id] ?? `Regardons les principales entreprises du ${sheet.index} et leur poids 👇`
+  }[sheet.id] ?? (sortedRows(sheet.holdings).length
+    ? `Regardons les principales entreprises du ${sheet.index} et leur poids 👇`
+    : `Regardons la répartition publiée du ${sheet.index} 👇`)
   return `${hook}\n\n${transition}\n\n🔖 Sauvegarde ce tweet`
 }
 
@@ -125,7 +127,7 @@ export function indexObservation(sheet) {
   const asia = countries.filter(([name]) => /Taïwan|Taiwan|Corée|Korea/i.test(name))
   const concentration = top.length
     ? 'Une entreprise à 10 % pèse dix fois plus dans l’indice qu’une entreprise à 1 %. Le nombre de titres ne raconte donc pas tout.'
-    : 'Les pays et les secteurs permettent de voir où va l’argent investi dans cet indice.'
+    : 'Les répartitions publiées décrivent l’exposition de l’indice, sans détailler ici le poids de chaque entreprise.'
   switch (sheet.id) {
     case 'msci-world-consumer-discretionary': return 'Ce secteur comprend des achats que les ménages peuvent repousser. Le crédit et leur confiance peuvent changer la demande, même si les entreprises de ce secteur vendent des produits très différents.'
     case 'msci-world-communication-services': return 'Le mot « communication » réunit plusieurs activités. Une plateforme financée par la publicité et un opérateur qui facture des abonnements ne dépendent pas des mêmes revenus.'

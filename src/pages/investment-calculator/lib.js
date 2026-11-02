@@ -85,8 +85,10 @@ export function buildTweetText(state, d) {
   const endLabel = `${MONTHS_FULL[Number(d.endYm.split('-')[1]) - 1]} ${d.endYm.split('-')[0]}`
   const gainAbs = d.result.finalValue - d.result.totalInvested
   const monthly = d.effectiveMode === 'dca'
-  const endingQuestion = monthly
-    ? 'Tu aurais continué tes achats pendant les baisses ?'
+  const endingQuestion = d.isCustom
+    ? 'Quelle évolution du prix voudrais-tu comparer à ce scénario ?'
+    : monthly
+    ? 'Tu aurais conservé ce rythme de versement sur cette durée ?'
     : 'Tu aurais gardé ce placement jusqu’au bout ?'
   const hookLine = d.effectiveMode === 'dca'
     ? `Et si tu avais investi ${amountFmt} par mois dans ${investmentLabel} depuis ${monthLabel} ${yearLabel} ? 🫢`
@@ -95,16 +97,20 @@ export function buildTweetText(state, d) {
   const lines = [
     hookLine,
     '',
-    `${d.isCustom ? 'Avec les deux prix saisis, voici ce que cette somme serait devenue' : state.overridePriceRaw ? `Au prix final saisi, voici ce que ${monthly ? 'tes achats mensuels seraient devenus' : 'cette somme serait devenue'} en ${endLabel}` : `En ${endLabel}, voici ce que ${monthly ? 'tes achats mensuels seraient devenus' : 'cette somme serait devenue'}`} 👇`,
+    `${d.isCustom ? `Avec les deux prix saisis, cette somme passerait de ${amountFmt} à ${finalFmt}` : state.overridePriceRaw ? `Au prix final saisi, voici le résultat en ${endLabel}` : `À la clôture de ${endLabel}, voici le résultat`} 👇`,
     '',
     `💰 ${monthly ? 'Total versé' : 'Somme investie'} : ${fmtEUR(d.result.totalInvested, currency)}`,
-    `📈 Capital final : ${finalFmt}`,
+    `${gainAbs < 0 ? '📉' : '📈'} Capital final : ${finalFmt}`,
     `${gainAbs < 0 ? '🔴 Perte' : '🟢 Gain'} : ${fmtEUR(Math.abs(gainAbs), currency)}${monthly ? '' : ` (${fmtPct(gainPct)})`}`,
     ...(monthly ? [`📊 ${gainAbs < 0 ? 'Perte' : 'Gain'} sur les sommes versées : ${fmtPct(gainPct)}`] : []),
   ]
-  if (ASSETS[state.assetId]?.priceUnit === 'points' || INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)) {
-    if (asset?.methodNote) lines.push(asset.methodNote)
-  }
+  if (monthly) lines.push('', `${d.result.months.length} versements en fin de mois, de ${monthLabel} ${yearLabel} à ${endLabel}, inclus.`)
+  else if (!d.isCustom) lines.push('', `Versement unique à la clôture de ${monthLabel} ${yearLabel}.`)
+  if (d.isCustom) lines.push('', 'Scénario fondé uniquement sur les deux prix saisis, sans historique de marché, hors frais et fiscalité.')
+  if (asset?.methodNote) lines.push('', asset.methodNote)
+  else if (asset?.priceMethod === 'adjusted') lines.push('', asset.isin && asset.instrumentType !== 'EQUITY'
+    ? 'Revenus réinvestis, frais du produit inclus ; hors frais du courtier et fiscalité.'
+    : 'Dividendes réinvestis et divisions d’actions pris en compte ; hors frais et fiscalité.')
 
   if (state.assetId === 'silver') {
     lines.push('', 'Prix de futures COMEX continus en dollars, sans frais ni renouvellement des contrats : ce calcul ne représente pas le rendement d’un placement réel en argent.')

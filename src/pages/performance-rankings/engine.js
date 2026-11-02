@@ -169,10 +169,11 @@ export function buildTweet(result, title) {
   const confrontation = participants.length === 1
     ? stocks ? 'Cette action a-t-elle battu' : 'Cet actif a-t-il battu'
     : `Parmi ces ${count} ${stocks ? 'actions' : 'actifs'}, ${stocks ? 'lesquelles' : 'lesquels'} ont battu`
+  const feminine = result.assets.every(a => a.instrumentType === 'EQUITY' || (!a.isin && a.basis === 'adjusted'))
   const hook = benchmark
     ? `${confrontation} l’${benchmark.shortLabel.replace(/ \(réf\.\)$/, '')} ${period}${currency} ? 👇`
-    : `Parmi ${tweetUniverse(result, title)}, lequel a le mieux performé ${period}${currency} ? 👇`
-  return `${hook}\n\n${lines.join('\n')}\n\nLe détail année par année dans l’image 👇\n\n💬 Tu es exposé à l’un d’entre eux ?\n\nPas un conseil financier.`
+    : `Parmi ${tweetUniverse(result, title)}, ${feminine ? 'laquelle' : 'lequel'} a le mieux performé ${period}${currency} ? 👇`
+  return `${hook}\n\n${lines.join('\n')}\n\n${basisLabel(result.coverage.basis)}.\n\nLe détail année par année dans l’image 👇\n\n💬 ${feminine ? 'Tu détiens l’une de ces actions ?' : 'Tu es exposé à l’un d’entre eux ?'}\n\nPas un conseil financier.`
 }
 
 export function rebalanceLabel(value) { return ({ none: 'Sans rééquilibrage', annual: 'Rééquilibrage en décembre', monthly: 'Rééquilibrage chaque mois' })[value] }
