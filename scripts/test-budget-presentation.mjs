@@ -51,3 +51,6 @@ assert.equal(budgetTransfers({...aicha,savings:[{label:'Autre versement',amount:
 
 assert.equal(budgetRowSymbol({label:'Manucure',category:'health'}).kind,'care')
 assert.equal(budgetRowSymbol({label:'Coiffure et soins',category:'health'}).kind,'hair')
+
+const swissMeans = BUDGET_PROFILES.find(p=>p.id==='mustachian-ingenieur-28-2025-08-16')
+assert(!/annuel/.test(budgetPublicBasis(swissMeans,budgetPublicPresentation(swissMeans).basis)),'A 2025 average does not establish a complete calendar year')

@@ -16,7 +16,7 @@ La version publique avant intervention expose le code `10f43edb93d2b301657bbf20b
 - Les libellés avant/après décrivent l’épargne, les investissements ou le financement d’entreprise. Les provisions et versements inconnus ne sont pas automatiquement appelés épargne. Un instrument précis reste détaillé, même seul ; une affectation unique synonyme de son titre n’est pas répétée.
 - Les conclusions purement éditoriales sur « cet exemple de budget » deviennent « son budget », « leur budget » ou « ce budget » selon le profil. Les 104 questions ciblées et les récits enrichis restent inchangés, avec leur provenance.
 
-Hadrien garde la distinction entre salaire et dépenses moyennes de périodes différentes, formulée sans date dans le contenu graphique. Romain garde la moyenne annuelle et les ressources exceptionnelles. Les dates patrimoniales et échéances qui expliquent réellement un récit ne sont pas effacées du texte. Une échéance financière personnalisée n’est pas traitée comme une date de préparation.
+Hadrien garde la distinction entre salaire et dépenses moyennes de périodes différentes, formulée sans date dans le contenu graphique. Romain garde les ressources moyennes et leurs éléments exceptionnels, sans supposer une année complète. Les dates patrimoniales et échéances qui expliquent réellement un récit ne sont pas effacées du texte. Une échéance financière personnalisée n’est pas traitée comme une date de préparation.
 
 ## Exemples
 

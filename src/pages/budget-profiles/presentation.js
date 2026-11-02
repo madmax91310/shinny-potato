@@ -33,7 +33,7 @@ export function budgetQualification(profile) {
   return /^(budget-conseil|reference-)/.test(profile.id) ? (profile.household.match(/budget[^·]*de référence/i)?.[0].trim() || 'Budget de référence') : 'Budget reconstitué'
 }
 export function budgetPublicBasis(profile, basis) {
-  let result = basis.replace(/Moyennes\s+20\d{2}/g, 'Moyennes annuelles').replace(/(net moyen)\s+20\d{2}\b/gi, '$1')
+  let result = basis.replace(/Moyennes\s+20\d{2}/g, 'Moyennes').replace(/(net moyen)\s+20\d{2}\b/gi, '$1')
   if (/salaire.*20\d{2}.*dépenses.*20\d{2}/i.test(profile.period)) {
     result = 'Dépenses moyennes d’une autre période'
   }
