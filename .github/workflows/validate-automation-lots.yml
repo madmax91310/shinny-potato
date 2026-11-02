@@ -34,7 +34,8 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: pip install beautifulsoup4==4.15.0
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0
       - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
       - run: python scripts/probe_automation_lots.py
       - name: Recheck exact PEA and distribution evidence
@@ -64,7 +65,8 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: pip install beautifulsoup4==4.15.0
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0
       - run: node scripts/test-validated-data-publisher.mjs
       - run: node scripts/test-pages-snapshot.mjs
       - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py'
@@ -97,7 +99,8 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: pip install beautifulsoup4==4.15.0
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0
       - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
       - run: python -m unittest discover -s scripts -p 'test_topix_holdings.py'
       - name: Qualify exact TOPIX benchmark equity compositions

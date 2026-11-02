@@ -89,11 +89,17 @@ jobs:
       published: ${{ steps.scope.outputs.published }}
       commit_sha: ${{ needs.current-snapshot.outputs.commit_sha }}
     steps:
+      - name: Keep full public validation for pull requests
+        if: github.event_name == 'pull_request'
+        run: echo "Public validation remains complete; publication classification is unnecessary for a PR."
       - uses: actions/checkout@v7.0.1
+        if: github.event_name != 'pull_request'
         with:
           ref: ${{ needs.current-snapshot.outputs.commit_sha }}
           fetch-depth: 0
+          filter: blob:none
       - uses: actions/setup-node@v7.0.0
+        if: github.event_name != 'pull_request'
         with:
           node-version: 20
       - name: Record the data snapshot requested for publication
@@ -134,6 +140,9 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
       - run: python -m unittest discover -s scripts -p 'test_ranking_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_yahoo_terminal_monthly_quote.py'
       - run: python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'
@@ -347,7 +356,8 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: pip install beautifulsoup4==4.15.0 openpyxl==3.1.5 xlrd==2.0.2 exchange_calendars==4.13.2
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt -r scripts/python-requirements.in
       - run: python -m unittest discover -s scripts -p "test_dca*py"
       - run: python -m unittest discover -s scripts -p 'test_broker_tariff*.py'
       - run: python scripts/audit_broker_coverage.py
@@ -355,7 +365,6 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_etf_resilience.py'
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
-      - run: pip install Pillow==12.3.0
       - run: python -m unittest discover -s scripts -p 'test_russell_composition.py'
       - run: python -m unittest discover -s scripts -p 'test_sp_composition.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'
@@ -404,7 +413,6 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_index_companies.py'
       - run: python -m unittest discover -s scripts -p 'test_korea_companies.py'
       - run: python -m unittest discover -s scripts -p 'test_remaining_aum.py'
-      - run: pip install -r scripts/company-requirements.txt
       - run: python -m unittest discover -s scripts -p 'test_scpi.py'
       - run: python -m unittest discover -s scripts -p 'test_iroko_snapshot.py'
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr tesseract-ocr-fra
@@ -423,7 +431,6 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_publication*.py'
       - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
       - run: python -m unittest discover -s scripts -p "test_data_automation.py"
-      - run: pip install -r scripts/requirements-gold.txt
       - run: python -m unittest discover -s scripts -p "test_gold_monthly.py"
       - run: python -m unittest discover -s scripts -p "test_pages_head.py"
       - run: python -m unittest discover -s scripts -p 'test_automation*.py'
@@ -507,6 +514,17 @@ jobs:
           path: ~/.cache/ms-playwright
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
+      - id: portable-engines
+        run: node scripts/browser-portability-engines.mjs ${{ matrix.shard }} 4
+      - uses: actions/cache@v4
+        if: steps.portable-engines.outputs.extra == 'true'
+        with:
+          path: |
+            ~/.cache/ms-playwright/firefox-*
+            ~/.cache/ms-playwright/webkit-*
+          key: portable-engines-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
+      - if: steps.portable-engines.outputs.extra == 'true'
+        run: npx playwright install --with-deps firefox webkit
       - run: node scripts/run-browser-checks.mjs ${{ matrix.shard }} 4
       - uses: actions/upload-artifact@v7.0.1
         if: always()
@@ -638,6 +656,7 @@ jobs:
         with:
           ref: ${{ needs.build.outputs.commit_sha }}
           fetch-depth: 0
+          filter: blob:none
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
@@ -748,6 +767,7 @@ jobs:
         with:
           ref: ${{ needs.scope.outputs.commit_sha }}
           fetch-depth: 0
+          filter: blob:none
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
