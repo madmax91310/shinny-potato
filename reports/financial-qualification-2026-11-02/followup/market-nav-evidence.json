@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "isin": "IE00B4L5Y983",
+  "assetId": "etfIE00B4L5Y983",
+  "year": 2025,
+  "listing": {
+    "mic": "XAMS",
+    "ticker": "IWDA",
+    "currency": "EUR"
+  },
+  "navCurrency": "USD",
+  "start": "2024-12-31",
+  "end": "2025-12-31",
+  "publishedDecimalPlaces": 2,
+  "captures": {
+    "identity": {
+      "file": "euronext-identity.html.gz",
+      "sourceUrl": "https://live.euronext.com/en/product/etfs/IE00B4L5Y983-XAMS",
+      "uncompressedSha256": "fee750d05b1702208b5463bcc5447887bf41311d051483482449257daea8be44",
+      "capturedAt": "2026-11-02T15:08:34.892011+00:00"
+    },
+    "startQuote": {
+      "file": "euronext-2024.html.gz",
+      "sourceUrl": "https://live.euronext.com/en/ajax/getHistoricalPricePopup/IE00B4L5Y983-XAMS",
+      "uncompressedSha256": "a79a1185df8f710a1fb50dc44e2a9fdb37e67289f222d3749eb837cf27b7a124",
+      "capturedAt": "2026-11-02T15:14:51.381702+00:00"
+    },
+    "endQuote": {
+      "file": "euronext-2025.html.gz",
+      "sourceUrl": "https://live.euronext.com/en/ajax/getHistoricalPricePopup/IE00B4L5Y983-XAMS",
+      "uncompressedSha256": "849cc0c546d5f4117358bd57d630387a59af8e21eae14b6afd9c09955e626e93",
+      "capturedAt": "2026-11-02T15:14:53.897742+00:00"
+    },
+    "nav": {
+      "file": "blackrock-iwda.json.gz",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "uncompressedSha256": "0e142d53aab25b39e82062275384eba37727c3b72e938131f27ab5e05ee440b2",
+      "capturedAt": "2026-11-02T15:08:36.642628+00:00"
+    },
+    "fx": {
+      "file": "ecb-history.xml.gz",
+      "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+      "uncompressedSha256": "e25f694c47efc95848866963b136520bc3c8e77e2589c8520ad06327dccc4696",
+      "capturedAt": "2026-11-02T15:18:51.240971+00:00"
+    }
+  }
+}

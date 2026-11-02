@@ -1,0 +1,105 @@
+[
+  {
+    "isin": "IE00B1XNHC34",
+    "id": "etf_clean_energy",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "ceafc6681365fe1135ec6f37b7311ed4be830ef78407b688ba6033f9d9aa47e1",
+    "checkedAt": "2026-11-02T16:48:49.657405+00:00",
+    "navEnd": "2026-10-30",
+    "returnEnd": "2026-10-29",
+    "latestCommonDate": "2026-10-29",
+    "withheldMonthlyEnds": [
+      {
+        "month": "2026-10",
+        "returnAsOf": "2026-10-29",
+        "lastNavAsOf": "2026-10-30",
+        "reason": "Monthly NAV/return end not independently qualified: 2026-10"
+      }
+    ],
+    "excludedMonths": [
+      "2026-10"
+    ],
+    "calendarChecks": 10,
+    "cashChecks": 2,
+    "monthlyUnitChecks": 225
+  },
+  {
+    "isin": "IE00B2QWCY14",
+    "id": "etfIE00B2QWCY14",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "aa54c01337a445e244c113292d4dde3bcd2fc127e83cfe57f9809fd6b258efbb",
+    "checkedAt": "2026-11-02T16:48:49.404816+00:00",
+    "navEnd": "2026-10-30",
+    "returnEnd": "2026-10-30",
+    "latestCommonDate": "2026-10-30",
+    "withheldMonthlyEnds": [],
+    "excludedMonths": [],
+    "calendarChecks": 10,
+    "cashChecks": 6,
+    "monthlyUnitChecks": 142
+  },
+  {
+    "isin": "IE00B4556L06",
+    "id": "etcPalladium",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "9d1062fc21653e711512af0652ed22a5162b33d8bf6b898ad30283db1cc2f50f",
+    "checkedAt": "2026-11-02T16:48:49.095272+00:00",
+    "navEnd": "2026-10-30",
+    "returnEnd": "2026-10-29",
+    "latestCommonDate": "2026-10-29",
+    "withheldMonthlyEnds": [
+      {
+        "month": "2026-10",
+        "returnAsOf": "2026-10-29",
+        "lastNavAsOf": "2026-10-30",
+        "reason": "Monthly NAV/return end not independently qualified: 2026-10"
+      }
+    ],
+    "excludedMonths": [
+      "2014-12",
+      "2026-10"
+    ],
+    "calendarChecks": 10,
+    "cashChecks": 0,
+    "monthlyUnitChecks": 186
+  },
+  {
+    "isin": "IE00BJ5JP097",
+    "id": "etf_financials",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "42ba49483064b3bddcaea2f573c58db58b7b706a2b84c15e6f3961a4e22de6d1",
+    "checkedAt": "2026-11-02T16:48:48.518723+00:00",
+    "navEnd": "2026-10-30",
+    "returnEnd": "2026-10-29",
+    "latestCommonDate": "2026-10-29",
+    "withheldMonthlyEnds": [
+      {
+        "month": "2026-10",
+        "returnAsOf": "2026-10-29",
+        "lastNavAsOf": "2026-10-30",
+        "reason": "Monthly NAV/return end not independently qualified: 2026-10"
+      }
+    ],
+    "excludedMonths": [
+      "2026-10"
+    ],
+    "calendarChecks": 4,
+    "cashChecks": 2,
+    "monthlyUnitChecks": 66
+  },
+  {
+    "isin": "IE00BJ5JP436",
+    "id": "etf_world_communication",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "701049c09f287c964586a53d30320fc845ba85a216ed87e54eeda3504d35e70a",
+    "checkedAt": "2026-11-02T16:48:48.338894+00:00",
+    "navEnd": "2026-10-30",
+    "returnEnd": "2026-10-30",
+    "latestCommonDate": "2026-10-30",
+    "withheldMonthlyEnds": [],
+    "excludedMonths": [],
+    "calendarChecks": 3,
+    "cashChecks": 2,
+    "monthlyUnitChecks": 54
+  }
+]
