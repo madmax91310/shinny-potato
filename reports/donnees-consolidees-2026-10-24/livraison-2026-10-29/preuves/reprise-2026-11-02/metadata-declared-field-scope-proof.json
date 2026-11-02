@@ -15,7 +15,7 @@
   "incorrectStageResults": 210,
   "newSelectedSourceFieldPairs": 21,
   "newSelectedStageItems": 42,
-  "newFullCatalogueStageItems": 3150,
+  "newFullCatalogueStageItems": 3360,
   "selectedFields": [
     "listings"
   ],
@@ -211,5 +211,9 @@
     }
   ],
   "limit": "No historical input plan/result modified. Source capabilities are read before results. Other financial-field requirements remain in the application inventory and their producers. No source control, publication, or eligibility is inferred from this correction.",
-  "production": "forward targeted ordinary21instrument run and public ingestion not yet verified"
+  "production": "forward targeted ordinary21instrument run and public ingestion not yet verified",
+  "newFullRunRequestedStageItems": 3150,
+  "newUnownedStageItems": 210,
+  "cohortIdentityUniverseRetained": 252,
+  "exclusionStatus": "not-attempted, sourceAttempted=false, explicit source-capability reason; no consumer field declared unnecessary"
 }
