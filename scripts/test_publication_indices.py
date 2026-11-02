@@ -3,9 +3,10 @@ import copy
 import datetime as dt
 import io
 import json
+import gzip
 import unittest
 from openpyxl import Workbook
-from refresh_anniversary_indices import ROOT, configurations, russell_rows, allworld_rows, collect_ftse, merge_record, refresh
+from refresh_anniversary_indices import ROOT, configurations, russell_rows, allworld_rows, collect_ftse, merge_record, refresh, UnavailableFTSEPublication
 from refresh_anniversary_levels import collect_one as collect_level
 from data_automation import UTC
 
@@ -22,6 +23,25 @@ def workbook(title='FTSE All-World (USD)',header='Total Return',value=100):
     output=io.BytesIO();book.save(output);book.close();return output.getvalue()
 
 class IndexTests(unittest.TestCase):
+    def test_actual_ftse_missing_publication_remains_an_error_with_precise_scope(self):
+        raw=gzip.decompress((ROOT/'scripts/fixtures/income-recovery-20261102/ftse-history.bin.gz').read_bytes())
+        config=next(c for c in configurations() if c['id']=='ftseAllWorld')
+        now=dt.datetime(2026,11,2,6,tzinfo=UTC)
+        with self.assertRaises(UnavailableFTSEPublication)as caught:collect_ftse(config,now,lambda _:raw)
+        self.assertEqual(caught.exception.evidence['lastPublishedAsOf'],'2026-09-30')
+        self.assertEqual(caught.exception.evidence['missingMonths'],['2026-10'])
+        old={config['id']:{**config,'points':[['2026-09',1368.56]],'periodEnd':'2026-09','checkedAt':'2026-10-20'}}
+        prior=copy.deepcopy(old)
+        def collect(c,n):
+            if c['id']==config['id']:return collect_ftse(c,n,lambda _:raw)
+            raise OSError('Other source unavailable')
+        updated,proof,report=refresh(old,{},now,collect)
+        self.assertEqual(updated,prior);self.assertEqual(old,prior);self.assertEqual(proof,{})
+        error=next(e for e in report['errors']if e['id']=='anniversary-index-ftseAllWorld')
+        self.assertEqual(error['sourceStatus'],'required-official-period-unavailable')
+        self.assertEqual(error['missingMonths'],['2026-10'])
+        self.assertTrue(all('sourceStatus'not in e for e in report['errors']if e['id']!=error['id']))
+
     def test_official_snapshot_replay(self):
         proof=json.loads((ROOT/'scripts/source-snapshots/anniversary-indices.json').read_text())
         active=json.loads((ROOT/'src/data/anniversary-index-history.json').read_text())

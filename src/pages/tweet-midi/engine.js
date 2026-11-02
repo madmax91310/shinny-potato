@@ -1,4 +1,5 @@
 import { instrumentSearchText } from '../../data/asset-selection.js'
+import { anniversaryReferenceDate } from '../../lib/anniversary-reference.js'
 import { compatibleIndexReturns } from '../../lib/return-convention.js'
 import { convertPerformanceEntries, performanceCurrencies, performanceDisplayBasis } from './performanceCurrency.js'
 import { formatPerformancePct, performancePeriod } from './performanceFormat.js'
@@ -38,7 +39,7 @@ export function createFormatEngine({
 } = {}) {
 // Histories are immutable for this engine's lifetime. Compute each asset's
 // eligible years once, not once for every comparison partner (quadratic work).
-const anniversaryYears = new Map(ANNIVERSAIRE_ELIGIBLE_ASSETS.map(asset => [asset.id, getValidYearsBackOptions(asset.id, TODAY)]));
+const anniversaryYears = new Map(ANNIVERSAIRE_ELIGIBLE_ASSETS.map(asset => [asset.id, getValidYearsBackOptions(asset.id, anniversaryReferenceDate([{asset:ASSETS[asset.id]??asset,observation:resolveAnniversaryLevel===unavailable?null:resolveAnniversaryLevel(asset.id,'')}],TODAY))]));
 const performanceYears = new Map(MARKET_ASSETS.map(asset => [asset.id, getAnnualReturnStartYears(asset.id)]));
 // ── Pools par format ──────────────────────────────────────────────────────────────────────
 // Chaque entrée porte son format d'origine pour permettre le filtrage par format ET
@@ -414,11 +415,11 @@ function fmtAnniversaryLevel(asset, value) {
 // Latest qualified observation by default; explicit manual override remains available.
 function buildAnniversaireText(item, rawNiveauActuel) {
   const asset = findAsset(item.assetId);
-  const ym = ymForYearsBack(item.yearsBack, TODAY);
+  const observation = resolveAnniversaryLevel(item.assetId, rawNiveauActuel);
+  const ym = ymForYearsBack(item.yearsBack, anniversaryReferenceDate([{asset,observation}],TODAY));
   const historicalPrice = getHistoricalPrice(item.assetId, ym);
   const dateLabel = fmtYm(ym, { monthLabels: MONTHS_FULL });
 
-  const observation = resolveAnniversaryLevel(item.assetId, rawNiveauActuel);
   const niveauActuel = observation?.value;
   const hasCurrent = !!observation;
   const gainPct = hasCurrent ? ((niveauActuel - historicalPrice) / historicalPrice) * 100 : null;
@@ -475,13 +476,13 @@ function buildPerformanceDepuisText(item) {
 function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNiveauActuelB) {
   const assetA = findAsset(item.assetIdA);
   const assetB = findAsset(item.assetIdB);
-  const ym = ymForYearsBack(item.yearsBack, TODAY);
+  const obsA = resolveAnniversaryLevel(item.assetIdA, rawNiveauActuelA);
+  const obsB = resolveAnniversaryLevel(item.assetIdB, rawNiveauActuelB);
+  const ym = ymForYearsBack(item.yearsBack, anniversaryReferenceDate([{asset:assetA,observation:obsA},{asset:assetB,observation:obsB}],TODAY));
   const dateLabel = fmtYm(ym, { monthLabels: MONTHS_FULL });
   const histA = getHistoricalPrice(item.assetIdA, ym);
   const histB = getHistoricalPrice(item.assetIdB, ym);
 
-  const obsA = resolveAnniversaryLevel(item.assetIdA, rawNiveauActuelA);
-  const obsB = resolveAnniversaryLevel(item.assetIdB, rawNiveauActuelB);
   const curA = obsA?.value, curB = obsB?.value;
   const hasA = !!obsA, hasB = !!obsB;
   const pctA = hasA ? ((curA - histA) / histA) * 100 : null;

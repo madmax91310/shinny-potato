@@ -1093,10 +1093,10 @@
     "sourceUrls": [
       "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
     ],
-    "checkedAt": "2026-10-31T13:51:04.292815+00:00",
+    "checkedAt": "2026-11-02",
     "method": "Valeur liquidative officielle ajustée : rendement réinvesti publié de la part exacte, recalé sur sa NAV à date identique ; conversion BCE explicite si nécessaire ; aucun dividende ajouté une seconde fois",
     "maxAgeDays": 7,
-    "sha256": "9ababa101711674caf281742a1eec87f4c920043060e2b48b694df6872576e74"
+    "sha256": "8106371c0c509aa56b7fb6769a142b82e084f1125ccbbd34cd7086f0b046ab81"
   },
   "etf_water_ishares": {
     "value": 75.62000274658203,
@@ -1203,7 +1203,7 @@
     "sourceUrls": [
       "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
     ],
-    "checkedAt": "2026-10-31T13:51:04.292815+00:00",
+    "checkedAt": "2026-11-02",
     "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
     "maxAgeDays": 7,
     "sha256": "a2d7670c84af5f74f3e76e0a545dd71ccbaee4686c15d09a42a8c7025af3a342"
@@ -1278,7 +1278,7 @@
       "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
     ],
-    "checkedAt": "2026-10-31T13:51:04.292815+00:00",
+    "checkedAt": "2026-11-02",
     "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
     "maxAgeDays": 7,
     "sha256": "af0f6e16222167a1ac10517eeb15038b52562b59dafff83c746cbd6912eba3dc"
@@ -1298,7 +1298,7 @@
     "sourceUrls": [
       "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
     ],
-    "checkedAt": "2026-10-31T13:51:04.292815+00:00",
+    "checkedAt": "2026-11-02",
     "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
     "maxAgeDays": 7,
     "sha256": "59920ea3eb0b04169df3eac386e4cb3d53ff7dff632b4d7dca8e2754d67d75b2"
@@ -9561,7 +9561,7 @@
       "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
     ],
-    "checkedAt": "2026-10-31T13:51:04.292815+00:00",
+    "checkedAt": "2026-11-02",
     "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
     "maxAgeDays": 7,
     "sha256": "7873c051a4ef842066cce6951f5a7f7596b339f05f54366fcffe81b9ce2d1c80"
@@ -11645,5 +11645,245 @@
     "mic": "XETR",
     "listingEvidenceId": "IE00BZ6V7883-XETR-QDVP-EUR",
     "checkedAt": "2026-11-02T09:49:47.777960+00:00"
+  },
+  "etfIE00B0M63516Nav": {
+    "value": 26.200629,
+    "asOf": "2026-10-30",
+    "currency": "USD",
+    "isin": "IE00B0M63516",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 26.200629,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251853&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251853&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-11-02",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "2a8a12bb54bae2a782969fd3935f1aaaa6d105071d3f1b6004448f6b780fa8e1"
+  },
+  "etfIE00BSKRJZ44Nav": {
+    "value": 3.059915,
+    "asOf": "2026-10-30",
+    "currency": "USD",
+    "isin": "IE00BSKRJZ44",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 3.059915,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-11-02",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "9f0a59abd5e749e0e451f5243570ddc856a9d5d9842b2a5db9f07668df4033d5"
+  },
+  "etfIE00B14X4S71Nav": {
+    "value": 126.147788,
+    "asOf": "2026-10-30",
+    "currency": "USD",
+    "isin": "IE00B14X4S71",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 126.147788,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251715&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251715&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-11-02",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "167c2a9c3ae7e08be6bd6fff970fc6a8144baac043180b3cf5630ede24bc4d92"
+  },
+  "etfIE00B1FZS574Nav": {
+    "value": 18.822295,
+    "asOf": "2026-10-30",
+    "currency": "USD",
+    "isin": "IE00B1FZS574",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 18.822295,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-11-02",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "a5c4a934b5bf4d1e27e6e0f885f245bb1e0cbcaaea7000af41ae28ca15091d02"
+  },
+  "etfIE00BZ6V7883Nav": {
+    "value": 4.108027,
+    "asOf": "2026-10-30",
+    "currency": "USD",
+    "isin": "IE00BZ6V7883",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 4.108027,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-11-02",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "ab3eae8f41aeda3e7278bdb8553789203d83ef62f6d9ccdacefcb301ae74c724"
+  },
+  "etfIE00B3F81K65Nav": {
+    "value": 85.876067,
+    "asOf": "2026-10-30",
+    "currency": "USD",
+    "isin": "IE00B3F81K65",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 85.876067,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-11-02",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "ac17780bc3434d6b96a260177d05ecb0e3206379ef280b23a383844c854ad4ec"
+  },
+  "etfIE00BSKRJX20Nav": {
+    "value": 2.961516,
+    "asOf": "2026-10-30",
+    "currency": "EUR",
+    "isin": "IE00BSKRJX20",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 2.961516,
+    "nativeCurrency": "EUR",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-11-02",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "2e5fc2c3f8625313ed41b12a086ee984979666a8d58045ec2217560955a0b638"
+  },
+  "etfIE00B1FZS798Nav": {
+    "value": 168.400708,
+    "asOf": "2026-10-30",
+    "currency": "USD",
+    "isin": "IE00B1FZS798",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 168.400708,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-11-02",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "8a6a5a11546f6ee156bc1b98a9f43cf01c01dc7a2729d247c56319e62d6832d8"
+  },
+  "etfIE00BZ048462Nav": {
+    "value": 5.104256,
+    "asOf": "2026-10-30",
+    "currency": "USD",
+    "isin": "IE00BZ048462",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 5.104256,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-11-02",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "588051eb1f772ab6ac38f661c35d3ea87a6fc0dd0b6d8e835f3e6a4fb03b47f4"
+  },
+  "etfIE00BJ5JPJ87Nav": {
+    "value": 4.82518,
+    "asOf": "2026-10-30",
+    "currency": "USD",
+    "isin": "IE00BJ5JPJ87",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 4.82518,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308477&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308477&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-11-02",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "3228ecdbaa7000d39b15d021fed60c7908e570e69a7f2de1615fbdb96be27588"
+  },
+  "etfIE00B2QWDY88Nav": {
+    "value": 59.960054,
+    "asOf": "2026-10-30",
+    "currency": "USD",
+    "isin": "IE00B2QWDY88",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 59.960054,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-11-02",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "1e991c2a069fec14a3e2194258a576da00509fd21a78a2072aa8050d5d19d14e"
+  },
+  "etfIE00BYPC1H27Nav": {
+    "value": 5.811985,
+    "asOf": "2026-10-30",
+    "currency": "USD",
+    "isin": "IE00BYPC1H27",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 5.811985,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-11-02",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "6c9b708b7a96456fa83829f572e1744c5da28f8eaf863ff60189331c0ddd4ccb"
   }
 }

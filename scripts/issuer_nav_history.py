@@ -203,8 +203,10 @@ def calendar_checks(points, years, precision, now, identity_from=None):
     return result
 
 
-def monthly(points, source_currency, currency, start, now, fx=None):
-    end = now.strftime('%Y-%m')
+def monthly(points, source_currency, currency, start, now, fx=None, *, end_exclusive=None):
+    end = end_exclusive or now.strftime('%Y-%m')
+    if not re.fullmatch(r'\d{4}-(0[1-9]|1[0-2])',end) or not start<end<=now.strftime('%Y-%m'):
+        raise ValueError('Invalid qualified monthly end')
     final = {}
     for day, value in sorted(points.items()):
         key = day[:7]

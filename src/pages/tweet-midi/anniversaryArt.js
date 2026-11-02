@@ -8,7 +8,7 @@ import { ETF_HISTORY_IDENTITIES } from '../../data/etf-history-identities.js'
 const BASE_ANNIVERSARY_ART = Object.freeze({
   ...Object.fromEntries(Object.entries(EQUITY_HISTORY_IDENTITIES).map(([id, asset]) => [id, {title:asset.title, indexTitle:asset.title, kind:'illustration', subtitle:asset.currency}])),
   ...Object.fromEntries(Object.entries(ETF_HISTORY_IDENTITIES).map(([id, asset]) => [id, {
-    title: asset.title, subtitle: `${asset.instrumentType ?? 'ETF'} ${asset.ticker}`, kind: 'illustration', indexTitle: asset.ticker,
+    title: asset.title, subtitle: asset.ticker ? `${asset.instrumentType ?? 'ETF'} ${asset.ticker}` : `${asset.instrumentType ?? 'ETF'} · ${id.match(/^etf([A-Z]{2}[A-Z0-9]{10})Nav$/)?.[1] ?? 'valeur liquidative'} · VL`, kind: 'illustration', indexTitle: asset.ticker || 'VALEUR LIQUIDATIVE',
   }])),
   ...Object.fromEntries([
     ['msciEurope', 'MSCI EUROPE'],

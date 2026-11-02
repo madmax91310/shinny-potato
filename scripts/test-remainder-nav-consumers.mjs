@@ -47,8 +47,10 @@ for(const s of sources){
  let start=s.periodStart
  if(!qualifyHistoryWindow(a,start,a.points.at(-1).date).qualified){
   assert.throws(()=>derive({assetId:s.id,amountRaw:'100',startYear:Number(start.slice(0,4)),startMonth:Number(start.slice(5)),mode:'lump',overridePriceRaw:''}))
-  if(a.historyUnqualifiedReturnWindows?.length)start=a.historyUnqualifiedReturnWindows.map(w=>w.end).sort().at(-1)
-  else {const last=[...a.historyExcludedMonths].sort().at(-1),date=new Date(last+'-01T00:00:00Z');date.setUTCMonth(date.getUTCMonth()+1);start=date.toISOString().slice(0,7)}
+  // An explicitly withheld month beyond the available series does not move
+  // the usable start beyond its end. Find a qualified suffix of real points.
+  start=a.points.find(point=>qualifyHistoryWindow(a,point.date,a.points.at(-1).date).qualified)?.date
+  assert(start,`${s.id}: a real qualified suffix must exist`)
  }
  for(const mode of ['lump','dca']){
   const state={assetId:s.id,amountRaw:'100',startYear:Number(start.slice(0,4)),startMonth:Number(start.slice(5)),mode,overridePriceRaw:''}

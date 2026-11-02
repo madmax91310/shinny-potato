@@ -1,8 +1,10 @@
 import automaticIdentities from './auto-history-identities.json' with {type:'json'}
+import newInstruments from './new-instrument-identities.json' with {type:'json'}
 import config from '../../scripts/non-bond-expansion-sources.json' with { type: 'json' }
 const NON_BOND_HISTORY_IDENTITIES = Object.fromEntries(config.instruments.filter(r=>r.historyEnabled!==false).map(r=>[r.historyId,{icon:r.icon,scene:r.scene,title:r.title,ticker:r.preferredSymbol.split('.')[0],instrumentType:r.instrumentType||'ETF'}]))
 const LANDG_AI_IDENTITY={icon:'🧠',scene:'chip',title:'INTELLIGENCE ARTIFICIELLE',ticker:'AIAI'}
 export const ETF_HISTORY_IDENTITIES = {
+ ...Object.fromEntries(newInstruments.map(f=>[`etf${f.isin}Nav`,{icon:f.assetClass==='Fixed Income'?'🔵':'🌍',scene:f.scene,title:f.name.replace(/^iShares /,'').replace(/ UCITS ETF.*$/,''),instrumentType:f.instrumentType}])),
  ...automaticIdentities,
  etfFR0011550185Nav:{...automaticIdentities.etfFR0011550185},
  etfIE00BK5BCD43Nav:{...LANDG_AI_IDENTITY},
