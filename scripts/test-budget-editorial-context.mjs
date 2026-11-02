@@ -26,6 +26,7 @@ for (const profile of BUDGET_PROFILES) {
   }
   assert.equal(text, buildBudgetText(structuredClone(profile)), 'Copy is reproducible')
   assert(!/année non précisée|du scénario|retenu pour l’exemple|dimensionneriez|sur quels critères de disponibilité|l’enjeu/i.test(text), profile.id)
+  if (profile.kind === 'planned') assert.equal((text.split('\n')[0].match(/budget prévu/gi) || []).length, 1, 'The heading states its planned nature once')
   const a = analyzeBudget(profile), sections = budgetExpenseSections(profile)
   assert.equal((text.match(/Total des dépenses :/g) || []).length, sections.length > 1 ? 1 : 0, 'A general total is useful only for split expenses')
   if (a.savings === 0) assert(!/avant versements|après versements/.test(text), 'No pair of identical before/after remainders when nothing is transferred')
