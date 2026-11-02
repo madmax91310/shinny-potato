@@ -1,0 +1,338 @@
+[
+  {
+    "isin": "FR0011871128",
+    "qualified": true,
+    "checkedAt": "2026-11-02",
+    "checks": [
+      {
+        "year": 2020,
+        "start": "2019-12-31",
+        "end": "2020-12-31",
+        "startValue": 23.33751087421096,
+        "endValue": 25.332886153731764,
+        "dailyDerived": 8.550077556582035,
+        "published": 8.55,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2021,
+        "start": "2020-12-31",
+        "end": "2021-12-31",
+        "startValue": 25.332886153731764,
+        "endValue": 35.01776616884601,
+        "dailyDerived": 38.23046437086512,
+        "published": 38.23,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2022,
+        "start": "2021-12-31",
+        "end": "2022-12-30",
+        "startValue": 35.01776616884601,
+        "endValue": 30.465399999999995,
+        "dailyDerived": -13.000161537705635,
+        "published": -13.0,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2023,
+        "start": "2022-12-30",
+        "end": "2023-12-29",
+        "startValue": 30.465399999999995,
+        "endValue": 37.070099999999876,
+        "dailyDerived": 21.67934771905138,
+        "published": 21.68,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2024,
+        "start": "2023-12-29",
+        "end": "2024-12-31",
+        "startValue": 37.070099999999876,
+        "endValue": 49.24579999999988,
+        "dailyDerived": 32.84506920671928,
+        "published": 32.85,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2025,
+        "start": "2024-12-31",
+        "end": "2025-12-31",
+        "startValue": 49.24579999999988,
+        "endValue": 50.943699999999986,
+        "dailyDerived": 3.4478067165120807,
+        "published": 3.45,
+        "publishedDecimalPlaces": 2
+      }
+    ],
+    "sourceUrls": [
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    ],
+    "rawSourceHashes": {
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData": "60cc34d077370ad60197d799c9655979bde55c4820dc27dd2b4deb83626f752c"
+    }
+  },
+  {
+    "isin": "LU2196470426",
+    "qualified": true,
+    "checkedAt": "2026-11-02",
+    "checks": [
+      {
+        "year": 2021,
+        "start": "2020-12-30",
+        "end": "2021-12-30",
+        "startValue": 8337.8923,
+        "endValue": 8864.3187,
+        "dailyDerived": 6.313662746639226,
+        "published": 6.31,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2022,
+        "start": "2021-12-30",
+        "end": "2022-12-30",
+        "startValue": 8864.3187,
+        "endValue": 8183.0956,
+        "dailyDerived": -7.685002345414316,
+        "published": -7.69,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2023,
+        "start": "2022-12-30",
+        "end": "2023-12-29",
+        "startValue": 8183.0956,
+        "endValue": 10679.6831,
+        "dailyDerived": 30.509083872856134,
+        "published": 30.51,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2024,
+        "start": "2023-12-29",
+        "end": "2024-12-31",
+        "startValue": 10679.6831,
+        "endValue": 12912.2944,
+        "dailyDerived": 20.905220492918943,
+        "published": 20.91,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2025,
+        "start": "2024-12-31",
+        "end": "2025-12-31",
+        "startValue": 12912.2944,
+        "endValue": 16558.9865,
+        "dailyDerived": 28.24201483510165,
+        "published": 28.24,
+        "publishedDecimalPlaces": 2
+      }
+    ],
+    "sourceUrls": [
+      "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download?startDate=2020-10-27&endDate=2026-11-02&includeTax=false",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "rawSourceHashes": {
+      "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium": "03606c5c984cff3c7e5f2d3889dfe149aea58fc728d517a6d674b9d979270fe3",
+      "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download?startDate=2020-10-27&endDate=2026-11-02&includeTax=false": "20eba95b1644a6870d44fd2932d54871a9bfebfe1c680920e1808ddc1fdf95e3",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "11764c276d0702f36e8e324f1a94eab76a85d3b5e86e0b20e6e42417dcc7d7aa"
+    }
+  },
+  {
+    "isin": "CH0454664001",
+    "qualified": true,
+    "checkedAt": "2026-11-02",
+    "checks": [
+      {
+        "year": 2020,
+        "start": "2019-12-30",
+        "end": "2020-12-30",
+        "startValue": 2.669,
+        "endValue": 10.086,
+        "dailyDerived": 277.8943424503559,
+        "published": 277.89,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2021,
+        "start": "2020-12-30",
+        "end": "2021-12-30",
+        "startValue": 10.086,
+        "endValue": 16.644,
+        "dailyDerived": 65.0208209399167,
+        "published": 65.02,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2022,
+        "start": "2021-12-30",
+        "end": "2022-12-30",
+        "startValue": 16.644,
+        "endValue": 5.757,
+        "dailyDerived": -65.41095890410959,
+        "published": -65.41,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2023,
+        "start": "2022-12-30",
+        "end": "2023-12-29",
+        "startValue": 5.757,
+        "endValue": 14.498,
+        "dailyDerived": 151.83255167622028,
+        "published": 151.83,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2024,
+        "start": "2023-12-29",
+        "end": "2024-12-30",
+        "startValue": 14.498,
+        "endValue": 31.051,
+        "dailyDerived": 114.174368878466,
+        "published": 114.17,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2025,
+        "start": "2024-12-30",
+        "end": "2025-12-30",
+        "startValue": 31.051,
+        "endValue": 29.587,
+        "dailyDerived": -4.714823999227069,
+        "published": -4.71,
+        "publishedDecimalPlaces": 2
+      }
+    ],
+    "sourceUrls": [
+      "https://api.primary.21shares.com/api/product_details/ABTC",
+      "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
+      "https://api.primary.21shares.com/api/product_performance_metrics/ABTC",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "rawSourceHashes": {
+      "https://api.primary.21shares.com/api/product_details/ABTC": "d1dd2010dc00e4db6aa69b96f30c7c15f2108396014b40c43050142e46869a7d",
+      "https://api.primary.21shares.com/api/product_valuation_history/ABTC": "de727d75bef32c5314e97c391dc2644f2bee42bf9953d1732af5fa061cfbc640",
+      "https://api.primary.21shares.com/api/product_performance_metrics/ABTC": "5970ca67620bcf309d16e05798d14832ab0f18d74ccaec45da7fabee25dc86f6",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "11764c276d0702f36e8e324f1a94eab76a85d3b5e86e0b20e6e42417dcc7d7aa"
+    }
+  },
+  {
+    "isin": "GB00B15KXQ89",
+    "qualified": true,
+    "checkedAt": "2026-11-02",
+    "checks": [
+      {
+        "year": 2016,
+        "start": "2015-12-31",
+        "end": "2016-12-30",
+        "startValue": 21.332755874246452,
+        "endValue": 24.439246719151843,
+        "dailyDerived": 14.56207000735259,
+        "published": 14.56,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2017,
+        "start": "2016-12-30",
+        "end": "2017-12-29",
+        "startValue": 24.439246719151843,
+        "endValue": 31.204852246189542,
+        "dailyDerived": 27.68336358639003,
+        "published": 27.68,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2018,
+        "start": "2017-12-29",
+        "end": "2018-12-31",
+        "startValue": 31.204852246189542,
+        "endValue": 24.28544717884226,
+        "dailyDerived": -22.174131807312815,
+        "published": -22.17,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2019,
+        "start": "2018-12-31",
+        "end": "2019-12-31",
+        "startValue": 24.28544717884226,
+        "endValue": 25.7816380288106,
+        "dailyDerived": 6.160853613071771,
+        "published": 6.16,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2020,
+        "start": "2019-12-31",
+        "end": "2020-12-31",
+        "startValue": 25.7816380288106,
+        "endValue": 31.4575623322255,
+        "dailyDerived": 22.015375039677988,
+        "published": 22.02,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2021,
+        "start": "2020-12-31",
+        "end": "2021-12-31",
+        "startValue": 31.4575623322255,
+        "endValue": 39.54740786848653,
+        "dailyDerived": 25.716695562178682,
+        "published": 25.72,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2022,
+        "start": "2021-12-31",
+        "end": "2022-12-30",
+        "startValue": 39.54740786848653,
+        "endValue": 33.64434311984299,
+        "dailyDerived": -14.926552881225398,
+        "published": -14.93,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2023,
+        "start": "2022-12-30",
+        "end": "2023-12-29",
+        "startValue": 33.64434311984299,
+        "endValue": 34.64444457083316,
+        "dailyDerived": 2.972569407664616,
+        "published": 2.97,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2024,
+        "start": "2023-12-29",
+        "end": "2024-12-31",
+        "startValue": 34.64444457083316,
+        "endValue": 36.17280463554137,
+        "dailyDerived": 4.411558862152809,
+        "published": 4.41,
+        "publishedDecimalPlaces": 2
+      },
+      {
+        "year": 2025,
+        "start": "2024-12-31",
+        "end": "2025-12-31",
+        "startValue": 36.17280463554137,
+        "endValue": 49.633593865046656,
+        "dailyDerived": 37.21245660968038,
+        "published": 37.21,
+        "publishedDecimalPlaces": 2
+      }
+    ],
+    "sourceUrls": [
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=gro10k",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=tabular",
+      "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
+    ],
+    "rawSourceHashes": {
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=gro10k": "89302d2b97f5ce63579eb676d70ad88b9f1433d76924cec9c764cc5b537fcaf5",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=tabular": "8528ca425a9d62f729aed5f3ebebcedc7d466214e93d0133242efe08eaae68ed",
+      "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89": "c89045facb7d2abef28fae55bf8e85684e926edfa9c3373b7fcb55d606c8cca0"
+    }
+  }
+]
