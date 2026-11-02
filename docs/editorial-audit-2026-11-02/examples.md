@@ -421,7 +421,7 @@ En octobre 2026, voici ce que cette somme serait devenue 👇
 ```text
 Et si tu avais investi 1 000 $ dans le Bitcoin en janvier 2025 ? 🫢
 
-À la clôture de octobre 2026, voici le résultat 👇
+À la clôture d’octobre 2026, voici le résultat 👇
 
 💰 Somme investie : 1 000 $
 📉 Capital final : 756 $
