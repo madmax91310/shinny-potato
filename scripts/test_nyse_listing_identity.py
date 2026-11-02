@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import unittest
 from exchange_listing_refresh import refresh
-from nyse_listing_identity import qualify
+from nyse_listing_identity import qualify,spotify_identifier_bridge
 from producer_report_plans import build_plan
 from producer_report_contract import finish,normalize_contract
 ROOT=Path(__file__).resolve().parents[1]
@@ -27,9 +27,14 @@ class NyseIdentity(unittest.TestCase):
     row=registered(ticker);before=copy.deepcopy(row);r=qualify(row,isin(row),payload(ticker),NOW)
     self.assertEqual(row,before);self.assertEqual(r['asOf'],'2026-10-30');self.assertEqual(r['registeredIsin'],isin(row));self.assertNotIn('last',r)
     self.assertEqual(r['primaryReference'],before['listingObservation'])
- def test_spotify_requires_an_independent_cusip_bridge(self):
-  row=registered('SPOT')
-  with self.assertRaisesRegex(ValueError,'bridge missing'):qualify(row,isin(row),payload('SPOT'),NOW)
+ def test_spotify_requires_the_official_sec_bridge_and_current_matching_nyse_identifier(self):
+  row=registered('SPOT');receipt=spotify_identifier_bridge()
+  self.assertEqual(receipt['filingDate'],'2026-08-25')
+  result=qualify(row,isin(row),payload('SPOT'),NOW)
+  self.assertEqual(result['identifierReference'],receipt);self.assertEqual(result['cusip'],'L8681T102')
+  changed=json.loads(payload('SPOT'));changed['quote']['cusip']='L00000000'
+  with self.assertRaisesRegex(ValueError,'identifier differs'):qualify(row,isin(row),json.dumps(changed).encode(),NOW)
+  with self.assertRaisesRegex(ValueError,'bridge missing'):qualify(row,'LU0000000000',payload('SPOT'),NOW)
  def test_identity_type_currency_class_issuer_and_date_contradictions_fail(self):
   row=registered();base=json.loads(payload())
   for key,value in [('exchg','NASDAQ'),('dispname','OTHER'),('cusip','000000000'),('desc','OTHER INC'),('desc','Cloudflare Class B Common Stock'),('desc','Cloudflare ADS'),('currency','EUR'),('micCode','XNAS'),('isin','US0000000000'),('instrumentType','ETF'),('time','Tuesday, November 03, 2026 07:00:00 PM ET')]:
