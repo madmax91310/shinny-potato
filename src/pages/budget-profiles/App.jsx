@@ -4,7 +4,7 @@ import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import Button from '../../design-system/Button'
 import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { BUDGET_PROFILES, EXPENSE_CATEGORIES } from './data.js'
-import { analyzeBudget, budgetPublicPresentation, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, dateLabel, euro, MAX_BUDGET_LINES, refreshBudgetDraft, sourceReply } from './lib.js'
+import { analyzeBudget, budgetPublicPresentation, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, dateLabel, euro, MAX_BUDGET_LINES, publicationContextFor, refreshBudgetDraft, sourceReply } from './lib.js'
 import { findSavedDraft, loadSavedDrafts, loadDraft, loadPublished, loadQueued, loadUsage, saveDraft, savePublished, saveQueued, saveUsage, WORKSPACE_KEY } from './storage.js'
 import PublicationStatus from './PublicationStatus.jsx'
 import { useBudgetImage } from './useBudgetImage.js'
@@ -158,6 +158,7 @@ export default function App() {
           <a href={profile.source.url} target="_blank" rel="noreferrer">{profile.source.publisher} · {profile.source.title}</a>
           <p>Période du budget : {profile.period}. {profile.publishedAt ? `Source publiée le ${dateLabel(profile.publishedAt)}.` : 'Date exacte de publication non indiquée.'} Vérifiée le {dateLabel(profile.checkedAt)}.{profile.preparedAt && ` Exemple préparé le ${dateLabel(profile.preparedAt)}.`}{profile.editorialReviewedAt && ` Texte relu le ${dateLabel(profile.editorialReviewedAt)}.`}</p><p>{profile.incomeNote}</p><p>{profile.context}</p>{profile.provenance && <pre className="budget-provenance">{JSON.stringify(profile.provenance, null, 2)}</pre>}
           <p>{profile.provenance?.type === 'reference' ? 'Exemple de référence publié, sans témoignage individuel.' : profile.kind === 'prepared' ? 'Budget préparé avec compléments et arrondis ; voir les hypothèses ci-dessous.' : 'Budget autodéclaré, sans accès aux comptes bancaires. Les postes groupés et les arrondis sont conservés.'}</p><p>{profile.caveat}</p>
+          {publicationContextFor(profile) && <details><summary>Provenance du récit et des questions</summary><p>Les questions marquées « expressed » reformulent une interrogation sourcée ; « editorial » désigne une question aux lecteurs. Les éléments conservés sans nouvelle lecture sont signalés dans la revue.</p><pre className="budget-provenance">{JSON.stringify(publicationContextFor(profile), null, 2)}</pre></details>}
           <p>Les prénoms du texte sont fictifs. La séparation entre dépenses contraintes et non contraintes est éditoriale ; les postes mixtes restent groupés.</p>
           <Button variant="secondary" onClick={() => copy(sourceReply(profile))}>Copier la source pour une réponse</Button>
         </details>}

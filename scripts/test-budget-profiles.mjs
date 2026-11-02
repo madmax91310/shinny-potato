@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import './test-budget-editorial-context.mjs'
 import { createHash } from 'node:crypto'
 import { BUDGET_EDITORIAL, BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, blankBudget, budgetDisplayName, budgetExpenseSections, budgetImageExpenses, buildBudgetText, compareBudgetRecency, euro, refreshBudgetDraft, sourceReply, validBudget } from '../src/pages/budget-profiles/lib.js'

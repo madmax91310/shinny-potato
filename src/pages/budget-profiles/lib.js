@@ -1,4 +1,4 @@
-import { BUDGET_EDITORIAL, BUDGET_PROFILES, EXPENSE_CATEGORIES } from './data.js'
+import { BUDGET_EDITORIAL, BUDGET_PROFILES, BUDGET_PUBLICATION_CONTEXT, EXPENSE_CATEGORIES } from './data.js'
 
 export const MAX_BUDGET_LINES = 24
 export const euro = (value, currency = 'EUR') => Number(value).toLocaleString('fr-FR', { style: 'currency', currency, minimumFractionDigits: Number.isInteger(Math.round(Number(value) * 100) / 100) ? 0 : 2, maximumFractionDigits: 2 })
@@ -47,6 +47,7 @@ export function analyzeBudget(profile) {
 }
 
 export const editorialFor = profile => profile.kind === 'participant' ? null : BUDGET_EDITORIAL[profile.id]
+export const publicationContextFor = profile => profile.kind === 'participant' ? null : BUDGET_PUBLICATION_CONTEXT[profile.id]
 export const budgetDisplayName = profile => editorialFor(profile)?.alias || profile.name
 const share = (amount, income) => `${Math.round(amount / income * 100)} %`
 const rowTotal = rows => rows.reduce((sum, row) => sum + cents(row.amount), 0) / 100
@@ -89,7 +90,7 @@ export function budgetHeading(profile) {
 export function buildBudgetText(profile) {
   const a = analyzeBudget(profile)
   if (a.errors.length) return ''
-  const e = editorialFor(profile), p = budgetPublicPresentation(profile)
+  const e = editorialFor(profile), p = budgetPublicPresentation(profile), context = publicationContextFor(profile)
   const money = value => euro(value, profile.currency)
   const presentation = [p.job, p.household, profile.location].filter(Boolean).join(' · ')
   const sections = budgetExpenseSections(profile)
@@ -112,9 +113,15 @@ export function buildBudgetText(profile) {
     savings && `🌱 Épargne, investissements et autres affectations : ${money(a.savings)} / mois\n${savings}`,
     `${a.balance < 0 ? 'Manque après versements' : p.balanceLabel} : ${money(Math.abs(a.balance))} / mois`,
     profile.capacity !== null && `Capacité d’épargne ${profile.kind === 'planned' ? 'envisagée' : 'annoncée'} : environ ${money(profile.capacity)} / mois.`,
-    e?.assets?.length && `🏦 Épargne déjà constituée :\n${e.assets.map(value => `• ${value}`).join('\n')}`,
-    p.story,
-    p.question && `💬 ${p.question}`,
+    ...(context ? [
+      ...context.paragraphs.map(paragraph => paragraph.text),
+      context.questions.map(question => `💬 ${question.text}`).join('\n'),
+      context.budgetQuestion,
+    ] : [
+      e?.assets?.length && `🏦 Épargne déjà constituée :\n${e.assets.map(value => `• ${value}`).join('\n')}`,
+      p.story,
+      p.question && `💬 ${p.question}`,
+    ]),
   ].filter(Boolean).join('\n\n')
 }
 
