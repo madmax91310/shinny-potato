@@ -1,0 +1,53 @@
+import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
+import { createHash } from 'node:crypto'
+import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
+import { buildBudgetText, budgetHeading, budgetPublicPresentation, budgetPublicIncomeRows, publicationContextFor, analyzeBudget, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
+import { budgetQualification, budgetRowSymbol, budgetPublicBasis, budgetTransfers } from '../src/pages/budget-profiles/presentation.js'
+const baseline = JSON.parse(readFileSync(new URL('./fixtures/budget-editorial/presentation-2026-11-02.json', import.meta.url)))
+const hash = v => createHash('sha256').update(JSON.stringify(v)).digest('hex')
+assert.equal(BUDGET_PROFILES.length, baseline.count)
+assert.equal(hash(BUDGET_PROFILES), baseline.profilesHash, 'No profile, amount, date, source, hypothesis or filter field changes')
+assert.equal(hash(BUDGET_PROFILES.map(publicationContextFor)), baseline.contextsHash, 'Private qualifications, narratives, questions and evidence stay intact')
+for (const p of BUDGET_PROFILES) {
+  const text = buildBudgetText(p), c = publicationContextFor(p)
+  assert.equal(text.split('\n')[0], budgetHeading(p))
+  assert(!/Exemple de budget| — |20\d{2}/i.test(text.split('\n')[0]))
+  assert(!text.includes('cet exemple de budget'))
+  if (p.kind === 'planned' || p.kind === 'prepared') assert(text.toLowerCase().includes(budgetQualification(p).toLowerCase()), 'Neutral titles cannot disguise an illustration or a forecast')
+  for (const part of [...c.paragraphs, ...c.questions]) assert(text.includes(part.text), 'Enriched facts and targeted questions remain verbatim')
+  for (const row of p.expenses) assert(text.includes(`• ${budgetRowSymbol(row).emoji} ${row.label}`))
+  for (const row of budgetPublicIncomeRows(p)) assert(text.includes(`• ${budgetRowSymbol(row, 'income').emoji} ${row.label}`))
+  assert(!/20\d{2}/.test(budgetPublicBasis(p, budgetPublicPresentation(p).basis)), 'Calendar references leave the image basis, not the private metadata')
+  assert.equal(refreshBudgetDraft({profile:p,text:'Mon texte choisi',edited:true}).text,'Mon texte choisi')
+}
+const aicha = BUDGET_PROFILES.find(p => p.name === 'Aïcha'), a = buildBudgetText(aicha)
+assert(a.startsWith('Budget d’Aïcha, 41 ans\n'))
+for (const line of ['💼 Cheffe de service', '👩‍👧 Mère célibataire, un enfant de 11 ans', '📍 Région parisienne', '• ⚡ Énergie et eau', '• 📚 École et cours particuliers', '• 🎨 Activités de son enfant', '• 🩺 Assurances et santé', '• 👕 Vêtements et hygiène', '👉 Reste avant épargne', '💳 Reste après épargne', 'Que pensez-vous de son budget ? 🤔💬']) assert(a.includes(line),line)
+assert(!a.includes('• 💰 Réserves pour projets'), 'A single synonymous allocation is not repeated under its heading')
+assert.equal(analyzeBudget(aicha).savings,1050)
+const business = BUDGET_PROFILES.find(p => p.name === 'Inès')
+assert(buildBudgetText(business).includes('Reste avant financement de son entreprise'))
+assert(!buildBudgetText(business).includes('Reste avant épargne'))
+const hadrien = BUDGET_PROFILES.find(p => p.name === 'Hadrien')
+assert(buildBudgetText(hadrien).includes('Dépenses moyennes d’une autre période'), 'Removing the date line must retain the mixed-period condition')
+assert(!/20\d{2}/.test(buildBudgetText(hadrien)))
+for (const [label,kind] of [['Énergie et eau','energy'],['École et cours particuliers','education'],['Assurances et santé','health'],['Vêtements et hygiène','clothing'],['Crédit automobile','transport'],['Assurance automobile','transport'],['Téléphone, santé et assurances personnelles','other']]) assert.equal(budgetRowSymbol({label,category:'other'}).kind,kind)
+assert.equal(budgetTransfers({...aicha,savings:[{label:'PEA',amount:100}]},'Investissements').single,false,'A single named instrument supplies useful detail')
+console.log('Budget presentation: neutral headings, meaningful qualifiers, semantic symbols, stable narratives and immutable source data verified for all profiles.')
+
+assert.equal(budgetPublicBasis({...aicha, kind:'participant',period:''},'Rente prévue à partir de 2030'),'Rente prévue à partir de 2030','A financial horizon is not an editorial preparation date')
+
+assert.equal(budgetTransfers({...aicha,savings:[{label:'Financement de son entreprise',amount:100}]}).heading,'Financement d’entreprise')
+assert.equal(budgetTransfers({...aicha,savings:[{label:'PEA',amount:100}]}).heading,'Investissements')
+
+assert.equal(budgetRowSymbol({label:'Courses alimentaires',category:'food'}).kind,'food')
+assert.equal(budgetRowSymbol({label:'Cours particuliers',category:'other'}).kind,'education')
+assert.equal(budgetRowSymbol({label:'Bitcoin'},'savings').kind,'investment')
+assert.equal(budgetRowSymbol({label:'Enveloppe rentrée scolaire prévue'},'savings').kind,'other')
+assert.equal(budgetRowSymbol({label:'Réserve pour investissements immobiliers'},'savings').kind,'savings')
+
+assert.equal(budgetTransfers({...aicha,savings:[{label:'Autre versement',amount:100}]}).heading,'Versements','An unknown allocation is not automatically called savings')
+
+assert.equal(budgetRowSymbol({label:'Manucure',category:'health'}).kind,'care')
+assert.equal(budgetRowSymbol({label:'Coiffure et soins',category:'health'}).kind,'hair')

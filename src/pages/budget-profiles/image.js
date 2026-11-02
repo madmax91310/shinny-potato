@@ -1,3 +1,4 @@
+import { budgetRowSymbol, budgetQualification, budgetPublicBasis } from './presentation.js'
 import { analyzeBudget, budgetPublicPresentation, budgetPublicIncomeRows, budgetImageExpenses, euro, hasSeparateBudgetCapacity } from './lib.js'
 
 // Model 3: fixed readable type, measured wrapping, cards and canvas grow together.
@@ -35,6 +36,25 @@ function block(ctx, value, x, y, width, size, color, weight = 600) {
 }
 // Small deterministic pictograms keep the image reproducible without emoji fonts.
 const paths = {
+  pets: 'M9 19Q17 9 25 19Q32 31 17 28Q2 31 9 19ZM6 5V10M16 2V7M26 5V10',
+  childcare: 'M12 2A4 4 0 1 0 12 10A4 4 0 1 0 12 2M23 10A3 3 0 1 0 23 16A3 3 0 1 0 23 10M4 31V20Q4 12 12 12Q20 12 20 20V31M20 31V23Q20 18 25 18Q30 18 30 23V31',
+  care: 'M4 14H30V30H4ZM10 4A3 3 0 1 0 10 10A3 3 0 1 0 10 4M24 2V8M21 5H27M9 20H24',
+  hair: 'M4 25A5 5 0 1 0 14 25A5 5 0 1 0 4 25M20 25A5 5 0 1 0 30 25A5 5 0 1 0 20 25M12 21L29 2M22 21L5 2',
+  media: 'M3 10H31V31H3ZM3 10V3H31V10M8 3L12 10M18 3L22 10M15 16L24 21L15 27Z',
+  music: 'M12 24V6L29 2V20M4 25A4 4 0 1 0 12 25A4 4 0 1 0 4 25M21 21A4 4 0 1 0 29 21A4 4 0 1 0 21 21',
+  digital: 'M6 2H28V24H6ZM6 24L1 31H33L28 24',
+  gift: 'M3 11H31V18H3ZM6 18V31H28V18M17 4V31M9 3L17 11L25 3Z',
+  dining: 'M4 2V12Q9 18 14 12V2M9 2V32M25 2V32M25 2Q15 14 25 16',
+  energy: 'M19 2L5 19H15L12 32L29 13H18Z',
+  education: 'M2 5Q9 2 16 6Q23 2 31 5V28Q23 25 16 29Q9 25 2 28ZM16 6V29',
+  health: 'M11 3H23V12H32V23H23V32H11V23H2V12H11Z',
+  clothing: 'M11 3L3 7L0 16L7 19V31H27V19L34 16L31 7L23 3Q17 12 11 3Z',
+  business: 'M3 10H31V30H3ZM11 10V3H23V10M3 18Q17 25 31 18M14 19V24H20V19',
+  investment: 'M3 3V31H32M7 24L15 15L21 20L31 6M23 6H31V14',
+  insurance: 'M17 2L30 7V18Q28 27 17 32Q6 27 4 18V7ZM10 17L15 22L24 12',
+  tax: 'M2 11L17 2L32 11ZM3 30H31M8 15V26M17 15V26M26 15V26',
+  child: 'M30 17C30 3 4 0 3 17S21 34 19 26Q16 20 24 22Q31 24 30 17ZM10 10H11M18 7H19M25 12H26M8 19H9',
+  debt: 'M2 6H32V28H2ZM2 13H32M7 22H14',
   income: 'M4 6C4 2 28 2 28 6S4 10 4 6ZM4 6V14C4 18 28 18 28 14V6M4 14V22C4 26 28 26 28 22V14M4 22V28C4 32 28 32 28 28V22',
   expenses: 'M2 3H6L10 23H28L32 9H8M12 28H13M25 28H26',
   savings: 'M5 13C5 6 26 5 29 14L32 15V22L27 23L25 29H21L20 25H12L11 29H7L6 23L2 20V15H5ZM18 3V8M14 5H22M24 14H25',
@@ -84,7 +104,7 @@ function card(ctx, p, y) {
   let top = y + PAD + p.headerHeight
   for (const row of p.rows) {
     ctx.fillStyle = '#ffffff80'; ctx.fillRect(X + PAD, top, CW - PAD * 2, 2)
-    icon(ctx, row.category || 'other', X + PAD, top + 18, 38)
+    icon(ctx, budgetRowSymbol(row, p.kind === 'income' ? 'income' : p.kind === 'savings' || p.kind === 'business' ? 'savings' : 'expenses').kind, X + PAD, top + 18, 38)
     row.label.forEach((line, i) => draw(ctx, line, X + PAD + 72, top + 19 + i * row.rowStep, row.labelSize))
     draw(ctx, row.amount, X + CW - PAD, top + 17 + (row.stacked ? row.label.length * row.rowStep + 6 : 0), row.amountSize, C.ink, 700, 'right')
     top += row.height
@@ -97,29 +117,28 @@ export async function renderBudgetImage(profile, mode = 'detailed') {
   const canvas = document.createElement('canvas'); canvas.width = W
   const ctx = canvas.getContext('2d')
   const compact = profile.income.length + profile.expenses.length + profile.savings.length > 36
-  const detailsSize = compact ? 38 : 46, detailsStep = compact ? 47 : 57, contextSize = compact ? 34 : 38, contextStep = compact ? 42 : 47
+  const detailsSize = compact ? 38 : 46, detailsStep = compact ? 47 : 57
   const presentation = budgetPublicPresentation(profile)
   const name = presentation.name
   const title = name + (profile.age && !name.includes(' et ') && !name.includes(String(profile.age)) ? `, ${profile.age} ans` : '')
-  const details = [presentation.job, presentation.household, presentation.location].filter(Boolean).join(' · ')
+  const contextDetails = [presentation.job, presentation.household, presentation.location].filter(Boolean).join(' · ')
+  const qualification = budgetQualification(profile)
+  const details = [contextDetails, qualification && !contextDetails.toLocaleLowerCase('fr').includes(qualification.toLocaleLowerCase('fr')) && qualification].filter(Boolean).join(' · ')
   const titleHeight = lines(ctx, title, W - 130, 112, 800).length * 138
   const detailsHeight = lines(ctx, details, W - 130, detailsSize, 500).length * detailsStep
-  const contextLabel = [profile.kind === 'planned' ? 'Budget prévu' : '', presentation.period].filter(Boolean).join(' · ')
-  const plannedHeight = lines(ctx, contextLabel, W - 130, contextSize, 600).length * contextStep
-  const headerHeight = 146 + titleHeight + detailsHeight + plannedHeight + 24
+  const headerHeight = 146 + titleHeight + detailsHeight + 24
   const cards = [
-    planCard(ctx, money, 'RESSOURCES', a.income, budgetPublicIncomeRows(profile), C.income, 'income', presentation.basis || 'PAR MOIS', compact, profile.approximate),
+    planCard(ctx, money, 'RESSOURCES', a.income, budgetPublicIncomeRows(profile), C.income, 'income', budgetPublicBasis(profile, presentation.basis) || 'PAR MOIS', compact, profile.approximate),
     planCard(ctx, money, 'DÉPENSES', a.expenses, budgetImageExpenses(profile, mode), C.expenses, 'expenses', 'PAR MOIS', compact, profile.approximate),
   ]
-  if (profile.savings.length) cards.push(planCard(ctx, money, 'VERSEMENTS', a.savings, profile.savings, C.savings, 'savings', 'PAR MOIS', compact, profile.approximate))
+  if (profile.savings.length) cards.push(planCard(ctx, money, 'VERSEMENTS', a.savings, profile.savings, C.savings, profile.savings.every(row => budgetRowSymbol(row, 'savings').kind === 'business') ? 'business' : 'savings', 'PAR MOIS', compact, profile.approximate))
   if (hasSeparateBudgetCapacity(profile, a)) cards.push(planCard(ctx, money, profile.kind === 'planned' ? 'CAPACITÉ ENVISAGÉE' : 'CAPACITÉ ANNONCÉE', profile.capacity, [], C.savings, 'savings', 'PAR MOIS', compact, profile.approximate))
   cards.push(planCard(ctx, money, a.balance < 0 ? (profile.savings.length ? 'MANQUE APRÈS VERSEMENTS' : 'DÉFICIT AVANT VERSEMENTS') : (presentation.balanceLabel === 'Reste disponible après versements' ? 'RESTE DISPONIBLE' : presentation.balanceLabel.toLocaleUpperCase('fr')), Math.abs(a.balance), [], a.balance < 0 ? C.deficit : C.balance, 'balance', 'PAR MOIS', compact, profile.approximate))
   canvas.height = headerHeight + cards.reduce((h, p) => h + p.height + GAP, 0) + 82
   ctx.fillStyle = C.background; ctx.fillRect(0, 0, W, canvas.height)
-  draw(ctx, profile.kind === 'prepared' ? 'EXEMPLE DE BUDGET' : 'LE BUDGET DE', 65, 38, 66, C.ivory, 800)
+  draw(ctx, 'LE BUDGET DE', 65, 38, 66, C.ivory, 800)
   block(ctx, title, 65, 118, W - 130, 112, C.ivory, 800)
   block(ctx, details, 65, 126 + titleHeight, W - 130, detailsSize, C.muted, 500)
-  if (plannedHeight) block(ctx, contextLabel, 65, 134 + titleHeight + detailsHeight, W - 130, contextSize, C.ivory, 600)
   let y = headerHeight
   for (const p of cards) { card(ctx, p, y); y += p.height + GAP }
   draw(ctx, 'Épargnant Libre', W / 2, canvas.height - 56, 32, C.ivory, 500, 'center')

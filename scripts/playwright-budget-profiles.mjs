@@ -1,3 +1,4 @@
+import { budgetQualification } from '../src/pages/budget-profiles/presentation.js'
 import assert from 'node:assert/strict'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { spawn } from 'node:child_process'
@@ -20,6 +21,19 @@ function captureCanvasText() {
         }
         return original.call(this, text, x, y, ...args)
       }
+}
+
+
+function assertPublicBudgetHeader(drawn, profile) {
+  assert.equal(drawn[0].text, 'LE BUDGET DE')
+  assert(!drawn.some(item => /EXEMPLE DE BUDGET|\b20\d{2}\b/i.test(item.text)), 'Exports have no editorial date or example title')
+  const index = drawn.findIndex(item => item.text === 'RESSOURCES')
+  assert(index > 0)
+  const header = drawn.slice(0, index)
+  const qualifier = budgetQualification(profile)
+  if (qualifier) assert(header.map(item => item.text).join(' ').replace(/\s+/g, ' ').toLocaleLowerCase('fr').includes(qualifier.toLocaleLowerCase('fr')), `${profile.id}: expected ${qualifier}; header ${JSON.stringify(header)}`)
+  const bottom = Math.max(...header.map(item => item.y + item.size))
+  assert(drawn[index].y - bottom <= 125, 'Removing the period leaves no empty date slot')
 }
 
 function assertNoCanvasTextOverlap(drawn, label) {
@@ -70,6 +84,7 @@ try {
       assert((await image.evaluate(img => img.naturalWidth)) === 1200)
       const drawn = await page.evaluate(() => window.budgetCanvasText)
       assert(drawn.length > 0, 'Inspect the real canvas text, not only its PNG dimensions')
+      assertPublicBudgetHeader(drawn, profile)
       assertNoCanvasTextOverlap(drawn, profile.id)
       if (profile.approximate) assert(drawn.some(t => t.text.startsWith('≈ ')), 'Approximate amounts stay qualified in the main figure, without a disclaimer line')
       for (const t of drawn) {
@@ -100,6 +115,7 @@ try {
       await page.getByRole('group', { name: 'Version de l’image', exact: true }).locator('[data-value="summary"]').click()
       await expect(page.getByRole('button', { name: 'Télécharger le PNG', exact: true })).toBeEnabled()
       const summaryDrawn = await page.evaluate(() => window.budgetCanvasText)
+      assertPublicBudgetHeader(summaryDrawn, profile)
       assertNoCanvasTextOverlap(summaryDrawn, `${profile.id} summary`)
       const summaryText = normalize(summaryDrawn.map(t => t.text).join(' '))
       for (const row of [...budgetPublicIncomeRows(profile), ...budgetImageExpenses(profile, 'summary'), ...profile.savings]) {
