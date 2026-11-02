@@ -6,10 +6,11 @@ import { getPerformanceEntries, buildPerformanceDepuisText, buildPerformanceDepu
 import { anniversaryComparisonNote } from '../src/pages/tweet-midi/anniversaryEditorial.js'
 import { resolveAnniversaryLevel } from '../src/data/anniversary-levels.js'
 import { derive, buildTweetText } from '../src/pages/investment-calculator/lib.js'
+import { monthlyHistoryMethod } from '../src/lib/performance-conventions.js'
 
 const state = { assetId:'apple', amountRaw:'1000', mode:'lump', startYear:2020, startMonth:1, overridePriceRaw:'' }
 assert.equal(ASSETS.apple.priceMethod, 'adjusted')
-assert.doesNotMatch(buildTweetText(state, derive(state)), /Cours ajustés/i)
+assert(buildTweetText(state, derive(state)).includes(monthlyHistoryMethod(ASSETS.apple)))
 assert.match(performanceBasis('apple'), /USD.*revenus réinvestis/)
 assert.match(performanceBasis('cac40'), /hors dividendes/)
 assert.match(performanceBasis('msciWorld'), /bruts réinvestis/)

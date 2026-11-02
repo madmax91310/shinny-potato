@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-11-02T06:59:44.202Z",
+  "buildInfo": {
+    "sha": "28745bf683c489f60146d745d47dc5c786bdfee5",
+    "dataSha": "756a1fa93a76f82d0b9a68a2b25db77b92adde26",
+    "lane": "validated-data",
+    "builtAt": "2026-11-02T05:54:51.470Z"
+  },
+  "histories": [
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/a309b9bdc8e35a9a825f.json",
+      "status": 200,
+      "sha256": "a309b9bdc8e35a9a825f99f57e3c98916aaa2cbf3d5a7ead1436e81d7c58be50",
+      "id": "bitcoin",
+      "label": "Bitcoin",
+      "isin": null,
+      "currency": "USD",
+      "basis": "spot-close",
+      "start": "2015-01",
+      "end": "2026-10",
+      "points": 142
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/c4c37f6408b25ca4f710.json",
+      "status": 200,
+      "sha256": "c4c37f6408b25ca4f710576cdddff882181b4dac8ad82e6315a257ffc80466f9",
+      "id": "etfFR0011871128",
+      "label": "Amundi PEA S&P 500 UCITS ETF · VL",
+      "isin": "FR0011871128",
+      "currency": "EUR",
+      "basis": "fund-nav-total-return",
+      "start": "2015-01",
+      "end": "2026-10",
+      "points": 142
+    }
+  ],
+  "errors": []
+}

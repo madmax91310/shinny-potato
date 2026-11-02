@@ -1,0 +1,697 @@
+{
+  "checkedAt": "2026-11-02T03:42:05.915Z",
+  "buildInfo": {
+    "sha": "70b7e839f7ad96a3c03a3ec94989710eeb9b47ad",
+    "dataSha": "1e2f520e42b95a946ab31f76c1c3c6bec442d212",
+    "lane": "validated-data",
+    "builtAt": "2026-11-02T03:17:26.780Z"
+  },
+  "manifestCatalogBlob": "d0f72fe87a8a84703d6e11c53f963f848e5ac0cc",
+  "results": [
+    {
+      "isin": "IE00B52SF786",
+      "catalogKeys": [
+        "IE00B52SF786"
+      ],
+      "name": "iShares MSCI Canada UCITS ETF",
+      "holdingsStatus": {
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "lastSuccessAt": "2026-11-02T01:28:35.746319+00:00",
+        "status": "validated",
+        "asOf": "2026-10-30"
+      },
+      "concentration": "5 premiers titres\n29,47 %\n10 premiers titres\n45,86 %\n\nCouverture complète des titres identifiés.\n2026-10-30 → 2026-10-30 · 99,62 % identifiés sur 100 % analysés.",
+      "holdingsPath": "src/pages/dca-profiles/holdings-31.json",
+      "holdingsBlob": "b19129774d2aacdb302def8406f0058480b5af7a",
+      "independentlySummed": {
+        "top5": 29.47042,
+        "top10": 45.85568,
+        "coverage": 99.61803999999997
+      },
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-10-30",
+        "sourceRowCount": 88,
+        "selectedRowCount": 80,
+        "excludedRowCount": 8,
+        "publishedNetWeightPct": 99.99998999999997,
+        "selectedWeightPct": 99.61804,
+        "sourceWeightPctByType": {
+          "Equity": 99.61803999999997,
+          "Cash": 0.36433,
+          "Cash Collateral and Margins": 0.01762,
+          "FX": 0,
+          "Futures": 0
+        },
+        "excludedWeightPctByType": {
+          "Cash": 0.36433,
+          "Cash Collateral and Margins": 0.01762,
+          "FX": 0,
+          "Equity": 0,
+          "Futures": 0
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "holdingsQualification": {
+        "asOf": "2026-10-30",
+        "complete": true,
+        "identifiedCoverage": 99.61803999999997
+      },
+      "shots": [
+        {
+          "width": 1440,
+          "pngBytes": 516337,
+          "sha256": "ab493288a083b9e104fc6d0237946a8a534b48a33ee7a06de517a3cd9ba1306c"
+        },
+        {
+          "width": 390,
+          "pngBytes": 516337,
+          "sha256": "ab493288a083b9e104fc6d0237946a8a534b48a33ee7a06de517a3cd9ba1306c"
+        }
+      ]
+    },
+    {
+      "isin": "IE00B5377D42",
+      "catalogKeys": [
+        "IE00B5377D42"
+      ],
+      "name": "iShares MSCI Australia UCITS ETF",
+      "holdingsStatus": {
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "lastSuccessAt": "2026-11-02T01:28:35.746319+00:00",
+        "status": "validated",
+        "asOf": "2026-10-30"
+      },
+      "concentration": "5 premiers titres\n46,47 %\n10 premiers titres\n65,71 %\n\nCouverture complète des titres identifiés.\n2026-10-30 → 2026-10-30 · 99,7 % identifiés sur 100 % analysés.",
+      "holdingsPath": "src/pages/dca-profiles/holdings-30.json",
+      "holdingsBlob": "4223f4ba358906f4ad7222d6f45a22cdaf781c95",
+      "independentlySummed": {
+        "top5": 46.46879,
+        "top10": 65.71145,
+        "coverage": 99.69646
+      },
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-10-30",
+        "sourceRowCount": 49,
+        "selectedRowCount": 43,
+        "excludedRowCount": 6,
+        "publishedNetWeightPct": 99.99998000000001,
+        "selectedWeightPct": 99.69646,
+        "sourceWeightPctByType": {
+          "Equity": 99.69646,
+          "Cash": 0.28261,
+          "Cash Collateral and Margins": 0.02091,
+          "Futures": 0
+        },
+        "excludedWeightPctByType": {
+          "Cash": 0.28261,
+          "Cash Collateral and Margins": 0.02091,
+          "Futures": 0
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "holdingsQualification": {
+        "asOf": "2026-10-30",
+        "complete": true,
+        "identifiedCoverage": 99.69646
+      },
+      "shots": [
+        {
+          "width": 1440,
+          "pngBytes": 520668,
+          "sha256": "efebedfe70312f79b4453a4146673d9bb23c32148a4d9536169f72e85e3aac0b"
+        },
+        {
+          "width": 390,
+          "pngBytes": 520668,
+          "sha256": "efebedfe70312f79b4453a4146673d9bb23c32148a4d9536169f72e85e3aac0b"
+        }
+      ]
+    },
+    {
+      "isin": "IE00B5WHFQ43",
+      "catalogKeys": [
+        "IE00B5WHFQ43"
+      ],
+      "name": "iShares MSCI Mexico Capped UCITS ETF",
+      "holdingsStatus": {
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "lastSuccessAt": "2026-11-02T01:28:35.746319+00:00",
+        "status": "validated",
+        "asOf": "2026-10-30"
+      },
+      "concentration": "5 premiers titres\n58,36 %\n10 premiers titres\n78,8 %\n\nCouverture complète des titres identifiés.\n2026-10-30 → 2026-10-30 · 99,68 % identifiés sur 100 % analysés.",
+      "holdingsPath": "src/pages/dca-profiles/holdings-10.json",
+      "holdingsBlob": "3e36c59e676dd2b1003673910e11659a80909b8b",
+      "independentlySummed": {
+        "top5": 58.3571,
+        "top10": 78.79923000000001,
+        "coverage": 99.67996000000002
+      },
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-10-30",
+        "sourceRowCount": 27,
+        "selectedRowCount": 21,
+        "excludedRowCount": 6,
+        "publishedNetWeightPct": 100.00001000000002,
+        "selectedWeightPct": 99.67996,
+        "sourceWeightPctByType": {
+          "Equity": 99.67996000000002,
+          "Cash": 0.30196999999999996,
+          "Cash Collateral and Margins": 0.01808,
+          "Futures": 0
+        },
+        "excludedWeightPctByType": {
+          "Cash": 0.30196999999999996,
+          "Cash Collateral and Margins": 0.01808,
+          "Futures": 0
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "holdingsQualification": {
+        "asOf": "2026-10-30",
+        "complete": true,
+        "identifiedCoverage": 99.67996000000002
+      },
+      "shots": [
+        {
+          "width": 1440,
+          "pngBytes": 526584,
+          "sha256": "f0f4e55c993137e8c5eb2161dced115b7a22246bb658be6b77c1f1f8670cd97b"
+        },
+        {
+          "width": 390,
+          "pngBytes": 526584,
+          "sha256": "f0f4e55c993137e8c5eb2161dced115b7a22246bb658be6b77c1f1f8670cd97b"
+        }
+      ]
+    },
+    {
+      "isin": "IE00B0M63516",
+      "catalogKeys": [
+        "IE00B0M63516"
+      ],
+      "name": "iShares MSCI Brazil UCITS ETF USD (Dist)",
+      "holdingsStatus": {
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "lastSuccessAt": "2026-11-02T01:28:35.746319+00:00",
+        "status": "validated",
+        "asOf": "2026-10-30"
+      },
+      "concentration": "5 premiers titres\n46,86 %\n10 premiers titres\n61,6 %\n\nConcentration observée sur la part identifiée ; des détentions manquantes peuvent augmenter ces poids.\n2026-10-30 → 2026-10-30 · 99,07 % identifiés sur 100 % analysés.",
+      "holdingsPath": "src/pages/dca-profiles/holdings-26.json",
+      "holdingsBlob": "594510ff1d15db06994b6c24d408f200f7be4830",
+      "independentlySummed": {
+        "top5": 46.855199999999996,
+        "top10": 61.5993,
+        "coverage": 99.07285999999996
+      },
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-10-30",
+        "sourceRowCount": 53,
+        "selectedRowCount": 46,
+        "excludedRowCount": 7,
+        "publishedNetWeightPct": 100.00001999999996,
+        "selectedWeightPct": 99.07285999999999,
+        "sourceWeightPctByType": {
+          "Equity": 99.07285999999996,
+          "Cash": 0.76008,
+          "Cash Collateral and Margins": 0.16708,
+          "Futures": 0
+        },
+        "excludedWeightPctByType": {
+          "Cash": 0.76008,
+          "Cash Collateral and Margins": 0.16708,
+          "Futures": 0
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "holdingsQualification": {
+        "asOf": "2026-10-30",
+        "complete": true,
+        "identifiedCoverage": 99.07285999999996
+      },
+      "shots": [
+        {
+          "width": 1440,
+          "pngBytes": 521097,
+          "sha256": "b0af8bf2302a77b2afd177f9fec6b7eee7a3bb3f1f19f91ad5ea62587d27598f"
+        },
+        {
+          "width": 390,
+          "pngBytes": 521097,
+          "sha256": "b0af8bf2302a77b2afd177f9fec6b7eee7a3bb3f1f19f91ad5ea62587d27598f"
+        }
+      ]
+    },
+    {
+      "isin": "IE00B4M7GH52",
+      "catalogKeys": [
+        "IE00B4M7GH52"
+      ],
+      "name": "iShares MSCI Poland UCITS ETF",
+      "holdingsStatus": {
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "lastSuccessAt": "2026-11-02T01:28:35.746319+00:00",
+        "status": "validated",
+        "asOf": "2026-10-30"
+      },
+      "concentration": "5 premiers titres\n59,59 %\n10 premiers titres\n85,07 %\n\nCouverture complète des titres identifiés.\n2026-10-30 → 2026-10-30 · 99,62 % identifiés sur 100 % analysés.",
+      "holdingsPath": "src/pages/dca-profiles/holdings-22.json",
+      "holdingsBlob": "54dae893bb831b1bb409d1a8759dddd2b2d7718f",
+      "independentlySummed": {
+        "top5": 59.585530000000006,
+        "top10": 85.06687000000001,
+        "coverage": 99.6216
+      },
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-10-30",
+        "sourceRowCount": 22,
+        "selectedRowCount": 16,
+        "excludedRowCount": 6,
+        "publishedNetWeightPct": 100.00001,
+        "selectedWeightPct": 99.6216,
+        "sourceWeightPctByType": {
+          "Equity": 99.6216,
+          "Cash": 0.36246,
+          "Cash Collateral and Margins": 0.01595,
+          "Futures": 0
+        },
+        "excludedWeightPctByType": {
+          "Cash": 0.36246,
+          "Cash Collateral and Margins": 0.01595,
+          "Futures": 0
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "holdingsQualification": {
+        "asOf": "2026-10-30",
+        "complete": true,
+        "identifiedCoverage": 99.6216
+      },
+      "shots": [
+        {
+          "width": 1440,
+          "pngBytes": 518706,
+          "sha256": "216cea7c4f83a1728e38dfbc54664a0463c1b06dad9ba29b3c03052ff43f9e68"
+        },
+        {
+          "width": 390,
+          "pngBytes": 518706,
+          "sha256": "216cea7c4f83a1728e38dfbc54664a0463c1b06dad9ba29b3c03052ff43f9e68"
+        }
+      ]
+    },
+    {
+      "isin": "IE00B52XQP83",
+      "catalogKeys": [
+        "IE00B52XQP83"
+      ],
+      "name": "iShares MSCI South Africa UCITS ETF",
+      "holdingsStatus": {
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "lastSuccessAt": "2026-11-02T01:28:35.746319+00:00",
+        "status": "validated",
+        "asOf": "2026-10-30"
+      },
+      "concentration": "5 premiers titres\n44,01 %\n10 premiers titres\n67,93 %\n\nCouverture complète des titres identifiés.\n2026-10-30 → 2026-10-30 · 99,73 % identifiés sur 100 % analysés.",
+      "holdingsPath": "src/pages/dca-profiles/holdings-15.json",
+      "holdingsBlob": "ae974eebb7fbf8ec02b5b9cbb55e83cae36816c3",
+      "independentlySummed": {
+        "top5": 44.00805,
+        "top10": 67.92572,
+        "coverage": 99.72755
+      },
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-10-30",
+        "sourceRowCount": 34,
+        "selectedRowCount": 27,
+        "excludedRowCount": 7,
+        "publishedNetWeightPct": 99.99999,
+        "selectedWeightPct": 99.72755,
+        "sourceWeightPctByType": {
+          "Equity": 99.72755,
+          "Cash": 0.24892999999999998,
+          "Cash Collateral and Margins": 0.02529,
+          "Futures": 0,
+          "FX": -0.00178
+        },
+        "excludedWeightPctByType": {
+          "Cash": 0.24892999999999998,
+          "Cash Collateral and Margins": 0.02529,
+          "Futures": 0,
+          "FX": -0.00178
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "holdingsQualification": {
+        "asOf": "2026-10-30",
+        "complete": true,
+        "identifiedCoverage": 99.72755
+      },
+      "shots": [
+        {
+          "width": 1440,
+          "pngBytes": 524172,
+          "sha256": "9283fbcd3e7ec18e7f389b045ca72e2d4264aef939b157fbfe5e32493c4a7352"
+        },
+        {
+          "width": 390,
+          "pngBytes": 524172,
+          "sha256": "9283fbcd3e7ec18e7f389b045ca72e2d4264aef939b157fbfe5e32493c4a7352"
+        }
+      ]
+    },
+    {
+      "isin": "IE00BJ5JPJ87",
+      "catalogKeys": [
+        "IE00BJ5JPJ87"
+      ],
+      "name": "iShares MSCI Saudi Arabia Capped UCITS ETF",
+      "holdingsStatus": {
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "lastSuccessAt": "2026-11-02T01:28:35.746319+00:00",
+        "status": "validated",
+        "asOf": "2026-10-30"
+      },
+      "concentration": "5 premiers titres\n57,84 %\n10 premiers titres\n75,56 %\n\nCouverture complète des titres identifiés.\n2026-10-30 → 2026-10-30 · 99,85 % identifiés sur 100 % analysés.",
+      "holdingsPath": "src/pages/dca-profiles/holdings-18.json",
+      "holdingsBlob": "8b48e6045399f9fcee6b7c1ef4984e5ec1b1f5f2",
+      "independentlySummed": {
+        "top5": 57.84098,
+        "top10": 75.56035,
+        "coverage": 99.84735
+      },
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-10-30",
+        "sourceRowCount": 61,
+        "selectedRowCount": 28,
+        "excludedRowCount": 33,
+        "publishedNetWeightPct": 99.99999000000001,
+        "selectedWeightPct": 99.84735,
+        "sourceWeightPctByType": {
+          "Equity": 99.84735,
+          "Cash": 0.14676000000000006,
+          "Cash Collateral and Margins": 0.00584,
+          "FX": 0.00004,
+          "Futures": 0
+        },
+        "excludedWeightPctByType": {
+          "Cash": 0.14676000000000006,
+          "Cash Collateral and Margins": 0.00584,
+          "FX": 0.00004,
+          "Futures": 0
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "holdingsQualification": {
+        "asOf": "2026-10-30",
+        "complete": true,
+        "identifiedCoverage": 99.84735
+      },
+      "shots": [
+        {
+          "width": 1440,
+          "pngBytes": 523802,
+          "sha256": "8263c540a17be596224308de1ff82fbafbaabe66da5cd440f577e415c3a32b33"
+        },
+        {
+          "width": 390,
+          "pngBytes": 523802,
+          "sha256": "8263c540a17be596224308de1ff82fbafbaabe66da5cd440f577e415c3a32b33"
+        }
+      ]
+    },
+    {
+      "isin": "IE00B1FZS574",
+      "catalogKeys": [
+        "IE00B1FZS574"
+      ],
+      "name": "iShares MSCI Turkey UCITS ETF",
+      "holdingsStatus": {
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "lastSuccessAt": "2026-11-02T01:28:35.746319+00:00",
+        "status": "validated",
+        "asOf": "2026-10-30"
+      },
+      "concentration": "5 premiers titres\n65,31 %\n10 premiers titres\n91,96 %\n\nCouverture complète des titres identifiés.\n2026-10-30 → 2026-10-30 · 99,79 % identifiés sur 100 % analysés.",
+      "holdingsPath": "src/pages/dca-profiles/holdings-30.json",
+      "holdingsBlob": "4223f4ba358906f4ad7222d6f45a22cdaf781c95",
+      "independentlySummed": {
+        "top5": 65.30766,
+        "top10": 91.95936999999999,
+        "coverage": 99.79339999999999
+      },
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-10-30",
+        "sourceRowCount": 18,
+        "selectedRowCount": 12,
+        "excludedRowCount": 6,
+        "publishedNetWeightPct": 99.99999999999999,
+        "selectedWeightPct": 99.79339999999999,
+        "sourceWeightPctByType": {
+          "Equity": 99.79339999999999,
+          "Cash": 0.18177000000000001,
+          "Cash Collateral and Margins": 0.02483,
+          "Futures": 0
+        },
+        "excludedWeightPctByType": {
+          "Cash": 0.18177000000000001,
+          "Cash Collateral and Margins": 0.02483,
+          "Futures": 0
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "holdingsQualification": {
+        "asOf": "2026-10-30",
+        "complete": true,
+        "identifiedCoverage": 99.79339999999999
+      },
+      "shots": [
+        {
+          "width": 1440,
+          "pngBytes": 518629,
+          "sha256": "c4e87e86300ffe84de03086f9ad2bf1d4816a550733eec20d01676ab4700a73b"
+        },
+        {
+          "width": 390,
+          "pngBytes": 518629,
+          "sha256": "c4e87e86300ffe84de03086f9ad2bf1d4816a550733eec20d01676ab4700a73b"
+        }
+      ]
+    },
+    {
+      "isin": "IE00B8KGV557",
+      "catalogKeys": [
+        "IE00B8KGV557"
+      ],
+      "name": "iShares Edge MSCI EM Minimum Volatility UCITS ETF",
+      "holdingsStatus": {
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "lastSuccessAt": "2026-11-02T01:28:35.746319+00:00",
+        "status": "validated",
+        "asOf": "2026-10-30"
+      },
+      "concentration": "5 premiers titres\n8,12 %\n10 premiers titres\n15,29 %\n\nCouverture complète des titres identifiés.\n2026-10-30 → 2026-10-30 · 99,54 % identifiés sur 100 % analysés.",
+      "holdingsPath": "src/pages/dca-profiles/holdings-15.json",
+      "holdingsBlob": "ae974eebb7fbf8ec02b5b9cbb55e83cae36816c3",
+      "independentlySummed": {
+        "top5": 8.11843,
+        "top10": 15.286990000000001,
+        "coverage": 99.53848999999994
+      },
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-10-30",
+        "sourceRowCount": 329,
+        "selectedRowCount": 295,
+        "excludedRowCount": 34,
+        "publishedNetWeightPct": 100.00002999999994,
+        "selectedWeightPct": 99.53849,
+        "sourceWeightPctByType": {
+          "Equity": 99.53848999999994,
+          "Cash": 0.44883000000000023,
+          "Cash Collateral and Margins": 0.01271,
+          "FX": 0,
+          "Futures": 0
+        },
+        "excludedWeightPctByType": {
+          "Cash": 0.44883000000000023,
+          "Cash Collateral and Margins": 0.01271,
+          "Equity": 0,
+          "FX": 0,
+          "Futures": 0
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "holdingsQualification": {
+        "asOf": "2026-10-30",
+        "complete": true,
+        "identifiedCoverage": 99.53848999999994
+      },
+      "shots": [
+        {
+          "width": 1440,
+          "pngBytes": 550324,
+          "sha256": "88cbc994936089c77b2d62f60ff60ee5edc1135380f6569ba70e8d072529bd94"
+        },
+        {
+          "width": 390,
+          "pngBytes": 550324,
+          "sha256": "88cbc994936089c77b2d62f60ff60ee5edc1135380f6569ba70e8d072529bd94"
+        }
+      ]
+    },
+    {
+      "isin": "IE00B86MWN23",
+      "catalogKeys": [
+        "IE00B86MWN23"
+      ],
+      "name": "iShares Edge MSCI Europe Minimum Volatility UCITS ETF",
+      "holdingsStatus": {
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "lastSuccessAt": "2026-11-02T01:28:35.746319+00:00",
+        "status": "validated",
+        "asOf": "2026-10-30"
+      },
+      "concentration": "5 premiers titres\n8,06 %\n10 premiers titres\n15,42 %\n\nCouverture complète des titres identifiés.\n2026-10-30 → 2026-10-30 · 99,54 % identifiés sur 100 % analysés.",
+      "holdingsPath": "src/pages/dca-profiles/holdings-1.json",
+      "holdingsBlob": "d5835bdd29fd82b6846f3b785ca9c614fef57bd2",
+      "independentlySummed": {
+        "top5": 8.055029999999999,
+        "top10": 15.416279999999997,
+        "coverage": 99.53941000000003
+      },
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-10-30",
+        "sourceRowCount": 211,
+        "selectedRowCount": 197,
+        "excludedRowCount": 14,
+        "publishedNetWeightPct": 100.00002000000003,
+        "selectedWeightPct": 99.53941,
+        "sourceWeightPctByType": {
+          "Equity": 99.53941000000003,
+          "Cash": 0.43745999999999996,
+          "Cash Collateral and Margins": 0.02315,
+          "Futures": 0
+        },
+        "excludedWeightPctByType": {
+          "Cash": 0.43745999999999996,
+          "Cash Collateral and Margins": 0.02315,
+          "Futures": 0
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "holdingsQualification": {
+        "asOf": "2026-10-30",
+        "complete": true,
+        "identifiedCoverage": 99.53941000000003
+      },
+      "shots": [
+        {
+          "width": 1440,
+          "pngBytes": 550303,
+          "sha256": "c4a31894ff080639da4af0f4bbca619e47e5d6bbbdab7e5704fb63921bf65344"
+        },
+        {
+          "width": 390,
+          "pngBytes": 550303,
+          "sha256": "c4a31894ff080639da4af0f4bbca619e47e5d6bbbdab7e5704fb63921bf65344"
+        }
+      ]
+    },
+    {
+      "isin": "IE00B2QWDY88",
+      "catalogKeys": [
+        "IE00B2QWDY88"
+      ],
+      "name": "iShares MSCI Japan Small Cap UCITS ETF",
+      "holdingsStatus": {
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "lastSuccessAt": "2026-11-02T01:28:35.746319+00:00",
+        "status": "validated",
+        "asOf": "2026-10-30"
+      },
+      "concentration": "5 premiers titres\n3,14 %\n10 premiers titres\n5,79 %\n\nConcentration observée sur la part identifiée ; des détentions manquantes peuvent augmenter ces poids.\n2026-10-30 → 2026-10-30 · 98,75 % identifiés sur 100 % analysés.",
+      "holdingsPath": "src/pages/dca-profiles/holdings-7.json",
+      "holdingsBlob": "fa484775022ce27f601c84140ac386630fe16e07",
+      "independentlySummed": {
+        "top5": 3.14258,
+        "top10": 5.785609999999999,
+        "coverage": 98.74656999999983
+      },
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-10-30",
+        "sourceRowCount": 773,
+        "selectedRowCount": 765,
+        "excludedRowCount": 8,
+        "publishedNetWeightPct": 100.00010999999984,
+        "selectedWeightPct": 98.74657,
+        "sourceWeightPctByType": {
+          "Cash": 1.1889899999999998,
+          "Equity": 98.74656999999983,
+          "Cash Collateral and Margins": 0.0647,
+          "Futures": 0,
+          "FX": -0.00015
+        },
+        "excludedWeightPctByType": {
+          "Cash": 1.1889899999999998,
+          "Cash Collateral and Margins": 0.0647,
+          "Futures": 0,
+          "FX": -0.00015
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "holdingsQualification": {
+        "asOf": "2026-10-30",
+        "complete": true,
+        "identifiedCoverage": 98.74656999999983
+      },
+      "shots": [
+        {
+          "width": 1440,
+          "pngBytes": 522151,
+          "sha256": "625954f87be0600879eec762904f07a128f292f8efef25ea76dfb14e4898df6f"
+        },
+        {
+          "width": 390,
+          "pngBytes": 522151,
+          "sha256": "625954f87be0600879eec762904f07a128f292f8efef25ea76dfb14e4898df6f"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "limit": "Actual public selection, analytics and identical preview/download PNGs; not a new independent certification of all source positions or unrelated exposures."
+}

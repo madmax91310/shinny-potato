@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import zlib from 'node:zlib'
 import path from 'node:path'
 import {pathToFileURL} from 'node:url'
+import {initialIssue} from '../src/pages/data-review/review-summary.js'
 import {groupReviewIssues} from '../src/pages/data-review/review-causes.js'
 
 const [mode,...args]=process.argv.slice(2)
@@ -9,7 +10,7 @@ const option=name=>args[args.indexOf(name)+1]
 const read=file=>JSON.parse(file.endsWith('.gz')?zlib.gunzipSync(fs.readFileSync(file)):fs.readFileSync(file))
 const write=(file,value)=>fs.writeFileSync(file,JSON.stringify(value,null,2)+'\n')
 const packed=(file,value)=>fs.writeFileSync(file,zlib.gzipSync(JSON.stringify(value)))
-const active=r=>!['waiting','not-applicable','editorial','history'].includes(r.kind)
+const active=initialIssue
 
 if(mode==='snapshot'){
  const root=path.resolve(option('--root')),captureDir=path.resolve(option('--capture')),output=path.resolve(option('--output'))
@@ -26,7 +27,7 @@ if(mode==='snapshot'){
  const inventory=buildDataAutomationInventory(),coverage=buildAssetFieldReport()
  const status=args.includes('--monitor')?read(option('--monitor')):input('automation-status')
  const report=buildInbox({status,inventory,coverage,financial:input('financial-reconciliation'),review:buildReview(evaluationAt.slice(0,10)),now:stamp})
- const summary={capturedAt:capture.capturedAt,evaluationAt,issues:report.issues.length,signals:report.signals,actionable:report.issues.filter(active).length,
+ const summary={capturedAt:capture.capturedAt,evaluationAt,issues:report.issues.length,signals:report.signals,initialFocus:report.issues.filter(active).length,summary:report.summary,
   trackingGroups:groupReviewIssues(report.issues.filter(active)).size,provenCommonInterventions:[...groupReviewIssues(report.issues.filter(active)).values()].filter(rs=>rs.length>1).length,
   byKind:Object.fromEntries([...new Set(report.issues.map(r=>r.kind))].map(k=>[k,report.issues.filter(r=>r.kind===k).length])),
   coverageFields:coverage.rows.length,catalogFields:inventory.summary.catalogFields,usage:inventory.consumerUsage.summary,health:report.health}

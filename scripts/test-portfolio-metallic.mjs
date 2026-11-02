@@ -40,10 +40,10 @@ try {
       const YEARS = Object.keys(perf).map(Number).sort((a,b)=>a-b)
       const canvas = renderPortfolioImage(portfolio, background)
       const words = labels.join(' ')
-      if (!words.includes('Performances annuelles simulées') || !words.includes('EUR · rééquilibrage annuel')) throw new Error('Missing simulation convention')
+      if (!words.includes('Performances annuelles simulées')) throw new Error('Missing simulation heading')
+      if (/EUR · rééquilibrage annuel|Pas un conseil\./.test(words)) throw new Error('Removed image footer returned')
       if (/change BCE|hors courtage et fiscalité/.test(words)) throw new Error('Technical detail should remain in the tool')
       if (/devises non converties|ÉQUILIBRÉ|EXEMPLE DE PORTEFEUILLE|Le Généraliste|…/i.test(words)) throw new Error(`Forbidden heading/footer ${name}`)
-      if (!labels.includes('Pas un conseil.')) throw new Error('Missing disclaimer')
       if (labels.filter(label => label === 'Épargnant Libre').length !== 1) throw new Error('Signature')
       for (const asset of portfolio.selection.filter(a => a.pct > 0)) {
         if (!words.includes(asset.name) || !labels.includes(`${asset.pct.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`)) throw new Error(`Lost holding ${asset.name}`)
@@ -107,7 +107,7 @@ try {
   })
   await mkdir('test-artifacts/portfolio-metallic', { recursive: true })
   for (const sample of result.samples) await writeFile(`test-artifacts/portfolio-metallic/${sample.name}.png`, Buffer.from(sample.png.split(',')[1], 'base64'))
-  console.log(`${result.count} exports verified: names, weights, annual and annualized returns, shared bar scale, zero/missing/negative values, no headings, EUR currency and source footer, no clipping or overlap.`)
+  console.log(`${result.count} exports verified: names, weights, annual and annualized returns, shared bar scale, zero/missing/negative values, removed footer absent, no clipping or overlap.`)
   // Check the real application on mobile, image replacement, and downloaded bytes.
   await page.setViewportSize({width:390,height:844})
   await page.goto(`${base}generateur-portefeuilles`)

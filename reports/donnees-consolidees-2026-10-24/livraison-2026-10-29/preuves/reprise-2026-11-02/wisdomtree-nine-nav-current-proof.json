@@ -1,0 +1,741 @@
+{
+  "runId": 41379698791,
+  "recordSha": "1e2f520e42b95a946ab31f76c1c3c6bec442d212",
+  "observations": [
+    {
+      "config": {
+        "id": "etfGB00B15KXQ89Nav",
+        "isin": "GB00B15KXQ89",
+        "label": "WisdomTree Copper · VL",
+        "instrumentType": "ETC",
+        "consumerScope": "catalog",
+        "currency": "USD",
+        "periodStart": "2015-01",
+        "precision": 8,
+        "collectAnniversary": false,
+        "parser": "official-nav",
+        "field": "nav-total-return",
+        "valuationBasis": "fund-nav-total-return",
+        "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+        "navProvider": "wisdomtree",
+        "navCurrency": "USD",
+        "navHistoryTransport": "official-dataspan-nav-tr",
+        "wisdomClassId": 1000073,
+        "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-copper",
+        "calendarRegistry": "src/data/automated-etf.json",
+        "returnWindowQualification": "corroborated-calendars",
+        "requiredQualifiedCalendarYears": [
+          2018,
+          2019
+        ],
+        "wisdomTicker": "COPA",
+        "wisdomProductName": "WisdomTree Copper",
+        "wisdomListingId": 2740790,
+        "wisdomInception": "2006-09-22",
+        "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
+      },
+      "nativeObservation": {
+        "id": "etfGB00B15KXQ89Nav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "e083df417228c9dbf55ccba125341aa9d158a038c21da1922a8bcb37754f01f6",
+        "controlScope": {
+          "controlledInstrument": "GB00B15KXQ89",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2015-01-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      "recordCheckedAt": "2026-11-02",
+      "points": 142,
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=gro10k": "89302d2b97f5ce63579eb676d70ad88b9f1433d76924cec9c764cc5b537fcaf5",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=tabular": "8528ca425a9d62f729aed5f3ebebcedc7d466214e93d0133242efe08eaae68ed",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89": "c89045facb7d2abef28fae55bf8e85684e926edfa9c3373b7fcb55d606c8cca0"
+      }
+    },
+    {
+      "config": {
+        "id": "etc_brent_crude_oilNav",
+        "isin": "JE00B78CGV99",
+        "label": "WisdomTree Brent Crude Oil · VL",
+        "instrumentType": "ETC",
+        "consumerScope": "catalog",
+        "currency": "USD",
+        "periodStart": "2020-12",
+        "precision": 8,
+        "collectAnniversary": false,
+        "parser": "official-nav",
+        "field": "nav-total-return",
+        "valuationBasis": "fund-nav-total-return",
+        "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+        "navProvider": "wisdomtree",
+        "navCurrency": "USD",
+        "navHistoryTransport": "official-dataspan-nav-tr",
+        "wisdomClassId": 1000279,
+        "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-brent-crude-oil",
+        "calendarRegistry": "src/data/non-bond-etf-records.json",
+        "returnWindowQualification": "corroborated-calendars",
+        "requiredQualifiedCalendarYears": [
+          2021,
+          2023
+        ],
+        "wisdomTicker": "BRNT",
+        "wisdomProductName": "WisdomTree Brent Crude Oil",
+        "wisdomListingId": 2741261,
+        "wisdomInception": "2012-02-21",
+        "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
+      },
+      "nativeObservation": {
+        "id": "etc_brent_crude_oilNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "8468834f16dc5562d9563fe696e4206d0f2e76d24985ede367e888cc09a3ecaf",
+        "controlScope": {
+          "controlledInstrument": "JE00B78CGV99",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2020-12-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      "recordCheckedAt": "2026-11-02",
+      "points": 71,
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=gro10k": "27d386132780dec6e771da8173570375e20c27045fd7f798a6e241f16cfa27d7",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular": "1b13077ea12990de44faf12667bc9b6f7b63da0319dcccaffaffcc4dd68b226c",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99": "bad551694b390ebb1f748f06ddc6df1d4a335a0894c9d4e69bcb5cb056c33bc9"
+      }
+    },
+    {
+      "config": {
+        "id": "etc_wti_crude_oilNav",
+        "isin": "GB00B15KXV33",
+        "label": "WisdomTree WTI Crude Oil · VL",
+        "instrumentType": "ETC",
+        "consumerScope": "catalog",
+        "currency": "USD",
+        "periodStart": "2020-12",
+        "precision": 8,
+        "collectAnniversary": false,
+        "parser": "official-nav",
+        "field": "nav-total-return",
+        "valuationBasis": "fund-nav-total-return",
+        "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+        "navProvider": "wisdomtree",
+        "navCurrency": "USD",
+        "navHistoryTransport": "official-dataspan-nav-tr",
+        "wisdomClassId": 1000076,
+        "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil",
+        "calendarRegistry": "src/data/non-bond-etf-records.json",
+        "returnWindowQualification": "corroborated-calendars",
+        "requiredQualifiedCalendarYears": [
+          2023
+        ],
+        "wisdomTicker": "CRUD",
+        "wisdomProductName": "WisdomTree WTI Crude Oil",
+        "wisdomListingId": 2740803,
+        "wisdomInception": "2006-09-22",
+        "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
+      },
+      "nativeObservation": {
+        "id": "etc_wti_crude_oilNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "fe18ee6d417a11c800655fcd6d547197d41af6134ebfa4518f1bbca273ec5389",
+        "controlScope": {
+          "controlledInstrument": "GB00B15KXV33",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2020-12-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      "recordCheckedAt": "2026-11-02",
+      "points": 71,
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k": "175e87721109006a128d2ecc589c3db131de8d028bd08182f22728a2e7c3c7cf",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular": "5f3facab74a420e10cf4e3d5f9574e44efdf78c4effc8b0564c6d1ba76b77814",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33": "e8bbd5f4a33949849d608477bf4783f42bde72b10b5c98db2c83082ce59679a8"
+      }
+    },
+    {
+      "config": {
+        "id": "etc_coffeeNav",
+        "isin": "JE00BN7KB557",
+        "label": "WisdomTree Coffee · VL",
+        "instrumentType": "ETC",
+        "consumerScope": "catalog",
+        "currency": "USD",
+        "periodStart": "2021-12",
+        "precision": 8,
+        "collectAnniversary": false,
+        "parser": "official-nav",
+        "field": "nav-total-return",
+        "valuationBasis": "fund-nav-total-return",
+        "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+        "navProvider": "wisdomtree",
+        "navCurrency": "USD",
+        "navHistoryTransport": "official-dataspan-nav-tr",
+        "wisdomClassId": 1000072,
+        "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-coffee",
+        "calendarRegistry": "src/data/non-bond-etf-records.json",
+        "returnWindowQualification": "corroborated-calendars",
+        "requiredQualifiedCalendarYears": [
+          2024,
+          2025
+        ],
+        "wisdomTicker": "COFF",
+        "wisdomProductName": "WisdomTree Coffee",
+        "wisdomListingId": 2740785,
+        "wisdomInception": "2006-09-22",
+        "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
+      },
+      "nativeObservation": {
+        "id": "etc_coffeeNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "67c6e6565d11e6cdc2c2c440950c5e4f0c135dd5300b932f59ba618f364f2746",
+        "controlScope": {
+          "controlledInstrument": "JE00BN7KB557",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2021-12-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      "recordCheckedAt": "2026-11-02",
+      "points": 59,
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=gro10k": "a93646d9e16b311bf6d5b0888af96a4d8dc81fc2410c19c62dd8d99556060d67",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=tabular": "8570d8cc952eb616cda45032ac3158cad191b8703dfd1a9ccfe7043411061ea0",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557": "f0deee10717cc07e2d23608b6412cf32356173d5e30c61f08296948a3ddd7593"
+      }
+    },
+    {
+      "config": {
+        "id": "etfIE00BDVPNG13Nav",
+        "isin": "IE00BDVPNG13",
+        "label": "WisdomTree Artificial Intelligence UCITS ETF - USD Acc · VL",
+        "instrumentType": "ETF",
+        "consumerScope": "catalog",
+        "currency": "USD",
+        "periodStart": "2018-12",
+        "precision": 8,
+        "collectAnniversary": false,
+        "parser": "official-nav",
+        "field": "nav-total-return",
+        "valuationBasis": "fund-nav-total-return",
+        "method": "Rendement total NAV officiel de la part exacte en USD, net des frais ; unités de performance sans ajout de distributions ; ancienne cotation conservée séparément",
+        "navProvider": "wisdomtree",
+        "navCurrency": "USD",
+        "navHistoryTransport": "official-dataspan-nav-tr",
+        "wisdomClassId": 1123138,
+        "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
+        "calendarRegistry": "src/data/exposure-etf-expansion-records.json",
+        "returnWindowQualification": "corroborated-calendars",
+        "requiredQualifiedCalendarYears": [
+          2019,
+          2023
+        ],
+        "wisdomTicker": "WTAI",
+        "wisdomProductName": "WisdomTree Artificial Intelligence UCITS ETF - USD Acc",
+        "wisdomListingId": 2120247,
+        "wisdomInception": "2018-11-30",
+        "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+        "documentType": "wisdomtree-ucits",
+        "documentName": "WisdomTree Artificial Intelligence UCITS ETF - USD Acc",
+        "wisdomChartInception": "2018-12-05"
+      },
+      "nativeObservation": {
+        "id": "etfIE00BDVPNG13Nav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "3a12093003c7c9ff60331c8f2ce418bcebbec865d552bf2b3016c767978289ef",
+        "controlScope": {
+          "controlledInstrument": "IE00BDVPNG13",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2018-12-01",
+          "controlledCalendarYears": [
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      "recordCheckedAt": "2026-11-02",
+      "points": 95,
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=gro10k": "aecb46677e859e25c789298f6ee8276a3e49bee07374dc53030411fa60b9109f",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=tabular": "2a44dc2f9c3fccdf81e9aa7261a485950572062442f56cb32c605ade22819f71",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297"
+      }
+    },
+    {
+      "config": {
+        "id": "etfCloudWisdomtreeNav",
+        "isin": "IE00BJGWQN72",
+        "label": "WisdomTree Cloud Computing UCITS ETF - USD Acc · VL",
+        "instrumentType": "ETF",
+        "consumerScope": "catalog",
+        "currency": "USD",
+        "periodStart": "2019-09",
+        "precision": 8,
+        "collectAnniversary": false,
+        "parser": "official-nav",
+        "field": "nav-total-return",
+        "valuationBasis": "fund-nav-total-return",
+        "method": "Rendement total NAV officiel de la part exacte en USD, net des frais ; unités de performance sans ajout de distributions ; ancienne cotation conservée séparément",
+        "navProvider": "wisdomtree",
+        "navCurrency": "USD",
+        "navHistoryTransport": "official-dataspan-nav-tr",
+        "wisdomClassId": 3104137,
+        "sourceUrl": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
+        "calendarRegistry": "src/data/automated-etf.json",
+        "returnWindowQualification": "corroborated-calendars",
+        "requiredQualifiedCalendarYears": [
+          2020,
+          2023
+        ],
+        "wisdomTicker": "WCLD",
+        "wisdomProductName": "WisdomTree Cloud Computing UCITS ETF - USD Acc",
+        "wisdomListingId": 2921038,
+        "wisdomInception": "2019-09-03",
+        "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+        "documentType": "wisdomtree-ucits",
+        "documentName": "WisdomTree Cloud Computing UCITS ETF - USD Acc"
+      },
+      "nativeObservation": {
+        "id": "etfCloudWisdomtreeNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "c7484f99753289278ba6ef88a821a1d32db6b1c7e355da629778d9e7453b206f",
+        "controlScope": {
+          "controlledInstrument": "IE00BJGWQN72",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2019-09-01",
+          "controlledCalendarYears": [
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      "recordCheckedAt": "2026-11-02",
+      "points": 86,
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=gro10k": "f31e7200ce1cf38f55a253877637f22379b6c6431624afd3ce4a5fc9ab17439d",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=WCLD&mode=tabular": "1c29b93dfd42e52253cffeab14e248b0b5b78faa3dcf42e602207e1d75d1ebc9",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72": "7ab5627948d2b2b95c578d10e741db9738894ca076bb8ce4d67713fac91219ee"
+      }
+    },
+    {
+      "config": {
+        "id": "etc_cocoaNav",
+        "isin": "JE00B2QXZK10",
+        "label": "WisdomTree Cocoa · VL",
+        "instrumentType": "ETC",
+        "consumerScope": "catalog",
+        "currency": "USD",
+        "periodStart": "2015-01",
+        "precision": 8,
+        "collectAnniversary": false,
+        "parser": "official-nav",
+        "field": "nav-total-return",
+        "valuationBasis": "fund-nav-total-return",
+        "method": "Rendement total NAV officiel de la part exacte en USD, net des frais ; unités de performance sans ajout de distributions ; ancienne cotation conservée séparément",
+        "navProvider": "wisdomtree",
+        "navCurrency": "USD",
+        "navHistoryTransport": "official-dataspan-nav-tr",
+        "wisdomClassId": 1000071,
+        "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-cocoa",
+        "calendarRegistry": "src/data/non-bond-etf-records.json",
+        "returnWindowQualification": "corroborated-calendars",
+        "requiredQualifiedCalendarYears": [
+          2023,
+          2024
+        ],
+        "wisdomTicker": "COCO",
+        "wisdomProductName": "WisdomTree Cocoa",
+        "wisdomListingId": 2740782,
+        "wisdomInception": "2009-11-09",
+        "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10"
+      },
+      "nativeObservation": {
+        "id": "etc_cocoaNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "0863115e1b00ccc79c3efb07687ae00fa4ad12e11772651e28209ad2962a77b4",
+        "controlScope": {
+          "controlledInstrument": "JE00B2QXZK10",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2015-01-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      "recordCheckedAt": "2026-11-02",
+      "points": 142,
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COCO&mode=gro10k": "db05892b4bb2b6003fad8184735db4c77abd4e0b71588e324ab0895f92151f64",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COCO&mode=tabular": "334ac585a3e8987db0c433c1553340206858a9c2f79632d5a561e684417843d6",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10": "d111eb277740a11231a9c42f8d0bd16f82d2e651dba0d4d06374676a44685976"
+      }
+    },
+    {
+      "config": {
+        "id": "etc_natural_gasNav",
+        "isin": "JE00BN7KB334",
+        "label": "WisdomTree Natural Gas · VL",
+        "instrumentType": "ETC",
+        "consumerScope": "catalog",
+        "currency": "USD",
+        "periodStart": "2021-12",
+        "precision": 8,
+        "collectAnniversary": false,
+        "parser": "official-nav",
+        "field": "nav-total-return",
+        "valuationBasis": "fund-nav-total-return",
+        "method": "Rendement total NAV officiel de la part exacte en USD, net des frais ; unités de performance sans ajout de distributions ; ancienne cotation conservée séparément",
+        "navProvider": "wisdomtree",
+        "navCurrency": "USD",
+        "navHistoryTransport": "official-dataspan-nav-tr",
+        "wisdomClassId": 1000163,
+        "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-natural-gas",
+        "calendarRegistry": "src/data/non-bond-etf-records.json",
+        "returnWindowQualification": "corroborated-calendars",
+        "requiredQualifiedCalendarYears": [
+          2022
+        ],
+        "wisdomTicker": "NGAS",
+        "wisdomProductName": "WisdomTree Natural Gas",
+        "wisdomListingId": 2741004,
+        "wisdomInception": "2006-09-22",
+        "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
+      },
+      "nativeObservation": {
+        "id": "etc_natural_gasNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "131b099d1e0aff7d45774bab2cc24ea14708a51b6a3c5f6a71aa212d8a0b20d1",
+        "controlScope": {
+          "controlledInstrument": "JE00BN7KB334",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2021-12-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      "recordCheckedAt": "2026-11-02",
+      "points": 59,
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k": "6d14adb82c4edd88c5e8be9aeec958b2d83940951edeae2d7cf03579c1f2de0f",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=tabular": "fcd1fdba792de88f6908711267a4abcc8baf1522a2c67319d2a40f0df66709fa",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334": "d545d7e1b1dac8df3a205575802edf60f1a7fc1ba9ab09021d637f9bb8f13d2d"
+      }
+    },
+    {
+      "config": {
+        "id": "etc_wheatNav",
+        "isin": "JE00BN7KB664",
+        "label": "WisdomTree Wheat · VL",
+        "instrumentType": "ETC",
+        "consumerScope": "catalog",
+        "currency": "USD",
+        "periodStart": "2021-12",
+        "precision": 8,
+        "collectAnniversary": false,
+        "parser": "official-nav",
+        "field": "nav-total-return",
+        "valuationBasis": "fund-nav-total-return",
+        "method": "Rendement total NAV officiel de la part exacte en USD, net des frais ; unités de performance sans ajout de distributions ; ancienne cotation conservée séparément",
+        "navProvider": "wisdomtree",
+        "navCurrency": "USD",
+        "navHistoryTransport": "official-dataspan-nav-tr",
+        "wisdomClassId": 1000235,
+        "sourceUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wheat",
+        "calendarRegistry": "src/data/non-bond-etf-records.json",
+        "returnWindowQualification": "corroborated-calendars",
+        "requiredQualifiedCalendarYears": [
+          2022,
+          2023
+        ],
+        "wisdomTicker": "WEAT",
+        "wisdomProductName": "WisdomTree Wheat",
+        "wisdomListingId": 2741190,
+        "wisdomInception": "2006-09-22",
+        "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664"
+      },
+      "nativeObservation": {
+        "id": "etc_wheatNav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "ced7498e4fb6355e2a24357db73933880df69c0c8f9a5f0b8de258df09905cf6",
+        "controlScope": {
+          "controlledInstrument": "JE00BN7KB664",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2021-12-01",
+          "controlledCalendarYears": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      },
+      "recordCheckedAt": "2026-11-02",
+      "points": 59,
+      "rawSourceHashes": {
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=gro10k": "32c710587aecc7682057c95d3c90335d481042014d1baaceee1cb9cd1fb391dd",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=tabular": "fbedba2498ee4d78ab9fee54cc8656af5c0f7cb6338bcbd8957eeab52fa3fffa",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664": "4ab8c90ccbd9723fcbe4ad1f1a47bed5f43b5b53e7d82caac4a90a58932555ad"
+      }
+    }
+  ],
+  "limit": "Exact independent NAV routes and their own convention; does not qualify complete holdings, legacy quote divergences or a scheduled trigger."
+}

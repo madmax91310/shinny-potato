@@ -1,0 +1,63 @@
+{
+  "runId": 41390100955,
+  "event": "workflow_dispatch",
+  "manualNotSchedule": true,
+  "planDeclaredAt": "2026-11-02T05:20:56.493935+00:00",
+  "checkedAt": "2026-11-02T05:20:56.996884+00:00",
+  "planned": 3360,
+  "selected": 42,
+  "statuses": {
+    "not-attempted": 3318,
+    "succeeded": 42
+  },
+  "selectedInstruments": [
+    "IE00B0M63516",
+    "IE00B14X4S71",
+    "IE00B1FZS574",
+    "IE00B1FZS798",
+    "IE00B1FZSC47",
+    "IE00B2QWDY88",
+    "IE00B3F81K65",
+    "IE00B4M7GH52",
+    "IE00B52SF786",
+    "IE00B52XQP83",
+    "IE00B5377D42",
+    "IE00B5WHFQ43",
+    "IE00B86MWN23",
+    "IE00B8KGV557",
+    "IE00BFM6T814",
+    "IE00BJ5JPJ87",
+    "IE00BSKRJX20",
+    "IE00BSKRJZ44",
+    "IE00BYPC1H27",
+    "IE00BZ048462",
+    "IE00BZ6V7883"
+  ],
+  "selectedFields": [
+    "listings"
+  ],
+  "sourceAttempted": 21,
+  "recordedCommit": "712598f",
+  "previousCommit": "9437b25",
+  "changedRegistryPaths": [],
+  "publicBuild": {
+    "sha": "28745bf683c489f60146d745d47dc5c786bdfee5",
+    "dataSha": "712598f15bfbaf8678c8cdfab4280dcc5ea9bfc8",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-02T05:34:22.544Z"
+  },
+  "publishedExactBlobs": [
+    {
+      "path": "src/data/automated-instrument-metadata.json",
+      "recordBlob": "6f6d23a52da155f5c209ece506dc1cab64137fbc",
+      "publishedBlob": "6f6d23a52da155f5c209ece506dc1cab64137fbc"
+    },
+    {
+      "path": "src/data/instrument-metadata-status.json",
+      "recordBlob": "3794b28aaf2501dd9b1c6d305772fbc5e76d93ae",
+      "publishedBlob": "3794b28aaf2501dd9b1c6d305772fbc5e76d93ae"
+    }
+  ],
+  "financialRegistryChanges": 0,
+  "limitation": "21 listing source controls, 42 collect/qualification outcomes; no certification of other fields, no scheduled run claimed."
+}

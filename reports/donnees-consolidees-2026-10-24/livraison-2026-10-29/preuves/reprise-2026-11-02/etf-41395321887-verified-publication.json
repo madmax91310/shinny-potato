@@ -1,0 +1,226 @@
+{
+  "sourceRun": 41395321887,
+  "sourceRecord": "cabfeb8b1d98cb9a9131f08acf5f54553f1b7f34",
+  "publishedCode": "414bd67a1afa1ae9cc003e5e98a3f0c0f6b92d2d",
+  "nativeVerification": {
+    "build": {
+      "sha": "414bd67a1afa1ae9cc003e5e98a3f0c0f6b92d2d",
+      "builtAt": "2026-11-02T06:26:04Z"
+    },
+    "checkedAt": "2026-11-02T06:58:35.713Z",
+    "files": 380,
+    "publicFilesVerified": 42,
+    "assetCertificate": {
+      "profiles": 1633,
+      "fields": 7219,
+      "states": {
+        "blocked": 230,
+        "connected": 775,
+        "qualification-needed": 117,
+        "reference-only": 457,
+        "scheduled-evidence": 54
+      },
+      "csvSha256": "7b5bacd2dc358d25b4c423b3737f5a9e03724a67368d50298cc492a47816ed7d"
+    },
+    "summary": {
+      "schemaVersion": 1,
+      "generatedAt": "2026-11-02T06:25:23.540Z",
+      "summary": {
+        "fieldKinds": {
+          "reference": 717,
+          "live": 2819,
+          "unavailable": 14,
+          "archive": 171,
+          "history": 1101,
+          "simulation": 6,
+          "editorial": 44
+        },
+        "registryRoles": {
+          "mixed-or-derived": 107,
+          "unclassified": 27,
+          "collector-output": 90,
+          "logic": 25,
+          "historical-fallback": 18,
+          "configuration": 19,
+          "editorial": 20,
+          "manual-observation": 4,
+          "simulation": 5,
+          "reference": 2
+        },
+        "liveProvenanceGaps": 0,
+        "connectionStates": {
+          "current": 4236,
+          "manual": 43,
+          "unqualified": 80,
+          "outside-equity-scope": 51,
+          "connector-needed": 24,
+          "not-applicable": 102,
+          "tracked-index-needed": 23,
+          "waiting-first-year": 13,
+          "collection-error": 3,
+          "not-published": 16,
+          "source-conflict": 2,
+          "check-overdue": 2,
+          "waiting-publication": 3,
+          "archived": 3
+        },
+        "actionableConnections": 193,
+        "unclassifiedFields": 0,
+        "unclassifiedModules": 27,
+        "registries": 317,
+        "registryModes": {
+          "mixed-or-derived": 108,
+          "manual-or-editorial": 119,
+          "scheduled-output": 90
+        },
+        "catalogRecords": 1641,
+        "catalogFields": 4872,
+        "catalogTypes": {
+          "reference": 11,
+          "series": 766,
+          "insurance": 7,
+          "actor": 11,
+          "scpi": 8,
+          "household": 29,
+          "portfolio": 8,
+          "instrument": 693,
+          "index": 56,
+          "broker": 8,
+          "lexicon": 44
+        },
+        "fieldsWithoutSource": 16,
+        "fieldsWithoutCheckDate": 23,
+        "scheduledWorkflows": 25,
+        "coverageRows": 4583,
+        "coverageStates": {
+          "current": 4316,
+          "manual": 44,
+          "not-applicable": 155,
+          "missing": 27,
+          "waiting-first-year": 13,
+          "not-published": 16,
+          "check-overdue": 2,
+          "unqualified": 3,
+          "source-conflict": 1,
+          "waiting-publication": 3,
+          "archived": 3
+        },
+        "peaQualified": 257,
+        "peaRemaining": 23,
+        "priorityMarkets": {
+          "performance": {
+            "total": 283,
+            "current": 260,
+            "actions": 7,
+            "waiting": 13,
+            "calculatedAlternative": 7,
+            "equityAlternative": 0
+          },
+          "monthly": {
+            "total": 735,
+            "current": 732,
+            "actions": 0,
+            "waiting": 0,
+            "calculatedAlternative": 0,
+            "equityAlternative": 0
+          },
+          "countries": {
+            "total": 283,
+            "current": 254,
+            "actions": 6,
+            "waiting": 0,
+            "calculatedAlternative": 0,
+            "equityAlternative": 1
+          },
+          "sectors": {
+            "total": 283,
+            "current": 254,
+            "actions": 6,
+            "waiting": 0,
+            "calculatedAlternative": 0,
+            "equityAlternative": 1
+          },
+          "completeHoldings": {
+            "total": 283,
+            "current": 123,
+            "actions": 109,
+            "waiting": 0,
+            "calculatedAlternative": 0,
+            "equityAlternative": 0
+          },
+          "returns": {
+            "total": 56,
+            "current": 56,
+            "actions": 0,
+            "waiting": 0,
+            "calculatedAlternative": 0,
+            "equityAlternative": 0
+          },
+          "facts": {
+            "total": 52,
+            "current": 52,
+            "actions": 0,
+            "waiting": 0,
+            "calculatedAlternative": 0,
+            "equityAlternative": 0
+          }
+        },
+        "assetAutomation": {
+          "profiles": 1633,
+          "fields": 7219,
+          "states": {
+            "blocked": 230,
+            "connected": 775,
+            "qualification-needed": 117,
+            "reference-only": 457,
+            "scheduled-evidence": 54
+          }
+        },
+        "consumerUsage": {
+          "tools": 21,
+          "usages": 33830,
+          "required": 30232,
+          "connected": 24642,
+          "blocked": 1295,
+          "unconfirmed": 4295,
+          "unmapped": 0
+        }
+      }
+    }
+  },
+  "immutableProducerReceipt": {
+    "schemaVersion": 1,
+    "commit": "cabfeb8b1d98cb9a9131f08acf5f54553f1b7f34",
+    "files": {
+      "src/data/annual-fx.json": "fc105083de7fdfa67c1d551b102e5cf175d363a0",
+      "src/data/automated-etf.json": "d01e951ab965e2599cd0f440771d95a1c60c16ac",
+      "src/data/automated-indices.json": "4b8c8138493fa7887c54cac6709b0371591ab675",
+      "src/data/official-performance-currencies.json": "8a29089880e0d3b3a008c361c5f490cda5b83435"
+    }
+  },
+  "perFile": [
+    {
+      "path": "src/data/annual-fx.json",
+      "sourceBlob": "fc105083de7fdfa67c1d551b102e5cf175d363a0",
+      "publishedBlob": "fc105083de7fdfa67c1d551b102e5cf175d363a0"
+    },
+    {
+      "path": "src/data/automated-etf.json",
+      "sourceBlob": "d01e951ab965e2599cd0f440771d95a1c60c16ac",
+      "publishedBlob": "d01e951ab965e2599cd0f440771d95a1c60c16ac"
+    },
+    {
+      "path": "src/data/automated-indices.json",
+      "sourceBlob": "4b8c8138493fa7887c54cac6709b0371591ab675",
+      "publishedBlob": "4b8c8138493fa7887c54cac6709b0371591ab675"
+    },
+    {
+      "path": "src/data/official-performance-currencies.json",
+      "sourceBlob": "8a29089880e0d3b3a008c361c5f490cda5b83435",
+      "publishedBlob": "8a29089880e0d3b3a008c361c5f490cda5b83435"
+    }
+  ],
+  "allProducerFilesExactlyPublished": true,
+  "nestedProducerReceiptBranchProductionVerified": true,
+  "limit": "Nested publication branch is demonstrated in ordinary GitHub execution; earlier unknown historical scopes remain unknown. Supplier failures in separate fields/reports are preserved."
+}

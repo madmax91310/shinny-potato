@@ -3,6 +3,7 @@ import { LIVRET_A, INFLATION } from '../../data/history-parameters.js'
 import { historyInCurrency } from '../../data/history-currency.js'
 import { monthlyCurrencyFactor } from '../../data/history-currency.js'
 import { fmtEUR, fmtPct } from '../../lib/format-currency.js'
+import { monthlyHistoryMethod } from '../../lib/performance-conventions.js'
 export { fmtEUR, fmtPct } from '../../lib/format-currency.js'
 import { INFLATION_MONTHLY } from '../../data/inflation-monthly.js'
 // Logique de calcul partagée avec Tweet Midi.
@@ -82,11 +83,16 @@ export function buildTweetText(state, d) {
   const amountFmt = fmtEUR(d.amount, currency)
   const investmentLabel = d.isCustom ? assetLabel : asset.tweetPhrase
 
+  const withDe = label => `${/^[ao]/i.test(label) ? 'd’' : 'de '}${label}`
+  const startLabel = `${monthLabel} ${yearLabel}`
   const endLabel = `${MONTHS_FULL[Number(d.endYm.split('-')[1]) - 1]} ${d.endYm.split('-')[0]}`
   const gainAbs = d.result.finalValue - d.result.totalInvested
   const monthly = d.effectiveMode === 'dca'
-  const endingQuestion = monthly
-    ? 'Tu aurais continué tes achats pendant les baisses ?'
+  const monthlyAverage = asset?.historyConvention === 'monthly-average'
+  const endingQuestion = d.isCustom
+    ? 'Quelle évolution du prix voudrais-tu comparer à ce scénario ?'
+    : monthly
+    ? 'Tu aurais conservé ce rythme de versement sur cette durée ?'
     : 'Tu aurais gardé ce placement jusqu’au bout ?'
   const hookLine = d.effectiveMode === 'dca'
     ? `Et si tu avais investi ${amountFmt} par mois dans ${investmentLabel} depuis ${monthLabel} ${yearLabel} ? 🫢`
@@ -95,20 +101,28 @@ export function buildTweetText(state, d) {
   const lines = [
     hookLine,
     '',
-    `${d.isCustom ? 'Avec les deux prix saisis, voici ce que cette somme serait devenue' : state.overridePriceRaw ? `Au prix final saisi, voici ce que ${monthly ? 'tes achats mensuels seraient devenus' : 'cette somme serait devenue'} en ${endLabel}` : `En ${endLabel}, voici ce que ${monthly ? 'tes achats mensuels seraient devenus' : 'cette somme serait devenue'}`} 👇`,
+    `${d.isCustom ? `Avec les deux prix saisis, cette somme passerait de ${amountFmt} à ${finalFmt}` : state.overridePriceRaw ? `Au prix final saisi, voici le résultat en ${endLabel}` : monthlyAverage ? `En ${endLabel}, voici le résultat` : `À la clôture ${withDe(endLabel)}, voici le résultat`} 👇`,
     '',
     `💰 ${monthly ? 'Total versé' : 'Somme investie'} : ${fmtEUR(d.result.totalInvested, currency)}`,
-    `📈 Capital final : ${finalFmt}`,
+    `${gainAbs < 0 ? '📉' : '📈'} Capital final : ${finalFmt}`,
     `${gainAbs < 0 ? '🔴 Perte' : '🟢 Gain'} : ${fmtEUR(Math.abs(gainAbs), currency)}${monthly ? '' : ` (${fmtPct(gainPct)})`}`,
     ...(monthly ? [`📊 ${gainAbs < 0 ? 'Perte' : 'Gain'} sur les sommes versées : ${fmtPct(gainPct)}`] : []),
   ]
-  if (ASSETS[state.assetId]?.priceUnit === 'points' || INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)) {
-    if (asset?.methodNote) lines.push(asset.methodNote)
-  }
+  const paymentCount = d.result.months?.length
+  const payments = paymentCount ? `${paymentCount} versement${paymentCount === 1 ? '' : 's'}` : 'Versements'
+  const timing = monthlyAverage ? paymentCount === 1 ? 'mensuel simulé' : 'mensuels simulés' : paymentCount ? 'en fin de mois' : 'mensuels en fin de mois'
+  if (monthly) lines.push('', `${payments} ${timing}, ${withDe(startLabel)} à ${endLabel}, inclus.`)
+  else if (!d.isCustom) lines.push('', monthlyAverage
+    ? `Versement unique valorisé avec la moyenne ${withDe(startLabel)}.`
+    : `Versement unique à la clôture ${withDe(startLabel)}.`)
+  if (monthlyAverage) lines.push('', 'Simulation indicative sur des moyennes mensuelles de prix, hors frais et fiscalité.')
+  if (d.isCustom) lines.push('', 'Scénario fondé uniquement sur les deux prix saisis, sans historique de marché, hors frais et fiscalité.')
+  if (asset?.methodNote) lines.push('', asset.methodNote)
 
   if (state.assetId === 'silver') {
     lines.push('', 'Prix de futures COMEX continus en dollars, sans frais ni renouvellement des contrats : ce calcul ne représente pas le rendement d’un placement réel en argent.')
   }
+  if (asset && monthlyHistoryMethod(asset)) lines.push('', monthlyHistoryMethod(asset))
 
   // Comparaison Livret A : uniquement pour les actifs en euros, jamais un montant en dollars
   // comparé à un Livret A en euros sans taux de change — même règle que ResultCard côté UI

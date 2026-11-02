@@ -1,0 +1,80 @@
+{
+  "checkedAt": "2026-11-02T07:12:15.002681+00:00",
+  "published": {
+    "sha": "414bd67a1afa1ae9cc003e5e98a3f0c0f6b92d2d",
+    "builtAt": "2026-11-02T06:26:04Z"
+  },
+  "snapshotCheckedAt": "2026-11-02T07:03:18.782Z",
+  "diagnostics": {
+    "oldDiagnosticIdentitiesPreserved": 8711,
+    "canonicalDiagnosticIdentitiesAfter": 9880,
+    "allIntermediateObservedIdentities": 9117,
+    "currentPublicDiagnostics": 8992,
+    "currentActiveDiagnostics": 6864,
+    "activeClasses": {
+      "qualification": 6293,
+      "connection": 30,
+      "monitoring": 496,
+      "failure": 45
+    },
+    "initial661Preserved": 661,
+    "oldLedgerRowsPreserved": 50069,
+    "ledgerRowsAfter": 57741,
+    "previousMatrixIdentitiesNotPreviouslyInLedgerAdded": 6565,
+    "oldRemainingRowsPreserved": 45457,
+    "remainingRowsAfter": 45458,
+    "old79CasesPreserved": 79,
+    "qualifiedMonthlyWindows": 70,
+    "refusedMonthlyWindows": 9,
+    "limit": "Rows are identities/contracts and history, not a count of independent outages. Absence never closes a cause without bounded evidence."
+  },
+  "matrix": {
+    "build": {
+      "sha": "414bd67a1afa1ae9cc003e5e98a3f0c0f6b92d2d",
+      "builtAt": "2026-11-02T06:26:04Z"
+    },
+    "oldIdentitiesPreserved": 41516,
+    "currentDeclaredContracts": 33830,
+    "matrixAfter": 41516,
+    "newTrackingIdentities": 0,
+    "unmatchedOlderIdentities": 7686,
+    "ambiguousNotReused": 0,
+    "previouslyAmbiguousListingsResolvedByExactQuoteIdentity": 42,
+    "currentDeclarationSummary": {
+      "tools": 21,
+      "usages": 33830,
+      "required": 30232,
+      "connected": 24642,
+      "blocked": 1295,
+      "unconfirmed": 4295,
+      "unmapped": 0
+    },
+    "limit": "Declarations are not individual outage or success proofs; bounded native/public/browser evidence remains separate."
+  },
+  "actions19Preserved": 19,
+  "financial79": {
+    "total": 79,
+    "qualified": 70,
+    "refused": 9,
+    "oldDivergencesNotClosedByIndependentRoutes": 77,
+    "unexplainedResiduals": 2
+  },
+  "consumerProofs": {
+    "newMarketQuotes": 12,
+    "independentPublicCalculations": 24,
+    "calculationAndComparisonPngs": 26,
+    "manualAndAnnualSelectorFunds": 21,
+    "manualAndAnnualPngs": 6,
+    "newPhysicalBooks": 11,
+    "completeOverlapBooks": 9,
+    "partialOverlapBooks": 2,
+    "holdingsPngs": 22,
+    "overlapPngs": 4,
+    "nativePerformanceIsolatedPngs": 42
+  },
+  "scheduledWorkflowBreakdown": "workflow-schedule-reconciliation.json",
+  "completeAutomationClaimed": false,
+  "limit": "No global certification inferred from declarations, CI success or one shared collection. Historical refusals and external blocks are unresolved work.",
+  "nested966ProductionProof": "etf-41395321887-verified-publication.json",
+  "functionalSourceFixesActuallyPublished": true
+}

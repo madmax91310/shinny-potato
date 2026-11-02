@@ -38,7 +38,7 @@ try {
     let labels=[],boxes=[]
     CanvasRenderingContext2D.prototype.fillText=function(value,x,y,...args){
       const m=this.measureText(value), box={left:x-m.actualBoundingBoxLeft,right:x+m.actualBoundingBoxRight,top:y-m.actualBoundingBoxAscent,bottom:y+m.actualBoundingBoxDescent,value}
-      if(box.left<0||box.right>1601||box.top<0||box.bottom>1068) throw Error('Clipped: '+value)
+      if(box.left<0||box.right>this.canvas.width+1||box.top<0||box.bottom>this.canvas.height+1) throw Error('Clipped: '+value)
       for(const b of boxes)if(Math.min(b.right,box.right)-Math.max(b.left,box.left)>1&&Math.min(b.bottom,box.bottom)-Math.max(b.top,box.top)>1)throw Error(`Overlap: ${b.value} / ${value}`)
       labels.push(String(value)); boxes.push(box)
       return original.call(this,value,x,y,...args)
