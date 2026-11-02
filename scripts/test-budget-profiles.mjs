@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
+import { createHash } from 'node:crypto'
 import { BUDGET_EDITORIAL, BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
-import { analyzeBudget, blankBudget, budgetDisplayName, budgetExpenseSections, buildBudgetText, euro, refreshBudgetDraft, sourceReply, validBudget } from '../src/pages/budget-profiles/lib.js'
+import { analyzeBudget, blankBudget, budgetDisplayName, budgetExpenseSections, budgetImageExpenses, buildBudgetText, compareBudgetRecency, euro, refreshBudgetDraft, sourceReply, validBudget } from '../src/pages/budget-profiles/lib.js'
 import { TOOLS, HOME_TOOLS } from '../src/tools.js'
 
 assert(BUDGET_PROFILES.length > 0)
@@ -196,3 +197,53 @@ assert.equal(apprenticeReference.housing,'');assert.equal(apprenticeReference.fa
 assert.match(buildBudgetText(apprenticeReference), /85.*CHF restants doivent encore financer/)
 const pension = BUDGET_PROFILES.find(p=>p.id==='websourd-retraite-normandie-2026-10-02')
 assert.deepEqual(pension.savings,[]);assert.equal(pension.income[0].label,'Pension de retraite');assert.equal(pension.family,'')
+
+// November bank enrichment: independent source totals, including unspent cash and planned flows.
+const bankLedgers = [
+  ['finary-freelance-lille-2025-03-02', 513000, 310000, 200000, 3000, 60],
+  ['finary-installation-projet-2026-02-21', 250000, 150000, 100000, 0, 60],
+  ['finary-alternante-projet-2026-10-06', 128478, 5000, 90000, 33478, 4],
+  ['finary-ingenieur-colocation-projet-2026-08-18', 192500, 85000, 0, 107500, 44],
+  ['reference-bordeaux-budget-2026-03', 228000, 196500, 25000, 6500, 86],
+  ['reference-couple-lille-budget-2026-01', 455000, 292000, 145000, 18000, 64],
+  ['reference-indexo-belgique-2026-11', 220000, 200000, 20000, 0, 91],
+  ['reference-vendeuse-rennes-2026', 139800, 124800, 5000, 10000, 89],
+  ['reference-famille-lyon-2026', 450000, 385000, 45000, 20000, 86],
+]
+for (const [id, income, expenses, transfers, balance, percent] of bankLedgers) {
+  const p = BUDGET_PROFILES.find(p => p.id === id)
+  assert(p, id)
+  const a = analyzeBudget(p)
+  assert.deepEqual([a.income, a.expenses, a.savings, a.balance].map(n => Math.round(n * 100)), [income, expenses, transfers, balance], id)
+  assert.equal(Math.round(a.expenseShare), percent, `${id}: source-based percentage`)
+  for (const mode of ['detailed', 'summary']) {
+    assert.equal(budgetImageExpenses(p, mode).reduce((n, row) => n + Math.round(row.amount * 100), 0), expenses, `${id}: image expense ledger`)
+  }
+  assert.match(p.provenance.sourceSha256, /^[a-f0-9]{64}$/)
+  assert(!JSON.stringify(p.income).includes('conjoint'), 'No inferred partner salary')
+}
+const bankProfile = id => BUDGET_PROFILES.find(p => p.id === id)
+const futureStudent = bankProfile('finary-alternante-projet-2026-10-06')
+assert.equal(futureStudent.country, ''); assert.equal(futureStudent.family, ''); assert.equal(futureStudent.housing, '')
+assert.match(buildBudgetText(futureStudent), /334,78 € restants doivent encore financer/)
+assert.equal(futureStudent.income.length, 2, 'Exclude salary increases and allowances belonging to future months')
+const engineerPlan = bankProfile('finary-ingenieur-colocation-projet-2026-08-18')
+assert.deepEqual(engineerPlan.savings, [], 'An undecided 750-euro option is not an actual or agreed transfer')
+assert.equal(engineerPlan.income.at(-1).amount, engineerPlan.expenses[0].amount, 'Count the aid and its reimbursement once each')
+const bordeaux = bankProfile('reference-bordeaux-budget-2026-03')
+assert.equal(budgetImageExpenses(bordeaux, 'summary').find(r => r.category === 'transport').amount, 327)
+assert.equal(budgetImageExpenses(bordeaux, 'summary').find(r => r.category === 'housing').amount, 877)
+assert.equal(bordeaux.income.length, 1, 'The excluded semestrial bonus is not recurring salary')
+const lille = bankProfile('reference-couple-lille-budget-2026-01')
+assert.match(buildBudgetText(lille), /Salaire net d’Hugo/)
+assert.match(buildBudgetText(lille), /32 ans et infirmière de 30 ans/)
+assert.equal(BUDGET_PROFILES.filter(p => p.source.url === lille.source.url).length, 2, 'Two distinct reference cases share an article, not an identity or ledger')
+const familyReference = bankProfile('reference-famille-lyon-2026')
+assert.equal(familyReference.expenses.length, 22, 'Retain every source expense, including the two loans')
+assert.equal(familyReference.expenses.slice(0, 12).reduce((n, row) => n + row.amount, 0), 2380, 'Published fixed subtotal is 200 euros too high; never add a fictitious expense to match it')
+assert.equal(budgetImageExpenses(familyReference, 'summary').find(r => r.category === 'credit').amount, 430)
+assert.equal(budgetImageExpenses(familyReference, 'summary').find(r => r.category === 'food').amount, 905)
+assert(!buildBudgetText(bankProfile('reference-vendeuse-rennes-2026')).includes('SMIC'), 'Do not turn an outdated illustrative wage into a current statutory minimum')
+assert(compareBudgetRecency(bordeaux, bankProfile('finary-freelance-lille-2025-03-02')) < 0, 'Preparation in November does not turn a March 2025 budget into a recent one')
+const previousFinancials = BUDGET_PROFILES.slice(0, 61).map(p => ({ id: p.id, currency: p.currency || 'EUR', income: p.income.map(r => r.amount), expenses: p.expenses.map(r => r.amount), savings: p.savings.map(r => r.amount), capacity: p.capacity }))
+assert.equal(createHash('sha256').update(JSON.stringify(previousFinancials)).digest('hex'), '65ca0d1444787d3aa231dcdcb308c75caef562aed116ec698c0ffe82bbf9ef4d', 'Preserve all 61 previous financial profiles and identifiers')
