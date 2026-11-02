@@ -1,0 +1,46 @@
+{
+  "productIds": [
+    "FR0013412012"
+  ],
+  "context": {
+    "countryCode": "FRA",
+    "languageCode": "fr",
+    "userProfileName": "INSTIT"
+  },
+  "characteristics": [
+    "ISIN",
+    "CURRENCY",
+    "LAUNCH_DATE",
+    "DISTRIBUTION_POLICY"
+  ],
+  "breakDown": {
+    "aggregationFields": []
+  },
+  "historics": [
+    {
+      "indicator": "dividendAmount",
+      "startDate": "2019-04-25",
+      "endDate": "2026-11-02"
+    },
+    {
+      "indicator": "dividendCurrency",
+      "startDate": "2019-04-25",
+      "endDate": "2026-11-02"
+    },
+    {
+      "indicator": "officialNav",
+      "startDate": "2019-04-25",
+      "endDate": "2026-11-02"
+    },
+    {
+      "indicator": "countervalorisedAdjustedNAV",
+      "startDate": "2019-04-25",
+      "endDate": "2026-11-02"
+    },
+    {
+      "indicator": "navCurrency",
+      "startDate": "2019-04-25",
+      "endDate": "2026-11-02"
+    }
+  ]
+}

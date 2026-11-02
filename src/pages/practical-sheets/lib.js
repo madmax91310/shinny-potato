@@ -2,7 +2,7 @@ import { affirmInstrumentPea } from '../../data/instruments.js'
 import { PRACTICAL_EXAMPLES } from './editorial.js'
 import { TOPICS, FUND_GROUPS, DEFAULT_SCENARIO } from './data.js'
 import { PRACTICAL_ETF as AUTOMATED_ETF, PRACTICAL_INDEX_FACTS } from '../../data/practical-source-data.js'
-import { INSTRUMENT_FACTS_BY_ISIN } from '../../data/instrument-facts.js'
+import { getInstrumentFacts } from '../../data/instrument-facts.js'
 import { INSTRUMENT_REFERENCE_EVIDENCE } from '../../data/instrument-reference-evidence.js'
 import { getInstrumentName, getInstrumentPeaStatus } from '../../data/instruments.js'
 import { formatEtfTer } from '../../data/etf-ter.js';
@@ -30,11 +30,14 @@ export function getSources(topic) {
  })
 }
 function characteristics(isin) {
- const record=AUTOMATED_ETF[isin] ?? {}, facts=INSTRUMENT_FACTS_BY_ISIN[isin] ?? {}
- // The exact class policy wins over generic "capitalisation and/or distribution" wording.
+ const record=AUTOMATED_ETF[isin] ?? {}, facts=getInstrumentFacts(isin)
+ // Exact-share observations include the routing catalogue. The Amundi DICs
+ // for FR0013412020 (13/07/2026) and FR0013412012 (05/06/2026) explicitly
+ // permit capitalisation and/or distribution; an "Acc" name proves neither
+ // an exclusive policy nor the absence of historical cash distributions.
  const policy=record.characteristics?.distribution
  return {index:record.characteristics?.index ?? facts.benchmark ?? (record.sectors?.basis==='index' ? record.sectors.index : null) ?? 'Indice exact non documenté',
-  distribution:policy && !/and\/or|et\/ou/i.test(policy) ? policy : facts.distribution ?? (/\bAcc\b/i.test(getInstrumentName(isin))?'Capitalisant':'À vérifier sur le DIC'),
+  distribution:policy && !/and\/or|et\/ou/i.test(policy) ? policy : facts.distribution ?? 'À vérifier sur le DIC',
   record,facts}
 }
 const SHORT_NAMES = {'FR001400U5Q4':'Amundi PEA Monde','IE0002XZSHO1':'iShares World PEA','LU1681043599':'Amundi World CW8','FR0013412038':'Amundi MSCI Europe','FR0011550193':'BNP STOXX Europe 600','LU1681047236':'Amundi Euro STOXX 50','IE000DQLYVB9':'iShares S&P 500 PEA','FR0011871128':'Amundi PEA S&P 500','FR0011550185':'BNP S&P 500','FR0013412020':'Amundi PEA Émergents','FR001400ZGO4':'Amundi PEA Émergents S','FR0013412012':'Amundi PEA Asie Émergente'}

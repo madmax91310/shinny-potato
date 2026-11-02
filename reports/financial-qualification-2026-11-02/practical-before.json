@@ -1,0 +1,197 @@
+{
+  "sheet": {
+    "id": "em-pea",
+    "family": "ETF sur PEA",
+    "title": "Les ETF émergents sur PEA",
+    "hook": "Tous les ETF émergents sur PEA ne suivent pas le même panier. Voici ce qu’il faut regarder.",
+    "mode": "funds",
+    "fundGroup": "em",
+    "sources": [
+      {
+        "label": "Ce qu'il faut savoir sur les ETF avant d'investir",
+        "url": "https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/placements-collectifs/trackers-etf",
+        "checkedAt": "2026-11-02",
+        "asOf": null,
+        "key": "etf",
+        "status": "ok",
+        "reviewRequired": false
+      },
+      {
+        "label": "Plan d'épargne en actions (PEA)",
+        "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385",
+        "checkedAt": "2026-11-02",
+        "asOf": "2026-05-22",
+        "key": "pea",
+        "status": "ok",
+        "reviewRequired": false
+      },
+      {
+        "label": "FR0013412020 · part",
+        "url": "https://www.justetf.com/en/etf-profile.html?isin=FR0013412020",
+        "checkedAt": "2026-09-30",
+        "asOf": null
+      },
+      {
+        "label": "FR0013412020 · frais",
+        "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "checkedAt": "2026-11-02",
+        "asOf": null
+      },
+      {
+        "label": "FR0013412020 · caractéristiques",
+        "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "checkedAt": "2026-11-02",
+        "asOf": null
+      },
+      {
+        "label": "FR0013412020 · encours",
+        "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "checkedAt": "2026-11-02",
+        "asOf": "2026-10-30"
+      },
+      {
+        "label": "FR001400ZGO4 · part",
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGO4/FRA/FRA/RETAIL/ETF/20260831",
+        "checkedAt": "2026-10-09",
+        "asOf": null
+      },
+      {
+        "label": "FR001400ZGO4 · frais",
+        "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "checkedAt": "2026-11-02",
+        "asOf": null
+      },
+      {
+        "label": "FR001400ZGO4 · caractéristiques",
+        "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "checkedAt": "2026-11-02",
+        "asOf": null
+      },
+      {
+        "label": "FR001400ZGO4 · encours",
+        "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "checkedAt": "2026-11-02",
+        "asOf": "2026-10-30"
+      },
+      {
+        "label": "FR0013412012 · part",
+        "url": "https://www.justetf.com/en/etf-profile.html?isin=FR0013412012",
+        "checkedAt": "2026-09-30",
+        "asOf": null
+      },
+      {
+        "label": "FR0013412012 · frais",
+        "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "checkedAt": "2026-11-02",
+        "asOf": null
+      },
+      {
+        "label": "FR0013412012 · caractéristiques",
+        "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "checkedAt": "2026-11-02",
+        "asOf": null
+      },
+      {
+        "label": "FR0013412012 · encours",
+        "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "checkedAt": "2026-11-02",
+        "asOf": "2026-10-30"
+      }
+    ],
+    "takeaway": "Les filtres ESG et les zones couvertes peuvent modifier sensiblement l’exposition.",
+    "columns": [
+      "Amundi PEA Émergents\nPAEEM · FR0013412020",
+      "Amundi PEA Émergents S\nPEMS · FR001400ZGO4",
+      "Amundi PEA Asie Émergente\nPAASI · FR0013412012"
+    ],
+    "rows": [
+      [
+        "Indice",
+        "MSCI EM ex-Egypt ESG Broad CTB Select Index",
+        "MSCI EM ex-Egypt ESG Broad CTB Select Index",
+        "MSCI EM Asia Screened Select ex Thermal Coal Index"
+      ],
+      [
+        "Frais annuels",
+        "0,30 %",
+        "0,30 %",
+        "0,30 %"
+      ],
+      [
+        "Revenus",
+        "Capitalisation et/ou distribution",
+        "Capitalisation",
+        "À vérifier sur le DIC"
+      ],
+      [
+        "Encours",
+        "904 M EUR\nPart · 30/10/2026",
+        "24 M EUR\nPart · 30/10/2026",
+        "703 M EUR\nPart · 30/10/2026"
+      ]
+    ],
+    "funds": [
+      {
+        "isin": "FR0013412020",
+        "name": "Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF",
+        "shortName": "Amundi PEA Émergents",
+        "ticker": "PAEEM",
+        "index": "MSCI EM ex-Egypt ESG Broad CTB Select Index",
+        "distribution": "Capitalisation et/ou distribution",
+        "terLabel": "0,30",
+        "terPct": 0.3,
+        "aum": {
+          "amount": 903827108.925,
+          "currency": "EUR",
+          "scope": "share-class",
+          "asOf": "2026-10-30",
+          "checkedAt": "2026-11-02",
+          "modifiedAt": "2026-11-02"
+        }
+      },
+      {
+        "isin": "FR001400ZGO4",
+        "name": "Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc",
+        "shortName": "Amundi PEA Émergents S",
+        "ticker": "PEMS",
+        "index": "MSCI EM ex-Egypt ESG Broad CTB Select Index",
+        "distribution": "Capitalisation",
+        "terLabel": "0,30",
+        "terPct": 0.3,
+        "aum": {
+          "amount": 24056606.0535,
+          "currency": "EUR",
+          "scope": "share-class",
+          "asOf": "2026-10-30",
+          "checkedAt": "2026-11-02",
+          "modifiedAt": "2026-11-02"
+        }
+      },
+      {
+        "isin": "FR0013412012",
+        "name": "Amundi PEA Asie Emergente (MSCI Emerging Asia) Screened UCITS ETF",
+        "shortName": "Amundi PEA Asie Émergente",
+        "ticker": "PAASI",
+        "index": "MSCI EM Asia Screened Select ex Thermal Coal Index",
+        "distribution": "À vérifier sur le DIC",
+        "terLabel": "0,30",
+        "terPct": 0.3,
+        "aum": {
+          "amount": 703128027.3665,
+          "currency": "EUR",
+          "scope": "share-class",
+          "asOf": "2026-10-30",
+          "checkedAt": "2026-11-02",
+          "modifiedAt": "2026-11-02"
+        }
+      }
+    ],
+    "notes": [
+      "Les indices diffèrent : comparer les expositions avant de comparer les rendements.",
+      "Pas d’année complète commune suffisamment documentée : aucune performance extrapolée."
+    ],
+    "warnings": [],
+    "blocked": false
+  },
+  "tweet": "🌍 Plusieurs ETF émergents sont disponibles sur PEA. Comment savoir lequel correspond à l’exposition recherchée ? 👇\n\n🔖 Sauvegarde ce tweet\n\nPrenons l’exemple de ces trois ETF :\n\n🟢 Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF — PAEEM\n🆔 ISIN : FR0013412020\n💸 Frais annuels : 0,30 %\n💼 Encours : 904 M€ au 30/10/2026\n💰 Dividendes : capitalisation\n\n🔵 Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc — PEMS\n🆔 ISIN : FR001400ZGO4\n💸 Frais annuels : 0,30 %\n💼 Encours : 24 M€ au 30/10/2026\n💰 Dividendes : capitalisation\n\n🟣 Amundi PEA Asie Emergente (MSCI Emerging Asia) Screened UCITS ETF — PAASI\n🆔 ISIN : FR0013412012\n💸 Frais annuels : 0,30 %\n💼 Encours : 703 M€ au 30/10/2026\n💰 Dividendes : À vérifier sur le DIC\n\n🏢 Ce que tu achètes\n\nAmundi PEA Émergents : Marchés émergents de plusieurs régions, hors Égypte, avec des critères ESG et climatiques. Ce panier diffère du MSCI Emerging Markets classique.\n\nAmundi PEA Émergents S : Marchés émergents de plusieurs régions, hors Égypte, avec des critères ESG et climatiques. Ce panier diffère du MSCI Emerging Markets classique.\n\nAmundi PEA Asie Émergente : Marchés émergents d’Asie, avec des exclusions dont le charbon thermique. Les marchés émergents des autres régions ne sont pas couverts.\n\nChoisis d’abord l’exposition qui correspond à ton objectif. Des frais plus faibles ne compensent pas un panier d’entreprises qui ne correspond pas à ce que tu recherches.\n\n💶 Les frais annuels\n\nPour 10 000 € investis :\nAmundi PEA Émergents : environ 30 € par an\nAmundi PEA Émergents S : environ 30 € par an\nAmundi PEA Asie Émergente : environ 30 € par an\n\nCes frais sont intégrés à la valeur de l’ETF. Sur la durée, ils pèsent sur la performance et s’ajoutent aux éventuels frais d’achat de ton courtier.\n\n💰 Les dividendes\n\nUn ETF capitalisant réinvestit les dividendes dans le fonds. Un ETF distribuant les verse sur ton compte. Choisis selon que tu souhaites accumuler du capital ou recevoir des revenus. Quand la politique de la part n’est pas confirmée ici, vérifie son DIC avec l’ISIN exact.\n\n💼 L’encours\n\nUn encours élevé indique que l’ETF a attiré beaucoup de capitaux. C’est un critère utile pour sa pérennité : un fonds qui reste trop petit peut être fermé ou fusionné par son gestionnaire.\n\n🛒 Le prix d’une part\n\nPour investir régulièrement de petites sommes, regarde combien coûte une part.\n\nSi ton courtier propose uniquement des parts entières, une part à plusieurs centaines d’euros peut t’obliger à regrouper tes achats. Une part moins chère permet d’ajuster plus facilement le montant investi à ton budget.\n\n📈 La tracking difference\n\nElle mesure l’écart entre la performance de l’ETF et celle de son indice.\n\nCompare-la sur une même période, dans la même devise et avec le même traitement des dividendes. Elle permet de vérifier si les frais plus faibles se traduisent réellement par une performance plus proche de l’indice.\n\n💬 Quel critère compte le plus pour toi dans le choix de ton ETF ?"
+}
