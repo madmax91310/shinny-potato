@@ -109,14 +109,14 @@ export function indexHook(sheet) {
       hook = `Dans l’EURO STOXX 50, ${companyLabel(first[0])} représente à elle seule ${first[1] > 10 ? 'plus de' : ''} 10 % de l’indice.`.replace('  ', ' ')
     }
   }
-  const transition = {
+  const transition = !sortedRows(sheet.holdings).length
+    ? `Regardons la répartition publiée du ${sheet.index} 👇`
+    : ({
     acwi: 'Regardons ce que contient le MSCI ACWI 👇',
     eurostoxx50: 'Regardons les principales entreprises de l’EURO STOXX 50 et la place qu’elles occupent 👇',
     stoxx600: 'Regardons les pays et les entreprises qui composent cet indice 👇',
     'world-ex-usa': 'Je t’explique ce que contient cet indice 👇',
-  }[sheet.id] ?? (sortedRows(sheet.holdings).length
-    ? `Regardons les principales entreprises du ${sheet.index} et leur poids 👇`
-    : `Regardons la répartition publiée du ${sheet.index} 👇`)
+  }[sheet.id] ?? `Regardons les principales entreprises du ${sheet.index} et leur poids 👇`)
   return `${hook}\n\n${transition}\n\n🔖 Sauvegarde ce tweet`
 }
 

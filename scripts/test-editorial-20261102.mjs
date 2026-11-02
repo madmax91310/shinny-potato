@@ -12,6 +12,11 @@ assert(!partial.includes('aussi présents'))
 assert(!partial.includes('Regardons les principales entreprises'))
 assert(partial.includes(`Composition : ${acwi.snapshot}.`))
 assert(partial.includes(acwi.performance.detail.replace(/\.$/,'')+'.'))
+for(const id of ['world','eurostoxx50','stoxx600','acwi']) {
+  const text=buildFactsheetTweet({...SHEETS.find(s=>s.id===id),holdings:[]})
+  assert(text.includes('Regardons la répartition publiée'))
+  assert(!text.includes('Regardons les principales entreprises'))
+}
 for(const emoji of ['👩‍💻','🧑‍💻','👨‍💻','']) {
   const text=dca({...ALL_PROFILES[0],emoji})
   assert(text.includes('Chaque mois, les versements sont répartis ainsi :'))
