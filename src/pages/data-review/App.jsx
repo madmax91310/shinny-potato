@@ -56,11 +56,11 @@ export default function DataReview() {
   const count = categories => report.items.filter(item => categories.includes(item.category)).length
   return <div className="data-review">
     <PageHeader title="Données à revoir" subtitle="Incidents, données manquantes, qualifications et échéances : leurs impacts et leurs preuves au même endroit." />
-    <p className="dr-note">État au {dateLabel(today)} · Les échéances sont calculées par type de données. Une vérification de la source commune vaut pour tous les outils concernés.</p>
+    <p className="dr-note">État au {dateLabel(today)} · Les échéances sont calculées par type de données. Les incidents, les contrats d’usage et les preuves historiques ont des compteurs distincts.</p>
     <ReviewBoundary name="Supervision"><AutomationFailures review={report} /></ReviewBoundary>
     <ReviewBoundary name="Inventaire"><DataAutomationInventory /></ReviewBoundary>
     <ReviewBoundary name="Rapprochements financiers"><FinancialReconciliation /></ReviewBoundary>
-    <div className="dr-counts" aria-label="Résumé des revues">
+    <p className="dr-note">Revue documentaire et calendrier : ces champs peuvent également être signalés dans le centre de suivi. Ces nombres ne s’ajoutent pas à ses points concernés et ne représentent pas des pannes.</p><div className="dr-counts" aria-label="Résumé des revues">
       <div><strong>{count(['reserve'])}</strong><span>réserves ouvertes</span></div>
       <div><strong>{count(['expired'])}</strong><span>offres expirées</span></div>
       <div><strong>{count(['stale'])}</strong><span>vérifications arrivées à échéance</span></div>
@@ -99,6 +99,6 @@ export default function DataReview() {
       <div className="dr-links"><Link to={item.to}>Ouvrir {item.to.startsWith('/bibliotheque') ? 'la fiche de données' : item.to === '/comparatif-courtiers' ? 'le comparatif courtiers' : 'le portefeuille investisseur'}</Link>{item.urls.map((url, index) => <a href={url} key={url} target="_blank" rel="noreferrer">Source{item.urls.length > 1 ? ` ${index + 1}` : ''} ↗</a>)}</div>
     </article>)}</div>
     {!items.length && <p className="dr-empty">Aucun élément pour cette sélection.</p>}
-    <p className="dr-note dr-footnote">Une date ancienne appelle une revue, elle ne prouve pas qu’une valeur est fausse. Les dates de photographie et les dates de contrôle restent distinctes. Les {report.archives} archives non recertifiables sont conservées à part et exclues de cette liste. Les échéances affichées sont celles enregistrées ; leur éventuelle prolongation doit être vérifiée auprès de la source.</p>
+    <p className="dr-note dr-footnote">Une date ancienne appelle une revue, elle ne prouve pas qu’une valeur est fausse. Les dates de photographie et les dates de contrôle restent distinctes. Les {report.archives} archives non recertifiables sont accessibles dans la catégorie Archives du centre de suivi ; elles restent séparées du calendrier actuel. Les échéances affichées sont celles enregistrées ; leur éventuelle prolongation doit être vérifiée auprès de la source.</p>
   </div>
 }

@@ -1332,6 +1332,7 @@ try {
   await page.route('**/automation-status/automation-status.json', route => route.fulfill({json: {schemaVersion: 1, workflows: {economic: {name: 'Données économiques', status: 'failure', completedAt: '2026-10-07T10:00:00Z', runUrl: 'https://github.com/madmax91310/shinny-potato/actions/runs/1'}}}}));
   // Automation failure cards also use .dr-item; only count the filtered review list.
   await page.goto(`${BASE}/donnees-a-revoir?view=reserve&q=IBKR`, { waitUntil: 'networkidle' });
+  await page.getByText('Documents sources : moniteur, producteurs et couverture par champ', {exact:true}).click();
   await page.getByRole('region', { name: 'Échecs des mises à jour automatiques' }).getByRole('heading', {name: 'Données économiques', exact: true}).waitFor();
   const ibkrCount = buildReview().items.filter(item => item.category === 'reserve' && item.id.startsWith('broker:ibkr:')).length;
   const reviewChecks = { alert: (await page.getByRole('region', { name: 'Échecs des mises à jour automatiques', exact: true }).locator('.dr-item').count()) === 1, ibkr: (await page.locator('.data-review > .dr-list > .dr-item').count()) === ibkrCount };

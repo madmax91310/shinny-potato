@@ -11,6 +11,7 @@ try {
  for(const width of [390,1280]){
   const page=await browser.newPage({viewport:{width,height:844}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(base+'/donnees-a-revoir');
+  await page.getByText('Documents sources : moniteur, producteurs et couverture par champ',{exact:true}).click();
   const section=page.locator('[aria-label="Couverture par actif et par champ"]');
   await section.getByRole('heading',{name:'Couverture par actif et par champ',exact:true}).waitFor();
   assert.equal(await page.locator('select').count(),0);
