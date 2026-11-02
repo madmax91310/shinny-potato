@@ -228,6 +228,7 @@ assert.equal(futureStudent.country, ''); assert.equal(futureStudent.family, '');
 assert.match(buildBudgetText(futureStudent), /334,78 € restants doivent encore financer/)
 assert.equal(futureStudent.income.length, 2, 'Exclude salary increases and allowances belonging to future months')
 const engineerPlan = bankProfile('finary-ingenieur-colocation-projet-2026-08-18')
+assert.equal(engineerPlan.budgetAsOf, undefined, 'An ambiguous future school year cannot inherit the source publication date for sorting')
 assert.deepEqual(engineerPlan.savings, [], 'An undecided 750-euro option is not an actual or agreed transfer')
 assert.equal(engineerPlan.income.at(-1).amount, engineerPlan.expenses[0].amount, 'Count the aid and its reimbursement once each')
 const bordeaux = bankProfile('reference-bordeaux-budget-2026-03')

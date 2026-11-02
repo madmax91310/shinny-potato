@@ -77,4 +77,6 @@ Autres pistes repérées mais non qualifiées par un document complet : moyennes
 
 Les rapprochements indépendants en centimes et les pourcentages attendus des neuf admissions rejoignent les tests du budget. Contrôles de ressources futures exclues, remboursement d’aides compté une fois, solde non épargné, âges du couple, doublon Lyslelys, période inconnue et regroupements de synthèse (crédits, alimentation, logement, voiture). Lecture intégrale des neuf textes générés. Les textes personnalisés et les migrations existantes ne changent pas.
 
-Compilation, recettes locales et publiques, contrôles GitHub, fusion et identifiants Pages : preuves à compléter après leur exécution effective. Aucun seuil de validation ou de taille de bundle n’est relevé.
+Master `8730dcbfc499ed08af816eff1d9e9eb66c98f9d4`, incluant #1144 et #1146, intégré sans conflit. Le diff de livraison reste limité aux sept fichiers de données, tests et audit du budget. Compilation complète sur cet arbre et tests unitaires budget/transfert réussis. Aucun seuil de validation ou de taille de bundle relevé.
+
+Les preuves finales des recettes des 70 profils aux trois largeurs (deux images, PNG identique à l’aperçu, copie, filtres), de la conservation des brouillons/statuts, du portail GitHub, de la fusion et de Pages sont consignées dans la PR de livraison. Elles doivent être rapprochées du SHA effectivement publié et du parcours public, jamais déduites du seul build local.
