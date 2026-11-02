@@ -1,6 +1,6 @@
 # Qualification financière ciblée — état actualisé après #1149 et #1150
 
-Base : master `ad7daeb42a7a4887c383723215de3676a251e63e`, après #1154, #1155 et #1156. PR ouvertes #1061 (bloquée) et #1042 examinées et préservées. Les apports des conversations d’automatisation ne sont pas réimplémentés. Ce chantier ne change aucun transport, collecteur, workflow, calcul financier, allocation, visuel ou texte applicatif validé.
+Base : master `ad7daeb42a7a4887c383723215de3676a251e63e`, après #1154, #1155 et #1156 ; intégration finale de `dca0158baf6e9c4fafb27cd76572c463af8a08ae`, qui contient #1157. PR ouvertes #1061 (bloquée) et #1042 examinées et préservées. Les apports des conversations d’automatisation ne sont pas réimplémentés. Ce chantier ne change aucun transport, collecteur, workflow, calcul financier, allocation, visuel ou texte applicatif validé.
 
 L’[archive #1149](README-1149.md), sa [matrice](matrix-1149.json) et son [CSV d’usages](usage-matrix-1149.csv) sont conservés. La [matrice courante](matrix.json) et le [CSV courant](usage-matrix.csv) sont régénérés par `node scripts/audit-financial-reserves.mjs --write`, sans audit général des 4 206 contrôles.
 
