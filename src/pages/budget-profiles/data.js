@@ -1,4 +1,5 @@
 import bankProfiles from './qualified-profiles-bank-2026-11-02.json' with { type: 'json' }
+import publicationContext from './publication-context.json' with { type: 'json' }
 import bankEditorial from './qualified-editorial-bank-2026-11-02.json' with { type: 'json' }
 import newQualifiedProfiles from './qualified-profiles-2026-11-02.json' with { type: 'json' }
 import newQualifiedEditorial from './qualified-editorial-2026-11-02.json' with { type: 'json' }
@@ -37,3 +38,6 @@ export const EXPENSE_CATEGORIES = [
 ]
 
 export const BUDGET_EDITORIAL = Object.fromEntries(sourceProfiles.map(p => [p.id, { ...editorial[p.id], ...profileEditorial[p.id], ...newQualifiedEditorial[p.id], ...bankEditorial[p.id] }]))
+
+// Text-only narrative and its evidence. Never applied to the financial profile or image.
+export const BUDGET_PUBLICATION_CONTEXT = publicationContext
