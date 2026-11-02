@@ -65,6 +65,22 @@ class FieldCompletion(unittest.TestCase):
         self.assertEqual(merged['aum'],old['aum'])
         self.assertEqual(merged['countries'],old['countries'])
 
+    def test_vaneck_characteristic_proofs_do_not_certify_configured_references(self):
+        from apply_etf_collection import merge_collection
+        isin='IE000YYE6WK5'
+        url='https://www.vaneck.com/fr/en/library/fact-sheets/dfns-fact-sheet.pdf'
+        old={'currency':'USD','productId':isin,'sourceUrl':url,
+             'characteristics':{'terPct':0.55,'index':'Previously qualified index','distribution':'Accumulating','checkedAt':'2026-10-01'}}
+        incoming={'isin':isin,'currency':'USD','productId':isin,'sourceUrl':url,'index':'Unobserved configured index',
+                  'characteristics':{'terPct':0.55,'distribution':'Accumulating','domicile':'Ireland','replicationMethod':'Physical (Full replication)',
+                                     'asOf':'2026-09-30','sourceUrl':url,'sha256':'a'*64}}
+        merged=merge_collection({'checkedAt':'2026-11-02','shares':[incoming]},{isin:old},{})[isin]
+        self.assertEqual(merged['characteristics']['index'],'Previously qualified index')
+        self.assertEqual(merged['characteristicChecks']['index']['checkedAt'],'2026-10-01')
+        for field in ['terPct','distribution','domicile','replicationMethod']:
+            self.assertEqual(merged['characteristicChecks'][field]['checkedAt'],'2026-11-02')
+            self.assertEqual(merged['characteristicChecks'][field]['asOf'],'2026-09-30')
+
     def test_existing_equity_listing_rows_may_share_an_isin(self):
         columns={'asOfDate':20261006,'issueName':['APPLE NASDAQ','APPLE XETRA','USD CASH'],
             'holdingPercent':[60,39.9,0.1],'isin':['US0378331005','US0378331005',''],

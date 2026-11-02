@@ -20,7 +20,7 @@ def main():
     if len({s['isin'] for s in selected}) != len(selected):
         raise ValueError('Duplicate expected share in source qualification plan')
     args.evidence_dir.mkdir(parents=True, exist_ok=True)
-    fields = ['official PDF', 'exact share identity', 'base currency', 'TER', 'dated AUM', 'dated top 10']
+    fields = ['official PDF', 'exact share identity', 'base currency', 'TER', 'dated AUM', 'dated top 10', 'distribution', 'domicile', 'replicationMethod']
     plan = {'expectedIds':[s['isin'] for s in selected], 'fields':fields, 'mode':'configured exact official document routes, fallback routes disabled',
             'routes':{s['isin']:s['sourceUrl'] for s in selected}, 'declaredAt':dt.datetime.now(dt.timezone.utc).isoformat(),
             'runId':os.environ.get('GITHUB_RUN_ID'), 'attempt':os.environ.get('GITHUB_RUN_ATTEMPT')}
@@ -35,6 +35,8 @@ def main():
             body_retrieved = True
             (args.evidence_dir/(share['isin']+'.pdf')).write_bytes(body)
             record = parse_document(body, {**share, 'sourceUrl':url}, dt.datetime.now(dt.timezone.utc))
+            missing = [key for key in ('distribution','domicile','replicationMethod') if key not in record['characteristics']]
+            if missing:raise ValueError('Expected document metadata missing: '+', '.join(missing))
             outcome = {'id':share['isin'], 'status':'succeeded', 'sourceAttempted':True, 'attemptedAt':attempted,
                        'checkedAt':dt.datetime.now(dt.timezone.utc).isoformat(), 'sourceUrl':url,
                        'sourceAsOf':record['aum']['asOf'], 'documentSha256':record['documentSha256'], 'record':record}
