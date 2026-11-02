@@ -281,7 +281,8 @@ async function testCalculateur(page) {
   await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'or');
   septemberOk &&= (await page.locator('.ic-current-level').innerText()).includes(latestMonth('or'));
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
-  septemberOk &&= (await page.evaluate(() => window.__investmentCopiedText)).includes(`En ${latestMonth('or')}`);
+  const goldPost = await page.evaluate(() => window.__investmentCopiedText);
+  septemberOk &&= goldPost.includes(`En ${latestMonth('or')}`) && goldPost.includes('moyennes mensuelles') && !goldPost.includes('clôture');
   await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), "lvmh");
   await page.waitForTimeout(150);
   const text = await page.locator("body").innerText();
@@ -1279,7 +1280,9 @@ try {
     : {});
   const page = await browser.newPage();
 
-  if (process.argv.includes('--data-reuse')) {
+  if (process.argv.includes('--calculator')) {
+    await testCalculateur(page);
+  } else if (process.argv.includes('--data-reuse')) {
     await testPortfolioDuels(page);
     await testDataReuse(page);
   } else if (process.argv.includes('--navigation')) {
