@@ -153,6 +153,7 @@ try{
  await monitoring.getByRole('searchbox',{name:'Rechercher un incident'}).fill('field:instrument:IE00BJGWQN72:completeHoldings')
  assert.equal(await monitoring.locator(':scope > .dr-list article').count(),1)
  await monitoring.getByRole('searchbox',{name:'Rechercher un incident'}).fill('IE00BJGWQN72')
+ for(const group of await monitoring.locator(':scope > .dr-list > details').all())if(await group.getAttribute('open')===null)await group.locator(':scope > summary').click()
  assert((await monitoring.innerText()).includes('field:instrument:IE00BJGWQN72:completeHoldings'))
  assert((await monitoring.innerText()).includes('collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72'))
  assert.deepEqual(errors,[])
