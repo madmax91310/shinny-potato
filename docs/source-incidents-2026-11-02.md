@@ -15,3 +15,5 @@ Base : master ad7daeb4. #1061 (encours PEA) et #1042 (guide LifeStrategy) ne son
 ## Validation et publication
 
 À compléter par les identifiants des exécutions GitHub, des enregistrements et de la publication effectivement vérifiés ; les succès locaux ne valent pas CI ou déploiement.
+
+Premier passage GitHub Bitcoin 41486043517 : récupération et validation des 142 mois réussies ; le job échoue ensuite car les tests partagés Nikkei exécutent `pdftotext`, absent de ce runner. Installation explicite de `poppler-utils` dans le producteur, sans retirer le test ni rendre son échec tolérable. Une nouvelle exécution complète est requise.
