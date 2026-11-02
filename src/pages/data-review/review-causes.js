@@ -13,6 +13,8 @@ export function groupReviewIssues(rows){
  return groups
 }
 export function closureRequirement(row){
+ if(row.kind==='archive')return 'Rapprocher les preuves historiques du même instrument, champ, période, convention et étape, ou documenter le retrait. Aucune panne actuelle déduite de cette réserve.'
+ if(row.kind==='due')return 'Renouveler le contrôle du champ exact à l’échéance ; une tentative échouée conserve son propre incident et exige une preuve de réparation.'
  if(row.kind==='history')return 'Preuve de résolution conservée dans les signalements ; une archive non qualifiée reste à documenter.'
  if(row.kind==='waiting')return 'Publication de la période attendue selon le calendrier de la source ; aucune panne déduite de l’attente.'
  if(row.kind==='not-applicable')return 'Justification de périmètre conservée ; aucun succès source déduit de ce statut.'

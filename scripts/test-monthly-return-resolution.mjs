@@ -45,7 +45,7 @@ const retained=buildInbox({status:{...status,monitoring:{active:Object.fromEntri
 assert.equal(retained.length,2)
 for(const row of retained){
  const original=fixture.retained.find(r=>r.id===row.id)
- assert.equal(row.kind,'qualification');assert.equal(row.stage,'Qualification historique')
+ assert.equal(row.kind,'archive');assert.equal(row.stage,'Qualification historique')
  assert.equal(row.originalKind,'conflict');assert.equal(row.qualificationBlock,'historical-resolution-unproven')
  assert.equal(row.cause,original.cause);assert.deepEqual(row.observations,original.observations)
  assert.equal(row.resolvedAt,undefined,'A changed classification never closes the old contradiction')
