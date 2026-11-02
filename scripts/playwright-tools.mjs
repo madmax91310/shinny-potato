@@ -7,6 +7,7 @@ import { buildReview, reviewCalendar } from '../src/pages/data-review/lib.js';
 import { groupReviews } from '../src/pages/data-review/groups.js';
 import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { choose } from './card-selection.mjs'
+import { monthlyHistoryMethod } from '../src/lib/performance-conventions.js'
 import { TOPICS as PRACTICAL_TOPICS } from '../src/data/practical-sheet-topics.js'
 import { buildSheet as buildPracticalSheet, buildTweet as buildPracticalTweet } from '../src/pages/practical-sheets/lib.js'
 import { FACTS as MARKET_FACTS } from '../src/pages/market-facts/data.js';
@@ -71,7 +72,7 @@ import { fmtEUR as fmtHistoryPrice, fmtPct as fmtHistoryPct } from '../src/pages
 import { TWEETS } from '../src/pages/tweet-bank/data.js';
 import { EDITORIAL_CASES as CASES } from "../src/data/editorial-cases.js";
 
-const PORT = 4310;
+const PORT = Number(process.env.PLAYWRIGHT_TOOLS_PORT ?? 4310);
 const BASE = `http://localhost:${PORT}/shinny-potato`;
 
 function waitForServer(url, timeoutMs = 30000) {
@@ -295,7 +296,7 @@ async function testCalculateur(page) {
     await page.locator('.ic-method-note').filter({ hasText: 'Cours ajustés' }).waitFor();
     await page.getByRole('button', { name: /Copier le texte du post/ }).click();
     const post = await page.evaluate(() => window.__investmentCopiedText);
-    companiesOk &&= !post.includes('Cours ajustés') && post.includes('Capital final :') && post.includes(latestMonth(id)) && !/NaN|undefined/.test(post);
+    companiesOk &&= post.includes(monthlyHistoryMethod(HISTORY[id])) && post.includes('Capital final :') && post.includes(latestMonth(id)) && !/NaN|undefined/.test(post);
     if (id === 'airliquide') companiesOk &&= (await page.locator('.ic-method-note').innerText()).includes('Prime de fidélité exclue');
     companiesOk &&= !(await page.locator('body').innerText()).includes('DCA non disponible pour');
   }

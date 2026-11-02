@@ -2,6 +2,7 @@ import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
 import assert from 'node:assert/strict'
 import { buildTweetText, derive, fmtEUR, fmtPct, pct } from '../src/pages/investment-calculator/lib.js'
 import { ASSETS, INCONSISTENT_MONTHLY_DATA_IDS } from '../src/data/market-history.js'
+import { monthlyHistoryMethod } from '../src/lib/performance-conventions.js'
 
 const state = { assetId: 'bitcoin', amountRaw: '1000', mode: 'lump', startYear: 2020, startMonth: 1, overridePriceRaw: '' }
 const monthly = { ...derive(state), effectiveMode: 'dca', result: { totalInvested: 2000, finalValue: 2500 } }
@@ -28,6 +29,7 @@ for (const assetId of Object.keys(ASSETS)) for (const mode of ['lump','dca']) {
   assert(text.includes(fmtPct(pct(d.result.finalValue,d.result.totalInvested))))
   assert.doesNotMatch(text, /📌|Toute la somme|Le résultat porte|Les premiers achats/)
   if (asset.methodNote) assert(text.includes(asset.methodNote))
+  assert(text.includes(monthlyHistoryMethod(asset)))
   assert(text.includes(`${d.result.finalValue < d.result.totalInvested ? '📉' : '📈'} Capital final :`))
   if (asset.sourceCredit) assert(text.includes(asset.sourceCredit))
   if (asset.currency==='USD') assert(!text.includes('Livret A'))

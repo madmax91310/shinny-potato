@@ -542,3 +542,20 @@ dans l'export réel puis vérifie nettoyage, réessai et égalité aperçu/PNG �
 L’appelant conserve encodage/MIME/nom ; `downloadBlob.js` possède seulement URL/lien.
 L'aperçu DCA, les vidéos et les images décodées gardent leur propriétaire et leur durée
 de vie ; l'export JSON à clic direct conserve l'absence de confirmation commune.
+
+## Matrice financière entre outils (2 novembre 2026)
+
+`node scripts/audit-cross-tool-finance.mjs` compare les registres courants sans écriture ;
+`--write` conserve la matrice datée dans `reports/financial-consistency-2026-11-02/`.
+Les contrôles comparent les mêmes ISIN, périodes, devises et conventions. Les écarts
+NAV/cotation restent documentés séparément : une méthode différente ne certifie pas
+l’amplitude d’un écart. Aucune source ni qualification n’est réécrite.
+
+Après build, `node scripts/playwright-financial-consistency.mjs` exerce les résultats,
+copies et téléchargements à 1440/390 px, dont la même valorisation manuelle sur un actif
+en versement unique/DCA et une vidéo réelle. `CHROMIUM_PATH` sélectionne le navigateur.
+`FINANCE_PUBLIC_BASE=https://madmax91310.github.io/shinny-potato/` rejoue sur le site public ;
+`FINANCE_BROWSER_OUTPUT` sépare les reçus. Comparer auparavant le code et les données servis
+à ceux du checkout. Le manifeste CI conserve ce contrôle. Le parcours historique peut
+se rejouer seul avec `node scripts/playwright-tools.mjs --calculator` ;
+`PLAYWRIGHT_TOOLS_PORT` permet un serveur de recette distinct (4310 par défaut).

@@ -2,6 +2,7 @@ import { historyInCurrency } from '../../data/history-currency.js'
 import { ASSETS, MONTHS_FULL } from '../../data/calculator-history.js'
 import { fmtEUR, fmtPct, pct, monthsBetween } from './lib.js'
 import { computeComparativeSeries } from './videoExport.js'
+import { monthlyHistoryMethod } from '../../lib/performance-conventions.js'
 
 // One calculation shared by the post preview and the video export.
 export function computeComparison(inputs, asset1Id, asset2Id, mode1, mode2) {
@@ -17,7 +18,7 @@ export function computeComparison(inputs, asset1Id, asset2Id, mode1, mode2) {
     startYm, endYm,
     sides: [
       side(asset1Id, mode1, asset1Id === overrideAssetId ? overridePriceRaw : ''),
-      side(asset2Id, mode2, asset2Id === overrideAssetId && asset2Id !== asset1Id ? overridePriceRaw : ''),
+      side(asset2Id, mode2, asset2Id === overrideAssetId ? overridePriceRaw : ''),
     ],
   }
 }
@@ -40,9 +41,7 @@ export function buildComparisonTweet(comparison) {
     )
     if (override) lines.push('Valorisation au prix final saisi manuellement.')
     if (asset.methodNote) lines.push(asset.methodNote)
-    else if (asset.priceMethod === 'adjusted') lines.push(asset.isin && asset.instrumentType !== 'EQUITY'
-      ? 'Revenus réinvestis, frais du fonds inclus ; hors frais du courtier et fiscalité.'
-      : 'Dividendes réinvestis et divisions d’actions pris en compte ; hors frais et fiscalité.')
+    if (monthlyHistoryMethod(asset)) lines.push(monthlyHistoryMethod(asset))
     if (asset.returnNote) lines.push(asset.returnNote)
     lines.push('')
   })
