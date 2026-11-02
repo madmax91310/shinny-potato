@@ -481,8 +481,8 @@
           "2026-10": "P"
         },
         "pendingObservations": [],
-        "sha256": "7a75978750174a291fe7b51d699b4e2eed013dc76e10a3ddd88e22f9164cf536",
-        "checkedAt": "2026-11-02T14:28:44.036604+00:00"
+        "sha256": "b06991d187ab563ffc78f05c3ee6e63f509d7e2beb12650f80014fa74842c957",
+        "checkedAt": "2026-11-02T17:25:40.815645+00:00"
       },
       "alimentation": {
         "seriesId": "011813717",
@@ -900,8 +900,8 @@
           "2026-10": "P"
         },
         "pendingObservations": [],
-        "sha256": "0b109f248ab0f5ddfaaba7a97ba07cfde4979144b074a64df44f3c8362e570a0",
-        "checkedAt": "2026-11-02T14:28:44.036604+00:00"
+        "sha256": "98db92d5deaaac10db0a6e81026dab9905494462a4fc23fe5c39c92485b2671d",
+        "checkedAt": "2026-11-02T17:25:40.815645+00:00"
       },
       "energie": {
         "seriesId": "011813864",
@@ -1319,11 +1319,11 @@
           "2026-10": "P"
         },
         "pendingObservations": [],
-        "sha256": "8bd153df7a737fa65b56e7361b978dccf215595419b4780ef28a7ed9b4ce8f90",
-        "checkedAt": "2026-11-02T14:28:44.036604+00:00"
+        "sha256": "e744e9534741fb4886dbc4849ec68c3caf807a1ff5fb18d4f5389b21dc52485e",
+        "checkedAt": "2026-11-02T17:25:40.815645+00:00"
       }
     },
-    "checkedAt": "2026-11-02T14:28:44.036604+00:00"
+    "checkedAt": "2026-11-02T17:25:40.815645+00:00"
   },
   "irl": {
     "asOf": "2026-Q3",
@@ -1542,13 +1542,13 @@
         "2026-Q3": "DEF"
       },
       "pendingObservations": [],
-      "sha256": "5fe4c81173123f94bf19595fcfa838bd13a5809192a58ea14ab627b21381eb5c",
-      "checkedAt": "2026-11-02T14:28:44.036604+00:00"
+      "sha256": "0ae1f82ace591525b1d9592794acb5d57e74e1d67d82f47fbc376380d08daa6f",
+      "checkedAt": "2026-11-02T17:25:40.815645+00:00"
     },
-    "checkedAt": "2026-11-02T14:28:44.036604+00:00"
+    "checkedAt": "2026-11-02T17:25:40.815645+00:00"
   },
   "smic": {
-    "asOf": "2026-10",
+    "asOf": "2026-11",
     "values": {
       "2010-01": 1343.77,
       "2010-02": 1343.77,
@@ -1751,12 +1751,13 @@
       "2026-07": 1867.02,
       "2026-08": 1867.02,
       "2026-09": 1867.02,
-      "2026-10": 1867.02
+      "2026-10": 1867.02,
+      "2026-11": 1867.02
     },
     "source": {
       "seriesId": "000879877",
       "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/000879877?startPeriod=2010",
-      "sourceUpdatedAt": "2026-10-01",
+      "sourceUpdatedAt": "2026-11-02",
       "title": "Montant mensuel brut du Smic (Salaire minimum interprofessionnel de croissance) pour 35 heures de travail par semaine (151,67 heures par mois)",
       "scope": "FE",
       "frequency": "M",
@@ -1962,7 +1963,8 @@
         "2026-07": 1867.02,
         "2026-08": 1867.02,
         "2026-09": 1867.02,
-        "2026-10": 1867.02
+        "2026-10": 1867.02,
+        "2026-11": 1867.02
       },
       "quality": {
         "2010-01": "DEF",
@@ -2166,13 +2168,14 @@
         "2026-07": "DEF",
         "2026-08": "DEF",
         "2026-09": "DEF",
-        "2026-10": "DEF"
+        "2026-10": "DEF",
+        "2026-11": "DEF"
       },
       "pendingObservations": [],
-      "sha256": "32d562f2d5b49f10e93a4fc3f16f74133216baee2925b68944392587f737c512",
-      "checkedAt": "2026-11-02T14:28:44.036604+00:00"
+      "sha256": "a867640cd7f28a900863fb687ff4c3e16e5b3e1c01996f7f252913ef6db8716a",
+      "checkedAt": "2026-11-02T17:25:40.815645+00:00"
     },
-    "checkedAt": "2026-11-02T14:28:44.036604+00:00"
+    "checkedAt": "2026-11-02T17:25:40.815645+00:00"
   },
   "schemaVersion": 1
 }
