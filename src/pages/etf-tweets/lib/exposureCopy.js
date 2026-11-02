@@ -137,7 +137,7 @@ export const COMPARISON_HOOKS = {
   usa: 'S&P 500, Nasdaq-100 ou Dow Jones : lequel choisir ?',
   europe: 'Europe ou zone euro : ces ETF ne couvrent pas les mêmes pays. Que change ce choix ?',
   'tech-europe': 'Deux ETF suivent le même indice de technologie européenne. Que reste-t-il à comparer ?',
-  emergents: 'Petites entreprises, filtres ESG : deux ETF émergents peuvent détenir des portefeuilles différents.',
+  emergents: 'Petites entreprises, critères de sélection : que change le choix de ces ETF émergents ?',
   luxe: 'Deux ETF Amundi sur le luxe : que change le choix du PEA ou du compte-titres ?',
   'ia-robotique': 'IA ou robotique : quel ETF choisir ?',
   sante: 'Santé mondiale ou européenne : quelles entreprises et quels filtres derrière ces ETF ?',
