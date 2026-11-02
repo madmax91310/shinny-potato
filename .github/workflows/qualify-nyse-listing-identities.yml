@@ -1,0 +1,40 @@
+name: Qualify existing NYSE listing identities
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/qualify-nyse-listing-identities.yml'
+      - 'scripts/nyse_listing_identity.py'
+      - 'scripts/exchange_listing_refresh.py'
+      - 'scripts/refresh_qualified_listings.py'
+      - 'scripts/test_nyse_listing_identity.py'
+      - 'scripts/fixtures/nyse-identities-20261102/**'
+permissions:
+  contents: read
+jobs:
+  exact-listing-identities:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4
+      - run: python -m unittest discover -s scripts -p 'test_nyse_listing_identity.py'
+      - run: python -m unittest discover -s scripts -p 'test_exchange_listing_refresh.py'
+      - run: python -m unittest discover -s scripts -p 'test_producer_report_contract.py'
+      - id: source
+        continue-on-error: true
+        run: python scripts/refresh_qualified_listings.py --common-identities-only --output "$RUNNER_TEMP/listing-observation.json"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: exact-nyse-identity-qualification
+          path: |
+            ${{ runner.temp }}/listing-observation.json
+            ${{ runner.temp }}/listing-observation.contract-plan.json
+          if-no-files-found: error
+          retention-days: 35
+      - if: always()
+        run: test '${{ steps.source.outcome }}' = 'success'
