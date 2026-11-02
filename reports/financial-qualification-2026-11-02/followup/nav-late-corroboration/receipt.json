@@ -1,0 +1,24 @@
+{
+  "captureCompletedAt": "2026-11-02T18:42:59.234502+00:00",
+  "sourceAsOf": "2026-10-30",
+  "method": "Existing refresh_monthly_history.py --only etf_financials etcPalladium --apply; no collector changes",
+  "qualified": [
+    "etf_financials",
+    "etcPalladium"
+  ],
+  "stillWithheld": {
+    "id": "etf_clean_energy",
+    "NAV": "2026-10-30",
+    "reinvestedReturn": "2026-10-29"
+  },
+  "palladium2014ExclusionPreserved": true,
+  "sourceHashes": {
+    "etf_financials": {
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true": "12cc62397ac60c2163e180475480b1efa8af9c546bf9ebb3e967429d62a63303"
+    },
+    "etcPalladium": {
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true": "a9a22f2792854583a1e73e5335d806233a09ab43b59c93710295143babbd44e5"
+    }
+  },
+  "ordinaryProducerValidated": true
+}

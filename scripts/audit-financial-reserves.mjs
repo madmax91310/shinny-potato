@@ -5,6 +5,10 @@ import assert from 'node:assert/strict'
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs'
 import {execFileSync} from 'node:child_process'
 import {pathToFileURL} from 'node:url'
+import {createHash} from 'node:crypto'
+import FX from '../src/data/monthly-fx.json' with {type:'json'}
+import LEVELS from '../src/data/anniversary-levels.json' with {type:'json'}
+import {loadMarketNavEvidence,explainOfficialMarketNav,retainedBoundary} from './lib/financial-reserve-evidence.mjs'
 import {ASSETS as histories} from '../src/data/calculator-history.js'
 import MONTHLY from '../src/data/automated-etf-monthly.json' with {type:'json'}
 import {ASSETS as portfolios} from '../src/data/portfolio-assets.js'
@@ -73,6 +77,7 @@ function consumerRows(isin,period) {
 
 export function audit() {
  const used=new Set(),rows=[],usages=[]
+ const followup=`${output}/followup`,officialEvidence=loadMarketNavEvidence(followup)
  const refreshed=JSON.parse(readFileSync(`${output}/source-checks/four-nav.json`))
  for(const [index,before]of initialRows.entries()){
   const year=Number(before.period),p=portfolios.find(p=>p.isin===before.identity)
@@ -88,8 +93,10 @@ export function audit() {
   const right=assetReturn(p,year),rounding=explainCalendarRounding({isin:before.identity,year,history:found.a,record:MONTHLY[found.id],left:found.value,right})
   const fresh=refreshed.find(r=>r.isin===before.identity&&r.qualified),officialCheck=fresh?.checks?.find(c=>Number(c.year)===year)
   const corroborated=rounding&&officialCheck&&near(officialCheck.dailyDerived,rounding.check.dailyDerived,1e-8)&&officialCheck.published===rounding.check.published&&officialCheck.start===rounding.check.start&&officialCheck.end===rounding.check.end
-  const proof=corroborated?{...rounding,independentRecheck:{checkedAt:fresh.checkedAt,sourceUrls:fresh.sourceUrls,rawSourceHashes:fresh.rawSourceHashes,check:officialCheck}}:null
-  const classification=proof?'différence légitime — arrondi officiel documenté':near(found.value,right,1e-8)?'résolu depuis le bilan — mesures désormais concordantes':'preuve insuffisante — résidu cotation/NAV non attribué'
+  const precisionProof=corroborated?{...rounding,independentRecheck:{checkedAt:fresh.checkedAt,sourceUrls:fresh.sourceUrls,rawSourceHashes:fresh.rawSourceHashes,check:officialCheck}}:null
+  const marketProof=precisionProof?null:explainOfficialMarketNav({isin:before.identity,year,history:found.a,record:MONTHLY[found.id],left:found.value,right,evidence:officialEvidence.evidence,fx:FX,convert:convertCalendarReturn})
+  const proof=precisionProof??marketProof
+  const classification=precisionProof?'différence légitime — arrondi officiel documenté':marketProof?'différence légitime — clôtures de marché et NAV officielles corroborées':near(found.value,right,1e-8)?'résolu depuis le bilan — mesures désormais concordantes':'preuve insuffisante — résidu cotation/NAV non attribué'
   rows.push({caseId:`measurement-${index+1}`,isin:before.identity,period:before.period,leftAssetId:found.id,currency:'EUR',initial:before,current:{left:found.value,right,gap:found.value-right},classification,measureDifferenceEstablished:!proof,proof,missing:proof?null:'Cours de clôture et NAV aux mêmes dates/heures, réinvestissements et événements de part, puis fixing de change à ces bornes ; le seul écart de convention ne prouve pas le résidu.',lastValidObservationsPreserved:true})
  }
  const pairs=[...new Map(rows.filter(r=>r.isin).map(r=>[r.isin+'/'+r.period,[r.isin,r.period]])).values()]
@@ -97,10 +104,31 @@ export function audit() {
  const facts=buildSheet('em-pea'),tweet=buildTweet(facts)
  const policyCases=[['FR0013412020','em-pea'],['FR0013412012','em-pea'],['FR0013412038','europe-pea']]
  const policyRows=policyCases.map(([isin,topic])=>({caseId:'income-'+isin,isin,usage:'Fiches pratiques / '+topic,origin:isin==='FR0013412038'?'Cas supplémentaire de même cause':'Réserve initiale #1144',period:isin==='FR0013412012'?'Prospectus 30/12/2022, DIC 26/01/2023 et 2026':isin==='FR0013412020'?'DIC 26/01/2023 et 29/03/2024, DIC 2026':'DIC 2026 ; périodes antérieures séparées',classification:'erreur de convention démontrée — copie corrigée',initial:{policy:getInstrumentFacts(isin).distribution,practical:isin==='FR0013412012'?'À vérifier sur le DIC':'Capitalisation et/ou distribution',copy:isin==='FR0013412012'?'À vérifier sur le DIC':'capitalisation ; prédicat de préfixe ambigu'},final:{policy:getInstrumentFacts(isin).distribution,practical:buildSheet(topic).funds.find(f=>f.isin===isin).distribution,copy:'Politique à décision de la société de gestion ; aucune distribution historique inventée'},historicalCashQualification:'Politique attestée aux dates des documents archivés ; paiements historiques non certifiés, versions 2019–2022 et avis de distributions nécessaires',incomePolicyChanged:false}))
+ const reviewedCash=JSON.parse(readFileSync(`${followup}/amundi-evidence.json`))
+ for(const row of policyRows){
+  const reviewed=reviewedCash.find(r=>r.isin===row.isin)
+  let verified=false
+  try{verified=reviewed?.source.status===200&&new URL(reviewed.source.url).protocol==='https:'&&new URL(reviewed.source.url).hostname==='www.amundietf.fr'&&createHash('sha256').update(readFileSync(`${followup}/${row.isin}-annual-2025.pdf`)).digest('hex')===reviewed?.source.sha256}catch{}
+  row.fiscalAllocationEvidence={verified,claims:verified?reviewed.historicalClaims:[],source:reviewed?.source??null,identityPage:reviewed?.identityPage??null}
+  row.historicalCashQualified=false
+  row.historicalCashQualification='Affectations et acomptes des exercices documentés séparément ; historique exhaustif des paiements non certifié. Champs vides/null, nom Acc et facteur NAV/ajusté ne prouvent pas zéro cash.'
+  row.remainingEvidence=reviewed?.remaining??['Rapports/avis datés de la part exacte manquants']
+ }
  for(const [isin]of policyCases)usages.push(...consumerRows(isin,'2025'))
  assert(!tweet.includes('Les parts présentées sont capitalisantes'))
- const boundaries=JSON.parse(readFileSync(`${output}/source-checks/nav-boundaries.json`))
+ const historicalBoundaries=JSON.parse(readFileSync(`${output}/source-checks/nav-boundaries.json`))
+ const initialBoundaryPeriods=JSON.parse(readFileSync(`${followup}/initial-boundary-periods.json`))
+ const boundaries=historicalBoundaries.map(before=>{
+  const month=before.navLast.slice(0,7),record=MONTHLY[before.id],asset=histories[before.id]
+  const preceding=new Date(`${month}-01T00:00:00Z`);preceding.setUTCMonth(preceding.getUTCMonth()-1)
+  const start=preceding.toISOString().slice(0,7),q=asset?qualifyHistoryWindow(asset,start,month):{qualified:false}
+  const b=retainedBoundary(before,record,LEVELS[before.id]??null,q.qualified)
+  const initial=initialBoundaryPeriods[before.id]
+  const initialAdmission=initial?.isin===before.isin?initial.periodEnd>=month&&!initial.excludedMonths.includes(month):null
+  usages.push({isin:before.isin,period:month,usage:'Calculateur',channel:before.id,initialAdmission,finalAdmission:b.monthQualified,qualificationChanged:initialAdmission!==null&&initialAdmission!==b.monthQualified,detail:{...q,start,end:month,modes:['lump','dca'],basis:'NAV de la part, revenus réinvestis, frais du fonds inclus',initialPeriodEnd:initial?.periodEnd??null,currentPeriodEnd:record?.periodEnd??null}})
+  return b
+ })
  for(const b of boundaries)usages.push(...consumerRows(b.isin,'2025'))
- return {schema:1,generatedAt:new Date().toISOString(),base:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),initialReport:{path:initialPath,base:initial.base,generatedAt:initial.generatedAt},measurementRows:rows,policyRows,boundaries,usageMatrix:usages,summary:{originalMeasurementComparisons:initialRows.length,uniqueMeasurementIsinYears:pairs.length,measurementClassifications:Object.fromEntries([...new Set(rows.map(r=>r.classification))].map(c=>[c,rows.filter(r=>r.classification===c).length])),boundaryRefreshRefusals:boundaries.filter(b=>!b.qualified).length,policyCases:policyRows.length,financialSeriesAdmissionsChanged:0,pricesOrReturnsRewritten:0},limits:['Aucune nouvelle tolérance financière ni autorisation historique. Le test d’arrondi explique des comparaisons déjà admises.','Un niveau conservé et un rafraîchissement refusé sont deux états distincts.','Matrice ciblée : les 4206 contrôles généraux ne sont pas rejoués.']}
+ return {schema:2,officialMarketEvidenceStatus:{available:!!officialEvidence.evidence,error:officialEvidence.error},generatedAt:new Date().toISOString(),base:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),initialReport:{path:initialPath,base:initial.base,generatedAt:initial.generatedAt},measurementRows:rows,policyRows,boundaries,usageMatrix:usages,summary:{originalMeasurementComparisons:initialRows.length,uniqueMeasurementIsinYears:pairs.length,measurementClassifications:Object.fromEntries([...new Set(rows.map(r=>r.classification))].map(c=>[c,rows.filter(r=>r.classification===c).length])),historicalBoundaryRefreshRefusals:historicalBoundaries.filter(b=>!b.qualified).length,boundariesWithQualifiedMonth:boundaries.filter(b=>b.monthQualified).length,boundariesWithWithheldMonth:boundaries.filter(b=>b.problemMonthWithheld).length,monthlyWindowsRestored:usages.filter(r=>r.period.includes('-')&&r.initialAdmission===false&&r.finalAdmission).length,policyCases:policyRows.length,newSeriesRegistered:0,auditRewritesFinancialObservations:false},limits:['Aucune nouvelle tolérance financière. Les mois rétablis proviennent exclusivement des observations qualifiées par le collecteur ordinaire ; les explications de mesures ne modifient pas leur admission.','Un niveau conservé, une qualification partielle et le résultat de la dernière collecte sont trois états distincts. Aucun résultat de collecte courant n’est déduit des cinq refus historiques.','Matrice ciblée : les 4206 contrôles généraux ne sont pas rejoués.']}
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const result=audit();if(process.argv.includes('--write')){mkdirSync(output,{recursive:true});writeFileSync(`${output}/matrix.json`,JSON.stringify(result,null,2)+'\n');const columns=['isin','period','usage','channel','initialAdmission','finalAdmission','detail'];writeFileSync(`${output}/usage-matrix.csv`,[columns.join(','),...result.usageMatrix.map(r=>columns.map(k=>'"'+String(typeof r[k]==='object'?JSON.stringify(r[k]):r[k]??'').replaceAll('"','""')+'"').join(','))].join('\n')+'\n')}console.log(JSON.stringify(result.summary,null,2))}
