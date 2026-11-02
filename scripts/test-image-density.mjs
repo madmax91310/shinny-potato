@@ -20,7 +20,7 @@ try{
   const records=[]
   try{
    const assets=['Monétaire','Obligations','Actions'].map((label,i)=>({id:String(i),label,shortLabel:label}))
-   const columns=[2024,2025].map(year=>({label:String(year),rows:assets.map((a,i)=>({id:a.id,value:[-.04,.004,0][i],rank:i+1}))}))
+   const columns=[2024,2025].map(year=>({label:String(year),rows:assets.map((a,i)=>({id:a.id,value:[-.04,.004,0][i],rank:[3,1,2][i]}))}))
    for(const mode of ['current','annual']){boxes=[];const c=renderRankingImage({assets,columns,mode:'years',coverage:{currency:'EUR',basis:'adjusted'}},'',null,mode);records.push({name:'ranking-'+mode,png:c.toDataURL(),boxes})}
    for(const count of [1,4,8])for(const companies of [false,true])for(const exposureLimit of [3,4,6]){
     boxes=[]
