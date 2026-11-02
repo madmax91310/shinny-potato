@@ -1,0 +1,73 @@
+{
+  "checkedAt": "2026-11-02T04:29:51.894Z",
+  "runId": "41388703594",
+  "attempt": "1",
+  "mode": "readonly-browser-navigation-no-challenge-bypass",
+  "rows": [
+    {
+      "isin": "IE0002Y8CX98",
+      "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+      "ticker": "WDEF LN",
+      "expectedEntityId": 1350798,
+      "expectedTitle": "WisdomTree Europe Defence UCITS ETF - EUR Acc",
+      "attemptedAt": "2026-11-02T04:29:51.352Z",
+      "sourceAttempted": true,
+      "status": 200,
+      "contentType": "application/json",
+      "finalUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+      "sha256": "4d6bd523f4d0eee0b85e0d322fd6b93901b0e608b076b5d90c7a423f1a63a16e",
+      "bytes": 33739,
+      "rows": 114,
+      "result": "identity-validated"
+    },
+    {
+      "isin": "IE000W8WMSL2",
+      "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB",
+      "ticker": "WQTM LN",
+      "expectedEntityId": 1462176,
+      "expectedTitle": "WisdomTree Quantum Computing UCITS ETF - USD Acc",
+      "attemptedAt": "2026-11-02T04:29:51.549Z",
+      "sourceAttempted": true,
+      "status": 200,
+      "contentType": "application/json",
+      "finalUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB",
+      "sha256": "a6d8e1d89cbfa11848f750943f186fda20b7336b312c176cf4a30b0e6b26a2fe",
+      "bytes": 38247,
+      "rows": 124,
+      "result": "identity-validated"
+    },
+    {
+      "isin": "IE00BZ56SW52",
+      "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+      "ticker": "GGRA LN",
+      "expectedEntityId": 419,
+      "expectedTitle": "WisdomTree Global Quality Dividend Growth UCITS ETF - USD Acc",
+      "attemptedAt": "2026-11-02T04:29:51.644Z",
+      "sourceAttempted": true,
+      "status": 200,
+      "contentType": "application/json",
+      "finalUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+      "sha256": "96f0cca4506395b30023aef53748554878a39e18507d69553772194303179855",
+      "bytes": 384321,
+      "rows": 1217,
+      "result": "identity-validated"
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB",
+      "ticker": "WCLD LN",
+      "expectedEntityId": 682577,
+      "expectedTitle": "WisdomTree Cloud Computing UCITS ETF - USD Acc",
+      "attemptedAt": "2026-11-02T04:29:51.788Z",
+      "sourceAttempted": true,
+      "status": 200,
+      "contentType": "application/json",
+      "finalUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB",
+      "sha256": "cec9cbf54d417ef9251e68cadc628e1614ea4ef0e2e6709be7d40677597fcfb1",
+      "bytes": 22724,
+      "rows": 76,
+      "result": "identity-validated"
+    }
+  ],
+  "limits": "Identity and transport probe only. Existing field parsers must qualify dates, classifications and weights; no application data or source clocks renewed."
+}

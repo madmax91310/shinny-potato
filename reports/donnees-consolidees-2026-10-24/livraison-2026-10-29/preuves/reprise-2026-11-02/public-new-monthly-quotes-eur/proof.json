@@ -1,0 +1,277 @@
+{
+  "checkedAt": "2026-11-02T03:38:40.703Z",
+  "base": "https://madmax91310.github.io/shinny-potato",
+  "buildInfo": {
+    "sha": "70b7e839f7ad96a3c03a3ec94989710eeb9b47ad",
+    "dataSha": "1e2f520e42b95a946ab31f76c1c3c6bec442d212",
+    "lane": "validated-data",
+    "builtAt": "2026-11-02T03:17:26.780Z"
+  },
+  "scope": "all",
+  "viewportWidth": 1440,
+  "manifestSourceFiles": {
+    "src/data/automated-monthly.json": "29eca40ce7b96e93046cbe4bcc6fc00d8c71bcda",
+    "src/data/non-bond-monthly-records.json": "7f8db24798fde76cd49449b707729aac63daefda",
+    "src/data/monthly-fx.json": "8c11172914b2c5b649754d2ea6289a7512f46be7",
+    "src/data/automated-etf-monthly.json": "38bb71bd9f995102250d1a3f9e2860b06c53c185"
+  },
+  "calculations": [
+    {
+      "id": "etfIE00B0M63516",
+      "startPeriod": "2020-01",
+      "targetCurrency": "EUR",
+      "nativeCurrency": "EUR",
+      "manifestPath": "src/data/automated-etf-monthly.json",
+      "manifestBlob": "38bb71bd9f995102250d1a3f9e2860b06c53c185",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-02",
+      "latest": "📍 Dernier niveau connu : 23 € (au octobre 2026)",
+      "expected": "1 170 €",
+      "actual": "1 170 €",
+      "independentUnroundedValue": 1169.7206966914232,
+      "text": "Et si tu avais investi 1 000 € dans l’ETF iShares MSCI Brazil UCITS ETF USD (Dist) en janvier 2020 ? 🫢\n\nEn octobre 2026, voici ce que cette somme serait devenue 👇\n\n💰 Somme investie : 1 000 €\n📈 Capital final : 1 170 €\n🟢 Gain : 170 € (+17,0 %)\n\nAvec les mêmes versements sur un Livret A : 1 123 € (simulation indicative)\n\nYahoo Finance\n\n💬 Tu aurais gardé ce placement jusqu’au bout ?"
+    },
+    {
+      "id": "etfIE00B14X4S71",
+      "startPeriod": "2020-01",
+      "targetCurrency": "EUR",
+      "nativeCurrency": "EUR",
+      "manifestPath": "src/data/automated-etf-monthly.json",
+      "manifestBlob": "38bb71bd9f995102250d1a3f9e2860b06c53c185",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-02",
+      "latest": "📍 Dernier niveau connu : 113 € (au octobre 2026)",
+      "expected": "1 128 €",
+      "actual": "1 128 €",
+      "independentUnroundedValue": 1127.8774951368894,
+      "text": "Et si tu avais investi 1 000 € dans l’ETF iShares $ Treasury Bond 1-3yr UCITS ETF en janvier 2020 ? 🫢\n\nEn octobre 2026, voici ce que cette somme serait devenue 👇\n\n💰 Somme investie : 1 000 €\n📈 Capital final : 1 128 €\n🟢 Gain : 128 € (+12,8 %)\n\nAvec les mêmes versements sur un Livret A : 1 123 € (simulation indicative)\n\nYahoo Finance\n\n💬 Tu aurais gardé ce placement jusqu’au bout ?"
+    },
+    {
+      "id": "etfIE00B1FZS574",
+      "startPeriod": "2020-01",
+      "targetCurrency": "EUR",
+      "nativeCurrency": "EUR",
+      "manifestPath": "src/data/automated-etf-monthly.json",
+      "manifestBlob": "38bb71bd9f995102250d1a3f9e2860b06c53c185",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-02",
+      "latest": "📍 Dernier niveau connu : 17 € (au octobre 2026)",
+      "expected": "1 282 €",
+      "actual": "1 282 €",
+      "independentUnroundedValue": 1282.4541539415366,
+      "text": "Et si tu avais investi 1 000 € dans l’ETF iShares MSCI Turkey UCITS ETF en janvier 2020 ? 🫢\n\nEn octobre 2026, voici ce que cette somme serait devenue 👇\n\n💰 Somme investie : 1 000 €\n📈 Capital final : 1 282 €\n🟢 Gain : 282 € (+28,2 %)\n\nAvec les mêmes versements sur un Livret A : 1 123 € (simulation indicative)\n\nYahoo Finance\n\n💬 Tu aurais gardé ce placement jusqu’au bout ?"
+    },
+    {
+      "id": "etfIE00B1FZS798",
+      "startPeriod": "2020-01",
+      "targetCurrency": "EUR",
+      "nativeCurrency": "EUR",
+      "manifestPath": "src/data/automated-etf-monthly.json",
+      "manifestBlob": "38bb71bd9f995102250d1a3f9e2860b06c53c185",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-02",
+      "latest": "📍 Dernier niveau connu : 151 € (au octobre 2026)",
+      "expected": "955 €",
+      "actual": "955 €",
+      "independentUnroundedValue": 955.1953639863412,
+      "text": "Et si tu avais investi 1 000 € dans l’ETF iShares $ Treasury Bond 7-10yr UCITS ETF en janvier 2020 ? 🫢\n\nEn octobre 2026, voici ce que cette somme serait devenue 👇\n\n💰 Somme investie : 1 000 €\n📈 Capital final : 955 €\n🔴 Perte : 45 € (-4,5 %)\n\nAvec les mêmes versements sur un Livret A : 1 123 € (simulation indicative)\n\nYahoo Finance\n\n💬 Tu aurais gardé ce placement jusqu’au bout ?"
+    },
+    {
+      "id": "etfIE00B2QWDY88",
+      "startPeriod": "2020-01",
+      "targetCurrency": "EUR",
+      "nativeCurrency": "EUR",
+      "manifestPath": "src/data/automated-etf-monthly.json",
+      "manifestBlob": "38bb71bd9f995102250d1a3f9e2860b06c53c185",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-02",
+      "latest": "📍 Dernier niveau connu : 53 € (au octobre 2026)",
+      "expected": "1 645 €",
+      "actual": "1 645 €",
+      "independentUnroundedValue": 1645.2076295286001,
+      "text": "Et si tu avais investi 1 000 € dans l’ETF iShares MSCI Japan Small Cap UCITS ETF en janvier 2020 ? 🫢\n\nEn octobre 2026, voici ce que cette somme serait devenue 👇\n\n💰 Somme investie : 1 000 €\n📈 Capital final : 1 645 €\n🟢 Gain : 645 € (+64,5 %)\n\nAvec les mêmes versements sur un Livret A : 1 123 € (simulation indicative)\n\nYahoo Finance\n\n💬 Tu aurais gardé ce placement jusqu’au bout ?"
+    },
+    {
+      "id": "etfIE00B3F81K65",
+      "startPeriod": "2020-01",
+      "targetCurrency": "EUR",
+      "nativeCurrency": "EUR",
+      "manifestPath": "src/data/automated-etf-monthly.json",
+      "manifestBlob": "38bb71bd9f995102250d1a3f9e2860b06c53c185",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-02",
+      "latest": "📍 Dernier niveau connu : 77 € (au octobre 2026)",
+      "expected": "836 €",
+      "actual": "836 €",
+      "independentUnroundedValue": 835.7203826232345,
+      "text": "Et si tu avais investi 1 000 € dans l’ETF iShares Global Govt Bond UCITS ETF en janvier 2020 ? 🫢\n\nEn octobre 2026, voici ce que cette somme serait devenue 👇\n\n💰 Somme investie : 1 000 €\n📈 Capital final : 836 €\n🔴 Perte : 164 € (-16,4 %)\n\nAvec les mêmes versements sur un Livret A : 1 123 € (simulation indicative)\n\nYahoo Finance\n\n💬 Tu aurais gardé ce placement jusqu’au bout ?"
+    },
+    {
+      "id": "etfIE00BJ5JPJ87",
+      "startPeriod": "2020-01",
+      "targetCurrency": "EUR",
+      "nativeCurrency": "EUR",
+      "manifestPath": "src/data/automated-etf-monthly.json",
+      "manifestBlob": "38bb71bd9f995102250d1a3f9e2860b06c53c185",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-02",
+      "latest": "📍 Dernier niveau connu : 4 € (au octobre 2026)",
+      "expected": "1 373 €",
+      "actual": "1 373 €",
+      "independentUnroundedValue": 1373.1913524414683,
+      "text": "Et si tu avais investi 1 000 € dans l’ETF iShares MSCI Saudi Arabia Capped UCITS ETF en janvier 2020 ? 🫢\n\nEn octobre 2026, voici ce que cette somme serait devenue 👇\n\n💰 Somme investie : 1 000 €\n📈 Capital final : 1 373 €\n🟢 Gain : 373 € (+37,3 %)\n\nAvec les mêmes versements sur un Livret A : 1 123 € (simulation indicative)\n\nYahoo Finance\n\n💬 Tu aurais gardé ce placement jusqu’au bout ?"
+    },
+    {
+      "id": "etfIE00BSKRJX20",
+      "startPeriod": "2020-01",
+      "targetCurrency": "EUR",
+      "nativeCurrency": "EUR",
+      "manifestPath": "src/data/automated-etf-monthly.json",
+      "manifestBlob": "38bb71bd9f995102250d1a3f9e2860b06c53c185",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-02",
+      "latest": "📍 Dernier niveau connu : 3 € (au octobre 2026)",
+      "expected": "528 €",
+      "actual": "528 €",
+      "independentUnroundedValue": 527.9340063786756,
+      "text": "Et si tu avais investi 1 000 € dans l’ETF iShares € Govt Bond 20yr Target Duration UCITS ETF en janvier 2020 ? 🫢\n\nEn octobre 2026, voici ce que cette somme serait devenue 👇\n\n💰 Somme investie : 1 000 €\n📈 Capital final : 528 €\n🔴 Perte : 472 € (-47,2 %)\n\nAvec les mêmes versements sur un Livret A : 1 123 € (simulation indicative)\n\nYahoo Finance\n\n💬 Tu aurais gardé ce placement jusqu’au bout ?"
+    },
+    {
+      "id": "etfIE00BSKRJZ44",
+      "startPeriod": "2020-01",
+      "targetCurrency": "EUR",
+      "nativeCurrency": "EUR",
+      "manifestPath": "src/data/automated-etf-monthly.json",
+      "manifestBlob": "38bb71bd9f995102250d1a3f9e2860b06c53c185",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-02",
+      "latest": "📍 Dernier niveau connu : 3 € (au octobre 2026)",
+      "expected": "686 €",
+      "actual": "686 €",
+      "independentUnroundedValue": 686.4981076344525,
+      "text": "Et si tu avais investi 1 000 € dans l’ETF iShares $ Treasury Bond 20+yr UCITS ETF en janvier 2020 ? 🫢\n\nEn octobre 2026, voici ce que cette somme serait devenue 👇\n\n💰 Somme investie : 1 000 €\n📈 Capital final : 686 €\n🔴 Perte : 314 € (-31,4 %)\n\nAvec les mêmes versements sur un Livret A : 1 123 € (simulation indicative)\n\nYahoo Finance\n\n💬 Tu aurais gardé ce placement jusqu’au bout ?"
+    },
+    {
+      "id": "etfIE00BYPC1H27",
+      "startPeriod": "2020-07",
+      "targetCurrency": "EUR",
+      "nativeCurrency": "EUR",
+      "manifestPath": "src/data/automated-etf-monthly.json",
+      "manifestBlob": "38bb71bd9f995102250d1a3f9e2860b06c53c185",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-02",
+      "latest": "📍 Dernier niveau connu : 5 € (au octobre 2026)",
+      "expected": "1 420 €",
+      "actual": "1 420 €",
+      "independentUnroundedValue": 1419.539901426888,
+      "text": "Et si tu avais investi 1 000 € dans l’ETF iShares China CNY Bond UCITS ETF en juillet 2020 ? 🫢\n\nEn octobre 2026, voici ce que cette somme serait devenue 👇\n\n💰 Somme investie : 1 000 €\n📈 Capital final : 1 420 €\n🟢 Gain : 420 € (+42,0 %)\n\nAvec les mêmes versements sur un Livret A : 1 120 € (simulation indicative)\n\nYahoo Finance\n\n💬 Tu aurais gardé ce placement jusqu’au bout ?"
+    },
+    {
+      "id": "etfIE00BZ048462",
+      "startPeriod": "2020-01",
+      "targetCurrency": "EUR",
+      "nativeCurrency": "EUR",
+      "manifestPath": "src/data/automated-etf-monthly.json",
+      "manifestBlob": "38bb71bd9f995102250d1a3f9e2860b06c53c185",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-02",
+      "latest": "📍 Dernier niveau connu : 5 € (au octobre 2026)",
+      "expected": "1 290 €",
+      "actual": "1 290 €",
+      "independentUnroundedValue": 1290.1113386067989,
+      "text": "Et si tu avais investi 1 000 € dans l’ETF iShares $ Floating Rate Bond UCITS ETF en janvier 2020 ? 🫢\n\nEn octobre 2026, voici ce que cette somme serait devenue 👇\n\n💰 Somme investie : 1 000 €\n📈 Capital final : 1 290 €\n🟢 Gain : 290 € (+29,0 %)\n\nAvec les mêmes versements sur un Livret A : 1 123 € (simulation indicative)\n\nYahoo Finance\n\n💬 Tu aurais gardé ce placement jusqu’au bout ?"
+    },
+    {
+      "id": "etfIE00BZ6V7883",
+      "startPeriod": "2020-01",
+      "targetCurrency": "EUR",
+      "nativeCurrency": "EUR",
+      "manifestPath": "src/data/automated-etf-monthly.json",
+      "manifestBlob": "38bb71bd9f995102250d1a3f9e2860b06c53c185",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-02",
+      "latest": "📍 Dernier niveau connu : 4 € (au octobre 2026)",
+      "expected": "1 004 €",
+      "actual": "1 004 €",
+      "independentUnroundedValue": 1004.2452021768638,
+      "text": "Et si tu avais investi 1 000 € dans l’ETF iShares US Mortgage Backed Securities UCITS ETF en janvier 2020 ? 🫢\n\nEn octobre 2026, voici ce que cette somme serait devenue 👇\n\n💰 Somme investie : 1 000 €\n📈 Capital final : 1 004 €\n🟢 Gain : 4 € (+0,4 %)\n\nAvec les mêmes versements sur un Livret A : 1 123 € (simulation indicative)\n\nYahoo Finance\n\n💬 Tu aurais gardé ce placement jusqu’au bout ?"
+    }
+  ],
+  "comparison": {
+    "id": "etfIE00B0M63516",
+    "coverage": "EUR · Cours ajustés · revenus réinvestis\nHistorique commun : 2023-08 → 2026-10 · 2 années civiles complètes",
+    "row": "iShares MSCI Brazil UCITS ETF USD (Dist)\t-11,46 %\t🏆 +29,97 %\t+9,69 %",
+    "expectedAnnualized": 12.352793811430063,
+    "expected2026Partial": 9.687031938958523,
+    "text": "Parmi ces ETF, lequel a le mieux performé entre fin octobre 2024 et fin octobre 2026 (en EUR) ? 👇\n\n🥇 Nasdaq-100 équipondéré : +13,57 %/an\n🥈 iShares MSCI Brazil UCITS ETF USD (Dist) : +12,35 %/an\n\nLe détail année par année dans l’image 👇\n\n💬 Tu es exposé à l’un d’entre eux ?\n\nPas un conseil financier."
+  },
+  "downloads": [
+    {
+      "name": "calculator-etfIE00B0M63516",
+      "bytes": 1957975,
+      "sha256": "97964c866033ba3c77bb3599b674bbb57318a7740dfc66cd4a9a17d533e5b2b5"
+    },
+    {
+      "name": "calculator-etfIE00B14X4S71",
+      "bytes": 1935473,
+      "sha256": "dd9da0174d3453f68515b2f066fcc6d26c5ba10577287cf044f56b4849efc391"
+    },
+    {
+      "name": "calculator-etfIE00B1FZS574",
+      "bytes": 1968889,
+      "sha256": "0a0a83236a9120ea3a62308062773a111721859733d3146409364749fba52161"
+    },
+    {
+      "name": "calculator-etfIE00B1FZS798",
+      "bytes": 1899068,
+      "sha256": "f17cd5d5affb3f9d0b10e146565412ca03fd3e9f535b05fcc7a557002a3b29a1"
+    },
+    {
+      "name": "calculator-etfIE00B2QWDY88",
+      "bytes": 1938333,
+      "sha256": "45a08c185405e1684d3b8fbc970c334bd38b1f33a32599f85010b894a3fe7a3a"
+    },
+    {
+      "name": "calculator-etfIE00B3F81K65",
+      "bytes": 1898646,
+      "sha256": "14eeb63fbbc354a78e96f403c657c03ff2dfca9912d3821436caacf7ad12155b"
+    },
+    {
+      "name": "calculator-etfIE00BJ5JPJ87",
+      "bytes": 1956872,
+      "sha256": "07cbd64ac6c802b5407d1d5d621f2f83a86ca41a0d92423edcd587d242baa5c8"
+    },
+    {
+      "name": "calculator-etfIE00BSKRJX20",
+      "bytes": 1915114,
+      "sha256": "36f6d1ddfb65e3cabb8464ca89a2f83706d51ee5d6f78f0b9834b525d06fd73c"
+    },
+    {
+      "name": "calculator-etfIE00BSKRJZ44",
+      "bytes": 1911716,
+      "sha256": "cbecc29af854ee372a9a00c432eb87e2d57a6f29003932ec3783b14816c5e760"
+    },
+    {
+      "name": "calculator-etfIE00BYPC1H27",
+      "bytes": 1929504,
+      "sha256": "e702549ef7f4fd038a4f8ed2a9ab3159a45eed669356cc5994b2ac71ef6c8364"
+    },
+    {
+      "name": "calculator-etfIE00BZ048462",
+      "bytes": 1940025,
+      "sha256": "f717880509f95ff647028d4e61c6e44230c3445bbce69e91c2422672e0976b7a"
+    },
+    {
+      "name": "calculator-etfIE00BZ6V7883",
+      "bytes": 1933648,
+      "sha256": "49d150aefcdec93598d2328de0bf38710916daa3c347c5af7b22a88971093090"
+    },
+    {
+      "name": "comparison-etfIE00B0M63516",
+      "bytes": 379478,
+      "sha256": "53b1c2793b36ee53d8814f96cf465efbf57aef95d4c7015c67fcc694f0ee980a"
+    }
+  ],
+  "errors": [],
+  "limit": "Actual published source hashes and numerical UI checks, not certification of every field or old financial divergence."
+}

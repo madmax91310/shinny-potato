@@ -1,89 +1,108 @@
 {
-  "checkedAt": "2026-10-30T02:54:38.618831+00:00",
+  "checkedAt": "2026-11-02T07:12:15.002681+00:00",
   "allInitialAndCurrentIdentitiesPreserved": true,
   "initialDiagnostics": 5092,
-  "currentDiagnostics": 6486,
-  "ledgerIdentities": 46216,
-  "matrixContracts": 33381,
+  "currentDiagnostics": 8992,
+  "ledgerIdentities": 57741,
+  "matrixContracts": 33830,
   "sourceInputsVerified": 196,
   "financialCases": 79,
   "qualifiedMonthlyWindows": 70,
   "refusedMonthlyWindows": 9,
   "old661Preserved": true,
   "actions19": {
-    "partiellement corrigée": 4,
-    "corrigée": 11,
+    "partiellement corrigée": 5,
+    "corrigée": 10,
     "périmètre supprimé": 2,
     "bloquée": 1,
     "déjà résolue": 1
   },
-  "toolRoutes": 23,
+  "toolRoutes": {
+    "historicalRowsPreserved": 28,
+    "activeRoutes": 26,
+    "financialConsumerContractTools": 21
+  },
   "publishedSourceRegistryMatchesOrdinaryRecord": true,
   "reports": [
     {
       "name": "ETAT-REPRISE.json",
-      "bytes": 1497,
-      "sha256": "32054bd878d3992035373c422e3bc26c6b04dea0ee45865c22b0ed1fd163918d"
+      "bytes": 10245,
+      "sha256": "ec12a2a925683d55b31d93639096c0bf8fd547f6e39da6c6939cd53660f5072d"
     },
     {
       "name": "LIVRAISON.md",
-      "bytes": 57389,
-      "sha256": "cd2dc5ebe58bd19671b7e6bba2f78d72ec8c898c4a5a2287d1c1fdb7388587c0"
+      "bytes": 102649,
+      "sha256": "136146a0554afaa3fd59181fbc978fa83a828fa003cfdebb01172bb23a774106"
+    },
+    {
+      "name": "PRODUCTION-31-OCTOBRE.md",
+      "bytes": 6359,
+      "sha256": "5881001529f331805281972a05545cc044666a9aebb600dba252265e04fc59c2"
     },
     {
       "name": "RAPPORT.md",
-      "bytes": 83884,
-      "sha256": "1c007725194685d15ebeb1d494e84f67ee2dd7364e311965aa94bf6960c8cad4"
+      "bytes": 114774,
+      "sha256": "578583dc16a224bf17c162f8c2e3cdebc3b9a9de5bf1d306a1b2ffb16c0e2370"
     },
     {
       "name": "README.md",
-      "bytes": 1752,
-      "sha256": "1f2305b6ba2a3298493bea9574289fb98c7ae281f18b91f06c6f59e43b15e06a"
+      "bytes": 1794,
+      "sha256": "399a33f392c1efa8ad7dbc3b3e4f2559a4fe99c45fa2844c803230af4e4e2dc7"
+    },
+    {
+      "name": "actualisation-30oct.json",
+      "bytes": 13346,
+      "sha256": "ea7581c72e931e7fdc76f73a62f6092c59290030ef2101969f848b93e6b9ba53"
     },
     {
       "name": "bilan-par-outil.csv",
-      "bytes": 21750,
-      "sha256": "0b57c5d70d98fdd771bdd1966a98e008e79ca195509845c84949b651630bf0f2"
+      "bytes": 89158,
+      "sha256": "7530b0f41ad54a1ced83f979b217ecb3b12fa4574d79137542c443d4cd8fe421"
     },
     {
       "name": "bilan.json",
-      "bytes": 4613,
-      "sha256": "037fe06100c765b1702646a4fd5f9040c4ff87039f5007d26f244df8c7adade2"
+      "bytes": 40336,
+      "sha256": "4fa5ecc27388a19f2b5df820ee3bfcf0b9c0ff0ce3d4a520a25cf3bfa164ee34"
     },
     {
       "name": "causes-consolidees.csv.gz",
-      "bytes": 307130,
-      "sha256": "5511c280a2a47f75fbef65a76188f21931f191499c01a768237e50578fc5d5fc"
+      "bytes": 672497,
+      "sha256": "6a61ae9f10a20dc7fc6366db54433fd4ee2d49eb7675abc84595e1348ad74eb1"
     },
     {
       "name": "chaines-donnees.csv.gz",
-      "bytes": 507348,
-      "sha256": "267fcc111ecf759f2f382b0f445a4c7edabb74b0ecf88fe736b9df9c0d308922"
+      "bytes": 509352,
+      "sha256": "b37ea55977a085abf15c5f822fc402ac7c96935b7231b7d090d13dd216f1e767"
     },
     {
       "name": "collectes-controles.csv.gz",
-      "bytes": 45004,
-      "sha256": "6db292c3168193ccea2ba406f144a877f45ef9c2d37d55aa77469e890a01b109"
+      "bytes": 63256,
+      "sha256": "c1300d2340cbf09f23518c9ee6a111a37c32e46e6c5898a372a6f173a17c4f43"
+    },
+    {
+      "name": "liaison-identites-matrice.csv.gz",
+      "bytes": 416351,
+      "sha256": "8a8674588ac91fd6d71f20713efc42638073d2dffdca738153be7786880a6a1a"
     },
     {
       "name": "matrice-bilan.json",
-      "bytes": 1538,
-      "sha256": "d8c19e3fb10bae369dcf24607408886de21c484396ff4bb6fd57df580b771337"
+      "bytes": 12321,
+      "sha256": "936f076e7466e56937ac9f8a53155830d5ae0336125c77cf84c0f8280c1eead8"
     },
     {
       "name": "matrice-donnees-usages.csv.gz",
-      "bytes": 1643351,
-      "sha256": "db769efe85414b01952eac6174f5e92a2c68f8a7ff95892d0d6a1494e3cc0bcc"
+      "bytes": 3814263,
+      "sha256": "b4d19fd82139455374ac96ec61744b02d474e5eac2b53409d190e1092e5cbd3a"
     },
     {
       "name": "perimetre-initial-complet.csv.gz",
-      "bytes": 48575,
-      "sha256": "28907244c667e34e8331ebc0cbecc590bfafe408e10d6157622934df3e6febe4"
+      "bytes": 77251,
+      "sha256": "aabfd3babaa40c53d6977cde1c36ebed00680c111b1570d0fafb89c3c7c3f3b4"
     },
     {
       "name": "reconciliation-79-ecarts.csv",
-      "bytes": 1155219,
-      "sha256": "6cbbc447c4e3eefb0bc205dfc6014173ba8e833359300fbc606fdc3dc8d3ca85"
+      "bytes": 1454639,
+      "sha256": "97358155bb16f39fe51cec0eef3af17d6cf9fabfcae364ed17c5085ab133c89f"
     },
     {
       "name": "reconciliation-finale-identites.json",
@@ -92,19 +111,203 @@
     },
     {
       "name": "restant-a-verifier.csv.gz",
-      "bytes": 686929,
-      "sha256": "047a094bd5b6630f6cc0c57390015ba3d29047c982473d9f9023771988b2d99a"
+      "bytes": 1616072,
+      "sha256": "8e79962b2b994603f63334fbcd6d6c34f11fc4ee61bfb9f9545ce5236f71b829"
     },
     {
       "name": "statut-19-actions.csv",
-      "bytes": 42865,
-      "sha256": "70fe233b85e4fcd1de9a0e151d78948fc34045d1110cb2fc3a5beeb4208c5d31"
+      "bytes": 61029,
+      "sha256": "178d1c2cc5329669f2869dd0d5e0512bcacea03c623abd8b4a1bdd397afdc5b8"
     },
     {
       "name": "suivi-consolide.csv.gz",
-      "bytes": 5212451,
-      "sha256": "c6523bea15787fe051c6cc039f4313a934611f2dab24bb1d1b15558b685f54a3"
+      "bytes": 7176703,
+      "sha256": "6c1bfb620af3f154a88a0b84d663391f955aa9f451ee1cb497450577a215d933"
     }
   ],
-  "limit": "Delivery reconciliation and bounded source proofs, not independent certification of the entire financial catalogue."
+  "limit": "Delivery reconciliation and bounded source proofs, not independent certification of the entire financial catalogue.",
+  "reprise2novembre": {
+    "checkedAt": "2026-11-02T07:12:15.002681+00:00",
+    "published": {
+      "sha": "414bd67a1afa1ae9cc003e5e98a3f0c0f6b92d2d",
+      "builtAt": "2026-11-02T06:26:04Z"
+    },
+    "snapshotCheckedAt": "2026-11-02T07:03:18.782Z",
+    "diagnostics": {
+      "oldDiagnosticIdentitiesPreserved": 8711,
+      "canonicalDiagnosticIdentitiesAfter": 9880,
+      "allIntermediateObservedIdentities": 9117,
+      "currentPublicDiagnostics": 8992,
+      "currentActiveDiagnostics": 6864,
+      "activeClasses": {
+        "qualification": 6293,
+        "connection": 30,
+        "monitoring": 496,
+        "failure": 45
+      },
+      "initial661Preserved": 661,
+      "oldLedgerRowsPreserved": 50069,
+      "ledgerRowsAfter": 57741,
+      "previousMatrixIdentitiesNotPreviouslyInLedgerAdded": 6565,
+      "oldRemainingRowsPreserved": 45457,
+      "remainingRowsAfter": 45458,
+      "old79CasesPreserved": 79,
+      "qualifiedMonthlyWindows": 70,
+      "refusedMonthlyWindows": 9,
+      "limit": "Rows are identities/contracts and history, not a count of independent outages. Absence never closes a cause without bounded evidence."
+    },
+    "matrix": {
+      "build": {
+        "sha": "414bd67a1afa1ae9cc003e5e98a3f0c0f6b92d2d",
+        "builtAt": "2026-11-02T06:26:04Z"
+      },
+      "oldIdentitiesPreserved": 41516,
+      "currentDeclaredContracts": 33830,
+      "matrixAfter": 41516,
+      "newTrackingIdentities": 0,
+      "unmatchedOlderIdentities": 7686,
+      "ambiguousNotReused": 0,
+      "previouslyAmbiguousListingsResolvedByExactQuoteIdentity": 42,
+      "currentDeclarationSummary": {
+        "tools": 21,
+        "usages": 33830,
+        "required": 30232,
+        "connected": 24642,
+        "blocked": 1295,
+        "unconfirmed": 4295,
+        "unmapped": 0
+      },
+      "limit": "Declarations are not individual outage or success proofs; bounded native/public/browser evidence remains separate."
+    },
+    "actions19Preserved": 19,
+    "financial79": {
+      "total": 79,
+      "qualified": 70,
+      "refused": 9,
+      "oldDivergencesNotClosedByIndependentRoutes": 77,
+      "unexplainedResiduals": 2
+    },
+    "consumerProofs": {
+      "newMarketQuotes": 12,
+      "independentPublicCalculations": 24,
+      "calculationAndComparisonPngs": 26,
+      "manualAndAnnualSelectorFunds": 21,
+      "manualAndAnnualPngs": 6,
+      "newPhysicalBooks": 11,
+      "completeOverlapBooks": 9,
+      "partialOverlapBooks": 2,
+      "holdingsPngs": 22,
+      "overlapPngs": 4,
+      "nativePerformanceIsolatedPngs": 42
+    },
+    "scheduledWorkflowBreakdown": "workflow-schedule-reconciliation.json",
+    "completeAutomationClaimed": false,
+    "limit": "No global certification inferred from declarations, CI success or one shared collection. Historical refusals and external blocks are unresolved work."
+  },
+  "completeAutomationClaimed": false,
+  "snapshotAvantReprise2nov": {
+    "checkedAt": "2026-10-30T02:54:38.618831+00:00",
+    "currentDiagnostics": 6486,
+    "ledgerIdentities": 46216,
+    "matrixContracts": 33381,
+    "actions19": {
+      "partiellement corrigée": 4,
+      "corrigée": 11,
+      "périmètre supprimé": 2,
+      "bloquée": 1,
+      "déjà résolue": 1
+    },
+    "toolRoutes": 23,
+    "reports": [
+      {
+        "name": "ETAT-REPRISE.json",
+        "bytes": 1497,
+        "sha256": "32054bd878d3992035373c422e3bc26c6b04dea0ee45865c22b0ed1fd163918d"
+      },
+      {
+        "name": "LIVRAISON.md",
+        "bytes": 57389,
+        "sha256": "cd2dc5ebe58bd19671b7e6bba2f78d72ec8c898c4a5a2287d1c1fdb7388587c0"
+      },
+      {
+        "name": "RAPPORT.md",
+        "bytes": 83884,
+        "sha256": "1c007725194685d15ebeb1d494e84f67ee2dd7364e311965aa94bf6960c8cad4"
+      },
+      {
+        "name": "README.md",
+        "bytes": 1752,
+        "sha256": "1f2305b6ba2a3298493bea9574289fb98c7ae281f18b91f06c6f59e43b15e06a"
+      },
+      {
+        "name": "bilan-par-outil.csv",
+        "bytes": 21750,
+        "sha256": "0b57c5d70d98fdd771bdd1966a98e008e79ca195509845c84949b651630bf0f2"
+      },
+      {
+        "name": "bilan.json",
+        "bytes": 4613,
+        "sha256": "037fe06100c765b1702646a4fd5f9040c4ff87039f5007d26f244df8c7adade2"
+      },
+      {
+        "name": "causes-consolidees.csv.gz",
+        "bytes": 307130,
+        "sha256": "5511c280a2a47f75fbef65a76188f21931f191499c01a768237e50578fc5d5fc"
+      },
+      {
+        "name": "chaines-donnees.csv.gz",
+        "bytes": 507348,
+        "sha256": "267fcc111ecf759f2f382b0f445a4c7edabb74b0ecf88fe736b9df9c0d308922"
+      },
+      {
+        "name": "collectes-controles.csv.gz",
+        "bytes": 45004,
+        "sha256": "6db292c3168193ccea2ba406f144a877f45ef9c2d37d55aa77469e890a01b109"
+      },
+      {
+        "name": "matrice-bilan.json",
+        "bytes": 1538,
+        "sha256": "d8c19e3fb10bae369dcf24607408886de21c484396ff4bb6fd57df580b771337"
+      },
+      {
+        "name": "matrice-donnees-usages.csv.gz",
+        "bytes": 1643351,
+        "sha256": "db769efe85414b01952eac6174f5e92a2c68f8a7ff95892d0d6a1494e3cc0bcc"
+      },
+      {
+        "name": "perimetre-initial-complet.csv.gz",
+        "bytes": 48575,
+        "sha256": "28907244c667e34e8331ebc0cbecc590bfafe408e10d6157622934df3e6febe4"
+      },
+      {
+        "name": "reconciliation-79-ecarts.csv",
+        "bytes": 1155219,
+        "sha256": "6cbbc447c4e3eefb0bc205dfc6014173ba8e833359300fbc606fdc3dc8d3ca85"
+      },
+      {
+        "name": "reconciliation-finale-identites.json",
+        "bytes": 1318,
+        "sha256": "87bf4f9a31f49da311a91178d4576947ec5f99fd6e8a0a3a61dc683ae92b592f"
+      },
+      {
+        "name": "restant-a-verifier.csv.gz",
+        "bytes": 686929,
+        "sha256": "047a094bd5b6630f6cc0c57390015ba3d29047c982473d9f9023771988b2d99a"
+      },
+      {
+        "name": "statut-19-actions.csv",
+        "bytes": 42865,
+        "sha256": "70fe233b85e4fcd1de9a0e151d78948fc34045d1110cb2fc3a5beeb4208c5d31"
+      },
+      {
+        "name": "suivi-consolide.csv.gz",
+        "bytes": 5212451,
+        "sha256": "c6523bea15787fe051c6cc039f4313a934611f2dab24bb1d1b15558b685f54a3"
+      }
+    ]
+  },
+  "matrixTrackingRows": 41516,
+  "intermediateIdentitiesPreserved": true,
+  "nested966ProductionProof": "etf-41395321887-verified-publication.json",
+  "functionalSourceFixesActuallyPublished": true
 }

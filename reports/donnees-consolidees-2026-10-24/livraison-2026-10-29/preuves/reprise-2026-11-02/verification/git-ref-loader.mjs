@@ -1,0 +1,3 @@
+import {execFileSync} from 'node:child_process';
+export async function resolve(specifier,context,next){if(specifier.startsWith('gitref:'))return{url:specifier,shortCircuit:true};if(context.parentURL?.startsWith('gitref:')&&specifier.startsWith('.'))return{url:new URL(specifier,context.parentURL).href,shortCircuit:true};return next(specifier,context)}
+export async function load(url,context,next){if(!url.startsWith('gitref:'))return next(url,context);const u=new URL(url),source=execFileSync('git',['show',u.hostname+':'+u.pathname.slice(1)],{maxBuffer:64000000});return{format:u.pathname.endsWith('.json')?'json':'module',source,shortCircuit:true}}
