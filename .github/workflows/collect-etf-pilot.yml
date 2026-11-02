@@ -95,6 +95,8 @@ on:
       - 'scripts/test_new_issuer_sources.py'
   pull_request:
     paths:
+      - 'scripts/test_source_incidents.py'
+      - 'scripts/fixtures/source-incidents-20261102/**'
       - 'scripts/validate-etf-publication.sh'
       - 'scripts/test_etf_publication.py'
       - 'scripts/observation_rebase_guard.py'
@@ -280,6 +282,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_remaining_aum.py'
       - run: node scripts/test-annual-rollover.mjs
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
+      - run: python -m unittest discover -s scripts -p 'test_source_incidents.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_etf_resilience.py'
       - run: python -m unittest discover -s scripts -p 'test_data_refresh.py'

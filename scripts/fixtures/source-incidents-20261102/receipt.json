@@ -1,0 +1,26 @@
+{
+  "retrievedAt": "2026-11-02T16:53:12.443752+00:00",
+  "files": {
+    "bitcoin-daily.json.gz": {
+      "sha256": "b3dd8971c3c350f9652de0c87bfdcb0db0a6a35078ebf0f33b2655c7dd0fd508",
+      "bytes": 154441
+    },
+    "bitcoin-monthly.json.gz": {
+      "sha256": "b0ace072ca5b11b97a04fd86b01ef9aad2a885a8baf6ff4fe30467501033f8fd",
+      "bytes": 5959
+    },
+    "blackrock-251741.json.gz": {
+      "sha256": "2942febf198a6b7b52afca4fa22a7eeb66fab82300a98633ea90f4860a49e432",
+      "bytes": 204573
+    },
+    "sp-euro-dividend-aristocrats.json.gz": {
+      "sha256": "d11fd0775103518d3e56afa6941758ba09ea877940da7d725547cd1cb32ed605",
+      "bytes": 64407
+    },
+    "sp-global-dividend-aristocrats.json.gz": {
+      "sha256": "3242149166f24ae83d94ad70c5df408704203093b445497276b25c46e8d3e924",
+      "bytes": 67158
+    }
+  },
+  "note": "Official raw responses. Bitcoin previous GitHub failure artifact contains contract and exception only, not raw payload; these new responses reproduce the same rejection before the fix. Treasury 104.56 is a signed sector allocation, independently reconciled to all holdings."
+}
