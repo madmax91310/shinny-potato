@@ -52,6 +52,7 @@ try{
  await page.route('**/automation-status/automation-status.json*',r=>r.fulfill({json:model.state}))
  await page.route('https://api.github.com/**/actions/workflows/automation-status.yml/runs?**',r=>r.fulfill({json:{workflow_runs:[{id:999999,status:'completed',conclusion:'success',head_branch:'master',event:'workflow_dispatch'}]}}))
  await page.goto('http://127.0.0.1:4326/shinny-potato/donnees-a-revoir?q='+encodeURIComponent('Résultat attendu absent'),{waitUntil:'networkidle'})
+ await page.getByRole('searchbox',{name:'Recherche globale des problèmes'}).fill('Résultat attendu absent')
  await page.getByText('Résultat attendu absent',{exact:false}).first().waitFor()
  await mkdir('test-artifacts/producer-omissions',{recursive:true})
  for(const [name,width,height]of[['desktop',1440,1000],['mobile',390,844]]){
