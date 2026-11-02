@@ -5,75 +5,75 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 629701541.246,
+      "amount": 619300452.4076,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-29",
+      "asOf": "2026-10-30",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "sectors": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Health Care",
-          "weightPct": 20.964069,
+          "weightPct": 20.938342,
           "label": "Health Care"
         },
         {
           "name": "Financials",
-          "weightPct": 19.32258,
+          "weightPct": 19.356122,
           "label": "Financials"
         },
         {
           "name": "Information Technology",
-          "weightPct": 13.448464,
+          "weightPct": 13.235176,
           "label": "Information Technology"
         },
         {
           "name": "Industrials",
-          "weightPct": 13.115915,
+          "weightPct": 13.215885,
           "label": "Industrials"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 9.113988,
+          "weightPct": 9.263052,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Energy",
-          "weightPct": 6.985744,
+          "weightPct": 6.921416,
           "label": "Energy"
         },
         {
           "name": "Real Estate",
-          "weightPct": 5.729769,
+          "weightPct": 5.788813,
           "label": "Immobilier"
         },
         {
           "name": "Others",
-          "weightPct": 4.415999,
+          "weightPct": 4.422592,
           "label": "Autres"
         },
         {
           "name": "Materials",
-          "weightPct": 4.061774,
+          "weightPct": 4.028375,
           "label": "Materials"
         },
         {
           "name": "Utilities",
-          "weightPct": 2.841697,
+          "weightPct": 2.830226,
           "label": "Utilities"
         }
       ],
       "sourceComponent": "INDEX_SECTORS",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "countries": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
@@ -84,66 +84,66 @@
       ],
       "sourceComponent": "INDEX_COUNTRIES",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "holdings": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
+          "name": "GLAUKOS CORP",
+          "weightPct": 0.462172,
+          "isin": "US3773221029"
+        },
+        {
           "name": "TWIST BIOSCIENCE CORP",
-          "weightPct": 0.383503,
+          "weightPct": 0.379653,
           "isin": "US90184D1000"
         },
         {
           "name": "JFROG LTD",
-          "weightPct": 0.366216,
+          "weightPct": 0.356621,
           "isin": "IL0011684185"
         },
         {
-          "name": "GLAUKOS CORP",
-          "weightPct": 0.349316,
-          "isin": "US3773221029"
-        },
-        {
-          "name": "VIASAT INC",
-          "weightPct": 0.336617,
-          "isin": "US92552V1008"
-        },
-        {
-          "name": "BRIGHTSPRING HEALTH SERVICES",
-          "weightPct": 0.333599,
-          "isin": "US10950A1060"
-        },
-        {
           "name": "MOOG INC-CL A",
-          "weightPct": 0.332365,
+          "weightPct": 0.343544,
           "isin": "US6153942023"
         },
         {
-          "name": "10X GENOMICS INC-CLASS A",
-          "weightPct": 0.327076,
-          "isin": "US88025U1097"
+          "name": "BRIGHTSPRING HEALTH SERVICES",
+          "weightPct": 0.334471,
+          "isin": "US10950A1060"
         },
         {
           "name": "UMB FINANCIAL CORP",
-          "weightPct": 0.326415,
+          "weightPct": 0.332465,
           "isin": "US9027881088"
         },
         {
+          "name": "VIASAT INC",
+          "weightPct": 0.332088,
+          "isin": "US92552V1008"
+        },
+        {
           "name": "SM ENERGY CO",
-          "weightPct": 0.322169,
+          "weightPct": 0.319095,
           "isin": "US78454L1008"
         },
         {
           "name": "BRINKER INTERNATIONAL INC",
-          "weightPct": 0.320516,
+          "weightPct": 0.31609,
           "isin": "US1096411004"
+        },
+        {
+          "name": "10X GENOMICS INC-CLASS A",
+          "weightPct": 0.315777,
+          "isin": "US88025U1097"
         }
       ],
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "characteristics": {
       "terPct": 0.35,
@@ -197,157 +197,157 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 27743633.655400004,
+      "amount": 27839239.347400002,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-29",
+      "asOf": "2026-10-30",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "sectors": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Real Estate",
-          "weightPct": 99.825487,
+          "weightPct": 99.824163,
           "label": "Immobilier"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 0.174513,
+          "weightPct": 0.175837,
           "label": "Consumer Discretionary"
         }
       ],
       "sourceComponent": "INDEX_SECTORS",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "countries": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "United Kingdom",
-          "weightPct": 32.662367
+          "weightPct": 32.880646
         },
         {
           "name": "France",
-          "weightPct": 14.862282
+          "weightPct": 14.810544
         },
         {
           "name": "Switzerland",
-          "weightPct": 13.906179
+          "weightPct": 13.999253
         },
         {
           "name": "Sweden",
-          "weightPct": 12.805549
+          "weightPct": 12.784044
         },
         {
           "name": "Germany",
-          "weightPct": 10.714356
+          "weightPct": 10.510959
         },
         {
           "name": "Belgium",
-          "weightPct": 8.302593
+          "weightPct": 8.287823
         },
         {
           "name": "Spain",
-          "weightPct": 3.622627
+          "weightPct": 3.620322
         },
         {
           "name": "Netherlands",
-          "weightPct": 1.046676
+          "weightPct": 1.039747
         },
         {
           "name": "Finland",
-          "weightPct": 0.64141
+          "weightPct": 0.637231
         },
         {
           "name": "Norway",
-          "weightPct": 0.421729
+          "weightPct": 0.419129
         },
         {
           "name": "Ireland",
-          "weightPct": 0.35305
+          "weightPct": 0.350655
         },
         {
           "name": "Austria",
-          "weightPct": 0.28163
+          "weightPct": 0.277922
         },
         {
           "name": "Greece",
-          "weightPct": 0.272219
+          "weightPct": 0.273508
         },
         {
           "name": "Italy",
-          "weightPct": 0.107333
+          "weightPct": 0.108218
         }
       ],
       "sourceComponent": "INDEX_COUNTRIES",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "holdings": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "SEGRO PLC",
-          "weightPct": 7.631244,
+          "weightPct": 7.699937,
           "isin": "GB00B5ZN1N88"
         },
         {
           "name": "VONOVIA SE",
-          "weightPct": 6.329074,
+          "weightPct": 6.116278,
           "isin": "DE000A1ML7J1"
         },
         {
           "name": "SWISS PRIME SITE",
-          "weightPct": 5.765127,
+          "weightPct": 5.832228,
           "isin": "CH0008038389"
         },
         {
           "name": "UNIBAIL-RODAMCO-WESTFIELD /PARIS",
-          "weightPct": 5.63944,
+          "weightPct": 5.617473,
           "isin": "FR0013326246"
         },
         {
           "name": "KLEPIERRE",
-          "weightPct": 4.138288,
+          "weightPct": 4.113751,
           "isin": "FR0000121964"
         },
         {
           "name": "PSP SWISS PROPERTY",
-          "weightPct": 3.892167,
+          "weightPct": 3.900684,
           "isin": "CH0018294154"
         },
         {
           "name": "LAND SECURITIES GROUP PLC",
-          "weightPct": 3.397218,
+          "weightPct": 3.422061,
           "isin": "GB00BYW0PQ60"
         },
         {
           "name": "AEDIFICA",
-          "weightPct": 3.06833,
+          "weightPct": 3.076486,
           "isin": "BE0003851681"
         },
         {
           "name": "BRITISH LAND CO  ORD 25P",
-          "weightPct": 2.669025,
+          "weightPct": 2.710588,
           "isin": "GB0001367019"
         },
         {
           "name": "LONDONMETRIC PROPERTY PLC",
-          "weightPct": 2.648634,
+          "weightPct": 2.66662,
           "isin": "GB00B4WFW713"
         }
       ],
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "characteristics": {
       "terPct": 0.4,
@@ -401,12 +401,12 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 226138735.6624,
+      "amount": 226152539.19880003,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-29",
+      "asOf": "2026-10-30",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "characteristics": {
       "terPct": 0.25,
@@ -460,196 +460,196 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 30002082.7186,
+      "amount": 29789706.536799997,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-29",
+      "asOf": "2026-10-30",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "sectors": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Industrials",
-          "weightPct": 33.244265,
+          "weightPct": 33.45787,
           "label": "Industrials"
         },
         {
           "name": "Information Technology",
-          "weightPct": 22.826525,
+          "weightPct": 22.662038,
           "label": "Information Technology"
         },
         {
           "name": "Health Care",
-          "weightPct": 11.331925,
+          "weightPct": 11.455269,
           "label": "Health Care"
         },
         {
           "name": "Financials",
-          "weightPct": 9.229697,
+          "weightPct": 9.137892,
           "label": "Financials"
         },
         {
           "name": "Utilities",
-          "weightPct": 6.294744,
+          "weightPct": 6.247114,
           "label": "Utilities"
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 5.801324,
+          "weightPct": 5.766932,
           "label": "Consumer Staples"
         },
         {
           "name": "Energy",
-          "weightPct": 4.804328,
+          "weightPct": 4.780379,
           "label": "Energy"
         },
         {
           "name": "Materials",
-          "weightPct": 3.672544,
+          "weightPct": 3.685721,
           "label": "Materials"
         },
         {
           "name": "Communication Services",
-          "weightPct": 2.794648,
+          "weightPct": 2.806785,
           "label": "Communication"
         }
       ],
       "sourceComponent": "FUND_SECTORS",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "countries": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "France",
-          "weightPct": 28.363653
+          "weightPct": 28.49757
         },
         {
           "name": "Germany",
-          "weightPct": 24.079643
+          "weightPct": 24.057357
         },
         {
           "name": "Netherlands",
-          "weightPct": 10.779581
+          "weightPct": 10.745186
         },
         {
           "name": "Denmark",
-          "weightPct": 9.21166
+          "weightPct": 9.161741
         },
         {
           "name": "Spain",
-          "weightPct": 8.791346
-        },
-        {
-          "name": "Norway",
-          "weightPct": 4.580519
+          "weightPct": 8.764357
         },
         {
           "name": "Italy",
-          "weightPct": 4.545105
+          "weightPct": 4.56245
+        },
+        {
+          "name": "Norway",
+          "weightPct": 4.543549
         },
         {
           "name": "Sweden",
-          "weightPct": 3.483147
+          "weightPct": 3.482872
         },
         {
           "name": "Belgium",
-          "weightPct": 2.314502
+          "weightPct": 2.325774
         },
         {
           "name": "Finland",
-          "weightPct": 1.98539
+          "weightPct": 2.00016
         },
         {
           "name": "Austria",
-          "weightPct": 0.7819
+          "weightPct": 0.781731
         },
         {
           "name": "Portugal",
-          "weightPct": 0.549759
+          "weightPct": 0.546817
         },
         {
           "name": "Ireland",
-          "weightPct": 0.313992
+          "weightPct": 0.308198
         },
         {
           "name": "United Kingdom",
-          "weightPct": 0.19154
+          "weightPct": 0.192691
         },
         {
           "name": "Switzerland",
-          "weightPct": 0.028262
+          "weightPct": 0.029548
         }
       ],
       "sourceComponent": "FUND_COUNTRIES",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "holdings": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "SAP SE / XETRA",
-          "weightPct": 9.257508,
+          "weightPct": 9.054442,
           "isin": "DE0007164600"
         },
         {
           "name": "ASML HOLDING NV",
-          "weightPct": 8.033649,
+          "weightPct": 8.025,
           "isin": "NL0010273215"
         },
         {
           "name": "BAYER AG-REG",
-          "weightPct": 3.45653,
+          "weightPct": 3.561243,
           "isin": "DE000BAY0017"
         },
         {
           "name": "SCHNEIDER ELECT SE",
-          "weightPct": 3.412435,
+          "weightPct": 3.393517,
           "isin": "FR0000121972"
         },
         {
           "name": "DSV A/S (DKK)",
-          "weightPct": 3.405761,
+          "weightPct": 3.392122,
           "isin": "DK0060079531"
         },
         {
           "name": "TOTALENERGIES SE PARIS",
-          "weightPct": 3.311344,
+          "weightPct": 3.313534,
           "isin": "FR0000120271"
         },
         {
-          "name": "DANONE",
-          "weightPct": 3.137996,
-          "isin": "FR0000120644"
-        },
-        {
           "name": "AIRBUS SE PARIS",
-          "weightPct": 3.13557,
+          "weightPct": 3.171963,
           "isin": "NL0000235190"
         },
         {
+          "name": "DANONE",
+          "weightPct": 3.15889,
+          "isin": "FR0000120644"
+        },
+        {
           "name": "IBERDROLA SA",
-          "weightPct": 2.693897,
+          "weightPct": 2.67228,
           "isin": "ES0144580Y14"
         },
         {
           "name": "SIEMENS ENERGY AG",
-          "weightPct": 2.611099,
+          "weightPct": 2.640455,
           "isin": "DE000ENER6Y0"
         }
       ],
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "characteristics": {
       "terPct": 0.4,
@@ -688,15 +688,15 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 5805647095.012799,
+      "amount": 5677555427.7792,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-29",
+      "asOf": "2026-10-30",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "sectors": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
@@ -708,120 +708,120 @@
       ],
       "sourceComponent": "FUND_SECTORS",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "countries": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Spain",
-          "weightPct": 29.619516
+          "weightPct": 29.205456
         },
         {
           "name": "Italy",
-          "weightPct": 23.312626
+          "weightPct": 23.329587
         },
         {
           "name": "France",
-          "weightPct": 12.837657
+          "weightPct": 12.949693
         },
         {
           "name": "Netherlands",
-          "weightPct": 9.236183
+          "weightPct": 9.116068
         },
         {
           "name": "Germany",
-          "weightPct": 6.053338
+          "weightPct": 6.26812
         },
         {
           "name": "Finland",
-          "weightPct": 4.491828
+          "weightPct": 4.563986
         },
         {
           "name": "Austria",
-          "weightPct": 4.349185
-        },
-        {
-          "name": "Ireland",
-          "weightPct": 3.433294
+          "weightPct": 4.360981
         },
         {
           "name": "Greece",
-          "weightPct": 3.410549
+          "weightPct": 3.525766
+        },
+        {
+          "name": "Ireland",
+          "weightPct": 3.411886
         },
         {
           "name": "Belgium",
-          "weightPct": 2.452527
+          "weightPct": 2.451978
         },
         {
           "name": "Portugal",
-          "weightPct": 0.803298
+          "weightPct": 0.816478
         }
       ],
       "sourceComponent": "FUND_COUNTRIES",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "holdings": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "BANCO SANTANDER SA MADRID",
-          "weightPct": 13.306467,
+          "weightPct": 13.168547,
           "isin": "ES0113900J37"
         },
         {
           "name": "BANCO BILBAO VIZCAYA ARGENTA",
-          "weightPct": 10.435211,
+          "weightPct": 10.180835,
           "isin": "ES0113211835"
         },
         {
           "name": "UNICREDIT SPA",
-          "weightPct": 9.363768,
+          "weightPct": 9.372756,
           "isin": "IT0005239360"
         },
         {
           "name": "INTESA SANPAOLO",
-          "weightPct": 7.765281,
+          "weightPct": 7.741853,
           "isin": "IT0000072618"
         },
         {
           "name": "BNP PARIBAS",
-          "weightPct": 7.540932,
+          "weightPct": 7.591195,
           "isin": "FR0000131104"
         },
         {
           "name": "ING GROEP NV",
-          "weightPct": 7.046133,
+          "weightPct": 6.914087,
           "isin": "NL0011821202"
         },
         {
           "name": "DEUTSCHE BANK AG NAMEN",
-          "weightPct": 4.776751,
+          "weightPct": 4.964773,
           "isin": "DE0005140008"
         },
         {
           "name": "NORDEA BANK ABP",
-          "weightPct": 4.484737,
+          "weightPct": 4.549635,
           "isin": "FI4000297767"
         },
         {
           "name": "SOCIETE GENERALE",
-          "weightPct": 3.874188,
+          "weightPct": 3.908799,
           "isin": "FR0000130809"
         },
         {
           "name": "CAIXABANK SA",
-          "weightPct": 3.365949,
+          "weightPct": 3.313124,
           "isin": "ES0140609019"
         }
       ],
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "characteristics": {
       "terPct": 0.3,
@@ -883,161 +883,161 @@
       "modifiedAt": "2026-10-30"
     },
     "sectors": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Financials",
-          "weightPct": 26.637115,
+          "weightPct": 26.433961,
           "label": "Financials"
         },
         {
           "name": "Industrials",
-          "weightPct": 19.478163,
+          "weightPct": 19.694444,
           "label": "Industrials"
         },
         {
           "name": "Information Technology",
-          "weightPct": 17.693298,
+          "weightPct": 17.670378,
           "label": "Information Technology"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 8.295185,
+          "weightPct": 8.288282,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Utilities",
-          "weightPct": 5.798268,
+          "weightPct": 5.773524,
           "label": "Utilities"
         },
         {
-          "name": "Consumer Staples",
-          "weightPct": 5.602821,
-          "label": "Consumer Staples"
-        },
-        {
           "name": "Energy",
-          "weightPct": 5.571582,
+          "weightPct": 5.588469,
           "label": "Energy"
         },
         {
+          "name": "Consumer Staples",
+          "weightPct": 5.529038,
+          "label": "Consumer Staples"
+        },
+        {
           "name": "Health Care",
-          "weightPct": 5.348331,
+          "weightPct": 5.388673,
           "label": "Health Care"
         },
         {
           "name": "Materials",
-          "weightPct": 3.597121,
+          "weightPct": 3.62987,
           "label": "Materials"
         },
         {
           "name": "Others",
-          "weightPct": 1.978117,
+          "weightPct": 2.003359,
           "label": "Autres"
         }
       ],
       "sourceComponent": "FUND_SECTORS",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "countries": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "France",
-          "weightPct": 31.4287
+          "weightPct": 31.557338
         },
         {
           "name": "Germany",
-          "weightPct": 29.501803
+          "weightPct": 29.697034
         },
         {
           "name": "Netherlands",
-          "weightPct": 14.437183
+          "weightPct": 14.404439
         },
         {
           "name": "Spain",
-          "weightPct": 11.019958
+          "weightPct": 10.825415
         },
         {
           "name": "Italy",
-          "weightPct": 8.521475
+          "weightPct": 8.466702
         },
         {
           "name": "Belgium",
-          "weightPct": 2.857769
+          "weightPct": 2.795756
         },
         {
           "name": "Finland",
-          "weightPct": 2.233112
+          "weightPct": 2.253317
         }
       ],
       "sourceComponent": "FUND_COUNTRIES",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "holdings": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "ASML HOLDING NV",
-          "weightPct": 10.220097,
+          "weightPct": 10.253634,
           "isin": "NL0010273215"
         },
         {
           "name": "SAP SE / XETRA",
-          "weightPct": 4.804956,
+          "weightPct": 4.720061,
           "isin": "DE0007164600"
         },
         {
           "name": "SIEMENS AG-REG",
-          "weightPct": 4.480853,
+          "weightPct": 4.511119,
           "isin": "DE0007236101"
         },
         {
           "name": "TOTALENERGIES SE PARIS",
-          "weightPct": 4.312067,
+          "weightPct": 4.333744,
           "isin": "FR0000120271"
         },
         {
           "name": "ALLIANZ SE-REG",
-          "weightPct": 3.743519,
+          "weightPct": 3.754592,
           "isin": "DE0008404005"
         },
         {
           "name": "BANCO SANTANDER SA MADRID",
-          "weightPct": 3.611892,
+          "weightPct": 3.544653,
           "isin": "ES0113900J37"
         },
         {
           "name": "SCHNEIDER ELECT SE",
-          "weightPct": 3.220323,
+          "weightPct": 3.216442,
           "isin": "FR0000121972"
         },
         {
           "name": "IBERDROLA SA",
-          "weightPct": 3.088477,
+          "weightPct": 3.077059,
           "isin": "ES0144580Y14"
         },
         {
           "name": "BANCO BILBAO VIZCAYA ARGENTA",
-          "weightPct": 2.832532,
+          "weightPct": 2.740444,
           "isin": "ES0113211835"
         },
         {
           "name": "AIRBUS SE PARIS",
-          "weightPct": 2.553139,
+          "weightPct": 2.59404,
           "isin": "NL0000235190"
         }
       ],
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "characteristics": {
       "terPct": 0.2,
@@ -1091,209 +1091,209 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 1772497087.2810001,
+      "amount": 1764689603.2368,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-29",
+      "asOf": "2026-10-30",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "sectors": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Financials",
-          "weightPct": 28.59082,
+          "weightPct": 28.478004,
           "label": "Financials"
         },
         {
           "name": "Industrials",
-          "weightPct": 16.302677,
+          "weightPct": 16.362658,
           "label": "Industrials"
         },
         {
           "name": "Health Care",
-          "weightPct": 14.485045,
+          "weightPct": 14.565622,
           "label": "Health Care"
         },
         {
           "name": "Information Technology",
-          "weightPct": 10.430889,
+          "weightPct": 10.447455,
           "label": "Information Technology"
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 7.848575,
+          "weightPct": 7.795918,
           "label": "Consumer Staples"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 7.301649,
+          "weightPct": 7.300568,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Materials",
-          "weightPct": 5.30618,
+          "weightPct": 5.301319,
           "label": "Materials"
         },
         {
           "name": "Utilities",
-          "weightPct": 5.104088,
+          "weightPct": 5.103001,
           "label": "Utilities"
         },
         {
           "name": "Communication Services",
-          "weightPct": 3.11672,
+          "weightPct": 3.135325,
           "label": "Communication"
         },
         {
           "name": "Others",
-          "weightPct": 1.513358,
+          "weightPct": 1.51013,
           "label": "Autres"
         }
       ],
       "sourceComponent": "FUND_SECTORS",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "countries": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "United Kingdom",
-          "weightPct": 19.913257
+          "weightPct": 19.838806
         },
         {
           "name": "Switzerland",
-          "weightPct": 16.285717
+          "weightPct": 16.377442
         },
         {
           "name": "Germany",
-          "weightPct": 14.269179
+          "weightPct": 14.322938
         },
         {
           "name": "France",
-          "weightPct": 13.096491
+          "weightPct": 13.122645
         },
         {
           "name": "Netherlands",
-          "weightPct": 9.33559
+          "weightPct": 9.325693
         },
         {
           "name": "Spain",
-          "weightPct": 6.408754
+          "weightPct": 6.330663
         },
         {
           "name": "Italy",
-          "weightPct": 5.491402
+          "weightPct": 5.471653
         },
         {
           "name": "Sweden",
-          "weightPct": 5.298203
+          "weightPct": 5.304999
         },
         {
           "name": "Denmark",
-          "weightPct": 2.940506
+          "weightPct": 2.945982
         },
         {
           "name": "Finland",
-          "weightPct": 2.006216
+          "weightPct": 2.010537
         },
         {
           "name": "Belgium",
-          "weightPct": 1.456985
+          "weightPct": 1.463904
         },
         {
           "name": "Norway",
-          "weightPct": 1.040226
+          "weightPct": 1.029899
         },
         {
           "name": "Ireland",
-          "weightPct": 0.686942
+          "weightPct": 0.67793
         },
         {
           "name": "Austria",
-          "weightPct": 0.631783
+          "weightPct": 0.628736
         },
         {
           "name": "Poland",
-          "weightPct": 0.49283
+          "weightPct": 0.49566
         },
         {
           "name": "Greece",
-          "weightPct": 0.353735
+          "weightPct": 0.358648
         },
         {
           "name": "Portugal",
-          "weightPct": 0.292185
+          "weightPct": 0.293865
         }
       ],
       "sourceComponent": "FUND_COUNTRIES",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "holdings": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "ASML HOLDING NV",
-          "weightPct": 5.215059,
+          "weightPct": 5.229921,
           "isin": "NL0010273215"
         },
         {
           "name": "ROCHE HOLDING AG - GENUSSS CHF",
-          "weightPct": 2.732807,
+          "weightPct": 2.737673,
           "isin": "CH1499059983"
         },
         {
-          "name": "HSBC HOLDINGS PLC",
-          "weightPct": 2.397502,
-          "isin": "GB0005405286"
-        },
-        {
           "name": "NOVARTIS AG-REG",
-          "weightPct": 2.389474,
+          "weightPct": 2.433091,
           "isin": "CH0012005267"
         },
         {
+          "name": "HSBC HOLDINGS PLC",
+          "weightPct": 2.380807,
+          "isin": "GB0005405286"
+        },
+        {
           "name": "ASTRAZENECA GBP",
-          "weightPct": 2.132023,
+          "weightPct": 2.171647,
           "isin": "GB0009895292"
         },
         {
           "name": "NESTLE SA-REG",
-          "weightPct": 2.08107,
+          "weightPct": 2.069724,
           "isin": "CH0038863350"
         },
         {
           "name": "SAP SE / XETRA",
-          "weightPct": 1.917143,
+          "weightPct": 1.88246,
           "isin": "DE0007164600"
         },
         {
           "name": "SIEMENS AG-REG",
-          "weightPct": 1.787837,
+          "weightPct": 1.799139,
           "isin": "DE0007236101"
         },
         {
           "name": "ALLIANZ SE-REG",
-          "weightPct": 1.493647,
+          "weightPct": 1.49742,
           "isin": "DE0008404005"
         },
         {
           "name": "BANCO SANTANDER SA MADRID",
-          "weightPct": 1.441121,
+          "weightPct": 1.413685,
           "isin": "ES0113900J37"
         }
       ],
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "characteristics": {
       "terPct": 0.18,
@@ -1347,325 +1347,325 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 3852926470.6168003,
+      "amount": 3794220077.7008,
       "currency": "USD",
       "scope": "share-class",
-      "asOf": "2026-10-29",
+      "asOf": "2026-10-30",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "sectors": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 32.210399,
+          "weightPct": 31.952309,
           "label": "Information Technology"
         },
         {
           "name": "Financials",
-          "weightPct": 16.297121,
+          "weightPct": 16.518847,
           "label": "Financials"
         },
         {
           "name": "Industrials",
-          "weightPct": 9.962767,
+          "weightPct": 10.066017,
           "label": "Industrials"
         },
         {
           "name": "Health Care",
-          "weightPct": 8.829209,
+          "weightPct": 9.024532,
           "label": "Health Care"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 8.582823,
+          "weightPct": 8.550377,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Communication Services",
-          "weightPct": 7.586192,
+          "weightPct": 7.197698,
           "label": "Communication"
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 4.914018,
+          "weightPct": 4.975405,
           "label": "Consumer Staples"
         },
         {
           "name": "Energy",
-          "weightPct": 4.295089,
+          "weightPct": 4.335583,
           "label": "Energy"
         },
         {
           "name": "Others",
-          "weightPct": 4.009692,
+          "weightPct": 4.066218,
           "label": "Autres"
         },
         {
           "name": "Materials",
-          "weightPct": 3.31269,
+          "weightPct": 3.313013,
           "label": "Materials"
         }
       ],
       "sourceComponent": "FUND_SECTORS",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "countries": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 63.345684
+          "weightPct": 63.211121
         },
         {
           "name": "Japan",
-          "weightPct": 5.718016
+          "weightPct": 5.767184
         },
         {
           "name": "Taiwan",
-          "weightPct": 3.40467
+          "weightPct": 3.352596
         },
         {
           "name": "Canada",
-          "weightPct": 3.108904
+          "weightPct": 3.128129
         },
         {
           "name": "United Kingdom",
-          "weightPct": 3.045002
+          "weightPct": 3.073447
         },
         {
           "name": "China",
-          "weightPct": 2.321613
+          "weightPct": 2.301272
         },
         {
           "name": "South Korea",
-          "weightPct": 2.30456
+          "weightPct": 2.279446
         },
         {
           "name": "France",
-          "weightPct": 1.932796
+          "weightPct": 1.955411
         },
         {
           "name": "Switzerland",
-          "weightPct": 1.848859
+          "weightPct": 1.879964
         },
         {
           "name": "Germany",
-          "weightPct": 1.772467
+          "weightPct": 1.800665
         },
         {
           "name": "Australia",
-          "weightPct": 1.541896
+          "weightPct": 1.551476
         },
         {
           "name": "India",
-          "weightPct": 1.36588
+          "weightPct": 1.381063
         },
         {
           "name": "Netherlands",
-          "weightPct": 1.10971
+          "weightPct": 1.117802
         },
         {
           "name": "Sweden",
-          "weightPct": 0.824053
+          "weightPct": 0.834112
         },
         {
           "name": "Spain",
-          "weightPct": 0.735016
+          "weightPct": 0.736334
         },
         {
           "name": "Italy",
-          "weightPct": 0.647911
+          "weightPct": 0.650844
         },
         {
           "name": "Brazil",
-          "weightPct": 0.448739
+          "weightPct": 0.443731
         },
         {
           "name": "Hong Kong",
-          "weightPct": 0.429563
+          "weightPct": 0.429446
         },
         {
           "name": "Singapore",
-          "weightPct": 0.378251
+          "weightPct": 0.380698
         },
         {
           "name": "Denmark",
-          "weightPct": 0.347719
+          "weightPct": 0.350556
         },
         {
           "name": "Israel",
-          "weightPct": 0.337564
+          "weightPct": 0.339953
         },
         {
           "name": "South Africa",
-          "weightPct": 0.300122
+          "weightPct": 0.302749
         },
         {
           "name": "Saudi Arabia",
-          "weightPct": 0.276825
+          "weightPct": 0.273332
         },
         {
           "name": "Finland",
-          "weightPct": 0.23922
+          "weightPct": 0.241909
         },
         {
           "name": "Mexico",
-          "weightPct": 0.225669
+          "weightPct": 0.226739
         },
         {
           "name": "Belgium",
-          "weightPct": 0.222586
+          "weightPct": 0.222161
         },
         {
           "name": "UAE",
-          "weightPct": 0.220095
+          "weightPct": 0.218168
         },
         {
           "name": "Norway",
-          "weightPct": 0.201524
+          "weightPct": 0.20345
         },
         {
           "name": "Thailand",
-          "weightPct": 0.199641
+          "weightPct": 0.196079
         },
         {
           "name": "Malaysia",
-          "weightPct": 0.154043
+          "weightPct": 0.154766
         },
         {
           "name": "Poland",
-          "weightPct": 0.144842
+          "weightPct": 0.146435
         },
         {
           "name": "Ireland",
-          "weightPct": 0.115468
+          "weightPct": 0.115965
         },
         {
           "name": "Austria",
-          "weightPct": 0.095992
+          "weightPct": 0.096966
         },
         {
           "name": "Turkey",
-          "weightPct": 0.078859
+          "weightPct": 0.078739
         },
         {
           "name": "Greece",
-          "weightPct": 0.075272
+          "weightPct": 0.076657
         },
         {
           "name": "Indonesia",
-          "weightPct": 0.070498
+          "weightPct": 0.067336
         },
         {
           "name": "Kuwait",
-          "weightPct": 0.067351
+          "weightPct": 0.067303
         },
         {
           "name": "New Zealand",
-          "weightPct": 0.065322
-        },
-        {
-          "name": "Chile",
-          "weightPct": 0.054328
+          "weightPct": 0.065301
         },
         {
           "name": "Qatar",
-          "weightPct": 0.053165
+          "weightPct": 0.054942
+        },
+        {
+          "name": "Chile",
+          "weightPct": 0.053872
         },
         {
           "name": "Portugal",
-          "weightPct": 0.04269
+          "weightPct": 0.043143
         },
         {
           "name": "Hungary",
-          "weightPct": 0.038483
+          "weightPct": 0.039472
         },
         {
           "name": "Colombia",
-          "weightPct": 0.032817
+          "weightPct": 0.032485
         },
         {
           "name": "Philippines",
-          "weightPct": 0.031252
+          "weightPct": 0.03166
         },
         {
           "name": "Czech Republic",
-          "weightPct": 0.017135
+          "weightPct": 0.017171
         },
         {
           "name": "Egypt",
-          "weightPct": 0.007931
+          "weightPct": 0.007949
         }
       ],
       "sourceComponent": "FUND_COUNTRIES",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "holdings": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
-          "name": "NVIDIA CORP",
-          "weightPct": 4.854899,
-          "isin": "US67066G1040"
-        },
-        {
           "name": "APPLE INC",
-          "weightPct": 4.761199,
+          "weightPct": 4.849305,
           "isin": "US0378331005"
         },
         {
+          "name": "NVIDIA CORP",
+          "weightPct": 4.833319,
+          "isin": "US67066G1040"
+        },
+        {
           "name": "MICROSOFT CORP",
-          "weightPct": 3.768395,
+          "weightPct": 3.775647,
           "isin": "US5949181045"
         },
         {
           "name": "AMAZON.COM INC",
-          "weightPct": 2.369599,
+          "weightPct": 2.277096,
           "isin": "US0231351067"
         },
         {
-          "name": "ALPHABET INC CL A",
-          "weightPct": 1.838952,
-          "isin": "US02079K3059"
-        },
-        {
           "name": "TAIWAN SEMICONDUCTOR MANUFAC",
-          "weightPct": 1.731566,
+          "weightPct": 1.726096,
           "isin": "TW0002330008"
         },
         {
+          "name": "ALPHABET INC CL A",
+          "weightPct": 1.612232,
+          "isin": "US02079K3059"
+        },
+        {
           "name": "BROADCOM INC",
-          "weightPct": 1.590088,
+          "weightPct": 1.564868,
           "isin": "US11135F1012"
         },
         {
           "name": "ALPHABET INC CL C",
-          "weightPct": 1.584233,
+          "weightPct": 1.394455,
           "isin": "US02079K1079"
         },
         {
           "name": "META PLATFORMS INC-CLASS A",
-          "weightPct": 1.303262,
+          "weightPct": 1.333619,
           "isin": "US30303M1027"
         },
         {
           "name": "TESLA INC",
-          "weightPct": 1.198411,
+          "weightPct": 1.199905,
           "isin": "US88160R1014"
         }
       ],
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "characteristics": {
       "terPct": 0.07,
@@ -1714,325 +1714,325 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 5898893145.2048,
+      "amount": 5812902432.048,
       "currency": "USD",
       "scope": "share-class",
-      "asOf": "2026-10-29",
+      "asOf": "2026-10-30",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "sectors": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 32.210399,
+          "weightPct": 31.952309,
           "label": "Information Technology"
         },
         {
           "name": "Financials",
-          "weightPct": 16.297121,
+          "weightPct": 16.518847,
           "label": "Financials"
         },
         {
           "name": "Industrials",
-          "weightPct": 9.962767,
+          "weightPct": 10.066017,
           "label": "Industrials"
         },
         {
           "name": "Health Care",
-          "weightPct": 8.829209,
+          "weightPct": 9.024532,
           "label": "Health Care"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 8.582823,
+          "weightPct": 8.550377,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Communication Services",
-          "weightPct": 7.586192,
+          "weightPct": 7.197698,
           "label": "Communication"
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 4.914018,
+          "weightPct": 4.975405,
           "label": "Consumer Staples"
         },
         {
           "name": "Energy",
-          "weightPct": 4.295089,
+          "weightPct": 4.335583,
           "label": "Energy"
         },
         {
           "name": "Others",
-          "weightPct": 4.009692,
+          "weightPct": 4.066218,
           "label": "Autres"
         },
         {
           "name": "Materials",
-          "weightPct": 3.31269,
+          "weightPct": 3.313013,
           "label": "Materials"
         }
       ],
       "sourceComponent": "FUND_SECTORS",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "countries": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 63.345684
+          "weightPct": 63.211121
         },
         {
           "name": "Japan",
-          "weightPct": 5.718016
+          "weightPct": 5.767184
         },
         {
           "name": "Taiwan",
-          "weightPct": 3.40467
+          "weightPct": 3.352596
         },
         {
           "name": "Canada",
-          "weightPct": 3.108904
+          "weightPct": 3.128129
         },
         {
           "name": "United Kingdom",
-          "weightPct": 3.045002
+          "weightPct": 3.073447
         },
         {
           "name": "China",
-          "weightPct": 2.321613
+          "weightPct": 2.301272
         },
         {
           "name": "South Korea",
-          "weightPct": 2.30456
+          "weightPct": 2.279446
         },
         {
           "name": "France",
-          "weightPct": 1.932796
+          "weightPct": 1.955411
         },
         {
           "name": "Switzerland",
-          "weightPct": 1.848859
+          "weightPct": 1.879964
         },
         {
           "name": "Germany",
-          "weightPct": 1.772467
+          "weightPct": 1.800665
         },
         {
           "name": "Australia",
-          "weightPct": 1.541896
+          "weightPct": 1.551476
         },
         {
           "name": "India",
-          "weightPct": 1.36588
+          "weightPct": 1.381063
         },
         {
           "name": "Netherlands",
-          "weightPct": 1.10971
+          "weightPct": 1.117802
         },
         {
           "name": "Sweden",
-          "weightPct": 0.824053
+          "weightPct": 0.834112
         },
         {
           "name": "Spain",
-          "weightPct": 0.735016
+          "weightPct": 0.736334
         },
         {
           "name": "Italy",
-          "weightPct": 0.647911
+          "weightPct": 0.650844
         },
         {
           "name": "Brazil",
-          "weightPct": 0.448739
+          "weightPct": 0.443731
         },
         {
           "name": "Hong Kong",
-          "weightPct": 0.429563
+          "weightPct": 0.429446
         },
         {
           "name": "Singapore",
-          "weightPct": 0.378251
+          "weightPct": 0.380698
         },
         {
           "name": "Denmark",
-          "weightPct": 0.347719
+          "weightPct": 0.350556
         },
         {
           "name": "Israel",
-          "weightPct": 0.337564
+          "weightPct": 0.339953
         },
         {
           "name": "South Africa",
-          "weightPct": 0.300122
+          "weightPct": 0.302749
         },
         {
           "name": "Saudi Arabia",
-          "weightPct": 0.276825
+          "weightPct": 0.273332
         },
         {
           "name": "Finland",
-          "weightPct": 0.23922
+          "weightPct": 0.241909
         },
         {
           "name": "Mexico",
-          "weightPct": 0.225669
+          "weightPct": 0.226739
         },
         {
           "name": "Belgium",
-          "weightPct": 0.222586
+          "weightPct": 0.222161
         },
         {
           "name": "UAE",
-          "weightPct": 0.220095
+          "weightPct": 0.218168
         },
         {
           "name": "Norway",
-          "weightPct": 0.201524
+          "weightPct": 0.20345
         },
         {
           "name": "Thailand",
-          "weightPct": 0.199641
+          "weightPct": 0.196079
         },
         {
           "name": "Malaysia",
-          "weightPct": 0.154043
+          "weightPct": 0.154766
         },
         {
           "name": "Poland",
-          "weightPct": 0.144842
+          "weightPct": 0.146435
         },
         {
           "name": "Ireland",
-          "weightPct": 0.115468
+          "weightPct": 0.115965
         },
         {
           "name": "Austria",
-          "weightPct": 0.095992
+          "weightPct": 0.096966
         },
         {
           "name": "Turkey",
-          "weightPct": 0.078859
+          "weightPct": 0.078739
         },
         {
           "name": "Greece",
-          "weightPct": 0.075272
+          "weightPct": 0.076657
         },
         {
           "name": "Indonesia",
-          "weightPct": 0.070498
+          "weightPct": 0.067336
         },
         {
           "name": "Kuwait",
-          "weightPct": 0.067351
+          "weightPct": 0.067303
         },
         {
           "name": "New Zealand",
-          "weightPct": 0.065322
-        },
-        {
-          "name": "Chile",
-          "weightPct": 0.054328
+          "weightPct": 0.065301
         },
         {
           "name": "Qatar",
-          "weightPct": 0.053165
+          "weightPct": 0.054942
+        },
+        {
+          "name": "Chile",
+          "weightPct": 0.053872
         },
         {
           "name": "Portugal",
-          "weightPct": 0.04269
+          "weightPct": 0.043143
         },
         {
           "name": "Hungary",
-          "weightPct": 0.038483
+          "weightPct": 0.039472
         },
         {
           "name": "Colombia",
-          "weightPct": 0.032817
+          "weightPct": 0.032485
         },
         {
           "name": "Philippines",
-          "weightPct": 0.031252
+          "weightPct": 0.03166
         },
         {
           "name": "Czech Republic",
-          "weightPct": 0.017135
+          "weightPct": 0.017171
         },
         {
           "name": "Egypt",
-          "weightPct": 0.007931
+          "weightPct": 0.007949
         }
       ],
       "sourceComponent": "FUND_COUNTRIES",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "holdings": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "fund",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
-          "name": "NVIDIA CORP",
-          "weightPct": 4.854899,
-          "isin": "US67066G1040"
-        },
-        {
           "name": "APPLE INC",
-          "weightPct": 4.761199,
+          "weightPct": 4.849305,
           "isin": "US0378331005"
         },
         {
+          "name": "NVIDIA CORP",
+          "weightPct": 4.833319,
+          "isin": "US67066G1040"
+        },
+        {
           "name": "MICROSOFT CORP",
-          "weightPct": 3.768395,
+          "weightPct": 3.775647,
           "isin": "US5949181045"
         },
         {
           "name": "AMAZON.COM INC",
-          "weightPct": 2.369599,
+          "weightPct": 2.277096,
           "isin": "US0231351067"
         },
         {
-          "name": "ALPHABET INC CL A",
-          "weightPct": 1.838952,
-          "isin": "US02079K3059"
-        },
-        {
           "name": "TAIWAN SEMICONDUCTOR MANUFAC",
-          "weightPct": 1.731566,
+          "weightPct": 1.726096,
           "isin": "TW0002330008"
         },
         {
+          "name": "ALPHABET INC CL A",
+          "weightPct": 1.612232,
+          "isin": "US02079K3059"
+        },
+        {
           "name": "BROADCOM INC",
-          "weightPct": 1.590088,
+          "weightPct": 1.564868,
           "isin": "US11135F1012"
         },
         {
           "name": "ALPHABET INC CL C",
-          "weightPct": 1.584233,
+          "weightPct": 1.394455,
           "isin": "US02079K1079"
         },
         {
           "name": "META PLATFORMS INC-CLASS A",
-          "weightPct": 1.303262,
+          "weightPct": 1.333619,
           "isin": "US30303M1027"
         },
         {
           "name": "TESLA INC",
-          "weightPct": 1.198411,
+          "weightPct": 1.199905,
           "isin": "US88160R1014"
         }
       ],
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "characteristics": {
       "terPct": 0.07,
@@ -4907,7 +4907,7 @@
       ],
       "nonNativeListingsExcluded": 1,
       "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
-      "sha256": "0370f3763343edfe1f207f9e0405ee5604c6538ae2e214a116f8528744dec2f1",
+      "sha256": "7b0f0a542878cea9e65ff205428807cef4fcf860183f3a16c5825de921b874f2",
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
       "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
       "identityAsOf": "2026-09-30",
@@ -5104,7 +5104,7 @@
       ],
       "nonNativeListingsExcluded": 1,
       "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
-      "sha256": "0370f3763343edfe1f207f9e0405ee5604c6538ae2e214a116f8528744dec2f1",
+      "sha256": "7b0f0a542878cea9e65ff205428807cef4fcf860183f3a16c5825de921b874f2",
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
       "identitySha256": "828e4fdc420e40c8455e1cbaefc5bba1094641ad4c41d7a71f3cf1da01dcbc46",
       "identityAsOf": "2026-09-30",
@@ -5343,7 +5343,7 @@
       "scope": "fund",
       "asOf": "2026-10-30",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "1a5e63c1c1a6690cdeb4a36ce51dd3ecf2a88daef7d2829f603b07f3a09b4e8f",
+      "sha256": "27e173e66d6dce4d589f39e6f6e3d3a5445536e0e881be04788bbc1009629104",
       "checkedAt": "2026-11-02",
       "modifiedAt": "2026-11-02"
     },
@@ -5388,7 +5388,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "1a5e63c1c1a6690cdeb4a36ce51dd3ecf2a88daef7d2829f603b07f3a09b4e8f",
+      "sha256": "27e173e66d6dce4d589f39e6f6e3d3a5445536e0e881be04788bbc1009629104",
       "checkedAt": "2026-11-02",
       "modifiedAt": "2026-11-02"
     },
@@ -5438,7 +5438,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "1a5e63c1c1a6690cdeb4a36ce51dd3ecf2a88daef7d2829f603b07f3a09b4e8f",
+      "sha256": "27e173e66d6dce4d589f39e6f6e3d3a5445536e0e881be04788bbc1009629104",
       "checkedAt": "2026-11-02",
       "modifiedAt": "2026-11-02"
     },
@@ -5488,14 +5488,14 @@
       "asOf": "2026-10-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "1a5e63c1c1a6690cdeb4a36ce51dd3ecf2a88daef7d2829f603b07f3a09b4e8f",
+      "sha256": "27e173e66d6dce4d589f39e6f6e3d3a5445536e0e881be04788bbc1009629104",
       "checkedAt": "2026-11-02",
       "modifiedAt": "2026-11-02"
     },
     "characteristics": {
       "asOf": "2026-10-30",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "1a5e63c1c1a6690cdeb4a36ce51dd3ecf2a88daef7d2829f603b07f3a09b4e8f",
+      "sha256": "27e173e66d6dce4d589f39e6f6e3d3a5445536e0e881be04788bbc1009629104",
       "terPct": 0.5,
       "index": "Indxx Global Robotics & Artificial Intelligence Thematic v2 Index",
       "checkedAt": "2026-11-02",
@@ -5534,7 +5534,7 @@
       ],
       "asOf": "2026-09-30",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "sha256": "1a5e63c1c1a6690cdeb4a36ce51dd3ecf2a88daef7d2829f603b07f3a09b4e8f",
+      "sha256": "27e173e66d6dce4d589f39e6f6e3d3a5445536e0e881be04788bbc1009629104",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "months": {
@@ -5544,7 +5544,7 @@
         "2026-09": {
           "asOf": "2026-09-30",
           "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-          "sha256": "1a5e63c1c1a6690cdeb4a36ce51dd3ecf2a88daef7d2829f603b07f3a09b4e8f",
+          "sha256": "27e173e66d6dce4d589f39e6f6e3d3a5445536e0e881be04788bbc1009629104",
           "checkedAt": "2026-11-02",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -5576,7 +5576,7 @@
       "scope": "fund",
       "asOf": "2026-10-30",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "9610c9514fc43c8c597ad9359fdef87daae767f3502bb86681466ab3db5a5eb6",
+      "sha256": "97e3dd3a7090d4b7205cec19c59e0452365b4540a19ba1ec347cfa6f61569314",
       "checkedAt": "2026-11-02",
       "modifiedAt": "2026-11-02"
     },
@@ -5611,7 +5611,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "9610c9514fc43c8c597ad9359fdef87daae767f3502bb86681466ab3db5a5eb6",
+      "sha256": "97e3dd3a7090d4b7205cec19c59e0452365b4540a19ba1ec347cfa6f61569314",
       "checkedAt": "2026-11-02",
       "modifiedAt": "2026-11-02"
     },
@@ -5665,7 +5665,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "9610c9514fc43c8c597ad9359fdef87daae767f3502bb86681466ab3db5a5eb6",
+      "sha256": "97e3dd3a7090d4b7205cec19c59e0452365b4540a19ba1ec347cfa6f61569314",
       "checkedAt": "2026-11-02",
       "modifiedAt": "2026-11-02"
     },
@@ -5715,14 +5715,14 @@
       "asOf": "2026-10-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "9610c9514fc43c8c597ad9359fdef87daae767f3502bb86681466ab3db5a5eb6",
+      "sha256": "97e3dd3a7090d4b7205cec19c59e0452365b4540a19ba1ec347cfa6f61569314",
       "checkedAt": "2026-11-02",
       "modifiedAt": "2026-11-02"
     },
     "characteristics": {
       "asOf": "2026-10-30",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "9610c9514fc43c8c597ad9359fdef87daae767f3502bb86681466ab3db5a5eb6",
+      "sha256": "97e3dd3a7090d4b7205cec19c59e0452365b4540a19ba1ec347cfa6f61569314",
       "terPct": 0.65,
       "index": "Solactive Global Uranium & Nuclear Components Total Return v2 Index",
       "checkedAt": "2026-11-02",
@@ -5761,7 +5761,7 @@
       ],
       "asOf": "2026-09-30",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "sha256": "9610c9514fc43c8c597ad9359fdef87daae767f3502bb86681466ab3db5a5eb6",
+      "sha256": "97e3dd3a7090d4b7205cec19c59e0452365b4540a19ba1ec347cfa6f61569314",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "months": {
@@ -5771,7 +5771,7 @@
         "2026-09": {
           "asOf": "2026-09-30",
           "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-          "sha256": "9610c9514fc43c8c597ad9359fdef87daae767f3502bb86681466ab3db5a5eb6",
+          "sha256": "97e3dd3a7090d4b7205cec19c59e0452365b4540a19ba1ec347cfa6f61569314",
           "checkedAt": "2026-11-02",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -5803,7 +5803,7 @@
       "scope": "fund",
       "asOf": "2026-10-30",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "eea37ded3540cb780930559f478c54da08205c317cc67bc6311953cfb7beb8d2",
+      "sha256": "dc31b91d48439e4f0df5920c9d54456ffba2951d11122036438bb72afdbdffc9",
       "checkedAt": "2026-11-02",
       "modifiedAt": "2026-11-02"
     },
@@ -5823,7 +5823,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "eea37ded3540cb780930559f478c54da08205c317cc67bc6311953cfb7beb8d2",
+      "sha256": "dc31b91d48439e4f0df5920c9d54456ffba2951d11122036438bb72afdbdffc9",
       "checkedAt": "2026-11-02",
       "modifiedAt": "2026-11-02"
     },
@@ -5853,7 +5853,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "eea37ded3540cb780930559f478c54da08205c317cc67bc6311953cfb7beb8d2",
+      "sha256": "dc31b91d48439e4f0df5920c9d54456ffba2951d11122036438bb72afdbdffc9",
       "checkedAt": "2026-11-02",
       "modifiedAt": "2026-11-02"
     },
@@ -5903,14 +5903,14 @@
       "asOf": "2026-10-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "eea37ded3540cb780930559f478c54da08205c317cc67bc6311953cfb7beb8d2",
+      "sha256": "dc31b91d48439e4f0df5920c9d54456ffba2951d11122036438bb72afdbdffc9",
       "checkedAt": "2026-11-02",
       "modifiedAt": "2026-11-02"
     },
     "characteristics": {
       "asOf": "2026-10-30",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "eea37ded3540cb780930559f478c54da08205c317cc67bc6311953cfb7beb8d2",
+      "sha256": "dc31b91d48439e4f0df5920c9d54456ffba2951d11122036438bb72afdbdffc9",
       "terPct": 0.5,
       "index": "Indxx Cybersecurity v2 Index",
       "checkedAt": "2026-11-02",
@@ -5949,7 +5949,7 @@
       ],
       "asOf": "2026-09-30",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "sha256": "eea37ded3540cb780930559f478c54da08205c317cc67bc6311953cfb7beb8d2",
+      "sha256": "dc31b91d48439e4f0df5920c9d54456ffba2951d11122036438bb72afdbdffc9",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "months": {
@@ -5959,7 +5959,7 @@
         "2026-09": {
           "asOf": "2026-09-30",
           "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-          "sha256": "eea37ded3540cb780930559f478c54da08205c317cc67bc6311953cfb7beb8d2",
+          "sha256": "dc31b91d48439e4f0df5920c9d54456ffba2951d11122036438bb72afdbdffc9",
           "checkedAt": "2026-11-02",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -9194,148 +9194,148 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 511541894.11700004,
+      "amount": 505762071.399,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-29",
+      "asOf": "2026-10-30",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "sectors": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 65.97218,
+          "weightPct": 66.745486,
           "label": "Information Technology"
         },
         {
           "name": "Communication Services",
-          "weightPct": 18.728251,
+          "weightPct": 17.652546,
           "label": "Communication"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 6.696589,
+          "weightPct": 6.803944,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Health Care",
-          "weightPct": 4.217745,
+          "weightPct": 4.320271,
           "label": "Health Care"
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 1.570461,
+          "weightPct": 1.611528,
           "label": "Consumer Staples"
         },
         {
           "name": "Industrials",
-          "weightPct": 1.192325,
+          "weightPct": 1.222093,
           "label": "Industrials"
         },
         {
           "name": "Materials",
-          "weightPct": 1.129322,
+          "weightPct": 1.13655,
           "label": "Materials"
         },
         {
           "name": "Utilities",
-          "weightPct": 0.27243,
+          "weightPct": 0.283877,
           "label": "Utilities"
         },
         {
           "name": "Energy",
-          "weightPct": 0.220696,
+          "weightPct": 0.223705,
           "label": "Energy"
         }
       ],
       "sourceComponent": "INDEX_SECTORS",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "countries": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 98.182012
+          "weightPct": 98.14782
         },
         {
           "name": "Ireland",
-          "weightPct": 1.575146
+          "weightPct": 1.591317
         },
         {
           "name": "Netherlands",
-          "weightPct": 0.242842
+          "weightPct": 0.260863
         }
       ],
       "sourceComponent": "INDEX_COUNTRIES",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "holdings": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-10-29",
       "basis": "index",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "rows": [
         {
           "name": "NVIDIA CORP",
-          "weightPct": 17.080361,
+          "weightPct": 17.222187,
           "isin": "US67066G1040"
         },
         {
           "name": "APPLE INC",
-          "weightPct": 16.168265,
+          "weightPct": 16.676561,
           "isin": "US0378331005"
         },
         {
           "name": "MICROSOFT CORP",
-          "weightPct": 11.879897,
+          "weightPct": 12.055188,
           "isin": "US5949181045"
         },
         {
-          "name": "ALPHABET INC CL A",
-          "weightPct": 6.418989,
-          "isin": "US02079K3059"
-        },
-        {
           "name": "META PLATFORMS INC-CLASS A",
-          "weightPct": 6.118528,
+          "weightPct": 6.341146,
           "isin": "US30303M1027"
         },
         {
           "name": "TESLA INC",
-          "weightPct": 6.070471,
+          "weightPct": 6.156108,
           "isin": "US88160R1014"
         },
         {
+          "name": "ALPHABET INC CL A",
+          "weightPct": 5.69963,
+          "isin": "US02079K3059"
+        },
+        {
           "name": "ALPHABET INC CL C",
-          "weightPct": 5.523922,
+          "weightPct": 4.92442,
           "isin": "US02079K1079"
         },
         {
           "name": "MICRON TECHNOLOGY INC",
-          "weightPct": 3.351925,
+          "weightPct": 3.237316,
           "isin": "US5951121038"
         },
         {
           "name": "ADVANCED MICRO DEVICES",
-          "weightPct": 2.548192,
+          "weightPct": 2.536213,
           "isin": "US0079031078"
         },
         {
           "name": "CISCO SYSTEMS INC",
-          "weightPct": 1.617258,
+          "weightPct": 1.618476,
           "isin": "US17275R1023"
         }
       ],
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "characteristics": {
       "terPct": 0.3,
