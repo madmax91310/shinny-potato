@@ -97,8 +97,12 @@ class NewInstruments(unittest.TestCase):
     def test_listing_route_does_not_certify_other_fields(self):
         routes = {s['isin']:s for s in json.loads((ROOT/'scripts/instrument-metadata-sources.json').read_text())['instruments']}
         for source in CONFIGS:
-            route = routes[source['isin']]
-            self.assertEqual(route['fields'], ['listings'])
+            current_route = routes[source['isin']]
+            self.assertIn('listings', current_route['fields'])
+            receipt = next(r for r in RECEIPTS if r['isin'] == source['isin'])
+            # Replay the listing-only admission against its actual receipt. A
+            # later separately qualified hedge route must not alter this oracle.
+            route = {**current_route, 'fields': ['listings'], 'urls': [receipt['listingSourceUrl']]}
             raw = gzip.decompress((FIXTURES/(source['isin']+'-metadata.json.gz')).read_bytes())
             values, errors = collect_metadata(route,NOW,fetch=lambda *_,body=raw,**__:body)
             self.assertFalse(errors);self.assertEqual(list(values),['listings'])

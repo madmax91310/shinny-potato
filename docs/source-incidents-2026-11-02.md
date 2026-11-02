@@ -17,3 +17,5 @@ Base : master ad7daeb4. #1061 (encours PEA) et #1042 (guide LifeStrategy) ne son
 À compléter par les identifiants des exécutions GitHub, des enregistrements et de la publication effectivement vérifiés ; les succès locaux ne valent pas CI ou déploiement.
 
 Premier passage GitHub Bitcoin 41486043517 : récupération et validation des 142 mois réussies ; le job échoue ensuite car les tests partagés Nikkei exécutent `pdftotext`, absent de ce runner. Installation explicite de `poppler-utils` dans le producteur, sans retirer le test ni rendre son échec tolérable. Une nouvelle exécution complète est requise.
+
+Premier producteur ETF 41486043649 : arrêt avant réseau sur un oracle hérité de #1130 qui exigeait que les routes vivantes restent exclusivement listings. #1154 a depuis ajouté une voie de couverture de change qualifiée séparément. Le test rejoue désormais la route listings de son reçu immuable, sans retirer le contrôle que cette réponse ne certifie aucun autre champ. Les tests propres à la couverture de change restent exécutés. Aucun collecteur ou qualification de #1154 n’est modifié.
