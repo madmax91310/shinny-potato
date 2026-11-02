@@ -1,4 +1,6 @@
 import unittest
+import copy
+import urllib.error
 import gzip
 import hashlib
 import io
@@ -8,10 +10,63 @@ import subprocess
 import tempfile
 import zipfile
 from unittest.mock import Mock
-from publish_automation_status import update_status, read_report, publication_summary, repair_publication_history, include_configured_workflows, normalize_report, require_completed_job_evidence
+from publish_automation_status import update_status, read_report, publication_summary, repair_publication_history, include_configured_workflows, normalize_report, require_completed_job_evidence, unseen_failed_workflow_runs
 
 def run(id=1,conclusion='failure',workflow='update-economic-data.yml',**kwargs):
  return {'id':id,'path':'.github/workflows/'+workflow,'head_branch':'master','event':'schedule','status':'completed','conclusion':conclusion,'updated_at':f'2026-10-{id:02d}T10:00:00Z','html_url':f'https://github.com/test/repo/actions/runs/{id}',**kwargs}
+
+class EventCatchupTests(unittest.TestCase):
+ def state(self):
+  return {'schemaVersion':1,'workflows':{
+   'update-bitcoin-monthly.yml':{'status':'failure','runId':10,'attempt':1,
+    'failures':[{'step':'Invalid numeric value'}],
+    'sourceChecks':{'old':{'checkedAt':'2026-11-01','asOf':'2026-10-31','price':77434.75}}},
+   'healthy.yml':{'status':'success','runId':20}}}
+
+ def test_late_unrelated_event_discovers_recovery_without_certifying_or_redating_it(self):
+  state=self.state();before=copy.deepcopy(state);calls=[]
+  rows=[run(9),run(10),run(11),run(12,event='pull_request'),run(13,head_branch='feature'),
+        run(14,status='in_progress'),run(15,conclusion='cancelled'),run(16,'success')]
+  for item in rows:item['path']='.github/workflows/update-bitcoin-monthly.yml'
+  def api(path):calls.append(path);return {'workflow_runs':rows}
+  selected=unseen_failed_workflow_runs(state,['update-bitcoin-monthly.yml','healthy.yml'],api)
+  self.assertEqual([r['id']for r in selected],[11,16])
+  self.assertIs(selected[-1],rows[-1],'The ordinary reducer receives the actual API run, not a fabricated success')
+  self.assertEqual(state['workflows'],before['workflows'],'Discovery alone cannot clear a failure or change an observation')
+  self.assertEqual(calls,['/actions/workflows/update-bitcoin-monthly.yml/runs?branch=master&status=completed&per_page=30'])
+
+ def test_missing_partial_or_failed_api_keeps_the_failure_and_a_visible_observer_error(self):
+  for response in [{},{'workflow_runs':None},{'workflow_runs':[None]},{'workflow_runs':[{'id':11}]}]:
+   state=self.state();before=copy.deepcopy(state)
+   self.assertEqual(unseen_failed_workflow_runs(state,['update-bitcoin-monthly.yml'],lambda _:response),[])
+   self.assertEqual(state['workflows'],before['workflows'])
+   self.assertIn('runs:update-bitcoin-monthly.yml',state['observerErrors'])
+  for code in [403,429,500]:
+   state=self.state();before=copy.deepcopy(state)
+   def api(_):raise urllib.error.HTTPError('https://api.github.com/test',code,'failure',{},None)
+   self.assertEqual(unseen_failed_workflow_runs(state,['update-bitcoin-monthly.yml'],api),[])
+   self.assertEqual(state['workflows'],before['workflows'])
+   self.assertIn(str(code),state['observerErrors']['runs:update-bitcoin-monthly.yml']['cause'])
+
+ def test_bounded_window_retains_a_gap_instead_of_discarding_unseen_history(self):
+  state=self.state();rows=[run(i,updated_at='2026-11-02T19:00:00Z')for i in range(100,130)]
+  selected=unseen_failed_workflow_runs(state,['update-bitcoin-monthly.yml'],lambda _:{'workflow_runs':rows})
+  self.assertEqual(len(selected),30)
+  gap=state['observerErrors']['history-window:update-bitcoin-monthly.yml']
+  self.assertEqual(gap['anchorRunId'],10)
+  self.assertIn('non couvert',gap['cause'])
+  self.assertEqual(state['workflows']['update-bitcoin-monthly.yml']['runId'],10)
+
+ def test_new_attempt_is_discovered_once_and_transport_recovery_does_not_clear_history_gap(self):
+  state=self.state();state['observerErrors']={'runs:update-bitcoin-monthly.yml':{'cause':'HTTP500'},
+   'history-window:update-bitcoin-monthly.yml':{'cause':'Unproved older interval'}}
+  retry=run(10,'success',workflow='update-bitcoin-monthly.yml',run_attempt=2)
+  selected=unseen_failed_workflow_runs(state,['update-bitcoin-monthly.yml'],lambda _:{'workflow_runs':[retry]})
+  self.assertEqual(selected,[retry]);self.assertNotIn('runs:update-bitcoin-monthly.yml',state['observerErrors'])
+  self.assertIn('history-window:update-bitcoin-monthly.yml',state['observerErrors'])
+  state['workflows']['update-bitcoin-monthly.yml']['attempt']=2
+  self.assertEqual(unseen_failed_workflow_runs(state,['update-bitcoin-monthly.yml'],lambda _:{'workflow_runs':[retry]}),[])
+
 class StatusTests(unittest.TestCase):
  def test_compact_real_radar_artifact_keeps_all_results_and_envelope(self):
   root=pathlib.Path(__file__).resolve().parents[1]

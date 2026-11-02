@@ -1224,6 +1224,38 @@ def radar_resolution_evidence(api, ledger, active):
     return proofs
 
 
+def completed_run_candidates(state, workflow, api):
+    """Read the same bounded terminal window for scheduled and event catch-up."""
+    try:
+        candidates = api(f'/actions/workflows/{workflow}/runs?branch=master&status=completed&per_page=30')['workflow_runs']
+    except (urllib.error.URLError,OSError,http.client.IncompleteRead,ValueError,TypeError,KeyError,AttributeError) as error:
+        state.setdefault('observerErrors', {})['runs:'+workflow]={'cause':'Exécutions non lisibles : '+str(error)[:300]}
+        return None
+    if not isinstance(candidates,list) or any(not isinstance(r,dict) or not isinstance(r.get('id'),int) or not isinstance(r.get('path'),str) for r in candidates):
+        state.setdefault('observerErrors', {})['runs:'+workflow]={'cause':'Format des exécutions invalide'}
+        return None
+    state.setdefault('observerErrors', {}).pop('runs:'+workflow,None)
+    old_id=state.get('workflows',{}).get(workflow,{}).get('runId',0)
+    if len(candidates)==30 and old_id and min(r['id']for r in candidates)>old_id:
+        state.setdefault('observerErrors', {}).setdefault('history-window:'+workflow,{'cause':'Intervalle historique non couvert par les 30 derniers runs API ; reprise historique requise. Dernier run observé : '+str(old_id),'anchorRunId':old_id,'throughAt':dt.datetime.now(dt.timezone.utc).isoformat()})
+    return candidates
+
+
+def unseen_failed_workflow_runs(state, workflows, api):
+    """An old event must not hide a newer terminal recovery of a failed source.
+
+    Only discover runs here. Their jobs, reports, source clocks and publication
+    receipts still pass through the ordinary reducer below; no status is forced.
+    """
+    runs=[]
+    for workflow in workflows:
+        previous=state.get('workflows',{}).get(workflow,{})
+        if previous.get('status')!='failure':continue
+        candidates=completed_run_candidates(state,workflow,api)
+        if candidates is not None:runs.extend(unseen_completed_runs(candidates,previous))
+    return runs
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--event', type=pathlib.Path)
@@ -1268,18 +1300,8 @@ def main():
     runs = []
     if args.backfill or args.monitor_only:
         for workflow in WORKFLOWS:
-            try:
-                candidates = api(f'/actions/workflows/{workflow}/runs?branch=master&status=completed&per_page=30')['workflow_runs']
-            except (urllib.error.URLError,OSError,http.client.IncompleteRead,ValueError,TypeError,KeyError,AttributeError) as error:
-                state.setdefault('observerErrors', {})['runs:'+workflow]={'cause':'Exécutions non lisibles : '+str(error)[:300]}
-                continue
-            if not isinstance(candidates,list) or any(not isinstance(r,dict) or not isinstance(r.get('id'),int) or not isinstance(r.get('path'),str) for r in candidates):
-                state.setdefault('observerErrors', {})['runs:'+workflow]={'cause':'Format des exécutions invalide'}
-                continue
-            state.setdefault('observerErrors', {}).pop('runs:'+workflow,None)
-            old_id=state.get('workflows',{}).get(workflow,{}).get('runId',0)
-            if len(candidates)==30 and old_id and min(r['id']for r in candidates)>old_id:
-                state.setdefault('observerErrors', {}).setdefault('history-window:'+workflow,{'cause':'Intervalle historique non couvert par les 30 derniers runs API ; reprise historique requise. Dernier run observé : '+str(old_id),'anchorRunId':old_id,'throughAt':dt.datetime.now(dt.timezone.utc).isoformat()})
+            candidates=completed_run_candidates(state,workflow,api)
+            if candidates is None:continue
             if args.monitor_only:
                 runs.extend(unseen_completed_runs(candidates, state.get('workflows', {}).get(workflow, {})))
                 continue
@@ -1296,6 +1318,11 @@ def main():
     elif not args.monitor_only:
         require_event = json.loads(args.event.read_text())
         runs = [require_event['workflow_run']]
+        # The queue can contain hours of old events. Catch up known failures
+        # from actual completed runs instead of waiting for a later cron/backfill.
+        recovered_runs=unseen_failed_workflow_runs(state,WORKFLOWS,api)
+        runs.extend(recovered_runs)
+        if recovered_runs:print(f'Rattrapage : {len(recovered_runs)} exécutions terminées non observées de workflows en échec ; preuves à vérifier par le réducteur ordinaire.')
     runs.extend(terminal_runs)
     for workflow,row in state.get('workflows',{}).items():
         if row.get('headSha')in LEGACY_PHASE_CONTRACTS and not row.get('legacyPhaseEvidence'):
