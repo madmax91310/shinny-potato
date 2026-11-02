@@ -13572,7 +13572,7 @@
       }
     },
     "returns": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-30",
       "currency": "JPY",
       "variant": "TOTAL",
       "values": [
@@ -13602,13 +13602,13 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
         "checkedAt": "2026-11-02",
-        "sha256": "96cb9e6ff18d8ed1db1d869b7c1fa9b780e692746b13ac52b2bb1017aa2ef766",
+        "sha256": "59db634c60ff114e901229abd07dabaad489b173e9745957aa3c1a2a8f852ee3",
         "label": "Rendements calendaires officiels automatisés · Nikkei 225"
       },
       "performance": {
         "kind": "indice",
         "detail": "Nikkei 225 · JPY · dividendes réinvestis",
-        "date": "2026-09-30"
+        "date": "2026-10-30"
       }
     },
     "returnsHistory": {
@@ -13651,6 +13651,46 @@
           "detail": "Nikkei 225 · JPY · dividendes réinvestis",
           "date": "2026-09-30"
         }
+      },
+      "2026-10-30": {
+        "asOf": "2026-10-30",
+        "currency": "JPY",
+        "variant": "TOTAL",
+        "values": [
+          [
+            2025,
+            28.65
+          ],
+          [
+            2024,
+            21.33
+          ],
+          [
+            2023,
+            30.96
+          ],
+          [
+            2022,
+            -7.34
+          ],
+          [
+            2021,
+            6.66
+          ]
+        ],
+        "periodStart": "2021-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
+          "checkedAt": "2026-11-02",
+          "sha256": "59db634c60ff114e901229abd07dabaad489b173e9745957aa3c1a2a8f852ee3",
+          "label": "Rendements calendaires officiels automatisés · Nikkei 225"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "Nikkei 225 · JPY · dividendes réinvestis",
+          "date": "2026-10-30"
+        }
       }
     }
   },
@@ -13690,7 +13730,7 @@
       "source": {
         "url": "https://stoxx.com/index/sxxr/",
         "checkedAt": "2026-11-02",
-        "sha256": "96cb827fddf5071652bc2861d06a2057c01169e481e0beabd778a7625bd42285",
+        "sha256": "07c28a289578c71d5fb53423651d8e71f3f873a00ff48dd4865c603d02467645",
         "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
       },
       "performance": {
@@ -17362,7 +17402,7 @@
       "source": {
         "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
         "checkedAt": "2026-11-02",
-        "sha256": "20102d90e49e18b4b167eb5f7e586b1ca3d2c0a50a04e5b3496fbe1f7e8a4f02",
+        "sha256": "a52c1cd2de4e6956f23f0357bbbc0a1aa780172e86f85486d8851ef710868f74",
         "label": "Rendements calendaires officiels automatisés · TOPIX"
       },
       "performance": {
