@@ -59,3 +59,17 @@ export async function requestDocument(request, value, requested, headers) {
   }
   throw new Error('Too many VanEck redirects');
 }
+
+// The public French gate uses the same retail choice with localized labels.
+// Do not select a professional audience or open the country dropdown.
+export async function initialiseRegionalGate(page, gate, timeout = 10000) {
+  await page.goto(gate.landing, { waitUntil: 'domcontentloaded', timeout: 15000 });
+  const continuation = page.getByRole('button', { name: /^(Accept & Continue|Accepter et continuer)$/i });
+  const ready = await continuation.waitFor({ state: 'visible', timeout }).then(() => true, () => false);
+  if (!ready) return false;
+  const individual = page.getByRole('button', { name: /^(Individual Investor|Investisseur individuel)$/i });
+  if (await individual.isVisible()) await individual.click({ timeout: 5000 });
+  await continuation.click({ timeout: 5000, noWaitAfter: true });
+  await continuation.waitFor({ state: 'hidden', timeout });
+  return true;
+}
