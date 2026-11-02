@@ -83,6 +83,8 @@ export function buildTweetText(state, d) {
   const amountFmt = fmtEUR(d.amount, currency)
   const investmentLabel = d.isCustom ? assetLabel : asset.tweetPhrase
 
+  const withDe = label => `${/^[ao]/i.test(label) ? 'd’' : 'de '}${label}`
+  const startLabel = `${monthLabel} ${yearLabel}`
   const endLabel = `${MONTHS_FULL[Number(d.endYm.split('-')[1]) - 1]} ${d.endYm.split('-')[0]}`
   const gainAbs = d.result.finalValue - d.result.totalInvested
   const monthly = d.effectiveMode === 'dca'
@@ -99,7 +101,7 @@ export function buildTweetText(state, d) {
   const lines = [
     hookLine,
     '',
-    `${d.isCustom ? `Avec les deux prix saisis, cette somme passerait de ${amountFmt} à ${finalFmt}` : state.overridePriceRaw ? `Au prix final saisi, voici le résultat en ${endLabel}` : monthlyAverage ? `En ${endLabel}, voici le résultat` : `À la clôture de ${endLabel}, voici le résultat`} 👇`,
+    `${d.isCustom ? `Avec les deux prix saisis, cette somme passerait de ${amountFmt} à ${finalFmt}` : state.overridePriceRaw ? `Au prix final saisi, voici le résultat en ${endLabel}` : monthlyAverage ? `En ${endLabel}, voici le résultat` : `À la clôture ${withDe(endLabel)}, voici le résultat`} 👇`,
     '',
     `💰 ${monthly ? 'Total versé' : 'Somme investie'} : ${fmtEUR(d.result.totalInvested, currency)}`,
     `${gainAbs < 0 ? '📉' : '📈'} Capital final : ${finalFmt}`,
@@ -109,10 +111,10 @@ export function buildTweetText(state, d) {
   const paymentCount = d.result.months?.length
   const payments = paymentCount ? `${paymentCount} versement${paymentCount === 1 ? '' : 's'}` : 'Versements'
   const timing = monthlyAverage ? paymentCount === 1 ? 'mensuel simulé' : 'mensuels simulés' : paymentCount ? 'en fin de mois' : 'mensuels en fin de mois'
-  if (monthly) lines.push('', `${payments} ${timing}, de ${monthLabel} ${yearLabel} à ${endLabel}, inclus.`)
+  if (monthly) lines.push('', `${payments} ${timing}, ${withDe(startLabel)} à ${endLabel}, inclus.`)
   else if (!d.isCustom) lines.push('', monthlyAverage
-    ? `Versement unique valorisé avec la moyenne de ${monthLabel} ${yearLabel}.`
-    : `Versement unique à la clôture de ${monthLabel} ${yearLabel}.`)
+    ? `Versement unique valorisé avec la moyenne ${withDe(startLabel)}.`
+    : `Versement unique à la clôture ${withDe(startLabel)}.`)
   if (monthlyAverage) lines.push('', 'Simulation indicative sur des moyennes mensuelles de prix, hors frais et fiscalité.')
   if (d.isCustom) lines.push('', 'Scénario fondé uniquement sur les deux prix saisis, sans historique de marché, hors frais et fiscalité.')
   if (asset?.methodNote) lines.push('', asset.methodNote)

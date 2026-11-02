@@ -46,6 +46,14 @@ for(const mode of ['lump','dca']) {
   assert(!text.includes('clôture'))
   assert(!text.includes('en fin de mois'))
 }
+// Chaque mois peut apparaître au départ ou en fin de série : élisions françaises.
+for(const assetId of ['bitcoin','or'])for(const mode of ['lump','dca'])for(let month=1;month<=12;month++) {
+  const state={assetId,mode,amountRaw:'1000',startYear:2025,startMonth:month,overridePriceRaw:''}
+  const d=derive(state)
+  const text=calculator(state,{...d,endYm:`2026-${String(month).padStart(2,'0')}`})
+  assert(!/\bde (avril|août|octobre)/.test(text))
+  if([4,8,10].includes(month))assert(/d’(?:avril|août|octobre) 2025/.test(text))
+}
 for(const instrumentType of ['EQUITY','ETF'])for(const value of [-20,-0.001,0,0.001,20]) {
   const assets=[0,1].map(i=>({id:String(i),isin:String(i),label:`Support ${i}`,shortLabel:`Support ${i}`,instrumentType,frequency:'annual',basis:'fund-nav',currency:'USD',years:{2025:value}}))
   const text=buildTweet(buildRanking(assets,{mode:'period',start:'2024-12',end:'2025-12'}),'Manuel')
