@@ -8,7 +8,7 @@ import { isStock } from '../../lib/is-stock.js'
 export function markBenchmark(assets, benchmarkId) {
   const valid = assets.length === 6 && assets.filter(isStock).length === 5
   return assets.map(a => valid && a.id === benchmarkId
-    ? { ...a, benchmark: true, shortLabel: `ETF ${a.shortLabel} (réf.)` } : a)
+    ? { ...a, benchmark: true, shortLabel: `ETF ${a.shortLabel}` } : a)
 }
 
 // Curated equity universes only. No return or winning asset influences the draw.
