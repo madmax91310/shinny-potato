@@ -67,6 +67,7 @@ export function explainOfficialMarketNav({isin,year,history,record,left,right,ev
   if (!evidence || evidence.isin !== isin || evidence.year !== year || record?.id !== evidence.assetId || history?.isin !== isin || record.isin !== isin) return null
   const {listing,navCurrency,start,end,closes,nav,totalReturn,usdPerEur,publishedDecimalPlaces} = evidence
   if (record.parser !== 'yahoo' || record.field !== 'adjclose' || record.mic !== listing.mic || record.ticker !== listing.ticker || record.currency !== listing.currency || listing.currency !== 'EUR' || navCurrency !== 'USD') return null
+  if (history.priceMethod !== 'adjusted' || history.currency !== listing.currency || history.mic !== listing.mic || history.ticker !== listing.ticker) return null
   if (start?.slice(0,7) !== `${year-1}-12` || end?.slice(0,7) !== `${year}-12` || publishedDecimalPlaces !== 2) return null
   if (![...closes,...nav,...totalReturn,...usdPerEur].every(v => typeof v === 'number' && Number.isFinite(v) && v > 0)) return null
   const points = new Map(record.points)

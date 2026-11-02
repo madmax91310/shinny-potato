@@ -33,7 +33,7 @@ const fixedFx={months:Object.fromEntries([e.start,e.end].map((d,i)=>[d.slice(0,7
 const convert=(v,y,s,t)=>convertCalendarReturn(v,y,s,t,fixedFx)
 const levels=e.closes.map(v=>Math.round(Math.fround(v)*1e6)/1e6)
 const quoteRecord={id:e.assetId,isin:e.isin,parser:'yahoo',field:'adjclose',mic:e.listing.mic,ticker:e.listing.ticker,currency:e.listing.currency,points:[[e.start.slice(0,7),levels[0]],[e.end.slice(0,7),levels[1]]]}
-const marketArgs={isin:e.isin,year:e.year,history:{isin:e.isin,historyConvention:'adjusted'},record:quoteRecord,left:(levels[1]-levels[0])/levels[0]*100,right:convert(Math.round(e.annual*100)/100,e.year,e.navCurrency,'EUR'),evidence:e,fx:fixedFx,convert}
+const marketArgs={isin:e.isin,year:e.year,history:{isin:e.isin,priceMethod:'adjusted',currency:e.listing.currency,mic:e.listing.mic,ticker:e.listing.ticker},record:quoteRecord,left:(levels[1]-levels[0])/levels[0]*100,right:convert(Math.round(e.annual*100)/100,e.year,e.navCurrency,'EUR'),evidence:e,fx:fixedFx,convert}
 const explained=explainOfficialMarketNav(marketArgs)
 assert(explained);assert.notEqual(explained.marketReturn,explained.navReturn,'Distinct official valuations are not forced equal')
 const parts=explained.decompositionPercentagePoints
@@ -76,3 +76,7 @@ console.log('Official market/NAV: exact share, listing, bounds, historical FX an
 
 assert.equal(retainedBoundary(oldBoundary,complete,{...rawLevel,isin:'FR0013412020'},true).current.level,null,'Raw-level identity stays independent and exact')
 assert(retainedBoundary(oldBoundary,complete,null,true).monthQualified,'Missing raw NAV must not block a qualified return month')
+
+assert.equal(explainOfficialMarketNav({...marketArgs,history:{...marketArgs.history,priceMethod:'nav'}}),null,'A NAV history must not reuse a market-price explanation')
+const corrupt=loadMarketNavEvidence(evidenceRoot,file=>String(file).endsWith(originalSpec.captures.nav.file)?gzipSync(wrongRaw):readFileSync(file))
+assert.equal(corrupt.evidence,null);assert.match(corrupt.error,/hash mismatch/)
