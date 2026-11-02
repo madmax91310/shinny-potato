@@ -11,7 +11,7 @@ try {
   const context = await browser.newContext();
   page = await context.newPage();
   const userAgent = await page.evaluate(() => navigator.userAgent);
-  const headers = { 'User-Agent': userAgent };
+  const headers = { 'User-Agent': userAgent, 'Accept-Language': 'en-GB,en;q=0.9' };
   // US runners can be redirected to the US homepage without a returnUrl.
   // Select an explicit UCITS region before requesting the same document.
   const locale = url.pathname.startsWith('/ucits/') ? 'nl/en' : url.pathname.split('/').slice(1, 3).join('/');

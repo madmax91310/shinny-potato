@@ -33,8 +33,8 @@ def main():
             # Qualify the new route; do not repeat the old English routes.
             body, url = download_document({**share, 'fallbackUrls':[]})
             body_retrieved = True
-            record = parse_document(body, {**share, 'sourceUrl':url}, dt.datetime.now(dt.timezone.utc))
             (args.evidence_dir/(share['isin']+'.pdf')).write_bytes(body)
+            record = parse_document(body, {**share, 'sourceUrl':url}, dt.datetime.now(dt.timezone.utc))
             outcome = {'id':share['isin'], 'status':'succeeded', 'sourceAttempted':True, 'attemptedAt':attempted,
                        'checkedAt':dt.datetime.now(dt.timezone.utc).isoformat(), 'sourceUrl':url,
                        'sourceAsOf':record['aum']['asOf'], 'documentSha256':record['documentSha256'], 'record':record}
