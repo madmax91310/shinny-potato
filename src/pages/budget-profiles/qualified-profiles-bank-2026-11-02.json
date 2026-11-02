@@ -250,16 +250,16 @@
     "id": "finary-ingenieur-colocation-projet-2026-08-18",
     "name": "Émilien",
     "age": 20,
-    "job": "Élève ingénieur préparant une alternance",
+    "job": "Élève ingénieur",
     "location": "Marseille",
-    "household": "Budget personnel prévu · colocation financée en partie par ses parents",
+    "household": "Budget personnel · colocation financée en partie par ses parents",
     "kind": "planned",
     "currency": "EUR",
     "approximate": true,
     "publishedAt": "2026-08-18",
     "checkedAt": "2026-11-02",
     "editorialReviewedAt": "2026-11-02",
-    "period": "Rentrée prévue · année non précisée",
+    "period": "Rentrée à venir · année non précisée",
     "country": "France",
     "family": "",
     "children": "",
@@ -636,7 +636,7 @@
     "kind": "prepared",
     "currency": "EUR",
     "approximate": false,
-    "publishedAt": "2026-10-31",
+    "publishedAt": null,
     "checkedAt": "2026-11-02",
     "editorialReviewedAt": "2026-11-02",
     "period": "Référence novembre 2026",
@@ -714,7 +714,8 @@
       "expectedExpenses": 2000,
       "expectedTransfers": 200,
       "expectedBalance": 0,
-      "sourceSha256": "d6e389b65b40a94b39efc7f47c7208ba91ab628f9563236dc6187ce059572675"
+      "sourceSha256": "d6e389b65b40a94b39efc7f47c7208ba91ab628f9563236dc6187ce059572675",
+      "sourceUpdatedAt": "2026-10-31"
     },
     "preparedAt": "2026-11-02"
   },
@@ -885,7 +886,7 @@
     "incomeNote": "Modèle entièrement fictif publié : revenus du foyer non ventilés en salaires ou aides. Pas de métier ni d’âge indiqué. Le logement est un T4 en location en banlieue lyonnaise.",
     "income": [
       {
-        "label": "Ressources disponibles du foyer de référence",
+        "label": "Revenus disponibles du foyer",
         "amount": 4500,
         "category": "other"
       }
