@@ -1,13 +1,17 @@
 {
   "schemaVersion": 1,
   "policyVersion": 4,
-  "checkedAt": "2026-11-02T10:39:24.260Z",
-  "sourceRevision": "a76f58fbd21585e872e81e18abb1643bb84e0762",
+  "checkedAt": "2026-11-02T12:35:15.525Z",
+  "sourceRevision": "24541a2527adb436958663f0c61b394b7d1c06c9",
   "groups": [
     [
       "9977149042677757b663c372",
       "0d02d80eb57568918b943369",
       "4a8cf33092c21057405eb5ce"
+    ],
+    [
+      "0ea6fdc936e144a8a097aec7",
+      "a39363b71797fab76d00e616"
     ],
     [
       "7c5a322d054377b56e75fecd"
@@ -85,6 +89,26 @@
     ]
   ],
   "selection": [
+    {
+      "id": "0ea6fdc936e144a8a097aec7",
+      "eventIds": [
+        "0ea6fdc936e144a8a097aec7",
+        "a39363b71797fab76d00e616"
+      ],
+      "readEventIds": [
+        "0ea6fdc936e144a8a097aec7",
+        "a39363b71797fab76d00e616"
+      ],
+      "title": "Nikkei 225 : poids du secteur Technologie, 56,96 % → 41,11 %",
+      "mainFact": "Poids du secteur Technologie : 41,11 %",
+      "publishedAt": null,
+      "observedAt": "2026-11-02",
+      "whyNow": "Changement constaté entre deux contrôles depuis moins de 48 h ; date d’annonce inconnue.",
+      "reason": "Exposition modifiée ; aucun achat ni flux déduit",
+      "score": 76,
+      "sourceUrl": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
+      "to": "/radar-editorial?subject=0ea6fdc936e144a8a097aec7"
+    },
     {
       "id": "7c5a322d054377b56e75fecd",
       "eventIds": [
