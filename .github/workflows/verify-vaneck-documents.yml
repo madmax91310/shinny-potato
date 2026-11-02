@@ -12,6 +12,9 @@ on:
       - 'scripts/download-vaneck-document.mjs'
 permissions:
   contents: read
+concurrency:
+  group: vaneck-document-qualification-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   source-documents:
     runs-on: ubuntu-26.04

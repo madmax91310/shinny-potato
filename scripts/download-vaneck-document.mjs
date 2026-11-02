@@ -6,9 +6,10 @@ const url = officialDocument(process.argv[2]);
 const executablePath = [process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH, '/usr/bin/google-chrome', '/usr/bin/chromium'].filter(Boolean).find(existsSync);
 const browser = await chromium.launch({ ...(executablePath ? { executablePath } : {}),
   ...(process.env.HTTPS_PROXY ? { proxy: { server: process.env.HTTPS_PROXY } } : {}) });
+let page;
 try {
   const context = await browser.newContext();
-  const page = await context.newPage();
+  page = await context.newPage();
   const userAgent = await page.evaluate(() => navigator.userAgent);
   const headers = { 'User-Agent': userAgent };
   // US runners can be redirected to the US homepage without a returnUrl.
@@ -26,6 +27,10 @@ try {
   }
   if (!result.body) throw new Error('Official VanEck regional gate still active');
   process.stdout.write(result.body);
+} catch (error) {
+  const controls = await page?.locator('#retail, #pi, [data-agree]').evaluateAll(nodes => nodes.map(node => ({id:node.id,role:node.getAttribute('role'),label:node.textContent.trim(),visible:node.getClientRects().length>0}))).catch(() => []);
+  process.stderr.write('Public VanEck gate controls: '+JSON.stringify(controls)+'\n');
+  throw error;
 } finally {
   await browser.close();
 }
