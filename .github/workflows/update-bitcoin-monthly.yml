@@ -5,6 +5,8 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - 'scripts/test_source_incidents.py'
+      - 'scripts/fixtures/source-incidents-20261102/**'
       - '.github/workflows/update-bitcoin-monthly.yml'
       - 'scripts/derive_index_returns.py'
       - 'scripts/refresh_index_sources.py'
@@ -41,12 +43,15 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
+      # Shared index regressions replay official Nikkei PDFs.
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends poppler-utils
       - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
       - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0
       - name: Producer result contract v1
         run: python -m unittest discover -s scripts -p 'test_producer_report_contract.py'
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
+      - run: python -m unittest discover -s scripts -p 'test_source_incidents.py'
       - run: node scripts/export-bitcoin-baseline.mjs > "$RUNNER_TEMP/baseline.json"
       - name: "Collect observations: python scripts update_bitcoin_monthly.py --output RUNNER_TEMP observation.json --apply"
         run: python scripts/update_bitcoin_monthly.py --output "$RUNNER_TEMP/observation.json" --apply

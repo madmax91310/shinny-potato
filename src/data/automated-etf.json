@@ -9301,60 +9301,64 @@
       "modifiedAt": "2026-10-31"
     },
     "countries": {
-      "asOf": "2026-10-29",
+      "asOf": "2026-10-30",
       "rows": [
         {
           "name": "Italy",
-          "weightPct": 28.53
+          "weightPct": 26.97
         },
         {
           "name": "Germany",
-          "weightPct": 22.07
-        },
-        {
-          "name": "Spain",
-          "weightPct": 15.62
+          "weightPct": 25.32
         },
         {
           "name": "France",
-          "weightPct": 15.4
+          "weightPct": 20.7
+        },
+        {
+          "name": "Spain",
+          "weightPct": 16.64
         },
         {
           "name": "Austria",
-          "weightPct": 4.15
+          "weightPct": 3.31
         },
         {
           "name": "Netherlands",
-          "weightPct": 2.99
+          "weightPct": 2.62
         },
         {
           "name": "Belgium",
-          "weightPct": 2.68
+          "weightPct": 2.61
         },
         {
           "name": "Portugal",
-          "weightPct": 1.29
+          "weightPct": 1.46
+        },
+        {
+          "name": "Finland",
+          "weightPct": 1.41
         },
         {
           "name": "Croatia (Hrvatska)",
-          "weightPct": 1.12
+          "weightPct": 1.09
         },
         {
           "name": "Ireland",
-          "weightPct": 1.05
-        },
-        {
-          "name": "Cash and/or Derivatives",
-          "weightPct": 2.91
+          "weightPct": 1.02
         },
         {
           "name": "Other",
-          "weightPct": 2.18
+          "weightPct": 1.4
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": -4.56
         }
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "characteristics": {
       "terPct": 0.07,
@@ -9390,22 +9394,23 @@
       "checkedAt": "2026-11-02"
     },
     "sectors": {
-      "asOf": "2026-10-29",
+      "asOf": "2026-10-30",
       "rows": [
         {
           "name": "Treasury",
-          "weightPct": 97.09,
+          "weightPct": 104.56,
           "label": "Treasury"
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 2.91,
+          "weightPct": -4.56,
           "label": "Cash and/or Derivatives"
         }
       ],
+      "weightConvention": "signed-net-assets-reconciled-holdings",
       "sourceComponent": "exposureBreakdowns.sector",
       "checkedAt": "2026-11-02",
-      "modifiedAt": "2026-10-30"
+      "modifiedAt": "2026-11-02"
     },
     "holdings": {
       "asOf": "2026-10-30",
@@ -9599,15 +9604,15 @@
         "modifiedAt": "2026-11-01"
       },
       "modelOad": {
-        "value": 0.48505,
+        "value": 0.61753,
         "label": "Duration effective",
         "unit": "ans",
-        "asOf": "2026-10-29",
+        "asOf": "2026-10-30",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "scope": "Fund portfolio",
         "method": "A measure of the responsiveness of a bond&#39;s or portfolio&#39;s price to changes in interest rates. Effective Duration adjusts for changes in projected cash flows as a result of yield changes, accounting for embedded optionality.",
         "checkedAt": "2026-11-02",
-        "modifiedAt": "2026-10-30"
+        "modifiedAt": "2026-11-02"
       }
     }
   },

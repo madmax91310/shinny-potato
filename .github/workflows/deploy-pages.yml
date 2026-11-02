@@ -363,6 +363,7 @@ jobs:
       - run: python scripts/audit_broker_coverage.py
       - run: python -m unittest discover -s scripts -p 'test_data*.py'
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
+      - run: python -m unittest discover -s scripts -p 'test_source_incidents.py'
       - run: python -m unittest discover -s scripts -p 'test_etf_resilience.py'
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
       - run: python -m unittest discover -s scripts -p 'test_russell_composition.py'
