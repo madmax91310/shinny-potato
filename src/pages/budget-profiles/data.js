@@ -39,5 +39,6 @@ export const EXPENSE_CATEGORIES = [
 
 export const BUDGET_EDITORIAL = Object.fromEntries(sourceProfiles.map(p => [p.id, { ...editorial[p.id], ...profileEditorial[p.id], ...newQualifiedEditorial[p.id], ...bankEditorial[p.id] }]))
 
-// Text-only narrative and its evidence. Never applied to the financial profile or image.
+// Publication copy and its evidence; public labels may be shared by text and image.
+// The financial profiles and source metadata remain untouched.
 export const BUDGET_PUBLICATION_CONTEXT = publicationContext

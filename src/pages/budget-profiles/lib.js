@@ -68,17 +68,30 @@ export function budgetExpenseSections(profile) {
 
 export function budgetPublicPresentation(profile) {
   const e = editorialFor(profile)
+  const copy = publicationContextFor(profile)?.budget
   return {
     name: budgetDisplayName(profile),
-    balanceLabel: e?.balanceLabel || 'Reste disponible après versements',
+    balanceLabel: copy?.balanceLabel ?? e?.balanceLabel ?? 'Reste disponible après versements',
     job: e?.publicJob ?? profile.job,
-    household: e?.publicHousehold ?? (profile.household === 'Situation familiale non précisée' ? '' : profile.household),
-    incomeNote: e?.publicIncomeNote ?? profile.incomeNote,
+    household: copy?.household ?? e?.publicHousehold ?? (profile.household === 'Situation familiale non précisée' ? '' : profile.household),
+    incomeNote: copy?.incomeNote ?? e?.publicIncomeNote ?? profile.incomeNote,
+    period: copy?.period ?? profile.period,
+    location: copy?.location ?? profile.location,
     story: e?.publicStory ?? profile.context,
-    basis: profile.kind === 'prepared' ? (e?.publicBasis || 'Montants mensuels') : profile.incomeBasis,
+    basis: copy?.basis ?? (profile.kind === 'prepared' ? (e?.publicBasis || 'Montants mensuels') : profile.incomeBasis),
     question: e?.question ?? profile.question,
   }
 }
+
+export function budgetPublicIncomeRows(profile) {
+  const labels = publicationContextFor(profile)?.budget?.incomeLabels || {}
+  return profile.income.map(row => ({ ...row, label: Object.hasOwn(labels, row.label) ? labels[row.label] : row.label }))
+}
+
+// A reported capacity is useful when it differs from the calculated remainder.
+// Keeping the source value in the profile does not require printing it twice.
+export const hasSeparateBudgetCapacity = (profile, a = analyzeBudget(profile)) => profile.capacity !== null &&
+  cents(profile.capacity) !== cents(a.available) && cents(profile.capacity) !== cents(a.balance)
 
 export const budgetPossessive = name => /^(?:[aàâäeéèêëiîïoôöuùûüyœ]|h(?:ugo|adrien))/i.test(name) ? `d’${name}` : `de ${name}`
 export function budgetHeading(profile) {
@@ -92,7 +105,7 @@ export function buildBudgetText(profile) {
   if (a.errors.length) return ''
   const e = editorialFor(profile), p = budgetPublicPresentation(profile), context = publicationContextFor(profile)
   const money = value => euro(value, profile.currency)
-  const presentation = [p.job, p.household, profile.location].filter(Boolean).join(' · ')
+  const presentation = [p.job, p.household, p.location].filter(Boolean).join(' · ')
   const sections = budgetExpenseSections(profile)
   const expenses = sections.map(section => {
     const total = rowTotal(section.rows)
@@ -100,19 +113,22 @@ export function buildBudgetText(profile) {
     const rows = section.rows.map(row => `• ${row.label} : ${money(row.amount)}`).join('\n')
     return `${section.emoji} ${section.title} : ${money(total)} (${share(total, a.income)})\n${rows}`
   }).join('\n\n')
-  const textBasis = p.basis === 'Montants mensuels' || profile.income.length === 1 && profile.income[0].label.toLocaleLowerCase('fr').includes(p.basis.toLocaleLowerCase('fr')) ? '' : p.basis
-  const incomeRows = profile.income.map(row => `• ${row.label} : ${money(row.amount)}`).join('\n')
+  const publicIncome = budgetPublicIncomeRows(profile)
+  const textBasis = context?.budget?.textBasis ?? (p.basis === 'Montants mensuels' || publicIncome.length === 1 && publicIncome[0].label.toLocaleLowerCase('fr').includes(p.basis.toLocaleLowerCase('fr')) ? '' : p.basis)
+  const incomeRows = publicIncome.map(row => `• ${row.label} : ${money(row.amount)}`).join('\n')
   const savings = profile.savings.map(row => `• ${row.label} : ${money(row.amount)}`).join('\n')
+  const transfersHeading = context?.budget?.transfersHeading || 'Versements'
+  const singleNamedTransfer = profile.savings.length === 1 && profile.savings[0].label === transfersHeading
   return [
-    budgetHeading(profile) + (profile.period ? ` — ${profile.period}` : ''),
+    budgetHeading(profile) + (p.period ? ` — ${p.period}` : ''),
     presentation && `👤 ${presentation}`,
     [`💰 Ressources mensuelles : ${profile.approximate ? 'environ ' : ''}${money(a.income)}`, textBasis, incomeRows, p.incomeNote].filter(Boolean).join('\n'),
     expenses,
-    `🧾 Total des dépenses : ${money(a.expenses)} / mois`,
-    `👉 ${a.available < 0 ? 'Déficit avant versements' : 'Reste avant versements'} : ${money(Math.abs(a.available))} / mois (${share(a.available, a.income)})`,
-    savings && `🌱 Épargne, investissements et autres affectations : ${money(a.savings)} / mois\n${savings}`,
-    `${a.balance < 0 ? 'Manque après versements' : p.balanceLabel} : ${money(Math.abs(a.balance))} / mois`,
-    profile.capacity !== null && `Capacité d’épargne ${profile.kind === 'planned' ? 'envisagée' : 'annoncée'} : environ ${money(profile.capacity)} / mois.`,
+    sections.length > 1 && `🧾 Total des dépenses : ${money(a.expenses)} / mois`,
+    a.savings > 0 && `👉 ${a.available < 0 ? 'Déficit avant versements' : 'Reste avant versements'} : ${money(Math.abs(a.available))} / mois (${share(a.available, a.income)})`,
+    savings && `${transfersHeading === 'Financement de son entreprise' ? '💼' : '🌱'} ${transfersHeading} : ${money(a.savings)} / mois${singleNamedTransfer ? '' : `\n${savings}`}`,
+    `${a.balance < 0 ? (a.savings > 0 ? 'Manque après versements' : 'Déficit mensuel') : (a.savings === 0 && p.balanceLabel === 'Reste disponible après versements' ? 'Reste disponible' : p.balanceLabel)} : ${money(Math.abs(a.balance))} / mois`,
+    hasSeparateBudgetCapacity(profile, a) && `Capacité d’épargne ${profile.kind === 'planned' ? 'envisagée' : 'annoncée'} : environ ${money(profile.capacity)} / mois.`,
     ...(context ? [
       ...context.paragraphs.map(paragraph => paragraph.text),
       context.questions.map(question => `💬 ${question.text}`).join('\n'),
