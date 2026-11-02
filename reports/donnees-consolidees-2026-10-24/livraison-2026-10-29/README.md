@@ -2,7 +2,7 @@
 
 - PRODUCTION-31-OCTOBRE.md : bilan court de la photographie finale.
 - LIVRAISON.md et RAPPORT.md : résultat courant puis historique conservé.
-- bilan-par-outil.csv : 24outils/routes, fonctions opérationnelles/partielles/bloquées.
+- bilan-par-outil.csv : 28lignes de routes conservées, dont26actives et2périmètres supprimés, fonctions opérationnelles/partielles/bloquées.
 - matrice-donnees-usages.csv.gz et matrice-bilan.json : matrice unique et dénominateurs.
 - suivi-consolide.csv.gz : toutes les identités et observations conservées.
 - perimetre-initial-complet.csv.gz : les661identités initiales avec appartenance courante.
@@ -14,3 +14,7 @@
 - preuves/reprise-2026-10-30/ : réponses, reçus GitHub, résultats navigateur et vérification finale.
 
 Fichiers gzip : CSV UTF-8 avec BOM, séparateur point-virgule. Chaque fichier est téléchargeable séparément ; aucune grosse archive obligatoire. Les anciens audits restent dans Git et dans les sections historiques, sans réécriture des tentatives anciennes.
+
+## Reprise du2novembre
+
+Le bilan courant commence dans LIVRAISON.md ; les chiffres antérieurs restent datés. Les preuves natives, exports publics intégraux et recettes sont dans preuves/reprise-2026-11-02/. Les scripts de rapprochement préservent chaque ancienne identité ; les contrats ne sont pas des pannes ni des certifications individuelles.

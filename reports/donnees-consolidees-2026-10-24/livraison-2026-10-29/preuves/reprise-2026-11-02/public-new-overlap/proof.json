@@ -1,0 +1,407 @@
+{
+  "checkedAt": "2026-11-02T03:49:39.078Z",
+  "buildInfo": {
+    "sha": "70b7e839f7ad96a3c03a3ec94989710eeb9b47ad",
+    "dataSha": "1e2f520e42b95a946ab31f76c1c3c6bec442d212",
+    "lane": "validated-data",
+    "builtAt": "2026-11-02T03:17:26.780Z"
+  },
+  "results": [
+    {
+      "name": "qualified",
+      "isins": [
+        "IE00B4M7GH52",
+        "IE00B8KGV557"
+      ],
+      "full": true,
+      "independentRawIntersectionPct": 0.35644,
+      "display": [
+        "0,36 %"
+      ],
+      "engine": {
+        "left": "iShares MSCI Poland UCITS ETF",
+        "right": "iShares Edge MSCI EM Minimum Volatility UCITS ETF",
+        "common": [
+          {
+            "isin": "PLDINPL00011",
+            "name": "DINO POLSKA",
+            "leftWeight": 3.37402,
+            "rightWeight": 0.06443,
+            "portfolioWeight": 1.7192249999999998
+          },
+          {
+            "isin": "PLSOFTB00016",
+            "name": "ASSECO POLAND SA",
+            "leftWeight": 2.39415,
+            "rightWeight": 0.29201,
+            "portfolioWeight": 1.3430799999999998
+          }
+        ],
+        "companyCommon": [
+          {
+            "id": "PLDINPL00011",
+            "name": "DINO POLSKA",
+            "leftWeight": 3.37402,
+            "rightWeight": 0.06443,
+            "leftSecurities": [
+              "PLDINPL00011"
+            ],
+            "rightSecurities": [
+              "PLDINPL00011"
+            ]
+          },
+          {
+            "id": "PLSOFTB00016",
+            "name": "ASSECO POLAND SA",
+            "leftWeight": 2.39415,
+            "rightWeight": 0.29201,
+            "leftSecurities": [
+              "PLSOFTB00016"
+            ],
+            "rightSecurities": [
+              "PLSOFTB00016"
+            ]
+          }
+        ],
+        "full": true,
+        "overlap": 0.35644,
+        "sources": [
+          {
+            "asOf": "2026-10-30",
+            "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251875&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "basis": "fund",
+            "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+            "sha256": "500595c1a483dd3f1aca607517baf4b3b067c5b0b33068dcb44c6c741129e9e5",
+            "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation"
+          },
+          {
+            "asOf": "2026-10-30",
+            "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "basis": "fund",
+            "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+            "sha256": "3094a3f3daca1b2916b79562f2ff393494df270a4dc9a6596e2edd388906690b",
+            "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation"
+          }
+        ],
+        "identifiedCoverage": [
+          99.6216,
+          99.53848999999994
+        ]
+      },
+      "sourceBlobs": [
+        {
+          "isin": "IE00B4M7GH52",
+          "blob": "54dae893bb831b1bb409d1a8759dddd2b2d7718f"
+        },
+        {
+          "isin": "IE00B8KGV557",
+          "blob": "ae974eebb7fbf8ec02b5b9cbb55e83cae36816c3"
+        }
+      ]
+    },
+    {
+      "name": "partial",
+      "isins": [
+        "IE00B0M63516",
+        "IE00B8KGV557"
+      ],
+      "full": false,
+      "independentRawIntersectionPct": 1.67337,
+      "display": [
+        "Partiel"
+      ],
+      "engine": {
+        "left": "iShares MSCI Brazil UCITS ETF USD (Dist)",
+        "right": "iShares Edge MSCI EM Minimum Volatility UCITS ETF",
+        "common": [
+          {
+            "isin": "BRPETRACNPR6",
+            "name": "PETROLEO BRASILEIRO PREF SA",
+            "leftWeight": 10.10345,
+            "rightWeight": 0.08475,
+            "portfolioWeight": 5.0941
+          },
+          {
+            "isin": "KYG6683N1034",
+            "name": "NU HOLDINGS CLASS A",
+            "leftWeight": 9.43686,
+            "rightWeight": 0.04561,
+            "portfolioWeight": 4.741235
+          },
+          {
+            "isin": "BRSBSPACNOR5",
+            "name": "COMPANHIA DE SANEAMENTO BASICO DE",
+            "leftWeight": 2.43439,
+            "rightWeight": 0.41054,
+            "portfolioWeight": 1.4224649999999999
+          },
+          {
+            "isin": "BRABEVACNOR1",
+            "name": "AMBEV SA",
+            "leftWeight": 2.62199,
+            "rightWeight": 0.07456,
+            "portfolioWeight": 1.348275
+          },
+          {
+            "isin": "BRAXIAACNOR0",
+            "name": "AXIA ENERGIA SA",
+            "leftWeight": 2.52558,
+            "rightWeight": 0.15744,
+            "portfolioWeight": 1.3415100000000002
+          },
+          {
+            "isin": "BREQTLACNOR0",
+            "name": "EQUATORIAL SA",
+            "leftWeight": 1.44411,
+            "rightWeight": 0.13283,
+            "portfolioWeight": 0.7884700000000001
+          },
+          {
+            "isin": "BRCPLEACNOR8",
+            "name": "CIA PARANAENSE DE ENERGIA COPEL",
+            "leftWeight": 1.15036,
+            "rightWeight": 0.17376,
+            "portfolioWeight": 0.66206
+          },
+          {
+            "isin": "BRVIVTACNOR0",
+            "name": "TELEFONICA BRASIL SA",
+            "leftWeight": 0.89966,
+            "rightWeight": 0.34042,
+            "portfolioWeight": 0.62004
+          },
+          {
+            "isin": "BRRDORACNOR8",
+            "name": "REDE DOR SAO LUIZ SA",
+            "leftWeight": 1.0293,
+            "rightWeight": 0.04349,
+            "portfolioWeight": 0.5363950000000001
+          },
+          {
+            "isin": "BRENEVACNOR8",
+            "name": "ENEVA",
+            "leftWeight": 0.98062,
+            "rightWeight": 0.07993,
+            "portfolioWeight": 0.530275
+          },
+          {
+            "isin": "BRRADLACNOR0",
+            "name": "RAIA DROGASIL",
+            "leftWeight": 0.82953,
+            "rightWeight": 0.10703,
+            "portfolioWeight": 0.46828000000000003
+          },
+          {
+            "isin": "BRAXIAACNPC9",
+            "name": "AXIA ENERGIA PRF SA",
+            "leftWeight": 0.26874,
+            "rightWeight": 0.01799,
+            "portfolioWeight": 0.143365
+          },
+          {
+            "isin": "BRAXIAA12PC7",
+            "name": "AXIA ENERGIA PRF SA",
+            "leftWeight": 0.07498,
+            "rightWeight": 0.00502,
+            "portfolioWeight": 0.04
+          }
+        ],
+        "companyCommon": [
+          {
+            "id": "BRPETRACNOR9",
+            "name": "Petrobras",
+            "leftWeight": 19.34909,
+            "rightWeight": 0.08475,
+            "leftSecurities": [
+              "BRPETRACNPR6",
+              "BRPETRACNOR9"
+            ],
+            "rightSecurities": [
+              "BRPETRACNPR6"
+            ]
+          },
+          {
+            "id": "KYG6683N1034",
+            "name": "NU HOLDINGS CLASS A",
+            "leftWeight": 9.43686,
+            "rightWeight": 0.04561,
+            "leftSecurities": [
+              "KYG6683N1034"
+            ],
+            "rightSecurities": [
+              "KYG6683N1034"
+            ]
+          },
+          {
+            "id": "BRABEVACNOR1",
+            "name": "AMBEV SA",
+            "leftWeight": 2.62199,
+            "rightWeight": 0.07456,
+            "leftSecurities": [
+              "BRABEVACNOR1"
+            ],
+            "rightSecurities": [
+              "BRABEVACNOR1"
+            ]
+          },
+          {
+            "id": "BRAXIAACNOR0",
+            "name": "AXIA ENERGIA SA",
+            "leftWeight": 2.52558,
+            "rightWeight": 0.15744,
+            "leftSecurities": [
+              "BRAXIAACNOR0"
+            ],
+            "rightSecurities": [
+              "BRAXIAACNOR0"
+            ]
+          },
+          {
+            "id": "BRSBSPACNOR5",
+            "name": "COMPANHIA DE SANEAMENTO BASICO DE",
+            "leftWeight": 2.43439,
+            "rightWeight": 0.41054,
+            "leftSecurities": [
+              "BRSBSPACNOR5"
+            ],
+            "rightSecurities": [
+              "BRSBSPACNOR5"
+            ]
+          },
+          {
+            "id": "BREQTLACNOR0",
+            "name": "EQUATORIAL SA",
+            "leftWeight": 1.44411,
+            "rightWeight": 0.13283,
+            "leftSecurities": [
+              "BREQTLACNOR0"
+            ],
+            "rightSecurities": [
+              "BREQTLACNOR0"
+            ]
+          },
+          {
+            "id": "BRCPLEACNOR8",
+            "name": "CIA PARANAENSE DE ENERGIA COPEL",
+            "leftWeight": 1.15036,
+            "rightWeight": 0.17376,
+            "leftSecurities": [
+              "BRCPLEACNOR8"
+            ],
+            "rightSecurities": [
+              "BRCPLEACNOR8"
+            ]
+          },
+          {
+            "id": "BRRDORACNOR8",
+            "name": "REDE DOR SAO LUIZ SA",
+            "leftWeight": 1.0293,
+            "rightWeight": 0.04349,
+            "leftSecurities": [
+              "BRRDORACNOR8"
+            ],
+            "rightSecurities": [
+              "BRRDORACNOR8"
+            ]
+          },
+          {
+            "id": "BRENEVACNOR8",
+            "name": "ENEVA",
+            "leftWeight": 0.98062,
+            "rightWeight": 0.07993,
+            "leftSecurities": [
+              "BRENEVACNOR8"
+            ],
+            "rightSecurities": [
+              "BRENEVACNOR8"
+            ]
+          },
+          {
+            "id": "BRVIVTACNOR0",
+            "name": "TELEFONICA BRASIL SA",
+            "leftWeight": 0.89966,
+            "rightWeight": 0.34042,
+            "leftSecurities": [
+              "BRVIVTACNOR0"
+            ],
+            "rightSecurities": [
+              "BRVIVTACNOR0"
+            ]
+          },
+          {
+            "id": "BRRADLACNOR0",
+            "name": "RAIA DROGASIL",
+            "leftWeight": 0.82953,
+            "rightWeight": 0.10703,
+            "leftSecurities": [
+              "BRRADLACNOR0"
+            ],
+            "rightSecurities": [
+              "BRRADLACNOR0"
+            ]
+          },
+          {
+            "id": "BRAXIAACNPC9",
+            "name": "AXIA ENERGIA PRF SA",
+            "leftWeight": 0.26874,
+            "rightWeight": 0.01799,
+            "leftSecurities": [
+              "BRAXIAACNPC9"
+            ],
+            "rightSecurities": [
+              "BRAXIAACNPC9"
+            ]
+          },
+          {
+            "id": "BRAXIAA12PC7",
+            "name": "AXIA ENERGIA PRF SA",
+            "leftWeight": 0.07498,
+            "rightWeight": 0.00502,
+            "leftSecurities": [
+              "BRAXIAA12PC7"
+            ],
+            "rightSecurities": [
+              "BRAXIAA12PC7"
+            ]
+          }
+        ],
+        "full": false,
+        "overlap": null,
+        "sources": [
+          {
+            "asOf": "2026-10-30",
+            "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251853&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "basis": "fund",
+            "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+            "sha256": "84db8ef490bdd5433f3ab5335e9fcd6a21fba299701c64f722743426cd0365ca",
+            "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation"
+          },
+          {
+            "asOf": "2026-10-30",
+            "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "basis": "fund",
+            "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+            "sha256": "3094a3f3daca1b2916b79562f2ff393494df270a4dc9a6596e2edd388906690b",
+            "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation"
+          }
+        ],
+        "identifiedCoverage": [
+          99.07285999999996,
+          99.53848999999994
+        ]
+      },
+      "sourceBlobs": [
+        {
+          "isin": "IE00B0M63516",
+          "blob": "594510ff1d15db06994b6c24d408f200f7be4830"
+        },
+        {
+          "isin": "IE00B8KGV557",
+          "blob": "ae974eebb7fbf8ec02b5b9cbb55e83cae36816c3"
+        }
+      ]
+    }
+  ],
+  "pngDownloads": 4,
+  "errors": []
+}

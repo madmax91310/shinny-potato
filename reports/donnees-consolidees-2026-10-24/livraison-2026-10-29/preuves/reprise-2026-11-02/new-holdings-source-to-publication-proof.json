@@ -1,0 +1,201 @@
+{
+  "runId": 41369300788,
+  "buildInfo": {
+    "sha": "70b7e839f7ad96a3c03a3ec94989710eeb9b47ad",
+    "dataSha": "1e2f520e42b95a946ab31f76c1c3c6bec442d212",
+    "lane": "validated-data",
+    "builtAt": "2026-11-02T03:17:26.780Z"
+  },
+  "instruments": 11,
+  "perInstrument": [
+    {
+      "isin": "IE00B52SF786",
+      "manifestBlob": "b19129774d2aacdb302def8406f0058480b5af7a",
+      "source": {
+        "asOf": "2026-10-30",
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "basis": "fund",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=253721&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "5405aca24bd32efe75f2c7915033478585b2a3b367038c1d6c8aa5d785703c4e",
+        "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+        "completeFile": true,
+        "rows": 80,
+        "publishedEquityWeightPct": 99.61804,
+        "identifiedEquityWeightPct": 99.61804
+      },
+      "publicDateSourceHashAndOriginalWeightsMatch": true
+    },
+    {
+      "isin": "IE00B5377D42",
+      "manifestBlob": "4223f4ba358906f4ad7222d6f45a22cdaf781c95",
+      "source": {
+        "asOf": "2026-10-30",
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "basis": "fund",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "879f747828ea236b0b20d65eeb16e8c7d238a85302be6fd933a5c61ebda5abe4",
+        "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+        "completeFile": true,
+        "rows": 43,
+        "publishedEquityWeightPct": 99.69646,
+        "identifiedEquityWeightPct": 99.69646
+      },
+      "publicDateSourceHashAndOriginalWeightsMatch": true
+    },
+    {
+      "isin": "IE00B5WHFQ43",
+      "manifestBlob": "3e36c59e676dd2b1003673910e11659a80909b8b",
+      "source": {
+        "asOf": "2026-10-30",
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "basis": "fund",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "6b533f8f5b97e52694c5b8a33207383d7e7829c21f8a2bc9b205812a96108ad2",
+        "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+        "completeFile": true,
+        "rows": 21,
+        "publishedEquityWeightPct": 99.67996,
+        "identifiedEquityWeightPct": 99.67996
+      },
+      "publicDateSourceHashAndOriginalWeightsMatch": true
+    },
+    {
+      "isin": "IE00B0M63516",
+      "manifestBlob": "594510ff1d15db06994b6c24d408f200f7be4830",
+      "source": {
+        "asOf": "2026-10-30",
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "basis": "fund",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251853&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "84db8ef490bdd5433f3ab5335e9fcd6a21fba299701c64f722743426cd0365ca",
+        "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+        "completeFile": true,
+        "rows": 46,
+        "publishedEquityWeightPct": 99.07285999999999,
+        "identifiedEquityWeightPct": 99.07285999999999
+      },
+      "publicDateSourceHashAndOriginalWeightsMatch": true
+    },
+    {
+      "isin": "IE00B4M7GH52",
+      "manifestBlob": "54dae893bb831b1bb409d1a8759dddd2b2d7718f",
+      "source": {
+        "asOf": "2026-10-30",
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "basis": "fund",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251875&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "500595c1a483dd3f1aca607517baf4b3b067c5b0b33068dcb44c6c741129e9e5",
+        "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+        "completeFile": true,
+        "rows": 16,
+        "publishedEquityWeightPct": 99.6216,
+        "identifiedEquityWeightPct": 99.6216
+      },
+      "publicDateSourceHashAndOriginalWeightsMatch": true
+    },
+    {
+      "isin": "IE00B52XQP83",
+      "manifestBlob": "ae974eebb7fbf8ec02b5b9cbb55e83cae36816c3",
+      "source": {
+        "asOf": "2026-10-30",
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "basis": "fund",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "6a40459a135973f12555fc0f51c76e61ba01106ed209533aa34e78e19093192c",
+        "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+        "completeFile": true,
+        "rows": 27,
+        "publishedEquityWeightPct": 99.72755,
+        "identifiedEquityWeightPct": 99.72755
+      },
+      "publicDateSourceHashAndOriginalWeightsMatch": true
+    },
+    {
+      "isin": "IE00BJ5JPJ87",
+      "manifestBlob": "8b48e6045399f9fcee6b7c1ef4984e5ec1b1f5f2",
+      "source": {
+        "asOf": "2026-10-30",
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "basis": "fund",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=308477&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "1382741bc673ad46ef20069dd2063a6d102e3d6a5033d00225d799ea26a8bb45",
+        "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+        "completeFile": true,
+        "rows": 28,
+        "publishedEquityWeightPct": 99.84735,
+        "identifiedEquityWeightPct": 99.84735
+      },
+      "publicDateSourceHashAndOriginalWeightsMatch": true
+    },
+    {
+      "isin": "IE00B1FZS574",
+      "manifestBlob": "4223f4ba358906f4ad7222d6f45a22cdaf781c95",
+      "source": {
+        "asOf": "2026-10-30",
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "basis": "fund",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "50e2c731b04f80127e7666bcf7d92fb1f03277fa27ca2cafabe1de4bd27b86e2",
+        "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+        "completeFile": true,
+        "rows": 12,
+        "publishedEquityWeightPct": 99.79339999999999,
+        "identifiedEquityWeightPct": 99.79339999999999
+      },
+      "publicDateSourceHashAndOriginalWeightsMatch": true
+    },
+    {
+      "isin": "IE00B8KGV557",
+      "manifestBlob": "ae974eebb7fbf8ec02b5b9cbb55e83cae36816c3",
+      "source": {
+        "asOf": "2026-10-30",
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "basis": "fund",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "3094a3f3daca1b2916b79562f2ff393494df270a4dc9a6596e2edd388906690b",
+        "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+        "completeFile": true,
+        "rows": 295,
+        "publishedEquityWeightPct": 99.53849,
+        "identifiedEquityWeightPct": 99.53849
+      },
+      "publicDateSourceHashAndOriginalWeightsMatch": true
+    },
+    {
+      "isin": "IE00B86MWN23",
+      "manifestBlob": "d5835bdd29fd82b6846f3b785ca9c614fef57bd2",
+      "source": {
+        "asOf": "2026-10-30",
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "basis": "fund",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "7b399b8ca49a930af898d46ef385c560372dbb0ab5eda2f5d4fb0f089fbf3a3a",
+        "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+        "completeFile": true,
+        "rows": 197,
+        "publishedEquityWeightPct": 99.53941,
+        "identifiedEquityWeightPct": 99.53941
+      },
+      "publicDateSourceHashAndOriginalWeightsMatch": true
+    },
+    {
+      "isin": "IE00B2QWDY88",
+      "manifestBlob": "fa484775022ce27f601c84140ac386630fe16e07",
+      "source": {
+        "asOf": "2026-10-30",
+        "checkedAt": "2026-11-02T01:28:35.746319+00:00",
+        "basis": "fund",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "b32d72b698dc377dfaa06bafb0b2957a58e9c9aad8bceb71d95092605b0ca47f",
+        "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+        "completeFile": true,
+        "rows": 765,
+        "publishedEquityWeightPct": 98.74657,
+        "identifiedEquityWeightPct": 98.74657
+      },
+      "publicDateSourceHashAndOriginalWeightsMatch": true
+    }
+  ],
+  "pngDownloads": 22,
+  "limits": "Complete equity fund sleeve only, original weights; no exact-index composition inferred. Source control here manual/push, not scheduled."
+}

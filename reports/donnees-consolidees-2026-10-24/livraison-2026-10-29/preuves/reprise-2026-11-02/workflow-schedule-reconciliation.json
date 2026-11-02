@@ -1,0 +1,14 @@
+{
+  "scheduledWorkflows": 25,
+  "registeredMonitoredWorkflows": 24,
+  "scheduledBreakdown": {
+    "routineDataAndReferenceProducers": 20,
+    "mutualizedAdmissionOrchestrator": 1,
+    "syntheticRehearsal": 1,
+    "weeklyRegistryReview": 1,
+    "bitcoinReadOnlySourcePilot": 1,
+    "monitor": 1
+  },
+  "registryDifference": "Monitor and readonly Bitcoin pilot excluded from the supplier registry; code publication included without schedule. Registry also includes admission, synthetic rehearsal and review, so24 is not24independent suppliers.",
+  "sourceScheduleProof": "scheduled-runs-current-20261102.json contains300actual scheduled runs; absence in that window does not erase older evidence or prove a new scheduled execution."
+}
