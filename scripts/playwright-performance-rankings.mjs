@@ -165,9 +165,11 @@ try {
     for (const c of ALL_CATEGORIES.filter(c => c.benchmarkId)) {
       await category(c.id)
       assert.equal(await page.locator('.rk-selected>div').count(), 6)
-      assert.match(await page.locator('.rk-selected').innerText(), /ETF .*réf/)
+      assert.match(await page.locator('.rk-selected').innerText(), /ETF /)
+      assert.doesNotMatch(await page.locator('.rk-selected').innerText(), /\(réf\.\)/)
       assert.equal(await page.getByRole('alert').count(), 0, c.id)
       assert.match(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), /^Parmi ces cinq actions, lesquelles ont battu l’ETF/)
+      assert.doesNotMatch(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), /\(réf\.\)/)
     }
     for (let i = 0; i < 4; i++) {
       const before = await page.getByRole('group', { name: 'Catégorie', exact: true }).getAttribute('data-value')

@@ -187,7 +187,7 @@ for (const category of BENCHMARK_CATEGORIES) {
   const result = buildRanking(assets, { mode: 'years', startYear: coverage.years.at(-Math.min(5, coverage.years.length)), endYear: coverage.years.at(-1) })
   const tweet = buildTweet(result, category.label)
   assert.match(tweet, /^Parmi ces cinq actions, lesquelles ont battu l’ETF (MSCI World|S&P 500)/)
-  assert.match(tweet, /\(réf\.\)/)
+  assert.doesNotMatch(tweet, /\(réf\.\)/)
   assert.equal(publicationRanking(result).rows.length, 6)
   assert.equal(markBenchmark(assets.filter(a => !a.benchmark), category.benchmarkId).filter(a => a.benchmark).length, 0)
 }
