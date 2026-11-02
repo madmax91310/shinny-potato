@@ -11,7 +11,7 @@ import {ETFS} from '../src/data/etf-cards.js'
 import {getInstrumentListings} from '../src/data/instrument-listings.js'
 import {buildText} from '../src/pages/etf-sheets/lib.js'
 import {QUALIFIED_FUND_CALENDARS} from '../src/data/qualified-annual-calendars.js'
-import {ASSETS as PERFORMANCE} from '../src/pages/tweet-midi/data/performanceHistory.js'
+import {ASSETS as PERFORMANCE,performanceBasis} from '../src/pages/tweet-midi/data/performanceHistory.js'
 const port=4401,base=`http://127.0.0.1:${port}/shinny-potato/`,out='test-artifacts/new-instruments'
 const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port',String(port)],{stdio:'ignore'})
 let browser;const results=[],errors=[]
@@ -56,7 +56,7 @@ try{
   }
   for(const {isin} of IDENTITIES){
    const asset=Object.values(PERFORMANCE).find(a=>a.isin===isin),year=Object.keys(QUALIFIED_FUND_CALENDARS[isin].years).sort().at(-1)
-   await page.goto(base+'performance-depuis?asset='+asset.id,{waitUntil:'networkidle'});assert.equal(await page.locator('#subject-select').getAttribute('data-value'),asset.id);await choose(page.locator('#secondary-select'),year);await page.getByRole('button',{name:'🔄 Générer',exact:true}).click();await part(page,'Aperçu');await tab(page,'Texte');assert((await page.locator('pre').innerText()).includes('VL'));await png(page,page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}),`${isin}-performance-${width}`,await preview(page));await layout(page,isin+' performance')
+   await page.goto(base+'performance-depuis?asset='+asset.id,{waitUntil:'networkidle'});assert.equal(await page.locator('#subject-select').getAttribute('data-value'),asset.id);await choose(page.locator('#secondary-select'),year);await page.getByRole('group',{name:'Devise des performances',exact:true}).getByRole('button',{name:'Devise d’origine',exact:true}).click();await page.getByRole('button',{name:'🔄 Générer',exact:true}).click();await part(page,'Aperçu');await tab(page,'Texte');assert((await page.locator('pre').innerText()).includes(performanceBasis(asset.id)),asset.id+': exact selected native-currency convention');await png(page,page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}),`${isin}-performance-${width}`,await preview(page));await layout(page,isin+' performance')
   }
   const annualOnly = IDENTITIES.find(f => !Object.values(CALCULATOR_ASSETS).some(a => a.isin === f.isin))
   if(annualOnly){

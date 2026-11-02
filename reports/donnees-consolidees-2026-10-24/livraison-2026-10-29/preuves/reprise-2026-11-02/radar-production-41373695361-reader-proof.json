@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-11-02T01:45:01.726033+00:00",
+  "run": 41373695361,
+  "productionCode": "9f2c92bf5ad6c939ad1ebfb1bec5e9a99f9ab6ef",
+  "artifact": 13110392984,
+  "feedBytes": 6068876,
+  "feedSha256": "0ead5598224a843182918ad593a9f04a375c189d2e70c76697edb3a2ee21efd0",
+  "unchangedMonitorLimit": 8000000,
+  "scopePlanVerified": true,
+  "outcomes": 62,
+  "statuses": {
+    "waiting": 44,
+    "succeeded": 8,
+    "unchanged-verified": 5,
+    "failed": 5
+  },
+  "normalizedSuccesses": 13,
+  "normalizedErrors": 8,
+  "sourceFailuresPreserved": [
+    "radar-source:amf-alerts",
+    "radar-source:revolut-news",
+    "radar-source:wisdomtree",
+    "radar-source:drees",
+    "radar-source:dares",
+    "radar:etf",
+    "radar:pouvoir-achat",
+    "radar:economie"
+  ],
+  "publicMonitorIngestion": "not yet verified"
+}

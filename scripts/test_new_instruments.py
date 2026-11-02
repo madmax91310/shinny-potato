@@ -112,7 +112,9 @@ class NewInstruments(unittest.TestCase):
 
     def test_monthly_routes_replay_real_qualified_responses(self):
         sources = json.loads((ROOT/'scripts/new-instrument-nav-sources.json').read_text())
-        evidence = json.loads((ROOT/'scripts/source-snapshots/monthly-automated.json').read_text())
+        # Fixture receipts belong to these immutable source responses, never the
+        # production snapshot renewed by an ordinary monthly collection.
+        evidence = json.loads((FIXTURES/'monthly/qualified-receipts.json').read_text())
         for source in sources:
             proof = evidence[source['id']]
             url,digest = next(iter(proof['rawSourceHashes'].items()))
