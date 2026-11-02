@@ -26,6 +26,13 @@ CURRENT_REVIEW_OUTPUTS = [
     'src/pages/data-review/review-inbox.js',
 ]
 ACTOR_OUTPUT = 'src/data/automated-presentation-actors.json'
+BUDGET_EDITORIAL_READERS = [
+    'docs/budget-editorial-polish-2026-11-02.csv',
+    'docs/budget-editorial-polish-2026-11-02.md',
+    'scripts/fixtures/budget-editorial/before-2026-11-02.json',
+    'scripts/test-budget-editorial-context.mjs',
+    'src/pages/budget-profiles/publication-context.json',
+]
 PRIVATE_SERVICE_READERS = [
     'services/tweet-bank-private/README.md',
     'services/tweet-bank-private/tests/api.mjs',
@@ -120,7 +127,10 @@ class ObservationRebaseTests(unittest.TestCase):
                      'src/pages/dca-profiles/holdings-28.json',
                      'src/pages/dca-profiles/holdings-8.json',
                      'src/pages/dca-profiles/holdings.json',
-                     *CURRENT_REVIEW_OUTPUTS, *PRIVATE_SERVICE_READERS]:
+                     *CURRENT_REVIEW_OUTPUTS, *PRIVATE_SERVICE_READERS, *BUDGET_EDITORIAL_READERS,
+                     'src/pages/budget-profiles/data.js',
+                     'src/pages/budget-profiles/lib.js',
+                     'src/pages/budget-profiles/unqualified-context.json']:
             p = self.f.local / name
             p.parent.mkdir(parents=True, exist_ok=True)
             p.write_text('original\n')
@@ -197,6 +207,36 @@ else:
         self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
         for path in PRIVATE_SERVICE_READERS:
             self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'concurrent update')
+
+    def test_actual_budget_editorial_race_preserves_prose_and_observations(self):
+        for path in BUDGET_EDITORIAL_READERS:
+            self.f.advance_remote(path)
+        validation = ' && '.join(f'test "$(cat {shlex.quote(path)})" = "concurrent update"' for path in BUDGET_EDITORIAL_READERS)
+        result = self.publish('market', validation)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
+        for path in BUDGET_EDITORIAL_READERS:
+            self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'concurrent update')
+
+    def test_budget_editorial_race_never_bypasses_financial_validation(self):
+        self.assert_refused(BUDGET_EDITORIAL_READERS[-1], 'market', 'false')
+
+    def test_budget_prose_cannot_hide_changed_monthly_acquisition_inputs(self):
+        for path in BUDGET_EDITORIAL_READERS:
+            self.f.advance_remote(path)
+        self.assert_refused('scripts/monthly-automation.json', 'market')
+
+    def test_budget_allowance_does_not_cover_the_data_module(self):
+        self.assert_refused('src/pages/budget-profiles/data.js', 'market')
+
+    def test_budget_allowance_does_not_cover_the_calculation_engine(self):
+        self.assert_refused('src/pages/budget-profiles/lib.js', 'market')
+
+    def test_budget_allowance_does_not_cover_neighbouring_configuration(self):
+        self.assert_refused('src/pages/budget-profiles/unqualified-context.json', 'market')
+
+    def test_budget_allowance_does_not_extend_to_other_producers(self):
+        self.assert_refused(BUDGET_EDITORIAL_READERS[-1], 'publication')
 
     def test_private_service_race_does_not_bypass_financial_revalidation(self):
         self.assert_refused(PRIVATE_SERVICE_READERS[2], 'market', 'false')
@@ -609,6 +649,27 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
                 continue
             text = path.read_text()
             self.assertNotIn('tweet-bank-private', text, str(path))
+            for relative in re.findall(r"(?:from\s*|import\s*|import\s*\(\s*)['\"](\.[^'\"]+)['\"]", text):
+                pending.append(path.parent/relative)
+        self.assertGreater(len(seen), 50)
+
+    def test_budget_prose_is_not_a_monthly_acquisition_or_baseline_input(self):
+        self.python_graph(['refresh_monthly_history.py', 'collect_ranking_sources.py',
+                           'qualify_monthly_candidates.py', 'refresh_qualified_listings.py'],
+                          BUDGET_EDITORIAL_READERS, match_names=False)
+        pending = [ROOT/'scripts'/name for name in ['export-monthly-baseline.mjs',
+                   'export-equity-candidates.mjs', 'export-monthly-candidates.mjs']]
+        seen = set()
+        while pending:
+            path = pending.pop().resolve()
+            if path in seen:
+                continue
+            seen.add(path)
+            self.assertNotIn(str(path.relative_to(ROOT)), BUDGET_EDITORIAL_READERS)
+            if path.suffix not in ('.js', '.mjs'):
+                continue
+            text = path.read_text()
+            self.assertNotIn('publication-context', text, str(path))
             for relative in re.findall(r"(?:from\s*|import\s*|import\s*\(\s*)['\"](\.[^'\"]+)['\"]", text):
                 pending.append(path.parent/relative)
         self.assertGreater(len(seen), 50)
