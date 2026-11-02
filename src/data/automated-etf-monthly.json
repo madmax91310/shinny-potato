@@ -19798,215 +19798,219 @@
     "points": [
       [
         "2022-05",
-        4.16650835
+        4.16650833
       ],
       [
         "2022-06",
-        3.83586586
+        3.83586585
       ],
       [
         "2022-07",
-        3.98936483
+        3.98936482
       ],
       [
         "2022-08",
-        3.80521458
+        3.80521457
       ],
       [
         "2022-09",
-        3.38526199
+        3.38526198
       ],
       [
         "2022-10",
-        3.44421211
+        3.44421209
       ],
       [
         "2022-11",
-        3.62056538
+        3.62056536
       ],
       [
         "2022-12",
-        3.42275169
+        3.42275168
       ],
       [
         "2023-01",
-        3.78185011
+        3.7818501
       ],
       [
         "2023-02",
-        3.58856216
+        3.58856215
       ],
       [
         "2023-03",
-        3.87047231
+        3.8704723
       ],
       [
         "2023-04",
-        3.95512428
+        3.95512426
       ],
       [
         "2023-05",
-        4.03975015
+        4.03975014
       ],
       [
         "2023-06",
-        4.13095522
+        4.1309552
       ],
       [
         "2023-07",
-        4.34132824
+        4.34132822
       ],
       [
         "2023-08",
-        4.25191401
+        4.25191399
       ],
       [
         "2023-09",
-        4.13419846
+        4.13419844
       ],
       [
         "2023-10",
-        4.03286574
+        4.03286573
       ],
       [
         "2023-11",
-        4.38912506
+        4.38912504
       ],
       [
         "2023-12",
-        4.60747819
+        4.60747817
       ],
       [
         "2024-01",
-        4.80336379
+        4.80336377
       ],
       [
         "2024-02",
-        4.9785871
+        4.97858708
       ],
       [
         "2024-03",
-        5.1653388
+        5.16533878
       ],
       [
         "2024-04",
-        5.06647404
+        5.06647403
       ],
       [
         "2024-05",
-        5.35768368
+        5.35768366
       ],
       [
         "2024-06",
-        5.4874894
+        5.48748938
       ],
       [
         "2024-07",
-        5.39858924
+        5.39858922
       ],
       [
         "2024-08",
-        5.47015829
+        5.47015826
       ],
       [
         "2024-09",
-        5.60350411
+        5.60350409
       ],
       [
         "2024-10",
-        5.66189784
+        5.66189782
       ],
       [
         "2024-11",
-        5.91514279
+        5.91514277
       ],
       [
         "2024-12",
-        6.00577725
+        6.00577722
       ],
       [
         "2025-01",
-        6.44545375
+        6.44545373
       ],
       [
         "2025-02",
-        6.17428249
+        6.17428247
       ],
       [
         "2025-03",
-        5.76466047
+        5.76466045
       ],
       [
         "2025-04",
-        5.97656828
+        5.97656826
       ],
       [
         "2025-05",
-        6.4149873
+        6.41498727
       ],
       [
         "2025-06",
-        6.84928148
+        6.84928145
       ],
       [
         "2025-07",
-        6.91082553
+        6.91082551
       ],
       [
         "2025-08",
-        7.24690796
+        7.24690794
       ],
       [
         "2025-09",
-        7.60298574
+        7.60298571
       ],
       [
         "2025-10",
-        7.74837092
+        7.74837089
       ],
       [
         "2025-11",
-        7.88462459
+        7.88462456
       ],
       [
         "2025-12",
-        7.80324045
+        7.80324042
       ],
       [
         "2026-01",
-        8.04132006
+        8.04132004
       ],
       [
         "2026-02",
-        7.80370534
+        7.80370531
       ],
       [
         "2026-03",
-        7.25800134
+        7.25800131
       ],
       [
         "2026-04",
-        8.20307664
+        8.20307661
       ],
       [
         "2026-05",
-        8.23916856
+        8.23916853
       ],
       [
         "2026-06",
-        7.64195801
+        7.64195798
       ],
       [
         "2026-07",
-        7.73242604
+        7.73242601
       ],
       [
         "2026-08",
-        7.931876
+        7.93187597
       ],
       [
         "2026-09",
-        8.13611502
+        8.13611499
+      ],
+      [
+        "2026-10",
+        7.32678
       ]
     ],
     "anniversaryPoints": [
@@ -20221,12 +20225,16 @@
       [
         "2026-09",
         8.136115
+      ],
+      [
+        "2026-10",
+        7.32678
       ]
     ],
     "anniversaryValuationBasis": "fund-nav-price",
     "anniversaryVariant": "Valeurs liquidatives publiées · hors distributions",
     "checkedAt": "2026-11-02",
-    "periodEnd": "2026-09",
+    "periodEnd": "2026-10",
     "sourceUrls": [
       "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
     ],
@@ -20249,10 +20257,10 @@
       "checkedAt": "2026-11-02",
       "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
       "maxAgeDays": 7,
-      "sha256": "a2d7670c84af5f74f3e76e0a545dd71ccbaee4686c15d09a42a8c7025af3a342"
+      "sha256": "67d7b58a9516fc058581a4568524770d46b45bd38fd49429100034550dd9e9ee"
     },
     "nativeValuationCurrency": "USD",
-    "lastOfficialValuation": "2026-10-29",
+    "lastOfficialValuation": "2026-10-30",
     "financialConvention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
     "calendarProof": {
       "incomeTreatment": "Distributing",
@@ -20335,7 +20343,7 @@
           "publishedNav": 4.334657,
           "publishedIncomeIndex": 8879.8117,
           "observedRatio": 2048.5615586192866,
-          "expectedRatioAfterPublishedCash": 2048.56155617862,
+          "expectedRatioAfterPublishedCash": 2048.561563775658,
           "qualified": true
         },
         {
@@ -20344,7 +20352,7 @@
           "publishedNav": 3.982005,
           "publishedIncomeIndex": 8175.134599999999,
           "observedRatio": 2053.019672250537,
-          "expectedRatioAfterPublishedCash": 2053.0196562669576,
+          "expectedRatioAfterPublishedCash": 2053.0196638805287,
           "qualified": true
         },
         {
@@ -20353,7 +20361,7 @@
           "publishedNav": 4.141352,
           "publishedIncomeIndex": 8502.277100000001,
           "observedRatio": 2053.019666041428,
-          "expectedRatioAfterPublishedCash": 2053.0196562669576,
+          "expectedRatioAfterPublishedCash": 2053.0196638805287,
           "qualified": true
         },
         {
@@ -20362,7 +20370,7 @@
           "publishedNav": 3.950186,
           "publishedIncomeIndex": 8109.8095,
           "observedRatio": 2053.019655276992,
-          "expectedRatioAfterPublishedCash": 2053.0196562669576,
+          "expectedRatioAfterPublishedCash": 2053.0196638805287,
           "qualified": true
         },
         {
@@ -20371,7 +20379,7 @@
           "publishedNav": 3.514234,
           "publishedIncomeIndex": 7214.791499999999,
           "observedRatio": 2053.01966232186,
-          "expectedRatioAfterPublishedCash": 2053.0196562669576,
+          "expectedRatioAfterPublishedCash": 2053.0196638805287,
           "qualified": true
         },
         {
@@ -20380,7 +20388,7 @@
           "publishedNav": 3.57543,
           "publishedIncomeIndex": 7340.4281,
           "observedRatio": 2053.0196647675943,
-          "expectedRatioAfterPublishedCash": 2053.0196562669576,
+          "expectedRatioAfterPublishedCash": 2053.0196638805287,
           "qualified": true
         },
         {
@@ -20389,7 +20397,7 @@
           "publishedNav": 3.758502,
           "publishedIncomeIndex": 7716.2785,
           "observedRatio": 2053.0196604923985,
-          "expectedRatioAfterPublishedCash": 2053.0196562669576,
+          "expectedRatioAfterPublishedCash": 2053.0196638805287,
           "qualified": true
         },
         {
@@ -20398,7 +20406,7 @@
           "publishedNav": 3.532932,
           "publishedIncomeIndex": 7294.6909000000005,
           "observedRatio": 2064.7696870474724,
-          "expectedRatioAfterPublishedCash": 2064.7696710607215,
+          "expectedRatioAfterPublishedCash": 2064.7696787178675,
           "qualified": true
         },
         {
@@ -20407,7 +20415,7 @@
           "publishedNav": 3.90359,
           "publishedIncomeIndex": 8060.014300000001,
           "observedRatio": 2064.769686365628,
-          "expectedRatioAfterPublishedCash": 2064.7696710607215,
+          "expectedRatioAfterPublishedCash": 2064.7696787178675,
           "qualified": true
         },
         {
@@ -20416,7 +20424,7 @@
           "publishedNav": 3.70408,
           "publishedIncomeIndex": 7648.0721,
           "observedRatio": 2064.769686399862,
-          "expectedRatioAfterPublishedCash": 2064.7696710607215,
+          "expectedRatioAfterPublishedCash": 2064.7696787178675,
           "qualified": true
         },
         {
@@ -20425,7 +20433,7 @@
           "publishedNav": 3.995065,
           "publishedIncomeIndex": 8248.8891,
           "observedRatio": 2064.7696845983733,
-          "expectedRatioAfterPublishedCash": 2064.7696710607215,
+          "expectedRatioAfterPublishedCash": 2064.7696787178675,
           "qualified": true
         },
         {
@@ -20434,7 +20442,7 @@
           "publishedNav": 4.082442,
           "publishedIncomeIndex": 8429.3024,
           "observedRatio": 2064.769664823162,
-          "expectedRatioAfterPublishedCash": 2064.7696710607215,
+          "expectedRatioAfterPublishedCash": 2064.7696787178675,
           "qualified": true
         },
         {
@@ -20443,7 +20451,7 @@
           "publishedNav": 4.169792,
           "publishedIncomeIndex": 8609.660100000001,
           "observedRatio": 2064.7696815572576,
-          "expectedRatioAfterPublishedCash": 2064.7696710607215,
+          "expectedRatioAfterPublishedCash": 2064.7696787178675,
           "qualified": true
         },
         {
@@ -20452,7 +20460,7 @@
           "publishedNav": 4.238916,
           "publishedIncomeIndex": 8804.0396,
           "observedRatio": 2076.955429171043,
-          "expectedRatioAfterPublishedCash": 2076.9554249289836,
+          "expectedRatioAfterPublishedCash": 2076.95543263132,
           "qualified": true
         },
         {
@@ -20461,7 +20469,7 @@
           "publishedNav": 4.454787,
           "publishedIncomeIndex": 9252.3941,
           "observedRatio": 2076.9554414161667,
-          "expectedRatioAfterPublishedCash": 2076.9554249289836,
+          "expectedRatioAfterPublishedCash": 2076.95543263132,
           "qualified": true
         },
         {
@@ -20470,7 +20478,7 @@
           "publishedNav": 4.363036,
           "publishedIncomeIndex": 9061.8313,
           "observedRatio": 2076.9554273675485,
-          "expectedRatioAfterPublishedCash": 2076.9554249289836,
+          "expectedRatioAfterPublishedCash": 2076.95543263132,
           "qualified": true
         },
         {
@@ -20479,7 +20487,7 @@
           "publishedNav": 4.242244,
           "publishedIncomeIndex": 8810.9517,
           "observedRatio": 2076.955427363442,
-          "expectedRatioAfterPublishedCash": 2076.9554249289836,
+          "expectedRatioAfterPublishedCash": 2076.95543263132,
           "qualified": true
         },
         {
@@ -20488,7 +20496,7 @@
           "publishedNav": 4.138263,
           "publishedIncomeIndex": 8594.987799999999,
           "observedRatio": 2076.9554279174617,
-          "expectedRatioAfterPublishedCash": 2076.9554249289836,
+          "expectedRatioAfterPublishedCash": 2076.95543263132,
           "qualified": true
         },
         {
@@ -20497,7 +20505,7 @@
           "publishedNav": 4.503833,
           "publishedIncomeIndex": 9354.2604,
           "observedRatio": 2076.9554288536006,
-          "expectedRatioAfterPublishedCash": 2076.9554249289836,
+          "expectedRatioAfterPublishedCash": 2076.95543263132,
           "qualified": true
         },
         {
@@ -20506,7 +20514,7 @@
           "publishedNav": 4.702842,
           "publishedIncomeIndex": 9819.6224,
           "observedRatio": 2088.0187767311763,
-          "expectedRatioAfterPublishedCash": 2088.018764195791,
+          "expectedRatioAfterPublishedCash": 2088.0187719391556,
           "qualified": true
         },
         {
@@ -20515,7 +20523,7 @@
           "publishedNav": 4.902782,
           "publishedIncomeIndex": 10237.1008,
           "observedRatio": 2088.0187615929076,
-          "expectedRatioAfterPublishedCash": 2088.018764195791,
+          "expectedRatioAfterPublishedCash": 2088.0187719391556,
           "qualified": true
         },
         {
@@ -20524,7 +20532,7 @@
           "publishedNav": 5.081632,
           "publishedIncomeIndex": 10610.543,
           "observedRatio": 2088.0187703477936,
-          "expectedRatioAfterPublishedCash": 2088.018764195791,
+          "expectedRatioAfterPublishedCash": 2088.0187719391556,
           "qualified": true
         },
         {
@@ -20533,7 +20541,7 @@
           "publishedNav": 5.272249,
           "publishedIncomeIndex": 11008.5549,
           "observedRatio": 2088.018775289255,
-          "expectedRatioAfterPublishedCash": 2088.018764195791,
+          "expectedRatioAfterPublishedCash": 2088.0187719391556,
           "qualified": true
         },
         {
@@ -20542,7 +20550,7 @@
           "publishedNav": 5.171338,
           "publishedIncomeIndex": 10797.8508,
           "observedRatio": 2088.0187680635067,
-          "expectedRatioAfterPublishedCash": 2088.018764195791,
+          "expectedRatioAfterPublishedCash": 2088.0187719391556,
           "qualified": true
         },
         {
@@ -20551,7 +20559,7 @@
           "publishedNav": 5.468575,
           "publishedIncomeIndex": 11418.4872,
           "observedRatio": 2088.0187617432325,
-          "expectedRatioAfterPublishedCash": 2088.018764195791,
+          "expectedRatioAfterPublishedCash": 2088.0187719391556,
           "qualified": true
         },
         {
@@ -20560,7 +20568,7 @@
           "publishedNav": 5.581489,
           "publishedIncomeIndex": 11695.133800000001,
           "observedRatio": 2095.342981057564,
-          "expectedRatioAfterPublishedCash": 2095.342976566147,
+          "expectedRatioAfterPublishedCash": 2095.3429843366735,
           "qualified": true
         },
         {
@@ -20569,7 +20577,7 @@
           "publishedNav": 5.491066,
           "publishedIncomeIndex": 11505.6666,
           "observedRatio": 2095.3429807618413,
-          "expectedRatioAfterPublishedCash": 2095.342976566147,
+          "expectedRatioAfterPublishedCash": 2095.3429843366735,
           "qualified": true
         },
         {
@@ -20578,7 +20586,7 @@
           "publishedNav": 5.563861,
           "publishedIncomeIndex": 11658.1971,
           "observedRatio": 2095.3429821485474,
-          "expectedRatioAfterPublishedCash": 2095.342976566147,
+          "expectedRatioAfterPublishedCash": 2095.3429843366735,
           "qualified": true
         },
         {
@@ -20587,7 +20595,7 @@
           "publishedNav": 5.699491,
           "publishedIncomeIndex": 11942.3885,
           "observedRatio": 2095.3429876457385,
-          "expectedRatioAfterPublishedCash": 2095.342976566147,
+          "expectedRatioAfterPublishedCash": 2095.3429843366735,
           "qualified": true
         },
         {
@@ -20596,7 +20604,7 @@
           "publishedNav": 5.758885,
           "publishedIncomeIndex": 12066.8393,
           "observedRatio": 2095.3429874012068,
-          "expectedRatioAfterPublishedCash": 2095.342976566147,
+          "expectedRatioAfterPublishedCash": 2095.3429843366735,
           "qualified": true
         },
         {
@@ -20605,7 +20613,7 @@
           "publishedNav": 6.016468,
           "publishedIncomeIndex": 12606.564,
           "observedRatio": 2095.3429819621747,
-          "expectedRatioAfterPublishedCash": 2095.342976566147,
+          "expectedRatioAfterPublishedCash": 2095.3429843366735,
           "qualified": true
         },
         {
@@ -20614,7 +20622,7 @@
           "publishedNav": 6.08001,
           "publishedIncomeIndex": 12799.7274,
           "observedRatio": 2105.214859843981,
-          "expectedRatioAfterPublishedCash": 2105.21484999081,
+          "expectedRatioAfterPublishedCash": 2105.214857797946,
           "qualified": true
         },
         {
@@ -20623,7 +20631,7 @@
           "publishedNav": 6.525121,
           "publishedIncomeIndex": 13736.7817,
           "observedRatio": 2105.214861149701,
-          "expectedRatioAfterPublishedCash": 2105.21484999081,
+          "expectedRatioAfterPublishedCash": 2105.214857797946,
           "qualified": true
         },
         {
@@ -20632,7 +20640,7 @@
           "publishedNav": 6.250598,
           "publishedIncomeIndex": 13158.851799999999,
           "observedRatio": 2105.2148610420954,
-          "expectedRatioAfterPublishedCash": 2105.21484999081,
+          "expectedRatioAfterPublishedCash": 2105.214857797946,
           "qualified": true
         },
         {
@@ -20641,7 +20649,7 @@
           "publishedNav": 5.835913,
           "publishedIncomeIndex": 12285.8507,
           "observedRatio": 2105.2148481308755,
-          "expectedRatioAfterPublishedCash": 2105.21484999081,
+          "expectedRatioAfterPublishedCash": 2105.214857797946,
           "qualified": true
         },
         {
@@ -20650,7 +20658,7 @@
           "publishedNav": 6.05044,
           "publishedIncomeIndex": 12737.476200000001,
           "observedRatio": 2105.2148604068466,
-          "expectedRatioAfterPublishedCash": 2105.21484999081,
+          "expectedRatioAfterPublishedCash": 2105.214857797946,
           "qualified": true
         },
         {
@@ -20659,7 +20667,7 @@
           "publishedNav": 6.494278,
           "publishedIncomeIndex": 13671.850499999999,
           "observedRatio": 2105.2148522129787,
-          "expectedRatioAfterPublishedCash": 2105.21484999081,
+          "expectedRatioAfterPublishedCash": 2105.214857797946,
           "qualified": true
         },
         {
@@ -20668,7 +20676,7 @@
           "publishedNav": 6.906703,
           "publishedIncomeIndex": 14597.433799999999,
           "observedRatio": 2113.5169414408,
-          "expectedRatioAfterPublishedCash": 2113.516939633215,
+          "expectedRatioAfterPublishedCash": 2113.5169474711392,
           "qualified": true
         },
         {
@@ -20677,7 +20685,7 @@
           "publishedNav": 6.968763,
           "publishedIncomeIndex": 14728.5987,
           "observedRatio": 2113.516946981839,
-          "expectedRatioAfterPublishedCash": 2113.516939633215,
+          "expectedRatioAfterPublishedCash": 2113.5169474711392,
           "qualified": true
         },
         {
@@ -20686,7 +20694,7 @@
           "publishedNav": 7.307663,
           "publishedIncomeIndex": 15444.869600000002,
           "observedRatio": 2113.516947894286,
-          "expectedRatioAfterPublishedCash": 2113.516939633215,
+          "expectedRatioAfterPublishedCash": 2113.5169474711392,
           "qualified": true
         },
         {
@@ -20695,7 +20703,7 @@
           "publishedNav": 7.666726,
           "publishedIncomeIndex": 16203.7553,
           "observedRatio": 2113.5169432167004,
-          "expectedRatioAfterPublishedCash": 2113.516939633215,
+          "expectedRatioAfterPublishedCash": 2113.5169474711392,
           "qualified": true
         },
         {
@@ -20704,7 +20712,7 @@
           "publishedNav": 7.81333,
           "publishedIncomeIndex": 16513.6054,
           "observedRatio": 2113.516951159109,
-          "expectedRatioAfterPublishedCash": 2113.516939633215,
+          "expectedRatioAfterPublishedCash": 2113.5169474711392,
           "qualified": true
         },
         {
@@ -20713,7 +20721,7 @@
           "publishedNav": 7.950726,
           "publishedIncomeIndex": 16803.9941,
           "observedRatio": 2113.516941723309,
-          "expectedRatioAfterPublishedCash": 2113.516939633215,
+          "expectedRatioAfterPublishedCash": 2113.5169474711392,
           "qualified": true
         },
         {
@@ -20722,7 +20730,7 @@
           "publishedNav": 7.838717,
           "publishedIncomeIndex": 16630.5453,
           "observedRatio": 2121.5902168683983,
-          "expectedRatioAfterPublishedCash": 2121.5902157169257,
+          "expectedRatioAfterPublishedCash": 2121.59022358479,
           "qualified": true
         },
         {
@@ -20731,7 +20739,7 @@
           "publishedNav": 8.077879,
           "publishedIncomeIndex": 17137.9491,
           "observedRatio": 2121.5902218886918,
-          "expectedRatioAfterPublishedCash": 2121.5902157169257,
+          "expectedRatioAfterPublishedCash": 2121.59022358479,
           "qualified": true
         },
         {
@@ -20740,7 +20748,7 @@
           "publishedNav": 7.839184,
           "publishedIncomeIndex": 16631.5361,
           "observedRatio": 2121.590219084027,
-          "expectedRatioAfterPublishedCash": 2121.5902157169257,
+          "expectedRatioAfterPublishedCash": 2121.59022358479,
           "qualified": true
         },
         {
@@ -20749,7 +20757,7 @@
           "publishedNav": 7.290999,
           "publishedIncomeIndex": 15468.512200000001,
           "observedRatio": 2121.5902237814053,
-          "expectedRatioAfterPublishedCash": 2121.5902157169257,
+          "expectedRatioAfterPublishedCash": 2121.59022358479,
           "qualified": true
         },
         {
@@ -20758,7 +20766,7 @@
           "publishedNav": 8.240371,
           "publishedIncomeIndex": 17482.6905,
           "observedRatio": 2121.5902172365786,
-          "expectedRatioAfterPublishedCash": 2121.5902157169257,
+          "expectedRatioAfterPublishedCash": 2121.59022358479,
           "qualified": true
         },
         {
@@ -20767,7 +20775,7 @@
           "publishedNav": 8.276627,
           "publishedIncomeIndex": 17559.6109,
           "observedRatio": 2121.590220267266,
-          "expectedRatioAfterPublishedCash": 2121.5902157169257,
+          "expectedRatioAfterPublishedCash": 2121.59022358479,
           "qualified": true
         },
         {
@@ -20776,7 +20784,7 @@
           "publishedNav": 7.641958,
           "publishedIncomeIndex": 16286.8144,
           "observedRatio": 2131.2357906180587,
-          "expectedRatioAfterPublishedCash": 2131.23578735704,
+          "expectedRatioAfterPublishedCash": 2131.235795260674,
           "qualified": true
         },
         {
@@ -20785,7 +20793,7 @@
           "publishedNav": 7.732426,
           "publishedIncomeIndex": 16479.6231,
           "observedRatio": 2131.235798441524,
-          "expectedRatioAfterPublishedCash": 2131.23578735704,
+          "expectedRatioAfterPublishedCash": 2131.235795260674,
           "qualified": true
         },
         {
@@ -20794,7 +20802,7 @@
           "publishedNav": 7.931876,
           "publishedIncomeIndex": 16904.698,
           "observedRatio": 2131.2357883557434,
-          "expectedRatioAfterPublishedCash": 2131.23578735704,
+          "expectedRatioAfterPublishedCash": 2131.235795260674,
           "qualified": true
         },
         {
@@ -20803,41 +20811,27 @@
           "publishedNav": 8.136115,
           "publishedIncomeIndex": 17339.9795,
           "observedRatio": 2131.235792512766,
-          "expectedRatioAfterPublishedCash": 2131.23578735704,
+          "expectedRatioAfterPublishedCash": 2131.235795260674,
           "qualified": true
         },
         {
           "month": "2026-10",
-          "returnAsOf": "2026-10-29",
-          "publishedNav": 7.378114,
-          "publishedIncomeIndex": 15724.5006,
-          "observedRatio": 2131.23578735704,
-          "expectedRatioAfterPublishedCash": 2131.23578735704,
+          "returnAsOf": "2026-10-30",
+          "publishedNav": 7.32678,
+          "publishedIncomeIndex": 15615.095800000001,
+          "observedRatio": 2131.235795260674,
+          "expectedRatioAfterPublishedCash": 2131.235795260674,
           "qualified": true
         }
       ],
-      "historyExcludedMonths": [
-        "2026-10"
-      ],
-      "anniversaryExcludedMonths": [
-        "2026-10"
-      ],
-      "withheldMonthlyEnds": [
-        {
-          "month": "2026-10",
-          "returnAsOf": "2026-10-29",
-          "lastNavAsOf": "2026-10-30",
-          "reason": "Monthly NAV/return end not independently qualified: 2026-10"
-        }
-      ],
-      "monthlyEndExclusive": "2026-10",
-      "qualificationScope": "Complete reconciled monthly returns only; trailing month withheld. The separately dated published per-share NAV is a price, not a certified trailing-month total return.",
+      "historyExcludedMonths": [],
+      "anniversaryExcludedMonths": [],
       "dailyContinuity": "Published gaps preserved; this adapter qualifies monthly/annual consumers and the latest same-date level, not an arbitrary daily purchase date",
       "scaleProof": {
-        "anchorDate": "2026-10-29",
-        "officialPerShareNav": 7.378114,
-        "sourceIncomeIndex": 15724.5006,
-        "factor": 0.00046921134016809414
+        "anchorDate": "2026-10-30",
+        "officialPerShareNav": 7.32678,
+        "sourceIncomeIndex": 15615.095800000001,
+        "factor": 0.0004692113384280358
       },
       "controlledInstrument": "IE00BJ5JP436",
       "controlledFields": [
@@ -20862,8 +20856,8 @@
           "year": 2023,
           "start": "2022-12-30",
           "end": "2023-12-29",
-          "startValue": 3.422751693301001,
-          "endValue": 4.607478186248637,
+          "startValue": 3.422751680607813,
+          "endValue": 4.607478169161921,
           "dailyDerived": 34.613276074521536,
           "published": 34.613276,
           "publishedDecimalPlaces": 2
@@ -20872,8 +20866,8 @@
           "year": 2024,
           "start": "2023-12-29",
           "end": "2024-12-31",
-          "startValue": 4.607478186248637,
-          "endValue": 6.005777247140275,
+          "startValue": 4.607478169161921,
+          "endValue": 6.005777224868003,
           "dailyDerived": 30.348468389171444,
           "published": 30.348469,
           "publishedDecimalPlaces": 2
@@ -20882,23 +20876,19 @@
           "year": 2025,
           "start": "2024-12-31",
           "end": "2025-12-31",
-          "startValue": 6.005777247140275,
-          "endValue": 7.8032404479392,
-          "dailyDerived": 29.92890223583984,
+          "startValue": 6.005777224868003,
+          "endValue": 7.803240419001081,
+          "dailyDerived": 29.928902235839814,
           "published": 29.928903,
           "publishedDecimalPlaces": 2
         }
       ]
     },
-    "historyExcludedMonths": [
-      "2026-10"
-    ],
-    "anniversaryExcludedMonths": [
-      "2026-10"
-    ],
-    "responseSha256": "a2d7670c84af5f74f3e76e0a545dd71ccbaee4686c15d09a42a8c7025af3a342",
+    "historyExcludedMonths": [],
+    "anniversaryExcludedMonths": [],
+    "responseSha256": "67d7b58a9516fc058581a4568524770d46b45bd38fd49429100034550dd9e9ee",
     "rawSourceHashes": {
-      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true": "ce7581ec450a5bda34534d8423854344d129554eeebe625766db7b7358000f4b"
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true": "a98b399949423d3d43dc4668bf6667eee3b3a13fcdb2db9ac7e4aa004d5358c0"
     }
   },
   "etf_private_equity_ishares": {
@@ -144431,567 +144421,571 @@
     "points": [
       [
         "2015-01",
-        35.1596105
+        35.15961054
       ],
       [
         "2015-02",
-        37.47561878
+        37.47561882
       ],
       [
         "2015-03",
-        39.76142278
+        39.76142282
       ],
       [
         "2015-04",
-        37.24520741
+        37.24520745
       ],
       [
         "2015-05",
-        38.64228753
+        38.64228757
       ],
       [
         "2015-06",
-        38.25847511
+        38.25847515
       ],
       [
         "2015-07",
-        38.68331824
+        38.68331828
       ],
       [
         "2015-08",
-        35.8327907
+        35.83279074
       ],
       [
         "2015-09",
-        34.60071064
+        34.60071068
       ],
       [
         "2015-10",
-        37.31296319
+        37.31296323
       ],
       [
         "2015-11",
-        39.87823024
+        39.87823029
       ],
       [
         "2015-12",
-        36.87945169
+        36.87945174
       ],
       [
         "2016-01",
-        34.48145092
+        34.48145096
       ],
       [
         "2016-02",
-        34.95142181
+        34.95142185
       ],
       [
         "2016-03",
-        36.14209036
+        36.1420904
       ],
       [
         "2016-04",
-        36.48790472
+        36.48790476
       ],
       [
         "2016-05",
-        37.91208041
+        37.91208045
       ],
       [
         "2016-06",
-        38.2969478
+        38.29694784
       ],
       [
         "2016-07",
-        40.1928336
+        40.19283364
       ],
       [
         "2016-08",
-        40.65557552
+        40.65557557
       ],
       [
         "2016-09",
-        40.81513148
+        40.81513152
       ],
       [
         "2016-10",
-        39.75753726
+        39.7575373
       ],
       [
         "2016-11",
-        46.02836011
+        46.02836016
       ],
       [
         "2016-12",
-        47.96679994
+        47.96679999
       ],
       [
         "2017-01",
-        46.80434328
+        46.80434333
       ],
       [
         "2017-02",
-        48.21721194
+        48.21721199
       ],
       [
         "2017-03",
-        47.74273352
+        47.74273357
       ],
       [
         "2017-04",
-        47.09199801
+        47.09199807
       ],
       [
         "2017-05",
-        44.85973862
+        44.85973867
       ],
       [
         "2017-06",
-        45.41460135
+        45.4146014
       ],
       [
         "2017-07",
-        44.60308262
+        44.60308267
       ],
       [
         "2017-08",
-        43.06986438
+        43.06986443
       ],
       [
         "2017-09",
-        46.45079682
+        46.45079687
       ],
       [
         "2017-10",
-        47.55433255
+        47.5543326
       ],
       [
         "2017-11",
-        48.32961103
+        48.32961108
       ],
       [
         "2017-12",
-        47.4778738
+        47.47787385
       ],
       [
         "2018-01",
-        46.84976593
+        46.84976598
       ],
       [
         "2018-02",
-        45.94696082
+        45.94696087
       ],
       [
         "2018-03",
-        46.46314221
+        46.46314226
       ],
       [
         "2018-04",
-        47.86131577
+        47.86131582
       ],
       [
         "2018-05",
-        52.56056223
+        52.56056229
       ],
       [
         "2018-06",
-        53.3050816
+        53.30508166
       ],
       [
         "2018-07",
-        54.60309242
+        54.60309248
       ],
       [
         "2018-08",
-        57.63431295
+        57.63431302
       ],
       [
         "2018-09",
-        56.15328507
+        56.15328513
       ],
       [
         "2018-10",
-        51.36186509
+        51.36186514
       ],
       [
         "2018-11",
-        51.93637871
+        51.93637876
       ],
       [
         "2018-12",
-        45.27769838
+        45.27769843
       ],
       [
         "2019-01",
-        49.89933459
+        49.89933464
       ],
       [
         "2019-02",
-        52.37873964
+        52.37873969
       ],
       [
         "2019-03",
-        51.42261243
+        51.42261248
       ],
       [
         "2019-04",
-        53.47076951
+        53.47076956
       ],
       [
         "2019-05",
-        49.0793461
+        49.07934615
       ],
       [
         "2019-06",
-        51.62645246
+        51.62645252
       ],
       [
         "2019-07",
-        53.26449497
+        53.26449503
       ],
       [
         "2019-08",
-        51.3701832
+        51.37018325
       ],
       [
         "2019-09",
-        53.77289986
+        53.77289992
       ],
       [
         "2019-10",
-        53.5005636
+        53.50056366
       ],
       [
         "2019-11",
-        55.97013181
+        55.97013187
       ],
       [
         "2019-12",
-        56.31789738
+        56.31789744
       ],
       [
         "2020-01",
-        54.91921806
+        54.91921812
       ],
       [
         "2020-02",
-        49.95335955
+        49.9533596
       ],
       [
         "2020-03",
-        38.8099245
+        38.80992454
       ],
       [
         "2020-04",
-        44.06190381
+        44.06190386
       ],
       [
         "2020-05",
-        44.90653529
+        44.90653534
       ],
       [
         "2020-06",
-        46.25928539
+        46.25928544
       ],
       [
         "2020-07",
-        45.51348976
+        45.5134898
       ],
       [
         "2020-08",
-        46.94195062
+        46.94195067
       ],
       [
         "2020-09",
-        45.57568143
+        45.57568148
       ],
       [
         "2020-10",
-        46.78811837
+        46.78811842
       ],
       [
         "2020-11",
-        53.98443616
+        53.98443622
       ],
       [
         "2020-12",
-        57.04695527
+        57.04695533
       ],
       [
         "2021-01",
-        61.28898719
+        61.28898726
       ],
       [
         "2021-02",
-        66.01970842
+        66.01970849
       ],
       [
         "2021-03",
-        70.53953791
+        70.53953799
       ],
       [
         "2021-04",
-        69.81999571
+        69.81999579
       ],
       [
         "2021-05",
-        70.55609157
+        70.55609165
       ],
       [
         "2021-06",
-        72.64989478
+        72.64989485
       ],
       [
         "2021-07",
-        70.83531701
+        70.83531709
       ],
       [
         "2021-08",
-        72.5762386
+        72.57623868
       ],
       [
         "2021-09",
-        72.3601613
+        72.36016137
       ],
       [
         "2021-10",
-        74.38739638
+        74.38739646
       ],
       [
         "2021-11",
-        74.45592793
+        74.45592801
       ],
       [
         "2021-12",
-        78.03352571
+        78.0335258
       ],
       [
         "2022-01",
-        73.40999989
+        73.40999997
       ],
       [
         "2022-02",
-        74.12283317
+        74.12283325
       ],
       [
         "2022-03",
-        75.02816989
+        75.02816997
       ],
       [
         "2022-04",
-        72.82568024
+        72.82568032
       ],
       [
         "2022-05",
-        72.9360699
+        72.93606998
       ],
       [
         "2022-06",
-        68.76332477
+        68.76332484
       ],
       [
         "2022-07",
-        76.9951115
+        76.99511158
       ],
       [
         "2022-08",
-        75.03985157
+        75.03985165
       ],
       [
         "2022-09",
-        69.3320175
+        69.33201758
       ],
       [
         "2022-10",
-        76.52621165
+        76.52621173
       ],
       [
         "2022-11",
-        76.10190283
+        76.10190291
       ],
       [
         "2022-12",
-        69.00588056
+        69.00588064
       ],
       [
         "2023-01",
-        74.37295275
+        74.37295283
       ],
       [
         "2023-02",
-        74.90761748
+        74.90761756
       ],
       [
         "2023-03",
-        69.36889166
+        69.36889174
       ],
       [
         "2023-04",
-        66.77196756
+        66.77196763
       ],
       [
         "2023-05",
-        67.3841607
+        67.38416078
       ],
       [
         "2023-06",
-        71.68373175
+        71.68373182
       ],
       [
         "2023-07",
-        74.48364857
+        74.48364865
       ],
       [
         "2023-08",
-        72.38564633
+        72.38564641
       ],
       [
         "2023-09",
-        69.79901837
+        69.79901845
       ],
       [
         "2023-10",
-        65.60907587
+        65.60907594
       ],
       [
         "2023-11",
-        68.96150437
+        68.96150444
       ],
       [
         "2023-12",
-        76.88292386
+        76.88292395
       ],
       [
         "2024-01",
-        75.25731178
+        75.25731186
       ],
       [
         "2024-02",
-        77.8303209
+        77.83032098
       ],
       [
         "2024-03",
-        80.42118865
+        80.42118874
       ],
       [
         "2024-04",
-        76.51674001
+        76.51674009
       ],
       [
         "2024-05",
-        79.32298498
+        79.32298507
       ],
       [
         "2024-06",
-        78.55433337
+        78.55433345
       ],
       [
         "2024-07",
-        85.99871256
+        85.99871265
       ],
       [
         "2024-08",
-        82.71796595
+        82.71796604
       ],
       [
         "2024-09",
-        82.5713543
+        82.57135439
       ],
       [
         "2024-10",
-        82.67843193
+        82.67843202
       ],
       [
         "2024-11",
-        94.46012087
+        94.46012097
       ],
       [
         "2024-12",
-        88.35054162
+        88.35054172
       ],
       [
         "2025-01",
-        90.86032758
+        90.86032768
       ],
       [
         "2025-02",
-        85.48947857
+        85.48947867
       ],
       [
         "2025-03",
-        77.22116733
+        77.22116741
       ],
       [
         "2025-04",
-        70.35104107
+        70.35104115
       ],
       [
         "2025-05",
-        74.21692656
+        74.21692664
       ],
       [
         "2025-06",
-        74.6808582
+        74.68085829
       ],
       [
         "2025-07",
-        77.15440065
+        77.15440073
       ],
       [
         "2025-08",
-        81.06470875
+        81.06470883
       ],
       [
         "2025-09",
-        81.2524678
+        81.25246789
       ],
       [
         "2025-10",
-        81.82358975
+        81.82358984
       ],
       [
         "2025-11",
-        83.85674608
+        83.85674617
       ],
       [
         "2025-12",
-        82.4550985
+        82.45509859
       ],
       [
         "2026-01",
-        85.80488439
+        85.80488449
       ],
       [
         "2026-02",
-        88.49837436
+        88.49837446
       ],
       [
         "2026-03",
-        87.15909988
+        87.15909998
       ],
       [
         "2026-04",
-        94.53188676
+        94.53188686
       ],
       [
         "2026-05",
-        95.95349704
+        95.95349714
       ],
       [
         "2026-06",
-        105.15256453
+        105.15256464
       ],
       [
         "2026-07",
-        102.2908829
+        102.29088301
       ],
       [
         "2026-08",
-        100.66531634
+        100.66531645
       ],
       [
         "2026-09",
-        97.03422443
+        97.03422453
+      ],
+      [
+        "2026-10",
+        101.70590584
       ]
     ],
     "anniversaryPoints": [
@@ -145558,12 +145552,16 @@
       [
         "2026-09",
         97.03422457
+      ],
+      [
+        "2026-10",
+        101.70590584
       ]
     ],
     "anniversaryValuationBasis": "fund-nav-price",
     "anniversaryVariant": "Valeurs liquidatives publiées · hors distributions",
     "checkedAt": "2026-11-02",
-    "periodEnd": "2026-09",
+    "periodEnd": "2026-10",
     "sourceUrls": [
       "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
@@ -145588,10 +145586,10 @@
       "checkedAt": "2026-11-02",
       "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
       "maxAgeDays": 7,
-      "sha256": "7873c051a4ef842066cce6951f5a7f7596b339f05f54366fcffe81b9ce2d1c80"
+      "sha256": "6fa14343f88f5cabe1a7696044756eb74f60a307f3cb7057de1de3260a80d92d"
     },
     "nativeValuationCurrency": "USD",
-    "lastOfficialValuation": "2026-10-29",
+    "lastOfficialValuation": "2026-10-30",
     "financialConvention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
     "calendarProof": {
       "incomeTreatment": "Distributing",
@@ -145821,7 +145819,7 @@
           "publishedNav": 44.737608,
           "publishedIncomeIndex": 18711.070799999998,
           "observedRatio": 418.2403046671605,
-          "expectedRatioAfterPublishedCash": 418.2403087689586,
+          "expectedRatioAfterPublishedCash": 418.2403083143234,
           "qualified": true
         },
         {
@@ -145830,7 +145828,7 @@
           "publishedNav": 47.41036,
           "publishedIncomeIndex": 19828.9238,
           "observedRatio": 418.24031287676365,
-          "expectedRatioAfterPublishedCash": 418.2403087689586,
+          "expectedRatioAfterPublishedCash": 418.2403083143234,
           "qualified": true
         },
         {
@@ -145839,7 +145837,7 @@
           "publishedNav": 48.14952,
           "publishedIncomeIndex": 20138.0699,
           "observedRatio": 418.24030436855855,
-          "expectedRatioAfterPublishedCash": 418.2403087689586,
+          "expectedRatioAfterPublishedCash": 418.2403083143234,
           "qualified": true
         },
         {
@@ -145848,7 +145846,7 @@
           "publishedNav": 47.014066,
           "publishedIncomeIndex": 19663.1773,
           "observedRatio": 418.2403049334214,
-          "expectedRatioAfterPublishedCash": 418.2403087689586,
+          "expectedRatioAfterPublishedCash": 418.2403083143234,
           "qualified": true
         },
         {
@@ -145857,7 +145855,7 @@
           "publishedNav": 47.711997,
           "publishedIncomeIndex": 19955.0801,
           "observedRatio": 418.24030337694734,
-          "expectedRatioAfterPublishedCash": 418.2403087689586,
+          "expectedRatioAfterPublishedCash": 418.2403083143234,
           "qualified": true
         },
         {
@@ -145866,7 +145864,7 @@
           "publishedNav": 47.930543,
           "publishedIncomeIndex": 20151.2945,
           "observedRatio": 420.4270020475253,
-          "expectedRatioAfterPublishedCash": 420.4270065150503,
+          "expectedRatioAfterPublishedCash": 420.42700605803816,
           "qualified": true
         },
         {
@@ -145875,7 +145873,7 @@
           "publishedNav": 47.501244,
           "publishedIncomeIndex": 19970.8056,
           "observedRatio": 420.4270018696773,
-          "expectedRatioAfterPublishedCash": 420.4270065150503,
+          "expectedRatioAfterPublishedCash": 420.42700605803816,
           "qualified": true
         },
         {
@@ -145884,7 +145882,7 @@
           "publishedNav": 44.99594,
           "publishedIncomeIndex": 18917.5082,
           "observedRatio": 420.4270029696013,
-          "expectedRatioAfterPublishedCash": 420.4270065150503,
+          "expectedRatioAfterPublishedCash": 420.42700605803816,
           "qualified": true
         },
         {
@@ -145893,7 +145891,7 @@
           "publishedNav": 43.402302,
           "publishedIncomeIndex": 18247.500099999997,
           "observedRatio": 420.42701099126026,
-          "expectedRatioAfterPublishedCash": 420.4270065150503,
+          "expectedRatioAfterPublishedCash": 420.42700605803816,
           "qualified": true
         },
         {
@@ -145902,7 +145900,7 @@
           "publishedNav": 46.027407,
           "publishedIncomeIndex": 19351.1647,
           "observedRatio": 420.42700124297687,
-          "expectedRatioAfterPublishedCash": 420.4270065150503,
+          "expectedRatioAfterPublishedCash": 420.42700605803816,
           "qualified": true
         },
         {
@@ -145911,7 +145909,7 @@
           "publishedNav": 47.236087,
           "publishedIncomeIndex": 19859.3264,
           "observedRatio": 420.4270010765287,
-          "expectedRatioAfterPublishedCash": 420.4270065150503,
+          "expectedRatioAfterPublishedCash": 420.42700605803816,
           "qualified": true
         },
         {
@@ -145920,7 +145918,7 @@
           "publishedNav": 44.955838,
           "publishedIncomeIndex": 18900.6482,
           "observedRatio": 420.4270021615435,
-          "expectedRatioAfterPublishedCash": 420.4270065150503,
+          "expectedRatioAfterPublishedCash": 420.42700605803816,
           "qualified": true
         },
         {
@@ -145929,7 +145927,7 @@
           "publishedNav": 41.892502,
           "publishedIncomeIndex": 17725.242700000003,
           "observedRatio": 423.1125345533194,
-          "expectedRatioAfterPublishedCash": 423.1125392992442,
+          "expectedRatioAfterPublishedCash": 423.1125388393128,
           "qualified": true
         },
         {
@@ -145938,7 +145936,7 @@
           "publishedNav": 42.339048,
           "publishedIncomeIndex": 17914.1819,
           "observedRatio": 423.11253432056384,
-          "expectedRatioAfterPublishedCash": 423.1125392992442,
+          "expectedRatioAfterPublishedCash": 423.1125388393128,
           "qualified": true
         },
         {
@@ -145947,7 +145945,7 @@
           "publishedNav": 45.779857,
           "publishedIncomeIndex": 19370.0313,
           "observedRatio": 423.1125339688151,
-          "expectedRatioAfterPublishedCash": 423.1125392992442,
+          "expectedRatioAfterPublishedCash": 423.1125388393128,
           "qualified": true
         },
         {
@@ -145956,7 +145954,7 @@
           "publishedNav": 46.290959,
           "publishedIncomeIndex": 19586.285,
           "observedRatio": 423.1125347824399,
-          "expectedRatioAfterPublishedCash": 423.1125392992442,
+          "expectedRatioAfterPublishedCash": 423.1125388393128,
           "qualified": true
         },
         {
@@ -145965,7 +145963,7 @@
           "publishedNav": 47.047482,
           "publishedIncomeIndex": 19906.3794,
           "observedRatio": 423.1125355444102,
-          "expectedRatioAfterPublishedCash": 423.1125392992442,
+          "expectedRatioAfterPublishedCash": 423.1125388393128,
           "qualified": true
         },
         {
@@ -145974,7 +145972,7 @@
           "publishedNav": 47.303526,
           "publishedIncomeIndex": 20014.714799999998,
           "observedRatio": 423.11253499369155,
-          "expectedRatioAfterPublishedCash": 423.1125392992442,
+          "expectedRatioAfterPublishedCash": 423.1125388393128,
           "qualified": true
         },
         {
@@ -145983,7 +145981,7 @@
           "publishedNav": 49.459241,
           "publishedIncomeIndex": 21026.3534,
           "observedRatio": 425.12486999143397,
-          "expectedRatioAfterPublishedCash": 425.12487494626055,
+          "expectedRatioAfterPublishedCash": 425.12487448414174,
           "qualified": true
         },
         {
@@ -145992,7 +145990,7 @@
           "publishedNav": 50.114202,
           "publishedIncomeIndex": 21304.7936,
           "observedRatio": 425.1248697923994,
-          "expectedRatioAfterPublishedCash": 425.12487494626055,
+          "expectedRatioAfterPublishedCash": 425.12487448414174,
           "qualified": true
         },
         {
@@ -146001,7 +145999,7 @@
           "publishedNav": 50.441944,
           "publishedIncomeIndex": 21444.1249,
           "observedRatio": 425.12487028652185,
-          "expectedRatioAfterPublishedCash": 425.12487494626055,
+          "expectedRatioAfterPublishedCash": 425.12487448414174,
           "qualified": true
         },
         {
@@ -146010,7 +146008,7 @@
           "publishedNav": 48.188391,
           "publishedIncomeIndex": 20486.0835,
           "observedRatio": 425.12487084285505,
-          "expectedRatioAfterPublishedCash": 425.12487494626055,
+          "expectedRatioAfterPublishedCash": 425.12487448414174,
           "qualified": true
         },
         {
@@ -146019,7 +146017,7 @@
           "publishedNav": 54.203896,
           "publishedIncomeIndex": 23043.424300000002,
           "observedRatio": 425.12487109782666,
-          "expectedRatioAfterPublishedCash": 425.12487494626055,
+          "expectedRatioAfterPublishedCash": 425.12487448414174,
           "qualified": true
         },
         {
@@ -146028,7 +146026,7 @@
           "publishedNav": 55.98737,
           "publishedIncomeIndex": 23801.6234,
           "observedRatio": 425.124870126959,
-          "expectedRatioAfterPublishedCash": 425.12487494626055,
+          "expectedRatioAfterPublishedCash": 425.12487448414174,
           "qualified": true
         },
         {
@@ -146037,7 +146035,7 @@
           "publishedNav": 55.515106,
           "publishedIncomeIndex": 23696.3028,
           "observedRatio": 426.84423227076246,
-          "expectedRatioAfterPublishedCash": 426.8442370225538,
+          "expectedRatioAfterPublishedCash": 426.84423655856597,
           "qualified": true
         },
         {
@@ -146046,7 +146044,7 @@
           "publishedNav": 56.350741,
           "publishedIncomeIndex": 24052.9888,
           "observedRatio": 426.8442326250865,
-          "expectedRatioAfterPublishedCash": 426.8442370225538,
+          "expectedRatioAfterPublishedCash": 426.84423655856597,
           "qualified": true
         },
         {
@@ -146055,7 +146053,7 @@
           "publishedNav": 56.291162,
           "publishedIncomeIndex": 24027.5578,
           "observedRatio": 426.84423178189144,
-          "expectedRatioAfterPublishedCash": 426.8442370225538,
+          "expectedRatioAfterPublishedCash": 426.84423655856597,
           "qualified": true
         },
         {
@@ -146064,7 +146062,7 @@
           "publishedNav": 56.765162,
           "publishedIncomeIndex": 24229.882,
           "observedRatio": 426.8442323832354,
-          "expectedRatioAfterPublishedCash": 426.8442370225538,
+          "expectedRatioAfterPublishedCash": 426.84423655856597,
           "qualified": true
         },
         {
@@ -146073,7 +146071,7 @@
           "publishedNav": 55.514049,
           "publishedIncomeIndex": 23695.8516,
           "observedRatio": 426.84423180878053,
-          "expectedRatioAfterPublishedCash": 426.8442370225538,
+          "expectedRatioAfterPublishedCash": 426.84423655856597,
           "qualified": true
         },
         {
@@ -146082,7 +146080,7 @@
           "publishedNav": 57.157322,
           "publishedIncomeIndex": 24397.2732,
           "observedRatio": 426.84423178538697,
-          "expectedRatioAfterPublishedCash": 426.8442370225538,
+          "expectedRatioAfterPublishedCash": 426.84423655856597,
           "qualified": true
         },
         {
@@ -146091,7 +146089,7 @@
           "publishedNav": 57.453025,
           "publishedIncomeIndex": 24622.7083,
           "observedRatio": 428.57113789917935,
-          "expectedRatioAfterPublishedCash": 428.5711427086499,
+          "expectedRatioAfterPublishedCash": 428.5711422427849,
           "qualified": true
         },
         {
@@ -146100,7 +146098,7 @@
           "publishedNav": 55.941712,
           "publishedIncomeIndex": 23975.0032,
           "observedRatio": 428.57113847355976,
-          "expectedRatioAfterPublishedCash": 428.5711427086499,
+          "expectedRatioAfterPublishedCash": 428.5711422427849,
           "qualified": true
         },
         {
@@ -146109,7 +146107,7 @@
           "publishedNav": 60.236128,
           "publishedIncomeIndex": 25815.4659,
           "observedRatio": 428.57113757378295,
-          "expectedRatioAfterPublishedCash": 428.5711427086499,
+          "expectedRatioAfterPublishedCash": 428.5711422427849,
           "qualified": true
         },
         {
@@ -146118,7 +146116,7 @@
           "publishedNav": 60.789636,
           "publishedIncomeIndex": 26052.6835,
           "observedRatio": 428.5711383433847,
-          "expectedRatioAfterPublishedCash": 428.5711427086499,
+          "expectedRatioAfterPublishedCash": 428.5711422427849,
           "qualified": true
         },
         {
@@ -146127,7 +146125,7 @@
           "publishedNav": 62.90079,
           "publishedIncomeIndex": 26957.4631,
           "observedRatio": 428.57113718285575,
-          "expectedRatioAfterPublishedCash": 428.5711427086499,
+          "expectedRatioAfterPublishedCash": 428.5711422427849,
           "qualified": true
         },
         {
@@ -146136,7 +146134,7 @@
           "publishedNav": 62.543214,
           "publishedIncomeIndex": 26804.2164,
           "observedRatio": 428.5711380294591,
-          "expectedRatioAfterPublishedCash": 428.5711427086499,
+          "expectedRatioAfterPublishedCash": 428.5711422427849,
           "qualified": true
         },
         {
@@ -146145,7 +146143,7 @@
           "publishedNav": 63.82002,
           "publishedIncomeIndex": 27472.925600000002,
           "observedRatio": 430.4750390238048,
-          "expectedRatioAfterPublishedCash": 430.4750441486862,
+          "expectedRatioAfterPublishedCash": 430.47504368075164,
           "qualified": true
         },
         {
@@ -146154,7 +146152,7 @@
           "publishedNav": 61.369241,
           "publishedIncomeIndex": 26417.9264,
           "observedRatio": 430.47503879019786,
-          "expectedRatioAfterPublishedCash": 430.4750441486862,
+          "expectedRatioAfterPublishedCash": 430.47504368075164,
           "qualified": true
         },
         {
@@ -146163,7 +146161,7 @@
           "publishedNav": 62.602342,
           "publishedIncomeIndex": 26948.745600000002,
           "observedRatio": 430.47503877730327,
-          "expectedRatioAfterPublishedCash": 430.4750441486862,
+          "expectedRatioAfterPublishedCash": 430.47504368075164,
           "qualified": true
         },
         {
@@ -146172,7 +146170,7 @@
           "publishedNav": 63.219588,
           "publishedIncomeIndex": 27214.454599999997,
           "observedRatio": 430.47503884397344,
-          "expectedRatioAfterPublishedCash": 430.4750441486862,
+          "expectedRatioAfterPublishedCash": 430.47504368075164,
           "qualified": true
         },
         {
@@ -146181,7 +146179,7 @@
           "publishedNav": 67.242645,
           "publishedIncomeIndex": 28946.280300000002,
           "observedRatio": 430.4750400582845,
-          "expectedRatioAfterPublishedCash": 430.4750441486862,
+          "expectedRatioAfterPublishedCash": 430.47504368075164,
           "qualified": true
         },
         {
@@ -146190,7 +146188,7 @@
           "publishedNav": 67.956141,
           "publishedIncomeIndex": 29253.4225,
           "observedRatio": 430.4750397760226,
-          "expectedRatioAfterPublishedCash": 430.4750441486862,
+          "expectedRatioAfterPublishedCash": 430.47504368075164,
           "qualified": true
         },
         {
@@ -146199,7 +146197,7 @@
           "publishedNav": 69.786307,
           "publishedIncomeIndex": 30166.2524,
           "observedRatio": 432.26606617828344,
-          "expectedRatioAfterPublishedCash": 432.2660716661827,
+          "expectedRatioAfterPublishedCash": 432.26607119630125,
           "qualified": true
         },
         {
@@ -146208,7 +146206,7 @@
           "publishedNav": 73.126906,
           "publishedIncomeIndex": 31610.28,
           "observedRatio": 432.2660663367871,
-          "expectedRatioAfterPublishedCash": 432.2660716661827,
+          "expectedRatioAfterPublishedCash": 432.26607119630125,
           "qualified": true
         },
         {
@@ -146217,7 +146215,7 @@
           "publishedNav": 70.789128,
           "publishedIncomeIndex": 30599.737900000004,
           "observedRatio": 432.26606633719234,
-          "expectedRatioAfterPublishedCash": 432.2660716661827,
+          "expectedRatioAfterPublishedCash": 432.26607119630125,
           "qualified": true
         },
         {
@@ -146226,7 +146224,7 @@
           "publishedNav": 63.305778,
           "publishedIncomeIndex": 27364.939700000003,
           "observedRatio": 432.2660674038317,
-          "expectedRatioAfterPublishedCash": 432.2660716661827,
+          "expectedRatioAfterPublishedCash": 432.26607119630125,
           "qualified": true
         },
         {
@@ -146235,7 +146233,7 @@
           "publishedNav": 64.245785,
           "publishedIncomeIndex": 27771.272800000002,
           "observedRatio": 432.26606694898356,
-          "expectedRatioAfterPublishedCash": 432.2660716661827,
+          "expectedRatioAfterPublishedCash": 432.26607119630125,
           "qualified": true
         },
         {
@@ -146244,7 +146242,7 @@
           "publishedNav": 56.457638,
           "publishedIncomeIndex": 24404.7211,
           "observedRatio": 432.26606646207904,
-          "expectedRatioAfterPublishedCash": 432.2660716661827,
+          "expectedRatioAfterPublishedCash": 432.26607119630125,
           "qualified": true
         },
         {
@@ -146253,7 +146251,7 @@
           "publishedNav": 62.108804,
           "publishedIncomeIndex": 26985.0484,
           "observedRatio": 434.48024534492725,
-          "expectedRatioAfterPublishedCash": 434.4802499720888,
+          "expectedRatioAfterPublishedCash": 434.4802494998005,
           "qualified": true
         },
         {
@@ -146262,7 +146260,7 @@
           "publishedNav": 64.786272,
           "publishedIncomeIndex": 28148.355299999996,
           "observedRatio": 434.48024451846834,
-          "expectedRatioAfterPublishedCash": 434.4802499720888,
+          "expectedRatioAfterPublishedCash": 434.4802494998005,
           "qualified": true
         },
         {
@@ -146271,7 +146269,7 @@
           "publishedNav": 62.595224,
           "publishedIncomeIndex": 27196.388300000002,
           "observedRatio": 434.4802456494125,
-          "expectedRatioAfterPublishedCash": 434.4802499720888,
+          "expectedRatioAfterPublishedCash": 434.4802494998005,
           "qualified": true
         },
         {
@@ -146280,7 +146278,7 @@
           "publishedNav": 64.989898,
           "publishedIncomeIndex": 28236.8268,
           "observedRatio": 434.48024491437116,
-          "expectedRatioAfterPublishedCash": 434.4802499720888,
+          "expectedRatioAfterPublishedCash": 434.4802494998005,
           "qualified": true
         },
         {
@@ -146289,7 +146287,7 @@
           "publishedNav": 59.29616,
           "publishedIncomeIndex": 25763.010100000003,
           "observedRatio": 434.48024458919434,
-          "expectedRatioAfterPublishedCash": 434.4802499720888,
+          "expectedRatioAfterPublishedCash": 434.4802494998005,
           "qualified": true
         },
         {
@@ -146298,7 +146296,7 @@
           "publishedNav": 63.654415,
           "publishedIncomeIndex": 27656.5858,
           "observedRatio": 434.4802446146116,
-          "expectedRatioAfterPublishedCash": 434.4802499720888,
+          "expectedRatioAfterPublishedCash": 434.4802494998005,
           "qualified": true
         },
         {
@@ -146307,7 +146305,7 @@
           "publishedNav": 64.020015,
           "publishedIncomeIndex": 27959.902299999998,
           "observedRatio": 436.73689079891653,
-          "expectedRatioAfterPublishedCash": 436.73689604503255,
+          "expectedRatioAfterPublishedCash": 436.73689557029127,
           "qualified": true
         },
         {
@@ -146316,7 +146314,7 @@
           "publishedNav": 61.106435,
           "publishedIncomeIndex": 26687.4345,
           "observedRatio": 436.7368919492685,
-          "expectedRatioAfterPublishedCash": 436.73689604503255,
+          "expectedRatioAfterPublishedCash": 436.73689557029127,
           "qualified": true
         },
         {
@@ -146325,7 +146323,7 @@
           "publishedNav": 63.112531,
           "publishedIncomeIndex": 27563.570600000003,
           "observedRatio": 436.7368914423667,
-          "expectedRatioAfterPublishedCash": 436.73689604503255,
+          "expectedRatioAfterPublishedCash": 436.73689557029127,
           "qualified": true
         },
         {
@@ -146334,7 +146332,7 @@
           "publishedNav": 64.321052,
           "publishedIncomeIndex": 28091.376300000004,
           "observedRatio": 436.7368913680082,
-          "expectedRatioAfterPublishedCash": 436.73689604503255,
+          "expectedRatioAfterPublishedCash": 436.73689557029127,
           "qualified": true
         },
         {
@@ -146343,7 +146341,7 @@
           "publishedNav": 66.252445,
           "publishedIncomeIndex": 28934.886899999998,
           "observedRatio": 436.7368917479196,
-          "expectedRatioAfterPublishedCash": 436.73689604503255,
+          "expectedRatioAfterPublishedCash": 436.73689557029127,
           "qualified": true
         },
         {
@@ -146352,7 +146350,7 @@
           "publishedNav": 68.193816,
           "publishedIncomeIndex": 29782.755200000003,
           "observedRatio": 436.73689121605986,
-          "expectedRatioAfterPublishedCash": 436.73689604503255,
+          "expectedRatioAfterPublishedCash": 436.73689557029127,
           "qualified": true
         },
         {
@@ -146361,7 +146359,7 @@
           "publishedNav": 65.096005,
           "publishedIncomeIndex": 28572.5658,
           "observedRatio": 438.9296363117829,
-          "expectedRatioAfterPublishedCash": 438.9296404359138,
+          "expectedRatioAfterPublishedCash": 438.9296399587889,
           "qualified": true
         },
         {
@@ -146370,7 +146368,7 @@
           "publishedNav": 58.808145,
           "publishedIncomeIndex": 25812.6377,
           "observedRatio": 438.929636362446,
-          "expectedRatioAfterPublishedCash": 438.9296404359138,
+          "expectedRatioAfterPublishedCash": 438.9296399587889,
           "qualified": true
         },
         {
@@ -146379,7 +146377,7 @@
           "publishedNav": 45.602005,
           "publishedIncomeIndex": 20016.0714,
           "observedRatio": 438.92963478250573,
-          "expectedRatioAfterPublishedCash": 438.9296404359138,
+          "expectedRatioAfterPublishedCash": 438.9296399587889,
           "qualified": true
         },
         {
@@ -146388,7 +146386,7 @@
           "publishedNav": 51.395083,
           "publishedIncomeIndex": 22558.825100000002,
           "observedRatio": 438.92963651795253,
-          "expectedRatioAfterPublishedCash": 438.9296404359138,
+          "expectedRatioAfterPublishedCash": 438.9296399587889,
           "qualified": true
         },
         {
@@ -146397,7 +146395,7 @@
           "publishedNav": 53.632481,
           "publishedIncomeIndex": 23540.885299999998,
           "observedRatio": 438.92963482334517,
-          "expectedRatioAfterPublishedCash": 438.9296404359138,
+          "expectedRatioAfterPublishedCash": 438.9296399587889,
           "qualified": true
         },
         {
@@ -146406,7 +146404,7 @@
           "publishedNav": 55.555684,
           "publishedIncomeIndex": 24385.036099999998,
           "observedRatio": 438.92963499468385,
-          "expectedRatioAfterPublishedCash": 438.9296404359138,
+          "expectedRatioAfterPublishedCash": 438.9296399587889,
           "qualified": true
         },
         {
@@ -146415,7 +146413,7 @@
           "publishedNav": 57.516683,
           "publishedIncomeIndex": 25384.5344,
           "observedRatio": 441.342112861411,
-          "expectedRatioAfterPublishedCash": 441.34211763850396,
+          "expectedRatioAfterPublishedCash": 441.34211715875665,
           "qualified": true
         },
         {
@@ -146424,7 +146422,7 @@
           "publishedNav": 59.782505,
           "publishedIncomeIndex": 26384.5371,
           "observedRatio": 441.34211338250213,
-          "expectedRatioAfterPublishedCash": 441.34211763850396,
+          "expectedRatioAfterPublishedCash": 441.34211715875665,
           "qualified": true
         },
         {
@@ -146433,7 +146431,7 @@
           "publishedNav": 56.914711,
           "publishedIncomeIndex": 25118.8588,
           "observedRatio": 441.34211276237534,
-          "expectedRatioAfterPublishedCash": 441.34211763850396,
+          "expectedRatioAfterPublishedCash": 441.34211715875665,
           "qualified": true
         },
         {
@@ -146442,7 +146440,7 @@
           "publishedNav": 58.378892,
           "publishedIncomeIndex": 25765.063500000004,
           "observedRatio": 441.3421121456023,
-          "expectedRatioAfterPublishedCash": 441.34211763850396,
+          "expectedRatioAfterPublishedCash": 441.34211715875665,
           "qualified": true
         },
         {
@@ -146451,7 +146449,7 @@
           "publishedNav": 68.981723,
           "publishedIncomeIndex": 30444.5394,
           "observedRatio": 441.3421131855463,
-          "expectedRatioAfterPublishedCash": 441.34211763850396,
+          "expectedRatioAfterPublishedCash": 441.34211715875665,
           "qualified": true
         },
         {
@@ -146460,7 +146458,7 @@
           "publishedNav": 74.665689,
           "publishedIncomeIndex": 32953.1129,
           "observedRatio": 441.34211230542587,
-          "expectedRatioAfterPublishedCash": 441.34211763850396,
+          "expectedRatioAfterPublishedCash": 441.34211715875665,
           "qualified": true
         },
         {
@@ -146469,7 +146467,7 @@
           "publishedNav": 79.032174,
           "publishedIncomeIndex": 35014.0246,
           "observedRatio": 443.03506822423986,
-          "expectedRatioAfterPublishedCash": 443.03507317634933,
+          "expectedRatioAfterPublishedCash": 443.0350726947617,
           "qualified": true
         },
         {
@@ -146478,7 +146476,7 @@
           "publishedNav": 85.027218,
           "publishedIncomeIndex": 37670.039300000004,
           "observedRatio": 443.03506790025756,
-          "expectedRatioAfterPublishedCash": 443.03507317634933,
+          "expectedRatioAfterPublishedCash": 443.0350726947617,
           "qualified": true
         },
         {
@@ -146487,7 +146485,7 @@
           "publishedNav": 87.880269,
           "publishedIncomeIndex": 38934.041000000005,
           "observedRatio": 443.0350685430879,
-          "expectedRatioAfterPublishedCash": 443.03507317634933,
+          "expectedRatioAfterPublishedCash": 443.0350726947617,
           "qualified": true
         },
         {
@@ -146496,7 +146494,7 @@
           "publishedNav": 89.632305,
           "publishedIncomeIndex": 39710.254400000005,
           "observedRatio": 443.03506866190713,
-          "expectedRatioAfterPublishedCash": 443.03507317634933,
+          "expectedRatioAfterPublishedCash": 443.0350726947617,
           "qualified": true
         },
         {
@@ -146505,7 +146503,7 @@
           "publishedNav": 91.469406,
           "publishedIncomeIndex": 40524.1545,
           "observedRatio": 443.0350679220547,
-          "expectedRatioAfterPublishedCash": 443.03507317634933,
+          "expectedRatioAfterPublishedCash": 443.0350726947617,
           "qualified": true
         },
         {
@@ -146514,7 +146512,7 @@
           "publishedNav": 91.736792,
           "publishedIncomeIndex": 40642.6159,
           "observedRatio": 443.03506819815544,
-          "expectedRatioAfterPublishedCash": 443.03507317634933,
+          "expectedRatioAfterPublishedCash": 443.0350726947617,
           "qualified": true
         },
         {
@@ -146523,7 +146521,7 @@
           "publishedNav": 89.182247,
           "publishedIncomeIndex": 39650.8262,
           "observedRatio": 444.604476045552,
-          "expectedRatioAfterPublishedCash": 444.60448130468313,
+          "expectedRatioAfterPublishedCash": 444.6044808213896,
           "qualified": true
         },
         {
@@ -146532,7 +146530,7 @@
           "publishedNav": 90.936076,
           "publishedIncomeIndex": 40430.5865,
           "observedRatio": 444.6044768854992,
-          "expectedRatioAfterPublishedCash": 444.60448130468313,
+          "expectedRatioAfterPublishedCash": 444.6044808213896,
           "qualified": true
         },
         {
@@ -146541,7 +146539,7 @@
           "publishedNav": 88.711673,
           "publishedIncomeIndex": 39441.6069,
           "observedRatio": 444.6044761211977,
-          "expectedRatioAfterPublishedCash": 444.60448130468313,
+          "expectedRatioAfterPublishedCash": 444.6044808213896,
           "qualified": true
         },
         {
@@ -146550,7 +146548,7 @@
           "publishedNav": 91.716831,
           "publishedIncomeIndex": 40777.713599999995,
           "observedRatio": 444.6044761402626,
-          "expectedRatioAfterPublishedCash": 444.60448130468313,
+          "expectedRatioAfterPublishedCash": 444.6044808213896,
           "qualified": true
         },
         {
@@ -146559,7 +146557,7 @@
           "publishedNav": 89.57823,
           "publishedIncomeIndex": 39826.882,
           "observedRatio": 444.60447588660764,
-          "expectedRatioAfterPublishedCash": 444.60448130468313,
+          "expectedRatioAfterPublishedCash": 444.6044808213896,
           "qualified": true
         },
         {
@@ -146568,7 +146566,7 @@
           "publishedNav": 93.576754,
           "publishedIncomeIndex": 41604.6437,
           "observedRatio": 444.60447623562584,
-          "expectedRatioAfterPublishedCash": 444.60448130468313,
+          "expectedRatioAfterPublishedCash": 444.6044808213896,
           "qualified": true
         },
         {
@@ -146577,7 +146575,7 @@
           "publishedNav": 86.291156,
           "publishedIncomeIndex": 38552.074199999995,
           "observedRatio": 446.7673859879684,
-          "expectedRatioAfterPublishedCash": 446.7673910682397,
+          "expectedRatioAfterPublishedCash": 446.76739058259506,
           "qualified": true
         },
         {
@@ -146586,7 +146584,7 @@
           "publishedNav": 87.464902,
           "publishedIncomeIndex": 39076.4656,
           "observedRatio": 446.76738561943404,
-          "expectedRatioAfterPublishedCash": 446.7673910682397,
+          "expectedRatioAfterPublishedCash": 446.76739058259506,
           "qualified": true
         },
         {
@@ -146595,7 +146593,7 @@
           "publishedNav": 87.758464,
           "publishedIncomeIndex": 39207.6196,
           "observedRatio": 446.7673864483316,
-          "expectedRatioAfterPublishedCash": 446.7673910682397,
+          "expectedRatioAfterPublishedCash": 446.76739058259506,
           "qualified": true
         },
         {
@@ -146604,7 +146602,7 @@
           "publishedNav": 80.8775,
           "publishedIncomeIndex": 36133.4293,
           "observedRatio": 446.76738647955244,
-          "expectedRatioAfterPublishedCash": 446.7673910682397,
+          "expectedRatioAfterPublishedCash": 446.76739058259506,
           "qualified": true
         },
         {
@@ -146613,7 +146611,7 @@
           "publishedNav": 82.329603,
           "publishedIncomeIndex": 36782.1815,
           "observedRatio": 446.7673857239418,
-          "expectedRatioAfterPublishedCash": 446.7673910682397,
+          "expectedRatioAfterPublishedCash": 446.76739058259506,
           "qualified": true
         },
         {
@@ -146622,7 +146620,7 @@
           "publishedNav": 75.25746,
           "publishedIncomeIndex": 33622.578700000005,
           "observedRatio": 446.76738624981505,
-          "expectedRatioAfterPublishedCash": 446.7673910682397,
+          "expectedRatioAfterPublishedCash": 446.76739058259506,
           "qualified": true
         },
         {
@@ -146631,7 +146629,7 @@
           "publishedNav": 82.327262,
           "publishedIncomeIndex": 36962.5717,
           "observedRatio": 448.97122535181603,
-          "expectedRatioAfterPublishedCash": 448.97123026867735,
+          "expectedRatioAfterPublishedCash": 448.9712297806371,
           "qualified": true
         },
         {
@@ -146640,7 +146638,7 @@
           "publishedNav": 78.678755,
           "publishedIncomeIndex": 35324.497,
           "observedRatio": 448.9712248242871,
-          "expectedRatioAfterPublishedCash": 448.97123026867735,
+          "expectedRatioAfterPublishedCash": 448.9712297806371,
           "qualified": true
         },
         {
@@ -146649,7 +146647,7 @@
           "publishedNav": 70.862239,
           "publishedIncomeIndex": 31815.106300000003,
           "observedRatio": 448.9712257045675,
-          "expectedRatioAfterPublishedCash": 448.97123026867735,
+          "expectedRatioAfterPublishedCash": 448.9712297806371,
           "qualified": true
         },
         {
@@ -146658,7 +146656,7 @@
           "publishedNav": 79.547153,
           "publishedIncomeIndex": 35714.3828,
           "observedRatio": 448.9712259092415,
-          "expectedRatioAfterPublishedCash": 448.97123026867735,
+          "expectedRatioAfterPublishedCash": 448.9712297806371,
           "qualified": true
         },
         {
@@ -146667,7 +146665,7 @@
           "publishedNav": 82.792499,
           "publishedIncomeIndex": 37171.4497,
           "observedRatio": 448.9712250381522,
-          "expectedRatioAfterPublishedCash": 448.97123026867735,
+          "expectedRatioAfterPublishedCash": 448.9712297806371,
           "qualified": true
         },
         {
@@ -146676,7 +146674,7 @@
           "publishedNav": 77.170834,
           "publishedIncomeIndex": 34647.4839,
           "observedRatio": 448.9712253206956,
-          "expectedRatioAfterPublishedCash": 448.97123026867735,
+          "expectedRatioAfterPublishedCash": 448.9712297806371,
           "qualified": true
         },
         {
@@ -146685,7 +146683,7 @@
           "publishedNav": 83.987723,
           "publishedIncomeIndex": 37926.9385,
           "observedRatio": 451.57717277321586,
-          "expectedRatioAfterPublishedCash": 451.5771772009557,
+          "expectedRatioAfterPublishedCash": 451.5771767100827,
           "qualified": true
         },
         {
@@ -146694,7 +146692,7 @@
           "publishedNav": 82.920449,
           "publishedIncomeIndex": 37444.9819,
           "observedRatio": 451.577172477684,
-          "expectedRatioAfterPublishedCash": 451.5771772009557,
+          "expectedRatioAfterPublishedCash": 451.5771767100827,
           "qualified": true
         },
         {
@@ -146703,7 +146701,7 @@
           "publishedNav": 78.640463,
           "publishedIncomeIndex": 35512.2379,
           "observedRatio": 451.5771721740753,
-          "expectedRatioAfterPublishedCash": 451.5771772009557,
+          "expectedRatioAfterPublishedCash": 451.5771767100827,
           "qualified": true
         },
         {
@@ -146712,7 +146710,7 @@
           "publishedNav": 76.434267,
           "publishedIncomeIndex": 34515.970199999996,
           "observedRatio": 451.5771728405532,
-          "expectedRatioAfterPublishedCash": 451.5771772009557,
+          "expectedRatioAfterPublishedCash": 451.5771767100827,
           "qualified": true
         },
         {
@@ -146721,7 +146719,7 @@
           "publishedNav": 75.041774,
           "publishedIncomeIndex": 33887.1521,
           "observedRatio": 451.5771722027786,
-          "expectedRatioAfterPublishedCash": 451.5771772009557,
+          "expectedRatioAfterPublishedCash": 451.5771767100827,
           "qualified": true
         },
         {
@@ -146730,7 +146728,7 @@
           "publishedNav": 81.197442,
           "publishedIncomeIndex": 36666.911199999995,
           "observedRatio": 451.57717160597247,
-          "expectedRatioAfterPublishedCash": 451.5771772009557,
+          "expectedRatioAfterPublishedCash": 451.5771767100827,
           "qualified": true
         },
         {
@@ -146739,7 +146737,7 @@
           "publishedNav": 85.082014,
           "publishedIncomeIndex": 38649.5792,
           "observedRatio": 454.2626271164667,
-          "expectedRatioAfterPublishedCash": 454.26263239353034,
+          "expectedRatioAfterPublishedCash": 454.2626318997382,
           "qualified": true
         },
         {
@@ -146748,7 +146746,7 @@
           "publishedNav": 81.522802,
           "publishedIncomeIndex": 37032.762200000005,
           "observedRatio": 454.2626270377704,
-          "expectedRatioAfterPublishedCash": 454.26263239353034,
+          "expectedRatioAfterPublishedCash": 454.2626318997382,
           "qualified": true
         },
         {
@@ -146757,7 +146755,7 @@
           "publishedNav": 76.627789,
           "publishedIncomeIndex": 34809.1408,
           "observedRatio": 454.26262788294724,
-          "expectedRatioAfterPublishedCash": 454.26263239353034,
+          "expectedRatioAfterPublishedCash": 454.2626318997382,
           "qualified": true
         },
         {
@@ -146766,7 +146764,7 @@
           "publishedNav": 72.197898,
           "publishedIncomeIndex": 32796.8068,
           "observedRatio": 454.26262687038343,
-          "expectedRatioAfterPublishedCash": 454.26263239353034,
+          "expectedRatioAfterPublishedCash": 454.2626318997382,
           "qualified": true
         },
         {
@@ -146775,7 +146773,7 @@
           "publishedNav": 78.116654,
           "publishedIncomeIndex": 35485.4765,
           "observedRatio": 454.262627531384,
-          "expectedRatioAfterPublishedCash": 454.26263239353034,
+          "expectedRatioAfterPublishedCash": 454.2626318997382,
           "qualified": true
         },
         {
@@ -146784,7 +146782,7 @@
           "publishedNav": 88.0378,
           "publishedIncomeIndex": 39992.2823,
           "observedRatio": 454.2626269625093,
-          "expectedRatioAfterPublishedCash": 454.26263239353034,
+          "expectedRatioAfterPublishedCash": 454.2626318997382,
           "qualified": true
         },
         {
@@ -146793,7 +146791,7 @@
           "publishedNav": 83.984384,
           "publishedIncomeIndex": 38392.093499999995,
           "observedRatio": 457.13371547739155,
-          "expectedRatioAfterPublishedCash": 457.1337208839232,
+          "expectedRatioAfterPublishedCash": 457.13372038701016,
           "qualified": true
         },
         {
@@ -146802,7 +146800,7 @@
           "publishedNav": 86.767605,
           "publishedIncomeIndex": 39664.3977,
           "observedRatio": 457.1337159761411,
-          "expectedRatioAfterPublishedCash": 457.1337208839232,
+          "expectedRatioAfterPublishedCash": 457.13372038701016,
           "qualified": true
         },
         {
@@ -146811,7 +146809,7 @@
           "publishedNav": 89.53176,
           "publishedIncomeIndex": 40927.986099999995,
           "observedRatio": 457.13371545471676,
-          "expectedRatioAfterPublishedCash": 457.1337208839232,
+          "expectedRatioAfterPublishedCash": 457.13372038701016,
           "qualified": true
         },
         {
@@ -146820,7 +146818,7 @@
           "publishedNav": 84.452202,
           "publishedIncomeIndex": 38605.948899999996,
           "observedRatio": 457.1337157082061,
-          "expectedRatioAfterPublishedCash": 457.1337208839232,
+          "expectedRatioAfterPublishedCash": 457.13372038701016,
           "qualified": true
         },
         {
@@ -146829,7 +146827,7 @@
           "publishedNav": 88.644052,
           "publishedIncomeIndex": 40522.1849,
           "observedRatio": 457.13371608960296,
-          "expectedRatioAfterPublishedCash": 457.1337208839232,
+          "expectedRatioAfterPublishedCash": 457.13372038701016,
           "qualified": true
         },
         {
@@ -146838,7 +146836,7 @@
           "publishedNav": 86.595951,
           "publishedIncomeIndex": 39585.9288,
           "observedRatio": 457.1337151779764,
-          "expectedRatioAfterPublishedCash": 457.1337208839232,
+          "expectedRatioAfterPublishedCash": 457.13372038701016,
           "qualified": true
         },
         {
@@ -146847,7 +146845,7 @@
           "publishedNav": 95.307574,
           "publishedIncomeIndex": 43835.323599999996,
           "observedRatio": 459.93536253477606,
-          "expectedRatioAfterPublishedCash": 459.9353680215407,
+          "expectedRatioAfterPublishedCash": 459.9353675215822,
           "qualified": true
         },
         {
@@ -146856,7 +146854,7 @@
           "publishedNav": 93.864444,
           "publishedIncomeIndex": 43171.5771,
           "observedRatio": 459.93536274502407,
-          "expectedRatioAfterPublishedCash": 459.9353680215407,
+          "expectedRatioAfterPublishedCash": 459.9353675215822,
           "qualified": true
         },
         {
@@ -146865,7 +146863,7 @@
           "publishedNav": 94.619253,
           "publishedIncomeIndex": 43518.7405,
           "observedRatio": 459.9353632605829,
-          "expectedRatioAfterPublishedCash": 459.9353680215407,
+          "expectedRatioAfterPublishedCash": 459.9353675215822,
           "qualified": true
         },
         {
@@ -146874,7 +146872,7 @@
           "publishedNav": 92.084847,
           "publishedIncomeIndex": 42353.0775,
           "observedRatio": 459.93536265526944,
-          "expectedRatioAfterPublishedCash": 459.9353680215407,
+          "expectedRatioAfterPublishedCash": 459.9353675215822,
           "qualified": true
         },
         {
@@ -146883,7 +146881,7 @@
           "publishedNav": 102.113198,
           "publishedIncomeIndex": 46965.4708,
           "observedRatio": 459.9353631055606,
-          "expectedRatioAfterPublishedCash": 459.9353680215407,
+          "expectedRatioAfterPublishedCash": 459.9353675215822,
           "qualified": true
         },
         {
@@ -146892,7 +146890,7 @@
           "publishedNav": 93.944245,
           "publishedIncomeIndex": 43208.2804,
           "observedRatio": 459.9353627249866,
-          "expectedRatioAfterPublishedCash": 459.9353680215407,
+          "expectedRatioAfterPublishedCash": 459.9353675215822,
           "qualified": true
         },
         {
@@ -146901,7 +146899,7 @@
           "publishedNav": 96.068858,
           "publishedIncomeIndex": 44452.812699999995,
           "observedRatio": 462.718237995501,
-          "expectedRatioAfterPublishedCash": 462.71824367432754,
+          "expectedRatioAfterPublishedCash": 462.718243171344,
           "qualified": true
         },
         {
@@ -146910,7 +146908,7 @@
           "publishedNav": 90.546676,
           "publishedIncomeIndex": 41897.598900000005,
           "observedRatio": 462.71824379284783,
-          "expectedRatioAfterPublishedCash": 462.71824367432754,
+          "expectedRatioAfterPublishedCash": 462.718243171344,
           "qualified": true
         },
         {
@@ -146919,7 +146917,7 @@
           "publishedNav": 84.963087,
           "publishedIncomeIndex": 39313.9704,
           "observedRatio": 462.7182437474288,
-          "expectedRatioAfterPublishedCash": 462.71824367432754,
+          "expectedRatioAfterPublishedCash": 462.718243171344,
           "qualified": true
         },
         {
@@ -146928,7 +146926,7 @@
           "publishedNav": 81.397856,
           "publishedIncomeIndex": 37664.272899999996,
           "observedRatio": 462.7182428490499,
-          "expectedRatioAfterPublishedCash": 462.71824367432754,
+          "expectedRatioAfterPublishedCash": 462.718243171344,
           "qualified": true
         },
         {
@@ -146937,7 +146935,7 @@
           "publishedNav": 85.614065,
           "publishedIncomeIndex": 39615.1898,
           "observedRatio": 462.7182437838923,
-          "expectedRatioAfterPublishedCash": 462.71824367432754,
+          "expectedRatioAfterPublishedCash": 462.718243171344,
           "qualified": true
         },
         {
@@ -146946,7 +146944,7 @@
           "publishedNav": 89.043928,
           "publishedIncomeIndex": 41202.249899999995,
           "observedRatio": 462.7182428430156,
-          "expectedRatioAfterPublishedCash": 462.71824367432754,
+          "expectedRatioAfterPublishedCash": 462.718243171344,
           "qualified": true
         },
         {
@@ -146955,7 +146953,7 @@
           "publishedNav": 89.271669,
           "publishedIncomeIndex": 41571.765,
           "observedRatio": 465.67702234848997,
-          "expectedRatioAfterPublishedCash": 465.67702263416675,
+          "expectedRatioAfterPublishedCash": 465.67702212796695,
           "qualified": true
         },
         {
@@ -146964,7 +146962,7 @@
           "publishedNav": 95.533368,
           "publishedIncomeIndex": 44487.694299999996,
           "observedRatio": 465.6770218757492,
-          "expectedRatioAfterPublishedCash": 465.67702263416675,
+          "expectedRatioAfterPublishedCash": 465.67702212796695,
           "qualified": true
         },
         {
@@ -146973,7 +146971,7 @@
           "publishedNav": 96.436371,
           "publishedIncomeIndex": 44908.2021,
           "observedRatio": 465.67702241719576,
-          "expectedRatioAfterPublishedCash": 465.67702263416675,
+          "expectedRatioAfterPublishedCash": 465.67702212796695,
           "qualified": true
         },
         {
@@ -146982,7 +146980,7 @@
           "publishedNav": 95.567473,
           "publishedIncomeIndex": 44503.5763,
           "observedRatio": 465.67702276694075,
-          "expectedRatioAfterPublishedCash": 465.67702263416675,
+          "expectedRatioAfterPublishedCash": 465.67702212796695,
           "qualified": true
         },
         {
@@ -146991,7 +146989,7 @@
           "publishedNav": 98.043861,
           "publishedIncomeIndex": 45656.773199999996,
           "observedRatio": 465.6770218382158,
-          "expectedRatioAfterPublishedCash": 465.67702263416675,
+          "expectedRatioAfterPublishedCash": 465.67702212796695,
           "qualified": true
         },
         {
@@ -147000,7 +146998,7 @@
           "publishedNav": 97.938758,
           "publishedIncomeIndex": 45607.8292,
           "observedRatio": 465.677022369428,
-          "expectedRatioAfterPublishedCash": 465.67702263416675,
+          "expectedRatioAfterPublishedCash": 465.67702212796695,
           "qualified": true
         },
         {
@@ -147009,7 +147007,7 @@
           "publishedNav": 102.806176,
           "publishedIncomeIndex": 48143.2994,
           "observedRatio": 468.29189911703367,
-          "expectedRatioAfterPublishedCash": 468.291899181594,
+          "expectedRatioAfterPublishedCash": 468.2918986725518,
           "qualified": true
         },
         {
@@ -147018,7 +147016,7 @@
           "publishedNav": 105.019189,
           "publishedIncomeIndex": 49179.6354,
           "observedRatio": 468.291898540561,
-          "expectedRatioAfterPublishedCash": 468.291899181594,
+          "expectedRatioAfterPublishedCash": 468.2918986725518,
           "qualified": true
         },
         {
@@ -147027,7 +147025,7 @@
           "publishedNav": 100.740109,
           "publishedIncomeIndex": 47175.7769,
           "observedRatio": 468.2918985128356,
-          "expectedRatioAfterPublishedCash": 468.291899181594,
+          "expectedRatioAfterPublishedCash": 468.2918986725518,
           "qualified": true
         },
         {
@@ -147036,7 +147034,7 @@
           "publishedNav": 111.200258,
           "publishedIncomeIndex": 52074.18,
           "observedRatio": 468.2918991069247,
-          "expectedRatioAfterPublishedCash": 468.291899181594,
+          "expectedRatioAfterPublishedCash": 468.2918986725518,
           "qualified": true
         },
         {
@@ -147045,7 +147043,7 @@
           "publishedNav": 112.313091,
           "publishedIncomeIndex": 52595.310600000004,
           "observedRatio": 468.29189840390023,
-          "expectedRatioAfterPublishedCash": 468.291899181594,
+          "expectedRatioAfterPublishedCash": 468.2918986725518,
           "qualified": true
         },
         {
@@ -147054,7 +147052,7 @@
           "publishedNav": 120.437979,
           "publishedIncomeIndex": 56400.1299,
           "observedRatio": 468.29189901966055,
-          "expectedRatioAfterPublishedCash": 468.291899181594,
+          "expectedRatioAfterPublishedCash": 468.2918986725518,
           "qualified": true
         },
         {
@@ -147063,7 +147061,7 @@
           "publishedNav": 117.481079,
           "publishedIncomeIndex": 55303.4146,
           "observedRatio": 470.7431619690861,
-          "expectedRatioAfterPublishedCash": 470.74316193947993,
+          "expectedRatioAfterPublishedCash": 470.74316142777315,
           "qualified": true
         },
         {
@@ -147072,7 +147070,7 @@
           "publishedNav": 116.731501,
           "publishedIncomeIndex": 54950.555799999995,
           "observedRatio": 470.7431612654411,
-          "expectedRatioAfterPublishedCash": 470.74316193947993,
+          "expectedRatioAfterPublishedCash": 470.74316142777315,
           "qualified": true
         },
         {
@@ -147081,41 +147079,27 @@
           "publishedNav": 110.182362,
           "publishedIncomeIndex": 51867.5934,
           "observedRatio": 470.7431612330111,
-          "expectedRatioAfterPublishedCash": 470.74316193947993,
+          "expectedRatioAfterPublishedCash": 470.74316142777315,
           "qualified": true
         },
         {
           "month": "2026-10",
-          "returnAsOf": "2026-10-29",
-          "publishedNav": 115.020772,
-          "publishedIncomeIndex": 54145.24189999999,
-          "observedRatio": 470.74316193947993,
-          "expectedRatioAfterPublishedCash": 470.74316193947993,
+          "returnAsOf": "2026-10-30",
+          "publishedNav": 113.625838,
+          "publishedIncomeIndex": 53488.5862,
+          "observedRatio": 470.74316142777315,
+          "expectedRatioAfterPublishedCash": 470.74316142777315,
           "qualified": true
         }
       ],
-      "historyExcludedMonths": [
-        "2026-10"
-      ],
-      "anniversaryExcludedMonths": [
-        "2026-10"
-      ],
-      "withheldMonthlyEnds": [
-        {
-          "month": "2026-10",
-          "returnAsOf": "2026-10-29",
-          "lastNavAsOf": "2026-10-30",
-          "reason": "Monthly NAV/return end not independently qualified: 2026-10"
-        }
-      ],
-      "monthlyEndExclusive": "2026-10",
-      "qualificationScope": "Complete reconciled monthly returns only; trailing month withheld. The separately dated published per-share NAV is a price, not a certified trailing-month total return.",
+      "historyExcludedMonths": [],
+      "anniversaryExcludedMonths": [],
       "dailyContinuity": "Published gaps preserved; this adapter qualifies monthly/annual consumers and the latest same-date level, not an arbitrary daily purchase date",
       "scaleProof": {
-        "anchorDate": "2026-10-29",
-        "officialPerShareNav": 115.020772,
-        "sourceIncomeIndex": 54145.24189999999,
-        "factor": 0.002124300639609849
+        "anchorDate": "2026-10-30",
+        "officialPerShareNav": 113.625838,
+        "sourceIncomeIndex": 53488.5862,
+        "factor": 0.0021243006419190045
       },
       "controlledInstrument": "IE00B2QWCY14",
       "controlledFields": [
@@ -147147,8 +147131,8 @@
           "year": 2016,
           "start": "2015-12-31",
           "end": "2016-12-30",
-          "startValue": 40.15065906030074,
-          "endValue": 50.56180381237275,
+          "startValue": 40.15065910394527,
+          "endValue": 50.5618038673344,
           "dailyDerived": 25.930196404586802,
           "published": 25.930197,
           "publishedDecimalPlaces": 2
@@ -147157,8 +147141,8 @@
           "year": 2017,
           "start": "2016-12-30",
           "end": "2017-12-29",
-          "startValue": 50.56180381237275,
-          "endValue": 56.94021404276081,
+          "startValue": 50.5618038673344,
+          "endValue": 56.94021410465591,
           "dailyDerived": 12.615076499361798,
           "published": 12.615076,
           "publishedDecimalPlaces": 2
@@ -147167,8 +147151,8 @@
           "year": 2018,
           "start": "2017-12-29",
           "end": "2018-12-31",
-          "startValue": 56.94021404276081,
-          "endValue": 51.84296464222997,
+          "startValue": 56.94021410465591,
+          "endValue": 51.84296469858427,
           "dailyDerived": -8.951932278833574,
           "published": -8.951932,
           "publishedDecimalPlaces": 2
@@ -147177,8 +147161,8 @@
           "year": 2019,
           "start": "2018-12-31",
           "end": "2019-12-31",
-          "startValue": 51.84296464222997,
-          "endValue": 63.26752592070356,
+          "startValue": 51.84296469858427,
+          "endValue": 63.267525989476574,
           "dailyDerived": 22.036859499287644,
           "published": 22.036859,
           "publishedDecimalPlaces": 2
@@ -147187,9 +147171,9 @@
           "year": 2020,
           "start": "2019-12-31",
           "end": "2020-12-31",
-          "startValue": 63.26752592070356,
-          "endValue": 70.00231881060557,
-          "dailyDerived": 10.64494429313243,
+          "startValue": 63.267525989476574,
+          "endValue": 70.00231888669943,
+          "dailyDerived": 10.644944293132408,
           "published": 10.644944,
           "publishedDecimalPlaces": 2
         },
@@ -147197,9 +147181,9 @@
           "year": 2021,
           "start": "2020-12-31",
           "end": "2021-12-31",
-          "startValue": 70.00231881060557,
-          "endValue": 88.38077122264987,
-          "dailyDerived": 26.2540623286609,
+          "startValue": 70.00231888669943,
+          "endValue": 88.38077131872147,
+          "dailyDerived": 26.254062328660922,
           "published": 26.254062,
           "publishedDecimalPlaces": 2
         },
@@ -147207,9 +147191,9 @@
           "year": 2022,
           "start": "2021-12-31",
           "end": "2022-12-30",
-          "startValue": 88.38077122264987,
-          "endValue": 73.60167220964195,
-          "dailyDerived": -16.72207518508324,
+          "startValue": 88.38077131872147,
+          "endValue": 73.60167228964838,
+          "dailyDerived": -16.722075185083252,
           "published": -16.722075,
           "publishedDecimalPlaces": 2
         },
@@ -147217,8 +147201,8 @@
           "year": 2023,
           "start": "2022-12-30",
           "end": "2023-12-29",
-          "startValue": 73.60167220964195,
-          "endValue": 84.95563086934764,
+          "startValue": 73.60167228964838,
+          "endValue": 84.95563096169604,
           "dailyDerived": 15.42622377840257,
           "published": 15.426224,
           "publishedDecimalPlaces": 2
@@ -147227,8 +147211,8 @@
           "year": 2024,
           "start": "2023-12-29",
           "end": "2024-12-31",
-          "startValue": 84.95563086934764,
-          "endValue": 91.7873776901617,
+          "startValue": 84.95563096169604,
+          "endValue": 91.78737778993634,
           "dailyDerived": 8.04154680614464,
           "published": 8.041547,
           "publishedDecimalPlaces": 2
@@ -147237,24 +147221,20 @@
           "year": 2025,
           "start": "2024-12-31",
           "end": "2025-12-31",
-          "startValue": 91.7873776901617,
-          "endValue": 96.88474074077675,
-          "dailyDerived": 5.553446649082572,
+          "startValue": 91.78737778993634,
+          "endValue": 96.88474084609231,
+          "dailyDerived": 5.55344664908255,
           "published": 5.553447,
           "publishedDecimalPlaces": 2
         }
       ]
     },
-    "historyExcludedMonths": [
-      "2026-10"
-    ],
-    "anniversaryExcludedMonths": [
-      "2026-10"
-    ],
-    "responseSha256": "7873c051a4ef842066cce6951f5a7f7596b339f05f54366fcffe81b9ce2d1c80",
+    "historyExcludedMonths": [],
+    "anniversaryExcludedMonths": [],
+    "responseSha256": "6fa14343f88f5cabe1a7696044756eb74f60a307f3cb7057de1de3260a80d92d",
     "rawSourceHashes": {
-      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true": "aa4ae48cecf5d23e1a1729b0e95d3388ec0eb7b500a14f1971208755f87fd087",
-      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "11764c276d0702f36e8e324f1a94eab76a85d3b5e86e0b20e6e42417dcc7d7aa"
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true": "f7f841604c090ec404164b0a3998a1a9afe59eddd2f6b5d52487bc567b37cc8a",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "f5a838828ed438a6b9e76ba4897e3952d23d55d99989db8684e1f010473d43ce"
     }
   },
   "etfIE00B3VWMM18": {

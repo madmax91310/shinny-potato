@@ -1,7 +1,11 @@
 {
-  "schema": 1,
-  "generatedAt": "2026-11-02T12:05:57.699Z",
-  "base": "05a7412967fd277bdc9a9b12f27d68d2aeeda0c3",
+  "schema": 2,
+  "officialMarketEvidenceStatus": {
+    "available": true,
+    "error": null
+  },
+  "generatedAt": "2026-11-02T17:23:15.713Z",
+  "base": "ad7daeb42a7a4887c383723215de3676a251e63e",
   "initialReport": {
     "path": "reports/financial-consistency-2026-11-02/matrix.json",
     "base": "78a7bb92c7c7489f441972a8f92b945993b9d002",
@@ -170,10 +174,78 @@
         "right": 7.126062978723402,
         "gap": -0.050415208971009484
       },
-      "classification": "preuve insuffisante — résidu cotation/NAV non attribué",
-      "measureDifferenceEstablished": true,
-      "proof": null,
-      "missing": "Cours de clôture et NAV aux mêmes dates/heures, réinvestissements et événements de part, puis fixing de change à ces bornes ; le seul écart de convention ne prouve pas le résidu.",
+      "classification": "différence légitime — clôtures de marché et NAV officielles corroborées",
+      "measureDifferenceEstablished": false,
+      "proof": {
+        "cause": "Clôtures de la cotation et NAV officiellement corroborées ; valorisations distinctes aux mêmes bornes",
+        "isin": "IE00B4L5Y983",
+        "listing": {
+          "mic": "XAMS",
+          "ticker": "IWDA",
+          "currency": "EUR"
+        },
+        "start": "2024-12-31",
+        "end": "2025-12-31",
+        "closes": [
+          104.16,
+          111.53
+        ],
+        "nav": [
+          107.61237,
+          130.38354
+        ],
+        "usdPerEur": [
+          1.0389,
+          1.175
+        ],
+        "marketReturn": 7.075652841781888,
+        "navReturn": 7.1263854731372644,
+        "publishedCalendarReturn": 7.126062978723402,
+        "relativeValuation": [
+          1.0055704934293335,
+          1.0050942780047236
+        ],
+        "decompositionPercentagePoints": {
+          "marketVersusNav": -0.05073263135537687,
+          "calendarPrecision": 0.0003224944138624508,
+          "quoteRepresentation": -0.000005072029495067909,
+          "total": -0.050415208971009484
+        },
+        "sourceCaptures": {
+          "identity": {
+            "file": "euronext-identity.html.gz",
+            "sourceUrl": "https://live.euronext.com/en/product/etfs/IE00B4L5Y983-XAMS",
+            "uncompressedSha256": "fee750d05b1702208b5463bcc5447887bf41311d051483482449257daea8be44",
+            "capturedAt": "2026-11-02T15:08:34.892011+00:00"
+          },
+          "startQuote": {
+            "file": "euronext-2024.html.gz",
+            "sourceUrl": "https://live.euronext.com/en/ajax/getHistoricalPricePopup/IE00B4L5Y983-XAMS",
+            "uncompressedSha256": "a79a1185df8f710a1fb50dc44e2a9fdb37e67289f222d3749eb837cf27b7a124",
+            "capturedAt": "2026-11-02T15:14:51.381702+00:00"
+          },
+          "endQuote": {
+            "file": "euronext-2025.html.gz",
+            "sourceUrl": "https://live.euronext.com/en/ajax/getHistoricalPricePopup/IE00B4L5Y983-XAMS",
+            "uncompressedSha256": "849cc0c546d5f4117358bd57d630387a59af8e21eae14b6afd9c09955e626e93",
+            "capturedAt": "2026-11-02T15:14:53.897742+00:00"
+          },
+          "nav": {
+            "file": "blackrock-iwda.json.gz",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "uncompressedSha256": "0e142d53aab25b39e82062275384eba37727c3b72e938131f27ab5e05ee440b2",
+            "capturedAt": "2026-11-02T15:08:36.642628+00:00"
+          },
+          "fx": {
+            "file": "ecb-history.xml.gz",
+            "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+            "uncompressedSha256": "e25f694c47efc95848866963b136520bc3c8e77e2589c8520ad06327dccc4696",
+            "capturedAt": "2026-11-02T15:18:51.240971+00:00"
+          }
+        },
+        "scope": "Cette comparaison seulement ; les facteurs relatifs ne sont pas attribués au seul spread ou au seul horaire. Aucune tolérance financière ni admission modifiée."
+      },
+      "missing": null,
       "lastValidObservationsPreserved": true
     },
     {
@@ -2869,8 +2941,70 @@
         "practical": "Capitalisation et/ou distribution",
         "copy": "Politique à décision de la société de gestion ; aucune distribution historique inventée"
       },
-      "historicalCashQualification": "Politique attestée aux dates des documents archivés ; paiements historiques non certifiés, versions 2019–2022 et avis de distributions nécessaires",
-      "incomePolicyChanged": false
+      "historicalCashQualification": "Affectations et acomptes des exercices documentés séparément ; historique exhaustif des paiements non certifié. Champs vides/null, nom Acc et facteur NAV/ajusté ne prouvent pas zéro cash.",
+      "incomePolicyChanged": false,
+      "fiscalAllocationEvidence": {
+        "verified": true,
+        "claims": [
+          {
+            "exerciseClose": "2023-06-30",
+            "scope": "Audited allocation of net income and realized capital gains; interim distributions in those allocation tables",
+            "incomeAllocationDistributionEUR": "0.00",
+            "realizedGainsAllocationDistributionEUR": "0.00",
+            "incomeInterimPaymentsEUR": "0.00",
+            "realizedGainsInterimPaymentsEUR": "0.00",
+            "pdfPages": [
+              71,
+              72
+            ],
+            "exDate": null,
+            "currency": "EUR",
+            "interpretation": "Zero explicitly printed in the identified fiscal-year columns; not an assertion about every calendar year or every historical period."
+          },
+          {
+            "exerciseClose": "2024-06-28",
+            "scope": "Audited allocation of net income and realized capital gains; interim distributions in those allocation tables",
+            "incomeAllocationDistributionEUR": "0.00",
+            "realizedGainsAllocationDistributionEUR": "0.00",
+            "incomeInterimPaymentsEUR": "0.00",
+            "realizedGainsInterimPaymentsEUR": "0.00",
+            "pdfPages": [
+              71,
+              72
+            ],
+            "exDate": null,
+            "currency": "EUR",
+            "interpretation": "Zero explicitly printed in the identified fiscal-year columns; not an assertion about every calendar year or every historical period."
+          },
+          {
+            "exerciseClose": "2025-06-30",
+            "scope": "Allocation for the ACC share only, not S-ACC",
+            "incomeAllocationDistributionEUR": "0.00",
+            "realizedGainsAllocationDistributionEUR": "0.00",
+            "pdfPages": [
+              47,
+              49
+            ],
+            "interpretation": "Zero allocation explicitly printed; does not independently prove no payment from an earlier fiscal year or over the whole calendar year."
+          }
+        ],
+        "source": {
+          "id": "FR0013412020-annual-2025",
+          "url": "https://www.amundietf.fr/pdfDocuments/download/181e8531-f12e-49a4-88a3-299934e48fa2/RA_AMUNDI-PEA-MSCI-EMER-MARKETS-ESG-LEADERS-UCITS-ETF_202506_Francais_EUR_6811_xxx_1_3_xxx.pdf",
+          "status": 200,
+          "bytes": 8412170,
+          "checkedAt": "2026-11-02T15:07:20.995322+00:00",
+          "sha256": "d5619b78666a9f5df7955b61f37b50ce3d724bec6bfdfb85e03547a976841cfc",
+          "pages": 93
+        },
+        "identityPage": 39
+      },
+      "historicalCashQualified": false,
+      "remainingEvidence": [
+        "Dated official notices or full annual accounts establishing actual cash events (or explicit no-payment statements) from inception through the uncorroborated periods, especially 2019–2022.",
+        "For 2025 and later, blank cash/payment fields in annual/semiannual reports and null API fields are not certified zero; no ex-date or amount invented.",
+        "Earlier legal policy versions before the oldest documents already acquired in #1149; no effective policy-change date inferred from a file name."
+      ]
     },
     {
       "caseId": "income-FR0013412012",
@@ -2889,8 +3023,59 @@
         "practical": "Capitalisation et/ou distribution",
         "copy": "Politique à décision de la société de gestion ; aucune distribution historique inventée"
       },
-      "historicalCashQualification": "Politique attestée aux dates des documents archivés ; paiements historiques non certifiés, versions 2019–2022 et avis de distributions nécessaires",
-      "incomePolicyChanged": false
+      "historicalCashQualification": "Affectations et acomptes des exercices documentés séparément ; historique exhaustif des paiements non certifié. Champs vides/null, nom Acc et facteur NAV/ajusté ne prouvent pas zéro cash.",
+      "incomePolicyChanged": false,
+      "fiscalAllocationEvidence": {
+        "verified": true,
+        "claims": [
+          {
+            "exerciseClose": "2023-06-30",
+            "scope": "Audited allocation of net income and realized capital gains; interim distributions in those allocation tables",
+            "incomeAllocationDistributionEUR": "0.00",
+            "realizedGainsAllocationDistributionEUR": "0.00",
+            "incomeInterimPaymentsEUR": "0.00",
+            "realizedGainsInterimPaymentsEUR": "0.00",
+            "pdfPages": [
+              68,
+              69
+            ],
+            "exDate": null,
+            "currency": "EUR",
+            "interpretation": "Zero explicitly printed in the identified fiscal-year columns; not an assertion about every calendar year or every historical period."
+          },
+          {
+            "exerciseClose": "2024-06-28",
+            "scope": "Audited allocation of net income and realized capital gains; interim distributions in those allocation tables",
+            "incomeAllocationDistributionEUR": "0.00",
+            "realizedGainsAllocationDistributionEUR": "0.00",
+            "incomeInterimPaymentsEUR": "0.00",
+            "realizedGainsInterimPaymentsEUR": "0.00",
+            "pdfPages": [
+              68,
+              69
+            ],
+            "exDate": null,
+            "currency": "EUR",
+            "interpretation": "Zero explicitly printed in the identified fiscal-year columns; not an assertion about every calendar year or every historical period."
+          }
+        ],
+        "source": {
+          "id": "FR0013412012-annual-2025",
+          "url": "https://www.amundietf.fr/pdfDocuments/download/dfb0c50d-7123-463a-baab-85fdeaa33af8/RA_AMUNDI-PEA-MSCI-EMERGING-ASIA-ESG-LEADER-UCITS-ETF_202506_Francais_EUR_6813_xxx_1_3_xxx.pdf",
+          "status": 200,
+          "bytes": 1306566,
+          "checkedAt": "2026-11-02T15:07:17.686405+00:00",
+          "sha256": "928a4751d922699cd52d8e877a7204c7335146636aef686d4e299b5398f2c034",
+          "pages": 86
+        },
+        "identityPage": 37
+      },
+      "historicalCashQualified": false,
+      "remainingEvidence": [
+        "Dated official notices or full annual accounts establishing actual cash events (or explicit no-payment statements) from inception through the uncorroborated periods, especially 2019–2022.",
+        "For 2025 and later, blank cash/payment fields in annual/semiannual reports and null API fields are not certified zero; no ex-date or amount invented.",
+        "Earlier legal policy versions before the oldest documents already acquired in #1149; no effective policy-change date inferred from a file name."
+      ]
     },
     {
       "caseId": "income-FR0013412038",
@@ -2909,145 +3094,441 @@
         "practical": "Capitalisation et/ou distribution",
         "copy": "Politique à décision de la société de gestion ; aucune distribution historique inventée"
       },
-      "historicalCashQualification": "Politique attestée aux dates des documents archivés ; paiements historiques non certifiés, versions 2019–2022 et avis de distributions nécessaires",
-      "incomePolicyChanged": false
+      "historicalCashQualification": "Affectations et acomptes des exercices documentés séparément ; historique exhaustif des paiements non certifié. Champs vides/null, nom Acc et facteur NAV/ajusté ne prouvent pas zéro cash.",
+      "incomePolicyChanged": false,
+      "fiscalAllocationEvidence": {
+        "verified": true,
+        "claims": [
+          {
+            "exerciseClose": "2023-06-30",
+            "scope": "Audited allocation of net income and realized capital gains; interim distributions in those allocation tables",
+            "incomeAllocationDistributionEUR": "0.00",
+            "realizedGainsAllocationDistributionEUR": "0.00",
+            "incomeInterimPaymentsEUR": "0.00",
+            "realizedGainsInterimPaymentsEUR": "0.00",
+            "pdfPages": [
+              68,
+              69
+            ],
+            "exDate": null,
+            "currency": "EUR",
+            "interpretation": "Zero explicitly printed in the identified fiscal-year columns; not an assertion about every calendar year or every historical period."
+          },
+          {
+            "exerciseClose": "2024-06-28",
+            "scope": "Audited allocation of net income and realized capital gains; interim distributions in those allocation tables",
+            "incomeAllocationDistributionEUR": "0.00",
+            "realizedGainsAllocationDistributionEUR": "0.00",
+            "incomeInterimPaymentsEUR": "0.00",
+            "realizedGainsInterimPaymentsEUR": "0.00",
+            "pdfPages": [
+              68,
+              69
+            ],
+            "exDate": null,
+            "currency": "EUR",
+            "interpretation": "Zero explicitly printed in the identified fiscal-year columns; not an assertion about every calendar year or every historical period."
+          }
+        ],
+        "source": {
+          "id": "FR0013412038-annual-2025",
+          "url": "https://www.amundietf.fr/pdfDocuments/download/6e814157-42fc-42d8-a95b-50cd01772e4c/RA_AMUNDI-ETF-PEA-MSCI-EUROPE-UCITS-ETF_202506_Francais_EUR_6808_xxx_1_3_xxx.pdf",
+          "status": 200,
+          "bytes": 4351988,
+          "checkedAt": "2026-11-02T15:07:19.475323+00:00",
+          "sha256": "3f660df9450adf67ee713b143490dc6ebad1d31999b0c573356eb0c0620124f9",
+          "pages": 77
+        },
+        "identityPage": 38
+      },
+      "historicalCashQualified": false,
+      "remainingEvidence": [
+        "Dated official notices or full annual accounts establishing actual cash events (or explicit no-payment statements) from inception through the uncorroborated periods, especially 2019–2022.",
+        "For 2025 and later, blank cash/payment fields in annual/semiannual reports and null API fields are not certified zero; no ex-date or amount invented.",
+        "Earlier legal policy versions before the oldest documents already acquired in #1149; no effective policy-change date inferred from a file name."
+      ]
     }
   ],
   "boundaries": [
     {
       "id": "etf_clean_energy",
       "isin": "IE00B1XNHC34",
-      "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "9076bbe5ab0d9278caa0befb6e24541246eb2d4e2902c059bf238d617ea1eed7",
-      "checkedAt": "2026-11-02T11:26:12.067448+00:00",
-      "navLast": "2026-10-30",
-      "totalLast": "2026-10-29",
-      "income": "Distributing",
-      "qualified": false,
-      "error": "Monthly NAV/return end not independently qualified: 2026-10",
-      "october": {
-        "nav": {
-          "2026-10-26": 8.926748,
-          "2026-10-27": 9.085746,
-          "2026-10-28": 9.022182,
-          "2026-10-29": 9.024865,
-          "2026-10-30": 8.827117
-        },
-        "totalReturn": {
-          "2026-10-26": 4470.3836,
-          "2026-10-27": 4550.007500000001,
-          "2026-10-28": 4518.1755,
-          "2026-10-29": 4519.5192
+      "initial": {
+        "id": "etf_clean_energy",
+        "isin": "IE00B1XNHC34",
+        "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "9076bbe5ab0d9278caa0befb6e24541246eb2d4e2902c059bf238d617ea1eed7",
+        "checkedAt": "2026-11-02T11:26:12.067448+00:00",
+        "navLast": "2026-10-30",
+        "totalLast": "2026-10-29",
+        "income": "Distributing",
+        "qualified": false,
+        "error": "Monthly NAV/return end not independently qualified: 2026-10",
+        "october": {
+          "nav": {
+            "2026-10-26": 8.926748,
+            "2026-10-27": 9.085746,
+            "2026-10-28": 9.022182,
+            "2026-10-29": 9.024865,
+            "2026-10-30": 8.827117
+          },
+          "totalReturn": {
+            "2026-10-26": 4470.3836,
+            "2026-10-27": 4550.007500000001,
+            "2026-10-28": 4518.1755,
+            "2026-10-29": 4519.5192
+          }
         }
-      }
+      },
+      "problemMonth": "2026-10",
+      "current": {
+        "evidenceCheckedAt": "2026-11-02",
+        "periodEnd": "2026-09",
+        "controlledInstrument": "IE00B1XNHC34",
+        "withheldMonthlyEnds": [
+          {
+            "month": "2026-10",
+            "returnAsOf": "2026-10-29",
+            "lastNavAsOf": "2026-10-30",
+            "reason": "Monthly NAV/return end not independently qualified: 2026-10"
+          }
+        ],
+        "excludedMonths": [
+          "2026-10"
+        ],
+        "scaleProof": {
+          "anchorDate": "2026-10-29",
+          "officialPerShareNav": 9.024865,
+          "sourceIncomeIndex": 4519.5192,
+          "factor": 0.0019968639584493856
+        },
+        "level": {
+          "value": 7.9011072323666305,
+          "asOf": "2026-10-30",
+          "currency": "EUR",
+          "isin": "IE00B1XNHC34",
+          "parser": "official-nav",
+          "valuationBasis": "fund-nav-price",
+          "nativeValue": 8.827117,
+          "nativeCurrency": "USD",
+          "fxAsOf": "2026-10-30",
+          "fxFactor": 0.8950948800572861,
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "checkedAt": "2026-11-02T14:28:45.201229+00:00",
+          "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+          "maxAgeDays": 7,
+          "sha256": "af0f6e16222167a1ac10517eeb15038b52562b59dafff83c746cbd6912eba3dc"
+        }
+      },
+      "monthQualified": false,
+      "problemMonthWithheld": true,
+      "retainedPartialQualification": true,
+      "classification": "qualification partielle — rendement du mois toujours refusé",
+      "latestRefreshOutcome": "Non déduit de la seule présence d’un historique conservé"
     },
     {
       "id": "etfIE00B2QWCY14",
       "isin": "IE00B2QWCY14",
-      "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "aa4ae48cecf5d23e1a1729b0e95d3388ec0eb7b500a14f1971208755f87fd087",
-      "checkedAt": "2026-11-02T11:26:12.067448+00:00",
-      "navLast": "2026-10-30",
-      "totalLast": "2026-10-29",
-      "income": "Distributing",
-      "qualified": false,
-      "error": "Monthly NAV/return end not independently qualified: 2026-10",
-      "october": {
-        "nav": {
-          "2026-10-26": 112.513612,
-          "2026-10-27": 113.117477,
-          "2026-10-28": 113.196475,
-          "2026-10-29": 115.020772,
-          "2026-10-30": 113.625838
-        },
-        "totalReturn": {
-          "2026-10-26": 52965.013399999996,
-          "2026-10-27": 53249.2787,
-          "2026-10-28": 53286.466499999995,
-          "2026-10-29": 54145.24189999999
+      "initial": {
+        "id": "etfIE00B2QWCY14",
+        "isin": "IE00B2QWCY14",
+        "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "aa4ae48cecf5d23e1a1729b0e95d3388ec0eb7b500a14f1971208755f87fd087",
+        "checkedAt": "2026-11-02T11:26:12.067448+00:00",
+        "navLast": "2026-10-30",
+        "totalLast": "2026-10-29",
+        "income": "Distributing",
+        "qualified": false,
+        "error": "Monthly NAV/return end not independently qualified: 2026-10",
+        "october": {
+          "nav": {
+            "2026-10-26": 112.513612,
+            "2026-10-27": 113.117477,
+            "2026-10-28": 113.196475,
+            "2026-10-29": 115.020772,
+            "2026-10-30": 113.625838
+          },
+          "totalReturn": {
+            "2026-10-26": 52965.013399999996,
+            "2026-10-27": 53249.2787,
+            "2026-10-28": 53286.466499999995,
+            "2026-10-29": 54145.24189999999
+          }
         }
-      }
+      },
+      "problemMonth": "2026-10",
+      "current": {
+        "evidenceCheckedAt": "2026-11-02",
+        "periodEnd": "2026-10",
+        "controlledInstrument": "IE00B2QWCY14",
+        "withheldMonthlyEnds": [],
+        "excludedMonths": [],
+        "scaleProof": {
+          "anchorDate": "2026-10-30",
+          "officialPerShareNav": 113.625838,
+          "sourceIncomeIndex": 53488.5862,
+          "factor": 0.0021243006419190045
+        },
+        "level": {
+          "value": 101.70590583601863,
+          "asOf": "2026-10-30",
+          "currency": "EUR",
+          "isin": "IE00B2QWCY14",
+          "parser": "official-nav",
+          "valuationBasis": "fund-nav-price",
+          "nativeValue": 113.625838,
+          "nativeCurrency": "USD",
+          "fxAsOf": "2026-10-30",
+          "fxFactor": 0.8950948800572861,
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+          ],
+          "checkedAt": "2026-11-02T14:28:45.201229+00:00",
+          "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+          "maxAgeDays": 7,
+          "sha256": "7873c051a4ef842066cce6951f5a7f7596b339f05f54366fcffe81b9ce2d1c80"
+        }
+      },
+      "monthQualified": true,
+      "problemMonthWithheld": false,
+      "retainedPartialQualification": false,
+      "classification": "résolu depuis — borne mensuelle commune qualifiée",
+      "latestRefreshOutcome": "Non déduit de la seule présence d’un historique conservé"
     },
     {
       "id": "etcPalladium",
       "isin": "IE00B4556L06",
-      "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "fc8befa946e777cc84a8c29fcd140781eb4b326d9f982dedb4edccb6a69558d3",
-      "checkedAt": "2026-11-02T11:26:12.067448+00:00",
-      "navLast": "2026-10-30",
-      "totalLast": "2026-10-29",
-      "income": "No Income",
-      "qualified": false,
-      "error": "Monthly NAV/return end not independently qualified: 2026-10",
-      "october": {
-        "nav": {
-          "2026-10-26": 30.009983,
-          "2026-10-27": 29.276305,
-          "2026-10-28": 29.05495,
-          "2026-10-29": 28.680903,
-          "2026-10-30": 27.823091
-        },
-        "totalReturn": {
-          "2026-10-26": 12535.6397,
-          "2026-10-27": 12229.1709,
-          "2026-10-28": 12136.7075,
-          "2026-10-29": 11980.4622
+      "initial": {
+        "id": "etcPalladium",
+        "isin": "IE00B4556L06",
+        "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "fc8befa946e777cc84a8c29fcd140781eb4b326d9f982dedb4edccb6a69558d3",
+        "checkedAt": "2026-11-02T11:26:12.067448+00:00",
+        "navLast": "2026-10-30",
+        "totalLast": "2026-10-29",
+        "income": "No Income",
+        "qualified": false,
+        "error": "Monthly NAV/return end not independently qualified: 2026-10",
+        "october": {
+          "nav": {
+            "2026-10-26": 30.009983,
+            "2026-10-27": 29.276305,
+            "2026-10-28": 29.05495,
+            "2026-10-29": 28.680903,
+            "2026-10-30": 27.823091
+          },
+          "totalReturn": {
+            "2026-10-26": 12535.6397,
+            "2026-10-27": 12229.1709,
+            "2026-10-28": 12136.7075,
+            "2026-10-29": 11980.4622
+          }
         }
-      }
+      },
+      "problemMonth": "2026-10",
+      "current": {
+        "evidenceCheckedAt": "2026-11-02",
+        "periodEnd": "2026-09",
+        "controlledInstrument": "IE00B4556L06",
+        "withheldMonthlyEnds": [
+          {
+            "month": "2026-10",
+            "returnAsOf": "2026-10-29",
+            "lastNavAsOf": "2026-10-30",
+            "reason": "Monthly NAV/return end not independently qualified: 2026-10"
+          }
+        ],
+        "excludedMonths": [
+          "2014-12",
+          "2026-10"
+        ],
+        "scaleProof": {
+          "anchorDate": "2026-10-29",
+          "officialPerShareNav": 28.680903,
+          "sourceIncomeIndex": 11980.4622,
+          "factor": 0.002393972997135286
+        },
+        "level": {
+          "value": 28.680903,
+          "asOf": "2026-10-29",
+          "currency": "USD",
+          "isin": "IE00B4556L06",
+          "parser": "official-nav",
+          "valuationBasis": "fund-nav-total-return",
+          "nativeValue": 28.680903,
+          "nativeCurrency": "USD",
+          "fxAsOf": null,
+          "fxFactor": 1,
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          ],
+          "checkedAt": "2026-11-02T14:28:45.201229+00:00",
+          "method": "Valeur liquidative officielle ajustée : rendement réinvesti publié de la part exacte, recalé sur sa NAV à date identique ; conversion BCE explicite si nécessaire ; aucun dividende ajouté une seconde fois",
+          "maxAgeDays": 7,
+          "sha256": "8106371c0c509aa56b7fb6769a142b82e084f1125ccbbd34cd7086f0b046ab81"
+        }
+      },
+      "monthQualified": false,
+      "problemMonthWithheld": true,
+      "retainedPartialQualification": true,
+      "classification": "qualification partielle — rendement du mois toujours refusé",
+      "latestRefreshOutcome": "Non déduit de la seule présence d’un historique conservé"
     },
     {
       "id": "etf_financials",
       "isin": "IE00BJ5JP097",
-      "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "7cbc5f557c361a5938ceb3d45ab9fe443f16b72cd2abbee39f6c56c505e2fd64",
-      "checkedAt": "2026-11-02T11:26:12.067448+00:00",
-      "navLast": "2026-10-30",
-      "totalLast": "2026-10-29",
-      "income": "Distributing",
-      "qualified": false,
-      "error": "Monthly NAV/return end not independently qualified: 2026-10",
-      "october": {
-        "nav": {
-          "2026-10-26": 8.340755,
-          "2026-10-27": 8.340921,
-          "2026-10-28": 8.344304,
-          "2026-10-29": 8.450169,
-          "2026-10-30": 8.38717
-        },
-        "totalReturn": {
-          "2026-10-26": 19299.1517,
-          "2026-10-27": 19299.5358,
-          "2026-10-28": 19307.3635,
-          "2026-10-29": 19552.3179
+      "initial": {
+        "id": "etf_financials",
+        "isin": "IE00BJ5JP097",
+        "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "7cbc5f557c361a5938ceb3d45ab9fe443f16b72cd2abbee39f6c56c505e2fd64",
+        "checkedAt": "2026-11-02T11:26:12.067448+00:00",
+        "navLast": "2026-10-30",
+        "totalLast": "2026-10-29",
+        "income": "Distributing",
+        "qualified": false,
+        "error": "Monthly NAV/return end not independently qualified: 2026-10",
+        "october": {
+          "nav": {
+            "2026-10-26": 8.340755,
+            "2026-10-27": 8.340921,
+            "2026-10-28": 8.344304,
+            "2026-10-29": 8.450169,
+            "2026-10-30": 8.38717
+          },
+          "totalReturn": {
+            "2026-10-26": 19299.1517,
+            "2026-10-27": 19299.5358,
+            "2026-10-28": 19307.3635,
+            "2026-10-29": 19552.3179
+          }
         }
-      }
+      },
+      "problemMonth": "2026-10",
+      "current": {
+        "evidenceCheckedAt": "2026-11-02",
+        "periodEnd": "2026-09",
+        "controlledInstrument": "IE00BJ5JP097",
+        "withheldMonthlyEnds": [
+          {
+            "month": "2026-10",
+            "returnAsOf": "2026-10-29",
+            "lastNavAsOf": "2026-10-30",
+            "reason": "Monthly NAV/return end not independently qualified: 2026-10"
+          }
+        ],
+        "excludedMonths": [
+          "2026-10"
+        ],
+        "scaleProof": {
+          "anchorDate": "2026-10-29",
+          "officialPerShareNav": 8.450169,
+          "sourceIncomeIndex": 19552.3179,
+          "factor": 0.00043218246773698383
+        },
+        "level": {
+          "value": 8.38717,
+          "asOf": "2026-10-30",
+          "currency": "USD",
+          "isin": "IE00BJ5JP097",
+          "parser": "official-nav",
+          "valuationBasis": "fund-nav-price",
+          "nativeValue": 8.38717,
+          "nativeCurrency": "USD",
+          "fxAsOf": null,
+          "fxFactor": 1,
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          ],
+          "checkedAt": "2026-11-02T14:28:45.201229+00:00",
+          "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+          "maxAgeDays": 7,
+          "sha256": "59920ea3eb0b04169df3eac386e4cb3d53ff7dff632b4d7dca8e2754d67d75b2"
+        }
+      },
+      "monthQualified": false,
+      "problemMonthWithheld": true,
+      "retainedPartialQualification": true,
+      "classification": "qualification partielle — rendement du mois toujours refusé",
+      "latestRefreshOutcome": "Non déduit de la seule présence d’un historique conservé"
     },
     {
       "id": "etf_world_communication",
       "isin": "IE00BJ5JP436",
-      "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "ce7581ec450a5bda34534d8423854344d129554eeebe625766db7b7358000f4b",
-      "checkedAt": "2026-11-02T11:26:12.067448+00:00",
-      "navLast": "2026-10-30",
-      "totalLast": "2026-10-29",
-      "income": "Distributing",
-      "qualified": false,
-      "error": "Monthly NAV/return end not independently qualified: 2026-10",
-      "october": {
-        "nav": {
-          "2026-10-26": 7.659824,
-          "2026-10-27": 7.656417,
-          "2026-10-28": 7.638211,
-          "2026-10-29": 7.378114,
-          "2026-10-30": 7.32678
-        },
-        "totalReturn": {
-          "2026-10-26": 16324.891099999999,
-          "2026-10-27": 16317.63,
-          "2026-10-28": 16278.8287,
-          "2026-10-29": 15724.5006
+      "initial": {
+        "id": "etf_world_communication",
+        "isin": "IE00BJ5JP436",
+        "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "ce7581ec450a5bda34534d8423854344d129554eeebe625766db7b7358000f4b",
+        "checkedAt": "2026-11-02T11:26:12.067448+00:00",
+        "navLast": "2026-10-30",
+        "totalLast": "2026-10-29",
+        "income": "Distributing",
+        "qualified": false,
+        "error": "Monthly NAV/return end not independently qualified: 2026-10",
+        "october": {
+          "nav": {
+            "2026-10-26": 7.659824,
+            "2026-10-27": 7.656417,
+            "2026-10-28": 7.638211,
+            "2026-10-29": 7.378114,
+            "2026-10-30": 7.32678
+          },
+          "totalReturn": {
+            "2026-10-26": 16324.891099999999,
+            "2026-10-27": 16317.63,
+            "2026-10-28": 16278.8287,
+            "2026-10-29": 15724.5006
+          }
         }
-      }
+      },
+      "problemMonth": "2026-10",
+      "current": {
+        "evidenceCheckedAt": "2026-11-02",
+        "periodEnd": "2026-10",
+        "controlledInstrument": "IE00BJ5JP436",
+        "withheldMonthlyEnds": [],
+        "excludedMonths": [],
+        "scaleProof": {
+          "anchorDate": "2026-10-30",
+          "officialPerShareNav": 7.32678,
+          "sourceIncomeIndex": 15615.095800000001,
+          "factor": 0.0004692113384280358
+        },
+        "level": {
+          "value": 7.32678,
+          "asOf": "2026-10-30",
+          "currency": "USD",
+          "isin": "IE00BJ5JP436",
+          "parser": "official-nav",
+          "valuationBasis": "fund-nav-price",
+          "nativeValue": 7.32678,
+          "nativeCurrency": "USD",
+          "fxAsOf": null,
+          "fxFactor": 1,
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          ],
+          "checkedAt": "2026-11-02T14:28:45.201229+00:00",
+          "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+          "maxAgeDays": 7,
+          "sha256": "a2d7670c84af5f74f3e76e0a545dd71ccbaee4686c15d09a42a8c7025af3a342"
+        }
+      },
+      "monthQualified": true,
+      "problemMonthWithheld": false,
+      "retainedPartialQualification": false,
+      "classification": "résolu depuis — borne mensuelle commune qualifiée",
+      "latestRefreshOutcome": "Non déduit de la seule présence d’un historique conservé"
     }
   ],
   "usageMatrix": [
@@ -9567,6 +10048,119 @@
     },
     {
       "isin": "IE00B1XNHC34",
+      "period": "2026-10",
+      "usage": "Calculateur",
+      "channel": "etf_clean_energy",
+      "initialAdmission": false,
+      "finalAdmission": false,
+      "qualificationChanged": false,
+      "detail": {
+        "qualified": false,
+        "code": "issuer-components-unreconciled",
+        "reason": "Composants officiels non rapprochés pour 2026-10 ; seules les fenêtres utilisant ce mois sont refusées.",
+        "start": "2026-09",
+        "end": "2026-10",
+        "modes": [
+          "lump",
+          "dca"
+        ],
+        "basis": "NAV de la part, revenus réinvestis, frais du fonds inclus",
+        "initialPeriodEnd": "2026-09",
+        "currentPeriodEnd": "2026-09"
+      }
+    },
+    {
+      "isin": "IE00B2QWCY14",
+      "period": "2026-10",
+      "usage": "Calculateur",
+      "channel": "etfIE00B2QWCY14",
+      "initialAdmission": false,
+      "finalAdmission": true,
+      "qualificationChanged": true,
+      "detail": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2026-09",
+        "end": "2026-10",
+        "modes": [
+          "lump",
+          "dca"
+        ],
+        "basis": "NAV de la part, revenus réinvestis, frais du fonds inclus",
+        "initialPeriodEnd": "2026-09",
+        "currentPeriodEnd": "2026-10"
+      }
+    },
+    {
+      "isin": "IE00B4556L06",
+      "period": "2026-10",
+      "usage": "Calculateur",
+      "channel": "etcPalladium",
+      "initialAdmission": false,
+      "finalAdmission": false,
+      "qualificationChanged": false,
+      "detail": {
+        "qualified": false,
+        "code": "issuer-components-unreconciled",
+        "reason": "Composants officiels non rapprochés pour 2026-10 ; seules les fenêtres utilisant ce mois sont refusées.",
+        "start": "2026-09",
+        "end": "2026-10",
+        "modes": [
+          "lump",
+          "dca"
+        ],
+        "basis": "NAV de la part, revenus réinvestis, frais du fonds inclus",
+        "initialPeriodEnd": "2026-09",
+        "currentPeriodEnd": "2026-09"
+      }
+    },
+    {
+      "isin": "IE00BJ5JP097",
+      "period": "2026-10",
+      "usage": "Calculateur",
+      "channel": "etf_financials",
+      "initialAdmission": false,
+      "finalAdmission": false,
+      "qualificationChanged": false,
+      "detail": {
+        "qualified": false,
+        "code": "issuer-components-unreconciled",
+        "reason": "Composants officiels non rapprochés pour 2026-10 ; seules les fenêtres utilisant ce mois sont refusées.",
+        "start": "2026-09",
+        "end": "2026-10",
+        "modes": [
+          "lump",
+          "dca"
+        ],
+        "basis": "NAV de la part, revenus réinvestis, frais du fonds inclus",
+        "initialPeriodEnd": "2026-09",
+        "currentPeriodEnd": "2026-09"
+      }
+    },
+    {
+      "isin": "IE00BJ5JP436",
+      "period": "2026-10",
+      "usage": "Calculateur",
+      "channel": "etf_world_communication",
+      "initialAdmission": false,
+      "finalAdmission": true,
+      "qualificationChanged": true,
+      "detail": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2026-09",
+        "end": "2026-10",
+        "modes": [
+          "lump",
+          "dca"
+        ],
+        "basis": "NAV de la part, revenus réinvestis, frais du fonds inclus",
+        "initialPeriodEnd": "2026-09",
+        "currentPeriodEnd": "2026-10"
+      }
+    },
+    {
+      "isin": "IE00B1XNHC34",
       "period": "2025",
       "usage": "Présentation ETF",
       "channel": "calendrier annuel de part",
@@ -10077,17 +10671,21 @@
     "originalMeasurementComparisons": 58,
     "uniqueMeasurementIsinYears": 53,
     "measurementClassifications": {
-      "preuve insuffisante — résidu cotation/NAV non attribué": 35,
+      "preuve insuffisante — résidu cotation/NAV non attribué": 34,
+      "différence légitime — clôtures de marché et NAV officielles corroborées": 1,
       "différence légitime — arrondi officiel documenté": 23
     },
-    "boundaryRefreshRefusals": 5,
+    "historicalBoundaryRefreshRefusals": 5,
+    "boundariesWithQualifiedMonth": 2,
+    "boundariesWithWithheldMonth": 3,
+    "monthlyWindowsRestored": 2,
     "policyCases": 3,
-    "financialSeriesAdmissionsChanged": 0,
-    "pricesOrReturnsRewritten": 0
+    "newSeriesRegistered": 0,
+    "auditRewritesFinancialObservations": false
   },
   "limits": [
     "Aucune nouvelle tolérance financière ni autorisation historique. Le test d’arrondi explique des comparaisons déjà admises.",
-    "Un niveau conservé et un rafraîchissement refusé sont deux états distincts.",
+    "Un niveau conservé, une qualification partielle et le résultat de la dernière collecte sont trois états distincts. Aucun résultat de collecte courant n’est déduit des cinq refus historiques.",
     "Matrice ciblée : les 4206 contrôles généraux ne sont pas rejoués."
   ]
 }

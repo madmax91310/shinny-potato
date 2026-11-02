@@ -1,0 +1,39 @@
+[
+  {
+    "id": "COPA-0",
+    "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=gro10k",
+    "status": 200,
+    "sha256": "422b767c46c3a501dc09827585a8ca56c9909ca46e0e489aa7452a46796bc206",
+    "bytes": 5748967,
+    "checkedAt": "2026-11-02T15:20:24.027992+00:00"
+  },
+  {
+    "id": "COPA-1",
+    "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=tabular",
+    "status": 200,
+    "sha256": "8528ca425a9d62f729aed5f3ebebcedc7d466214e93d0133242efe08eaae68ed",
+    "bytes": 18501,
+    "checkedAt": "2026-11-02T15:20:25.330655+00:00"
+  },
+  {
+    "id": "VWCE-gpx",
+    "url": "https://www.vanguard.co.uk/gpx/graphql",
+    "status": 200,
+    "sha256": "2f481b6a91745d3a275d1a10ecf9c0fe9e29ea8308f68f840b3d66cdbad32917",
+    "bytes": 21007,
+    "checkedAt": "2026-11-02T15:20:23.760866+00:00",
+    "errors": null,
+    "profile": {
+      "portId": "9679",
+      "fundFullName": "Vanguard FTSE All-World UCITS ETF (USD) Accumulating",
+      "fundCurrency": "USD",
+      "primaryMarketEquityClassification": "FTSE Country of Risk",
+      "identifiers": [
+        {
+          "altId": "ISIN",
+          "altIdValue": "IE00BK5BQT80"
+        }
+      ]
+    }
+  }
+]

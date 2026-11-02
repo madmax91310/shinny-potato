@@ -1,131 +1,101 @@
-# Qualification financière des réserves — 2 novembre 2026
+# Qualification financière ciblée — état actualisé après #1149 et #1150
 
-Travail ciblé après #1143 (calculs), #1144 (éditorial) et #1145 (images). Base initiale `462de7082861280b1d362d23612dad4beb475ca2`, puis master `4b5ea567e0209d958a57f0e67a6109f917c35e1e` intégré : réparation Nikkei #1148 conservée. Les trois fusions sont des ancêtres de cette base. `CLAUDE.md`, référence du 18 octobre et rapports des trois PR relus. PR #1148, #1061 (bloquée, ne pas fusionner) et #1042 relues ; aucun de leurs correctifs dupliqué.
+Base : master `ad7daeb42a7a4887c383723215de3676a251e63e`, après #1154, #1155 et #1156. PR ouvertes #1061 (bloquée) et #1042 examinées et préservées. Les apports des conversations d’automatisation ne sont pas réimplémentés. Ce chantier ne change aucun transport, collecteur, workflow, calcul financier, allocation, visuel ou texte applicatif validé.
 
-## Résultat et périmètre
+L’[archive #1149](README-1149.md), sa [matrice](matrix-1149.json) et son [CSV d’usages](usage-matrix-1149.csv) sont conservés. La [matrice courante](matrix.json) et le [CSV courant](usage-matrix.csv) sont régénérés par `node scripts/audit-financial-reserves.mjs --write`, sans audit général des 4 206 contrôles.
 
-Deux causes de lecture d’une politique de revenus sont réparées dans **Fiches pratiques / Émergents PEA et Europe PEA** :
+## Résultat par réserve
 
-- FR0013412012 : la politique du catalogue commun existe, mais la fiche ne consultait que le sous-ensemble historique des caractéristiques ; son PNG et son texte disaient « À vérifier sur le DIC ». Elle consulte maintenant le getter commun, y compris les parts du catalogue de routage.
-- FR0013412020 : le tableau disait correctement « Capitalisation et/ou distribution », mais le prédicat `^capitalis` de la copie réduisait cette politique à « capitalisation ». Le prédicat reconnaît maintenant une politique exclusivement capitalisante ; une politique mixte reste mixte. Le cas des deux parts mixtes ne produit plus l’affirmation « toutes capitalisantes ». Le même prédicat affectait aussi FR0013412038 dans Europe PEA ; son DIC officiel du 05/06/2026 confirme la même politique mixte.
-
-Aucune politique n’est déduite du nom ou du ticker. **Aucun prix, montant de distribution, rendement, frais, change, historique, poids, seuil ou admission financière n’est modifié.** La part S-ACC FR001400ZGO4 reste distincte et capitalisante. Structure, accroches, visuels et brouillons personnalisés sont conservés.
-
-Les **23** écarts déjà admis provenant de NAV et de calendriers officiels arrondis à deux décimales sont expliqués mathématiquement, avec source officielle relue et change historique. Les **35** autres résidus ne sont pas certifiés par la seule différence de convention et restent ouverts. Les **cinq rafraîchissements NAV** sont encore refusés à juste titre ; aucun passage en vert artificiel.
-
-## Retrouver les réserves et éviter le double comptage
-
-Source des 58 : [matrice #1143](../financial-consistency-2026-11-02/matrix.json), classification `mesures différentes — écart non certifié par la seule différence de convention`. Source des cinq : `anniversary-observation.json` dans [l’archive native #1143](../financial-consistency-2026-11-02/publication-observations-41402701374.zip), producteur 41402701374, puis confirmation 41411244396 dans la PR. Source des deux politiques : réserve explicite du rapport et de la description #1144. #1145 ne crée pas un nouveau lot financier ; ses deux défauts graphiques corrigés ne sont pas recomptés ici.
-
-- **58 comparaisons**, **9 ISIN**, **53 couples ISIN/année**. Pour le cuivre, cinq années apparaissent deux fois parce que deux séries distinctes (cotation et NAV) sont comparées au même calendrier. La clé de suivi ajoute `leftAssetId` : ce ne sont pas deux actifs, ni deux erreurs identiques.
-- Les cinq refus de rafraîchissement concernent **5 autres ISIN**, une même borne d’octobre 2026, deux composants source différents. Ils ne sont pas cinq anomalies supplémentaires dans les 58 comparaisons 2020–2025.
-- Les deux parts Amundi concernent **2 autres ISIN**. Le lot historique FR0007054358 du 23 octobre n’est aucune de ces deux parts ; sa preuve de cash ne peut leur être transférée.
-- Total d’identités dans la file initiale : **16 ISIN**. Un **17e ISIN**, FR0013412038, est découvert par la cause commune du prédicat de copie ; il est explicitement séparé dans la matrice, sans être ajouté rétroactivement aux deux réserves Amundi du bilan initial. On ne présente pas 58 + 5 + 2 comme un nombre d’actifs ni de causes.
-- Les refus de cotations XNKY.DE et ABTC.PA cités par #1143 recoupent les ISIN Nikkei et ABTC, avec d’autres fenêtres/canaux. Ils restent des restrictions existantes, pas de nouveaux cas ajoutés ici. Leurs NAV indépendantes ne certifient pas les cotations refusées.
-- L’ancien HTTP 410 ABTC est **résolu depuis** : la lecture officielle de cette enquête réussit sur les trois API primaires et qualifie la NAV. Il n’est ni un sixième refus actuel, ni une réparation revendiquée par ce lot.
-
-[Matrice initiale/finale détaillée](matrix.json) : chaque comparaison garde ses nombres initiaux, sa série, ses valeurs courantes, sa classification et ses preuves. [Matrice par actif, période et usage](usage-matrix.csv) : Présentation ETF, Comparatif, Performance depuis, Calculateur, Générateur, Duels et Il y a X ans. L’admissibilité initiale/finale y est identique, car aucun de ces canaux n’est nouvellement autorisé dans ce lot. Les contrôles d’anniversaire décrivent l’éligibilité actuelle du canal et n’inventent pas une nouvelle borne quotidienne pour chaque année.
-
-## Causes établies, actif par actif
-
-| ISIN / série | Périodes de la file | Réserve initiale | Qualification finale | Action / preuve manquante |
-|---|---|---|---|---|
-| IE00B4L5Y983 / `etfIE00B4L5Y983` | 2020–2025, 6 | Cotation EUR ajustée / NAV USD convertie EUR | **Preuve insuffisante** sur le résidu ; mesures distinctes établies | ISIN et capitalisation confirmés dans l’API officielle ; il manque le rapprochement des clôtures de marché et NAV aux mêmes heures, puis des fixings |
-| IE00BYYHSQ67 / `etfWqdv` | 2020–2025, 6 | Cotation USD réinvestie / NAV USD | **Preuve insuffisante** sur le résidu | Treize dates/montants de distributions USD publiés retrouvés sur 2020–2025 ; ajustements Yahoo et chronologie de valorisation non certifiés événement par événement |
-| FR0011871128 / `etfFR0011871128` | 2020–2025, 6 | NAV EUR mensuelle / calendrier EUR à deux décimales | **Différence légitime expliquée** | Même part, mêmes bornes de décembre ; chaque calcul non arrondi tombe dans l’intervalle de publication |
-| LU2196470426 / `etfLU2196470426Nav` | 2021–2025, 5 | NAV native JPY, projection EUR / calendrier JPY converti EUR | **Différence légitime expliquée** | Intervalle d’arrondi construit en JPY, puis converti avec les références historiques aux deux bornes ; aucune cotation XNKY réhabilitée |
-| IE00BK5BQT80 / `etfVwce` | 2020–2025, 6 | Cotation EUR / NAV de part USD | **Preuve insuffisante** sur le résidu | GPX Vanguard : portId 9679, ISIN exact, USD, six calendriers relus ; pas de substitution par FTSE All-World ni d’égalité forcée de fixings |
-| IE00B4ND3602 / `etfIE00B4ND3602` | 2020–2025, 6 | Cotation ETC / NAV | **Preuve insuffisante** sur le résidu | État officiel `No Income`, ETC physique ; pas de dividende inventé, mais horaires LBMA/NAV/cotation non rapprochés |
-| CH0454664001 / `etfCH0454664001Nav` | 2020–2025, 6 | NAV de l’ETP / calendrier arrondi USD, conversions EUR | **Différence légitime expliquée** | NAV exacte et split 14:1 du 12/04/2021 déjà pris en compte par l’émetteur ; pas de second ajustement ni remplacement par Bitcoin |
-| GB00B15KXQ89 / `etfGB00B15KXQ89` | 2021–2025, 5 | Cotation USD / NAV ETC | **Preuve insuffisante** sur le résidu | Cours et NAV distincts ; bornes, événements de marché et horaires encore à rapprocher |
-| GB00B15KXQ89 / `etfGB00B15KXQ89Nav` | 2020–2025, 6 | NAV TR normalisée / calendrier USD | **Différence légitime expliquée** | Identité COPA, type de niveau TR, normalisation à NAV exacte et calendrier relus ; aucune performance d’indice affectée à l’ETC |
-| IE00BDBRDM35 / `globalBondEur` | 2020–2025, 6 | Cotation EUR / NAV EUR de part couverte | **Preuve insuffisante** sur le résidu | Part EUR Hedged, capitalisation confirmée ; la couverture du fonds ne rend pas identiques la NAV et sa clôture de cotation |
-
-### Ce qui clôture les 23 rapprochements
-
-[Quatre lectures NAV officielles](source-checks/four-nav.json), avec captures brutes et empreintes dans `source-checks/capture-*`. Elles utilisent les adaptateurs ordinaires en **lecture seule**, sans `--apply`, sans réécriture des registres. Chaque contrôle contient ISIN, devise native, dates réelles de décembre, valeur dérivée et valeur publiée, précision publiée. La matrice exige que la preuve relue corresponde à la preuve canonique et aux deux valeurs effectivement consommées.
-
-Exemple Amundi 2024 : **32,84506920671928 %** sur les niveaux contre **32,85 %** publié ; intervalle à deux décimales **[32,845 ; 32,855] %**. Pour les sources USD/JPY, le même intervalle est ensuite transformé par le change historique des deux bornes, comme la valeur affichée. Le seuil n’est pas un nouveau filtre d’admission : c’est une explication d’audit, sans effet sur l’application. Une petite différence de cotation/NAV, un ISIN différent, une date non décembre ou une devise inconnue ne satisfont pas ce contrôle.
-
-[Sources des mesures de marché](source-checks/measure-sources.json) : identité et politique officielles iShares, calendriers dans leur devise, treize paiements WQDV avec dates/montants/devises ; [Vanguard GPX](source-checks/IE00BK5BQT80-measure-proof.json), requête et réponse capturées. Frais du fonds inclus dans les calendriers NAV ; courtage, fiscalité personnelle et flux DCA distincts. Aucune correction de TER ni de méthode de réinvestissement n’est démontrée par les 35 seuls résidus. Leur fermeture exigerait les preuves manquantes, pas une tolérance plus large.
-
-## Les cinq bornes NAV d’octobre
-
-[Lecture officielle actuelle, ISIN, dates, valeurs et empreintes](source-checks/nav-boundaries.json). Les cinq appels HTTP/identités réussissent ; le refus est **financier**, pas une panne de transport.
-
-| Part exacte | Canal | Dernière NAV / dernier rendement réinvesti | Cause / statut |
-|---|---|---|---|
-| IE00B4556L06 | `etcPalladium` | 30/10 / 29/10/2026 | Composants désalignés et NAV modifiée ; nouvelle borne commune non prouvée |
-| IE00BJ5JP436 | `etf_world_communication` | 30/10 / 29/10/2026 | Idem ; part distribuante, les cash-flows ne rendent pas les dates interchangeables |
-| IE00B1XNHC34 | `etf_clean_energy` | 30/10 / 29/10/2026 | Idem ; part distribuante |
-| IE00BJ5JP097 | `etf_financials` | 30/10 / 29/10/2026 | Idem ; part distribuante |
-| IE00B2QWCY14 | `etfIE00B2QWCY14` | 30/10 / 29/10/2026 | Idem ; part distribuante |
-
-**Dépendance concurrente identifiée : [#1150](https://github.com/madmax91310/shinny-potato/pull/1150)**, ouverte pendant cette enquête, traite le couplage technique de ces cinq rafraîchissements avec les historiques antérieurs. Son diff est relu : retrait explicite du seul mois TR non rapproché, conservation des mois qualifiés et niveau NAV brut traité séparément. Aucun correctif concurrent n’est ajouté ici. Les cinq refus ci-dessus sont la reproduction du contrat de master au moment de la capture ; la proposition #1150 peut rétablir les niveaux et l’historique antérieur **sans certifier le rendement d’octobre**. Son état fusion/CI/publication doit être contrôlé avant de dire ces usages rétablis.
-
-Le 30 octobre est un vendredi, pas un report de week-end à NAV inchangée. **Preuve manquante :** un niveau de rendement réinvesti daté du 30/10, ou une autre preuve officielle permettant de rapprocher exactement ce rendement et la NAV sans déplacer leur date. Les calendriers annuels antérieurs et les fenêtres mensuelles déjà qualifiées restent disponibles. Les niveaux anniversaire déjà validés restent conservés avec leurs dates réelles ; un refus de rafraîchissement n’efface pas ces niveaux et n’en rajeunit pas le contrôle. Aucune extension d’un rendement du 29 au 30 n’est autorisée.
-
-## Les deux parts Amundi, sans inférence par le nom
-
-Treize PDF officiels conservés (huit documents actuels et cinq archives juridiques / avis de 2022–2025), textes extraits, URLs et SHA-256 dans le [manifeste documentaire](official-documents/manifest.json). Requête et réponse de l’API historique séparées dans `source-checks`, [synthèse des observations](source-checks/amundi-policies.json).
-
-| Part | Document applicable consulté | Énoncé exact / portée |
+| Lot initial | Résultat courant | Correction / portée |
 |---|---|---|
-| FR0013412020 | [DIC du 13/07/2026, p. 1](official-documents/FR0013412020-kid.pdf) ; [prospectus mis à jour le 13/07/2026, p. 30](official-documents/FR0013412020-prospectus.pdf) ; fiche du 30/09/2026, p. 2 | Revenus et plus-values peuvent être capitalisés ou distribués à la discrétion de la société de gestion ; « Capitalisation et/ou distribution ». Le nom comportant **Acc** ne change pas cet énoncé juridique. |
-| FR0013412012 | [DIC du 05/06/2026, p. 1](official-documents/FR0013412012-kid.pdf) ; [prospectus mis à jour le 16/04/2026, p. 25](official-documents/FR0013412012-prospectus.pdf) ; fiche du 30/09/2026, p. 2 | Même décision de la société de gestion, même politique mixte. La réserve « À vérifier sur le DIC » de la fiche est remplacée par cette politique documentée. |
+| 23 différences de précision déjà expliquées | Toutes préservées | Aucun changement à leurs preuves, valeurs ni seuils |
+| 35 résidus cotation/NAV | 1 explication officielle nouvelle, IWDA 2025 ; 34 restent non certifiés | Le suivi exploite maintenant les captures vérifiées au lieu de rouvrir systématiquement ce cas |
+| Cinq refus de borne NAV d’octobre | **Deux mois d’octobre nouvellement qualifiés**, trois encore refusés | Publication officielle concordante du 30/10 pour SmallCap 600 et World Communication ; collecte ordinaire et contrôles financiers inchangés |
+| Trois politiques Amundi, dont deux réserves initiales | Politique mixte de #1149 maintenue ; affectations et acomptes 2023/2024 documentés séparément ; historique cash incomplet | Six rapports officiels supplémentaires et limites par exercice conservés, sans adjustment de rendement |
 
-**Cas commun découvert : FR0013412038.** Son [DIC du 05/06/2026, p. 1](official-documents/FR0013412038-kid.pdf) et son [prospectus du 16/04/2026](official-documents/FR0013412038-prospectus.pdf) confirment « Capitalisation et/ou distribution par décision de la Société de Gestion ». Le tableau Europe PEA possédait déjà la bonne politique ; seule sa copie la réduisait à « capitalisation ». La correction du même prédicat supprime cette erreur, sans nouvelle admission de série ni réécriture de valeur.
+Les 58 comparaisons restent 58, sur 9 ISIN et 53 couples ISIN/année : 23 anciennes explications + 1 nouvelle + 34 réserves. Les cinq années cuivre comportent deux canaux distincts ; la clé inclut la série. Les cinq bornes d’octobre concernent cinq autres ISIN, pas cinq anomalies supplémentaires parmi les 58. Les deux parts Amundi initiales et le troisième cas découvert par #1149 restent distingués. Les lignes d’usages ne sont pas des anomalies à additionner.
 
-Le prospectus de FR0013412020 rassemble aussi le DIC de **FR001400ZGO4 / S-ACC** (p. 4), qui parle bien de non-distribution et de réinvestissement. Ce texte ne concerne pas FR0013412020. Les deux ISIN ne sont pas fusionnés et leur performance n’est pas transférée.
+## Deux mois rétablis avec des bornes communes
 
-Les deux parts commencent le **25/04/2019**, en EUR ; exposition par swap, indice en dollars avec dividendes nets réinvestis. La performance du **fonds** ne devient pas celle de cet indice. L’API donne `Capitalisation and/or distribution`, mais les champs `dividendAmount` et `dividendCurrency` sont **null**, pas des preuves de zéro versement. Les séries NAV/ajustée ont un rapport constant proche de 5 sur leurs dates communes ; ce seul facteur d’échelle ne démontre ni des paiements absents ni une politique exclusive.
+Lecture officielle du 2 novembre à 16:48 UTC, puis `refresh_monthly_history.py --only … --apply` sur les deux configurations existantes :
 
-**Périodes antérieures : preuve partielle retrouvée, limites maintenues.**
+| ISIN / canal exact | Avant | Preuve officielle nouvelle | Après |
+|---|---|---|---|
+| IE00B2QWCY14 / `etfIE00B2QWCY14` | Dernier mois qualifié septembre ; NAV du 30/10 et rendement réinvesti du 29/10 | NAV et indice de rendement réinvesti datés du **30/10**, 6 contrôles de cash isolés, 142 contrôles mensuels d’unités et contrôles calendaires réussis | Octobre disponible ; NAV native USD, conversion EUR avec le change historique de chaque borne ; aucune distribution ajoutée une seconde fois |
+| IE00BJ5JP436 / `etf_world_communication` | Même refus d’octobre | NAV et rendement réinvesti du **30/10**, 2 contrôles de cash isolés, 54 contrôles mensuels d’unités et contrôles calendaires réussis | Octobre disponible en USD ; méthodes, part et identité conservées |
 
-- FR0013412012 : le [prospectus mis à jour le 30/12/2022, avec DIC publié le 26/01/2023](official-documents/FR0013412012-prospectus-20230126.pdf) confirme déjà la politique mixte (DIC p. 1, clause p. 19). Cette preuve ne vient pas du seul statut de 2026.
-- FR0013412020 : le [document comportant le DIC du 26/01/2023 et le prospectus du 27/09/2023](official-documents/FR0013412020-prospectus-20230927.pdf), puis le [DIC et prospectus du 29/03/2024](official-documents/FR0013412020-prospectus-20240402.pdf), confirment la même décision de capitaliser ou distribuer. Les clauses sont p. 21 dans les deux prospectus. Le nom de fichier `20240402` n’est pas substitué à la date juridique **29 mars** lue dans le PDF.
-- La [lettre du 15/09/2023 pour FR0013412012](official-documents/FR0013412012-notice-20230915.pdf) fixe au **18/10/2023** un changement de nom, de stratégie et d’indice. La [lettre du 19/05/2025 pour FR0013412020](official-documents/FR0013412020-notice-20250519.pdf) fixe au **02/06/2025** la modification de l’indice vers la méthodologie CTB. Ce sont des changements d’exposition documentés, pas des preuves de changement de politique de revenus ni de versement. Les calendriers historiques de la part restent ceux du fonds, pas ceux du dernier indice rétroactivement.
+La NAV SmallCap du 30/10 est **113,625838 USD** ; la série consommée en EUR utilise **101,70590584 EUR** à cette borne. La NAV Communication est **7,326780 USD**. Les niveaux réinvestis historiques restent des unités de performance normalisées sur la NAV exacte ; ils ne sont pas présentés comme des cotations historiques.
 
-Aucun changement de politique de revenus n’est établi entre les versions consultées ; on ne conclut pas pour autant à l’exhaustivité des avis intermédiaires. Les versions applicables **2019–2022 avant ces documents** n’ont pas été obtenues. Les six URLs de fiches datées essayées répondent 404, mais la recherche par documents archivés permet d’aller au-delà de ce premier blocage. Le portail AMF consulté n’a pas livré un PDF exploitable ; la preuve retenue vient des fichiers officiels Amundi téléchargés et identifiés.
+Les deux observations proviennent du **point d’entrée ordinaire**, avec sa validation de continuité, identité, devise, revenus réinvestis, frais, unités de cash et calendriers. Aucun point n’est saisi à la main dans une sortie générée ; aucun décalage du 29 au 30 n’est pratiqué. Les trois autres séries et toutes les autres observations existantes restent inchangées. Les projections nécessaires sont régénérées selon le dépôt.
 
-Il manque encore, pour certifier les paiements, les avis/rapports de distributions avec montants, devises, détachements et continuité des parts. Une politique mixte autorise une décision ; elle ne démontre pas qu’un paiement a effectivement eu lieu. La date de production d’un DIC n’est pas affirmée comme date d’effet d’un changement. Les calendriers officiels annuels déjà qualifiés restent indépendants ; aucune série mensuelle distribuante n’est débloquée par cette enquête.
+[Lecture officielle actuelle des cinq bornes](followup/source-boundaries-20261102T1648.json). Les preuves détaillées de la version active restent dans les registres et `scripts/source-snapshots/monthly-automated.json` ; elles portent les empreintes des réponses réellement utilisées.
 
-### Preuve avant / après de la correction utile
+### Refus maintenus et usages indépendants
 
-| Avant | Après |
-|---|---|
-| ![Revenus avant](proofs/em-pea-before-390.png) | ![Revenus après](proofs/em-pea-after-390.png) |
+| Part | Qualification conservée | Preuve manquante |
+|---|---|---|
+| IE00B1XNHC34 / Clean Energy | Rendements jusqu’à septembre ; NAV brute du 30/10 indépendante | Rendement réinvesti officiel au 30/10 ou preuve équivalente de même portée ; source actuelle arrêtée au 29 |
+| IE00BJ5JP097 / Financials | Même séparation | Même preuve, sans compléter artificiellement octobre |
+| IE00B4556L06 / Palladium | Rendements jusqu’à septembre ; niveau qualifié du **29/10**, ancienne exclusion 2014 conservée | Cohérence NAV/rendement au 30/10 ; `No Income` ne permet pas de supprimer le contrôle de cohérence ni de redater le niveau |
 
-Les [textes initiaux complets](practical-before.json) et [copies finales / brouillons personnalisés / téléchargements](proofs/browser-after.json) gardent les mêmes identités, frais, encours et performances. Seuls la qualification de revenus et son explication changent. La comparaison [des 74 fiches](practical-diff.json) établit que seuls les textes de `em-pea` et `europe-pea` changent ; les lignes de l’image Europe sont identiques. L’image utilise son dessin existant ; aucune source ni mention retirée des images n’est réintroduite.
+Les quatre niveaux bruts du 30/10 et le niveau palladium du 29 étaient déjà admissibles avant cette reprise ; ils ne deviennent pas cinq nouveaux usages. #1150 avait rétabli le rafraîchissement de la partie antérieure en gardant octobre exclu. **La nouvelle publication du rendement du 30**, et non une tolérance, rétablit maintenant deux fenêtres mensuelles.
 
-## Consommateurs et validations
+Le script distingue désormais le refus historique, la qualification financière conservée et le résultat du dernier producteur. Il ne déduit pas le succès d’une collecte courante de la simple présence d’un historique. Un champ `checkedAt` n’est jamais substitué à la date de NAV.
 
-- Présentation ETF et Comparatif : mêmes valeurs annuelles de la part, même conversion historique ; comparaison exacte pour chaque période de la matrice où ces valeurs sont disponibles.
-- Performance depuis et Calculateur : chaque série mensuelle conserve sa convention, sa qualification et ses bornes ; cotations refusées et NAV indépendantes distinguées dans le CSV.
-- Générateur et Duels : rendements EUR concordants pour les périodes partagées, même catalogue et mêmes admissions. **Aucun moteur, donnée ni règle du Générateur touché** ; pas de stress global relancé pour un changement de fiche pratique.
-- Il y a X ans : éligibilité du canal brut/NAV contrôlée séparément, dernière preuve valide préservée ; pas de rendement total pris pour un prix.
-- Fiches pratiques : vrais parcours Chromium **1440/390 px**, copie et conservation d’un texte personnalisé, quatre PNG avant/après réels pour Émergents, puis quatre téléchargements sur build (Émergents et Europe), égalité binaire avec le canvas, pas de débordement horizontal ni erreur JavaScript. PNG inspectés. Le parcours sur build local est conservé séparément du serveur de développement.
-- Régressions : politique mixte, part S-ACC distincte, raccordement des caractéristiques, identité et dates du contrôle d’arrondi, précision explicite, refus des petites différences de cotation. `test-practical-sheets.mjs` exécute le nouveau contrôle, sans modifier de workflow.
-- Préservation #1143 : exemples indépendants, comparaison DCA/versement unique et prix final saisi, somme décimale Générateur/Duels réussis. #1144 et #1145 : aucun de leurs moteurs éditoriaux/visuels partagés n’est modifié ; la correction factuelle reste limitée à la politique des fiches pratiques.
-- Build local complet réussi : budgets inchangés, **4 583 certificats**, **42 fichiers publics** concordants. Les projections ont été régénérées par le build puis écartées du commit conformément au dépôt ; aucun générateur de projection n’est modifié.
+## IWDA 2025 : explication durable, sans changer les chiffres
 
-Le contrôle général des **4 206 lignes n’est pas relancé**, ni la recette complète des images. La CI obligatoire, la fusion, Pages et les parcours publics seront renseignés avec leurs SHA effectifs dans la PR et un reçu final, après résultat ; un build local n’est pas une preuve de déploiement.
+Part **IE00B4L5Y983**, cotation **IWDA / XAMS / EUR**. Les captures officielles permettent de reconstituer chaque borne :
 
-## Complémentarité avec l’automatisation
+| Date | Clôture Euronext EUR | NAV BlackRock USD | BCE : USD pour 1 EUR |
+|---|---:|---:|---:|
+| 31/12/2024 | 104,16 | 107,612370 | 1,0389 |
+| 31/12/2025 | 111,53 | 130,383540 | 1,1750 |
 
-[Diagnostic reproductible et dépendances](AUTOMATISATION.md). Cette PR ne change aucun transport, collecteur, workflow, règle d’enregistrement ou publication. #1148 est déjà intégrée, #1061 reste bloquée et #1042 distincte. Les dépendances financières non résolues sont des demandes de preuve, pas une autorisation d’assouplir un producteur.
+Les cours officiels reproduisent exactement la représentation float32 puis six décimales des cours consommés : 104,160004 et 111,529999. Le rendement consommé est +7,0756477698 %, contre +7,1260629787 % pour le calendrier NAV à deux décimales USD converti au change historique.
 
-## Rejouer uniquement ce périmètre
+Décomposition en points de pourcentage : valorisations marché/NAV au fixing BCE **−0,0507326314**, précision du calendrier **+0,0003224944**, représentation des cours **−0,0000050720**, total **−0,0504152090**. Les facteurs `cours EUR × fixing USD/EUR / NAV USD` sont 1,0055704934 puis 1,0050942780. L’identité géométrique reconstitue l’écart ; elle ne force pas l’égalité des mesures et n’attribue pas leur différence au seul spread ou à un seul horaire.
 
-```sh
-node scripts/audit-financial-reserves.mjs --write
-node scripts/test-practical-sheets.mjs
-node scripts/test-financial-examples.mjs
-npm run build
-# servir le build : npm run preview -- --host 127.0.0.1 --port 4173
-node scripts/playwright-financial-reserve-policy.mjs
-# après publication, même parcours réel sur le site :
-FINANCE_BASE=https://madmax91310.github.io/shinny-potato/ FINANCE_OUT=test-artifacts/financial-reserve-policy/public node scripts/playwright-financial-reserve-policy.mjs
-```
+[Manifeste et captures](followup/market-nav-evidence.json). Le chargeur contrôle les empreintes, les hôtes officiels, l’ISIN, la cotation, les dates, les colonnes, la NAV et le rendement réinvesti, les calendriers et les deux fixings. Le rapprochement ne s’applique que si les valeurs **effectivement consommées** correspondent à ces preuves. Un cours révisé, une autre place, part, devise, date, un fixing différent ou une capture manquante laissent le cas ouvert. Aucune tolérance financière n’est ajoutée ou élargie.
 
-Le script de matrice lit les preuves datées de ce dossier et les registres courants ; il ne recollecte ni n’applique une observation. Une donnée future modifiée peut reclasser un cas ; aucun compteur n’est imposé par les tests.
+Le graphique BlackRock par défaut porte le ticker SWDA : ses prix ne sont pas transférés à IWDA. Les cours ici proviennent directement de la cotation Euronext exacte. Les heures historiques de valorisation ne sont pas inventées à partir d’un prospectus de 2026.
+
+## Les 34 comparaisons non certifiées
+
+[Bornes quotidiennes réellement observées](followup/measurement-boundaries.json) et [preuve précise manquante par cas](followup/remaining-proof-by-case.csv). Les six cotations ont été relues par le collecteur ordinaire sans modifier ses transports ; quotidien et mensuel concordent, mais ce sont deux fréquences d’un même fournisseur.
+
+| ISIN / canal | Périodes restantes | Convention et preuve manquante |
+|---|---|---|
+| IE00B4L5Y983 / IWDA.AS | 2020–2024, 5 | EUR Amsterdam / NAV USD ; clôtures officielles aux deux bornes, ajustements et fixings applicables. La preuve 2025 n’est pas étendue aux autres années |
+| IE00BYYHSQ67 / WQDV.L | 2020–2025, 6 | USD Londres / NAV USD distribuante ; les **13 événements USD publiés** concordent exactement entre Yahoo et BlackRock, mais les clôtures officielles et facteurs d’ajustement/horaires restent à rapprocher |
+| IE00BK5BQT80 / VWCE.DE | 2020–2025, 6 | EUR Xetra / part USD accumulante, GPX portId 9679 exact ; NAV quotidiennes et clôtures officielles aux bornes. Un calendrier annuel n’est pas une observation quotidienne |
+| IE00B4ND3602 / IGLN.L | 2020–2025, 6 | ETC physique, `No Income` ; clôtures officielles IGLN/USD et convention de valorisation LBMA/NAV. Le graphique SGLN ne remplace pas cette cotation |
+| GB00B15KXQ89 / COPA.L | 2021–2025, 5 | Cotation USD / NAV-TR de l’ETC exact ; cours officiels, unités et horaires des bornes. Aucun rendement du benchmark Bloomberg adjacent ne remplace celui de l’ETC |
+| IE00BDBRDM35 / AGGH.MI | 2020–2025, 6 | Cotation Milan EUR / NAV EUR couverte ; bornes et horaires officiels. Cinq comparaisons présentent déjà au moins une date différente. La couverture EUR ne rend pas cours et NAV identiques |
+
+Ce sont des **preuves insuffisantes**, pas 34 erreurs financières démontrées. Ni une amplitude faible ni une différence générale de convention ne certifie le résidu. Aucune série existante indépendamment qualifiée n’est bloquée par ces seules réserves.
+
+## Amundi : politique et cash restent distincts
+
+Les six nouveaux PDF sont fournis par l’API documentaire publique du site Amundi. Les ISIN et pages sont conservés dans le [registre de revue](followup/amundi-evidence.json), les [rapports annuels](followup/annual-report-manifest.json) et les [semestriels](followup/semi-report-manifest.json).
+
+| Part | Preuve documentaire acquise | Qualification permise et limite |
+|---|---|---|
+| FR0013412020 / ACC | Rapport annuel 2025, identité p. 39, comptes comparatifs p. 71–72 ; affectation 2025 p. 47 et 49 | Affectations et acomptes sur résultat et plus-values explicitement à zéro pour les clôtures 2023 et 2024 ; affectations ACC 2025 à zéro. Ce n’est pas une preuve de tout paiement sur l’année civile 2025. FR001400ZGO4 S-ACC reste distincte |
+| FR0013412012 | Identité p. 37, comptes comparatifs p. 68–69, évolution d’actif net p. 61 | Affectations et acomptes 2023/2024 explicitement à zéro ; montants vides en 2025 non assimilés à zéro cash |
+| FR0013412038 | Identité p. 38, comptes comparatifs p. 68–69 | Même preuve d’affectations et acomptes 2023/2024 à zéro ; ne prouve pas une capitalisation juridique exclusive |
+
+Les pages scannées ont été inspectées, et les PDF font foi. Les semestriels au 31/12/2025 contiennent p. 7 des lignes de dividendes versés/à verser avec des **montants vides**. Les champs API null, le facteur NAV/ajusté voisin de cinq et le nom « Acc » ne prouvent ni versement ni absence historique.
+
+Manquent notamment les rapports/avis complets **2019–2022**, les périodes de cash non corroborées et les versions juridiques antérieures aux documents déjà retrouvés par #1149. Aucune date d’effet n’est déduite d’un nom de fichier. La politique **capitalisation et/ou distribution** reste affichée ; aucune distribution ni correction de rendement n’est inventée. Les canaux de cotation ajustée et calendriers annuels déjà qualifiés restent disponibles indépendamment.
+
+## Consommateurs, validation et déploiement
+
+- Calculateur : deux nouvelles fenêtres septembre→octobre, versement unique et DCA ; méthode de réinvestissement et historique de change conservés.
+- Présentation ETF, Comparatif, Performance depuis, Générateur et Duels : mêmes parts, rôles, conventions et années civiles closes. Aucune performance d’indice attribuée au fonds, aucune admission automatique ni allocation modifiée.
+- Il y a X ans : niveaux bruts et dates réelles indépendants du rendement mensuel ; le palladium n’est pas redaté du 30.
+- Fiches pratiques : politiques mixtes et distinction S-ACC de #1149 préservées ; textes personnalisés, brouillons et visuels inchangés.
+- Tests : captures officielles et identités, refus des petites différences non prouvées, fixings datés, dates communes, distinction historique/partiel/courant, contrôles de cash et d’unités inchangés, consommateurs et compilation. Les nombres du bilan ne sont pas figés par les tests.
+
+Validation locale réussie : compilation, budgets, 4 583 certificats et 42 fichiers publics concordants ; régressions financières, preuves officielles, politiques mixtes, 42 parts NAV et consommateurs. Chromium à 390 px : 8 vrais PNG des deux parts, copie réelle, calcul indépendant sur deux mois et égalité binaire aperçu/export. [Résultats](followup/consumer-proofs/local-results.json), exemples [SmallCap 600](followup/consumer-proofs/etfIE00B2QWCY14-lump.png) et [World Communication](followup/consumer-proofs/etf_world_communication-lump.png).
+
+Les résultats effectifs de CI, fusion et production seront consignés dans la PR et le reçu de livraison. Une qualification locale n’est pas une preuve de déploiement. Aucun audit général des 4 206 contrôles ni recette complète des images n’est relancé.
