@@ -4,6 +4,7 @@ from concurrent.futures import ThreadPoolExecutor
 import datetime as dt
 from html.parser import HTMLParser
 import json
+import hashlib
 import math
 import os
 import pathlib
@@ -104,13 +105,21 @@ def parse_share(body, share, now):
         reject('Unexpected share identity or currency')
     if value('useOfProfitsCode') != share.get('distribution', 'Accumulating'):
         reject('Unexpected distribution policy')
+    # Explicit contracts for new admissions; a strategy change needs review of
+    # the editorial description before it can replace the qualified observation.
+    for expected, field in [('expectedIndex', 'indexSeriesName'),
+                            ('expectedAssetClass', 'assetClass'),
+                            ('expectedStructure', 'productStructure'),
+                            ('expectedUcits', 'ucitsCompliantFlag')]:
+        if expected in share and value(field) != share[expected]:
+            reject('Exact-share contract changed: ' + field)
     # Keep exact issuer characteristics in the shared record, not only in config.
     identity = {'distribution': value('useOfProfitsCode'), 'index': None if share.get('physicalMetal') else value('indexSeriesName')}
     for target, source in [('domicile','domicile'), ('inceptionDate',share.get('inceptionField','inceptionDate'))]:
         published = facts.get(source, {}).get('value')
         if isinstance(published, (str, int)) and not isinstance(published, bool) and str(published).strip():
             identity[target] = str(published)
-    identity.update(replication_characteristics(facts))
+    identity.update(replication_characteristics(facts, combined=share.get('combinedReplication', False)))
     ter = number(value('emeaMgt'), positive=False)
     if ter > 5:
         reject('Invalid TER')
@@ -245,6 +254,18 @@ def collect(config, baseline, now=None, fetch=get_text):
         if active.get('currency') and active['currency'] != share['currency']:
             reject('Active baseline has a different currency')
         result['sourceUrl'] = url
+        if share.get('sourceProof'):
+            # Hash of the canonical structured response, also retained in the
+            # replay fixtures. Never borrow the AUM date for undated facts.
+            digest = hashlib.sha256(json.dumps(body, ensure_ascii=False).encode()).hexdigest()
+            for field in ('characteristics', 'aum', 'countries', 'sectors', 'countriesRisk', 'holdings', 'performance'):
+                if field in result:
+                    result[field].update(sourceUrl=url, sha256=digest)
+            performance = result.get('performance')
+            if performance and performance.get('years'):
+                performance['asOf'] = max(performance['years']) + '-12-31'
+                performance['yearEvidence'] = {year: {'asOf': year+'-12-31', 'sourceUrl': url, 'sha256': digest}
+                                               for year in performance['years']}
         result['comparison'] = [
             {'year': year, 'active': (active.get('values') or [None] * 6)[year - 2020],
              'issuer': result['performance']['years'][str(year)],

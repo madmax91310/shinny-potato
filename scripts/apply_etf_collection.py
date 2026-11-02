@@ -10,6 +10,8 @@ from data_automation import reject, write_json_atomic
 RECENT_LAUNCHES = json.loads((Path(__file__).with_name('recent-calendar-evidence.json')).read_text())['shares']
 
 SECTORS = {
+    'Government Related': 'Émetteurs liés aux États',
+    'MBS Pass-Through': 'Titrisations hypothécaires avec transmission des flux',
     # iShares EM Value, official product 297452, checked 2026-10-15.
     # Preserve published sub-industry labels; never aggregate these as broad sectors.
     **{name:name for name in ['Steel', 'Automobile Manufacturers', 'Automotive Parts & Equipment', 'Marine Transportation', 'Copper', 'Aluminum', 'Specialized Finance', 'Gold', 'Diversified Chemicals', 'Precious Metals & Minerals', 'Construction & Engineering', 'Paper Products', 'Construction Materials', 'Tires & Rubber', 'Passenger Airlines', 'Construction Machinery & Heavy Transportation Equipment', 'Marine Ports & Services', 'Automotive Retail', 'Coal & Consumable Fuels', 'Oil & Gas Drilling', 'Renewable Electricity', 'Wireless Telecommunication Services', 'MULTI-LINE INSURANCE']},

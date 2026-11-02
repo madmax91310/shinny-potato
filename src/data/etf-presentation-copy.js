@@ -1,3 +1,4 @@
+import { NEW_INSTRUMENT_SHEETS } from './new-instrument-sheets.js'
 // Rédaction par exposition, revue du 23/10/2026. Aucun chiffre vivant ici.
 // Les caractéristiques, cotations et photographies restent liées à l’ISIN dans leurs registres.
 // Une même stratégie peut partager son explication ; jamais les données de deux parts.
@@ -162,7 +163,10 @@ const groups = [
   }],
 ]
 
-export const REVIEWED_EXPOSURE_COPY = Object.fromEntries(groups.flatMap(([ids,copy]) => ids.map(id => [id,copy])))
+export const REVIEWED_EXPOSURE_COPY = Object.fromEntries([
+  ...groups.flatMap(([ids,copy]) => ids.map(id => [id,copy])),
+  ...NEW_INSTRUMENT_SHEETS.map(({id,hook,whatIs,whyInteresting,whatToKnow,question}) => [id,{hook,whatIs,whyInteresting,whatToKnow,question}]),
+])
 
 // Métiers et mécanismes propres aux sélections sectorielles ; le benchmark exact
 // et les poids datés sont ajoutés par le rendu depuis les registres canoniques.

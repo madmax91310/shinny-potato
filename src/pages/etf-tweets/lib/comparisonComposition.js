@@ -1,5 +1,6 @@
 import { COMPARISON_ETF_DETAILS } from '../../../data/comparison-etf-details.js'
 import { AUTOMATED_ETF } from '../../../data/automated-etf.js'
+import { FRENCH_CHARACTERISTIC_LABELS } from '../../../data/french-characteristics.js'
 
 export function getComparisonComposition(isin, field) {
   const details = COMPARISON_ETF_DETAILS[isin]
@@ -18,6 +19,7 @@ export function compositionEvidenceLabel(composition) {
     composition.asOf?.split('-').reverse().join('/')].filter(Boolean).join(' · ')
 }
 export const COMPOSITION_LABELS = {
+  ...FRENCH_CHARACTERISTIC_LABELS,
   Australia: 'Australie', Grains: 'Céréales', 'Precious metals': 'Métaux précieux', 'Other/Cash': 'Autres / liquidités',
   Treasury: 'Emprunts d’État', 'Cash and/or Derivatives': 'Liquidités / dérivés',
   Italy: 'Italie', Spain: 'Espagne',

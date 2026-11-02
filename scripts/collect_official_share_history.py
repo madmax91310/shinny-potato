@@ -122,7 +122,7 @@ def configurations():
             **({'navCalendarSource':prior['navCalendarSource']}if 'navCalendarSource'in prior else{}),
             **extras[id]}.items()})
     remainder = json.loads((ROOT/'scripts/official-nav-remainder-sources.json').read_text())
-    return result + remainder
+    return result + remainder + json.loads((ROOT/'scripts/new-instrument-nav-sources.json').read_text())
 
 
 def daily_nav_fx_factor(native, currency, latest, body):

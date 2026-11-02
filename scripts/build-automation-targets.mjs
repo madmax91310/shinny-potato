@@ -61,10 +61,13 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  // Keep one qualification condition per field and set of public source URLs.
  const qualificationHolds=[...new Map(([...(holds.has(isin)?[holds.get(isin)]:[]),...(previousStatus[isin]?.errors??[]).filter(error=>error.qualificationRequired&&error.sources?.length>=2&&['pea','currencyHedge'].includes(error.field)).map(({field,sources})=>({field,sources}))]).map(hold=>[JSON.stringify([hold.field,hold.sources.map(row=>row.sourceUrl).sort()]),hold])).values()]
  urls.push(...qualificationHolds.flatMap(hold=>hold.sources.map(row=>row.sourceUrl)))
- metadata.push({isin,listings,...(typeof review?.eligible==='boolean'?{peaExpectation:{value:review.eligible,sourceUrl:review.sourceUrl,checkedAt:review.checkedAt}}:{}),urls:[...new Set([...urls.filter(Boolean),...issuerDocuments].map(currentDocument).map(endpoint))],...(qualificationHolds.length?{qualificationHolds}:{})})
+ const metadataFields=issuerShares.get(isin)?.metadataFields
+ metadata.push({isin,listings,...(typeof review?.eligible==='boolean'?{peaExpectation:{value:review.eligible,sourceUrl:review.sourceUrl,checkedAt:review.checkedAt}}:{}),
+  urls:metadataFields?[endpoint(r.sourceUrl)]:[...new Set([...urls.filter(Boolean),...issuerDocuments].map(currentDocument).map(endpoint))],
+  ...(metadataFields?{fields:metadataFields}:{}),...(qualificationHolds.length?{qualificationHolds}:{})})
  if(existing[isin])continue
  const name=INSTRUMENTS_BY_ISIN[isin]?.name??''
- if(/\b(?:ETC|ETN|ETP)\b|bond|treasury|govt|overnight|court terme/i.test(name))continue
+ if(INSTRUMENTS_BY_ISIN[isin]?.assetClass==='Fixed Income'||/\b(?:ETC|ETN|ETP)\b|bond|treasury|govt|overnight|court terme/i.test(name))continue
  const url=r.sourceUrl??''
  const share=issuerShares.get(isin)
  const method=r.characteristics?.replicationMethod??facts.replicationMethod??''

@@ -29,6 +29,7 @@ PRIVATE_SERVICE_READERS = [
     'services/tweet-bank-private/worker/index.js',
     'services/tweet-bank-private/worker/page.js',
     'services/tweet-bank-private/tests/browser.mjs',
+    'services/tweet-bank-private/scripts/preview.mjs',
     '.github/workflows/test-tweet-bank-private.yml',
 ]
 
