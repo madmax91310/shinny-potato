@@ -4,7 +4,7 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 
 | Champ ETF/ETP | Présent | Contrôle récent | Contrôle en retard | Publication ancienne |
 |---|---:|---:|---:|---:|
-| Positions intégrales | 192/283 | 192 | 0 | 0 |
+| Positions intégrales | 203/283 | 203 | 0 | 0 |
 | Frais | 280/283 | 280 | 0 | 0 |
 | Encours | 280/283 | 278 | 2 | 0 |
 | Performances annuelles | 260/283 | 260 | 0 | 0 |
