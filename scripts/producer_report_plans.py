@@ -132,9 +132,15 @@ def build_plan(producer, args, report_stem=None, module=None):
         m=mod();sources=cfg('instrument-metadata-sources');chosen=m.select_sources(sources,only)
         selected={s['isin']for s in chosen}
         for s in sources:
+            # Keep every operation identity, with capability exclusions declared
+            # before fetching results. These fields remain requirements elsewhere.
             for field in m.FIELDS:
+                owned=field in s.get('fields', m.FIELDS)
+                requested=s['isin']in selected and owned
+                reason=('Outside declared fields for this metadata source; no field control claimed'if not owned
+                        else 'Outside explicit metadata selection'if s['isin']not in selected else None)
                 for suffix in ['',':qualification']:
-                    add(s['isin']+':'+field+suffix,s['isin'],[field],s['isin']in selected,'Outside explicit metadata selection'if s['isin']not in selected else None,**({'phase':'qualification','sourceAttempted':False}if suffix else{}))
+                    add(s['isin']+':'+field+suffix,s['isin'],[field],requested,reason,**({'phase':'qualification','sourceAttempted':False}if suffix else{}))
     elif producer=='update-investor-13f':
         for entry in [{'slug':slug}for slug in mod().MANAGERS]:add('investor:'+entry['slug'],entry['slug'],['13F last successful check','positions date','report quarter','amendments'])
     elif producer=='refresh_non_bond_sources':

@@ -1,0 +1,219 @@
+{
+  "sourceRun": 41364143602,
+  "sourceArtifact": 13108203395,
+  "configurationBeforeExecution": "b4588ec:scripts/instrument-metadata-sources.json",
+  "oldReportSha256": "dd2d9af8a1a94f356e4d425d51ce5983ca9ed874c19f7ee7e8ed258ee7b361a7",
+  "oldInputPlanItems": 3360,
+  "cohortUniqueIsins": 21,
+  "oldCohortOutcomes": 252,
+  "oldCohortStatuses": {
+    "failed": 210,
+    "succeeded": 42
+  },
+  "oldCohortOwnedFieldSuccesses": 42,
+  "incorrectSourceFieldPairs": 105,
+  "incorrectStageResults": 210,
+  "newSelectedSourceFieldPairs": 21,
+  "newSelectedStageItems": 42,
+  "newFullCatalogueStageItems": 3360,
+  "selectedFields": [
+    "listings"
+  ],
+  "sourceDeclarations": [
+    {
+      "isin": "IE00B52SF786",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=253721&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00B5377D42",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00B5WHFQ43",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00B0M63516",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251853&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00B4M7GH52",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251875&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00B52XQP83",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00BJ5JPJ87",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=308477&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00B1FZS574",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00B8KGV557",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00B86MWN23",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00B2QWDY88",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00B14X4S71",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251715&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00B1FZS798",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00BSKRJZ44",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00B1FZSC47",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00BZ048462",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00BFM6T814",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00BYPC1H27",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00BZ6V7883",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00B3F81K65",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00BSKRJX20",
+      "fields": [
+        "listings"
+      ],
+      "urls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    }
+  ],
+  "limit": "No historical input plan/result modified. Source capabilities are read before results. Other financial-field requirements remain in the application inventory and their producers. No source control, publication, or eligibility is inferred from this correction.",
+  "production": "forward targeted ordinary21instrument run and public ingestion not yet verified",
+  "newFullRunRequestedStageItems": 3150,
+  "newUnownedStageItems": 210,
+  "cohortIdentityUniverseRetained": 252,
+  "exclusionStatus": "not-attempted, sourceAttempted=false, explicit source-capability reason; no consumer field declared unnecessary"
+}
