@@ -1,0 +1,213 @@
+{
+  "checkedAt": "2026-11-01T22:25:15.977278+00:00",
+  "previousRun": 41348779315,
+  "currentRun": 41356639048,
+  "currentEvent": "workflow_dispatch",
+  "counts": {
+    "previousSuccesses": 651,
+    "currentSuccesses": 665,
+    "previousErrors": 19,
+    "currentErrors": 5
+  },
+  "fourteenFxFailuresNowValidated": [
+    {
+      "id": "anniversary-etfCH0454664001Nav",
+      "previousError": "'2026-10'",
+      "result": {
+        "id": "anniversary-etfCH0454664001Nav",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+        "responseSha256": "34cf703dc742a69fcc0dff0cfdcea0df293dfd8a81b8b51fb36d3a633717c7b2"
+      }
+    },
+    {
+      "id": "anniversary-etfEqualWeight",
+      "previousError": "'2026-10'",
+      "result": {
+        "id": "anniversary-etfEqualWeight",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-29",
+        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+        "responseSha256": "9caab49b60ca4d38f4cff43e9a30ff5331f693f0fc71a5b8e0266706297caf1a"
+      }
+    },
+    {
+      "id": "anniversary-etfFR0013416716",
+      "previousError": "'2026-10'",
+      "result": {
+        "id": "anniversary-etfFR0013416716",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-28",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "responseSha256": "9bbc496bcf8879420e5163387f02dd48d85ed9d5938081c82c8964b02a7fd654"
+      }
+    },
+    {
+      "id": "anniversary-etfIE000M7V94E1",
+      "previousError": "'2026-10'",
+      "result": {
+        "id": "anniversary-etfIE000M7V94E1",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
+        "responseSha256": "416176eaf475d04b400cd4959fa004f36067d2fc4cea984b48d972bac5a96837"
+      }
+    },
+    {
+      "id": "anniversary-etfIE000YU9K6K2",
+      "previousError": "'2026-10'",
+      "result": {
+        "id": "anniversary-etfIE000YU9K6K2",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.vaneck.com/uk/en/investments/space-etf/",
+        "responseSha256": "09ec7d93f73040f39ac5a7c9eb2faaea625aa63e185680c51663edc48e6b7a78"
+      }
+    },
+    {
+      "id": "anniversary-etfIE00B43HR379",
+      "previousError": "'2026-10'",
+      "result": {
+        "id": "anniversary-etfIE00B43HR379",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "responseSha256": "9174b7cab96ef70d5e10122b8e29f78032c54a2bd66a23dae52ae874f4abcd2a"
+      }
+    },
+    {
+      "id": "anniversary-etfIE00B4JNQZ49",
+      "previousError": "'2026-10'",
+      "result": {
+        "id": "anniversary-etfIE00B4JNQZ49",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "responseSha256": "ac15da9bd91045ec50c39c72d3359420a7f925b7cd03ff232833c0cf5a3ff78f"
+      }
+    },
+    {
+      "id": "anniversary-etfIE00B5W4TY14",
+      "previousError": "'2026-10'",
+      "result": {
+        "id": "anniversary-etfIE00B5W4TY14",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "responseSha256": "7d8bc6a2fe455a5f03dc34256d2ca60977674bfe4e8a68ac0e90d4db4b8b4e9d"
+      }
+    },
+    {
+      "id": "anniversary-etfIE00BDFBTQ78",
+      "previousError": "'2026-10'",
+      "result": {
+        "id": "anniversary-etfIE00BDFBTQ78",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.vaneck.com/DK/en/investments/mining-etf/",
+        "responseSha256": "d077a4f5b7bb28deb7f769c475e5249d13b171bb6e17a9733fd7f9070c0bd938"
+      }
+    },
+    {
+      "id": "anniversary-etfIE00BYWQWR46",
+      "previousError": "'2026-10'",
+      "result": {
+        "id": "anniversary-etfIE00BYWQWR46",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.vaneck.com/uk/en/investments/esports-etf/",
+        "responseSha256": "2caaf3a7bf393c898a8b192cbbba842483a7e8f9d4d1bc7b16e3df0263fd3a6e"
+      }
+    },
+    {
+      "id": "anniversary-etfLU2089238385",
+      "previousError": "'2026-10'",
+      "result": {
+        "id": "anniversary-etfLU2089238385",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-28",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "responseSha256": "682db89f32dcb91dcbfa1d9da13ef902561b7a060a534b3fec8b30df5a8878e7"
+      }
+    },
+    {
+      "id": "anniversary-etfLU2196470426Nav",
+      "previousError": "'2026-10'",
+      "result": {
+        "id": "anniversary-etfLU2196470426Nav",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-29",
+        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+        "responseSha256": "46d61ad393e9fd2d1095a75386f30d113e42f690fbe57a219416ef0458595a32"
+      }
+    },
+    {
+      "id": "anniversary-etfUsaSmallValue",
+      "previousError": "'2026-10'",
+      "result": {
+        "id": "anniversary-etfUsaSmallValue",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+        "responseSha256": "d3e32edfae546b435f062eb9f76abf505a2138a5e95a198227e8ac534d9b4de4"
+      }
+    },
+    {
+      "id": "anniversary-etf_gold_miners",
+      "previousError": "'2026-10'",
+      "result": {
+        "id": "anniversary-etf_gold_miners",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+        "responseSha256": "a0bec627dc72fc6907349d5fac08f27d6a02f7c73b47e5b75b86d6a96ff4a69d"
+      }
+    }
+  ],
+  "remainingErrors": [
+    {
+      "id": "anniversary-etcPalladium",
+      "error": "Monthly NAV/return end not independently qualified: 2026-10",
+      "attemptedAt": "2026-11-01T22:22:15.415110+00:00",
+      "lastSuccessAt": "2026-10-31T13:51:04.292815+00:00",
+      "asOf": "2026-10-29"
+    },
+    {
+      "id": "anniversary-etf_world_communication",
+      "error": "Monthly NAV/return end not independently qualified: 2026-10",
+      "attemptedAt": "2026-11-01T22:22:15.415110+00:00",
+      "lastSuccessAt": "2026-10-31T13:51:04.292815+00:00",
+      "asOf": "2026-10-30"
+    },
+    {
+      "id": "anniversary-etf_clean_energy",
+      "error": "Monthly NAV/return end not independently qualified: 2026-10",
+      "attemptedAt": "2026-11-01T22:22:15.415110+00:00",
+      "lastSuccessAt": "2026-10-31T13:51:04.292815+00:00",
+      "asOf": "2026-10-30"
+    },
+    {
+      "id": "anniversary-etf_financials",
+      "error": "Monthly NAV/return end not independently qualified: 2026-10",
+      "attemptedAt": "2026-11-01T22:22:15.415110+00:00",
+      "lastSuccessAt": "2026-10-31T13:51:04.292815+00:00",
+      "asOf": "2026-10-30"
+    },
+    {
+      "id": "anniversary-etfIE00B2QWCY14",
+      "error": "Monthly NAV/return end not independently qualified: 2026-10",
+      "attemptedAt": "2026-11-01T22:22:15.415110+00:00",
+      "lastSuccessAt": "2026-10-31T13:51:04.292815+00:00",
+      "asOf": "2026-10-30"
+    }
+  ],
+  "indexErrors": [
+    {
+      "id": "anniversary-index-ftseAllWorld",
+      "error": "Incomplete/stale FTSE monthly history"
+    }
+  ],
+  "publication": "à rapprocher du commit enregistré et du manifeste public ; succès source distinct",
+  "limit": "Aucun contrôle source quotidien inventé pour les5dernières valeurs conservées ; aucune preuve de cron."
+}

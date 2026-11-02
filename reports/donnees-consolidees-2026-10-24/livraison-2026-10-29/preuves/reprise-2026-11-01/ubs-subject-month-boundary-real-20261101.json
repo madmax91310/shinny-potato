@@ -1,0 +1,43 @@
+{
+  "status": "validated-local-real",
+  "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
+  "asOf": "2026-09-30",
+  "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e",
+  "attemptedAt": "2026-11-01T16:01:36.165524+00:00",
+  "finishedAt": "2026-11-01T16:01:39.088919+00:00",
+  "accessTrace": [
+    {
+      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf",
+      "status": "failed-access",
+      "error": "Expected official PDF at https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf; received Dokument nicht gefunden | Swiss Fund Data at https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf"
+    },
+    {
+      "sourceUrl": "https://www.swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf",
+      "status": "failed-access",
+      "error": "Expected official PDF at https://www.swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf; received Dokument nicht gefunden | Swiss Fund Data at https://www.swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf"
+    },
+    {
+      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
+      "status": "downloaded",
+      "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e"
+    }
+  ],
+  "qualificationAttempts": [
+    {
+      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf",
+      "status": "waiting-publication",
+      "error": "Expected official PDF at https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf; received Dokument nicht gefunden | Swiss Fund Data at https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf"
+    },
+    {
+      "sourceUrl": "https://www.swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf",
+      "status": "waiting-publication",
+      "error": "Expected official PDF at https://www.swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf; received Dokument nicht gefunden | Swiss Fund Data at https://www.swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf"
+    },
+    {
+      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
+      "status": "validated",
+      "asOf": "2026-09-30",
+      "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e"
+    }
+  ]
+}

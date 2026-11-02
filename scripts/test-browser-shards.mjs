@@ -1,13 +1,16 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { planShards } from './browser-shards.mjs'
+import { needsExtraEngines } from './browser-portability-engines.mjs'
 const commands = JSON.parse(readFileSync(new URL('./ci-browser-checks.json', import.meta.url)))
 const durations = JSON.parse(readFileSync(new URL('./ci-browser-durations.json', import.meta.url))).seconds
 for (const count of [1, 2, 4, commands.length + 1]) {
   const shards = planShards(commands, count, durations)
   assert.deepEqual(shards.flatMap(s => s.commands).sort(), [...commands].sort())
   assert.deepEqual(planShards(commands, count, durations), shards)
+  assert.equal(shards.filter((_,index)=>needsExtraEngines(index,count,commands,durations)).length,1)
 }
+assert.throws(()=>needsExtraEngines(-1,4,commands,durations))
 assert.equal(planShards(['new check'], 1, {}).at(0).seconds, 15)
 assert.throws(() => planShards(commands, 0))
 assert.throws(() => planShards(['duplicate', 'duplicate'], 2))

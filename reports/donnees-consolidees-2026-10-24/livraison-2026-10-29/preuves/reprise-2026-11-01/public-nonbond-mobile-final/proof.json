@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-11-01T19:00:33.117Z",
+  "base": "https://madmax91310.github.io/shinny-potato",
+  "buildInfo": {
+    "sha": "a9c92affdbf1a75b1464d5e4abee5dc079981ebf",
+    "builtAt": "2026-11-01T18:09:52Z"
+  },
+  "scope": "nonbond",
+  "viewportWidth": 390,
+  "manifestSourceFiles": {
+    "src/data/automated-monthly.json": "eb5b254cc8d32c64bad17909702464ff8d7a22c9",
+    "src/data/non-bond-monthly-records.json": "4b51788eb0d910e71b46d72a2b3749a517b03369"
+  },
+  "calculations": [
+    {
+      "id": "adobe",
+      "manifestPath": "src/data/non-bond-monthly-records.json",
+      "manifestBlob": "4b51788eb0d910e71b46d72a2b3749a517b03369",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-01",
+      "latest": "📍 Dernier niveau connu : 250 $ (au octobre 2026)",
+      "expected": "713 $",
+      "actual": "713 $",
+      "independentUnroundedValue": 712.6217044787676,
+      "text": "Et si tu avais investi 1 000 $ dans Adobe en janvier 2020 ? 🫢\n\nEn octobre 2026, voici ce que cette somme serait devenue 👇\n\n💰 Somme investie : 1 000 $\n📈 Capital final : 713 $\n🔴 Perte : 287 $ (-28,7 %)\n\n💬 Tu aurais gardé ce placement jusqu’au bout ?"
+    }
+  ],
+  "comparison": {
+    "id": "adobe",
+    "coverage": "USD · Cours ajustés · revenus réinvestis\nHistorique commun : 2023-08 → 2026-10 · 2 années civiles complètes",
+    "row": "Adobe-6,99 %-21,29 %-28,5 %",
+    "expectedAnnualized": -27.653187329108675,
+    "expected2026Partial": -28.503670633551547,
+    "text": "Parmi ces actifs, lequel a le mieux performé entre fin octobre 2024 et fin octobre 2026 (en USD) ? 👇\n\n🥇 Nasdaq-100 équipondéré : +15,07 %/an\n🥈 Adobe : -27,65 %/an\n\nLe détail année par année dans l’image 👇\n\n💬 Tu es exposé à l’un d’entre eux ?\n\nPas un conseil financier."
+  },
+  "downloads": [
+    {
+      "name": "calculator-adobe",
+      "bytes": 1995563,
+      "sha256": "3b555bcc2a1225f62e393e30aed4557ef9b59ae15b2202fd6e5f21eb1b5c2c33"
+    },
+    {
+      "name": "comparison-adobe",
+      "bytes": 366827,
+      "sha256": "5cf4260cb7c75b9928ca7ec1d625f10db8d390f4ea8c3c5ed87efbc460a1322d"
+    }
+  ],
+  "errors": [],
+  "limit": "Actual published source hashes and numerical UI checks, not certification of every field or old financial divergence."
+}

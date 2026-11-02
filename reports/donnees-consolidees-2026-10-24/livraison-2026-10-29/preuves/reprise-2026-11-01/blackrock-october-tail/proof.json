@@ -1,0 +1,271 @@
+{
+  "checkedAt": "2026-11-01T19:55:38.728515+00:00",
+  "environment": "Local real official source controls only, no record or publication changed",
+  "rows": [
+    {
+      "id": "etf_clean_energy",
+      "isin": "IE00B1XNHC34",
+      "navCurrency": "USD",
+      "outputCurrency": "EUR",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "rawSha256": "9076bbe5ab0d9278caa0befb6e24541246eb2d4e2902c059bf238d617ea1eed7",
+      "incomeTreatment": "Distributing",
+      "navLastDate": "2026-10-30",
+      "returnLastDate": "2026-10-29",
+      "navTail": [
+        {
+          "date": "2026-10-29",
+          "value": 9.024865
+        },
+        {
+          "date": "2026-10-30",
+          "value": 8.827117
+        }
+      ],
+      "returnLastValue": 4519.5192,
+      "status": "not-qualified",
+      "reason": "Monthly NAV/return end not independently qualified: 2026-10",
+      "missingPiece": "Official income-return observation at the latest NAV month-end, or independent proof of identical units/distributions across the missing tail; no extrapolation allowed",
+      "rawChartTails": {
+        "navData": {
+          "asOfDate": [
+            20261028,
+            20261029,
+            20261030
+          ],
+          "label": "",
+          "value": [
+            9.022182,
+            9.024865,
+            8.827117
+          ]
+        },
+        "performanceData": {
+          "asOfDate": [
+            20261027,
+            20261028,
+            20261029
+          ],
+          "label": "",
+          "value": [
+            "4550.007500000001",
+            "4518.1755",
+            "4519.5192"
+          ]
+        }
+      }
+    },
+    {
+      "id": "etfIE00B2QWCY14",
+      "isin": "IE00B2QWCY14",
+      "navCurrency": "USD",
+      "outputCurrency": "EUR",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "rawSha256": "aa4ae48cecf5d23e1a1729b0e95d3388ec0eb7b500a14f1971208755f87fd087",
+      "incomeTreatment": "Distributing",
+      "navLastDate": "2026-10-30",
+      "returnLastDate": "2026-10-29",
+      "navTail": [
+        {
+          "date": "2026-10-29",
+          "value": 115.020772
+        },
+        {
+          "date": "2026-10-30",
+          "value": 113.625838
+        }
+      ],
+      "returnLastValue": 54145.24189999999,
+      "status": "not-qualified",
+      "reason": "Monthly NAV/return end not independently qualified: 2026-10",
+      "missingPiece": "Official income-return observation at the latest NAV month-end, or independent proof of identical units/distributions across the missing tail; no extrapolation allowed",
+      "rawChartTails": {
+        "navData": {
+          "asOfDate": [
+            20261028,
+            20261029,
+            20261030
+          ],
+          "label": "",
+          "value": [
+            113.196475,
+            115.020772,
+            113.625838
+          ]
+        },
+        "performanceData": {
+          "asOfDate": [
+            20261027,
+            20261028,
+            20261029
+          ],
+          "label": "",
+          "value": [
+            "53249.2787",
+            "53286.466499999995",
+            "54145.24189999999"
+          ]
+        }
+      }
+    },
+    {
+      "id": "etcPalladium",
+      "isin": "IE00B4556L06",
+      "navCurrency": "USD",
+      "outputCurrency": "USD",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "rawSha256": "fc8befa946e777cc84a8c29fcd140781eb4b326d9f982dedb4edccb6a69558d3",
+      "incomeTreatment": "No Income",
+      "navLastDate": "2026-10-30",
+      "returnLastDate": "2026-10-29",
+      "navTail": [
+        {
+          "date": "2026-10-29",
+          "value": 28.680903
+        },
+        {
+          "date": "2026-10-30",
+          "value": 27.823091
+        }
+      ],
+      "returnLastValue": 11980.4622,
+      "status": "not-qualified",
+      "reason": "Monthly NAV/return end not independently qualified: 2026-10",
+      "missingPiece": "Official income-return observation at the latest NAV month-end, or independent proof of identical units/distributions across the missing tail; no extrapolation allowed",
+      "rawChartTails": {
+        "navData": {
+          "asOfDate": [
+            20261028,
+            20261029,
+            20261030
+          ],
+          "label": "",
+          "value": [
+            29.05495,
+            28.680903,
+            27.823091
+          ]
+        },
+        "performanceData": {
+          "asOfDate": [
+            20261027,
+            20261028,
+            20261029
+          ],
+          "label": "",
+          "value": [
+            "12229.1709",
+            "12136.7075",
+            "11980.4622"
+          ]
+        }
+      }
+    },
+    {
+      "id": "etf_financials",
+      "isin": "IE00BJ5JP097",
+      "navCurrency": "USD",
+      "outputCurrency": "USD",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "rawSha256": "7cbc5f557c361a5938ceb3d45ab9fe443f16b72cd2abbee39f6c56c505e2fd64",
+      "incomeTreatment": "Distributing",
+      "navLastDate": "2026-10-30",
+      "returnLastDate": "2026-10-29",
+      "navTail": [
+        {
+          "date": "2026-10-29",
+          "value": 8.450169
+        },
+        {
+          "date": "2026-10-30",
+          "value": 8.38717
+        }
+      ],
+      "returnLastValue": 19552.3179,
+      "status": "not-qualified",
+      "reason": "Monthly NAV/return end not independently qualified: 2026-10",
+      "missingPiece": "Official income-return observation at the latest NAV month-end, or independent proof of identical units/distributions across the missing tail; no extrapolation allowed",
+      "rawChartTails": {
+        "navData": {
+          "asOfDate": [
+            20261028,
+            20261029,
+            20261030
+          ],
+          "label": "",
+          "value": [
+            8.344304,
+            8.450169,
+            8.38717
+          ]
+        },
+        "performanceData": {
+          "asOfDate": [
+            20261027,
+            20261028,
+            20261029
+          ],
+          "label": "",
+          "value": [
+            "19299.5358",
+            "19307.3635",
+            "19552.3179"
+          ]
+        }
+      }
+    },
+    {
+      "id": "etf_world_communication",
+      "isin": "IE00BJ5JP436",
+      "navCurrency": "USD",
+      "outputCurrency": "USD",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "rawSha256": "ce7581ec450a5bda34534d8423854344d129554eeebe625766db7b7358000f4b",
+      "incomeTreatment": "Distributing",
+      "navLastDate": "2026-10-30",
+      "returnLastDate": "2026-10-29",
+      "navTail": [
+        {
+          "date": "2026-10-29",
+          "value": 7.378114
+        },
+        {
+          "date": "2026-10-30",
+          "value": 7.32678
+        }
+      ],
+      "returnLastValue": 15724.5006,
+      "status": "not-qualified",
+      "reason": "Monthly NAV/return end not independently qualified: 2026-10",
+      "missingPiece": "Official income-return observation at the latest NAV month-end, or independent proof of identical units/distributions across the missing tail; no extrapolation allowed",
+      "rawChartTails": {
+        "navData": {
+          "asOfDate": [
+            20261028,
+            20261029,
+            20261030
+          ],
+          "label": "",
+          "value": [
+            7.638211,
+            7.378114,
+            7.32678
+          ]
+        },
+        "performanceData": {
+          "asOfDate": [
+            20261027,
+            20261028,
+            20261029
+          ],
+          "label": "",
+          "value": [
+            "16317.63",
+            "16278.8287",
+            "15724.5006"
+          ]
+        }
+      }
+    }
+  ]
+}

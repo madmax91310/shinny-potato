@@ -148,25 +148,26 @@ function Lightbox({ dataUrl, filename, title, onClose }) {
         }
         if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
           await navigator.share({ files: [file], title })
+          setShareLabel('✅ Partagé')
         } else {
-          await navigator.share({ title })
+          triggerAnchorDownload(dataUrl, filename)
+          setShareLabel('✅ Téléchargement lancé')
         }
-        setShareLabel('✅ Partagé')
       } catch (err) {
         if (err?.name === 'AbortError') return
         triggerAnchorDownload(dataUrl, filename)
-        setShareLabel('✅ Téléchargé')
+        setShareLabel('✅ Téléchargement lancé')
       }
     } else {
       triggerAnchorDownload(dataUrl, filename)
-      setShareLabel('✅ Téléchargé')
+      setShareLabel('✅ Téléchargement lancé')
     }
     setTimeout(() => setShareLabel('📤 Partager / Enregistrer'), 1800)
   }
 
   function download() {
     triggerAnchorDownload(dataUrl, filename)
-    setDownloadLabel('✅ Téléchargé')
+    setDownloadLabel('✅ Téléchargement lancé')
     setTimeout(() => setDownloadLabel('⬇️ Télécharger'), 1800)
   }
 

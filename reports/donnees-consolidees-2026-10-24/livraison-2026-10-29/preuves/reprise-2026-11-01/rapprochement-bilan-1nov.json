@@ -1,0 +1,40 @@
+{
+  "initial": {
+    "all": 7624,
+    "active": 5619,
+    "classes": {
+      "monitoring": 7,
+      "failure": 780,
+      "qualification": 4802,
+      "connection": 30,
+      "editorial": 811,
+      "waiting": 19,
+      "not-applicable": 423,
+      "history": 752
+    }
+  },
+  "current": {
+    "all": 7954,
+    "active": 5862,
+    "classes": {
+      "monitoring": 8,
+      "failure": 46,
+      "qualification": 5778,
+      "connection": 30,
+      "editorial": 811,
+      "waiting": 37,
+      "not-applicable": 423,
+      "history": 821
+    },
+    "buildInfo": {
+      "sha": "246849a07ebdcf725912ac9eeb701b7f57d01256",
+      "builtAt": "2026-11-01T23:13:29Z"
+    }
+  },
+  "union": 8706,
+  "initialIdentitiesPreserved": 7624,
+  "initialNowAbsentWithoutRepairInference": 752,
+  "newIdentities": 1082,
+  "mutualizedGroups": 1297,
+  "limit": "Classification fondée sur les exports ; les preuves de correction restent séparées, aucune panne déduite des seuls contrats non confirmés."
+}
