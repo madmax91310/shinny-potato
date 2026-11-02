@@ -337,9 +337,10 @@
       "responseSha256": "7245f295968fb80dc525a8cdd4fec6bdad016482ca73345f1600a8656175d4c0"
     },
     "etcPalladium": {
-      "status": "failed",
-      "checkedAt": "2026-11-02T13:12:35.269649+00:00",
-      "reason": "Monthly NAV/return end not independently qualified: 2026-10"
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "8106371c0c509aa56b7fb6769a142b82e084f1125ccbbd34cd7086f0b046ab81"
     },
     "etf_water_ishares": {
       "status": "validated",
@@ -372,9 +373,10 @@
       "responseSha256": "5c4b820e721c9858f5b5da1047a29227c2f7a5f8328e823957bd41bad575ce29"
     },
     "etf_world_communication": {
-      "status": "failed",
-      "checkedAt": "2026-11-02T13:12:35.269649+00:00",
-      "reason": "Monthly NAV/return end not independently qualified: 2026-10"
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "a2d7670c84af5f74f3e76e0a545dd71ccbaee4686c15d09a42a8c7025af3a342"
     },
     "etf_private_equity_ishares": {
       "status": "validated",
@@ -395,14 +397,16 @@
       "responseSha256": "332f8155df2a5f11e3a75824e3a46f5084dbf2ff84304ecc9dd01e6a81b547be"
     },
     "etf_clean_energy": {
-      "status": "failed",
-      "checkedAt": "2026-11-02T13:12:35.269649+00:00",
-      "reason": "Monthly NAV/return end not independently qualified: 2026-10"
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "af0f6e16222167a1ac10517eeb15038b52562b59dafff83c746cbd6912eba3dc"
     },
     "etf_financials": {
-      "status": "failed",
-      "checkedAt": "2026-11-02T13:12:35.269649+00:00",
-      "reason": "Monthly NAV/return end not independently qualified: 2026-10"
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "59920ea3eb0b04169df3eac386e4cb3d53ff7dff632b4d7dca8e2754d67d75b2"
     },
     "etf_gold_miners": {
       "status": "validated",
@@ -3393,9 +3397,10 @@
       "responseSha256": "724545ec9c6563ee2e8d5d6cc49e4c0628c69de4df88d6da1c93e6912da9b1b4"
     },
     "etfIE00B2QWCY14": {
-      "status": "failed",
-      "checkedAt": "2026-11-02T13:12:35.269649+00:00",
-      "reason": "Monthly NAV/return end not independently qualified: 2026-10"
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "7873c051a4ef842066cce6951f5a7f7596b339f05f54366fcffe81b9ce2d1c80"
     },
     "etfIE00B3VWMM18": {
       "status": "validated",
@@ -4224,6 +4229,78 @@
       "checkedAt": "2026-11-02T02:54:07.534939+00:00",
       "periodEnd": "2026-10",
       "responseSha256": "c80f61f7aa31b2613facaa66efbe981ae99f7254817a2f34714c22fbbca13240"
+    },
+    "etfIE00B0M63516Nav": {
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "2a8a12bb54bae2a782969fd3935f1aaaa6d105071d3f1b6004448f6b780fa8e1"
+    },
+    "etfIE00BJ5JPJ87Nav": {
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "3228ecdbaa7000d39b15d021fed60c7908e570e69a7f2de1615fbdb96be27588"
+    },
+    "etfIE00B1FZS574Nav": {
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "a5c4a934b5bf4d1e27e6e0f885f245bb1e0cbcaaea7000af41ae28ca15091d02"
+    },
+    "etfIE00B2QWDY88Nav": {
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "1e991c2a069fec14a3e2194258a576da00509fd21a78a2072aa8050d5d19d14e"
+    },
+    "etfIE00B14X4S71Nav": {
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "167c2a9c3ae7e08be6bd6fff970fc6a8144baac043180b3cf5630ede24bc4d92"
+    },
+    "etfIE00B1FZS798Nav": {
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "8a6a5a11546f6ee156bc1b98a9f43cf01c01dc7a2729d247c56319e62d6832d8"
+    },
+    "etfIE00BSKRJZ44Nav": {
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "9f0a59abd5e749e0e451f5243570ddc856a9d5d9842b2a5db9f07668df4033d5"
+    },
+    "etfIE00BZ048462Nav": {
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "588051eb1f772ab6ac38f661c35d3ea87a6fc0dd0b6d8e835f3e6a4fb03b47f4"
+    },
+    "etfIE00BYPC1H27Nav": {
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "6c9b708b7a96456fa83829f572e1744c5da28f8eaf863ff60189331c0ddd4ccb"
+    },
+    "etfIE00BZ6V7883Nav": {
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "ab3eae8f41aeda3e7278bdb8553789203d83ef62f6d9ccdacefcb301ae74c724"
+    },
+    "etfIE00B3F81K65Nav": {
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "ac17780bc3434d6b96a260177d05ecb0e3206379ef280b23a383844c854ad4ec"
+    },
+    "etfIE00BSKRJX20Nav": {
+      "status": "validated",
+      "checkedAt": "2026-11-02T14:32:37.774921+00:00",
+      "periodEnd": "2026-09",
+      "responseSha256": "2e5fc2c3f8625313ed41b12a086ee984979666a8d58045ec2217560955a0b638"
     }
   }
 }
