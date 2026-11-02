@@ -34,3 +34,6 @@ assert.throws(()=>derive({...state,assetId:'apple',overridePriceRaw:'1e309'}),/n
 assert.throws(()=>derive({...state,assetId:'custom',customStart:'1e309',customEnd:'100'}),/nombre fini/)
 assert.equal(derive({...state,amountRaw:''}).result.finalValue,0,'empty amount remains the neutral form state')
 assert(Number.isFinite(derive(state).result.finalValue),'ordinary input recovers')
+
+// Also runs in prebuild/CI, so the comparison regression is not a manual-only audit.
+await import('./test-investment-comparison.mjs')

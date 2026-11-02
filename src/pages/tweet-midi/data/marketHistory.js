@@ -2,7 +2,7 @@ import { qualifyHistoryWindow, requireHistoryWindow } from '../../../data/histor
 import { ANNIVERSARY_INDEX_VARIANTS } from '../../../data/index-history-conventions.js'
 export { ANNIVERSARY_INDEX_VARIANTS } from '../../../data/index-history-conventions.js'
 // Shared calculator series plus exact official indices dedicated to anniversaries.
-import { performanceBasisLabel } from '../../../lib/performance-conventions.js';
+import { performanceBasisLabel, isNavTotalReturn } from '../../../lib/performance-conventions.js';
 import {
   ASSETS as SHARED_ASSETS, ASSET_ORDER, LIVRET_A, INFLATION, LATEST_YM, getAssetMinDate as sharedMinDate, SPARSE_MONTHLY_DATA_IDS,
 } from '../../../data/market-history.js';
@@ -172,6 +172,7 @@ export function performanceBasis(assetId) {
   if (ANNIVERSARY_INDEX_VARIANTS[assetId]) return ANNIVERSARY_INDEX_VARIANTS[assetId];
   if(asset.priceUnit==='points' && ['NETR','GRTR'].includes(asset.variant)) return performanceBasisLabel({currency:asset.currency,income:asset.variant==='NETR'?'net':'gross'});
   if (['ETC','ETN','ETP'].includes(asset.instrumentType)) return `${asset.currency} · ${asset.valuationBasis ? 'valeur liquidative' : 'cours'} de l’${asset.instrumentType}`;
+  if (isNavTotalReturn(asset)) return performanceBasisLabel({ currency: asset.currency, detail: 'valeur liquidative · revenus réinvestis' });
   if (asset.priceMethod === 'adjusted') return performanceBasisLabel({ currency: asset.currency, income: 'reinvested' });
   if (assetId === 'or') return performanceBasisLabel({ currency: asset.currency, detail: 'moyennes mensuelles du prix de l’or' });
   if (assetId === 'silver') return performanceBasisLabel({ currency: asset.currency, detail: 'futures COMEX, hors frais et roulement' });

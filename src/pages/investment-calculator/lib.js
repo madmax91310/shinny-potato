@@ -3,6 +3,7 @@ import { LIVRET_A, INFLATION } from '../../data/history-parameters.js'
 import { historyInCurrency } from '../../data/history-currency.js'
 import { monthlyCurrencyFactor } from '../../data/history-currency.js'
 import { fmtEUR, fmtPct } from '../../lib/format-currency.js'
+import { monthlyHistoryMethod } from '../../lib/performance-conventions.js'
 export { fmtEUR, fmtPct } from '../../lib/format-currency.js'
 import { INFLATION_MONTHLY } from '../../data/inflation-monthly.js'
 // Logique de calcul partagée avec Tweet Midi.
@@ -109,6 +110,7 @@ export function buildTweetText(state, d) {
   if (state.assetId === 'silver') {
     lines.push('', 'Prix de futures COMEX continus en dollars, sans frais ni renouvellement des contrats : ce calcul ne représente pas le rendement d’un placement réel en argent.')
   }
+  if (asset && monthlyHistoryMethod(asset)) lines.push('', monthlyHistoryMethod(asset))
 
   // Comparaison Livret A : uniquement pour les actifs en euros, jamais un montant en dollars
   // comparé à un Livret A en euros sans taux de change — même règle que ResultCard côté UI
