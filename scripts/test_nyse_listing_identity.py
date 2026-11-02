@@ -77,7 +77,7 @@ class NyseIdentity(unittest.TestCase):
    if 'nasdaqtrader'in url:return EMPTY
    raise urllib.error.HTTPError(url,403,'Forbidden',{},None)
   def browser(tickers):
-   calls.append(tickers);return {'records':{'NET':{'url':'https://www.nyse.com/api/nyseservice/v1/quotes?symbol=NET','body':base64.b64encode(payload()).decode()}},'errors':{}}
+   calls.append(tickers);return {'records':{'NET':{'url':'https://www.nyse.com/api/nyseservice/v1/quotes?symbol=NET','body':base64.b64encode(payload()).decode(),'retrievedAt':NOW.isoformat()}},'errors':{}}
   new,r=refresh(old,NOW,blocked,browser)
   self.assertEqual(calls,[['NET']]);self.assertEqual(len(r['successes']),1);self.assertIn('403',new['listings'][0]['listingObservation']['transport']['primaryHttpError'])
   for code in [404,429,500]:
@@ -88,7 +88,7 @@ class NyseIdentity(unittest.TestCase):
   def malformed(tickers):return {'records':{},'errors':{'NET':'modified/empty response'}}
   unchanged,r=refresh(old,NOW,blocked,malformed);self.assertEqual(unchanged,old);self.assertIn('modified/empty',r['errors'][0]['error'])
   def wrong(tickers):
-   q=json.loads(payload());q['quote']['cusip']='000000000';return {'records':{'NET':{'url':'https://www.nyse.com/api/nyseservice/v1/quotes?symbol=NET','body':base64.b64encode(json.dumps(q).encode()).decode()}}}
+   q=json.loads(payload());q['quote']['cusip']='000000000';return {'records':{'NET':{'url':'https://www.nyse.com/api/nyseservice/v1/quotes?symbol=NET','body':base64.b64encode(json.dumps(q).encode()).decode(),'retrievedAt':NOW.isoformat()}}}
   unchanged,r=refresh(old,NOW,blocked,wrong);self.assertEqual(unchanged,old);self.assertIn('identifier differs',r['errors'][0]['error'])
  def test_primary_recovery_returns_to_real_directory_observation(self):
   old={'listings':[registered()]}
@@ -96,6 +96,57 @@ class NyseIdentity(unittest.TestCase):
   recovered=b'ACT Symbol|Security Name|Exchange|ETF\nNET|Cloudflare, Inc. Class A Common Stock|N|N\nFile Creation Time: 11022026\n'
   final,r=refresh(new,NOW,lambda *a,**kw:recovered)
   self.assertFalse(r['errors']);self.assertEqual(r['directoryOutcomes'][0]['status'],'succeeded');self.assertNotIn('primaryReference',final['listings'][0]['listingObservation'])
+ def test_live_quote_between_start_and_completed_read_is_valid_but_future_quote_is_not(self):
+  started=dt.datetime(2026,11,2,15,0,0,tzinfo=dt.timezone.utc);completed=started+dt.timedelta(seconds=2);old={'listings':[registered()]}
+  def source(stamp):
+   q=json.loads(payload());q['quote']['time']=stamp
+   return lambda url,**kw:EMPTY if 'nasdaqtrader'in url else json.dumps(q).encode()
+  new,r=refresh(old,started,source('Monday, November 02, 2026 10:00:01 AM ET'),clock=lambda:completed)
+  self.assertEqual(len(r['successes']),1);self.assertEqual(new['listings'][0]['listingObservation']['checkedAt'],completed.isoformat());self.assertEqual(r['successes'][0]['checkedAt'],completed.isoformat());self.assertEqual(new['listings'][0]['listingObservation']['asOf'],'2026-11-02')
+  new,r=refresh(old,started,source('Monday, November 02, 2026 10:00:03 AM ET'),clock=lambda:completed)
+  self.assertEqual(new,old);self.assertIn('Future',r['errors'][0]['error'])
+ def test_completed_clock_before_start_never_renews_proof(self):
+  old={'listings':[registered()]}
+  new,r=refresh(old,NOW,lambda url,**kw:EMPTY if 'nasdaqtrader'in url else payload(),clock=lambda:NOW-dt.timedelta(seconds=1))
+  self.assertEqual(new,old);self.assertIn('clock precedes',r['errors'][0]['error'])
+ def test_unchanged_native_results_use_the_same_ids_as_the_frozen_plan(self):
+  from refresh_qualified_listings import listing_report
+  p=build_plan('refresh_qualified_listings',['--common-identities-only']);expected=[r['id'].removeprefix('listing:')for r in p['items']]
+  identities={'successes':[{'id':i,'status':'unchanged-verified','field':'listing-identity','checkedAt':NOW.isoformat(),'sourceUrl':'https://issuer.test/directory'}for i in expected if i!='directory:us-other'],'errors':[], 'directoryOutcomes':[{'id':'directory:us-other','status':'succeeded','field':'primary-directory','checkedAt':NOW.isoformat(),'sourceUrl':'https://issuer.test/directory'}]}
+  native=listing_report([],identities,expected,NOW.isoformat(),True)
+  self.assertTrue(all(r['id'].startswith('listing:')for r in native['outcomes']))
+  self.assertEqual(set(native['validated']),set(expected)-{'directory:us-other'})
+  p.update(producer='refresh_qualified_listings',reportStem='listing-observation',declaredAt=NOW.isoformat(),nonce='test',sha256='pending')
+  p['sha256']=hashlib.sha256(json.dumps({k:v for k,v in p.items()if k!='sha256'},sort_keys=True).encode()).hexdigest()
+  result=finish(native,p)['resultContract'];self.assertEqual(result['issues'],[])
+  self.assertEqual(len(result['outcomes']),len(expected));self.assertTrue(all(r['status']in ('succeeded','unchanged-verified')for r in result['outcomes']))
+  normalized=normalize_contract(result);self.assertFalse(normalized['errors']);self.assertEqual(len(normalized['successes']),len(expected))
+ def test_directory_rollovers_use_completed_source_read_without_relaxing_future_guard(self):
+  from test_exchange_listing_refresh import document,body
+  for started,completed,stamp in [(dt.datetime(2026,11,2,23,59,59,tzinfo=dt.timezone.utc),dt.datetime(2026,11,3,0,0,1,tzinfo=dt.timezone.utc),'11032026'),(dt.datetime(2026,12,31,23,59,59,tzinfo=dt.timezone.utc),dt.datetime(2027,1,1,0,0,1,tzinfo=dt.timezone.utc),'01012027')]:
+   new,r=refresh(document(),started,lambda *a,**k:body(date=stamp),clock=lambda:completed)
+   self.assertFalse(r['errors']);self.assertEqual(new['listings'][0]['listingObservation']['asOf'],completed.date().isoformat());self.assertEqual(r['successes'][0]['checkedAt'],completed.isoformat())
+  old=document();new,r=refresh(old,started,lambda *a,**k:body(date='01022027'),clock=lambda:completed);self.assertEqual(new,old);self.assertIn('Future',r['errors'][0]['error'])
+ def test_actual_ordinary_report_replay_removes_only_namespace_errors(self):
+  import gzip,tempfile
+  from refresh_qualified_listings import listing_report
+  from report_partial_failures import partial_failures
+  old=json.loads(gzip.decompress((ROOT/'scripts/fixtures/nyse-identities-20261102/listing-report-41450098899.json.gz').read_bytes()))
+  self.assertEqual(len(old['resultContract']['issues']),20)
+  common=[r for r in old['outcomes']if r['field']=='listing-identity'];common_ids={r['id']for r in common}
+  identities={'successes':common,'errors':[],'directoryOutcomes':[r for r in old['outcomes']if r['field']=='primary-directory']}
+  # Reuse the old report's already-validated issuer markers; no source rows or
+  # fresh consultation are invented by this report-only replay.
+  results=[(i,[True],None)for i in old['validated']if i not in common_ids]
+  corrected=listing_report(results,identities,old['scope']['expectedIds'],old['checkedAt'])
+  corrected=finish(corrected,old['resultContract']['inputPlan'])
+  self.assertEqual(corrected['resultContract']['issues'],[])
+  self.assertEqual(corrected['validated'],old['validated']);self.assertEqual(corrected['checkedAt'],old['checkedAt'])
+  a=normalize_contract(old['resultContract']);b=normalize_contract(corrected['resultContract'])
+  self.assertEqual({r['id']for r in a['successes']},{r['id']for r in b['successes']});self.assertFalse(b['errors'])
+  with tempfile.TemporaryDirectory()as folder:
+   path=Path(folder)/'listing-observation.json';path.write_text(json.dumps(old));self.assertEqual(len(partial_failures([path])),20)
+   path.write_text(json.dumps(corrected));self.assertEqual(partial_failures([path]),[])
  def test_predeclared_scope_primary_failure_and_missing_individual_are_independent(self):
   p=build_plan('refresh_qualified_listings',['--common-identities-only']);ids=[r['id']for r in p['items']]
   common=json.loads((ROOT/'src/data/shared-listing-identities.json').read_text())['listings']

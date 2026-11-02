@@ -14,7 +14,7 @@ try{
   try{
    const api='https://www.nyse.com/api/nyseservice/v1/quotes?symbol='+encodeURIComponent(ticker);
    const result=await page.evaluate(async api=>{const response=await fetch(api,{credentials:'same-origin',redirect:'error',signal:AbortSignal.timeout(20000)});if(response.status!==200||response.url!==api||!/^application\/json(?:;|$)/i.test(response.headers.get('content-type')??''))throw Error('NYSE public API access/format refused: '+response.status);const text=await response.text();if(!text.length||text.length>2000000)throw Error('NYSE body outside bound');return text},api);
-   const body=Buffer.from(result);if(body.length>2000000)throw Error('NYSE body outside byte bound');JSON.parse(result);records[ticker]={url:api,body:body.toString('base64')};
+   const body=Buffer.from(result);if(body.length>2000000)throw Error('NYSE body outside byte bound');JSON.parse(result);records[ticker]={url:api,body:body.toString('base64'),retrievedAt:new Date().toISOString()};
   }catch(error){errors[ticker]=error.message}
  }
  process.stdout.write(JSON.stringify({records,errors}));

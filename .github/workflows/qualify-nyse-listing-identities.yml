@@ -42,5 +42,11 @@ jobs:
             ${{ runner.temp }}/listing-observation.contract-plan.json
           if-no-files-found: error
           retention-days: 35
+      - name: Check results with the existing partial-failure reader
+        id: report
+        if: always()
+        run: python scripts/report_partial_failures.py "$RUNNER_TEMP/listing-observation.json"
       - if: always()
-        run: test '${{ steps.source.outcome }}' = 'success'
+        run: |
+          test '${{ steps.source.outcome }}' = 'success'
+          test '${{ steps.report.outputs.failed }}' = 'false'
