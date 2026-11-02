@@ -31,6 +31,20 @@ try {
    assert(!/undefined|NaN/.test(copied))
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${route}: débordement`)
    results.push({width,route,text:copied,copyExact:true})
+   if(route==='/calculateur-investissement') {
+    await page.getByRole('button',{name:'Mensuel (DCA)',exact:true}).click()
+    for(const overridePriceRaw of ['', '50']) {
+     if(overridePriceRaw) {
+      await page.locator('summary').filter({hasText:'Actualiser le prix'}).click()
+      await page.locator('input[type="number"]').first().fill(overridePriceRaw)
+     }
+     await page.getByRole('button',{name:/Copier le texte du post|^✓ Copié$/}).click()
+     const state={currency:'native',assetId:'bitcoin',startYear:2020,startMonth:1,amountRaw:'1000',mode:'dca',overridePriceRaw}
+     const text=await page.evaluate(()=>navigator.clipboard.readText())
+     assert.equal(text,buildTweetText(state,derive(state)))
+     results.push({width,route,variant:overridePriceRaw?'dca-prix-saisi-perte':'dca',text,copyExact:true})
+    }
+   }
    if(route.startsWith('/le-dca-de')) {
     const marker='Texte personnel conservé — audit éditorial.'
     await page.locator(selector).fill(marker)

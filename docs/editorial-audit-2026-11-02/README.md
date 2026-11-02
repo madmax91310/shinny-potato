@@ -44,6 +44,6 @@ Aucun calcul, valeur financière, collecteur, source, profil ni moteur d’image
 
 - Build complet, budgets de bundles et concordance des 42 fichiers publics : réussis localement, seuils inchangés.
 - Tests ciblés : nouveau contrôle des textes conditionnels (intégré au prébuild), profils DCA, classements, éditorial Générateur, 279 présentations, fiches d’indices, 6 404 fenêtres historiques, audit des contenus publiables, portabilité budget et stockage DCA réussis.
-- Recette Chromium desktop/mobile et contrôle de publication : voir les preuves de recette et le suivi de PR. Les statuts GitHub et public ne sont pas déduits du build local.
+- Recette Chromium 1440/390 : 20 contrôles réussis, dont 18 copies exactes (sept familles, DCA du calculateur et prix final saisi en perte) et deux restaurations de brouillon DCA. Aucune erreur JavaScript ni débordement horizontal. Preuves : `browser-local.json`. Les statuts GitHub et public restent à vérifier et ne sont pas déduits du build local.
 
 Rejeu : `node scripts/test-editorial-20261102.mjs` ; `node scripts/audit-editorial-20261102.mjs /tmp/editorial.json` ; après `npm run build` et démarrage de `vite preview` sur 4173, `node scripts/playwright-editorial-audit.mjs`.
