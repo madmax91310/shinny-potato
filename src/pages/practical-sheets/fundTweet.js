@@ -3,7 +3,9 @@
 const COLORS = ['🟢', '🔵', '🟣']
 const format = (value, digits = 0) => value.toLocaleString('fr-FR', {maximumFractionDigits: digits}).replace(/\u202f/g, ' ')
 const date = value => /^\d{4}-\d{2}-\d{2}$/.test(value ?? '') ? value.split('-').reverse().join('/') : 'date non publiée'
-const capitalising = value => /^capitalis/i.test(value)
+// A policy allowing capitalisation AND/OR distribution is not an exclusively
+// accumulating class (Amundi exact-share DICs, checked 02/11/2026).
+const capitalising = value => /^(capitalisant(?:e)?|capitalisation|capitalization|accumulating)$/i.test(String(value).trim())
 
 const HOOKS = {
  'world-pea': '🌍 Il existe de nombreux ETF World sur PEA. Sur quels critères les choisir ? 👇',
@@ -54,7 +56,9 @@ function fees(sheet) {
 
 function income(sheet) {
  if (['world', 'sp500'].includes(sheet.fundGroup) && sheet.funds.every(fund => capitalising(fund.distribution))) return null
- const explanation = sheet.funds.every(fund => capitalising(fund.distribution))
+ const explanation = sheet.funds.some(fund => /and\/or|et\/ou/i.test(fund.distribution))
+  ? 'La mention « Capitalisation et/ou distribution » laisse la décision à la société de gestion. Elle ne garantit ni la capitalisation exclusive ni une distribution régulière. La politique applicable et les versements passés se vérifient séparément dans les documents de la part.'
+  : sheet.funds.every(fund => capitalising(fund.distribution))
   ? 'Les parts présentées sont capitalisantes : les dividendes sont réinvestis dans le fonds. Ce critère ne les départage donc pas.'
   : 'Un ETF capitalisant réinvestit les dividendes dans le fonds. Un ETF distribuant les verse sur ton compte. Choisis selon que tu souhaites accumuler du capital ou recevoir des revenus. Quand la politique de la part n’est pas confirmée ici, vérifie son DIC avec l’ISIN exact.'
  return `💰 Les dividendes\n\n${explanation}`
