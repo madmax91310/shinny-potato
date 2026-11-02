@@ -26,14 +26,15 @@ for (const assetId of Object.keys(ASSETS)) for (const mode of ['lump','dca']) {
   assert(text.includes(fmtEUR(d.result.finalValue,asset.currency)))
   assert(text.includes(fmtEUR(d.result.totalInvested,asset.currency)))
   assert(text.includes(fmtPct(pct(d.result.finalValue,d.result.totalInvested))))
-  assert.doesNotMatch(text, /📌|Cours ajustés|Toute la somme|Le résultat porte|Les premiers achats/)
-  assert.match(text, /📈 Capital final :/)
+  assert.doesNotMatch(text, /📌|Toute la somme|Le résultat porte|Les premiers achats/)
+  if (asset.methodNote) assert(text.includes(asset.methodNote))
+  assert(text.includes(`${d.result.finalValue < d.result.totalInvested ? '📉' : '📈'} Capital final :`))
   if (asset.sourceCredit) assert(text.includes(asset.sourceCredit))
   if (asset.currency==='USD') assert(!text.includes('Livret A'))
   if (d.effectiveMode==='dca') {
     assert.match(text, /(?:Gain|Perte) sur les sommes versées/)
     assert(text.split('\n')[0].includes('par mois'))
-    assert.match(text, /Tu aurais continué tes achats pendant les baisses/)
+    assert.match(text, /Tu aurais conservé ce rythme de versement sur cette durée/)
     assert.match(text, /Total versé :/)
   } else {
     assert.match(text,/\([+-]?[\d\s,.]+ %\)/)

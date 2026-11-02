@@ -104,7 +104,8 @@ export function buildTweetText(state, d) {
     `${gainAbs < 0 ? '🔴 Perte' : '🟢 Gain'} : ${fmtEUR(Math.abs(gainAbs), currency)}${monthly ? '' : ` (${fmtPct(gainPct)})`}`,
     ...(monthly ? [`📊 ${gainAbs < 0 ? 'Perte' : 'Gain'} sur les sommes versées : ${fmtPct(gainPct)}`] : []),
   ]
-  if (monthly) lines.push('', `${d.result.months.length} versements en fin de mois, de ${monthLabel} ${yearLabel} à ${endLabel}, inclus.`)
+  const paymentCount = d.result.months?.length
+  if (monthly) lines.push('', `${paymentCount ? `${paymentCount} versement${paymentCount === 1 ? '' : 's'}` : 'Versements mensuels'} en fin de mois, de ${monthLabel} ${yearLabel} à ${endLabel}, inclus.`)
   else if (!d.isCustom) lines.push('', `Versement unique à la clôture de ${monthLabel} ${yearLabel}.`)
   if (d.isCustom) lines.push('', 'Scénario fondé uniquement sur les deux prix saisis, sans historique de marché, hors frais et fiscalité.')
   if (asset?.methodNote) lines.push('', asset.methodNote)

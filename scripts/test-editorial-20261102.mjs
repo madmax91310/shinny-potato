@@ -35,6 +35,9 @@ for(const mode of ['lump','dca']) for(const price of ['50','100000']) {
 const s={assetId:'custom',amountRaw:'1000',mode:'lump',startYear:2025,startMonth:1,customStart:'100',customEnd:'50',customLabel:'un support de test'}
 assert(calculator(s,derive(s)).includes('sans historique de marché'))
 assert(!calculator(s,derive(s)).includes('Tu aurais gardé ce placement'))
+const base=derive({assetId:'bitcoin',amountRaw:'1000',mode:'dca',startYear:2025,startMonth:1,overridePriceRaw:''})
+assert(calculator({assetId:'bitcoin'}, {...base,result:{...base.result,months:undefined}}).includes('Versements mensuels en fin de mois'))
+assert(calculator({assetId:'bitcoin'}, {...base,result:{...base.result,months:['2025-01']}}).includes('1 versement en fin de mois'))
 for(const instrumentType of ['EQUITY','ETF'])for(const value of [-20,0,20]) {
   const assets=[0,1].map(i=>({id:String(i),isin:String(i),label:`Support ${i}`,shortLabel:`Support ${i}`,instrumentType,frequency:'annual',basis:'fund-nav',currency:'USD',years:{2025:value}}))
   const text=buildTweet(buildRanking(assets,{mode:'period',start:'2024-12',end:'2025-12'}),'Manuel')
