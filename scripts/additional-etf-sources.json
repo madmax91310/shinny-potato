@@ -195,10 +195,11 @@
       "parser": "vaneck",
       "currency": "USD",
       "benchmark": "MarketVector Global Video Gaming & eSports Screened Index (MVESPGTR)",
-      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/espo-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/fr/library/fact-sheets/espo-fact-sheet.pdf",
       "required": true,
       "enabled": true,
       "fallbackUrls": [
+        "https://www.vaneck.com/fr/en/library/fact-sheets/espo-fact-sheet.pdf",
         "https://www.vaneck.com/nl/en/library/fact-sheets/espo-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/espo-fact-sheet.pdf"
       ],
@@ -213,13 +214,14 @@
       "parser": "vaneck",
       "currency": "USD",
       "benchmark": "MarketVector Global Quantum Leaders",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/fr/library/fact-sheets/qntm-fact-sheet.pdf",
       "required": true,
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/quantum-computing-etf/",
       "ticker": "QNTM",
       "apiTicker": "UCTQNTM",
       "fallbackUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf",
         "https://www.vaneck.com/nl/en/library/fact-sheets/qntm-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf"
       ]
@@ -231,13 +233,14 @@
       "parser": "vaneck",
       "currency": "USD",
       "benchmark": "MarketVector Global Uranium and Nuclear Energy Infrastructure",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/nucl-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/fr/library/fact-sheets/nucl-fact-sheet.pdf",
       "required": true,
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
       "ticker": "NUCL",
       "apiTicker": "UCTNUCL",
       "fallbackUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/nucl-fact-sheet.pdf",
         "https://www.vaneck.com/nl/en/library/fact-sheets/nucl-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/nucl-fact-sheet.pdf"
       ]
@@ -249,13 +252,14 @@
       "parser": "vaneck",
       "currency": "USD",
       "benchmark": "MarketVector Global Space Industry Screened",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/jedi-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/fr/library/fact-sheets/jedi-fact-sheet.pdf",
       "required": true,
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/space-etf/",
       "ticker": "JEDI",
       "apiTicker": "UCTJEDI",
       "fallbackUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/jedi-fact-sheet.pdf",
         "https://www.vaneck.com/nl/en/library/fact-sheets/jedi-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/jedi-fact-sheet.pdf"
       ]
@@ -267,13 +271,14 @@
       "parser": "vaneck",
       "currency": "USD",
       "benchmark": "MarketVector Global Defense Industry",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/dfns-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/fr/library/fact-sheets/dfns-fact-sheet.pdf",
       "required": true,
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/defense-etf/",
       "ticker": "DFNS",
       "apiTicker": "UCTDFNS",
       "fallbackUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/dfns-fact-sheet.pdf",
         "https://www.vaneck.com/nl/en/library/fact-sheets/dfns-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/dfns-fact-sheet.pdf"
       ]
@@ -285,8 +290,9 @@
       "parser": "vaneck",
       "currency": "USD",
       "benchmark": "S&P Global Mining",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/fr/library/fact-sheets/gdig-fact-sheet.pdf",
       "fallbackUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
         "https://www.vaneck.com/nl/en/library/fact-sheets/gdig-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/gdig-fact-sheet.pdf"
       ],
@@ -303,13 +309,14 @@
       "parser": "vaneck",
       "currency": "EUR",
       "benchmark": "GPR Global 100",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tret-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/fr/library/fact-sheets/tret-fact-sheet.pdf",
       "required": true,
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/real-estate-etf/",
       "ticker": "TRET",
       "apiTicker": "TRET",
       "fallbackUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/tret-fact-sheet.pdf",
         "https://www.vaneck.com/nl/en/library/fact-sheets/tret-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/tret-fact-sheet.pdf"
       ]
@@ -321,13 +328,14 @@
       "parser": "vaneck",
       "currency": "EUR",
       "benchmark": "Morningstar Developed Markets Large Cap Dividend Leaders Screened Select",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tdiv-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/fr/library/fact-sheets/tdiv-fact-sheet.pdf",
       "required": true,
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/dividend-etf/",
       "ticker": "TDIV",
       "apiTicker": "TDIV",
       "fallbackUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/tdiv-fact-sheet.pdf",
         "https://www.vaneck.com/nl/en/library/fact-sheets/tdiv-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/tdiv-fact-sheet.pdf"
       ]
@@ -1209,8 +1217,9 @@
       "parser": "vaneck",
       "provider": "VanEck",
       "benchmark": "MarketVector Global Gold Miners Index",
-      "sourceUrl": "https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/fr/library/fact-sheets/gdx-fact-sheet.pdf",
       "fallbackUrls": [
+        "https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf",
         "https://www.vaneck.com/fr/en/library/fact-sheets/gdx-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/gdx-fact-sheet.pdf"
       ],

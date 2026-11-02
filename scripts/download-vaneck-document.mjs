@@ -27,9 +27,9 @@ try {
   }
   // US runners can be redirected to the US homepage without a returnUrl.
   // Select an explicit UCITS region before requesting the same document.
-  const region = url.pathname.startsWith('/ucits/') ? 'nl' : url.pathname.split('/')[1];
-  const document = officialDocument(`https://www.vaneck.com/${region}/en/library/fact-sheets/${url.pathname.split('/').pop()}`);
-  const landing = new URL(`https://www.vaneck.com/${region}/en/`);
+  const locale = url.pathname.startsWith('/ucits/') ? 'nl/en' : url.pathname.split('/').slice(1, 3).join('/');
+  const document = officialDocument(`https://www.vaneck.com/${locale}/library/fact-sheets/${url.pathname.split('/').pop()}`);
+  const landing = new URL(`https://www.vaneck.com/${locale}/`);
   landing.searchParams.set('returnUrl', document.pathname);
   const initialGate = regionalGate(landing.href, url);
   await initialise(initialGate);

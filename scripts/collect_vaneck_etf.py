@@ -97,7 +97,7 @@ def download_document(share, fetch=download):
     for url in urls:
         parsed=urlparse(url)
         if (parsed.scheme!='https' or parsed.netloc!='www.vaneck.com' or parsed.query or parsed.fragment
-                or not re.fullmatch(r'/(?:ucits|[a-z]{2}/en)/library/fact-sheets/[a-z0-9]+-fact-sheet\.pdf',parsed.path)
+                or not re.fullmatch(r'/(?:ucits|[a-z]{2}/en|fr/fr)/library/fact-sheets/[a-z0-9]+-fact-sheet\.pdf',parsed.path)
                 or pathlib.PurePosixPath(parsed.path).name!=document):
             reject('Unexpected VanEck regional document URL')
     last_error=None

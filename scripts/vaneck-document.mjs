@@ -2,7 +2,7 @@
 export function officialDocument(value, filename) {
   const url = new URL(value);
   if (url.protocol !== 'https:' || url.hostname !== 'www.vaneck.com' || url.port || url.username || url.password
-      || !/^\/(?:ucits|[a-z]{2}\/en)\/library\/fact-sheets\/[a-z0-9]+-fact-sheet\.pdf$/.test(url.pathname)
+      || !/^\/(?:ucits|[a-z]{2}\/en|fr\/fr)\/library\/fact-sheets\/[a-z0-9]+-fact-sheet\.pdf$/.test(url.pathname)
       || (url.search && url.search !== '?cken=true') || url.hash || (filename && url.pathname.split('/').pop() !== filename)) {
     throw new Error(`Unsupported official VanEck document URL: ${url.href}`);
   }
@@ -11,7 +11,7 @@ export function officialDocument(value, filename) {
 export function regionalGate(value, requested) {
   const url = new URL(value);
   if (url.protocol !== 'https:' || url.host !== 'www.vaneck.com' || url.username || url.password
-      || !/^\/[a-z]{2}\/en\/$/.test(url.pathname)) throw new Error('Unexpected issuer redirect');
+      || !/^\/(?:[a-z]{2}\/en|fr\/fr)\/$/.test(url.pathname)) throw new Error('Unexpected issuer redirect');
   let target = url.searchParams.get('returnUrl');
   if (!target) throw new Error('Missing VanEck returnUrl');
   // URLSearchParams removes one encoding layer; the issuer sometimes adds another.

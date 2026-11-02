@@ -36,6 +36,35 @@ class FieldCompletion(unittest.TestCase):
         with self.assertRaises(ValueError):
             download_document({**share,'fallbackUrls':['https://other.test/smh-fact-sheet.pdf']},fetch)
 
+    def test_vaneck_explicit_french_document_preserves_identity_and_fallback_guards(self):
+        from collect_vaneck_etf import download_document
+        primary='https://www.vaneck.com/fr/fr/library/fact-sheets/dfns-fact-sheet.pdf'
+        fallback='https://www.vaneck.com/uk/en/library/fact-sheets/dfns-fact-sheet.pdf'
+        attempted=[]
+        def fetch(url):
+            attempted.append(url)
+            return b'%PDF-exact-share'
+        self.assertEqual(download_document({'sourceUrl':primary,'fallbackUrls':[fallback]},fetch),(b'%PDF-exact-share',primary))
+        self.assertEqual(attempted,[primary])
+        for wrong in [primary.replace('/fr/fr/','/fr/de/'),primary+'?redirect=other',primary.replace('www.vaneck.com','elsewhere.test')]:
+            with self.assertRaises(ValueError):download_document({'sourceUrl':wrong},fetch)
+        with self.assertRaisesRegex(ValueError,'identity'):
+            download_document({'sourceUrl':primary,'fallbackUrls':[fallback]},lambda url: (_ for _ in ()).throw(ValueError('wrong identity')))
+
+    def test_older_vaneck_document_never_redates_newer_financial_values(self):
+        from apply_etf_collection import merge_collection
+        isin='IE000YYE6WK5'
+        url='https://www.vaneck.com/fr/fr/library/fact-sheets/dfns-fact-sheet.pdf'
+        old={'currency':'USD','productId':isin,'sourceUrl':url,
+             'aum':{'amount':1000000000,'currency':'USD','scope':'fund','asOf':'2026-10-30','checkedAt':'2026-10-31'},
+             'countries':{'asOf':'2026-10-30','checkedAt':'2026-10-31','basis':'fund','rows':[{'name':'United States','weightPct':100}]}}
+        incoming={'isin':isin,'currency':'USD','productId':isin,'sourceUrl':url,'terPct':0.55,'index':'Exact defence index','distribution':'Capitalisant',
+                  'aum':{'amount':999900000,'currency':'USD','scope':'fund','asOf':'2026-09-30'},
+                  'countries':{'asOf':'2026-09-30','basis':'fund','rows':[{'name':'United States','weightPct':90},{'name':'France','weightPct':10}]}}
+        merged=merge_collection({'checkedAt':'2026-11-02','shares':[incoming]},{isin:old},{})[isin]
+        self.assertEqual(merged['aum'],old['aum'])
+        self.assertEqual(merged['countries'],old['countries'])
+
     def test_existing_equity_listing_rows_may_share_an_isin(self):
         columns={'asOfDate':20261006,'issueName':['APPLE NASDAQ','APPLE XETRA','USD CASH'],
             'holdingPercent':[60,39.9,0.1],'isin':['US0378331005','US0378331005',''],

@@ -42,3 +42,11 @@ await assert.rejects(requestDocument(mock([response(302,null,'https://evil.test/
 await assert.rejects(requestDocument(mock([response(200,Buffer.from('<html>gate</html>'))]),original.href,original,{}),/unavailable/);
 await assert.rejects(requestDocument(mock([response(200,Buffer.alloc(8_000_001))]),original.href,original,{}),/unavailable/);
 console.log('VanEck: regional URLs, double encoding, identity, redirect loop, 404, temporary outages and PDF validation passed.');
+
+const french = officialDocument('https://www.vaneck.com/fr/fr/library/fact-sheets/gdig-fact-sheet.pdf', 'gdig-fact-sheet.pdf');
+assert.equal(regionalGate('https://www.vaneck.com/fr/fr/?returnUrl='+encodeURIComponent(french.pathname),original).document,french.href);
+for(const value of [french.href.replace('/fr/fr/','/fr/de/'),french.href.replace('gdig','espo'),french.href+'?redirect=elsewhere'])assert.throws(()=>officialDocument(value,'gdig-fact-sheet.pdf'));
+assert.throws(()=>regionalGate('https://www.vaneck.com/fr/en/?returnUrl='+encodeURIComponent(french.pathname),original));
+request=mock([response(302,null,french.href),response(200)]);
+assert.deepEqual((await requestDocument(request,original.href,original,{})).body,pdf);
+assert.equal(request.calls[1].url,french.href);
