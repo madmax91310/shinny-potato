@@ -53,6 +53,18 @@ def build_plan(producer, args, report_stem=None, module=None):
         for c in cfg(file):
             enabled=c.get('enabled',True);selected=enabled and (not only or c['isin']in only)
             add('etf-'+stem+'-'+c['isin'],c['isin'],['issuer share observation','individual collectionErrors','unavailable/retained fields'],selected,'Excluded by explicit selection or disabled configuration' if not selected else None)
+    elif producer=='refresh_qualified_listings':
+        common=read('src/data/shared-listing-identities.json')['listings']
+        aliases={r['aiListingId']:r['isin'] for r in read('src/data/global-equities.json') if r.get('aiListingId')}
+        for row in common:
+            if row.get('sourceId') in ('nasdaq','us-other','nordic-main'):
+                identifier=row.get('isin')or aliases.get(row['id'])or row['id']
+                add('listing:'+identifier,identifier,['listing-identity'])
+        if any(r.get('sourceId')=='us-other'for r in common):
+            add('listing:directory:us-other','directory:us-other',['primary-directory'])
+        if '--common-identities-only'not in args:
+            for source in read('scripts/qualified-listing-sources.json')['sources']:
+                add('listing:'+source['isin'],source['isin'],['issuer listing table'])
     elif producer=='collect_presentation_performance':
         for c in mod().SOURCES:add('etf-'+stem+'-'+c['isin'],c['isin'],['exact-share published cumulative performance <= 1 year','currency','reinvestment convention'])
     elif producer in {'refresh_index_sources','refresh_index_companies'}:

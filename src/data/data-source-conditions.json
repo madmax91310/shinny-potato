@@ -697,6 +697,19 @@
         "scripts/issuer-access-routes.json",
         "scripts/nasdaq_month_close.py"
       ]
+    },
+    {
+      "host": "www.nyse.com",
+      "access": "Public NYSE quote API, identity subset only, bounded ordinary HTTP; no authentication or anti-robot bypass",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "NYSE identity metadata; exact registered CUSIP/CINS continuity only",
+      "termsUrl": "https://www.nyse.com/terms-of-use",
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; accès HTTP réussi ne vaut pas licence. Devise et classe conservées comme références préexistantes, non attestées par cette API.",
+      "configurations": [
+        "scripts/nyse_listing_identity.py",
+        "scripts/exchange_listing_refresh.py"
+      ]
     }
   ],
   "datasets": [

@@ -351,6 +351,7 @@ jobs:
             ${{ runner.temp }}/derived-index-observation.json
             ${{ runner.temp }}/derived-index-observation.contract-plan.json
             ${{ runner.temp }}/listing-observation.json
+            ${{ runner.temp }}/listing-observation.contract-plan.json
             ${{ runner.temp }}/ranking-collection-status.json
             src/data/monthly-fx.json
             ${{ runner.temp }}/cross-fx-evidence/
