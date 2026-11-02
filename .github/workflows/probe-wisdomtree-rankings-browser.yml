@@ -1,0 +1,30 @@
+name: Readonly WisdomTree rankings browser probe
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/probe-wisdomtree-rankings-browser.yml'
+      - 'scripts/probe-wisdomtree-rankings-browser.mjs'
+permissions:
+  contents: read
+jobs:
+  observe:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - name: Read four exact official rankings without writing data
+        env:
+          PROBE_OUTPUT_DIR: ${{ runner.temp }}/wisdomtree-rankings-browser
+        run: node scripts/probe-wisdomtree-rankings-browser.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: wisdomtree-rankings-browser-readonly
+          path: ${{ runner.temp }}/wisdomtree-rankings-browser/
+          if-no-files-found: error
+          retention-days: 35
