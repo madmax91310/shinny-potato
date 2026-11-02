@@ -13481,7 +13481,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
         "checkedAt": "2026-11-02",
-        "sha256": "f54cc08d824e9f89d407b8cca701f240a204caa1f76f4f97d0558e176a0b30d5",
+        "sha256": "77ec244bc2e47a838d4ef1ea21e84cb1de156e38c9bc060e696db8a771cb31e2",
         "label": "Composition officielle automatisée · Nikkei 225"
       },
       "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
@@ -13697,7 +13697,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
         "checkedAt": "2026-11-02",
-        "sha256": "96f83741a6d810ceb8a39d791bc5b5f81d0db50c16f1d6e53bbc2b6798eff5c1",
+        "sha256": "d8adb089cb0ce8a9c0c44fbba3e7ed28d74e5e962984cad5be95ed85685fb6ce",
         "label": "Rendements calendaires officiels automatisés · Nikkei 225"
       },
       "performance": {
@@ -13791,7 +13791,7 @@
   },
   "stoxx600": {
     "returns": {
-      "asOf": "2026-10-30",
+      "asOf": "2026-11-02",
       "currency": "EUR",
       "variant": "NET",
       "values": [
@@ -13825,13 +13825,13 @@
       "source": {
         "url": "https://stoxx.com/index/sxxr/",
         "checkedAt": "2026-11-02",
-        "sha256": "07c28a289578c71d5fb53423651d8e71f3f873a00ff48dd4865c603d02467645",
+        "sha256": "7bc9bbfa3f74e3de88b9cf225da247319ce7c327fb225ddbd9adc1a07cc40316",
         "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
       },
       "performance": {
         "kind": "indice",
         "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
-        "date": "2026-10-30"
+        "date": "2026-11-02"
       }
     },
     "returnsHistory": {
@@ -14670,6 +14670,50 @@
           "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
           "date": "2026-10-30"
         }
+      },
+      "2026-11-02": {
+        "asOf": "2026-11-02",
+        "currency": "EUR",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            19.8
+          ],
+          [
+            2024,
+            8.79
+          ],
+          [
+            2023,
+            15.8
+          ],
+          [
+            2022,
+            -10.64
+          ],
+          [
+            2021,
+            24.91
+          ],
+          [
+            2020,
+            -1.99
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sxxr/",
+          "checkedAt": "2026-11-02",
+          "sha256": "7bc9bbfa3f74e3de88b9cf225da247319ce7c327fb225ddbd9adc1a07cc40316",
+          "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
+          "date": "2026-11-02"
+        }
       }
     },
     "facts": {
@@ -15183,7 +15227,7 @@
   },
   "eurostoxx50": {
     "returns": {
-      "asOf": "2026-10-30",
+      "asOf": "2026-11-02",
       "currency": "EUR",
       "variant": "NET",
       "values": [
@@ -15217,13 +15261,13 @@
       "source": {
         "url": "https://stoxx.com/index/sx5t/",
         "checkedAt": "2026-11-02",
-        "sha256": "de7988b92d5869dc841e24609d094ff081e84e3e700c16ac3fc51ff0dd5c1dac",
+        "sha256": "da794bf27cb066d39a3893905d04345119e937b11c1970b6e8fad257870a5ee9",
         "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
       },
       "performance": {
         "kind": "indice",
         "detail": "EURO STOXX 50, en EUR, dividendes nets réinvestis",
-        "date": "2026-10-30"
+        "date": "2026-11-02"
       }
     },
     "returnsHistory": {
@@ -15930,6 +15974,50 @@
           "detail": "EURO STOXX 50, en EUR, dividendes nets réinvestis",
           "date": "2026-10-30"
         }
+      },
+      "2026-11-02": {
+        "asOf": "2026-11-02",
+        "currency": "EUR",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            21.2
+          ],
+          [
+            2024,
+            11.01
+          ],
+          [
+            2023,
+            22.23
+          ],
+          [
+            2022,
+            -9.49
+          ],
+          [
+            2021,
+            23.34
+          ],
+          [
+            2020,
+            -3.21
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sx5t/",
+          "checkedAt": "2026-11-02",
+          "sha256": "da794bf27cb066d39a3893905d04345119e937b11c1970b6e8fad257870a5ee9",
+          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "EURO STOXX 50, en EUR, dividendes nets réinvestis",
+          "date": "2026-11-02"
+        }
       }
     },
     "facts": {
@@ -16441,7 +16529,7 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
         "checkedAt": "2026-11-02",
-        "sha256": "3279bded9c65bfaba9d26e281f4d2763caa3e42284fee23de87c534d40abfdcf",
+        "sha256": "20ad371b29a23420ec19c6c876987c58e7d2357d97e18a82efb35b76cb516b97",
         "label": "Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income"
       },
       "performance": {
@@ -17035,7 +17123,7 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
         "checkedAt": "2026-11-02",
-        "sha256": "42cfdaf1e9a31e0d020858ae7e520b541eb428efb7eb153dd12ea23e695e2c71",
+        "sha256": "057a0f2f058d5af443f5398683272dc5cca3999397d00730f81b12f1fd1dd031",
         "label": "Rendements calendaires officiels automatisés · S&P Euro High Yield Dividend Aristocrats"
       },
       "performance": {
@@ -17497,7 +17585,7 @@
       "source": {
         "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
         "checkedAt": "2026-11-02",
-        "sha256": "bc66388a0db20518a7d0baee74439f391a56b098ef0d27eec0d94d2146ad63f4",
+        "sha256": "180e4471ce42ab7eaf7cc966642658fbeccc8de9868f1ddf565e2ba33cd4f691",
         "label": "Rendements calendaires officiels automatisés · TOPIX"
       },
       "performance": {
