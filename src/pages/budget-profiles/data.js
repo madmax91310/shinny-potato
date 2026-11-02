@@ -1,3 +1,5 @@
+import newQualifiedProfiles from './qualified-profiles-2026-11-02.json' with { type: 'json' }
+import newQualifiedEditorial from './qualified-editorial-2026-11-02.json' with { type: 'json' }
 import qualifiedProfiles from './qualified-profiles-2026-11-01.json' with { type: 'json' }
 import editorial from './editorial.json' with { type: 'json' }
 import baseProfiles from './base-profiles.json' with { type: 'json' }
@@ -11,7 +13,7 @@ import additionalProfiles from './additional-profiles-2026-10-30.json' with { ty
 // Les blocs historiques conservent les données déclarées. Les imports prepared
 // portent les compléments autorisés et leur provenance, séparés des observations.
 // Les prénoms fictifs du texte sont déclarés dans BUDGET_EDITORIAL.
-const sourceProfiles = [...baseProfiles, ...additionalProfiles, ...preparedProfiles, ...preparedLotTwo, ...qualifiedProfiles]
+const sourceProfiles = [...baseProfiles, ...additionalProfiles, ...preparedProfiles, ...preparedLotTwo, ...qualifiedProfiles, ...newQualifiedProfiles]
 
 // Explicitly reviewed metadata and public labels; the original evidence stays intact.
 export const BUDGET_PROFILES = sourceProfiles.map(profile => {
@@ -32,4 +34,4 @@ export const EXPENSE_CATEGORIES = [
   { id: 'other', label: 'Autres dépenses', emoji: '🧾' },
 ]
 
-export const BUDGET_EDITORIAL = Object.fromEntries(sourceProfiles.map(p => [p.id, { ...editorial[p.id], ...profileEditorial[p.id] }]))
+export const BUDGET_EDITORIAL = Object.fromEntries(sourceProfiles.map(p => [p.id, { ...editorial[p.id], ...profileEditorial[p.id], ...newQualifiedEditorial[p.id] }]))

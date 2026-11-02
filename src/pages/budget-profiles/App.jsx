@@ -6,6 +6,7 @@ import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { BUDGET_PROFILES, EXPENSE_CATEGORIES } from './data.js'
 import { analyzeBudget, budgetPublicPresentation, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, dateLabel, euro, MAX_BUDGET_LINES, refreshBudgetDraft, sourceReply } from './lib.js'
 import { findSavedDraft, loadSavedDrafts, loadDraft, loadPublished, loadQueued, loadUsage, saveDraft, savePublished, saveQueued, saveUsage, WORKSPACE_KEY } from './storage.js'
+import PublicationStatus from './PublicationStatus.jsx'
 import { useBudgetImage } from './useBudgetImage.js'
 import '../dca-profiles/dca-profiles.css'
 import './budget-profiles.css'
@@ -24,6 +25,7 @@ export default function App() {
   const money = value => euro(value, profile.currency)
   const [usageInitial] = useState(loadUsage), [used, setUsed] = useState(usageInitial.value)
   const [publishedInitial] = useState(loadPublished), [published, setPublished] = useState(publishedInitial.value)
+  const [publicationDates, setPublicationDates] = useState(publishedInitial.dates)
   const [queuedInitial] = useState(loadQueued), [queued, setQueued] = useState(queuedInitial.value)
   const [saved, setSaved] = useState(loadSavedDrafts)
   const [filters, setFilters] = useState({ country: '', income: '', family: '', children: '', housing: '' })
@@ -67,10 +69,11 @@ export default function App() {
     if (saveUsage(next)) { setUsed(next); setFeedback('Historique mis à jour.') }
     else setFeedback('L’historique n’a pas pu être enregistré. Les données précédentes sont conservées.')
   }
-  function markPublished(checked) {
+  function markPublished(checked, date = null) {
     const next = checked ? [...new Set([...published, profile.id])] : published.filter(id => id !== profile.id)
-    if (savePublished(next)) { setPublished(next); setFeedback(checked ? 'Profil marqué comme publié.' : 'Statut publié retiré.') }
-    else setFeedback('Le statut publié n’a pas pu être enregistré. Le suivi précédent est conservé.')
+    const dates = { ...publicationDates, [profile.id]: date }
+    if (savePublished(next, dates)) { setPublished(next); setPublicationDates(dates); setFeedback(checked ? 'Publication déclarée enregistrée.' : 'Statut publié retiré.'); return true }
+    setFeedback('Le statut publié n’a pas pu être enregistré. Le suivi précédent est conservé.'); return false
   }
   function markQueued(checked) {
     const next = checked ? [...new Set([...queued, profile.id])] : queued.filter(id => id !== profile.id)
@@ -79,7 +82,7 @@ export default function App() {
   }
   function restored() {
     memoryDrafts.current = new Map(loadSavedDrafts().map(d => [d.profile.id, d]))
-    setRecord(refreshBudgetDraft(loadDraft(record).value)); setUsed(loadUsage().value); setPublished(loadPublished().value); setQueued(loadQueued().value); setSaved(loadSavedDrafts())
+    setRecord(refreshBudgetDraft(loadDraft(record).value)); setUsed(loadUsage().value); setPublished(loadPublished().value); setPublicationDates(loadPublished().dates); setQueued(loadQueued().value); setSaved(loadSavedDrafts())
   }
   function filter(key, title, options) {
     return <label>{title}<ChoicePicker aria-label={title} value={filters[key]} onChange={e => setFilters({ ...filters, [key]: e.target.value })}><option value="">Tous</option>{options.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</ChoicePicker></label>
@@ -171,8 +174,8 @@ export default function App() {
         <section className="dca-simple-card dca-text-card">
           <label htmlFor="budget-draft">Texte prêt à publier</label><textarea id="budget-draft" maxLength={20000} value={text} onChange={e => { setApproved(false); setRecord({ ...record, text: e.target.value, edited: true }) }}/>
           <div className="dca-buttons"><Button disabled={!text.trim() || !!a.errors.length} onClick={() => copy(text)}>Copier le texte</Button><Button variant="secondary" onClick={() => { setApproved(false); setRecord({ ...record, text: buildBudgetText(profile), edited: false }) }}>Rétablir le texte</Button></div>
-          <label className="budget-check"><input type="checkbox" checked={published.includes(profile.id)} onChange={e => markPublished(e.target.checked)}/>Profil publié</label>
-          <label className="budget-check"><input type="checkbox" checked={queued.includes(profile.id)} onChange={e => markQueued(e.target.checked)}/>À publier prochainement</label><p className="dca-note">À cocher après publication. Suivi manuel enregistré dans ce navigateur.</p>
+          <PublicationStatus key={profile.id} published={published.includes(profile.id)} date={publicationDates[profile.id] ?? null} onSave={markPublished}/>
+          <label className="budget-check"><input type="checkbox" checked={queued.includes(profile.id)} onChange={e => markQueued(e.target.checked)}/>À publier prochainement</label><p className="dca-note">Trois statuts indépendants, enregistrés manuellement dans ce navigateur.</p>
           {edited && <p className="dca-note">Texte personnalisé conservé. « Rétablir le texte » reprend les chiffres du budget.</p>}
           {!prepared && <label className="budget-check"><input type="checkbox" checked={approved} onChange={e => setApproved(e.target.checked)}/>La personne a validé les informations à publier.</label>}
           {!prepared && !approved && <p className="dca-note">Participation à faire valider avant publication.</p>}

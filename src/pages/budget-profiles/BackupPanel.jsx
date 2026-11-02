@@ -1,9 +1,10 @@
 import { useState } from 'react'
+import { publicationLabel } from './publication.js'
 import Button from '../../design-system/Button'
 import { budgetDisplayName } from './lib.js'
 import { budgetStorageSnapshot, exportBudgetBackup, parseBudgetBackup, previewBudgetImport, restoreBudgetBackup, listBudgetRecoveries, validDraft } from './storage.js'
 
-const statusLabel = (workspace, id) => [['used', 'Utilisé'], ['published', 'Publié'], ['queued', 'À publier prochainement']].map(([key, label]) => `${label} : ${workspace[key].includes(id) ? 'oui' : 'non'}`).join(' · ')
+const statusLabel = (workspace, id) => [['used', 'Utilisé'], ['published', 'Publié'], ['queued', 'À publier prochainement']].map(([key, label]) => key === 'published' && workspace.published.includes(id) ? publicationLabel(workspace.publicationDates[id]) : `${label} : ${workspace[key].includes(id) ? 'oui' : 'non'}`).join(' · ')
 
 export default function BackupPanel({ onRestored, record, drafts }) {
   const [versions, setVersions] = useState(listBudgetRecoveries), [selectedVersion, setSelectedVersion] = useState('')
@@ -32,7 +33,7 @@ export default function BackupPanel({ onRestored, record, drafts }) {
     } else setMessage('Import non appliqué : les données locales ont changé ou leur enregistrement est impossible. Relis le fichier pour actualiser l’aperçu. Aucune donnée locale n’a été supprimée.')
   }
   return <div className="budget-backup">
-    <p>Transfert manuel par fichier entre appareils. Les brouillons, textes personnalisés et trois statuts sont enregistrés dans ce navigateur.</p>
+    <p>Transfert manuel par fichier entre appareils. Les brouillons, textes personnalisés, dates de publication déclarées et trois statuts sont enregistrés dans ce navigateur.</p>
     <Button variant="secondary" onClick={download}>Exporter les brouillons et statuts</Button>
     {versions.length > 0 && <><label>Version locale archivée<select aria-label="Version locale archivée" value={selectedVersion} onChange={e => setSelectedVersion(e.target.value)}><option value="">Choisir une version précédente</option>{versions.map(v => <option key={v.key} value={v.key}>{new Date(v.createdAt).toLocaleString('fr-FR')} · {v.workspace.drafts.length} brouillon(s)</option>)}</select></label><Button variant="secondary" disabled={!selectedVersion} onClick={() => { const incoming = versions.find(v => v.key === selectedVersion).workspace; setPending({ incoming, preview: previewBudgetImport(incoming, drafts), snapshot: budgetStorageSnapshot() }); setStrategy('keep-local'); setMessage('') }}>Examiner cette version archivée</Button></>}
     <label>Restaurer une sauvegarde<input type="file" accept="application/json,.json" onChange={e => inspect(e.target.files[0])}/></label>
