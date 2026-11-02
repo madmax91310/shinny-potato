@@ -17,6 +17,45 @@ def nikkei_date(text, now):
     return document_date(dt.datetime.strptime(stamp, '%Y%m%d').date().isoformat(), now)
 
 
+def nikkei_sectors(block, constituents):
+    """Read weight and stock-count columns separately, including wrapped labels."""
+    legacy = {'Technology', 'Consumer Goods', 'Materials', 'Capital Goods/Others',
+              'Financials', 'Transportation and Utilities'}
+    known = legacy | {'Information and Communications'}
+    rows, counts = [], {}
+    if 'Weight(%)' not in block or 'Stocks' not in block:
+        reject('Missing Nikkei sector column identities')
+    for line in block.splitlines():
+        cells = re.split(r'\s{2,}', line.strip())
+        if cells == [''] or cells == ['■'] or cells == ['Weight(%)', 'Stocks']:
+            continue
+        if len(cells) >= 2 and re.fullmatch(r'-?\d+\.\d+', cells[1]):
+            name = cells[0]
+            if not any(label == name or label.startswith(name + ' ') for label in known):
+                reject('Unknown Nikkei sector label')
+            rows.append({'name': name, 'weightPct': float(cells[1])})
+            right = cells[2:]
+        elif rows and rows[-1]['name'] not in known:
+            name = rows[-1]['name'] + ' ' + cells[0]
+            if name not in known:
+                reject('Invalid wrapped Nikkei sector label')
+            rows[-1]['name'] = name
+            right = cells[1:]
+        else:
+            reject('Unexpected Nikkei sector table row')
+        if right:
+            if (len(right) != 2 or right[0] not in known or right[0] in counts
+                    or not re.fullmatch(r'\d+', right[1])):
+                reject('Invalid Nikkei sector stock-count column')
+            counts[right[0]] = int(right[1])
+    labels = {row['name'] for row in rows}
+    if labels not in (legacy, known) or set(counts) != labels or sum(counts.values()) != constituents:
+        reject('Incomplete Nikkei sector taxonomy or constituent counts')
+    # Published percentages retain their rounding; never substitute the counts
+    # or renormalise weights. The shared completeness tolerance is unchanged.
+    return validated_rows(rows)
+
+
 def nikkei_composition(text, config, now):
     if not text.lstrip().startswith('Nikkei Stock Average') or 'price-weighted equity index' not in text:
         reject('Wrong Nikkei composition identity')
@@ -30,13 +69,10 @@ def nikkei_composition(text, config, now):
     if len(holdings) != 10: reject('Incomplete Nikkei top-ten table')
     validated_rows(holdings, False)
     block = text.split('Sector Weight', 1)[1].split('Vendor Code', 1)[0]
-    sectors = []
-    for line in block.splitlines():
-        m = re.match(r'\s*([A-Za-z /]+?)\s{2,}(\d+\.\d+)\s{2,}', line)
-        if m: sectors.append({'name': m[1], 'weightPct': float(m[2])})
-    validated_rows(sectors)
+    sectors = nikkei_sectors(block, count)
     return {'index': config['name'], 'asOf': stamp, 'constituents': count,
-            'countries': [['🇯🇵 Japon', 100]], 'sectorMethod': 'Nikkei six-sector classification',
+            'countries': [['🇯🇵 Japon', 100]],
+            'sectorMethod': f'Nikkei {"six" if len(sectors) == 6 else "seven"}-sector classification',
             'sectors': [[r['name'], r['weightPct']] for r in sectors],
             'holdings': [[r['name'], r['weightPct']] for r in holdings]}
 
