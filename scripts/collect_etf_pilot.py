@@ -55,16 +55,39 @@ def source_date(value, now):
     return parsed.isoformat()
 
 
-def allocation(container, now):
+def allocation(container, now, signed_holdings=None):
     points = container['dataPointsByNameMap']
     labels, weights = points['type']['value'], points['fund']['value']
     if not isinstance(labels, list) or not labels or len(labels) != len(weights) or len(set(labels)) != len(labels):
         reject('Invalid allocation labels')
+    maximum = 100
+    if signed_holdings is not None:
+        # Explicit net-assets convention: independently reconcile ALL positions,
+        # including money-market instruments and signed cash, on the same date.
+        p = signed_holdings['dataPointsByNameMap']
+        if p['asOfDate']['value'] != points['asOf']['value']:
+            reject('Signed allocation and holdings dates disagree')
+        names, kinds, values = (p[k]['value'] for k in ('sectorName', 'assetClass', 'holdingPercent'))
+        if not names or len(names) != len(kinds) or len(names) != len(values):
+            reject('Truncated signed allocation holdings')
+        totals = {}
+        for name, kind, value in zip(names, kinds, values):
+            if (name not in labels or isinstance(value, bool) or not isinstance(value, (int, float))
+                    or not math.isfinite(value) or not -100 <= value <= 100
+                    or (name != 'Cash and/or Derivatives' and (kind != 'Fixed Income' or value < 0))
+                    or (name == 'Cash and/or Derivatives' and kind not in ('Cash', 'Money Market', 'Cash Collateral and Margins', 'FX', 'Futures', 'Forwards'))):
+                reject('Invalid signed allocation holding')
+            totals[name] = totals.get(name, 0) + value
+        if (set(totals) != set(labels) or not 99 <= sum(values) <= 101
+                or any(isinstance(w, bool) or not isinstance(w, (int, float)) or not math.isfinite(w)
+                       or abs(totals[name] - w) > .02 for name, w in zip(labels, weights))):
+            reject('Signed sector allocation disagrees with complete holdings')
+        maximum = 100 + max(0, -totals.get('Cash and/or Derivatives', 0)) + .02
     for label, weight in zip(labels, weights):
         # A net cash/derivative balance is signed, unlike a security exposure.
         # Keep the exact published label and value; never clip or renormalise.
         if (isinstance(weight, bool) or not isinstance(weight, (int, float))
-                or not math.isfinite(weight) or not -100 <= weight <= 100
+                or not math.isfinite(weight) or not -100 <= weight <= maximum
                 or (weight < 0 and label != 'Cash and/or Derivatives')):
             reject(f'Invalid allocation weight for {label}: {weight!r}')
     if not 99 <= sum(weights) <= 101:
@@ -146,7 +169,8 @@ def parse_share(body, share, now):
         allocation_errors.append({'field':'countries-primary','url':product_data_url(share),'reason':str(error),'fallbackQualified':False})
     sector_failure=None
     try:
-        sectors = allocation(exposure['sector'], now) if share.get('collectSectors', True) and 'sector' in exposure else {'status': 'not-published', 'rows': []}
+        sectors = allocation(exposure['sector'], now,
+            components['holdings']['containersByNameMap']['all'] if share.get('sectorAllocationConvention') == 'signed-net-assets-reconciled-holdings' else None) if share.get('collectSectors', True) and 'sector' in exposure else {'status': 'not-published', 'rows': []}
     except ValueError as error:
         try:
             if str(error)!='Incomplete allocation' or not isinstance(body,dict):raise error
@@ -163,6 +187,8 @@ def parse_share(body, share, now):
             sectors={'status':'collection-error','rows':[]}
             sector_failure={'field':'sectors-primary','url':product_data_url(share),'reason':str(error)+'; independent allocation unqualified: '+str(fallback_error),'fallbackQualified':False}
     if sector_failure:allocation_errors.append(sector_failure)
+    if sectors.get('rows') and share.get('sectorAllocationConvention'):
+        sectors['weightConvention'] = share['sectorAllocationConvention']
 
     if countries.get('rows'): countries['sourceComponent'] = 'exposureBreakdowns.geography.countries'
     if sectors.get('rows'): sectors.setdefault('sourceComponent','exposureBreakdowns.sector')
