@@ -56,11 +56,11 @@ export default function DataReview() {
   const count = categories => report.items.filter(item => categories.includes(item.category)).length
   return <div className="data-review">
     <PageHeader title="Données à revoir" subtitle="Incidents, données manquantes, qualifications et échéances : leurs impacts et leurs preuves au même endroit." />
-    <p className="dr-note">État au {dateLabel(today)} · Les échéances sont calculées par type de données. Une vérification de la source commune vaut pour tous les outils concernés.</p>
+    <p className="dr-note">État au {dateLabel(today)} · Les échéances sont calculées par type de données. Les incidents, les contrats d’usage et les preuves historiques ont des compteurs distincts.</p>
     <ReviewBoundary name="Supervision"><AutomationFailures review={report} /></ReviewBoundary>
     <ReviewBoundary name="Inventaire"><DataAutomationInventory /></ReviewBoundary>
     <ReviewBoundary name="Rapprochements financiers"><FinancialReconciliation /></ReviewBoundary>
-    <div className="dr-counts" aria-label="Résumé des revues">
+    <p className="dr-note">Revue documentaire et calendrier : ces champs peuvent également être signalés dans le centre de suivi. Ces nombres ne s’ajoutent pas à ses points concernés et ne représentent pas des pannes.</p><div className="dr-counts" aria-label="Résumé des revues">
       <div><strong>{count(['reserve'])}</strong><span>réserves ouvertes</span></div>
       <div><strong>{count(['expired'])}</strong><span>offres expirées</span></div>
       <div><strong>{count(['stale'])}</strong><span>vérifications arrivées à échéance</span></div>

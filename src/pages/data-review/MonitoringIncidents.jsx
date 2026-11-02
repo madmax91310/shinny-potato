@@ -1,3 +1,4 @@
+import {historicalResolutionProof} from './review-causes.js'
 import PagedList from './PagedList.jsx'
 import { useState } from 'react'
 import { prioritizeIncidents, groupIncidents, incidentPresentations } from './incident-priority.js'
@@ -28,7 +29,7 @@ export default function MonitoringIncidents({ monitor }) {
   const groups=groupIncidents(rows)
   const age = Date.now() - Date.parse(monitor.checkedAt)
   const renderIncident=row=><article className="dr-item" key={row.id}>
-      <span className={`dr-badge ${['overdue', 'unobserved', 'freshness', 'review', 'checks'].includes(row.kind) ? 'dr-undated' : 'dr-expired'}`}>{labels[row.kind] ?? 'À vérifier'}</span><h3>{row.name}</h3>
+      <span className={`dr-badge ${row.proofStatus==='resolution-unproven'||['scope-removed','resolved','historical'].includes(row.kind)?'dr-neutral':['overdue', 'unobserved', 'freshness', 'review', 'checks'].includes(row.kind) ? 'dr-undated' : 'dr-expired'}`}>{row.proofStatus==='resolution-unproven'?'Archive sans preuve de résolution':labels[row.kind] ?? 'À vérifier'}</span><h3>{row.name}</h3>
       <p>{row.field} — {row.cause}</p><p>{row.impactScope === 'collector' ? 'Périmètre du collecteur' : row.impactScope === 'catalog' ? 'Bibliothèque de données' : 'Outils utilisant cet actif'} : {(row.tools ?? []).join(', ') || 'Raccordement non documenté'}.</p>
       <dl><dt>Détecté depuis</dt><dd>{date(row.firstSeenAt)}</dd><dt>Dernier contrôle de collecte réussi</dt><dd>{date(incidentSuccessAt(row))}</dd>{row.attemptedAt && <><dt>Dernière tentative de collecte</dt><dd>{date(row.attemptedAt)}</dd></>}<dt>Période conservée</dt><dd>{row.asOf ?? 'Non documentée'}</dd>{row.dataId && <><dt>Identifiant</dt><dd>{row.dataId}</dd></>}{row.dueAt && <><dt>Échéance</dt><dd>{row.dueAt}</dd></>}</dl>
       {row.signals.length>1&&<details><summary>{row.signals.length} signalements conservés pour cette donnée</summary>{row.signals.map(signal=><p key={signal.id}>{signal.id} · {signal.cause} · dernier signalement : {date(signal.lastSeenAt)}{safeLink(signal.runUrl)&&<> · <a href={signal.runUrl} target="_blank" rel="noreferrer">Exécution ↗</a></>}</p>)}</details>}
@@ -40,8 +41,8 @@ export default function MonitoringIncidents({ monitor }) {
       {manual?.id === row.id && <label className="dr-copy-fallback">La copie automatique est indisponible. Sélectionne ce diagnostic pour le copier.<textarea aria-label="Diagnostic à copier" readOnly value={manual.text} onFocus={event => event.target.select()} /></label>}
     </article>
   return <section className="dr-automation" aria-label="Surveillance des données">
-    <h2>Alertes des données automatisées</h2>
-    <p>{active.length} point(s) à examiner · {signals.length} signalement(s) conservé(s) · dernier contrôle : {date(monitor.checkedAt)}.</p>
+    <h2>Signalements bruts du moniteur</h2><p>Document source du centre de suivi : réserves historiques, échéances et incidents sont séparés dans son résumé. Le nombre ci-dessous compte les entrées du moniteur et ne s’ajoute pas aux points concernés.</p>
+    <p>{active.length} entrées de suivi · {signals.length} signalement(s) conservé(s) · dernier contrôle : {date(monitor.checkedAt)}.</p>
     {retiredRows.length>0&&<details><summary>Retirés du périmètre · {retiredRows.length}</summary>{[...new Set(retiredRows.map(row=>row.retirementReason))].map(reason=><p key={reason}>{reason}</p>)}<p>Ces incidents ne sont pas comptés comme des données réparées.</p><PagedList label="Pages des retraits de périmètre">{retiredRows.map((r,i)=>renderIncident({...r,id:'retired:'+r.id+':'+i,kind:'scope-removed',cause:r.retirementReason??r.cause,signals:[r]}))}</PagedList></details>}
     {(!Number.isFinite(age) || age < 0 || age > 2 * 3600000) && <p role="status">Le contrôle horaire n’est plus à jour. Ce bilan ne confirme pas l’état actuel des sources.</p>}
     <p className="dr-note">Un retard demande une vérification, sans prouver une erreur de valeur. Les contradictions restent à examiner dans les sources. Les dernières données validées sont conservées. Les incidents qui touchent une publication ou un calcul passent en premier, puis ceux qui concernent le plus d’outils.</p>
@@ -52,6 +53,6 @@ export default function MonitoringIncidents({ monitor }) {
     <p>{groups.length} cause(s) pour {rows.length} incident(s) correspondant aux filtres. Les détails de chaque actif restent conservés.</p>
     <div className="dr-list">{grouped?groups.map(group=><details key={group.id} open={groups.length===1}><summary>{labels[group.kind]??group.kind} · {group.field} · {group.rows.length} incident(s)</summary><p>{group.cause}</p><p>Outils concernés : {group.tools.join(', ')||'À raccorder'}.</p>{group.rows.map(renderIncident)}</details>):rows.map(renderIncident)}</div>
     {!rows.length && <p>Aucun incident pour cette sélection.</p>}
-    {monitor.resolved.length > 0 && <details><summary>Retours à la normale · {monitor.resolved.length}</summary><p>Les retours historiques sans preuve explicite restent à qualifier ; ils ne sont pas assimilés à une réparation certifiée.</p><PagedList label="Pages des épisodes historiques">{monitor.resolved.map((r,i)=>renderIncident({...r,id:'history:'+r.id+':'+i,kind:r.resolutionEvidence?'resolved':'historical',cause:'Retour enregistré le '+date(r.resolvedAt)+' · '+r.cause,signals:[r]}))}</PagedList></details>}
+    {monitor.resolved.length > 0 && <details><summary>Épisodes historiques · {monitor.resolved.length}</summary><p>Les retours historiques sans preuve explicite restent à qualifier ; ils ne sont pas assimilés à une réparation certifiée.</p><PagedList label="Pages des épisodes historiques">{monitor.resolved.map((r,i)=>renderIncident({...r,id:'history:'+r.id+':'+i,kind:historicalResolutionProof(r,Date.now())?'resolved':'historical',cause:'Retour enregistré le '+date(r.resolvedAt)+' · '+r.cause,signals:[r]}))}</PagedList></details>}
   </section>
 }
