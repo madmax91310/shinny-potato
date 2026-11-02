@@ -1,3 +1,5 @@
+import {gunzipSync} from 'node:zlib'
+import {radarReportContent} from './lib/radar-report-content.mjs'
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import { advanceRadar, shouldRefreshRadar, observationKey, meaningful, displayValue } from './lib/editorial-radar.mjs'
@@ -384,4 +386,14 @@ console.log('All qualified ETFs monitored once; metric thresholds and same-date 
   }
   assert.equal(JSON.stringify(fixture), before, 'Source weights, dates and proofs stay immutable')
   console.log('Three actual DWS omissions: no false zero, original dates/conflicts preserved, qualification visible; old complete-classification zero scenarios remain valid.')
+}
+
+// The real ordinary producer report used to exceed the unchanged monitor envelope.
+{
+ const bytes=gunzipSync(await readFile(new URL('./fixtures/radar-feed-envelope-41364143338.json.gz',import.meta.url)))
+ assert.equal(bytes.length,8052546)
+ const feed=JSON.parse(bytes),compact=radarReportContent(feed)
+ assert(Buffer.byteLength(compact)<8000000)
+ assert.deepEqual(JSON.parse(compact),feed,'No source, individual status, scope, dates or financial observation is removed')
+ assert(compact.endsWith('\n'))
 }
