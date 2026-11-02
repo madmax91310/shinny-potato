@@ -1,3 +1,5 @@
+import RAW_MONTHLY_QUOTES from '../src/data/automated-etf-monthly.json' with {type:'json'}
+import {manualPortfolioCategory,AUTOMATIC_RECIPE_ISINS} from '../src/data/automated-portfolio-funds.js'
 import {buildCustomDuel} from '../src/pages/portfolio-duels/lib.js'
 import ANNUAL_FX from '../src/data/annual-fx.json' with {type:'json'}
 import {getETFArt} from '../src/pages/etf-sheets/visualIdentity.js'
@@ -122,8 +124,24 @@ for(const fund of IDENTITIES){
  const result=buildCustomDuel({left:[{id:asset.id,pct:100}],right:[{id:asset.id,pct:100}]})
  let capital=10000
  for(const year of result.years){
-  const raw=QUALIFIED_FUND_CALENDARS[fund.isin].years[year]
-  const ratio=fund.currency==='USD'?ANNUAL_FX.years[year-1].value/ANNUAL_FX.years[year].value:1
+  let raw,currency
+  if(asset.basis==='market-price'){
+   // A newly collected exchange quote is not the issuer's NAV in another currency.
+   const quote=Object.values(RAW_MONTHLY_QUOTES).find(r=>r.isin===fund.isin && r.currency===asset.currency && r.responseSha256===asset.responseSha256 && r.listingEvidenceId===asset.listingEvidenceId)
+   assert(quote,`${fund.isin}: exact selected exchange record`)
+   assert.equal(quote.field,'adjclose')
+   const prices=new Map(quote.points)
+   for(const month of [`${year-1}-12`,...Array.from({length:12},(_,i)=>`${year}-${String(i+1).padStart(2,'0')}`)])assert(Number.isFinite(prices.get(month))&&prices.get(month)>0)
+   raw=(prices.get(`${year}-12`)/prices.get(`${year-1}-12`)-1)*100
+   currency=quote.currency
+  }else{
+   assert.equal(asset.basis,'fund-nav')
+   const calendar=QUALIFIED_FUND_CALENDARS[fund.isin]
+   assert.equal(asset.currency,calendar.currency)
+   raw=calendar.years[year];currency=calendar.currency
+  }
+  assert(['EUR','USD'].includes(currency))
+  const ratio=currency==='USD'?ANNUAL_FX.years[year-1].value/ANNUAL_FX.years[year].value:1
   const annual=((1+raw/100)*ratio-1)*100
   assert(Math.abs(result.a.annual[year]-annual)<1e-9)
   capital*=1+annual/100
@@ -132,4 +150,13 @@ for(const fund of IDENTITIES){
  assert(Math.abs(result.a.final-capital)<1e-7)
  assert.equal(result.a.final,result.b.final)
 }
-console.log('Duels manuels : 21 calendriers, change historique de décembre et capitalisation rapprochés.')
+console.log('Duels manuels : 21 instruments, NAV ou cotation exacte sélectionnée, change historique de décembre et capitalisation rapprochés.')
+
+// A newly qualified exchange history must retain the exact identity's role.
+for(const identity of IDENTITIES){
+ const registered=INSTRUMENTS_BY_ISIN[identity.isin]
+ assert.equal(manualPortfolioCategory(registered),identity.portfolioCategory,identity.isin)
+ assert(!AUTOMATIC_RECIPE_ISINS.has(identity.isin),'A new monthly history does not authorize automatic recipes')
+}
+assert.equal(manualPortfolioCategory({name:'Existing exact commodity route',portfolioCategory:'actions_larges'},{category:'matieres_premieres'}),'matieres_premieres')
+assert.equal(manualPortfolioCategory({name:'Existing Treasury fund'}),'obligataire')

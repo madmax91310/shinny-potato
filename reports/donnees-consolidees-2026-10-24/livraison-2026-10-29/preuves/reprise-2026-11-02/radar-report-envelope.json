@@ -1,0 +1,17 @@
+{
+  "sourceRun": 41364143338,
+  "sourceArtifact": 13106243166,
+  "originalBytes": 8052546,
+  "originalSha256": "fe90ab83c97fe1805dab0f9f71ecba046813b6dec88cbeb8085d50e09db9f2d6",
+  "compactBytes": 6056299,
+  "monitorLimitUnchanged": 8000000,
+  "financialValuesAndCompletePayload": "JSON.parse(compact) deep-equals original native report",
+  "readerValidation": {
+    "scopePlanVerified": true,
+    "successes": 35,
+    "errors": 8,
+    "allResultIdentitiesAndScopePreserved": true
+  },
+  "production": "not yet exercised",
+  "limit": "Compaction repairs the current envelope rejection, not supplier failures. A future report above the same unchanged limit remains an explicit incident."
+}

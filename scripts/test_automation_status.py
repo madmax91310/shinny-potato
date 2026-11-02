@@ -1,4 +1,6 @@
 import unittest
+import gzip
+import hashlib
 import io
 import json
 import pathlib
@@ -11,6 +13,28 @@ from publish_automation_status import update_status, read_report, publication_su
 def run(id=1,conclusion='failure',workflow='update-economic-data.yml',**kwargs):
  return {'id':id,'path':'.github/workflows/'+workflow,'head_branch':'master','event':'schedule','status':'completed','conclusion':conclusion,'updated_at':f'2026-10-{id:02d}T10:00:00Z','html_url':f'https://github.com/test/repo/actions/runs/{id}',**kwargs}
 class StatusTests(unittest.TestCase):
+ def test_compact_real_radar_artifact_keeps_all_results_and_envelope(self):
+  root=pathlib.Path(__file__).resolve().parents[1]
+  raw=gzip.decompress((root/'scripts/fixtures/radar-feed-envelope-41364143338.json.gz').read_bytes())
+  self.assertEqual(hashlib.sha256(raw).hexdigest(),'fe90ab83c97fe1805dab0f9f71ecba046813b6dec88cbeb8085d50e09db9f2d6')
+  planned=json.loads(gzip.decompress((root/'scripts/fixtures/radar-feed-envelope-41364143338.contract-plan.json.gz').read_bytes()))
+  compact=subprocess.check_output(['node','--input-type=module','-e',"import {radarReportContent} from './scripts/lib/radar-report-content.mjs';import fs from 'node:fs';process.stdout.write(radarReportContent(JSON.parse(fs.readFileSync(0,'utf8'))))"],input=raw,cwd=root)
+  self.assertEqual(json.loads(compact),json.loads(raw))
+  self.assertGreater(len(raw),8_000_000)
+  self.assertLess(len(compact),8_000_000)
+  with tempfile.TemporaryDirectory() as directory:
+   path=pathlib.Path(directory)/'feed.json';path.write_bytes(raw)
+   with self.assertRaisesRegex(ValueError,'trop volumineux'):read_report(path,'update-editorial-radar.yml',planned)
+   path.write_bytes(compact);report=read_report(path,'update-editorial-radar.yml',planned)
+  self.assertTrue(report['_reportEvidence']['scopePlanVerified'])
+  self.assertEqual(len(report['successes']),35)
+  self.assertEqual(len(report['errors']),8)
+  from producer_report_contract import normalize_contract
+  expected=normalize_contract(json.loads(raw)['resultContract'])
+  for kind in ['successes','errors']:
+   self.assertEqual({r['id'] for r in report[kind]},{r['id'] for r in expected[kind]})
+  self.assertEqual(report['_reportEvidence']['scope'],json.loads(raw)['resultContract']['scope'])
+
  def test_explicit_fresh_quarter_closes_only_its_own_incident(self):
   def report(rows):return {'_collector':'company-universe-observation','companies':rows}
   initial=update_status({},run(workflow='update-scpi.yml'),[],[report({

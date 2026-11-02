@@ -9,6 +9,11 @@ import { latestCommonYears } from './annual-window.js'
 // 18/10/2026 : parts documentées sur six années complètes et admises dans un groupe d'options du
 // Générateur (theses.js) ; elles perdent le statut « manuel seulement ». Toute autre part reste manuelle.
 export const AUTOMATIC_RECIPE_ISINS = new Set(['IE0008471009', 'IE00B52MJY50'])
+// Preserve the exact instrument's qualified display role when its market history becomes available.
+export function manualPortfolioCategory(identity, manualRoute) {
+ const name=identity.name
+ return manualRoute?.category??identity.portfolioCategory??(/\b(?:ETC|ETP|ETN)\b/.test(name)?'matieres_premieres':/bond|treasury|govt|overnight|court terme/i.test(name)?'obligataire':'actions_larges')
+}
 export const AUTOMATED_PORTFOLIO_FUNDS = Object.values(RETURNS).flatMap(record => {
   const identity=INSTRUMENTS_BY_ISIN[record.isin]
   if (!identity || record.basis!=='market-price' || !record.source?.startsWith('https://') || !record.checkedAt || !['EUR','USD'].includes(record.currency) || latestCommonYears([record.years],{minimum:3}).length<3) return []
@@ -17,7 +22,7 @@ export const AUTOMATED_PORTFOLIO_FUNDS = Object.values(RETURNS).flatMap(record =
   // Broad display categories only; these never drive automatic risk recipes.
   const declaredRoute=MANUAL_SOURCE_ROUTES[record.isin]
   const manualRoute=declaredRoute?.instrumentType===identity.instrumentType?declaredRoute:null
-  const cat=manualRoute?.category??(/\b(?:ETC|ETP|ETN)\b/.test(name)?'matieres_premieres':/bond|treasury|govt|overnight|court terme/i.test(name)?'obligataire':'actions_larges')
+  const cat=manualPortfolioCategory(identity,manualRoute)
   return [{...(manualRoute?{underlyingMechanism:qualifiedManualMechanism(record.isin,AUTOMATED_ETF[record.isin]?.characteristics),basis:record.basis}:{}),id:`manual-${record.isin}`,isin:record.isin,name,cat,emoji:'📊',manualOnly:!AUTOMATIC_RECIPE_ISINS.has(record.isin),automatedManual:true,distinctCandidate:true,
     returnCurrency:record.currency,calendarReturns:record.years,r:record.values,
     confidenceNote:record.note,desc:[name,'Composition manuelle sur la période commune réellement disponible.','Risque de perte en capital ; exposition à examiner avec le reste du portefeuille.']}]
