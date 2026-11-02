@@ -87,7 +87,22 @@ ETF_INDEPENDENT = {'src/data/automated-presentation-actors.json',
 # acquisition. The active inflation-monthly.js remains a protected input.
 INFLATION_RECEIPT = 'scripts/source-snapshots/inflation-automated.json'
 ALLOWED = {
-    'actors': {INFLATION_RECEIPT},
+    # Actual recording refusal41370892678: these ten exposure outputs are
+    # not read by collect_presentation_actors or its source helpers. They are
+    # downstream inputs of the combined build, which must be revalidated.
+    # Exact paths only: actor data, source code, freshness policy and any
+    # other projection remain protected and require fresh acquisition.
+    'actors': {INFLATION_RECEIPT,
+               'src/data/exposure-etf-expansion-records.json',
+               'src/pages/dca-profiles/catalog.json',
+               'src/pages/dca-profiles/exposures-extra-0.json',
+               'src/pages/dca-profiles/exposures-extra-1.json',
+               'src/pages/dca-profiles/exposures-extra-2.json',
+               'src/pages/dca-profiles/exposures.json',
+               'src/pages/dca-profiles/holdings-14.json',
+               'src/pages/dca-profiles/holdings-28.json',
+               'src/pages/dca-profiles/holdings-8.json',
+               'src/pages/dca-profiles/holdings.json'},
     'etf': ETF_INDEPENDENT,
     'indices': INDEPENDENT | {'src/data/automated-scpi.json','src/data/worldbank-gold-monthly.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
     'market': {INFLATION_RECEIPT} | INDEPENDENT | MARKET_PROJECTION_INPUTS | MARKET_READER_ONLY_CHANGES | {'src/data/automated-scpi.json','src/data/exposure-etf-expansion-records.json','src/data/non-bond-monthly-records.json','src/data/non-bond-etf-records.json','src/data/non-bond-qualified-records.json','src/data/non-bond-levels.json','scripts/source-snapshots/non-bond-monthly-active.json','src/data/lifestrategy.json','src/data/automated-etf.json','src/data/automated-instrument-metadata.json','src/data/instrument-metadata-status.json','src/data/automated-presentation-actors.json','src/data/dca-complete-holdings.json','src/data/dca-holdings-status.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json'},

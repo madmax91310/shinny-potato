@@ -110,7 +110,17 @@ class ObservationRebaseTests(unittest.TestCase):
                      'src/pages/investment-calculator/lib.js', 'src/data/monthly-fx.json',
                      'scripts/source-snapshots/inflation-automated.json',
                      'scripts/collect_presentation_actors.py', 'src/data/inflation-monthly.js',
-                     ACTOR_OUTPUT, *CURRENT_REVIEW_OUTPUTS, *PRIVATE_SERVICE_READERS]:
+                     ACTOR_OUTPUT, 'src/data/exposure-etf-expansion-records.json',
+                     'src/pages/dca-profiles/catalog.json',
+                     'src/pages/dca-profiles/exposures-extra-0.json',
+                     'src/pages/dca-profiles/exposures-extra-1.json',
+                     'src/pages/dca-profiles/exposures-extra-2.json',
+                     'src/pages/dca-profiles/exposures.json',
+                     'src/pages/dca-profiles/holdings-14.json',
+                     'src/pages/dca-profiles/holdings-28.json',
+                     'src/pages/dca-profiles/holdings-8.json',
+                     'src/pages/dca-profiles/holdings.json',
+                     *CURRENT_REVIEW_OUTPUTS, *PRIVATE_SERVICE_READERS]:
             p = self.f.local / name
             p.parent.mkdir(parents=True, exist_ok=True)
             p.write_text('original\n')
@@ -330,6 +340,34 @@ else:
 
     def test_actor_independence_never_bypasses_revalidation(self):
         self.assert_refused('scripts/source-snapshots/inflation-automated.json','actors',validation='false')
+
+    def test_actor_exposure_race_preserves_each_independent_output(self):
+        paths=['src/data/exposure-etf-expansion-records.json',
+               'src/pages/dca-profiles/catalog.json',
+               'src/pages/dca-profiles/exposures-extra-0.json',
+               'src/pages/dca-profiles/exposures-extra-1.json',
+               'src/pages/dca-profiles/exposures-extra-2.json',
+               'src/pages/dca-profiles/exposures.json',
+               'src/pages/dca-profiles/holdings-14.json',
+               'src/pages/dca-profiles/holdings-28.json',
+               'src/pages/dca-profiles/holdings-8.json',
+               'src/pages/dca-profiles/holdings.json']
+        for path in paths:
+            with self.subTest(path=path):
+                self.f.advance_remote(path)
+        result=self.publish('actors')
+        self.assertEqual(result.returncode,0,result.stderr)
+        for path in paths:
+            self.assertEqual(self.f.git(self.f.remote,'show','master:'+path),'concurrent update')
+        self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'validated update')
+
+    def test_actor_exposure_race_never_bypasses_financial_validation(self):
+        self.assert_refused('src/pages/dca-profiles/holdings.json','actors',validation='false')
+
+    def test_actor_exception_does_not_extend_to_source_or_other_holdings(self):
+        for path in ('src/data/freshness-policy.json','scripts/collect_scpi.py',
+                     'scripts/presentation_actors_expansion.py','src/pages/dca-profiles/holdings-15.json'):
+            with self.subTest(path=path):self.assert_refused(path,'actors')
 
     def test_actor_registry_and_parser_and_active_inflation_stay_protected(self):
         for path in (ACTOR_OUTPUT,'scripts/collect_presentation_actors.py','src/data/inflation-monthly.js'):
