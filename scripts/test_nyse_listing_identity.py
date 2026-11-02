@@ -16,7 +16,7 @@ NOW=dt.datetime(2026,11,2,12,tzinfo=dt.timezone.utc)
 EMPTY=b'ACT Symbol|Security Name|Exchange|ETF\nFile Creation Time: 11022026\n'
 
 def registered(ticker='NET'):
- return copy.deepcopy(next(r for r in json.loads((ROOT/'src/data/shared-listing-identities.json').read_text())['listings']if r.get('ticker')==ticker and r.get('sourceId')=='us-other'))
+ return copy.deepcopy(next(r for r in json.loads((ROOT/'scripts/fixtures/nyse-identities-20261102/registered-reference-20261102T045231.json').read_text())['listings']if r.get('ticker')==ticker and r.get('sourceId')=='us-other'))
 def isin(row):
  return next(r['isin']for r in json.loads((ROOT/'src/data/global-equities.json').read_text())if r.get('aiListingId')==row['id'])
 def payload(ticker='NET'):
@@ -90,12 +90,14 @@ class NyseIdentity(unittest.TestCase):
   self.assertFalse(r['errors']);self.assertEqual(r['directoryOutcomes'][0]['status'],'succeeded');self.assertNotIn('primaryReference',final['listings'][0]['listingObservation'])
  def test_predeclared_scope_primary_failure_and_missing_individual_are_independent(self):
   p=build_plan('refresh_qualified_listings',['--common-identities-only']);ids=[r['id']for r in p['items']]
-  self.assertEqual(len(ids),22);self.assertIn('listing:directory:us-other',ids)
+  common=json.loads((ROOT/'src/data/shared-listing-identities.json').read_text())['listings']
+  selected=[r for r in common if r.get('sourceId')in('nasdaq','us-other','nordic-main')]
+  self.assertEqual(len(ids),len(selected)+1);self.assertEqual(len(ids),len(set(ids)));self.assertIn('listing:directory:us-other',ids)
   p.update(producer='refresh_qualified_listings',reportStem='listing-observation',declaredAt=NOW.isoformat(),nonce='test',sha256='pending')
   p['sha256']=hashlib.sha256(json.dumps({k:v for k,v in p.items()if k!='sha256'},sort_keys=True).encode()).hexdigest()
   result=finish({'contractResults':{'successes':[{'id':'listing:US18915M1071','status':'succeeded','checkedAt':NOW.isoformat(),'sourceAttempted':True}], 'errors':[{'id':'listing:directory:us-other','status':'failed','error':'empty primary','sourceAttempted':True}]}},p)
   normalized=normalize_contract(result['resultContract'])
-  self.assertEqual(len(normalized['successes']),1);self.assertEqual(len(normalized['errors']),21)
+  self.assertEqual(len(normalized['successes']),1);self.assertEqual(len(normalized['errors']),len(ids)-1)
   self.assertTrue(any(r.get('kind')=='omission'for r in normalized['errors']))
 
 if __name__=='__main__':unittest.main()
