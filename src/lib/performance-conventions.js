@@ -15,6 +15,22 @@ export function performanceBasisLabel({ currency, income, detail }) {
   return [currency, detail ?? INCOME_LABELS[income] ?? null].filter(Boolean).join(' · ')
 }
 
+// The valuation basis travels with the qualified history. An official NAV total
+// return is neither an exchange quotation nor necessarily a tradable unit price.
+export const isNavTotalReturn = asset => ['fund-nav-total-return', 'nav-total-return'].includes(asset.historyConvention ?? asset.valuationBasis ?? asset.basis)
+export function monthlyHistoryMethod(asset) {
+  if (isNavTotalReturn(asset)) {
+    return ['ETC', 'ETN', 'ETP'].includes(asset.instrumentType)
+      ? `Valeur liquidative de l’${asset.instrumentType}, frais du produit inclus ; hors courtage et fiscalité.`
+      : 'Valeurs liquidatives, revenus réinvestis, frais du fonds inclus ; hors courtage et fiscalité.'
+  }
+  if (asset.priceMethod !== 'adjusted') return ''
+  if (['ETC', 'ETN', 'ETP'].includes(asset.instrumentType)) return `Cours de l’${asset.instrumentType}, frais du produit inclus ; hors courtage et fiscalité.`
+  return asset.isin && asset.instrumentType !== 'EQUITY'
+    ? 'Cours ajustés de l’ETF, revenus réinvestis, frais du fonds inclus ; hors courtage et fiscalité.'
+    : 'Cours ajustés des dividendes et divisions d’actions, réinvestissement théorique ; hors frais et fiscalité.'
+}
+
 // Note de méthode d’un indice utilisé comme série de simulation : jamais la performance d’un ETF.
 export function indexMethodNote({ name, variant, currency, income }) {
   return `Indice ${name} ${variant} en ${currencyWord(currency)}, ${INCOME_LABELS[income]}, hors frais ; ce n’est pas la performance d’un ETF précis.`

@@ -4,6 +4,7 @@ import { PORTFOLIO_CURRENCIES } from '../../data/portfolio-currencies.js'
 import { convertCalendarReturn } from '../../data/calendar-fx.js'
 import { getAsset } from '../../data/portfolio-assets.js'
 import { dataLabels } from './compact.js'
+import { weightedAnnualReturn } from '../../lib/weighted-annual-return.js'
 
 // These exceptions describe the historical series, not the trading currency.
 const historicalCurrencies = { fonds_euros: 'EUR', scpi: 'EUR', msci_world_amundi_pea: 'EUR', smallcap_europe: 'EUR', qyld_ucits: 'USD', oblig_hy_amundi: 'EUR' }
@@ -43,11 +44,11 @@ export function computeYearlyPerf(selection) {
   const years = latestCommonYears(maps, { minimum: hasInternalGap ? 6 : 3 })
   // No mixed periods: retain the explicitly dated archive if a live window is unavailable.
   const selectedYears = years.length ? years : HISTORICAL_YEARS
-  // Canonical summation keeps display sorting from changing a rounding boundary.
+  // Decimal summation preserves published precision and is independent of order.
   selectedYears.forEach(year => {
     perf[year] = !allocationValid || selection.some((asset) => !Number.isFinite(assetReturn(asset, year)))
       ? null
-      : selection.map(asset => assetReturn(asset, year) * asset.pct / 100).sort((a, b) => Math.abs(a) - Math.abs(b) || a - b).reduce((sum, value) => sum + value, 0)
+      : weightedAnnualReturn(selection.map(asset => ({ value: assetReturn(asset, year), weight: asset.pct })))
   })
   return perf
 }
