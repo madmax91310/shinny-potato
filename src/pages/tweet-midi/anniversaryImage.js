@@ -4,6 +4,7 @@ import { resolveAnniversaryLevel } from '../../data/anniversary-levels.js'
 import { MONTHS_FULL } from '../../data/history-parameters.js'
 import { getHistoricalPrice, ymForYearsBack, fmtYm, anniversaryRecords } from './data/anniversaryHistory.js'
 import { getMarketAsset, MODES, TODAY } from './engines/anniversaire.js'
+import { anniversaryReferenceDate } from '../../lib/anniversary-reference.js'
 import { ANNIVERSARY_ART, drawContainedMark } from './anniversaryArt.js'
 
 import { loadPosterFonts, loadPosterArt, posterText, posterRule } from './anniversaryPoster.js'
@@ -11,12 +12,12 @@ import { loadPosterFonts, loadPosterArt, posterText, posterRule } from './annive
 const W = 1600, H = 2000
 const number = n => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 2 }).format(n)
 const percentage = n => `${n >= 0 ? '+' : '−'}${new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(Math.abs(n))} %`
-function snapshot(item, raw, assetId) {
+function snapshot(item, raw, assetId, reference) {
   const observation = resolveAnniversaryLevel(assetId, raw)
   if (!observation) throw new Error('Saisir un niveau actuel valide avant de télécharger l’image')
   const asset = getMarketAsset(assetId), art = ANNIVERSARY_ART[assetId]
   if (!asset || !art) throw new Error('Actif sans visuel vérifié')
-  const date = ymForYearsBack(item.yearsBack, TODAY)
+  const date = ymForYearsBack(item.yearsBack, reference)
   return { assetId, asset, art, past: getHistoricalPrice(assetId, date), current: observation.value, currentLabel: observation.label, dateLabel: fmtYm(date, { monthLabels: MONTHS_FULL }) }
 }
 const level = (value, snap) => `${number(value)} ${snap.art.unit || currencySymbol(snap.asset.currency)}`
@@ -56,14 +57,16 @@ function panel(ctx, snap, images, { x = 0, scale = 1, period = true, yearsBack }
   posterRule(ctx,290,1760,560,1760,images.silver); posterRule(ctx,1040,1760,1310,1760,images.silver)
   posterText(ctx,level(past,snap),425,1790,128,{width:690,metal:'gold'})
   posterText(ctx,level(current,snap),1175,1790,128,{width:690,metal:'gold'})
+  if(/^Valeur liquidative du /.test(snap.currentLabel))posterText(ctx,snap.currentLabel,W/2,1945,40,{width:1400,relief:false})
   ctx.restore()
 }
 
 export async function renderAnniversaryImage(item, currentRaw, currentRawB = '') {
   const comparative = item.mode === MODES.COMPARATIF
   await Promise.all((comparative ? [item.assetIdA,item.assetIdB] : [item.assetId]).map(id=>anniversaryRecords.load(id)))
-  const snapshots = [snapshot(item,currentRaw,comparative ? item.assetIdA : item.assetId)]
-  if (comparative) snapshots.push(snapshot(item,currentRawB,item.assetIdB))
+  const selected=[{id:comparative?item.assetIdA:item.assetId,raw:currentRaw},...(comparative?[{id:item.assetIdB,raw:currentRawB}]:[])]
+  const reference=anniversaryReferenceDate(selected.map(({id,raw})=>({asset:getMarketAsset(id),observation:resolveAnniversaryLevel(id,raw)})),TODAY)
+  const snapshots=selected.map(({id,raw})=>snapshot(item,raw,id,reference))
   const images = await Promise.all(snapshots.map(snap => loadPosterArt(snap.assetId, snap.art)))
   await loadPosterFonts()
   const canvas = document.createElement('canvas')

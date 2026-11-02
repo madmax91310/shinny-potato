@@ -147,7 +147,7 @@ def _landg_catalogue(fetch,url):
     return fetch(url)
 
 
-def collect_one(source, now, json_fetch=get_json, document_fetch=download, capture=None):
+def collect_one(source, now, json_fetch=get_json, document_fetch=download, capture=None, text_fetch=None, fx_data=None):
     urls, hashes = [], {}
     def document(url, supplied=None):
         if supplied is not None:body=supplied
@@ -416,7 +416,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         calendar_proof['qualificationScope']='Only independent corroborated return intervals; unresolved official daily/calendar differences remain refused. No price interpolation or threshold change.'
     else:checks=calendar_checks(checked_nav,years,calendar_precision,now,identity_from)
     if kind=='landg':calendar_proof['controlledCalendarYears']=sorted(str(c['year'])for c in checks)
-    fx=json.loads((ROOT/'src/data/monthly-fx.json').read_text())
+    fx=json.loads((ROOT/'src/data/monthly-fx.json').read_text()) if fx_data is None else fx_data
     monthly_end=calendar_proof.get('monthlyEndExclusive')
     points,proof_rows=monthly(nav,native,source['currency'],source['periodStart'],now,fx,end_exclusive=monthly_end)
     points=[[d,math.floor(v*10**source['precision']+.5)/10**source['precision']]for d,v in points]
@@ -437,9 +437,12 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     if native!=source['currency']:
         from collect_ranking_sources import ECB
         ECB=ECB.replace('eurofxref-hist.xml','eurofxref-hist-90d.xml')
-        xml=get_text(ECB,('application/xml','text/xml'),2_000_000)
+        xml=(text_fetch or get_text)(ECB,('application/xml','text/xml'),2_000_000)
         fx_date,factor=daily_nav_fx_factor(native,source['currency'],latest,xml)
         urls.append(ECB);hashes[ECB]=hashlib.sha256(xml.encode()).hexdigest()
+        if capture:
+            capture.mkdir(parents=True,exist_ok=True)
+            (capture/(hashes[ECB]+'.xml.gz')).write_bytes(gzip.compress(xml.encode(),mtime=0))
     latest_level={'value':latest_values[latest]*factor,'asOf':latest,'currency':source['currency'],'isin':isin,
        'parser':'official-nav','valuationBasis':'fund-nav-price'if anniversary_nav else source['valuationBasis'],'nativeValue':latest_values[latest],'nativeCurrency':native,
        'fxAsOf':fx_date,'fxFactor':factor,'sourceUrl':urls[0],'sourceUrls':urls,'checkedAt':now.date().isoformat(),

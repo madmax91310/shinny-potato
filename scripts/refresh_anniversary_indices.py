@@ -19,11 +19,12 @@ RUSSELL_COLUMNS = ['Index_Name','Date','Value_Without_Dividends__USD_','Value_Wi
 
 class UnavailableFTSEPublication(ValueError):
     """A valid official workbook still lacks a required completed period."""
-    def __init__(self, config, latest, missing, now):
+    def __init__(self, config, latest, missing, now, raw):
         self.evidence={'sourceStatus':'required-official-period-unavailable',
                        'indexCode':config['indexCode'],'currency':config['currency'],'variant':config['variant'],
                        'lastPublishedAsOf':latest.isoformat(),'missingMonths':missing,
-                       'attemptedAt':now.isoformat(),'sourceUrls':config['sourceUrls']}
+                       'attemptedAt':now.isoformat(),'sourceUrls':config['sourceUrls'],
+                       'responseSha256':{url:hashlib.sha256(body).hexdigest()for url,body in raw.items()}}
         super().__init__('Incomplete/stale FTSE monthly history: '+config['indexCode']+' '+config['currency']+' '+config['variant']+
                          '; official last publication '+latest.isoformat()+'; missing closed months '+', '.join(missing)+
                          '. No release deadline established; refusal retained, no interpolation or index substitution.')
@@ -94,7 +95,7 @@ def collect_ftse(config,now,fetch=download):
     if keys!=expected:
         missing=[key for key in expected if key not in final]
         if config['parser']=='ftse' and missing and keys==expected[:len(keys)]:
-            raise UnavailableFTSEPublication(config,final[keys[-1]][0],missing,now)
+            raise UnavailableFTSEPublication(config,final[keys[-1]][0],missing,now,raw)
         reject('Incomplete/stale FTSE monthly history: missing interior observations or inconsistent coverage')
     proof=[]
     for key in keys:

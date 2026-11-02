@@ -114,6 +114,8 @@ def qualify(body, parsed, source, now):
         unit_checks.append({'month':month,'returnAsOf':tend,'publishedNav':nav[tend],
                             'publishedIncomeIndex':total[tend],'observedRatio':observed,
                             'expectedRatioAfterPublishedCash':expected,'qualified':qualified})
+    if source.get('requireReconciledCashUnits') and blocked:
+        raise ValueError('Official cash/share monthly units not reconciled: '+', '.join(blocked))
     return normalized, {'incomeTreatment':income,'returnSourceComponent':'performance.chart.performanceData',
                         'officialIncomeReinvestedChartChecks':checks,'officialDistributionFactorChecks':cash_checks,'monthEndDateChecks':monthly_checks,
                         'monthlyShareUnitChecks':unit_checks,'historyExcludedMonths':sorted(set((blocked if income=='No Income'else[])+[r['month']for r in withheld])),

@@ -120,7 +120,7 @@ class SeparateIncomeScopes(unittest.TestCase):
    if kind=='identity':facts['isin']['value']=self.sources[1]['isin']
    table=b['componentsByNameMap']['performance']['containersByNameMap']['distributions']['subContainersByNameMap']['table']['dataPointsByNameMap']
    i=next(i for i,d in enumerate(table['exDate']['value'])if str(d).startswith('2024'))
-   if kind=='cash':table['totalDistribution']['value'][i]*=2
+   if kind=='cash':table['totalDistribution']['value'][i]=str(float(table['totalDistribution']['value'][i])*2)
    if kind=='currency':table['totalDistribution']['prefix'][i]='EUR'
    with self.assertRaises(ValueError):
     p=blackrock_nav(b,source['isin'],source['navCurrency'],self.NOW)
@@ -137,6 +137,13 @@ class SeparateIncomeScopes(unittest.TestCase):
    updated,report=refresh({'series':[source]},old,{},self.NOW,collect=collect)
    self.assertEqual(updated,original);self.assertEqual(old,original)
    self.assertEqual(report['series'][0]['status'],'failed')
+ def test_a_conflicting_recent_distribution_cannot_certify_older_monthly_returns(self):
+  source=self.sources[0];body=self.body(source['isin'])
+  table=body['componentsByNameMap']['performance']['containersByNameMap']['distributions']['subContainersByNameMap']['table']['dataPointsByNameMap']
+  i=next(i for i,d in enumerate(table['exDate']['value'])if '20260101'<=str(d)<='20261029')
+  table['totalDistribution']['value'][i]=str(float(table['totalDistribution']['value'][i])*2)
+  parsed=blackrock_nav(body,source['isin'],source['navCurrency'],self.NOW)
+  with self.assertRaisesRegex(ValueError,'cash/share monthly units'):qualify(body,parsed,source,self.NOW)
  def test_bounded_monthly_extraction_never_fills_the_missing_return(self):
   from issuer_nav_history import monthly
   source=self.sources[0];p=blackrock_nav(self.body(source['isin']),source['isin'],source['navCurrency'],self.NOW)
@@ -156,4 +163,20 @@ class SeparateIncomeScopes(unittest.TestCase):
   self.assertEqual(record['periodEnd'],'2026-10');self.assertFalse(record['historyExcludedMonths']);self.assertFalse(record['anniversaryExcludedMonths'])
   old=self.records[source['id']]
   for (_,before),(_,after)in zip(old['points'],record['points']):self.assertAlmostEqual(before,after,places=7)
+ def test_actual_seventeen_producer_results_replay_with_their_original_fx_and_raw_responses(self):
+  from collect_official_share_history import collect_one
+  directory=self.FIXTURES/'ordinary'
+  report=json.loads(gzip.decompress((directory/'collection.json.gz').read_bytes()))
+  sources={s['id']:s for s in json.loads((directory/'configurations.json').read_text())}
+  fx=json.loads(gzip.decompress((directory/'monthly-fx.json.gz').read_bytes()))
+  now=dt.datetime.fromisoformat(report['checkedAt'])
+  for row in report['series']:
+   expected=row['record'];hashes=expected['rawSourceHashes']
+   def raw(url,kind):
+    import hashlib
+    value=gzip.decompress((directory/(hashes[url]+'.'+kind+'.gz')).read_bytes())
+    self.assertEqual(hashlib.sha256(value).hexdigest(),hashes[url]);return value
+   replay=collect_one(sources[row['id']],now,json_fetch=lambda url:json.loads(raw(url,'json')),
+                      text_fetch=lambda url,*args:raw(url,'xml').decode(),fx_data=fx)
+   self.assertEqual(replay,expected,row['id'])
 if __name__=='__main__':unittest.main()
