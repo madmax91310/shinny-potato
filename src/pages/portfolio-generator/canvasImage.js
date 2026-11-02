@@ -179,8 +179,7 @@ export function renderPortfolioImage(portfolio, background) {
   label(ctx, 'Annualisé', 1570, upperHeight + 157, 48, WHITE, 'center', false, 'Georgia, serif')
   label(ctx, `${YEARS[0]}–${YEARS.at(-1)}`, 1570, upperHeight + 316, 40, MUTED, 'center', false)
   rule(ctx, 70, height - 88, 1660)
-  label(ctx, `EUR · rééquilibrage annuel${selection.some(isIndicative) ? ' · * historique indicatif' : ''}`, 70, height - 52, 27, MUTED, 'left', false)
-  label(ctx, 'Pas un conseil.', 70, height - 18, 27, MUTED, 'left', false)
+  if (selection.some(isIndicative)) label(ctx, '* historique indicatif', 70, height - 52, 27, MUTED, 'left', false)
   label(ctx, 'Épargnant Libre', 1730, height - 18, 24, '#dfc390', 'right', false)
   return canvas
 }
