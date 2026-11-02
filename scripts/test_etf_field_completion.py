@@ -81,6 +81,27 @@ class FieldCompletion(unittest.TestCase):
             self.assertEqual(merged['characteristicChecks'][field]['checkedAt'],'2026-11-02')
             self.assertEqual(merged['characteristicChecks'][field]['asOf'],'2026-09-30')
 
+    def test_poll_date_does_not_block_missing_fields_from_a_dated_document(self):
+        from apply_etf_collection import merge_collection
+        isin='IE000YYE6WK5';url='https://www.vaneck.com/fr/en/library/fact-sheets/dfns-fact-sheet.pdf'
+        old={'currency':'USD','productId':isin,'sourceUrl':url,'characteristics':{'terPct':0.55,'index':'Reference index','distribution':None,'checkedAt':'2026-11-01'}}
+        incoming={'isin':isin,'currency':'USD','productId':isin,'sourceUrl':url,'characteristics':{'terPct':0.55,'distribution':'Accumulating','domicile':'Ireland','replicationMethod':'Physical (Full replication)','asOf':'2026-09-30','sourceUrl':url,'sha256':'a'*64}}
+        merged=merge_collection({'checkedAt':'2026-11-02','shares':[incoming]},{isin:old},{})[isin]
+        for field in ['distribution','domicile','replicationMethod']:
+            self.assertEqual(merged['characteristics'][field],incoming['characteristics'][field])
+            self.assertEqual(merged['characteristicChecks'][field]['asOf'],'2026-09-30')
+        self.assertEqual(merged['characteristicChecks']['index']['checkedAt'],'2026-11-01')
+
+    def test_unchanged_document_never_regresses_a_known_characteristic_date(self):
+        from apply_etf_collection import merge_collection
+        isin='IE000YYE6WK5';url='https://www.vaneck.com/fr/en/library/fact-sheets/dfns-fact-sheet.pdf'
+        old={'currency':'USD','productId':isin,'sourceUrl':url,'characteristics':{'terPct':0.55,'index':'Reference index','distribution':'Accumulating','checkedAt':'2026-10-31','asOf':'2026-10-30'}}
+        incoming={'isin':isin,'currency':'USD','productId':isin,'sourceUrl':url,'characteristics':{'terPct':0.55,'distribution':'Accumulating','asOf':'2026-09-30','sourceUrl':url,'sha256':'a'*64}}
+        merged=merge_collection({'checkedAt':'2026-11-02','shares':[incoming]},{isin:old},{})[isin]
+        self.assertEqual(merged['characteristics'],old['characteristics'])
+        self.assertEqual(merged['characteristicChecks']['terPct']['asOf'],'2026-10-30')
+        self.assertEqual(merged['characteristicChecks']['terPct']['sourceAsOf'],'2026-09-30')
+
     def test_existing_equity_listing_rows_may_share_an_isin(self):
         columns={'asOfDate':20261006,'issueName':['APPLE NASDAQ','APPLE XETRA','USD CASH'],
             'holdingPercent':[60,39.9,0.1],'isin':['US0378331005','US0378331005',''],

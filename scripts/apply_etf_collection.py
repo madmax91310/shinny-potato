@@ -94,10 +94,11 @@ def merge_collection(report, current, baseline, sibling_aum=None):
             characteristics.update(share.get('characteristics') or {'terPct': share['terPct'], 'index': share['index'], 'distribution': share['distribution']})
             # Monthly document facts must not overwrite more recent page facts.
             facts_date = share.get('characteristics', {}).get('asOf')
-            active_facts_date = old.get('characteristics', {}).get('asOf') or old.get('characteristics', {}).get('checkedAt', '')
+            # A poll date is not an observation date. Missing dates cannot make
+            # null/absent characteristics newer than an actual dated document.
+            active_facts_date = old.get('characteristics', {}).get('asOf')
             if (checked >= old.get('characteristics', {}).get('checkedAt', '')
-                    and (not facts_date or not active_facts_date or facts_date > active_facts_date
-                         or (bool(old.get('characteristics')) and all(characteristics.get(k) == v for k,v in old.get('characteristics', {}).items() if k not in AUDIT_DATES | {'sha256','sourceUrl','asOf'})))):
+                    and (not facts_date or not active_facts_date or facts_date >= active_facts_date)):
                 record['characteristics'] = checked_observation(characteristics, old.get('characteristics', {}), checked)
                 provenance = copy.deepcopy(old.get('characteristicChecks', {}))
                 for key in old.get('characteristics', {}):

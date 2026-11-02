@@ -10,3 +10,6 @@ Un succès local ne prouve pas GitHub ; un contrôle GitHub ne prouve pas enregi
 
 
 Les neuf documents de la route anglaise ont ensuite été qualifiés dans GitHub (run 41545464713), sans modification du parseur financier. L’adaptateur de caractéristiques réutilise désormais le parseur commun d’identité exacte pour distribution, domicile et réplication, avec les frais réellement extraits. Les références d’indice recopiées depuis la configuration ne renouvellent plus leur preuve. Une régression vérifie séparément les horloges de ces champs : consultation actuelle et période documentaire restent distinctes. Ce changement ne certifie pas une nouvelle donnée d’indice ni toutes les périodes de performance.
+
+
+Raccordement démontré sur le registre réel : huit caractéristiques sans date d’observation étaient bloquées par leur simple date de contrôle. Le rapprochement compare désormais les dates d’observation entre elles, sans utiliser la consultation comme date financière. Les dates d’observation connues ne peuvent pas régresser, même pour des valeurs inchangées. La corroboration des frais conserve sa preuve précédente et la date du document distinctement. Deux régressions ciblées couvrent champs manquants et document plus ancien ; aucun seuil de fraîcheur changé.
