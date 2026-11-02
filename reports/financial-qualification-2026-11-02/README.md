@@ -1,6 +1,6 @@
 # Qualification financière ciblée — état actualisé après #1149 et #1150
 
-Base : master `ad7daeb42a7a4887c383723215de3676a251e63e`, après #1154, #1155 et #1156 ; intégration finale de `dca0158baf6e9c4fafb27cd76572c463af8a08ae`, qui contient #1157. PR ouvertes #1061 (bloquée) et #1042 examinées et préservées. Les apports des conversations d’automatisation ne sont pas réimplémentés. Ce chantier ne change aucun transport, collecteur, workflow, calcul financier, allocation, visuel ou texte applicatif validé.
+Base : master `ad7daeb42a7a4887c383723215de3676a251e63e`, après #1154, #1155 et #1156 ; intégration de `87cd7625` après #1157 et #1158. PR ouvertes #1061 (bloquée) et #1042 examinées et préservées. Les apports des conversations d’automatisation ne sont pas réimplémentés. Ce chantier ne change aucun transport, collecteur, workflow, calcul financier, allocation, visuel ou texte applicatif validé.
 
 L’[archive #1149](README-1149.md), sa [matrice](matrix-1149.json) et son [CSV d’usages](usage-matrix-1149.csv) sont conservés. La [matrice courante](matrix.json) et le [CSV courant](usage-matrix.csv) sont régénérés par `node scripts/audit-financial-reserves.mjs --write`, sans audit général des 4 206 contrôles.
 
@@ -10,35 +10,35 @@ L’[archive #1149](README-1149.md), sa [matrice](matrix-1149.json) et son [CSV 
 |---|---|---|
 | 23 différences de précision déjà expliquées | Toutes préservées | Aucun changement à leurs preuves, valeurs ni seuils |
 | 35 résidus cotation/NAV | 1 explication officielle nouvelle, IWDA 2025 ; 34 restent non certifiés | Le suivi exploite maintenant les captures vérifiées au lieu de rouvrir systématiquement ce cas |
-| Cinq refus de borne NAV d’octobre | **Deux mois d’octobre nouvellement qualifiés**, trois encore refusés | Publication officielle concordante du 30/10 pour SmallCap 600 et World Communication ; collecte ordinaire et contrôles financiers inchangés |
-| Trois politiques Amundi, dont deux réserves initiales | Politique mixte de #1149 maintenue ; affectations et acomptes 2023/2024 documentés séparément ; historique cash incomplet | Six rapports officiels supplémentaires et limites par exercice conservés, sans adjustment de rendement |
+| Cinq refus de borne NAV d’octobre | **Quatre mois d’octobre nouvellement qualifiés**, Clean Energy encore refusé | Publication officielle concordante du 30/10 pour SmallCap 600, World Communication, Financials et Palladium ; collecte ordinaire et contrôles financiers inchangés |
+| Trois politiques Amundi, dont deux réserves initiales | Politique mixte de #1149 maintenue ; affectations et acomptes 2023/2024 documentés séparément ; historique cash incomplet | Six rapports officiels supplémentaires et limites par exercice conservés, sans ajustement de rendement |
 
 Les 58 comparaisons restent 58, sur 9 ISIN et 53 couples ISIN/année : 23 anciennes explications + 1 nouvelle + 34 réserves. Les cinq années cuivre comportent deux canaux distincts ; la clé inclut la série. Les cinq bornes d’octobre concernent cinq autres ISIN, pas cinq anomalies supplémentaires parmi les 58. Les deux parts Amundi initiales et le troisième cas découvert par #1149 restent distingués. Les lignes d’usages ne sont pas des anomalies à additionner.
 
-## Deux mois rétablis avec des bornes communes
+## Quatre mois rétablis avec des bornes communes
 
-Lecture officielle du 2 novembre à 16:48 UTC, puis `refresh_monthly_history.py --only … --apply` sur les deux configurations existantes :
+Lecture officielle du 2 novembre à 16:48 UTC pour les deux premiers, puis nouvelle corroboration des trois refus à 18:42:59 UTC. Enregistrement par `refresh_monthly_history.py --only … --apply` sur les quatre configurations existantes :
 
 | ISIN / canal exact | Avant | Preuve officielle nouvelle | Après |
 |---|---|---|---|
 | IE00B2QWCY14 / `etfIE00B2QWCY14` | Dernier mois qualifié septembre ; NAV du 30/10 et rendement réinvesti du 29/10 | NAV et indice de rendement réinvesti datés du **30/10**, 6 contrôles de cash isolés, 142 contrôles mensuels d’unités et contrôles calendaires réussis | Octobre disponible ; NAV native USD, conversion EUR avec le change historique de chaque borne ; aucune distribution ajoutée une seconde fois |
 | IE00BJ5JP436 / `etf_world_communication` | Même refus d’octobre | NAV et rendement réinvesti du **30/10**, 2 contrôles de cash isolés, 54 contrôles mensuels d’unités et contrôles calendaires réussis | Octobre disponible en USD ; méthodes, part et identité conservées |
+| IE00BJ5JP097 / `etf_financials` | Refus d’octobre encore constaté à 16:48 | Nouvelle réponse officielle : NAV et rendement réinvesti au **30/10**, 2 contrôles de cash isolés, 66 contrôles mensuels d’unités et calendriers réussis | Octobre disponible en USD |
+| IE00B4556L06 / `etcPalladium` | Même refus ; niveau qualifié arrêté au 29/10 | Nouvelle réponse officielle : NAV et rendement réinvesti au **30/10**, 186 contrôles mensuels d’unités et calendriers réussis | Octobre disponible ; niveau qualifié réellement daté du 30 ; ancienne exclusion historique 2014 conservée |
 
-La NAV SmallCap du 30/10 est **113,625838 USD** ; la série consommée en EUR utilise **101,70590584 EUR** à cette borne. La NAV Communication est **7,326780 USD**. Les niveaux réinvestis historiques restent des unités de performance normalisées sur la NAV exacte ; ils ne sont pas présentés comme des cotations historiques.
+La NAV SmallCap du 30/10 est **113,625838 USD** ; la série consommée en EUR utilise **101,70590584 EUR** à cette borne. La NAV Communication est **7,326780 USD**, Financials **8,387170 USD** et Palladium **27,823091 USD**. Les niveaux réinvestis historiques restent des unités de performance normalisées sur la NAV exacte ; ils ne sont pas présentés comme des cotations historiques.
 
-Les deux observations proviennent du **point d’entrée ordinaire**, avec sa validation de continuité, identité, devise, revenus réinvestis, frais, unités de cash et calendriers. Aucun point n’est saisi à la main dans une sortie générée ; aucun décalage du 29 au 30 n’est pratiqué. Les trois autres séries et toutes les autres observations existantes restent inchangées. Les projections nécessaires sont régénérées selon le dépôt.
+Les quatre observations proviennent du **point d’entrée ordinaire**, avec sa validation de continuité, identité, devise, revenus réinvestis, frais, unités de cash et calendriers. Aucun point n’est saisi à la main dans une sortie générée ; aucun décalage du 29 au 30 n’est pratiqué. Clean Energy et toutes les autres observations existantes restent inchangés. Les projections nécessaires sont régénérées selon le dépôt.
 
-[Lecture officielle actuelle des cinq bornes](followup/source-boundaries-20261102T1648.json). Les preuves détaillées de la version active restent dans les registres et `scripts/source-snapshots/monthly-automated.json` ; elles portent les empreintes des réponses réellement utilisées.
+[Premier relevé officiel des cinq bornes](followup/source-boundaries-20261102T1648.json), puis [nouvelle lecture et enregistrement des deux autres mois](followup/nav-late-corroboration/receipt.json), avec captures et contrôles ordinaires complets dans le même dossier. Les preuves détaillées de la version active restent dans les registres et `scripts/source-snapshots/monthly-automated.json` ; elles portent les empreintes des réponses réellement utilisées.
 
-### Refus maintenus et usages indépendants
+### Refus maintenu et usages indépendants
 
 | Part | Qualification conservée | Preuve manquante |
 |---|---|---|
 | IE00B1XNHC34 / Clean Energy | Rendements jusqu’à septembre ; NAV brute du 30/10 indépendante | Rendement réinvesti officiel au 30/10 ou preuve équivalente de même portée ; source actuelle arrêtée au 29 |
-| IE00BJ5JP097 / Financials | Même séparation | Même preuve, sans compléter artificiellement octobre |
-| IE00B4556L06 / Palladium | Rendements jusqu’à septembre ; niveau qualifié du **29/10**, ancienne exclusion 2014 conservée | Cohérence NAV/rendement au 30/10 ; `No Income` ne permet pas de supprimer le contrôle de cohérence ni de redater le niveau |
 
-Les quatre niveaux bruts du 30/10 et le niveau palladium du 29 étaient déjà admissibles avant cette reprise ; ils ne deviennent pas cinq nouveaux usages. #1150 avait rétabli le rafraîchissement de la partie antérieure en gardant octobre exclu. **La nouvelle publication du rendement du 30**, et non une tolérance, rétablit maintenant deux fenêtres mensuelles.
+Les quatre niveaux bruts du 30/10 et le niveau palladium du 29 étaient déjà admissibles avant cette reprise ; ils ne deviennent pas cinq nouveaux usages. Le niveau palladium du 30 est maintenant établi par la nouvelle observation concordante, sans redater celle du 29. #1150 avait rétabli le rafraîchissement de la partie antérieure en gardant octobre exclu. **La nouvelle publication du rendement du 30**, et non une tolérance, rétablit maintenant quatre fenêtres mensuelles.
 
 Le script distingue désormais le refus historique, la qualification financière conservée et le résultat du dernier producteur. Il ne déduit pas le succès d’une collecte courante de la simple présence d’un historique. Un champ `checkedAt` n’est jamais substitué à la date de NAV.
 
@@ -90,12 +90,12 @@ Manquent notamment les rapports/avis complets **2019–2022**, les périodes de 
 
 ## Consommateurs, validation et déploiement
 
-- Calculateur : deux nouvelles fenêtres septembre→octobre, versement unique et DCA ; méthode de réinvestissement et historique de change conservés.
+- Calculateur : quatre nouvelles fenêtres septembre→octobre, versement unique et DCA ; méthode de réinvestissement et historique de change conservés.
 - Présentation ETF, Comparatif, Performance depuis, Générateur et Duels : mêmes parts, rôles, conventions et années civiles closes. Aucune performance d’indice attribuée au fonds, aucune admission automatique ni allocation modifiée.
-- Il y a X ans : niveaux bruts et dates réelles indépendants du rendement mensuel ; le palladium n’est pas redaté du 30.
+- Il y a X ans : niveaux bruts et dates réelles indépendants du rendement mensuel ; le palladium conserve ses dates réelles, avec un nouveau niveau concordant du 30.
 - Fiches pratiques : politiques mixtes et distinction S-ACC de #1149 préservées ; textes personnalisés, brouillons et visuels inchangés.
 - Tests : captures officielles et identités, refus des petites différences non prouvées, fixings datés, dates communes, distinction historique/partiel/courant, contrôles de cash et d’unités inchangés, consommateurs et compilation. Les nombres du bilan ne sont pas figés par les tests.
 
-Validation locale réussie : compilation, budgets, 4 583 certificats et 42 fichiers publics concordants ; régressions financières, preuves officielles, politiques mixtes, 42 parts NAV et consommateurs. Chromium à 390 px : 8 vrais PNG des deux parts, copie réelle, calcul indépendant sur deux mois et égalité binaire aperçu/export. [Résultats](followup/consumer-proofs/local-results.json), exemples [SmallCap 600](followup/consumer-proofs/etfIE00B2QWCY14-lump.png) et [World Communication](followup/consumer-proofs/etf_world_communication-lump.png).
+Validation locale réussie : compilation, budgets, 4 583 certificats et 42 fichiers publics concordants ; régressions financières, preuves officielles, politiques mixtes, 42 parts NAV et consommateurs. Chromium à 390 px : **16 vrais PNG des quatre séries**, copie réelle, calcul indépendant sur deux mois, NAV et dates réelles, conventions ETF/ETC conservées et égalité binaire aperçu/export. [Résultats](followup/consumer-proofs/local-results.json), exemples [SmallCap 600](followup/consumer-proofs/etfIE00B2QWCY14-lump.png), [World Communication](followup/consumer-proofs/etf_world_communication-lump.png), [Financials](followup/consumer-proofs/etf_financials-lump.png) et [Palladium](followup/consumer-proofs/etcPalladium-lump.png).
 
 Les résultats effectifs de CI, fusion et production seront consignés dans la PR et le reçu de livraison. Une qualification locale n’est pas une preuve de déploiement. Aucun audit général des 4 206 contrôles ni recette complète des images n’est relancé.

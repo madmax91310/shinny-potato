@@ -9,7 +9,7 @@ import {resolveAnniversaryLevel} from '../src/data/anniversary-levels.js'
 import {getAnnualReturns} from '../src/pages/tweet-midi/data/performanceHistory.js'
 import {fmtEUR} from '../src/lib/format-currency.js'
 
-const ids=['etfIE00B2QWCY14','etf_world_communication']
+const ids=['etfIE00B2QWCY14','etf_world_communication','etf_financials','etcPalladium']
 const base=process.env.TEST_BASE_URL??'http://127.0.0.1:4397/shinny-potato'
 const out=process.env.TEST_OUTPUT_DIR??'test-artifacts/financial-nav-recovery'
 const server=process.env.TEST_BASE_URL?null:spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4397'],{stdio:'ignore'})
@@ -47,11 +47,12 @@ try{
    await exported(`${id}-${mode}`,page.getByRole('button',{name:'📊 Télécharger une image',exact:true}),text=>{assert(text.includes(period));assert(text.includes(fmtEUR(expected,asset.currency)),'Independent two-month investment calculation')})
   }
   const year=getAnnualReturns(id,Math.max(2020,Number(asset.points[0].date.slice(0,4))+1)).at(-1).year
+  const performanceConvention=asset.instrumentType==='ETC'?'valeur liquidative de l’ETC':'revenus réinvestis'
   await page.goto(`${base}/performance-depuis?asset=${id}`,{waitUntil:'networkidle'});await choose(page.locator('#secondary-select'),String(year));await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
-  await exported(id+'-performance',page.getByRole('button',{name:/Télécharger.*image|Télécharger.*PNG/i}),text=>assert(text.includes(String(year))&&text.includes('revenus réinvestis')))
+  await exported(id+'-performance',page.getByRole('button',{name:/Télécharger.*image|Télécharger.*PNG/i}),text=>assert(text.includes(String(year))&&text.includes(performanceConvention)))
   await page.goto(`${base}/tweet-midi`,{waitUntil:'networkidle'});await page.getByRole('button',{name:'Il y a X ans',exact:true}).click();await choose(page.locator('#subject-select'),id);await choose(page.locator('#secondary-select'),'1');await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
   const level=resolveAnniversaryLevel(id,'');assert(level);const date=level.asOf.split('-').reverse().join('/')
-  await exported(id+'-anniversaire',page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}),text=>assert(text.includes('Valeur liquidative du '+date)&&text.includes('hors distributions')))
+  await exported(id+'-anniversaire',page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}),text=>{assert(text.includes('Valeur liquidative du '+date)&&text.includes(fmtEUR(level.value,level.currency)));if(level.valuationBasis==='fund-nav-price')assert(text.includes('hors distributions'))})
  }
  assert.deepEqual(errors,[]);await fs.writeFile(out+'/results.json',JSON.stringify({results,errors},null,2));console.log(results.length,'real financial PNG exports and copies verified')
 }finally{await browser?.close();server?.kill()}

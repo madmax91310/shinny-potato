@@ -4,8 +4,8 @@
     "available": true,
     "error": null
   },
-  "generatedAt": "2026-11-02T17:59:46.243Z",
-  "base": "c9a577dca787a8ee45461cae39e5c37235d21aad",
+  "generatedAt": "2026-11-02T18:45:27.469Z",
+  "base": "5f97f307c4ed84275fac063b9a0bb75aa064a4bd",
   "initialReport": {
     "path": "reports/financial-consistency-2026-11-02/matrix.json",
     "base": "78a7bb92c7c7489f441972a8f92b945993b9d002",
@@ -3334,25 +3334,17 @@
       "problemMonth": "2026-10",
       "current": {
         "evidenceCheckedAt": "2026-11-02",
-        "periodEnd": "2026-09",
+        "periodEnd": "2026-10",
         "controlledInstrument": "IE00B4556L06",
-        "withheldMonthlyEnds": [
-          {
-            "month": "2026-10",
-            "returnAsOf": "2026-10-29",
-            "lastNavAsOf": "2026-10-30",
-            "reason": "Monthly NAV/return end not independently qualified: 2026-10"
-          }
-        ],
+        "withheldMonthlyEnds": [],
         "excludedMonths": [
-          "2014-12",
-          "2026-10"
+          "2014-12"
         ],
         "scaleProof": {
-          "anchorDate": "2026-10-29",
-          "officialPerShareNav": 28.680903,
-          "sourceIncomeIndex": 11980.4622,
-          "factor": 0.002393972997135286
+          "anchorDate": "2026-10-30",
+          "officialPerShareNav": 27.823091,
+          "sourceIncomeIndex": 11622.1407,
+          "factor": 0.002393972996730284
         },
         "level": {
           "value": 27.823091,
@@ -3375,10 +3367,10 @@
           "sha256": "9eeafe2b9d26876ed916772f2288851ab8de4fc34e779e216b72106f491acff9"
         }
       },
-      "monthQualified": false,
-      "problemMonthWithheld": true,
-      "retainedPartialQualification": true,
-      "classification": "qualification partielle — rendement du mois toujours refusé",
+      "monthQualified": true,
+      "problemMonthWithheld": false,
+      "retainedPartialQualification": false,
+      "classification": "résolu depuis — borne mensuelle commune qualifiée",
       "latestRefreshOutcome": "Non déduit de la seule présence d’un historique conservé"
     },
     {
@@ -3414,24 +3406,15 @@
       "problemMonth": "2026-10",
       "current": {
         "evidenceCheckedAt": "2026-11-02",
-        "periodEnd": "2026-09",
+        "periodEnd": "2026-10",
         "controlledInstrument": "IE00BJ5JP097",
-        "withheldMonthlyEnds": [
-          {
-            "month": "2026-10",
-            "returnAsOf": "2026-10-29",
-            "lastNavAsOf": "2026-10-30",
-            "reason": "Monthly NAV/return end not independently qualified: 2026-10"
-          }
-        ],
-        "excludedMonths": [
-          "2026-10"
-        ],
+        "withheldMonthlyEnds": [],
+        "excludedMonths": [],
         "scaleProof": {
-          "anchorDate": "2026-10-29",
-          "officialPerShareNav": 8.450169,
-          "sourceIncomeIndex": 19552.3179,
-          "factor": 0.00043218246773698383
+          "anchorDate": "2026-10-30",
+          "officialPerShareNav": 8.38717,
+          "sourceIncomeIndex": 19406.5485,
+          "factor": 0.0004321824666555209
         },
         "level": {
           "value": 8.38717,
@@ -3454,10 +3437,10 @@
           "sha256": "59920ea3eb0b04169df3eac386e4cb3d53ff7dff632b4d7dca8e2754d67d75b2"
         }
       },
-      "monthQualified": false,
-      "problemMonthWithheld": true,
-      "retainedPartialQualification": true,
-      "classification": "qualification partielle — rendement du mois toujours refusé",
+      "monthQualified": true,
+      "problemMonthWithheld": false,
+      "retainedPartialQualification": false,
+      "classification": "résolu depuis — borne mensuelle commune qualifiée",
       "latestRefreshOutcome": "Non déduit de la seule présence d’un historique conservé"
     },
     {
@@ -10097,12 +10080,11 @@
       "usage": "Calculateur",
       "channel": "etcPalladium",
       "initialAdmission": false,
-      "finalAdmission": false,
-      "qualificationChanged": false,
+      "finalAdmission": true,
+      "qualificationChanged": true,
       "detail": {
-        "qualified": false,
-        "code": "issuer-components-unreconciled",
-        "reason": "Composants officiels non rapprochés pour 2026-10 ; seules les fenêtres utilisant ce mois sont refusées.",
+        "qualified": true,
+        "convention": "fund-nav-total-return",
         "start": "2026-09",
         "end": "2026-10",
         "modes": [
@@ -10111,7 +10093,7 @@
         ],
         "basis": "NAV de la part, revenus réinvestis, frais du fonds inclus",
         "initialPeriodEnd": "2026-09",
-        "currentPeriodEnd": "2026-09"
+        "currentPeriodEnd": "2026-10"
       }
     },
     {
@@ -10120,12 +10102,11 @@
       "usage": "Calculateur",
       "channel": "etf_financials",
       "initialAdmission": false,
-      "finalAdmission": false,
-      "qualificationChanged": false,
+      "finalAdmission": true,
+      "qualificationChanged": true,
       "detail": {
-        "qualified": false,
-        "code": "issuer-components-unreconciled",
-        "reason": "Composants officiels non rapprochés pour 2026-10 ; seules les fenêtres utilisant ce mois sont refusées.",
+        "qualified": true,
+        "convention": "fund-nav-total-return",
         "start": "2026-09",
         "end": "2026-10",
         "modes": [
@@ -10134,7 +10115,7 @@
         ],
         "basis": "NAV de la part, revenus réinvestis, frais du fonds inclus",
         "initialPeriodEnd": "2026-09",
-        "currentPeriodEnd": "2026-09"
+        "currentPeriodEnd": "2026-10"
       }
     },
     {
@@ -10676,9 +10657,9 @@
       "différence légitime — arrondi officiel documenté": 23
     },
     "historicalBoundaryRefreshRefusals": 5,
-    "boundariesWithQualifiedMonth": 2,
-    "boundariesWithWithheldMonth": 3,
-    "monthlyWindowsRestored": 2,
+    "boundariesWithQualifiedMonth": 4,
+    "boundariesWithWithheldMonth": 1,
+    "monthlyWindowsRestored": 4,
     "policyCases": 3,
     "newSeriesRegistered": 0,
     "auditRewritesFinancialObservations": false
