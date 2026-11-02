@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "workflows": {
+    "original": {
+      "proofChecks": {
+        "report-read:additional-observation:run:40119662231:attempt:1": {
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40119662231",
+          "recordedAt": "2026-10-24T18:17:13Z",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "additional-observation.json",
+            "sha256": "f401359947df3f4cfdc052f511489381a723d44fe96e6fdcc6442e1e72488b51",
+            "reportedAt": "2026-10-24T18:14:07.634590+00:00",
+            "schema": "shares",
+            "artifactId": 12571330382,
+            "sourcePhaseStartedAt": "2026-10-24T18:12:50Z",
+            "sourcePhaseCompletedAt": "2026-10-24T18:16:43Z"
+          }
+        },
+        "report-read:amundi-observation:run:40119662231:attempt:1": {
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40119662231",
+          "recordedAt": "2026-10-24T18:17:13Z",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "amundi-observation.json",
+            "sha256": "619e76b3ae87910c44e9a8aacaf4eab4ad185700e2212f681db1ebfe0e8116d5",
+            "reportedAt": "2026-10-24T18:14:01.918369+00:00",
+            "schema": "shares",
+            "artifactId": 12571330382,
+            "sourcePhaseStartedAt": "2026-10-24T18:12:50Z",
+            "sourcePhaseCompletedAt": "2026-10-24T18:16:43Z"
+          }
+        },
+        "report-read:index-observation:run:40119662231:attempt:1": {
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40119662231",
+          "recordedAt": "2026-10-24T18:17:13Z",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "index-observation.json",
+            "sha256": "65ae3bed2d26fff8e2b4284f72f6c700237d620c8b687e24ec3d456129ebefe5",
+            "reportedAt": "2026-10-24T18:15:26.338862+00:00",
+            "schema": "indices",
+            "artifactId": 12571330382,
+            "sourcePhaseStartedAt": "2026-10-24T18:12:50Z",
+            "sourcePhaseCompletedAt": "2026-10-24T18:16:43Z"
+          }
+        }
+      }
+    }
+  },
+  "updatedAt": "2026-11-02T17:07:08Z"
+}
