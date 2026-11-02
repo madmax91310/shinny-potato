@@ -65,7 +65,7 @@ Le 30 octobre est un vendredi, pas un report de week-end à NAV inchangée. **Pr
 
 ## Les deux parts Amundi, sans inférence par le nom
 
-Huit PDF officiels conservés (six pour les deux réserves initiales, deux pour le cas commun découvert), textes extraits, URLs et SHA-256 dans le [manifeste documentaire](official-documents/manifest.json). Requête et réponse de l’API historique séparées dans `source-checks`, [synthèse des observations](source-checks/amundi-policies.json).
+Treize PDF officiels conservés (huit documents actuels et cinq archives juridiques / avis de 2022–2025), textes extraits, URLs et SHA-256 dans le [manifeste documentaire](official-documents/manifest.json). Requête et réponse de l’API historique séparées dans `source-checks`, [synthèse des observations](source-checks/amundi-policies.json).
 
 | Part | Document applicable consulté | Énoncé exact / portée |
 |---|---|---|
@@ -78,7 +78,15 @@ Le prospectus de FR0013412020 rassemble aussi le DIC de **FR001400ZGO4 / S-ACC**
 
 Les deux parts commencent le **25/04/2019**, en EUR ; exposition par swap, indice en dollars avec dividendes nets réinvestis. La performance du **fonds** ne devient pas celle de cet indice. L’API donne `Capitalisation and/or distribution`, mais les champs `dividendAmount` et `dividendCurrency` sont **null**, pas des preuves de zéro versement. Les séries NAV/ajustée ont un rapport constant proche de 5 sur leurs dates communes ; ce seul facteur d’échelle ne démontre ni des paiements absents ni une politique exclusive.
 
-**Périodes antérieures : réserve conservée.** Les versions juridiques d’époque et avis d’opérations éventuels n’ont pas été retrouvés. Les tentatives de fiches datées du 31/05/2019, 31/12/2023 et 31/12/2025 répondent 404 ; on ne remplace pas leur contenu par le document de 2026. Il manque l’historique juridique et, pour une certification des paiements, les avis/rapports de distributions datés avec montants, devises, détachements et continuité des parts. La date de production d’un DIC n’est pas affirmée comme date d’effet d’un changement. Les calendriers officiels annuels déjà qualifiés sont indépendants de cette absence ; aucune série mensuelle distribuante n’est débloquée par cette enquête.
+**Périodes antérieures : preuve partielle retrouvée, limites maintenues.**
+
+- FR0013412012 : le [prospectus mis à jour le 30/12/2022, avec DIC publié le 26/01/2023](official-documents/FR0013412012-prospectus-20230126.pdf) confirme déjà la politique mixte (DIC p. 1, clause p. 19). Cette preuve ne vient pas du seul statut de 2026.
+- FR0013412020 : le [document comportant le DIC du 26/01/2023 et le prospectus du 27/09/2023](official-documents/FR0013412020-prospectus-20230927.pdf), puis le [DIC et prospectus du 29/03/2024](official-documents/FR0013412020-prospectus-20240402.pdf), confirment la même décision de capitaliser ou distribuer. Les clauses sont p. 21 dans les deux prospectus. Le nom de fichier `20240402` n’est pas substitué à la date juridique **29 mars** lue dans le PDF.
+- La [lettre du 15/09/2023 pour FR0013412012](official-documents/FR0013412012-notice-20230915.pdf) fixe au **18/10/2023** un changement de nom, de stratégie et d’indice. La [lettre du 19/05/2025 pour FR0013412020](official-documents/FR0013412020-notice-20250519.pdf) fixe au **02/06/2025** la modification de l’indice vers la méthodologie CTB. Ce sont des changements d’exposition documentés, pas des preuves de changement de politique de revenus ni de versement. Les calendriers historiques de la part restent ceux du fonds, pas ceux du dernier indice rétroactivement.
+
+Aucun changement de politique de revenus n’est établi entre les versions consultées ; on ne conclut pas pour autant à l’exhaustivité des avis intermédiaires. Les versions applicables **2019–2022 avant ces documents** n’ont pas été obtenues. Les six URLs de fiches datées essayées répondent 404, mais la recherche par documents archivés permet d’aller au-delà de ce premier blocage. Le portail AMF consulté n’a pas livré un PDF exploitable ; la preuve retenue vient des fichiers officiels Amundi téléchargés et identifiés.
+
+Il manque encore, pour certifier les paiements, les avis/rapports de distributions avec montants, devises, détachements et continuité des parts. Une politique mixte autorise une décision ; elle ne démontre pas qu’un paiement a effectivement eu lieu. La date de production d’un DIC n’est pas affirmée comme date d’effet d’un changement. Les calendriers officiels annuels déjà qualifiés restent indépendants ; aucune série mensuelle distribuante n’est débloquée par cette enquête.
 
 ### Preuve avant / après de la correction utile
 

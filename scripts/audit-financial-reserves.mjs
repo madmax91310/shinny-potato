@@ -12,7 +12,7 @@ import {CATALOG,euroReturn} from '../src/data/duel-assets.js'
 import {assetReturn} from '../src/pages/portfolio-generator/performance.js'
 import {getInstrumentAnnualPerformance} from '../src/data/instrument-returns.js'
 import {getInstrumentFacts} from '../src/data/instrument-facts.js'
-import {getAnnualReturns,getAnnualReturnStartYears} from '../src/pages/tweet-midi/data/performanceHistory.js'
+import {getAnnualReturns} from '../src/pages/tweet-midi/data/performanceHistory.js'
 import {ANNIVERSAIRE_ELIGIBLE_ASSETS} from '../src/pages/tweet-midi/data/marketHistory.js'
 import {convertCalendarReturn} from '../src/data/calendar-fx.js'
 import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
@@ -96,7 +96,7 @@ export function audit() {
  for(const [isin,period]of pairs)usages.push(...consumerRows(isin,period))
  const facts=buildSheet('em-pea'),tweet=buildTweet(facts)
  const policyCases=[['FR0013412020','em-pea'],['FR0013412012','em-pea'],['FR0013412038','europe-pea']]
- const policyRows=policyCases.map(([isin,topic])=>({caseId:'income-'+isin,isin,usage:'Fiches pratiques / '+topic,origin:isin==='FR0013412038'?'Cas supplémentaire de même cause':'Réserve initiale #1144',period:'DIC 2026 ; périodes antérieures séparées',classification:'erreur de convention démontrée — copie corrigée',initial:{policy:getInstrumentFacts(isin).distribution,practical:isin==='FR0013412012'?'À vérifier sur le DIC':'Capitalisation et/ou distribution',copy:isin==='FR0013412012'?'À vérifier sur le DIC':'capitalisation ; prédicat de préfixe ambigu'},final:{policy:getInstrumentFacts(isin).distribution,practical:buildSheet(topic).funds.find(f=>f.isin===isin).distribution,copy:'Politique à décision de la société de gestion ; aucune distribution historique inventée'},historicalCashQualification:'Non certifiée par les documents actuels : archives juridiques et avis historiques de paiements nécessaires',incomePolicyChanged:false}))
+ const policyRows=policyCases.map(([isin,topic])=>({caseId:'income-'+isin,isin,usage:'Fiches pratiques / '+topic,origin:isin==='FR0013412038'?'Cas supplémentaire de même cause':'Réserve initiale #1144',period:isin==='FR0013412012'?'Prospectus 30/12/2022, DIC 26/01/2023 et 2026':isin==='FR0013412020'?'DIC 26/01/2023 et 29/03/2024, DIC 2026':'DIC 2026 ; périodes antérieures séparées',classification:'erreur de convention démontrée — copie corrigée',initial:{policy:getInstrumentFacts(isin).distribution,practical:isin==='FR0013412012'?'À vérifier sur le DIC':'Capitalisation et/ou distribution',copy:isin==='FR0013412012'?'À vérifier sur le DIC':'capitalisation ; prédicat de préfixe ambigu'},final:{policy:getInstrumentFacts(isin).distribution,practical:buildSheet(topic).funds.find(f=>f.isin===isin).distribution,copy:'Politique à décision de la société de gestion ; aucune distribution historique inventée'},historicalCashQualification:'Politique attestée aux dates des documents archivés ; paiements historiques non certifiés, versions 2019–2022 et avis de distributions nécessaires',incomePolicyChanged:false}))
  for(const [isin]of policyCases)usages.push(...consumerRows(isin,'2025'))
  assert(!tweet.includes('Les parts présentées sont capitalisantes'))
  const boundaries=JSON.parse(readFileSync(`${output}/source-checks/nav-boundaries.json`))

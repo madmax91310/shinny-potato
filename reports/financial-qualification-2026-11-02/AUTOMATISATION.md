@@ -31,7 +31,7 @@ Résultat : NAV du **30 octobre**, TR du **29 octobre**, `Monthly NAV/return end
 
 ISIN **FR0013412020** et **FR0013412012**. [Requêtes exactes et réponses](source-checks/amundi-policies.json) ; fichiers `*-request.json` et `*-history.json.gz`. `dividendAmount` et `dividendCurrency` sont null, alors que les séries NAV/ajustées existent et que l’API et les documents indiquent une politique mixte. Ne pas convertir null en absence historique de distribution, ni le facteur d’échelle voisin de 5 en un split ou un dividende de 5 EUR.
 
-Besoin financier restant : rapports annuels/avis officiels et historique juridique des politiques aux périodes 2019–2025, avec montants, devises, dates de détachement et continuité de part. Aucun correctif de collecteur indispensable pour la correction de lecture actuelle : Fiches pratiques reçoit déjà la bonne politique. Le lot financier corrige le getter et le prédicat de copie, sans écriture de métadonnée automatisée concurrente.
+Besoin financier restant : rapports annuels/avis officiels et historique juridique manquant en 2019–2022, puis paiements aux périodes 2019–2025, avec montants, devises, dates de détachement et continuité de part. Les versions officielles de décembre 2022 / janvier 2023 et mars 2024 retrouvées sont déjà dans le manifeste documentaire ; ne pas reprendre cette recherche comme un manque total de prospectus historiques. Aucun correctif de collecteur indispensable pour la correction de lecture actuelle : Fiches pratiques reçoit déjà la bonne politique. Le lot financier corrige le getter et le prédicat de copie, sans écriture de métadonnée automatisée concurrente.
 
 ## 35 résidus de mesures
 
