@@ -20,6 +20,15 @@ MARKET_PROJECTION_INPUTS = {'src/data/worldbank-gold-monthly.json'}
 # and validation hooks still rebuild projections and check the combined tree.
 # Do not generalise this to collector code, configurations or other producers.
 MARKET_READER_ONLY_CHANGES = {
+    # Refusal41496015949 after#1160: budget prose/provenance and its exact
+    # review fixtures are downstream of monthly acquisition and baselines.
+    # Preserve the new prose; rebuild and financially validate the merged tree.
+    # No budget data, calculation code or neighbouring configuration is allowed.
+    'docs/budget-editorial-polish-2026-11-02.csv',
+    'docs/budget-editorial-polish-2026-11-02.md',
+    'scripts/fixtures/budget-editorial/before-2026-11-02.json',
+    'scripts/test-budget-editorial-context.mjs',
+    'src/pages/budget-profiles/publication-context.json',
     # Actual refusal41338564974 after#1120: this independent private CRUD service
     # only consumes the already published tweet catalog. Market acquisition and
     # baseline exports neither import it nor fetch its authenticated endpoints.
