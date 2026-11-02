@@ -25,3 +25,9 @@ Les deux corrections sont regroupées dans#1136, après intégration de#1135 et#
 La reprise mensuelle ordinaire41373897853, retry_failed=true, a terminé les validations et atteint l’enregistrement sans le défaut de catégorie. Publication et consommateurs ne sont pas déduits de cette seule étape. Les9positions complètes nouvellement configurées par#1130 sont déjà dans les collectes exposées en file41364143592/41369300788 ; aucune nouvelle collecte doublonnée déclenchée. Leur première observation publiée reste à démontrer.
 
 Le complément de périmètre metadata-declared-field-scope-proof.json montre exactement21parts×5champs non détenus par ce producteur×2étapes=210diagnostics ; la configuration avant exécution limitait les21sources aux cotations. Les42résultats de cotations/qualification de l’ancien rapport étaient déjà réussis. L’ancien plan et les210résultats sont conservés tels quels, sans qualification rétroactive des autres champs.
+
+## Reprise mensuelle effectivement enregistrée
+
+41373897853 a passé les calculs et le build, puis a correctement refusé une entrée économique concurrente. L’investigation du diff réel montre34feuilles de preuve checkedAt/sha256 et aucune valeur financière changée. #1137 complète le garde par une comparaison stricte de ces deux arbres, jamais une exclusion générale du registre économique ; les changements financiers et toute seconde validation échouée restent bloquants.186tests ciblés passent. La branche de course est exercée en isolation, pas encore en production.
+
+La reprise ordinaire41379698791 a terminé refresh et deploy/publish avec succès, enregistré1e2f520 le2novembre03:12:59UTC et qualifié12cotations exactes auparavant refusées dans le nouveau lot#1130. Le rouge global vient du bilan des sources partielles, pas de l’enregistrement. Les anciens79cas restent un autre périmètre ; publication des12séries et consommation navigateur sont à rapprocher séparément avant de déclarer ces usages rétablis.

@@ -1,6 +1,8 @@
 """Allow revalidation only across explicitly independent financial outputs."""
 import argparse
+import datetime as dt
 import json
+import re
 import subprocess
 
 INDEPENDENT = {
@@ -111,6 +113,7 @@ MARKET_CALENDAR_REGISTRIES = {
     'src/data/automated-etf.json', 'src/data/non-bond-etf-records.json',
     'src/data/exposure-etf-expansion-records.json',
 }
+MARKET_ECONOMIC_REGISTRY = 'src/data/automated-economic.json'
 
 def git_json(ref, path):
     return json.loads(subprocess.check_output(['git', 'show', f'{ref}:{path}'], text=True))
@@ -141,13 +144,67 @@ def calendar_inputs_unchanged(base, upstream, path):
                for s in consumers)
 
 
+def economic_values_unchanged(base, upstream):
+    """Permit receipt renewals, never a new rate, period, definition or source.
+
+    The monthly baseline imports economic observations, including savings rates.
+    Its real race41373897853 changed only existing checkedAt/sha256 fields.
+    Preserve the newer receipts through rebase and require financial revalidation;
+    do not copy their check dates into the observations acquired by this writer.
+    """
+    before = git_json(base, MARKET_ECONOMIC_REGISTRY)
+    after = git_json(upstream, MARKET_ECONOMIC_REGISTRY)
+    groups = {'households', 'savings', 'benchmarks'}
+    if any(not isinstance(r, dict) or set(r) != groups | {'schemaVersion'}
+           or type(r['schemaVersion']) is not int or r['schemaVersion'] != 1
+           for r in (before, after)):
+        return False
+    signatures = [{}, {}]
+    for group in groups:
+        a, b = before[group], after[group]
+        if not isinstance(a, dict) or not isinstance(b, dict) or set(a) != set(b):
+            return False
+        for signature in signatures:
+            signature[group] = {}
+        for key in a:
+            old, new = a[key], b[key]
+            if not isinstance(old, dict) or not isinstance(new, dict) or set(old) != set(new):
+                return False
+            if old.get('checkedAt') != new.get('checkedAt'):
+                dates = [old.get('checkedAt'), new.get('checkedAt')]
+                if any(not isinstance(d, str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', d) for d in dates):
+                    return False
+                try:
+                    first, last = map(dt.date.fromisoformat, dates)
+                except ValueError:
+                    return False
+                if not first <= last <= dt.datetime.now(dt.timezone.utc).date():
+                    return False
+            if old.get('sha256') != new.get('sha256'):
+                if any(not isinstance(d, str) or not re.fullmatch(r'[a-fA-F0-9]{64}', d)
+                       for d in (old.get('sha256'), new.get('sha256'))):
+                    return False
+            for signature, record in zip(signatures, (old, new)):
+                signature[group][key] = {k: v for k, v in record.items()
+                                         if k not in {'checkedAt', 'sha256'}}
+    # Canonical JSON preserves numeric/boolean types and rejects non-finite data.
+    return (json.dumps(signatures[0], sort_keys=True, allow_nan=False)
+            == json.dumps(signatures[1], sort_keys=True, allow_nan=False))
+
+
 def check(kind, base, upstream):
     paths = subprocess.check_output(
         ['git', 'diff', '--name-only', '--no-renames', '-z', base, upstream],
         text=True).split('\0')
     blocked = []
     for path in filter(None, paths):
-        if path not in ALLOWED[kind]:
+        if kind == 'market' and path == MARKET_ECONOMIC_REGISTRY:
+            try:
+                if not economic_values_unchanged(base, upstream):
+                    blocked.append(path)
+            except (KeyError, TypeError, ValueError, subprocess.CalledProcessError):
+                blocked.append(path)
+        elif path not in ALLOWED[kind]:
             blocked.append(path)
         elif kind == 'market' and path in MARKET_CALENDAR_REGISTRIES:
             try:
@@ -167,5 +224,5 @@ if __name__ == '__main__':
     p.add_argument('--base', required=True)
     p.add_argument('--upstream', default='HEAD^')
     a = p.parse_args()
-    print('Independent upstream outputs; financial revalidation still required:', check(a.kind, a.base, a.upstream))
+    print('Qualified upstream changes; financial revalidation still required:', check(a.kind, a.base, a.upstream))
 

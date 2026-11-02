@@ -1,5 +1,8 @@
 """Real isolated Git races: only independent financial publications may rebase."""
 import pathlib
+import copy
+import gzip
+from unittest.mock import patch
 import ast
 import re
 import json
@@ -32,6 +35,54 @@ PRIVATE_SERVICE_READERS = [
     'services/tweet-bank-private/scripts/preview.mjs',
     '.github/workflows/test-tweet-bank-private.yml',
 ]
+
+
+ECONOMIC_PATH = 'src/data/automated-economic.json'
+
+def economic_fixture(name):
+    return json.loads(gzip.decompress((ROOT / 'scripts/fixtures/economic-control-race-20261102' / (name+'.json.gz')).read_bytes()))
+
+
+class EconomicInputSignatureTests(unittest.TestCase):
+    def eligible(self, before, after):
+        import observation_rebase_guard as guard
+        with patch.object(guard, 'git_json', side_effect=[before, after]):
+            return guard.economic_values_unchanged('base', 'upstream')
+
+    def test_actual_control_only_update_preserves_all_financial_inputs(self):
+        self.assertTrue(self.eligible(economic_fixture('before'), economic_fixture('after')))
+
+    def test_financial_definitions_periods_and_input_sets_are_not_receipts(self):
+        before=economic_fixture('before')
+        mutations=[
+            lambda r:r['savings']['2026-08-01'].__setitem__('rate',9.9),
+            lambda r:r['savings']['2026-08-01'].__setitem__('effectiveAt','2026-09-01'),
+            lambda r:r['households']['debt'].__setitem__('value',False),
+            lambda r:r['households']['debt'].__setitem__('referencePeriod','2026-01'),
+            lambda r:r['households']['debt'].__setitem__('population','different population'),
+            lambda r:r['households']['debt'].__setitem__('sourceUrl','https://example.invalid/other'),
+            lambda r:r['households']['debt'].__setitem__('unit','different unit'),
+            lambda r:r['benchmarks']['scpi:2025'].__setitem__('method','different financial convention'),
+            lambda r:r['benchmarks']['fonds_euros:2025'].__setitem__('discoveryStatus','new qualification'),
+            lambda r:r['households'].__setitem__('new-record',copy.deepcopy(r['households']['debt'])),
+            lambda r:r['households'].pop('debt'),
+            lambda r:r.__setitem__('schemaVersion',True),
+            lambda r:r.__setitem__('schemaVersion',2),
+            lambda r:r.__setitem__('unknown-section',{}),
+        ]
+        for n,mutate in enumerate(mutations):
+            with self.subTest(mutation=n):
+                after=copy.deepcopy(before);mutate(after)
+                self.assertFalse(self.eligible(before,after))
+
+    def test_unqualified_receipts_and_backdated_or_future_checks_fail_closed(self):
+        before=economic_fixture('before')
+        for field,value in [('checkedAt','2026-10-01'),('checkedAt','2099-01-01'),('checkedAt','not-a-date'),('checkedAt','2026-02-30'),('sha256','invalid')]:
+            with self.subTest(field=field,value=value):
+                after=copy.deepcopy(before);after['savings']['2026-08-01'][field]=value
+                self.assertFalse(self.eligible(before,after))
+        invalid=copy.deepcopy(before);invalid['households']['debt']['value']=float('nan')
+        with self.assertRaises(ValueError):self.eligible(invalid,copy.deepcopy(invalid))
 
 
 class ObservationRebaseTests(unittest.TestCase):
@@ -68,6 +119,59 @@ class ObservationRebaseTests(unittest.TestCase):
         self.f.git(self.f.local, 'push', 'origin', 'master')
         self.f.git(self.f.other, 'pull', '--ff-only')
         (self.f.local / 'validated.json').write_text('validated update\n')
+
+    def economic_late_race(self, after, fail_validation=False, kind='market'):
+        before=economic_fixture('before')
+        target=self.f.local/ECONOMIC_PATH
+        target.write_text(json.dumps(before))
+        self.f.git(self.f.local,'add',ECONOMIC_PATH)
+        self.f.git(self.f.local,'commit','-m','original economic acquisition inputs')
+        self.f.git(self.f.local,'push','origin','master')
+        self.f.git(self.f.other,'pull','--ff-only')
+        script=self.f.root/'validate-economic-late-race.py'
+        new_text=json.dumps(after)
+        script.write_text(f"""from pathlib import Path
+import json,subprocess
+root=Path({str(self.f.root)!r})
+counter=root/'economic-validation-count'
+attempt=int(counter.read_text())+1 if counter.exists() else 1
+counter.write_text(str(attempt))
+if attempt==1:
+    other=root/'other'
+    (other/{ECONOMIC_PATH!r}).write_text({new_text!r})
+    for args in [('add',{ECONOMIC_PATH!r}),('commit','-m','real control-only economic race'),('push','origin','master')]:
+        subprocess.run(['git','-C',str(other),*args],check=True)
+else:
+    assert json.loads(Path({ECONOMIC_PATH!r}).read_text())==json.loads({new_text!r})
+    if {fail_validation!r}:raise SystemExit(23)
+""")
+        return self.publish(kind,f'{shlex.quote(sys.executable)} {shlex.quote(str(script))}')
+
+    def test_actual_economic_late_race_preserves_newer_receipts_and_revalidates(self):
+        after=economic_fixture('after')
+        result=self.economic_late_race(after)
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+        self.assertEqual((self.f.root/'economic-validation-count').read_text(),'2')
+        self.assertEqual(json.loads(self.f.git(self.f.remote,'show','master:'+ECONOMIC_PATH)),after)
+        self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'validated update')
+
+    def test_economic_receipts_never_bypass_failed_financial_revalidation(self):
+        result=self.economic_late_race(economic_fixture('after'),fail_validation=True)
+        self.assertEqual(result.returncode,23,result.stdout+result.stderr)
+        self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'original')
+
+    def test_a_financial_economic_change_still_requires_recollection(self):
+        after=economic_fixture('after');after['savings']['2026-08-01']['rate']+=0.01
+        result=self.economic_late_race(after)
+        self.assertNotEqual(result.returncode,0)
+        self.assertIn(ECONOMIC_PATH,result.stdout+result.stderr)
+        self.assertEqual((self.f.root/'economic-validation-count').read_text(),'1')
+        self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'original')
+
+    def test_economic_qualification_does_not_extend_to_other_producers(self):
+        result=self.economic_late_race(economic_fixture('after'),kind='publication')
+        self.assertNotEqual(result.returncode,0)
+        self.assertIn(ECONOMIC_PATH,result.stdout+result.stderr)
 
     def publish(self, kind='scpi', validation='test -f validated.json'):
         command = (f'{shlex.quote(sys.executable)} {shlex.quote(str(GUARD))} '
