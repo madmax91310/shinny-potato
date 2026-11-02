@@ -31,7 +31,7 @@ Le budget chiffré reste la première partie. Les paragraphes suivants précisen
 | --- | --- | --- |
 | Lucas, alternant | Trajets et retraits sur Livret A ; question sur le versement fixe ou variable. | PEA depuis février 2023, Livret A 7 000 €, PEA 13 000 €, PEE et assurance-vie distingués ; diversification à long terme. « Quel rôle donneriez-vous à l’assurance-vie à côté de son PEA déjà investi en actions mondiales ? » (interrogation sourcée), puis question éditoriale sur le maintien de la réserve. |
 | Sébastien, 31 ans | Explication de l’enveloppe de dépenses courantes ; question générale sur l’organisation du budget. | Réserve de 28 300 €, PEA récent, retraite, voyage de 2 000 € et transfert envisagé de 5 000 €. « Pour ces 5 000 €, comment choisiriez-vous entre un versement unique et des achats progressifs ? » (interrogation sourcée), distincte du niveau de réserve à garder. |
-| Référence belge | Primes annualisées et 200 € d’épargne prévue. | Le calendrier des primes devient le sujet de discussion sans inventer un patrimoine : « Comment répartiriez-vous les primes entre complément des mois ordinaires et réserve de sécurité ? » (question éditoriale). Aucun témoignage individuel créé. |
+| Clémence, exemple de référence | Virement de 250 €, marge de 65 € et échéance du crédit auto, sans montant du livret. | Le modèle précise désormais les 1 200 € déjà sur Livret A. « Quel premier objectif de réserve retiendriez-vous avec les dépenses de ce budget ? » (question éditoriale), puis question sur l’usage de l’allègement réel du crédit. Aucun patrimoine attribué à une personne authentifiée. |
 
 ### Limites et décisions de qualification
 
