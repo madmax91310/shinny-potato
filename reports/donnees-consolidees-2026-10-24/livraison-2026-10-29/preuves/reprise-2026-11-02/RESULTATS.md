@@ -1,3 +1,19 @@
+<!-- cloture-2nov-start -->
+# Résultat courant — complément du2novembre
+
+Voir LIVRAISON.md pour le périmètre courant et les dénominateurs. Les sections ci-dessous sont chronologiques ; leurs anciennes réserves de publication ne remplacent pas les preuves plus récentes.
+
+#1136 et#1137 sont fusionnées et réellement consommées : rôle Brésil, recettes natives cotation/NAV, rapports Radar compacts, métadonnées ciblées et enregistrement des acteurs. Le passage mensuel automatique41379698791 a publié700/705séries, dont21nouvelles voies du catalogue concurrent#1130 (12cotations et9NAV), en conservant5refus. Douze cotations,21sélections manuelles et11livres physiques sont effectivement consommés ; preuves publiques etPNG séparés.
+
+#1138 est fusionnée16254ce. Le producteur ordinaire41395321887 a contrôlé les4partsWisdomTree et12champs sans erreur individuelle, parHTTPprimaire, puis enregistrécabfeb8. Les12champs entiers sont égaux à ceux déjà servis sur756a1fa ; quatre consommateurs d’exposition, leurs lignes pays/secteurs et8PNG ont été vérifiés sur cette publication. Cela ne prouve pas l’exercice du secours conditionnel en production ; ses4contrôles réseauGitHub avec le navigateur préparé et les mêmes4blobs de code restent une preuve distincte.
+
+Le fichierETF global comporte aussi une nouvelle position obligataire officielleAmundi CH1598620016, UBSGROUP VAR Sep37EMTN,0,070255% dansLU1931975079 au29octobre. Le mécanisme existant refuse correctement sa promotion au-dessus d’un code qui ne la connaît pas et conserve le reçu producteur exact. Le contrôle complet a repris automatiquement et publié414bd67 : reçu natif du2novembre06:58:35UTC,380fichiers dont42publics vérifiés. Les quatre fichiers immuables du producteurcabfeb8 sont exactement ceux du manifeste public. La branche imbriquée#966 est désormais réellement exercée en production ; les deux anciens périmètres inconnus ne sont pas requalifiés rétroactivement. Aucun garde-fou ni donnée n’est modifié pour le contourner. La PRconcurrente#1139 est fusionnée414bd67 ; ses deux modifications du Générateur sont préservées et n’appartiennent pas à ce lot.
+
+Le passage qualifié41395321814 est enregistré756a1fa et publié :201résultats de positions réussis et3échecs explicites (Battery/GGRA régressifs, GlobalXUranium poids absent). Pour les11livres exercés, tous les champs financiers et poids restent identiques aux recettes précédentes ; seuls les reçus de contrôle sont renouvelés et rapprochés du rapport natif. Un job vert ne clôture pas ces3échecs.
+
+Les420diagnostics de métadonnées appartiennent à deux anciens rapports de210attentes mal attribuées. Les63qualifications Radar du vieux rapport41364143338 conservent également la preuve de son dépassement d’enveloppe. Ils peuvent rester dans la boîte active sans démontrer une panne du producteur courant réparé. La supervision conserve ses contrats ; aucune ancienne tentative n’est réécrite ni donnée financière fictivement déclarée réparée.
+<!-- cloture-2nov-end -->
+
 # Complément de production — 2novembre2026
 
 Le suivi reste celui de LIVRAISON.md et#881 ; cette preuve complète sa photographie246849a sans réécrire ses dates. Le2novembre00:38:12UTC, le code8001d0551fd5f06cdaaf022ce57a8142973489b2 et les données19c1466372d21059cee596d3b8818acf9dee2fdf sont réellement servis, avec les ajouts concurrents#1130. Le parcoursDonnées à revoir ne produit aucune erreurJavaScript. Export intégral séparé : public-release-8001d05/diagnostics-all.json.gz.
@@ -31,3 +47,5 @@ Le complément de périmètre metadata-declared-field-scope-proof.json montre ex
 41373897853 a passé les calculs et le build, puis a correctement refusé une entrée économique concurrente. L’investigation du diff réel montre34feuilles de preuve checkedAt/sha256 et aucune valeur financière changée. #1137 complète le garde par une comparaison stricte de ces deux arbres, jamais une exclusion générale du registre économique ; les changements financiers et toute seconde validation échouée restent bloquants.186tests ciblés passent. La branche de course est exercée en isolation, pas encore en production.
 
 La reprise ordinaire41379698791 a terminé refresh et deploy/publish avec succès, enregistré1e2f520 le2novembre03:12:59UTC et qualifié12cotations exactes auparavant refusées dans le nouveau lot#1130. Le rouge global vient du bilan des sources partielles, pas de l’enregistrement. Les anciens79cas restent un autre périmètre ; publication des12séries et consommation navigateur sont à rapprocher séparément avant de déclarer ces usages rétablis.
+
+La photographie finale414bd67 conserve encore l’alerte du refus41395321703 dans la boîte active. Les colonnes de résolution du suivi la rapprochent du reçu06:58:35UTC ; aucun autre incident ni l’ancienne exécution ne deviennent artificiellement verts.

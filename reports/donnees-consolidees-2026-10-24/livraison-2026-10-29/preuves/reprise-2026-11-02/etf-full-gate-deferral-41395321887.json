@@ -1,0 +1,21 @@
+{
+  "runId": 41395321887,
+  "jobId": 125119695887,
+  "sourceCommit": "cabfeb8b1d98cb9a9131f08acf5f54553f1b7f34",
+  "lastPublishedCode": "28745bf683c489f60146d745d47dc5c786bdfee5",
+  "deferredFile": "src/data/automated-etf.json",
+  "newUnderlyingIsin": "CH1598620016",
+  "underlyingName": "UBS GROUP VAR Sep37  EMTN",
+  "fundIsin": "LU1931975079",
+  "asOf": "2026-10-29",
+  "weightPct": 0.070255,
+  "evidence": [
+    "2026-11-02T06:01:20.0903872Z Fallback snapshot: code 28745bf6 (published) + 145 automation data file(s) from cabfeb8b.",
+    "2026-11-02T06:01:20.0907117Z 1 data file(s) kept at their published version: they name 1 identifier(s) the published code does not know (CH1598620016).",
+    "2026-11-02T06:01:20.0907744Z - src/data/automated-etf.json: CH1598620016",
+    "2026-11-02T06:01:52.8979352Z AssertionError [ERR_ASSERTION]: Required data was held back or changed during generation: src/data/automated-etf.json",
+    "2026-11-02T06:01:52.8986890Z   expected: 'd01e951ab965e2599cd0f440771d95a1c60c16ac',"
+  ],
+  "conclusion": "Unknown underlying triggers existing conservative fallback holdback. Immutable producer receipt refuses publication and requests full code validation automatically; no guard relaxed. Test stdout involving src/pages/test.jsx is isolated fixture output, not a changed production consumer.",
+  "nestedProductionBranchFullyVerified": false
+}
