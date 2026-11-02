@@ -2,6 +2,10 @@
 
 Base rapprochée : master `4b5ea567e0209d958a57f0e67a6109f917c35e1e`, #1148 Nikkei conservée. Aucun changement de collecteur, HTTP/navigateur, workflow, concurrence, enregistrement ni déploiement dans le correctif financier. #1061 reste une piste AUM bloquée, hors de ce lot ; #1042 ne recoupe pas les réserves.
 
+## Dépendance déjà prise en charge : PR #1150
+
+[#1150](https://github.com/madmax91310/shinny-potato/pull/1150), head `e97c7affaea1096c15a4ae0f01750d8152c220e4`, est ouverte pendant cette enquête. Diff des adaptateurs et de la configuration relu : contrat `withhold-trailing-unreconciled-month`, exclusion du seul mois incomplet, unités et distributions contrôlées, niveau quotidien indépendant. Cette conversation ne réimplémente pas ce correctif. La panne de couplage est au chantier automatisation ; le manque financier du rendement du 30/10 reste distinct. Les preuves ci-dessous reproduisent le master **avant** #1150. Après fusion, contrôler séparément l’enregistrement des mois jusqu’à septembre, les cinq niveaux bruts et le maintien de l’exclusion d’octobre.
+
 ## Cinq refreshs NAV : source accessible, preuve financière manquante
 
 Fichier de configuration existant : `scripts/official-nav-remainder-sources.json`. IDs : `etcPalladium`, `etf_world_communication`, `etf_clean_energy`, `etf_financials`, `etfIE00B2QWCY14`. API `get-product-data`, composants `keyFundFacts,performance`, productIds **256574, 326317, 251911, 308836, 251920**. Tous les appels et contrôles d’identité/devise réussissent dans la lecture actuelle.

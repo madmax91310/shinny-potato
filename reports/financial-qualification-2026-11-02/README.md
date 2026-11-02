@@ -61,6 +61,8 @@ Exemple Amundi 2024 : **32,84506920671928 %** sur les niveaux contre **32,85 %**
 | IE00BJ5JP097 | `etf_financials` | 30/10 / 29/10/2026 | Idem ; part distribuante |
 | IE00B2QWCY14 | `etfIE00B2QWCY14` | 30/10 / 29/10/2026 | Idem ; part distribuante |
 
+**Dépendance concurrente identifiée : [#1150](https://github.com/madmax91310/shinny-potato/pull/1150)**, ouverte pendant cette enquête, traite le couplage technique de ces cinq rafraîchissements avec les historiques antérieurs. Son diff est relu : retrait explicite du seul mois TR non rapproché, conservation des mois qualifiés et niveau NAV brut traité séparément. Aucun correctif concurrent n’est ajouté ici. Les cinq refus ci-dessus sont la reproduction du contrat de master au moment de la capture ; la proposition #1150 peut rétablir les niveaux et l’historique antérieur **sans certifier le rendement d’octobre**. Son état fusion/CI/publication doit être contrôlé avant de dire ces usages rétablis.
+
 Le 30 octobre est un vendredi, pas un report de week-end à NAV inchangée. **Preuve manquante :** un niveau de rendement réinvesti daté du 30/10, ou une autre preuve officielle permettant de rapprocher exactement ce rendement et la NAV sans déplacer leur date. Les calendriers annuels antérieurs et les fenêtres mensuelles déjà qualifiées restent disponibles. Les niveaux anniversaire déjà validés restent conservés avec leurs dates réelles ; un refus de rafraîchissement n’efface pas ces niveaux et n’en rajeunit pas le contrôle. Aucune extension d’un rendement du 29 au 30 n’est autorisée.
 
 ## Les deux parts Amundi, sans inférence par le nom
