@@ -5,6 +5,9 @@ import { staticBrowser, staticBase } from './static-browser.mjs'
 import { choose } from './card-selection.mjs'
 import { derive, fmtEUR, buildTweetText } from '../src/pages/investment-calculator/lib.js'
 import { computeComparison, buildComparisonTweet } from '../src/pages/investment-calculator/comparison.js'
+import { ASSETS as portfolioAssets } from '../src/data/portfolio-assets.js'
+import { computeYearlyPerf, formatPerformance, performanceYears } from '../src/pages/portfolio-generator/performance.js'
+import { buildCustomDuel, buildTweet as buildDuelTweet } from '../src/pages/portfolio-duels/lib.js'
 const base=process.env.FINANCE_PUBLIC_BASE??staticBase,out=process.env.FINANCE_BROWSER_OUTPUT??'test-artifacts/financial-consistency'
 await mkdir(out,{recursive:true})
 const proof=[]
@@ -75,8 +78,41 @@ for(const width of [1440,390]){
   const preview=Buffer.from(await img.evaluate(async el=>{const blob=await fetch(el.src).then(r=>r.blob());return new Promise(resolve=>{const r=new FileReader();r.onload=()=>resolve(r.result.split(',')[1]);r.readAsDataURL(blob)})}),'base64')
   const image=await download(page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}),`nav-performance-${width}.png`)
   assert.deepEqual(image,preview)
+  // Real qualified EUR allocation that previously displayed 6.4% for an exact
+  // 6.45% weighted return. Expectations move with the canonical observations.
+  const lines=[{id:'europe-retail',pct:25},{id:'europe-construction',pct:20},{id:'euro-ultrashort-ishares',pct:55}]
+  const selection=lines.map(row=>({...portfolioAssets.find(a=>a.id===row.id),pct:row.pct})),perf=computeYearlyPerf(selection)
+  const year=performanceYears(perf).includes(2024)?2024:performanceYears(perf).at(-1),number=formatPerformance(perf[year])
+  await page.goto(base+'generateur-portefeuilles');await part('Réglages')
+  await page.getByRole('button',{name:/Composition manuelle/}).click()
+  for(const row of selection){
+   await page.locator('.pg-manual-search').fill(row.isin)
+   await page.locator(`.pg-manual-available [data-option][data-asset-id="${row.id}"]`).click()
+   await page.locator('.pg-manual-pct-input').last().fill(String(row.pct))
+  }
+  await page.evaluate(()=>{window.__paint=[]})
+  await page.getByRole('button',{name:'Générer le tweet',exact:true}).click();await part('Aperçu')
+  const generatorText=await page.locator('.pg-tweet-body').innerText();assert(generatorText.includes(`${year} : ${number}`))
+  await page.getByRole('button',{name:'📋 Copier le texte',exact:true}).click()
+  assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),generatorText)
+  await page.waitForFunction(n=>window.__paint.some(t=>t.endsWith(n)),number)
+  await download(page.getByRole('link',{name:'⬇️ Télécharger l’image PNG',exact:true}),`weighted-generator-${width}.png`)
+  assert((await page.evaluate(()=>window.__paint)).some(t=>t.endsWith(number)))
+  await page.goto(base+'duels-portefeuilles?asset=euro-ultrashort-ishares');await part('Réglages')
+  for(let i=1;i<lines.length;i++)await page.getByRole('button',{name:'Ajouter un actif à A',exact:true}).click()
+  for(const [i,row] of lines.entries()){
+   await choose(page.getByRole('group',{name:`Actif ${i+1} du portefeuille A`,exact:true}),row.id)
+   await page.getByRole('spinbutton',{name:`Poids actif ${i+1} du portefeuille A`,exact:true}).fill(String(row.pct))
+  }
+  await part('Aperçu')
+  const expectedDuel=buildCustomDuel({left:lines,right:[{id:'msci_world_ishares',pct:100}]})
+  assert.equal(await page.locator('#pd-tweet').inputValue(),buildDuelTweet(expectedDuel))
+  await page.getByRole('button',{name:'📋 Copier le texte',exact:true}).click()
+  assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),buildDuelTweet(expectedDuel))
+  await download(page.getByRole('button',{name:'🖼️ Télécharger l’image PNG',exact:true}),`weighted-duel-${width}.png`)
+  assert((await page.evaluate(()=>window.__paint)).some(t=>t.endsWith(number)))
   assert.deepEqual(errors,[])
-  proof.push({width,base,start:d.startYm,end:d.endYm,final:d.result.finalValue,comparison:comparison.sides.map(s=>({mode:s.mode,final:s.result.finalValue,override:s.override})),pngPreviewMatches:true,errors})
+  proof.push({width,base,start:d.startYm,end:d.endYm,final:d.result.finalValue,comparison:comparison.sides.map(s=>({mode:s.mode,final:s.result.finalValue,override:s.override})),weighted:{year,return:perf[year],display:number},pngPreviewMatches:true,errors})
  }finally{await browser.close()}
 }
 await writeFile(`${out}/proof.json`,JSON.stringify(proof,null,2)+'\n')

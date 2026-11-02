@@ -92,6 +92,10 @@ for(const a of portfolios.filter(a=>a.isin))for(const b of CATALOG.filter(b=>b.i
 const lines=[['msci_world_ishares',60],['sp500_ishares',40]],selection=lines.map(([id,pct])=>({...portfolios.find(a=>a.id===id),pct}))
 const perf=computeYearlyPerf(selection),duel=buildCustomDuel({left:lines.map(([id,pct])=>({id,pct})),right:[{id:'msci_world_ishares',pct:100}]})
 for(const y of duel.years){close(perf[y],duel.a.annual[y],'multi-line yearly');add('Générateur / Duels — plusieurs lignes','60 % World / 40 % S&P 500',String(y),'EUR',perf[y],duel.a.annual[y],'Poids rétablis au début de chaque année ; mêmes années communes ; hors courtage/fiscalité')}
+const decimalLines=[{id:'europe-retail',pct:25},{id:'europe-construction',pct:20},{id:'euro-ultrashort-ishares',pct:55}],decimalSelection=decimalLines.map(row=>({...portfolios.find(a=>a.id===row.id),pct:row.pct}))
+const decimalPerf=computeYearlyPerf(decimalSelection),decimalDuel=buildCustomDuel({left:decimalLines,right:[{id:'euro-ultrashort-ishares',pct:100}]})
+for(const year of decimalDuel.years){close(decimalPerf[year],decimalDuel.a.annual[year],'three-line decimal sum');add('Générateur / Duels — trois lignes EUR',decimalLines.map(l=>`${l.pct}% ${l.id}`).join(' / '),String(year),'EUR',decimalPerf[year],decimalDuel.a.annual[year],'Calendriers EUR identiques ; somme décimale exacte des rendements pondérés ; aucun arrondi intermédiaire')}
+add('Correction de sommation décimale','DE000A0H08P6 25 % / DE000A0H08F7 20 % / IE00BCRY6557 55 %','2024','EUR',1.4+2.2275+2.8225,6.45,'Capture immuable de master 414bd67 : 25 % × 11,29 % + 20 % × 7 % + 55 % × 4,05 % = 6,45 % ; affichage ancien +6,4 %, corrigé +6,5 % ; pas de valeur de source réécrite','erreur de calcul corrigée')
 // Indices retain their exact income variant and never acquire a fund ISIN.
 for(const id of ['msciWorld','msciAcwi'])for(const currency of ['USD','EUR']){
  const [entry]=performanceEngine.getPerformanceEntries({assetId:id,year:2020,currency})
@@ -122,7 +126,7 @@ for(const currency of ['USD','EUR']){
  const after=computeComparison(settings,'bitcoin','bitcoin','lump','dca').sides[1].result.finalValue
  add('Correction prix final commun','bitcoin',`${settings.startYm}/${settings.endYm}`,currency,before,after,'Même actif : 61 versements de 100, valorisation des unités au prix saisi 100 000 USD converti au fixing final ; ancien côté B ignorait la saisie','erreur de calcul corrigée')
 }
-const inputs=['src/data/automated-etf.json','src/data/automated-etf-monthly.json','src/data/monthly-duel-returns.json','src/data/monthly-fx.json','src/data/financial-history-restrictions.json','src/data/history-window-restrictions.json']
+const inputs=['src/data/automated-etf.json','src/data/automated-etf-monthly.json','src/data/monthly-duel-returns.json','src/data/monthly-fx.json','src/data/financial-history-restrictions.json','src/data/history-window-restrictions.json','src/lib/weighted-annual-return.js','src/lib/investment-series.js','src/lib/performance-conventions.js','src/data/calendar-fx.js','src/pages/investment-calculator/comparison.js','src/pages/portfolio-generator/performance.js','src/pages/portfolio-duels/lib.js']
 const result={schema:1,generatedAt:new Date().toISOString(),base:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),inputs:Object.fromEntries(inputs.map(p=>[p,createHash('sha256').update(readFileSync(p)).digest('hex')])),coverage,sharedAnnualComparisons:shared,navMethodCount:Object.values(histories).filter(isNavTotalReturn).length,rows,
  limits:['Calculs depuis les registres courants : aucune recollecte ni certification indépendante des observations sources.','Une différence NAV/cotation ne prouve pas à elle seule la validité de son amplitude. Les fenêtres déjà refusées restent refusées.','Les calendriers annuels ne créent aucun historique mensuel ni niveau brut ; les proxies admis restent des simulations distinctes.']}
 if(process.argv.includes('--write')){

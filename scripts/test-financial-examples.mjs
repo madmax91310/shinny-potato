@@ -37,3 +37,4 @@ assert(Number.isFinite(derive(state).result.finalValue),'ordinary input recovers
 
 // Also runs in prebuild/CI, so the comparison regression is not a manual-only audit.
 await import('./test-investment-comparison.mjs')
+await import('./test-weighted-annual-return.mjs')

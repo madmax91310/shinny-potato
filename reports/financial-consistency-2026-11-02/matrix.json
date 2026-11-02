@@ -1,14 +1,21 @@
 {
   "schema": 1,
-  "generatedAt": "2026-11-02T06:39:57.315Z",
-  "base": "414bd67a1afa1ae9cc003e5e98a3f0c0f6b92d2d",
+  "generatedAt": "2026-11-02T07:34:11.681Z",
+  "base": "78a7bb92c7c7489f441972a8f92b945993b9d002",
   "inputs": {
     "src/data/automated-etf.json": "5ce2c693d887c9d16378b57473a1c7c9d2a37f53fe3262f14698eec8b0f43c9b",
     "src/data/automated-etf-monthly.json": "6bc5df8fbf6f99e753818d1d639ca70904c913729e7e9579803f394bb7a14bc5",
     "src/data/monthly-duel-returns.json": "b129054c97f2958046b5e27dcb09ba1801b8d6d78f2728499ae8abeb08a70fec",
     "src/data/monthly-fx.json": "26549f7b574056e4b53410867d01db8cbdc2df04c27b4062fa1007a63fb69206",
     "src/data/financial-history-restrictions.json": "4899a929c915e704b4b5146ddc06d4c5c56062c1baa38f2d121598fa181296b5",
-    "src/data/history-window-restrictions.json": "ab0492f6fcd8667bdf4ee80082eaad2fb4ee8091900647b86b245ee2403bf132"
+    "src/data/history-window-restrictions.json": "ab0492f6fcd8667bdf4ee80082eaad2fb4ee8091900647b86b245ee2403bf132",
+    "src/lib/weighted-annual-return.js": "c5cdc96e1f9bc0478656758aaf2c713dcb061b4e75dbcfe3d099585347f2cf05",
+    "src/lib/investment-series.js": "634086158bf631aa32210923b4ac292622e1bae316b09dd17ed655b8a3b7b3db",
+    "src/lib/performance-conventions.js": "2ac74b3051326226288d885598f58b9ecfb15c294babb7ad88372b0c93f090aa",
+    "src/data/calendar-fx.js": "33080ca6b3e29b5852dfbdd3771c06aef0b76b4bc44a2b7c443ea1fa0fd9313f",
+    "src/pages/investment-calculator/comparison.js": "d6d343f4c95797b3ad379049cd0f7f51b730f0ed1cee08ea9d94a74857c654c8",
+    "src/pages/portfolio-generator/performance.js": "dcd0f5cca84fc23f36bc0a64a27552cf1066d675d71c7dc953e9bcebd1de9dbb",
+    "src/pages/portfolio-duels/lib.js": "3e4c2ce4dc6617cc89fa1c9919e2914a0fa2e010d4d1f9bc2204e2d044f2bb38"
   },
   "coverage": [
     {
@@ -46295,8 +46302,8 @@
       "identity": "60 % World / 40 % S&P 500",
       "period": "2022",
       "currency": "EUR",
-      "left": -13.093709731858237,
-      "right": -13.093709731858237,
+      "left": -13.093709731858235,
+      "right": -13.093709731858235,
       "gap": 0,
       "convention": "Poids rétablis au début de chaque année ; mêmes années communes ; hors courtage/fiscalité",
       "classification": "compatible"
@@ -46306,8 +46313,8 @@
       "identity": "60 % World / 40 % S&P 500",
       "period": "2023",
       "currency": "EUR",
-      "left": 20.351089954751124,
-      "right": 20.351089954751124,
+      "left": 20.351089954751128,
+      "right": 20.351089954751128,
       "gap": 0,
       "convention": "Poids rétablis au début de chaque année ; mêmes années communes ; hors courtage/fiscalité",
       "classification": "compatible"
@@ -46317,8 +46324,8 @@
       "identity": "60 % World / 40 % S&P 500",
       "period": "2024",
       "currency": "EUR",
-      "left": 28.80073154297817,
-      "right": 28.80073154297817,
+      "left": 28.800731542978166,
+      "right": 28.800731542978166,
       "gap": 0,
       "convention": "Poids rétablis au début de chaque année ; mêmes années communes ; hors courtage/fiscalité",
       "classification": "compatible"
@@ -46333,6 +46340,83 @@
       "gap": 0,
       "convention": "Poids rétablis au début de chaque année ; mêmes années communes ; hors courtage/fiscalité",
       "classification": "compatible"
+    },
+    {
+      "kind": "Générateur / Duels — trois lignes EUR",
+      "identity": "25% europe-retail / 20% europe-construction / 55% euro-ultrashort-ishares",
+      "period": "2020",
+      "currency": "EUR",
+      "left": 2.129,
+      "right": 2.129,
+      "gap": 0,
+      "convention": "Calendriers EUR identiques ; somme décimale exacte des rendements pondérés ; aucun arrondi intermédiaire",
+      "classification": "compatible"
+    },
+    {
+      "kind": "Générateur / Duels — trois lignes EUR",
+      "identity": "25% europe-retail / 20% europe-construction / 55% euro-ultrashort-ishares",
+      "period": "2021",
+      "currency": "EUR",
+      "left": 9.862,
+      "right": 9.862,
+      "gap": 0,
+      "convention": "Calendriers EUR identiques ; somme décimale exacte des rendements pondérés ; aucun arrondi intermédiaire",
+      "classification": "compatible"
+    },
+    {
+      "kind": "Générateur / Duels — trois lignes EUR",
+      "identity": "25% europe-retail / 20% europe-construction / 55% euro-ultrashort-ishares",
+      "period": "2022",
+      "currency": "EUR",
+      "left": -11.7355,
+      "right": -11.7355,
+      "gap": 0,
+      "convention": "Calendriers EUR identiques ; somme décimale exacte des rendements pondérés ; aucun arrondi intermédiaire",
+      "classification": "compatible"
+    },
+    {
+      "kind": "Générateur / Duels — trois lignes EUR",
+      "identity": "25% europe-retail / 20% europe-construction / 55% euro-ultrashort-ishares",
+      "period": "2023",
+      "currency": "EUR",
+      "left": 18.073,
+      "right": 18.073,
+      "gap": 0,
+      "convention": "Calendriers EUR identiques ; somme décimale exacte des rendements pondérés ; aucun arrondi intermédiaire",
+      "classification": "compatible"
+    },
+    {
+      "kind": "Générateur / Duels — trois lignes EUR",
+      "identity": "25% europe-retail / 20% europe-construction / 55% euro-ultrashort-ishares",
+      "period": "2024",
+      "currency": "EUR",
+      "left": 6.45,
+      "right": 6.45,
+      "gap": 0,
+      "convention": "Calendriers EUR identiques ; somme décimale exacte des rendements pondérés ; aucun arrondi intermédiaire",
+      "classification": "compatible"
+    },
+    {
+      "kind": "Générateur / Duels — trois lignes EUR",
+      "identity": "25% europe-retail / 20% europe-construction / 55% euro-ultrashort-ishares",
+      "period": "2025",
+      "currency": "EUR",
+      "left": 9.5445,
+      "right": 9.5445,
+      "gap": 0,
+      "convention": "Calendriers EUR identiques ; somme décimale exacte des rendements pondérés ; aucun arrondi intermédiaire",
+      "classification": "compatible"
+    },
+    {
+      "kind": "Correction de sommation décimale",
+      "identity": "DE000A0H08P6 25 % / DE000A0H08F7 20 % / IE00BCRY6557 55 %",
+      "period": "2024",
+      "currency": "EUR",
+      "left": 6.449999999999999,
+      "right": 6.45,
+      "gap": -8.881784197001252e-16,
+      "convention": "Capture immuable de master 414bd67 : 25 % × 11,29 % + 20 % × 7 % + 55 % × 4,05 % = 6,45 % ; affichage ancien +6,4 %, corrigé +6,5 % ; pas de valeur de source réécrite",
+      "classification": "erreur de calcul corrigée"
     },
     {
       "kind": "Indice distinct du fonds",
