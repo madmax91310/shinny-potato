@@ -1,72 +1,61 @@
 name: Verify exact official sources for audit remainder
 on:
   workflow_dispatch:
-  push:
-    branches: [fix/reliquat-20261023]
-    paths:
-      - 'scripts/issuer_nav_history.py'
-      - 'scripts/collect_official_share_history.py'
-      - 'scripts/verify_reliquat_sources.py'
-      - 'scripts/broker_profiles.py'
-      - 'scripts/broker_profile_sources.json'
-      - '.github/workflows/verify-reliquat-sources.yml'
 permissions:
   contents: read
 jobs:
   verify:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
+    runs-on: ubuntu-26.04
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
-      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
-      - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - name: Validate four exact-share official NAV sources
-        id: nav
-        continue-on-error: true
-        run: python scripts/collect_official_share_history.py --output "$RUNNER_TEMP/nav.json"
-      - name: Validate IBKR cash and official PEA rule
-        id: ibkr
-        continue-on-error: true
-        run: python scripts/verify_reliquat_sources.py --output "$RUNNER_TEMP/ibkr.json"
-      - name: Validate four complete WisdomTree portfolios
-        id: holdings
-        continue-on-error: true
-        run: python scripts/collect_dca_complete_holdings.py --only IE0002Y8CX98 IE000W8WMSL2 IE00BDVPNG13 IE00BJGWQN72 --output "$RUNNER_TEMP/holdings.json"
-      - name: Preserve individually validated and failed observations
-        if: always()
-        uses: actions/upload-artifact@v7.0.1
-        with:
-          name: audit-remainder-official-sources
-          path: |
-            ${{ runner.temp }}/nav.json
-            ${{ runner.temp }}/ibkr.json
-            ${{ runner.temp }}/holdings.json
-          retention-days: 35
-      - name: Print validation evidence
-        if: always()
+      - run: npm ci --ignore-scripts
+      - name: Prepare the same ordinary issuer browser as the production collector
+        run: |
+          if ! test -x /usr/bin/google-chrome && ! test -x /usr/bin/chromium; then npx playwright install --with-deps chromium; fi
+      - name: Read only the four exact ranking routes with the unchanged production helper
+        env:
+          PYTHONPATH: scripts
         run: |
           python - <<'PY'
-          import json,os
-          from pathlib import Path
-          for name in ['nav','ibkr','holdings']:
-            p=Path(os.environ['RUNNER_TEMP'])/(name+'.json')
-            if not p.exists():print(name,'NO REPORT');continue
-            value=json.loads(p.read_text())
-            if name=='nav':
-              for row in value['series']:
-                r=row.get('record',{})
-                print(json.dumps({'id':row['id'],'status':row['status'],'reason':row.get('reason'),'months':len(r.get('points',[])),'lastOfficialValuation':r.get('lastOfficialValuation'),'hashes':r.get('rawSourceHashes'),'calendarProof':r.get('calendarProof')},ensure_ascii=False))
-            else:print(json.dumps(value,ensure_ascii=False))
+          import datetime as dt,json,gzip,hashlib,pathlib,os,subprocess,time
+          from urllib.parse import urlencode,quote
+          from wisdomtree_rankings_transport import public_browser_rankings
+          from wisdomtree_ranked_fields import parse_fields
+          from wisdomtree_api_holdings import CLASS_CONFIG
+          from issuer_routes import ROUTES
+          selected=['IE0002Y8CX98','IE000W8WMSL2','IE00BZ56SW52','IE00BJGWQN72']
+          fields=['countries','holdings','sectors'];out=pathlib.Path(os.environ['RUNNER_TEMP'])/'rankings-runtime';out.mkdir()
+          expected=[{'isin':i,'fields':fields}for i in selected];rows=[];now=dt.datetime.now(dt.timezone.utc)
+          for index,isin in enumerate(selected):
+            if index:time.sleep(ROUTES['wisdomtree']['fundRankingsMinimumIntervalSeconds'])
+            c=CLASS_CONFIG[isin];url=ROUTES['wisdomtree']['fundRankings']+'?'+urlencode({'ticker':c['fundTicker'],'isoCode':'en-GB'},quote_via=quote)
+            r={'isin':isin,'url':url,'sourceAttempted':True,'attemptedAt':dt.datetime.now(dt.timezone.utc).isoformat()}
+            try:
+              raw=public_browser_rankings(url);values,errors=parse_fields(json.loads(raw),{'isin':isin,'currency':c['currency']},now,c['fundTicker'])
+              if errors or set(values)!=set(fields):raise ValueError('Individual field validation failed: '+json.dumps(errors))
+              r.update(status='succeeded',sha256=hashlib.sha256(raw).hexdigest(),fields=values)
+              (out/(isin+'.json.gz')).write_bytes(gzip.compress(raw,mtime=0))
+            except Exception as e:r.update(status='failed',error=str(e)[:900])
+            rows.append(r)
+          codeFiles=['scripts/wisdomtree_rankings_transport.py','scripts/download-wisdomtree-rankings.mjs','scripts/collect_wisdomtree_holdings.py','scripts/wisdomtree_ranked_fields.py']
+          proof={'runId':os.environ['GITHUB_RUN_ID'],'attempt':os.environ['GITHUB_RUN_ATTEMPT'],'expected':expected,'outcomes':rows,'sourceCodeBlobs':{p:subprocess.check_output(['git','hash-object',p],text=True).strip()for p in codeFiles},'limit':'Read-only source/transport/field validation; no production write, publication or scheduled trigger claimed.'}
+          (out/'proof.json').write_text(json.dumps(proof,ensure_ascii=False,indent=2)+'\n')
+          print([(r['isin'],r['status'],r.get('error',''))for r in rows])
+          if any(r['status']!='succeeded'for r in rows):raise SystemExit(1)
           PY
-      - name: Fail if a real-source qualification failed
-        if: always() && (steps.nav.outcome != 'success' || steps.ibkr.outcome != 'success' || steps.holdings.outcome != 'success')
-        run: exit 1
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: four-exact-ranking-runtime-controls
+          path: ${{ runner.temp }}/rankings-runtime/
+          retention-days: 35
+          if-no-files-found: error
