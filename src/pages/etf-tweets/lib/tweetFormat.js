@@ -51,8 +51,9 @@ export function buildTweetText(theme) {
     if (multiAsset.length) lines.push('', ...multiAsset)
     for (const [field, title] of [['countries', '🌍 Principaux pays'], ['sectors', '🧩 Principaux secteurs']]) {
       const composition = getComparisonComposition(etf.isin, field)
-      if (composition.rows.length) lines.push('', `${title}${composition.isIndex ? ' de l’indice suivi' : ''}${composition.asOf ? ` au ${composition.asOf.split('-').reverse().join('/')}` : ''}${composition.classification ? ` (${composition.classification})` : ''}`,
+      if (composition.rows.length) lines.push('', `${title}${composition.isIndex ? ' de l’indice suivi' : ''}${composition.asOf ? ` au ${composition.asOf.split('-').reverse().join('/')}` : ''}${composition.classification ? ` (${composition.classification})` : ''}${composition.netAssets ? ' (% de l’actif net)' : ''}`,
         ...composition.rows.map(([name, value]) => `${field === 'countries' ? countryFlag(name) : ''}${COMPOSITION_LABELS[name] ?? name} : ${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`))
+      if (composition.hasNegativeBalance) lines.push('Les positions positives dépassent 100 % au total ; le solde négatif de liquidités et dérivés équilibre la répartition.')
     }
     lines.push('')
   })

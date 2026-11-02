@@ -2,12 +2,23 @@ import { COMPARISON_ETF_DETAILS } from '../../../data/comparison-etf-details.js'
 import { AUTOMATED_ETF } from '../../../data/automated-etf.js'
 import { FRENCH_CHARACTERISTIC_LABELS } from '../../../data/french-characteristics.js'
 
+// Three visible rows remain the established paper-card limit. For a qualified
+// net-assets table, retain its signed balance alongside the leading exposures.
+export function comparisonCompositionRows(rows, netAssets = false) {
+  const finite = rows.filter(([, value]) => Number.isFinite(value))
+  const balance = netAssets ? finite.filter(([, value]) => value < 0) : []
+  const positive = finite.filter(([label, value]) => value > 0 && !/^(other|others|autres)$/i.test(label)).sort((a,b) => b[1]-a[1])
+  return [...positive.slice(0, Math.max(0, 3-balance.length)), ...balance]
+}
+
 export function getComparisonComposition(isin, field) {
   const details = COMPARISON_ETF_DETAILS[isin]
   const observation = AUTOMATED_ETF[isin]?.[field]
   const basis = observation?.basis ?? (field === 'countries' ? details?.countriesBasis : details?.basis)
+  const netAssets = observation?.weightConvention === 'signed-net-assets-reconciled-holdings'
+  const rows = comparisonCompositionRows([...(details?.[field] ?? [])], netAssets)
   return {
-    rows: [...(details?.[field] ?? [])].filter(([label, value]) => Number.isFinite(value) && value > 0 && !/^(other|others|autres)$/i.test(label)).sort((a, b) => b[1] - a[1]).slice(0, 3),
+    rows, netAssets, hasNegativeBalance: netAssets && rows.some(([,value]) => value < 0),
     asOf: details?.[`${field}AsOf`] ?? details?.asOf,
     isIndex: basis === 'index' || basis === 'tracked-index',
     classification: field === 'countries' && observation?.method?.includes('registration country') &&
@@ -16,7 +27,7 @@ export function getComparisonComposition(isin, field) {
 }
 export function compositionEvidenceLabel(composition) {
   return [composition.isIndex ? 'Indice suivi' : 'Fonds', composition.classification,
-    composition.asOf?.split('-').reverse().join('/')].filter(Boolean).join(' · ')
+    composition.asOf?.split('-').reverse().join('/'), composition.netAssets ? '% de l’actif net' : null].filter(Boolean).join(' · ')
 }
 export const COMPOSITION_LABELS = {
   ...FRENCH_CHARACTERISTIC_LABELS,
