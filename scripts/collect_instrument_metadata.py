@@ -89,6 +89,12 @@ def fetch_exchange_document(url):
 def fetch_document(url,fetch=download,isin=None):
     """Returns (body, url actually read)."""
     try:
+        from twentyone_shares_listing import URL as ABTC_URL, decode_document
+        if url == ABTC_URL:
+            if fetch is download:
+                body,actual=TRANSPORT.read(url,fetch=download,return_source=True,url_validator=lambda candidate:candidate==ABTC_URL)
+            else:body,actual=fetch(url),url
+            return decode_document(body,url,actual),actual
         if re.fullmatch(r'https://www\.quantalys\.com/(?:Fonds/[1-9]\d*|Recherche/RechercheRapide\?inputSearch=[A-Z]{2}[A-Z0-9]{9}\d)',url) and fetch is download:return TRANSPORT.read(url,fetch=fetch_quantalys_document)
         if re.fullmatch(r'https://live\.euronext\.com/en/product/etfs/[A-Z]{2}[A-Z0-9]{9}\d-[A-Z0-9]{4}',url) and fetch is download:return TRANSPORT.read(url,fetch=fetch_exchange_document)
         if url==AMUNDI_API and fetch is download:return fetch_amundi(isin),url
@@ -571,6 +577,10 @@ def parse_listings(body,source,url,checked):
     if 'www.justetf.com/' in url:return []  # Listings require an issuer or exchange row, not a specialist profile alone.
     # Mirrors (fund-data platforms, document aggregators) may describe a fund but are not listing evidence.
     from urllib.parse import urlsplit
+    from twentyone_shares_listing import URL as ABTC_URL, listing_rows
+    if url == ABTC_URL:
+        digest=hashlib.sha256(body).hexdigest();isin=source['isin']
+        return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"}for r in listing_rows(body,source,url,checked)]
     if urlsplit(url).scheme!='https' or urlsplit(url).hostname not in LISTING_HOSTS:return []
     isin=source['isin'];digest=hashlib.sha256(body).hexdigest();rows=[]
     if urlsplit(url).hostname=='apidata.londonstockexchange.com':
@@ -676,6 +686,7 @@ def collect(source,now,fetch=download,on_document=None):
             try:
                 from urllib.parse import urlsplit
                 if urlsplit(url).hostname=='apidata.londonstockexchange.com':fields={}
+                elif url=='https://api.primary.21shares.com/api/product_details/ABTC':fields={}  # Exact listing only; null product characteristics are not negative statements.
                 elif urlsplit(url).hostname=='dng-api.invesco.com':
                     fields=invesco_characteristics(body,source['isin'],url,now.date()) if '/fr_FR/' in urlsplit(url).path and 'variationType=' not in urlsplit(url).query else {}
                 elif urlsplit(url).hostname=='www.justetf.com':fields=parse_justetf(body,source['isin'])
