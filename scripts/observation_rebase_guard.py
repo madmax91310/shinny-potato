@@ -1,5 +1,6 @@
 """Allow revalidation only across explicitly independent financial outputs."""
 import argparse
+import copy
 import datetime as dt
 import json
 import re
@@ -117,7 +118,17 @@ ALLOWED = {
     # input for INSEE observations or exact anniversary levels. Their latest
     # version must still survive the mandatory combined-tree build/audits.
     'publication': {INFLATION_RECEIPT} | INDEPENDENT | {'src/data/automated-scpi.json',
-                                  'src/data/automated-presentation-actors.json'},
+                                  'src/data/automated-presentation-actors.json',
+                                  # Race41410676250: acquisition reads neither
+                                  # these exact derived reports nor the other
+                                  # producer's listing acquisition configuration.
+                                  # Rebuild and financial checks remain mandatory.
+                                  'docs/automation-gaps.json',
+                                  'public/data/asset-field-coverage.json',
+                                  'scripts/instrument-metadata-sources.json',
+                                  # Only the explicitly consumed NAV calendars
+                                  # may qualify this shared registry below.
+                                  'src/data/automated-etf.json'},
 }
 
 
@@ -129,12 +140,13 @@ MARKET_CALENDAR_REGISTRIES = {
     'src/data/exposure-etf-expansion-records.json',
 }
 MARKET_ECONOMIC_REGISTRY = 'src/data/automated-economic.json'
+PUBLICATION_INDEX_REGISTRY = 'src/data/automated-indices.json'
 
 def git_json(ref, path):
     return json.loads(subprocess.check_output(['git', 'show', f'{ref}:{path}'], text=True))
 
 
-def calendar_inputs_unchanged(base, upstream, path):
+def calendar_inputs_unchanged(base, upstream, path, *, exact_share_inputs=False):
     config = git_json(base, 'scripts/monthly-automation.json')
     series = config['series']
     if not isinstance(series, list):
@@ -151,12 +163,89 @@ def calendar_inputs_unchanged(base, upstream, path):
             raise ValueError('Missing calendar acquisition values')
         # Proof/control timestamps and hashes are not financial inputs. Keep
         # the original receipt dated as acquired; never borrow a newer check.
-        return {key: row.get(key) for key in ('productId', 'currency')} | {
-            'performance': {k: v for k, v in performance.items()
-                            if k not in ('checkedAt', 'asOf', 'sha256')}
-        }
-    return all(signature(before, s['isin']) == signature(after, s['isin'])
+        receipts = ('checkedAt', 'sha256') if exact_share_inputs else ('checkedAt', 'asOf', 'sha256')
+        calendar = {k: v for k, v in performance.items() if k not in receipts}
+        if exact_share_inputs:
+            # Anniversary acquisition also retains every known/unknown share
+            # attribute. Only these audited non-price capabilities are separate.
+            return {k: v for k, v in row.items()
+                    if k not in ('aum', 'countries', 'countriesRisk', 'sectors',
+                                 'holdings', 'performance')} | {'performance': calendar}
+        return {key: row.get(key) for key in ('productId', 'currency')} | {'performance': calendar}
+    if exact_share_inputs:
+        for source in consumers:
+            left, right = [r[source['isin']]['performance'] for r in (before, after)]
+            if set(left) != set(right):
+                return False
+            for key in ('checkedAt', 'sha256'):
+                if left.get(key) == right.get(key):
+                    continue
+                values = [left.get(key), right.get(key)]
+                if key == 'sha256':
+                    if any(not isinstance(v, str) or not re.fullmatch(r'[a-f0-9]{64}', v) for v in values):
+                        return False
+                else:
+                    if any(not isinstance(v, str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', v) for v in values):
+                        return False
+                    first, last = map(dt.date.fromisoformat, values)
+                    if not first <= last <= dt.datetime.now(dt.timezone.utc).date():
+                        return False
+    return all(json.dumps(signature(before, s['isin']), sort_keys=True, allow_nan=False)
+               == json.dumps(signature(after, s['isin']), sort_keys=True, allow_nan=False)
                for s in consumers)
+
+
+def index_price_inputs_unchanged(base, upstream):
+    """Keep price identity/calendars; compositions are a separate capability.
+
+    Actual41410676250 renewed facts/returns source hashes and control times.
+    Price dates, identity, units, conventions, returns and unknown fields remain
+    in the signature. Composition observations are not read by the anniversary
+    collectors. Never borrow any newer receipts for the acquired observations.
+    """
+    before, after = [copy.deepcopy(git_json(ref, PUBLICATION_INDEX_REGISTRY))
+                     for ref in (base, upstream)]
+    if not isinstance(before, dict) or not isinstance(after, dict) or set(before) != set(after):
+        return False
+    for key in before:
+        if not isinstance(before[key], dict) or not isinstance(after[key], dict):
+            return False
+        for field in ('facts', 'returns'):
+            old, new = before[key].get(field), after[key].get(field)
+            if not isinstance(old, dict) or not isinstance(new, dict):
+                continue  # Any structural difference stays in the full signature.
+            if field == 'facts':
+                # Exact capabilities only; index identity, source, provenance,
+                # taxonomy and unknown additions remain protected.
+                for independent in ('countries', 'sectors', 'holdings',
+                                    'constituents', 'topWeight', 'asOf'):
+                    old.pop(independent, None)
+                    new.pop(independent, None)
+            left, right = old.get('source'), new.get('source')
+            if not isinstance(left, dict) or not isinstance(right, dict) or set(left) != set(right):
+                continue
+            for receipt in ('checkedAt', 'retrievedAt', 'sha256'):
+                if receipt not in left:
+                    continue
+                a, b = left[receipt], right[receipt]
+                if a != b:
+                    if receipt == 'sha256':
+                        if any(not isinstance(v, str) or not re.fullmatch(r'[a-f0-9]{64}', v) for v in (a, b)):
+                            return False
+                    elif receipt == 'checkedAt':
+                        if any(not isinstance(v, str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', v) for v in (a, b)):
+                            return False
+                        if not dt.date.fromisoformat(a) <= dt.date.fromisoformat(b) <= dt.datetime.now(dt.timezone.utc).date():
+                            return False
+                    else:
+                        if any(not isinstance(v, str) or 'T' not in v for v in (a, b)):
+                            return False
+                        start, end = [dt.datetime.fromisoformat(v) for v in (a, b)]
+                        if start.tzinfo is None or end.tzinfo is None or not start <= end <= dt.datetime.now(dt.timezone.utc):
+                            return False
+                del left[receipt]
+                del right[receipt]
+    return json.dumps(before, sort_keys=True, allow_nan=False) == json.dumps(after, sort_keys=True, allow_nan=False)
 
 
 def economic_values_unchanged(base, upstream):
@@ -213,7 +302,13 @@ def check(kind, base, upstream):
         text=True).split('\0')
     blocked = []
     for path in filter(None, paths):
-        if kind == 'market' and path == MARKET_ECONOMIC_REGISTRY:
+        if kind == 'publication' and path == PUBLICATION_INDEX_REGISTRY:
+            try:
+                if not index_price_inputs_unchanged(base, upstream):
+                    blocked.append(path)
+            except (KeyError, TypeError, ValueError, subprocess.CalledProcessError):
+                blocked.append(path)
+        elif kind == 'market' and path == MARKET_ECONOMIC_REGISTRY:
             try:
                 if not economic_values_unchanged(base, upstream):
                     blocked.append(path)
@@ -221,9 +316,10 @@ def check(kind, base, upstream):
                 blocked.append(path)
         elif path not in ALLOWED[kind]:
             blocked.append(path)
-        elif kind == 'market' and path in MARKET_CALENDAR_REGISTRIES:
+        elif kind in ('market', 'publication') and path in MARKET_CALENDAR_REGISTRIES:
             try:
-                if not calendar_inputs_unchanged(base, upstream, path):
+                if not calendar_inputs_unchanged(base, upstream, path,
+                                                 exact_share_inputs=kind == 'publication'):
                     blocked.append(path)
             except (KeyError, TypeError, ValueError, subprocess.CalledProcessError):
                 blocked.append(path)  # Unknown acquisition dependencies fail closed.
