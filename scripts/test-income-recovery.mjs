@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict'
+import {readFileSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
 import SOURCES from './new-distributing-nav-sources.json' with {type:'json'}
 import RAW from '../src/data/automated-etf-monthly.json' with {type:'json'}
 import {ASSETS} from '../src/data/market-history.js'
@@ -13,6 +15,7 @@ import {CATALOG as DUELS} from '../src/data/duel-assets.js'
 import {AUTOMATIC_RECIPE_ISINS} from '../src/data/automated-portfolio-funds.js'
 import {anniversaryReferenceDate} from '../src/lib/anniversary-reference.js'
 import {ANNIVERSARY_ART} from '../src/pages/tweet-midi/anniversaryArt.js'
+import {computeAssetSeries} from '../src/lib/investment-series.js'
 
 for(const source of SOURCES){
  const record=RAW[source.id],asset=ASSETS[source.id]
@@ -40,6 +43,27 @@ for(const source of SOURCES){
  }
  const expected=(asset.points.at(-1).price/asset.points[0].price-1)*100
  assert(Math.abs(periodReturn(RANKING_ASSETS[source.id],start,end)-expected)<1e-6)
+ // A fixed historical oracle remains valid when later observations arrive.
+ // Read the actual issuer response, not the application's projected points.
+ const body=JSON.parse(gunzipSync(readFileSync(new URL(`./fixtures/income-recovery-20261102/${source.isin}.json.gz`,import.meta.url))))
+ const official=body.componentsByNameMap.performance.containersByNameMap
+ const chart=official.chart.dataPointsByNameMap.performanceData,months=new Map()
+ for(const [i,date]of chart.asOfDate.entries()){
+  const text=String(date),month=text.slice(0,4)+'-'+text.slice(4,6)
+  if('2020-01'<=month&&month<='2026-09')months.set(month,Number(chart.value[i]))
+ }
+ const prices=[...months.entries()].sort(([a],[b])=>a.localeCompare(b)).map(([,price])=>price)
+ assert.equal(prices.length,81,'The archived oracle contains each real month, without interpolation')
+ for(const mode of ['lump','dca']){
+  const expected=mode==='lump'?1000*prices.at(-1)/prices[0]:prices.reduce((sum,price)=>sum+1000/price,0)*prices.at(-1)
+  assert(qualifyHistoryWindow(asset,'2020-01','2026-09').qualified)
+  assert(Math.abs(computeAssetSeries(asset.points,'2020-01','2026-09',1000,mode).finalValue-expected)<.001,'Native calculator matches the independent official income chart to less than one tenth of a cent')
+ }
+ const calendar=official.returns.subContainersByNameMap.calendar.dataPointsByNameMap
+ const annual=Object.values(calendar).find(row=>row?.active&&String(row.asOfDate)==='20251231')
+ assert(annual)
+ const published=Number(annual.value[calendar.returnTypes.value.indexOf('annualNav')])
+ assert(Math.abs(periodReturn(RANKING_ASSETS[source.id],'2024-12','2025-12')-published)<1e-5,'Annual performance independently matches the published exact-share calendar')
  assert(PERFORMANCE[source.id])
  assert(ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===source.id))
  assert.equal(record.anniversaryValuationBasis,'fund-nav-price')
