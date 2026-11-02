@@ -2,7 +2,7 @@
 
 ## Base et concurrence
 
-Départ master `756a1fa9`, puis intégration de `a76f58fb` et `4b5ea567`. Les corrections concurrentes de budget #1147 et Nikkei #1148 sont conservées sans réimplémentation. Les PR #1136/#1137 avaient déjà admis les douze cotations exactes ajustées : elles ne sont ni supprimées, ni remplacées, ni présentées comme des NAV. #1138 traite les ventilations WisdomTree ; #1143 les calculs et #1146 le garde de publication. Leurs apports et les observations concurrentes sont conservés. Aucune modification de calendrier, budget, profil DCA ou portefeuille d’investisseur dans ce lot.
+Départ master `756a1fa9`, puis intégration de `a76f58fb` et `4b5ea567`. Les corrections concurrentes de budget #1147 et Nikkei #1148 sont conservées sans réimplémentation. Les PR #1136/#1137 avaient déjà admis les douze cotations exactes ajustées : elles ne sont ni supprimées, ni remplacées, ni présentées comme des NAV. #1138 traite les ventilations WisdomTree ; #1143 les calculs et #1146 le garde de publication. Leurs apports et les observations concurrentes sont conservés. La PR concurrente #1149 ne modifie aucun transport ni collecteur ; ses réserves cotation/NAV et politiques Amundi restent séparées. Aucune modification de calendrier, budget, profil DCA ou portefeuille d’investisseur dans ce lot.
 
 Le rapport natif publication `41390083945` contenait six erreurs : cinq NAV et FTSE. Les captures officielles de 05:58 confirment aussi le refus des douze NAV distribuantes : NAV au 30 octobre et rendement total au 29, valeurs différentes. La disponibilité d’une NAV ne certifie pas le rendement total.
 
@@ -58,5 +58,7 @@ Les fixtures contiennent les dix-sept réponses de recherche avec leurs empreint
 - Compilation, budgets inchangés, fenêtres financières et contrôles des anciens consommateurs NAV.
 - Stress Générateur : 9 300 portefeuilles, zéro violation.
 - Chromium 1 440 et 390 px : 72 PNG réellement téléchargés et comparés octet pour octet aux aperçus, conventions natives et NAV brute séparées. Le contrôle de canevas refuse `undefined` et `NaN`. Les exports ont été inspectés, notamment le nom long MBS et le mois de référence des anniversaires.
+
+Exemples de fichiers réellement téléchargés et inspectés : [anniversaire Brazil, ISIN et date NAV](nav-income-recovery-proofs/IE00B0M63516-anniversary-1440.png), [calculateur MBS, nom long](nav-income-recovery-proofs/IE00BZ6V7883-calculator-390.png).
 
 Ces résultats locaux ne constituent ni une CI réussie, ni une fusion, ni un déploiement. La PR suit séparément les exécutions GitHub, leurs collectes, les reçus d’enregistrement et la version publique. Un déclenchement manuel n’est jamais annoncé comme un passage programmé.
