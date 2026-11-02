@@ -160,7 +160,11 @@ export function buildTweet(result, title) {
   const lastYear = Number(result.end.slice(0, 4))
   const period = fullYears ? firstYear === lastYear ? `en ${lastYear}` : `entre ${firstYear} et ${lastYear}` : `entre fin ${formatMonth(result.start)} et fin ${formatMonth(result.end)}`
   const badges = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣', '6️⃣']
-  const lines = rows.map(r => `${badges[r.rank - 1]} ${r.label} : ${formatPercent(r.value)}${annualized ? '/an' : ''}`)
+  // Une petite variation ne devient pas un zéro dans le texte publié. Le
+  // classement continue de comparer les valeurs non arrondies, sans changement.
+  const publicationPercent = value => value !== 0 && Math.abs(value) < 0.01
+    ? `${value < 0 ? 'baisse' : 'hausse'} de moins de 0,01 %` : formatPercent(value)
+  const lines = rows.map(r => `${badges[r.rank - 1]} ${r.label} : ${publicationPercent(r.value)}${annualized ? '/an' : ''}`)
   const benchmark = result.assets.find(a => a.benchmark)
   const participants = result.assets.filter(a => !a.benchmark)
   const stocks = participants.every(a => a.instrumentType === 'EQUITY' || (!a.isin && a.basis === 'adjusted'))

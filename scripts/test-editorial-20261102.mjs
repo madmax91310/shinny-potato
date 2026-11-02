@@ -38,12 +38,13 @@ assert(!calculator(s,derive(s)).includes('Tu aurais gardé ce placement'))
 const base=derive({assetId:'bitcoin',amountRaw:'1000',mode:'dca',startYear:2025,startMonth:1,overridePriceRaw:''})
 assert(calculator({assetId:'bitcoin'}, {...base,result:{...base.result,months:undefined}}).includes('Versements mensuels en fin de mois'))
 assert(calculator({assetId:'bitcoin'}, {...base,result:{...base.result,months:['2025-01']}}).includes('1 versement en fin de mois'))
-for(const instrumentType of ['EQUITY','ETF'])for(const value of [-20,0,20]) {
+for(const instrumentType of ['EQUITY','ETF'])for(const value of [-20,-0.001,0,0.001,20]) {
   const assets=[0,1].map(i=>({id:String(i),isin:String(i),label:`Support ${i}`,shortLabel:`Support ${i}`,instrumentType,frequency:'annual',basis:'fund-nav',currency:'USD',years:{2025:value}}))
   const text=buildTweet(buildRanking(assets,{mode:'period',start:'2024-12',end:'2025-12'}),'Manuel')
   assert(text.includes(instrumentType==='EQUITY'?'laquelle':'lequel'))
   assert(text.includes('revenus réinvestis'))
   assert(!/NaN|undefined/.test(text))
+  if(value !== 0 && Math.abs(value)<0.01)assert(text.includes(`${value<0?'baisse':'hausse'} de moins de 0,01 %`))
 }
 const holdings=[.4,.2,.15,.1,.1,.05].map((weight,i)=>({weight,issuerName:`Entreprise ${i}`,ticker:`TEST${i}`}))
 const text=investor({identity:{slug:'test',displayName:'Gestionnaire de test'},snapshot:{periodEnd:'2026-06-30',holdings},holdings})
