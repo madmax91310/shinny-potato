@@ -132,7 +132,9 @@ def build_plan(producer, args, report_stem=None, module=None):
         m=mod();sources=cfg('instrument-metadata-sources');chosen=m.select_sources(sources,only)
         selected={s['isin']for s in chosen}
         for s in sources:
-            for field in m.FIELDS:
+            # A listings-only source does not own the other metadata fields.
+            # Read its declared capabilities before inspecting any observations.
+            for field in s.get('fields', m.FIELDS):
                 for suffix in ['',':qualification']:
                     add(s['isin']+':'+field+suffix,s['isin'],[field],s['isin']in selected,'Outside explicit metadata selection'if s['isin']not in selected else None,**({'phase':'qualification','sourceAttempted':False}if suffix else{}))
     elif producer=='update-investor-13f':
