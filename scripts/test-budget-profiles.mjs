@@ -175,3 +175,24 @@ assert(!lot2(14).expenses.some(r => r.amount === 1117 || r.amount === 1220), 'No
 assert(!lot2(18).income.some(r => r.amount === 6000 || r.amount === 50000), 'No duplicated bonus or future PEE')
 assert(!lot2(19).income.some(r => r.amount >= 9000), 'No post-internship projection treated as current salary')
 assert(!lot2(20).expenses.some(r => /crédit.*locatif/i.test(r.label)), 'Rental cash flow is already net; do not deduct mortgages twice')
+
+// Independently read first-column PDF ledgers and the pension article (02/11).
+for (const [id, income, expenses, transfers, balance] of [
+  ['budget-conseil-couple-2025-2026',3750,3720,30,0],
+  ['budget-conseil-couple_1enfant-2025-2026',4400,4360,40,0],
+  ['budget-conseil-couple_2enfants-2025-2026',5000,4920,80,0],
+  ['budget-conseil-couple_3enfants-2025-2026',5500,5440,60,0],
+  ['budget-conseil-monoparent_3enfants-2025-2026',4500,4420,80,0],
+  ['budget-conseil-apprenties_majeures-2025-2026',1400,1105,210,85],
+  ['websourd-retraite-normandie-2026-10-02',1100,1100,0,0],
+]) {
+  const p = BUDGET_PROFILES.find(p => p.id === id), a = analyzeBudget(p)
+  assert.deepEqual([a.income,a.expenses,a.savings,a.balance],[income,expenses,transfers,balance],id)
+  assert.equal(BUDGET_PROFILES.filter(q=>q.source.url===p.source.url).length,1,'No renamed source duplicate')
+  if(p.currency==='CHF') { assert(!buildBudgetText(p).includes('€')); assert.match(buildBudgetText(p), /Exemple de budget/); assert.match(buildBudgetText(p), /Reste (?:à affecter|pour les repas)/) }
+}
+const apprenticeReference = BUDGET_PROFILES.find(p=>p.id==='budget-conseil-apprenties_majeures-2025-2026')
+assert.equal(apprenticeReference.housing,'');assert.equal(apprenticeReference.family,'');assert.equal(apprenticeReference.children,'')
+assert.match(buildBudgetText(apprenticeReference), /85.*CHF restants doivent encore financer/)
+const pension = BUDGET_PROFILES.find(p=>p.id==='websourd-retraite-normandie-2026-10-02')
+assert.deepEqual(pension.savings,[]);assert.equal(pension.income[0].label,'Pension de retraite');assert.equal(pension.family,'')
