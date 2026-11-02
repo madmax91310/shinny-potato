@@ -1,10 +1,12 @@
 """Exact index rows, return conventions, completed years and preserved good data."""
 import copy
+import hashlib
 import datetime as dt
 import json
 from pathlib import Path
 import unittest
-from collect_remaining_indices import nikkei_composition,nikkei_returns,stoxx_returns,benchmark_page_returns,metal_benchmark_returns,collect_one,invesco_us_index_returns
+from issuer_documents import pdf_text
+from collect_remaining_indices import nikkei_sectors,nikkei_composition,nikkei_returns,stoxx_returns,benchmark_page_returns,metal_benchmark_returns,collect_one,invesco_us_index_returns
 from collect_index_documents import msci_composition
 from derive_index_returns import derive
 from refresh_index_sources import merge_records
@@ -115,4 +117,91 @@ class RemainingIndexSources(unittest.TestCase):
         observation=collect_one(cfg('nikkei225'),NOW,fetch=fail)
         self.assertEqual(len(observation['errors']),2)
         self.assertEqual(merge_records(previous,[observation]),previous)
+
+NIKKEI_NOW = dt.datetime(2026, 11, 2, tzinfo=UTC)
+NIKKEI_CONFIG = cfg('nikkei225')
+NIKKEI_TEXT = (F / 'nikkeiprice-20261030.txt').read_text()
+NIKKEI_PROOF = json.loads((F / 'nikkeiprice-20261030-proof.json').read_text())
+
+def nikkei_sector_block(text=NIKKEI_TEXT):
+    return text.split('Sector Weight', 1)[1].split('Vendor Code', 1)[0]
+
+class NikkeiSectorColumns(unittest.TestCase):
+    def test_actual_pdf_and_text_produce_the_same_seven_exact_weights(self):
+        raw = (F / 'nikkeiprice-20261030.pdf').read_bytes()
+        self.assertEqual(hashlib.sha256(raw).hexdigest(), NIKKEI_PROOF['sha256'])
+        parsed = nikkei_composition(NIKKEI_TEXT, NIKKEI_CONFIG, NIKKEI_NOW)
+        self.assertEqual(nikkei_composition(pdf_text(raw), NIKKEI_CONFIG, NIKKEI_NOW), parsed)
+        self.assertEqual(parsed['asOf'], '2026-10-30')
+        self.assertEqual(parsed['constituents'], 225)
+        self.assertEqual(parsed['sectors'], NIKKEI_PROOF['sectors'])
+        self.assertAlmostEqual(sum(weight for _, weight in parsed['sectors']), 100.02)
+        self.assertEqual(parsed['sectorMethod'], 'Nikkei seven-sector classification')
+        self.assertEqual(len(parsed['holdings']), 10)
+        self.assertAlmostEqual(sum(weight for _, weight in parsed['holdings']), 46.66)
+
+    def test_legacy_six_sector_classification_and_values_are_preserved(self):
+        parsed = nikkei_composition((F / 'nikkeiprice.txt').read_text(), NIKKEI_CONFIG, NIKKEI_NOW)
+        self.assertEqual(parsed['sectorMethod'], 'Nikkei six-sector classification')
+        self.assertEqual([v for _, v in parsed['sectors']], [56.96, 19.66, 12.26, 6.84, 2.98, 1.30])
+
+    def test_final_weight_without_a_right_hand_column_is_required(self):
+        self.assertTrue(nikkei_sector_block().split('Transportation and Utilities             1.43')[0])
+        self.assertEqual(nikkei_sectors(nikkei_sector_block(), 225)[-1],
+                         {'name': 'Transportation and Utilities', 'weightPct': 1.43})
+        with self.assertRaises(ValueError):
+            nikkei_sectors(nikkei_sector_block().replace('Transportation and Utilities             1.43', ''), 225)
+
+    def test_wrapped_label_cannot_be_replaced_by_a_count_or_unknown_sector(self):
+        for before, after in [('Communications                                          Financials',
+                               'Other                                                   Financials'),
+                              ('Information and                         11.18',
+                               'Information and                         225.00'),
+                              ('Technology                              41.11',
+                               'Technology                              49')]:
+            self.assertIn(before, nikkei_sector_block())
+            with self.subTest(change=after), self.assertRaises(ValueError):
+                nikkei_sectors(nikkei_sector_block().replace(before, after), 225)
+
+    def test_stock_count_column_does_not_supply_weights_and_must_reconcile(self):
+        for value in [nikkei_sector_block().replace('Materials                                    49',
+                                       'Materials                                    48'),
+                      nikkei_sector_block().replace('Information and Communications               15',
+                                       'Information and Communications               150')]:
+            self.assertNotEqual(value, nikkei_sector_block())
+            with self.assertRaises(ValueError): nikkei_sectors(value, 225)
+        with self.assertRaises(ValueError): nikkei_sectors(nikkei_sector_block(), 224)
+
+    def test_unknown_duplicate_or_missing_sector_is_not_silently_ignored(self):
+        changes = [('Consumer Goods                          23.82', 'Other                                   23.82'),
+                   ('Consumer Goods                          23.82', 'Technology                              23.82'),
+                   ('Weight(%)', 'Column changed'),
+                   ('Technology                              41.11', 'Technology                              1.11')]
+        for before, after in changes:
+            with self.subTest(change=after), self.assertRaises(ValueError):
+                nikkei_sectors(nikkei_sector_block().replace(before, after), 225)
+
+    def test_exact_index_identity_and_dates_remain_required(self):
+        for changed in [NIKKEI_TEXT.replace('price-weighted equity index', 'different index'),
+                        NIKKEI_TEXT.replace('FS-101-20261030', 'FS-101-20261103')]:
+            with self.assertRaises(ValueError): nikkei_composition(changed, NIKKEI_CONFIG, NIKKEI_NOW)
+
+    def test_failure_keeps_old_composition_and_independent_returns(self):
+        previous = {'nikkei225': {'facts': nikkei_composition((F / 'nikkeiprice.txt').read_text(), NIKKEI_CONFIG, NIKKEI_NOW),
+                                 'returns': {'asOf': '2026-09-30', 'currency': 'JPY',
+                                             'variant': 'TOTAL', 'values': [[2025, 28.65]]}}}
+        original = copy.deepcopy(previous)
+        config = {**NIKKEI_CONFIG, 'returnSourceUrl': None}
+        def offline(_): raise OSError('network unavailable')
+        failed = collect_one(config, NIKKEI_NOW, offline)
+        self.assertTrue(failed['errors'])
+        self.assertEqual(merge_records(previous, [failed]), original)
+        good = collect_one(config, NIKKEI_NOW, lambda _: (F / 'nikkeiprice-20261030.pdf').read_bytes())
+        self.assertFalse(good['errors'])
+        merged = merge_records(previous, [good])
+        self.assertEqual(merged['nikkei225']['returns'], original['nikkei225']['returns'])
+        self.assertEqual(merged['nikkei225']['facts']['sectors'], NIKKEI_PROOF['sectors'])
+        self.assertEqual(previous, original)
+
+
 if __name__=='__main__':unittest.main()
