@@ -3,6 +3,7 @@
   "node scripts/test-investment-crisis.mjs --browser",
   "node scripts/test-resource-selections.mjs --browser",
   "node scripts/test-dca-images.mjs",
+  "node scripts/test-image-density.mjs && node scripts/playwright-image-density.mjs",
   "node scripts/playwright-dca-holdings-contracts.mjs",
   "node scripts/playwright-dca-roadmap.mjs",
   "node scripts/playwright-dca-selections.mjs",
