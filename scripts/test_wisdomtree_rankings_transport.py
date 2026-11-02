@@ -45,6 +45,11 @@ class RankingsBrowser(unittest.TestCase):
     else:
      with self.assertRaises((ValueError,KeyError)):public_browser_rankings(URL)
     self.assertEqual(run.call_args.kwargs['timeout'],55)
+ def test_runtime_failure_keeps_its_specific_cause_without_dumping_output(self):
+  error=subprocess.CalledProcessError(1,[],output=b'not a financial proof',stderr=b'Error: browser executable missing\nprivate response body omitted')
+  with patch('wisdomtree_rankings_transport.subprocess.run',side_effect=error):
+   with self.assertRaisesRegex(ValueError,'browser executable missing')as caught:public_browser_rankings(URL)
+   self.assertNotIn('private response',str(caught.exception))
  def test_exact_http403_then_same_share_browser_is_financially_validated(self):
   with patch.object(c,'acquire_public_rankings',side_effect=denied()),patch('wisdomtree_rankings_transport.public_browser_rankings',return_value=raw())as browser:
    result=c.acquire_qualified_public_rankings(self.share(),NOW)
