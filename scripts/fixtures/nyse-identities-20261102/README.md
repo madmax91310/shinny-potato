@@ -13,3 +13,9 @@ still fails without its own qualified bridge. No ISIN is inferred from a ticker.
 The full official Nasdaq otherlisted.txt response was empty (header/footer,
 131 bytes), SHA-256 dbe69fbb1ed0d6d94177febfcb4b5c51bcb329163df2f5f50556c52bf93f5a92.
 The fallback does not renew that unavailable source's last valid reference.
+
+registered-references.json is the exact eight-row reference subset and ISIN
+bridge from commit0c244dc, before the primary directory recovery on2November.
+Tests must not borrow observation dates from the living registry: a successful
+normal refresh can advance them beyond the captured October30 NYSE response.
+The newer real registry remains protected by the same older-observation refusal.

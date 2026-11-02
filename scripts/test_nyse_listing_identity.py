@@ -12,17 +12,25 @@ from producer_report_plans import build_plan
 from producer_report_contract import finish,normalize_contract
 ROOT=Path(__file__).resolve().parents[1]
 ROWS=json.loads((ROOT/'scripts/fixtures/nyse-identities-20261102/official-identity-subsets.json').read_text())
+REFERENCE=json.loads((ROOT/'scripts/fixtures/nyse-identities-20261102/registered-references.json').read_text())
 NOW=dt.datetime(2026,11,2,12,tzinfo=dt.timezone.utc)
 EMPTY=b'ACT Symbol|Security Name|Exchange|ETF\nFile Creation Time: 11022026\n'
 
 def registered(ticker='NET'):
- return copy.deepcopy(next(r for r in json.loads((ROOT/'src/data/shared-listing-identities.json').read_text())['listings']if r.get('ticker')==ticker and r.get('sourceId')=='us-other'))
+ return copy.deepcopy(next(r for r in REFERENCE['listings']if r['ticker']==ticker))
 def isin(row):
- return next(r['isin']for r in json.loads((ROOT/'src/data/global-equities.json').read_text())if r.get('aiListingId')==row['id'])
+ return REFERENCE['isinByListingId'][row['id']]
 def payload(ticker='NET'):
  return json.dumps({'quote':next(r['identity']for r in ROWS if r['ticker']==ticker)}).encode()
 
 class NyseIdentity(unittest.TestCase):
+ def test_historical_fixture_does_not_track_a_newer_live_directory(self):
+  self.assertEqual(REFERENCE['referenceCommit'],'0c244dcbf1d76373bf26a6c35d13df7c567c0e22')
+  row=registered();self.assertEqual(row['listingObservation']['asOf'],'2026-10-30')
+  self.assertEqual(qualify(row,isin(row),payload(),NOW)['asOf'],'2026-10-30')
+  newer=copy.deepcopy(row);newer['listingObservation']['asOf']='2026-11-02'
+  with self.assertRaisesRegex(ValueError,'Older'):qualify(newer,isin(newer),payload(),NOW)
+  self.assertEqual(registered(),row)
  def test_seven_exact_identifiers_not_fuzzy_name_or_price_evidence(self):
   for ticker in ['NET','RDDT','NU','GEV','SNOW','VRT','CCJ']:
    with self.subTest(ticker=ticker):
