@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import {buildInbox,issueKind,projectionHealth} from '../src/pages/data-review/review-inbox.js'
+import {buildInbox,issueKind,projectionHealth,inboxDiagnostic} from '../src/pages/data-review/review-inbox.js'
 import {initialIssue,financialImpact,summarizeInbox} from '../src/pages/data-review/review-summary.js'
 import {groupReviewIssues} from '../src/pages/data-review/review-causes.js'
 
@@ -11,8 +11,12 @@ const archive={id:'old',name:'Old source',field:'Value',resolvedAt:'2026-10-30',
 let report=run({status:{...status,monitoring:{...monitoring,resolved:[archive]}}})
 const old=report.issues.find(r=>r.id==='history:old:2026-10-30')
 assert.equal(old.kind,'archive');assert(!initialIssue(old));assert.equal(old.signals.length,1)
+const catalogue=run({review:{archiveItems:[{id:'archive:known:0',name:'Known snapshot',field:'Weight',reason:'Historical proof',metadata:{asOf:'2009'},tools:[],urls:[]}]}}).issues.find(r=>r.id==='archive:known:0')
+assert.equal(catalogue.kind,'archive');assert(!initialIssue(catalogue));assert.equal(catalogue.asOf,'2009')
 assert.equal(issueKind('check-overdue'),'due')
 assert.equal(issueKind('collection-error'),'failure')
+const checkedOnly=run({status:{...status,monitoring:{...monitoring,active:{x:{id:'x',name:'Source',field:'Value',kind:'collection',checkedAt:'2026-11-02',cause:'HTTP 403'}}}}}).issues.find(r=>r.id==='x')
+assert(inboxDiagnostic(checkedOnly).includes('Dernier contrôle réussi : Non documenté'),'A recorded check date is not a demonstrated source success')
 
 const failed={id:'attempt:1',kind:'collection',name:'Current source',field:'Value',tools:['Unproven tool'],cause:'HTTP 403',asOf:'2026-09',lastSuccessAt:'2026-10-01',attemptedAt:'2026-11-02T05:00:00Z',runId:12,attempt:2}
 const due={id:'field:instrument:IE0000000000:aum',kind:'freshness',category:'check-overdue',name:'Current source',field:'Value',asOf:'2026-09',cause:'Due'}

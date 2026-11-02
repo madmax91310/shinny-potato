@@ -16,7 +16,7 @@
     "initial": 6862
   },
   "after": {
-    "points": 9637,
+    "points": 9656,
     "categories": {
       "failure": 46,
       "connection": 175,
@@ -24,12 +24,12 @@
       "qualification": 2489,
       "due": 11,
       "editorial": 28,
-      "archive": 4294,
+      "archive": 4313,
       "waiting": 818,
       "not-applicable": 430,
       "history": 850
     },
-    "signals": 13541,
+    "signals": 13560,
     "attempts": 1129,
     "commonInterventions": 0,
     "pointsInCommonInterventions": 0,
@@ -53,6 +53,7 @@
     "editorial → due": 7,
     "editorial → editorial": 28,
     "qualification → archive": 4294,
+    "archive du catalogue hors boîte → archive": 19,
     "not-applicable → archive": 3,
     "editorial → waiting": 797,
     "waiting → waiting": 18,
@@ -61,6 +62,7 @@
     "qualification → not-applicable": 2,
     "history → history": 850
   },
+  "newlyVisibleCatalogueArchives": 19,
   "beforePointsSeparated": 580,
   "afterPointsMergingPreviouslySeparateSignals": 7,
   "financialStates": {

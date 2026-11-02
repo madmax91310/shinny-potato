@@ -99,6 +99,6 @@ export default function DataReview() {
       <div className="dr-links"><Link to={item.to}>Ouvrir {item.to.startsWith('/bibliotheque') ? 'la fiche de données' : item.to === '/comparatif-courtiers' ? 'le comparatif courtiers' : 'le portefeuille investisseur'}</Link>{item.urls.map((url, index) => <a href={url} key={url} target="_blank" rel="noreferrer">Source{item.urls.length > 1 ? ` ${index + 1}` : ''} ↗</a>)}</div>
     </article>)}</div>
     {!items.length && <p className="dr-empty">Aucun élément pour cette sélection.</p>}
-    <p className="dr-note dr-footnote">Une date ancienne appelle une revue, elle ne prouve pas qu’une valeur est fausse. Les dates de photographie et les dates de contrôle restent distinctes. Les {report.archives} archives non recertifiables sont conservées à part et exclues de cette liste. Les échéances affichées sont celles enregistrées ; leur éventuelle prolongation doit être vérifiée auprès de la source.</p>
+    <p className="dr-note dr-footnote">Une date ancienne appelle une revue, elle ne prouve pas qu’une valeur est fausse. Les dates de photographie et les dates de contrôle restent distinctes. Les {report.archives} archives non recertifiables sont accessibles dans la catégorie Archives du centre de suivi ; elles restent séparées du calendrier actuel. Les échéances affichées sont celles enregistrées ; leur éventuelle prolongation doit être vérifiée auprès de la source.</p>
   </div>
 }

@@ -82,10 +82,15 @@ export function buildReview(today = parisToday(), catalog = DATA_CATALOG, broker
   if (dayNumber(today) === null) throw new Error('Date de revue invalide')
   const items = []
   const schedule = []
+  const archiveItems = []
   let archives = 0
   for (const record of catalog) {
     for (const [index, field] of record.fields.entries()) {
-      if (field.metadata.sourceStatus === 'archive-unverifiable') { archives++; continue }
+      if (field.metadata.sourceStatus === 'archive-unverifiable') {
+        archives++
+        archiveItems.push({id:`archive:${record.id}:${index}`,name:record.name,field:field.label,category:'archive',checkedAt:field.metadata.checkedAt,metadata:field.metadata,tools:record.consumers.map(c=>c.tool??c.path).filter(Boolean),urls:field.metadata.sourceUrls,to:`/bibliotheque-donnees?id=${encodeURIComponent(record.id)}`,reason:field.qualificationMissing??'Archive non recertifiable : photographie conservée à sa date ; la preuve historique reste à documenter.'})
+        continue
+      }
       if (!record.consumers.length) continue
       const base = { maintenanceRecord: record, maintenanceField: field, name: record.name, aliases: [record.id, ...record.aliases ?? []], field: field.label, checkedAt: field.metadata.checkedAt, metadata: field.metadata, modifiedAt: field.metadata.modifiedAt, urls: field.metadata.sourceUrls, to: `/bibliotheque-donnees?id=${encodeURIComponent(record.id)}`, tools: record.consumers.map(c => c.tool), registry: field.registry }
       const review = scheduledReview({ ...base, id: `data:${record.id}:${index}` }, field, today)
@@ -141,7 +146,7 @@ export function buildReview(today = parisToday(), catalog = DATA_CATALOG, broker
   const order = ['expired', 'future-date', 'reserve', 'stale', 'undated', 'ending', 'soon', 'scheduled']
   items.sort((a, b) => order.indexOf(a.category) - order.indexOf(b.category) || (dayNumber(a.nextReviewAt ?? a.until) ?? -Infinity) - (dayNumber(b.nextReviewAt ?? b.until) ?? -Infinity) || a.name.localeCompare(b.name, 'fr') || a.field.localeCompare(b.field, 'fr'))
   schedule.sort((a, b) => (dayNumber(a.nextReviewAt) ?? -Infinity) - (dayNumber(b.nextReviewAt) ?? -Infinity) || a.name.localeCompare(b.name, 'fr'))
-  return { today, items, schedule, archives }
+  return { today, items, schedule, archives, archiveItems }
 }
 
 // Le regroupement consomme la périodicité de la règle qui a calculé la date.
