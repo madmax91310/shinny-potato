@@ -14,4 +14,8 @@ The full official Nasdaq otherlisted.txt response was empty (header/footer,
 131 bytes), SHA-256 dbe69fbb1ed0d6d94177febfcb4b5c51bcb329163df2f5f50556c52bf93f5a92.
 The fallback does not renew that unavailable source's last valid reference.
 
-`registered-reference-20261102T045231.json` conserve les huit références enregistrées de `f7d3a6b0`, avant leur nouvelle observation du 2 novembre. Les tests positifs rejouent les réponses archivées du 30 octobre sur cette base immuable ; ils ne tentent jamais de remplacer une observation actuelle plus récente par ces anciennes réponses. Les tests de refus des observations obsolètes restent actifs. Le registre vivant sert toujours à vérifier le périmètre dynamique du plan, sans compteur de catalogue figé.
+registered-references.json is the exact eight-row reference subset and ISIN
+bridge from commit0c244dc, before the primary directory recovery on2November.
+Tests must not borrow observation dates from the living registry: a successful
+normal refresh can advance them beyond the captured October30 NYSE response.
+The newer real registry remains protected by the same older-observation refusal.
