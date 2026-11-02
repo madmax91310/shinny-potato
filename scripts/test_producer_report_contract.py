@@ -193,35 +193,35 @@ class ProducerEntryPoints(unittest.TestCase):
                 p=plans.build_plan('refresh_anniversary_levels',args)
                 self.assertEqual({r['id']for r in p['items']if r['selected']},{'anniversary-'+value for value in selected}|{'anniversary-or'})
 
-    def test_real_listing_only_metadata_sources_declare_only_owned_fields(self):
+    def test_real_listing_and_hedge_metadata_sources_declare_only_owned_fields(self):
         sources=plans.read('scripts/instrument-metadata-sources.json')['instruments']
         identities=plans.read('src/data/new-instrument-identities.json')
         ids={r['isin']for r in identities};declared={r['isin']:r for r in sources if r['isin']in ids}
         self.assertEqual(len(declared),21)
-        self.assertTrue(all(r['fields']==['listings']for r in declared.values()))
+        self.assertTrue(all(r['fields']==['listings','currencyHedge']for r in declared.values()))
         with patch('urllib.request.urlopen',side_effect=AssertionError('Plan must precede source/results')):
             p=plans.build_plan('collect_instrument_metadata',['--only',','.join(sorted(ids))])
         selected={r['id']for r in p['items']if r['selected']}
-        expected={isin+':listings'+suffix for isin in ids for suffix in ('',':qualification')}
+        expected={isin+':'+field+suffix for isin in ids for field in ('listings','currencyHedge')for suffix in ('',':qualification')}
         self.assertEqual(selected,expected)
-        self.assertEqual(len(selected),42)
-        # The old plan wrongly required another210 results for those same sources.
+        self.assertEqual(len(selected),84)
+        # Four unowned fields per part remain excluded, including PEA; no expansion from a missing badge.
         excluded=[r for r in p['items']if r['instrument']in ids and not r['selected']]
-        self.assertEqual(len(excluded),210)
+        self.assertEqual(len(excluded),168)
         self.assertTrue(all(r['reason'].startswith('Outside declared fields')for r in excluded))
         complete_plan={**plan(),**p,'producer':'collect_instrument_metadata','reportStem':'metadata-observation'}
         reported=finished({},complete_plan)
         missing=[r for r in reported['resultContract']['outcomes']if r['id']in expected]
-        self.assertEqual(len(missing),42)
+        self.assertEqual(len(missing),84)
         self.assertTrue(all(r['status']=='failed'for r in missing),'An owned result omitted from a green job remains a real omission')
         unowned=[r for r in reported['resultContract']['outcomes']if r['instrument']in ids and r['id']not in expected]
-        self.assertEqual(len(unowned),210)
+        self.assertEqual(len(unowned),168)
         self.assertTrue(all(r['status']=='not-attempted' and r['sourceAttempted']is False for r in unowned))
 
     def test_metadata_targeting_preserves_defaults_and_excludes_other_sources(self):
         sources=plans.read('scripts/instrument-metadata-sources.json')['instruments']
         full=next(r for r in sources if 'fields'not in r)
-        narrow=next(r for r in sources if r.get('fields')==['listings'])
+        narrow=next(r for r in sources if r.get('fields')==['listings','currencyHedge'])
         p=plans.build_plan('collect_instrument_metadata',['--only',full['isin']])
         import collect_instrument_metadata as metadata
         self.assertEqual({r['id']for r in p['items']if r['selected']},{full['isin']+':'+field+suffix for field in metadata.FIELDS for suffix in ('',':qualification')})

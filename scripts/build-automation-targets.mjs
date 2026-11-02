@@ -1,3 +1,4 @@
+import {restrictedMetadataRoute} from './lib/metadata-field-routing.mjs'
 import wisdomtreeClasses from './wisdomtree-holdings-classes.json' with {type:'json'}
 import invescoPhysical from './invesco-physical-holdings-contracts.json' with {type:'json'}
 import {readFileSync,writeFileSync} from 'node:fs'
@@ -20,7 +21,7 @@ const withCandidates=(isin,listings)=>[...listings,...(candidates[isin]??[]).fil
 const completeHoldings=JSON.parse(readFileSync('src/data/dca-complete-holdings.json'))
 const holdings={},metadata=[]
 const previousStatus=JSON.parse(readFileSync('src/data/instrument-metadata-status.json'))
-const supplemental=new Map(JSON.parse(readFileSync('scripts/instrument-metadata-supplemental-sources.json')).instruments.map(r=>[r.isin,r.urls]))
+const supplemental=new Map(JSON.parse(readFileSync('scripts/instrument-metadata-supplemental-sources.json')).instruments.map(r=>[r.isin,r]))
 const holds=new Map(JSON.parse(readFileSync('scripts/metadata-qualification-holds.json')).instruments.map(r=>[r.isin,r]))
 // Always renew French tax statements, including previously reviewed positives/negatives.
 // The issuer's explicit « Régime fiscal PEA » is evidence; a dash stays unknown.
@@ -37,7 +38,7 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  urls.push(...frenchIssuerPage(r,urls))
  // French tax panels publish an explicit boolean, unlike an absent badge.
  urls.push(...urls.filter(url=>url?.startsWith('https://etf.dws.com/api/pdp/en-gb/etf/')).map(url=>url.replace('/api/pdp/en-gb/','/api/pdp/fr-fr/')))
- urls.push(...(supplemental.get(isin)??[]))
+ urls.push(...(supplemental.get(isin)?.urls??[]))
  // Search the broker's own reference index before constructing a profile URL.
  // An absent reference stays unknown; no ticker or market number is guessed.
  if(!METADATA[isin]?.pea||METADATA[isin]?.pea?.sourceUrl?.startsWith('https://bourse.fortuneo.fr/'))urls.push('https://bourse.fortuneo.fr/api/search?term='+isin)
@@ -61,9 +62,11 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  // Keep one qualification condition per field and set of public source URLs.
  const qualificationHolds=[...new Map(([...(holds.has(isin)?[holds.get(isin)]:[]),...(previousStatus[isin]?.errors??[]).filter(error=>error.qualificationRequired&&error.sources?.length>=2&&['pea','currencyHedge'].includes(error.field)).map(({field,sources})=>({field,sources}))]).map(hold=>[JSON.stringify([hold.field,hold.sources.map(row=>row.sourceUrl).sort()]),hold])).values()]
  urls.push(...qualificationHolds.flatMap(hold=>hold.sources.map(row=>row.sourceUrl)))
- const metadataFields=issuerShares.get(isin)?.metadataFields
+ const ownedFields=issuerShares.get(isin)?.metadataFields
+ const restricted=ownedFields?restrictedMetadataRoute(isin,endpoint(r.sourceUrl),ownedFields,supplemental.get(isin)):null
+ const metadataFields=restricted?.fields
  metadata.push({isin,listings,...(typeof review?.eligible==='boolean'?{peaExpectation:{value:review.eligible,sourceUrl:review.sourceUrl,checkedAt:review.checkedAt}}:{}),
-  urls:metadataFields?[endpoint(r.sourceUrl)]:[...new Set([...urls.filter(Boolean),...issuerDocuments].map(currentDocument).map(endpoint))],
+  urls:restricted?restricted.urls:[...new Set([...urls.filter(Boolean),...issuerDocuments].map(currentDocument).map(endpoint))],
   ...(metadataFields?{fields:metadataFields}:{}),...(qualificationHolds.length?{qualificationHolds}:{})})
  if(existing[isin])continue
  const name=INSTRUMENTS_BY_ISIN[isin]?.name??''
