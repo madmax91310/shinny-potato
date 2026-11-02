@@ -1,4 +1,6 @@
 import copy
+import base64
+import urllib.error
 import datetime as dt
 import hashlib
 import json
@@ -61,6 +63,25 @@ class NyseIdentity(unittest.TestCase):
   healthy=b'ACT Symbol|Security Name|Exchange|ETF\nOTHER|Other Inc Common Stock|N|N\nFile Creation Time: 11022026\n'
   def mismatch(url,**kw):calls.append(url);return healthy
   new,r=refresh(old,NOW,mismatch);self.assertEqual(new,old);self.assertEqual(len(calls),1)
+ def test_browser_is_bounded_to_transport_failure_and_revalidates_exact_identity(self):
+  old={'listings':[registered()]};calls=[]
+  def blocked(url,**kw):
+   if 'nasdaqtrader'in url:return EMPTY
+   raise urllib.error.HTTPError(url,403,'Forbidden',{},None)
+  def browser(tickers):
+   calls.append(tickers);return {'records':{'NET':{'url':'https://www.nyse.com/api/nyseservice/v1/quotes?symbol=NET','body':base64.b64encode(payload()).decode()}},'errors':{}}
+  new,r=refresh(old,NOW,blocked,browser)
+  self.assertEqual(calls,[['NET']]);self.assertEqual(len(r['successes']),1);self.assertIn('403',new['listings'][0]['listingObservation']['transport']['primaryHttpError'])
+  for code in [404,429,500]:
+   def other(url,**kw):
+    if 'nasdaqtrader'in url:return EMPTY
+    raise urllib.error.HTTPError(url,code,'failure',{},None)
+   calls.clear();unchanged,r=refresh(old,NOW,other,browser);self.assertEqual(unchanged,old);self.assertFalse(calls)
+  def malformed(tickers):return {'records':{},'errors':{'NET':'modified/empty response'}}
+  unchanged,r=refresh(old,NOW,blocked,malformed);self.assertEqual(unchanged,old);self.assertIn('modified/empty',r['errors'][0]['error'])
+  def wrong(tickers):
+   q=json.loads(payload());q['quote']['cusip']='000000000';return {'records':{'NET':{'url':'https://www.nyse.com/api/nyseservice/v1/quotes?symbol=NET','body':base64.b64encode(json.dumps(q).encode()).decode()}}}
+  unchanged,r=refresh(old,NOW,blocked,wrong);self.assertEqual(unchanged,old);self.assertIn('identifier differs',r['errors'][0]['error'])
  def test_primary_recovery_returns_to_real_directory_observation(self):
   old={'listings':[registered()]}
   new,_=refresh(old,NOW,lambda url,**kw:EMPTY if 'nasdaqtrader'in url else payload())

@@ -1,5 +1,5 @@
 """Renew only already-consumed ordinary-share identities; never collect prices or discover a universe."""
-import copy,csv,datetime as dt,hashlib,io,json,re
+import copy,csv,datetime as dt,hashlib,io,json,re,base64,subprocess,urllib.error
 from pathlib import Path
 from issuer_documents import download
 
@@ -39,8 +39,13 @@ def observations(body,source_id,now):
         return [dict(ticker=r['symbol'],mic=r.get('micCode'),currency=r['currency'],name=r['fullName'],isin=r['isin'],orderbook=r['orderbookId'],shareType=security_type(r['fullName']))for r in rows],asof
     raise ValueError('Unsupported shared directory')
 
-def refresh(document,now,fetch=download):
-    result=copy.deepcopy(document);successes=[];errors=[];cache={};directory_outcomes=[]
+def browser_identities(tickers):
+    process=subprocess.run(['node',str(Path(__file__).with_name('download-nyse-listing-identities.mjs')),*tickers],capture_output=True,timeout=230,check=True)
+    if len(process.stdout)>24_000_000:raise ValueError('NYSE browser response outside bound')
+    return json.loads(process.stdout)
+
+def refresh(document,now,fetch=download,browser_fetch=browser_identities):
+    result=copy.deepcopy(document);successes=[];errors=[];cache={};directory_outcomes=[];browser_result=None
     # These are already-established common ISIN links, not an ISIN inference from an exchange name.
     common=json.loads((Path(__file__).resolve().parents[1]/'src/data/global-equities.json').read_text())
     aliases={r['aiListingId']:r['isin']for r in common if r.get('aiListingId')}
@@ -60,8 +65,22 @@ def refresh(document,now,fetch=download):
                 from nyse_listing_identity import qualify
                 fallback_url='https://www.nyse.com/api/nyseservice/v1/quotes?symbol='+row['ticker']
                 attempted_urls.append(fallback_url)
-                raw=fetch(fallback_url,max_bytes=2_000_000,max_attempts=1)
+                transport=None
+                try:raw=fetch(fallback_url,max_bytes=2_000_000,max_attempts=1)
+                except (urllib.error.HTTPError,urllib.error.URLError,TimeoutError,ConnectionError) as transport_error:
+                    if isinstance(transport_error,urllib.error.HTTPError) and transport_error.code!=403:raise
+                    if browser_result is None:
+                        tickers=list(dict.fromkeys(r['ticker']for r in document['listings']if (r.get('sourceId'),r.get('mic'),r.get('currency'),r.get('shareType'),r.get('instrumentType'))==('us-other','XNYS','USD','ordinary','EQUITY')))
+                        try:browser_result=browser_fetch(tickers)
+                        except Exception as error:browser_result=error
+                    if isinstance(browser_result,Exception):raise ValueError('NYSE HTTP failed: '+str(transport_error)+'; ordinary browser failed: '+str(browser_result))from transport_error
+                    record=browser_result.get('records',{}).get(row['ticker'])
+                    if not record or record.get('url')!=fallback_url:raise ValueError('NYSE HTTP failed: '+str(transport_error)+'; ordinary browser: '+browser_result.get('errors',{}).get(row['ticker'],'individual result omitted'))from transport_error
+                    raw=base64.b64decode(record['body'],validate=True)
+                    if not raw or len(raw)>2_000_000:raise ValueError('NYSE browser body outside bound')
+                    transport={'method':'ordinary NYSE page and same-origin public API','primaryHttpError':str(transport_error)}
                 observation=qualify(row,identifier,raw,now)
+                if transport:observation['transport']=transport
                 # Only the independently checked fallback clock advances. Never
                 # renew the unavailable primary proof or import quote prices.
                 unchanged=row.get('listingObservation',{}).get('sha256')==observation['sha256']
