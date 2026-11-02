@@ -4,6 +4,7 @@ import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
+import { parisToday } from '../src/pages/budget-profiles/publication.js'
 import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { buildBudgetText } from '../src/pages/budget-profiles/lib.js'
 import { DRAFT_KEY, WORKSPACE_KEY } from '../src/pages/budget-profiles/storage.js'
@@ -34,19 +35,32 @@ try {
   await page.getByRole('button',{name:'Copier le texte',exact:true}).click()
   await expect(page.getByLabel('Profil publié',{exact:true})).not.toBeChecked()
   await page.reload();await expect(page.getByLabel('À publier prochainement',{exact:true})).toBeChecked();await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(custom)
+  const publication=page.getByLabel('Profil publié',{exact:true})
+  await publication.click(); await expect(publication).not.toBeChecked()
+  await expect(page.getByLabel('Date de publication sur X',{exact:true})).toHaveValue(parisToday())
+  await page.getByRole('button',{name:'Annuler',exact:true}).click(); await expect(publication).not.toBeChecked()
+  await publication.click(); await page.getByLabel('Date de publication sur X',{exact:true}).fill('2099-01-01')
+  await page.getByRole('button',{name:'Confirmer la publication',exact:true}).click();await expect(page.getByRole('alert')).toContainText('dans le passé');await expect(publication).not.toBeChecked()
+  await page.getByLabel('Date de publication sur X',{exact:true}).fill('2026-10-12')
+  await page.getByRole('button',{name:'Confirmer la publication',exact:true}).click();await expect(publication).toBeChecked();await expect(page.getByText('Publié le 12/10/2026',{exact:true})).toBeVisible()
+  await expect(page.getByLabel('À publier prochainement',{exact:true})).toBeChecked()
+  await page.getByRole('button',{name:'Modifier la date de publication',exact:true}).click();await page.getByLabel('Date de publication sur X',{exact:true}).fill('2026-10-13');await page.getByRole('button',{name:'Enregistrer la date',exact:true}).click()
+  await page.reload();await expect(page.getByText('Publié le 13/10/2026',{exact:true})).toBeVisible();await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(custom)
+  await publication.uncheck();await expect(publication).not.toBeChecked();await page.getByRole('button',{name:'Annuler le retrait',exact:true}).click();await expect(page.getByText('Publié le 13/10/2026',{exact:true})).toBeVisible()
+  await publication.uncheck();await page.reload();await expect(publication).not.toBeChecked()
   await page.getByText('Brouillons et transfert entre appareils',{exact:true}).click()
   const promise=page.waitForEvent('download');await page.getByRole('button',{name:'Exporter les brouillons et statuts',exact:true}).click()
   const backup=JSON.parse(readFileSync(await(await promise).path(),'utf8'))
-  assert.equal(backup.version,2);assert.equal(backup.workspace.drafts.find(d=>d.profile.id===p.id).text,custom)
-  const incoming=structuredClone(backup);incoming.workspace.drafts.find(d=>d.profile.id===p.id).text='Version de mon autre appareil';incoming.workspace.published=[p.id];incoming.workspace.queued=[]
+  assert.equal(backup.version,3);assert.deepEqual(backup.workspace.publicationDates,{});assert.equal(backup.workspace.drafts.find(d=>d.profile.id===p.id).text,custom)
+  const incoming=structuredClone(backup);incoming.workspace.drafts.find(d=>d.profile.id===p.id).text='Version de mon autre appareil';incoming.workspace.published=[p.id];incoming.workspace.publicationDates={[p.id]:"2026-10-14"};incoming.workspace.queued=[]
   const before=await page.evaluate(key=>localStorage.getItem(key),WORKSPACE_KEY)
   await upload(page,incoming);await expect(page.getByRole('region',{name:'Aperçu de l’import'})).toContainText('conflit')
   await page.getByRole('region',{name:'Aperçu de l’import'}).locator('details').first().locator('summary').click()
-  await expect(page.getByRole('region',{name:'Aperçu de l’import'})).toContainText('Publié : oui')
+  await expect(page.getByRole('region',{name:'Aperçu de l’import'})).toContainText('Publié le 14/10/2026')
   assert.equal(await page.evaluate(key=>localStorage.getItem(key),WORKSPACE_KEY),before,'Preview is read only')
   await page.getByRole('button',{name:'Appliquer cet import',exact:true}).click();await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(custom);await expect(page.getByLabel('Profil publié',{exact:true})).not.toBeChecked()
   await upload(page,incoming);await page.getByLabel('Gestion des conflits',{exact:true}).selectOption('use-imported');await page.getByRole('button',{name:'Appliquer cet import',exact:true}).click()
-  await expect(page.getByLabel('Texte prêt à publier')).toHaveValue('Version de mon autre appareil');await expect(page.getByLabel('Profil publié',{exact:true})).toBeChecked();await expect(page.getByLabel('À publier prochainement',{exact:true})).not.toBeChecked()
+  await expect(page.getByText('Publié le 14/10/2026',{exact:true})).toBeVisible();await expect(page.getByLabel('Texte prêt à publier')).toHaveValue('Version de mon autre appareil');await expect(page.getByLabel('Profil publié',{exact:true})).toBeChecked();await expect(page.getByLabel('À publier prochainement',{exact:true})).not.toBeChecked()
   const archives=page.getByLabel('Version locale archivée',{exact:true})
   await archives.selectOption({index:1});await page.getByRole('button',{name:'Examiner cette version archivée',exact:true}).click()
   await page.getByLabel('Gestion des conflits',{exact:true}).selectOption('use-imported');await page.getByRole('button',{name:'Appliquer cet import',exact:true}).click()
@@ -72,6 +86,21 @@ try {
   assert(Object.entries(recovered.recovery).some(([key,value])=>key.startsWith('el-budget-recovery-')&&value.includes('{damaged-workspace')))
   assert.equal(await page.evaluate(key=>JSON.parse(localStorage.getItem(key)).text,DRAFT_KEY),custom)
   await page.reload();await expect(page.getByLabel('Texte prêt à publier')).toHaveValue('Version de mon autre appareil')
+    // A v2 workspace and backup keep publication without inventing its date.
+  const legacyBackup=structuredClone(incoming);legacyBackup.version=2;legacyBackup.workspace.version=2;delete legacyBackup.workspace.publicationDates
+  await page.evaluate(({key,workspace})=>localStorage.setItem(key,JSON.stringify(workspace)),{key:WORKSPACE_KEY,workspace:legacyBackup.workspace});await page.reload()
+  await expect(publication).toBeChecked();await expect(page.getByText('Publié — date non renseignée',{exact:true})).toBeVisible()
+  await page.getByRole('button',{name:'Modifier la date de publication',exact:true}).click();await expect(page.getByLabel('Date de publication sur X',{exact:true})).toHaveValue(parisToday());await page.getByRole('button',{name:'Annuler',exact:true}).click()
+  await page.getByText('Brouillons et transfert entre appareils',{exact:true}).click();await upload(page,legacyBackup);await page.getByRole('region',{name:'Aperçu de l’import'}).locator('details').first().locator('summary').click();await expect(page.getByRole('region',{name:'Aperçu de l’import'})).toContainText('Publié — date non renseignée')
+  await page.getByRole('button',{name:'Annuler l’import',exact:true}).click();await page.getByRole('button',{name:'Modifier la date de publication',exact:true}).click();await page.getByLabel('Date de publication sur X',{exact:true}).fill('2026-10-14');await page.getByRole('button',{name:'Enregistrer la date',exact:true}).click();await expect(page.getByText('Publié le 14/10/2026',{exact:true})).toBeVisible()
+  const datedExportPromise=page.waitForEvent('download');await page.getByRole('button',{name:'Exporter les brouillons et statuts',exact:true}).click();const datedExport=JSON.parse(readFileSync(await(await datedExportPromise).path(),'utf8'));assert.equal(datedExport.workspace.publicationDates[p.id],'2026-10-14')
+  await page.getByRole('button',{name:'Adapter ce budget',exact:true}).click()
+  const approval=page.getByLabel('La personne a validé les informations à publier.',{exact:true})
+  await expect(approval).not.toBeChecked();await expect(publication).not.toBeChecked()
+  const participationId=await page.evaluate(key=>JSON.parse(localStorage.getItem(key)).activeId,WORKSPACE_KEY);assert(participationId.startsWith('participation-'))
+  await page.getByLabel('Texte prêt à publier').fill(custom);await publication.click();await page.getByRole('button',{name:'Confirmer la publication',exact:true}).click();await expect(approval).not.toBeChecked();await expect(publication).toBeChecked();await expect(page.getByLabel('Texte prêt à publier')).toHaveValue(custom)
+  await approval.check();await publication.uncheck();await expect(approval).toBeChecked();assert.equal(await page.evaluate(key=>JSON.parse(localStorage.getItem(key)).activeId,WORKSPACE_KEY),participationId)
+  await page.screenshot({path:`${dir}/dated-publication-${width}.png`,fullPage:true});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))
   await context.close()
  }
  const blocked=await browser.newContext({viewport:{width:320,height:950}})
@@ -86,5 +115,5 @@ try {
  const blockedBackup=JSON.parse(readFileSync(await(await blockedExport).path(),'utf8'))
  assert.equal(blockedBackup.workspace.drafts.find(d=>d.profile.id===p.id).text,'Texte conservé même sans stockage')
  await blocked.close()
- console.log('Budget browser portability: 1440/390/320 px, combined filters, restored personal drafts, queued status, manual transfer, read-only preview, both conflict choices, stale import rejection, invalid version and archived corrupt bytes passed.')
+ console.log('Budget browser portability: 1440/390/320 px, combined filters, restored personal drafts, independent queued/publication/contributor statuses, Paris date confirmation/edit/undo, v2 unknown dates, v3 dated export, manual transfer, read-only preview, both conflict choices, stale import rejection, invalid version and archived corrupt bytes passed.')
 }finally{await browser.close();server?.kill()}
