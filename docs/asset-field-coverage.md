@@ -8,7 +8,7 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 | Frais | 280/283 | 280 | 0 | 0 |
 | Encours | 280/283 | 278 | 2 | 0 |
 | Performances annuelles | 260/283 | 260 | 0 | 0 |
-| Historique mensuel | 268/283 | 268 | 0 | 0 |
+| Historique mensuel | 280/283 | 280 | 0 | 0 |
 | Pays | 254/283 | 254 | 0 | 0 |
 | Secteurs | 254/283 | 254 | 0 | 0 |
 | Principales positions | 256/283 | 256 | 0 | 0 |

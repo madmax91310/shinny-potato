@@ -1,6 +1,6 @@
 {
   "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
-  "checkedAt": "2026-11-01",
+  "checkedAt": "2026-11-02",
   "convention": "Units of currency per EUR, final ECB reference observation in each completed month",
   "sha256": "458ef998bf1d96198dbc91e83e54ed9b4911ff03500397cbf9b23d8b66cc34ac",
   "months": {
@@ -12738,7 +12738,7 @@
       "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
       "series": "DEXTAUS",
       "secondarySourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
-      "checkedAt": "2026-11-01",
+      "checkedAt": "2026-11-02",
       "sha256": "17d087d0ebb2a0ac1a7c0feed844ecb5ca0410c4ae64582b2030233bdeb352e4",
       "secondarySha256": "458ef998bf1d96198dbc91e83e54ed9b4911ff03500397cbf9b23d8b66cc34ac",
       "pendingMonths": [
@@ -26116,7 +26116,7 @@
       },
       "sourceAttempts": [
         {
-          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-11-01",
+          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-11-02",
           "error": "The read operation timed out"
         },
         {
