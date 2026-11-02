@@ -19,6 +19,9 @@ on:
       - 'scripts/collect_dca_complete_holdings.py'
       - 'scripts/collect_physical_holdings.py'
       - 'scripts/collect_wisdomtree_holdings.py'
+      - 'scripts/download-wisdomtree-rankings.mjs'
+      - 'scripts/wisdomtree_rankings_transport.py'
+      - 'scripts/test_wisdomtree_rankings_transport.py'
       - 'scripts/wisdomtree_api_holdings.py'
       - 'scripts/wisdomtree_identity_cache.py'
       - 'scripts/wisdomtree-holdings-classes.json'
@@ -88,6 +91,9 @@ on:
       - 'scripts/collect_dca_complete_holdings.py'
       - 'scripts/collect_physical_holdings.py'
       - 'scripts/collect_wisdomtree_holdings.py'
+      - 'scripts/download-wisdomtree-rankings.mjs'
+      - 'scripts/wisdomtree_rankings_transport.py'
+      - 'scripts/test_wisdomtree_rankings_transport.py'
       - 'scripts/wisdomtree_api_holdings.py'
       - 'scripts/wisdomtree_identity_cache.py'
       - 'scripts/wisdomtree-holdings-classes.json'
@@ -180,6 +186,7 @@ jobs:
       - name: Validate staged source qualification
         run: python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_regional_routes.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
       - run: python -m unittest discover -s scripts -p 'test_independent_portfolio_identities.py'
       - run: node scripts/test-issuer-product-routes.mjs
       - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py' && python -m unittest discover -s scripts -p 'test_security_residual_identities.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_identity_isolation.py'

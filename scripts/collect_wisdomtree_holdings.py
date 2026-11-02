@@ -7,6 +7,7 @@ import re
 import urllib.error
 import threading
 import time
+import subprocess
 from functools import lru_cache
 from pathlib import Path
 from bs4 import BeautifulSoup
@@ -308,12 +309,14 @@ def acquire_public_rankings(url,fetch,headers):
                 _RANKINGS_NEXT_AT=max(_RANKINGS_NEXT_AT,_RANKINGS_CLOCK()+interval*2**(attempt+1))
 
 
-def acquire_qualified_public_rankings(share,now,fetch=download):
+def acquire_qualified_public_rankings(share,now,fetch=download,*,browser_fetch=None):
     from urllib.parse import urlencode,quote
     from issuer_routes import ROUTES
     from wisdomtree_api_holdings import CLASS_CONFIG,qualify_share_document
     identity=qualify_share_document(share,now,fetch)
     config=CLASS_CONFIG[share['isin']]
+    from wisdomtree_rankings_transport import public_browser_rankings
+    browser_fetch=browser_fetch or(public_browser_rankings if fetch is download else None)
     route=ROUTES['wisdomtree']
     attempts=[]
     listings=[{'ticker':config['fundTicker']},*identity.get('qualifiedRankingListings',[])]
@@ -323,8 +326,23 @@ def acquire_qualified_public_rankings(share,now,fetch=download):
             raw=acquire_public_rankings(url,fetch,{**route['fundRankingsRequestHeaders'],'Referer':share.get('sourceUrl','https://www.wisdomtree.com/')})
         except (urllib.error.URLError,TimeoutError,ConnectionError)as error:
             if isinstance(error,urllib.error.HTTPError)and error.code not in (403,408,429,500,502,503,504):raise
-            attempts.append({'sourceUrl':url,'status':'unavailable','error':str(error)[:500]})
-            continue
+            attempts.append({'sourceUrl':url,'transport':'http','status':'unavailable','error':str(error)[:500]})
+            # Proven403 transport difference on four exact shares in41388703594.
+            # Do not use another transport after a validation error,404 or429.
+            retry_browser=browser_fetch is not None and(not isinstance(error,urllib.error.HTTPError)or error.code==403)
+            if not retry_browser:continue
+            try:
+                global _RANKINGS_NEXT_AT
+                with _RANKINGS_LOCK:
+                    pause=max(0,_RANKINGS_NEXT_AT-_RANKINGS_CLOCK())
+                    if pause:_RANKINGS_SLEEP(pause)
+                    _RANKINGS_NEXT_AT=_RANKINGS_CLOCK()+route['fundRankingsMinimumIntervalSeconds']
+                    try:raw=browser_fetch(url)
+                    finally:_RANKINGS_NEXT_AT=max(_RANKINGS_NEXT_AT,_RANKINGS_CLOCK()+route['fundRankingsMinimumIntervalSeconds'])
+                attempts.append({'sourceUrl':url,'transport':'browser','status':'downloaded'})
+            except (OSError,ValueError,TypeError,KeyError,subprocess.SubprocessError)as fallback_error:
+                attempts.append({'sourceUrl':url,'transport':'browser','status':'unavailable','error':str(fallback_error)[:500]})
+                continue
         break
     else:
         raise ConnectionError('Qualified exact-share public rankings unavailable: '+json.dumps(attempts))
