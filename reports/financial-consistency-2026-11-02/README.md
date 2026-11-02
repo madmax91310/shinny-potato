@@ -4,7 +4,7 @@ Base examinée : `master` **414bd67a1afa1ae9cc003e5e98a3f0c0f6b92d2d**. Le calcu
 
 ## Périmètre et coordination
 
-PR ouvertes relues : #1141 (Données à revoir, présentation et décompte des situations), #1140 (Budget), #1061 (accès AUM iShares bloqué, brouillon à ne pas fusionner), #1042 (guide LifeStrategy). Les réparations mensuelles et qualifications des PR fusionnées #1136/#1137/#1138 sont présentes dans la base ; elles ne sont pas réimplémentées. #1139 et son pied d’image du Générateur sont conservés. Aucun collecteur, seuil financier, prix, frais, revenu, preuve ou calendrier de qualification modifié ici. Aucun historique d’indice attribué à un fonds.
+PR ouvertes relues : #1141 (Données à revoir, présentation et décompte des situations), #1140 (Budget), #1061 (accès AUM iShares bloqué, brouillon à ne pas fusionner), #1042 (guide LifeStrategy). Les réparations mensuelles et qualifications des PR fusionnées #1136/#1137/#1138 sont présentes dans la base ; elles ne sont pas réimplémentées. #1139 et son pied d’image du Générateur sont conservés. La PR #1142, apparue pendant ce travail, ne modifie que le suivi consolidé et les preuves des reprises ; son diff a été relu, sans reprise concurrente de ses fichiers. Aucun collecteur, seuil financier, prix, frais, revenu, preuve ou calendrier de qualification modifié ici. Aucun historique d’indice attribué à un fonds.
 
 Ce lot possède le routage du prix final saisi dans `investment-calculator/comparison.js`, les mentions de convention mensuelle, leur consommation dans le Calculateur/Performance depuis et les tests/matrice associés. Il ne répare pas les accès externes, le moniteur ou l’interface Données à revoir. Le chantier Automatisation conserve ces sources ; #1141 conserve les situations et leurs preuves.
 
@@ -22,7 +22,7 @@ Ce lot possède le routage du prix final saisi dans `investment-calculator/compa
 | Classements, faits historiques, crise et exports | Séries communes, `performance-rankings/engine.js` et `series.js`, `history-windows.js`, `crisis.js` | Classement : fenêtres exactes, portefeuille sans/avec rééquilibrage explicite. Les faits et crises importent les séries communes ; pas de réparation de données répliquée. |
 | Projections navigateur | `project-tool-data.mjs`, `project-selected-data.mjs`, `project-light-registries.mjs`, build Vite | Dérivent les registres, métadonnées, séries et libellés. Régénérées et comparées aux sources ; aucune sortie générée corrigée à la main ni ajoutée au commit sans modification de son générateur. |
 
-Les doublons apparents sont principalement des archives, cours de cotation, calendriers NAV et proxies ayant des contrats différents. Les tarifs et identités courants sont déjà mutualisés. La duplication fautive restante démontrée ici concernait une condition de routage : le même prix saisi était volontairement retiré du deuxième résultat quand l’identité était identique. Les mentions de méthode concurrentes du Calculateur sont maintenant composées par `performance-conventions.js`.
+Les doublons apparents sont principalement des archives, cours de cotation, calendriers NAV et proxies ayant des contrats différents. Les tarifs et identités courants sont déjà mutualisés. La duplication fautive restante démontrée ici concernait une condition de routage : le même prix saisi était retiré du deuxième résultat quand l’identité était identique. Les mentions de méthode concurrentes du Calculateur sont maintenant composées par `performance-conventions.js`.
 
 ## Matrice et méthodes
 

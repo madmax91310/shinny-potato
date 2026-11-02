@@ -72,7 +72,7 @@ import { fmtEUR as fmtHistoryPrice, fmtPct as fmtHistoryPct } from '../src/pages
 import { TWEETS } from '../src/pages/tweet-bank/data.js';
 import { EDITORIAL_CASES as CASES } from "../src/data/editorial-cases.js";
 
-const PORT = 4310;
+const PORT = Number(process.env.PLAYWRIGHT_TOOLS_PORT ?? 4310);
 const BASE = `http://localhost:${PORT}/shinny-potato`;
 
 function waitForServer(url, timeoutMs = 30000) {
@@ -1280,7 +1280,9 @@ try {
     : {});
   const page = await browser.newPage();
 
-  if (process.argv.includes('--data-reuse')) {
+  if (process.argv.includes('--calculator')) {
+    await testCalculateur(page);
+  } else if (process.argv.includes('--data-reuse')) {
     await testPortfolioDuels(page);
     await testDataReuse(page);
   } else if (process.argv.includes('--navigation')) {
