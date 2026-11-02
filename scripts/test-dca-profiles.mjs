@@ -15,7 +15,7 @@ for (const profile of PROFILES) {
   assert.equal(new Set(profile.lines.map(line => line.asset)).size, profile.lines.length)
   const tweet = buildTweetText(profile)
   assert(!tweet.includes('(profil fictif)'))
-  const ending = /^[AEÉÈÊIÎOÔUÙY]/i.test(profile.name) ? `d’${profile.name}` : `de ${profile.name}`
+  const ending = /^(?:[aàâäeéèêëiîïoôöuùûüyœ]|h(?:ugo|élène)(?:\s|$))/i.test(profile.name) ? `d’${profile.name}` : `de ${profile.name}`
   assert(tweet.endsWith('Pas un conseil financier'))
   assert(tweet.includes(`Que pensez-vous du DCA ${ending} ? 👇`))
   assert(!/Les versements suivent|Ses versements suivent|photographie|L’évolution réelle/.test(tweet))

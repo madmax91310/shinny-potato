@@ -16,7 +16,7 @@ export function buildTweetText(input) {
   const held = sortHoldings(profile.lines).map(l=>`${l.emoji || '•'} ${pct(l.weight)} ${l.label}`).join('\n')
   if(profile.imageOnly)return `📊 Voilà la répartition de ce portefeuille :\n\n${held}\n\nPas un conseil financier`
   const flows = sortContributions(profile.lines).map(l=>`→ ${compactEuro(l.amount)} sur ${l.label}`).join('\n')
-  const ending = /^[AEÉÈÊIÎOÔUÙY]/i.test(profile.name) ? `d’${profile.name}` : `de ${profile.name}`
+  const ending = /^(?:[aàâäeéèêëiîïoôöuùûüyœ]|h(?:ugo|élène)(?:\s|$))/i.test(profile.name) ? `d’${profile.name}` : `de ${profile.name}`
   const scope = profile.scope && profile.scope!=='Portefeuille investi' ? ` (${profile.scope})` : ''
   return `${[intro,income,`📊 DCA de ${compactEuro(a.monthly)} par mois`].filter(Boolean).join('\n')}\n\n💼 Son portefeuille${scope} :\n\n${held}\n\n${a.monthly?'Chaque mois, les versements sont répartis ainsi :':'Aucun versement mensuel prévu.'}${flows?'\n'+flows:''}\n\nQue pensez-vous du DCA ${ending} ? 👇\n\nPas un conseil financier`
 }

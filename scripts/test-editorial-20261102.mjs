@@ -23,6 +23,7 @@ for(const emoji of ['👩‍💻','🧑‍💻','👨‍💻','']) {
   assert(!/Chaque mois, (il|elle) investit/.test(text))
   assert(text.endsWith('Pas un conseil financier'))
 }
+for(const name of ['Hugo','Hélène'])assert(dca({...ALL_PROFILES[0],name}).includes(`du DCA d’${name} ?`))
 for(const mode of ['lump','dca']) for(const price of ['50','100000']) {
   const s={assetId:'bitcoin',amountRaw:'1000',mode,startYear:2025,startMonth:1,overridePriceRaw:price,currency:'native'}
   const result=derive(s),text=calculator(s,result)
