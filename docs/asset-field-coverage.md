@@ -17,6 +17,6 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 | Réplication | 280/283 | 280 | 0 | 0 |
 | Cotations | 280/283 | 280 | 0 | 0 |
 | Éligibilité PEA | 257/283 | 257 | 0 | 0 |
-| Couverture de change | 259/283 | 259 | 0 | 0 |
+| Couverture de change | 280/283 | 280 | 0 | 0 |
 
 Le rapport JSON détaillé est publié à `data/asset-field-coverage.json` et accessible depuis Données à revoir. Il contient chaque actif, champ, source, date de contrôle, date de publication et motif de lacune.
