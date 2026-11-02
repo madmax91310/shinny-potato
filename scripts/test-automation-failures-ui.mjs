@@ -10,7 +10,7 @@ try {
  for(let n=0;;n++){try{if((await fetch('http://127.0.0.1:4317/shinny-potato/')).ok)break}catch{}assert(n<300);await new Promise(r=>setTimeout(r,100))}
  browser=await chromium.launch({executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH})
  const page=await browser.newPage({viewport:{width:390,height:844}})
- const openSources=()=>page.getByText('Documents sources : moniteur, producteurs et couverture par champ',{exact:true}).click()
+ const openSources=async()=>{await page.getByText('Documents sources : moniteur, producteurs et couverture par champ',{exact:true}).click();await page.getByRole('region',{name:'Bilan des collectes automatiques'}).waitFor()}
  await page.route('https://api.github.com/**/actions/workflows/automation-status.yml/runs?**',r=>r.fulfill({json:{workflow_runs:[{id:1,head_branch:'master',event:'schedule',status:'completed',conclusion:'success'}]}}))
  const errors=[];page.on('pageerror',e=>errors.push(e.message))
  let status={schemaVersion:1,workflows:{economic:{name:'Données économiques',status:'success',completedAt:'2026-10-07T10:00:00Z',lastSuccessAt:'2026-10-01T10:00:00Z',runUrl:'https://github.com/madmax91310/shinny-potato/actions/runs/1',dataFailures:{wealth:{name:'Patrimoine des ménages',completedAt:'2026-10-07T10:00:00Z',runUrl:'https://github.com/madmax91310/shinny-potato/actions/runs/1'}}}}}
