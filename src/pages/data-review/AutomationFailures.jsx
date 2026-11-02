@@ -2,8 +2,8 @@ import ReviewBoundary from './ReviewBoundary.jsx'
 import {MONITOR_RUNS_URL,monitorExecutionHealth,monitorHealth} from './review-inbox.js'
 import ReviewInbox from './ReviewInbox.jsx'
 import AssetFieldCoverage from './AssetFieldCoverage.jsx'
-import { useEffect, useState } from 'react'
-import MonitoringIncidents from './MonitoringIncidents.jsx'
+import { lazy, Suspense, useEffect, useState } from 'react'
+const MonitoringIncidents=lazy(()=>import('./MonitoringIncidents.jsx'))
 import { Link } from 'react-router-dom'
 import { TOOLS } from '../../tools.js'
 import { AUTOMATION_STATUS_URL, automationFailures, automationOverview } from './automation.js'
@@ -20,6 +20,7 @@ export default function AutomationFailures({review}) {
   const [alerts, setAlerts] = useState([])
   const [overview, setOverview] = useState(null)
   const [filter, setFilter] = useState('all')
+  const [sourcesOpen,setSourcesOpen]=useState(false)
   const [unavailable, setUnavailable] = useState(false)
   useEffect(() => {
     let active = true, controller
@@ -45,7 +46,7 @@ export default function AutomationFailures({review}) {
   }, [])
   const observed = overview?.map(row=>(unavailable||monitorExecutionError||!monitorHealth(fullStatus).ok)&&row.state==='success'?{...row,state:'unknown'}:row)??[]
   const rows=observed.filter(row=>filter==='all'||row.state===filter)
-  return <><ReviewInbox status={fullStatus} transportError={unavailable?'Lecture du moniteur échouée':monitorExecutionError} review={review}/><ReviewBoundary name="Historique des incidents"><MonitoringIncidents monitor={monitor} /></ReviewBoundary><section className="dr-automation" aria-label="Bilan des collectes automatiques">
+  return <><ReviewInbox status={fullStatus} transportError={unavailable?'Lecture du moniteur échouée':monitorExecutionError} review={review}/><details className="dr-reminders" onToggle={e=>setSourcesOpen(e.currentTarget.open)}><summary>Documents sources : moniteur, producteurs et couverture par champ</summary><p>Vues complémentaires des signalements déjà rapprochés dans le centre de suivi. Leurs compteurs suivent des exécutions ou des champs propres à chaque document ; ils ne s’additionnent pas aux points concernés.</p>{sourcesOpen&&<><ReviewBoundary name="Historique des incidents"><Suspense fallback={<p>Chargement du document moniteur…</p>}><MonitoringIncidents monitor={monitor} /></Suspense></ReviewBoundary><section className="dr-automation" aria-label="Bilan des collectes automatiques">
     <h2>Producteurs et contrôles automatiques</h2>
     <p className="dr-note">Les dates ci-dessous suivent les exécutions des collecteurs. Une collecte réussie peut conserver une valeur inchangée ; elle ne change pas la date de la donnée. La publication de l’application est suivie séparément. Les champs indisponibles figurent dans les réserves de cette page.</p>
     {!overview && !unavailable && <p role="status" className="dr-note">Chargement du bilan des collectes…</p>}
@@ -77,6 +78,6 @@ export default function AutomationFailures({review}) {
         <div className="dr-links"><a href={alert.runUrl} target="_blank" rel="noreferrer">Voir la cause et le suivi ↗</a></div>
       </article>)}</div></section>}
     {unavailable && <p className="dr-note" role="status">Le suivi des automatisations est momentanément indisponible. Les éventuelles alertes affichées n’ont pas pu être revérifiées.</p>}
-  </section><ReviewBoundary name="Couverture par champ"><AssetFieldCoverage /></ReviewBoundary></>
+  </section><ReviewBoundary name="Couverture par champ"><AssetFieldCoverage /></ReviewBoundary></>}</details></>
 }
 

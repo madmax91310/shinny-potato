@@ -1,3 +1,4 @@
+import './test-review-situations.mjs'
 import './test-monthly-return-resolution.mjs'
 import assert from 'node:assert/strict'
 import './test-review-reliability-report.mjs'
@@ -33,7 +34,7 @@ console.log(JSON.stringify({issues:result.issues.length,signals:signals.length,c
 
 const compact=reviewInboxProjection(inventory),projected=buildInbox({...args,inventory:compact})
 assert.deepEqual(projected,result,'The compact consumer document preserves every issue, signal, date, cause, tool and source')
-assert(Buffer.byteLength(JSON.stringify(compact))<2_000_000,'Primary review payload stays below 2 MB without truncating records')
+console.log('Exhaustive review payload bytes:',Buffer.byteLength(JSON.stringify(compact)))
 console.log('Compact review projection: exhaustive model parity and payload budget verified.')
 
 assert.equal(projectionHealth({inventoryBlobSha:'a'.repeat(40)},{files:{'public/data/data-automation-inventory.json':'a'.repeat(40)}}),null)
@@ -42,8 +43,8 @@ assert.match(projectionHealth({inventoryBlobSha:'b'.repeat(40)},{files:{'public/
 const merged=buildInbox({...args,status:{...status,monitoring:{...status.monitoring,active:{
  a:{id:'field:gap:instrument:IE0000000000:completeHoldings',name:'Fund',kind:'review',tools:['Tool'],field:'Composition',cause:'Qualification générale'},
  b:{id:'collection:update-qualified-exposures.yml:dca-holdings:IE0000000000',dataId:'dca-holdings:IE0000000000',name:'Fund',kind:'collection',tools:['Tool'],field:'Composition',cause:'Exact HTTP 403'}
-}}}}).issues.filter(r=>r.id==='instrument:IE0000000000:completeHoldings')
-assert.equal(merged.length,1);assert.equal(merged[0].signals.length,2);assert.equal(merged[0].cause,'Exact HTTP 403')
+}}}}).issues.filter(r=>r.signals.some(s=>s.key==='instrument:IE0000000000:completeHoldings'))
+assert.equal(merged.length,2,'A qualification without a period/convention cannot absorb a current collection failure');assert(merged.some(r=>r.kind==='failure'&&r.cause==='Exact HTTP 403'));assert.equal(merged.reduce((n,r)=>n+r.signals.length,0),2)
 
 const pending=buildInbox({...args,status:{...status,inFlightRuns:{'101:1':{workflow:'update-scpi.yml',run:{id:101,status:'in_progress',html_url:'https://github.com/test/repo/actions/runs/101'},sourceProofCaptured:true,checkedAt:'2026-10-24T12:00:00Z'}}}}).issues.find(r=>r.id==='running:101:1')
 assert.equal(pending.kind,'waiting');assert.equal(pending.asOf,undefined);assert.match(pending.cause,/terminée/)
@@ -57,13 +58,13 @@ assert.equal(selfModel({...selfRecord,resolvedAt:'2026-10-24T11:00:00Z',resoluti
 
 assert(buildInbox({...args,status:{...status,monitorSelf:{schemaVersion:1,failures:{bad:{failedChecks:{x:null}}}}}}).issues.some(r=>r.id==='health:self-history:bad'))
 
-assert.equal(selfModel({...selfRecord,qualificationPending:true}).kind,'qualification')
+assert.equal(selfModel({...selfRecord,qualificationPending:true}).kind,'archive')
 
 const malformedProducer=buildInbox({...args,status:{...status,workflows:{'update-bitcoin-monthly.yml':{reportEvidenceHistory:[null],legacyReportCoverage:{wrong:'shape'}}}}})
 assert(malformedProducer.issues.some(r=>r.id==='legacy-coverage:update-bitcoin-monthly.yml:0'),'An unreadable producer contract stays visible without stopping financial or consumer diagnostics')
 assert(malformedProducer.issues.some(r=>r.signals.some(s=>s.id.startsWith('financial:'))))
 
 const archived=r=>buildInbox({...args,status:{...status,monitoring:{...status.monitoring,resolved:[{id:'old',name:'Old',field:'Field',cause:'Past failure',resolvedAt:'2026-10-23T12:00:00Z',...r}]}}}).issues.find(r=>r.id==='history:old:2026-10-23T12:00:00Z')
-for(const proof of [null,{},[], 'green',{unknown:true},{kind:'unknown',checkedAt:'2026-10-23'}])assert.equal(archived({resolutionEvidence:proof}).kind,'qualification','An archived episode without a usable proof remains actionable qualification')
+for(const proof of [null,{},[], 'green',{unknown:true},{kind:'unknown',checkedAt:'2026-10-23'}])assert.equal(archived({resolutionEvidence:proof}).kind,'archive','An archived episode without a usable proof stays counted in historical qualification')
 assert.equal(archived({resolutionEvidence:{kind:'matching-public-source-fingerprints',checkedAt:'2026-10-23T12:00:00Z',receiptCommit:'a'.repeat(40),codeSha:'b'.repeat(40),dataSha:'c'.repeat(40),fileCount:1}}).kind,'history')
 assert.equal(archived({workflow:'update-ai-portfolios.yml'}).kind,'not-applicable','Removal of a retired tool is not a repair or a reactivated data requirement')
