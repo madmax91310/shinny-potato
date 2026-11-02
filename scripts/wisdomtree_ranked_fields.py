@@ -13,6 +13,8 @@ from collect_wisdomtree_allocations import SECTOR_NAMES
 from issuer_documents import document_date, download, validated_rows
 from wisdomtree_api_holdings import CLASS_CONFIG
 
+_LIVE_DOWNLOAD = download
+
 
 def parse_fields(payload, share, now, listing):
     config = CLASS_CONFIG[share['isin']]
@@ -55,7 +57,7 @@ def parse_fields(payload, share, now, listing):
     return values, errors
 
 
-def augment_document(result, share, now, document_body, acquire=acquire_qualified_public_rankings):
+def augment_document(result, share, now, document_body, acquire=acquire_qualified_public_rankings, *, browser_fetch=None):
     if share['isin'] not in CLASS_CONFIG:
         return result
     # This is the actual PDF acquired in this attempt, not a read of a cache.
@@ -68,7 +70,13 @@ def augment_document(result, share, now, document_body, acquire=acquire_qualifie
         network_urls.append(url)
         return download(url, **kwargs)
     try:
-        raw, url, identity, listing, attempts = acquire(share, now, fetch)
+        # The wrapper above reuses only the PDF actually acquired in this attempt.
+        # Its live ranking request retains the explicit normal-browser fallback;
+        # injected adapters remain isolated and never invoke a real browser.
+        from wisdomtree_rankings_transport import public_browser_rankings
+        browser_fetch=browser_fetch or(public_browser_rankings if download is _LIVE_DOWNLOAD else None)
+        options={'browser_fetch':browser_fetch}if acquire is acquire_qualified_public_rankings else{}
+        raw, url, identity, listing, attempts = acquire(share, now, fetch, **options)
         values, errors = parse_fields(json.loads(raw), share, now, listing['ticker'])
         digest = hashlib.sha256(raw).hexdigest()
         used, deferred = [], []
@@ -97,6 +105,12 @@ def augment_document(result, share, now, document_body, acquire=acquire_qualifie
         result.setdefault('sourceAttempts', []).extend([*attempts, {'url': url, 'status': 'validated' if not errors else 'partial',
                                                                    'fields': used, 'deferred': deferred}])
         result.setdefault('collectionErrors', []).extend({**e, 'url': url, 'phase': 'validation'} for e in errors)
+        primary=[a for a in attempts if a.get('transport')=='http'and a['status']=='unavailable']
+        accepted_fields=sorted(f for f in values if f in result and result[f].get('asOf')==values[f]['asOf'] and not any(e['field']==f for e in errors))
+        if primary and any(a.get('transport')=='browser'and a['status']=='downloaded'for a in attempts):
+            result.setdefault('collectionErrors',[]).append({'field':'rankings-primary-http','url':url,'phase':'acquisition',
+                'reason':'Primary HTTP rankings unavailable; same exact-share public browser response acquired. Original error: '+primary[-1].get('error',primary[-1].get('reason','')),
+                'qualifiedFallbackAvailable':bool(accepted_fields),'qualifiedFields':accepted_fields})
     except (OSError, ValueError, TypeError, KeyError, http.client.HTTPException, subprocess.SubprocessError) as error:
         result.setdefault('collectionErrors', []).extend({'field': field, 'url': network_urls[-1] if network_urls else identity_url,
                                                           'phase': 'acquisition' if isinstance(error, (OSError, http.client.HTTPException)) else 'validation',
