@@ -14,29 +14,27 @@
     }
   },
   "current": {
-    "all": 7794,
-    "active": 5732,
+    "all": 7954,
+    "active": 5862,
     "classes": {
       "monitoring": 8,
-      "failure": 60,
-      "qualification": 5634,
+      "failure": 46,
+      "qualification": 5778,
       "connection": 30,
       "editorial": 811,
-      "waiting": 21,
+      "waiting": 37,
       "not-applicable": 423,
-      "history": 807
+      "history": 821
     },
     "buildInfo": {
-      "sha": "a1184d918e5f78590ba857098e71a64615c7d595",
-      "dataSha": "4ea734c12304f5b8902985b6625802953399459b",
-      "lane": "fallback",
-      "builtAt": "2026-11-01T22:15:49Z"
+      "sha": "246849a07ebdcf725912ac9eeb701b7f57d01256",
+      "builtAt": "2026-11-01T23:13:29Z"
     }
   },
-  "union": 8528,
+  "union": 8706,
   "initialIdentitiesPreserved": 7624,
-  "initialNowAbsentWithoutRepairInference": 734,
-  "newIdentities": 904,
-  "mutualizedGroups": 1291,
+  "initialNowAbsentWithoutRepairInference": 752,
+  "newIdentities": 1082,
+  "mutualizedGroups": 1297,
   "limit": "Classification fondée sur les exports ; les preuves de correction restent séparées, aucune panne déduite des seuls contrats non confirmés."
 }

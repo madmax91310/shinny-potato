@@ -1,6 +1,11 @@
 {
-  "checkedAt": "2026-11-01",
+  "checkedAt": "2026-11-02",
   "files": [
+    {
+      "path": "bitcoin-october-publication-proof.json",
+      "bytes": 630,
+      "sha256": "651f0360ff3246e0f954b6816f1e4b58eb315441650276a64234613b181c7439"
+    },
     {
       "path": "bitcoin-ordinary-41359191599-recording-proof.json",
       "bytes": 1056,
@@ -98,8 +103,8 @@
     },
     {
       "path": "causes-1nov.csv",
-      "bytes": 1598722,
-      "sha256": "a0c4b765d8bfba0d0722b91d7c75d55c824ce1c02315835dccd2abee935da76c"
+      "bytes": 1612558,
+      "sha256": "37bb7d28e341ae83396f527bd519552f856b6f5c05782604033880869ace3db6"
     },
     {
       "path": "current-tool-registry.json",
@@ -125,6 +130,11 @@
       "path": "etf-current-controlled-41345600418-failures.json",
       "bytes": 5958,
       "sha256": "ad25f8916c1400b2bbcdc8e36d7edf8578e556e951a6447a1095dfcefde4b5bf"
+    },
+    {
+      "path": "fourteen-fx-observations-publication-proof.json",
+      "bytes": 26989,
+      "sha256": "2a0a58ae02d49439f0b3553bba1826de7e84d9418bfeec305ffb2f790b1c3248"
     },
     {
       "path": "fx-order-build-generated-paths.json",
@@ -197,6 +207,11 @@
       "sha256": "dac5bb64e7490f8bff29168a8c1d3881cefc964b0d5fff51cb19b24f2ac6d6a4"
     },
     {
+      "path": "inventory-master-2c8a19d.json.gz",
+      "bytes": 1947554,
+      "sha256": "3a4af19f8b8f1bc4861e5ef556efdb3e08a29970268bdfa8074e2bf81790e6c4"
+    },
+    {
       "path": "isolated-paypal-catchup-proof.json",
       "bytes": 1207,
       "sha256": "43b2629402d0cf34e9ad7b8f00819a815728e9d4c644f78ff334468c0bed2ccd"
@@ -245,6 +260,16 @@
       "path": "local-generated-build-paths.json",
       "bytes": 1935,
       "sha256": "c6b3539f62ff9976535ef8e3ebb219f4fda69e63c058a90e5a665b8086de37e3"
+    },
+    {
+      "path": "master-1130-contract-reconciliation.json",
+      "bytes": 738518,
+      "sha256": "393387057e7242d05dcb4626475294f5331c5e14991f5f412de2a72e023135f6"
+    },
+    {
+      "path": "master-contract-bindings.json.gz",
+      "bytes": 354877,
+      "sha256": "f1005fbe08d6b391413338ec95877c24107a4d0440c27d0ec4366280ab609c24"
     },
     {
       "path": "monthly-752-first-41348779291-summary.json",
@@ -375,6 +400,21 @@
       "path": "pr1133-validated-checks.json",
       "bytes": 5644,
       "sha256": "bce7c54f46ad05ae4fc35c2cb98b8a76e35b6bf3957c098ba0e27e29eabf1413"
+    },
+    {
+      "path": "public-bitcoin-october-eur/calculator-bitcoin.png",
+      "bytes": 1771078,
+      "sha256": "63b1453360ee3a8ff53acfb6a2a0944e401b0d636e6453aca0de2e6b2911803e"
+    },
+    {
+      "path": "public-bitcoin-october-eur/comparison-bitcoin.png",
+      "bytes": 370000,
+      "sha256": "b1817443c8b82e7d9d9da705b9ac28e77397e51fbade9d4b8d606c4ba072ae9e"
+    },
+    {
+      "path": "public-bitcoin-october-eur/proof.json",
+      "bytes": 2787,
+      "sha256": "77d65953e9bddeabe58e862b34e513d3cae1fd8e4acf3a42626f752ab13506fa"
     },
     {
       "path": "public-exposure-recovery/IE0007Y8Y157-1440.png",
@@ -612,6 +652,26 @@
       "sha256": "8302c799cfabdb9885c3d9d59e9a5e1aebdab686142c5e5fbcd02cd29c5d6373"
     },
     {
+      "path": "public-renewed-anniversaries/etfIE00B5W4TY14-1440.png",
+      "bytes": 2403639,
+      "sha256": "fb1228b1bee8ca9340fb036ca73b2b5a4a83f95a184eefdcd676f7174d4cee6c"
+    },
+    {
+      "path": "public-renewed-anniversaries/etfIE00B5W4TY14-390.png",
+      "bytes": 2403639,
+      "sha256": "fb1228b1bee8ca9340fb036ca73b2b5a4a83f95a184eefdcd676f7174d4cee6c"
+    },
+    {
+      "path": "public-renewed-anniversaries/etfIE00BDFBTQ78-1440.png",
+      "bytes": 2345903,
+      "sha256": "cade3a685c5e373ec34c4243c7e6df22625c37f879ff7c997301b345a73d0242"
+    },
+    {
+      "path": "public-renewed-anniversaries/proof.json",
+      "bytes": 5638,
+      "sha256": "24dc514db314466d835e1360344a482133aba1ef8790698c9029769f60d81d4b"
+    },
+    {
       "path": "public-retained-anniversaries/etcPalladium-1440.png",
       "bytes": 2350841,
       "sha256": "661af4f5ec8ddafab679c54a6fcd1d164141440e621d397fbfebd0c1b9fa7c64"
@@ -645,6 +705,131 @@
       "path": "public-retained-anniversaries/proof.json",
       "bytes": 12744,
       "sha256": "70fbf7df6f6b9f62efe572d3324d70c9a2b4ea78bb5ab02b91a539fd1cdd2b56"
+    },
+    {
+      "path": "public-terminal-246849/asset-field-coverage.json.gz",
+      "bytes": 153195,
+      "sha256": "4a602717dc652c04aab3fab96df3335f25d88d8265f856cc85853212d4833e46"
+    },
+    {
+      "path": "public-terminal-246849/automation-status.wire.json.gz",
+      "bytes": 13682486,
+      "sha256": "57f9caec3f62ca51bde4bdb013ce1de399f84234322845102af09478afe026ed"
+    },
+    {
+      "path": "public-terminal-246849/build-info.json",
+      "bytes": 92,
+      "sha256": "fd74cf59b36edc7fdb778e130948420a4ec113f689f2a4db88b98abbf0a804e9"
+    },
+    {
+      "path": "public-terminal-246849/capture.json",
+      "bytes": 53277,
+      "sha256": "fd74e2add957b4b6963e6f449875bed34b4844a12d9ee6b0b68c7675f316ce7c"
+    },
+    {
+      "path": "public-terminal-246849/data-review-inbox.json.gz",
+      "bytes": 157854,
+      "sha256": "88f9eeacfc59bfb7cbea97bdb1c670e45e3d57ff1fc698833aea02076fec8c8c"
+    },
+    {
+      "path": "public-terminal-246849/diagnostics-action.json.gz",
+      "bytes": 6345371,
+      "sha256": "82a2e1ca1abc263f83f652731f87325e81f8bf3ed2418a332bf47bce8b32f324"
+    },
+    {
+      "path": "public-terminal-246849/diagnostics-all.json.gz",
+      "bytes": 7710022,
+      "sha256": "3efd6422e846fe4a6211c49018c6bd90358ff4ba4f93aa7a19422bd4edd2f5a0"
+    },
+    {
+      "path": "public-terminal-246849/financial-reconciliation.json",
+      "bytes": 417677,
+      "sha256": "18b898a174a18699f702824761ab1c4197f0f855613f5430ad0118a5bd5f1aa9"
+    },
+    {
+      "path": "public-terminal-246849/publication-manifest.json",
+      "bytes": 32170,
+      "sha256": "555681e260ce14dc5612ede23f35642cd7d43674622938ece8e84a72610b9d60"
+    },
+    {
+      "path": "public-wisdomtree-aum-desktop-verified/GB00B15KXQ89.png",
+      "bytes": 3540117,
+      "sha256": "82c6bb61b2384f545497105bf5cfa167d054eba1e6ba241c0b192297362826e5"
+    },
+    {
+      "path": "public-wisdomtree-aum-desktop-verified/GB00BJYDH287.png",
+      "bytes": 3539171,
+      "sha256": "ec12b22b84858d7f3d34bf48b8551b99407e2c2099695b0ed4bff4abe77036d5"
+    },
+    {
+      "path": "public-wisdomtree-aum-desktop-verified/IE0002Y8CX98.png",
+      "bytes": 3529174,
+      "sha256": "bad6787bb35cdff61852a466f8c7c1d2dbff43db979f41c905b57d6d8fccf21c"
+    },
+    {
+      "path": "public-wisdomtree-aum-desktop-verified/IE000W8WMSL2.png",
+      "bytes": 3530999,
+      "sha256": "40826c97557393a62f3613fa07f9783fd4c3a090f72f1b562c24362b9df7b039"
+    },
+    {
+      "path": "public-wisdomtree-aum-desktop-verified/IE00BJGWQN72.png",
+      "bytes": 3526745,
+      "sha256": "69b5beb01619a0902572bcf84997d8a3cf23c965fe1529bc4e18b6f2927efa10"
+    },
+    {
+      "path": "public-wisdomtree-aum-desktop-verified/IE00BZ56SW52.png",
+      "bytes": 3551274,
+      "sha256": "889fcee69fe1b2f00f0895e7f7a9d67dbdcd253be220ce4c3f115b77d18a5482"
+    },
+    {
+      "path": "public-wisdomtree-aum-desktop-verified/JE00B1VS3770.png",
+      "bytes": 3543507,
+      "sha256": "2ecbbaaf93febf28c68965caa62531f2d957ab9ee7df6a4d6622283693b0deae"
+    },
+    {
+      "path": "public-wisdomtree-aum-desktop-verified/proof.json",
+      "bytes": 42897,
+      "sha256": "0e7535422cc2223b94721396fcf05810bc96bfa064ffc7bd38ec0d6062c8b87c"
+    },
+    {
+      "path": "public-wisdomtree-aum-mobile-verified/GB00B15KXQ89.png",
+      "bytes": 3540117,
+      "sha256": "82c6bb61b2384f545497105bf5cfa167d054eba1e6ba241c0b192297362826e5"
+    },
+    {
+      "path": "public-wisdomtree-aum-mobile-verified/GB00BJYDH287.png",
+      "bytes": 3539171,
+      "sha256": "ec12b22b84858d7f3d34bf48b8551b99407e2c2099695b0ed4bff4abe77036d5"
+    },
+    {
+      "path": "public-wisdomtree-aum-mobile-verified/IE0002Y8CX98.png",
+      "bytes": 3529174,
+      "sha256": "bad6787bb35cdff61852a466f8c7c1d2dbff43db979f41c905b57d6d8fccf21c"
+    },
+    {
+      "path": "public-wisdomtree-aum-mobile-verified/IE000W8WMSL2.png",
+      "bytes": 3530999,
+      "sha256": "40826c97557393a62f3613fa07f9783fd4c3a090f72f1b562c24362b9df7b039"
+    },
+    {
+      "path": "public-wisdomtree-aum-mobile-verified/IE00BJGWQN72.png",
+      "bytes": 3526745,
+      "sha256": "69b5beb01619a0902572bcf84997d8a3cf23c965fe1529bc4e18b6f2927efa10"
+    },
+    {
+      "path": "public-wisdomtree-aum-mobile-verified/IE00BZ56SW52.png",
+      "bytes": 3551274,
+      "sha256": "889fcee69fe1b2f00f0895e7f7a9d67dbdcd253be220ce4c3f115b77d18a5482"
+    },
+    {
+      "path": "public-wisdomtree-aum-mobile-verified/JE00B1VS3770.png",
+      "bytes": 3543507,
+      "sha256": "2ecbbaaf93febf28c68965caa62531f2d957ab9ee7df6a4d6622283693b0deae"
+    },
+    {
+      "path": "public-wisdomtree-aum-mobile-verified/proof.json",
+      "bytes": 42896,
+      "sha256": "90ecad937bfe4bd142660eb06408cd3f7944922f481aeb514e39a0bf429a5ad1"
     },
     {
       "path": "publication-after-fx-41356639048-summary.json",
@@ -698,13 +883,13 @@
     },
     {
       "path": "rapprochement-bilan-1nov.json",
-      "bytes": 1072,
-      "sha256": "e54dafc7bbae268d6904ea75addd81314eaaa9129870cf09514ed64923c251da"
+      "bytes": 986,
+      "sha256": "ea6ed70225f7b0379b971167319f0ed918e67773050194a217e17727ba3fa009"
     },
     {
       "path": "reconciliation-diagnostics-1nov.csv",
-      "bytes": 8198700,
-      "sha256": "de2299a5d2074873aedf1a18f3744baf008bb0a9009bce5cb558f60dc60cdc65"
+      "bytes": 8314681,
+      "sha256": "289d235e9e9d3f318d2d2e4b304d660a4077a833adf374f05d9fdfab22fa6efd"
     },
     {
       "path": "repaired-composition-pr-source-proof.json",
@@ -852,14 +1037,19 @@
       "sha256": "e48646131427525e086f5282cec7b4675b97e7e797aeadb9c5a57c2153eb73cb"
     },
     {
+      "path": "verification/reconcile-master-semantic-contracts.py",
+      "bytes": 8360,
+      "sha256": "dbb0b63929cd87dd5407d6615e307a9117c167102c1c8be8a690c68b98274de3"
+    },
+    {
       "path": "verification/reconcile-public.py",
       "bytes": 9833,
       "sha256": "d29332b17f958e81e870904a3667d17b29c61c7e3108a03878fdc50acc1f65f3"
     },
     {
       "path": "verification/update-consolidated.py",
-      "bytes": 8111,
-      "sha256": "3ab43a49d3c94f67c436637221757e6bd48ced741d80649a33bc820cd9f9b120"
+      "bytes": 8119,
+      "sha256": "7530199e4478f53d8b3838256eab2940df739742ea33a72485ce717ac0e2854b"
     },
     {
       "path": "verification/update-usage-evidence.py",
@@ -873,8 +1063,13 @@
     },
     {
       "path": "verification/verify-public-histories.mjs",
-      "bytes": 9281,
-      "sha256": "2c852d7b637589fe6b168774a8305fdec465c3298967aa59372466d8d4c3dc49"
+      "bytes": 9483,
+      "sha256": "68be0bbd29ae24b4b0315052bd4471e9b7a2b2001e9abf8e586074110e090186"
+    },
+    {
+      "path": "verification/verify-public-renewed-anniversaries.mjs",
+      "bytes": 4956,
+      "sha256": "8d3c2367b67a105e36f4a4a7f1af6e250bea0a3acd3a4c2153180991db67a756"
     },
     {
       "path": "verification/verify-public-retained-anniversaries.mjs",
@@ -883,13 +1078,23 @@
     },
     {
       "path": "verification/verify-public-wisdomtree-aum.mjs",
-      "bytes": 5095,
-      "sha256": "725524f923d9a292859b7b385a29067234fcabe798bfa9cb0be0cf1826f62bbe"
+      "bytes": 5435,
+      "sha256": "e289d84c23801e266153c7a66a894b6ff88e699edfa0b5ec41b0332cab7d9458"
     },
     {
       "path": "verification/verify-stoxx.mjs",
       "bytes": 4251,
       "sha256": "324422ebc50cea73c2ed4f916ed025b1d1b0d444890ebabd5bc86d1784e4764c"
+    },
+    {
+      "path": "verified-publication-246849-41348783304.json",
+      "bytes": 4704,
+      "sha256": "dc2ab3772a1150ab70a6f56f58a2d2fd98d0077ebbe2cbd302c6c54c6cb8634c"
+    },
+    {
+      "path": "verified-publication-246849-41348783304.zip",
+      "bytes": 1469,
+      "sha256": "7f2f515a035b1ae6589e8417313fcc6d8c79065f6e684e58e2beb3664cd05f35"
     },
     {
       "path": "wisdomtree-directory-browser-new-route/body.json.gz",
@@ -986,6 +1191,5 @@
       "bytes": 143162,
       "sha256": "a86daca0ee6b771d9426b832d505bf43f29a9b017ef76047d5ec16b0d969865c"
     }
-  ],
-  "limit": "Périmètre et étage explicites de chaque preuve ; aucune certification globale."
+  ]
 }

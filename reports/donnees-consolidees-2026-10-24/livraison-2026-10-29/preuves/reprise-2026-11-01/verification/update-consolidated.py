@@ -137,7 +137,7 @@ for row in comparisons:
     qualified += admitted
     row.update(qualification_publique_1nov=str(admitted),
                voies_publiques_1nov=json.dumps(windows, ensure_ascii=False),
-               preuve_etat_publie_1nov='preuves/reprise-2026-11-01/public-final/financial-reconciliation.json#' + case_id,
+               preuve_etat_publie_1nov='preuves/reprise-2026-11-01/' + capture.name + '/financial-reconciliation.json#' + case_id,
                limite_intervention_1nov='Renouvellement et rattrapage mensuels distincts ; aucune ancienne divergence ni fenêtre refusée déclarée résolue par la correction Yahoo, H10 ou BCE.')
 write_csv(path, fields, comparisons)
 print(json.dumps({'consolidatedRowsBefore': len(original_ids), 'consolidatedRowsAfter': len(ledger),

@@ -150,5 +150,35 @@
     "publicInputsProof": "preuves/reprise-2026-11-01/monthly-october-publication-proof.json",
     "qualificationStatesPreserved": true,
     "coverageLimit": "Comptes de séries, de contrats et de recettes distincts ; aucun taux global de certification."
+  },
+  "scopeMaster1130": {
+    "master": "2c8a19d",
+    "newUniqueIsins": 21,
+    "listingAliasesNotCountedAsAssets": 105,
+    "currentDeclaredContracts": 33806,
+    "matrixBefore": 34955,
+    "matrixAfter": 41432,
+    "newContracts": 6477,
+    "newContractsLinkedTo21Isins": 2118,
+    "oldIdentitiesPreserved": 34955,
+    "previousContractsNotMatchedToCurrentDeclaration": 7626,
+    "positionalKeysReboundByExactFinancialField": 2420,
+    "ambiguousLabelsNotAutomaticallyReused": 42,
+    "limit": "Le nouvel indice suivi inséré dans le catalogue décalait des catalog:n. Rapprochement par outil, instrument exact, famille de champ et libellé financier unique ; preuve de valeur distincte, anciennes identités conservées."
+  },
+  "terminalPublication2Nov": {
+    "code": "246849a07ebdcf725912ac9eeb701b7f57d01256",
+    "verifiedAt": "2026-11-01T23:53:38.333Z",
+    "diagnosticsAll": 7954,
+    "diagnosticsActive": 5862,
+    "failure": 46,
+    "qualification": 5778,
+    "connection": 30,
+    "monitoring": 8,
+    "matrixTrackingIdentities": 41432,
+    "historicalComparisons": 79,
+    "qualifiedMonthlyWindows": 70,
+    "refusedMonthlyWindows": 9,
+    "new21ConcurrentScope": "Fusionné master ; non servi dans la photographie246849a, publication distincte"
   }
 }

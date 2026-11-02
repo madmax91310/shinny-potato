@@ -1,0 +1,535 @@
+{
+  "checkedAt": "2026-11-02T00:14:10.706361+00:00",
+  "runId": 41356639048,
+  "event": "workflow_dispatch",
+  "publicBuild": {
+    "sha": "246849a07ebdcf725912ac9eeb701b7f57d01256",
+    "builtAt": "2026-11-01T23:13:29Z"
+  },
+  "manifestPath": "src/data/anniversary-levels.json",
+  "manifestBlob": "a85a203ce7d09c02979510f8ab691c63d6331bfd",
+  "rows": [
+    {
+      "id": "etfCH0454664001Nav",
+      "source": {
+        "id": "anniversary-etfCH0454664001Nav",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+        "responseSha256": "34cf703dc742a69fcc0dff0cfdcea0df293dfd8a81b8b51fb36d3a633717c7b2"
+      },
+      "publishedLevel": {
+        "value": 22.787325456498387,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "CH0454664001",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 25.458,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+        "sourceUrls": [
+          "https://api.primary.21shares.com/api/product_details/ABTC",
+          "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
+          "https://api.primary.21shares.com/api/product_performance_metrics/ABTC",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "34cf703dc742a69fcc0dff0cfdcea0df293dfd8a81b8b51fb36d3a633717c7b2"
+      },
+      "oneFxConversionVerified": true
+    },
+    {
+      "id": "etfEqualWeight",
+      "source": {
+        "id": "anniversary-etfEqualWeight",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-29",
+        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+        "responseSha256": "9caab49b60ca4d38f4cff43e9a30ff5331f693f0fc71a5b8e0266706297caf1a"
+      },
+      "publishedLevel": {
+        "value": 110.37942497753818,
+        "asOf": "2026-10-29",
+        "currency": "EUR",
+        "isin": "IE00BLNMYC90",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 122.8523,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-29",
+        "fxFactor": 0.8984725965858041,
+        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download?startDate=2015-06-26&endDate=2026-11-01&includeTax=false",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "9caab49b60ca4d38f4cff43e9a30ff5331f693f0fc71a5b8e0266706297caf1a"
+      },
+      "oneFxConversionVerified": true
+    },
+    {
+      "id": "etfFR0013416716",
+      "source": {
+        "id": "anniversary-etfFR0013416716",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-28",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "responseSha256": "9bbc496bcf8879420e5163387f02dd48d85ed9d5938081c82c8964b02a7fd654"
+      },
+      "publishedLevel": {
+        "value": 143.78774813617176,
+        "asOf": "2026-10-28",
+        "currency": "EUR",
+        "isin": "FR0013416716",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 160.0789,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-28",
+        "fxFactor": 0.898230485942693,
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "sourceUrls": [
+          "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "9bbc496bcf8879420e5163387f02dd48d85ed9d5938081c82c8964b02a7fd654"
+      },
+      "oneFxConversionVerified": true
+    },
+    {
+      "id": "etfIE000M7V94E1",
+      "source": {
+        "id": "anniversary-etfIE000M7V94E1",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
+        "responseSha256": "416176eaf475d04b400cd4959fa004f36067d2fc4cea984b48d972bac5a96837"
+      },
+      "publishedLevel": {
+        "value": 38.378088077336194,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "IE000M7V94E1",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 42.876,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
+        "sourceUrls": [
+          "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
+          "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233161&ticker=UCTNUCL",
+          "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397125&pageid=233161&ticker=UCTNUCL",
+          "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=209629&pageid=233161&ticker=UCTNUCL",
+          "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233161&ticker=UCTNUCL",
+          "https://www.vaneck.com/static/eu/js/dist/main.js",
+          "https://www.vaneck.com/ucits/investments/nuclear-etf/downloads/fundhistoprices/",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "416176eaf475d04b400cd4959fa004f36067d2fc4cea984b48d972bac5a96837"
+      },
+      "oneFxConversionVerified": true
+    },
+    {
+      "id": "etfIE000YU9K6K2",
+      "source": {
+        "id": "anniversary-etfIE000YU9K6K2",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.vaneck.com/uk/en/investments/space-etf/",
+        "responseSha256": "09ec7d93f73040f39ac5a7c9eb2faaea625aa63e185680c51663edc48e6b7a78"
+      },
+      "publishedLevel": {
+        "value": 63.42105263157895,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "IE000YU9K6K2",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 70.854,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://www.vaneck.com/uk/en/investments/space-etf/",
+        "sourceUrls": [
+          "https://www.vaneck.com/uk/en/investments/space-etf/",
+          "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233159&ticker=UCTJEDI",
+          "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397122&pageid=233159&ticker=UCTJEDI",
+          "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=207700&pageid=233159&ticker=UCTJEDI",
+          "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233159&ticker=UCTJEDI",
+          "https://www.vaneck.com/static/eu/js/dist/main.js",
+          "https://www.vaneck.com/ucits/investments/space-etf/downloads/fundhistoprices/",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "09ec7d93f73040f39ac5a7c9eb2faaea625aa63e185680c51663edc48e6b7a78"
+      },
+      "oneFxConversionVerified": true
+    },
+    {
+      "id": "etfIE00B43HR379",
+      "source": {
+        "id": "anniversary-etfIE00B43HR379",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "responseSha256": "9174b7cab96ef70d5e10122b8e29f78032c54a2bd66a23dae52ae874f4abcd2a"
+      },
+      "publishedLevel": {
+        "value": 13.387403329752955,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "IE00B43HR379",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 14.956407,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "9174b7cab96ef70d5e10122b8e29f78032c54a2bd66a23dae52ae874f4abcd2a"
+      },
+      "oneFxConversionVerified": true
+    },
+    {
+      "id": "etfIE00B4JNQZ49",
+      "source": {
+        "id": "anniversary-etfIE00B4JNQZ49",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "responseSha256": "ac15da9bd91045ec50c39c72d3359420a7f925b7cd03ff232833c0cf5a3ff78f"
+      },
+      "publishedLevel": {
+        "value": 15.006237021124239,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "IE00B4JNQZ49",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 16.764968,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "ac15da9bd91045ec50c39c72d3359420a7f925b7cd03ff232833c0cf5a3ff78f"
+      },
+      "oneFxConversionVerified": true
+    },
+    {
+      "id": "etfIE00B5W4TY14",
+      "source": {
+        "id": "anniversary-etfIE00B5W4TY14",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "responseSha256": "7d8bc6a2fe455a5f03dc34256d2ca60977674bfe4e8a68ac0e90d4db4b8b4e9d"
+      },
+      "publishedLevel": {
+        "value": 390.17430898675264,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "IE00B5W4TY14",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 435.902738,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "7d8bc6a2fe455a5f03dc34256d2ca60977674bfe4e8a68ac0e90d4db4b8b4e9d"
+      },
+      "oneFxConversionVerified": true
+    },
+    {
+      "id": "etfIE00BDFBTQ78",
+      "source": {
+        "id": "anniversary-etfIE00BDFBTQ78",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.vaneck.com/DK/en/investments/mining-etf/",
+        "responseSha256": "d077a4f5b7bb28deb7f769c475e5249d13b171bb6e17a9733fd7f9070c0bd938"
+      },
+      "publishedLevel": {
+        "value": 50.160221983530256,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "IE00BDFBTQ78",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 56.039,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://www.vaneck.com/DK/en/investments/mining-etf/",
+        "sourceUrls": [
+          "https://www.vaneck.com/DK/en/investments/mining-etf/",
+          "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+          "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG",
+          "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG",
+          "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG",
+          "https://www.vaneck.com/static/eu/js/dist/main.js",
+          "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "d077a4f5b7bb28deb7f769c475e5249d13b171bb6e17a9733fd7f9070c0bd938"
+      },
+      "oneFxConversionVerified": true
+    },
+    {
+      "id": "etfIE00BYWQWR46",
+      "source": {
+        "id": "anniversary-etfIE00BYWQWR46",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.vaneck.com/uk/en/investments/esports-etf/",
+        "responseSha256": "2caaf3a7bf393c898a8b192cbbba842483a7e8f9d4d1bc7b16e3df0263fd3a6e"
+      },
+      "publishedLevel": {
+        "value": 57.226996061582525,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "IE00BYWQWR46",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 63.934,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://www.vaneck.com/uk/en/investments/esports-etf/",
+        "sourceUrls": [
+          "https://www.vaneck.com/uk/en/investments/esports-etf/",
+          "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233153&ticker=UCTESPO",
+          "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397116&pageid=233153&ticker=UCTESPO",
+          "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195077&pageid=233153&ticker=UCTESPO",
+          "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233153&ticker=UCTESPO",
+          "https://www.vaneck.com/static/eu/js/dist/main.js",
+          "https://www.vaneck.com/ucits/investments/esports-etf/downloads/fundhistoprices/",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "2caaf3a7bf393c898a8b192cbbba842483a7e8f9d4d1bc7b16e3df0263fd3a6e"
+      },
+      "oneFxConversionVerified": true
+    },
+    {
+      "id": "etfLU2089238385",
+      "source": {
+        "id": "anniversary-etfLU2089238385",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-28",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "responseSha256": "682db89f32dcb91dcbfa1d9da13ef902561b7a060a534b3fec8b30df5a8878e7"
+      },
+      "publishedLevel": {
+        "value": 37.979765722733994,
+        "asOf": "2026-10-28",
+        "currency": "EUR",
+        "isin": "LU2089238385",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 6679.1216,
+        "nativeCurrency": "JPY",
+        "fxAsOf": "2026-10-28",
+        "fxFactor": 0.005686341407938132,
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "sourceUrls": [
+          "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "682db89f32dcb91dcbfa1d9da13ef902561b7a060a534b3fec8b30df5a8878e7"
+      },
+      "oneFxConversionVerified": true
+    },
+    {
+      "id": "etfLU2196470426Nav",
+      "source": {
+        "id": "anniversary-etfLU2196470426Nav",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-29",
+        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+        "responseSha256": "46d61ad393e9fd2d1095a75386f30d113e42f690fbe57a219416ef0458595a32"
+      },
+      "publishedLevel": {
+        "value": 122.42095384265576,
+        "asOf": "2026-10-29",
+        "currency": "EUR",
+        "isin": "LU2196470426",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 21536.2942,
+        "nativeCurrency": "JPY",
+        "fxAsOf": "2026-10-29",
+        "fxFactor": 0.005684402000909505,
+        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+          "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download?startDate=2020-10-27&endDate=2026-11-01&includeTax=false",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "46d61ad393e9fd2d1095a75386f30d113e42f690fbe57a219416ef0458595a32"
+      },
+      "oneFxConversionVerified": true
+    },
+    {
+      "id": "etfUsaSmallValue",
+      "source": {
+        "id": "anniversary-etfUsaSmallValue",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+        "responseSha256": "d3e32edfae546b435f062eb9f76abf505a2138a5e95a198227e8ac534d9b4de4"
+      },
+      "publishedLevel": {
+        "value": 83.12638739706408,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "IE00BSPLC413",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 92.8688,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+        "sourceUrls": [
+          "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+          "https://www.ssga.com/library-content/products/fund-data/etfs/emea/navhist-emea-en-zprv-gy.xlsx",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "d3e32edfae546b435f062eb9f76abf505a2138a5e95a198227e8ac534d9b4de4"
+      },
+      "oneFxConversionVerified": true
+    },
+    {
+      "id": "etf_gold_miners",
+      "source": {
+        "id": "anniversary-etf_gold_miners",
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "asOf": "2026-10-30",
+        "sourceUrl": "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+        "responseSha256": "a0bec627dc72fc6907349d5fac08f27d6a02f7c73b47e5b75b86d6a96ff4a69d"
+      },
+      "publishedLevel": {
+        "value": 78.50250626566417,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "IE00BQQP9F84",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 87.703,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+        "sourceUrls": [
+          "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+          "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233155&ticker=UCTGDX",
+          "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397118&pageid=233155&ticker=UCTGDX",
+          "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195072&pageid=233155&ticker=UCTGDX",
+          "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=234355&pageid=233155&ticker=UCTGDX",
+          "https://www.vaneck.com/static/eu/js/dist/main.js",
+          "https://www.vaneck.com/ucits/investments/gold-miners-etf/downloads/fundhistoprices/",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "a0bec627dc72fc6907349d5fac08f27d6a02f7c73b47e5b75b86d6a96ff4a69d"
+      },
+      "oneFxConversionVerified": true
+    }
+  ],
+  "sourceFailuresPreserved": [
+    {
+      "id": "anniversary-etcPalladium",
+      "error": "Monthly NAV/return end not independently qualified: 2026-10",
+      "attemptedAt": "2026-11-01T22:22:15.415110+00:00",
+      "lastSuccessAt": "2026-10-31T13:51:04.292815+00:00",
+      "asOf": "2026-10-29"
+    },
+    {
+      "id": "anniversary-etf_world_communication",
+      "error": "Monthly NAV/return end not independently qualified: 2026-10",
+      "attemptedAt": "2026-11-01T22:22:15.415110+00:00",
+      "lastSuccessAt": "2026-10-31T13:51:04.292815+00:00",
+      "asOf": "2026-10-30"
+    },
+    {
+      "id": "anniversary-etf_clean_energy",
+      "error": "Monthly NAV/return end not independently qualified: 2026-10",
+      "attemptedAt": "2026-11-01T22:22:15.415110+00:00",
+      "lastSuccessAt": "2026-10-31T13:51:04.292815+00:00",
+      "asOf": "2026-10-30"
+    },
+    {
+      "id": "anniversary-etf_financials",
+      "error": "Monthly NAV/return end not independently qualified: 2026-10",
+      "attemptedAt": "2026-11-01T22:22:15.415110+00:00",
+      "lastSuccessAt": "2026-10-31T13:51:04.292815+00:00",
+      "asOf": "2026-10-30"
+    },
+    {
+      "id": "anniversary-etfIE00B2QWCY14",
+      "error": "Monthly NAV/return end not independently qualified: 2026-10",
+      "attemptedAt": "2026-11-01T22:22:15.415110+00:00",
+      "lastSuccessAt": "2026-10-31T13:51:04.292815+00:00",
+      "asOf": "2026-10-30"
+    }
+  ],
+  "actualConsumers": "public-renewed-anniversaries/proof.json",
+  "limit": "14exactsourceobservations matched to public registry ;2consumer cases, not14browser certifications. Five separate NAV/TR qualifications remain refused."
+}

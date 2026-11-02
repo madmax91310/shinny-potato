@@ -17,11 +17,11 @@ try {
  page.on('pageerror',e=>errors.push(e.message))
  const get=async path=>{const r=await context.request.get(base+path,{headers:{'cache-control':'no-cache'}});assert(r.ok(),path);return r.json()}
  const buildInfo=await get('/build-info.json'),manifest=await get('/data/publication-manifest.json')
- const paths=['src/data/automated-monthly.json','src/data/non-bond-monthly-records.json','src/data/monthly-fx.json','src/data/automated-etf-monthly.json']
+ const paths=['src/data/automated-monthly.json','src/data/non-bond-monthly-records.json','src/data/monthly-fx.json','src/data/automated-etf-monthly.json',...(process.env.HISTORY_SINGLE_RECORD_PATH?[process.env.HISTORY_SINGLE_RECORD_PATH]:[])]
  const targetCurrency=process.env.HISTORY_CURRENCY??'USD';assert(['USD','EUR'].includes(targetCurrency))
  const sources=Object.fromEntries(paths.map(path=>{
   const hash=manifest.files[path];assert.match(hash,/^[a-f0-9]{40}$/)
-  const bytes=execFileSync('git',['cat-file','blob',hash],{maxBuffer:64*1024*1024});return [path,{hash,records:JSON.parse(bytes)}]
+  const bytes=execFileSync('git',['cat-file','blob',hash],{maxBuffer:64*1024*1024});const parsed=JSON.parse(bytes);return [path,{hash,records:path===process.env.HISTORY_SINGLE_RECORD_PATH?{[process.env.HISTORY_SINGLE_RECORD_ID]:parsed}:parsed}]
  }))
  const nonbond=['adobe','booking','caterpillar','disney','exxonmobil','home-depot','johnson-johnson','jpmorgan','mastercard','nike','pepsico','procter-gamble','unitedhealth','waste-management']
  const scope=process.env.HISTORY_SCOPE??'all';assert(['all','nonbond'].includes(scope));const entries=[...(scope==='all'?[['paypal',paths[0]]]:[]),...nonbond.map(id=>[id,paths[1]]),...(process.env.HISTORY_INCLUDE_IDS??'').split(',').filter(Boolean).map(id=>[id,process.env.HISTORY_EXTRA_PATH??paths[0]])].filter(([id])=>!process.env.HISTORY_ONLY_IDS||process.env.HISTORY_ONLY_IDS.split(',').includes(id))

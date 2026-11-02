@@ -21,6 +21,7 @@ try{
   const amount=new Intl.NumberFormat('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2}).format(aum.amount/1e6),currency={USD:'$',EUR:'€'}[aum.currency];assert(currency)
   const expected=`Encours : Fonds : ${amount} M${currency} au ${aum.asOf.split('-').reverse().join('/')}`
   await page.goto(base+'/fiches-etf?isin='+row.isin,{waitUntil:'networkidle'})
+  if(await page.getByRole('button',{name:'Aperçu',exact:true}).isVisible())await page.getByRole('button',{name:'Aperçu',exact:true}).click()
   if(await page.getByRole('tab',{name:'Texte',exact:true}).isVisible())await page.getByRole('tab',{name:'Texte',exact:true}).click()
   const card=page.locator('.es-card');await card.getByText('ISIN : '+row.isin,{exact:true}).waitFor();assert(norm(await card.innerText()).includes(norm(expected)))
   if(await page.getByRole('tab',{name:'Texte',exact:true}).isVisible())await page.getByRole('tab',{name:'Texte',exact:true}).click()
@@ -29,8 +30,8 @@ try{
   await page.getByRole('tab',{name:'Image',exact:true}).click()
   const image=page.getByRole('img',{name:/^Fiche ETF /});await image.waitFor();await image.evaluate(e=>e.decode());const preview=await image.getAttribute('src');assert(preview.startsWith('data:image/png;base64,'))
   const dl=page.waitForEvent('download');await page.getByRole('button',{name:'Télécharger l’image',exact:true}).click();const file=out+'/'+row.isin+'.png';await(await dl).saveAs(file);const bytes=await fs.readFile(file);assert(bytes.length>10000);assert.equal(bytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert.deepEqual(bytes,Buffer.from(preview.split(',')[1],'base64'),'Export differs from current preview')
-  const labels=await page.evaluate(()=>window.__painted);assert(norm(labels.join(' ')).includes(norm(expected)))
-  results.push({isin:row.isin,financialAsOf:aum.asOf,sourceCheckedAt:aum.checkedAt,expected,sourceSha256:aum.sha256,visible:await card.innerText(),text,png:{bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex'),matchesPreview:true}})
+  const labels=await page.evaluate(()=>window.__painted);for(const field of [new Intl.NumberFormat('fr-FR',{maximumFractionDigits:0}).format(aum.amount/1e6)+' M'+currency,'Encours du fonds',aum.asOf.split('-').reverse().join('/')])assert(norm(labels.join(' ')).includes(norm(field)),field)
+  results.push({isin:row.isin,financialAsOf:aum.asOf,sourceCheckedAt:aum.checkedAt,expected,sourceSha256:aum.sha256,visible:await card.innerText(),text,canvasLabels:labels,png:{bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex'),matchesPreview:true}})
  }
  assert.deepEqual(await get('/build-info.json'),build);assert.equal((await get('/data/publication-manifest.json')).files[path],blob);assert.deepEqual(errors,[])
  await fs.writeFile(out+'/proof.json',JSON.stringify({checkedAt:new Date().toISOString(),buildInfo:build,viewportWidth:Number(process.env.SCREEN_WIDTH??1440),sourceRun:source.runId,recordCommit:source.recordCommit,manifestPath:path,manifestBlob:blob,results,errors,limit:'Seven exact native AUM values and presentation consumers, not all fields. Actual ordinary transport HTTP; browser fallback remains separately exercised in GitHub read-only control.'},null,2)+'\n')
