@@ -1,0 +1,100 @@
+{
+  "checkedAt": "2026-11-01T23:36:40.431Z",
+  "buildInfo": {
+    "sha": "a1184d918e5f78590ba857098e71a64615c7d595",
+    "dataSha": "a89719f4f5b34d3086c3b7246c78a104b74f2591",
+    "lane": "fallback",
+    "builtAt": "2026-11-01T22:59:55Z"
+  },
+  "rows": [
+    {
+      "id": "etfIE00B5W4TY14",
+      "sourceSeriesPath": "src/data/automated-etf-monthly.json",
+      "sourceSeriesBlob": "10a3c5ebb26e4a875e3e322fe429f1d3cadcc199",
+      "level": {
+        "value": 390.17430898675264,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "IE00B5W4TY14",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 435.902738,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "7d8bc6a2fe455a5f03dc34256d2ca60977674bfe4e8a68ac0e90d4db4b8b4e9d"
+      },
+      "historyMonth": "2025-11",
+      "historicalPrice": 208.28327339,
+      "independentPriceEvolutionPct": 87.32868109681124,
+      "text": "📊 Il y a 1 an, l’ETF iShares MSCI Korea UCITS ETF · VL valait 208 €. Depuis, son prix a progressé de +87,3 % 👇\n\n📅 Novembre 2025 : 208 €\n📅 Valeur liquidative du 30/10/2026 : 390 €\n\n📈 Évolution sur la période : +87,3 %\n\n💬 À l’époque, tu suivais déjà l’ETF iShares MSCI Korea UCITS ETF · VL ?\n\nBlackRock iShares",
+      "downloads": [
+        {
+          "width": 1440,
+          "bytes": 2403639,
+          "sha256": "fb1228b1bee8ca9340fb036ca73b2b5a4a83f95a184eefdcd676f7174d4cee6c"
+        },
+        {
+          "width": 390,
+          "bytes": 2403639,
+          "sha256": "fb1228b1bee8ca9340fb036ca73b2b5a4a83f95a184eefdcd676f7174d4cee6c"
+        }
+      ],
+      "limit": "Exact-share source renewed in ordinary run41356639048 after ECB correction; independent price evolution, actual dates and PNG. No old financial divergence explained."
+    },
+    {
+      "id": "etfIE00BDFBTQ78",
+      "sourceSeriesPath": "src/data/automated-etf-monthly.json",
+      "sourceSeriesBlob": "10a3c5ebb26e4a875e3e322fe429f1d3cadcc199",
+      "level": {
+        "value": 50.160221983530256,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "IE00BDFBTQ78",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 56.039,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://www.vaneck.com/DK/en/investments/mining-etf/",
+        "sourceUrls": [
+          "https://www.vaneck.com/DK/en/investments/mining-etf/",
+          "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+          "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG",
+          "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG",
+          "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG",
+          "https://www.vaneck.com/static/eu/js/dist/main.js",
+          "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-11-01T22:22:15.415110+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "d077a4f5b7bb28deb7f769c475e5249d13b171bb6e17a9733fd7f9070c0bd938"
+      },
+      "historyMonth": "2025-11",
+      "historicalPrice": 45.11931523,
+      "independentPriceEvolutionPct": 11.172391974110774,
+      "text": "📊 Il y a 1 an, l’ETF VanEck S&P Global Mining UCITS ETF · VL valait 45 €. Depuis, son prix a progressé de +11,2 % 👇\n\n📅 Novembre 2025 : 45 €\n📅 Valeur liquidative du 30/10/2026 : 50 €\n\n📈 Évolution sur la période : +11,2 %\n\n💬 À l’époque, tu suivais déjà l’ETF VanEck S&P Global Mining UCITS ETF · VL ?\n\nVanEck",
+      "downloads": [
+        {
+          "width": 1440,
+          "bytes": 2345903,
+          "sha256": "cade3a685c5e373ec34c4243c7e6df22625c37f879ff7c997301b345a73d0242"
+        }
+      ],
+      "limit": "Exact-share source renewed in ordinary run41356639048 after ECB correction; independent price evolution, actual dates and PNG. No old financial divergence explained."
+    }
+  ],
+  "errors": [],
+  "limit": "Two actually consumed renewed EUR observations, independent arithmetic and three PNGs; five distinct source failures remain open."
+}

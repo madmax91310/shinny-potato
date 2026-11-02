@@ -1,0 +1,181 @@
+{
+  "checkedAt": "2026-11-01T20:27:38.303Z",
+  "buildInfo": {
+    "sha": "539346d5bf6c8ef133987f8ac3d2dfeb3a57e004",
+    "dataSha": "59b595547d417d33db58b59b7c120bc32f81647f",
+    "lane": "validated-data",
+    "builtAt": "2026-11-01T19:33:25.386Z"
+  },
+  "manifestCatalogBlob": "13e98c944065116dde4d4799a730de679b878021",
+  "results": [
+    {
+      "isin": "IE00B441G979",
+      "catalogKeys": [
+        "IE00B441G979"
+      ],
+      "name": "iShares MSCI World EUR Hedged UCITS ETF (Acc)",
+      "holdingsStatus": {
+        "checkedAt": "2026-11-01T16:51:00.394492+00:00",
+        "lastSuccessAt": "2026-11-01T16:51:00.394492+00:00",
+        "status": "validated",
+        "asOf": "2026-10-30"
+      },
+      "concentration": "5 premiers titres\n19,19 %\n10 premiers titres\n26,24 %\n\nConcentration observée sur la part identifiée ; des détentions manquantes peuvent augmenter ces poids.\n2026-10-30 → 2026-10-30 · 98,7 % identifiés sur 100 % analysés.",
+      "holdingsPath": "src/pages/dca-profiles/holdings-31.json",
+      "holdingsBlob": "69c269a65084617609ca1387eeab28afca048c8f",
+      "independentlySummed": {
+        "top5": 19.187330000000003,
+        "top10": 26.241130000000005,
+        "coverage": 98.70072000000016
+      },
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-10-30",
+        "sourceRowCount": 1351,
+        "selectedRowCount": 1244,
+        "excludedRowCount": 107,
+        "publishedNetWeightPct": 99.99989000000016,
+        "selectedWeightPct": 98.70072,
+        "sourceWeightPctByType": {
+          "Equity": 98.70072000000016,
+          "Cash": 2.3367500000000003,
+          "Money Market": 0.73319,
+          "Cash Collateral and Margins": 0.06704,
+          "Forwards": -1.8377899999999998,
+          "FX": -0.00002,
+          "Futures": 0
+        },
+        "excludedWeightPctByType": {
+          "Cash": 2.3367500000000003,
+          "Money Market": 0.73319,
+          "Cash Collateral and Margins": 0.06704,
+          "Forwards": -1.8377899999999998,
+          "Equity": 0,
+          "FX": -0.00002,
+          "Futures": 0
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "holdingsQualification": {
+        "asOf": "2026-10-30",
+        "complete": true,
+        "identifiedCoverage": 98.70072000000016
+      },
+      "shots": [
+        {
+          "width": 1440,
+          "pngBytes": 546524,
+          "sha256": "c072df83c95e57aadbefc2debc427256c0253334a717dc09cfd3e739c470835c"
+        },
+        {
+          "width": 390,
+          "pngBytes": 546524,
+          "sha256": "c072df83c95e57aadbefc2debc427256c0253334a717dc09cfd3e739c470835c"
+        }
+      ]
+    },
+    {
+      "isin": "IE000C6ITGC8",
+      "catalogKeys": [
+        "IE000C6ITGC8"
+      ],
+      "name": "iShares Quantum Computing UCITS ETF",
+      "holdingsStatus": {
+        "checkedAt": "2026-11-01T16:51:00.394492+00:00",
+        "lastSuccessAt": "2026-11-01T16:51:00.394492+00:00",
+        "status": "validated",
+        "asOf": "2026-10-30"
+      },
+      "concentration": "5 premiers titres\n35,63 %\n10 premiers titres\n55,3 %\n\nCouverture complète des titres identifiés.\n2026-10-30 → 2026-10-30 · 99,69 % identifiés sur 100 % analysés.",
+      "holdingsPath": "src/pages/dca-profiles/holdings-10.json",
+      "holdingsBlob": "b27167233c7a084a199884ef7fe80a4a82ec5728",
+      "independentlySummed": {
+        "top5": 35.62721,
+        "top10": 55.30131,
+        "coverage": 99.68672999999998
+      },
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-10-30",
+        "sourceRowCount": 40,
+        "selectedRowCount": 30,
+        "excludedRowCount": 10,
+        "publishedNetWeightPct": 99.99994999999998,
+        "selectedWeightPct": 99.68673,
+        "sourceWeightPctByType": {
+          "Equity": 99.68672999999998,
+          "Cash": 0.30281,
+          "Cash Collateral and Margins": 0.01041,
+          "Futures": 0
+        },
+        "excludedWeightPctByType": {
+          "Cash": 0.30281,
+          "Cash Collateral and Margins": 0.01041,
+          "Futures": 0
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "holdingsQualification": {
+        "asOf": "2026-10-30",
+        "complete": true,
+        "identifiedCoverage": 99.68672999999998
+      },
+      "shots": [
+        {
+          "width": 1440,
+          "pngBytes": 548507,
+          "sha256": "c9705fff16458f713f7687ee1bd5d9d51bc36cb90ab4c9bfe372d66f068afea8"
+        },
+        {
+          "width": 390,
+          "pngBytes": 548507,
+          "sha256": "c9705fff16458f713f7687ee1bd5d9d51bc36cb90ab4c9bfe372d66f068afea8"
+        }
+      ]
+    },
+    {
+      "isin": "IE0007Y8Y157",
+      "catalogKeys": [
+        "IE0007Y8Y157"
+      ],
+      "name": "VanEck Quantum Computing UCITS ETF A",
+      "holdingsStatus": {
+        "checkedAt": "2026-11-01T16:51:00.394492+00:00",
+        "lastSuccessAt": "2026-11-01T16:51:00.394492+00:00",
+        "status": "validated",
+        "asOf": "2026-10-30"
+      },
+      "concentration": "5 premiers titres\n28,74 %\n10 premiers titres\n52,64 %\n\nCouverture complète des titres identifiés.\n2026-10-30 → 2026-10-30 · 99,85 % identifiés sur 100 % analysés.",
+      "holdingsPath": "src/pages/dca-profiles/holdings-28.json",
+      "holdingsBlob": "0b94869ccf7882a8d5a5a4a895007d9a51fe6a94",
+      "independentlySummed": {
+        "top5": 28.74,
+        "top10": 52.64,
+        "coverage": 99.85000000000002
+      },
+      "holdingsQualification": {
+        "asOf": "2026-10-30",
+        "complete": true,
+        "identifiedCoverage": 99.85000000000002
+      },
+      "shots": [
+        {
+          "width": 1440,
+          "pngBytes": 562406,
+          "sha256": "d3562b5864c697ed888f216e7ce2e4780b9238fa89dfa59abe904dfb04acde94"
+        },
+        {
+          "width": 390,
+          "pngBytes": 562406,
+          "sha256": "d3562b5864c697ed888f216e7ce2e4780b9238fa89dfa59abe904dfb04acde94"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "limit": "Actual public selection, analytics and identical preview/download PNGs; not a new independent certification of all source positions or unrelated exposures."
+}

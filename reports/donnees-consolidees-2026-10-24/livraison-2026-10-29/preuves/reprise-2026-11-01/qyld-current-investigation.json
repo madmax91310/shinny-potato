@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-11-01T18:08Z",
+  "source": "https://globalxetfs.eu/funds/qyld/",
+  "sha256": "a4d2cbc3646f0fd327cbb2cdaad23897ca6dece68e794490ea196e640c351fe0",
+  "finding": "One dated 29 October reference-index table contains 20 rows including different AAPL/AMZN/GOOGL/MSFT/NVDA weights. No separate date or validated economic identity assigns one top ten as correct. Basket rows are excluded by the parser.",
+  "status": "source conflict confirmed on actual response, no arbitrary row selection",
+  "proof": "qyld-official-current.html.gz"
+}

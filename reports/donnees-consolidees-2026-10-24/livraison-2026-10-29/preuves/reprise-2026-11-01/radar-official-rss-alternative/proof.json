@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-11-01T18:27:05.947817+00:00",
+  "strategy": "Alternate official RSS instead of blocked homepage; read-only local source checks, not production validation",
+  "results": [
+    {
+      "url": "https://dares.travail-emploi.gouv.fr/rss.xml",
+      "status": 200,
+      "finalUrl": "https://dares.travail-emploi.gouv.fr/rss.xml",
+      "contentType": "text/html",
+      "bytes": 53931,
+      "sha256": "4a225b0ee1677406b4b287af53274266640166842ec8b424e909eaea7ace52cf",
+      "sample": "<!DOCTYPE html>\r\n<html><head>\r\n<meta http-equiv=\"Pragma\" content=\"no-cache\"/>\r\n<meta http-equiv=\"Expires\" content=\"-1\"/>\r\n<meta http-equiv=\"CacheControl\" content=\"no-cache\"/>\r\n<meta http-equiv=\"Conten",
+      "qualification": "HTTP200 HTML security/JavaScript challenge, not an RSS feed; not admitted as source success"
+    },
+    {
+      "url": "https://drees.solidarites-sante.gouv.fr/rss.xml",
+      "status": "unavailable",
+      "reason": "HTTP Error 503: Service Unavailable"
+    }
+  ]
+}

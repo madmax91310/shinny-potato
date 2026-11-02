@@ -1,0 +1,61 @@
+{
+  "DE0002635307": {
+    "asOf": "2026-10-30",
+    "checkedAt": "2026-11-01T16:07:47.533795+00:00",
+    "basis": "fund",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?portfolioId=251931&productId=251931&portfolioType=ISHARES_FUND_DATA&currencyCode=EUR&shareClass=+&aladdinFundTicker=IDJST6TTL&ticker=EXSA&appSubType=ISHARES&locale=de_DE&targetSite=de-ishares-v2&userType=individual&slice=emea&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&includeConfig=true&excludeContent=true",
+    "sha256": "f1e1c372cdc6443ea2aa65358f4c9b9594ba0401731778fe554e9e394a01dca2",
+    "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+    "completeFile": true,
+    "rows": 601,
+    "publishedEquityWeightPct": 99.65944,
+    "identifiedEquityWeightPct": 99.65944
+  },
+  "IE00BD4TXV59": {
+    "asOf": "2026-09-17",
+    "checkedAt": "2026-11-01T16:07:47.533795+00:00",
+    "basis": "index",
+    "scope": "equity-index",
+    "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+    "sourceUrls": [
+      "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
+      "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394?idType=isin",
+      "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+      "https://www.invesco.com/uk/en/financial-products/etfs/invesco-msci-world-ucits-etf-acc.html",
+      "https://www.msci.com/eqb/methodology/meth_docs/MSCI_Index_Calculation_Methodology_May2026.pdf"
+    ],
+    "sha256": "7e6c4b52f346bd396f8553381eda0c8a02c408c9ee2a49ef165df45c975e32d6",
+    "method": "Complete issuer-published economic index exposure, not fund assets or substitute basket. Original rounded index weights; the publisher may delay the observation under index-provider licensing restrictions. Fund cash, fees, swaps and currency hedges excluded. Benchmark reference only for this physical fund; actual fund assets, cash and tracking differences are not observed. Full fund overlap is not certified.",
+    "identitySourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+    "identitySha256": "7e6c4b52f346bd396f8553381eda0c8a02c408c9ee2a49ef165df45c975e32d6",
+    "identityAsOf": "2026-09-17",
+    "identityMethod": "ISIN published on each same-date economic-index row; no name-based or fund-basket join",
+    "shareSourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
+    "shareAsOf": "2026-09-30",
+    "shareSha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e",
+    "shareSourceAttempts": [
+      {
+        "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf",
+        "status": "waiting-publication",
+        "error": "Expected official PDF at https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf; received Dokument nicht gefunden | Swiss Fund Data at https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf"
+      },
+      {
+        "sourceUrl": "https://www.swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf",
+        "status": "waiting-publication",
+        "error": "Expected official PDF at https://www.swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf; received Dokument nicht gefunden | Swiss Fund Data at https://www.swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf"
+      },
+      {
+        "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
+        "status": "validated",
+        "asOf": "2026-09-30",
+        "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e"
+      }
+    ],
+    "completeFile": true,
+    "rows": 1250,
+    "publishedEquityWeightPct": 100.0022,
+    "identifiedEquityWeightPct": 100.0022
+  },
+  "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41324372175",
+  "environment": "GitHub ordinary producer on pull_request; not production publication"
+}

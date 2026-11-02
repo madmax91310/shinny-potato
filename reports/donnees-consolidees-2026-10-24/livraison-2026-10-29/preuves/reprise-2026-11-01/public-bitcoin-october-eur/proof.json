@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-11-02T00:00:41.405Z",
+  "base": "https://madmax91310.github.io/shinny-potato",
+  "buildInfo": {
+    "sha": "246849a07ebdcf725912ac9eeb701b7f57d01256",
+    "builtAt": "2026-11-01T23:13:29Z"
+  },
+  "scope": "all",
+  "viewportWidth": 1440,
+  "manifestSourceFiles": {
+    "src/data/automated-monthly.json": "9d32c8ddae8d8567cf03ec639aaea20a073d1ec9",
+    "src/data/non-bond-monthly-records.json": "10cb48999dadb3d2b9633c92f0d081a5ff304ba0",
+    "src/data/monthly-fx.json": "d4e29a8e8ef78f12905d3c89f1ce9a2873719969",
+    "src/data/automated-etf-monthly.json": "10a3c5ebb26e4a875e3e322fe429f1d3cadcc199",
+    "src/data/bitcoin-yahoo-monthly.json": "334693c48e210de6cc4c94f00b6312bcc8ba8d73"
+  },
+  "calculations": [
+    {
+      "id": "bitcoin",
+      "targetCurrency": "EUR",
+      "nativeCurrency": "USD",
+      "manifestPath": "src/data/bitcoin-yahoo-monthly.json",
+      "manifestBlob": "334693c48e210de6cc4c94f00b6312bcc8ba8d73",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-01",
+      "latest": "📍 Dernier niveau connu : 77 435 $ (au octobre 2026)",
+      "expected": "8 192 €",
+      "actual": "8 192 €",
+      "independentUnroundedValue": 8192.371194021922,
+      "text": "Et si tu avais investi 1 000 € dans le Bitcoin en janvier 2020 ? 🫢\n\nEn octobre 2026, voici ce que cette somme serait devenue 👇\n\n💰 Somme investie : 1 000 €\n📈 Capital final : 8 192 €\n🟢 Gain : 7 192 € (+719,2 %)\n\nAvec les mêmes versements sur un Livret A : 1 123 € (simulation indicative)\n\nBCE\n\n💬 Tu aurais gardé ce placement jusqu’au bout ?"
+    }
+  ],
+  "comparison": {
+    "id": "bitcoin",
+    "coverage": "EUR · Rendements totaux et clôtures des actifs sans revenus\nHistorique commun : 2023-08 → 2026-10 · 2 années civiles complètes",
+    "row": "Bitcoin\t🏆 +39,38 %\t-17,19 %\t-6,93 %",
+    "expectedAnnualized": 3.643318472586543,
+    "expected2026Partial": -6.934018304631406,
+    "text": "Parmi ces actifs, lequel a le mieux performé entre fin octobre 2024 et fin octobre 2026 (en EUR) ? 👇\n\n🥇 Nasdaq-100 équipondéré : +13,57 %/an\n🥈 Bitcoin : +3,64 %/an\n\nLe détail année par année dans l’image 👇\n\n💬 Tu es exposé à l’un d’entre eux ?\n\nPas un conseil financier."
+  },
+  "downloads": [
+    {
+      "name": "calculator-bitcoin",
+      "bytes": 1771078,
+      "sha256": "63b1453360ee3a8ff53acfb6a2a0944e401b0d636e6453aca0de2e6b2911803e"
+    },
+    {
+      "name": "comparison-bitcoin",
+      "bytes": 370000,
+      "sha256": "b1817443c8b82e7d9d9da705b9ac28e77397e51fbade9d4b8d606c4ba072ae9e"
+    }
+  ],
+  "errors": [],
+  "limit": "Actual published source hashes and numerical UI checks, not certification of every field or old financial divergence."
+}

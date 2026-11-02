@@ -1,0 +1,29 @@
+{
+  "id": 124943492034,
+  "run_id": 41338564974,
+  "status": "in_progress",
+  "steps": [
+    {
+      "completed_at": "2026-11-01T18:57:08Z",
+      "conclusion": "success",
+      "name": "Refresh exact ranking histories and ECB conversion",
+      "started_at": "2026-11-01T18:54:01Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-01T18:57:11Z",
+      "conclusion": "success",
+      "name": "Qualify missing exact-share monthly histories",
+      "started_at": "2026-11-01T18:57:09Z",
+      "status": "completed"
+    },
+    {
+      "completed_at": "2026-11-01T19:00:59Z",
+      "conclusion": "success",
+      "name": "Collect observations: collect",
+      "started_at": "2026-11-01T18:57:11Z",
+      "status": "completed"
+    }
+  ],
+  "limit": "Actual ordinary job sequencing only. Continue-on-error step conclusions do not certify individual source successes; native report outcomes, recording, publication and consumer evidence remain required."
+}

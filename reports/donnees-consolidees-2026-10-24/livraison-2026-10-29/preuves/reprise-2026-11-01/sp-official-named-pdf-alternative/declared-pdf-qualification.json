@@ -1,0 +1,163 @@
+[
+  {
+    "id": "sp-global-dividend-aristocrats",
+    "status": "partial-fields-qualified",
+    "fact": {
+      "index": "S&P Global Dividend Aristocrats Quality Income",
+      "asOf": "2026-10-30",
+      "constituents": 88,
+      "sectorClassification": "GICS",
+      "topWeight": 18.0,
+      "countries": [
+        [
+          "🇺🇸 États-Unis",
+          54.2
+        ],
+        [
+          "🇨🇦 Canada",
+          9.1
+        ],
+        [
+          "🇬🇧 Royaume-Uni",
+          4.9
+        ],
+        [
+          "🇨🇳 Chine",
+          3.9
+        ],
+        [
+          "🇫🇷 France",
+          3.6
+        ],
+        [
+          "Italy",
+          3.2
+        ],
+        [
+          "🇨🇭 Suisse",
+          2.7
+        ],
+        [
+          "🇯🇵 Japon",
+          2.6
+        ],
+        [
+          "Hong Kong SAR, China",
+          2.5
+        ],
+        [
+          "🇰🇷 Corée du Sud",
+          2.3
+        ],
+        [
+          "Finland",
+          2.0
+        ],
+        [
+          "🇦🇺 Australie",
+          1.7
+        ],
+        [
+          "Norway",
+          1.2
+        ],
+        [
+          "Portugal",
+          1.2
+        ],
+        [
+          "United Arab Emirates",
+          1.0
+        ],
+        [
+          "🇲🇽 Mexique",
+          1.0
+        ],
+        [
+          "Saudi Arabia",
+          1.0
+        ],
+        [
+          "🇹🇼 Taïwan",
+          1.0
+        ],
+        [
+          "Belgium",
+          0.9
+        ]
+      ],
+      "sectors": [
+        [
+          "🏦 Finance",
+          24.9
+        ],
+        [
+          "💡 Services publics",
+          16.6
+        ],
+        [
+          "🏠 Immobilier",
+          12.6
+        ],
+        [
+          "🏭 Industrie",
+          11.0
+        ],
+        [
+          "⚡ Énergie",
+          8.6
+        ],
+        [
+          "📡 Communication",
+          8.5
+        ],
+        [
+          "🛒 Consommation de base",
+          7.6
+        ],
+        [
+          "🏥 Santé",
+          4.1
+        ],
+        [
+          "🪨 Matériaux",
+          3.9
+        ],
+        [
+          "🛍️ Consommation cyclique",
+          1.2
+        ],
+        [
+          "💻 Technologie",
+          1.0
+        ]
+      ],
+      "holdings": [],
+      "provenance": "Publication officielle de l’indice exact ; pays de domiciliation et comptage extraits des tables. Secteurs : légende imprimée lue à deux résolutions concordantes, total contrôlé. Poids individuels des principales lignes non publiés ; aucune substitution par le portefeuille ETF. Rendements conservés dans leur registre séparé.",
+      "source": {
+        "url": "https://www.spglobal.com/spdji/en/idsenhancedfactsheet/file.pdf?calcFrequency=M&force_download=true&hostIdentifier=48190c8c-42c4-46af-8d1a-0cd5db894797&languageId=1&indexId=92388578",
+        "checkedAt": "2026-11-01",
+        "sha256": "464d93e59a6c08068e528f818bf71c87ecb0dda283bd3253ed1802986cb80011",
+        "label": "Composition officielle S&P DJI automatisée"
+      }
+    },
+    "availableFields": [
+      "countries",
+      "sectors",
+      "constituents",
+      "topWeight"
+    ],
+    "missingRequiredFields": [
+      "holdings: individual top-ten weights"
+    ],
+    "completeConsumerAdmission": "refused",
+    "completeConsumerReason": "Empty or duplicate official composition",
+    "productionChanged": false
+  },
+  {
+    "id": "sp-euro-dividend-aristocrats",
+    "status": "not-qualified",
+    "reason": "Truncated official composition",
+    "productionChanged": false
+  }
+]

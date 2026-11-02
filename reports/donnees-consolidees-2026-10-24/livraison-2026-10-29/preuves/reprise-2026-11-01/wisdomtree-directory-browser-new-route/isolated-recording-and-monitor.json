@@ -1,0 +1,119 @@
+{
+  "kind": "isolated network failure; actual public browser response and existing exact-share identity witness retained in GHA41345600418; no renewed source certificate for that identity, no production write",
+  "date": "2026-11-01T20:53:26.220035+00:00",
+  "identityEvidence": {
+    "asOf": "2026-10-19",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
+    "sha256": "96eb3291746344d4b1b448c03a4a0458c2d8208290e45be1b28e9228200bad03",
+    "terPct": 0.4,
+    "listings": [
+      {
+        "ticker": "WCLD",
+        "exchange": "London Stock Exchange",
+        "mic": "XLON",
+        "currency": "USD",
+        "symbol": "WCLD.L",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+        "checkedAt": "2026-10-16",
+        "sourceDocumentAsOf": "2026-08-31",
+        "evidenceId": "IE00BJGWQN72-XLON-WCLD-USD",
+        "excerpt": "LSE                       USD                WCLD               WCLD LN                WCLD.L            BK77FY2       IE00BJGWQN72          A2PQVE            06/09/2019",
+        "sha256": "348903e16d8d1e9b9fb3b12c6a9e4e9aa0cf99e1f31f5fa893450441836ec464"
+      },
+      {
+        "ticker": "WCLD",
+        "exchange": "Borsa Italiana",
+        "mic": "ETFP",
+        "currency": "EUR",
+        "symbol": "WCLD.MI",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+        "checkedAt": "2026-10-16",
+        "sourceDocumentAsOf": "2026-08-31",
+        "evidenceId": "IE00BJGWQN72-ETFP-WCLD-EUR",
+        "excerpt": "Borsa Italiana            EUR                WCLD               WCLD IM                WCLD.MI           BK77G05       IE00BJGWQN72          A2PQVE            07/10/2019",
+        "sha256": "348903e16d8d1e9b9fb3b12c6a9e4e9aa0cf99e1f31f5fa893450441836ec464"
+      },
+      {
+        "ticker": "WTEJ",
+        "exchange": "Xetra",
+        "mic": "XETR",
+        "currency": "EUR",
+        "symbol": "WTEJ.DE",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+        "checkedAt": "2026-10-16",
+        "sourceDocumentAsOf": "2026-08-31",
+        "evidenceId": "IE00BJGWQN72-XETR-WTEJ-EUR",
+        "excerpt": "Xetra                     EUR                 WTEJ              WTEJ GY                WTEJ.DE           BJS9KV2       IE00BJGWQN72          A2PQVE            14/10/2019",
+        "sha256": "348903e16d8d1e9b9fb3b12c6a9e4e9aa0cf99e1f31f5fa893450441836ec464"
+      },
+      {
+        "ticker": "WCLD",
+        "exchange": "SIX",
+        "mic": "XSWX",
+        "currency": "USD",
+        "symbol": "WCLD.S",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+        "checkedAt": "2026-10-16",
+        "sourceDocumentAsOf": "2026-08-31",
+        "evidenceId": "IE00BJGWQN72-XSWX-WCLD-USD",
+        "excerpt": "SIX                       USD                WCLD               WCLD SW                WCLD.S            BMVLFV1       IE00BJGWQN72          A2PQVE            27/07/2020",
+        "sha256": "348903e16d8d1e9b9fb3b12c6a9e4e9aa0cf99e1f31f5fa893450441836ec464"
+      },
+      {
+        "ticker": "WCLD",
+        "exchange": "Euronext(FR)",
+        "mic": "XPAR",
+        "currency": "EUR",
+        "symbol": "WCLD.PA",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+        "checkedAt": "2026-10-16",
+        "sourceDocumentAsOf": "2026-08-31",
+        "evidenceId": "IE00BJGWQN72-XPAR-WCLD-EUR",
+        "excerpt": "Euronext(FR)              EUR                WCLD               WCLD FP                WCLD.PA           BMCZH61       IE00BJGWQN72          A2PQVE            23/10/2023",
+        "sha256": "348903e16d8d1e9b9fb3b12c6a9e4e9aa0cf99e1f31f5fa893450441836ec464"
+      }
+    ],
+    "checkedAt": "2026-10-20",
+    "modifiedAt": "2026-10-20"
+  },
+  "aumAppliedToIsolatedRegistry": {
+    "amount": 400637024.0,
+    "currency": "USD",
+    "scope": "fund",
+    "asOf": "2026-10-30",
+    "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+    "controlledListingIds": [
+      "2921038"
+    ],
+    "nonNativeListingsExcluded": 1,
+    "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+    "sha256": "87019d756083a523821d75dfdbcc37228b22eb6010476d0cecad9e8f48be7760",
+    "identitySourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
+    "identitySha256": "96eb3291746344d4b1b448c03a4a0458c2d8208290e45be1b28e9228200bad03",
+    "identityAsOf": "2026-10-19",
+    "checkedAt": "2026-11-01",
+    "modifiedAt": "2026-11-01"
+  },
+  "sourceErrors": [
+    {
+      "field": "aum-primary-http",
+      "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+      "phase": "acquisition",
+      "reason": "Primary HTTP directory access failed: isolated primary HTTP403; no production source failure provoked; exact native AUM independently qualified via the ordinary public browser",
+      "qualifiedFallbackAvailable": true
+    }
+  ],
+  "monitorNormalization": {
+    "successes": [],
+    "errors": [
+      {
+        "id": "etf-additional-IE00BJGWQN72",
+        "name": "ETF IE00BJGWQN72",
+        "field": "aum-primary-http",
+        "error": "Primary HTTP directory access failed: isolated primary HTTP403; no production source failure provoked; exact native AUM independently qualified via the ordinary public browser"
+      }
+    ]
+  },
+  "sourceAsOfPreserved": true,
+  "allFieldsCertified": false
+}
