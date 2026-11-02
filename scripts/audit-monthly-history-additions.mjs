@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { MONTHLY_HISTORY_ADDITIONS, MONTHLY_HISTORY_ADDITIONS_REVIEW } from '../src/data/monthly-history-additions.js';
 import { ASSETS, BASELINE_ASSETS, ASSET_ORDER, getAssetMinDate, SPARSE_MONTHLY_DATA_IDS } from '../src/data/market-history.js';
 import { derive, buildTweetText } from '../src/pages/investment-calculator/lib.js';
+import { monthlyHistoryMethod } from '../src/lib/performance-conventions.js';
 import { computeComparativeSeries } from '../src/pages/investment-calculator/videoExport.js';
 import { getAnnualReturns, MARKET_ASSETS, ANNIVERSAIRE_ELIGIBLE_ASSETS } from '../src/pages/tweet-midi/data/marketHistory.js';
 // The parent calculator audit runs active proof checks in its own process.
@@ -52,7 +53,7 @@ for (const [id, asset] of Object.entries(MONTHLY_HISTORY_ADDITIONS)) {
     assert(tweet.includes('Capital final :'));
     if (id === 'cac40') assert(tweet.includes('dividendes non réinvestis'));
     else assert.equal(ASSETS[id].priceMethod, 'adjusted');
-    assert(!tweet.includes('Cours ajustés'));
+    assert(tweet.includes(monthlyHistoryMethod(ASSETS[id])));
   }
   assert.equal(getAnnualReturns(id, 2020).length, Number(ASSETS[id].points.at(-1).date.slice(0, 4)) - 2020);
   assert.equal(HISTORY_FACTS.filter(f => f.id.endsWith(`-${id}`)).length, 2);
