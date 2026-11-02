@@ -64,7 +64,7 @@ assert.doesNotMatch(metals, /💶 Dividendes/u);
 assert.match(metals, /Frais de gestion : 0,49 %/u);
 assert.match(metals, /Taux de swap annuel : 0,45 %/u);
 const space = getComparatifEtfText('spatial');
-assert.match(space, /^🚀 Quel ETF/u);
+assert.match(space, /^🚀 Quelles entreprises détient VanEck Space Innovators/u);
 assert.ok(space.includes('Voici un ETF à découvrir'));
 assert.ok(!space.includes('📌 À retenir'));
 assert.ok(!space.includes('📌 Les différences'));

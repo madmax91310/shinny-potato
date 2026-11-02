@@ -131,7 +131,7 @@ export function portfolioEditorial(portfolio) {
   } else if ((cumulative[2] ?? topSum) >= .7) {
     const n = Math.min(3, top.length)
     const concentratedWeight = cumulative[n - 1] < 1 && cumulative[n - 1] >= .9995 ? 'près de 100 %' : percentage(cumulative[n - 1])
-    explanation = leadName + ' arrive en tête avec ' + percentage(lead.weight) + (second ? ', devant ' + holdingName(second) + ' à ' + percentage(second.weight) : '') + '. ' + (otherCount ? 'Les ' + otherCount + ' autres ' + unit + ' hors du top ' + top.length + ' représentent ' + percentage(rest) + ' du relevé.' : 'Toutes les ' + unit + ' déclarées figurent dans cette liste.')
+    explanation = leadName + ' arrive en tête avec ' + percentage(lead.weight) + (second ? ', devant ' + holdingName(second) + ' à ' + percentage(second.weight) : '') + '. ' + (otherCount ? (otherCount === 1 ? 'L’autre ' + singularUnit + ' hors du top ' + top.length + ' représente ' : 'Les ' + otherCount + ' autres ' + unit + ' hors du top ' + top.length + ' représentent ') + percentage(rest) + ' du relevé.' : 'Toutes les ' + unit + ' déclarées figurent dans cette liste.')
     question = 'Concentrer ' + concentratedWeight + ' sur ' + n + ' ' + unit + ' comme ici : tu pourrais garder cette répartition ?'
   } else if (second && lead.weight - second.weight <= .005 + 1e-9) {
     explanation = leadName + ' et ' + holdingName(second) + ' sont presque à égalité en tête : ' + percentage(lead.weight) + ' et ' + percentage(second.weight) + '. Aucune ligne ne domine seule cette répartition.'

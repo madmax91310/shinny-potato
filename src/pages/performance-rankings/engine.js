@@ -160,7 +160,11 @@ export function buildTweet(result, title) {
   const lastYear = Number(result.end.slice(0, 4))
   const period = fullYears ? firstYear === lastYear ? `en ${lastYear}` : `entre ${firstYear} et ${lastYear}` : `entre fin ${formatMonth(result.start)} et fin ${formatMonth(result.end)}`
   const badges = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣', '6️⃣']
-  const lines = rows.map(r => `${badges[r.rank - 1]} ${r.label} : ${formatPercent(r.value)}${annualized ? '/an' : ''}`)
+  // Une petite variation ne devient pas un zéro dans le texte publié. Le
+  // classement continue de comparer les valeurs non arrondies, sans changement.
+  const publicationPercent = value => value !== 0 && Math.abs(value) < 0.01
+    ? `${value < 0 ? 'baisse' : 'hausse'} de moins de 0,01 %` : formatPercent(value)
+  const lines = rows.map(r => `${badges[r.rank - 1]} ${r.label} : ${publicationPercent(r.value)}${annualized ? '/an' : ''}`)
   const benchmark = result.assets.find(a => a.benchmark)
   const participants = result.assets.filter(a => !a.benchmark)
   const stocks = participants.every(a => a.instrumentType === 'EQUITY' || (!a.isin && a.basis === 'adjusted'))
@@ -169,10 +173,11 @@ export function buildTweet(result, title) {
   const confrontation = participants.length === 1
     ? stocks ? 'Cette action a-t-elle battu' : 'Cet actif a-t-il battu'
     : `Parmi ces ${count} ${stocks ? 'actions' : 'actifs'}, ${stocks ? 'lesquelles' : 'lesquels'} ont battu`
+  const feminine = result.assets.every(a => a.instrumentType === 'EQUITY' || (!a.isin && a.basis === 'adjusted'))
   const hook = benchmark
     ? `${confrontation} l’${benchmark.shortLabel.replace(/ \(réf\.\)$/, '')} ${period}${currency} ? 👇`
-    : `Parmi ${tweetUniverse(result, title)}, lequel a le mieux performé ${period}${currency} ? 👇`
-  return `${hook}\n\n${lines.join('\n')}\n\nLe détail année par année dans l’image 👇\n\n💬 Tu es exposé à l’un d’entre eux ?\n\nPas un conseil financier.`
+    : `Parmi ${tweetUniverse(result, title)}, ${feminine ? 'laquelle' : 'lequel'} a le mieux performé ${period}${currency} ? 👇`
+  return `${hook}\n\n${lines.join('\n')}\n\n${basisLabel(result.coverage.basis)}.\n\nLe détail année par année dans l’image 👇\n\n💬 ${feminine ? 'Tu détiens l’une de ces actions ?' : 'Tu es exposé à l’un d’entre eux ?'}\n\nPas un conseil financier.`
 }
 
 export function rebalanceLabel(value) { return ({ none: 'Sans rééquilibrage', annual: 'Rééquilibrage en décembre', monthly: 'Rééquilibrage chaque mois' })[value] }

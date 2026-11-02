@@ -207,7 +207,7 @@ assert.match(example.hook, /4 % d’ETF à levier.*24 %.*World/);
 assert.ok(compactText.length < 2200);
 assert.doesNotMatch(compactText, /La logique|💡|→|Pire année|Base historique/);
 assert.match(compactText, /levier 2x est quotidien/);
-assert.equal(compactText.split('\n').filter(line => /^\S+ \d+% /.test(line)).length, 6);
+assert.equal(compactText.split('\n').filter(line => /^\S+ \d+ % /.test(line)).length, 6);
 assert.match(example.selection.find(s=>s.id==='actions_value').shortRole,/moins chères/);
 assert.match(acwiEmerging.selection[1].shortRole, /émergents déjà présents/);
 assert.match(worldEmerging.selection[1].shortRole, /ne couvre pas.*petites entreprises/);
@@ -299,13 +299,13 @@ console.log('OK : performances annuelles et annualisée dans le tweet, capitalis
 // Export order follows weights, with stable ties, including saved history.
 const unordered = manual([{id:'msci_world_amundi_pea',pct:21},{id:'bitcoin_wisdomtree',pct:10},{id:'actions_value',pct:28},{id:'oblig_corp_vanguard',pct:28},{id:'oblig_etat_us',pct:6},{id:'or_amundi',pct:7}]);
 const savedOrder = unordered.selection.map(s=>s.id);
-const rows = renderTweetText(unordered).split('\n').filter(line => /^\S+ \d+% /.test(line));
-assert.deepEqual(rows.map(line=>Number(line.match(/ (\d+)% /)[1])), [28,28,21,10,7,6]);
+const rows = renderTweetText(unordered).split('\n').filter(line => /^\S+ \d+ % /.test(line));
+assert.deepEqual(rows.map(line=>Number(line.match(/ (\d+) % /)[1])), [28,28,21,10,7,6]);
 assert.match(rows[0], /Value/);
 assert.match(rows[1], /Vanguard/);
 assert.deepEqual(unordered.selection.map(s=>s.id), savedOrder);
 assert.deepEqual(unordered.perf, computeYearlyPerf(unordered.selection));
-assert.deepEqual(renderTweetText({...unordered, hook:'Ancienne accroche'}).split('\n').filter(line => /^\S+ \d+% /.test(line)), rows);
+assert.deepEqual(renderTweetText({...unordered, hook:'Ancienne accroche'}).split('\n').filter(line => /^\S+ \d+ % /.test(line)), rows);
 console.log('OK : tri décroissant stable sans modifier les slots ni les performances.');
 
 

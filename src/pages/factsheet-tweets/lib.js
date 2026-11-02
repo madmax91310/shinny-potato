@@ -86,7 +86,7 @@ export function buildFactsheetTweet(sheet) {
   const universe = sheet.id === 'eurostoxx50'
     ? 'Cet indice regroupe 50 grandes entreprises de la zone euro. Le Royaume-Uni et la Suisse n’en font donc pas partie.'
     : `Le ${sheet.index} regroupe ${countText}. ${scopes[sheet.id] ?? ''} Voici sa répartition 👇`
-  const lines = [indexHook(sheet), '', universe]
+  const lines = [indexHook(sheet), '', universe, ...(sheet.snapshot ? [`Composition : ${sheet.snapshot}.`] : [])]
 
 
   const countries = sortedRows(sheet.countries)
@@ -136,6 +136,9 @@ export function buildFactsheetTweet(sheet) {
   if (sheet.performance.historyNote) lines.push('', `⚠️ ${sheet.performance.historyNote.replace('Les poids sont ceux de l’indice au 31 août 2026 ; les rendements', 'Les rendements')}`)
   const question = ['em-standard', 'em-esg', 'msci-em-ex-china'].includes(sheet.id)
     ? 'Cette répartition correspond à ce que tu recherches dans les marchés émergents ?'
+    : ['acwi', 'ftse-all-world'].includes(sheet.id)
+      ? 'Tu garderais ces poids entre les pays ou tu choisirais une autre répartition ?'
+    : sheet.id === 'mscieurope' ? 'Quels pays ou secteurs renforcerais-tu dans cette répartition européenne ?'
     : questions[sheet.id] ?? 'Quel détail de cette composition retient ton attention ?'
   const firstHolding = sortedRows(sheet.holdings)[0]
   const closing = sheet.id === 'eurostoxx50' && firstHolding?.[1] >= 10

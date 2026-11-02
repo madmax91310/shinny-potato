@@ -59,7 +59,7 @@ const karim={...p,name:'Karim',emoji:'👦',age:32,job:'informaticien',income:25
  {asset:'world',label:'MSCI World',emoji:'🌍',weight:70,amount:350,isin:references.world.isin},
  {asset:'europe',label:'STOXX Europe 600',emoji:'🇪🇺',weight:20,amount:100,isin:references.europe.isin},
  {asset:'emerging',label:'MSCI Emerging Markets',emoji:'🌏',weight:10,amount:50,isin:references.emerging.isin}],variable:false}
-assert(buildTweetText(karim).startsWith('👦 Karim, 32 ans, informaticien\n💸 Salaire : 2500€/mois\n📊 DCA de 500€ par mois'))
+assert(buildTweetText(karim).startsWith('👦 Karim, 32 ans, informaticien\n💸 Salaire : 2\u202f500 €/mois\n📊 DCA de 500 € par mois'))
 assert(!buildTweetText(karim).includes('Le World reste son placement principal.'))
 assert(!/undefined|NaN/.test(buildTweetText({...karim,age:null,job:'',income:0})))
 console.log('Donuts : total, couverture partielle, dates séparées et accroche validée.')
@@ -89,7 +89,7 @@ function checkOrder(profile){
  const held=sortHoldings(profile.lines),flows=sortContributions(profile.lines)
  const tweet=buildTweetText(profile)
  assert.deepEqual(allocationRows(profile.lines).map(r=>r.name),held.map(l=>l.label))
- for(const [rows,entry] of [[held,l=>`${l.emoji || '•'} ${l.weight.toLocaleString('fr-FR',{maximumFractionDigits:2})} % ${l.label}`],[flows,l=>`→ ${l.amount.toLocaleString('fr-FR',{useGrouping:false,maximumFractionDigits:2})}€ sur ${l.label}`]]){
+ for(const [rows,entry] of [[held,l=>`${l.emoji || '•'} ${l.weight.toLocaleString('fr-FR',{maximumFractionDigits:2})} % ${l.label}`],[flows,l=>`→ ${l.amount.toLocaleString('fr-FR',{maximumFractionDigits:2})} € sur ${l.label}`]]){
   const positions=rows.map(l=>tweet.indexOf(entry(l)))
   assert(positions.every(n=>n>=0))
   assert(positions.every((n,i)=>!i||n>positions[i-1]))
