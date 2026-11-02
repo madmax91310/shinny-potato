@@ -13397,7 +13397,7 @@
   "nikkei225": {
     "facts": {
       "index": "Nikkei 225",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-30",
       "constituents": 225,
       "countries": [
         [
@@ -13405,79 +13405,83 @@
           100
         ]
       ],
-      "sectorMethod": "Nikkei six-sector classification",
+      "sectorMethod": "Nikkei seven-sector classification",
       "sectors": [
         [
           "Technology",
-          56.96
+          41.11
         ],
         [
           "Consumer Goods",
-          19.66
+          23.82
         ],
         [
           "Materials",
-          12.26
+          12.36
+        ],
+        [
+          "Information and Communications",
+          11.18
         ],
         [
           "Capital Goods/Others",
-          6.84
+          7.04
         ],
         [
           "Financials",
-          2.98
+          3.08
         ],
         [
           "Transportation and Utilities",
-          1.3
+          1.43
         ]
       ],
       "holdings": [
         [
           "ADVANTEST CORP.",
-          12.39
-        ],
-        [
-          "TOKYO ELECTRON LTD.",
-          8.9
+          11.88
         ],
         [
           "FAST RETAILING CO., LTD.",
-          8.54
+          9.63
+        ],
+        [
+          "TOKYO ELECTRON LTD.",
+          7.6
         ],
         [
           "SOFTBANK GROUP CORP.",
-          7.75
+          5.73
         ],
         [
           "RECRUIT HOLDINGS CO., LTD.",
-          2.53
+          3.07
         ],
         [
           "TDK CORP.",
-          2.25
-        ],
-        [
-          "IBIDEN CO., LTD.",
-          2.22
-        ],
-        [
-          "KIOXIA HOLDINGS CORP.",
-          1.91
+          2.05
         ],
         [
           "KDDI CORP.",
-          1.76
+          1.81
         ],
         [
-          "FUJIKURA LTD.",
-          1.57
+          "IBIDEN CO., LTD.",
+          1.78
+        ],
+        [
+          "SHIN-ETSU CHEMICAL CO., LTD.",
+          1.59
+        ],
+        [
+          "FANUC CORP.",
+          1.52
         ]
       ],
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
         "checkedAt": "2026-11-02",
-        "sha256": "3cc4b278a7dc8310081320f5933abf58f9f9a14180dbc0dcd8007a2655a1c304",
+        "sha256": "f54cc08d824e9f89d407b8cca701f240a204caa1f76f4f97d0558e176a0b30d5",
         "label": "Composition officielle automatisée · Nikkei 225"
       },
       "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
@@ -13569,6 +13573,97 @@
           "label": "Composition officielle automatisée · Nikkei 225"
         },
         "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
+      },
+      "2026-10-30": {
+        "index": "Nikkei 225",
+        "asOf": "2026-10-30",
+        "constituents": 225,
+        "countries": [
+          [
+            "🇯🇵 Japon",
+            100
+          ]
+        ],
+        "sectorMethod": "Nikkei seven-sector classification",
+        "sectors": [
+          [
+            "Technology",
+            41.11
+          ],
+          [
+            "Consumer Goods",
+            23.82
+          ],
+          [
+            "Materials",
+            12.36
+          ],
+          [
+            "Information and Communications",
+            11.18
+          ],
+          [
+            "Capital Goods/Others",
+            7.04
+          ],
+          [
+            "Financials",
+            3.08
+          ],
+          [
+            "Transportation and Utilities",
+            1.43
+          ]
+        ],
+        "holdings": [
+          [
+            "ADVANTEST CORP.",
+            11.88
+          ],
+          [
+            "FAST RETAILING CO., LTD.",
+            9.63
+          ],
+          [
+            "TOKYO ELECTRON LTD.",
+            7.6
+          ],
+          [
+            "SOFTBANK GROUP CORP.",
+            5.73
+          ],
+          [
+            "RECRUIT HOLDINGS CO., LTD.",
+            3.07
+          ],
+          [
+            "TDK CORP.",
+            2.05
+          ],
+          [
+            "KDDI CORP.",
+            1.81
+          ],
+          [
+            "IBIDEN CO., LTD.",
+            1.78
+          ],
+          [
+            "SHIN-ETSU CHEMICAL CO., LTD.",
+            1.59
+          ],
+          [
+            "FANUC CORP.",
+            1.52
+          ]
+        ],
+        "source": {
+          "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
+          "checkedAt": "2026-11-02",
+          "sha256": "f54cc08d824e9f89d407b8cca701f240a204caa1f76f4f97d0558e176a0b30d5",
+          "label": "Composition officielle automatisée · Nikkei 225"
+        },
+        "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
       }
     },
     "returns": {
@@ -13602,7 +13697,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
         "checkedAt": "2026-11-02",
-        "sha256": "d5905e1ece78f40878cd320121059c44bd36171dc6cddb0cabd6314a38e35402",
+        "sha256": "96f83741a6d810ceb8a39d791bc5b5f81d0db50c16f1d6e53bbc2b6798eff5c1",
         "label": "Rendements calendaires officiels automatisés · Nikkei 225"
       },
       "performance": {
@@ -16346,7 +16441,7 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
         "checkedAt": "2026-11-02",
-        "sha256": "6a284be42b84128fd9a31d56368532f2d13a4cbee7a86d98a7a27378091a1fda",
+        "sha256": "3279bded9c65bfaba9d26e281f4d2763caa3e42284fee23de87c534d40abfdcf",
         "label": "Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income"
       },
       "performance": {
@@ -16940,7 +17035,7 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
         "checkedAt": "2026-11-02",
-        "sha256": "8d8e5ce25c9ba3d8a91aaab1549d854f2316378d370bb919cf74b61bffb1457b",
+        "sha256": "42cfdaf1e9a31e0d020858ae7e520b541eb428efb7eb153dd12ea23e695e2c71",
         "label": "Rendements calendaires officiels automatisés · S&P Euro High Yield Dividend Aristocrats"
       },
       "performance": {
@@ -17402,7 +17497,7 @@
       "source": {
         "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
         "checkedAt": "2026-11-02",
-        "sha256": "3a6982cd2fb0574c7dde5fcef8e6222453ebb5b6836992aa506db300fe54bcef",
+        "sha256": "bc66388a0db20518a7d0baee74439f391a56b098ef0d27eec0d94d2146ad63f4",
         "label": "Rendements calendaires officiels automatisés · TOPIX"
       },
       "performance": {
