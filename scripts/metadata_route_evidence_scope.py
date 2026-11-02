@@ -1,4 +1,4 @@
-"""Pre-network CI selection for an exact supplemental-field-only routing change.
+"""Pre-network CI selection for isolated field routes and issuer adapters.
 
 Compare both generators against the SAME current financial inputs. Current
 receipt dates never become frozen expected test values. Any broader change
@@ -34,7 +34,22 @@ def main():
     try:
         handle.write(subprocess.check_output(['git','show',args.base+':scripts/build-automation-targets.mjs'],cwd=ROOT));handle.close()
         subprocess.run(['node',str(temporary)],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
-        result=select(json.loads(targets[0].read_bytes()),after,paths)
+        before=json.loads(targets[0].read_bytes())
+        result=select(before,after,paths)
+        if result['mode']=='full' and (ROOT/'scripts/metadata_listing_evidence_scope.py').exists():
+            from metadata_listing_evidence_scope import select as listing_scope
+            try:
+                narrow=listing_scope(before,after,paths,
+                    subprocess.check_output(['git','show',args.base+':scripts/collect_instrument_metadata.py'],cwd=ROOT,text=True),
+                    (ROOT/'scripts/collect_instrument_metadata.py').read_text(),
+                    (ROOT/'scripts/twentyone_shares_listing.py').read_text(),
+                    registry_before=json.loads(subprocess.check_output(['git','show',args.base+':scripts/listing-source-hosts.json'],cwd=ROOT,text=True)),
+                    registry_after=json.loads((ROOT/'scripts/listing-source-hosts.json').read_text()),
+                    consumer_before=subprocess.check_output(['git','show',args.base+':src/data/qualified-listings.js'],cwd=ROOT,text=True),
+                    consumer_after=(ROOT/'src/data/qualified-listings.js').read_text())
+            except (OSError,subprocess.CalledProcessError):
+                narrow=None  # Missing proof cannot grant a narrower source scope.
+            if narrow:result=narrow
         if targets[1].read_bytes()!=saved[targets[1]]:result={'mode':'full','ids':[],'reason':'Complete-holdings generation changed; full qualification retained'}
     finally:
         handle.close();temporary.unlink(missing_ok=True)
