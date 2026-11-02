@@ -122,7 +122,7 @@ def configurations():
             **({'navCalendarSource':prior['navCalendarSource']}if 'navCalendarSource'in prior else{}),
             **extras[id]}.items()})
     remainder = json.loads((ROOT/'scripts/official-nav-remainder-sources.json').read_text())
-    return result + remainder + json.loads((ROOT/'scripts/new-instrument-nav-sources.json').read_text())
+    return result + remainder + json.loads((ROOT/'scripts/new-instrument-nav-sources.json').read_text()) + json.loads((ROOT/'scripts/new-distributing-nav-sources.json').read_text())
 
 
 def daily_nav_fx_factor(native, currency, latest, body):
@@ -417,11 +417,12 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     else:checks=calendar_checks(checked_nav,years,calendar_precision,now,identity_from)
     if kind=='landg':calendar_proof['controlledCalendarYears']=sorted(str(c['year'])for c in checks)
     fx=json.loads((ROOT/'src/data/monthly-fx.json').read_text())
-    points,proof_rows=monthly(nav,native,source['currency'],source['periodStart'],now,fx)
+    monthly_end=calendar_proof.get('monthlyEndExclusive')
+    points,proof_rows=monthly(nav,native,source['currency'],source['periodStart'],now,fx,end_exclusive=monthly_end)
     points=[[d,math.floor(v*10**source['precision']+.5)/10**source['precision']]for d,v in points]
     anniversary_points=points
     if anniversary_nav:
-        prices,price_proofs=monthly(anniversary_nav,native,source['currency'],source['periodStart'],now,fx)
+        prices,price_proofs=monthly(anniversary_nav,native,source['currency'],source['periodStart'],now,fx,end_exclusive=monthly_end)
         by_month={row['date'][:7]:row for row in price_proofs}
         for row in proof_rows:
             price=by_month[row['date'][:7]]
@@ -494,7 +495,8 @@ def main():
     for source in sources:
         try:
             record=collect_one(source,now,capture=args.capture_dir)
-            results.append({'id':source['id'],'status':'validated','record':record,**({'usageState':'partial','usageLimits':{'historyUnqualifiedReturnWindows':record['historyUnqualifiedReturnWindows']}}if record.get('historyUnqualifiedReturnWindows')else{})})
+            limits={key:record[key]for key in ['historyExcludedMonths','anniversaryExcludedMonths','historyUnqualifiedReturnWindows']if record.get(key)}
+            results.append({'id':source['id'],'status':'validated','record':record,**({'usageState':'partial','usageLimits':limits}if limits else{})})
             print(source['id'],'validated',len(record['points']),'months',flush=True)
         except Exception as error:
             results.append({'id':source['id'],'status':'failed','reason':str(error)})

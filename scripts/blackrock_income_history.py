@@ -8,6 +8,9 @@ from issuer_nav_history import calendar_checks
 def qualify(body, parsed, source, now):
     if source.get('navHistoryKind') != 'official-income-reinvested-index':
         raise ValueError('Explicit official income-series convention required')
+    policy=source.get('incomeMonthEndPolicy')
+    if policy not in (None,'withhold-trailing-unreconciled-month'):
+        raise ValueError('Unknown official income month-end policy')
     nav, total = parsed['nav'], parsed['totalReturn']
     income = parsed['distribution']
     if income not in {'Distributing', 'No Income'}:
@@ -59,7 +62,7 @@ def qualify(body, parsed, source, now):
     # A monthly consumer needs the real month-end observation, not every daily
     # value. Extra issuer NAV rows are accepted only when the NAV is identical
     # through the end of that month; their dates never move the TR observation.
-    monthly_checks=[]
+    monthly_checks=[];withheld=[]
     final=lambda points:{d[:7]:d for d in sorted(points)if source['periodStart']<=d[:7]<now.strftime('%Y-%m')}
     nav_ends,return_ends=final(nav),final(total)
     if nav_ends.keys()!=return_ends.keys():raise ValueError('Missing official monthly end')
@@ -68,6 +71,16 @@ def qualify(body, parsed, source, now):
         if nend!=tend:
             tail=[d for d in nav if tend<=d<=nend]
             if tend not in nav or nend<tend or (dt.date.fromisoformat(nend)-dt.date.fromisoformat(tend)).days>4 or any(nav[d]!=nav[tend]for d in tail):
+                last_closed=(now.date().replace(day=1)-dt.timedelta(days=1)).strftime('%Y-%m')
+                # This opt-in contract publishes only the preceding, fully
+                # reconciled months. It does not certify, fill or move the
+                # missing trailing return observation. Older conflicts fail.
+                if (policy=='withhold-trailing-unreconciled-month' and month==last_closed
+                        and tend==max(total) and nend==max(nav) and tend in nav
+                        and 0<(dt.date.fromisoformat(nend)-dt.date.fromisoformat(tend)).days<=4):
+                    withheld.append({'month':month,'returnAsOf':tend,'lastNavAsOf':nend,
+                                     'reason':'Monthly NAV/return end not independently qualified: '+month})
+                    continue
                 raise ValueError('Monthly NAV/return end not independently qualified: '+month)
             monthly_checks.append({'month':month,'returnAsOf':tend,'lastNavAsOf':nend,'unchangedNav':nav[tend],
                                    'qualification':'Published NAV unchanged through month end; TR date and values not extended'})
@@ -103,8 +116,10 @@ def qualify(body, parsed, source, now):
                             'expectedRatioAfterPublishedCash':expected,'qualified':qualified})
     return normalized, {'incomeTreatment':income,'returnSourceComponent':'performance.chart.performanceData',
                         'officialIncomeReinvestedChartChecks':checks,'officialDistributionFactorChecks':cash_checks,'monthEndDateChecks':monthly_checks,
-                        'monthlyShareUnitChecks':unit_checks,'historyExcludedMonths':blocked if income=='No Income'else[],
-                        'anniversaryExcludedMonths':blocked if income=='Distributing'else[],
+                        'monthlyShareUnitChecks':unit_checks,'historyExcludedMonths':sorted(set((blocked if income=='No Income'else[])+[r['month']for r in withheld])),
+                        'anniversaryExcludedMonths':sorted(set((blocked if income=='Distributing'else[])+[r['month']for r in withheld])),
+                        **({'withheldMonthlyEnds':withheld,'monthlyEndExclusive':withheld[0]['month'],
+                            'qualificationScope':'Complete reconciled monthly returns only; trailing month withheld. The separately dated published per-share NAV is a price, not a certified trailing-month total return.'}if withheld else{}),
                         'dailyContinuity':'Published gaps preserved; this adapter qualifies monthly/annual consumers and the latest same-date level, not an arbitrary daily purchase date',
                         'scaleProof':{'anchorDate':anchor,'officialPerShareNav':nav[anchor],'sourceIncomeIndex':total[anchor],'factor':factor},
                         'controlledInstrument':source['isin'],

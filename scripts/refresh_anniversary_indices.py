@@ -17,6 +17,17 @@ HISTORY = ROOT/'src/data/anniversary-index-history.json'
 PROOF = ROOT/'scripts/source-snapshots/anniversary-indices.json'
 RUSSELL_COLUMNS = ['Index_Name','Date','Value_Without_Dividends__USD_','Value_With_Dividends__USD_']
 
+class UnavailableFTSEPublication(ValueError):
+    """A valid official workbook still lacks a required completed period."""
+    def __init__(self, config, latest, missing, now):
+        self.evidence={'sourceStatus':'required-official-period-unavailable',
+                       'indexCode':config['indexCode'],'currency':config['currency'],'variant':config['variant'],
+                       'lastPublishedAsOf':latest.isoformat(),'missingMonths':missing,
+                       'attemptedAt':now.isoformat(),'sourceUrls':config['sourceUrls']}
+        super().__init__('Incomplete/stale FTSE monthly history: '+config['indexCode']+' '+config['currency']+' '+config['variant']+
+                         '; official last publication '+latest.isoformat()+'; missing closed months '+', '.join(missing)+
+                         '. No release deadline established; refusal retained, no interpolation or index substitution.')
+
 def configurations():
     return json.loads((ROOT/'scripts/anniversary-indices.json').read_text())['series']
 
@@ -80,7 +91,11 @@ def collect_ftse(config,now,fetch=download):
     current=dt.datetime.strptime(expected_start,'%Y-%m').replace(tzinfo=UTC);expected=[]
     while current<boundary:
         expected.append(current.strftime('%Y-%m'));current=month_shift(current,1)
-    if keys!=expected: reject('Incomplete/stale FTSE monthly history')
+    if keys!=expected:
+        missing=[key for key in expected if key not in final]
+        if config['parser']=='ftse' and missing and keys==expected[:len(keys)]:
+            raise UnavailableFTSEPublication(config,final[keys[-1]][0],missing,now)
+        reject('Incomplete/stale FTSE monthly history: missing interior observations or inconsistent coverage')
     proof=[]
     for key in keys:
         day,value=final[key]
@@ -118,10 +133,11 @@ def refresh(current,proof,now,collect=None):
                 return config['id'],None,None
             record=collect(config,now) if collect else (collect_monthly(config,now) if config['parser']=='msci' else collect_ftse(config,now))
             return config['id'],merge_record(config,record,old),None
+        except UnavailableFTSEPublication as e:return config['id'],None,{'error':str(e),**e.evidence}
         except Exception as e:return config['id'],None,str(e)
     with ThreadPoolExecutor(max_workers=3) as pool:
         for id_,record,error in pool.map(one,configurations()):
-            if error:report['errors'].append({'id':'anniversary-index-'+id_,'error':error});continue
+            if error:report['errors'].append({'id':'anniversary-index-'+id_,**(error if isinstance(error,dict)else{'error':error})});continue
             if record is None:
                 report['contractSkipped'].append({'id':'anniversary-index-'+id_,'status':'cached','reason':'Completed month and source configuration already present; no network control in this invocation'})
                 continue
