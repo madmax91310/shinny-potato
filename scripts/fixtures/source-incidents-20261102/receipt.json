@@ -1,5 +1,4 @@
 {
-  "retrievedAt": "2026-11-02T16:53:12.443752+00:00",
   "files": {
     "bitcoin-daily.json.gz": {
       "sha256": "b3dd8971c3c350f9652de0c87bfdcb0db0a6a35078ebf0f33b2655c7dd0fd508",
@@ -20,7 +19,46 @@
     "sp-global-dividend-aristocrats.json.gz": {
       "sha256": "3242149166f24ae83d94ad70c5df408704203093b445497276b25c46e8d3e924",
       "bytes": 67158
+    },
+    "github-sp-browser-access.json": {
+      "sha256": "6269de8f671d604aee0f0aeef0d3fe9a0de90b685e91345f131bbbe390d01d6c",
+      "bytes": 764
+    },
+    "github-sp-global-dividend-aristocrats-compositionDataUrl.response.gz": {
+      "sha256": "5c841008659651bc84028909f521002093c1dcaabbaffa3c38923229627112cc",
+      "bytes": 1034
+    },
+    "github-sp-euro-dividend-aristocrats-compositionDataUrl.response.gz": {
+      "sha256": "5c841008659651bc84028909f521002093c1dcaabbaffa3c38923229627112cc",
+      "bytes": 1034
+    },
+    "github-sp-access.json": {
+      "sha256": "1454c145a35992f3c88743e0a9ff02be22d47d00d3c38306058282f4ec8c169f",
+      "bytes": 3642
+    },
+    "github-sp-euro-dividend-aristocrats-compositionPageUrl.response.gz": {
+      "sha256": "5c841008659651bc84028909f521002093c1dcaabbaffa3c38923229627112cc",
+      "bytes": 1034
+    },
+    "github-sp-euro-dividend-aristocrats-sourceUrl.response.gz": {
+      "sha256": "5c841008659651bc84028909f521002093c1dcaabbaffa3c38923229627112cc",
+      "bytes": 1034
+    },
+    "github-sp-global-dividend-aristocrats-compositionPageUrl.response.gz": {
+      "sha256": "5c841008659651bc84028909f521002093c1dcaabbaffa3c38923229627112cc",
+      "bytes": 1034
+    },
+    "github-sp-global-dividend-aristocrats-sourceUrl.response.gz": {
+      "sha256": "5c841008659651bc84028909f521002093c1dcaabbaffa3c38923229627112cc",
+      "bytes": 1034
     }
   },
-  "note": "Official raw responses. Bitcoin previous GitHub failure artifact contains contract and exception only, not raw payload; these new responses reproduce the same rejection before the fix. Treasury 104.56 is a signed sector allocation, independently reconciled to all holdings."
+  "note": "Official raw responses. Bitcoin previous GitHub failure artifact contains contract and exception only, not raw payload; these new responses reproduce the same rejection before the fix. Treasury 104.56 is a signed sector allocation, independently reconciled to all holdings.",
+  "evidenceRecordedAt": "2026-11-02T16:53:12.443752+00:00",
+  "githubSPProbe": {
+    "runId": 41488003641,
+    "artifactId": 13163450354,
+    "codeSha": "13cbbe039a5acd54bd4f29c85042411b49f213eb",
+    "result": "six HTTP403 responses; two ordinary Chrome navigations HTTP403; no authenticated or challenge-solving access attempted"
+  }
 }

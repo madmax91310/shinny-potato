@@ -14,7 +14,14 @@ Base : master ad7daeb4. #1061 (encours PEA) et #1042 (guide LifeStrategy) ne son
 
 ## Validation et publication
 
-À compléter par les identifiants des exécutions GitHub, des enregistrements et de la publication effectivement vérifiés ; les succès locaux ne valent pas CI ou déploiement.
+État vérifié à 17:10 UTC, avant fusion :
+
+* Bitcoin : producteur GitHub **41486608474 réussi**, artifact **13161804146**, `history:bitcoin-yahoo` succeeded. 142 mois 2015-01 → 2026-10, dernière clôture mensuelle 77 434,75 USD. Donnée identique au registre déjà publié : checkedAt du 1er novembre conservé.
+* ETF : producteur GitHub **41486608627**, artifact **13162238157**. Observation Treasury valide au 30 octobre, aucune erreur de cette part. Le workflow reste en échec dans report-failures pour les **deux erreurs S&P**, qui ne sont pas masquées. La PR contient l’enregistrement Treasury issu de la collecte locale ciblée ; la confirmation d’enregistrement par le producteur de production et de publication reste nécessaire après fusion.
+* S&P : diagnostic GitHub **41488003641**, artifact **13163450354**, six URL officielles JSON/PDF/page en **403** à 17:07 UTC et deux navigations Chrome ordinaires en **403** à 17:08. Ni redirection vers un téléchargement public ni différence utile avec le navigateur. Les corps HTML de refus sont archivés et rejoués ; aucun transport navigateur n’est ajouté au producteur, aucun cache rajeuni. Il manque un accès autorisé depuis le runner ou une autre publication officielle accessible pour ces indices exacts. Les rendements SSGA restent qualifiés séparément.
+* Local : compilation et manifeste des 42 données publiques réussis ; suites de rejeu, données partagées, rebase, conventions financières, dix-neuf tests BlackRock income et test des douze historiques #1150 réussis. Stress du Générateur : **9 300 portefeuilles, zéro violation**. Six PNG Treasury/S&P comparés octet par octet aux aperçus en 1440/390 ; parcours financiers Bitcoin desktop/mobile avec textes, PNG et montants vidéo cohérents ; deux exports DCA Treasury égaux aux aperçus, obligations conservées hors classification actions. Deux exemples d’images inspectés visuellement.
+
+Le portail GitHub complet, la fusion, la collecte de production et le déploiement sont distingués dans le bilan actualisé de la PR. Aucun passage cron post-correctif n’est encore observé à cette heure. Le succès de la sonde signifie que ses mesures sont terminées, pas que S&P est rétabli.
 
 Premier passage GitHub Bitcoin 41486043517 : récupération et validation des 142 mois réussies ; le job échoue ensuite car les tests partagés Nikkei exécutent `pdftotext`, absent de ce runner. Installation explicite de `poppler-utils` dans le producteur, sans retirer le test ni rendre son échec tolérable. Une nouvelle exécution complète est requise.
 

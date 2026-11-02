@@ -68,6 +68,11 @@ class SourceIncidents(unittest.TestCase):
             self.assertEqual(len(facts['holdings']),10)
             self.assertAlmostEqual(sum(w for _,w in facts['countries']),100,delta=.03)
             self.assertAlmostEqual(sum(w for _,w in facts['sectors']),100,delta=.03)
+        for config in configs:
+            # Actual GitHub refusal is HTML even at the JSON/PDF URLs.
+            denied=gzip.decompress((FIX/('github-'+config['id']+'-compositionDataUrl.response.gz')).read_bytes())
+            self.assertIn(b'<html',denied.lower())
+            with self.assertRaises(ValueError):parse_public_data(denied,config,NOW)
         for code in (403,429,500):
             with tempfile.TemporaryDirectory() as d:
                 path=pathlib.Path(d)/'feed.json';original=(ROOT/'scripts/observations/sp-public-feed.json').read_bytes();path.write_bytes(original)
