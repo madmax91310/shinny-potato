@@ -43,13 +43,20 @@ export function donutData(analysis,field='countries',limit=4){
 function exposurePanel(ctx,a,field,x,y,width,limit,showScope=true){
  const {rows,scope}=donutData(a,field,limit)
  centered(ctx,field==='countries'?'Exposition géographique':'Exposition sectorielle',x+width/2,y,width,36)
- const cx=x+width/2,cy=y+280,r=220,inner=150
+ const cx=x+width/2,cy=y+(showScope?280:205),r=showScope?220:150,inner=showScope?150:102
  let angle=-Math.PI/2
  for(const row of rows){const end=angle+row.weight/100*Math.PI*2;ctx.beginPath();ctx.arc(cx,cy,r,angle,end);ctx.arc(cx,cy,inner,end,angle,true);ctx.closePath();ctx.fillStyle=row.color;ctx.fill();angle=end}
  const percentages=integerPercentages(rows)
  const lead=rows.findIndex(r=>!['Non ventilé ici','Écart d’arrondi','Sans objet'].includes(r.name))
  if(lead>=0){centered(ctx,exposurePercentage(rows[lead].weight,percentages[lead]),cx,cy+5,270,52);centered(ctx,rows[lead].name,cx,cy+47,260,23,C.muted,400)}
  rows.forEach((row,i)=>{
+  if(!showScope){
+   const left=x+34,top=y+405+i*43
+   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(left+8,top-9,7,0,Math.PI*2);ctx.fill()
+   text(ctx,row.name,left+24,top,width-180,30,C.ivory,400)
+   ctx.save();ctx.textAlign='right';text(ctx,exposurePercentage(row.weight,percentages[i]),x+width-25,top,110,32);ctx.restore()
+   return
+  }
   const left=rows.length===1?cx-110:x+65+(i%2)*(width-80)/2,top=y+(rows.length>6?530:540)+Math.floor(i/2)*(rows.length>6?48:65)
   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(left+8,top-7,7,0,Math.PI*2);ctx.fill()
   text(ctx,row.name,left+24,top,width/2-35,rows.length>6?18:22,C.ivory,400)

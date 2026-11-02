@@ -1,7 +1,7 @@
 {
   "baseSha": "414bd67a1afa1ae9cc003e5e98a3f0c0f6b92d2d",
   "correctedRendererBlobs": {
-    "src/pages/dca-profiles/image.js": "2bdd1710f769c291cb3ccee3d7dcf2054561df02",
+    "src/pages/dca-profiles/image.js": "10221b0e62c47b62c1eaa3ce5349d1601fe34712",
     "src/pages/performance-rankings/image.js": "6ea359f78689292feddb96385752a696c15db0df",
     "src/pages/performance-rankings/annualRanking.js": "4675dd0ac0fd491279aeafc49f7846cca4458e7f"
   },
@@ -10,12 +10,6 @@
       "check": "build-initial",
       "result": "passed",
       "log": "logs/build-initial.log.gz",
-      "lastLine": "Publication manifest matches all 42 built public data files."
-    },
-    {
-      "check": "build-final",
-      "result": "passed",
-      "log": "logs/build-final.log.gz",
       "lastLine": "Publication manifest matches all 42 built public data files."
     },
     {
@@ -31,22 +25,10 @@
       "lastLine": "636 DCA images and simplified workflow: participant draft export, text-independent PNG, stale image protection, saves, automatic restore, filters and mobile verified."
     },
     {
-      "check": "dca-after",
-      "result": "passed",
-      "log": "logs/dca-after.log.gz",
-      "lastLine": "636 DCA images and simplified workflow: participant draft export, text-independent PNG, stale image protection, saves, automatic restore, filters and mobile verified."
-    },
-    {
       "check": "rankings-layout",
       "result": "passed",
       "log": "logs/rankings-layout.log.gz",
       "lastLine": "50 formats de classement : visuel approuvé sans pastilles, noms longs contenus dans leurs colonnes, 2–6 actifs et 1–10 années vérifiés."
-    },
-    {
-      "check": "density",
-      "result": "passed",
-      "log": "logs/density.log.gz",
-      "lastLine": "22 synthetic rendering cases saved; bounds, collisions, signed small returns and dense label type verified. No browser financial storage written."
     },
     {
       "check": "budget",
@@ -149,6 +131,43 @@
       "result": "passed",
       "log": "logs/secondary.log.gz",
       "lastLine": "ranking-annual 320"
+    },
+    {
+      "check": "build-final",
+      "result": "passed",
+      "log": "logs/build-final.log.gz",
+      "lastLine": "Publication manifest matches all 42 built public data files."
+    },
+    {
+      "check": "dca-after",
+      "result": "passed",
+      "log": "logs/dca-after.log.gz",
+      "lastLine": "636 DCA images and simplified workflow: participant draft export, text-independent PNG, stale image protection, saves, automatic restore, filters and mobile verified."
+    },
+    {
+      "check": "density",
+      "result": "passed",
+      "log": "logs/density.log.gz",
+      "lastLine": "22 synthetic rendering cases saved; bounds, collisions, signed small returns and dense label type verified. No browser financial storage written."
+    },
+    {
+      "check": "dense-journey-final",
+      "result": "passed",
+      "log": "logs/dense-journey-final.log.gz",
+      "lastLine": "Dense canonical eight-position portfolios: real downloads equal preview bytes at 390/320px, no horizontal overflow, unchanged draft, isolated storage discarded."
+    },
+    {
+      "check": "fifty-downloads",
+      "result": "passed",
+      "log": "logs/fifty-downloads.log.gz",
+      "lastLine": "overlap 320"
+    },
+    {
+      "check": "budget-integrated-new",
+      "result": "passed",
+      "log": "logs/budget-integrated-new.log.gz",
+      "lastLine": "Budget browser: 14 profile/viewport exports, clipboard, discovery, filters, drafts, invalidation and corrupt storage passed."
     }
-  ]
+  ],
+  "integratedMaster": "371917391aec892a955bb1f52875015766fe7bb2"
 }
