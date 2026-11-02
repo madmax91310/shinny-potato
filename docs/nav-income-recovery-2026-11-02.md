@@ -2,7 +2,7 @@
 
 ## Base et concurrence
 
-Départ master `756a1fa9`, puis intégration de `a76f58fb`. Les PR #1136/#1137 avaient déjà admis les douze cotations exactes ajustées : elles ne sont ni supprimées, ni remplacées, ni présentées comme des NAV. #1138 traite les ventilations WisdomTree ; #1143 les calculs et #1146 le garde de publication. Leurs apports et les observations concurrentes sont conservés. Aucune modification de calendrier, budget, profil DCA ou portefeuille d’investisseur dans ce lot.
+Départ master `756a1fa9`, puis intégration de `a76f58fb` et `4b5ea567`. Les corrections concurrentes de budget #1147 et Nikkei #1148 sont conservées sans réimplémentation. Les PR #1136/#1137 avaient déjà admis les douze cotations exactes ajustées : elles ne sont ni supprimées, ni remplacées, ni présentées comme des NAV. #1138 traite les ventilations WisdomTree ; #1143 les calculs et #1146 le garde de publication. Leurs apports et les observations concurrentes sont conservés. Aucune modification de calendrier, budget, profil DCA ou portefeuille d’investisseur dans ce lot.
 
 Le rapport natif publication `41390083945` contenait six erreurs : cinq NAV et FTSE. Les captures officielles de 05:58 confirment aussi le refus des douze NAV distribuantes : NAV au 30 octobre et rendement total au 29, valeurs différentes. La disponibilité d’une NAV ne certifie pas le rendement total.
 
@@ -46,6 +46,8 @@ Les mois antérieurs aux bornes déclarées ne sont pas qualifiés par ces nouve
 | FTSE All-World : classeur initial arrêté à septembre, pas une panne HTTP | Diagnostic structuré donnant variante, devise, dernière publication, mois manquants et empreintes ; refus conservé tant que le mois manque | Nouvelle réponse officielle qualifiée : octobre, niveau 1345,13 au 30/10 ; historique déjà enregistré dans le master récent | Master a76f58fb possède octobre ; la lecture ordinaire le classe à juste titre en cache, sans simuler un contrôle réseau | Incident initial déjà réparé par la nouvelle publication, pas par une tolérance |
 | S&P Global/Euro Dividend Aristocrats : accès direct 403 | Deux navigations Chromium ordinaires réessayées ; aucun challenge ni autre indice utilisé ; cache et ses horloges conservés | 02/11 à 11:04 UTC : 403 sur les deux URLs exactes | Aucun nouveau chiffre prétendument contrôlé directement | Blocage externe maintenu, distinct du parent publication |
 | WisdomTree : anciens refus de ventilations | Correctif concurrent #1138 conservé, pas de réimplémentation de son transport | Statuts des producteurs ordinaires à rapprocher dans la PR | Publications concurrentes préservées | Les positions intégrales et conflits de date ne sont pas certifiés par un top 10 |
+
+Les autres producteurs restent distincts du parent de publication : le run ETF 41423538566 signale encore les accès HTTP primaires WisdomTree et S&P ; le secours WisdomTree fournit les champs qualifiés mais ne clôture pas une panne du primaire. Le dernier run d’expositions 41395321814 conserve trois refus de positions intégrales (deux WisdomTree et Global X NET_ASSETS absent). Le défaut des sept secteurs Nikkei observé dans le run ETF a depuis sa PR concurrente #1148, intégrée ici. Aucun de ces incidents n’est annoncé globalement réparé par le présent lot.
 
 ## Preuves et vérifications
 
