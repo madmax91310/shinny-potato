@@ -2,7 +2,7 @@
   "reddit-actif-2026-09-27": {
     "paragraphs": [
       {
-        "text": "Camille dispose de 5 000 € sur un Livret A et prépare un changement de travail. Le remplacement de la voiture de 2005 fait aussi partie des choix à envisager : cette réserve peut donc être sollicitée avant même de penser à investir.",
+        "text": "Camille a 5 000 € sur un Livret A et prépare un changement de travail. Cette réserve pourrait aussi servir à remplacer sa voiture de 2005.",
         "evidence": [
           0
         ],
@@ -11,14 +11,14 @@
     ],
     "questions": [
       {
-        "text": "Quelle part des 5 000 € garderiez-vous disponible pendant le changement de travail ?",
+        "text": "Combien garderiez-vous de côté pendant le changement de travail ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       },
       {
-        "text": "À quelles conditions remplaceriez-vous la voiture plutôt que de la conserver ?",
+        "text": "Vous garderiez la voiture tant qu’elle roule ou vous prépareriez déjà son remplacement ?",
         "origin": "editorial",
         "evidence": [
           0
@@ -69,12 +69,17 @@
         "sha256": "9d724b560505a7071298079afdd95aaa3515d511a14308144bddaae56c4c23e2",
         "hasPost": false
       }
+    },
+    "budget": {
+      "incomeLabels": {
+        "Revenu net après impôt, nature non détaillée": "Revenu net après impôt"
+      }
     }
   },
   "reddit-couple-nord-2026-07-09": {
     "paragraphs": [
       {
-        "text": "Julie et Alex veulent sortir durablement du découvert. Leur plan distingue les trajets familiaux à provisionner et la première épargne de sécurité ; les 347 € de marge doivent encore payer la santé, les loisirs et les autres dépenses.",
+        "text": "Julie et Alex veulent sortir durablement du découvert. Les 347 € restants doivent encore payer la santé, les loisirs et les autres dépenses.",
         "evidence": [
           0
         ],
@@ -83,7 +88,7 @@
     ],
     "questions": [
       {
-        "text": "Comment organiseriez-vous cette marge pour éviter de reprendre sur les 100 € de sécurité prévus ?",
+        "text": "Comment utiliseriez-vous cette marge sans reprendre sur les 100 € prévus pour les imprévus ?",
         "origin": "editorial",
         "evidence": [
           0
@@ -134,12 +139,17 @@
         "sha256": "c767eb90ff9d921213249751c3ea69b9caf6520a8a653179b5bff4c706703485",
         "hasPost": false
       }
+    },
+    "budget": {
+      "transfersHeading": "Épargne de sécurité",
+      "incomeNote": "Les ressources d’Alex s’ajoutent au salaire de Julie ; leur nature n’est pas précisée.",
+      "textBasis": ""
     }
   },
   "reddit-salarie-26-2026-01-04": {
     "paragraphs": [
       {
-        "text": "Au début de son CDI, Thomas dispose de 8 000 € sur un Livret A. Il veut atteindre 10 000 € de réserve avant d’investir : le budget présenté correspond encore à une période où il est hébergé par ses parents.",
+        "text": "Thomas a 8 000 € sur un Livret A. Il veut atteindre 10 000 € avant de commencer à investir.",
         "evidence": [
           0
         ],
@@ -148,7 +158,7 @@
     ],
     "questions": [
       {
-        "text": "Avec ce premier objectif de réserve, quelle part du surplus garderiez-vous disponible avant de commencer à investir ?",
+        "text": "Vous compléteriez d’abord le livret jusqu’à 10 000 € ou vous commenceriez déjà à investir une petite somme ?",
         "origin": "editorial",
         "evidence": [
           0
@@ -199,12 +209,15 @@
         "sha256": "ebf5f6bee087496ddca561cf82e71bd47bbc81ffe2e891d88b295ff606752853",
         "hasPost": false
       }
+    },
+    "budget": {
+      "textBasis": "Impôt non précisé"
     }
   },
   "finary-ingenieur-aero-2025-11-30": {
     "paragraphs": [
       {
-        "text": "Mathieu cherche à rapprocher son budget de la règle 50/30/20. Ses deux crédits et les dépenses annuelles ramenées au mois limitent la place disponible pour investir ; il veut comparer des budgets qui incluent aussi les voyages, les cadeaux et les petits frais du quotidien.",
+        "text": "Mathieu aimerait se rapprocher de la règle 50/30/20, malgré ses deux crédits. Il cherche à comparer son budget à d’autres qui comptent aussi les petits frais du quotidien.",
         "evidence": [
           0
         ],
@@ -213,14 +226,14 @@
     ],
     "questions": [
       {
-        "text": "Comment adapteriez-vous la règle 50/30/20 à ses crédits et à ses dépenses réelles ?",
+        "text": "La règle 50/30/20 vous semble-t-elle adaptée à son budget avec ces deux crédits ?",
         "origin": "expressed",
         "evidence": [
           0
         ]
       },
       {
-        "text": "Quelles dépenses annuelles provisionnez-vous pour éviter de surestimer votre capacité d’investissement ?",
+        "text": "Quelles dépenses annuelles mettez-vous de côté chaque mois avant de décider combien investir ?",
         "origin": "expressed",
         "evidence": [
           0
@@ -255,12 +268,17 @@
       "expressedQuestion": "Se demande pourquoi il ne parvient pas au 50/30/20 et demande des budgets détaillés incluant les dépenses irrégulières.",
       "enrichment": "source-context",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Investissements",
+      "incomeNote": "",
+      "textBasis": ""
     }
   },
   "finary-alternant-22-2025-05-15": {
     "paragraphs": [
       {
-        "text": "Lucas investit sur son PEA depuis février 2023. En mai 2025, il déclare environ 13 000 € sur ce PEA, 7 000 € sur un Livret A, 7 000 € sur un PEE, 500 € sur une assurance-vie et 500 € en cryptomonnaies.",
+        "text": "Lucas investit sur son PEA depuis février 2023. Il détient environ 13 000 € sur ce PEA, 7 000 € sur un Livret A, 7 000 € sur un PEE, 500 € en assurance-vie et 500 € en cryptomonnaies.",
         "evidence": [
           0,
           1
@@ -268,7 +286,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Il vise le long terme avec une répartition World/Nasdaq sur le PEA. Il s’interroge sur l’intérêt de retrouver une exposition mondiale en assurance-vie et souhaite diversifier sans projet immobilier. Ses 450 km de trajets hebdomadaires pèsent aussi sur le quotidien : certains versements sur le PEA sont financés en puisant dans le Livret A, donc pas intégralement une épargne nouvelle.",
+        "text": "Il vise le long terme avec des ETF World et Nasdaq, sans projet immobilier. Il se demande si une assurance-vie investie elle aussi en actions mondiales lui apporterait quelque chose. Ses 450 km de trajets hebdomadaires pèsent sur ses dépenses : certains versements sur le PEA viennent du Livret A, et ne sont donc pas intégralement une épargne nouvelle.",
         "evidence": [
           0,
           1
@@ -278,7 +296,7 @@
     ],
     "questions": [
       {
-        "text": "Quel rôle donneriez-vous à l’assurance-vie à côté de son PEA déjà investi en actions mondiales ?",
+        "text": "À quoi servirait selon vous l’assurance-vie à côté de son PEA World/Nasdaq ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -286,7 +304,7 @@
         ]
       },
       {
-        "text": "Comment ajusteriez-vous les versements pour préserver sa réserve sans perdre la régularité ?",
+        "text": "Vous garderiez un versement fixe sur le PEA ou vous l’ajusteriez aux dépenses du mois ?",
         "origin": "editorial",
         "evidence": [
           0,
@@ -333,19 +351,22 @@
       "expressedQuestion": "Demande comment diversifier, notamment si son assurance-vie fait doublon avec son PEA, et confirme vouloir préserver un matelas de sécurité.",
       "enrichment": "source-context",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Investissements"
     }
   },
   "finary-fonctionnaire-30-2025-05-21": {
     "paragraphs": [
       {
-        "text": "Nicolas a mobilisé son épargne pour acheter sa résidence principale, avec un prêt familial sans intérêts. Au moment de ce budget, il conserve 7 360 € sur son Livret A et 3 000 € sur un PEA ouvert un mois plus tôt.",
+        "text": "Après l’achat de son appartement avec un prêt familial sans intérêts, Nicolas conserve 7 360 € sur Livret A et 3 000 € sur un PEA ouvert un mois plus tôt.",
         "evidence": [
           0
         ],
         "basis": "consulted-source"
       },
       {
-        "text": "Les vacances ne sont pas comprises dans les dépenses : elles sont financées depuis le Livret A. Il envisage 500 € par mois sur un ETF S&P 500, alors qu’un changement professionnel doit réduire son salaire d’environ 100 € et qu’un abonnement sportif de 24,99 € est prévu. Ces évolutions ne sont pas encore intégrées au budget présenté.",
+        "text": "Il envisage d’investir 500 € par mois sur un ETF S&P 500. Les vacances ne sont pas comprises dans les dépenses : il les paie depuis le Livret A. Son salaire doit aussi baisser d’environ 100 € et il prévoit un abonnement sportif de 24,99 €, encore absents de ce budget.",
         "evidence": [
           0
         ],
@@ -354,7 +375,7 @@
     ],
     "questions": [
       {
-        "text": "Comment dimensionneriez-vous le versement envisagé sur le PEA en tenant compte de la baisse de salaire et des vacances ?",
+        "text": "Avec la baisse de salaire et les vacances à financer, combien mettriez-vous chaque mois sur son PEA ?",
         "origin": "editorial",
         "evidence": [
           0
@@ -394,14 +415,14 @@
   "finary-alternant-19-2025-09-27": {
     "paragraphs": [
       {
-        "text": "Hugo a commencé à investir à l’été 2025. Il déclare alors 424 € de patrimoine net, dont un compte-titres d’environ 122 € mêlant ETF et quelques actions ; son livret reçoit aussi une partie des versements.",
+        "text": "Hugo a commencé à investir à l’été 2025. Son patrimoine net atteint 424 €, dont environ 122 € sur un compte-titres mêlant ETF et actions.",
         "evidence": [
           0
         ],
         "basis": "consulted-source"
       },
       {
-        "text": "Il cherche une stratégie accessible sans prendre trop de risques. Son objectif est de commencer à percevoir des revenus d’investissement dans dix à quinze ans, mais il demande justement si son ambition de 2 000 à 2 500 € mensuels est réaliste : ce n’est pas un revenu attendu garanti.",
+        "text": "Il aimerait tirer de ses placements 2 000 à 2 500 € par mois dans dix à quinze ans, tout en limitant les risques.",
         "evidence": [
           0
         ],
@@ -410,14 +431,14 @@
     ],
     "questions": [
       {
-        "text": "Quelle place donneriez-vous à la réserve disponible et au compte-titres au début de son parcours ?",
+        "text": "Combien garderiez-vous sur un livret avant de renforcer le compte-titres ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       },
       {
-        "text": "Comment évalueriez-vous son objectif de revenus à dix ou quinze ans avec ces versements ?",
+        "text": "Son objectif vous paraît-il réaliste avec ce rythme de versements ?",
         "origin": "expressed",
         "evidence": [
           0
@@ -452,19 +473,17 @@
       "expressedQuestion": "Demande une stratégie accessible et si un objectif de 2 000–2 500 € de revenus passifs à dix/quinze ans est réalisable.",
       "enrichment": "source-context",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Épargne et investissements",
+      "textBasis": "",
+      "incomeNote": "Le bonus de ce mois n’est pas forcément mensuel."
     }
   },
   "reddit-couple-35-2025-10-15": {
     "paragraphs": [
       {
-        "text": "Clara et Louis souhaitent avoir un enfant tout en aidant leurs deux mères à se loger. Les 611 € de solde doivent encore absorber des dépenses annuelles et des imprévus ; ce n’est pas une épargne mensuelle déjà mise de côté.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "Le remboursement du téléphone, prévu sur dix mensualités, est temporaire. Cette échéance peut modifier la marge du foyer, mais elle ne dispense pas de préparer les dépenses liées à l’enfant.",
+        "text": "Le solde doit encore couvrir des dépenses annuelles et des imprévus. La fin du remboursement du téléphone pourrait ensuite laisser un peu plus de place à leur projet d’enfant.",
         "evidence": [
           0
         ],
@@ -473,7 +492,7 @@
     ],
     "questions": [
       {
-        "text": "Comment répartiriez-vous la marge entre les imprévus du foyer et leur projet d’enfant ?",
+        "text": "Quelle part de la marge garderiez-vous pour les imprévus, et quelle part pour préparer l’arrivée d’un enfant ?",
         "origin": "editorial",
         "evidence": [
           0
@@ -524,21 +543,16 @@
         "sha256": "3d04f6d3b9b68bce9c89856665774010a0749fd99b8314176ee74d4424c67177",
         "hasPost": false
       }
+    },
+    "budget": {
+      "textBasis": "Impôt non précisé"
     }
   },
   "reddit-tech-26-2026-02-06": {
-    "paragraphs": [
-      {
-        "text": "Maxime met 600 € par mois sur un Livret A. Le solde de 230 € reste sur le compte courant pour des achats et prélèvements éventuels : il ne s’ajoute pas automatiquement à l’épargne.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      }
-    ],
+    "paragraphs": [],
     "questions": [
       {
-        "text": "Quel coussin garderiez-vous sur le compte courant avant de transférer un éventuel surplus sur le livret ?",
+        "text": "Combien laisseriez-vous sur le compte courant avant de transférer le surplus sur le livret ?",
         "origin": "editorial",
         "evidence": [
           0
@@ -589,19 +603,15 @@
         "sha256": "0c662880ee5645ec3068ee56a38ae9d5ae653a68e3affc51923dd3dea5b39b1d",
         "hasPost": false
       }
+    },
+    "budget": {
+      "transfersHeading": "Épargne"
     }
   },
   "reddit-alternant-20-2025-09-03": {
     "paragraphs": [
       {
-        "text": "Le soutien de ses parents permet à Léo de prévoir des versements sur un livret, un PEA, Bricks et des cryptomonnaies. Le surplus éventuel de l’enveloppe loisirs doit rejoindre le Livret A.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "Ce budget reste celui d’une période où le logement et les repas sont pris en charge. La disponibilité de l’argent placé mérite donc d’être distinguée de la réserve qui pourrait servir si cette situation change.",
+        "text": "Le surplus éventuel de l’enveloppe loisirs doit rejoindre le Livret A.",
         "evidence": [
           0
         ],
@@ -610,7 +620,7 @@
     ],
     "questions": [
       {
-        "text": "Comment répartiriez-vous les 500 € prévus entre une réserve accessible et les différents investissements ?",
+        "text": "Sur les 500 € prévus, combien garderiez-vous sur le livret avant d’investir le reste ?",
         "origin": "editorial",
         "evidence": [
           0
@@ -661,12 +671,15 @@
         "sha256": "c445c31f906af02b3b83d933c71aa481543a48848b79d3013c9bca1c38e3791d",
         "hasPost": false
       }
+    },
+    "budget": {
+      "transfersHeading": "Épargne et investissements"
     }
   },
   "finary-cyber-24-2026-08-27": {
     "paragraphs": [
       {
-        "text": "Adrien n’a encore réalisé aucun investissement. Il souhaite se lancer pour le long terme et se renseigne sur le PEA et les ETF, en tenant compte de sa situation de résident français travaillant au Luxembourg.",
+        "text": "Adrien n’a pas encore investi. Il se renseigne sur le PEA et les ETF pour se lancer à long terme.",
         "evidence": [
           0,
           1,
@@ -675,7 +688,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Son prêt étudiant de 15 000 € commencera à être remboursé trois ans après la période présentée, sur cinq ans. La marge actuelle doit donc être pensée aussi avec cette échéance, sans compter les hausses de revenus espérées.",
+        "text": "Son prêt étudiant de 15 000 € commencera à être remboursé trois ans après ce budget, sur cinq ans. Les hausses de salaire espérées ne sont pas comptées.",
         "evidence": [
           0,
           1,
@@ -686,7 +699,7 @@
     ],
     "questions": [
       {
-        "text": "Comment organiseriez-vous ses premiers placements et la réserve à garder avant le début du remboursement ?",
+        "text": "Combien garderiez-vous de côté avant d’investir, avec ce prêt étudiant à rembourser plus tard ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -744,12 +757,15 @@
       "expressedQuestion": "Demande par où commencer avec une capacité d’épargne importante mais aucune expérience ; souhaite vérifier les spécificités France/Luxembourg.",
       "enrichment": "source-context",
       "limit": ""
+    },
+    "budget": {
+      "incomeNote": "Budget personnel."
     }
   },
   "finary-ingenieur-21-2025-03-08": {
     "paragraphs": [
       {
-        "text": "Bastien dispose de 9 000 € d’épargne et vient d’ouvrir un PEA-Jeune, encore vide au début de ce budget. Il souhaite y investir progressivement les 300 € gagnés avec ses cours particuliers, sur le long terme.",
+        "text": "Bastien a 9 000 € d’épargne et vient d’ouvrir un PEA-Jeune, encore vide. Il compte y investir à long terme les 300 € gagnés chaque mois avec ses cours particuliers.",
         "evidence": [
           0,
           1,
@@ -758,7 +774,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Dans les jours qui suivent, il envisage une répartition entre World, Nasdaq et CAC 40, puis se demande si une solution plus simple ne serait pas plus facile à acheter avec 300 € par mois. Il cherche un plan qu’il puisse réellement mettre en œuvre.",
+        "text": "Dans les jours qui suivent ce budget, il compare World, Nasdaq et CAC 40, puis se demande s’il ne ferait pas plus simple avec moins de lignes.",
         "evidence": [
           0,
           1,
@@ -769,7 +785,7 @@
     ],
     "questions": [
       {
-        "text": "Quelle répartition retiendriez-vous pour investir ses 300 € mensuels sans multiplier les lignes ?",
+        "text": "Un seul ETF ou plusieurs lignes pour investir ses 300 € par mois ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -827,12 +843,17 @@
       "expressedQuestion": "Demande une allocation pour un PEA-Jeune et comment gérer des parts trop chères ; réponses du 17 mars présentées comme réflexion ultérieure, pas comme placements déjà réalisés au 8 mars.",
       "enrichment": "source-context",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Investissements prévus",
+      "incomeNote": "",
+      "textBasis": ""
     }
   },
   "finary-alternant-21-2025-05-08": {
     "paragraphs": [
       {
-        "text": "Quentin détient 11 100 € sur un Livret A, 1 400 € sur un PEA, 6 000 € en cryptomonnaies et 500 € en financement participatif. Il distingue un PEA de très long terme d’un projet immobilier après ses études.",
+        "text": "Quentin détient 11 100 € sur Livret A, 1 400 € sur PEA, 6 000 € en cryptomonnaies et 500 € en financement participatif. Il prépare un achat immobilier après ses études, tout en investissant à très long terme sur le PEA.",
         "evidence": [
           0,
           1,
@@ -841,7 +862,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Il se demande s’il faut déplacer une partie du Livret A vers le PEA ou y augmenter les versements mensuels, sans trop réduire son argent disponible. Il réfléchit aussi à l’exposition américaine de ses ETF et à une éventuelle diversification géographique.",
+        "text": "Il se demande combien déplacer du Livret A vers le PEA et s’il devrait augmenter ses versements. Il réfléchit aussi au poids des États-Unis dans ses ETF et à une diversification vers d’autres pays.",
         "evidence": [
           0,
           1,
@@ -852,7 +873,7 @@
     ],
     "questions": [
       {
-        "text": "Quelle réserve conserveriez-vous pour son projet immobilier avant de renforcer le PEA ?",
+        "text": "Combien garderiez-vous sur le livret pour son achat immobilier avant de renforcer le PEA ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -861,7 +882,7 @@
         ]
       },
       {
-        "text": "Comment aborderiez-vous la diversification de ses placements sans multiplier les lignes ?",
+        "text": "Vous ajouteriez d’autres pays à ses ETF actuels ou vous garderiez cette répartition ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -919,12 +940,16 @@
       "expressedQuestion": "Hésite à transférer 4–5 k€ du Livret A ou les 200 €/mois vers le PEA et demande comment préparer l’immobilier et diversifier ses ETF.",
       "enrichment": "source-context",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Épargne et investissements",
+      "textBasis": "Impôt non précisé"
     }
   },
   "finary-locataire-25-2025-11-08": {
     "paragraphs": [
       {
-        "text": "Julien prépare un premier investissement locatif pour 2026, alors qu’il rembourse déjà 660 € par mois de prêt étudiant. Il déclare environ 40 000 € de placements en ETF et cryptomonnaies, dont une partie a été financée par ce prêt, ainsi qu’environ 8 000 € sur livrets, principalement un PEL envisagé comme apport.",
+        "text": "Julien prépare un premier investissement locatif pour 2026. Il détient environ 40 000 € en ETF et cryptomonnaies, financés en partie par son prêt étudiant, ainsi que 8 000 € sur livrets, surtout un PEL qu’il envisage d’utiliser comme apport.",
         "evidence": [
           0,
           1,
@@ -933,7 +958,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Son crédit court jusqu’en 2033. Le projet doit donc se discuter avec cette dette et sa part réelle du logement ; la contribution de sa compagne ne constitue pas son revenu. Les hausses de salaire espérées ne font pas partie des ressources actuelles.",
+        "text": "Son prêt étudiant court jusqu’en 2033. Les augmentations de salaire espérées ne sont pas comptées dans ses ressources.",
         "evidence": [
           0,
           1,
@@ -944,7 +969,7 @@
     ],
     "questions": [
       {
-        "text": "Avant un achat locatif, quelle marge conserveriez-vous pour les charges et le prêt étudiant déjà en cours ?",
+        "text": "Combien garderiez-vous de côté avant un achat locatif avec ce prêt étudiant encore en cours ?",
         "origin": "editorial",
         "evidence": [
           0,
@@ -953,7 +978,7 @@
         ]
       },
       {
-        "text": "Comment compareriez-vous un achat dès maintenant et une constitution d’apport plus longue ?",
+        "text": "Vous achèteriez dès maintenant ou vous prendriez plus de temps pour réunir l’apport ?",
         "origin": "editorial",
         "evidence": [
           0,
@@ -1010,19 +1035,22 @@
       "expressedQuestion": "S’interroge sur le financement d’un premier locatif malgré son endettement. Les pistes de dissimulation du crédit ou du loyer ne sont pas reprises comme conseils ni sollicitées.",
       "enrichment": "source-context",
       "limit": "Le budget retenu est le net après impôt du message 3, pas les 3 300 € initiaux. Les placements financés par dette ne sont pas assimilés à une épargne de sécurité."
+    },
+    "budget": {
+      "incomeNote": "Budget personnel."
     }
   },
   "finary-batiment-21-2025-09-30": {
     "paragraphs": [
       {
-        "text": "Antoine dispose de 23 500 € sur des livrets et de 1 500 € sur PEA et compte-titres. Il souhaite investir sur le long terme.",
+        "text": "Antoine a 23 500 € sur des livrets et 1 500 € sur PEA et compte-titres. Il souhaite investir à long terme.",
         "evidence": [
           0
         ],
         "basis": "consulted-source"
       },
       {
-        "text": "Ses compétences dans le bâtiment lui donnent envie de rénover un logement. Il hésite entre acheter sa résidence principale et commencer par un bien locatif. L’alimentation n’est pas détaillée séparément dans le budget.",
+        "text": "Il aimerait profiter de ses compétences dans le bâtiment pour rénover un logement, mais hésite entre sa résidence principale et un premier bien locatif. L’alimentation n’est pas détaillée séparément dans les dépenses.",
         "evidence": [
           0
         ],
@@ -1031,14 +1059,14 @@
     ],
     "questions": [
       {
-        "text": "Quelle part garderiez-vous accessible pour un achat et des travaux éventuels ?",
+        "text": "Combien garderiez-vous de côté pour l’achat et les travaux ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       },
       {
-        "text": "Dans sa situation, comment compareriez-vous résidence principale et premier investissement locatif ?",
+        "text": "À sa place, vous commenceriez par votre logement ou par un bien à louer ?",
         "origin": "expressed",
         "evidence": [
           0
@@ -1073,12 +1101,16 @@
       "expressedQuestion": "Se demande s’il doit commencer par une résidence principale, un bien locatif ou une autre voie, avec une préférence possible pour la rénovation.",
       "enrichment": "source-context",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Épargne et investissements",
+      "textBasis": "Impôt non précisé"
     }
   },
   "finary-etudiant-20-2025-03-19": {
     "paragraphs": [
       {
-        "text": "Avant le début de l’alternance prévu en septembre 2025, Simon dispose de 7 000 € sur un Livret A. Il avait envisagé un apport immobilier de 10 000 à 15 000 €, puis souhaite comparer cette piste avec un début d’investissement en bourse.",
+        "text": "Simon a 7 000 € sur Livret A. Il avait envisagé un apport immobilier de 10 000 à 15 000 €, puis s’est intéressé à la bourse.",
         "evidence": [
           0,
           1,
@@ -1088,7 +1120,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Dans ses réponses de mars, il envisage d’ouvrir un PEA et d’investir régulièrement. Aucun montant de versement n’est encore fixé.",
+        "text": "Dans ses réponses de mars 2025, il envisage d’ouvrir un PEA et d’y verser régulièrement, sans montant fixé.",
         "evidence": [
           0,
           1,
@@ -1100,7 +1132,7 @@
     ],
     "questions": [
       {
-        "text": "Comment répartiriez-vous ses économies entre une réserve, un éventuel apport et ses premiers placements ?",
+        "text": "Vous garderiez ses économies pour un futur apport ou vous en investiriez déjà une partie en bourse ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -1169,12 +1201,15 @@
       "expressedQuestion": "Demande comment débuter avec 7–10 k€, puis s’interroge sur le PEA et la fréquence des versements.",
       "enrichment": "source-context",
       "limit": ""
+    },
+    "budget": {
+      "incomeNote": ""
     }
   },
   "finary-celibataire-31-2026-02-03": {
     "paragraphs": [
       {
-        "text": "Sébastien conserve environ 28 300 € sur LEP et Livret A. Son PEA, ouvert en janvier 2026, est destiné à la retraite et au très long terme, avec des ETF américains, européens et émergents.",
+        "text": "Sébastien garde environ 28 300 € sur LEP et Livret A. Il a ouvert son PEA en janvier 2026 pour préparer la retraite, avec des ETF américains, européens et émergents.",
         "evidence": [
           0,
           1
@@ -1182,7 +1217,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Il envisage un voyage de 2 000 € et le transfert de 5 000 € supplémentaires du Livret A vers le PEA. Il hésite entre investir cette somme en une fois et l’étaler, tout en gardant une réserve suffisante.",
+        "text": "Il prévoit un voyage de 2 000 € et pense transférer 5 000 € du Livret A vers le PEA. Il hésite entre investir cette somme d’un coup et l’étaler.",
         "evidence": [
           0,
           1
@@ -1192,7 +1227,7 @@
     ],
     "questions": [
       {
-        "text": "Quelle réserve garderiez-vous après le voyage et le transfert envisagé ?",
+        "text": "Combien garderiez-vous sur les livrets après le voyage et ce transfert ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -1200,7 +1235,7 @@
         ]
       },
       {
-        "text": "Pour ces 5 000 €, comment choisiriez-vous entre un versement unique et des achats progressifs ?",
+        "text": "Pour les 5 000 €, vous feriez un seul versement ou plusieurs achats répartis dans le temps ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -1246,19 +1281,23 @@
       "expressedQuestion": "Demande le niveau d’épargne sécurisée à conserver et le choix entre investissement immédiat et progressif des 5 k€.",
       "enrichment": "source-context",
       "limit": "Les pourcentages d’allocation annoncés ne concordent pas exactement avec les euros des lignes : ils ne sont pas reproduits. Les taux de livrets de la source ne deviennent pas des taux actuels."
+    },
+    "budget": {
+      "transfersHeading": "Épargne et investissements",
+      "incomeNote": ""
     }
   },
   "finary-frontalier-37-2025-06-30": {
     "paragraphs": [
       {
-        "text": "Paul possède un PEA d’environ 42 700 €, ainsi que des livrets et des contrats luxembourgeois. Au moment de ce budget, 35 000 € se trouvent aussi sur un compte courant non rémunéré ; il s’interroge sur leur utilisation.",
+        "text": "Paul détient environ 42 700 € sur PEA, des livrets et des contrats luxembourgeois. Il a aussi 35 000 € sur un compte courant non rémunéré et se demande quoi en faire.",
         "evidence": [
           0
         ],
         "basis": "consulted-source"
       },
       {
-        "text": "Il souhaite pouvoir accueillir un enfant dans les trois années suivant ce budget, acheter une nouvelle résidence et louer son logement actuel. Il vise aussi des revenus complémentaires à dix ou douze ans. Il hésite donc entre renforcer ses placements, préparer l’immobilier et accélérer le remboursement du crédit.",
+        "text": "Il souhaite avoir un enfant dans les trois ans, acheter un nouveau logement et louer l’actuel. Il vise des revenus complémentaires dans dix à douze ans et hésite entre investir davantage, préparer l’immobilier et rembourser son crédit plus vite.",
         "evidence": [
           0
         ],
@@ -1267,14 +1306,14 @@
     ],
     "questions": [
       {
-        "text": "Quelle part des liquidités garderiez-vous pour ses projets familiaux et immobiliers ?",
+        "text": "Avec ces projets, combien laisseriez-vous sur les livrets ?",
         "origin": "expressed",
         "evidence": [
           0
         ]
       },
       {
-        "text": "Comment compareriez-vous un remboursement anticipé et un renforcement des placements dans sa situation ?",
+        "text": "Vous rembourseriez le crédit plus vite ou vous renforceriez les placements ?",
         "origin": "expressed",
         "evidence": [
           0
@@ -1312,12 +1351,15 @@
       "expressedQuestion": "Demande de hiérarchiser compte courant, PEA, locatif et remboursement anticipé.",
       "enrichment": "source-context",
       "limit": "Les arbitrages effectivement annoncés le 4 juillet ont été lus mais ne remplacent pas l’état du 30 juin. Le solde financier de 1 808 € reste inchangé."
+    },
+    "budget": {
+      "transfersHeading": "Investissements et épargne retraite"
     }
   },
   "finary-bois-18-2025-10-16": {
     "paragraphs": [
       {
-        "text": "Enzo prépare son premier appartement. Ses dépenses prévues varient de 1 223 à 1 523 € selon le loyer et les courses : les 827 € de marge correspondent au scénario central, pas à un montant déjà investi.",
+        "text": "Selon le loyer et les courses, Enzo prévoit de dépenser entre 1 223 et 1 523 € pour son premier appartement. Les chiffres du budget se situent au milieu de cette fourchette.",
         "evidence": [
           0,
           1,
@@ -1326,7 +1368,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Il veut savoir comment vivre confortablement et combien il pourrait placer une fois installé. Le premier choix porte donc sur la marge à garder pendant les premiers mois d’autonomie.",
+        "text": "Il se demande combien il pourra investir une fois installé, tout en vivant confortablement.",
         "evidence": [
           0,
           1,
@@ -1337,7 +1379,7 @@
     ],
     "questions": [
       {
-        "text": "Quelle réserve garderiez-vous pour l’installation avant de fixer un versement mensuel à investir ?",
+        "text": "Combien garderiez-vous pour les premiers mois dans l’appartement avant de commencer à investir chaque mois ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -1394,19 +1436,23 @@
       "expressedQuestion": "Demande comment répartir son argent avec une location et combien investir ; propose ensuite son budget d’installation.",
       "enrichment": "source-context",
       "limit": ""
+    },
+    "budget": {
+      "incomeNote": "",
+      "textBasis": ""
     }
   },
   "mustachian-ingenieur-28-2025-08-16": {
     "paragraphs": [
       {
-        "text": "Romain investit depuis 2022. À cette période, il détient environ 109 700 CHF de placements, surtout un ETF d’actions mondiales sur compte-titres ; son troisième pilier est lui aussi investi en actions mondiales, avec le versement annuel maximal depuis 2022.",
+        "text": "Depuis 2022, Romain investit surtout en actions mondiales, sur compte-titres et dans son troisième pilier auquel il verse le maximum annuel. Ses placements représentent alors environ 109 700 CHF.",
         "evidence": [
           0
         ],
         "basis": "consulted-source"
       },
       {
-        "text": "Son objectif est de constituer un portefeuille de 150 000 CHF pour pouvoir ralentir les apports et réduire son temps de travail à 80 ou 90 %. Il souhaite aussi retrouver davantage de place pour les loisirs.",
+        "text": "Il vise un portefeuille de 150 000 CHF pour ralentir les apports et travailler à 80 ou 90 %, avec plus de temps pour les loisirs.",
         "evidence": [
           0
         ],
@@ -1415,14 +1461,14 @@
     ],
     "questions": [
       {
-        "text": "Comment adapteriez-vous le rythme d’investissement à un projet de temps partiel ?",
+        "text": "Une fois son objectif atteint, continueriez-vous à investir autant en travaillant moins ?",
         "origin": "expressed",
         "evidence": [
           0
         ]
       },
       {
-        "text": "Quelle place garderiez-vous aux loisirs tout en poursuivant la construction du portefeuille ?",
+        "text": "Quelle place laisseriez-vous aux loisirs pendant cette période ?",
         "origin": "expressed",
         "evidence": [
           0
@@ -1458,12 +1504,15 @@
       "expressedQuestion": "S’interroge sur la réduction du temps de travail, la négociation salariale et une stratégie d’investissement moins contraignante.",
       "enrichment": "source-context",
       "limit": "Les hypothèses personnelles de rendement ne sont pas reprises comme promesses ; les détails médicaux et professionnels sans utilité financière sont omis."
+    },
+    "budget": {
+      "incomeNote": ""
     }
   },
   "prepared-nicolas1499-2026-10-30": {
     "paragraphs": [
       {
-        "text": "Ce scénario reprend la réflexion d’un couple après une donation de 190 000 €, distincte des revenus mensuels. À la période du budget, le projet était de conserver une réserve sur livrets et de répartir les placements de long terme entre PEA et assurance-vie.",
+        "text": "Nicolas et Marion réfléchissent à l’utilisation d’une donation de 190 000 €, reçue en plus de leurs revenus mensuels. Ils envisagent de garder une réserve sur livrets et d’investir à long terme sur PEA et assurance-vie.",
         "evidence": [
           0,
           1
@@ -1471,7 +1520,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Plusieurs horizons se croisent : des travaux en 2026–2027, les études des enfants dans quinze ou seize ans, puis la retraite. Le choix entre immobilier à gérer en direct, SCPI et obligations faisait partie de leurs interrogations ; ces placements étaient encore envisagés.",
+        "text": "Ils prévoient des travaux en 2026–2027, les études des enfants dans quinze ou seize ans, puis la retraite. Ils s’interrogent aussi sur l’immobilier en direct, les SCPI et les obligations, encore au stade des projets.",
         "evidence": [
           0,
           1
@@ -1481,7 +1530,7 @@
     ],
     "questions": [
       {
-        "text": "Comment sépareriez-vous l’argent des travaux de celui investi pour les enfants et la retraite ?",
+        "text": "Où garderiez-vous l’argent des travaux, à côté des placements pour les enfants et la retraite ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -1489,7 +1538,7 @@
         ]
       },
       {
-        "text": "Quelle place donneriez-vous à l’immobilier et aux obligations dans cette répartition ?",
+        "text": "Vous feriez quelle place à l’immobilier et aux obligations ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -1497,7 +1546,7 @@
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://community.finary.com/t/31448/1",
@@ -1547,19 +1596,22 @@
       "expressedQuestion": "Interroge la répartition PEA/assurance-vie, les obligations et le choix entre rénovation locative et SCPI.",
       "enrichment": "source-context",
       "limit": "Les totaux patrimoniaux incohérents sont exclus. Les ouvertures et achats de décembre, postérieurs au budget de novembre, ne sont pas décrits comme déjà détenus."
+    },
+    "budget": {
+      "transfersHeading": "Épargne"
     }
   },
   "prepared-carl78-2026-10-30": {
     "paragraphs": [
       {
-        "text": "Julien envisage un mariage, un enfant et peut-être un changement de voiture. Le point de départ de cet exemple comprend 45 000 € sur livrets, un PEA d’environ 65 000 € et des cryptomonnaies valorisées séparément en dollars.",
+        "text": "Julien envisage un mariage, un enfant et peut-être une nouvelle voiture. Cet exemple part de 45 000 € sur livrets, d’un PEA d’environ 65 000 € et de cryptomonnaies valorisées séparément en dollars.",
         "evidence": [
           0
         ],
         "basis": "consulted-source"
       },
       {
-        "text": "Il se demande si conserver 15 000 € de sécurité suffirait avec ces projets et que faire du reste. Il souhaite aussi pouvoir choisir son rythme de travail à terme ; l’argent destiné aux besoins proches n’a donc pas nécessairement le même rôle que son PEA de long terme.",
+        "text": "Il se demande si 15 000 € de sécurité suffiraient pour ces projets et quoi faire du reste. À terme, il aimerait aussi pouvoir choisir son rythme de travail.",
         "evidence": [
           0
         ],
@@ -1568,21 +1620,21 @@
     ],
     "questions": [
       {
-        "text": "Quelle réserve garderiez-vous pour le mariage, l’enfant et la voiture avant d’investir davantage ?",
+        "text": "Vous garderiez combien pour le mariage, l’enfant et la voiture avant d’investir davantage ?",
         "origin": "expressed",
         "evidence": [
           0
         ]
       },
       {
-        "text": "Comment distingueriez-vous les placements de long terme et ceux qui pourraient financer une activité réduite ?",
+        "text": "Quels placements garderiez-vous pour plus tard, et lesquels pourraient l’aider à travailler moins ?",
         "origin": "expressed",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://community.finary.com/t/29280/1",
@@ -1610,12 +1662,17 @@
       "expressedQuestion": "Demande le montant de réserve et les placements pour le surplus ; réfléchit aussi à réduire son exposition aux cryptomonnaies.",
       "enrichment": "source-context",
       "limit": "Pas de conversion implicite des 120 kUSD de cryptomonnaies vers EUR ; aucun total EUR/USD agrégé ni rendement présenté comme sûr."
+    },
+    "budget": {
+      "transfersHeading": "Épargne et investissements",
+      "incomeNote": "Les dépenses de sa compagne ne sont pas incluses.",
+      "household": "Budget personnel"
     }
   },
   "prepared-theoo-2026-10-30": {
     "paragraphs": [
       {
-        "text": "Théo conserve environ 3 000 € sur son Livret A. Il a ouvert son PEA un an avant ce budget et y investit depuis un mois, sur un ETF World ; il vise une construction patrimoniale sur vingt ans et une plus grande liberté de travail à terme.",
+        "text": "Théo a environ 3 000 € sur Livret A. Son PEA a un an, mais il y investit sur un ETF World depuis un mois seulement. Il vise vingt ans et aimerait pouvoir choisir plus librement son rythme de travail.",
         "evidence": [
           0,
           1
@@ -1623,7 +1680,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Il s’interroge sur le moment où diversifier vers d’autres zones ou les obligations. Son prêt étudiant de 6 000 € commencera à être remboursé après les études : les versements futurs et les augmentations de salaire envisagées restent distincts de la situation présentée. Les déplacements Paris–Bordeaux pèsent déjà dans son budget.",
+        "text": "Il se demande quand ajouter d’autres pays ou des obligations. Son prêt étudiant de 6 000 € devra être remboursé après les études ; les hausses de salaire annoncées ne sont pas comptées ici.",
         "evidence": [
           0,
           1
@@ -1633,7 +1690,7 @@
     ],
     "questions": [
       {
-        "text": "À quel moment ajouteriez-vous d’autres placements à son ETF World, et pour quel rôle ?",
+        "text": "Vous garderiez l’ETF World seul pour commencer ou vous ajouteriez déjà d’autres placements ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -1641,7 +1698,7 @@
         ]
       },
       {
-        "text": "Comment prépareriez-vous les remboursements futurs avant d’augmenter les versements ?",
+        "text": "Combien garderiez-vous de côté pour le prêt étudiant avant d’augmenter les versements ?",
         "origin": "editorial",
         "evidence": [
           0,
@@ -1649,7 +1706,7 @@
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://community.finary.com/t/36307/1",
@@ -1687,19 +1744,23 @@
       "expressedQuestion": "Demande quand et vers quoi diversifier ; s’interroge également sur un investissement financé par un nouveau prêt.",
       "enrichment": "source-context",
       "limit": "Pas de prêt supplémentaire ajouté, ni de salaire futur inclus. Les caractéristiques et rendements des produits ne sont pas actualisés à partir du témoignage."
+    },
+    "budget": {
+      "transfersHeading": "Épargne et investissements",
+      "incomeNote": ""
     }
   },
   "prepared-gritz-2026-10-30": {
     "paragraphs": [
       {
-        "text": "Dans le point de départ de cet exemple, Guillaume détient un PEL de 43 600 €, un PEA de 38 000 €, un PEE de 43 000 € et 20 000 € sur Livret A pour les dépenses imprévues et d’éventuels projets.",
+        "text": "Cet exemple part d’un PEL de 43 600 €, d’un PEA de 38 000 €, d’un PEE de 43 000 € et de 20 000 € sur Livret A.",
         "evidence": [
           0
         ],
         "basis": "consulted-source"
       },
       {
-        "text": "Il envisage un achat immobilier mais préfère éviter le crédit. Il cherche aussi comment organiser son argent entre un besoin à environ un an et des projets à deux ou quatre ans ; le PEL et le PEA n’ont donc pas le même rôle que sa réserve disponible.",
+        "text": "Guillaume envisage un achat immobilier et préfère éviter le crédit. Il a aussi des besoins à environ un an et des projets à deux ou quatre ans : une partie de son argent doit pouvoir servir avant les placements de long terme.",
         "evidence": [
           0
         ],
@@ -1708,21 +1769,21 @@
     ],
     "questions": [
       {
-        "text": "Quelle somme garderiez-vous accessible pour ses projets proches avant de renforcer les placements à long terme ?",
+        "text": "Combien garderiez-vous accessible pour les prochaines années avant de renforcer les placements à long terme ?",
         "origin": "expressed",
         "evidence": [
           0
         ]
       },
       {
-        "text": "Comment compareriez-vous un achat immobilier et la poursuite de l’épargne dans sa situation ?",
+        "text": "Vous privilégieriez l’achat sans crédit ou vous continueriez à épargner en attendant ?",
         "origin": "expressed",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://community.finary.com/t/34334/1",
@@ -1750,12 +1811,15 @@
       "expressedQuestion": "Demande comment optimiser ses dépenses et ses placements à court/moyen terme, et financer un éventuel achat sans aimer le crédit.",
       "enrichment": "source-context",
       "limit": "Ne pas reprendre les affirmations erronées de blocage absolu PEL/PEA ni les taux datés. Les montants des enveloppes sont détaillés sans certifier son total patrimonial."
+    },
+    "budget": {
+      "transfersHeading": "Épargne et investissements"
     }
   },
   "prepared-tom281-2026-10-30": {
     "paragraphs": [
       {
-        "text": "Thomas envisage d’acheter le parking qu’il loue, puis de le diviser en cinq places de moto : une pour lui et quatre à louer. Son projet repose sur un financement de longue durée, sans apport, tout en préservant ses investissements réguliers.",
+        "text": "Thomas envisage d’acheter le parking qu’il loue et d’y créer cinq places de moto : une pour lui, quatre à louer. Il voudrait emprunter sans apport sur une longue durée pour continuer à investir.",
         "evidence": [
           0,
           1,
@@ -1765,7 +1829,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Dans ses échanges, la possibilité d’un crédit à la consommation, plus court, change l’équilibre du projet. Il se demande si la mensualité laisserait encore assez de marge pour son PEA et pour des périodes sans locataires. Les loyers possibles du parking ne sont pas des revenus actuels.",
+        "text": "Un crédit à la consommation plus court est aussi évoqué. Il se demande si les mensualités lui laisseraient assez pour le PEA et les périodes sans locataires. Aucun futur loyer du parking n’est compté dans ses revenus.",
         "evidence": [
           0,
           1,
@@ -1777,7 +1841,7 @@
     ],
     "questions": [
       {
-        "text": "Comment testeriez-vous ce projet avec une mensualité plus élevée et des mois de vacance locative ?",
+        "text": "Le projet tiendrait-il avec un crédit plus court et plusieurs mois sans locataires ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -1787,7 +1851,7 @@
         ]
       },
       {
-        "text": "Quel effort maximal accepteriez-vous pour préserver ses versements sur le PEA ?",
+        "text": "Quelle mensualité maximale accepteriez-vous pour continuer à alimenter le PEA ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -1797,7 +1861,7 @@
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://community.finary.com/t/32675/1",
@@ -1855,12 +1919,20 @@
       "expressedQuestion": "Interroge l’équilibre effort/sécurité et l’impact du financement, notamment crédit conso, sur sa capacité à investir.",
       "enrichment": "source-context",
       "limit": "Les 237 € évoqués mélangent loyers bruts et économie de loyer personnelle ; aucun de ces flux futurs n’est ajouté au budget courant."
+    },
+    "budget": {
+      "transfersHeading": "Épargne et investissements",
+      "location": "",
+      "incomeNote": "L’avantage repas est compris dans l’enveloppe de courses.",
+      "incomeLabels": {
+        "Avantage repas au budget": "Avantage repas"
+      }
     }
   },
   "prepared-alessgiu-2026-10-30": {
     "paragraphs": [
       {
-        "text": "Alexandre cherche une organisation simple pour investir à long terme, avec des ETF, de l’épargne-pension et une petite poche de cryptomonnaies. Dans sa réflexion initiale, il s’interroge sur les frais et les recoupements entre placements.",
+        "text": "Alexandre veut investir à long terme sans se compliquer la vie, entre ETF, épargne-pension et quelques cryptomonnaies. Il s’interroge sur les frais et les placements qui se recoupent.",
         "evidence": [
           0,
           1
@@ -1868,7 +1940,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Dans une réponse ultérieure du même mois, il dit avoir regroupé ses ETF autour d’un fonds All-World. Cela illustre son souhait de simplifier ; cette évolution ne remplace pas les versements du scénario présenté ci-dessus.",
+        "text": "Plus tard dans le même mois, il explique avoir regroupé ses ETF autour d’un fonds All-World.",
         "evidence": [
           0,
           1
@@ -1878,7 +1950,7 @@
     ],
     "questions": [
       {
-        "text": "Comment répartiriez-vous l’effort entre réserve disponible, placements mondiaux et épargne-pension ?",
+        "text": "Comment partageriez-vous les versements entre l’argent à garder accessible, les ETF et l’épargne-pension ?",
         "origin": "editorial",
         "evidence": [
           0,
@@ -1886,7 +1958,7 @@
         ]
       },
       {
-        "text": "Quels recoupements examineriez-vous avant d’ajouter un nouvel ETF à une ligne mondiale ?",
+        "text": "Un nouvel ETF apporterait-il vraiment quelque chose à côté d’un All-World ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -1894,7 +1966,7 @@
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://community.finary.com/t/34261/1",
@@ -1932,12 +2004,15 @@
       "expressedQuestion": "Demande un avis sur ETF, cryptomonnaies et frais ; annonce ensuite vouloir éviter les doublons entre World et All-World.",
       "enrichment": "source-context",
       "limit": "La réponse du 16 février reste une évolution explicitement ultérieure ; ni les règles fiscales ni les frais chiffrés du message ne sont repris comme actuels."
+    },
+    "budget": {
+      "transfersHeading": "Épargne et investissements"
     }
   },
   "prepared-xiaolongbao641-2026-10-30": {
     "paragraphs": [
       {
-        "text": "Le point de départ de cet exemple comprend 48 000 € de réserve et provisions, ainsi qu’un portefeuille mêlant actions mondiales, métaux précieux, obligations et autres stratégies. Les actions sont logées en PEA, les autres placements sur compte-titres.",
+        "text": "Cet exemple part de 48 000 € de réserve et provisions, à côté d’actions mondiales, de métaux précieux, d’obligations et d’autres stratégies. Les actions sont en PEA, les autres placements sur compte-titres.",
         "evidence": [
           0,
           1,
@@ -1947,7 +2022,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Maxime et Clara souhaitent pouvoir choisir leur rythme de travail, sans âge de départ fixé. Ils préfèrent faire évoluer leur allocation par les nouveaux versements plutôt que vendre, puis se demandent comment garder un portefeuille compréhensible et préparer la suite quand leurs PEA seront remplis.",
+        "text": "Maxime et Clara aimeraient pouvoir choisir leur rythme de travail, sans date de départ fixée. Ils préfèrent modifier la répartition avec leurs nouveaux versements plutôt qu’en vendant et se demandent quoi faire une fois les PEA remplis.",
         "evidence": [
           0,
           1,
@@ -1959,7 +2034,7 @@
     ],
     "questions": [
       {
-        "text": "Quelles simplifications retiendriez-vous sans perdre le rôle de chaque placement ?",
+        "text": "Sur quelles lignes concentreriez-vous les nouveaux versements pour simplifier le portefeuille ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -1969,7 +2044,7 @@
         ]
       },
       {
-        "text": "Comment prépareriez-vous les placements après les PEA et une éventuelle réduction d’activité ?",
+        "text": "Une fois les PEA remplis, où placeriez-vous les nouveaux versements pour préparer une baisse d’activité ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -1979,7 +2054,7 @@
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://community.finary.com/t/38311/1",
@@ -2038,21 +2113,16 @@
       "expressedQuestion": "Demande un avis sur allocation, enveloppes après les PEA et réduction progressive du risque ; précise viser surtout une liberté de rythme de travail.",
       "enrichment": "source-context",
       "limit": "Ne pas convertir les hypothèses de revenus futurs ou l’éventuel private equity en situation acquise. Les deux montants de liquidités ne sont pas additionnés sans périmètre confirmé."
+    },
+    "budget": {
+      "transfersHeading": "Investissements",
+      "incomeNote": "Leurs revenus varient entre 8 200 et 8 500 € par mois."
     }
   },
   "prepared-abar4-2026-10-30": {
     "paragraphs": [
       {
-        "text": "Au moment de publier ce bilan annuel, Adrien et Léa préparent l’arrivée d’un bébé en février 2026. Dans ses réponses, Adrien distingue 5 000 CHF pour le quotidien et 5 000 CHF de sécurité ; il décrit aussi un portefeuille partagé entre métaux précieux, ETF et actions.",
-        "evidence": [
-          0,
-          1,
-          2
-        ],
-        "basis": "consulted-source"
-      },
-      {
-        "text": "Il a commencé à investir pendant l’année du bilan et s’interroge sur la concentration du portefeuille. Le budget de 2025 ne comprend pas encore une année complète de dépenses avec l’enfant.",
+        "text": "Adrien distingue 5 000 CHF pour le quotidien et 5 000 CHF de sécurité. Il a commencé à investir pendant l’année de ce bilan, dans un portefeuille mêlant métaux précieux, ETF et actions, et s’interroge sur la place des métaux dans ses placements.",
         "evidence": [
           0,
           1,
@@ -2063,7 +2133,7 @@
     ],
     "questions": [
       {
-        "text": "Quelle réserve prévoiriez-vous pour l’arrivée du bébé avec un seul revenu ?",
+        "text": "Combien garderiez-vous de côté pour l’arrivée du bébé avec un seul revenu ?",
         "origin": "editorial",
         "evidence": [
           0,
@@ -2072,7 +2142,7 @@
         ]
       },
       {
-        "text": "Comment examineriez-vous la place des métaux précieux dans cette répartition ?",
+        "text": "Garderiez-vous autant de métaux précieux dans leur portefeuille ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -2081,7 +2151,7 @@
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://forum.mustachianpost.com/t/1249/450",
@@ -2130,12 +2200,16 @@
       "expressedQuestion": "Demande si 40 % métaux, 40 % ETF et 20 % actions est trop concentré et quelle stratégie adopter.",
       "enrichment": "source-context",
       "limit": "Réponses de janvier 2026 présentées au moment de publication du bilan 2025, pas comme des dépenses du bébé déjà réalisées. Aucun gain exceptionnel reconduit comme rendement attendu."
+    },
+    "budget": {
+      "transfersHeading": "Épargne retraite et investissements",
+      "incomeNote": "L’arrivée du bébé est attendue en février 2026. Les impôts sont dans les dépenses."
     }
   },
   "prepared-justbob-2026-10-30": {
     "paragraphs": [
       {
-        "text": "Dans le récit qui inspire cet exemple, Marc se considère proche de l’indépendance financière selon ses hypothèses de retrait. Il choisit de consacrer davantage d’argent aux voyages, aux activités et à sa vie sociale.",
+        "text": "Marc se considère proche de l’indépendance financière, selon ses hypothèses de retrait. Il choisit de dépenser davantage pour les voyages, les activités et sa vie sociale, mais voudrait limiter les achats d’électronique.",
         "evidence": [
           0,
           1
@@ -2143,7 +2217,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Il souhaite cependant mieux maîtriser les achats d’électronique. Le bilan inclut des dépenses ponctuelles, comme une opération des yeux ; sa rémunération comporte aussi une part variable. La répartition du solde entre épargne et investissements reste un choix illustratif.",
+        "text": "La répartition entre épargne et placements est proposée pour cet exemple.",
         "evidence": [
           0,
           1
@@ -2153,7 +2227,7 @@
     ],
     "questions": [
       {
-        "text": "Comment fixeriez-vous une enveloppe de loisirs durable avec une rémunération en partie variable ?",
+        "text": "Quel budget loisirs garderiez-vous quand une partie de la rémunération varie ?",
         "origin": "editorial",
         "evidence": [
           0,
@@ -2161,7 +2235,7 @@
         ]
       },
       {
-        "text": "Quelle réserve garderiez-vous avant de réduire l’activité professionnelle ?",
+        "text": "Combien laisseriez-vous de côté avant de travailler moins ?",
         "origin": "editorial",
         "evidence": [
           0,
@@ -2169,7 +2243,7 @@
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://forum.mustachianpost.com/t/1249/426",
@@ -2207,22 +2281,17 @@
       "expressedQuestion": null,
       "enrichment": "source-context",
       "limit": "Exprime un souhait de modérer l’électronique mais ne pose pas de question d’investissement précise ; questions éditoriales. Aucun montant de patrimoine ou date de départ déduit de « near FI »."
+    },
+    "budget": {
+      "transfersHeading": "Épargne et investissements",
+      "incomeNote": "Une partie de la rémunération est variable."
     }
   },
   "prepared-markus654-2026-10-30": {
-    "paragraphs": [
-      {
-        "text": "Samuel a suivi ses dépenses pendant toute l’année 2025. Le bilan distingue les dépenses courantes, les dépenses de vacances et les versements au troisième pilier et aux ETF.",
-        "evidence": [
-          0,
-          1
-        ],
-        "basis": "consulted-source"
-      }
-    ],
+    "paragraphs": [],
     "questions": [
       {
-        "text": "Comment distingueriez-vous l’épargne des projets proches et celle destinée à la retraite dans ce budget ?",
+        "text": "Quelle part garderiez-vous accessible avant de verser le reste au troisième pilier et sur les ETF ?",
         "origin": "editorial",
         "evidence": [
           0,
@@ -2230,7 +2299,7 @@
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://forum.mustachianpost.com/t/1249/396",
@@ -2269,35 +2338,27 @@
       "expressedQuestion": null,
       "enrichment": "source-context",
       "limit": "Le message de février 2026 sur un remboursement de complémentaire a été lu mais concerne une autre période : pas d’enrichissement du bilan 2025 avec cet événement. Pas de patrimoine nouveau tiré du diagramme mensuel."
+    },
+    "budget": {
+      "transfersHeading": "Épargne retraite et investissements",
+      "incomeNote": "Les impôts sont comptés dans les dépenses.",
+      "incomeLabels": {
+        "Ressources mensuelles, nature non détaillée": "Ressources mensuelles"
+      }
     }
   },
   "prepared-lot2-01-2026-10-30": {
-    "paragraphs": [
-      {
-        "text": "Dans cet exemple de lancement d’entreprise, les indemnités chômage financent encore le budget personnel d’Inès. Les 645 € affectés à l’activité ne constituent pas un matelas personnel disponible en cas d’imprévu.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "Le choix porte donc aussi sur la séparation entre l’argent nécessaire pour vivre et celui que l’entreprise peut mobiliser, tant que ses revenus propres ne prennent pas le relais.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      }
-    ],
+    "paragraphs": [],
     "questions": [
       {
-        "text": "Quelle réserve personnelle garderiez-vous avant de consacrer la marge au lancement de l’entreprise ?",
+        "text": "À sa place, combien garderiez-vous pour les imprévus personnels avant de financer l’entreprise ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.elle.fr/Societe/News/Dans-les-comptes-de-Julie-42-ans-Avant-j-avais-une-expertise-plus-rien-a-prouver-et-un-tres-bon-salaire-4675888",
@@ -2333,35 +2394,31 @@
       "expressedQuestion": null,
       "enrichment": "retained-context",
       "limit": "HTTP 403"
+    },
+    "budget": {
+      "transfersHeading": "Financement de son entreprise",
+      "incomeNote": "Elle lance son entreprise."
     }
   },
   "prepared-lot2-02-2026-10-30": {
-    "paragraphs": [
-      {
-        "text": "Les ressources d’Aïcha peuvent varier avec les astreintes. Dans cet exemple, la réserve pour projets et imprévus doit accompagner les dépenses d’un enfant, sans traiter le mois le mieux rémunéré comme une garantie.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      }
-    ],
+    "paragraphs": [],
     "questions": [
       {
-        "text": "Sur quel niveau de revenu construiriez-vous les dépenses régulières quand les astreintes varient ?",
+        "text": "Avec des astreintes variables, quel salaire prendriez-vous comme base pour les dépenses du mois ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       },
       {
-        "text": "Comment répartiriez-vous la réserve entre dépenses de l’enfant et imprévus ?",
+        "text": "Comment partageriez-vous l’argent mis de côté entre les besoins de l’enfant et les imprévus ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.elle.fr/Societe/News/Dans-les-comptes-d-Aminata-mere-celibataire-Je-ne-suis-plus-a-decouvert-depuis-2018-4672401",
@@ -2397,28 +2454,24 @@
       "expressedQuestion": null,
       "enrichment": "retained-context",
       "limit": "HTTP 403"
+    },
+    "budget": {
+      "transfersHeading": "Épargne pour les projets et imprévus",
+      "incomeNote": "Le salaire varie de 3 200 à 3 500 € selon les astreintes."
     }
   },
   "prepared-lot2-03-2026-10-30": {
-    "paragraphs": [
-      {
-        "text": "Dans ce scénario, la même marge finance une petite réserve de sécurité et les vacances. Une dépense imprévue peut donc remettre ces deux usages en concurrence.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      }
-    ],
+    "paragraphs": [],
     "questions": [
       {
-        "text": "Comment donneriez-vous une place aux vacances tout en construisant une réserve pour les imprévus ?",
+        "text": "Combien mettriez-vous de côté pour les imprévus tout en gardant un budget vacances ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.elle.fr/Societe/News/Dans-les-comptes-de-Nathalie-mere-celibataire-Les-aides-sont-primordiales-pour-vivre-4559255",
@@ -2454,42 +2507,31 @@
       "expressedQuestion": null,
       "enrichment": "retained-context",
       "limit": "HTTP 403"
+    },
+    "budget": {
+      "transfersHeading": "Épargne de précaution et projets",
+      "incomeNote": "Les aides évoquées ne sont pas comptées dans ce budget."
     }
   },
   "prepared-lot2-04-2026-10-30": {
-    "paragraphs": [
-      {
-        "text": "Élodie perçoit encore des indemnités dans la période présentée, avant leur fin annoncée en septembre 2026. Le financement de l’entreprise constitue un choix de ce scénario, distinct de l’épargne de sécurité du foyer.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "La transition entre indemnités et revenus d’activité est donc centrale : les dépenses familiales continuent même si l’entreprise ne prend pas immédiatement le relais.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      }
-    ],
+    "paragraphs": [],
     "questions": [
       {
-        "text": "Quelle trésorerie familiale prévoiriez-vous avant la fin des indemnités ?",
+        "text": "Combien garderiez-vous pour le foyer avant la fin des indemnités ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       },
       {
-        "text": "Comment fixeriez-vous la somme que le foyer peut consacrer à l’entreprise pendant cette transition ?",
+        "text": "Quelle somme pourriez-vous encore consacrer à l’entreprise pendant cette transition ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.elle.fr/Societe/News/Dans-le-budget-de-Laura-39-ans-J-ai-ouvert-les-yeux-sur-l-investissement-pour-me-mettre-a-l-abri-4496119",
@@ -2525,28 +2567,24 @@
       "expressedQuestion": null,
       "enrichment": "retained-context",
       "limit": "HTTP 403"
+    },
+    "budget": {
+      "transfersHeading": "Financement de son entreprise",
+      "incomeNote": "Les indemnités d’Élodie devaient s’arrêter en septembre 2026."
     }
   },
   "prepared-lot2-05-2026-10-30": {
-    "paragraphs": [
-      {
-        "text": "Cet exemple ne prévoit aucun versement d’épargne : les dépenses mobilisent la totalité des ressources du mois. Une facture occasionnelle peut donc bousculer les autres dépenses du quotidien.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      }
-    ],
+    "paragraphs": [],
     "questions": [
       {
-        "text": "Quelle première enveloppe de sécurité chercheriez-vous à créer sans déséquilibrer le quotidien ?",
+        "text": "Par quoi commenceriez-vous pour mettre un peu d’argent de côté sans trop serrer les dépenses du quotidien ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.elle.fr/Societe/News/Dans-le-budget-de-Fouzia-49-ans-Je-n-ai-jamais-epargne-sur-une-assurance-vie-ou-un-livret-4481353",
@@ -2582,28 +2620,23 @@
       "expressedQuestion": null,
       "enrichment": "retained-context",
       "limit": "HTTP 403"
+    },
+    "budget": {
+      "incomeNote": "Le salaire varie de 2 500 à 3 000 € par mois."
     }
   },
   "prepared-lot2-06-2026-10-30": {
-    "paragraphs": [
-      {
-        "text": "Les versements de cet exemple se partagent entre PER, assurance-vie et Livret A. L’enjeu est de distinguer l’argent destiné à la retraite de celui qui peut devoir servir plus tôt, sans supposer que tous les supports ont la même disponibilité.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      }
-    ],
+    "paragraphs": [],
     "questions": [
       {
-        "text": "Comment répartiriez-vous les versements entre retraite et argent accessible pour les projets proches ?",
+        "text": "Combien mettriez-vous pour la retraite, et combien garderiez-vous accessible pour les projets plus proches ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.elle.fr/Societe/News/Dans-le-budget-de-Marina-38-ans-Mon-salaire-a-presque-double-en-10-ans-mais-je-n-ai-pas-augmente-mon-train-de-vie-4478788",
@@ -2639,28 +2672,23 @@
       "expressedQuestion": null,
       "enrichment": "retained-context",
       "limit": "HTTP 403"
+    },
+    "budget": {
+      "transfersHeading": "Épargne retraite et placements"
     }
   },
   "prepared-lot2-07-2026-10-30": {
-    "paragraphs": [
-      {
-        "text": "Le foyer n’a plus de crédit immobilier. Les versements proposés se partagent entre projets et sécurité ; le passage éventuel du salaire d’Alain à une pension pose aussi la question du niveau de dépenses et de la réserve à garder.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      }
-    ],
+    "paragraphs": [],
     "questions": [
       {
-        "text": "Quels postes et quelle réserve examineriez-vous avant le départ à la retraite d’Alain ?",
+        "text": "Si Alain partait à la retraite, que faudrait-il revoir dans leur budget ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.elle.fr/Societe/News/Dans-les-comptes-de-Sacha-62-ans-Nous-avons-une-liberte-financiere-depuis-le-depart-de-nos-filles-4476431",
@@ -2696,28 +2724,24 @@
       "expressedQuestion": null,
       "enrichment": "retained-context",
       "limit": "HTTP 403"
+    },
+    "budget": {
+      "transfersHeading": "Épargne de précaution et projets",
+      "incomeNote": ""
     }
   },
   "prepared-lot2-08-2026-10-30": {
-    "paragraphs": [
-      {
-        "text": "Dans cet exemple, le versement de 670 € sert à préparer un apport immobilier. Le budget est personnel : il comprend une participation aux dépenses communes et des dépenses propres, sans confondre sa marge avec celle de tout le couple.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      }
-    ],
+    "paragraphs": [],
     "questions": [
       {
-        "text": "Comment organiseriez-vous l’apport et la réserve personnelle sans mélanger les budgets des deux partenaires ?",
+        "text": "Comment prépareriez-vous l’apport tout en gardant une réserve à elle, séparée du budget de son conjoint ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.elle.fr/Societe/News/Dans-le-budget-d-Angele-30-ans-Je-ne-suis-pas-spontanee-je-calcule-tout-4473494",
@@ -2753,12 +2777,16 @@
       "expressedQuestion": null,
       "enrichment": "retained-context",
       "limit": "HTTP 403"
+    },
+    "budget": {
+      "transfersHeading": "Épargne pour un apport immobilier",
+      "incomeNote": ""
     }
   },
   "prepared-lot2-09-2026-10-30": {
     "paragraphs": [
       {
-        "text": "Les vacances d’Anaïs nécessitent un soutien parental. Le scénario réserve aussi 250 € au projet immobilier : les deux projets n’ont pas le même horizon.",
+        "text": "Les vacances d’Anaïs nécessitent une aide de ses parents.",
         "evidence": [
           0
         ],
@@ -2767,14 +2795,14 @@
     ],
     "questions": [
       {
-        "text": "Quelle priorité donneriez-vous à la réserve du quotidien, aux vacances et au projet immobilier avec ce revenu ?",
+        "text": "Entre les imprévus, les vacances et l’achat immobilier, par quoi commenceriez-vous avec ce revenu ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.aufeminin.com/societe/dossiers/gerer-son-budget/dans-les-comptes-de-lisa-hotesse-de-lair-depuis-7-ans-avec-mon-salaire-pas-de-vacances-sans-le-soutien-de-mes-parents-2805143.html",
@@ -2810,35 +2838,24 @@
       "expressedQuestion": null,
       "enrichment": "retained-context",
       "limit": "ProxyError: HTTPSConnectionPool(host='www.aufeminin.com', port=443): Max retries exceeded with url: /societe/dossiers/gerer-son-budget/dans-les-comptes-de-lisa-hotesse-de-lair-depuis-7-ans-avec-mon-salaire-pas-de-vacances-sans-le-soutien-de-mes-parents-2805143.html (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+    },
+    "budget": {
+      "transfersHeading": "Épargne pour un projet immobilier",
+      "incomeNote": "Les primes de repas et de pressing, variables selon les jours travaillés, ne sont pas comptées."
     }
   },
   "prepared-lot2-10-2026-10-30": {
-    "paragraphs": [
-      {
-        "text": "Le budget personnel de Pauline participe aux charges de deux logements. Dans ce scénario, la marge se répartit aussi entre une réserve de précaution et les projets des enfants.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "L’entretien des logements peut entraîner des dépenses irrégulières : ce besoin doit rester distinct des dépenses communes déjà réparties avec son conjoint.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      }
-    ],
+    "paragraphs": [],
     "questions": [
       {
-        "text": "Comment partageriez-vous la réserve entre l’entretien des logements et les projets des enfants ?",
+        "text": "Quelle part garderiez-vous pour l’entretien des deux logements, et quelle part pour les projets des enfants ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.aufeminin.com/societe/dossiers/gerer-son-budget/je-ne-machete-plus-rien-pour-moi-dans-les-comptes-de-laetitia-34-ans-institutrice-a-2-100-euros-par-mois-2660501.html",
@@ -2874,28 +2891,24 @@
       "expressedQuestion": null,
       "enrichment": "retained-context",
       "limit": "ProxyError: HTTPSConnectionPool(host='www.aufeminin.com', port=443): Max retries exceeded with url: /societe/dossiers/gerer-son-budget/je-ne-machete-plus-rien-pour-moi-dans-les-comptes-de-laetitia-34-ans-institutrice-a-2-100-euros-par-mois-2660501.html (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+    },
+    "budget": {
+      "transfersHeading": "Épargne de précaution et projets",
+      "incomeNote": "Pauline paie 45 % du crédit de l’appartement. Sa part du second crédit et des courses est estimée."
     }
   },
   "prepared-lot2-11-2026-10-30": {
-    "paragraphs": [
-      {
-        "text": "Dans cet exemple, une réserve entre deux stages complète le versement sur l’assurance-vie. L’argent disponible pendant une interruption de revenus et celui placé pour le long terme n’ont pas le même usage.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      }
-    ],
+    "paragraphs": [],
     "questions": [
       {
-        "text": "Quelle réserve disponible viseriez-vous avant de maintenir les versements sur l’assurance-vie entre deux stages ?",
+        "text": "Combien faudrait-il garder disponible entre deux stages avant de continuer les versements sur l’assurance-vie ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.aufeminin.com/societe/dossiers/gerer-son-budget/je-vais-voir-mes-applis-bancaires-tous-les-jours-dans-les-comptes-de-nina-24-ans-etudiante-boursiere-2668147.html",
@@ -2931,19 +2944,16 @@
       "expressedQuestion": null,
       "enrichment": "retained-context",
       "limit": "ProxyError: HTTPSConnectionPool(host='www.aufeminin.com', port=443): Max retries exceeded with url: /societe/dossiers/gerer-son-budget/je-vais-voir-mes-applis-bancaires-tous-les-jours-dans-les-comptes-de-nina-24-ans-etudiante-boursiere-2668147.html (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+    },
+    "budget": {
+      "transfersHeading": "Épargne entre deux stages et placements",
+      "incomeNote": ""
     }
   },
   "prepared-lot2-12-2026-10-30": {
     "paragraphs": [
       {
-        "text": "Le point de départ de cet exemple mentionne 12 000 € d’épargne et des versements habituels de 1 000 € par mois. Voyages, restaurants et achats personnels peuvent toutefois créer des dépenses irrégulières.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "La réserve déjà constituée et l’épargne du mois ont des rôles distincts : les retraits nécessaires pour une dépense prévue ne doivent pas se confondre avec un manque d’épargne nouvelle.",
+        "text": "Jade dispose de 12 000 € d’épargne dans le point de départ de cet exemple. Les voyages, restaurants et achats personnels entraînent parfois des retraits sur les sommes mises de côté.",
         "evidence": [
           0
         ],
@@ -2952,14 +2962,14 @@
     ],
     "questions": [
       {
-        "text": "Comment distingueriez-vous l’argent des voyages et des dépenses irrégulières de la réserve de sécurité ?",
+        "text": "Vous sépareriez l’argent des voyages et des achats prévus de la réserve pour les imprévus ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.reddit.com/r/VosSous/comments/1wzbhtz/besoin_de_conseils/",
@@ -3003,35 +3013,27 @@
         "sha256": "22ba9da90a195dbd3be89e27085528d2f709190ae7bff28ac10eff1d67326a2f",
         "hasPost": false
       }
+    },
+    "budget": {
+      "transfersHeading": "Épargne",
+      "incomeNote": "Le salaire est celui du mois présenté, pas une moyenne annuelle.",
+      "incomeLabels": {
+        "Salaire net après impôt du mois retenu": "Salaire net après impôt"
+      }
     }
   },
   "prepared-lot2-13-2026-10-30": {
-    "paragraphs": [
-      {
-        "text": "Lucie rembourse un crédit immobilier et un autre prêt. La participation de son conjoint aux charges ne représente pas le revenu total de celui-ci ; le budget reste personnel.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "La réserve prévue doit pouvoir absorber les régularisations et les dépenses imprévues. Les primes et le treizième mois ne remplacent pas une marge mensuelle régulière.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      }
-    ],
+    "paragraphs": [],
     "questions": [
       {
-        "text": "Comment organiseriez-vous la réserve pour les impôts et l’entretien du logement pendant les remboursements ?",
+        "text": "Comment garderiez-vous de l’argent pour les impôts et l’entretien du logement tout en remboursant les deux prêts ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.reddit.com/r/VosSous/comments/1r58gwd/est_ce_que_je_peux_mieux_gérer_mes_sous/",
@@ -3075,19 +3077,16 @@
         "sha256": "10f48637828ca8a0ee9adcecefa845dbfdd2162cc6b4b9f1634f981966bfc492",
         "hasPost": false
       }
+    },
+    "budget": {
+      "transfersHeading": "Épargne de précaution",
+      "incomeNote": "Les 600 € sont la participation de son conjoint aux charges, pas son salaire complet. Ses primes et son treizième mois ne sont pas comptés ; l’impôt reste à régulariser."
     }
   },
   "prepared-lot2-14-2026-10-30": {
     "paragraphs": [
       {
-        "text": "Chloé et Nathan envisagent de quitter leur T2 pour un logement plus grand. Les chiffres présentés restent ceux du logement actuel ; le futur loyer et la répartition envisagée entre eux sont un projet séparé.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "Les réserves de ce scénario servent à préparer le déménagement et les autres projets. Un changement de logement peut donc modifier à la fois les dépenses régulières et l’argent nécessaire au départ.",
+        "text": "Chloé et Nathan aimeraient quitter leur T2 pour un logement plus grand. Le budget reste celui de leur logement actuel ; le futur loyer et son partage entre eux ne sont pas encore retenus.",
         "evidence": [
           0
         ],
@@ -3096,21 +3095,21 @@
     ],
     "questions": [
       {
-        "text": "Quelle marge vérifieriez-vous après le futur loyer avant de décider du déménagement ?",
+        "text": "Combien voudriez-vous qu’il leur reste chaque mois après le nouveau loyer ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       },
       {
-        "text": "Quels frais d’installation prévoiriez-vous en plus de la hausse du loyer ?",
+        "text": "Quels frais d’installation ajouteriez-vous au budget avant de déménager ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.reddit.com/r/VosSous/comments/1ry5wws/demande_de_conseil_pour_changement_dappartement/",
@@ -3154,28 +3153,24 @@
         "sha256": "5ef84f549e6abd94bc63f5fabadd90d5f0174849eee28cde125cd4224bce6939",
         "hasPost": false
       }
+    },
+    "budget": {
+      "transfersHeading": "Épargne pour le déménagement et les projets",
+      "incomeNote": ""
     }
   },
   "prepared-lot2-15-2026-10-30": {
-    "paragraphs": [
-      {
-        "text": "Le scénario donne une place importante aux ETF, à côté d’une réserve disponible. Pour discuter d’une réduction d’activité, les dépenses qui continueraient sans salaire comptent autant que le rythme actuel d’investissement.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      }
-    ],
+    "paragraphs": [],
     "questions": [
       {
-        "text": "Quelles dépenses et quelle réserve vérifieriez-vous avant d’envisager une indépendance financière ?",
+        "text": "Combien faudrait-il garder de côté pour envisager de vivre sans salaire ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.reddit.com/r/BEFire/comments/1v2i8oa/29m_in_belgium_69_savings_rate_able_to_fire_at_31/",
@@ -3219,19 +3214,19 @@
         "sha256": "d0c70ef92a5f2a69ca134ea05085f54e120bc6e339667c4a03c5966120796fff",
         "hasPost": false
       }
+    },
+    "budget": {
+      "transfersHeading": "Épargne et investissements",
+      "incomeNote": "",
+      "incomeLabels": {
+        "Salaire net en 2026": "Salaire net"
+      }
     }
   },
   "prepared-lot2-16-2026-10-30": {
     "paragraphs": [
       {
-        "text": "À la période décrite, Victor travaille 32 heures par semaine. L’exemple retient 750 € d’investissements par mois, dans la fourchette de 700 à 800 € annoncée.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "Un passage à temps plein aurait un autre revenu : il reste une possibilité de comparaison, pas une ressource déjà acquise dans ce budget.",
+        "text": "Victor envisage entre 700 et 800 € de placements par mois.",
         "evidence": [
           0
         ],
@@ -3240,14 +3235,14 @@
     ],
     "questions": [
       {
-        "text": "Comment compareriez-vous le temps libre conservé et les versements supplémentaires possibles à temps plein ?",
+        "text": "Vous garderiez le temps libre des 32 heures ou vous passeriez à temps plein pour investir davantage ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.reddit.com/r/BEFire/comments/1s8xlyt/what_is_or_was_your_salary_and_how_much_do_or_did/",
@@ -3291,12 +3286,16 @@
         "sha256": "59f9d27a317ec16d88ef7f05ee16fea788557206da7439f6d77c77c2b63b9548",
         "hasPost": false
       }
+    },
+    "budget": {
+      "transfersHeading": "Investissements",
+      "incomeNote": "Le salaire envisagé à temps plein n’est pas compté."
     }
   },
   "prepared-lot2-17-2026-10-30": {
     "paragraphs": [
       {
-        "text": "Dans le point de départ de cet exemple, Olivier et Alice disposent d’environ 80 000 € de liquidités et livrets, à côté de placements en PEA, épargne salariale et assurance-vie. Ils envisagent un troisième enfant et un départ professionnel en province, avec une possible mise en location de leur appartement parisien.",
+        "text": "Olivier et Alice disposent d’environ 80 000 € sur comptes et livrets, à côté de PEA, d’épargne salariale et d’assurance-vie. Ils envisagent un troisième enfant et un départ professionnel en province.",
         "evidence": [
           0,
           1,
@@ -3305,7 +3304,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Leur projet de maison familiale se situe à huit ans. Ils se demandent comment articuler ce futur achat avec les investissements en actions et le maintien de l’appartement : les loyers futurs ne sont pas intégrés aux revenus actuels.",
+        "text": "Ils aimeraient acheter une maison familiale dans huit ans et se demandent s’ils doivent garder leur appartement parisien pour le louer. Les loyers éventuels ne sont pas comptés dans ce budget.",
         "evidence": [
           0,
           1,
@@ -3316,7 +3315,7 @@
     ],
     "questions": [
       {
-        "text": "Quelle part de l’épargne prépareriez-vous pour l’achat à huit ans, et sur quels critères de disponibilité ?",
+        "text": "Pour acheter dans huit ans, où placeriez-vous l’argent destiné à l’apport ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -3325,7 +3324,7 @@
         ]
       },
       {
-        "text": "Quels éléments compareriez-vous avant de conserver l’appartement en location ?",
+        "text": "Vous garderiez l’appartement en location ou vous le vendriez pour préparer la maison ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -3334,7 +3333,7 @@
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://community.finary.com/t/33785/1",
@@ -3382,12 +3381,15 @@
       "expressedQuestion": "Demande s’il faut conserver le bien parisien, ajouter un locatif et adapter les placements au projet de résidence principale.",
       "enrichment": "source-context",
       "limit": "La suggestion du fonds euros est celle d’un ami rapportée par le contributeur, pas une décision personnelle. Ne pas la présenter comme son choix arrêté."
+    },
+    "budget": {
+      "transfersHeading": "Investissements"
     }
   },
   "prepared-lot2-18-2026-10-30": {
     "paragraphs": [
       {
-        "text": "Le projet de Sébastien et Mélanie s’inscrit sur vingt à vingt-cinq ans. Leur point de départ comprend environ 25 000 € sur Livret A ; ils souhaitent préserver ce matelas tout en diversifiant leurs placements.",
+        "text": "Sébastien et Mélanie investissent sur vingt à vingt-cinq ans. Ils souhaitent garder les quelque 25 000 € de leur Livret A tout en diversifiant leurs placements.",
         "evidence": [
           0,
           1,
@@ -3396,7 +3398,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Environ 50 000 € d’épargne salariale sont attendus en 2027, donc hors du budget actuel. Le projet initial était d’en placer 40 000 € en ETF et de garder 10 000 € pour un éventuel apport ; le choix entre immobilier locatif, SCPI et placements financiers reste à discuter.",
+        "text": "Ils attendent environ 50 000 € d’épargne salariale en 2027 : ils envisageaient d’en investir 40 000 € en ETF et de garder 10 000 € pour un éventuel apport. Ils comparent encore immobilier locatif, SCPI et placements financiers.",
         "evidence": [
           0,
           1,
@@ -3407,7 +3409,7 @@
     ],
     "questions": [
       {
-        "text": "Quelle place donneriez-vous à l’immobilier à côté des placements financiers avec cet horizon ?",
+        "text": "Avec cet horizon, vous ajouteriez de l’immobilier à leurs placements financiers ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -3416,7 +3418,7 @@
         ]
       },
       {
-        "text": "Comment organiseriez-vous l’utilisation des fonds attendus une fois réellement disponibles ?",
+        "text": "Si les fonds attendus arrivent, comment les partageriez-vous entre ETF et apport immobilier ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -3425,7 +3427,7 @@
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://community.finary.com/t/40234/1",
@@ -3475,12 +3477,16 @@
       "expressedQuestion": "Demande quelle combinaison ETF/immobilier direct/SCPI choisir et comment investir progressivement les fonds attendus.",
       "enrichment": "source-context",
       "limit": "Le message 16 précise des titres détenus différemment du projet initial : pas de photographie actuelle d’allocation reconstruite à partir de ces deux déclarations. Revenus futurs exclus."
+    },
+    "budget": {
+      "transfersHeading": "Épargne et investissements",
+      "incomeNote": "Les revenus annuels varient de 90 000 à 95 000 €, intéressement compris."
     }
   },
   "prepared-lot2-19-2026-10-30": {
     "paragraphs": [
       {
-        "text": "Arthur et Emma disposent respectivement de 30 000 € et 15 000 €, principalement sur livrets, avec aussi un PEA alimenté depuis quelques mois. Ils envisagent un premier petit logement étudiant à Nancy, pour un budget maximal de 100 000 € frais inclus.",
+        "text": "Arthur et Emma ont respectivement 30 000 € et 15 000 €, surtout sur livrets, ainsi qu’un PEA alimenté depuis quelques mois. Ils envisagent un logement étudiant à louer sur place, pour 100 000 € maximum frais inclus.",
         "evidence": [
           0,
           1,
@@ -3489,7 +3495,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Ils souhaitent apprendre l’investissement locatif pendant l’internat, mais anticipent une mobilité professionnelle dans quatre ou cinq ans et un achat de résidence principale. Ils veulent donc comparer l’intérêt de commencer maintenant avec les risques de travaux, d’impayés et d’endettement sur leurs revenus actuels.",
+        "text": "Ils aimeraient apprendre le locatif pendant l’internat, avant une mobilité professionnelle dans quatre ou cinq ans et l’achat de leur résidence principale. Ils s’interrogent sur les travaux, les impayés et le crédit qu’ils pourraient porter avec leurs revenus actuels.",
         "evidence": [
           0,
           1,
@@ -3500,7 +3506,7 @@
     ],
     "questions": [
       {
-        "text": "Commenceriez-vous par ce locatif ou attendriez-vous une situation professionnelle plus stable ?",
+        "text": "Vous commenceriez ce projet locatif pendant l’internat ou vous attendriez une situation plus stable ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -3509,7 +3515,7 @@
         ]
       },
       {
-        "text": "Quelle réserve et quelle capacité d’emprunt préserveriez-vous pour la mobilité et la future résidence principale ?",
+        "text": "Combien garderiez-vous de côté et quelle marge d’emprunt laisseriez-vous pour leur futur logement ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -3518,7 +3524,7 @@
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://community.finary.com/t/38931/1",
@@ -3568,12 +3574,16 @@
       "expressedQuestion": "Demande la faisabilité du premier locatif, le choix de commencer pendant l’internat et l’impact sur un futur achat de résidence principale.",
       "enrichment": "source-context",
       "limit": "Les revenus élevés de fin d’internat, les gardes éventuelles et les loyers non acquis ne complètent pas les ressources du mois. Le différé de crédit envisagé ne devient pas un financement obtenu."
+    },
+    "budget": {
+      "transfersHeading": "Épargne et investissements",
+      "incomeNote": "Les revenus espérés après l’internat ne sont pas comptés."
     }
   },
   "prepared-lot2-20-2026-10-30": {
     "paragraphs": [
       {
-        "text": "Vincent et Sarah ont déjà trois appartements en location et mentionnent 30 000 € d’épargne disponible au départ de leur réflexion. L’excédent locatif net est distinct des loyers bruts et des salaires.",
+        "text": "Vincent et Sarah mentionnent 30 000 € d’épargne disponible au début de leur réflexion.",
         "evidence": [
           0,
           1
@@ -3581,7 +3591,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Ils souhaitent développer une rente en six ans, avec une cible de 2 500 € nets par mois, puis réduire leur activité. Les acquisitions et les gains supplémentaires envisagés restent des objectifs ; ils demandent si le rythme est réaliste et s’il faut continuer à acheter ou sécuriser l’existant.",
+        "text": "Ils visent 2 500 € nets de revenus locatifs mensuels dans six ans pour réduire leur activité. Ils se demandent si ce rythme est réaliste et s’il vaut mieux continuer à acheter ou consolider leurs biens actuels.",
         "evidence": [
           0,
           1
@@ -3591,7 +3601,7 @@
     ],
     "questions": [
       {
-        "text": "Quels risques et quelle réserve examineriez-vous avant une nouvelle acquisition ?",
+        "text": "Vous achèteriez un autre bien ou vous renforceriez d’abord la réserve pour les trois appartements ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -3599,7 +3609,7 @@
         ]
       },
       {
-        "text": "Comment testeriez-vous leur objectif de rente sans compter d’avance les futurs achats ?",
+        "text": "L’objectif de rente vous semble-t-il atteignable sans compter d’avance sur les prochains achats ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -3607,7 +3617,7 @@
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://community.finary.com/t/33501/1",
@@ -3645,19 +3655,23 @@
       "expressedQuestion": "Demande si le rythme d’acquisition et la rente cible sont réalistes et s’il faut encore investir ou sécuriser.",
       "enrichment": "source-context",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Épargne et investissements",
+      "incomeNote": "Les revenus locatifs sont nets de charges, de crédits et d’impôt."
     }
   },
   "reddit-famille-bourges-2026-07-12": {
     "paragraphs": [
       {
-        "text": "Élise et Karim cherchent à retrouver une marge après une période de découvert. L’accès à une épicerie solidaire réduit les courses ; le regroupement de crédits comprend notamment des frais de santé.",
+        "text": "Élise et Karim veulent retrouver une marge après des mois à découvert. Leur regroupement de crédits inclut notamment des frais de santé.",
         "evidence": [
           0
         ],
         "basis": "retained-context-or-budget-example"
       },
       {
-        "text": "Une mensualité automobile de 150 € doit prendre fin sept mois après ce budget. Cet allègement reste à venir : la marge projetée doit d’abord absorber les besoins du foyer, sans compter la hausse de salaire espérée ni transformer le solde en épargne déjà constituée.",
+        "text": "La mensualité automobile de 150 € doit s’arrêter sept mois après ce budget.",
         "evidence": [
           0
         ],
@@ -3666,14 +3680,14 @@
     ],
     "questions": [
       {
-        "text": "Comment organiseriez-vous la marge pour éviter un nouveau découvert avec un jeune enfant ?",
+        "text": "Comment utiliseriez-vous la marge pour éviter de retomber à découvert ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       },
       {
-        "text": "Quelle priorité donneriez-vous aux 150 € une fois la mensualité réellement terminée ?",
+        "text": "Quand les 150 € de crédit seront libérés, à quoi les consacreriez-vous en premier ?",
         "origin": "editorial",
         "evidence": [
           0
@@ -3723,12 +3737,15 @@
         "sha256": "ad3f54771d210511b82619f735a5ad960da036604ebb441960982d56f7673edc",
         "hasPost": false
       }
+    },
+    "budget": {
+      "textBasis": "Impôt non précisé"
     }
   },
   "budget-conseil-personne_seule-2025-2026": {
     "paragraphs": [
       {
-        "text": "Ce modèle suisse couvre les dépenses de base, avec une petite provision pour les imprévus. Les repas professionnels, une voiture et les vacances restent à financer selon les besoins ; les montants peuvent aussi varier fortement selon le canton.",
+        "text": "Les repas au travail et d’autres frais comme la formation ou des équipements restent à financer. Les montants peuvent aussi varier selon le canton.",
         "evidence": [
           0
         ],
@@ -3737,14 +3754,14 @@
     ],
     "questions": [
       {
-        "text": "Comment compléteriez-vous ce budget avant d’ajouter des frais de voiture ou des repas pris au travail ?",
+        "text": "Quels frais ajouteriez-vous en premier pour adapter ce budget à votre quotidien ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_personne_seule.pdf",
@@ -3767,19 +3784,18 @@
       "expressedQuestion": null,
       "enrichment": "reference-discussion",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Provision pour imprévus",
+      "incomeNote": "",
+      "household": "Dépenses de base · hors voiture et vacances",
+      "balanceLabel": "Reste pour les frais non inclus"
     }
   },
   "budget-conseil-monoparent_1enfant-2025-2026": {
     "paragraphs": [
       {
-        "text": "Les 60 CHF restants ne financent pas à eux seuls tous les besoins possibles du foyer. La garde, les repas professionnels, une voiture et les vacances restent à prévoir selon la situation, et les coûts varient selon le canton.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "Dès 12 ans, le modèle prévoit aussi 50 à 100 CHF supplémentaires par enfant pour l’alimentation : une évolution à anticiper dans les dépenses familiales.",
+        "text": "Une voiture et les repas au travail restent à financer selon la situation. Les coûts dépendent aussi du canton ; dès 12 ans, le modèle prévoit 50 à 100 CHF d’alimentation en plus par enfant.",
         "evidence": [
           0
         ],
@@ -3788,14 +3804,14 @@
     ],
     "questions": [
       {
-        "text": "Quelle priorité donneriez-vous à la réserve et aux frais de garde si ceux-ci devaient s’ajouter ?",
+        "text": "Si des frais de garde s’ajoutaient, sur quoi pourriez-vous jouer pour les financer ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_monoparent_1enfant.pdf",
@@ -3818,19 +3834,18 @@
       "expressedQuestion": null,
       "enrichment": "reference-discussion",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Provision pour imprévus",
+      "incomeNote": "",
+      "household": "Enfant de moins de 12 ans · hors garde et vacances",
+      "balanceLabel": "Reste pour les frais non inclus"
     }
   },
   "budget-conseil-monoparent_2enfants-2025-2026": {
     "paragraphs": [
       {
-        "text": "Dans cet exemple, 10 CHF restent après la provision pour imprévus. La garde, les repas professionnels, une voiture et les vacances ne sont pas inclus ; ils peuvent modifier l’équilibre du budget.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "Les dépenses varient selon le canton et l’âge des enfants : à partir de 12 ans, le modèle ajoute 50 à 100 CHF d’alimentation par enfant.",
+        "text": "Une voiture et les repas au travail restent à financer. Les coûts varient selon le canton ; dès 12 ans, le modèle ajoute 50 à 100 CHF d’alimentation par enfant.",
         "evidence": [
           0
         ],
@@ -3839,14 +3854,14 @@
     ],
     "questions": [
       {
-        "text": "Comment prépareriez-vous les dépenses liées à l’âge des enfants avec une marge aussi étroite ?",
+        "text": "Avec cette petite marge, comment prépareriez-vous la hausse des dépenses quand les enfants grandissent ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_monoparent_2enfants.pdf",
@@ -3869,12 +3884,18 @@
       "expressedQuestion": null,
       "enrichment": "reference-discussion",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Provision pour imprévus",
+      "incomeNote": "",
+      "household": "Enfants de moins de 12 ans · hors garde et vacances",
+      "balanceLabel": "Reste pour les frais non inclus"
     }
   },
   "budget-conseil-couple-2025-2026": {
     "paragraphs": [
       {
-        "text": "Ce modèle affecte déjà tout le revenu entre dépenses de base et provision pour imprévus. Les repas professionnels, une voiture et les vacances doivent encore trouver leur financement selon les besoins ; les coûts varient aussi selon le canton.",
+        "text": "Les repas au travail et d’autres frais comme les équipements ou la formation restent à financer. Les coûts varient aussi selon le canton.",
         "evidence": [
           0
         ],
@@ -3883,14 +3904,14 @@
     ],
     "questions": [
       {
-        "text": "Comment organiseriez-vous les dépenses irrégulières du couple avant de prévoir un autre projet ?",
+        "text": "Comment prévoiriez-vous les factures occasionnelles avant de vous lancer dans un autre projet ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_couple.pdf",
@@ -3913,19 +3934,18 @@
       "expressedQuestion": null,
       "enrichment": "reference-discussion",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Provision pour imprévus",
+      "household": "Dépenses de base · hors voiture et vacances",
+      "incomeNote": "",
+      "balanceLabel": "Reste pour les frais non inclus"
     }
   },
   "budget-conseil-couple_1enfant-2025-2026": {
     "paragraphs": [
       {
-        "text": "Ce budget de référence laisse une petite provision pour les imprévus, mais pas de marge supplémentaire. La garde, les repas au travail, une voiture et les vacances restent à financer selon les besoins.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "Les coûts dépendent du canton. À partir de 12 ans, l’alimentation représente aussi 50 à 100 CHF de plus par enfant dans le modèle.",
+        "text": "Une voiture et les repas au travail restent à financer. Selon le canton, les montants peuvent changer ; dès 12 ans, le modèle prévoit 50 à 100 CHF d’alimentation en plus par enfant.",
         "evidence": [
           0
         ],
@@ -3934,14 +3954,14 @@
     ],
     "questions": [
       {
-        "text": "Comment adapteriez-vous les provisions si des frais de garde venaient s’ajouter ?",
+        "text": "Où trouveriez-vous de la marge si vous deviez ajouter des frais de garde ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_couple_1enfant.pdf",
@@ -3964,19 +3984,18 @@
       "expressedQuestion": null,
       "enrichment": "reference-discussion",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Provision pour imprévus",
+      "household": "Enfant de moins de 12 ans · hors garde et vacances",
+      "incomeNote": "",
+      "balanceLabel": "Reste pour les frais non inclus"
     }
   },
   "budget-conseil-couple_2enfants-2025-2026": {
     "paragraphs": [
       {
-        "text": "Les provisions de cet exemple ne remplacent pas le financement des dépenses encore exclues : garde, repas professionnels, voiture ou vacances. Leurs montants dépendent de la situation du foyer et du canton.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "Le modèle prévoit aussi une hausse de 50 à 100 CHF d’alimentation par enfant dès 12 ans. L’organisation des réserves se discute donc à la fois sur le mois courant et sur l’évolution des besoins des enfants.",
+        "text": "Une voiture et les repas au travail ne sont pas chiffrés. Les coûts dépendent du canton et de l’âge des enfants : dès 12 ans, le modèle ajoute 50 à 100 CHF d’alimentation par enfant.",
         "evidence": [
           0
         ],
@@ -3985,14 +4004,14 @@
     ],
     "questions": [
       {
-        "text": "Comment répartiriez-vous une future marge entre dépenses des enfants et réserve familiale ?",
+        "text": "Si un peu d’argent se libérait, vous le garderiez pour les enfants ou pour renforcer la réserve ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_couple_2enfants.pdf",
@@ -4015,19 +4034,18 @@
       "expressedQuestion": null,
       "enrichment": "reference-discussion",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Provision pour imprévus",
+      "household": "Enfants de moins de 12 ans · hors garde et vacances",
+      "incomeNote": "",
+      "balanceLabel": "Reste pour les frais non inclus"
     }
   },
   "budget-conseil-couple_3enfants-2025-2026": {
     "paragraphs": [
       {
-        "text": "Cet exemple de famille avec trois enfants affecte déjà tout le revenu, y compris la provision pour les imprévus. La garde, les repas professionnels, une voiture et les vacances restent à financer selon les besoins.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "Le canton et l’âge des enfants comptent : le modèle ajoute 50 à 100 CHF d’alimentation par enfant dès 12 ans. Une réserve pour les dépenses irrégulières ne remplit donc pas exactement le même rôle qu’une épargne pour un projet choisi.",
+        "text": "Une voiture et les repas au travail restent à financer. Les coûts varient selon le canton ; dès 12 ans, le modèle ajoute 50 à 100 CHF d’alimentation par enfant.",
         "evidence": [
           0
         ],
@@ -4036,14 +4054,14 @@
     ],
     "questions": [
       {
-        "text": "Comment anticiperiez-vous la hausse des dépenses des enfants sans confondre provisions et épargne de long terme ?",
+        "text": "Comment prépareriez-vous l’augmentation des dépenses des enfants avant d’épargner pour un projet à long terme ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_couple_3enfants.pdf",
@@ -4066,19 +4084,18 @@
       "expressedQuestion": null,
       "enrichment": "reference-discussion",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Provision pour imprévus",
+      "household": "Enfants de moins de 12 ans · hors garde et vacances",
+      "incomeNote": "",
+      "balanceLabel": "Reste pour les frais non inclus"
     }
   },
   "budget-conseil-monoparent_3enfants-2025-2026": {
     "paragraphs": [
       {
-        "text": "Ce budget de base pour un parent et trois enfants ne laisse pas de solde après la provision pour imprévus. La garde, les repas professionnels, une voiture et les vacances restent hors de ce premier cadre.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "Les coûts varient selon le canton et le modèle prévoit 50 à 100 CHF d’alimentation supplémentaires par enfant dès 12 ans. L’enjeu est de préparer ces dépenses sans considérer la provision comme de l’argent libre.",
+        "text": "Une voiture et les repas au travail restent à financer. Les coûts varient selon le canton et augmentent avec l’âge : dès 12 ans, le modèle prévoit 50 à 100 CHF d’alimentation supplémentaires par enfant.",
         "evidence": [
           0
         ],
@@ -4087,14 +4104,14 @@
     ],
     "questions": [
       {
-        "text": "Quelles dépenses absentes chiffreriez-vous d’abord pour savoir si ce budget est tenable pour la famille ?",
+        "text": "Quelles dépenses manquantes regarderiez-vous d’abord pour savoir si ce budget peut tenir ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_monoparent_3enfants.pdf",
@@ -4117,19 +4134,18 @@
       "expressedQuestion": null,
       "enrichment": "reference-discussion",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Provision pour imprévus",
+      "household": "Enfants de moins de 12 ans · hors garde et vacances",
+      "incomeNote": "",
+      "balanceLabel": "Reste pour les frais non inclus"
     }
   },
   "budget-conseil-apprenties_majeures-2025-2026": {
     "paragraphs": [
       {
-        "text": "Les 210 CHF prévus pour les vacances et le permis ne sont pas une réserve de sécurité déjà accumulée. Les 85 CHF restants doivent encore financer les repas pris à l’extérieur et/ou une participation à la nourriture et au logement.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "La répartition des frais avec les parents dépend de la situation familiale. Le choix à discuter est donc aussi l’ordre dans lequel financer le quotidien, le permis et les loisirs.",
+        "text": "Selon la situation familiale, le solde doit encore financer les repas pris à l’extérieur, une participation à la nourriture et au logement, ou les deux.",
         "evidence": [
           0
         ],
@@ -4138,14 +4154,14 @@
     ],
     "questions": [
       {
-        "text": "Comment répartiriez-vous l’argent entre participation familiale et permis avant de fixer les autres versements ?",
+        "text": "Avant d’épargner pour le permis, combien faudrait-il prévoir pour manger et se loger ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_apprenties_majeures.pdf",
@@ -4168,19 +4184,16 @@
       "expressedQuestion": null,
       "enrichment": "reference-discussion",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Épargne pour les vacances et le permis",
+      "incomeNote": ""
     }
   },
   "websourd-retraite-normandie-2026-10-02": {
     "paragraphs": [
       {
-        "text": "Michel sépare dès le versement de sa pension l’argent des factures fixes et celui du quotidien. Il souhaite pouvoir mettre davantage de côté, voyager ou remplacer son réfrigérateur sans fragiliser le mois.",
-        "evidence": [
-          0
-        ],
-        "basis": "consulted-source"
-      },
-      {
-        "text": "Les 60 € destinés aux imprévus font déjà partie des dépenses prévues. Avec ce loyer, toute la pension est affectée : une régularisation d’énergie ou un équipement à remplacer peut donc concurrencer les autres besoins.",
+        "text": "Michel sépare dès l’arrivée de sa pension l’argent des factures fixes de celui du quotidien. Il aimerait mettre davantage de côté pour voyager ou remplacer son réfrigérateur.",
         "evidence": [
           0
         ],
@@ -4189,7 +4202,7 @@
     ],
     "questions": [
       {
-        "text": "Comment organiseriez-vous la réserve pour les factures irrégulières et le remplacement d’un équipement dans ce budget ?",
+        "text": "Comment prépareriez-vous une grosse facture ou le remplacement du réfrigérateur avec ce budget ?",
         "origin": "editorial",
         "evidence": [
           0
@@ -4224,14 +4237,14 @@
   "finary-freelance-lille-2025-03-02": {
     "paragraphs": [
       {
-        "text": "Après l’achat de son logement, Benoît a reconstitué 12 000 € d’épargne. Il vise 17 000 € sur son Livret A avant de commencer à investir à long terme, avec une attention particulière à sa sécurité d’indépendant.",
+        "text": "Après l’achat de son logement, Benoît a reconstitué 12 000 € d’épargne. Il vise 17 000 € sur Livret A avant de commencer à investir à long terme.",
         "evidence": [
           0
         ],
         "basis": "consulted-source"
       },
       {
-        "text": "Il envisage ensuite de louer ce logement et d’en acheter un autre pour y vivre. Ce sont encore des projets : aucun loyer futur ne complète ses ressources mensuelles actuelles, et les 30 € de solde ne constituent pas un versement supplémentaire.",
+        "text": "Il envisage ensuite de louer ce logement et d’en acheter un autre pour y vivre. Aucun loyer futur n’est compté dans ses revenus actuels.",
         "evidence": [
           0
         ],
@@ -4240,21 +4253,21 @@
     ],
     "questions": [
       {
-        "text": "Quelle réserve garderiez-vous avant de commencer les placements de long terme avec son activité d’indépendant ?",
+        "text": "Vous attendriez d’avoir 17 000 € de côté avant de commencer à investir ?",
         "origin": "expressed",
         "evidence": [
           0
         ]
       },
       {
-        "text": "Comment articuleriez-vous le projet locatif et les premiers investissements en bourse ?",
+        "text": "Vous lanceriez les placements en bourse et le projet locatif en même temps ou l’un après l’autre ?",
         "origin": "expressed",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur son budget personnel ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de son budget personnel ? 🤔💬",
     "evidence": [
       {
         "url": "https://community.finary.com/t/23767/1",
@@ -4282,12 +4295,15 @@
       "expressedQuestion": "Demande quels placements privilégier une fois la réserve atteinte et comment les combiner avec la future mise en location.",
       "enrichment": "source-context",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Épargne de précaution"
     }
   },
   "finary-installation-projet-2026-02-21": {
     "paragraphs": [
       {
-        "text": "Avant son installation, Axel dispose de 10 000 € sur LEP pour la sécurité et de 6 000 € sur LDDS pour les dépenses proches. Son PEA, ouvert fin 2024, reçoit des versements sur un ETF World depuis janvier 2026 ; il possède aussi deux assurances-vie.",
+        "text": "Axel a 10 000 € sur LEP pour les imprévus et 6 000 € sur LDDS pour les dépenses proches. Son PEA, ouvert fin 2024, reçoit des versements sur un ETF World depuis janvier 2026. Il possède aussi deux assurances-vie.",
         "evidence": [
           0,
           1,
@@ -4296,7 +4312,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Il envisage de fermer le contrat piloté pour renforcer le PEA sur plus de dix ans, et de garder un fonds euros pour des projets possibles à environ cinq ans. Les 200 € du LDDS pourront financer des dépenses annuelles : ils ne sont pas entièrement une épargne nouvelle. Il prévoit d’ajuster les versements à la réalité des premiers mois installé.",
+        "text": "Il envisage de fermer le contrat piloté pour renforcer le PEA sur plus de dix ans, et de garder un fonds euros pour des projets à cinq ans environ. Les versements sur LDDS servent aussi à des dépenses annuelles : ils ne sont pas entièrement une épargne nouvelle. Il prévoit d’ajuster les versements après les premiers mois dans son logement.",
         "evidence": [
           0,
           1,
@@ -4307,7 +4323,7 @@
     ],
     "questions": [
       {
-        "text": "Quel rôle donneriez-vous aux livrets et au fonds euros pour les projets à cinq ans ?",
+        "text": "Pour des projets à cinq ans, vous choisiriez les livrets, le fonds euros ou un peu des deux ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -4316,7 +4332,7 @@
         ]
       },
       {
-        "text": "Diversifieriez-vous déjà le PEA ou garderiez-vous l’ETF World pendant l’installation ?",
+        "text": "Vous ajouteriez déjà d’autres placements au PEA ou vous garderiez le World pendant l’installation ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -4373,12 +4389,16 @@
       "expressedQuestion": "Demande si une autre assurance-vie est pertinente pour le fonds euros et s’il faut diversifier le PEA dès maintenant ; précise vouloir adapter le budget à l’installation.",
       "enrichment": "source-context",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Placements et provisions",
+      "textBasis": ""
     }
   },
   "finary-alternante-projet-2026-10-06": {
     "paragraphs": [
       {
-        "text": "En octobre 2026, Apolline dispose de 14 060 € sur Livret A. Elle investit sur un ETF World dans un PEA ouvert en juillet et a ouvert une assurance-vie pour un projet de SCPI. Son livret sert à la fois de réserve, aux voyages et à un futur apport immobilier.",
+        "text": "Apolline dispose de 14 060 € sur Livret A en octobre 2026. Elle investit sur un ETF World dans un PEA ouvert en juillet et a ouvert une assurance-vie pour un projet de SCPI. Le livret doit servir aux imprévus, aux voyages et à un futur apport.",
         "evidence": [
           0,
           1,
@@ -4387,7 +4407,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Elle vise 100 000 € de patrimoine avant 25 ans, tout en précisant que sa visibilité concrète se limite à 2026–2027. Le loyer pris en charge par ses parents jusqu’au M2 explique une partie de la capacité prévue ; les 334,78 € restants doivent encore financer la vie courante et les loisirs.",
+        "text": "Elle vise 100 000 € de patrimoine avant 25 ans, mais ne sait vraiment à quoi s’attendre que pour 2026–2027. L’aide de ses parents pour le loyer doit durer jusqu’au M2.",
         "evidence": [
           0,
           1,
@@ -4398,7 +4418,7 @@
     ],
     "questions": [
       {
-        "text": "Comment répartiriez-vous le Livret A entre sécurité, voyages et apport immobilier ?",
+        "text": "Combien garderiez-vous sur le livret pour les imprévus, les voyages et l’apport ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -4407,7 +4427,7 @@
         ]
       },
       {
-        "text": "Quelles étapes vérifieriez-vous pour évaluer son objectif avant 25 ans, au-delà de la période d’alternance ?",
+        "text": "Son objectif avant 25 ans vous paraît-il réaliste, et que faudrait-il prévoir après l’alternance ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -4465,12 +4485,16 @@
       "expressedQuestion": "Demande si son objectif patrimonial est envisageable et si sa répartition est logique ; précise les usages du Livret A et son horizon de visibilité.",
       "enrichment": "source-context",
       "limit": "L’assurance-vie est ouverte pour SCPI : aucun montant de SCPI déjà acquis n’est inventé. Les hausses de salaire, allocations futures et projection au million ne sont pas assimilées à des faits."
+    },
+    "budget": {
+      "transfersHeading": "Épargne et investissements",
+      "textBasis": "Impôt non précisé"
     }
   },
   "finary-ingenieur-colocation-projet-2026-08-18": {
     "paragraphs": [
       {
-        "text": "Émilien investit de petites sommes sur PEA depuis ses 18 ans, avec une répartition de 85 % en actions mondiales et 15 % en marchés émergents. Pour la colocation prévue, ses parents financeraient le loyer et recevraient les 400 € d’aides.",
+        "text": "Émilien investit de petites sommes sur PEA depuis ses 18 ans : 85 % en actions mondiales, 15 % en marchés émergents.",
         "evidence": [
           0,
           1
@@ -4478,7 +4502,7 @@
         "basis": "consulted-source"
       },
       {
-        "text": "Il se demande quelle place donner à l’investissement et aux loisirs pendant ses trois années d’alternance. Il évoque 750 € par mois à épargner ou investir, ou un partage plus équilibré avec les loisirs ; rien n’est arrêté et les 1 075 € calculés restent à répartir.",
+        "text": "Pour ses trois années d’alternance, il hésite entre mettre 750 € par mois de côté et partager davantage entre placements et loisirs. Rien n’est décidé.",
         "evidence": [
           0,
           1
@@ -4488,7 +4512,7 @@
     ],
     "questions": [
       {
-        "text": "Quelle part de cette marge consacreriez-vous aux placements et quelle part garderiez-vous pour les loisirs ?",
+        "text": "Vous mettriez combien de côté et vous garderiez combien pour les loisirs pendant l’alternance ?",
         "origin": "expressed",
         "evidence": [
           0,
@@ -4534,19 +4558,23 @@
       "expressedQuestion": "Hésite entre 750 €/mois d’épargne/investissement et une répartition proche de moitié-moitié avec les loisirs.",
       "enrichment": "source-context",
       "limit": "L’année de rentrée demeure inconnue. Les 750 € restent une option, jamais un versement acquis ; le solde reste 1 075 € et non les 1 100 € arrondis du message."
+    },
+    "budget": {
+      "period": "Projet de colocation",
+      "textBasis": "Impôt non précisé"
     }
   },
   "reference-bordeaux-budget-2026-03": {
     "paragraphs": [
       {
-        "text": "Dans cet exemple, le Livret A de Clémence contient 1 200 € au moment de remettre le budget à plat. Le virement prévu de 250 € vise à donner une place régulière à la réserve, tandis que les 65 € de marge restent disponibles pour les imprévus du mois.",
+        "text": "Dans cet exemple, Clémence dispose de 1 200 € sur Livret A.",
         "evidence": [
           0
         ],
         "basis": "consulted-source"
       },
       {
-        "text": "La prime semestrielle est traitée à part. Le crédit auto se termine huit mois après ce budget, mais la ligne inclut aussi l’assurance : tout le montant ne disparaîtra pas à cette échéance.",
+        "text": "Le crédit auto prend fin huit mois après ce budget, mais sa ligne comprend aussi l’assurance : la totalité ne sera donc pas libérée.",
         "evidence": [
           0
         ],
@@ -4555,21 +4583,21 @@
     ],
     "questions": [
       {
-        "text": "Quel premier objectif de réserve retiendriez-vous avec les dépenses de ce budget ?",
+        "text": "Avec ses dépenses, combien chercheriez-vous d’abord à réunir sur le livret ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       },
       {
-        "text": "À quoi affecteriez-vous l’allègement du crédit une fois son montant réellement connu ?",
+        "text": "Une fois le crédit terminé, que feriez-vous de l’argent libéré ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.planandmultiply.fr/blog/budget-mensuel-guide-complet-2026",
@@ -4592,19 +4620,23 @@
       "expressedQuestion": null,
       "enrichment": "source-context",
       "limit": "Les 1 200 € du livret appartiennent au modèle publié, pas à une personne authentifiée. La prime de 1 200 € est une autre somme, exceptionnelle ; aucune épargne future garantie ni gain de 217 € intégral attribué."
+    },
+    "budget": {
+      "transfersHeading": "Épargne de précaution",
+      "textBasis": "Hors prime semestrielle"
     }
   },
   "reference-couple-lille-budget-2026-01": {
     "paragraphs": [
       {
-        "text": "Deux objectifs structurent cet exemple : un apport immobilier de 35 000 € et une réserve de précaution visée à 9 000 €, avec une enveloppe séparée pour les vacances. Ces cibles ne sont pas les montants déjà détenus.",
+        "text": "Hugo et Océane visent 35 000 € d’apport immobilier et 9 000 € de réserve de précaution. Ce sont des objectifs, pas les montants déjà détenus.",
         "evidence": [
           0
         ],
         "basis": "consulted-source"
       },
       {
-        "text": "Hugo et Océane prévoient de distinguer les livrets par projet. Les 180 € laissés sur le compte courant restent une marge, et le crédit automobile doit prendre fin en septembre suivant ce budget de janvier.",
+        "text": "Le crédit auto doit se terminer en septembre, après ce budget de janvier.",
         "evidence": [
           0
         ],
@@ -4613,21 +4645,21 @@
     ],
     "questions": [
       {
-        "text": "Comment répartiriez-vous les versements entre l’apport et la réserve de précaution ?",
+        "text": "Comment partageriez-vous les versements entre l’apport et les imprévus ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       },
       {
-        "text": "Quel montant garderiez-vous sur le compte courant pour éviter de reprendre sur les livrets ?",
+        "text": "Combien laisseriez-vous sur le compte courant pour éviter de reprendre sur les livrets ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.planandmultiply.fr/blog/budget-mensuel-guide-complet-2026",
@@ -4650,19 +4682,16 @@
       "expressedQuestion": null,
       "enrichment": "source-context",
       "limit": "Ne pas recopier la promesse d’apport atteint en 24 mois : l’encours initial est inconnu et 800 × 24 ne donne pas 35 000. Objectifs et encours restent distincts."
+    },
+    "budget": {
+      "transfersHeading": "Épargne pour les projets et imprévus",
+      "textBasis": "Impôt non précisé"
     }
   },
   "reference-indexo-belgique-2026-11": {
     "paragraphs": [
       {
-        "text": "Ce modèle prévoit 200 € à mettre de côté, sans indiquer de réserve déjà constituée ni de placement détenu. Ses 2 200 € de ressources sont une moyenne annuelle incluant pécule de vacances et prime, pas un versement identique chaque mois.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "Une partie des primes doit donc rester disponible pour les mois ordinaires avant d’être considérée comme de l’argent pour un nouveau projet.",
+        "text": "Les mois ordinaires rapportent moins que cette moyenne, qui comprend prime et pécule de vacances.",
         "evidence": [
           0
         ],
@@ -4671,14 +4700,14 @@
     ],
     "questions": [
       {
-        "text": "Comment répartiriez-vous les primes entre complément des mois ordinaires et réserve de sécurité ?",
+        "text": "Comment utiliseriez-vous les primes pour tenir le budget toute l’année et garder un peu d’argent de côté ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://indexo.be/budget/salaire-necessaire/",
@@ -4701,42 +4730,31 @@
       "expressedQuestion": null,
       "enrichment": "reference-discussion",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Épargne",
+      "textBasis": "Après précompte professionnel"
     }
   },
   "reference-vendeuse-rennes-2026": {
-    "paragraphs": [
-      {
-        "text": "Le scénario de Nolwenn prévoit un petit virement régulier sur Livret A. Les 100 € de marge restent disponibles pour les imprévus et ne deviennent pas automatiquement un second versement d’épargne.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "Le remboursement à la consommation pèse déjà dans les charges. La régularité du versement et la souplesse des enveloppes peuvent donc se discuter ensemble.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      }
-    ],
+    "paragraphs": [],
     "questions": [
       {
-        "text": "Comment préserveriez-vous le versement de 50 € sans rendre les enveloppes du quotidien trop serrées ?",
+        "text": "Vous garderiez le virement de 50 € même les mois serrés, ou vous l’ajusteriez aux dépenses ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       },
       {
-        "text": "Quelle part d’une marge non dépensée garderiez-vous disponible pour le mois suivant ?",
+        "text": "Combien laisseriez-vous pour le mois suivant quand toute la marge n’a pas été dépensée ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.planandmultiply.fr/blog/economiser-petit-salaire-enveloppes",
@@ -4759,19 +4777,20 @@
       "expressedQuestion": null,
       "enrichment": "reference-discussion",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Épargne de précaution",
+      "basis": "Net · impôt non précisé",
+      "textBasis": "Impôt non précisé",
+      "incomeLabels": {
+        "Salaire net retenu pour l’exemple": "Salaire net"
+      }
     }
   },
   "reference-famille-lyon-2026": {
     "paragraphs": [
       {
-        "text": "Dans cet exemple, la réserve de sécurité, les vacances et la rentrée scolaire ont chacune leur enveloppe. Les 200 € de solde restent disponibles après ces affectations ; ils ne sont pas déjà investis.",
-        "evidence": [
-          0
-        ],
-        "basis": "retained-context-or-budget-example"
-      },
-      {
-        "text": "Le crédit à la consommation doit encore durer dix-huit mois à partir de ce budget, à côté du crédit automobile. Les dépenses irrégulières des enfants et les remboursements doivent donc cohabiter avec la construction d’une réserve.",
+        "text": "Le crédit à la consommation de Mélina et Loïc doit encore durer dix-huit mois, en plus du crédit automobile.",
         "evidence": [
           0
         ],
@@ -4780,21 +4799,21 @@
     ],
     "questions": [
       {
-        "text": "Comment utiliseriez-vous la marge entre renforcement de la réserve et remboursement des crédits ?",
+        "text": "Vous utiliseriez la marge pour renforcer la réserve ou rembourser les crédits plus vite ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       },
       {
-        "text": "Comment ajusteriez-vous les enveloppes vacances et rentrée si une dépense des enfants dépassait le montant prévu ?",
+        "text": "Quelle enveloppe ajusteriez-vous si les dépenses des enfants dépassaient ce qui était prévu ?",
         "origin": "editorial",
         "evidence": [
           0
         ]
       }
     ],
-    "budgetQuestion": "Quel regard portez-vous sur cet exemple de budget ? 🤔💬",
+    "budgetQuestion": "Que pensez-vous de cet exemple de budget ? 🤔💬",
     "evidence": [
       {
         "url": "https://www.planandmultiply.fr/blog/budget-familial-guide-complet",
@@ -4817,6 +4836,9 @@
       "expressedQuestion": null,
       "enrichment": "reference-discussion",
       "limit": ""
+    },
+    "budget": {
+      "transfersHeading": "Épargne et provisions"
     }
   }
 }

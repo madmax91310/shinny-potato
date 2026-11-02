@@ -5,7 +5,7 @@ import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
 import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
-import { analyzeBudget, budgetDisplayName, budgetImageExpenses, buildBudgetText, euro, sourceReply } from '../src/pages/budget-profiles/lib.js'
+import { analyzeBudget, budgetDisplayName, budgetImageExpenses, budgetPublicIncomeRows, buildBudgetText, euro, sourceReply } from '../src/pages/budget-profiles/lib.js'
 import { DRAFT_KEY, PUBLISHED_KEY, USAGE_KEY, WORKSPACE_KEY } from '../src/pages/budget-profiles/storage.js'
 
 function captureCanvasText() {
@@ -75,12 +75,12 @@ try {
       for (const t of drawn) {
         assert(t.left >= 30 && t.right <= 1170 && t.y >= 0 && t.y + t.size <= t.height, `${profile.id}: text exceeds the image: ${JSON.stringify(t)}`)
         assert(!t.text.includes('…'), `${profile.id}: no truncated content`)
-        assert(!/prénoms? fictifs?|scénario mensuel préparé|l’auteur|sa femme|placeholder|\.json|PR #/i.test(t.text), `${profile.id}: internal mention on image`)
+        assert(!/prénoms? fictifs?|scénario mensuel préparé|année non précisée|du scénario|retenu pour l’exemple|l’auteur|sa femme|placeholder|\.json|PR #/i.test(t.text), `${profile.id}: internal mention on image`)
       }
       const normalize = text => text.replace(/\s+/g, ' ').trim()
       const imageText = normalize(drawn.map(t => t.text).join(' '))
       assert(imageText.includes(budgetDisplayName(profile)))
-      for (const row of [...profile.income, ...profile.expenses, ...profile.savings]) {
+      for (const row of [...budgetPublicIncomeRows(profile), ...profile.expenses, ...profile.savings]) {
         assert(imageText.includes(normalize(row.label)), `${profile.id}: missing complete label ${row.label}`)
         assert(imageText.includes(normalize(euro(row.amount, profile.currency))), `${profile.id}: missing amount ${row.amount}`)
       }
@@ -102,7 +102,7 @@ try {
       const summaryDrawn = await page.evaluate(() => window.budgetCanvasText)
       assertNoCanvasTextOverlap(summaryDrawn, `${profile.id} summary`)
       const summaryText = normalize(summaryDrawn.map(t => t.text).join(' '))
-      for (const row of [...profile.income, ...budgetImageExpenses(profile, 'summary'), ...profile.savings]) {
+      for (const row of [...budgetPublicIncomeRows(profile), ...budgetImageExpenses(profile, 'summary'), ...profile.savings]) {
         assert(summaryText.includes(normalize(row.label)), `${profile.id}: missing summary label ${row.label}`)
         assert(summaryText.includes(normalize(euro(row.amount, profile.currency))))
       }
