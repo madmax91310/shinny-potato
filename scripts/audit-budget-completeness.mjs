@@ -29,7 +29,7 @@ for(const [i,p] of BUDGET_PROFILES.entries()){
  rows.push({id:p.id,name:title,status:r.status,source:p.source.url,period:p.period,currency:p.currency||'EUR',before:Object.fromEntries(keys.map(([k])=>[k,Math.round(before[k]*100)])),after:Object.fromEntries(keys.map(([k])=>[k,Math.round(after[k]*100)])),additions:r.additions,scopeChange:r.scopeChange||null,questions:c.questions})
 }
 mkdirSync('docs/budget-completeness',{recursive:true})
-writeFileSync('docs/budget-completeness/2026-11-03.md',lines.join('\n')+'\n')
+writeFileSync('docs/budget-completeness/2026-11-03.md',lines.join('\n').trimEnd()+'\n')
 writeFileSync('docs/budget-completeness/2026-11-03.json',JSON.stringify(rows,null,2)+'\n')
 if(process.argv.includes('--texts'))writeFileSync('test-artifacts/budget-completeness/final-texts.txt',BUDGET_PROFILES.map((p,i)=>`${i}. ${p.id}\n${buildBudgetText(p)}`).join('\n\n================================\n\n'))
 console.log(`Budget audit: ${BUDGET_PROFILES.length} reviewed; ${added.length} completed; ${changed.length} financial revisions; ${BUDGET_PROFILES.filter(p=>analyzeBudget(p).balance<0).length} visible deficits.`)
