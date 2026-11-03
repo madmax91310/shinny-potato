@@ -23,6 +23,8 @@ const personalIds = new Set(['story:dix-ans-moins-10000-patrimoine-79058', 'stor
 const marketIds = new Set([10, 15, 17, 21, 24, 27, 32, 37])
 export function reviewPolicy(tweet) {
   if (tweet.category === 'Question dimanche') return { kind: 'general', maxAge: null }
+  // Exact accumulating shares, published EUR calendar returns and OCF: sources on the entry.
+  if (tweet.id === 'guide:lifestrategy-court') return reviewed(tweet, '2026-10-29')
   // Liste explicite de textes historiques relus : la catégorie seule ne certifie rien.
   const story = MARKET_STORIES.find(item => item.id === tweet.id && item.text === tweet.text)
   if (story) return { kind: 'historical', checkedAt: story.reviewedAt, maxAge: null }

@@ -3,7 +3,7 @@ import holdings from '../src/pages/dca-profiles/holdings.json' with {type:'json'
 import {AUTOMATED_ETF} from '../src/data/automated-etf.js'
 import {ASSETS} from '../src/pages/dca-profiles/data.js'
 import {references,analyzeProfile,validateProfile} from '../src/pages/dca-profiles/engine.js'
-import {dcaExposure,exposureDisplay} from '../src/pages/dca-profiles/exposure.js'
+import {dcaExposure,publishedExposure,exposureDisplay} from '../src/pages/dca-profiles/exposure.js'
 import {catalogCoverage,sharedPositions} from '../src/pages/dca-profiles/verification.js'
 import {searchAssets} from '../src/pages/dca-profiles/management.js'
 import {donutData} from '../src/pages/dca-profiles/image.js'
@@ -29,7 +29,9 @@ assert(searchAssets('', 'pea').every(k=>references[k].pea===true))
 assert(searchAssets('WPEA').includes('IE0002XZSHO1'))
 const trio=[line('world',34),line('nasdaq',33),line('sp500',33)]
 for(const field of ['countries','sectors']){
- const a=dcaExposure(trio,references,field,liveNow),b=dcaExposure([...trio].reverse(),references,field,liveNow)
+ // The UI's indicative overview combines published labels; the per-fund and
+ // strict fixture contracts remain independently tested.
+ const a=publishedExposure(trio,references,field,liveNow),b=publishedExposure([...trio].reverse(),references,field,liveNow)
  const sorted=e=>e.groups.map(g=>[g.classification,g.coverage,g.rows.map(r=>[r.name,r.weight]).sort()])
  assert.deepEqual(sorted(a),sorted(b))
  assert(exposureDisplay(a).coverage>99.5)

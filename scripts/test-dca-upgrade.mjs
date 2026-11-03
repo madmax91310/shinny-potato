@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import {dcaExposure} from '../src/pages/dca-profiles/exposure.js'
+import {dcaExposure,publishedExposure} from '../src/pages/dca-profiles/exposure.js'
 import {donutData,integerPercentages} from '../src/pages/dca-profiles/image.js'
 import {PROFILES} from '../src/pages/dca-profiles/data.js'
 import {prepareProfile,analyzeProfile,references} from '../src/pages/dca-profiles/engine.js'
@@ -103,7 +103,9 @@ assert(validSaved({...one,profile:percentagesOnly,field:'all'}))
 
 // User regression: 34% World + 33% Nasdaq + 33% S&P 500 must include all three.
 const trio=percentagesOnly.lines.slice(0,0).concat([['world',34],['nasdaq',33],['sp500',33]].map(([asset,weight])=>({asset,label:asset,weight,isin:references[asset].isin})))
-const geography=dcaExposure(trio,references,'countries',new Date())
+// This regression targets the published overview; strict comparisons above
+// must continue separating distinct country taxonomies.
+const geography=publishedExposure(trio,references,'countries',new Date())
 assert.equal(geography.groups.length,1)
 assert.equal(geography.groups[0].observations.length,3)
 assert(geography.groups[0].coverage>99.5)

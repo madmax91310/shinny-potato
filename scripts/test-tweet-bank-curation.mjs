@@ -26,3 +26,28 @@ assert.equal(groupTweetVariants([{id:'a',text:'DCA de juin',source:'personal'},{
 assert.equal(groupTweetVariants(TWEETS.filter(t=>String(t.id).startsWith('pedagogy:'))).length,TWEETS.filter(t=>String(t.id).startsWith('pedagogy:')).length)
 assert.equal(curateTweet({id:'own',source:'personal',text:'Tu veux ouvrir une assurance-vie, mais tu ne sais pas laquelle choisir ?',category:'Guide ETF'}).title,'Comment choisir son assurance-vie')
 console.log('Curation: texts, IDs, personal copies, publication dates and favorites preserved; explicit families and category corrections verified.')
+const short = TWEETS.find(t=>t.id==='guide:lifestrategy-court')
+const original = TWEETS.find(t=>t.id==='guide:multi-asset')
+const multi = grouped.filter(t=>t.variantGroup==='multi-actifs')
+assert.equal(multi.length,1)
+assert.equal(multi[0].id,short.id)
+assert.deepEqual(multi[0].variants.map(v=>v.id),[short.id,original.id])
+assert.equal(multi[0].category,'Guide ETF')
+assert.equal(discoverTweets(multi,{search:'NL0009272772'}).length,1,'Original VanEck content remains searchable inside the family')
+assert(short.text.length < original.text.length * .8)
+for (const archivePrefix of ['', 'archive:']) {
+  const pair = [short,original].map(t=>({...t,id:archivePrefix+t.id}))
+  assert.equal(groupTweetVariants(pair).length,1,'Static and private catalogs share the same family')
+}
+// The concise guide is an editorial addition, never a rewrite of the five-fund original.
+assert.equal(original.text.includes('NL0009272772'), true)
+assert.deepEqual(short.performanceEvidence, {
+  status:'published',currency:'EUR',period:'calendar-year',precisionDecimals:1,calculated:false,
+  returns:{IE00BMVB5K07:{2024:5.1,2025:4.2},IE00BMVB5M21:{2024:9.8,2025:5.4},IE00BMVB5P51:{2024:14.7,2025:6.4},IE00BMVB5R75:{2024:19.9,2025:7.1}}
+})
+for (const [isin,returns] of Object.entries(short.performanceEvidence.returns)) {
+  assert(short.text.includes(isin))
+  for (const [year,value] of Object.entries(returns)) assert(short.text.includes(`${year} : +${String(value).replace('.',',')} %`))
+  assert(short.sources.some(s=>s.url===`https://fund-docs.vanguard.com/${isin.toLowerCase()}-en.pdf` && s.publishedAt==='2026-02-17'))
+}
+assert.equal(short.text.match(/Frais courants : 0,25 %\/an/g).length,4)
