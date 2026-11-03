@@ -1,4 +1,5 @@
 import './test-review-situations.mjs'
+import './test-review-export.mjs'
 import './test-monthly-return-resolution.mjs'
 import assert from 'node:assert/strict'
 import './test-review-reliability-report.mjs'
