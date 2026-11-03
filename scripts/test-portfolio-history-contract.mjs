@@ -15,6 +15,7 @@ for (const id of affected) {
 }
 const base = {id: 'isolated', returnCurrency: 'EUR', r: [null, null, 1, 2, 3, 4], calendarReturns: {2022: 1, 2023: 2, 2024: 3, 2025: 4}}
 assert.equal(portfolioHistoryContract(base), 'partial-manual')
+assert.equal(portfolioHistoryContract({...base, r: [null, 1, 2, 3, null, null], calendarReturns: {2021: 1, 2022: 2, 2023: 3}}), 'partial-manual', 'Preserve the previously valid older three-year manual window; do not certify missing later years')
 for (const r of [[null, null, null, null, 3, 4], [null, null, 1, null, 3, 4], [null, null, 1, 2, 3, null], [null, null, 1, 2, 3, NaN], [null, null, 1, 2, 3, -101], [1, 2, 3]]) {
   assert.equal(portfolioHistoryContract({...base, r}), 'invalid')
 }
