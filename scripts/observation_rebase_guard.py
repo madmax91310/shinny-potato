@@ -89,7 +89,12 @@ MARKET_READER_ONLY_CHANGES = {
 # Run41127528853 refused only the actor presentation output. Neither the ETF
 # collectors nor their baseline read it; combined-tree financial validation and
 # report regeneration remain mandatory. Actor code/config changes stay protected.
-ETF_INDEPENDENT = {'src/data/automated-presentation-actors.json',
+# Run41600148933 refused after the independent World Bank writer239f4c9.
+# ETF acquisition/baselines do not read this exact monthly gold registry.
+# Keep the newer gold source receipt and rebuild/revalidate all consumers;
+# publication/anniversary acquisition still treats it as a protected input.
+ETF_INDEPENDENT = {'src/data/worldbank-gold-monthly.json',
+                   'src/data/automated-presentation-actors.json',
                    'src/data/automated-insurance.json', 'src/data/automated-scpi.json',
                    'src/data/anniversary-levels.json', 'src/data/purchasing-power-observations.json',
                    'src/data/automated-broker-tariffs.json', 'src/data/automated-regulatory.json'}
