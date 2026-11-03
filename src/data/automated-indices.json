@@ -1040,13 +1040,13 @@
   "ftse-all-world": {
     "facts": {
       "index": "FTSE All-World",
-      "asOf": "2026-09-30",
-      "constituents": 4204,
+      "asOf": "2026-10-30",
+      "constituents": 4200,
       "sectorMethod": "ICB Industry Breakdown",
       "countries": [
         [
           "🇦🇺 Australie",
-          1.53
+          1.61
         ],
         [
           "Austria",
@@ -1054,15 +1054,15 @@
         ],
         [
           "Belgium",
-          0.24
+          0.25
         ],
         [
           "🇧🇷 Brésil",
-          0.45
+          0.4
         ],
         [
           "🇨🇦 Canada",
-          2.91
+          3.07
         ],
         [
           "🇨🇱 Chili",
@@ -1070,7 +1070,7 @@
         ],
         [
           "🇨🇳 Chine",
-          2.68
+          2.53
         ],
         [
           "🇨🇴 Colombie",
@@ -1082,7 +1082,7 @@
         ],
         [
           "Denmark",
-          0.32
+          0.35
         ],
         [
           "Egypt",
@@ -1090,23 +1090,23 @@
         ],
         [
           "Finland",
-          0.24
+          0.23
         ],
         [
           "🇫🇷 France",
-          1.89
+          1.9
         ],
         [
           "🇩🇪 Allemagne",
-          1.78
+          1.83
         ],
         [
           "Greece",
-          0.07
+          0.06
         ],
         [
           "Hong Kong",
-          0.46
+          0.45
         ],
         [
           "Hungary",
@@ -1118,11 +1118,11 @@
         ],
         [
           "🇮🇳 Inde",
-          1.5
+          1.54
         ],
         [
           "Indonesia",
-          0.07
+          0.06
         ],
         [
           "Ireland",
@@ -1130,19 +1130,19 @@
         ],
         [
           "Israel",
-          0.32
+          0.3
         ],
         [
           "Italy",
-          0.75
+          0.72
         ],
         [
           "🇯🇵 Japon",
-          6.06
+          5.93
         ],
         [
           "🇰🇷 Corée du Sud",
-          2.6
+          2.25
         ],
         [
           "Kuwait",
@@ -1154,11 +1154,11 @@
         ],
         [
           "🇲🇽 Mexique",
-          0.21
+          0.22
         ],
         [
           "Netherlands",
-          1.17
+          1.09
         ],
         [
           "New Zealand",
@@ -1166,7 +1166,7 @@
         ],
         [
           "Norway",
-          0.14
+          0.15
         ],
         [
           "Philippines",
@@ -1178,7 +1178,7 @@
         ],
         [
           "Portugal",
-          0.05
+          0.04
         ],
         [
           "Qatar",
@@ -1190,31 +1190,31 @@
         ],
         [
           "Saudi Arabia",
-          0.31
+          0.3
         ],
         [
           "Singapore",
-          0.37
+          0.36
         ],
         [
           "South Africa",
-          0.37
+          0.36
         ],
         [
           "Spain",
-          0.84
+          0.8
         ],
         [
           "Sweden",
-          0.68
+          0.7
         ],
         [
           "🇨🇭 Suisse",
-          1.88
+          2.08
         ],
         [
           "🇹🇼 Taïwan",
-          3.54
+          3.31
         ],
         [
           "Thailand",
@@ -1222,7 +1222,7 @@
         ],
         [
           "Turkiye",
-          0.08
+          0.07
         ],
         [
           "UAE",
@@ -1230,115 +1230,115 @@
         ],
         [
           "🇬🇧 Royaume-Uni",
-          3.06
+          3.18
         ],
         [
           "🇺🇸 États-Unis",
-          62.28
+          62.7
         ],
         [
           "Vietnam",
-          0
+          0.0
         ]
       ],
       "sectors": [
         [
           "💻 Technologie",
-          36.11
+          33.43
         ],
         [
           "📡 Communication",
-          3.4
+          3.18
         ],
         [
           "🏥 Santé",
-          7.94
+          8.8
         ],
         [
           "🏦 Finance",
-          14.86
+          15.1
         ],
         [
           "🏠 Immobilier",
-          1.63
+          1.72
         ],
         [
           "🛍️ Consommation cyclique",
-          10.46
+          10.92
         ],
         [
           "🛒 Consommation de base",
-          3.77
+          4.17
         ],
         [
           "🏭 Industrie",
-          12.01
+          12.23
         ],
         [
           "🪨 Matériaux",
-          3.24
+          3.15
         ],
         [
           "⚡ Énergie",
-          4.12
+          4.62
         ],
         [
           "💡 Services publics",
-          2.46
+          2.68
         ]
       ],
       "holdings": [
         [
-          "Nvidia",
-          5.02
+          "Apple Inc.",
+          4.79
         ],
         [
-          "Apple Inc.",
-          4.54
+          "Nvidia",
+          4.59
         ],
         [
           "Microsoft Corp",
-          3.59
+          3.73
         ],
         [
           "Amazon.Com",
-          2.28
-        ],
-        [
-          "Alphabet Class A",
-          1.89
+          2.24
         ],
         [
           "Taiwan Semiconductor Manufacturing",
-          1.79
+          1.7
+        ],
+        [
+          "Alphabet Class A",
+          1.57
         ],
         [
           "Broadcom",
-          1.54
-        ],
-        [
-          "Alphabet Class C",
-          1.53
+          1.46
         ],
         [
           "Meta Platforms Inc",
-          1.5
+          1.3
         ],
         [
-          "Micron Technology",
-          1.13
+          "Alphabet Class C",
+          1.27
+        ],
+        [
+          "Tesla",
+          1.12
         ]
       ],
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open",
-        "checkedAt": "2026-10-06",
+        "checkedAt": "2026-11-03",
         "label": "Composition officielle automatisée · FTSE All-World",
-        "sha256": "84b28ab9759fd2a844340b86d5ab42a738e5a08ec703315a231dedcf5d8935b0"
+        "sha256": "0713c82b28fc910b0cf93bd7c3b7d3c78f51bf6e5fcd1270ba3288246e49f961"
       },
       "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
     },
     "returns": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-30",
       "currency": "USD",
       "variant": "TOTAL",
       "values": [
@@ -1371,14 +1371,14 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open",
-        "checkedAt": "2026-10-05",
-        "sha256": "84b28ab9759fd2a844340b86d5ab42a738e5a08ec703315a231dedcf5d8935b0",
+        "checkedAt": "2026-11-03",
+        "sha256": "0713c82b28fc910b0cf93bd7c3b7d3c78f51bf6e5fcd1270ba3288246e49f961",
         "label": "Rendements calendaires officiels automatisés · FTSE All-World"
       },
       "performance": {
         "kind": "indice",
         "detail": "FTSE All-World, rendement total en dollars, dividendes réinvestis ; secteurs selon la classification ICB de FTSE",
-        "date": "2026-09-30"
+        "date": "2026-10-30"
       }
     },
     "factsHistory": {
@@ -1680,6 +1680,305 @@
           "sha256": "84b28ab9759fd2a844340b86d5ab42a738e5a08ec703315a231dedcf5d8935b0"
         },
         "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      },
+      "2026-10-30": {
+        "index": "FTSE All-World",
+        "asOf": "2026-10-30",
+        "constituents": 4200,
+        "sectorMethod": "ICB Industry Breakdown",
+        "countries": [
+          [
+            "🇦🇺 Australie",
+            1.61
+          ],
+          [
+            "Austria",
+            0.09
+          ],
+          [
+            "Belgium",
+            0.25
+          ],
+          [
+            "🇧🇷 Brésil",
+            0.4
+          ],
+          [
+            "🇨🇦 Canada",
+            3.07
+          ],
+          [
+            "🇨🇱 Chili",
+            0.06
+          ],
+          [
+            "🇨🇳 Chine",
+            2.53
+          ],
+          [
+            "🇨🇴 Colombie",
+            0.03
+          ],
+          [
+            "Czech Rep.",
+            0.01
+          ],
+          [
+            "Denmark",
+            0.35
+          ],
+          [
+            "Egypt",
+            0.01
+          ],
+          [
+            "Finland",
+            0.23
+          ],
+          [
+            "🇫🇷 France",
+            1.9
+          ],
+          [
+            "🇩🇪 Allemagne",
+            1.83
+          ],
+          [
+            "Greece",
+            0.06
+          ],
+          [
+            "Hong Kong",
+            0.45
+          ],
+          [
+            "Hungary",
+            0.04
+          ],
+          [
+            "Iceland",
+            0.01
+          ],
+          [
+            "🇮🇳 Inde",
+            1.54
+          ],
+          [
+            "Indonesia",
+            0.06
+          ],
+          [
+            "Ireland",
+            0.08
+          ],
+          [
+            "Israel",
+            0.3
+          ],
+          [
+            "Italy",
+            0.72
+          ],
+          [
+            "🇯🇵 Japon",
+            5.93
+          ],
+          [
+            "🇰🇷 Corée du Sud",
+            2.25
+          ],
+          [
+            "Kuwait",
+            0.07
+          ],
+          [
+            "Malaysia",
+            0.15
+          ],
+          [
+            "🇲🇽 Mexique",
+            0.22
+          ],
+          [
+            "Netherlands",
+            1.09
+          ],
+          [
+            "New Zealand",
+            0.05
+          ],
+          [
+            "Norway",
+            0.15
+          ],
+          [
+            "Philippines",
+            0.04
+          ],
+          [
+            "Poland",
+            0.12
+          ],
+          [
+            "Portugal",
+            0.04
+          ],
+          [
+            "Qatar",
+            0.06
+          ],
+          [
+            "Romania",
+            0.01
+          ],
+          [
+            "Saudi Arabia",
+            0.3
+          ],
+          [
+            "Singapore",
+            0.36
+          ],
+          [
+            "South Africa",
+            0.36
+          ],
+          [
+            "Spain",
+            0.8
+          ],
+          [
+            "Sweden",
+            0.7
+          ],
+          [
+            "🇨🇭 Suisse",
+            2.08
+          ],
+          [
+            "🇹🇼 Taïwan",
+            3.31
+          ],
+          [
+            "Thailand",
+            0.15
+          ],
+          [
+            "Turkiye",
+            0.07
+          ],
+          [
+            "UAE",
+            0.17
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            3.18
+          ],
+          [
+            "🇺🇸 États-Unis",
+            62.7
+          ],
+          [
+            "Vietnam",
+            0.0
+          ]
+        ],
+        "sectors": [
+          [
+            "💻 Technologie",
+            33.43
+          ],
+          [
+            "📡 Communication",
+            3.18
+          ],
+          [
+            "🏥 Santé",
+            8.8
+          ],
+          [
+            "🏦 Finance",
+            15.1
+          ],
+          [
+            "🏠 Immobilier",
+            1.72
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            10.92
+          ],
+          [
+            "🛒 Consommation de base",
+            4.17
+          ],
+          [
+            "🏭 Industrie",
+            12.23
+          ],
+          [
+            "🪨 Matériaux",
+            3.15
+          ],
+          [
+            "⚡ Énergie",
+            4.62
+          ],
+          [
+            "💡 Services publics",
+            2.68
+          ]
+        ],
+        "holdings": [
+          [
+            "Apple Inc.",
+            4.79
+          ],
+          [
+            "Nvidia",
+            4.59
+          ],
+          [
+            "Microsoft Corp",
+            3.73
+          ],
+          [
+            "Amazon.Com",
+            2.24
+          ],
+          [
+            "Taiwan Semiconductor Manufacturing",
+            1.7
+          ],
+          [
+            "Alphabet Class A",
+            1.57
+          ],
+          [
+            "Broadcom",
+            1.46
+          ],
+          [
+            "Meta Platforms Inc",
+            1.3
+          ],
+          [
+            "Alphabet Class C",
+            1.27
+          ],
+          [
+            "Tesla",
+            1.12
+          ]
+        ],
+        "source": {
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open",
+          "checkedAt": "2026-11-03",
+          "label": "Composition officielle automatisée · FTSE All-World",
+          "sha256": "0713c82b28fc910b0cf93bd7c3b7d3c78f51bf6e5fcd1270ba3288246e49f961"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
       }
     },
     "returnsHistory": {
@@ -1725,6 +2024,50 @@
           "kind": "indice",
           "detail": "FTSE All-World, rendement total en dollars, dividendes réinvestis ; secteurs selon la classification ICB de FTSE",
           "date": "2026-09-30"
+        }
+      },
+      "2026-10-30": {
+        "asOf": "2026-10-30",
+        "currency": "USD",
+        "variant": "TOTAL",
+        "values": [
+          [
+            2025,
+            23.1
+          ],
+          [
+            2024,
+            17.7
+          ],
+          [
+            2023,
+            22.6
+          ],
+          [
+            2022,
+            -17.7
+          ],
+          [
+            2021,
+            18.9
+          ],
+          [
+            2020,
+            16.6
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open",
+          "checkedAt": "2026-11-03",
+          "sha256": "0713c82b28fc910b0cf93bd7c3b7d3c78f51bf6e5fcd1270ba3288246e49f961",
+          "label": "Rendements calendaires officiels automatisés · FTSE All-World"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "FTSE All-World, rendement total en dollars, dividendes réinvestis ; secteurs selon la classification ICB de FTSE",
+          "date": "2026-10-30"
         }
       }
     }
@@ -13481,7 +13824,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
         "checkedAt": "2026-11-03",
-        "sha256": "a71cae11c5a00ddaf65613e9203d97017755c9978a0cf07ed4f6f4962ae7bcef",
+        "sha256": "dda8fd16bcb515f7ea90f84865d1b68f227366200c7b1c9f652cb85c716759cd",
         "label": "Composition officielle automatisée · Nikkei 225"
       },
       "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
@@ -13697,7 +14040,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
         "checkedAt": "2026-11-03",
-        "sha256": "8afae658ea6fec452648831db5ea9f4de1add4fd7d833fbf1cdad7f76957623d",
+        "sha256": "6e986b3395194ce80090a0843a13ddbb60698e30248c23c8c1c26175a124a450",
         "label": "Rendements calendaires officiels automatisés · Nikkei 225"
       },
       "performance": {
@@ -13791,7 +14134,7 @@
   },
   "stoxx600": {
     "returns": {
-      "asOf": "2026-11-02",
+      "asOf": "2026-11-03",
       "currency": "EUR",
       "variant": "NET",
       "values": [
@@ -13825,13 +14168,13 @@
       "source": {
         "url": "https://stoxx.com/index/sxxr/",
         "checkedAt": "2026-11-03",
-        "sha256": "45cc93a8706b92b499e8c34630950db4b8fadcca12443d7ac3c50a04bb913830",
+        "sha256": "3c8e3dfe1fa229d0b14e9f85ea042dc5358737355b3f92a01db104a5ace10a74",
         "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
       },
       "performance": {
         "kind": "indice",
         "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
-        "date": "2026-11-02"
+        "date": "2026-11-03"
       }
     },
     "returnsHistory": {
@@ -14713,6 +15056,50 @@
           "kind": "indice",
           "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
           "date": "2026-11-02"
+        }
+      },
+      "2026-11-03": {
+        "asOf": "2026-11-03",
+        "currency": "EUR",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            19.8
+          ],
+          [
+            2024,
+            8.79
+          ],
+          [
+            2023,
+            15.8
+          ],
+          [
+            2022,
+            -10.64
+          ],
+          [
+            2021,
+            24.91
+          ],
+          [
+            2020,
+            -1.99
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sxxr/",
+          "checkedAt": "2026-11-03",
+          "sha256": "3c8e3dfe1fa229d0b14e9f85ea042dc5358737355b3f92a01db104a5ace10a74",
+          "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
+          "date": "2026-11-03"
         }
       }
     },
@@ -16573,7 +16960,7 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
         "checkedAt": "2026-11-03",
-        "sha256": "796830fad5b950eaa487e233630296094000ef65702fd18a3ac16962847536b8",
+        "sha256": "8d58246941bce22b24554705f02cbab9da87f7bed190be6f88017aaf6ff5918d",
         "label": "Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income"
       },
       "performance": {
@@ -17629,7 +18016,7 @@
       "source": {
         "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
         "checkedAt": "2026-11-03",
-        "sha256": "23178371c9a8d31ad5a28262f94f47debf74103bd77ca557fb2ce089273c11f6",
+        "sha256": "b84423b190cc19e57e0e5c6f6a7b688e4aff75167932e7f1e1bf59e310992cc5",
         "label": "Rendements calendaires officiels automatisés · TOPIX"
       },
       "performance": {
