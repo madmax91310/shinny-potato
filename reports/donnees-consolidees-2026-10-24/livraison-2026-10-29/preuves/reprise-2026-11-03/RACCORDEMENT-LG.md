@@ -1,0 +1,9 @@
+# Complément au suivi unique #881 — L&G Clean Energy et contrats annuels
+
+Base master f241451, #1167/#1168 et Budget préservés. Aucun catalogue IA rétabli.
+
+IE00BK5BCH80 utilisait dans le Générateur manuel et les Duels son calendrier de cotation EUR limité aux années qualifiées2021–2023. La source officielle L&G déjà automatisée fournit le calendrier NAV exact2021–2025 en USD, revenus nets réinvestis et frais inclus. Le run41563424241 (push, artefact13198622244) l’a validé ; les observations sont identiques au registre public0e8ab374, empreinte vérifiée dans le manifeste. Le reçu séparé conserve les valeurs, devise, méthode et hash fournisseur. Aucun HTTP ni chiffre nouveau n’est inventé.
+
+Le raccordement explicite à MANUAL_SOURCE_ROUTES préserve manual-IE00BK5BCH80 dans les deux outils et le rôle complément existant. La note de convention désigne la NAV en USD et la conversion historique BCE. Les cinq années complètes remplacent explicitement le contrat de cotation dans ces deux seuls consommateurs ; le calculateur et les anciennes cotations restent inchangés. Aucun mélange ni raccord au générateur automatique : le seuil de six années demeure bloquant. Les neuf anciennes fenêtres et les anciennes divergences ne sont pas clôturées par ce raccordement.
+
+Le contrôle hebdomadaire41494220773 échouait sur six autres séries partielles bien formées, utilisées manuellement et refusées automatiquement. Son contrat structurel distingue désormais ces fenêtres datées des trous internes, calendriers absents, divergences de valeurs et formats invalides. Il ne modifie aucune admission. Tests : six cas réels, 663 supports rapprochés, corruption/absence/incohérence, calculs EUR identiques entre manuel et Duel, refus de mauvaise devise/source/période/péremption ; tests annuels/Copper et Générateur conservés. La recette des textes/images/exports et la publication doivent encore être vérifiées avant livraison ; un test local ne prouve aucun cron fournisseur.

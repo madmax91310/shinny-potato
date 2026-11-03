@@ -16,7 +16,12 @@ export const AUTOMATIC_FACTOR_ADMISSIONS = factors.flatMap(([id, isin, factor]) 
 export const AUTOMATIC_FACTOR_IDS = AUTOMATIC_FACTOR_ADMISSIONS.map(row => row.id)
 
 // Existing manual source policy; no permission for automatic construction.
-export const MANUAL_SOURCE_ROUTES = { GB00B15KXQ89: {
+export const MANUAL_SOURCE_ROUTES = { IE00BK5BCH80: {
+  id: 'manual-IE00BK5BCH80', currency: 'USD', instrumentType: 'ETF', minimumYears: 3, category: 'actions_larges',
+  source: 'https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1',
+  existingDuelRole: 'complement',
+  note: 'Performances de la valeur liquidative de la part en dollars, revenus nets réinvestis et frais inclus ; conversion en euros aux changes historiques BCE. Elles peuvent différer de la cotation. Années complètes communes uniquement.'
+}, GB00B15KXQ89: {
   id: 'manual-GB00B15KXQ89', currency: 'USD', instrumentType: 'ETC', minimumYears: 6, category: 'matieres_premieres',
   source: 'https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89',
   note: 'Performances de la valeur liquidative de l’ETC en dollars, frais inclus ; elles peuvent différer de sa cotation.'
