@@ -1,0 +1,56 @@
+{
+  "checkedAt": "2026-11-01T22:25:06.625Z",
+  "base": "https://madmax91310.github.io/shinny-potato",
+  "buildInfo": {
+    "sha": "a1184d918e5f78590ba857098e71a64615c7d595",
+    "dataSha": "4ea734c12304f5b8902985b6625802953399459b",
+    "lane": "fallback",
+    "builtAt": "2026-11-01T22:15:49Z"
+  },
+  "scope": "all",
+  "viewportWidth": 1440,
+  "manifestSourceFiles": {
+    "src/data/automated-monthly.json": "9d32c8ddae8d8567cf03ec639aaea20a073d1ec9",
+    "src/data/non-bond-monthly-records.json": "ed1520c732ab977d0455b6378572e1888248292e",
+    "src/data/monthly-fx.json": "d4e29a8e8ef78f12905d3c89f1ce9a2873719969",
+    "src/data/automated-etf-monthly.json": "10a3c5ebb26e4a875e3e322fe429f1d3cadcc199"
+  },
+  "calculations": [
+    {
+      "id": "etfIE00B5W4TY14",
+      "targetCurrency": "EUR",
+      "nativeCurrency": "EUR",
+      "manifestPath": "src/data/automated-etf-monthly.json",
+      "manifestBlob": "10a3c5ebb26e4a875e3e322fe429f1d3cadcc199",
+      "periodEnd": "2026-10",
+      "checkedAt": "2026-11-01",
+      "latest": "📍 Dernier niveau connu : 390 € (au octobre 2026)",
+      "expected": "2 927 €",
+      "actual": "2 927 €",
+      "independentUnroundedValue": 2926.670668637018,
+      "text": "Et si tu avais investi 1 000 € dans l’ETF iShares MSCI Korea UCITS ETF · VL en janvier 2020 ? 🫢\n\nEn octobre 2026, voici ce que cette somme serait devenue 👇\n\n💰 Somme investie : 1 000 €\n📈 Capital final : 2 927 €\n🟢 Gain : 1 927 € (+192,7 %)\n\nAvec les mêmes versements sur un Livret A : 1 123 € (simulation indicative)\n\nBlackRock iShares\n\n💬 Tu aurais gardé ce placement jusqu’au bout ?"
+    }
+  ],
+  "comparison": {
+    "id": "etfIE00B5W4TY14",
+    "coverage": "EUR · Rendements totaux et clôtures des actifs sans revenus\nHistorique commun : 2023-08 → 2026-10 · 2 années civiles complètes",
+    "row": "iShares MSCI Korea UCITS ETF · VL\t-8,48 %\t🏆 +76,11 %\t🏆 +68,95 %",
+    "expectedAnnualized": 65.01864073850963,
+    "expected2026Partial": 68.95234850932388,
+    "text": "Parmi ces ETF, lequel a le mieux performé entre fin octobre 2024 et fin octobre 2026 (en EUR) ? 👇\n\n🥇 iShares MSCI Korea UCITS ETF · VL : +65,02 %/an\n🥈 Nasdaq-100 équipondéré : +13,57 %/an\n\nLe détail année par année dans l’image 👇\n\n💬 Tu es exposé à l’un d’entre eux ?\n\nPas un conseil financier."
+  },
+  "downloads": [
+    {
+      "name": "calculator-etfIE00B5W4TY14",
+      "bytes": 1943065,
+      "sha256": "66c5847cd2eff85f6cffc5579eaad78de394b4acd7bf08e3a4572a81e02b8acf"
+    },
+    {
+      "name": "comparison-etfIE00B5W4TY14",
+      "bytes": 381559,
+      "sha256": "56c026def0a34b0295fc4cc6e54d364a15fa81c1d08ea450a66a2f0a6cb5a42d"
+    }
+  ],
+  "errors": [],
+  "limit": "Actual published source hashes and numerical UI checks, not certification of every field or old financial divergence."
+}

@@ -145,7 +145,141 @@ def expand_report_scopes(state):
     return visit({k:v for k,v in state.items()if k not in ('reportScopes','reportScopeSchemaVersion')})
 
 
-def encode_status(state):
+MAX_STATUS_BYTES = 256 * 1024 * 1024
+STATUS_TRANSPORT = 'gzip+base64-v1'
+PROOF_CHECK_STORAGE = 'sha256-records-v1'
+
+
+def expand_proof_checks(state):
+    """Restore shared technical receipts before any existing reducer reads them."""
+    if not isinstance(state, dict):
+        return state
+    if not ({'proofCheckStorage', 'proofCheckRecords'} & state.keys()):
+        workflows = state.get('workflows')
+        for row in (workflows if isinstance(workflows, dict) else {}).values():
+            if isinstance(row, dict) and isinstance(row.get('proofChecks'), dict):
+                if any(isinstance(value, dict) and 'proofCheckRef' in value for value in row['proofChecks'].values()):
+                    raise ValueError('Registre des reçus techniques absent')
+        return state
+    if state.get('proofCheckStorage') != PROOF_CHECK_STORAGE or not isinstance(state.get('proofCheckRecords'), dict):
+        raise ValueError('Registre des reçus techniques invalide ; preuves conservées')
+    records = {}
+    if not isinstance(state.get('workflows'), dict):
+        raise ValueError('Workflows des reçus techniques incorrects')
+    for key, body in state['proofCheckRecords'].items():
+        if (not isinstance(body, str) or len(body.encode()) > MAX_ARCHIVE_BYTES
+                or hashlib.sha256(body.encode()).hexdigest() != key):
+            raise ValueError('Empreinte du reçu technique incorrecte')
+        value = json.loads(body)
+        if not isinstance(value, dict) or not value or 'proofCheckRef' in value:
+            raise ValueError('Schéma du reçu technique incorrect')
+        if json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False) != body:
+            raise ValueError('Reçu technique non canonique')
+        records[key] = value
+    used = set()
+    workflows = {}
+    for name, row in state.get('workflows', {}).items():
+        if not isinstance(row, dict) or 'proofChecks' not in row:
+            workflows[name] = row
+            continue
+        if not isinstance(row['proofChecks'], dict):
+            raise ValueError('Liste des reçus techniques incorrecte')
+        checks = {}
+        for identifier, ref in row['proofChecks'].items():
+            if (not isinstance(ref, dict) or set(ref) != {'proofCheckRef'}
+                    or not isinstance(ref['proofCheckRef'], str) or ref['proofCheckRef'] not in records):
+                raise ValueError('Référence au reçu technique absente ou incorrecte')
+            key = ref['proofCheckRef']
+            used.add(key)
+            # Receipts are read-only. Sharing the object also bounds expansion
+            # memory; writers replace a receipt, never mutate an old receipt.
+            checks[identifier] = records[key]
+        workflows[name] = {**row, 'proofChecks': checks}
+    if used != set(records):
+        raise ValueError('Reçu technique sans référence ; aucune preuve abandonnée')
+    return {**{k: v for k, v in state.items() if k not in ('proofCheckStorage', 'proofCheckRecords')},
+            'workflows': workflows}
+
+
+def pack_proof_checks(state):
+    """Intern identical receipts, preserving every technical identity and clock."""
+    state = expand_proof_checks(state)
+    records, workflows = {}, {}
+    for name, row in state.get('workflows', {}).items():
+        if not isinstance(row, dict) or 'proofChecks' not in row:
+            workflows[name] = row
+            continue
+        if not isinstance(row['proofChecks'], dict):
+            raise ValueError('Liste des reçus techniques incorrecte')
+        checks = {}
+        for identifier, value in row['proofChecks'].items():
+            if not isinstance(value, dict) or not value or 'proofCheckRef' in value:
+                raise ValueError('Schéma du reçu technique incorrect')
+            body = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False)
+            if len(body.encode()) > MAX_ARCHIVE_BYTES:
+                raise ValueError('Reçu technique au-delà du contrat de lecture')
+            key = hashlib.sha256(body.encode()).hexdigest()
+            if key in records and records[key] != body:
+                raise ValueError('Collision des reçus techniques')
+            records[key] = body
+            checks[identifier] = {'proofCheckRef': key}
+        workflows[name] = {**row, 'proofChecks': checks}
+    if not records:
+        return state
+    return {**state, 'workflows': workflows, 'proofCheckStorage': PROOF_CHECK_STORAGE, 'proofCheckRecords': records}
+
+
+def decode_status(state):
+    """Restore the bounded wire envelope; legacy reports remain unchanged."""
+    if not isinstance(state, dict) or 'monitorStorage' not in state:
+        return expand_proof_checks(state)
+    try:
+        if (set(state) != {'schemaVersion', 'monitorStorage', 'decodedBytes', 'sha256', 'data'}
+                or state['schemaVersion'] != 2 or state['monitorStorage'] != STATUS_TRANSPORT
+                or type(state['decodedBytes']) is not int or not 0 < state['decodedBytes'] <= MAX_STATUS_BYTES):
+            raise ValueError('Unknown monitor storage envelope')
+        packed = base64.b64decode(state['data'], validate=True)
+        if base64.b64encode(packed).decode() != state['data']:
+            raise ValueError('Non-canonical base64')
+        decoder = zlib.decompressobj(16 + zlib.MAX_WBITS)
+        raw = decoder.decompress(packed, state['decodedBytes'] + 1)
+        if (not decoder.eof or decoder.unused_data or len(raw) != state['decodedBytes']
+                or hashlib.sha256(raw).hexdigest() != state['sha256']):
+            raise ValueError('Monitor storage checksum/size mismatch')
+        restored = json.loads(raw.decode('utf-8'))
+        if not isinstance(restored, dict) or restored.get('schemaVersion') != 1 or 'monitorStorage' in restored:
+            raise ValueError('Invalid or nested monitor state')
+        return expand_proof_checks(restored)
+    except (KeyError, TypeError, UnicodeError, zlib.error, ValueError) as error:
+        raise ValueError('Transport du moniteur invalide ; aucune preuve réinitialisée') from error
+
+
+def reader_ready(repo, fetch=None, proof_checks=False):
+    """Only the deployed code may authorize a new wire format, never CI alone."""
+    import urllib.request
+    owner, project = repo.split('/')
+    url = f'https://{owner}.github.io/{project}/monitor-storage-capabilities.json'
+    if fetch is None:
+        def fetch(url):
+            with urllib.request.urlopen(url, timeout=20) as response:
+                return json.loads(response.read(4097))
+    try:
+        capability = fetch(url)
+        base = {'schemaVersion': 1, 'monitorStorage': STATUS_TRANSPORT}
+        shared = {**base, 'proofCheckStorage': PROOF_CHECK_STORAGE}
+        return capability == shared if proof_checks else capability in (base, shared)
+    except (OSError, ValueError, TypeError):
+        return False
+
+
+def encode_status(state, compressed=False):
     """UTF-8 compact JSON is lossless; omit indentation from this machine payload."""
     body=(json.dumps(state,ensure_ascii=False,separators=(',',':'))+'\n').encode()
+    if compressed:
+        if len(body) > MAX_STATUS_BYTES or state.get('schemaVersion') != 1 or 'monitorStorage' in state:
+            raise ValueError('État du moniteur hors contrat de transport ; historique conservé')
+        envelope = {'schemaVersion': 2, 'monitorStorage': STATUS_TRANSPORT,
+                    'decodedBytes': len(body), 'sha256': hashlib.sha256(body).hexdigest(),
+                    'data': base64.b64encode(gzip.compress(body, compresslevel=6, mtime=0)).decode()}
+        body = (json.dumps(envelope, separators=(',', ':')) + '\n').encode()
     return base64.b64encode(body).decode()

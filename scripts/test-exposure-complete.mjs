@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import {readFileSync} from 'node:fs'
 import {equityUniverse} from './dca-equity-universe.mjs'
-import {references,validateProfile} from '../src/pages/dca-profiles/engine.js'
+import {references,validateProfile,MAX_EXPOSURE_POSITIONS} from '../src/pages/dca-profiles/engine.js'
 import {sharedPositions} from '../src/pages/dca-profiles/verification.js'
 import {allocationRows} from '../src/pages/dca-profiles/image.js'
 import {searchAssets} from '../src/pages/dca-profiles/management.js'
@@ -28,9 +28,14 @@ for(const [asset,r] of Object.entries(universe)){
  }
 }
 const lines=Object.entries(references).slice(0,50).map(([asset,r])=>({asset,isin:r.isin,label:r.name,weight:2,amount:0}))
-assert.deepEqual(validateProfile({imageOnly:true,scope:'Portefeuille investi',lines}),[])
+assert.deepEqual(validateProfile({imageOnly:true,scope:'Portefeuille investi',lines},MAX_EXPOSURE_POSITIONS),[])
 assert(validateProfile({imageOnly:true,scope:'Portefeuille investi',lines:[...lines,lines[0]]}).length)
-const visible=allocationRows(lines);assert.equal(visible.length,8);assert.equal(visible.reduce((s,r)=>s+r.weight,0),100);assert.equal(visible.at(-1).weight,86)
+const visible=allocationRows(lines)
+assert.equal(visible.length,8)
+assert.equal(visible.reduce((s,r)=>s+r.weight,0),100)
+// Publication rows, including the grouped remainder, follow descending weight.
+assert.equal(visible.find(row=>row.name===`${lines.length-7} autres positions`)?.weight,86)
+assert(visible.slice(1).every((row,index)=>visible[index].weight>=row.weight))
 const now=new Date('2026-10-16'),a='US0378331005',b='US5949181045'
 const o={asOf:'2026-10-14',sourceUrl:'https://example.com/full',basis:'fund',complete:true,rows:[{name:'Apple',isin:a,weightPct:50},{name:'Microsoft',isin:b,weightPct:50}]}
 const refs={x:{isin:'IE00B4L5Y983'},y:{isin:'IE00B5BMR087'},z:{isin:a,name:'Apple',kind:'equity',countries:o}}

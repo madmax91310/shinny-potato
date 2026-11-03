@@ -1,0 +1,296 @@
+{
+  "checkedAt": "2026-10-30T13:50:31.372Z",
+  "base": "https://madmax91310.github.io/shinny-potato",
+  "method": "Exact unchanged monthly NAV/TR levels, two existing source routes newly rechecked. NativeUSD or independent EUR conversion price/USDperEUR using each month final ECB observation. Lump1000*last/first; DCA sum1000*last/each month. No application calculation helper imported. No new79window qualified.",
+  "results": [
+    {
+      "id": "etc_wti_crude_oilNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 1440,
+      "monthlyContributions": 1,
+      "expected": 1831.7684060517665,
+      "displayed": "1 832 $",
+      "pngBytes": 1835073,
+      "version": {
+        "sha": "d5b765f3ec2d6f10db84b65f5afa56497c33e48c",
+        "dataSha": "c27845f6a918e93edba129b74f5a4b895cc8beaf",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T13:45:01.714Z"
+      }
+    },
+    {
+      "id": "etc_wti_crude_oilNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 1440,
+      "monthlyContributions": 46,
+      "expected": 77732.8859179213,
+      "displayed": "77 733 $",
+      "pngBytes": 1834237,
+      "version": {
+        "sha": "d5b765f3ec2d6f10db84b65f5afa56497c33e48c",
+        "dataSha": "c27845f6a918e93edba129b74f5a4b895cc8beaf",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T13:45:01.714Z"
+      }
+    },
+    {
+      "id": "etc_wti_crude_oilNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1440,
+      "monthlyContributions": 1,
+      "expected": 1720.6201513824872,
+      "displayed": "1 721 €",
+      "pngBytes": 1820210,
+      "version": {
+        "sha": "d5b765f3ec2d6f10db84b65f5afa56497c33e48c",
+        "dataSha": "c27845f6a918e93edba129b74f5a4b895cc8beaf",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T13:45:01.714Z"
+      }
+    },
+    {
+      "id": "etc_wti_crude_oilNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1440,
+      "monthlyContributions": 46,
+      "expected": 75823.06068214872,
+      "displayed": "75 823 €",
+      "pngBytes": 1857377,
+      "version": {
+        "sha": "d5b765f3ec2d6f10db84b65f5afa56497c33e48c",
+        "dataSha": "c27845f6a918e93edba129b74f5a4b895cc8beaf",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T13:45:01.714Z"
+      }
+    },
+    {
+      "id": "etfIE00BDVPNG13Nav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 1440,
+      "monthlyContributions": 1,
+      "expected": 3070.767575082427,
+      "displayed": "3 071 $",
+      "pngBytes": 1948431,
+      "version": {
+        "sha": "d5b765f3ec2d6f10db84b65f5afa56497c33e48c",
+        "dataSha": "c27845f6a918e93edba129b74f5a4b895cc8beaf",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T13:45:01.714Z"
+      }
+    },
+    {
+      "id": "etfIE00BDVPNG13Nav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 1440,
+      "monthlyContributions": 46,
+      "expected": 85253.40536527781,
+      "displayed": "85 253 $",
+      "pngBytes": 1986437,
+      "version": {
+        "sha": "d5b765f3ec2d6f10db84b65f5afa56497c33e48c",
+        "dataSha": "c27845f6a918e93edba129b74f5a4b895cc8beaf",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T13:45:01.714Z"
+      }
+    },
+    {
+      "id": "etfIE00BDVPNG13Nav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1440,
+      "monthlyContributions": 1,
+      "expected": 2884.439185894246,
+      "displayed": "2 884 €",
+      "pngBytes": 1941481,
+      "version": {
+        "sha": "d5b765f3ec2d6f10db84b65f5afa56497c33e48c",
+        "dataSha": "c27845f6a918e93edba129b74f5a4b895cc8beaf",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T13:45:01.714Z"
+      }
+    },
+    {
+      "id": "etfIE00BDVPNG13Nav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 1440,
+      "monthlyContributions": 46,
+      "expected": 82735.51554142848,
+      "displayed": "82 736 €",
+      "pngBytes": 1982988,
+      "version": {
+        "sha": "d5b765f3ec2d6f10db84b65f5afa56497c33e48c",
+        "dataSha": "c27845f6a918e93edba129b74f5a4b895cc8beaf",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T13:45:01.714Z"
+      }
+    },
+    {
+      "id": "etc_wti_crude_oilNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 390,
+      "monthlyContributions": 1,
+      "expected": 1831.7684060517665,
+      "displayed": "1 832 $",
+      "pngBytes": 1835073,
+      "version": {
+        "sha": "d5b765f3ec2d6f10db84b65f5afa56497c33e48c",
+        "dataSha": "c27845f6a918e93edba129b74f5a4b895cc8beaf",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T13:45:01.714Z"
+      }
+    },
+    {
+      "id": "etc_wti_crude_oilNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 390,
+      "monthlyContributions": 46,
+      "expected": 77732.8859179213,
+      "displayed": "77 733 $",
+      "pngBytes": 1834237,
+      "version": {
+        "sha": "d5b765f3ec2d6f10db84b65f5afa56497c33e48c",
+        "dataSha": "c27845f6a918e93edba129b74f5a4b895cc8beaf",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T13:45:01.714Z"
+      }
+    },
+    {
+      "id": "etc_wti_crude_oilNav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 1,
+      "expected": 1720.6201513824872,
+      "displayed": "1 721 €",
+      "pngBytes": 1820210,
+      "version": {
+        "sha": "d5b765f3ec2d6f10db84b65f5afa56497c33e48c",
+        "dataSha": "c27845f6a918e93edba129b74f5a4b895cc8beaf",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T13:45:01.714Z"
+      }
+    },
+    {
+      "id": "etc_wti_crude_oilNav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 46,
+      "expected": 75823.06068214872,
+      "displayed": "75 823 €",
+      "pngBytes": 1857377,
+      "version": {
+        "sha": "d5b765f3ec2d6f10db84b65f5afa56497c33e48c",
+        "dataSha": "c27845f6a918e93edba129b74f5a4b895cc8beaf",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T13:45:01.714Z"
+      }
+    },
+    {
+      "id": "etfIE00BDVPNG13Nav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 390,
+      "monthlyContributions": 1,
+      "expected": 3070.767575082427,
+      "displayed": "3 071 $",
+      "pngBytes": 1948431,
+      "version": {
+        "sha": "d5b765f3ec2d6f10db84b65f5afa56497c33e48c",
+        "dataSha": "c27845f6a918e93edba129b74f5a4b895cc8beaf",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T13:45:01.714Z"
+      }
+    },
+    {
+      "id": "etfIE00BDVPNG13Nav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "USD",
+      "width": 390,
+      "monthlyContributions": 46,
+      "expected": 85253.40536527781,
+      "displayed": "85 253 $",
+      "pngBytes": 1986437,
+      "version": {
+        "sha": "d5b765f3ec2d6f10db84b65f5afa56497c33e48c",
+        "dataSha": "c27845f6a918e93edba129b74f5a4b895cc8beaf",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T13:45:01.714Z"
+      }
+    },
+    {
+      "id": "etfIE00BDVPNG13Nav",
+      "mode": "lump",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 1,
+      "expected": 2884.439185894246,
+      "displayed": "2 884 €",
+      "pngBytes": 1941481,
+      "version": {
+        "sha": "d5b765f3ec2d6f10db84b65f5afa56497c33e48c",
+        "dataSha": "c27845f6a918e93edba129b74f5a4b895cc8beaf",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T13:45:01.714Z"
+      }
+    },
+    {
+      "id": "etfIE00BDVPNG13Nav",
+      "mode": "dca",
+      "start": "2022-12",
+      "end": "2026-09",
+      "currency": "EUR",
+      "width": 390,
+      "monthlyContributions": 46,
+      "expected": 82735.51554142848,
+      "displayed": "82 736 €",
+      "pngBytes": 1982988,
+      "version": {
+        "sha": "d5b765f3ec2d6f10db84b65f5afa56497c33e48c",
+        "dataSha": "c27845f6a918e93edba129b74f5a4b895cc8beaf",
+        "lane": "validated-data",
+        "builtAt": "2026-10-30T13:45:01.714Z"
+      }
+    }
+  ],
+  "errors": []
+}

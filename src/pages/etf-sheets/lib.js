@@ -23,16 +23,20 @@ export function buildText(sourceEtf) {
   const dot = CATEGORY_EMOJI[etf.category] || '⚫'
   const annual = getAnnualPerformance(etf)
   const commodities = commodityAllocationLines(etf.isin)
+  const percentSpacing = value => value.replace(/(\d)\s*%/g, '$1 %')
+  const aum = /^(Part|Fonds)\s*:/.test(etf.aum)
+    ? etf.aum.replace(/^Part\s*:\s*/, 'Encours de la part : ').replace(/^Fonds\s*:\s*/, 'Encours du fonds : ')
+    : 'Encours : ' + etf.aum
   return (
     etf.hook + '\n\n' +
     dot + ' ' + etf.name + (tickerStr ? ' (' + tickerStr + ')' : '') + '\n' +
     '\n' +
     '🆔 ISIN : ' + etf.isin + '\n' +
     (etf.listing ? '📍 Cotation : ' + etf.listing.exchange + ' · ' + etf.listing.currency + '\n' : '') +
-    '💸 ' + etf.feeLabel + ' : ' + etf.ter + '\n' +
-    (etf.swapFee ? '💸 Frais de swap : ' + etf.swapFee + '\n' : '') +
+    '💸 ' + etf.feeLabel + ' : ' + percentSpacing(etf.ter) + '\n' +
+    (etf.swapFee ? '💸 Frais de swap : ' + percentSpacing(etf.swapFee) + '\n' : '') +
     (etf.positions ? '📦 ' + etf.positions + '\n' : '') +
-    '💰 Encours : ' + etf.aum + '\n' +
+    '💰 ' + aum + '\n' +
     (etf.distribution ? '🔄 ' + etf.distribution + '\n' : '') +
     '🏦 ' + accountLabel(etf) + '\n' +
     (etf.location ? '📍 ' + etf.location + '\n' : '') +

@@ -1,0 +1,135 @@
+{
+  "checkedAt": "2026-10-30T02:34:45.347550+00:00",
+  "run": 40989014229,
+  "head": "66c27cda4ef5154446d33b0fcaeed15db93f0dfd",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 123846647239,
+      "name": "current-snapshot",
+      "conclusion": "success",
+      "started_at": "2026-10-30T01:59:14Z",
+      "completed_at": "2026-10-30T02:01:52Z"
+    },
+    {
+      "id": 123847493319,
+      "name": "build",
+      "conclusion": "success",
+      "started_at": "2026-10-30T02:01:56Z",
+      "completed_at": "2026-10-30T02:10:30Z"
+    },
+    {
+      "id": 123847493338,
+      "name": "exposure-browser-check",
+      "conclusion": "success",
+      "started_at": "2026-10-30T02:01:55Z",
+      "completed_at": "2026-10-30T02:02:50Z"
+    },
+    {
+      "id": 123847493388,
+      "name": "python-checks",
+      "conclusion": "success",
+      "started_at": "2026-10-30T02:01:56Z",
+      "completed_at": "2026-10-30T02:04:39Z"
+    },
+    {
+      "id": 123847493392,
+      "name": "scope",
+      "conclusion": "success",
+      "started_at": "2026-10-30T02:01:56Z",
+      "completed_at": "2026-10-30T02:04:44Z"
+    },
+    {
+      "id": 123850258199,
+      "name": "smoke",
+      "conclusion": "success",
+      "started_at": "2026-10-30T02:10:33Z",
+      "completed_at": "2026-10-30T02:11:49Z"
+    },
+    {
+      "id": 123850258215,
+      "name": "browser-checks (1)",
+      "conclusion": "success",
+      "started_at": "2026-10-30T02:10:33Z",
+      "completed_at": "2026-10-30T02:29:25Z"
+    },
+    {
+      "id": 123850258228,
+      "name": "browser-checks (3)",
+      "conclusion": "success",
+      "started_at": "2026-10-30T02:10:33Z",
+      "completed_at": "2026-10-30T02:28:02Z"
+    },
+    {
+      "id": 123850258234,
+      "name": "tweet-midi-checks (1)",
+      "conclusion": "success",
+      "started_at": "2026-10-30T02:10:32Z",
+      "completed_at": "2026-10-30T02:17:51Z"
+    },
+    {
+      "id": 123850258241,
+      "name": "tweet-midi-checks (2)",
+      "conclusion": "success",
+      "started_at": "2026-10-30T02:10:33Z",
+      "completed_at": "2026-10-30T02:19:49Z"
+    },
+    {
+      "id": 123850258261,
+      "name": "browser-checks (2)",
+      "conclusion": "success",
+      "started_at": "2026-10-30T02:10:33Z",
+      "completed_at": "2026-10-30T02:24:18Z"
+    },
+    {
+      "id": 123850258269,
+      "name": "tweet-midi-checks (0)",
+      "conclusion": "success",
+      "started_at": "2026-10-30T02:10:33Z",
+      "completed_at": "2026-10-30T02:20:10Z"
+    },
+    {
+      "id": 123850258292,
+      "name": "browser-checks (0)",
+      "conclusion": "success",
+      "started_at": "2026-10-30T02:10:33Z",
+      "completed_at": "2026-10-30T02:30:54Z"
+    },
+    {
+      "id": 123850258718,
+      "name": "tweet-midi-checks (3)",
+      "conclusion": "success",
+      "started_at": "2026-10-30T02:10:33Z",
+      "completed_at": "2026-10-30T02:19:57Z"
+    },
+    {
+      "id": 123856789012,
+      "name": "deploy",
+      "conclusion": "success",
+      "started_at": "2026-10-30T02:30:58Z",
+      "completed_at": "2026-10-30T02:33:19Z"
+    },
+    {
+      "id": 123856790034,
+      "name": "fallback-build",
+      "conclusion": "skipped",
+      "started_at": "2026-10-30T02:30:55Z",
+      "completed_at": "2026-10-30T02:30:54Z"
+    },
+    {
+      "id": 123856790254,
+      "name": "deploy-fallback",
+      "conclusion": "skipped",
+      "started_at": "2026-10-30T02:30:55Z",
+      "completed_at": "2026-10-30T02:30:54Z"
+    },
+    {
+      "id": 123857537301,
+      "name": "advisory-checks",
+      "conclusion": "skipped",
+      "started_at": "2026-10-30T02:33:19Z",
+      "completed_at": "2026-10-30T02:33:19Z"
+    }
+  ],
+  "publicProof": "final-production-code-and-registry.json"
+}

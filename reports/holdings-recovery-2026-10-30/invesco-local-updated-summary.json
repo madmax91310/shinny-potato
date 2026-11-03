@@ -1,0 +1,65 @@
+{
+  "observations": {},
+  "rejectedObservations": {
+    "IE000716YHJ7": {
+      "kind": "unavailable-complete-fund-file",
+      "asOf": null,
+      "sourceRowCount": 0,
+      "financialDataQualified": false,
+      "normalizationApplied": false,
+      "subjectIsin": "IE000716YHJ7",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7/holdings/fund?idType=isin",
+      "sha256": "163c0f680f12b6c5dd4bc16fd22ccf929d5adacceb5f6a069353d6b15d435892",
+      "checkedAt": "2026-10-30T07:45:40.039365+00:00",
+      "sourceAttempts": [
+        {
+          "attempt": 1,
+          "sha256": "163c0f680f12b6c5dd4bc16fd22ccf929d5adacceb5f6a069353d6b15d435892",
+          "status": "missing-complete-fund-file"
+        },
+        {
+          "attempt": 2,
+          "sha256": "163c0f680f12b6c5dd4bc16fd22ccf929d5adacceb5f6a069353d6b15d435892",
+          "status": "missing-complete-fund-file"
+        }
+      ]
+    },
+    "IE0000QLH0G6": {
+      "kind": "unavailable-complete-fund-file",
+      "asOf": null,
+      "sourceRowCount": 0,
+      "financialDataQualified": false,
+      "normalizationApplied": false,
+      "subjectIsin": "IE0000QLH0G6",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6/holdings/fund?idType=isin",
+      "sha256": "163c0f680f12b6c5dd4bc16fd22ccf929d5adacceb5f6a069353d6b15d435892",
+      "checkedAt": "2026-10-30T07:45:40.039365+00:00",
+      "sourceAttempts": [
+        {
+          "attempt": 1,
+          "sha256": "163c0f680f12b6c5dd4bc16fd22ccf929d5adacceb5f6a069353d6b15d435892",
+          "status": "missing-complete-fund-file"
+        },
+        {
+          "attempt": 2,
+          "sha256": "163c0f680f12b6c5dd4bc16fd22ccf929d5adacceb5f6a069353d6b15d435892",
+          "status": "missing-complete-fund-file"
+        }
+      ]
+    }
+  },
+  "updated": [],
+  "errors": [
+    {
+      "id": "dca-holdings:IE000716YHJ7",
+      "field": "Composition complète",
+      "error": "Invesco complete fund holdings unavailable: null portfolio, zero count and no observation date"
+    },
+    {
+      "id": "dca-holdings:IE0000QLH0G6",
+      "field": "Composition complète",
+      "error": "Invesco complete fund holdings unavailable: null portfolio, zero count and no observation date"
+    }
+  ],
+  "nativeReportSha256": "20899e43a9ffd64549fae05b0766a7109f43aa3212fbc347036c3b694c9aa110"
+}

@@ -1,0 +1,27 @@
+{
+  "incidentRun": 41364143486,
+  "incidentJob": 125020618639,
+  "incidentArtifact": 13107894187,
+  "failedStage": "Validate observations: npm run build",
+  "failedAssertion": "scripts/test-new-instruments.mjs:78 actions_larges != emergents",
+  "demonstratedCause": "Qualified market-history adapter ignored explicit exact-instrument portfolioCategory, unlike annual NAV adapter.",
+  "realReproduction": {
+    "isin": "IE00B0M63516",
+    "symbol": "IBZL.AS",
+    "mic": "XAMS",
+    "currency": "EUR",
+    "points": 142,
+    "periodStart": "2015-01",
+    "periodEnd": "2026-10",
+    "responseSha256": "4143abe6002dd772caac53f884ec7d325ab76b25eb0bcebbc5c371fb498a3713",
+    "entrypoint": "qualify_monthly_candidates.qualify; apply_qualified in isolated worktree; existing monthly and annual projections",
+    "before": "same assertion reproduced",
+    "after": "existing21instrument suite passes; manual-IE00B0M63516 category emergents/manualOnly true",
+    "duelMarket2025EUR": 29.527484558791016,
+    "issuerNav2025USD": 48.1,
+    "fullBuild": "Passed with the actual collected Brazil record in an isolated worktree;42built public files match the manifest."
+  },
+  "noFinancialChanges": "Exact-share prices, adjustment convention, currency, historical years, existing annual route and automatic recipe whitelist remain unchanged. The collected fixture is not committed into application registries.",
+  "production": "not yet exercised",
+  "additionalReproducedBlocker": "The following Duel test incorrectly required a newly qualified EUR adjusted market quote to equal the USD official NAV calendar. It now independently recomputes the selected exact quote from all13month ends, preserves NAV tests for NAV consumers and preserves the original1e-9/1e-7 precision."
+}

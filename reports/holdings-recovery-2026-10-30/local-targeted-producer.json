@@ -1,0 +1,153 @@
+{
+  "observations": {
+    "IE00BKLF1R75": {
+      "asOf": "2026-10-28",
+      "checkedAt": "2026-10-30T07:26:21.832098+00:00",
+      "basis": "fund",
+      "scope": "complete-equity-sleeve-with-published-cash",
+      "sourceUrl": "https://www.wisdomtree.com/api/fund-holdings/7369317",
+      "sourceUrls": [
+        "https://www.wisdomtree.com/api/fund-holdings/7369317",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+        "https://api.openfigi.com/v3/mapping"
+      ],
+      "sha256": "04efeff3e34476c4def659a4b25658df7d6528034a2df120cfb52e93902d9dc3",
+      "method": "Complete published physical equity securities; cash and non-equity positions excluded; original fund NAV weights, no renormalisation",
+      "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+      "identitySha256": "828e4fdc420e40c8455e1cbaefc5bba1094641ad4c41d7a71f3cf1da01dcbc46",
+      "identityAsOf": "2026-09-30",
+      "identityMethod": "Exact issuer listing FIGI matched to independent ISIN query; pending CUSIP/CINS/SEDOL suffix requires two independent queries agreeing on FIGI, share class, type and published ticker; unknown identities retained",
+      "completeFile": true,
+      "rows": 111,
+      "publishedEquityWeightPct": 99.39972904817284,
+      "identifiedEquityWeightPct": 99.39972904817284
+    },
+    "IE00BZ56SW52": {
+      "asOf": "2026-10-28",
+      "checkedAt": "2026-10-30T07:26:21.832098+00:00",
+      "basis": "fund",
+      "scope": "complete-equity-sleeve-with-published-cash",
+      "sourceUrl": "https://www.wisdomtree.com/api/fund-holdings/1000422",
+      "sourceUrls": [
+        "https://www.wisdomtree.com/api/fund-holdings/1000422",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+        "https://api.openfigi.com/v3/mapping"
+      ],
+      "sha256": "56dd2c586b465bb036afa9696d27e8a37bef6d98f570b21a727ec0524965dbbd",
+      "method": "Complete published physical equity securities; cash and non-equity positions excluded; original fund NAV weights, no renormalisation",
+      "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+      "identitySha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
+      "identityAsOf": "2026-09-30",
+      "identityMethod": "Exact issuer listing FIGI matched to independent ISIN query; pending CUSIP/CINS/SEDOL suffix requires two independent queries agreeing on FIGI, share class, type and published ticker; unknown identities retained",
+      "completeFile": true,
+      "rows": 439,
+      "publishedEquityWeightPct": 98.21244781256102,
+      "identifiedEquityWeightPct": 98.21244781256102
+    },
+    "IE0003UVYC20": {
+      "asOf": "2026-10-29",
+      "checkedAt": "2026-10-30T07:26:21.832098+00:00",
+      "basis": "fund",
+      "scope": "direct-equity-securities",
+      "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+      "sha256": "92acad726c8465ff957071984f622fd7ead30222f0442e969eaa5ad015375ef3",
+      "method": "Complete direct equity and listed REIT positions in dailyHoldingsAll; index options, cash and rights retained separately, with original NAV weights; no option look-through or renormalisation",
+      "completeFile": true,
+      "rows": 236,
+      "publishedEquityWeightPct": 99.77775411414972,
+      "identifiedEquityWeightPct": 99.77775411414972
+    }
+  },
+  "rejectedObservations": {
+    "IE000NDWFGA5": {
+      "kind": "missing-published-nav-weight",
+      "asOf": "2026-10-29",
+      "recordNumber": 2,
+      "name": "CURRENCY CONTRACT - ZAR",
+      "positionIsin": null,
+      "missingFields": [
+        "NET_ASSETS",
+        "MARKET_VALUE"
+      ],
+      "financialDataQualified": false,
+      "normalizationApplied": false,
+      "subjectIsin": "IE000NDWFGA5",
+      "sourceUrl": "https://globalxetfs.eu/api/funds/urnu/topholdingscsv",
+      "sha256": "646eebe2df1649fe10d70aaa97830ace5d1b539efd896dd437ad14d9bcadd5fc",
+      "checkedAt": "2026-10-30T07:26:21.832098+00:00"
+    },
+    "IE00B441G979": {
+      "kind": "unsupported-gross-net-perimeter",
+      "subjectIsin": "IE00B441G979",
+      "asOf": "2026-10-28",
+      "benchmark": "MSCI World 100% Hedged to EUR Index (EUR)",
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-10-28",
+        "sourceRowCount": 1307,
+        "selectedRowCount": 1245,
+        "excludedRowCount": 62,
+        "publishedNetWeightPct": 100.00000999999992,
+        "selectedWeightPct": 100.76218,
+        "sourceWeightPctByType": {
+          "Equity": 100.76217999999992,
+          "Money Market": 0.71231,
+          "Cash": 0.35268,
+          "Cash Collateral and Margins": 0.06606,
+          "Forwards": -1.89321,
+          "Futures": 0.0,
+          "FX": -1e-05
+        },
+        "excludedWeightPctByType": {
+          "Money Market": 0.71231,
+          "Cash": 0.35268,
+          "Cash Collateral and Margins": 0.06606,
+          "Forwards": -1.89321,
+          "Equity": 0.0,
+          "Futures": 0.0,
+          "FX": -1e-05
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "financialDataQualified": false,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "3dc7ec8a1663fe308ec3caca24515662eb188929fc265c7012306d0998e78f65",
+      "checkedAt": "2026-10-30T07:26:21.832098+00:00"
+    }
+  },
+  "updated": [
+    "IE00BKLF1R75",
+    "IE00BZ56SW52",
+    "IE0003UVYC20"
+  ],
+  "successes": [
+    {
+      "id": "dca-holdings:IE00BKLF1R75"
+    },
+    {
+      "id": "dca-holdings:IE00BZ56SW52"
+    },
+    {
+      "id": "dca-holdings:IE0003UVYC20"
+    }
+  ],
+  "errors": [
+    {
+      "id": "dca-holdings:IE000NDWFGA5",
+      "field": "Composition complète",
+      "error": "Missing Global X NET_ASSETS at CSV record 2 (name='CURRENCY CONTRACT - ZAR', isin='', asOf='2026-10-29')"
+    },
+    {
+      "id": "dca-holdings:IE00B441G979",
+      "field": "Composition complète",
+      "error": "Equity NAV weights 100.762180% exceed the existing 100.5% limit; published net NAV 100.000010%; excluded classes {\"Cash\": 0.35268, \"Cash Collateral and Margins\": 0.06606, \"Equity\": 0.0, \"FX\": -1e-05, \"Forwards\": -1.89321, \"Futures\": 0.0, \"Money Market\": 0.71231}; unsupported gross/net perimeter, no renormalisation"
+    }
+  ],
+  "nativeReport": {
+    "file": "local-targeted-producer.json.gz",
+    "uncompressedSha256": "15c069c04e5c4f89161654fce9324a543ee71c0d754dbf937a987ed889882f0f",
+    "method": "Lossless gzip of the ordinary producer receipt, including its full resultContract; summary never replaces the native contract"
+  }
+}

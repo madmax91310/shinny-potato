@@ -1,0 +1,352 @@
+[
+  {
+    "isin": "IE00B4L5Y983",
+    "checkedAt": "2026-11-02T11:39:08.426953+00:00",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "7d796eb44747b0763645a4753a3bd0bdb45647ea2df66e39dd9740dec71279d4",
+    "identity": {
+      "name": "isin",
+      "visible": true,
+      "active": true,
+      "asOf": false,
+      "hideNullData": false,
+      "mobileEnabled": true,
+      "sortOrder": 62,
+      "asOfDate": null,
+      "formattedAsOfDate": null,
+      "formattedValue": "IE00B4L5Y983",
+      "label": "ISIN",
+      "asOfLabel": "",
+      "infoBubble": "",
+      "prefix": null,
+      "value": "IE00B4L5Y983",
+      "returnType": false,
+      "associatedReturnType": false,
+      "fullName": "keyFundFacts.isin"
+    },
+    "useOfProfits": {
+      "name": "useOfProfitsCode",
+      "visible": true,
+      "active": true,
+      "asOf": false,
+      "hideNullData": false,
+      "mobileEnabled": true,
+      "sortOrder": 74,
+      "asOfDate": null,
+      "formattedAsOfDate": null,
+      "formattedValue": "Accumulating",
+      "label": "Use of Income",
+      "asOfLabel": "",
+      "infoBubble": "",
+      "prefix": null,
+      "value": "Accumulating",
+      "returnType": false,
+      "associatedReturnType": false,
+      "fullName": "keyFundFacts.useOfProfitsCode"
+    },
+    "calendarCurrency": {
+      "name": "returnsByCurrency",
+      "visible": true,
+      "active": false,
+      "asOf": false,
+      "hideNullData": false,
+      "mobileEnabled": false,
+      "sortOrder": null,
+      "asOfDate": null,
+      "formattedAsOfDate": null,
+      "formattedValue": "{benchmarkAnnual=USD, annualNav=USD}",
+      "label": "",
+      "asOfLabel": "",
+      "infoBubble": "",
+      "prefix": null,
+      "value": {
+        "benchmarkAnnual": "USD",
+        "annualNav": "USD"
+      },
+      "returnType": false,
+      "associatedReturnType": false,
+      "fullName": "performance.returnsByCurrency"
+    },
+    "cashEvents2020to2025": [],
+    "cashCompleteness": "Published table only; absence of older rows does not certify absence of payments"
+  },
+  {
+    "isin": "IE00BYYHSQ67",
+    "checkedAt": "2026-11-02T11:39:07.470677+00:00",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=288147&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "00f724e1afc3a25ac42b25c7437f60a7de5f18404349fbacdbdd558f88fb1144",
+    "identity": {
+      "name": "isin",
+      "visible": true,
+      "active": true,
+      "asOf": false,
+      "hideNullData": false,
+      "mobileEnabled": true,
+      "sortOrder": 62,
+      "asOfDate": null,
+      "formattedAsOfDate": null,
+      "formattedValue": "IE00BYYHSQ67",
+      "label": "ISIN",
+      "asOfLabel": "",
+      "infoBubble": "",
+      "prefix": null,
+      "value": "IE00BYYHSQ67",
+      "returnType": false,
+      "associatedReturnType": false,
+      "fullName": "keyFundFacts.isin"
+    },
+    "useOfProfits": {
+      "name": "useOfProfitsCode",
+      "visible": true,
+      "active": true,
+      "asOf": false,
+      "hideNullData": false,
+      "mobileEnabled": true,
+      "sortOrder": 74,
+      "asOfDate": null,
+      "formattedAsOfDate": null,
+      "formattedValue": "Distributing",
+      "label": "Use of Income",
+      "asOfLabel": "",
+      "infoBubble": "",
+      "prefix": null,
+      "value": "Distributing",
+      "returnType": false,
+      "associatedReturnType": false,
+      "fullName": "keyFundFacts.useOfProfitsCode"
+    },
+    "calendarCurrency": {
+      "name": "returnsByCurrency",
+      "visible": true,
+      "active": false,
+      "asOf": false,
+      "hideNullData": false,
+      "mobileEnabled": false,
+      "sortOrder": null,
+      "asOfDate": null,
+      "formattedAsOfDate": null,
+      "formattedValue": "{benchmarkAnnual=USD, annualNav=USD}",
+      "label": "",
+      "asOfLabel": "",
+      "infoBubble": "",
+      "prefix": null,
+      "value": {
+        "benchmarkAnnual": "USD",
+        "annualNav": "USD"
+      },
+      "returnType": false,
+      "associatedReturnType": false,
+      "fullName": "performance.returnsByCurrency"
+    },
+    "cashEvents2020to2025": [
+      {
+        "exDate": "20251113",
+        "amount": "0.0388",
+        "currency": "USD"
+      },
+      {
+        "exDate": "20250814",
+        "amount": "0.0657",
+        "currency": "USD"
+      },
+      {
+        "exDate": "20250515",
+        "amount": "0.0885",
+        "currency": "USD"
+      },
+      {
+        "exDate": "20241114",
+        "amount": "0.0912",
+        "currency": "USD"
+      },
+      {
+        "exDate": "20240516",
+        "amount": "0.0869",
+        "currency": "USD"
+      },
+      {
+        "exDate": "20231116",
+        "amount": "0.0937",
+        "currency": "USD"
+      },
+      {
+        "exDate": "20230519",
+        "amount": "0.0855",
+        "currency": "USD"
+      },
+      {
+        "exDate": "20221117",
+        "amount": "0.0816",
+        "currency": "USD"
+      },
+      {
+        "exDate": "20220512",
+        "amount": "0.0856",
+        "currency": "USD"
+      },
+      {
+        "exDate": "20211111",
+        "amount": "0.0842",
+        "currency": "USD"
+      },
+      {
+        "exDate": "20210513",
+        "amount": "0.0878",
+        "currency": "USD"
+      },
+      {
+        "exDate": "20201112",
+        "amount": "0.0781",
+        "currency": "USD"
+      },
+      {
+        "exDate": "20200514",
+        "amount": "0.0778",
+        "currency": "USD"
+      }
+    ],
+    "cashCompleteness": "Published table only; absence of older rows does not certify absence of payments"
+  },
+  {
+    "isin": "IE00B4ND3602",
+    "checkedAt": "2026-11-02T11:39:07.850031+00:00",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=258441&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "bffd0be33b9117e0a1037c144ec4e66c0da7487bfc72baf96a13adf94438cd38",
+    "identity": {
+      "name": "isin",
+      "visible": true,
+      "active": true,
+      "asOf": false,
+      "hideNullData": false,
+      "mobileEnabled": true,
+      "sortOrder": 62,
+      "asOfDate": null,
+      "formattedAsOfDate": null,
+      "formattedValue": "IE00B4ND3602",
+      "label": "ISIN",
+      "asOfLabel": "",
+      "infoBubble": "",
+      "prefix": null,
+      "value": "IE00B4ND3602",
+      "returnType": false,
+      "associatedReturnType": false,
+      "fullName": "keyFundFacts.isin"
+    },
+    "useOfProfits": {
+      "name": "useOfProfitsCode",
+      "visible": true,
+      "active": true,
+      "asOf": false,
+      "hideNullData": false,
+      "mobileEnabled": true,
+      "sortOrder": 74,
+      "asOfDate": null,
+      "formattedAsOfDate": null,
+      "formattedValue": "No Income",
+      "label": "Use of Income",
+      "asOfLabel": "",
+      "infoBubble": "",
+      "prefix": null,
+      "value": "No Income",
+      "returnType": false,
+      "associatedReturnType": false,
+      "fullName": "keyFundFacts.useOfProfitsCode"
+    },
+    "calendarCurrency": {
+      "name": "returnsByCurrency",
+      "visible": true,
+      "active": false,
+      "asOf": false,
+      "hideNullData": false,
+      "mobileEnabled": false,
+      "sortOrder": null,
+      "asOfDate": null,
+      "formattedAsOfDate": null,
+      "formattedValue": "{benchmarkAnnual=USD, annualNav=USD}",
+      "label": "",
+      "asOfLabel": "",
+      "infoBubble": "",
+      "prefix": null,
+      "value": {
+        "benchmarkAnnual": "USD",
+        "annualNav": "USD"
+      },
+      "returnType": false,
+      "associatedReturnType": false,
+      "fullName": "performance.returnsByCurrency"
+    },
+    "cashEvents2020to2025": [],
+    "cashCompleteness": "Published table only; absence of older rows does not certify absence of payments"
+  },
+  {
+    "isin": "IE00BDBRDM35",
+    "checkedAt": "2026-11-02T11:39:10.988289+00:00",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "38b5e99971e91be78c9369f7048184f5935091fa7eea302929a6285e55a220e2",
+    "identity": {
+      "name": "isin",
+      "visible": true,
+      "active": true,
+      "asOf": false,
+      "hideNullData": false,
+      "mobileEnabled": true,
+      "sortOrder": 62,
+      "asOfDate": null,
+      "formattedAsOfDate": null,
+      "formattedValue": "IE00BDBRDM35",
+      "label": "ISIN",
+      "asOfLabel": "",
+      "infoBubble": "",
+      "prefix": null,
+      "value": "IE00BDBRDM35",
+      "returnType": false,
+      "associatedReturnType": false,
+      "fullName": "keyFundFacts.isin"
+    },
+    "useOfProfits": {
+      "name": "useOfProfitsCode",
+      "visible": true,
+      "active": true,
+      "asOf": false,
+      "hideNullData": false,
+      "mobileEnabled": true,
+      "sortOrder": 74,
+      "asOfDate": null,
+      "formattedAsOfDate": null,
+      "formattedValue": "Accumulating",
+      "label": "Use of Income",
+      "asOfLabel": "",
+      "infoBubble": "",
+      "prefix": null,
+      "value": "Accumulating",
+      "returnType": false,
+      "associatedReturnType": false,
+      "fullName": "keyFundFacts.useOfProfitsCode"
+    },
+    "calendarCurrency": {
+      "name": "returnsByCurrency",
+      "visible": true,
+      "active": false,
+      "asOf": false,
+      "hideNullData": false,
+      "mobileEnabled": false,
+      "sortOrder": null,
+      "asOfDate": null,
+      "formattedAsOfDate": null,
+      "formattedValue": "{benchmarkAnnual=USD, annualNav=EUR}",
+      "label": "",
+      "asOfLabel": "",
+      "infoBubble": "",
+      "prefix": null,
+      "value": {
+        "benchmarkAnnual": "USD",
+        "annualNav": "EUR"
+      },
+      "returnType": false,
+      "associatedReturnType": false,
+      "fullName": "performance.returnsByCurrency"
+    },
+    "cashEvents2020to2025": [],
+    "cashCompleteness": "Published table only; absence of older rows does not certify absence of payments"
+  }
+]

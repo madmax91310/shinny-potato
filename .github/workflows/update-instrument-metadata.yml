@@ -53,13 +53,17 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+          filter: blob:none
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: pip install beautifulsoup4==4.15.0
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0
       - run: pip download beautifulsoup4==4.15.0 --dest "$RUNNER_TEMP/metadata-python-runtime"
       - uses: actions/upload-artifact@v7.0.1
         with:
@@ -73,7 +77,36 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: node scripts/build-automation-targets.mjs
+      - name: Freeze source evidence scope before any collection
+        id: evidence_scope
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python scripts/metadata_route_evidence_scope.py --base "$BASE_SHA" --output "$RUNNER_TEMP/metadata-evidence-scope.json"
+      - name: Exercise the ordinary producer for exact changed field routes only
+        id: targeted
+        if: steps.evidence_scope.outputs.mode == 'targeted-field-routes'
+        continue-on-error: true
+        env:
+          SELECTED_ISINS: ${{ steps.evidence_scope.outputs.ids }}
+        run: python scripts/collect_instrument_metadata.py --apply --only "$SELECTED_ISINS" --output "$RUNNER_TEMP/metadata-targeted-observation.json"
+      - name: Retain all other valid metadata in the isolated consumer fixture
+        if: always() && steps.evidence_scope.outputs.mode == 'targeted-field-routes'
+        run: |
+          mkdir -p "$RUNNER_TEMP/metadata-qualified"
+          cp src/data/automated-instrument-metadata.json "$RUNNER_TEMP/metadata-qualified/automated-instrument-metadata.json"
+          cp src/data/instrument-metadata-status.json "$RUNNER_TEMP/metadata-qualified/instrument-metadata-status.json"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: metadata-declared-evidence-scope
+          path: |
+            ${{ runner.temp }}/metadata-evidence-scope.json
+            ${{ runner.temp }}/metadata-targeted-observation.json
+            ${{ runner.temp }}/metadata-targeted-observation.contract-plan.json
+          if-no-files-found: ignore
+          retention-days: 35
       - name: Observe representative source formats without changing registries
+        if: steps.evidence_scope.outputs.mode != 'targeted-field-routes'
         run: >-
           python scripts/probe_instrument_metadata.py --output "$RUNNER_TEMP/metadata-sample-evidence"
           --only IE00B4L5Y983 IE00BDBRDM35 IE00BLNMYC90 FR0007056841
@@ -82,6 +115,7 @@ jobs:
           GB00B15KXQ89 IE00BD4TXV59 IE000QDFFK00 IE0003UVYC20
           IE0003R87OG3 IE00BMVB5K07 IE00B579F325 IE00BD6FTQ80
           DE000A27Z304 FR0011550193 IE00BF0M2Z96 IE00BK5BCD43 IE000DQLYVB9 IE00B3VWMM18
+          LU3038520774 IE000L2SA8K5
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -89,6 +123,7 @@ jobs:
           path: ${{ runner.temp }}/metadata-sample-evidence
           retention-days: 14
       - name: Observe all public exact-share sources without changing registries
+        if: steps.evidence_scope.outputs.mode != 'targeted-field-routes'
         run: python scripts/probe_instrument_metadata.py --output "$RUNNER_TEMP/metadata-evidence" --shard-count 4 --records-output "$RUNNER_TEMP/metadata-qualified/automated-instrument-metadata.json"
       - uses: actions/upload-artifact@v7.0.1
         with:
@@ -125,6 +160,9 @@ jobs:
           name: metadata-raw-sources-3
           path: ${{ runner.temp }}/metadata-evidence/part-3
           retention-days: 14
+      - name: Preserve a failed targeted source result after retaining its proofs
+        if: always() && steps.evidence_scope.outputs.mode == 'targeted-field-routes'
+        run: test '${{ steps.targeted.outcome }}' = 'success'
   verify:
     needs: source-evidence
     if: always() && (github.event_name != 'pull_request' || needs.source-evidence.result == 'success')
@@ -137,7 +175,8 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: pip install beautifulsoup4==4.15.0
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0
       - run: npm ci
       - uses: actions/download-artifact@v4
         if: github.event_name == 'pull_request'
@@ -205,7 +244,8 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: pip install beautifulsoup4==4.15.0
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils

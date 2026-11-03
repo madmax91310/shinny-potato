@@ -1,5 +1,7 @@
 """Regression guards against wrong shares, dates, economic scope and partial years."""
 import copy
+from test_wisdomtree_country_allocation import CountryAllocation
+from test_wisdomtree_directory_aum import DirectoryAum
 import datetime as dt
 import json
 from pathlib import Path
@@ -25,9 +27,14 @@ class IssuerSources(unittest.TestCase):
         self.assertEqual(result['characteristics']['terPct'],.38)
         self.assertEqual(result['aum']['scope'],'fund')
         self.assertEqual(result['sectors']['basis'],'fund')
-        self.assertAlmostEqual(sum(r['weightPct']for r in result['countries']['rows']),100,delta=.1)
+        self.assertNotIn('countries',result)
+        self.assertEqual(result['collectionErrors'][0]['field'],'countries')
         self.assertNotIn('performance',result)
-        for a,b in [('IE00BZ56SW52','IE00OTHER001'),('05/10/2026','05/01/2026'),('61.34%','1.34%'),('US$1,645,809,873','1,645,809,873')]:
+        broken=wisdomtree(text.replace('61.34%','1.34%'),s,NOW)
+        self.assertNotIn('countries',broken)
+        self.assertEqual(broken['collectionErrors'][0]['field'],'countries')
+        self.assertIn('aum',broken)
+        for a,b in [('IE00BZ56SW52','IE00OTHER001'),('05/10/2026','05/01/2026'),('US$1,645,809,873','1,645,809,873')]:
             with self.assertRaises(ValueError):wisdomtree(text.replace(a,b),s,NOW)
 
     def test_copper_fee_components_stay_separate(self):
@@ -144,7 +151,8 @@ class IssuerSources(unittest.TestCase):
         with patch('collect_public_issuer.get_text',return_value=text),patch('collect_public_issuer.download',side_effect=failure):
             result=public_collect(s,NOW)
         self.assertIn('aum',result)
-        self.assertEqual(result['collectionErrors'][0]['field'],'performance')
+        self.assertTrue(any(e['field']=='performance'for e in result['collectionErrors']))
+        self.assertTrue(any(e['field']=='countries'for e in result['collectionErrors']))
         self.assertNotIn('performance',result)
 
     def test_wisdomtree_rejected_pdf_preserves_html_without_applying_pdf_fields(self):
@@ -159,7 +167,8 @@ class IssuerSources(unittest.TestCase):
             self.assertEqual(result['aum']['amount'],1645809873)
             self.assertEqual(result['characteristics']['terPct'],.38)
             self.assertNotIn('performance',result)
-            self.assertEqual(result['collectionErrors'][0]['reason'],reason)
+            self.assertTrue(any(e.get('field')=='performance'and e.get('reason')==reason for e in result['collectionErrors']))
+            self.assertTrue(any(e['field']=='countries'for e in result['collectionErrors']))
 
     def test_wisdomtree_invalid_allocations_preserve_valid_pdf_calendars(self):
         text=(FIX/'wisdomtree-calendar.txt').read_text();s=share('IE00BZ56SW52')

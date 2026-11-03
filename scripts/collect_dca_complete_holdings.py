@@ -6,6 +6,7 @@ from urllib.parse import urlsplit, parse_qs
 from data_automation import get_json, get_text, UTC, write_json_atomic
 from observation_status import holdings_status
 from collect_etf_holdings import parse_holdings
+from holdings_reconciliation import reconcile_positions, HoldingsPerimeterError, HoldingsSourceError
 ROOT=Path(__file__).resolve().parents[1]
 def collect_blackrock_complete(config,now,fetch=get_text,sleep=time.sleep):
     """Retry only a missing component on an otherwise exact product response."""
@@ -25,7 +26,11 @@ def collect_blackrock_complete(config,now,fetch=get_text,sleep=time.sleep):
                 sleep(2)
                 continue
             raise ValueError('BlackRock exact-share holdings component absent after two bounded attempts: '+json.dumps(attempts))
-        record,securities=parse_complete(body,config['isin'],config['url'],now,config.get('fundAssetClass','Equity'))
+        try:
+            record,securities=parse_complete(body,config['isin'],config['url'],now,config.get('fundAssetClass','Equity'))
+        except HoldingsPerimeterError as error:
+            error.diagnostic.update(sourceUrl=config['url'],sha256=digest,checkedAt=now.isoformat())
+            raise
         record['sha256']=digest
         if attempts:
             record['sourceAttempts']=[*attempts,{'attempt':attempt+1,'sha256':digest,'status':'validated'}]
@@ -59,12 +64,24 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
     keys=['isin','issueName','holdingPercent','assetClass','countryOfRisk','sectorName','ticker','marketCurrencyCode','exchange']
     cols=[p[k]['value'] for k in keys]
     if len({len(c) for c in cols})!=1:raise ValueError('Misaligned holdings')
+    # Reuse only the literal issuer labels already qualified for this exact
+    # German share. The allocations use the holdings' own date and weights.
+    translated_allocations = localized and isin == 'DE0002635307'
+    if translated_allocations:
+        from collect_ishares_german import COUNTRIES, SECTORS
     rows=[]; securities=[]; allocations={'countries':{},'sectors':{}}; classified=True
+    positions=[];selected=[]
     for security,name,weight,kind,country,sector,ticker,currency,exchange in zip(*cols):
+        positions.append({'isin':security,'name':name,'weightPct':weight,'assetClass':kind,
+                          'ticker':ticker,'currency':currency,'exchange':exchange})
         if kind=='Equity' and (isinstance(weight,bool) or not isinstance(weight,(int,float)) or not __import__('math').isfinite(weight) or weight<0):raise ValueError('Invalid or short equity position')
         if kind!='Equity' or weight==0:continue
+        selected.append(len(positions)-1)
         rows.append({'isin':security,'name':name,'weightPct':weight})
-        if localized or not all(isinstance(v,str) and v.strip() and v not in ('-', 'Unknown', 'Other') for v in (country,sector)):
+        if translated_allocations:
+            country = COUNTRIES.get(country.strip()) if isinstance(country,str) else None
+            sector = SECTORS.get(sector.strip()) if isinstance(sector,str) else None
+        if (localized and not translated_allocations) or not all(isinstance(v,str) and v.strip() and v not in ('-', 'Unknown', 'Other') for v in (country,sector)):
             classified=False
         else:
             for field,label in [('countries',country),('sectors',sector)]:
@@ -72,8 +89,14 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
         if not localized and re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',security or ''):
             securities.append({'isin':security,'name':name,'country':None if localized else country,'sector':None if localized else sector,'ticker':ticker,'currency':currency,'exchange':exchange})
     total=sum(r['weightPct'] for r in rows)
-    if not rows or total>100.5:raise ValueError('Non-long-only equity composition')
-    record={'asOf':h['asOf'],'basis':'fund','sourceUrl':url,'complete':True,'rows':rows}
+    if not rows:raise ValueError('No physical equity composition')
+    reconciliation=reconcile_positions(positions,selected,h['asOf'])
+    if total>100.5:
+        raise HoldingsPerimeterError(f'Equity NAV weights {total:.6f}% exceed the existing 100.5% limit; published net NAV {reconciliation["publishedNetWeightPct"]:.6f}%; excluded classes {json.dumps(reconciliation["excludedWeightPctByType"],sort_keys=True)}; unsupported gross/net perimeter, no renormalisation',
+            {'kind':'unsupported-gross-net-perimeter','subjectIsin':isin,'asOf':h['asOf'],
+             'benchmark':facts.get('indexSeriesName',{}).get('value'),
+             'navReconciliation':reconciliation,'financialDataQualified':False})
+    record={'asOf':h['asOf'],'basis':'fund','sourceUrl':url,'complete':True,'rows':rows,'navReconciliation':reconciliation,'method':'Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation'}
     # Attributes and equity weights come from these exact dated holdings, never
     # the independently dated exposure tables or a later security lookup.
     if classified and total <= 100:
@@ -89,7 +112,7 @@ def main():
     if args.only:
         if set(args.only)-set(config):raise ValueError('Unknown complete holdings selection')
         config={k:v for k,v in config.items() if k in args.only}
-    errors={};fresh={};evidence={}
+    errors={};fresh={};evidence={};rejected={}
     identities={**json.loads((ROOT/'scripts/dca-equity-identities.json').read_text()),**json.loads((ROOT/'scripts/dca-equity-extra-identities.json').read_text())}
     wanted=set(identities.values())
     def one(item):
@@ -126,13 +149,24 @@ def main():
                 qualifications={fund_isin:qualify_liquidity_fund(fund_isin,now) for fund_isin in fund_isins}
                 return isin, (parse_holdings(body, c, now, url, complete=True,non_equity_funds=qualifications)['completeHoldings'], []), None
             return isin,collect_blackrock_complete({**c,'isin':isin},now),None
-        except Exception as e:return isin,None,str(e)
+        except Exception as e:return isin,None,e
     direct={isin:c for isin,c in config.items() if c.get('parser')!='lifestrategy-lookthrough'}
     with ThreadPoolExecutor(max_workers=6) as pool:
         for isin,result,error in pool.map(one,direct.items()):
-            if error:errors[isin]=error;continue
+            if error:
+                errors[isin]=str(error)
+                if isinstance(error,HoldingsSourceError):rejected[isin]=error.diagnostic
+                continue
             h,securities=result
-            if previous.get(isin,{}).get('asOf','')>h['asOf']:errors[isin]='Date regression';continue
+            if previous.get(isin,{}).get('asOf','')>h['asOf']:
+                errors[isin]='Date regression'+('; access attempts: '+json.dumps(h['accessAttempts'])[:2400] if h.get('accessAttempts') else '')
+                rejected[isin]={'kind':'older-source-observation','subjectIsin':isin,
+                    'asOf':h['asOf'],'checkedAt':now.isoformat(),
+                    'retainedAsOf':previous[isin]['asOf'],
+                    'sourceUrl':h['sourceUrl'],'sha256':h.get('sha256'),
+                    'accessAttempts':h.get('accessAttempts',[]),
+                    'financialDataQualified':False,'normalizationApplied':False}
+                continue
             fresh[isin]={**h,'checkedAt':now.isoformat()}
             for r in securities:
                 if r['isin'] not in wanted:continue
@@ -145,7 +179,9 @@ def main():
             try:
                 h=derive(isin,records[isin],{**previous,**fresh},errors,now)
                 if previous.get(isin,{}).get('asOf','')>h['asOf']:raise ValueError('Date regression')
-                fresh[isin]={**h,'checkedAt':now.isoformat()}
+                # The derivation did not fetch its parent fund documents.
+                # Keep the oldest real dependency control and its own validation clock.
+                fresh[isin]=h
             except Exception as e:errors[isin]=str(e)
     if args.apply:
         write_json_atomic(path,{**previous,**fresh})
@@ -156,9 +192,26 @@ def main():
         status_path=ROOT/'src/data/dca-holdings-status.json'
         status=json.loads(status_path.read_text()) if status_path.exists() else {}
         for isin in config:
-            status[isin]=holdings_status(status.get(isin,{}),previous.get(isin,{}),fresh.get(isin),errors.get(isin),now)
+            old=status.get(isin,{})
+            status[isin]=holdings_status(old,previous.get(isin,{}),fresh.get(isin),errors.get(isin),now)
+            # Keep the rejected source's own clock separate from retained data.
+            # A transport failure must not renew this diagnostic either.
+            diagnostic=rejected.get(isin) or (old.get('lastRejectedObservation') if isin not in fresh else None)
+            if diagnostic:status[isin]['lastRejectedObservation']=diagnostic
         write_json_atomic(status_path,status)
-    write_json_atomic(args.output,{'updated':list(fresh),'successes':[{'id':'dca-holdings:'+isin} for isin in fresh],'errors':[{'id':'dca-holdings:'+isin,'field':'Composition complète','error':error} for isin,error in errors.items()]})
+    # Bounded proof in the ordinary producer artifact, including PR runs that
+    # deliberately do not commit or publish their acquired observations.
+    observations={isin:{**{key:h[key] for key in ['asOf','checkedAt','validatedAt','basis','scope','sourceUrl','sourceUrls','sha256','method','identitySourceUrl','identitySha256','identityAsOf','identityMethod','shareSourceUrl','shareAsOf','shareSha256','shareSourceAttempts'] if key in h},
+        'completeFile':h.get('complete') is True,'rows':len(h['rows']),
+        'publishedEquityWeightPct':sum(r['weightPct'] for r in h['rows']),
+        'identifiedEquityWeightPct':sum(r['weightPct'] for r in h['rows'] if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',r.get('isin') or ''))}
+        for isin,h in fresh.items()}
+    write_json_atomic(args.output,{'observations':observations,'rejectedObservations':rejected,'updated':list(fresh),'successes':[{'id':'dca-holdings:'+isin} for isin in fresh],'errors':[{'id':'dca-holdings:'+isin,'field':'Composition complète','error':error} for isin,error in errors.items()]})
+    # Audit each success even if an unrelated support fails later in this run.
+    # Only bounded public-source metadata; never the thousands of holding rows.
+    for isin,entry in observations.items():
+        fields=['asOf','checkedAt','basis','scope','sourceUrl','sha256','rows','publishedEquityWeightPct','identifiedEquityWeightPct']
+        print('Validated holdings observation: '+json.dumps({'isin':isin,**{key:entry[key]for key in fields if key in entry}},sort_keys=True))
     print(f'Complete holdings: {len(fresh)}/{len(config)}; identified securities: {len(evidence)}; errors: {errors}')
     if errors:raise SystemExit(1)
 if __name__=='__main__':__import__('producer_report_contract').run('collect_dca_complete_holdings', main)

@@ -1,0 +1,20 @@
+
+> patrimoine-et-compagnie@0.0.0 lint
+> oxlint
+
+scripts/lib/bounded-command.mjs:8:25: warning eslint(no-unused-expressions): Expected expression to be used help: Consider using this expression or removing it
+scripts/test-ai-tool-reuse.mjs:14:8: warning eslint(no-unused-vars): Identifier 'GLOBAL' is imported but never used. help: Consider removing this import.
+scripts/run-browser-checks.mjs:1:24: warning eslint(no-unused-vars): Identifier 'mkdirSync' is imported but never used. help: Consider removing this import.
+services/tweet-bank-private/worker/index.js:35:218: warning eslint(no-unused-vars): Parameter 'k' is declared but never used. Unused parameters should start with a '_'. help: Consider removing this parameter.
+scripts/test-regulatory-consumers.mjs:70:34: warning eslint(no-unused-vars): Variable 'PEL_GENERATIONS' is declared but never used. Unused variables should start with a '_'. help: Consider removing this declaration.
+scripts/report-shared-market-data.mjs:20:22: warning eslint(no-unused-vars): Variable 'today' is declared but never used. Unused variables should start with a '_'. help: Consider removing this declaration.
+scripts/sync-global-equities.mjs:25:9: warning eslint(no-unused-vars): Variable 'lastAttempt' is declared but never used. Unused variables should start with a '_'. help: Consider removing this declaration.
+src/pages/dca-profiles/DcaApp.jsx:44:8: warning react-hooks(exhaustive-deps): React Hook useEffect has a missing dependency: 'initial.damagedDraft' help: Either include it or remove the dependency array.
+src/pages/dca-profiles/DcaApp.jsx:57:89: warning react-hooks(exhaustive-deps): React Hook useCallback has a missing dependency: 'image' help: Either include it or remove the dependency array.
+src/pages/dca-profiles/DcaApp.jsx:57:104: warning react-hooks(exhaustive-deps): React Hook useCallback has unnecessary dependency: image.retry help: Either include it or remove the dependency array.
+src/pages/dca-profiles/AllocationEditor.jsx:9:17: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/pages/dca-profiles/AllocationEditor.jsx:12:17: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+scripts/test-official-nav-consumers.mjs:7:26: warning eslint(no-unused-vars): Identifier 'performanceBasis' is imported but never used. help: Consider removing this import.
+scripts/test-radar-extensions.mjs:3:25: warning eslint(no-unused-vars): Identifier 'extraDiscovery' is imported but never used. help: Consider removing this import.
+scripts/test-remainder-financial.mjs:3:9: warning eslint(no-unused-vars): Identifier 'createHash' is imported but never used. help: Consider removing this import.
+src/data/catalog.js:4:10: warning eslint(no-unused-vars): Identifier 'QUALIFIED_EXPOSURE_SHEETS' is imported but never used. help: Consider removing this import.

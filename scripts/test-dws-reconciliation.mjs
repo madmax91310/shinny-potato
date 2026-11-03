@@ -100,3 +100,16 @@ for (const [key, c] of Object.entries(superseded.state.conflicts)) {
 }
 const certifiedThenLater = advance(result.state, nextPeriod, [], new Date('2026-10-15T10:00:00Z'))
 for (const c of Object.values(certifiedThenLater.state.conflicts)) assert.equal(c.resolution.kind, 'verified-source-revision')
+
+// Defend the independent qualifier against legacy synthesized zeros arriving
+// from an older producer/cache as well as preventing their creation upstream.
+{
+  const {reconcileDws} = await import('./lib/dws-reconciliation.mjs')
+  const fixture = JSON.parse(readFileSync(new URL('./fixtures/radar-unknown-classifications-20261030.json', import.meta.url)))
+  const state = structuredClone(fixture.state), now = new Date('2026-10-31T01:00:00Z')
+  const fakeZeros = fixture.affected.map(({key}) => ({...fixture.rows.find(r => r.entity === fixture.state.current[key].entity && r.field.startsWith('countries:')),field:fixture.state.current[key].field,fieldLabel:fixture.state.current[key].fieldLabel,value:0,absenceEvidence:'Absent from a validated complete allocation'}))
+  const before = JSON.stringify(state)
+  const reconciled = reconcileDws(state,[...fixture.rows,...fakeZeros],fixture.proofs.map(p=>({...p,checkedAt:now.toISOString()})),now)
+  assert.equal(reconciled.size,0,'Unclassified weight prevents a legacy zero from passing independent verification')
+  assert.equal(JSON.stringify(state),before,'No clock, anchor, value or conflict advanced on rejected inference')
+}

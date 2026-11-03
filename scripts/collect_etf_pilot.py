@@ -1,14 +1,16 @@
 """Collect issuer-embedded structured data for catalog shares; with optional validated application."""
 import argparse
+import copy
 from concurrent.futures import ThreadPoolExecutor
 import datetime as dt
 from html.parser import HTMLParser
 import json
+import hashlib
 import math
 import os
 import pathlib
 import urllib.error
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urlsplit, parse_qsl
 
 from data_automation import UTC, get_text, number, reject, write_json_atomic, ResponseFormatError
 
@@ -54,16 +56,39 @@ def source_date(value, now):
     return parsed.isoformat()
 
 
-def allocation(container, now):
+def allocation(container, now, signed_holdings=None):
     points = container['dataPointsByNameMap']
     labels, weights = points['type']['value'], points['fund']['value']
     if not isinstance(labels, list) or not labels or len(labels) != len(weights) or len(set(labels)) != len(labels):
         reject('Invalid allocation labels')
+    maximum = 100
+    if signed_holdings is not None:
+        # Explicit net-assets convention: independently reconcile ALL positions,
+        # including money-market instruments and signed cash, on the same date.
+        p = signed_holdings['dataPointsByNameMap']
+        if p['asOfDate']['value'] != points['asOf']['value']:
+            reject('Signed allocation and holdings dates disagree')
+        names, kinds, values = (p[k]['value'] for k in ('sectorName', 'assetClass', 'holdingPercent'))
+        if not names or len(names) != len(kinds) or len(names) != len(values):
+            reject('Truncated signed allocation holdings')
+        totals = {}
+        for name, kind, value in zip(names, kinds, values):
+            if (name not in labels or isinstance(value, bool) or not isinstance(value, (int, float))
+                    or not math.isfinite(value) or not -100 <= value <= 100
+                    or (name != 'Cash and/or Derivatives' and (kind != 'Fixed Income' or value < 0))
+                    or (name == 'Cash and/or Derivatives' and kind not in ('Cash', 'Money Market', 'Cash Collateral and Margins', 'FX', 'Futures', 'Forwards'))):
+                reject('Invalid signed allocation holding')
+            totals[name] = totals.get(name, 0) + value
+        if (set(totals) != set(labels) or not 99 <= sum(values) <= 101
+                or any(isinstance(w, bool) or not isinstance(w, (int, float)) or not math.isfinite(w)
+                       or abs(totals[name] - w) > .02 for name, w in zip(labels, weights))):
+            reject('Signed sector allocation disagrees with complete holdings')
+        maximum = 100 + max(0, -totals.get('Cash and/or Derivatives', 0)) + .02
     for label, weight in zip(labels, weights):
         # A net cash/derivative balance is signed, unlike a security exposure.
         # Keep the exact published label and value; never clip or renormalise.
         if (isinstance(weight, bool) or not isinstance(weight, (int, float))
-                or not math.isfinite(weight) or not -100 <= weight <= 100
+                or not math.isfinite(weight) or not -100 <= weight <= maximum
                 or (weight < 0 and label != 'Cash and/or Derivatives')):
             reject(f'Invalid allocation weight for {label}: {weight!r}')
     if not 99 <= sum(weights) <= 101:
@@ -104,13 +129,21 @@ def parse_share(body, share, now):
         reject('Unexpected share identity or currency')
     if value('useOfProfitsCode') != share.get('distribution', 'Accumulating'):
         reject('Unexpected distribution policy')
+    # Explicit contracts for new admissions; a strategy change needs review of
+    # the editorial description before it can replace the qualified observation.
+    for expected, field in [('expectedIndex', 'indexSeriesName'),
+                            ('expectedAssetClass', 'assetClass'),
+                            ('expectedStructure', 'productStructure'),
+                            ('expectedUcits', 'ucitsCompliantFlag')]:
+        if expected in share and value(field) != share[expected]:
+            reject('Exact-share contract changed: ' + field)
     # Keep exact issuer characteristics in the shared record, not only in config.
     identity = {'distribution': value('useOfProfitsCode'), 'index': None if share.get('physicalMetal') else value('indexSeriesName')}
     for target, source in [('domicile','domicile'), ('inceptionDate',share.get('inceptionField','inceptionDate'))]:
         published = facts.get(source, {}).get('value')
         if isinstance(published, (str, int)) and not isinstance(published, bool) and str(published).strip():
             identity[target] = str(published)
-    identity.update(replication_characteristics(facts))
+    identity.update(replication_characteristics(facts, combined=share.get('combinedReplication', False)))
     ter = number(value('emeaMgt'), positive=False)
     if ter > 5:
         reject('Invalid TER')
@@ -136,8 +169,20 @@ def parse_share(body, share, now):
         countries={'status':'collection-error','rows':[]}
         allocation_errors.append({'field':'countries-primary','url':product_data_url(share),'reason':str(error),'fallbackQualified':False})
     sector_failure=None
+    signed_sectors=False
     try:
-        sectors = allocation(exposure['sector'], now) if share.get('collectSectors', True) and 'sector' in exposure else {'status': 'not-published', 'rows': []}
+        if share.get('collectSectors', True) and 'sector' in exposure:
+            weights = exposure['sector']['dataPointsByNameMap']['fund']['value']
+            # Reconcile the exceptional signed/net table only. An ordinary
+            # positive table keeps its own publication date, independently of
+            # the holdings snapshot; no signed reconciliation is then claimed.
+            signed_sectors = (share.get('sectorAllocationConvention') == 'signed-net-assets-reconciled-holdings'
+                              and any(type(w) in (int, float) and math.isfinite(w) and (w < 0 or w > 100)
+                                      for w in weights))
+            sectors = allocation(exposure['sector'], now,
+                components['holdings']['containersByNameMap']['all'] if signed_sectors else None)
+        else:
+            sectors = {'status': 'not-published', 'rows': []}
     except ValueError as error:
         try:
             if str(error)!='Incomplete allocation' or not isinstance(body,dict):raise error
@@ -154,6 +199,8 @@ def parse_share(body, share, now):
             sectors={'status':'collection-error','rows':[]}
             sector_failure={'field':'sectors-primary','url':product_data_url(share),'reason':str(error)+'; independent allocation unqualified: '+str(fallback_error),'fallbackQualified':False}
     if sector_failure:allocation_errors.append(sector_failure)
+    if sectors.get('rows') and signed_sectors:
+        sectors['weightConvention'] = share['sectorAllocationConvention']
 
     if countries.get('rows'): countries['sourceComponent'] = 'exposureBreakdowns.geography.countries'
     if sectors.get('rows'): sectors.setdefault('sourceComponent','exposureBreakdowns.sector')
@@ -201,19 +248,66 @@ def parse_share(body, share, now):
             'rawComponents': components, **({'collectionErrors':allocation_errors} if allocation_errors else {})}
 
 
+
+def parse_share_with_dated_holdings(body, share, now, fetch=None):
+    """Reconcile a signed sector table only against its exact official snapshot.
+
+    The primary page and current holdings keep their own dates. The dedicated
+    all-holdings endpoint supports asOfDate; it must actually return that date,
+    product and currency. No fallback after identity or financial disagreement.
+    """
+    try:
+        return parse_share(body, share, now)
+    except ValueError as error:
+        if (str(error) != 'Signed allocation and holdings dates disagree'
+                or not isinstance(body, dict)
+                or share.get('sectorAllocationConvention') != 'signed-net-assets-reconciled-holdings'
+                or share.get('holdingsAssetClass') != 'Fixed Income'):
+            raise
+    components = body['componentsByNameMap']
+    sector = components['exposureBreakdowns']['containersByNameMap']['sector']
+    requested = sector['dataPointsByNameMap']['asOf']['value']
+    stamp = source_date(requested, now)
+    route = urlsplit(product_data_url(share))
+    query = dict(parse_qsl(route.query))
+    query.update(component='holdings.all', asOfDate=str(requested))
+    url = route._replace(query=urlencode(query)).geturl()
+    text = (fetch or get_text)(url, ('application/json',), 20_000_000)
+    dated = json.loads(text, parse_constant=lambda value: reject(f'Invalid JSON number: {value}'))
+    if str(dated['productId']) != str(share['productId']) or dated['currencyCode'] != share['currency']:
+        reject('Dated sector reconciliation has a different product or currency')
+    historical = dated['componentsByNameMap']['holdings']['containersByNameMap']['all']
+    if source_date(historical['dataPointsByNameMap']['asOfDate']['value'], now) != stamp:
+        reject('Dated sector reconciliation did not return the requested holdings snapshot')
+    # The very same allocation() gate checks every original signed position,
+    # complete net total, class/sector scope and each published sector weight.
+    allocation(sector, now, historical)
+    aligned = copy.deepcopy(body)
+    aligned['componentsByNameMap']['holdings'] = dated['componentsByNameMap']['holdings']
+    result = parse_share(aligned, share, now)
+    result['rawComponents'] = components  # all other consumers retain the current native book
+    evidence = {'sourceUrl': url, 'asOf': stamp, 'sha256': hashlib.sha256(text.encode()).hexdigest(),
+                'sourceComponent': 'holdings.all', 'method': 'Official all-holdings query with explicit asOfDate matching the published signed sector table; original weights, no scaling',
+                'latestHoldingsAsOf': source_date(components['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['asOfDate']['value'], now)}
+    result['sectors']['reconciliationSource'] = evidence
+    result.setdefault('sourceAttempts', []).append({'url': url, 'status': 'validated', 'fields': ['sectors'],
+                                                   'asOf': stamp, 'sha256': evidence['sha256']})
+    return result
+
+
 def collect(config, baseline, now=None, fetch=get_text):
     now = now or dt.datetime.now(UTC)
     def collect_one(share):
         # This public endpoint is published in the official product-page components.
         # Fetch the latest structured snapshot directly, without the HTML consent page.
         body, url, attempts = fetch_product(share, fetch)
-        result = parse_share(body, share, now)
+        result = parse_share_with_dated_holdings(body, share, now, fetch=fetch)
         from ishares_metrics import parse_metrics
         try:
             result['metrics'] = parse_metrics(result['rawComponents'], now, url)
         except (ValueError, KeyError, TypeError) as error:
             result.setdefault('collectionErrors', []).append({'field': 'metrics', 'url': url, 'reason': str(error)})
-        if attempts: result['sourceAttempts'] = attempts
+        if attempts: result.setdefault('sourceAttempts', []).extend(attempts)
         if share.get('collectHoldings'):
             from collect_etf_holdings import parse_holdings, collect_holdings
             try:
@@ -245,6 +339,18 @@ def collect(config, baseline, now=None, fetch=get_text):
         if active.get('currency') and active['currency'] != share['currency']:
             reject('Active baseline has a different currency')
         result['sourceUrl'] = url
+        if share.get('sourceProof'):
+            # Hash of the canonical structured response, also retained in the
+            # replay fixtures. Never borrow the AUM date for undated facts.
+            digest = hashlib.sha256(json.dumps(body, ensure_ascii=False).encode()).hexdigest()
+            for field in ('characteristics', 'aum', 'countries', 'sectors', 'countriesRisk', 'holdings', 'performance'):
+                if field in result:
+                    result[field].update(sourceUrl=url, sha256=digest)
+            performance = result.get('performance')
+            if performance and performance.get('years'):
+                performance['asOf'] = max(performance['years']) + '-12-31'
+                performance['yearEvidence'] = {year: {'asOf': year+'-12-31', 'sourceUrl': url, 'sha256': digest}
+                                               for year in performance['years']}
         result['comparison'] = [
             {'year': year, 'active': (active.get('values') or [None] * 6)[year - 2020],
              'issuer': result['performance']['years'][str(year)],

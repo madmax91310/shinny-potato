@@ -93,8 +93,12 @@ class PlatformActivityTests(unittest.TestCase):
   day=dt.date(2026,10,23);a=platform_activity('tudigo',[doc,doc],day)
   self.assertEqual(a['status'],'ceased');self.assertEqual(a['judgmentAt'],'2026-10-12')
   self.assertEqual(a['checkedAt'],'2026-10-23')
-  for changed in [doc.replace('Tudigo','Autre plateforme'),doc.replace('12 octobre 2026','12 octobre 2027'),doc.replace('Vos accès ne sont pas encore ouverts','Accès ouverts')]:
+  for changed in [doc.replace('Tudigo','Autre plateforme'),doc.replace('12 octobre 2026','12 octobre 2027')]:
    with self.assertRaises(ValueError):platform_activity('tudigo',[changed,changed],day)
+  unknown=doc.replace('Vos accès ne sont pas encore ouverts','Accès ouverts')
+  partial=platform_activity('tudigo',[unknown,unknown],day)
+  self.assertEqual(partial['status'],'ceased');self.assertEqual(partial['runoffAccess'],'not-published')
+  self.assertNotIn('accès ne sont pas encore ouverts',partial['notice'])
   with self.assertRaises(ValueError):platform_activity('tudigo',[doc,'Conditions Tudigo'],day)
  def test_activity_does_not_renew_archived_terms_or_silently_reopen(self):
   doc=(ROOT/'fixtures/presentation-actors/tudigo-cessation-20261023.html').read_text();day=dt.date(2026,10,23)

@@ -45,6 +45,10 @@ def silver(text, share, now):
     if currency != 'USD': reject('Silver Miners AUM currency changed')
     digest = proof(text.encode()); result = base(share, stamp, digest)
     result['characteristics']['terPct'] = ter
+    from globalx_sections import objective_benchmark
+    benchmark = objective_benchmark(Page(text), 'SILV')
+    if benchmark:
+        result['characteristics']['index'] = benchmark
     result['aum'] = dict(amount=amount, currency=currency, scope='fund', asOf=stamp, sourceUrl=share['sourceUrl'], sha256=digest)
     chunks = []
     for m in re.finditer(r'self\.__next_f\.push\((.*?)\)</script>', text):
@@ -89,7 +93,8 @@ def silver(text, share, now):
     sector_tables = [t for t in page.tables if 'Sector Breakdown As of' in t['context']
                      and 'Reference Index' not in t['context']
                      and t['rows'] and t['rows'][0] == ['', 'Sector', 'Weight (%)']]
-    qualification = dict(status='not-published', checkedAt=now.date().isoformat(),
+    # Date of the exact-share facts on the inspected page; checkedAt stays the fetch date.
+    qualification = dict(status='not-published', asOf=stamp, checkedAt=now.date().isoformat(),
         sourceUrl=share['sourceUrl'], sha256=digest,
         reason='Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.',
         evidence={'datedCountryTable': True, 'datedHoldingsTable': True, 'sectorTables': len(sector_tables)})

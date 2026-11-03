@@ -1,3 +1,4 @@
+import { INVESTOR_MODELS, MODEL_ASSET_CLASSES, modelNatureLabel } from './investor-models.js'
 import { COMPANY_INDEX_IDS } from './index-company-facts.js'
 import { QUALIFIED_METRICS } from './qualified-exposure-metrics.js';
 import { marketCalendarPerformance } from './market-calendar-performance.js';
@@ -12,7 +13,6 @@ import { AUTOMATED_ETF, HISTORICAL_AUTOMATED_PERFORMANCE as AUTOMATED_PERFORMANC
 import { VERIFIED_RETURNS } from './verified-returns.js';
 import { SIMULATION_PROXIES } from './simulation-proxies.js';
 import { CATALOG as DUEL_ASSETS } from './duel-assets.js';
-import { FEE_COMPARISON_ASSETS } from './fee-comparison-assets.js';
 import { MONTHLY_MARKET_STORY_IDS } from './market-story-selection.js';
 import { ALLOCATION_CASE_DEFINITIONS } from './allocation-cases.js';
 import { INSTRUMENTS_BY_ISIN } from './instruments.js';
@@ -62,7 +62,6 @@ ASSETS.forEach((x) => {
 
 });
 DUEL_ASSETS.forEach(x => use(x.isin, 'Duels de portefeuilles', '/duels-portefeuilles'));
-FEE_COMPARISON_ASSETS.forEach(x => use(x.isin, 'Impact des frais', '/impact-frais'));
 DEFAULT_THEMES.forEach((t) => t.etfs.forEach((x) => use(x.isin, 'Comparatif ETF', '/comparatif-etf')));
 SHEETS.forEach((x) => use(x.isin, 'Coulisses des indices', '/tweets-factsheets'));
 ['IE00B1FZS913','IE00B2NPKV68'].forEach(isin => use(isin, 'Banque de tweets', '/banque-tweets'));
@@ -77,6 +76,9 @@ function instrument(isin, identity) {
   if (commodities) fields.push(field('Allocation matières premières de l’indice suivi', 'automated-etf', commodities.rows, { ...commodities, note: 'Groupes de matières premières publiés par Invesco ; ni secteurs actions, ni panier de swap. Les arrondis signés publiés restent conservés.' }));
   if (ETF_TER_BY_ISIN[isin] != null) fields.push(field('Frais annuels (%)', 'etf-ter', ETF_TER_BY_ISIN[isin], { ...ETF_TER_EVIDENCE[isin], scope }) );
   const facts = INSTRUMENT_FACTS_BY_ISIN[isin];
+  const record = AUTOMATED_ETF[isin], benchmarkProof = record?.characteristicChecks?.index;
+  if (!facts?.benchmark && record?.characteristics?.index && benchmarkProof?.checkedAt) fields.push(field('Indice suivi', 'automated-etf', record.characteristics.index,
+    { ...benchmarkProof, scope, method: 'Objectif de la part exacte ; preuve propre à ce champ, distincte du contrôle des frais et des compositions.' }));
   if (facts) fields.push(field('Caractéristiques', 'instrument-facts', facts, { ...facts.characteristicsSource, dateStatus: 'not-applicable', scope, method: 'Caractéristiques de la part ; aucune inférence sur la cotation.' }));
   const pea = PEA_REVIEWS_BY_ISIN[isin];
   if (pea) fields.push(field('Éligibilité PEA', 'instrument-pea', pea.eligible, { ...pea, dateStatus: 'not-applicable', scope }));
@@ -108,7 +110,7 @@ function instrument(isin, identity) {
   }
   const live = LIVE_PERFORMANCE[isin];
   if (live?.values.some(Number.isFinite) && (live.periodStart !== '2020-01-01' || live.periodEnd !== '2025-12-31')) fields.push(field(`Rendements ${live.calendarYears[0]}–${live.calendarYears.at(-1)}`, 'automated-etf', live.values, { ...live, asOf: live.periodEnd, scope, method: live.method }));
-  if (reviewed?.portfolioHistoryBasis === 'proxy' && !AUTOMATED_PERFORMANCE[isin]?.values.every(Number.isFinite)) fields.push(field('Historique de simulation 2020–2025', 'instrument-returns', getInstrumentReturnValues(isin), { ...PORTFOLIO_RETURN_EVIDENCE[isin], scope: `${scope} ; proxy de simulation, distinct du rendement réel de la part` }));
+  if (reviewed?.portfolioHistoryBasis === 'proxy' && !AUTOMATED_PERFORMANCE[isin]?.values.some(Number.isFinite)) fields.push(field('Historique de simulation 2020–2025', 'instrument-returns', getInstrumentReturnValues(isin), { ...PORTFOLIO_RETURN_EVIDENCE[isin], scope: `${scope} ; proxy de simulation, distinct du rendement réel de la part` }));
   for (const observation of evidence?.observations ?? []) fields.push(field(`Performance ${observation.label}`, AUTOMATED_ETF[isin]?.performance ? 'automated-etf' : 'instrument-performance-review', observation, { source: evidence.source, checkedAt: evidence.checkedAt, asOf: observation.asOf, currency: evidence.currency, scope, method: 'Rendement cumulé NAV sur la période explicitement publiée', note: evidence.note }));
   for(const observation of reviewed?.archivedObservations??[])fields.push(field(`Archive performance · ${observation.label}`, 'instrument-performance-review', observation, {source:reviewed.source,checkedAt:null,reviewedAt:reviewed.qualificationHold.checkedAt.slice(0,10),sourceReason:reviewed.qualificationHold.reason,asOf:observation.asOf,currency:reviewed.currency,scope,sourceStatus:'archive-unverifiable',method:'Relevé historique non recertifié pour la part exacte',note:`Relevé initial daté du ${reviewed.checkedAt}. ${reviewed.qualificationHold?.reason}`}));
   if(reviewed?.qualificationHold&&!LIVE_PERFORMANCE[isin]?.observations?.length)fields.push({...field('Rendements glissants à qualifier','instrument-performance-review',reviewed.qualificationHold.reason,{...reviewed.qualificationHold,checkedAt:reviewed.qualificationHold.checkedAt.slice(0,10),scope,method:'Contrôle de la table émetteur : identité de la part distribuante non qualifiée'}),qualificationMissing:reviewed.qualificationHold.reason});
@@ -167,6 +169,13 @@ export const DATA_CATALOG = Object.freeze([
   ...HOUSEHOLD_STATISTICS.map((value) => ({ id: `household:${value.id}`, type: 'household', name: value.title,
     aliases: [value.id, value.category, value.headline, 'Insee', 'ménages'], consumers: [{ tool: 'La France en 100 ménages', path: `/france-100-menages` }],
     fields: [field('Statistique de ménages', 'household-statistics', value, value.metadata)] })),
+  ...INVESTOR_MODELS.map(model => ({ id: `investor-model:${model.id}`, type: 'portfolio', name: model.name,
+    aliases: [model.author, modelNatureLabel(model), model.publication, ...model.rows.map(row => MODEL_ASSET_CLASSES[row.classId])],
+    consumers: [{ tool: 'Portefeuille d’investisseur', path: '/portefeuilles-investisseurs' }],
+    fields: [field('Allocation cible documentée', 'investor-models', model, {
+      sourceUrls: model.sourceUrls, checkedAt: model.checkedAt, asOf: null, dateStatus: 'not-applicable',
+      scope: model.scope, method: model.method, note: `${model.publication} ; ${model.locator}. ${model.caution}`,
+    })] })),
   ...Object.entries(INSTRUMENTS_BY_ISIN).map(([isin, identity]) => instrument(isin, identity)),
   ...Object.entries(INDEX_FACTS).map(([id, history]) => index(id, history)),
   ...Object.entries(INDEX_RETURNS).filter(([id]) => !INDEX_FACTS[id]).map(([id, history]) => ({
@@ -175,7 +184,7 @@ export const DATA_CATALOG = Object.freeze([
     consumers: [],
     fields: Object.entries(history).map(([date, series]) => field(`Rendements · ${date}`, 'index-returns', series, series.metadata)),
   })),
-  ...Object.entries(HISTORY).map(([id, value]) => ({ id: `history:${id}`, type: 'series', name: value.name ?? value.label ?? id, aliases: [id], consumers: [{ tool: 'Calculateur', path: '/calculateur-investissement' }, { tool: 'Performance depuis', path: '/performance-depuis' }, ...(!SPARSE_MONTHLY_DATA_IDS.has(id) && (value.priceMethod !== 'adjusted' || value.anniversaryPoints) && value.priceUnit !== 'points' ? [{ tool: 'Il y a X ans', path: '/il-y-a-x-ans' }] : []), ...(MONTHLY_MARKET_STORY_IDS.includes(id) ? [{ tool: 'Faits marquants', path: '/faits-marquants-marches' }] : [])], fields: [field('Série historique', 'market-history', value, { ...SUPPORTING_EVIDENCE[`history:${id}`], scope: id, currency: value.currency })] })),
+  ...Object.entries(HISTORY).map(([id, value]) => ({ id: `history:${id}`, type: 'series', name: value.name ?? value.label ?? id, aliases: [id], consumers: [{ tool: 'Calculateur', path: '/calculateur-investissement' }, { tool: 'Performance depuis', path: '/performance-depuis' }, ...(value.valuationBasis === 'fund-nav-total-return' && value.points?.length ? [{ tool: 'Qui a vraiment gagné', path: '/classements-performances' }] : []), ...(!SPARSE_MONTHLY_DATA_IDS.has(id) && (value.priceMethod !== 'adjusted' || value.anniversaryPoints) && value.priceUnit !== 'points' ? [{ tool: 'Il y a X ans', path: '/il-y-a-x-ans' }] : []), ...(MONTHLY_MARKET_STORY_IDS.includes(id) ? [{ tool: 'Faits marquants', path: '/faits-marquants-marches' }] : [])], fields: [field('Série historique', 'market-history', value, { ...SUPPORTING_EVIDENCE[`history:${id}`], scope: id, currency: value.currency })] })),
   ...Object.entries(BROKER_TARIFFS).map(([id, observation]) => ({
     id: `broker:${id}`, type: 'broker', name: {bourso:'BoursoBank · Découverte',fortuneo:'Fortuneo · Starter',xtb:'XTB',saxo:'Saxo · Classic',caidf:'Crédit Agricole Île-de-France',ibkr:'Interactive Brokers · France',tr:'Trade Republic',bd:'Bourse Direct'}[id], aliases: [id, 'courtage', 'tarifs'],
     consumers: [{tool: 'Comparateur de courtiers', path: '/comparatif-courtiers'}],

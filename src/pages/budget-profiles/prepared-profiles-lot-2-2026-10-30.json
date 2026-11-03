@@ -1,0 +1,2551 @@
+[
+  {
+    "id": "prepared-lot2-01-2026-10-30",
+    "name": "Inès",
+    "age": 42,
+    "job": "Cheffe d’entreprise",
+    "location": "Sud de la France",
+    "household": "Mariée · deux enfants · budget personnel",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-10-25",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "ELLE",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://www.elle.fr/Societe/News/Dans-les-comptes-de-Julie-42-ans-Avant-j-avais-une-expertise-plus-rien-a-prouver-et-un-tres-bon-salaire-4675888"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Budget personnel. Sa quote-part fixe est de 900; répartition des variables et financement de l’entreprise estimés. Indemnités valables au moment du récit, pas un salaire entrepreneurial.",
+    "income": [
+      {
+        "label": "Indemnités chômage",
+        "amount": 2400.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Part des charges fixes du foyer",
+        "amount": 900.0,
+        "category": "housing"
+      },
+      {
+        "label": "Part des courses",
+        "amount": 145.0,
+        "category": "food"
+      },
+      {
+        "label": "Part des sorties et loisirs",
+        "amount": 145.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Part des vacances mensualisées",
+        "amount": 125.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Voiture et déplacements personnels",
+        "amount": 160.0,
+        "category": "transport"
+      },
+      {
+        "label": "Téléphone, santé et assurances personnelles",
+        "amount": 100.0,
+        "category": "bills"
+      },
+      {
+        "label": "Vêtements",
+        "amount": 80.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Cadeaux et dépenses occasionnelles",
+        "amount": 100.0,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Financement de son entreprise",
+        "amount": 645.0,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Mariée · deux enfants · budget personnel.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Budget personnel. Sa quote-part fixe est de 900; répartition des variables et financement de l’entreprise estimés. Indemnités valables au moment du récit, pas un salaire entrepreneurial.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 1,
+        "name": "Julie",
+        "age": 42,
+        "country": "France",
+        "sourceDate": "2026-10-25",
+        "description": "Cheffe d’entreprise, mariée, deux enfants",
+        "income": 2400,
+        "incomeScope": "personnel · indemnités chômage",
+        "knownBudget": "Charges fixes foyer2700, sa part900; courses100/semaine; loisirs100/semaine; vacances4000–5000/an.",
+        "missingAndChecks": "Détail charges fixes, répartition variables et revenu du mari.900 n’est pas son budget total; 2400 n’est pas salaire entreprise.",
+        "sourceUrl": "https://www.elle.fr/Societe/News/Dans-les-comptes-de-Julie-42-ans-Avant-j-avais-une-expertise-plus-rien-a-prouver-et-un-tres-bon-salaire-4675888",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-02-2026-10-30",
+    "name": "Aïcha",
+    "age": 41,
+    "job": "Cheffe de service en hébergement d’urgence",
+    "location": "Région parisienne",
+    "household": "Mère célibataire · un enfant de 11 ans",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-10-11",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "ELLE",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://www.elle.fr/Societe/News/Dans-les-comptes-d-Aminata-mere-celibataire-Je-ne-suis-plus-a-decouvert-depuis-2018-4672401"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "3350 est le milieu de la fourchette 3200–3500; dépenses retenues 2300. Réserve 1050 affectée dans ce scénario, non épargne réalisée attestée; les anciens 350 de versement ne sont pas repris.",
+    "income": [
+      {
+        "label": "Salaire net moyen avec astreintes",
+        "amount": 3350.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Loyer et charges",
+        "amount": 1050.0,
+        "category": "housing"
+      },
+      {
+        "label": "Énergie et eau",
+        "amount": 120.0,
+        "category": "bills"
+      },
+      {
+        "label": "Alimentation",
+        "amount": 350.0,
+        "category": "food"
+      },
+      {
+        "label": "Voiture et carburant",
+        "amount": 200.0,
+        "category": "transport"
+      },
+      {
+        "label": "École et cours particuliers",
+        "amount": 270.0,
+        "category": "other"
+      },
+      {
+        "label": "Activités de son enfant",
+        "amount": 100.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Téléphone et internet",
+        "amount": 60.0,
+        "category": "bills"
+      },
+      {
+        "label": "Assurances et santé",
+        "amount": 80.0,
+        "category": "health"
+      },
+      {
+        "label": "Vêtements et hygiène",
+        "amount": 70.0,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Réserves pour projets et imprévus",
+        "amount": 1050.0,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Mère célibataire · un enfant de 11 ans.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. 3350 est le milieu de la fourchette 3200–3500; dépenses retenues 2300. Réserve 1050 affectée dans ce scénario, non épargne réalisée attestée; les anciens 350 de versement ne sont pas repris.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 2,
+        "name": "Aminata",
+        "age": 41,
+        "country": "France",
+        "sourceDate": "2026-10-11",
+        "description": "Cheffe de service hébergement d’urgence, mère seule, enfant11 ans",
+        "income": [
+          3200,
+          3500
+        ],
+        "incomeScope": "personnel · net variable avec astreintes",
+        "knownBudget": "Dépenses2200–2400/mois: logement, charges,essence, nourriture,école, activités enfant.",
+        "missingAndChecks": "Ventiler les postes.350/mois d’épargne était avant formation, pas versement actuel.",
+        "sourceUrl": "https://www.elle.fr/Societe/News/Dans-les-comptes-d-Aminata-mere-celibataire-Je-ne-suis-plus-a-decouvert-depuis-2018-4672401",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-03-2026-10-30",
+    "name": "Céline",
+    "age": null,
+    "job": "Conseillère France Travail",
+    "location": "France",
+    "household": "Mère célibataire · un enfant de 12 ans",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-09-20",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "ELLE",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://www.elle.fr/Societe/News/Dans-les-comptes-de-Nathalie-mere-celibataire-Les-aides-sont-primordiales-pour-vivre-4559255"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Seul le salaire de 1672 est inclus; aides et primes non chiffrées restent exclues. Répartition des 1300 de dépenses et réserves estimées.",
+    "income": [
+      {
+        "label": "Salaire net hors primes",
+        "amount": 1672.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Loyer et charges",
+        "amount": 620.0,
+        "category": "housing"
+      },
+      {
+        "label": "Énergie et eau",
+        "amount": 100.0,
+        "category": "bills"
+      },
+      {
+        "label": "Alimentation",
+        "amount": 280.0,
+        "category": "food"
+      },
+      {
+        "label": "Transports",
+        "amount": 80.0,
+        "category": "transport"
+      },
+      {
+        "label": "Téléphone et internet",
+        "amount": 40.0,
+        "category": "bills"
+      },
+      {
+        "label": "Assurances et santé",
+        "amount": 70.0,
+        "category": "health"
+      },
+      {
+        "label": "École et activités de son enfant",
+        "amount": 60.0,
+        "category": "other"
+      },
+      {
+        "label": "Vêtements",
+        "amount": 30.0,
+        "category": "other"
+      },
+      {
+        "label": "Loisirs",
+        "amount": 20.0,
+        "category": "leisure"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Épargne de précaution",
+        "amount": 172.0,
+        "category": "other"
+      },
+      {
+        "label": "Réserve vacances et projets",
+        "amount": 200.0,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Mère célibataire · un enfant de 12 ans.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Seul le salaire de 1672 est inclus; aides et primes non chiffrées restent exclues. Répartition des 1300 de dépenses et réserves estimées.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 3,
+        "name": "Nathalie",
+        "age": null,
+        "country": "France",
+        "sourceDate": "2026-09-20",
+        "description": "Conseillère France Travail, mère seule, enfant12 ans",
+        "income": 1672,
+        "incomeScope": "personnel · net hors primes",
+        "knownBudget": "Dépenses mensuelles environ1300.",
+        "missingAndChecks": "Aides, primes, ventilation logement/courses/transport; salaire seul pas revenu total confirmé.",
+        "sourceUrl": "https://www.elle.fr/Societe/News/Dans-les-comptes-de-Nathalie-mere-celibataire-Les-aides-sont-primordiales-pour-vivre-4559255",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-04-2026-10-30",
+    "name": "Élodie et Damien",
+    "age": null,
+    "job": "Entrepreneure et salarié",
+    "location": "Bobigny",
+    "household": "Élodie, 39 ans · couple marié · deux enfants de 3 et 5 ans",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-08-23",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "ELLE",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://www.elle.fr/Societe/News/Dans-le-budget-de-Laura-39-ans-J-ai-ouvert-les-yeux-sur-l-investissement-pour-me-mettre-a-l-abri-4496119"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Budget du foyer. Le salaire du conjoint 2600 est une hypothèse explicite; dépenses 3800 au milieu de la fourchette. Les indemnités 2000 concernent août 2026, avant leur fin annoncée en septembre.",
+    "income": [
+      {
+        "label": "Indemnités Élodie",
+        "amount": 2000.0,
+        "category": "other"
+      },
+      {
+        "label": "Salaire Damien au budget",
+        "amount": 2600.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Logement et crédits du foyer",
+        "amount": 1500.0,
+        "category": "housing"
+      },
+      {
+        "label": "Énergie et eau",
+        "amount": 200.0,
+        "category": "bills"
+      },
+      {
+        "label": "Assurances",
+        "amount": 150.0,
+        "category": "bills"
+      },
+      {
+        "label": "Taxe foncière mensualisée",
+        "amount": 150.0,
+        "category": "housing"
+      },
+      {
+        "label": "Courses",
+        "amount": 650.0,
+        "category": "food"
+      },
+      {
+        "label": "Enfants et garde",
+        "amount": 400.0,
+        "category": "other"
+      },
+      {
+        "label": "Transports",
+        "amount": 250.0,
+        "category": "transport"
+      },
+      {
+        "label": "Téléphones et internet",
+        "amount": 80.0,
+        "category": "bills"
+      },
+      {
+        "label": "Restaurants et sorties",
+        "amount": 150.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Vêtements",
+        "amount": 120.0,
+        "category": "other"
+      },
+      {
+        "label": "Vacances mensualisées",
+        "amount": 150.0,
+        "category": "leisure"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Financement de son entreprise",
+        "amount": 800.0,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Élodie, 39 ans · couple marié · deux enfants de 3 et 5 ans.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Budget du foyer. Le salaire du conjoint 2600 est une hypothèse explicite; dépenses 3800 au milieu de la fourchette. Les indemnités 2000 concernent août 2026, avant leur fin annoncée en septembre.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 4,
+        "name": "Laura",
+        "age": 39,
+        "country": "France",
+        "sourceDate": "2026-08-23",
+        "description": "Ancienne directrice marketing, entrepreneure, mariée,deux enfants, Bobigny",
+        "income": 2000,
+        "incomeScope": "personnel · indemnités approximatives",
+        "knownBudget": "Dépenses du COUPLE3600–4000/mois.",
+        "missingAndChecks": "Revenu conjoint, détail des dépenses; indemnités jusqu’àseptembre2026 seulement. Extrait public partiel.",
+        "sourceUrl": "https://www.elle.fr/Societe/News/Dans-le-budget-de-Laura-39-ans-J-ai-ouvert-les-yeux-sur-l-investissement-pour-me-mettre-a-l-abri-4496119",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-05-2026-10-30",
+    "name": "Soraya",
+    "age": 49,
+    "job": "Auxiliaire de vie",
+    "location": "France",
+    "household": "Divorcée · deux enfants adultes indépendants",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-08-09",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "ELLE",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://www.elle.fr/Societe/News/Dans-le-budget-de-Fouzia-49-ans-Je-n-ai-jamais-epargne-sur-une-assurance-vie-ou-un-livret-4481353"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Salaire 2750 au milieu de 2500–3000. Les six premières lignes représentent les 800 de charges fixes; variables ventilées par hypothèse. Aucun versement d’épargne ajouté.",
+    "income": [
+      {
+        "label": "Salaire net moyen",
+        "amount": 2750.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Loyer et charges",
+        "amount": 450.0,
+        "category": "housing"
+      },
+      {
+        "label": "Énergie et eau",
+        "amount": 110.0,
+        "category": "bills"
+      },
+      {
+        "label": "Assurances",
+        "amount": 90.0,
+        "category": "bills"
+      },
+      {
+        "label": "Téléphone et internet",
+        "amount": 60.0,
+        "category": "bills"
+      },
+      {
+        "label": "Frais bancaires",
+        "amount": 20.0,
+        "category": "bills"
+      },
+      {
+        "label": "Abonnements",
+        "amount": 70.0,
+        "category": "bills"
+      },
+      {
+        "label": "Alimentation",
+        "amount": 350.0,
+        "category": "food"
+      },
+      {
+        "label": "Transports",
+        "amount": 180.0,
+        "category": "transport"
+      },
+      {
+        "label": "Coiffure et soins",
+        "amount": 150.0,
+        "category": "health"
+      },
+      {
+        "label": "Restaurants et sorties",
+        "amount": 250.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Vêtements",
+        "amount": 250.0,
+        "category": "other"
+      },
+      {
+        "label": "Vacances mensualisées",
+        "amount": 400.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Cadeaux",
+        "amount": 200.0,
+        "category": "other"
+      },
+      {
+        "label": "Aide familiale",
+        "amount": 100.0,
+        "category": "other"
+      },
+      {
+        "label": "Santé",
+        "amount": 70.0,
+        "category": "health"
+      }
+    ],
+    "savings": [],
+    "capacity": null,
+    "context": "Divorcée · deux enfants adultes indépendants.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Salaire 2750 au milieu de 2500–3000. Les six premières lignes représentent les 800 de charges fixes; variables ventilées par hypothèse. Aucun versement d’épargne ajouté.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 5,
+        "name": "Fouzia",
+        "age": 49,
+        "country": "France",
+        "sourceDate": "2026-08-09",
+        "description": "Auxiliaire de vie, divorcée,deux enfants adultes indépendants",
+        "income": [
+          2500,
+          3000
+        ],
+        "incomeScope": "personnel · salaire",
+        "knownBudget": "Charges FIXES environ800/mois.",
+        "missingAndChecks": "Variables, logement et autres fixes à ventiler;800 ne représente pas dépenses totales. Extrait public partiel.",
+        "sourceUrl": "https://www.elle.fr/Societe/News/Dans-le-budget-de-Fouzia-49-ans-Je-n-ai-jamais-epargne-sur-une-assurance-vie-ou-un-livret-4481353",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-06-2026-10-30",
+    "name": "Maud",
+    "age": 38,
+    "job": "Communication",
+    "location": "Région parisienne",
+    "household": "Célibataire · propriétaire",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-07-12",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "ELLE",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://www.elle.fr/Societe/News/Dans-le-budget-de-Marina-38-ans-Mon-salaire-a-presque-double-en-10-ans-mais-je-n-ai-pas-augmente-mon-train-de-vie-4478788"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Dépenses 3200 et épargne 1500 retenues dans les fourchettes source. Ventilation des postes et des trois enveloppes estimée.",
+    "income": [
+      {
+        "label": "Salaire net",
+        "amount": 4700.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Crédit immobilier",
+        "amount": 1200.0,
+        "category": "housing"
+      },
+      {
+        "label": "Charges du logement",
+        "amount": 210.0,
+        "category": "housing"
+      },
+      {
+        "label": "Taxe foncière mensualisée",
+        "amount": 100.0,
+        "category": "housing"
+      },
+      {
+        "label": "Énergie",
+        "amount": 80.0,
+        "category": "bills"
+      },
+      {
+        "label": "Assurances",
+        "amount": 100.0,
+        "category": "bills"
+      },
+      {
+        "label": "Téléphone et internet",
+        "amount": 60.0,
+        "category": "bills"
+      },
+      {
+        "label": "Alimentation",
+        "amount": 380.0,
+        "category": "food"
+      },
+      {
+        "label": "Restaurants et sorties",
+        "amount": 250.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Salle de sport",
+        "amount": 60.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Transports",
+        "amount": 170.0,
+        "category": "transport"
+      },
+      {
+        "label": "Vêtements",
+        "amount": 180.0,
+        "category": "other"
+      },
+      {
+        "label": "Vacances mensualisées",
+        "amount": 250.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Cadeaux et dépenses occasionnelles",
+        "amount": 160.0,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "PER",
+        "amount": 600.0,
+        "category": "other"
+      },
+      {
+        "label": "Assurance-vie",
+        "amount": 500.0,
+        "category": "other"
+      },
+      {
+        "label": "Livret A",
+        "amount": 400.0,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Célibataire · propriétaire.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Dépenses 3200 et épargne 1500 retenues dans les fourchettes source. Ventilation des postes et des trois enveloppes estimée.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 6,
+        "name": "Marina",
+        "age": 38,
+        "country": "France",
+        "sourceDate": "2026-07-12",
+        "description": "Communication, célibataire,région parisienne",
+        "income": 4700,
+        "incomeScope": "personnel · net",
+        "knownBudget": "Dépenses3000–3200; épargne1400–1500 surPER,AV,LivretA.",
+        "missingAndChecks": "Détail crédit, énergie,courses,loisirs; les fourchettes laissent0–300 de marge sans affectation certaine.",
+        "sourceUrl": "https://www.elle.fr/Societe/News/Dans-le-budget-de-Marina-38-ans-Mon-salaire-a-presque-double-en-10-ans-mais-je-n-ai-pas-augmente-mon-train-de-vie-4478788",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-07-2026-10-30",
+    "name": "Sylvie et Alain",
+    "age": null,
+    "job": "Retraitée et salarié",
+    "location": "Nord",
+    "household": "Sylvie, 62 ans · couple marié · maison payée · enfants indépendants",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-06-28",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "ELLE",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://www.elle.fr/Societe/News/Dans-les-comptes-de-Sacha-62-ans-Nous-avons-une-liberte-financiere-depuis-le-depart-de-nos-filles-4476431"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Maison payée: aucun crédit ajouté. Budget avant la retraite du mari; son salaire actuel reste seul inclus avec la pension de son épouse.",
+    "income": [
+      {
+        "label": "Retraite Sylvie",
+        "amount": 2000.0,
+        "category": "other"
+      },
+      {
+        "label": "Salaire Alain",
+        "amount": 2000.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Charges et entretien du logement",
+        "amount": 250.0,
+        "category": "housing"
+      },
+      {
+        "label": "Énergie et eau",
+        "amount": 200.0,
+        "category": "bills"
+      },
+      {
+        "label": "Assurances",
+        "amount": 160.0,
+        "category": "bills"
+      },
+      {
+        "label": "Taxe foncière mensualisée",
+        "amount": 250.0,
+        "category": "housing"
+      },
+      {
+        "label": "Alimentation",
+        "amount": 650.0,
+        "category": "food"
+      },
+      {
+        "label": "Voiture et déplacements",
+        "amount": 350.0,
+        "category": "transport"
+      },
+      {
+        "label": "Téléphones et internet",
+        "amount": 80.0,
+        "category": "bills"
+      },
+      {
+        "label": "Santé",
+        "amount": 150.0,
+        "category": "health"
+      },
+      {
+        "label": "Restaurants et loisirs",
+        "amount": 300.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Vêtements",
+        "amount": 150.0,
+        "category": "other"
+      },
+      {
+        "label": "Vacances mensualisées",
+        "amount": 350.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Cadeaux",
+        "amount": 110.0,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Réserve pour projets",
+        "amount": 650.0,
+        "category": "other"
+      },
+      {
+        "label": "Épargne de précaution",
+        "amount": 350.0,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Sylvie, 62 ans · couple marié · maison payée · enfants indépendants.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Maison payée: aucun crédit ajouté. Budget avant la retraite du mari; son salaire actuel reste seul inclus avec la pension de son épouse.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 7,
+        "name": "Sacha",
+        "age": 62,
+        "country": "France",
+        "sourceDate": "2026-06-28",
+        "description": "Retraitée,mariée,Nord,deux filles indépendantes",
+        "income": 4000,
+        "incomeScope": "foyer calculé: retraite2000 + salaire mari2000",
+        "knownBudget": "Dépenses du couple environ3000; maison payée.",
+        "missingAndChecks": "Ventilation et affectation reste~1000. Ne pas ajouter retraite future mari à son salaire actuel.",
+        "sourceUrl": "https://www.elle.fr/Societe/News/Dans-les-comptes-de-Sacha-62-ans-Nous-avons-une-liberte-financiere-depuis-le-depart-de-nos-filles-4476431",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-08-2026-10-30",
+    "name": "Émilie",
+    "age": 30,
+    "job": "Cheffe de projet",
+    "location": "Val-d’Oise",
+    "household": "En concubinage · sans enfant · budget personnel",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-06-14",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "ELLE",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://www.elle.fr/Societe/News/Dans-le-budget-d-Angele-30-ans-Je-ne-suis-pas-spontanee-je-calcule-tout-4473494"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Budget personnel. Les six postes communs ventilent sa contribution 1480. Conjoint 1550 et sa contribution 580 exclus du revenu personnel. Les 150 supplémentaires sont hypothétiques.",
+    "income": [
+      {
+        "label": "Salaire net après impôt",
+        "amount": 2300.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Part du loyer et des charges",
+        "amount": 900.0,
+        "category": "housing"
+      },
+      {
+        "label": "Part de l’énergie et de l’eau",
+        "amount": 100.0,
+        "category": "bills"
+      },
+      {
+        "label": "Assurances communes",
+        "amount": 70.0,
+        "category": "bills"
+      },
+      {
+        "label": "Internet et téléphone",
+        "amount": 40.0,
+        "category": "bills"
+      },
+      {
+        "label": "Part des courses",
+        "amount": 300.0,
+        "category": "food"
+      },
+      {
+        "label": "Autres charges communes",
+        "amount": 70.0,
+        "category": "bills"
+      },
+      {
+        "label": "Vêtements personnels",
+        "amount": 60.0,
+        "category": "other"
+      },
+      {
+        "label": "Transports personnels",
+        "amount": 50.0,
+        "category": "transport"
+      },
+      {
+        "label": "Sport et loisirs personnels",
+        "amount": 40.0,
+        "category": "leisure"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Épargne pour apport immobilier",
+        "amount": 670.0,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "En concubinage · sans enfant · budget personnel.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Budget personnel. Les six postes communs ventilent sa contribution 1480. Conjoint 1550 et sa contribution 580 exclus du revenu personnel. Les 150 supplémentaires sont hypothétiques.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 8,
+        "name": "Angèle",
+        "age": 30,
+        "country": "France",
+        "sourceDate": "2026-06-14",
+        "description": "Cheffe de projet,concubinage,sans enfant,Val-d’Oise",
+        "income": 2300,
+        "incomeScope": "personnel après impôt; conjoint1550",
+        "knownBudget": "Part de dépenses1480;part conjoint580; total2060 face estimation commune~2000.",
+        "missingAndChecks": "Détail des postes, épargne; conserver différence60 entre estimation et somme, ne pas forcer total2000.",
+        "sourceUrl": "https://www.elle.fr/Societe/News/Dans-le-budget-d-Angele-30-ans-Je-ne-suis-pas-spontanee-je-calcule-tout-4473494",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-09-2026-10-30",
+    "name": "Anaïs",
+    "age": null,
+    "job": "Hôtesse de l’air",
+    "location": "France",
+    "household": "Vit seule",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-07-10",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "Aufeminin",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://www.aufeminin.com/societe/dossiers/gerer-son-budget/dans-les-comptes-de-lisa-hotesse-de-lair-depuis-7-ans-avec-mon-salaire-pas-de-vacances-sans-le-soutien-de-mes-parents-2805143.html"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Les primes repas et pressing sont exclues des revenus faute de fréquence fiable. Maquillage 100 par trimestre arrondi à 33/mois; postes manquants estimés. Âge inconnu conservé.",
+    "income": [
+      {
+        "label": "Salaire net de base",
+        "amount": 1400.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Loyer",
+        "amount": 500.0,
+        "category": "housing"
+      },
+      {
+        "label": "Courses",
+        "amount": 220.0,
+        "category": "food"
+      },
+      {
+        "label": "Énergie et eau",
+        "amount": 70.0,
+        "category": "bills"
+      },
+      {
+        "label": "Téléphone et internet",
+        "amount": 30.0,
+        "category": "bills"
+      },
+      {
+        "label": "Assurances",
+        "amount": 35.0,
+        "category": "bills"
+      },
+      {
+        "label": "Transports",
+        "amount": 60.0,
+        "category": "transport"
+      },
+      {
+        "label": "Manucure",
+        "amount": 50.0,
+        "category": "health"
+      },
+      {
+        "label": "Maquillage mensualisé",
+        "amount": 33.0,
+        "category": "health"
+      },
+      {
+        "label": "Coiffure",
+        "amount": 30.0,
+        "category": "health"
+      },
+      {
+        "label": "Pressing",
+        "amount": 30.0,
+        "category": "other"
+      },
+      {
+        "label": "Loisirs",
+        "amount": 50.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Vêtements et divers",
+        "amount": 42.0,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Épargne pour projet immobilier",
+        "amount": 250.0,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Vit seule.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Les primes repas et pressing sont exclues des revenus faute de fréquence fiable. Maquillage 100 par trimestre arrondi à 33/mois; postes manquants estimés. Âge inconnu conservé.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 9,
+        "name": "Lisa",
+        "age": null,
+        "country": "France",
+        "sourceDate": "2026-07-10",
+        "description": "Hôtesse de l’air, vit seule",
+        "income": 1400,
+        "incomeScope": "personnel · salaire net approximatif",
+        "knownBudget": "Loyer500;ongles50;maquillage~100/trimestre;épargne200–300;primepressing~30;repas6/jour travaillé.",
+        "missingAndChecks": "Âge,courses,énergie,transport; jours travaillés inconnus: ne pas mensualiser6/jour arbitrairement. Vacances aidées par parents.",
+        "sourceUrl": "https://www.aufeminin.com/societe/dossiers/gerer-son-budget/dans-les-comptes-de-lisa-hotesse-de-lair-depuis-7-ans-avec-mon-salaire-pas-de-vacances-sans-le-soutien-de-mes-parents-2805143.html",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-10-2026-10-30",
+    "name": "Pauline",
+    "age": 34,
+    "job": "Professeure des écoles",
+    "location": "Nanterre",
+    "household": "Mariée · deux filles · budget personnel",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2025-10-20",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "Aufeminin",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://www.aufeminin.com/societe/dossiers/gerer-son-budget/je-ne-machete-plus-rien-pour-moi-dans-les-comptes-de-laetitia-34-ans-institutrice-a-2-100-euros-par-mois-2660501.html"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Budget personnel 2025. Crédit appartement 1450 × 45%=652.50. La moitié du crédit campagne 400 et des courses 350 est une hypothèse; revenu du conjoint non inventé.",
+    "income": [
+      {
+        "label": "Salaire net",
+        "amount": 2100.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Part du crédit de l’appartement",
+        "amount": 652.5,
+        "category": "housing"
+      },
+      {
+        "label": "Part du crédit de la maison de campagne",
+        "amount": 200.0,
+        "category": "housing"
+      },
+      {
+        "label": "Part des courses",
+        "amount": 175.0,
+        "category": "food"
+      },
+      {
+        "label": "Énergie et eau",
+        "amount": 95.0,
+        "category": "bills"
+      },
+      {
+        "label": "Assurances",
+        "amount": 65.0,
+        "category": "bills"
+      },
+      {
+        "label": "Transports",
+        "amount": 120.0,
+        "category": "transport"
+      },
+      {
+        "label": "École et dépenses des enfants",
+        "amount": 140.0,
+        "category": "other"
+      },
+      {
+        "label": "Téléphone et internet",
+        "amount": 35.0,
+        "category": "bills"
+      },
+      {
+        "label": "Loisirs",
+        "amount": 60.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Santé",
+        "amount": 40.0,
+        "category": "health"
+      },
+      {
+        "label": "Vêtements des enfants",
+        "amount": 40.0,
+        "category": "other"
+      },
+      {
+        "label": "Vacances mensualisées",
+        "amount": 100.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Cadeaux et divers",
+        "amount": 37.5,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Épargne de précaution",
+        "amount": 200.0,
+        "category": "other"
+      },
+      {
+        "label": "Projets des enfants",
+        "amount": 140.0,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Mariée · deux filles · budget personnel.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Budget personnel 2025. Crédit appartement 1450 × 45%=652.50. La moitié du crédit campagne 400 et des courses 350 est une hypothèse; revenu du conjoint non inventé.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 10,
+        "name": "Laëtitia",
+        "age": 34,
+        "country": "France",
+        "sourceDate": "2025-10-20",
+        "description": "Professeure des écoles,reconvertie,mariée,deux filles,Nanterre",
+        "income": 2100,
+        "incomeScope": "personnel · salaire net",
+        "knownBudget": "Créditappartement1450foyer,dont45%pour elle=652.50;maisoncampagne400foyer;courses300–400foyer.",
+        "missingAndChecks": "Revenu mari, quote-part secondcrédit,énergie,garde,transport; ne pas attribuer toutes chargesfoyer à elle seule.",
+        "sourceUrl": "https://www.aufeminin.com/societe/dossiers/gerer-son-budget/je-ne-machete-plus-rien-pour-moi-dans-les-comptes-de-laetitia-34-ans-institutrice-a-2-100-euros-par-mois-2660501.html",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-11-2026-10-30",
+    "name": "Zoé",
+    "age": 24,
+    "job": "Étudiante en master d’arts plastiques",
+    "location": "Paris 19e",
+    "household": "Stagiaire · budget hors loyer supposé pris en charge par les parents",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2025-10-20",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "Aufeminin",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://www.aufeminin.com/societe/dossiers/gerer-son-budget/je-vais-voir-mes-applis-bancaires-tous-les-jours-dans-les-comptes-de-nina-24-ans-etudiante-boursiere-2668147.html"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Ressources 904, contre 900 arrondis dans le titre. Budget hors loyer, supposé réglé directement par les parents: hypothèse de préparation, pas montant sourcé. Versements d’épargne estimés; stage temporaire.",
+    "income": [
+      {
+        "label": "Indemnité de stage",
+        "amount": 659.0,
+        "category": "other"
+      },
+      {
+        "label": "Bourse",
+        "amount": 145.0,
+        "category": "other"
+      },
+      {
+        "label": "Aide parentale versée",
+        "amount": 100.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Alimentation",
+        "amount": 250.0,
+        "category": "food"
+      },
+      {
+        "label": "Transports",
+        "amount": 35.0,
+        "category": "transport"
+      },
+      {
+        "label": "Téléphone",
+        "amount": 6.99,
+        "category": "bills"
+      },
+      {
+        "label": "Uber One",
+        "amount": 5.99,
+        "category": "bills"
+      },
+      {
+        "label": "Canal+",
+        "amount": 24.99,
+        "category": "bills"
+      },
+      {
+        "label": "Hygiène",
+        "amount": 35.0,
+        "category": "other"
+      },
+      {
+        "label": "Vêtements",
+        "amount": 40.0,
+        "category": "other"
+      },
+      {
+        "label": "Culture et sorties",
+        "amount": 50.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Santé",
+        "amount": 20.0,
+        "category": "health"
+      },
+      {
+        "label": "Études et fournitures",
+        "amount": 30.0,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Assurance-vie",
+        "amount": 100.0,
+        "category": "other"
+      },
+      {
+        "label": "Réserve entre deux stages et imprévus",
+        "amount": 306.03,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Stagiaire · budget hors loyer supposé pris en charge par les parents.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Ressources 904, contre 900 arrondis dans le titre. Budget hors loyer, supposé réglé directement par les parents: hypothèse de préparation, pas montant sourcé. Versements d’épargne estimés; stage temporaire.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 11,
+        "name": "Nina",
+        "age": 24,
+        "country": "France",
+        "sourceDate": "2025-10-20",
+        "description": "Étudiante master arts plastiques,stage,Paris19e",
+        "income": 904,
+        "incomeScope": "personnel calculé: stage659+bourse145+aideparentale100; titrearrondi900",
+        "knownBudget": "Téléphone6.99;UberOne5.99;Canal24.99;objectifréserve100.",
+        "missingAndChecks": "Loyer et autres aidesparentales exactes,courses,épargne;revenu stage temporaire, pas salaire permanent.",
+        "sourceUrl": "https://www.aufeminin.com/societe/dossiers/gerer-son-budget/je-vais-voir-mes-applis-bancaires-tous-les-jours-dans-les-comptes-de-nina-24-ans-etudiante-boursiere-2668147.html",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-12-2026-10-30",
+    "name": "Jade",
+    "age": 31,
+    "job": "",
+    "location": "Paris",
+    "household": "En couple · sans enfant · budget personnel",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-10-06",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "Reddit",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://www.reddit.com/r/VosSous/comments/1wzbhtz/besoin_de_conseils/"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "3500 est le mois cité, pas une moyenne annuelle vérifiée. Charges avec loyer 700 conservées. Variables estimées;1000 représente son effort habituel avant retraits exceptionnels.",
+    "income": [
+      {
+        "label": "Salaire net après impôt du mois retenu",
+        "amount": 3500.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Part du loyer",
+        "amount": 500.0,
+        "category": "housing"
+      },
+      {
+        "label": "Charges et abonnements",
+        "amount": 200.0,
+        "category": "bills"
+      },
+      {
+        "label": "Courses",
+        "amount": 300.0,
+        "category": "food"
+      },
+      {
+        "label": "Restaurants et sorties",
+        "amount": 400.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Vêtements",
+        "amount": 350.0,
+        "category": "other"
+      },
+      {
+        "label": "Voyages mensualisés",
+        "amount": 500.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Santé",
+        "amount": 50.0,
+        "category": "health"
+      },
+      {
+        "label": "Cadeaux",
+        "amount": 100.0,
+        "category": "other"
+      },
+      {
+        "label": "Équipement du logement et divers",
+        "amount": 100.0,
+        "category": "housing"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Épargne disponible",
+        "amount": 1000.0,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "En couple · sans enfant · budget personnel.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. 3500 est le mois cité, pas une moyenne annuelle vérifiée. Charges avec loyer 700 conservées. Variables estimées;1000 représente son effort habituel avant retraits exceptionnels.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 12,
+        "name": "Parisienne en couple",
+        "age": 31,
+        "country": "France",
+        "sourceDate": "2026-10-06",
+        "description": "Sans enfant,Paris,budget personnel",
+        "income": 3500,
+        "incomeScope": "net après impôt CE MOIS, pas moyenne annuelle prouvée",
+        "knownBudget": "Loyer500;charges totales avec loyer~700;épargnehabituelle1000;dépensesvoyages/restaurants/vêtements.",
+        "missingAndChecks": "Ventiler charges et variables;épargneactuelle12000 n’est pas versementmensuel.",
+        "sourceUrl": "https://www.reddit.com/r/VosSous/comments/1wzbhtz/besoin_de_conseils/",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-13-2026-10-30",
+    "name": "Lucie",
+    "age": 27,
+    "job": "",
+    "location": "France",
+    "household": "En couple · propriétaire · budget personnel avec participation du conjoint",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-02-15",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "Reddit",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://www.reddit.com/r/VosSous/comments/1r58gwd/est_ce_que_je_peux_mieux_gérer_mes_sous/"
+    },
+    "incomeBasis": "Salaire net déclaré et contribution du conjoint",
+    "incomeNote": "Budget personnel avec participation interne 600; ce n’est pas le revenu complet du foyer. Douze charges source 1425 conservées.13 e mois, primes et impôt à régulariser hors budget courant.",
+    "income": [
+      {
+        "label": "Salaire net déclaré",
+        "amount": 2050.0,
+        "category": "other"
+      },
+      {
+        "label": "Participation du conjoint au budget personnel",
+        "amount": 600.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Crédit immobilier",
+        "amount": 870.0,
+        "category": "housing"
+      },
+      {
+        "label": "Crédit étudiant devenu crédit conso",
+        "amount": 150.0,
+        "category": "bills"
+      },
+      {
+        "label": "Eau",
+        "amount": 52.0,
+        "category": "bills"
+      },
+      {
+        "label": "Internet",
+        "amount": 27.0,
+        "category": "bills"
+      },
+      {
+        "label": "Électricité",
+        "amount": 140.0,
+        "category": "bills"
+      },
+      {
+        "label": "Assurance automobile",
+        "amount": 22.0,
+        "category": "transport"
+      },
+      {
+        "label": "Assurance habitation",
+        "amount": 28.0,
+        "category": "housing"
+      },
+      {
+        "label": "Assurance emprunteur",
+        "amount": 16.0,
+        "category": "housing"
+      },
+      {
+        "label": "Frais bancaires",
+        "amount": 11.0,
+        "category": "bills"
+      },
+      {
+        "label": "Taxe foncière mensualisée",
+        "amount": 64.0,
+        "category": "housing"
+      },
+      {
+        "label": "Assurance décès",
+        "amount": 5.0,
+        "category": "bills"
+      },
+      {
+        "label": "Carburant",
+        "amount": 40.0,
+        "category": "transport"
+      },
+      {
+        "label": "Courses",
+        "amount": 350.0,
+        "category": "food"
+      },
+      {
+        "label": "Animaux",
+        "amount": 100.0,
+        "category": "other"
+      },
+      {
+        "label": "Équipement du logement",
+        "amount": 150.0,
+        "category": "housing"
+      },
+      {
+        "label": "Restaurants et loisirs",
+        "amount": 150.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Cadeaux",
+        "amount": 75.0,
+        "category": "other"
+      },
+      {
+        "label": "Vêtements",
+        "amount": 60.0,
+        "category": "other"
+      },
+      {
+        "label": "Santé",
+        "amount": 40.0,
+        "category": "health"
+      },
+      {
+        "label": "Vacances mensualisées",
+        "amount": 100.0,
+        "category": "leisure"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Épargne de précaution",
+        "amount": 200.0,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "En couple · propriétaire · budget personnel avec participation du conjoint.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Budget personnel avec participation interne 600; ce n’est pas le revenu complet du foyer. Douze charges source 1425 conservées.13 e mois, primes et impôt à régulariser hors budget courant.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 13,
+        "name": "Propriétaire en couple",
+        "age": 27,
+        "country": "France",
+        "sourceDate": "2026-02-15",
+        "description": "Femme,en couple,propriétaire",
+        "income": 2050,
+        "incomeScope": "salaire net;prélèvement impôt à revoir;partenairecontribue600",
+        "knownBudget": "Immo870;prêtétudiant/conso150;eau52;wifi27;élec140;auto22;habitation28;assuranceprêt16;banque11;foncière64;décès5;carburant40. Somme1425.Épargne~200.",
+        "missingAndChecks": "Courses,animaux,loisirs,traitementimpôt;600 est participation interne du conjoint, pas revenu additionnel de tout le foyer.13e mois et participation hors salairecourant.",
+        "sourceUrl": "https://www.reddit.com/r/VosSous/comments/1r58gwd/est_ce_que_je_peux_mieux_gérer_mes_sous/",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-14-2026-10-30",
+    "name": "Chloé et Nathan",
+    "age": null,
+    "job": "",
+    "location": "Rosny-sous-Bois",
+    "household": "Couple locataire · logement actuel",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-03-19",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "Reddit",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://www.reddit.com/r/VosSous/comments/1ry5wws/demande_de_conseil_pour_changement_dappartement/"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Situation actuelle à Rosny. Énergie, internet et voiture ventilés par hypothèse. Le futur loyer 1117 et budget 1220 à Bussy restent exclus; pas de mélange de deux logements.",
+    "income": [
+      {
+        "label": "Salaire Nathan après impôt",
+        "amount": 2250.0,
+        "category": "other"
+      },
+      {
+        "label": "Salaire Chloé approximatif",
+        "amount": 1400.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Loyer actuel charges comprises",
+        "amount": 790.0,
+        "category": "housing"
+      },
+      {
+        "label": "Électricité",
+        "amount": 90.0,
+        "category": "bills"
+      },
+      {
+        "label": "Internet",
+        "amount": 30.0,
+        "category": "bills"
+      },
+      {
+        "label": "Crédit automobile",
+        "amount": 280.0,
+        "category": "transport"
+      },
+      {
+        "label": "Assurance automobile",
+        "amount": 70.0,
+        "category": "transport"
+      },
+      {
+        "label": "Carburant",
+        "amount": 120.0,
+        "category": "transport"
+      },
+      {
+        "label": "Entretien automobile",
+        "amount": 60.0,
+        "category": "transport"
+      },
+      {
+        "label": "Autres transports",
+        "amount": 100.0,
+        "category": "transport"
+      },
+      {
+        "label": "Alimentation",
+        "amount": 500.0,
+        "category": "food"
+      },
+      {
+        "label": "Assurance habitation",
+        "amount": 25.0,
+        "category": "housing"
+      },
+      {
+        "label": "Téléphones",
+        "amount": 30.0,
+        "category": "bills"
+      },
+      {
+        "label": "Santé",
+        "amount": 60.0,
+        "category": "health"
+      },
+      {
+        "label": "Restaurants et sorties",
+        "amount": 220.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Vêtements",
+        "amount": 100.0,
+        "category": "other"
+      },
+      {
+        "label": "Cadeaux",
+        "amount": 75.0,
+        "category": "other"
+      },
+      {
+        "label": "Vacances mensualisées",
+        "amount": 300.0,
+        "category": "leisure"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Apport et projets",
+        "amount": 600.0,
+        "category": "other"
+      },
+      {
+        "label": "Réserve pour déménagement",
+        "amount": 200.0,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Couple locataire · logement actuel.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Situation actuelle à Rosny. Énergie, internet et voiture ventilés par hypothèse. Le futur loyer 1117 et budget 1220 à Bussy restent exclus; pas de mélange de deux logements.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 14,
+        "name": "Couple Rosny-sous-Bois",
+        "age": null,
+        "country": "France",
+        "sourceDate": "2026-03-19",
+        "description": "Couple locataire envisageant déménagement",
+        "income": [
+          2250,
+          1400
+        ],
+        "incomeScope": "deux salaires, totalfoyer3650",
+        "knownBudget": "T2actuel790CC;saquote-partavecénergieinternet532. T3envisagé1117CC/~1220avecénergieinternet, répartitionenvisagée730/490.",
+        "missingAndChecks": "Dépensesauto,courses,assurances,épargne;ne pas mélanger logementsactuel/futur. Salairecompagne approximatif.",
+        "sourceUrl": "https://www.reddit.com/r/VosSous/comments/1ry5wws/demande_de_conseil_pour_changement_dappartement/",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-15-2026-10-30",
+    "name": "Hadrien",
+    "age": 29,
+    "job": "Ingénieur logiciel",
+    "location": "Belgique",
+    "household": "En couple · sans enfant ni animal · budget personnel",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-07-21",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "Reddit",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://www.reddit.com/r/BEFire/comments/1v2i8oa/29m_in_belgium_69_savings_rate_able_to_fire_at_31/"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Projection utilisant salaire 2026 et moyenne des dépenses 2025:14538.98/an ÷ 12=1211.58 arrondis. Ventilation hypothétique; ne pas reprendre le 69% annoncé comme taux vérifié.",
+    "income": [
+      {
+        "label": "Salaire net actuel",
+        "amount": 3600.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Part du loyer",
+        "amount": 525.0,
+        "category": "housing"
+      },
+      {
+        "label": "Énergie et eau",
+        "amount": 75.0,
+        "category": "bills"
+      },
+      {
+        "label": "Courses",
+        "amount": 230.0,
+        "category": "food"
+      },
+      {
+        "label": "Télécoms",
+        "amount": 30.0,
+        "category": "bills"
+      },
+      {
+        "label": "Assurances",
+        "amount": 50.0,
+        "category": "bills"
+      },
+      {
+        "label": "Transports",
+        "amount": 50.0,
+        "category": "transport"
+      },
+      {
+        "label": "Santé",
+        "amount": 30.0,
+        "category": "health"
+      },
+      {
+        "label": "Sport",
+        "amount": 25.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Restaurants",
+        "amount": 60.0,
+        "category": "food"
+      },
+      {
+        "label": "Vêtements",
+        "amount": 35.0,
+        "category": "other"
+      },
+      {
+        "label": "Voyages mensualisés",
+        "amount": 70.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Cadeaux et divers",
+        "amount": 31.58,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "ETF",
+        "amount": 2200.0,
+        "category": "other"
+      },
+      {
+        "label": "Réserve disponible",
+        "amount": 188.42,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "En couple · sans enfant ni animal · budget personnel.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Projection utilisant salaire 2026 et moyenne des dépenses 2025:14538.98/an ÷ 12=1211.58 arrondis. Ventilation hypothétique; ne pas reprendre le 69% annoncé comme taux vérifié.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 15,
+        "name": "Ingénieur logiciel en Belgique",
+        "age": 29,
+        "country": "Belgique",
+        "sourceDate": "2026-07-21",
+        "description": "Salarié,en couple,sans enfant ni animal,budget personnel",
+        "income": 3600,
+        "incomeScope": "emploi net actuel; bilan dépenses2025",
+        "knownBudget": "Dépensesannuelles2025=14538.98,soit1211.58/mois calculés.",
+        "missingAndChecks": "DétailimageSankeynontranscrit;revenuannuel2025et primesàrapprocher.69% annoncé ne découlepas du seul salaire3600 et desdépenses: nepas le certifier.",
+        "sourceUrl": "https://www.reddit.com/r/BEFire/comments/1v2i8oa/29m_in_belgium_69_savings_rate_able_to_fire_at_31/",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-16-2026-10-30",
+    "name": "Victor",
+    "age": 30,
+    "job": "Commerce · 32 heures par semaine",
+    "location": "Bruxelles",
+    "household": "Célibataire",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-03-31",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "Reddit",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://www.reddit.com/r/BEFire/comments/1s8xlyt/what_is_or_was_your_salary_and_how_much_do_or_did/"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Investissements 750 au milieu de 700–800 déclarés. Dépenses 1550 ventilées par hypothèse. Le salaire 2700 envisagé à temps plein n’est pas utilisé.",
+    "income": [
+      {
+        "label": "Salaire net pour 32 heures",
+        "amount": 2300.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Loyer et charges",
+        "amount": 650.0,
+        "category": "housing"
+      },
+      {
+        "label": "Énergie et eau",
+        "amount": 120.0,
+        "category": "bills"
+      },
+      {
+        "label": "Courses",
+        "amount": 280.0,
+        "category": "food"
+      },
+      {
+        "label": "Transports",
+        "amount": 60.0,
+        "category": "transport"
+      },
+      {
+        "label": "Téléphone et internet",
+        "amount": 50.0,
+        "category": "bills"
+      },
+      {
+        "label": "Assurances",
+        "amount": 55.0,
+        "category": "bills"
+      },
+      {
+        "label": "Santé",
+        "amount": 35.0,
+        "category": "health"
+      },
+      {
+        "label": "Restaurants et sorties",
+        "amount": 100.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Vêtements",
+        "amount": 60.0,
+        "category": "other"
+      },
+      {
+        "label": "Vacances mensualisées",
+        "amount": 100.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Cadeaux",
+        "amount": 40.0,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Investissements",
+        "amount": 750.0,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Célibataire.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Investissements 750 au milieu de 700–800 déclarés. Dépenses 1550 ventilées par hypothèse. Le salaire 2700 envisagé à temps plein n’est pas utilisé.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 16,
+        "name": "Salarié du commerce à Bruxelles",
+        "age": 30,
+        "country": "Belgique",
+        "sourceDate": "2026-03-31",
+        "description": "Célibataire,commerce,32h/semaine",
+        "income": 2300,
+        "incomeScope": "personnel · net",
+        "knownBudget": "Investit700–800/mois;solde1500–1600avantautresaffectations,calculé.",
+        "missingAndChecks": "Loyer,charges,courses,transport.2700esthypothèsedepassageàtempsplein,nonrevenuactuel.",
+        "sourceUrl": "https://www.reddit.com/r/BEFire/comments/1s8xlyt/what_is_or_was_your_salary_and_how_much_do_or_did/",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-17-2026-10-30",
+    "name": "Olivier et Alice",
+    "age": null,
+    "job": "",
+    "location": "Paris",
+    "household": "Couple marié · 39 et 37 ans · deux enfants de 3 ans et 6 mois",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-01-24",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "Forum Finary",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://community.finary.com/t/conseil-sur-strategie-globale-marie-2-enfants/33785"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Les 2700 d’autres dépenses sont ventilés par hypothèse; total dépenses 4800. Versements 2850 source conservés. Le solde 950 reste disponible, sans l’inventer comme versement réalisé.",
+    "income": [
+      {
+        "label": "Salaire Olivier après impôt",
+        "amount": 4600.0,
+        "category": "other"
+      },
+      {
+        "label": "Salaire Alice après impôt",
+        "amount": 4000.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Crédit résidence principale",
+        "amount": 2100.0,
+        "category": "housing"
+      },
+      {
+        "label": "Crèche",
+        "amount": 1000.0,
+        "category": "other"
+      },
+      {
+        "label": "Ménage",
+        "amount": 250.0,
+        "category": "other"
+      },
+      {
+        "label": "Courses",
+        "amount": 650.0,
+        "category": "food"
+      },
+      {
+        "label": "Énergie et eau",
+        "amount": 150.0,
+        "category": "bills"
+      },
+      {
+        "label": "Assurances",
+        "amount": 100.0,
+        "category": "bills"
+      },
+      {
+        "label": "Téléphones et internet",
+        "amount": 80.0,
+        "category": "bills"
+      },
+      {
+        "label": "Transports",
+        "amount": 120.0,
+        "category": "transport"
+      },
+      {
+        "label": "Santé",
+        "amount": 70.0,
+        "category": "health"
+      },
+      {
+        "label": "Vêtements et dépenses des enfants",
+        "amount": 100.0,
+        "category": "other"
+      },
+      {
+        "label": "Loisirs",
+        "amount": 180.0,
+        "category": "leisure"
+      }
+    ],
+    "savings": [
+      {
+        "label": "PEA S&P 500",
+        "amount": 1400.0,
+        "category": "other"
+      },
+      {
+        "label": "PEA World",
+        "amount": 1200.0,
+        "category": "other"
+      },
+      {
+        "label": "Assurance-vie World",
+        "amount": 50.0,
+        "category": "other"
+      },
+      {
+        "label": "Bitcoin",
+        "amount": 200.0,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Couple marié · 39 et 37 ans · deux enfants de 3 ans et 6 mois.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Les 2700 d’autres dépenses sont ventilés par hypothèse; total dépenses 4800. Versements 2850 source conservés. Le solde 950 reste disponible, sans l’inventer comme versement réalisé.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 17,
+        "name": "Quentin et son épouse",
+        "age": [
+          39,
+          37
+        ],
+        "country": "France",
+        "sourceDate": "2026-01-24",
+        "description": "Mariés,deuxenfants3ans/6mois,propriétairesParis",
+        "income": 8600,
+        "incomeScope": "foyer net après impôt:4600+4000",
+        "knownBudget": "Crédit2100;autresdépenses2700(crèche,ménage,courses).VersementsPEA1400+1200,AV50,BTC200=2850. Solde950 après4800dépenseset2850versements.",
+        "missingAndChecks": "Ventiler2700;capacitéannoncée3000–3500diffèreversements2850.950nepasqualifierautomatiquementdedépenseouversement.",
+        "sourceUrl": "https://community.finary.com/t/conseil-sur-strategie-globale-marie-2-enfants/33785",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 950
+    }
+  },
+  {
+    "id": "prepared-lot2-18-2026-10-30",
+    "name": "Sébastien et Mélanie",
+    "age": null,
+    "job": "Ingénieur cyber pour lui",
+    "location": "France",
+    "household": "Sébastien, 31 ans · couple marié · sans enfant · propriétaires",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-10-13",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "Forum Finary",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://community.finary.com/t/31-ans-ingenieur-cyber-etf-world-immobilier-locatif-ou-scpi/40234"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Revenu 92500/an, milieu de 90000–95000, divisé par 12. Intéressement 6000/an non ajouté une seconde fois; PEE attendu en 2027 exclu. Revenus du conjoint non ventilés.",
+    "income": [
+      {
+        "label": "Revenus nets moyens annualisés du foyer",
+        "amount": 7708.33,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Crédit immobilier",
+        "amount": 1350.0,
+        "category": "housing"
+      },
+      {
+        "label": "Énergie",
+        "amount": 200.0,
+        "category": "bills"
+      },
+      {
+        "label": "Eau",
+        "amount": 60.0,
+        "category": "bills"
+      },
+      {
+        "label": "Assurances",
+        "amount": 180.0,
+        "category": "bills"
+      },
+      {
+        "label": "Taxe foncière mensualisée",
+        "amount": 200.0,
+        "category": "housing"
+      },
+      {
+        "label": "Téléphones et internet",
+        "amount": 80.0,
+        "category": "bills"
+      },
+      {
+        "label": "Courses",
+        "amount": 650.0,
+        "category": "food"
+      },
+      {
+        "label": "Transports",
+        "amount": 400.0,
+        "category": "transport"
+      },
+      {
+        "label": "Restaurants et sorties",
+        "amount": 250.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Vacances mensualisées",
+        "amount": 400.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Vêtements",
+        "amount": 200.0,
+        "category": "other"
+      },
+      {
+        "label": "Santé",
+        "amount": 80.0,
+        "category": "health"
+      },
+      {
+        "label": "Cadeaux",
+        "amount": 150.0,
+        "category": "other"
+      },
+      {
+        "label": "Entretien du logement",
+        "amount": 150.0,
+        "category": "housing"
+      }
+    ],
+    "savings": [
+      {
+        "label": "DCA ETF World",
+        "amount": 600.0,
+        "category": "other"
+      },
+      {
+        "label": "Réserve pour projets",
+        "amount": 2000.0,
+        "category": "other"
+      },
+      {
+        "label": "Épargne de précaution",
+        "amount": 758.33,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Sébastien, 31 ans · couple marié · sans enfant · propriétaires.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Revenu 92500/an, milieu de 90000–95000, divisé par 12. Intéressement 6000/an non ajouté une seconde fois; PEE attendu en 2027 exclu. Revenus du conjoint non ventilés.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 18,
+        "name": "Franck",
+        "age": 31,
+        "country": "France",
+        "sourceDate": "2026-10-13",
+        "description": "Ingénieurcyber,marié,sansenfant,propriétaire",
+        "income": [
+          90000,
+          95000
+        ],
+        "incomeScope": "revenusnetsannuelsdufoyer;7500–7916.67/moismoyennes",
+        "knownBudget": "Crédit1350/mois;DCA600/mois;intéressement~6000/an.",
+        "missingAndChecks": "Quotidienetépargnecomplète;vérifiersi90000–95000inclutintéressementavantdel’ajouter.50000dePEEattendusen2027horsrevenu2026.",
+        "sourceUrl": "https://community.finary.com/t/31-ans-ingenieur-cyber-etf-world-immobilier-locatif-ou-scpi/40234",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-19-2026-10-30",
+    "name": "Arthur et Emma",
+    "age": null,
+    "job": "Internes en médecine",
+    "location": "Nancy",
+    "household": "Couple locataire",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-08-09",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "Forum Finary",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://community.finary.com/t/premier-achat-locatif-internes-en-medecine/38931"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Deux salaires actuels 1650 et loyer 970 conservés. Autres dépenses et versements hypothétiques. Épargne 45000 déjà constituée non comptée en revenu; hauts revenus futurs de médecins exclus.",
+    "income": [
+      {
+        "label": "Salaire Arthur",
+        "amount": 1650.0,
+        "category": "other"
+      },
+      {
+        "label": "Salaire Emma",
+        "amount": 1650.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Loyer",
+        "amount": 970.0,
+        "category": "housing"
+      },
+      {
+        "label": "Énergie",
+        "amount": 100.0,
+        "category": "bills"
+      },
+      {
+        "label": "Eau",
+        "amount": 30.0,
+        "category": "bills"
+      },
+      {
+        "label": "Assurances",
+        "amount": 40.0,
+        "category": "bills"
+      },
+      {
+        "label": "Téléphones et internet",
+        "amount": 60.0,
+        "category": "bills"
+      },
+      {
+        "label": "Courses",
+        "amount": 450.0,
+        "category": "food"
+      },
+      {
+        "label": "Transports",
+        "amount": 200.0,
+        "category": "transport"
+      },
+      {
+        "label": "Santé",
+        "amount": 60.0,
+        "category": "health"
+      },
+      {
+        "label": "Restaurants",
+        "amount": 120.0,
+        "category": "food"
+      },
+      {
+        "label": "Loisirs",
+        "amount": 100.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Vêtements",
+        "amount": 80.0,
+        "category": "other"
+      },
+      {
+        "label": "Études et frais professionnels",
+        "amount": 70.0,
+        "category": "other"
+      },
+      {
+        "label": "Vacances mensualisées",
+        "amount": 120.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Cadeaux et divers",
+        "amount": 100.0,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "PEA",
+        "amount": 300.0,
+        "category": "other"
+      },
+      {
+        "label": "Livret pour projets",
+        "amount": 500.0,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Couple locataire.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Deux salaires actuels 1650 et loyer 970 conservés. Autres dépenses et versements hypothétiques. Épargne 45000 déjà constituée non comptée en revenu; hauts revenus futurs de médecins exclus.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 19,
+        "name": "Couple d’internes",
+        "age": null,
+        "country": "France",
+        "sourceDate": "2026-08-09",
+        "description": "Interneradiologieetautrespécialité,Nancy",
+        "income": 3300,
+        "incomeScope": "foyer:1650netschacun",
+        "knownBudget": "Loyer970;épargneconstituée30000+15000;versementsPEAexistantsnonchiffrés.",
+        "missingAndChecks": "Courses,transports,assurances,versementsmensuels. Exclure revenus projetésaprèsinternat9000–15000et4000–8000.",
+        "sourceUrl": "https://community.finary.com/t/premier-achat-locatif-internes-en-medecine/38931",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  },
+  {
+    "id": "prepared-lot2-20-2026-10-30",
+    "name": "Vincent et Sarah",
+    "age": null,
+    "job": "Salariés",
+    "location": "France",
+    "household": "Vincent, 29 ans · couple marié · trois appartements locatifs",
+    "kind": "prepared",
+    "approximate": true,
+    "currency": "EUR",
+    "publishedAt": "2026-01-15",
+    "checkedAt": "2026-10-30",
+    "period": "Scénario mensuel préparé le 30 octobre 2026",
+    "source": {
+      "publisher": "Forum Finary",
+      "title": "Témoignage ayant inspiré ce budget",
+      "url": "https://community.finary.com/t/mon-plan-pour-devenir-rentier-a-35-ans/33501"
+    },
+    "incomeBasis": "Ressources nettes au budget",
+    "incomeNote": "Lecture en cash-flow:400 locatifs déjà nets, sans recomptage de loyers bruts ni déduction répétée des crédits locatifs. Seul loyer personnel 700 ajouté. Objectifs futurs de rente exclus.",
+    "income": [
+      {
+        "label": "Salaire Vincent",
+        "amount": 2800.0,
+        "category": "other"
+      },
+      {
+        "label": "Salaire Sarah",
+        "amount": 2400.0,
+        "category": "other"
+      },
+      {
+        "label": "Excédent locatif net disponible",
+        "amount": 400.0,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Loyer de la résidence principale",
+        "amount": 700.0,
+        "category": "housing"
+      },
+      {
+        "label": "Énergie",
+        "amount": 150.0,
+        "category": "bills"
+      },
+      {
+        "label": "Eau",
+        "amount": 40.0,
+        "category": "bills"
+      },
+      {
+        "label": "Assurances personnelles",
+        "amount": 120.0,
+        "category": "bills"
+      },
+      {
+        "label": "Téléphones et internet",
+        "amount": 70.0,
+        "category": "bills"
+      },
+      {
+        "label": "Courses",
+        "amount": 550.0,
+        "category": "food"
+      },
+      {
+        "label": "Transports",
+        "amount": 400.0,
+        "category": "transport"
+      },
+      {
+        "label": "Santé",
+        "amount": 60.0,
+        "category": "health"
+      },
+      {
+        "label": "Restaurants",
+        "amount": 200.0,
+        "category": "food"
+      },
+      {
+        "label": "Loisirs",
+        "amount": 150.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Vêtements",
+        "amount": 120.0,
+        "category": "other"
+      },
+      {
+        "label": "Vacances mensualisées",
+        "amount": 250.0,
+        "category": "leisure"
+      },
+      {
+        "label": "Cadeaux",
+        "amount": 140.0,
+        "category": "other"
+      },
+      {
+        "label": "Entretien du logement",
+        "amount": 50.0,
+        "category": "housing"
+      }
+    ],
+    "savings": [
+      {
+        "label": "PEA",
+        "amount": 800.0,
+        "category": "other"
+      },
+      {
+        "label": "Réserve pour investissements immobiliers",
+        "amount": 1500.0,
+        "category": "other"
+      },
+      {
+        "label": "Épargne de précaution",
+        "amount": 300.0,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Vincent, 29 ans · couple marié · trois appartements locatifs.",
+    "caveat": "Prénom modifié et budget complété à la demande de l’utilisateur. Les montants ventilés et les versements ajoutés sont des hypothèses de préparation, pas des déclarations intégrales de l’auteur. Lecture en cash-flow:400 locatifs déjà nets, sans recomptage de loyers bruts ni déduction répétée des crédits locatifs. Seul loyer personnel 700 ajouté. Objectifs futurs de rente exclus.",
+    "hook": "",
+    "question": "Quel poste ajusterais-tu dans ce budget ?",
+    "provenance": {
+      "original": {
+        "number": 20,
+        "name": "Éric et son épouse",
+        "age": 29,
+        "country": "France",
+        "sourceDate": "2026-01-15",
+        "description": "Couple,mariés,locataires,troisappartementslocatifs",
+        "income": 5200,
+        "incomeScope": "salaires2800+2400;cashflowlocatifnet~400distinct",
+        "knownBudget": "Loyerrésidence700 confirmémessage3;cashflowlocatif400netaprèsimpôt.",
+        "missingAndChecks": "Chargesdevieetdetaillocatif. Ne pas mêlercashflownet400àloyersbruts/crédits,ne pas utiliserobjectifrente2500commebudgetactuel.",
+        "sourceUrl": "https://community.finary.com/t/mon-plan-pour-devenir-rentier-a-35-ans/33501",
+        "status": "à compléter"
+      },
+      "method": "Compléments autorisés dans la conversation. Observation d’origine conservée; montants de préparation distincts du témoignage.",
+      "expectedBalance": 0
+    }
+  }
+]

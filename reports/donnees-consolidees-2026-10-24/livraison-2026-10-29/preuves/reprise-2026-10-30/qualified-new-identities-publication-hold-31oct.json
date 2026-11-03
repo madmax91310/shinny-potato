@@ -1,0 +1,22 @@
+{
+  "run": 41151066938,
+  "publishJob": 124390931500,
+  "sourceCommit": "62fbee7ac293d7558b1d84bc62582f1e99fdaf91",
+  "previousPublishedCode": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+  "heldBackFileCount": 3,
+  "newIdentifierCount": 2,
+  "newIdentifiers": [
+    "BBG026CX69T1",
+    "CA38141A6025"
+  ],
+  "lines": [
+    "2026-10-31T00:52:12.5124623Z Fallback snapshot: code fa825823 (published) + 142 automation data file(s) from 62fbee7a.",
+    "2026-10-31T00:52:12.5128387Z 3 data file(s) kept at their published version: they name 2 identifier(s) the published code does not know (BBG026CX69T1, CA38141A6025).",
+    "2026-10-31T00:52:12.5129946Z - src/data/dca-complete-holdings.json: CA38141A6025",
+    "2026-10-31T00:52:12.5130974Z - src/data/security-identifier-observations.json: BBG026CX69T1",
+    "2026-10-31T00:52:12.5132058Z - src/pages/dca-profiles/holdings-27.json: CA38141A6025",
+    "2026-10-31T00:52:49.1229791Z AssertionError [ERR_ASSERTION]: Required data was held back or changed during generation: src/data/dca-complete-holdings.json"
+  ],
+  "interpretation": "The ordinary collector recorded qualified securities/identity outputs. Exact publication was held back until full validation of the expanded identifier snapshot; fallback full gate is running normally. Not a source acquisition failure, and no guard bypass.",
+  "productionPublicationVerified": false
+}

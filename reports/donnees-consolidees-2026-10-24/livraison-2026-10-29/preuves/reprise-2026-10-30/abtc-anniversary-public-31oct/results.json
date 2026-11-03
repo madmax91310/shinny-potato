@@ -1,0 +1,166 @@
+{
+  "checkedAt": "2026-10-31T00:54:41.256Z",
+  "scope": "Two existing ABTC market-close and NAV paths kept distinct; source controls and daily renewal, not new monthly qualification or explanation of old quote discrepancy",
+  "sourceRun": 41150996336,
+  "results": [
+    {
+      "tool": "Il y a X ans",
+      "id": "etfCH0454664001",
+      "width": 1280,
+      "pastPeriod": "2021-10",
+      "pastPrice": 19.094,
+      "current": {
+        "value": 23.949600219726562,
+        "asOf": "2026-10-29",
+        "currency": "EUR",
+        "parser": "yahoo",
+        "symbol": "ABTC.PA",
+        "indexCode": null,
+        "variant": null,
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/ABTC.PA?period1=1792108800&period2=1793404800&interval=1d&events=splits",
+        "sha256": "b88beb46c9baf99bf1accd909754578027835a7f658fd3f5fd2380ea5dd79d52",
+        "method": "Dernière séance terminée ; cours brut",
+        "maxAgeDays": 7,
+        "isin": "CH0454664001",
+        "ticker": "ABTC",
+        "mic": "XPAR",
+        "listingEvidenceId": "CH0454664001-XPAR-ABTC-EUR",
+        "checkedAt": "2026-10-31T00:37:01.433296+00:00",
+        "label": "Clôture du 29/10/2026",
+        "manual": false
+      },
+      "expectedGain": 25.429979154323657,
+      "text": "📊 Il y a 5 ans, l’ETF 21Shares Bitcoin ETP valait 19 €. Depuis, son prix a progressé de +25,4 % 👇\n\n📅 Octobre 2021 : 19 €\n📅 Clôture du 29/10/2026 : 24 €\n\n📈 Évolution sur la période : +25,4 %\n\n💬 À l’époque, tu suivais déjà l’ETF 21Shares Bitcoin ETP ?\n\nYahoo Finance",
+      "pngSha256": "e83091dad5791fb0f0c90c431696d708a51877dbd3915b2763350fbe0ae3ccf6",
+      "drawn": "ABTC\nABTC\nETF ABTC\n+25,4 %\nEN 5 ANS\nOCTOBRE 2021\nAUJOURD’HUI\n19,09 €\n23,95 €\nÉPARGNANT LIBRE",
+      "version": {
+        "sha": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+        "dataSha": "cdf1087fa6972c93427db540441976dc307e364d",
+        "lane": "validated-data",
+        "builtAt": "2026-10-31T00:42:41.933Z"
+      }
+    },
+    {
+      "tool": "Il y a X ans",
+      "id": "etfCH0454664001Nav",
+      "width": 1280,
+      "pastPeriod": "2021-10",
+      "pastPrice": 18.62601975,
+      "current": {
+        "value": 22.787325456498387,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "CH0454664001",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 25.458,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+        "sourceUrls": [
+          "https://api.primary.21shares.com/api/product_details/ABTC",
+          "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
+          "https://api.primary.21shares.com/api/product_performance_metrics/ABTC",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-10-31T00:37:01.433296+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "a73169fdec3ec352acacf8df06096c1b8bb9a02a161b9feb07ff5937a0940f29",
+        "label": "Valeur liquidative du 30/10/2026",
+        "manual": false
+      },
+      "expectedGain": 22.34135774766579,
+      "text": "📊 Il y a 5 ans, l’ETP 21Shares Bitcoin ETP · VL valait 19 €. Depuis, son prix a progressé de +22,3 % 👇\n\n📅 Octobre 2021 : 19 €\n📅 Valeur liquidative du 30/10/2026 : 23 €\n\n📈 Évolution sur la période : +22,3 %\n\n💬 À l’époque, tu suivais déjà l’ETP 21Shares Bitcoin ETP · VL ?\n\n21Shares",
+      "pngSha256": "a8f1daee18e3f6936e281f8b29406bf534c59f89effaba9843a555752839440e",
+      "drawn": "ABTC\nABTC\nETF ABTC\n+22,3 %\nEN 5 ANS\nOCTOBRE 2021\nAUJOURD’HUI\n18,63 €\n22,79 €\nÉPARGNANT LIBRE",
+      "version": {
+        "sha": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+        "dataSha": "cdf1087fa6972c93427db540441976dc307e364d",
+        "lane": "validated-data",
+        "builtAt": "2026-10-31T00:42:41.933Z"
+      }
+    },
+    {
+      "tool": "Il y a X ans",
+      "id": "etfCH0454664001",
+      "width": 390,
+      "pastPeriod": "2021-10",
+      "pastPrice": 19.094,
+      "current": {
+        "value": 23.949600219726562,
+        "asOf": "2026-10-29",
+        "currency": "EUR",
+        "parser": "yahoo",
+        "symbol": "ABTC.PA",
+        "indexCode": null,
+        "variant": null,
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/ABTC.PA?period1=1792108800&period2=1793404800&interval=1d&events=splits",
+        "sha256": "b88beb46c9baf99bf1accd909754578027835a7f658fd3f5fd2380ea5dd79d52",
+        "method": "Dernière séance terminée ; cours brut",
+        "maxAgeDays": 7,
+        "isin": "CH0454664001",
+        "ticker": "ABTC",
+        "mic": "XPAR",
+        "listingEvidenceId": "CH0454664001-XPAR-ABTC-EUR",
+        "checkedAt": "2026-10-31T00:37:01.433296+00:00",
+        "label": "Clôture du 29/10/2026",
+        "manual": false
+      },
+      "expectedGain": 25.429979154323657,
+      "text": "📊 Il y a 5 ans, l’ETF 21Shares Bitcoin ETP valait 19 €. Depuis, son prix a progressé de +25,4 % 👇\n\n📅 Octobre 2021 : 19 €\n📅 Clôture du 29/10/2026 : 24 €\n\n📈 Évolution sur la période : +25,4 %\n\n💬 À l’époque, tu suivais déjà l’ETF 21Shares Bitcoin ETP ?\n\nYahoo Finance",
+      "pngSha256": "e83091dad5791fb0f0c90c431696d708a51877dbd3915b2763350fbe0ae3ccf6",
+      "drawn": "ABTC\nABTC\nETF ABTC\n+25,4 %\nEN 5 ANS\nOCTOBRE 2021\nAUJOURD’HUI\n19,09 €\n23,95 €\nÉPARGNANT LIBRE",
+      "version": {
+        "sha": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+        "dataSha": "cdf1087fa6972c93427db540441976dc307e364d",
+        "lane": "validated-data",
+        "builtAt": "2026-10-31T00:42:41.933Z"
+      }
+    },
+    {
+      "tool": "Il y a X ans",
+      "id": "etfCH0454664001Nav",
+      "width": 390,
+      "pastPeriod": "2021-10",
+      "pastPrice": 18.62601975,
+      "current": {
+        "value": 22.787325456498387,
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "isin": "CH0454664001",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 25.458,
+        "nativeCurrency": "USD",
+        "fxAsOf": "2026-10-30",
+        "fxFactor": 0.8950948800572861,
+        "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+        "sourceUrls": [
+          "https://api.primary.21shares.com/api/product_details/ABTC",
+          "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
+          "https://api.primary.21shares.com/api/product_performance_metrics/ABTC",
+          "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+        ],
+        "checkedAt": "2026-10-31T00:37:01.433296+00:00",
+        "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+        "maxAgeDays": 7,
+        "sha256": "a73169fdec3ec352acacf8df06096c1b8bb9a02a161b9feb07ff5937a0940f29",
+        "label": "Valeur liquidative du 30/10/2026",
+        "manual": false
+      },
+      "expectedGain": 22.34135774766579,
+      "text": "📊 Il y a 5 ans, l’ETP 21Shares Bitcoin ETP · VL valait 19 €. Depuis, son prix a progressé de +22,3 % 👇\n\n📅 Octobre 2021 : 19 €\n📅 Valeur liquidative du 30/10/2026 : 23 €\n\n📈 Évolution sur la période : +22,3 %\n\n💬 À l’époque, tu suivais déjà l’ETP 21Shares Bitcoin ETP · VL ?\n\n21Shares",
+      "pngSha256": "a8f1daee18e3f6936e281f8b29406bf534c59f89effaba9843a555752839440e",
+      "drawn": "ABTC\nABTC\nETF ABTC\n+22,3 %\nEN 5 ANS\nOCTOBRE 2021\nAUJOURD’HUI\n18,63 €\n22,79 €\nÉPARGNANT LIBRE",
+      "version": {
+        "sha": "fa8258232c64e2e9d48ac29a797a478664af6ac8",
+        "dataSha": "cdf1087fa6972c93427db540441976dc307e364d",
+        "lane": "validated-data",
+        "builtAt": "2026-10-31T00:42:41.933Z"
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,307 @@
+{
+  "checkedAt": "2026-11-03",
+  "scope": "Five exact shares already collected and published; qualification replay for existing manual/Duel consumers only. Not a new supplier run or explanation of an old quotation.",
+  "codeObserved": "a4b1c48d191b27235e4bbf2efada345d87cf9c59",
+  "dataObserved": "0e8ab37407021391b4bcc56f93952787e3cb0c1d",
+  "shares": {
+    "LU1875395870": {
+      "sourceRun": 41563424241,
+      "event": "push",
+      "artifactId": 13198622244,
+      "sourceCheckedAt": "2026-11-03T02:03:55.413522+00:00",
+      "sourcePerformance": {
+        "basis": "fund",
+        "currency": "EUR",
+        "method": "calendar-year NAV total return, income reinvested, net of fund fees",
+        "years": {
+          "2019": 19.46,
+          "2020": 15.87,
+          "2021": 5.13,
+          "2022": -8.14,
+          "2023": 34.54,
+          "2024": 24.22,
+          "2025": 29.63
+        },
+        "checkedAt": "2026-11-03"
+      },
+      "qualifiedAnnualContract": {
+        "id": "annual-LU1875395870",
+        "isin": "LU1875395870",
+        "label": "Xtrackers Nikkei 225 UCITS ETF",
+        "shortLabel": "Xtrackers Nikkei 225 UCITS ETF",
+        "instrumentType": "ETF",
+        "frequency": "annual",
+        "basis": "fund-nav",
+        "currency": "EUR",
+        "years": {
+          "2019": 19.46,
+          "2020": 15.87,
+          "2021": 5.13,
+          "2022": -8.14,
+          "2023": 34.54,
+          "2024": 24.22,
+          "2025": 29.63
+        },
+        "pea": false,
+        "group": "Calendriers annuels · Stratégiques",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium"
+        ],
+        "checkedAt": "2026-11-03",
+        "asOf": "2025-12-31",
+        "method": "calendar-year NAV total return, income reinvested, net of fund fees"
+      },
+      "recordExactlyMatchesPublishedRegistry": true,
+      "publishedRegistry": "src/data/automated-etf.json",
+      "publishedRegistryGitBlob": "cdc3414c0e2a2bfe8370208deccf63498c94217e"
+    },
+    "IE00BK5BCH80": {
+      "sourceRun": 41563424241,
+      "event": "push",
+      "artifactId": 13198622244,
+      "sourceCheckedAt": "2026-11-03T02:03:55.413522+00:00",
+      "sourcePerformance": {
+        "currency": "USD",
+        "basis": "fund",
+        "years": {
+          "2021": -6.32,
+          "2022": -9.4,
+          "2023": -8.57,
+          "2024": -14.5,
+          "2025": 52.01
+        },
+        "asOf": "2026-09-30",
+        "method": "calendar-year exact-share NAV total return, net income reinvested, net of fees",
+        "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "sha256": "d60b331dd9f39b0387db7869fcb78f0df904a8e6fe843b0d39aad7ff33897d23",
+        "checkedAt": "2026-11-03",
+        "modifiedAt": "2026-11-03"
+      },
+      "qualifiedAnnualContract": {
+        "id": "annual-IE00BK5BCH80",
+        "isin": "IE00BK5BCH80",
+        "label": "L&G Clean Energy UCITS ETF",
+        "shortLabel": "L&G Clean Energy UCITS ETF",
+        "instrumentType": "ETF",
+        "frequency": "annual",
+        "basis": "fund-nav",
+        "currency": "USD",
+        "years": {
+          "2021": -6.32,
+          "2022": -9.4,
+          "2023": -8.57,
+          "2024": -14.5,
+          "2025": 52.01
+        },
+        "pea": false,
+        "group": "Calendriers annuels · Thématiques émergentes",
+        "sourceUrls": [
+          "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1"
+        ],
+        "checkedAt": "2026-11-03",
+        "asOf": "2026-09-30",
+        "method": "calendar-year exact-share NAV total return, net income reinvested, net of fees"
+      },
+      "recordExactlyMatchesPublishedRegistry": true,
+      "publishedRegistry": "src/data/automated-etf.json",
+      "publishedRegistryGitBlob": "cdc3414c0e2a2bfe8370208deccf63498c94217e"
+    },
+    "FR0011550185": {
+      "sourceRun": 41563424241,
+      "event": "push",
+      "artifactId": 13198622244,
+      "sourceCheckedAt": "2026-11-03T02:03:55.413522+00:00",
+      "sourcePerformance": {
+        "currency": "EUR",
+        "basis": "fund",
+        "method": "calendar-year exact-share NAV net total return, income reinvested, fund fees included",
+        "asOf": "2026-09-30",
+        "years": {
+          "2016": 14.8,
+          "2017": 7.02,
+          "2018": -0.52,
+          "2019": 35.04,
+          "2020": 8.66,
+          "2021": 38.2,
+          "2022": -12.96,
+          "2023": 21.84,
+          "2024": 32.82,
+          "2025": 3.3
+        },
+        "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
+        "discoveryUrl": "https://www.analizy.pl/etf/FR0011550185/bnp-paribas-easy-s-p-500-ucits-etf-c-acc-eur",
+        "sha256": "2fb8ae96b4861c9f5ef7c0f16c1e28cd266b28d7caf15b7de8d8078657fa5253",
+        "sourceLabel": "Fiche BNP Paribas Asset Management · copie hébergée par Analizy",
+        "publisher": "BNP Paribas Asset Management",
+        "documentHost": "Analizy",
+        "checkedAt": "2026-11-03"
+      },
+      "qualifiedAnnualContract": {
+        "id": "annual-FR0011550185",
+        "isin": "FR0011550185",
+        "label": "BNP Paribas Easy S&P 500 UCITS ETF (Acc)",
+        "shortLabel": "BNP Paribas Easy S&P 500 UCITS ETF (Acc)",
+        "instrumentType": "ETF",
+        "frequency": "annual",
+        "basis": "fund-nav",
+        "currency": "EUR",
+        "years": {
+          "2016": 14.8,
+          "2017": 7.02,
+          "2018": -0.52,
+          "2019": 35.04,
+          "2020": 8.66,
+          "2021": 38.2,
+          "2022": -12.96,
+          "2023": 21.84,
+          "2024": 32.82,
+          "2025": 3.3
+        },
+        "pea": true,
+        "group": "Calendriers annuels · Cœur de portefeuille",
+        "sourceUrls": [
+          "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30"
+        ],
+        "checkedAt": "2026-11-03",
+        "asOf": "2026-09-30",
+        "method": "calendar-year exact-share NAV net total return, income reinvested, fund fees included"
+      },
+      "recordExactlyMatchesPublishedRegistry": true,
+      "publishedRegistry": "src/data/automated-etf.json",
+      "publishedRegistryGitBlob": "cdc3414c0e2a2bfe8370208deccf63498c94217e"
+    },
+    "IE00BYPC1H27": {
+      "sourceRun": 41563424241,
+      "event": "push",
+      "artifactId": 13198622244,
+      "sourceCheckedAt": "2026-11-03T02:03:55.413522+00:00",
+      "sourcePerformance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2020": 9.55,
+          "2021": 8.17,
+          "2022": -5.41,
+          "2023": 2.34,
+          "2024": 4.96,
+          "2025": 4.58
+        },
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sha256": "e27e704ec7ff2094f9919cd2b3faf422fbcc64595b7b893e3f48a6a36aa728db",
+        "asOf": "2025-12-31",
+        "yearEvidence": {
+          "2020": {
+            "asOf": "2020-12-31",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "sha256": "e27e704ec7ff2094f9919cd2b3faf422fbcc64595b7b893e3f48a6a36aa728db"
+          },
+          "2021": {
+            "asOf": "2021-12-31",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "sha256": "e27e704ec7ff2094f9919cd2b3faf422fbcc64595b7b893e3f48a6a36aa728db"
+          },
+          "2022": {
+            "asOf": "2022-12-31",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "sha256": "e27e704ec7ff2094f9919cd2b3faf422fbcc64595b7b893e3f48a6a36aa728db"
+          },
+          "2023": {
+            "asOf": "2023-12-31",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "sha256": "e27e704ec7ff2094f9919cd2b3faf422fbcc64595b7b893e3f48a6a36aa728db"
+          },
+          "2024": {
+            "asOf": "2024-12-31",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "sha256": "e27e704ec7ff2094f9919cd2b3faf422fbcc64595b7b893e3f48a6a36aa728db"
+          },
+          "2025": {
+            "asOf": "2025-12-31",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "sha256": "e27e704ec7ff2094f9919cd2b3faf422fbcc64595b7b893e3f48a6a36aa728db"
+          }
+        },
+        "checkedAt": "2026-11-03",
+        "modifiedAt": "2026-11-02"
+      },
+      "qualifiedAnnualContract": {
+        "id": "annual-IE00BYPC1H27",
+        "isin": "IE00BYPC1H27",
+        "label": "iShares China CNY Bond UCITS ETF",
+        "shortLabel": "iShares China CNY Bond UCITS ETF",
+        "instrumentType": "ETF",
+        "frequency": "annual",
+        "basis": "fund-nav",
+        "currency": "USD",
+        "years": {
+          "2020": 9.55,
+          "2021": 8.17,
+          "2022": -5.41,
+          "2023": 2.34,
+          "2024": 4.96,
+          "2025": 4.58
+        },
+        "pea": false,
+        "group": "Calendriers annuels · Obligataires",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+        ],
+        "checkedAt": "2026-11-03",
+        "asOf": "2025-12-31",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included"
+      },
+      "recordExactlyMatchesPublishedRegistry": true,
+      "publishedRegistry": "src/data/automated-etf.json",
+      "publishedRegistryGitBlob": "cdc3414c0e2a2bfe8370208deccf63498c94217e"
+    },
+    "IE00BMC38736": {
+      "sourceRun": 41555221832,
+      "event": "push",
+      "artifactId": 13194852291,
+      "sourceCheckedAt": "2026-11-03T00:57:21.659301+00:00",
+      "sourcePerformance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, net income reinvested, net of fees",
+        "years": {
+          "2021": 43.6,
+          "2022": -34.8,
+          "2023": 73.2,
+          "2024": 23.2,
+          "2025": 50.1
+        },
+        "checkedAt": "2026-11-03",
+        "modifiedAt": "2026-10-16"
+      },
+      "qualifiedAnnualContract": {
+        "id": "annual-IE00BMC38736",
+        "isin": "IE00BMC38736",
+        "label": "VanEck Semiconductor UCITS ETF",
+        "shortLabel": "VanEck Semiconductor UCITS ETF",
+        "instrumentType": "ETF",
+        "frequency": "annual",
+        "basis": "fund-nav",
+        "currency": "USD",
+        "years": {
+          "2021": 43.6,
+          "2022": -34.8,
+          "2023": 73.2,
+          "2024": 23.2,
+          "2025": 50.1
+        },
+        "pea": false,
+        "group": "Calendriers annuels · Thématiques émergentes",
+        "sourceUrls": [
+          "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf"
+        ],
+        "checkedAt": "2026-11-03",
+        "asOf": "2025-12-31",
+        "method": "calendar-year NAV total return, net income reinvested, net of fees"
+      },
+      "recordExactlyMatchesPublishedRegistry": true,
+      "publishedRegistry": "src/data/exposure-etf-expansion-records.json",
+      "publishedRegistryGitBlob": "87f9efdd933cb509c5626678b1760aa5e1f7ac5b"
+    }
+  }
+}

@@ -50,6 +50,37 @@ function official(value, source) {
   if (url.protocol !== 'https:' || url.hostname !== source.host || url.port || url.username || url.password) throw new Error('URL hors périmètre officiel')
   return canonicalUrl(url.href)
 }
+// A pure INSEE book index is a discovery document, not a numerical abstract.
+// Follow only explicitly labelled chapters in the existing household themes.
+export function inseeBookChapters(html, source, url) {
+  if (source.host !== 'www.insee.fr') return null
+  let parentUrl; try { parentUrl = new URL(official(url,source)) } catch { return null }
+  if(parentUrl.search)return null
+  const parent = parentUrl.pathname.match(/^\/fr\/statistiques\/(\d+)$/)?.[1]
+  if (!parent || !/<div\b[^>]*class=["'][^"']*\bproduit-sommaire\b[^"']*\bsommaire-seul\b/i.test(html)) return null
+  const start = [...html.matchAll(/<nav\b[^>]*class=["'][^"']*\bsommaire-container\b[^"']*["'][^>]*>/gi)]
+    .find(match => new RegExp(`data-produit=["']${parent}["']`).test(match[0]))
+  if (!start) return null
+  const section = htmlElement(html, start.index), chapters = new Map(), excluded = new Map()
+  for (const [, href, content] of section.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
+    let child; try { child = new URL(official(cleanText(href), source)) } catch { continue }
+    const id = child.pathname.match(/^\/fr\/statistiques\/(\d+)$/)?.[1]
+    if (!id || id === parent || child.searchParams.get('sommaire') !== parent) continue
+    // The publisher's default document route has its own title/paragraphs;
+    // sommaire only wraps it in the parent book's header and abstract.
+    child.searchParams.delete('sommaire')
+    if (child.search) continue
+    const key = canonicalUrl(child.href), title = cleanText(content)
+    if (!title || !statisticalTopic(title) || editorialExclusion({label:title})) {
+      if (!chapters.has(key)) excluded.set(key, {url:key,title,reason:!title?'Lien sans titre statistique qualifié':'Chapitre hors des thèmes ménages suivis'})
+      continue
+    }
+    chapters.set(key,{url:key,title,discoveredHref:official(cleanText(href), source)})
+    excluded.delete(key)
+  }
+  if (!chapters.size) return null // An empty/unidentified index is not a healthy result.
+  return {chapters:[...chapters.values()],excluded:[...excluded.values()],sourceHash:hash(html)}
+}
 export function discoverPublications(content, source) {
   if (/Request Rejected|Access Denied|captcha|Incapsula incident|Vérification de sécurité|Please enable JavaScript to view the page content/i.test(content) && content.length < 100000) throw new Error('Accès refusé ou page anti-robot, même si HTTP 200')
   const consumer = discoverConsumer(content, source)
@@ -133,7 +164,11 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
   }
   const headline=listing.title??tag(html,'h1')
   const issuerRelay=/\bETF/i.test(headline) && (source.id==='credit-agricole-news' && /^Amundi\b/i.test(headline) || source.id==='bnp-bank' && /^BNP Paribas (?:Asset Management|AM)\b/i.test(headline))
-  if(source.method.startsWith('consumer-') && !issuerRelay) return parseConsumer(html,{...source,primaryHosts:PUBLICATION_SOURCES.filter(s=>s.evidenceLevel!=='journalistic').map(s=>s.host)},url,now,listing)
+  if(source.method.startsWith('consumer-') && !issuerRelay) {
+    const observation=parseConsumer(html,{...source,primaryHosts:PUBLICATION_SOURCES.filter(s=>s.evidenceLevel!=='journalistic').map(s=>s.host)},url,now,listing)
+    if(listing.publicationDateEvidence)observation.evidence={...observation.evidence,publicationDateEvidence:listing.publicationDateEvidence}
+    return observation
+  }
   if(source.requireUcits && !/\bUCITS\b/i.test(cleanText(html)))return {rejected:'Annonce sans statut UCITS documenté ; lancement américain non généralisé à la France',title:listing.title}
   if(issuerRelay)source={...source,family:'etf'}
   if(source.id==='dvf'){
@@ -184,7 +219,14 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
   const diffusion=source.id==='credit-logement'?creditLogementDiffusion(html):null
   if(diffusion&&Date.parse(diffusion)>+now)throw Error('Diffusion CSA future ; événement attendu distinct d’une publication parue')
   const metadataOnly = source.id==='credit-logement' && !diffusion || source.id==='oll' && !/[%€]|euros/i.test(summary)
-  if (!summary || !/\d/.test(summary)) throw new Error('Résumé statistique chiffré absent : extraction à adapter')
+  if (!summary || !/\d/.test(summary)) {
+    const book = !listing.observation && !listing.lastValidObservation && inseeBookChapters(html,source,url)
+    if (book) return {rejected:`Sommaire d’ouvrage, sans résumé statistique propre : ${book.chapters.length} chapitres ménages découverts, extraction individuelle différée.`,title,publishedAt,bookDiscovery:book}
+    // Same admission rule as below: an out-of-scope INSEE reference does not
+    // become a collector failure solely because it has no numerical abstract.
+    if(source.host==='www.insee.fr'&&!statisticalTopic(title))return {rejected:'Publication hors des thèmes ménages suivis',title,publishedAt}
+    throw new Error('Résumé statistique chiffré absent : extraction à adapter')
+  }
   if (!statisticalTopic(title)) return { rejected: 'Publication hors des thèmes ménages suivis', title, publishedAt }
   // A publication's edition year is not necessarily its statistical reference year.
   const years = [...new Set(summary.match(/\b20\d{2}\b/g) ?? [])].sort()
@@ -199,7 +241,7 @@ export async function collectPublications(now = new Date(), request = fetch, pre
   const state = structuredClone(previous), errors = [], reports = []
   state.documents ??= {}; state.sources ??= {}; state.documentDurationsMs ??= []; state.offerReferences ??= {}
   // Versioned requalification only for existing rejected/partial adapters. No global replay.
-  const parserVersion = source => source.method.startsWith('consumer-') || source.format || source.family==='etf' || source.method==='offer-watch' || source.id==='insee-studies' ? 3 : source.id==='bdf-debt'?1:source.parserVersion
+  const parserVersion = source => source.host==='www.insee.fr' ? 4 : source.method.startsWith('consumer-') || source.format || source.family==='etf' || source.method==='offer-watch' || source.id==='insee-studies' ? 3 : source.id==='bdf-debt'?1:source.parserVersion
   sources=sources.map(source=>({...source,parserVersion:Math.max(source.parserVersion??0,parserVersion(source)??0)}))
   const requestContent = async (url, cached, limit = 2500000, body = null) => {
     const response = await requestRadarSource(request,url, { ...(body?{method:'POST',body:JSON.stringify(body)}:{}), signal: AbortSignal.timeout(25000), headers: { ...(body?{'Content-Type':'application/json'}:{}), 'User-Agent': 'EpargnantLibre-Radar/2.0', Accept: body?'application/json':'application/rss+xml, application/xml, application/json, text/html, application/pdf', ...(cached?.etag ? {'If-None-Match': cached.etag} : {}), ...(cached?.lastModified ? {'If-Modified-Since': cached.lastModified} : {}) } },()=>metrics.requests++)
@@ -234,6 +276,9 @@ export async function collectPublications(now = new Date(), request = fetch, pre
           const rows = offerDiscovery(result.content,source) ?? await inseeDiscovery(result.content,source,discoveryRequest) ?? await coverageDiscovery(result.content,source,discoveryRequest) ?? await extraDiscovery(result.content,source,discoveryRequest) ?? discoverPublications(result.content, source)
           report.discovered = rows.length
           report.archiveWarning=rows.archiveWarning??null
+          report.discoveryFailures=rows.discoveryFailures??[]
+          report.expectedListingItems=rows.expectedListingItems??rows.length
+          report.discoveryDateEvidence=rows.filter(row=>row.publicationDateEvidence).map(row=>({url:row.url,...row.publicationDateEvidence}))
           for (const row of rows) {
             const existing=state.documents[row.url]
             if(source.id==='hanetf' && !row.title)row.title=existing?.observation?.label??existing?.title
@@ -256,13 +301,14 @@ export async function collectPublications(now = new Date(), request = fetch, pre
   const owners=new Map(sources.map(source=>[source.id,source]))
   const upgradeNeeded=item=>{
     const source=owners.get(item.source)
-    return source?.id==='credit-logement' || source?.id==='revolut-news' || source?.method==='offer-watch' || source?.id==='xetra' || (source?.family==='etf'||item.observation?.family==='etf') && item.observation && !item.observation.products?.length || item.observation?.evidenceLevel==='journalistic' || item.status==='rejected' && (source?.format || source?.method.startsWith('consumer-')) && !consumerRejection(item.title??'',item.description??'')
+    return source?.host==='www.insee.fr' && item.status==='error' && item.error==='Résumé statistique chiffré absent : extraction à adapter' || source?.id==='bdf-debt' && ['error','partial','rejected'].includes(item.status) || source?.id==='credit-logement' || source?.id==='revolut-news' || source?.method==='offer-watch' || source?.id==='xetra' || (source?.family==='etf'||item.observation?.family==='etf') && item.observation && !item.observation.products?.length || item.observation?.evidenceLevel==='journalistic' || item.status==='rejected' && (source?.format || source?.method.startsWith('consumer-')) && !consumerRejection(item.title??'',item.description??'')
   }
   const parserDue=item=>upgradeNeeded(item) && owners.get(item.source)?.parserVersion && item.parserVersion!==owners.get(item.source).parserVersion && item.parserVersionAttempted!==owners.get(item.source).parserVersion
   const due = Object.entries(state.documents).filter(([, item]) => (!item.listingRejected || parserDue(item)) && (parserDue(item) || !item.nextAttemptAt || Date.parse(item.nextAttemptAt) <= +now))
     .sort((a,b) => (a[1].attemptedAt ?? '').localeCompare(b[1].attemptedAt ?? '') || (b[1].processingPriority??0)-(a[1].processingPriority??0) || b[1].discoveredAt.localeCompare(a[1].discoveredAt))
   // Round-robin across sources: a prolific archive cannot starve the others.
-  const queuePlan=planPublicationQueue(due,sources,now,state,budget)
+  const requalificationIds=new Set(due.filter(([,item])=>parserDue(item)).map(([url])=>url))
+  const queuePlan=planPublicationQueue(due,sources,now,state,budget,{requalificationIds})
   const chosen=queuePlan.chosen
   state.queuePass=(state.queuePass??0)+1
   if(chosen.length) state.nextSourceIndex=(sources.findIndex(source=>source.id===chosen.at(-1)[1].source)+1)%sources.length
@@ -287,6 +333,7 @@ export async function collectPublications(now = new Date(), request = fetch, pre
       // A 304 cannot validate a new parser against text that was not retained.
       const result = await requestContent(fetchUrl, requalifying||item.status==='partial'?null:item, 5000000)
       if (result.unchanged) {
+        if (requalifying && source.host==='www.insee.fr') throw Error('Réponse 304 sans texte pour qualifier le nouvel adaptateur de sommaire')
         if (item.observation || item.offerBaseline) item.status = 'done'
         else if (item.reason) item.status = 'rejected'
         else throw new Error('Réponse 304 sans extraction ou rejet conservé.')
@@ -320,6 +367,11 @@ export async function collectPublications(now = new Date(), request = fetch, pre
             const details=parseEtfDocument(supplement.content,observation.label)
             observation={...observation,products:details.products,supportingCalendarEvidence:details.calendarEvidence,supportingDocuments:[{url:uniqueLinks[0],sourceHash:hash(supplement.content)}],extraction:{...details.extraction,status:details.products.length>=observation.announcedProductCount?'complete':'partial',reason:details.products.length>=observation.announcedProductCount?null:'Produits annoncés non tous extractibles du PDF associé'}}
           }catch(error){observation.extraction={status:'partial',reason:'PDF officiel associé : '+error.message}}
+        }
+        if (observation.bookDiscovery) {
+          if(requalifying)item.backfill=true // Structural migration is not a new publication.
+          item.bookDiscovery={...observation.bookDiscovery,checkedAt:now.toISOString(),parentPublishedAt:observation.publishedAt}
+          for (const child of observation.bookDiscovery.chapters) state.documents[child.url]??={...child,source:source.id,backfill:Boolean(item.backfill||requalifying),discoveredAt:now.toISOString(),attempts:0,status:'pending',discoveredVia:url}
         }
         if (observation.rejected) { item.status = 'rejected'; item.reason = observation.rejected; delete item.observation }
         else {
@@ -377,7 +429,7 @@ export async function collectPublications(now = new Date(), request = fetch, pre
   }
   for (const [url,item] of Object.entries(state.documents)) if (item.status === 'error' && !errors.some(error => error.entity === url)) errors.push({ family: sources.find(source => source.id === item.source)?.family ?? 'radar', entity: url, reason: item.error })
   const waiting=Object.values(state.documents).filter(d=>['pending','error','partial'].includes(d.status))
-  state.metrics = { ...metrics, queue:{admitted:chosen.length,attempted:metrics.attemptedDocuments,capacity:queuePlan.limit,p90DocumentMs:queuePlan.p90DocumentMs,recentEligible:queuePlan.eligibleRecent,recentFirstAttempted:chosen.filter(([,d])=>d.queueClass==='recent-first-extraction' && d.firstAttemptAt===now.toISOString()).length,recentDeferred:Math.max(0,queuePlan.eligibleRecent-chosen.filter(([,d])=>d.queueClass==='recent-first-extraction'&&d.firstAttemptAt===now.toISOString()).length),pending:waiting.length,oldestWaitHours:waiting.length?Math.max(...waiting.map(d=>(+now-Date.parse(d.discoveredAt))/3600000)):0,objective:queuePlan.objective}, durationMs: Date.now()-started, checkedAt: now.toISOString() }
+  state.metrics = { ...metrics, queue:{admitted:chosen.length,attempted:metrics.attemptedDocuments,capacity:queuePlan.limit,p90DocumentMs:queuePlan.p90DocumentMs,requalificationsEligible:queuePlan.eligibleRequalifications,requalificationsSelected:chosen.filter(([url])=>requalificationIds.has(url)).length,recentEligible:queuePlan.eligibleRecent,recentFirstAttempted:chosen.filter(([,d])=>d.queueClass==='recent-first-extraction' && d.firstAttemptAt===now.toISOString()).length,recentDeferred:Math.max(0,queuePlan.eligibleRecent-chosen.filter(([,d])=>d.queueClass==='recent-first-extraction'&&d.firstAttemptAt===now.toISOString()).length),pending:waiting.length,oldestWaitHours:waiting.length?Math.max(...waiting.map(d=>(+now-Date.parse(d.discoveredAt))/3600000)):0,objective:queuePlan.objective}, durationMs: Date.now()-started, checkedAt: now.toISOString() }
   state.queueHistory??=[]
   state.queueHistory.push({checkedAt:now.toISOString(),eventName:process.env.GITHUB_EVENT_NAME??'local-qualification',runId:process.env.GITHUB_RUN_ID??null,requests:metrics.requests,bytes:metrics.bytes,durationMs:state.metrics.durationMs,...state.metrics.queue})
   state.queueHistory=state.queueHistory.slice(-512)

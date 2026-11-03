@@ -1,0 +1,9 @@
+"""Reuse the established grouping; groups and contracts are not independent outages."""
+import ast,hashlib,csv,gzip,io,json,pathlib,collections,sys
+source,capture,out=map(pathlib.Path,sys.argv[1:]);tree=ast.parse(source.read_text());fn=next(x for x in tree.body if isinstance(x,ast.FunctionDef)and x.name=='group');scope={'hashlib':hashlib};exec(compile(ast.Module(body=[fn],type_ignores=[]),str(source),'exec'),scope)
+allrows=json.loads(gzip.decompress((capture/'diagnostics-all.json.gz').read_bytes()))['rows'];active={r['id']for r in json.loads(gzip.decompress((capture/'diagnostics-action.json.gz').read_bytes()))['rows']};groups=collections.defaultdict(list)
+for row in allrows:groups[scope['group'](row)].append(row)
+fields=['cause_groupe','diagnostics','diagnostics_actifs','classes','identifiants','instruments_champs_outils','motifs','limite'];s=io.StringIO(newline='');w=csv.DictWriter(s,fields,delimiter=';',lineterminator='\n');w.writeheader()
+for key,rows in sorted(groups.items()):
+ w.writerow({'cause_groupe':key,'diagnostics':len(rows),'diagnostics_actifs':sum(r['id']in active for r in rows),'classes':json.dumps(dict(collections.Counter(r['kind']for r in rows)),ensure_ascii=False),'identifiants':json.dumps([r['id']for r in rows],ensure_ascii=False),'instruments_champs_outils':json.dumps([{'id':r['id'],'name':r.get('name'),'field':r.get('field'),'tools':r.get('tools'),'stage':r.get('stage'),'run':r.get('runId')}for r in rows],ensure_ascii=False),'motifs':json.dumps(sorted({r.get('cause','')for r in rows}),ensure_ascii=False),'limite':'Regroupement de suivi ; ni nombre de pannes indépendantes ni preuve de réparation. Voir décisions par cause et preuves natives/consommateurs.'})
+out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes(gzip.compress(s.getvalue().encode('utf-8-sig'),mtime=0));print(len(allrows),'diagnostics in',len(groups),'tracking groups')

@@ -1,0 +1,193 @@
+{
+  "observedAt": "2026-10-30T21:45:02.341738+00:00",
+  "initialScheduledRun": 41103721731,
+  "initialFailure": "Commit validated observations; only concurrent actor registry changed",
+  "recoveryRun": 41132216612,
+  "event": "workflow_dispatch",
+  "dispatchInitiator": "manual targeted ordinary producer (Codex), not automatic or cron",
+  "sourceStatus": "validated",
+  "managers": [
+    {
+      "slug": "morfit",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "dorsey",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "vinall",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "marks",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "watsa",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "gavin-baker",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "einhorn",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "halvorsen",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "gerstner",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "gayner",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "tepper",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "ackman",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": true
+    },
+    {
+      "slug": "berkshire",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "cathie-wood",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "thiel",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "druckenmiller",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "loeb",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "aschenbrenner",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "li-lu",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "gates-trust",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "klarman",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "terry-smith",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "pabrai",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "hohn",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "baker-bros",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "icahn",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "laffont",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    },
+    {
+      "slug": "renaissance",
+      "status": "validated",
+      "periodEnd": "2026-06-30",
+      "changed": false
+    }
+  ],
+  "contractSummary": {
+    "unchanged-verified": 27,
+    "succeeded": 1
+  },
+  "recordCommit": "20253887d3dc613255b4eaf6b03f33d22ac865e9",
+  "paths": [
+    "public/data/investors/ackman.json",
+    "public/data/investors/review-metadata.json"
+  ],
+  "publicationVerified": true,
+  "sourceReport": "investor-recovery-41132216612/investor-observations.json.gz",
+  "publicConsumerProof": "investor-public-30oct/results.json",
+  "scope": "All28manager source outcomes and recording; two representative actual consumers ackman/tepper checked at1280/390, not28separatebrowserrecipes",
+  "publicSourceBindings": "final-release-proof-30oct.json"
+}

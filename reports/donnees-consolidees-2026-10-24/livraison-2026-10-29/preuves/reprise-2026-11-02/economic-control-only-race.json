@@ -1,0 +1,179 @@
+{
+  "failedRun": 41373897853,
+  "base": "f03ed71",
+  "upstream": "70b7e83",
+  "changedLeaves": [
+    {
+      "path": "/households/wealth-top10/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/wealth-median/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/wealth-share/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/homeowners/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/debt/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/retirement-savings/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/other-homes/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/lep/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/ldds/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/pel/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/employee-savings/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/livret-assurance/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/pea/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/cto/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/debt-types/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/unexpected-expense/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/holidays/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/heating/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/bills-on-time/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/personal-spending/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/protein-meals/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/salary-top10/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/salary-median/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/young-wealth/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/thirties-wealth/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/young-homeowners/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/securities-workers/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/inheritance/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/households/donation/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/savings/2026-08-01/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/savings/2026-08-01/sha256",
+      "before": "bc929cc1d0a19d8604dbf3924a3816dce7b59f4ec1e978629b97ccac9593a40d",
+      "after": "817ee514cbbb737d3265429678d974fb468504b3c81dbf236e3a6f7bb44c5b9b"
+    },
+    {
+      "path": "/benchmarks/fonds_euros:2025/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/benchmarks/scpi:2025/checkedAt",
+      "before": "2026-11-01",
+      "after": "2026-11-02"
+    },
+    {
+      "path": "/benchmarks/scpi:2025/sha256",
+      "before": "96301e2f4b17dab9a9cf9b63a152bc46dcb064575a95e3fbc36b879ec810419e",
+      "after": "2e8b958266194b803aeb65641453219ec7962cce7237d4c5abc008f2b51cd437"
+    }
+  ],
+  "tests": "186 tests passed: rebase, commit, reader, producer contracts, metadata",
+  "limits": "Exact receipt-only change; all financial inputs unchanged. Actual late push race isolated; production exercise still distinct. Retry41379698791 recorded1e2f520 and published without encountering this race."
+}

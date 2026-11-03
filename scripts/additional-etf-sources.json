@@ -213,13 +213,14 @@
       "parser": "vaneck",
       "currency": "USD",
       "benchmark": "MarketVector Global Quantum Leaders",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/qntm-fact-sheet.pdf",
       "required": true,
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/quantum-computing-etf/",
       "ticker": "QNTM",
       "apiTicker": "UCTQNTM",
       "fallbackUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf",
         "https://www.vaneck.com/nl/en/library/fact-sheets/qntm-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf"
       ]
@@ -231,13 +232,14 @@
       "parser": "vaneck",
       "currency": "USD",
       "benchmark": "MarketVector Global Uranium and Nuclear Energy Infrastructure",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/nucl-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/nucl-fact-sheet.pdf",
       "required": true,
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
       "ticker": "NUCL",
       "apiTicker": "UCTNUCL",
       "fallbackUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/nucl-fact-sheet.pdf",
         "https://www.vaneck.com/nl/en/library/fact-sheets/nucl-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/nucl-fact-sheet.pdf"
       ]
@@ -249,13 +251,14 @@
       "parser": "vaneck",
       "currency": "USD",
       "benchmark": "MarketVector Global Space Industry Screened",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/jedi-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/jedi-fact-sheet.pdf",
       "required": true,
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/space-etf/",
       "ticker": "JEDI",
       "apiTicker": "UCTJEDI",
       "fallbackUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/jedi-fact-sheet.pdf",
         "https://www.vaneck.com/nl/en/library/fact-sheets/jedi-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/jedi-fact-sheet.pdf"
       ]
@@ -267,13 +270,14 @@
       "parser": "vaneck",
       "currency": "USD",
       "benchmark": "MarketVector Global Defense Industry",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/dfns-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/dfns-fact-sheet.pdf",
       "required": true,
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/defense-etf/",
       "ticker": "DFNS",
       "apiTicker": "UCTDFNS",
       "fallbackUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/dfns-fact-sheet.pdf",
         "https://www.vaneck.com/nl/en/library/fact-sheets/dfns-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/dfns-fact-sheet.pdf"
       ]
@@ -285,8 +289,9 @@
       "parser": "vaneck",
       "currency": "USD",
       "benchmark": "S&P Global Mining",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf",
       "fallbackUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
         "https://www.vaneck.com/nl/en/library/fact-sheets/gdig-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/gdig-fact-sheet.pdf"
       ],
@@ -303,13 +308,14 @@
       "parser": "vaneck",
       "currency": "EUR",
       "benchmark": "GPR Global 100",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tret-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/tret-fact-sheet.pdf",
       "required": true,
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/real-estate-etf/",
       "ticker": "TRET",
       "apiTicker": "TRET",
       "fallbackUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/tret-fact-sheet.pdf",
         "https://www.vaneck.com/nl/en/library/fact-sheets/tret-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/tret-fact-sheet.pdf"
       ]
@@ -321,13 +327,14 @@
       "parser": "vaneck",
       "currency": "EUR",
       "benchmark": "Morningstar Developed Markets Large Cap Dividend Leaders Screened Select",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tdiv-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/tdiv-fact-sheet.pdf",
       "required": true,
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/dividend-etf/",
       "ticker": "TDIV",
       "apiTicker": "TDIV",
       "fallbackUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/tdiv-fact-sheet.pdf",
         "https://www.vaneck.com/nl/en/library/fact-sheets/tdiv-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/tdiv-fact-sheet.pdf"
       ]
@@ -657,6 +664,7 @@
     },
     {
       "isin": "IE00B1FZS913",
+      "sectorAllocationConvention": "signed-net-assets-reconciled-holdings",
       "productId": 251735,
       "name": "iShares € Govt Bond 15-30yr UCITS ETF",
       "currency": "EUR",
@@ -926,8 +934,10 @@
       "provider": "21Shares",
       "parser": "document",
       "documentType": "21shares",
+      "preferProductApi": true,
       "calendarApiBase": "https://api.primary.21shares.com",
-      "sourceUrl": "https://cdn.21shares.com/uploads/current-documents/factsheets/all/Factsheet_ABTC.pdf",
+      "factsheetUrl": "https://cdn.21shares.com/uploads/current-documents/factsheets/all/Factsheet_ABTC.pdf",
+      "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
       "currency": "USD"
     },
     {
@@ -1207,9 +1217,9 @@
       "parser": "vaneck",
       "provider": "VanEck",
       "benchmark": "MarketVector Global Gold Miners Index",
-      "sourceUrl": "https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/gdx-fact-sheet.pdf",
       "fallbackUrls": [
-        "https://www.vaneck.com/fr/en/library/fact-sheets/gdx-fact-sheet.pdf",
+        "https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/gdx-fact-sheet.pdf"
       ],
       "pageUrl": "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
@@ -1328,6 +1338,462 @@
       "provider": "Avantis",
       "parser": "avantis-priority",
       "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf"
+    },
+    {
+      "isin": "IE00B52SF786",
+      "productId": 253721,
+      "name": "iShares MSCI Canada UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/253721/?siteEntryPassthrough=true&switchLocale=y",
+      "expectedIndex": "MSCI Developed - Canada in USD - NET TR",
+      "expectedAssetClass": "Equity",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00B5377D42",
+      "productId": 251851,
+      "name": "iShares MSCI Australia UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251851/?siteEntryPassthrough=true&switchLocale=y",
+      "expectedIndex": "MSCI Australia Index (Net)",
+      "expectedAssetClass": "Equity",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00B5WHFQ43",
+      "productId": 253734,
+      "name": "iShares MSCI Mexico Capped UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/253734/?siteEntryPassthrough=true&switchLocale=y",
+      "expectedIndex": "MSCI Mexico Capped Index ( Net Return Index )",
+      "expectedAssetClass": "Equity",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00B0M63516",
+      "productId": 251853,
+      "name": "iShares MSCI Brazil UCITS ETF USD (Dist)",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251853/?siteEntryPassthrough=true&switchLocale=y",
+      "currencyField": "baseCurrencyCode",
+      "aumField": "totalNetAssetsFundLevel",
+      "aumScope": "fund",
+      "inceptionField": "launchDate",
+      "expectedIndex": "MSCI Emerging - Brazil Net USD Index (USD)",
+      "expectedAssetClass": "Equity",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00B4M7GH52",
+      "productId": 251875,
+      "name": "iShares MSCI Poland UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251875/?siteEntryPassthrough=true&switchLocale=y",
+      "expectedIndex": "MSCI Emerging - Poland in Net USD",
+      "expectedAssetClass": "Equity",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00B52XQP83",
+      "productId": 251877,
+      "name": "iShares MSCI South Africa UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251877/?siteEntryPassthrough=true&switchLocale=y",
+      "expectedIndex": "MSCI South Africa 20/35 Index",
+      "expectedAssetClass": "Equity",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00BJ5JPJ87",
+      "productId": 308477,
+      "name": "iShares MSCI Saudi Arabia Capped UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/308477/?siteEntryPassthrough=true&switchLocale=y",
+      "expectedIndex": "MSCI Saudi Arabia 20/35 Index (USD)",
+      "expectedAssetClass": "Equity",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00B1FZS574",
+      "productId": 251879,
+      "name": "iShares MSCI Turkey UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251879/?siteEntryPassthrough=true&switchLocale=y",
+      "expectedIndex": "MSCI Turkey - Net Returns",
+      "expectedAssetClass": "Equity",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00B8KGV557",
+      "productId": 251380,
+      "name": "iShares Edge MSCI EM Minimum Volatility UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251380/?siteEntryPassthrough=true&switchLocale=y",
+      "expectedIndex": "MSCI Emerging Markets Minimum Volatility Index (Net)",
+      "expectedAssetClass": "Equity",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00B86MWN23",
+      "productId": 251381,
+      "name": "iShares Edge MSCI Europe Minimum Volatility UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "EUR",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251381/?siteEntryPassthrough=true&switchLocale=y",
+      "expectedIndex": "MSCI Europe Minimum Volatility (EUR Optimized) Net Index",
+      "expectedAssetClass": "Equity",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00B2QWDY88",
+      "productId": 251870,
+      "name": "iShares MSCI Japan Small Cap UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251870/?siteEntryPassthrough=true&switchLocale=y",
+      "expectedIndex": "MSCI Japan Small Cap Index (Net)",
+      "expectedAssetClass": "Equity",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00B14X4S71",
+      "sectorAllocationConvention": "signed-net-assets-reconciled-holdings",
+      "productId": 251715,
+      "name": "iShares $ Treasury Bond 1-3yr UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251715/?siteEntryPassthrough=true&switchLocale=y",
+      "holdingsAssetClass": "Fixed Income",
+      "expectedIndex": "ICE U.S. Treasury 1-3 Year Bond Index",
+      "expectedAssetClass": "Fixed Income",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00B1FZS798",
+      "productId": 251716,
+      "name": "iShares $ Treasury Bond 7-10yr UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251716/?siteEntryPassthrough=true&switchLocale=y",
+      "holdingsAssetClass": "Fixed Income",
+      "expectedIndex": "ICE U.S. Treasury 7-10 Year Bond Index",
+      "expectedAssetClass": "Fixed Income",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00BSKRJZ44",
+      "productId": 272124,
+      "name": "iShares $ Treasury Bond 20+yr UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/272124/?siteEntryPassthrough=true&switchLocale=y",
+      "holdingsAssetClass": "Fixed Income",
+      "expectedIndex": "ICE U.S. Treasury 20+ Year Bond Index",
+      "expectedAssetClass": "Fixed Income",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00B1FZSC47",
+      "productId": 251714,
+      "name": "iShares $ TIPS UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251714/?siteEntryPassthrough=true&switchLocale=y",
+      "holdingsAssetClass": "Fixed Income",
+      "expectedIndex": "BBG US Government Inflation-Linked Bond Index (USD)",
+      "expectedAssetClass": "Fixed Income",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00BZ048462",
+      "productId": 288500,
+      "name": "iShares $ Floating Rate Bond UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/288500/?siteEntryPassthrough=true&switchLocale=y",
+      "holdingsAssetClass": "Fixed Income",
+      "expectedIndex": "Bloomberg US Floating Rate Note<5 Years Index",
+      "expectedAssetClass": "Fixed Income",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00BFM6T814",
+      "productId": 297675,
+      "name": "iShares Emerging Asia Local Govt Bond UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/297675/?siteEntryPassthrough=true&switchLocale=y",
+      "holdingsAssetClass": "Fixed Income",
+      "expectedIndex": "BBG EM Asia Local Currency Govt Country Cap NET Index",
+      "expectedAssetClass": "Fixed Income",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00BYPC1H27",
+      "productId": 308851,
+      "name": "iShares China CNY Bond UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/308851/?siteEntryPassthrough=true&switchLocale=y",
+      "holdingsAssetClass": "Fixed Income",
+      "expectedIndex": "Bloomberg China Treasury + Policy Bank Index",
+      "expectedAssetClass": "Fixed Income",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00BZ6V7883",
+      "productId": 283722,
+      "name": "iShares US Mortgage Backed Securities UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/283722/?siteEntryPassthrough=true&switchLocale=y",
+      "holdingsAssetClass": "Fixed Income",
+      "expectedIndex": "Bloomberg U.S. MBS Index",
+      "expectedAssetClass": "Fixed Income",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00B3F81K65",
+      "productId": 251753,
+      "name": "iShares Global Govt Bond UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251753/?siteEntryPassthrough=true&switchLocale=y",
+      "holdingsAssetClass": "Fixed Income",
+      "expectedIndex": "FTSE G7 Government Bond Index (USD)",
+      "expectedAssetClass": "Fixed Income",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
+    },
+    {
+      "isin": "IE00BSKRJX20",
+      "productId": 272122,
+      "name": "iShares € Govt Bond 20yr Target Duration UCITS ETF",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "EUR",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/272122/?siteEntryPassthrough=true&switchLocale=y",
+      "holdingsAssetClass": "Fixed Income",
+      "expectedIndex": "iBoxx EUR Eurozone 20yr Target Duration Index",
+      "expectedAssetClass": "Fixed Income",
+      "expectedStructure": "Physical",
+      "expectedUcits": "Yes",
+      "sourceProof": true,
+      "combinedReplication": true,
+      "metadataFields": [
+        "listings"
+      ]
     }
   ]
 }

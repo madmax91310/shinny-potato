@@ -1,0 +1,37 @@
+{
+  "runId": 41019624631,
+  "code": "fdefb68",
+  "data": "90756a0",
+  "previouslyUnknown": "docs/automation-gaps.json#summary.instrument:source-conflict",
+  "results": [
+    {
+      "file": "docs/automation-gaps.json",
+      "ids": [],
+      "unknown": []
+    },
+    {
+      "file": "public/data/asset-field-coverage.json",
+      "ids": [
+        "source-conflict"
+      ],
+      "unknown": []
+    },
+    {
+      "file": "src/data/automated-etf.json",
+      "ids": [
+        "BMG762791017",
+        "NL0000395903",
+        "US6541061031",
+        "US87612G1013",
+        "ZAG000125980"
+      ],
+      "unknown": []
+    },
+    {
+      "file": "src/data/automated-indices.json",
+      "ids": [],
+      "unknown": []
+    }
+  ],
+  "financialChangesApplied": false
+}

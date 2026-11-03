@@ -1,0 +1,47 @@
+{
+  "at": "2026-10-31T04:48:29.638909+00:00",
+  "kind": "local-capture-storage-failure",
+  "notApplicationSourceFailure": true,
+  "captureCompleted": false,
+  "sourceError": "download.saveAs ENOSPC, diagnostics-all not saved",
+  "retainedPriorValidSnapshots": [
+    "public-0244-31oct",
+    "public-0400-31oct",
+    "public-2314-30oct"
+  ],
+  "incompleteFiles": [
+    {
+      "name": "compressed-snapshot-manifest.json",
+      "bytes": 720
+    },
+    {
+      "name": "data-review-inbox.json.gz",
+      "bytes": 144973
+    },
+    {
+      "name": "asset-field-coverage.json.gz",
+      "bytes": 153139
+    },
+    {
+      "name": "automation-status.json.gz",
+      "bytes": 11642873
+    },
+    {
+      "name": "diagnostics-action.json.gz",
+      "bytes": 5094564
+    },
+    {
+      "name": "build-info.json",
+      "bytes": 186
+    },
+    {
+      "name": "financial-reconciliation.json",
+      "bytes": 417677
+    },
+    {
+      "name": "publication-manifest.json",
+      "bytes": 31752
+    }
+  ],
+  "fix": "Atomic rename downloaded file within same RAM filesystem; lossless compression of received documents and each download before next export."
+}

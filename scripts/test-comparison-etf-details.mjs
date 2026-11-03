@@ -2,7 +2,7 @@ import { AUTOMATED_ETF, AUTOMATED_AUM, AUTOMATED_PERFORMANCE, refreshFundDetails
 import { comparisonPct } from '../src/pages/etf-tweets/lib/comparisonDetails.js'
 import assert from 'node:assert/strict'
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
-import { comparisonLayout, getComparisonImageComposition } from '../src/pages/tweet-midi/comparatifEtfImage.js'
+import { comparisonLayout, getComparisonImageComposition, getComparisonPaperCards } from '../src/pages/tweet-midi/comparatifEtfImage.js'
 import { getInstrumentPeaStatus } from '../src/data/instruments.js'
 import { getPreferredInstrumentListing } from '../src/data/instrument-listings.js'
 import { getComparisonPerformance, getComparisonYears } from '../src/pages/tweet-midi/comparisonPerformance.js'
@@ -150,7 +150,10 @@ assert.equal(getComparisonPerformance('FR001400ZGO4'), null, 'Pas de performance
 assert.throws(() => buildTweetText({ ...peaEmerging, etfs: [emerging.etfs.find(fund => fund.isin === 'IE00BKM4GZ66')] }), /part non éligible ou non vérifiée/)
 for (const theme of DEFAULT_THEMES) for (const fund of theme.etfs) for (const field of ['sectors', 'countries']) {
  const image = getComparisonImageComposition(fund.isin, field)
- const expected = [...(COMPARISON_ETF_DETAILS[fund.isin]?.[field] ?? [])].filter(([label,value]) => Number.isFinite(value) && value > 0 && !/^(other|others|autres)$/i.test(label)).sort((a,b) => b[1]-a[1]).slice(0,3)
+ const published = [...(COMPARISON_ETF_DETAILS[fund.isin]?.[field] ?? [])]
+ const positive = published.filter(([label,value]) => Number.isFinite(value) && value > 0 && !/^(other|others|autres)$/i.test(label)).sort((a,b) => b[1]-a[1])
+ const balance = image.netAssets ? published.filter(([,value]) => Number.isFinite(value) && value < 0) : []
+ const expected = [...positive.slice(0,3-balance.length),...balance]
  assert.deepEqual(image.rows, expected)
  assert.equal(image.asOf, COMPARISON_ETF_DETAILS[fund.isin]?.[`${field}AsOf`] ?? COMPARISON_ETF_DETAILS[fund.isin]?.asOf)
 }
@@ -238,3 +241,30 @@ for (const theme of DEFAULT_THEMES.filter(t => t.etfs.some(f => reviewedDws.has(
 assert(reviewedThemes >= 6)
 assert.equal(getComparisonImageComposition('FR001400ZGO4', 'countries').classification, null)
 console.log(`${reviewedThemes} comparatifs DWS : dates, chiffres et classification géographique vérifiés.`)
+
+// Signed net-assets observations are published verbatim, with their offset.
+// This does not admit signed allocations to portfolio overlap or donut maths.
+const {comparisonCompositionRows,compositionEvidenceLabel}=await import('../src/pages/etf-tweets/lib/comparisonComposition.js')
+assert.deepEqual(comparisonCompositionRows([['Treasury',104.56],['Cash and/or Derivatives',-4.56]],true),[['Treasury',104.56],['Cash and/or Derivatives',-4.56]])
+assert.deepEqual(comparisonCompositionRows([['France',40],['Germany',35],['Italy',30],['Cash and/or Derivatives',-5]],true),[['France',40],['Germany',35],['Cash and/or Derivatives',-5]])
+assert.deepEqual(comparisonCompositionRows([['Treasury',104.56],['Cash and/or Derivatives',-4.56]]),[['Treasury',104.56]])
+for(const theme of DEFAULT_THEMES.filter(t=>t.etfs.some(f=>AUTOMATED_ETF[f.isin]?.sectors?.weightConvention==='signed-net-assets-reconciled-holdings'))){
+ const text=buildTweetText(theme)
+ for(const fund of theme.etfs){
+  const record=AUTOMATED_ETF[fund.isin]?.sectors
+  if(record?.weightConvention!=='signed-net-assets-reconciled-holdings')continue
+  const composition=getComparisonImageComposition(fund.isin,'sectors')
+  assert(composition.netAssets);assert.match(compositionEvidenceLabel(composition),/% de l’actif net/)
+  const card=getComparisonPaperCards(theme)[theme.etfs.indexOf(fund)]
+  const sector=card.sections.find(section=>section.kind==='sectors')
+  assert.match(sector.evidence,/% de l’actif net/)
+  assert.equal(sector.rows.length,composition.rows.length)
+  for(const row of record.rows.filter(r=>r.weightPct<0)){
+   assert(composition.rows.some(([,value])=>value===row.weightPct))
+   assert(text.includes(row.weightPct.toLocaleString('fr-FR',{maximumFractionDigits:2})+' %'))
+   assert.match(text,/solde négatif de liquidités et dérivés/)
+   assert(sector.rows.some(r=>r.value===row.weightPct.toLocaleString('fr-FR',{minimumFractionDigits:1,maximumFractionDigits:1})+' %'))
+  }
+ }
+}
+console.log('Qualified net-asset compositions retain their signed balance in comparison text and image data.')

@@ -7,10 +7,12 @@ import math
 import os
 from pathlib import Path
 import re
+import time
 from urllib.parse import urljoin, urlsplit
 from urllib.parse import urlencode
 from bs4 import BeautifulSoup
 from issuer_documents import download, document_date, public_page
+from holdings_reconciliation import HoldingsSourceError
 
 ISIN = re.compile(r'[A-Z]{2}[A-Z0-9]{9}\d')
 
@@ -92,13 +94,29 @@ def globalx_csv(raw, now):
             'SOUTH AFRICAN RAND', 'CHILEAN PESO', 'POLISH ZLOTY',
             'SWEDISH KRONE', 'MEXICAN PESO', 'PERUVIAN NEW SOL', 'SAUDI RIYAL',
             'OTHER PAYABLE & RECEIVABLES', 'CASH'}
-    for row in published:
+    for record, row in enumerate(published, start=2):
         if row['AS_OF_DATE'].startswith('The information contained herein') and not row.get('NAME'):
             continue  # Explicit copyright footer, never a portfolio position.
         dates.add(document_date(row['AS_OF_DATE'], now))
-        weight = float(row['NET_ASSETS'])
+        # A missing NAV weight is not a zero, including on cash/payable lines.
+        # Keep enough context to diagnose the rejected raw CSV in CI.
+        context = (f"Global X NET_ASSETS at CSV record {record} "
+                   f"(name={row.get('NAME')!r}, isin={row.get('ISIN')!r}, "
+                   f"asOf={row.get('AS_OF_DATE')!r})")
+        value = row.get('NET_ASSETS')
+        if value is None or not value.strip():
+            raise HoldingsSourceError('Missing ' + context, {
+                'kind':'missing-published-nav-weight', 'asOf':row['AS_OF_DATE'],
+                'recordNumber':record, 'name':row.get('NAME'),
+                'positionIsin':row.get('ISIN') or None,
+                'missingFields':[key for key in ['NET_ASSETS','MARKET_VALUE'] if not (row.get(key) or '').strip()],
+                'financialDataQualified':False, 'normalizationApplied':False})
+        try:
+            weight = float(value)
+        except ValueError as exc:
+            raise ValueError(f'Invalid {context}: {value!r}') from exc
         if not math.isfinite(weight) or not -5 <= weight <= 100:
-            raise ValueError('Invalid Global X weight')
+            raise ValueError(f'Invalid {context}: {value!r}')
         total += weight
         if not row['ISIN']:
             if row['NAME'] in cash and not row['TICKER']:
@@ -122,7 +140,13 @@ def collect_globalx(share, now):
     page = public_page(share['sourceUrl'])
     url = globalx_page(page, share)
     raw = download(url)
-    rows, stamp = globalx_csv(raw, now)
+    source_proof(share, 'globalx', raw)
+    try:
+        rows, stamp = globalx_csv(raw, now)
+    except HoldingsSourceError as error:
+        error.diagnostic.update(subjectIsin=share['isin'],sourceUrl=url,sha256=digest(raw),
+                                checkedAt=now.isoformat())
+        raise
     return observation(rows, stamp, url, raw, allow_unidentified=True,
                        identitySourceUrl=share['sourceUrl'], identitySha256=digest(page))
 
@@ -299,8 +323,16 @@ def collect_vanguard(share, now):
 
 
 def invesco_composition(body, now):
-    entries = body['holdings']
-    count = body['numberOfHoldings']
+    if not isinstance(body,dict):
+        raise ValueError('Invalid Invesco complete holdings response')
+    entries = body.get('holdings')
+    count = body.get('numberOfHoldings')
+    if entries is None and type(count) is int and count == 0 and body.get('effectiveDate') is None:
+        raise HoldingsSourceError('Invesco complete fund holdings unavailable: null portfolio, zero count and no observation date',
+            {'kind':'unavailable-complete-fund-file','asOf':None,'sourceRowCount':0,
+             'financialDataQualified':False,'normalizationApplied':False})
+    if not isinstance(entries,list):
+        raise ValueError('Invalid Invesco full holdings table')
     cash = [r for r in entries if r.get('name') == 'Cash and/or Derivatives' and not r.get('isin')]
     if type(count) is not int or count < 11 or len(cash) > 1 or len(entries) != count + len(cash):
         raise ValueError('Truncated Invesco full holdings')
@@ -322,11 +354,27 @@ def collect_invesco(share, now):
     if (share['isin'] not in text or not re.search(r'Replication method\s+Physical\b', text)
             or not re.search(r'(?:Fund base currency|Base currency)\s+' + share['currency'] + r'\b', text)):
         raise ValueError('Wrong Invesco exact physical share/currency')
+    if share.get('holdingsContract'):
+        from invesco_physical_holdings import collect
+        return collect(share, now, raw_identity)
     url = 'https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/' + share['isin'] + '/holdings/fund?idType=isin'
-    raw = download(url)
-    rows, stamp = invesco_composition(json.loads(raw), now)
-    return observation(rows, stamp, url, raw, identitySourceUrl=share['sourceUrl'],
-                       identitySha256=digest(raw_identity))
+    attempts=[]
+    for attempt in range(2):
+        raw = download(url)
+        source_proof(share,'invesco-'+str(attempt+1),raw)
+        try:
+            rows, stamp = invesco_composition(json.loads(raw), now)
+        except HoldingsSourceError as error:
+            attempts.append({'attempt':attempt+1,'sha256':digest(raw),'status':'missing-complete-fund-file'})
+            error.diagnostic.update(subjectIsin=share['isin'],sourceUrl=url,sha256=digest(raw),
+                                    checkedAt=now.isoformat(),sourceAttempts=list(attempts))
+            if attempt==0:
+                time.sleep(2)
+                continue
+            raise
+        attempts.append({'attempt':attempt+1,'sha256':digest(raw),'status':'validated'})
+        return observation(rows, stamp, url, raw, identitySourceUrl=share['sourceUrl'],
+                           identitySha256=digest(raw_identity),sourceAttempts=attempts)
 
 
 def vaneck_url(page, share):
@@ -400,9 +448,19 @@ def collect_vaneck(share, now):
     url = vaneck_url(page, share)
     raw = download(url)
     source_proof(share, 'vaneck', raw)
-    rows, stamp, excluded = vaneck_composition(json.loads(raw), share, now)
+    body=json.loads(raw)
+    rows, stamp, excluded = vaneck_composition(body, share, now)
+    from security_identifier_observations import resolve_venue_tickers
+    identities, proofs, failures=resolve_venue_tickers(body['data']['Holdings'],share,url,digest(raw),stamp,now)
+    for row in rows:
+        if not row.get('isin'):
+            native=[r for r in body['data']['Holdings'] if r.get('Label')==row['ticker'] and r.get('AssetClass')=='Stock']
+            if len(native)==1:row['isin']=identities.get((row['ticker'],native[0].get('CurrencyCode')))
+    source_proof(share,'vaneck-identities',proofs)
+    source_proof(share,'vaneck-identity-failures',failures)
     return observation(rows, stamp, url, raw, allow_unidentified=True,
                        identitySourceUrl=share['pageUrl'], identitySha256=digest(page),
+                       identityHistory=proofs,identitySourceFailures=failures,
                        excludedWeightPctByType=excluded)
 
 
@@ -416,7 +474,8 @@ def collect_jpm(share, now):
 
 from collect_topix_holdings import collect as collect_topix
 from collect_wisdomtree_holdings import collect as collect_wisdomtree
+from invesco_economic_index import collect as collect_economic_index
 
-COLLECTORS = {'wisdomtree-complete':collect_wisdomtree,'jpx-topix':collect_topix,'jpm-complete':collect_jpm,'hsbc-complete':collect_hsbc,'globalx-complete': collect_globalx, 'avantis-complete': collect_avantis,
+COLLECTORS = {'invesco-economic-index':collect_economic_index,'wisdomtree-complete':collect_wisdomtree,'jpx-topix':collect_topix,'jpm-complete':collect_jpm,'hsbc-complete':collect_hsbc,'globalx-complete': collect_globalx, 'avantis-complete': collect_avantis,
               'amundi-complete': collect_amundi, 'vanguard-complete': collect_vanguard,
               'invesco-complete': collect_invesco, 'vaneck-complete': collect_vaneck}

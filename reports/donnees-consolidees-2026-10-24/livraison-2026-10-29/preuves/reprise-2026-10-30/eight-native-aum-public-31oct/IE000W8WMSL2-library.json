@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "id": "IE000W8WMSL2",
+  "type": "instrument",
+  "name": "WisdomTree Quantum Computing UCITS ETF",
+  "aliases": [
+    "IE000W8WMSL2",
+    "WQTM",
+    "WQTM",
+    "WQTM"
+  ],
+  "consumers": [
+    {
+      "tool": "Présentation ETF",
+      "path": "/fiches-etf"
+    },
+    {
+      "tool": "Impact des frais",
+      "path": "/impact-frais"
+    },
+    {
+      "tool": "Comparatif ETF",
+      "path": "/comparatif-etf"
+    }
+  ],
+  "fields": [
+    {
+      "label": "Identité",
+      "registry": "src/data/instruments.js",
+      "value": {
+        "name": "WisdomTree Quantum Computing UCITS ETF"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=IE000W8WMSL2"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-09-30",
+        "currency": null,
+        "scope": "Part IE000W8WMSL2",
+        "method": "Profil individuel justETF consulté par ISIN",
+        "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés.",
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Frais annuels (%)",
+      "registry": "src/data/etf-ter.js",
+      "value": "0,50",
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-31",
+        "currency": null,
+        "scope": "Part IE000W8WMSL2",
+        "method": "TER publié sur le profil de la part, consulté par ISIN",
+        "note": "Frais observés au contrôle ; aucune date d’entrée en vigueur déduite de la consultation.",
+        "dateStatus": "not-published",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Éligibilité PEA",
+      "registry": "src/data/instrument-pea.js",
+      "value": false,
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2/"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "currency": null,
+        "scope": "Part IE000W8WMSL2",
+        "method": "Explicit exact-share PEA statement collected automatically.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Encours",
+      "registry": "src/data/instrument-aum.js",
+      "value": {
+        "sheet": "Fonds : 324,52 M$ au 29/10/2026",
+        "index": "Fonds : 324,52 M$ au 29/10/2026",
+        "source": {
+          "amount": 324516800,
+          "currency": "USD",
+          "scope": "Actif net du fonds",
+          "asOf": "2026-10-29",
+          "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+          "controlledListingIds": [
+            "3578824"
+          ],
+          "nonNativeListingsExcluded": 1,
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "sha256": "690f03871f44f687dfae65bbd8816a3337dedd7841b4a7e2c6aad54a2bd1b2e7",
+          "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+          "identitySha256": "326008744e0620d65c217d18d5b5af9ada7812ef9ba63bbcd00a351f20dd4eaa",
+          "identityAsOf": "2026-09-30",
+          "checkedAt": "2026-10-31",
+          "modifiedAt": "2026-10-31",
+          "amountMillions": 324.5168,
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0"
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0"
+        ],
+        "asOf": "2026-10-29",
+        "checkedAt": "2026-10-31",
+        "currency": "USD",
+        "scope": "Actif net du fonds",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "note": "Date publiée par l’émetteur ; la consultation reste distincte.",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": "2026-10-31"
+      }
+    },
+    {
+      "label": "Cotation ETFP",
+      "registry": "src/data/instrument-listings.js",
+      "value": {
+        "ticker": "WQTM",
+        "mic": "ETFP",
+        "exchange": "Borsa Italiana",
+        "currency": "EUR",
+        "symbol": "WQTM.MI",
+        "excerpt": "IE000W8WMSL2 | Borsa Italiana EUR WQTM WQTM IM WQTM.MI BP47TF9 IE000W8WMSL2 A419HV 02/09/2025",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2/",
+        "checkedAt": "2026-10-30",
+        "sha256": "326008744e0620d65c217d18d5b5af9ada7812ef9ba63bbcd00a351f20dd4eaa",
+        "evidenceId": "IE000W8WMSL2-ETFP-WQTM-EUR"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2/"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "currency": "EUR",
+        "scope": "Part IE000W8WMSL2 ; Borsa Italiana",
+        "method": "Devise de négociation, distincte de celle des rendements.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Cotation XETR",
+      "registry": "src/data/instrument-listings.js",
+      "value": {
+        "ticker": "WQTM",
+        "mic": "XETR",
+        "exchange": "Xetra",
+        "currency": "EUR",
+        "symbol": "WQTM.DE",
+        "excerpt": "IE000W8WMSL2 | Xetra EUR WQTM WQTM GY WQTM.DE BP47T82 IE000W8WMSL2 A419HV 02/09/2025",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2/",
+        "checkedAt": "2026-10-30",
+        "sha256": "326008744e0620d65c217d18d5b5af9ada7812ef9ba63bbcd00a351f20dd4eaa",
+        "evidenceId": "IE000W8WMSL2-XETR-WQTM-EUR"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2/"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "currency": "EUR",
+        "scope": "Part IE000W8WMSL2 ; Xetra",
+        "method": "Devise de négociation, distincte de celle des rendements.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Cotation XLON",
+      "registry": "src/data/instrument-listings.js",
+      "value": {
+        "ticker": "WQTM",
+        "mic": "XLON",
+        "exchange": "London Stock Exchange",
+        "currency": "USD",
+        "symbol": "WQTM.L",
+        "excerpt": "IE000W8WMSL2 | LSE USD WQTM WQTM LN WQTM.L BSVJS52 IE000W8WMSL2 A419HV 03/09/2025",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2/",
+        "checkedAt": "2026-10-30",
+        "sha256": "326008744e0620d65c217d18d5b5af9ada7812ef9ba63bbcd00a351f20dd4eaa",
+        "evidenceId": "IE000W8WMSL2-XLON-WQTM-USD"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2/"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "currency": "USD",
+        "scope": "Part IE000W8WMSL2 ; London Stock Exchange",
+        "method": "Devise de négociation, distincte de celle des rendements.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    }
+  ]
+}

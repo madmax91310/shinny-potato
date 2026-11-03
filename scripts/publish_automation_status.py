@@ -23,7 +23,7 @@ from automation_monitoring import evaluate_monitoring, sync_monitoring_issue, ti
 from github_automation_transport import request_json, unseen_completed_runs
 from automation_history_coverage import recover_skipped_history_gaps
 from automation_legacy_phases import CONTRACTS as LEGACY_PHASE_CONTRACTS, qualify_legacy_phases
-from automation_status_storage import pack_report_scopes,encode_status,expand_report_archives
+from automation_status_storage import pack_report_scopes,encode_status,expand_report_archives,decode_status,reader_ready,pack_proof_checks
 from automation_monitor_self import observe_monitor_history
 from automation_recovery import plan_recovery, persist_and_dispatch, recovery_reason
 
@@ -281,6 +281,9 @@ def report_shape(report):
     if isinstance(report.get('validated'), list) and isinstance(report.get('failed'), list): return 'listings'
     if isinstance(report.get('companies'), dict): return 'companies'
     if report.get('_collector') == 'dca-equities': return 'dca-equities'
+    if (report.get('_collector')=='dca-complete-holdings' and isinstance(report.get('observations'),dict)
+            and isinstance(report.get('successes'),list) and isinstance(report.get('errors'),list)):
+        return 'statuses'  # Bounded holding receipts are not broker/reference observations.
     if isinstance(report.get('managers'), list): return 'investors'
     if any(k in report for k in ('funds', 'qualified', 'monthly', 'levels')): return 'combined'
     if isinstance(report.get('records'), list): return 'holdings'
@@ -420,7 +423,7 @@ def read_report(path, workflow, planned=None):
             for key in ('checkedAt','asOf','attemptedAt','lastSuccessAt','responseSha256'):
                 if key in record:row[key] = record[key]
             if record.get('sourceUrl'):row['sourceUrls'] = [record['sourceUrl']]
-            if kind == 'successes' and record.get('status') in ('succeeded','unchanged-verified') and record.get('checkedAt') and record.get('sourceAttempted') is not False and record.get('phase') not in ('qualification','validation'):
+            if kind == 'successes' and record.get('status') in ('succeeded','unchanged-verified') and record.get('checkedAt') and record.get('sourceAttempted') is not False and record.get('phase') not in ('qualification','validation') and not(row.get('sourceAttempted')is False and row.get('phase')in('qualification','validation')):
                 row['verifiedInAttempt'] = True
     for checked_at in [report.get('checkedAt'), *(r.get('checkedAt') for r in result.get('successes', []))]:
         if checked_at is not None and (not timestamp(checked_at) or timestamp(checked_at) > dt.datetime.now(dt.timezone.utc)):
@@ -513,6 +516,22 @@ def refresh_scope_proofs(state, run, reports):
     return state
 
 
+def validation_receipt(success, run, evidence, source_checks, previous):
+    """Keep derived calculations separate, retaining misclassified old receipts."""
+    result={**success,'runUrl':run['html_url'],'recordedAt':run['updated_at'],'evidence':evidence}
+    history=copy.deepcopy(previous.get('sourceControlsRequalified',[]))
+    derived=(run['path'].split('/')[-1]=='update-qualified-exposures.yml'
+             and success.get('scope')=='equity-lookthrough'
+             and success['id']=='dca-holdings:'+str(success.get('instrument','')))
+    if derived and success['id']in source_checks:
+        old=source_checks.pop(success['id'])
+        entry={'originalSourceControl':copy.deepcopy(old),
+               'reason':'Derived look-through receipt, not a consultation of the issuer document; original clocks retained as historical evidence.'}
+        if entry not in history:history.append(entry)
+    if history:result['sourceControlsRequalified']=history
+    return result
+
+
 def merge_proof_retry(state, run, reports):
     """Repair an immutable old proof without rolling back the current workflow snapshot."""
     result = copy.deepcopy(state)
@@ -528,7 +547,7 @@ def merge_proof_retry(state, run, reports):
             if success.get('sourceAttempted') is False and success.get('phase') in ('validation','qualification'):
                 local_checks=row.setdefault('validationChecks',{})
                 if timestamp(local_checks.get(success['id'],{}).get('recordedAt')) and timestamp(local_checks[success['id']]['recordedAt'])>timestamp(run['updated_at']):continue
-                local_checks[success['id']]={**success,'runUrl':run['html_url'],'recordedAt':run['updated_at'],'evidence':evidence}
+                local_checks[success['id']]=validation_receipt(success,run,evidence,row.setdefault('sourceChecks',{}),local_checks.get(success['id'],{}))
                 continue  # Local replay never repairs a collection or publication failure.
             identifier = bind_attempt(success['id'], run)
             if technical_proof(identifier):
@@ -809,7 +828,12 @@ def update_status(state, run, jobs, reports=None):
     reports = normalized
     inactive = {row['id'] for report in reports or [] for row in normalize_report(report).get('inactive', [])}
     retires_legacy_alert = bool(inactive & previous.get('dataFailures', {}).keys())
-    if stamp == old_stamp and previous.get('monitorVersion', 1) >= 3 and not retires_legacy_alert:
+    # A completed-run API response can temporarily omit every job. Re-read the
+    # same immutable attempt once its actual step evidence is available; never
+    # confuse this repair of job evidence with a new supplier consultation.
+    first_job_evidence = (not previous.get('stepResults') and
+                          any(job.get('steps') for job in jobs))
+    if stamp == old_stamp and previous.get('monitorVersion', 1) >= 3 and not retires_legacy_alert and not first_job_evidence:
         return merge_proof_retry(result,run,reports)
     if stamp < old_stamp or run['conclusion'] in ('cancelled', 'skipped', 'neutral'):
         return result
@@ -873,7 +897,7 @@ def update_status(state, run, jobs, reports=None):
 
         for success in report.get('successes', []):
             if success.get('sourceAttempted') is False and success.get('phase') in ('qualification','validation'):
-                validation_checks[success['id']] = {**success, 'runUrl':run['html_url'], 'recordedAt':run['updated_at'], 'evidence':evidence}
+                validation_checks[success['id']] = validation_receipt(success,run,evidence,source_checks,validation_checks.get(success['id'],{}))
                 if data_failures.get(success['id'],{}).get('phase') == success.get('phase') or success['id'].startswith('qualification:') and success.get('phase')=='qualification':
                     data_failures.pop(success['id'],None)
                 continue
@@ -977,7 +1001,8 @@ def update_status(state, run, jobs, reports=None):
     failed = failed or any(value == 'failure' for value in (collection_status, validation_status, recording_status, publication_status))
     result['workflows'] = entries
     source_successes = [(report, item) for report in reports for item in report.get('successes', [])
-                        if not item['id'].startswith(('report-read:', 'artifact-read:'))]
+                        if not item['id'].startswith(('report-read:', 'artifact-read:'))
+                        and not(item.get('sourceAttempted')is False and item.get('phase')in('qualification','validation'))]
     source_dates = [item.get('checkedAt') or report.get('_reportEvidence', {}).get('reportedAt')
                     for report, item in source_successes]
     prior_source_success = previous.get('lastCollectionSuccessAt') if previous.get('monitorVersion',1) >= 3 else None
@@ -1007,6 +1032,26 @@ def update_status(state, run, jobs, reports=None):
     result['schemaVersion'] = 1
     result['updatedAt'] = run['updated_at']
     return result
+
+
+def require_completed_job_evidence(run, jobs, collection_job):
+    """A terminal run with an empty Jobs API response is not a phase proof."""
+    if run.get('conclusion') in ('cancelled', 'skipped', 'neutral'):
+        return jobs  # Ignored attempts are not missing supplier/phase evidence.
+    if run.get('status') != 'completed':
+        raise ValueError('Run terminal attendu pour les preuves de phases')
+    producers = [job for job in jobs if job.get('name') == collection_job
+                 or job.get('name', '').startswith(collection_job + ' (')]
+    if not jobs or not producers:
+        raise ValueError('Jobs terminaux incomplets : job producteur absent ; relecture requise')
+    for job in producers:
+        # Skipped jobs legitimately have no executed steps. A setup failure may
+        # have only setup steps; preserve those genuine failures as such.
+        if not job.get('conclusion') or (job.get('conclusion') not in ('skipped', 'cancelled', 'neutral') and not job.get('steps')):
+            raise ValueError('Jobs terminaux incomplets : étapes producteur absentes ; relecture requise')
+        if any(step.get('status') in ('queued', 'pending', 'in_progress') for step in job.get('steps', [])):
+            raise ValueError('Jobs terminaux incomplets : étapes encore intermédiaires ; relecture requise')
+    return jobs
 
 
 def checkout_snapshot(log):
@@ -1139,6 +1184,8 @@ def decode_json_file(api, file):
     if not content:
         content = api(f"/git/blobs/{file['sha']}")['content']
     decoded = json.loads(base64.b64decode(content))
+    if file.get('path', PATH) == PATH:
+        decoded = decode_status(decoded)
     return expand_report_archives(decoded) if file.get('path', PATH) == PATH and isinstance(decoded, dict) and isinstance(decoded.get('workflows'), dict) else decoded
 
 
@@ -1175,6 +1222,38 @@ def radar_resolution_evidence(api, ledger, active):
             verified.add(digest)
         proofs[identifier] = {**proof, 'evidenceVerified': True, 'resolvedAt': conflict['resolvedAt']}
     return proofs
+
+
+def completed_run_candidates(state, workflow, api):
+    """Read the same bounded terminal window for scheduled and event catch-up."""
+    try:
+        candidates = api(f'/actions/workflows/{workflow}/runs?branch=master&status=completed&per_page=30')['workflow_runs']
+    except (urllib.error.URLError,OSError,http.client.IncompleteRead,ValueError,TypeError,KeyError,AttributeError) as error:
+        state.setdefault('observerErrors', {})['runs:'+workflow]={'cause':'Exécutions non lisibles : '+str(error)[:300]}
+        return None
+    if not isinstance(candidates,list) or any(not isinstance(r,dict) or not isinstance(r.get('id'),int) or not isinstance(r.get('path'),str) for r in candidates):
+        state.setdefault('observerErrors', {})['runs:'+workflow]={'cause':'Format des exécutions invalide'}
+        return None
+    state.setdefault('observerErrors', {}).pop('runs:'+workflow,None)
+    old_id=state.get('workflows',{}).get(workflow,{}).get('runId',0)
+    if len(candidates)==30 and old_id and min(r['id']for r in candidates)>old_id:
+        state.setdefault('observerErrors', {}).setdefault('history-window:'+workflow,{'cause':'Intervalle historique non couvert par les 30 derniers runs API ; reprise historique requise. Dernier run observé : '+str(old_id),'anchorRunId':old_id,'throughAt':dt.datetime.now(dt.timezone.utc).isoformat()})
+    return candidates
+
+
+def unseen_failed_workflow_runs(state, workflows, api):
+    """An old event must not hide a newer terminal recovery of a failed source.
+
+    Only discover runs here. Their jobs, reports, source clocks and publication
+    receipts still pass through the ordinary reducer below; no status is forced.
+    """
+    runs=[]
+    for workflow in workflows:
+        previous=state.get('workflows',{}).get(workflow,{})
+        if previous.get('status')!='failure':continue
+        candidates=completed_run_candidates(state,workflow,api)
+        if candidates is not None:runs.extend(unseen_completed_runs(candidates,previous))
+    return runs
 
 
 def main():
@@ -1221,18 +1300,8 @@ def main():
     runs = []
     if args.backfill or args.monitor_only:
         for workflow in WORKFLOWS:
-            try:
-                candidates = api(f'/actions/workflows/{workflow}/runs?branch=master&status=completed&per_page=30')['workflow_runs']
-            except (urllib.error.URLError,OSError,http.client.IncompleteRead,ValueError,TypeError,KeyError,AttributeError) as error:
-                state.setdefault('observerErrors', {})['runs:'+workflow]={'cause':'Exécutions non lisibles : '+str(error)[:300]}
-                continue
-            if not isinstance(candidates,list) or any(not isinstance(r,dict) or not isinstance(r.get('id'),int) or not isinstance(r.get('path'),str) for r in candidates):
-                state.setdefault('observerErrors', {})['runs:'+workflow]={'cause':'Format des exécutions invalide'}
-                continue
-            state.setdefault('observerErrors', {}).pop('runs:'+workflow,None)
-            old_id=state.get('workflows',{}).get(workflow,{}).get('runId',0)
-            if len(candidates)==30 and old_id and min(r['id']for r in candidates)>old_id:
-                state.setdefault('observerErrors', {}).setdefault('history-window:'+workflow,{'cause':'Intervalle historique non couvert par les 30 derniers runs API ; reprise historique requise. Dernier run observé : '+str(old_id),'anchorRunId':old_id,'throughAt':dt.datetime.now(dt.timezone.utc).isoformat()})
+            candidates=completed_run_candidates(state,workflow,api)
+            if candidates is None:continue
             if args.monitor_only:
                 runs.extend(unseen_completed_runs(candidates, state.get('workflows', {}).get(workflow, {})))
                 continue
@@ -1249,6 +1318,11 @@ def main():
     elif not args.monitor_only:
         require_event = json.loads(args.event.read_text())
         runs = [require_event['workflow_run']]
+        # The queue can contain hours of old events. Catch up known failures
+        # from actual completed runs instead of waiting for a later cron/backfill.
+        recovered_runs=unseen_failed_workflow_runs(state,WORKFLOWS,api)
+        runs.extend(recovered_runs)
+        if recovered_runs:print(f'Rattrapage : {len(recovered_runs)} exécutions terminées non observées de workflows en échec ; preuves à vérifier par le réducteur ordinaire.')
     runs.extend(terminal_runs)
     for workflow,row in state.get('workflows',{}).items():
         if row.get('headSha')in LEGACY_PHASE_CONTRACTS and not row.get('legacyPhaseEvidence'):
@@ -1257,6 +1331,21 @@ def main():
                 runs.append({**legacy,'_phaseRetry':True})
             except (OSError,ValueError,KeyError,TypeError)as error:
                 state.setdefault('observerErrors',{})['phase-proof:'+workflow]={'cause':'Contrat de phase historique non relisible : '+str(error)[:250]}
+    # Recover the exact current attempt previously observed without any step
+    # evidence. Bounded metadata reads only, never dispatch or supplier requests.
+    incomplete_jobs = [(workflow, row) for workflow, row in state.get('workflows', {}).items()
+                       if workflow in REGISTRY and row.get('monitorVersion', 1) >= 3
+                       and row.get('runId') and not row.get('stepResults')
+                       and row.get('headSha') not in LEGACY_PHASE_CONTRACTS]
+    for workflow, row in incomplete_jobs[:4]:
+        try:
+            retry = api(f'/actions/runs/{row["runId"]}/attempts/{row.get("attempt",1)}')
+            if (retry.get('head_branch') != 'master' or retry.get('status') != 'completed'
+                    or retry.get('path', '').split('/')[-1] != workflow):
+                raise ValueError('Tentative producteur terminale non confirmée')
+            runs.append({**retry, '_jobEvidenceRetry': True})
+        except (urllib.error.URLError, OSError, ValueError, KeyError, TypeError) as error:
+            state.setdefault('observerErrors', {})['jobs-proof:' + workflow] = {'cause': 'Preuve des phases incomplète : ' + str(error)[:250]}
     runs=list({(r['id'],r.get('run_attempt',1)):r for r in runs}.values())
     pending_proofs = [(failure.get('lastProofReadAt',''),workflow,key,failure) for workflow,row in state.get('workflows',{}).items() if workflow in REPORT_ARTIFACTS for key,failure in row.get('proofFailures',{}).items() if failure.get('runId')]
     for _, workflow, key, failure in sorted(pending_proofs,key=lambda r:r[0])[:4]:
@@ -1284,6 +1373,7 @@ def main():
                 if len(batch) < 100:
                     break
                 page += 1
+            require_completed_job_evidence(run, jobs, REGISTRY[workflow]['collectionJob'])
             for job in jobs:
                 # Browser checks annotate the exact failed check ('Échec ...'): keep it so
                 # the incident names the test, not only the shard.
@@ -1430,12 +1520,18 @@ def main():
     state=observe_monitor_history(state,api,repo,dt.datetime.now(dt.timezone.utc).isoformat(),monitor_job_log)
     state['monitoring'] = evaluate_monitoring(state, context, REGISTRY, dt.datetime.now(dt.timezone.utc).isoformat(), radar)
     state=pack_report_scopes(state)
+    compressed = reader_ready(repo)
+    # The public decoder must demonstrably understand the additive receipt
+    # registry before a writer emits it. No change to the 256 MiB envelope.
+    if compressed and reader_ready(repo, proof_checks=True):
+        state = pack_proof_checks(state)
     print('Stockage du moniteur : '+str(len(json.dumps(state,ensure_ascii=False).encode()))+' octets, '+str(len(state.get('reportScopes',{})))+' périmètres de preuve uniques ; aucun incident retiré.')
-    encoded = encode_status(state)
+    encoded = encode_status(state, compressed=compressed)
+    print('Transport du moniteur : '+('gzip vérifié, lecteur public disponible' if compressed else 'JSON historique, nouveau lecteur public non démontré'))
     payload = {'message': 'Update automation failure status', 'branch': BRANCH, 'content': encoded}
     if sha:
         payload['sha'] = sha
-    persist_and_dispatch(api, PATH, payload, state, recovery_plans)
+    persist_and_dispatch(api, PATH, payload, state, recovery_plans, compressed=compressed)
     # Persist incidents before notifying. Bot issue/comment receipts make retries idempotent.
     sync_monitoring_issue(state['monitoring'], api, repo)
     print(f'Statuts publiés : {len(state["workflows"])} automatisations')

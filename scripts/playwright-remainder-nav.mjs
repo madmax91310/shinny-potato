@@ -43,7 +43,9 @@ try{
   await png(id+'-anniversaire',page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}))
   if(id==='etfFR0007054358Nav')for(const years of [6,7]){
    await choose(page.locator('#secondary-select'),String(years));await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
-   const past=getHistoricalPrice(id,ymForYearsBack(years,new Date()))
+   // A NAV comparison uses its real valuation month, including at a month roll.
+   // Read the independently published observation date rather than the wall clock.
+   const past=getHistoricalPrice(id,ymForYearsBack(years,new Date(latest.asOf+'T12:00:00Z')))
    assert((await page.locator('pre').innerText()).includes(fmtEUR(past,'EUR')),'Historical price must exclude reinvested cash')
    await png(id+'-anniversaire-'+years,page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}))
   }

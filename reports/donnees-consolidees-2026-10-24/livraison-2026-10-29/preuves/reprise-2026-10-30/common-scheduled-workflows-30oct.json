@@ -1,0 +1,872 @@
+{
+  "observedAt": "2026-10-30T15:44:12.532418+00:00",
+  "supervisedRegistryWorkflows": 24,
+  "additionalSharedPublisher": 1,
+  "rows": [
+    {
+      "workflow": "update-practical-sheets.yml",
+      "present": true,
+      "cronExpressions": [
+        "15 9 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 40907622654,
+          "event": "schedule",
+          "created_at": "2026-10-29T16:02:36Z",
+          "updated_at": "2026-10-29T16:08:48Z",
+          "head_sha": "b7109c2f4c0a927ddf19c13ce16c4927beb8a17d",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40907622654"
+        },
+        {
+          "id": 40721296964,
+          "event": "schedule",
+          "created_at": "2026-10-28T15:58:15Z",
+          "updated_at": "2026-10-28T16:43:48Z",
+          "head_sha": "c681e396cdd4263eca4c67fbed48adfd470ff4ab",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40721296964"
+        },
+        {
+          "id": 40529672931,
+          "event": "schedule",
+          "created_at": "2026-10-27T15:18:32Z",
+          "updated_at": "2026-10-27T15:21:34Z",
+          "head_sha": "426d7bc3f650e3f05d45c4d81370e74cefe433f1",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40529672931"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-editorial-radar.yml",
+      "present": true,
+      "cronExpressions": [
+        "7,37 6-19 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 41057134530,
+          "event": "schedule",
+          "created_at": "2026-10-30T12:40:37Z",
+          "updated_at": "2026-10-30T12:43:31Z",
+          "head_sha": "4cae893a53beb90baab00d53d0004b25cf3f924a",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41057134530"
+        },
+        {
+          "id": 40971593750,
+          "event": "schedule",
+          "created_at": "2026-10-29T23:13:07Z",
+          "updated_at": "2026-10-29T23:13:58Z",
+          "head_sha": "4b8c1bd1ef36b2876b256f61345b97c495ad2505",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40971593750"
+        },
+        {
+          "id": 40935325843,
+          "event": "schedule",
+          "created_at": "2026-10-29T18:55:25Z",
+          "updated_at": "2026-10-29T18:57:24Z",
+          "head_sha": "5e77670749a005090964a4443f83755ff5833fa6",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40935325843"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-publication-observations.yml",
+      "present": true,
+      "cronExpressions": [
+        "40 7 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 41071892383,
+          "event": "schedule",
+          "created_at": "2026-10-30T14:29:10Z",
+          "updated_at": "2026-10-30T15:13:09Z",
+          "head_sha": "44338f4cb641a598f1fb30c4d31a3f4aa9eba104",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41071892383"
+        },
+        {
+          "id": 40893319635,
+          "event": "schedule",
+          "created_at": "2026-10-29T14:37:21Z",
+          "updated_at": "2026-10-29T14:40:24Z",
+          "head_sha": "9c31ba9fbbb1a62f40318f515eb04a90e6735204",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40893319635"
+        },
+        {
+          "id": 40705837218,
+          "event": "schedule",
+          "created_at": "2026-10-28T14:25:49Z",
+          "updated_at": "2026-10-28T14:33:18Z",
+          "head_sha": "839ccaa2b8b424bb449f568293b4dc0ab08fbd2b",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40705837218"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-insurance.yml",
+      "present": true,
+      "cronExpressions": [
+        "25 7 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 41071062180,
+          "event": "schedule",
+          "created_at": "2026-10-30T14:20:51Z",
+          "updated_at": "2026-10-30T15:07:24Z",
+          "head_sha": "1cfd3889d8b73188e1d00220f0b773f166deb7bb",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41071062180"
+        },
+        {
+          "id": 40892004256,
+          "event": "schedule",
+          "created_at": "2026-10-29T14:29:37Z",
+          "updated_at": "2026-10-29T14:58:03Z",
+          "head_sha": "f7911210e3573d8cc0ea93d47928ce07c0a2058f",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40892004256"
+        },
+        {
+          "id": 40702915931,
+          "event": "schedule",
+          "created_at": "2026-10-28T14:07:50Z",
+          "updated_at": "2026-10-28T14:15:39Z",
+          "head_sha": "1fc2a223480750c03eac2ad016e744148da4248c",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40702915931"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-scpi.yml",
+      "present": true,
+      "cronExpressions": [
+        "20 7 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 41070752497,
+          "event": "schedule",
+          "created_at": "2026-10-30T14:18:44Z",
+          "updated_at": "2026-10-30T15:02:15Z",
+          "head_sha": "1cfd3889d8b73188e1d00220f0b773f166deb7bb",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41070752497"
+        },
+        {
+          "id": 40891762848,
+          "event": "schedule",
+          "created_at": "2026-10-29T14:28:09Z",
+          "updated_at": "2026-10-29T14:55:47Z",
+          "head_sha": "f7911210e3573d8cc0ea93d47928ce07c0a2058f",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40891762848"
+        },
+        {
+          "id": 40702779209,
+          "event": "schedule",
+          "created_at": "2026-10-28T14:06:59Z",
+          "updated_at": "2026-10-28T14:13:01Z",
+          "head_sha": "1fc2a223480750c03eac2ad016e744148da4248c",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40702779209"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-presentation-actors.yml",
+      "present": true,
+      "cronExpressions": [
+        "30 7 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 41071751329,
+          "event": "schedule",
+          "created_at": "2026-10-30T14:28:21Z",
+          "updated_at": "2026-10-30T15:10:19Z",
+          "head_sha": "44338f4cb641a598f1fb30c4d31a3f4aa9eba104",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41071751329"
+        },
+        {
+          "id": 40893199192,
+          "event": "schedule",
+          "created_at": "2026-10-29T14:36:38Z",
+          "updated_at": "2026-10-29T14:59:38Z",
+          "head_sha": "9c31ba9fbbb1a62f40318f515eb04a90e6735204",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40893199192"
+        },
+        {
+          "id": 40705298680,
+          "event": "schedule",
+          "created_at": "2026-10-28T14:22:35Z",
+          "updated_at": "2026-10-28T14:27:31Z",
+          "head_sha": "4468fb507b5a6e5bc3ccd2dd19e54feab2bc9d9c",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40705298680"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-regulatory-data.yml",
+      "present": true,
+      "cronExpressions": [
+        "45 8 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 41079867053,
+          "event": "schedule",
+          "created_at": "2026-10-30T15:20:56Z",
+          "updated_at": "2026-10-30T15:27:45Z",
+          "head_sha": "d1457f6d959089ee31a05c789d139a4a71cd549c",
+          "status": "pending",
+          "conclusion": null,
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41079867053"
+        },
+        {
+          "id": 40902771410,
+          "event": "schedule",
+          "created_at": "2026-10-29T15:33:28Z",
+          "updated_at": "2026-10-29T15:45:50Z",
+          "head_sha": "a1d5e00acffe99f8367e984ef04c8be7e145d8ec",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40902771410"
+        },
+        {
+          "id": 40716270437,
+          "event": "schedule",
+          "created_at": "2026-10-28T15:28:15Z",
+          "updated_at": "2026-10-29T09:16:23Z",
+          "head_sha": "d771f2d30588d3157804c28d37986900a9465d7a",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40716270437"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "collect-etf-pilot.yml",
+      "present": true,
+      "cronExpressions": [
+        "10 7 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 41068013127,
+          "event": "schedule",
+          "created_at": "2026-10-30T14:00:25Z",
+          "updated_at": "2026-10-30T15:42:58Z",
+          "head_sha": "12ebe8fbdd46e582e2f0ccad1d1370447c96e5bf",
+          "status": "pending",
+          "conclusion": null,
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41068013127"
+        },
+        {
+          "id": 40888590947,
+          "event": "schedule",
+          "created_at": "2026-10-29T14:08:50Z",
+          "updated_at": "2026-10-29T14:54:18Z",
+          "head_sha": "4dd1b262501fed1ca5e2dfbc55d4930cf9a7663b",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40888590947"
+        },
+        {
+          "id": 40701229202,
+          "event": "schedule",
+          "created_at": "2026-10-28T13:57:23Z",
+          "updated_at": "2026-10-28T15:08:36Z",
+          "head_sha": "297bfaefce1829e980bb0c122d66526662d5189c",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40701229202"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-market-monthly.yml",
+      "present": true,
+      "cronExpressions": [
+        "15 6 2,4,8,16 * *",
+        "45 6 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 41064230836,
+          "event": "schedule",
+          "created_at": "2026-10-30T13:33:26Z",
+          "updated_at": "2026-10-30T13:56:25Z",
+          "head_sha": "66e121e941d22ad5cec9b9535391389c8ac51628",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41064230836"
+        },
+        {
+          "id": 40884415624,
+          "event": "schedule",
+          "created_at": "2026-10-29T13:42:31Z",
+          "updated_at": "2026-10-29T14:15:55Z",
+          "head_sha": "ec0027998e400d31a7748a6fa45fe36b748b0489",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40884415624"
+        },
+        {
+          "id": 40697086797,
+          "event": "schedule",
+          "created_at": "2026-10-28T13:30:44Z",
+          "updated_at": "2026-10-28T15:03:28Z",
+          "head_sha": "297bfaefce1829e980bb0c122d66526662d5189c",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40697086797"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-bitcoin-monthly.yml",
+      "present": true,
+      "cronExpressions": [
+        "40 6 2,4,8 * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 37788601032,
+          "event": "schedule",
+          "created_at": "2026-10-08T13:58:09Z",
+          "updated_at": "2026-10-08T14:09:35Z",
+          "head_sha": "3976ea40d5c12e4fd7e27af63bdf064bbe3f88cd",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/37788601032"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-gold-monthly.yml",
+      "present": true,
+      "cronExpressions": [
+        "15 7 3-10 * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 38056933146,
+          "event": "schedule",
+          "created_at": "2026-10-10T13:45:14Z",
+          "updated_at": "2026-10-10T13:45:44Z",
+          "head_sha": "bdbbdfec5e5a74b8cc422fda9412f27ab08ea812",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/38056933146"
+        },
+        {
+          "id": 37943786945,
+          "event": "schedule",
+          "created_at": "2026-10-09T14:23:15Z",
+          "updated_at": "2026-10-09T14:23:44Z",
+          "head_sha": "db126df27eeeaf7fd1abe8482e4981d898a27546",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/37943786945"
+        },
+        {
+          "id": 37793862250,
+          "event": "schedule",
+          "created_at": "2026-10-08T14:36:32Z",
+          "updated_at": "2026-10-08T14:37:17Z",
+          "head_sha": "907ea239f42bbfab3eeb682ed38ae6fb5eb5298e",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/37793862250"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-inflation.yml",
+      "present": true,
+      "cronExpressions": [
+        "15 7 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 41069617564,
+          "event": "schedule",
+          "created_at": "2026-10-30T14:11:09Z",
+          "updated_at": "2026-10-30T14:11:42Z",
+          "head_sha": "1cfd3889d8b73188e1d00220f0b773f166deb7bb",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41069617564"
+        },
+        {
+          "id": 40890876050,
+          "event": "schedule",
+          "created_at": "2026-10-29T14:22:50Z",
+          "updated_at": "2026-10-29T14:23:32Z",
+          "head_sha": "f7911210e3573d8cc0ea93d47928ce07c0a2058f",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40890876050"
+        },
+        {
+          "id": 40702080630,
+          "event": "schedule",
+          "created_at": "2026-10-28T14:02:41Z",
+          "updated_at": "2026-10-28T14:03:18Z",
+          "head_sha": "1fc2a223480750c03eac2ad016e744148da4248c",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40702080630"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-investor-13f.yml",
+      "present": true,
+      "cronExpressions": [
+        "25 12 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 40931806917,
+          "event": "schedule",
+          "created_at": "2026-10-29T18:32:41Z",
+          "updated_at": "2026-10-29T19:18:35Z",
+          "head_sha": "b223c5f20a9830fee75745954d37e504779537d6",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40931806917"
+        },
+        {
+          "id": 40744624913,
+          "event": "schedule",
+          "created_at": "2026-10-28T18:23:14Z",
+          "updated_at": "2026-10-28T19:22:15Z",
+          "head_sha": "2936e58e02348351d39b815e3dd2ca7ffd75253c",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40744624913"
+        },
+        {
+          "id": 40556710249,
+          "event": "schedule",
+          "created_at": "2026-10-27T18:05:38Z",
+          "updated_at": "2026-10-27T18:24:46Z",
+          "head_sha": "c30937bc1a36880da0b4e62ab85ca82719149e5c",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40556710249"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-economic-data.yml",
+      "present": true,
+      "cronExpressions": [
+        "20 8 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 41077694446,
+          "event": "schedule",
+          "created_at": "2026-10-30T15:06:56Z",
+          "updated_at": "2026-10-30T15:39:05Z",
+          "head_sha": "3161194788b7a6775fed794fab9ec142e6c8bc77",
+          "status": "in_progress",
+          "conclusion": null,
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41077694446"
+        },
+        {
+          "id": 40900148804,
+          "event": "schedule",
+          "created_at": "2026-10-29T15:18:04Z",
+          "updated_at": "2026-10-29T15:26:44Z",
+          "head_sha": "ec54cd27b53cd56889bd5a06ec8b53bff03de1c6",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40900148804"
+        },
+        {
+          "id": 40713658009,
+          "event": "schedule",
+          "created_at": "2026-10-28T15:12:51Z",
+          "updated_at": "2026-10-28T15:18:48Z",
+          "head_sha": "0e73de84a8d6049992075e446fbdf376b000c6cc",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40713658009"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-lifestrategy.yml",
+      "present": true,
+      "cronExpressions": [
+        "35 5 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 41048933944,
+          "event": "schedule",
+          "created_at": "2026-10-30T11:33:34Z",
+          "updated_at": "2026-10-30T13:16:22Z",
+          "head_sha": "108d8dd5b87cb5b661f62e5c36029687c00ca309",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41048933944"
+        },
+        {
+          "id": 40867275988,
+          "event": "schedule",
+          "created_at": "2026-10-29T11:41:05Z",
+          "updated_at": "2026-10-29T12:25:31Z",
+          "head_sha": "7c56c23cd70ea6f0dffc7843565702ba57e41b37",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40867275988"
+        },
+        {
+          "id": 40680676589,
+          "event": "schedule",
+          "created_at": "2026-10-28T11:31:56Z",
+          "updated_at": "2026-10-28T11:36:38Z",
+          "head_sha": "79c7245a146c759c872d1e3601c591c894366c2b",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40680676589"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-non-bond-expansion.yml",
+      "present": true,
+      "cronExpressions": [
+        "15 7 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 41068552867,
+          "event": "schedule",
+          "created_at": "2026-10-30T14:04:00Z",
+          "updated_at": "2026-10-30T15:15:34Z",
+          "head_sha": "12ebe8fbdd46e582e2f0ccad1d1370447c96e5bf",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41068552867"
+        },
+        {
+          "id": 40889238529,
+          "event": "schedule",
+          "created_at": "2026-10-29T14:12:50Z",
+          "updated_at": "2026-10-29T14:52:04Z",
+          "head_sha": "4dd1b262501fed1ca5e2dfbc55d4930cf9a7663b",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40889238529"
+        },
+        {
+          "id": 40701432183,
+          "event": "schedule",
+          "created_at": "2026-10-28T13:58:40Z",
+          "updated_at": "2026-10-28T14:04:15Z",
+          "head_sha": "297bfaefce1829e980bb0c122d66526662d5189c",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40701432183"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-qualified-exposures.yml",
+      "present": true,
+      "cronExpressions": [
+        "50 7 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 41072759860,
+          "event": "schedule",
+          "created_at": "2026-10-30T14:34:25Z",
+          "updated_at": "2026-10-30T15:19:23Z",
+          "head_sha": "23972598547f7fc261c68cd7e52f455f480511f9",
+          "status": "pending",
+          "conclusion": null,
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41072759860"
+        },
+        {
+          "id": 40893795840,
+          "event": "schedule",
+          "created_at": "2026-10-29T14:40:12Z",
+          "updated_at": "2026-10-29T15:41:50Z",
+          "head_sha": "23ef83f86bb7787eda6bf86e9f1984f71b27caf0",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40893795840"
+        },
+        {
+          "id": 40707000954,
+          "event": "schedule",
+          "created_at": "2026-10-28T14:32:49Z",
+          "updated_at": "2026-10-28T15:43:28Z",
+          "head_sha": "d1b00c36778a2b30bc4f0317a10109d0771188b0",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40707000954"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "refresh-automated-index-sheets.yml",
+      "present": true,
+      "cronExpressions": [
+        "40 6 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 41063670315,
+          "event": "schedule",
+          "created_at": "2026-10-30T13:29:26Z",
+          "updated_at": "2026-10-30T13:46:40Z",
+          "head_sha": "66e121e941d22ad5cec9b9535391389c8ac51628",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41063670315"
+        },
+        {
+          "id": 40884026994,
+          "event": "schedule",
+          "created_at": "2026-10-29T13:40:00Z",
+          "updated_at": "2026-10-29T14:14:11Z",
+          "head_sha": "4bc4831b4bf23c220e728123c11e7f6c2b410191",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40884026994"
+        },
+        {
+          "id": 40696875293,
+          "event": "schedule",
+          "created_at": "2026-10-28T13:29:24Z",
+          "updated_at": "2026-10-28T13:33:26Z",
+          "head_sha": "3e8d4ebdfb75df375efe100afc425981a51acedc",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40696875293"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-exposure-expansion.yml",
+      "present": true,
+      "cronExpressions": [
+        "45 7 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 41072361359,
+          "event": "schedule",
+          "created_at": "2026-10-30T14:31:56Z",
+          "updated_at": "2026-10-30T15:18:04Z",
+          "head_sha": "9cba05b014684688c8f7ca600373bf04d0249c26",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41072361359"
+        },
+        {
+          "id": 40893772375,
+          "event": "schedule",
+          "created_at": "2026-10-29T14:40:04Z",
+          "updated_at": "2026-10-29T15:34:59Z",
+          "head_sha": "23ef83f86bb7787eda6bf86e9f1984f71b27caf0",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40893772375"
+        },
+        {
+          "id": 40706853346,
+          "event": "schedule",
+          "created_at": "2026-10-28T14:31:56Z",
+          "updated_at": "2026-10-28T15:12:13Z",
+          "head_sha": "d1b00c36778a2b30bc4f0317a10109d0771188b0",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40706853346"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "update-instrument-metadata.yml",
+      "present": true,
+      "cronExpressions": [
+        "20 9 * * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 40909714476,
+          "event": "schedule",
+          "created_at": "2026-10-29T16:15:09Z",
+          "updated_at": "2026-10-29T16:31:16Z",
+          "head_sha": "076af6beceb14636b9a9e91ab144b38ab309a8d5",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40909714476"
+        },
+        {
+          "id": 40723155019,
+          "event": "schedule",
+          "created_at": "2026-10-28T16:09:22Z",
+          "updated_at": "2026-10-28T17:25:58Z",
+          "head_sha": "a7e2280655ca08c4b8c8309daa7a947a8d5e0316",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40723155019"
+        },
+        {
+          "id": 40530912198,
+          "event": "schedule",
+          "created_at": "2026-10-27T15:25:58Z",
+          "updated_at": "2026-10-27T16:12:58Z",
+          "head_sha": "be8b94c49b35bce8150d41d0f1e1f6190fba4d57",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40530912198"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "onboard-assets.yml",
+      "present": true,
+      "cronExpressions": [
+        "35 5 3 * *"
+      ],
+      "scheduledRuns": [],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "rehearse-refresh.yml",
+      "present": true,
+      "cronExpressions": [
+        "17 4 20 * *"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 39400644927,
+          "event": "schedule",
+          "created_at": "2026-10-20T09:26:09Z",
+          "updated_at": "2026-10-20T09:36:31Z",
+          "head_sha": "8276a5d4c8c26de43109f38b1c399d97482eb578",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39400644927"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "review-freshness.yml",
+      "present": true,
+      "cronExpressions": [
+        "0 8 * * 1"
+      ],
+      "scheduledRuns": [
+        {
+          "id": 40343260521,
+          "event": "schedule",
+          "created_at": "2026-10-26T14:49:29Z",
+          "updated_at": "2026-10-26T14:50:08Z",
+          "head_sha": "8eb7a05fd1c4bfebacc56277c9f33a1cb78e8feb",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40343260521"
+        },
+        {
+          "id": 39276402557,
+          "event": "schedule",
+          "created_at": "2026-10-19T15:15:40Z",
+          "updated_at": "2026-10-19T15:16:02Z",
+          "head_sha": "186e63a62f24a251a8a95dfeb6830f61d14ce447",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39276402557"
+        },
+        {
+          "id": 38283455077,
+          "event": "schedule",
+          "created_at": "2026-10-12T17:19:39Z",
+          "updated_at": "2026-10-12T17:19:57Z",
+          "head_sha": "6bc681347f6c0fcac32556361a499bb12e3fa2c3",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/38283455077"
+        }
+      ],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "deploy-pages.yml",
+      "present": true,
+      "cronExpressions": [],
+      "scheduledRuns": [],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    },
+    {
+      "workflow": "publish-validated-data.yml",
+      "present": true,
+      "cronExpressions": [],
+      "scheduledRuns": [],
+      "limitation": "Run metadata only: a green run does not certify each source, field or publication; exact producer evidence remains separate."
+    }
+  ],
+  "supplierCronAfterTodaysFixesProven": false
+}

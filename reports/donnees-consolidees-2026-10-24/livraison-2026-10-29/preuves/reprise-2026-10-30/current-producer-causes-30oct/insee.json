@@ -1,0 +1,92 @@
+{
+  "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011814631?startPeriod=2026-01",
+  "checkedAt": "2026-10-30T14:58:40.098449+00:00",
+  "sha256": "046f8ca4343a746d419b617144ad8562d3f13cba7e239d8067e87775253640bb",
+  "attributes": {
+    "IDBANK": "011814631",
+    "FREQ": "M",
+    "TITLE_FR": "Indice des prix \u00e0 la consommation - Base 2025 - Variation mensuelle - Ensemble des m\u00e9nages - France - Nomenclature Coicop : 00 - Ensemble",
+    "TITLE_EN": "Consumer Price Index - Base 2025 - Monthly change - All households - France - COICOP classification: 00 - All items",
+    "LAST_UPDATE": "2026-10-30",
+    "UNIT_MEASURE": "SO",
+    "UNIT_MULT": "0",
+    "REF_AREA": "FE",
+    "DECIMALS": "1"
+  },
+  "observations": [
+    {
+      "TIME_PERIOD": "2026-10",
+      "OBS_VALUE": "0.4",
+      "OBS_STATUS": "P",
+      "OBS_QUAL": "P",
+      "OBS_TYPE": "A"
+    },
+    {
+      "TIME_PERIOD": "2026-09",
+      "OBS_VALUE": "-0.3",
+      "OBS_STATUS": "A",
+      "OBS_QUAL": "DEF",
+      "OBS_TYPE": "A"
+    },
+    {
+      "TIME_PERIOD": "2026-08",
+      "OBS_VALUE": "0.7",
+      "OBS_STATUS": "A",
+      "OBS_QUAL": "DEF",
+      "OBS_TYPE": "A"
+    },
+    {
+      "TIME_PERIOD": "2026-07",
+      "OBS_VALUE": "0.6",
+      "OBS_STATUS": "A",
+      "OBS_QUAL": "DEF",
+      "OBS_TYPE": "A"
+    },
+    {
+      "TIME_PERIOD": "2026-06",
+      "OBS_VALUE": "-0.3",
+      "OBS_STATUS": "A",
+      "OBS_REV": "1",
+      "OBS_QUAL": "DEF",
+      "OBS_TYPE": "A"
+    },
+    {
+      "TIME_PERIOD": "2026-05",
+      "OBS_VALUE": "0.1",
+      "OBS_STATUS": "A",
+      "OBS_QUAL": "DEF",
+      "OBS_TYPE": "A"
+    },
+    {
+      "TIME_PERIOD": "2026-04",
+      "OBS_VALUE": "1.0",
+      "OBS_STATUS": "A",
+      "OBS_QUAL": "DEF",
+      "OBS_TYPE": "A"
+    },
+    {
+      "TIME_PERIOD": "2026-03",
+      "OBS_VALUE": "1.0",
+      "OBS_STATUS": "A",
+      "OBS_REV": "1",
+      "OBS_QUAL": "DEF",
+      "OBS_TYPE": "A"
+    },
+    {
+      "TIME_PERIOD": "2026-02",
+      "OBS_VALUE": "0.6",
+      "OBS_STATUS": "A",
+      "OBS_REV": "1",
+      "OBS_QUAL": "DEF",
+      "OBS_TYPE": "A"
+    },
+    {
+      "TIME_PERIOD": "2026-01",
+      "OBS_VALUE": "-0.3",
+      "OBS_STATUS": "A",
+      "OBS_QUAL": "DEF",
+      "OBS_TYPE": "A"
+    }
+  ],
+  "existingParserFailure": "Duplicate, invalid or incomplete month"
+}

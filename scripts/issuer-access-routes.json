@@ -28,7 +28,17 @@
       "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc": [
         "https://www.wisdomtree.eu/en-ie/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc"
       ]
-    }
+    },
+    "fundRankings": "https://dataspanapi.wisdomtree.com/funddetails/rankings/",
+    "fundRankingsRequestHeaders": {
+      "Accept": "application/json",
+      "Accept-Language": "en-GB,en;q=0.9",
+      "Origin": "https://www.wisdomtree.com",
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+    },
+    "fundRankingsMinimumIntervalSeconds": 2,
+    "fundRankingsMaximumAttempts": 3,
+    "fundDirectory": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0"
   },
   "blackrock": {
     "characteristicsComponents": "keyFundFacts%2Clistings",
@@ -45,5 +55,19 @@
     "qualification": "Exact embedded shareClassId/ISIN/USD Acc/launch and NAV header; full CSV bound to the same-date current catalogue NAV, all completed annual calendars checked. Exclude issuer pre-launch rows, never infer a launch from the first CSV row.",
     "access": "Public fund-centre export linked by the publisher client. A generic HTTP200 catalogue without static-data is not a share identity. Use the exact direct document route without a cookie-jar regional redirect.",
     "reuse": "Existing publisher conditions apply; HTTP access is not a licence; reuse authorisation not independently verified."
+  },
+  "nasdaq": {
+    "historicalCloseCorroboration": {
+      "policy": "nasdaq-sbux-common-stock-historical-close",
+      "recordId": "sbux",
+      "isin": "US8552441094",
+      "symbol": "SBUX",
+      "currency": "USD",
+      "stockType": "Common Stock",
+      "exchange": "NASDAQ-GS",
+      "identityUrl": "https://api.nasdaq.com/api/quote/SBUX/info?assetclass=stocks",
+      "historyUrlTemplate": "https://api.nasdaq.com/api/quote/SBUX/historical?assetclass=stocks&fromdate={from_date}&todate={to_date}&limit=100"
+    },
+    "note": "Supplementary current-month close corroboration for this exact Nasdaq common stock only. Historical/adjusted prices are not replaced. The terminal indicative quote remains distinct; an unavailable official response cannot certify a close. Access/reuse conditions remain unverified in the common conditions registry."
   }
 }

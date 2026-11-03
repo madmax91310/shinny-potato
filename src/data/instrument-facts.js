@@ -1,4 +1,5 @@
 import { ROUTING_PRESENTATION_FACTS as ROUTING_FACTS } from './routing-presentation-facts.js';
+import { NEW_INSTRUMENT_FACTS } from './new-instrument-facts.js';
 export const ROUTING_PRESENTATION_FACTS = ROUTING_FACTS;
 import { AUTOMATED_ETF } from './automated-etf.js';
 import { applyAutomatedCharacteristics } from './automated-characteristics.js';
@@ -23,6 +24,23 @@ export { getInstrumentListings } from './instrument-listings.js';
 // PEA reste dans instruments.js : le statut ne se déduit ni du domicile ni de l'indice.
 // Les ETC et ETP gardent leur nature distincte des fonds ETF.
 const MANUAL_INSTRUMENT_FACTS = {
+  ...NEW_INSTRUMENT_FACTS,
+  "FR0013412269": {
+  "distribution": "Capitalisation et/ou distribution",
+  "location": "France, réplication synthétique (swap)",
+  "benchmark": "Solactive ISS ESG US Tech 100 Index",
+  "incomePolicy": "capitalisation-and-or-distribution",
+  "replicationMethod": "Indirect(Swap Based)",
+  "domicile": "France",
+  "currencyHedge": null,
+  "reviewedAt": "29/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : Solactive ISS ESG US Tech 100 Index",
+  "characteristicsSource": {
+    "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412269/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+    "checkedAt": "2026-10-29"
+  }
+},
   ...Object.fromEntries(PEA_SECTOR_COMPLETION.map(r => [r.isin, r.facts])),
   ...NON_BOND_FACTS,
   ...LIFESTRATEGY_FACTS,

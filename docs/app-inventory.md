@@ -10,9 +10,9 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | Hey @Grok | /hey-grok |
 | Qui a vraiment gagné ? | /classements-performances |
 | Portefeuille & DCA | /le-dca-de |
+| Le budget de… | /le-budget-de |
 | Fiches pratiques | /fiches-pratiques |
 | Radar éditorial | /radar-editorial |
-| Simulateur de patrimoine | /simulateur-patrimoine |
 | Présentations | /presentations |
 | Présentation d’un investisseur connu | /portefeuilles-investisseurs |
 | France en 100 ménages | /france-100-menages |
@@ -29,7 +29,6 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | Performance depuis | /performance-depuis |
 | Pouvoir d’achat | /pouvoir-achat |
 | Dilemme | /dilemme |
-| Impact des frais | /impact-frais |
 | Histoires de marchés | /faits-marquants-marches |
 | Banque de tweets | /banque-tweets |
 | Coulisses des indices | /tweets-factsheets |
@@ -42,23 +41,24 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | broker | 8 |
 | household | 29 |
 | index | 56 |
-| instrument | 671 |
+| instrument | 693 |
 | insurance | 7 |
 | lexicon | 44 |
+| portfolio | 8 |
 | reference | 11 |
 | scpi | 8 |
-| series | 744 |
+| series | 778 |
 
 ## Champs des instruments
 
 | Champ | Présents / instruments |
 |---|---:|
-| ter | 258/261 |
-| aum | 258/261 |
-| performance | 238/261 |
-| countries | 229/261 |
-| sectors | 229/261 |
-| holdings | 234/261 |
+| ter | 280/283 |
+| aum | 280/283 |
+| performance | 260/283 |
+| countries | 251/283 |
+| sectors | 251/283 |
+| holdings | 256/283 |
 
 Les raisons des absences figurent dans [l’inventaire des lacunes](automation-gaps.md).
 

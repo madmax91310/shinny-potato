@@ -42,7 +42,7 @@ for (const proof of capture.funds) {
  assert.ok(Math.abs(euroReturn(asset,2025)-expected)<1e-10, 'Une cotation EUR ne transforme pas les rendements NAV USD en rendements EUR')
  assert.equal(HISTORY[proof.id], undefined, 'Pas de série mensuelle inventée à partir des tableaux annuels')
  const record = DATA_CATALOG.find(x => x.type === 'instrument' && x.id === proof.isin)
- for (const path of ['/fiches-etf','/comparatif-etf','/generateur-portefeuilles','/duels-portefeuilles','/impact-frais']) assert(record.consumers.some(c => c.path === path), `${proof.isin}: ${path}`)
+ for (const path of ['/fiches-etf','/comparatif-etf','/generateur-portefeuilles','/duels-portefeuilles']) assert(record.consumers.some(c => c.path === path), `${proof.isin}: ${path}`)
 }
 const undocumented=Object.keys(INSTRUMENTS_BY_ISIN).find(isin=>PEA_REVIEWS_BY_ISIN[isin]?.eligible==null)
 if(undocumented)assert.equal(getInstrumentPeaStatus(undocumented),null,'Un instrument enregistré sans preuve PEA reste inconnu')

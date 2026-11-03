@@ -53,13 +53,58 @@ def validate_contract(contract):
     return contract
 
 
+def _complete_holdings_results(native):
+    """Bind explicit fresh outcomes to their bounded native source receipts.
+
+    `observations` is a dictionary here, not the older observation-list schema.
+    Never reinterpret a stored portfolio or an announced ID as a source check.
+    """
+    import re
+    if not isinstance(native.get('successes'),list) or not isinstance(native.get('errors'),list):
+        raise ValueError('Missing explicit complete-holdings results')
+    successes=[]
+    errors=list(native['errors'])
+    for row in native['successes']:
+        if not isinstance(row,dict) or not isinstance(row.get('id'),str):
+            raise ValueError('Invalid complete-holdings result identity')
+        identifier=row['id']
+        receipt=native['observations'].get(identifier.removeprefix('dca-holdings:'),{})
+        try:
+            if not identifier.startswith('dca-holdings:') or not isinstance(receipt,dict):
+                raise ValueError('Wrong bounded receipt identity')
+            if not re.fullmatch('[a-f0-9]{64}',receipt.get('sha256','')):
+                raise ValueError('Missing response fingerprint')
+            dt.datetime.fromisoformat(receipt['checkedAt'].replace('Z','+00:00'))
+            dt.date.fromisoformat(receipt['asOf'])
+            derived=receipt.get('scope')=='equity-lookthrough'
+            if not isinstance(receipt.get('sourceUrl'),str) or not receipt['sourceUrl'].startswith('https://') or not derived and receipt.get('sourceAttempted')is False:
+                raise ValueError('Source contact not demonstrated')
+        except (ValueError,KeyError,AttributeError,TypeError) as error:
+            errors.append({'id':identifier,'phase':'qualification','kind':'evidence-incomplete','sourceAttempted':None,
+                           'error':'Preuve individuelle des positions incomplète : '+str(error)})
+            continue
+        # The native payload retains pooled identity URLs. Do not attribute that
+        # global list to the financial observation of each individual fund.
+        fields=('checkedAt','validatedAt','asOf','sourceUrl','sha256','basis','scope','completeFile','rows',
+                'publishedEquityWeightPct','identifiedEquityWeightPct')
+        successes.append({**row,**{key:receipt[key]for key in fields if key in receipt},'sourceAttempted':not derived,
+                          **({'phase':'validation','reason':'Transparisation calculée ; aucune nouvelle consultation du document du fonds déduite.'}if derived else{})})
+    return {'successes':successes,'errors':errors}
+
+
 def finish(native, plan, *, completed=True):
     """Only native observed results count; expected work was frozen before execution."""
     from publish_automation_status import _normalize_report
     interruption_reason = None
     payload = {**native, '_collector': plan['reportStem']}
     try:
-        normalized = ({'successes':[{'id':'history:bitcoin-yahoo'}],'errors':[]} if plan['producer']=='update_bitcoin_monthly' and native.get('symbol')=='BTC-USD' and native.get('points') and native.get('checkedAt') else (native['contractResults'] if 'contractResults' in native else _normalize_report(payload))) if completed else {'successes': [], 'errors': []}
+        if not completed:normalized={'successes':[],'errors':[]}
+        elif plan['producer']=='update_bitcoin_monthly' and native.get('symbol')=='BTC-USD' and native.get('points') and native.get('checkedAt'):
+            normalized={'successes':[{'id':'history:bitcoin-yahoo'}],'errors':[]}
+        elif 'contractResults'in native:normalized=native['contractResults']
+        elif plan['producer']=='collect_dca_complete_holdings' and isinstance(native.get('observations'),dict):
+            normalized=_complete_holdings_results(native)
+        else:normalized=_normalize_report(payload)
         if not isinstance(normalized,dict):raise ValueError('Unknown native producer result shape')
     except (ValueError, TypeError, KeyError, AttributeError, IndexError) as error:
         normalized = {'successes': [], 'errors': []}
@@ -142,7 +187,7 @@ def finish(native, plan, *, completed=True):
                 # retained financial registry. No checkedAt/asOf is manufactured here.
                 value = {**value, 'operationAttempted':True, 'sourceAttempted':value.get('sourceAttempted',True if value['status']in ('succeeded','unchanged-verified')else None)}
         if item.get('phase')in ('qualification','validation') and value.get('kind')!='omission':
-            value={**value,'phase':item['phase'],'sourceAttempted':False,'validatedAt':native.get('checkedAt')}
+            value={**value,'phase':item['phase'],'sourceAttempted':False,'validatedAt':value.get('validatedAt')or native.get('checkedAt')}
         outcomes.append({**item, **value, 'id':identifier})
     diagnostics = [{**r,'phase':'validation','sourceAttempted':False}for r in _normalize_report(payload).get('errors',[])] if plan.get('retainNativeFailuresOnly') and native.get('contractDiagnosticsAttempted') is True and completed else []
     contract = {'schemaVersion':1, 'protocol':VERSION, 'inputPlan':plan, 'scope':{
@@ -166,6 +211,10 @@ def normalize_contract(contract):
     validate_contract(contract)
     result = {'successes':[], 'errors':[], 'inactive':[], 'reportedResults':[]}
     for row in contract['outcomes']:
+        # Requalify the meaning of old immutable receipts without rewriting
+        # their dates, plan, outcomes or claiming a new supplier consultation.
+        if contract['scope']['kind']=='collect_dca_complete_holdings' and row.get('scope')=='equity-lookthrough':
+            row={**row,'phase':'validation','sourceAttempted':False}
         if row['id'] in contract['scope']['requestedIds'] and row.get('kind') != 'omission':
             result['reportedResults'].append('report-result:'+contract['scope']['kind']+':'+row['id'])
         if row['status'] in ('succeeded', 'unchanged-verified'):

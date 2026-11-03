@@ -10,6 +10,62 @@ ROOT = Path(__file__).resolve().parents[1]
 MANUAL_WRITERS = set()
 
 class WorkflowContracts(unittest.TestCase):
+    def test_python_installations_use_pinned_installer_and_shared_constraints(self):
+        for path in (ROOT/'.github/workflows').glob('*.yml'):
+            text = path.read_text()
+            for job in re.split(r'(?m)^  [a-zA-Z0-9_-]+:\n', text.split('\njobs:', 1)[1]):
+                calls = re.findall(r'(?m)^.*python -m pip install[^\n]*', job)
+                if not calls: continue
+                with self.subTest(workflow=path.name):
+                    self.assertIn('python-version: "3.12"', job.replace("'3.12'", '"3.12"'))
+                    self.assertEqual(sum('python-installer-requirements.txt' in line for line in calls), 1)
+                    self.assertIn('--require-hashes -r scripts/python-installer-requirements.txt', calls[0])
+                    for line in calls[1:]:
+                        self.assertIn('-c scripts/python-constraints.txt', line)
+        pins = (ROOT/'scripts/python-constraints.txt').read_text().lower()
+        self.assertIn('pillow==13.0.0', pins)
+        self.assertNotIn('pdfminer', pins)
+        installer = (ROOT/'scripts/python-installer-requirements.txt').read_text()
+        self.assertIn('pip==26.2', installer)
+        self.assertRegex(installer, r'--hash=sha256:[a-f0-9]{64}')
+        for filename in ('company-requirements.txt', 'economic-requirements.txt', 'requirements-gold.txt'):
+            requirements = (ROOT/'scripts'/filename).read_text()
+            self.assertIn('-c python-constraints.txt', requirements)
+
+    def test_pull_requests_keep_scope_gate_without_unused_repository_checkout(self):
+        text = (ROOT/'.github/workflows/deploy-pages.yml').read_text()
+        scope = text.split('\n  scope:\n', 1)[1].split('\n  build:\n', 1)[0]
+        self.assertIn('Keep full public validation for pull requests', scope)
+        for step in scope.split('      - ')[1:]:
+            if 'uses: actions/checkout@' in step or 'uses: actions/setup-node@' in step:
+                self.assertIn("if: github.event_name != 'pull_request'", step)
+        # Preserve ancestry, producers and publication receipts: lazy blobs only affect transport.
+        for job_name in ('current-snapshot', 'scope', 'deploy', 'fallback-build'):
+            job = re.split(r'(?m)^  [a-zA-Z0-9_-]+:\n', text.split('\n  '+job_name+':\n', 1)[1])[0]
+            for step in job.split('      - ')[1:]:
+                if 'fetch-depth: 0' in step: self.assertEqual(step.count('filter: blob:none'), 1)
+
+    def test_monthly_fx_dependency_precedes_nav_admission_and_collection(self):
+        text = (ROOT/'.github/workflows/update-market-monthly.yml').read_text()
+        refresh = text.split('\n  refresh:\n', 1)[1]
+        fx = refresh.index('python scripts/collect_ranking_sources.py --apply')
+        for consumer in ('python scripts/qualify_monthly_candidates.py',
+                         'node scripts/export-monthly-baseline.mjs',
+                         'python scripts/refresh_monthly_history.py --baseline'):
+            self.assertLess(fx, refresh.index(consumer), consumer)
+        block = refresh.split('      - name: Refresh exact ranking histories and ECB conversion\n', 1)[1].split('      - name:', 1)[0]
+        self.assertIn('continue-on-error: true', block)
+        self.assertIn('inputs.listings_only != true', block)
+        self.assertIn('REQUESTED_RANKING_SOURCES: ${{ inputs.ranking_sources }}', block)
+        self.assertEqual(refresh.count('python scripts/collect_ranking_sources.py --apply'), 1)
+
+    def test_shared_reference_parser_repairs_trigger_the_ordinary_exposure_producer(self):
+        text=(ROOT/'.github/workflows/update-qualified-exposures.yml').read_text()
+        push=text.split('  push:',1)[1].split('  pull_request:',1)[0]
+        self.assertIn("'scripts/collect_exposure_sleeves.py'",push)
+        self.assertIn('python scripts/collect_exposure_sleeves.py --apply',text)
+        self.assertIn("cancel-in-progress: false",text)
+
     def test_tweet_midi_partitions_preserve_the_publication_gate(self):
         workflow = (ROOT/'.github/workflows/deploy-pages.yml').read_text()
         build = workflow.split('\n  build:\n')[1].split('\n  tweet-midi-checks:\n')[0]
@@ -186,6 +242,27 @@ class WorkflowContracts(unittest.TestCase):
         for critical in ['node scripts/test-route-loading.mjs','node scripts/playwright-tools.mjs','node scripts/test-automation-failures-ui.mjs']:
             self.assertIn(critical, commands)
 
+    def test_dependent_market_producers_share_the_production_lock(self):
+        # Real refusal41056366335: non-bond publication changed five inputs
+        # while the ETF collector was acquiring. Admission must start before
+        # checkout, rather than exempting those inputs from financial checks.
+        groups = []
+        for filename in ('collect-etf-pilot.yml', 'update-exposure-expansion.yml',
+                         'update-non-bond-expansion.yml'):
+            workflow = (ROOT/'.github/workflows'/filename).read_text()
+            job = workflow.split('  refresh:\n', 1)[1]
+            before_steps = job.split('    steps:', 1)[0]
+            group = re.search(r'(?m)^      group: (.+)$', before_steps).group(1)
+            groups.append(group)
+            self.assertIn("github.event_name == 'pull_request'", group)
+            self.assertIn('github.workflow', group)
+            self.assertIn('github.ref', group)
+            self.assertTrue(group.endswith("|| 'production' }}"))
+            self.assertIn('cancel-in-progress: false', before_steps)
+            self.assertIn('queue: max', before_steps)
+            self.assertIn("ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}", job)
+        self.assertEqual(len(set(groups)), 1, 'Dependent production writes must serialize; PR checks remain independent')
+
     def test_production_collectors_queue_instead_of_replacing_pending_runs(self):
         # GitHub keeps one pending job per concurrency group: without a queue, each new
         # arrival cancels the waiting one. Three ETF collectors cancelled each other on
@@ -199,3 +276,21 @@ class WorkflowContracts(unittest.TestCase):
 
 if __name__ == '__main__': unittest.main()
 
+
+
+class ExplicitRankingRecovery(unittest.TestCase):
+    def test_explicit_scope_does_not_trigger_catalogue_or_skip_requested_fx(self):
+        import os, subprocess, textwrap
+        workflow=(ROOT/'.github/workflows/update-market-monthly.yml').read_text()
+        step=re.split(r'(?m)^      - ', workflow.split('      - name: Refresh exact ranking histories and ECB conversion', 1)[1], maxsplit=1)[0]
+        self.assertIn("github.event_name == 'push'",step)
+        command=textwrap.dedent(step.split('        run: |\n')[1])
+        for selected,retry,expected in [('fx','true',['--only','fx']),('fx','false',['--only','fx']),('','true',['--retry-failed']),('','false',[])]:
+            with self.subTest(selected=selected,retry=retry):
+                env={**os.environ,'REQUESTED_RANKING_SOURCES':selected,'RETRY_FAILED':retry,'RUNNER_TEMP':'/isolated-no-write'}
+                result=subprocess.run(['bash','-euc','python(){ printf "%s\\n" "$@"; };\n'+command],env=env,capture_output=True,text=True)
+                self.assertEqual(result.returncode,0,result.stderr)
+                argv=result.stdout.splitlines()
+                self.assertEqual(argv,['scripts/collect_ranking_sources.py','--apply','--output','/isolated-no-write/ranking-collection-status.json',*expected])
+        empty=subprocess.run(['bash','-euc','python(){ exit 99; };\n'+command],env={**os.environ,'REQUESTED_RANKING_SOURCES':' , ','RETRY_FAILED':'false'},capture_output=True,text=True)
+        self.assertEqual(empty.returncode,1)

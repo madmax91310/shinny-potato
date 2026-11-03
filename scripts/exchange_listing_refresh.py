@@ -1,5 +1,5 @@
 """Renew only already-consumed ordinary-share identities; never collect prices or discover a universe."""
-import copy,csv,datetime as dt,hashlib,io,json,re
+import copy,csv,datetime as dt,hashlib,io,json,re,base64,subprocess,urllib.error
 from pathlib import Path
 from issuer_documents import download
 
@@ -39,21 +39,65 @@ def observations(body,source_id,now):
         return [dict(ticker=r['symbol'],mic=r.get('micCode'),currency=r['currency'],name=r['fullName'],isin=r['isin'],orderbook=r['orderbookId'],shareType=security_type(r['fullName']))for r in rows],asof
     raise ValueError('Unsupported shared directory')
 
-def refresh(document,now,fetch=download):
-    result=copy.deepcopy(document);successes=[];errors=[];cache={}
+def browser_identities(tickers):
+    process=subprocess.run(['node',str(Path(__file__).with_name('download-nyse-listing-identities.mjs')),*tickers],capture_output=True,timeout=230,check=True)
+    if len(process.stdout)>24_000_000:raise ValueError('NYSE browser response outside bound')
+    return json.loads(process.stdout)
+
+def refresh(document,now,fetch=download,browser_fetch=browser_identities,clock=None):
+    result=copy.deepcopy(document);successes=[];errors=[];cache={};directory_outcomes=[];browser_result=None
+    def captured_time():
+        stamp=clock() if clock else now
+        if stamp.tzinfo is None or stamp<now:raise ValueError('Observation clock precedes collection start')
+        return stamp
     # These are already-established common ISIN links, not an ISIN inference from an exchange name.
     common=json.loads((Path(__file__).resolve().parents[1]/'src/data/global-equities.json').read_text())
     aliases={r['aiListingId']:r['isin']for r in common if r.get('aiListingId')}
     for row in result['listings']:
         if row.get('sourceId')not in ('nasdaq','us-other','nordic-main'):continue
-        identifier=row.get('isin')or aliases.get(row['id'])or row['id'];url=row['sourceUrl']
+        identifier=row.get('isin')or aliases.get(row['id'])or row['id'];url=row['sourceUrl'];attempted_urls=[url]
         try:
             if url not in cache:
                 try:
-                    body=fetch(url,max_bytes=6_000_000,max_attempts=1);points,asof=observations(body,row['sourceId'],now);cache[url]=(points,asof,hashlib.sha256(body).hexdigest())
+                    body=fetch(url,max_bytes=6_000_000,max_attempts=1);retrieved=captured_time();points,asof=observations(body,row['sourceId'],retrieved);cache[url]=(points,asof,hashlib.sha256(body).hexdigest(),retrieved)
                 except Exception as e:cache[url]=e
+                if row['sourceId']=='us-other':
+                    failure=cache[url] if isinstance(cache[url],Exception) else ValueError('Official primary US-other directory unexpectedly empty') if not cache[url][0] else None
+                    directory_outcomes.append({'id':'directory:us-other','field':'primary-directory','sourceUrl':url,'attemptedAt':now.isoformat(),'sourceAttempted':True,
+                        **({'status':'failed','error':str(failure)} if failure else {'status':'succeeded','checkedAt':cache[url][3].isoformat(),'asOf':cache[url][1]})})
+            if row['sourceId']=='us-other' and (isinstance(cache[url],Exception) or not cache[url][0]):
+                from nyse_listing_identity import qualify
+                fallback_url='https://www.nyse.com/api/nyseservice/v1/quotes?symbol='+row['ticker']
+                attempted_urls.append(fallback_url)
+                transport=None
+                try:
+                    raw=fetch(fallback_url,max_bytes=2_000_000,max_attempts=1);checked_now=captured_time()
+                except (urllib.error.HTTPError,urllib.error.URLError,TimeoutError,ConnectionError) as transport_error:
+                    if isinstance(transport_error,urllib.error.HTTPError) and transport_error.code!=403:raise
+                    if browser_result is None:
+                        tickers=list(dict.fromkeys(r['ticker']for r in document['listings']if (r.get('sourceId'),r.get('mic'),r.get('currency'),r.get('shareType'),r.get('instrumentType'))==('us-other','XNYS','USD','ordinary','EQUITY')))
+                        try:browser_result=browser_fetch(tickers)
+                        except Exception as error:browser_result=error
+                    if isinstance(browser_result,Exception):raise ValueError('NYSE HTTP failed: '+str(transport_error)+'; ordinary browser failed: '+str(browser_result))from transport_error
+                    record=browser_result.get('records',{}).get(row['ticker'])
+                    if not record or record.get('url')!=fallback_url:raise ValueError('NYSE HTTP failed: '+str(transport_error)+'; ordinary browser: '+browser_result.get('errors',{}).get(row['ticker'],'individual result omitted'))from transport_error
+                    raw=base64.b64decode(record['body'],validate=True)
+                    if not raw or len(raw)>2_000_000:raise ValueError('NYSE browser body outside bound')
+                    completed=captured_time();checked_now=dt.datetime.fromisoformat(record['retrievedAt'])
+                    if checked_now.tzinfo is None or not now<=checked_now<=completed:raise ValueError('NYSE browser receipt outside this source attempt')
+                    transport={'method':'ordinary NYSE page and same-origin public API','primaryHttpError':str(transport_error),'retrievedAt':checked_now.isoformat()}
+                # A live quote can advance after the run starts. Validate it
+                # against the actual completed read, never an added tolerance.
+                observation=qualify(row,identifier,raw,checked_now)
+                if transport:observation['transport']=transport
+                # Only the independently checked fallback clock advances. Never
+                # renew the unavailable primary proof or import quote prices.
+                unchanged=row.get('listingObservation',{}).get('sha256')==observation['sha256']
+                row['listingObservation']=observation
+                successes.append({'id':identifier,'sourceUrl':fallback_url,'asOf':observation['asOf'],'checkedAt':observation['checkedAt'],'status':'unchanged-verified'if unchanged else'succeeded','field':'listing-identity','sourceAttempted':True})
+                continue
             if isinstance(cache[url],Exception):raise cache[url]
-            points,asof,sha=cache[url];matches=[r for r in points if r['ticker']==row['ticker']and r['currency']==row['currency']]
+            points,asof,sha,checked_at=cache[url];matches=[r for r in points if r['ticker']==row['ticker']and r['currency']==row['currency']]
             if len(matches)!=1:raise ValueError('Exact directory listing missing or ambiguous')
             current=matches[0]
             # Directory spacing is formatting, never a share-class or issuer alias.
@@ -63,14 +107,14 @@ def refresh(document,now,fetch=download):
             updates={}
             if row['sourceId']=='nordic-main':
                 detail_url='https://api.nasdaq.com/api/nordic/instruments/'+str(current['orderbook'])+'/info?assetClass=SHARES&lang=en'
-                raw=fetch(detail_url,max_bytes=1_000_000,max_attempts=1);header=json.loads(raw)['data']['qdHeader']
+                raw=fetch(detail_url,max_bytes=1_000_000,max_attempts=1);checked_at=captured_time();header=json.loads(raw)['data']['qdHeader']
                 if (header['isin'],header['symbol'],header['currency'])!=(row['isin'],row['ticker'],row['currency']):raise ValueError('Nordic exact share identity changed')
                 current['mic']={'Nasdaq Stockholm':'XSTO','Nasdaq Helsinki':'XHEL','Nasdaq Copenhagen':'XCSE','Nasdaq Iceland':'XICE'}.get(header['exchange'])
                 updates.update(identityDetailSourceUrl=detail_url,identityDetailSha256=hashlib.sha256(raw).hexdigest())
             if current['mic']!=row['mic']:raise ValueError('Exact venue changed')
             if asof<max(row.get('sourceAsOf',''),row.get('listingObservation',{}).get('asOf','')):raise ValueError('Older directory observation refused')
             unchanged=row.get('listingObservation',{}).get('sha256')==sha
-            row['listingObservation']={**updates,'sourceName':current['name'],'sourceUrl':url,'asOf':asof,'checkedAt':now.isoformat(),'sha256':sha}
-            successes.append({'id':identifier,'sourceUrl':url,'asOf':asof,'checkedAt':now.isoformat(),'status':'unchanged-verified'if unchanged else'succeeded','field':'listing-identity'})
-        except Exception as e:errors.append({'id':identifier,'sourceUrl':url,'error':str(e),'lastSuccessAt':row.get('listingObservation',{}).get('checkedAt',row.get('checkedAt')),'attemptedAt':now.isoformat()})
-    return result,{'successes':successes,'errors':errors}
+            row['listingObservation']={**updates,'sourceName':current['name'],'sourceUrl':url,'asOf':asof,'checkedAt':checked_at.isoformat(),'sha256':sha}
+            successes.append({'id':identifier,'sourceUrl':url,'asOf':asof,'checkedAt':checked_at.isoformat(),'status':'unchanged-verified'if unchanged else'succeeded','field':'listing-identity'})
+        except Exception as e:errors.append({'id':identifier,'sourceUrl':attempted_urls[-1],'attemptedSourceUrls':attempted_urls,'sourceAttempted':True,'error':str(e),'lastSuccessAt':row.get('listingObservation',{}).get('checkedAt',row.get('checkedAt')),'attemptedAt':now.isoformat()})
+    return result,{'successes':successes,'errors':errors,'directoryOutcomes':directory_outcomes}

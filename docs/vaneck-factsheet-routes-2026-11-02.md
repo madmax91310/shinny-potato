@@ -1,0 +1,15 @@
+# Routes officielles VanEck — 2 novembre 2026
+
+Lot du suivi unique #881, isolé de #1165, #1166 et du chantier Radar. Les neuf collectes documentaires et la présentation QNTM conservent les mêmes fonds et fichiers. Le sélecteur public doit reconnaître les libellés français et anglais et choisir le contrôle retail réel (`button#retail`, rôle menuitem). Il ne choisit aucune audience professionnelle ni pays arbitraire et attend la fermeture effective du sélecteur.
+
+La route `/fr/fr/` publiée par le site a fourni localement des PDF anglais, mais les essais GitHub ont prouvé qu’après le sélecteur elle sert des PDF français. Le parseur anglais les a refusés, sans admission financière. La route de production testée est donc `/fr/en/` : même pays, même document et même part, langue de travail explicitement anglaise. Les anciennes routes restent des secours. Aucun parseur financier ni seuil n’est assoupli.
+
+La recette GitHub dédiée utilise les vrais lecteur et parseur du producteur, avec périmètre déclaré avant toute requête et journal partiel. Les corps PDF sont conservés même lorsqu’une validation échoue. Ce contrôle en lecture seule n’est pas un nouvel automatisme financier planifié. La production reste le collecteur ETF commun, avec ses déclenchements et contrats. Les validations remplacées de cette seule PR peuvent être annulées ; aucune production n’est interrompue.
+
+Un succès local ne prouve pas GitHub ; un contrôle GitHub ne prouve pas enregistrement/publication. Reçus et consommateurs publics sont vérifiés séparément. Les documents datés de septembre ne doivent remplacer ni redater des valeurs plus récentes : la régression conserve exactement encours et pays plus récents, dates comprises. Secteurs et portefeuilles complets exigent leurs propres preuves ; un top 10 n’y suffit pas. Aucun actif admis ni ancien écart financier clôturé par ce transport.
+
+
+Les neuf documents de la route anglaise ont ensuite été qualifiés dans GitHub (run 41545464713), sans modification du parseur financier. L’adaptateur de caractéristiques réutilise désormais le parseur commun d’identité exacte pour distribution, domicile et réplication, avec les frais réellement extraits. Les références d’indice recopiées depuis la configuration ne renouvellent plus leur preuve. Une régression vérifie séparément les horloges de ces champs : consultation actuelle et période documentaire restent distinctes. Ce changement ne certifie pas une nouvelle donnée d’indice ni toutes les périodes de performance.
+
+
+Raccordement démontré sur le registre réel : huit caractéristiques sans date d’observation étaient bloquées par leur simple date de contrôle. Le rapprochement compare désormais les dates d’observation entre elles, sans utiliser la consultation comme date financière. Les dates d’observation connues ne peuvent pas régresser, même pour des valeurs inchangées. La corroboration des frais conserve sa preuve précédente et la date du document distinctement. Deux régressions ciblées couvrent champs manquants et document plus ancien ; aucun seuil de fraîcheur changé.

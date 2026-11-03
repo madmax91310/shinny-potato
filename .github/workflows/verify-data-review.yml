@@ -35,7 +35,8 @@ jobs:
         if: runner.os == 'Linux'
       - run: brew install poppler
         if: runner.os == 'macOS'
-      - run: pip install beautifulsoup4 openpyxl xlrd exchange_calendars
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4 openpyxl xlrd exchange_calendars
       - run: npm ci
       - run: npx playwright install --with-deps chromium
         if: contains(fromJSON('["holdings","holdings-retry","copper","financial","discovery"]'), matrix.scope)
@@ -79,7 +80,8 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
-      - run: pip install beautifulsoup4 openpyxl xlrd exchange_calendars
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4 openpyxl xlrd exchange_calendars
       - run: npm ci
       - name: Prepare official document readers
         timeout-minutes: 5
@@ -89,15 +91,19 @@ jobs:
       - name: Qualify the Danish public route with the full official NAV validator
         run: |
           python3 - <<'PY'
-          import datetime as dt, hashlib, json, pathlib, sys
+          import datetime as dt, hashlib, json, pathlib, shutil, sys
           sys.path.insert(0,'scripts')
           from data_automation import UTC, write_json_atomic
           from issuer_documents import download
           from collect_vaneck_etf import download_document
           from collect_official_share_history import configurations, collect_one
+          import collect_official_share_history as official_history
+          from collect_ranking_sources import ECB, parse_fx
           out=pathlib.Path('vaneck-evidence');out.mkdir(exist_ok=True)
           url='https://www.vaneck.com/dk/en/library/fact-sheets/gdig-fact-sheet.pdf'
           now=dt.datetime.now(UTC)
+          stage='document-access'
+          fx_proof=None
           try:
               raw,actual=download_document({'sourceUrl':url,'fallbackUrls':[]})
               if actual!=url:raise ValueError('Unexpected route used for qualification')
@@ -107,18 +113,41 @@ jobs:
               # This independent document probe keeps testing the PDF route;
               # the active producer may now qualify its calendar via page APIs.
               source.pop('navCalendarSource',None)
+              # A live NAV probe can reach the newly completed month before its
+              # shared FX registry is recorded on master. Qualify the same EUR
+              # use with the ordinary BCE parser in an isolated input root;
+              # never switch to native USD or modify the production registry.
+              stage='conversion-inputs'
+              original_root=official_history.ROOT
+              fx=json.loads((original_root/'src/data/monthly-fx.json').read_text())
+              month=(now.replace(day=1)-dt.timedelta(days=1)).strftime('%Y-%m')
+              renewed=month not in fx.get('months',{})
+              if renewed:
+                  xml=download(ECB,max_bytes=12_000_000)
+                  fx=parse_fx(xml,now)
+                  (out/'ecb-source.xml').write_bytes(xml)
+              fx_proof={'sourceUrl':fx['sourceUrl'],'sha256':fx['sha256'],
+                        'sourceCheckedAt':fx['checkedAt'],'requiredMonth':month,
+                        'observationAsOf':fx['months'][month]['asOf'],
+                        'sourceConsulted':renewed,'publishedByThisRun':False}
+              isolated=out/'conversion-inputs';(isolated/'src/data').mkdir(parents=True,exist_ok=True)
+              write_json_atomic(isolated/'src/data/monthly-fx.json',fx)
+              shutil.copy2(original_root/'src/data/freshness-policy.json',isolated/'src/data/freshness-policy.json')
+              official_history.ROOT=isolated.resolve()
               def exact_document(target):
                   if '/library/fact-sheets/' in target:
                       if target!=url:raise ValueError('Other document routes disabled during this qualification')
                       return raw
                   return download(target)
-              record=collect_one(source,now,document_fetch=exact_document,capture=out/'raw')
+              stage='exact-share-nav-qualification'
+              try:record=collect_one(source,now,document_fetch=exact_document,capture=out/'raw')
+              finally:official_history.ROOT=original_root
               if url not in record['sourceUrls']:raise ValueError('Qualified route missing from provenance')
               write_json_atomic(out/'record.json',record)
-              proof={'checkedAt':now.isoformat(),'status':'qualified','route':url,'sha256':hashlib.sha256(raw).hexdigest(),'isin':source['isin'],'latestLevel':record['latestLevel'],'calendarProof':record['calendarProof'],'publication':'not-requested'}
+              proof={'checkedAt':now.isoformat(),'status':'qualified','route':url,'sha256':hashlib.sha256(raw).hexdigest(),'isin':source['isin'],'latestLevel':record['latestLevel'],'calendarProof':record['calendarProof'],'conversionDependency':fx_proof,'publication':'not-requested'}
               write_json_atomic(out/'qualification.json',proof);print(json.dumps(proof,ensure_ascii=False))
           except Exception as error:
-              write_json_atomic(out/'qualification.json',{'checkedAt':now.isoformat(),'status':'blocked','route':url,'error':str(error),'publication':'not-requested'})
+              write_json_atomic(out/'qualification.json',{'checkedAt':now.isoformat(),'status':'blocked','route':url,'stage':stage,'error':str(error),'errorSourceUrl':getattr(error,'url',None),'conversionDependency':fx_proof,'publication':'not-requested'})
               raise
           PY
       - uses: actions/upload-artifact@v7.0.1

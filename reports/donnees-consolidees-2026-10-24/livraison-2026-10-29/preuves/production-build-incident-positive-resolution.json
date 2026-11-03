@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-10-30T02:44:39.136936+00:00",
+  "beforeExportAt": "2026-10-30T02:33:43.518Z",
+  "afterExportAt": "2026-10-30T02:43:01.261Z",
+  "afterMonitorCheckedAt": "2026-10-30T02:35:02.283378+00:00",
+  "originalIncident": [
+    {
+      "id": "checks:deploy-pages.yml",
+      "kind": "failure",
+      "cause": "build : Run node scripts/audit-support-enrichment.mjs",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40982595575"
+    }
+  ],
+  "currentExactFailureAbsent": true,
+  "positiveExactStepResolutions": [
+    {
+      "id": "history:checks:deploy-pages.yml:2026-10-30T02:35:02.283378+00:00",
+      "kind": "history",
+      "resolvedAt": "2026-10-30T02:35:02.283378+00:00",
+      "resolutionEvidence": {
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40989014229",
+        "completedAt": "2026-10-30T02:33:19Z",
+        "checks": [
+          {
+            "job": "build",
+            "step": "Run node scripts/audit-support-enrichment.mjs"
+          }
+        ]
+      }
+    }
+  ],
+  "countsBefore": {
+    "monitoring": 6,
+    "failure": 98,
+    "qualification": 4588,
+    "connection": 30,
+    "editorial": 798,
+    "waiting": 14,
+    "not-applicable": 423,
+    "history": 530
+  },
+  "countsAfter": {
+    "monitoring": 6,
+    "failure": 97,
+    "qualification": 4588,
+    "connection": 30,
+    "editorial": 798,
+    "waiting": 13,
+    "not-applicable": 423,
+    "history": 531
+  },
+  "ordinaryMonitorRun": 40992367498,
+  "sourceAndToolsProofSeparate": true
+}

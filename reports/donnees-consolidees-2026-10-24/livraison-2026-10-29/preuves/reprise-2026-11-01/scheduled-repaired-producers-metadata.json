@@ -1,0 +1,91 @@
+{
+  "checkedAt": "2026-11-01T18:32:25.096662+00:00",
+  "rows": [
+    {
+      "workflow": "update-market-monthly.yml",
+      "cron": [
+        "'15 6 2,4,8,16 * *'",
+        "'45 6 * * *'"
+      ],
+      "lastScheduledRun": {
+        "id": 41312900892,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "failure",
+        "head_sha": "88f92ed4719b1343b98703c61a47dc5d7b971418",
+        "run_started_at": "2026-11-01T13:46:46Z",
+        "updated_at": "2026-11-01T13:52:56Z",
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41312900892"
+      },
+      "limit": "Workflow metadata only; no individual data-field success certified; compare the actual collector checkout and results before claiming post-fix scheduled proof."
+    },
+    {
+      "workflow": "update-non-bond-expansion.yml",
+      "cron": [
+        "'15 7 * * *'"
+      ],
+      "lastScheduledRun": {
+        "id": 41315203413,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "failure",
+        "head_sha": "88f92ed4719b1343b98703c61a47dc5d7b971418",
+        "run_started_at": "2026-11-01T14:14:32Z",
+        "updated_at": "2026-11-01T14:24:07Z",
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41315203413"
+      },
+      "limit": "Workflow metadata only; no individual data-field success certified; compare the actual collector checkout and results before claiming post-fix scheduled proof."
+    },
+    {
+      "workflow": "update-qualified-exposures.yml",
+      "cron": [
+        "'50 7 * * *'"
+      ],
+      "lastScheduledRun": {
+        "id": 41316651564,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "failure",
+        "head_sha": "0ddbd2449d0db6912888f9c790b28f6dc9f1eaf4",
+        "run_started_at": "2026-11-01T14:31:52Z",
+        "updated_at": "2026-11-01T15:37:09Z",
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41316651564"
+      },
+      "limit": "Workflow metadata only; no individual data-field success certified; compare the actual collector checkout and results before claiming post-fix scheduled proof."
+    },
+    {
+      "workflow": "collect-etf-pilot.yml",
+      "cron": [
+        "'10 7 * * *'"
+      ],
+      "lastScheduledRun": {
+        "id": 41315108532,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "failure",
+        "head_sha": "88f92ed4719b1343b98703c61a47dc5d7b971418",
+        "run_started_at": "2026-11-01T14:13:22Z",
+        "updated_at": "2026-11-01T14:15:18Z",
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41315108532"
+      },
+      "limit": "Workflow metadata only; no individual data-field success certified; compare the actual collector checkout and results before claiming post-fix scheduled proof."
+    },
+    {
+      "workflow": "refresh-automated-index-sheets.yml",
+      "cron": [
+        "'40 6 * * *'"
+      ],
+      "lastScheduledRun": {
+        "id": 41312715682,
+        "event": "schedule",
+        "status": "completed",
+        "conclusion": "failure",
+        "head_sha": "88f92ed4719b1343b98703c61a47dc5d7b971418",
+        "run_started_at": "2026-11-01T13:44:33Z",
+        "updated_at": "2026-11-01T13:45:35Z",
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41312715682"
+      },
+      "limit": "Workflow metadata only; no individual data-field success certified; compare the actual collector checkout and results before claiming post-fix scheduled proof."
+    }
+  ]
+}

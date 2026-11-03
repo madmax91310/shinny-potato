@@ -1,6 +1,7 @@
+import { SUNDAY_THEMES } from './sunday-questions.js'
 import { notifyPublication } from '../../design-system/publicationActions.js'
 import { contentValidity, renderBankCopy, bankToday, reviewPolicy } from './validity.js'
-import { forwardRef, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { forwardRef, lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { TWEETS as ARCHIVED_TWEETS, MONTHS, CATEGORIES, FORMATS, GOLD_CATEGORIES, COOLDOWN_DAYS } from './data'
 import { filterAndSortTweets, countAvailable, publicationBadge, todayStr } from './lib'
@@ -13,7 +14,9 @@ import { groupTweetVariants, curateTweet } from '../../lib/tweet-discovery.js'
 import { DRAFTS_KEY, LAST_PUBLICATION_KEY } from './storage.js'
 import { useBankRecord } from './useBankRecord.js'
 
-const TWEETS = ARCHIVED_TWEETS.map(curateTweet)
+const SundayPanel = lazy(() => import('./SundayPanel.jsx'))
+const QuestionCounter = lazy(() => import('./QuestionCounter.jsx'))
+const ARCHIVES = ARCHIVED_TWEETS.map(curateTweet)
 
 // Repli en cascade Clipboard API → execCommand → sélection manuelle — même pattern que les autres
 // outils de l'app (cf. etf-sheets/App.jsx, investment-calculator/App.jsx), jamais partagé entre
@@ -99,6 +102,7 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
   const [manualCopy, setManualCopy] = useState('')
   const [copyLabel, setCopyLabel] = useState('📋 Copier')
   const badge = publicationBadge(lastPublished)
+  const isQuestion = tweet.category === 'Question dimanche'
   const validity = contentValidity(tweet, draft, today)
   const text = draft?.text ?? tweet.text
   const updateDraft = patch => onDraftChange(tweet.id, { ...draft, text, ...patch, checkedAt: null, verifiedText: null, verifiedAsOf: null })
@@ -140,7 +144,8 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
       <div className="tb-tweet-meta">
         <span className="tb-tag-month">{tweet.month}{tweet.month === 'Intemporel' ? '' : ' 2026'}</span>
         <span className={`tb-tag-cat${GOLD_CATEGORIES.includes(tweet.category) ? ' gold' : ''}`}>{categoryLabel(tweet.category)}</span>
-        {(tweet.formats || []).map((f) => (
+        {tweet.theme && <span className="tb-tag-format">{tweet.theme}</span>}
+        {(tweet.formats || []).filter(f => f !== tweet.category).map((f) => (
           <span key={f} className="tb-tag-format">
             {f}
           </span>
@@ -152,13 +157,15 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
       {tweet.title && <h2 className="tb-story-title">{tweet.title}</h2>}
       {tweet.alternativeHook && <p className="tb-story-length">Post long sur X · compte autorisant plus de 280 caractères requis · {Array.from(text).length.toLocaleString('fr-FR')} caractères · {tweet.angle}</p>}
       <TweetText ref={textareaRef} text={text} onChange={value => updateDraft({ text: value })} />
+      {isQuestion && <Suspense fallback={<p>Comptage des caractères…</p>}><QuestionCounter text={text} /></Suspense>}
+      {isQuestion && draft && <Button type="button" variant="ghost" onClick={() => onDraftChange(tweet.id, tweet.personal ? { ...draft, text: tweet.text } : null)}>Revenir au texte {tweet.personal ? 'initial' : 'fourni'}</Button>}
       {tweet.image && <figure className="tb-tweet-image">
         <a href={`${import.meta.env.BASE_URL}${tweet.image.src}`} target="_blank" rel="noreferrer" aria-label="Ouvrir l’image en taille réelle">
           <img src={`${import.meta.env.BASE_URL}${tweet.image.src}`} alt={tweet.image.alt} loading="lazy" width={1024} height={1536} />
         </a>
         <figcaption><a href={`${import.meta.env.BASE_URL}${tweet.image.src}`} download={tweet.image.filename}>Télécharger l’image PNG</a></figcaption>
       </figure>}
-      {(!validity.ready || draft) && <div className="tb-review">
+      {!isQuestion && (!validity.ready || draft) && <div className="tb-review">
         <p>{reviewPolicy(tweet).kind === 'personal' ? 'Actualise ton bilan ou replace-le explicitement dans sa période d’origine.' : 'Vérifie les chiffres, la période, les hypothèses et les sources avant de réutiliser ce texte.'}</p>
         <label>Date de référence <input type="date" value={draft?.asOf ?? ''} max={bankToday()} onChange={event => updateDraft({ asOf: event.target.value })} /></label>
         <label><input type="checkbox" checked={validity.ready && Boolean(draft?.checkedAt)} disabled={!draft?.asOf || !text.trim() || draft.asOf > bankToday()} onChange={event => onDraftChange(tweet.id, { ...draft, text, checkedAt: event.target.checked ? bankToday() : null, verifiedText: event.target.checked ? text : null, verifiedAsOf: event.target.checked ? draft.asOf : null })} /> J’ai vérifié ce texte et sa date de référence.</label>
@@ -190,9 +197,9 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
         <Button type="button" onClick={() => handleCopy()} disabled={!validity.ready}>
           {copyLabel}
         </Button>
-        <Button type="button" variant="secondary" disabled={!validity.ready} onClick={() => onMarkToday(tweet.id)}>
+        {isQuestion ? <label className="tb-published"><input type="checkbox" checked={Boolean(lastPublished)} onChange={event => event.target.checked ? onMarkToday(tweet.id) : onClearDate(tweet.id)} /> Publié</label> : <Button type="button" variant="secondary" disabled={!validity.ready} onClick={() => onMarkToday(tweet.id)}>
           Marquer publié aujourd'hui
-        </Button>
+        </Button>}
         <input
           type="date"
           className="tb-date-input"
@@ -212,11 +219,11 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
   )
 }
 
-function TweetVariantCard({ group, drafts, lastPub, ...props }) {
+function TweetVariantCard({ group, drafts, lastPub, tweets, ...props }) {
   const [selectedId, setSelectedId] = useState(null)
   const selected = group.variants.find(t => String(t.id) === String(selectedId))
     || group.variants.find(t => drafts[t.id]) || group.variants[0]
-  const original = TWEETS.find(t => t.id === selected.id)
+  const original = tweets.find(t => t.id === selected.id)
   return <section className="tb-variant-group">
     {group.variants.length > 1 && <div className="tb-variant-picker">
       <div>Versions de ce tweet <ChoicePicker aria-label={`Versions : ${group.title}`} value={selected.id} onChange={e => setSelectedId(e.target.value)}>
@@ -236,7 +243,11 @@ export default function App() {
   const [lastPub, setLastPub, datesError] = useBankRecord(LAST_PUBLICATION_KEY)
   const [drafts, setDrafts, draftsError] = useBankRecord(DRAFTS_KEY)
   function changeDraft(id, value) { setDrafts(previous => { const next = { ...previous }; if (value) next[id] = value; else delete next[id]; return next }) }
+  const TWEETS = useMemo(() => [...ARCHIVES, ...Object.values(drafts).filter(d => d.question).map(d => d.question)], [drafts])
+  const [randomId, setRandomId] = useState(null)
   const [filters, setFilters] = useState({
+    theme: null,
+    unpublished: false,
     month: null,
     category: CATEGORIES.includes(requestedCategory) ? requestedCategory : null,
     format: null,
@@ -246,16 +257,18 @@ export default function App() {
   })
 
 
-  const set = (patch) => setFilters((f) => ({ ...f, ...patch }))
+  const set = (patch) => { setRandomId(null); setFilters((f) => ({ ...f, ...patch })) }
   useEffect(() => {
     setFilters(previous => ({ ...previous, category: CATEGORIES.includes(requestedCategory) ? requestedCategory : null }))
   }, [requestedCategory])
 
-  const groups = useMemo(() => groupTweetVariants(TWEETS.map(tweet => ({...tweet, text:drafts[tweet.id]?.text ?? tweet.text, last_published:lastPub[tweet.id] || ''}))), [lastPub,drafts])
+  const groups = useMemo(() => groupTweetVariants(TWEETS.map(tweet => ({...tweet, text:drafts[tweet.id]?.text ?? tweet.text, last_published:lastPub[tweet.id] || ''}))), [TWEETS,lastPub,drafts])
   const groupDates = useMemo(() => Object.fromEntries(groups.map(t => [t.id,t.latestPublication])), [groups])
   const list = useMemo(
     () =>
       filterAndSortTweets(groups, groupDates, {
+        theme: filters.category === 'Question dimanche' ? filters.theme : null,
+        unpublished: filters.unpublished,
         month: filters.month ?? 'Tous',
         category: filters.category ?? 'Toutes',
         format: filters.format ?? 'Tous',
@@ -266,6 +279,8 @@ export default function App() {
     [groups, groupDates, filters]
   )
 
+  const sunday = filters.category === 'Question dimanche'
+  const displayedList = randomId ? list.filter(t => t.id === randomId) : list
   const available = countAvailable(TWEETS, lastPub, drafts)
 
   function markToday(id) {
@@ -290,13 +305,18 @@ export default function App() {
   }
 
   return (
-    <div className="tb-scope">
+    <div className={`tb-scope${sunday ? ' is-sunday' : ''}`}>
       <PageHeader
         title="Banque de tweets à recycler"
         subtitle={`${TWEETS.length} textes archivés — la fraîcheur du contenu et le repos de ${COOLDOWN_DAYS} jours sont contrôlés séparément.`}
       />
 
-      <section className="tb-cloud" aria-label="Mes tweets synchronisés">
+      <nav className="tb-sunday-access" aria-label="Espaces de la banque">
+        <Button type="button" variant={sunday ? 'secondary' : 'primary'} onClick={() => set({ category: null, month: null, format: null, theme: null, search: '', unpublished: false, hideCooldown: false })}>Toute la banque</Button>
+        <Button type="button" variant={sunday ? 'primary' : 'secondary'} onClick={() => set({ category: 'Question dimanche', month: null, format: null, search: '', hideCooldown: false })}>☀️ Question dimanche</Button>
+      </nav>
+      {sunday && <Suspense fallback={<p>Chargement des questions…</p>}><SundayPanel tweets={TWEETS} drafts={drafts} setDrafts={setDrafts} resetFilters={set} list={list} groupDates={groupDates} randomId={randomId} setRandomId={setRandomId} /></Suspense>}
+      {!sunday && <section className="tb-cloud" aria-label="Mes tweets synchronisés">
         <div>
           <h2>Toute ta banque, sur téléphone et PC</h2>
           <p>Recherche tes archives et tes propres tweets dans une même vue. Thèmes, favoris et filtres sont synchronisés avec le même compte ChatGPT.</p>
@@ -305,9 +325,9 @@ export default function App() {
           <a href="https://epargnant-libre-mes-tweets.vvairat.chatgpt.site/?new=1">＋ Ajouter un tweet</a>
           <a href="https://epargnant-libre-mes-tweets.vvairat.chatgpt.site/">Ouvrir la banque complète</a>
         </div>
-      </section>
+      </section>}
 
-      <div className="tb-summary">
+      {!sunday && <div className="tb-summary">
         <div className="tb-summary-cell">
           <div className="tb-summary-num">{TWEETS.length}</div>
           <div className="tb-summary-lbl">tweets au total</div>
@@ -320,9 +340,9 @@ export default function App() {
           <div className="tb-summary-num">{available}</div>
           <div className="tb-summary-lbl">prêts à réutiliser</div>
         </div>
-      </div>
+      </div>}
 
-      <p>{TWEETS.filter(tweet => !contentValidity(tweet, drafts[tweet.id], today).ready).length} textes à vérifier ou actualiser. Le mois d’archive n’est pas une date de vérification des chiffres.</p>
+      {!sunday && <p>{TWEETS.filter(tweet => !contentValidity(tweet, drafts[tweet.id], today).ready).length} textes à vérifier ou actualiser. Le mois d’archive n’est pas une date de vérification des chiffres.</p>}
       {draftsError && <p role="alert">La sauvegarde des brouillons est indisponible sur ce navigateur. {draftsError}</p>}
       {datesError && <p role="alert">Le suivi des dates de publication ne peut pas être enregistré. {datesError}</p>}
       <div className="tb-controls">
@@ -334,13 +354,15 @@ export default function App() {
           value={filters.search}
           onChange={(e) => set({ search: e.target.value })}
         />
-        <ChipRow options={MONTHS} allLabel="Tous les mois" value={filters.month} onChange={(v) => set({ month: v })} />
-        <ChipRow options={CATEGORIES} allLabel="Toutes catégories" value={filters.category} onChange={(v) => set({ category: v })} gold />
-        <ChipRow options={FORMATS} allLabel="Tous les formats" value={filters.format} onChange={(v) => set({ format: v })} />
-        <label className="tb-toggle">
+        {sunday && <ChipRow options={SUNDAY_THEMES} allLabel="Tous les thèmes" value={filters.theme} onChange={v => set({ theme: v })} />}
+        {!sunday && <ChipRow options={MONTHS} allLabel="Tous les mois" value={filters.month} onChange={(v) => set({ month: v })} />}
+        {!sunday && <ChipRow options={CATEGORIES} allLabel="Toutes catégories" value={filters.category} onChange={(v) => set({ category: v, month: null, format: null })} gold />}
+        {!sunday && <ChipRow options={FORMATS} allLabel="Tous les formats" value={filters.format} onChange={(v) => set({ format: v })} />}
+        <label className="tb-toggle"><input type="checkbox" checked={filters.unpublished} onChange={e => set({ unpublished: e.target.checked })} /> Non publiées</label>
+        {!sunday && <label className="tb-toggle">
           <input type="checkbox" checked={filters.hideCooldown} onChange={(e) => set({ hideCooldown: e.target.checked })} />
           Masquer les tweets encore en repos (moins de {COOLDOWN_DAYS} jours)
-        </label>
+        </label>}
         <label className="tb-toggle">
           <input type="checkbox" checked={filters.sortByAge} onChange={(e) => set({ sortByAge: e.target.checked })} />
           Trier par ancienneté (jamais publiés puis les plus anciens d'abord)
@@ -348,15 +370,15 @@ export default function App() {
       </div>
 
       <p className="tb-count-line">
-        {list.length} tweet{list.length > 1 ? 's' : ''} trouvé{list.length > 1 ? 's' : ''} · les versions proches sont regroupées
+        {displayedList.length} tweet{displayedList.length > 1 ? 's' : ''} trouvé{displayedList.length > 1 ? 's' : ''} · les versions proches sont regroupées
       </p>
 
-      {list.length === 0 ? (
+      {displayedList.length === 0 ? (
         <div className="tb-empty">Aucun tweet ne correspond à ces filtres.</div>
       ) : (
         <div className="tb-list">
-          {list.map((t) => (
-            <TweetVariantCard key={t.id} group={t} drafts={drafts} lastPub={lastPub} onDraftChange={changeDraft} today={today} onMarkToday={markToday} onSetDate={setDate} onClearDate={clearDate} />
+          {displayedList.map((t) => (
+            <TweetVariantCard key={t.id} group={t} tweets={TWEETS} drafts={drafts} lastPub={lastPub} onDraftChange={changeDraft} today={today} onMarkToday={markToday} onSetDate={setDate} onClearDate={clearDate} />
           ))}
         </div>
       )}

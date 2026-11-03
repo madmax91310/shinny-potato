@@ -1,5 +1,8 @@
+import {restrictedMetadataRoute} from './lib/metadata-field-routing.mjs'
+import wisdomtreeClasses from './wisdomtree-holdings-classes.json' with {type:'json'}
+import invescoPhysical from './invesco-physical-holdings-contracts.json' with {type:'json'}
 import {readFileSync,writeFileSync} from 'node:fs'
-import { wisdomtreeFactsheet, blackrockCharacteristicsEndpoint, wisdomtreeProductCandidates } from './issuer-routes.mjs'
+import { wisdomtreeFactsheet, blackrockCharacteristicsEndpoint, wisdomtreeProductCandidates, qualifiedWisdomtreeRankingsRoute, qualifiedWisdomtreeApiMethod } from './issuer-routes.mjs'
 import {AUTOMATED_ETF} from '../src/data/automated-etf.js'
 import {INSTRUMENTS_BY_ISIN} from '../src/data/instruments.js'
 import {getInstrumentListings} from '../src/data/instrument-listings.js'
@@ -18,7 +21,7 @@ const withCandidates=(isin,listings)=>[...listings,...(candidates[isin]??[]).fil
 const completeHoldings=JSON.parse(readFileSync('src/data/dca-complete-holdings.json'))
 const holdings={},metadata=[]
 const previousStatus=JSON.parse(readFileSync('src/data/instrument-metadata-status.json'))
-const supplemental=new Map(JSON.parse(readFileSync('scripts/instrument-metadata-supplemental-sources.json')).instruments.map(r=>[r.isin,r.urls]))
+const supplemental=new Map(JSON.parse(readFileSync('scripts/instrument-metadata-supplemental-sources.json')).instruments.map(r=>[r.isin,r]))
 const holds=new Map(JSON.parse(readFileSync('scripts/metadata-qualification-holds.json')).instruments.map(r=>[r.isin,r]))
 // Always renew French tax statements, including previously reviewed positives/negatives.
 // The issuer's explicit « Régime fiscal PEA » is evidence; a dash stays unknown.
@@ -35,7 +38,7 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  urls.push(...frenchIssuerPage(r,urls))
  // French tax panels publish an explicit boolean, unlike an absent badge.
  urls.push(...urls.filter(url=>url?.startsWith('https://etf.dws.com/api/pdp/en-gb/etf/')).map(url=>url.replace('/api/pdp/en-gb/','/api/pdp/fr-fr/')))
- urls.push(...(supplemental.get(isin)??[]))
+ urls.push(...(supplemental.get(isin)?.urls??[]))
  // Search the broker's own reference index before constructing a profile URL.
  // An absent reference stays unknown; no ticker or market number is guessed.
  if(!METADATA[isin]?.pea||METADATA[isin]?.pea?.sourceUrl?.startsWith('https://bourse.fortuneo.fr/'))urls.push('https://bourse.fortuneo.fr/api/search?term='+isin)
@@ -46,6 +49,7 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  if(urls.some(url=>url?.includes('invesco.com/'))){
   urls.push('https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/'+isin+'?idType=isin')
   urls.push('https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/'+isin+'?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData')
+  urls.push('https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/'+isin+'?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData')
  }
  if(['FR0011550185','FR0011550193','IE00B4K6B022','IE000QDFFK00','IE000DQLYVB9'].includes(isin))urls.push('https://live.euronext.com/en/product/etfs/'+isin+'-XPAR')
  if(isin==='IE00BD4TXV59')urls.push('https://live.euronext.com/en/product/etfs/'+isin+'-ETFP')
@@ -58,10 +62,15 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  // Keep one qualification condition per field and set of public source URLs.
  const qualificationHolds=[...new Map(([...(holds.has(isin)?[holds.get(isin)]:[]),...(previousStatus[isin]?.errors??[]).filter(error=>error.qualificationRequired&&error.sources?.length>=2&&['pea','currencyHedge'].includes(error.field)).map(({field,sources})=>({field,sources}))]).map(hold=>[JSON.stringify([hold.field,hold.sources.map(row=>row.sourceUrl).sort()]),hold])).values()]
  urls.push(...qualificationHolds.flatMap(hold=>hold.sources.map(row=>row.sourceUrl)))
- metadata.push({isin,listings,...(typeof review?.eligible==='boolean'?{peaExpectation:{value:review.eligible,sourceUrl:review.sourceUrl,checkedAt:review.checkedAt}}:{}),urls:[...new Set([...urls.filter(Boolean),...issuerDocuments].map(currentDocument).map(endpoint))],...(qualificationHolds.length?{qualificationHolds}:{})})
+ const ownedFields=issuerShares.get(isin)?.metadataFields
+ const restricted=ownedFields?restrictedMetadataRoute(isin,endpoint(r.sourceUrl),ownedFields,supplemental.get(isin)):null
+ const metadataFields=restricted?.fields
+ metadata.push({isin,listings,...(typeof review?.eligible==='boolean'?{peaExpectation:{value:review.eligible,sourceUrl:review.sourceUrl,checkedAt:review.checkedAt}}:{}),
+  urls:restricted?restricted.urls:[...new Set([...urls.filter(Boolean),...issuerDocuments].map(currentDocument).map(endpoint))],
+  ...(metadataFields?{fields:metadataFields}:{}),...(qualificationHolds.length?{qualificationHolds}:{})})
  if(existing[isin])continue
  const name=INSTRUMENTS_BY_ISIN[isin]?.name??''
- if(/\b(?:ETC|ETN|ETP)\b|bond|treasury|govt|overnight|court terme/i.test(name))continue
+ if(INSTRUMENTS_BY_ISIN[isin]?.assetClass==='Fixed Income'||/\b(?:ETC|ETN|ETP)\b|bond|treasury|govt|overnight|court terme/i.test(name))continue
  const url=r.sourceUrl??''
  const share=issuerShares.get(isin)
  const method=r.characteristics?.replicationMethod??facts.replicationMethod??''
@@ -77,10 +86,11 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  else if(share?.parser==='vaneck'&&share.pageUrl&&share.apiTicker)holdings[isin]={isin,name,currency:share.currency,parser:'vaneck-complete',pageUrl:share.pageUrl,apiTicker:share.apiTicker}
  else if(share&&(amundiShares.has(isin)||share.parser==='amundi-expansion'))holdings[isin]={isin,name,currency:share.currency,parser:'amundi-complete'}
  else if(share?.productCode&&/vanguard/.test(share.parser??''))holdings[isin]={isin,name,currency:share.currency,productCode:share.productCode,parser:'vanguard-complete'}
- else if(['IE000716YHJ7','IE0000QLH0G6','IE000L2SA8K5'].includes(isin)&&share)holdings[isin]={isin,name,currency:share.currency,parser:'invesco-complete',sourceUrl:share.sourceUrl}
+ else if(['IE000716YHJ7','IE0000QLH0G6','IE000L2SA8K5'].includes(isin)&&share)holdings[isin]={isin,name,currency:share.currency,parser:'invesco-complete',sourceUrl:share.sourceUrl,...(invescoPhysical.shares[isin]?{holdingsContract:invescoPhysical.methodCode}:{})}
  else if(share?.documentType==='wisdomtree-ucits'&&completeHoldings[isin]?.complete===true&&(
   (wisdomtreeProductCandidates(share.sourceUrl).includes(completeHoldings[isin]?.sourceUrl)&&completeHoldings[isin]?.identityMethod==='Exact SEDOL to ISIN; identity-source weights never imported') ||
-  (isin==='IE00BJGWQN72'&&completeHoldings[isin]?.sourceUrl==='https://www.wisdomtree.com/api/fund-holdings/3104137'&&completeHoldings[isin]?.identityMethod==='Exact issuer listing FIGI matched to independent ISIN query; unknown identities retained')
+  (wisdomtreeClasses[isin]?.currency===share.currency&&qualifiedWisdomtreeRankingsRoute(completeHoldings[isin]?.sourceUrl,wisdomtreeClasses[isin],completeHoldings[isin]?.qualifiedRankingListings)&&completeHoldings[isin]?.identitySourceUrl===wisdomtreeFactsheet(isin)&&/^[a-f0-9]{64}$/.test(completeHoldings[isin]?.identitySha256||'')&&completeHoldings[isin]?.identityMethod==='Exact SEDOL to ISIN; identity-source weights never imported') ||
+  (wisdomtreeClasses[isin]?.currency===share.currency&&completeHoldings[isin]?.sourceUrl===`https://www.wisdomtree.com/api/fund-holdings/${wisdomtreeClasses[isin].classId}`&&completeHoldings[isin]?.identitySourceUrl===wisdomtreeFactsheet(isin)&&/^[a-f0-9]{64}$/.test(completeHoldings[isin]?.identitySha256||'')&&qualifiedWisdomtreeApiMethod(completeHoldings[isin]))
  ))holdings[isin]={isin,name,currency:share.currency,provider:share.provider,sourceUrl:share.sourceUrl,parser:'wisdomtree-complete'}
  else if(isin==='IE0003R87OG3')holdings[isin]={isin,name,currency:'USD',parser:'avantis-complete',
   sourceUrl:share.sourceUrl,

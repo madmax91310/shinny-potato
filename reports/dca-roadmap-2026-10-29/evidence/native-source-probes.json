@@ -1,0 +1,455 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-29T20:24:33.935654+00:00",
+  "method": "HTTP access and content changes only; primary and configured alternatives are checked independently with a bounded budget. Never renew financial checkedAt, asOf or lastSuccessAt, and never resolve a qualification incident.",
+  "sources": {
+    "https://stoxx.com/index/sxxr/?components=true": {
+      "sourceUrl": "https://stoxx.com/index/sxxr/?components=true",
+      "lastAccessAttemptAt": "2026-10-29T20:24:33.935654+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://stoxx.com/index/sxxr/?components=true",
+      "sha256": "71d4cd9e02d1443b547ecfa3019a4e3981571f878587917d6dcb8583382f3baf",
+      "bytes": 115147,
+      "lastAccessibleAt": "2026-10-29T20:24:33.935654+00:00",
+      "nativeCompositionProbe": {
+        "checkedAt": "2026-10-29T20:24:33.935654+00:00",
+        "financialDataQualified": false,
+        "qualification": "research-content-only",
+        "contracts": [
+          {
+            "subjectIsin": "FR0011550193",
+            "benchmark": "STOXX Europe 600 Net Return EUR",
+            "requirements": "Composition native intégrale STOXX Europe 600 NR : identifiants, poids, date de photographie et lien au benchmark exact. Ni top 10 ni portefeuille d'un ETF physique différent."
+          }
+        ],
+        "contentType": "html",
+        "tableColumns": [
+          [
+            "Company",
+            "Supersector",
+            "Country",
+            "Weight (%)"
+          ]
+        ],
+        "tableDataRowCount": 0,
+        "percentBearingTableRowCount": 0,
+        "isinBearingTableRowCount": 0,
+        "accessRestrictionMentioned": false,
+        "documentCandidates": [],
+        "blocker": "Page de recherche non admise : vérifier un fichier intégral daté, pondéré et identifié du benchmark exact. Les tableaux et liens détectés ne prouvent ni couverture ni droits d’utilisation.",
+        "sha256": "71d4cd9e02d1443b547ecfa3019a4e3981571f878587917d6dcb8583382f3baf",
+        "finalUrl": "https://stoxx.com/index/sxxr/?components=true"
+      }
+    },
+    "https://stoxx.com/index/sxxr/?data=true": {
+      "sourceUrl": "https://stoxx.com/index/sxxr/?data=true",
+      "lastAccessAttemptAt": "2026-10-29T20:24:33.935654+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://stoxx.com/index/sxxr/?data=true",
+      "sha256": "0aa69c0bf0e87d565fbc728603183aec0d07c23cae502b76f6cbfd8102a5e8a2",
+      "bytes": 671505,
+      "lastAccessibleAt": "2026-10-29T20:24:33.935654+00:00",
+      "nativeCompositionProbe": {
+        "checkedAt": "2026-10-29T20:24:33.935654+00:00",
+        "financialDataQualified": false,
+        "qualification": "research-content-only",
+        "contracts": [
+          {
+            "subjectIsin": "FR0011550193",
+            "benchmark": "STOXX Europe 600 Net Return EUR",
+            "requirements": "Composition native intégrale STOXX Europe 600 NR : identifiants, poids, date de photographie et lien au benchmark exact. Ni top 10 ni portefeuille d'un ETF physique différent."
+          }
+        ],
+        "contentType": "html",
+        "tableColumns": [],
+        "tableDataRowCount": 10,
+        "percentBearingTableRowCount": 0,
+        "isinBearingTableRowCount": 0,
+        "accessRestrictionMentioned": false,
+        "documentCandidates": [
+          "https://www.stoxx.com/documents/stoxxnet/Documents/Indices/Common/Indexguide/stoxx_index_guide.pdf",
+          "https://www.stoxx.com/documents/stoxxnet/Documents/Resources/Regulation/STOXX_Equity_Index_Family_Benchmark_Statement.pdf",
+          "https://www.stoxx.com/documents/stoxxnet/Documents/Indices/otherinformation/esgreporting/stoxx_equity_index_family_esg_reports.csv"
+        ],
+        "blocker": "Page de recherche non admise : vérifier un fichier intégral daté, pondéré et identifié du benchmark exact. Les tableaux et liens détectés ne prouvent ni couverture ni droits d’utilisation.",
+        "sha256": "0aa69c0bf0e87d565fbc728603183aec0d07c23cae502b76f6cbfd8102a5e8a2",
+        "finalUrl": "https://stoxx.com/index/sxxr/?data=true"
+      }
+    },
+    "https://indexes.nasdaqomx.com/Index/Weighting/NDX": {
+      "sourceUrl": "https://indexes.nasdaqomx.com/Index/Weighting/NDX",
+      "lastAccessAttemptAt": "2026-10-29T20:24:33.935654+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://indexes.nasdaqomx.com/Index/Weighting/NDX",
+      "sha256": "ef282cad01509cfcacf9db79c228c97e698b9659ff053563745b6eca8d5eaeba",
+      "bytes": 55603,
+      "lastAccessibleAt": "2026-10-29T20:24:33.935654+00:00",
+      "nativeCompositionProbe": {
+        "checkedAt": "2026-10-29T20:24:33.935654+00:00",
+        "financialDataQualified": false,
+        "qualification": "research-content-only",
+        "contracts": [
+          {
+            "subjectIsin": "FR0011871110",
+            "benchmark": "NASDAQ-100 Notional Net Total Return",
+            "requirements": "Accès officiel à la composition pondérée intégrale ; qualifier le benchmark exact, la méthode, la date et les identifiants. Un aperçu sans poids ou la composition de QQQ ne suffisent pas."
+          }
+        ],
+        "contentType": "html",
+        "tableColumns": [
+          [
+            "Number",
+            "Company Name",
+            "Security Symbol"
+          ]
+        ],
+        "tableDataRowCount": 0,
+        "percentBearingTableRowCount": 0,
+        "isinBearingTableRowCount": 0,
+        "accessRestrictionMentioned": true,
+        "documentCandidates": [],
+        "blocker": "Page de recherche non admise : vérifier un fichier intégral daté, pondéré et identifié du benchmark exact. Les tableaux et liens détectés ne prouvent ni couverture ni droits d’utilisation.",
+        "sha256": "ef282cad01509cfcacf9db79c228c97e698b9659ff053563745b6eca8d5eaeba",
+        "finalUrl": "https://indexes.nasdaqomx.com/Index/Weighting/NDX"
+      }
+    },
+    "https://indexes.nasdaq.com/Index/Weighting/XNDXNNR": {
+      "sourceUrl": "https://indexes.nasdaq.com/Index/Weighting/XNDXNNR",
+      "lastAccessAttemptAt": "2026-10-29T20:24:33.935654+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://indexes.nasdaq.com/Index/Weighting/XNDXNNR",
+      "sha256": "300621da7682604b108ef9928203989ab66f2b02464372b70cf7978a37d872e8",
+      "bytes": 55699,
+      "lastAccessibleAt": "2026-10-29T20:24:33.935654+00:00",
+      "nativeCompositionProbe": {
+        "checkedAt": "2026-10-29T20:24:33.935654+00:00",
+        "financialDataQualified": false,
+        "qualification": "research-content-only",
+        "contracts": [
+          {
+            "subjectIsin": "FR0011871110",
+            "benchmark": "NASDAQ-100 Notional Net Total Return",
+            "requirements": "Accès officiel à la composition pondérée intégrale ; qualifier le benchmark exact, la méthode, la date et les identifiants. Un aperçu sans poids ou la composition de QQQ ne suffisent pas."
+          }
+        ],
+        "contentType": "html",
+        "tableColumns": [
+          [
+            "Number",
+            "Company Name",
+            "Security Symbol"
+          ]
+        ],
+        "tableDataRowCount": 0,
+        "percentBearingTableRowCount": 0,
+        "isinBearingTableRowCount": 0,
+        "accessRestrictionMentioned": true,
+        "documentCandidates": [],
+        "blocker": "Page de recherche non admise : vérifier un fichier intégral daté, pondéré et identifié du benchmark exact. Les tableaux et liens détectés ne prouvent ni couverture ni droits d’utilisation.",
+        "sha256": "300621da7682604b108ef9928203989ab66f2b02464372b70cf7978a37d872e8",
+        "finalUrl": "https://indexes.nasdaq.com/Index/Weighting/XNDXNNR"
+      }
+    },
+    "https://www.nasdaq.com/NDX": {
+      "sourceUrl": "https://www.nasdaq.com/NDX",
+      "lastAccessAttemptAt": "2026-10-29T20:24:33.935654+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.nasdaq.com/NDX",
+      "sha256": "a0dd0736856cee1f530350c642102a90d810704eb1071104a33ca88af2e4a4f4",
+      "bytes": 885951,
+      "lastAccessibleAt": "2026-10-29T20:24:33.935654+00:00",
+      "nativeCompositionProbe": {
+        "checkedAt": "2026-10-29T20:24:33.935654+00:00",
+        "financialDataQualified": false,
+        "qualification": "research-content-only",
+        "contracts": [
+          {
+            "subjectIsin": "FR0011871110",
+            "benchmark": "NASDAQ-100 Notional Net Total Return",
+            "requirements": "Accès officiel à la composition pondérée intégrale ; qualifier le benchmark exact, la méthode, la date et les identifiants. Un aperçu sans poids ou la composition de QQQ ne suffisent pas."
+          }
+        ],
+        "contentType": "pdf",
+        "tableDataRowCount": null,
+        "documentDates": [
+          "05/01/2026"
+        ],
+        "blocker": "Document natif à qualifier : fraîcheur, benchmark exact, preuve de couverture et identifiants. Un PDF accessible ne constitue pas une composition admise.",
+        "sha256": "a0dd0736856cee1f530350c642102a90d810704eb1071104a33ca88af2e4a4f4",
+        "finalUrl": "https://www.nasdaq.com/NDX"
+      }
+    },
+    "https://www.lseg.com/en/ftse-russell/indices/epra-nareit": {
+      "sourceUrl": "https://www.lseg.com/en/ftse-russell/indices/epra-nareit",
+      "lastAccessAttemptAt": "2026-10-29T20:24:33.935654+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.lseg.com/en/ftse-russell/indices/epra-nareit",
+      "sha256": "4e98e2d9bba151574b5eed3af1838a2ba5b11d158cea9c70cd59a620dff390d8",
+      "bytes": 280547,
+      "lastAccessibleAt": "2026-10-29T20:24:33.935654+00:00",
+      "nativeCompositionProbe": {
+        "checkedAt": "2026-10-29T20:24:33.935654+00:00",
+        "financialDataQualified": false,
+        "qualification": "research-content-only",
+        "contracts": [
+          {
+            "subjectIsin": "FR0011869304",
+            "benchmark": "FTSE EPRA Nareit Developed Europe Index Net TRI",
+            "requirements": "Composition exacte Developed Europe datée, identifiée et pondérée dans ce périmètre. Ni univers Europe incluant d'autres pays, ni poids relatifs au Developed mondial renormalisés."
+          }
+        ],
+        "contentType": "html",
+        "tableColumns": [],
+        "tableDataRowCount": 11,
+        "percentBearingTableRowCount": 0,
+        "isinBearingTableRowCount": 0,
+        "accessRestrictionMentioned": false,
+        "documentCandidates": [
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/ftse-celebrating-20-years-of-ftse-russell-epra-and-nareit.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-epra-nareit-global-real-estate-index-series-ground-rules.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-epra-nareit-global-real-estate-extended-index-series-ground-rules.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-epra-nareit-dividend-plus-index-ground-rules.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-epra-nareit-global-real-estate-index-series-history-of-ground-rule-updates.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/ftse-epra-nareit-global-real-estate-index-series-methodology-overview.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/ftse-epra-nareit-global-real-estate-index-series-v3-ja.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-faq-document-ftse-epra-nareit-2026.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-faq-document-ftse-epra-nareit-2024.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/epra-nareit-global-index-series.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/investing-in-real-estate-presentation-sergiy-lesyk-feb2020.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/investing-in-listed-real-estate.pdf"
+        ],
+        "blocker": "Page de recherche non admise : vérifier un fichier intégral daté, pondéré et identifié du benchmark exact. Les tableaux et liens détectés ne prouvent ni couverture ni droits d’utilisation.",
+        "sha256": "4e98e2d9bba151574b5eed3af1838a2ba5b11d158cea9c70cd59a620dff390d8",
+        "finalUrl": "https://www.lseg.com/en/ftse-russell/indices/epra-nareit"
+      }
+    },
+    "https://www.epra.com/research/monthly-reports": {
+      "sourceUrl": "https://www.epra.com/research/monthly-reports",
+      "lastAccessAttemptAt": "2026-10-29T20:24:33.935654+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.epra.com/research/monthly-reports",
+      "sha256": "de4b542990a372a6467336a1e434067e853225abde159ce55369d090502e1895",
+      "bytes": 123538,
+      "lastAccessibleAt": "2026-10-29T20:24:33.935654+00:00",
+      "nativeCompositionProbe": {
+        "checkedAt": "2026-10-29T20:24:33.935654+00:00",
+        "financialDataQualified": false,
+        "qualification": "research-content-only",
+        "contracts": [
+          {
+            "subjectIsin": "FR0011869304",
+            "benchmark": "FTSE EPRA Nareit Developed Europe Index Net TRI",
+            "requirements": "Composition exacte Developed Europe datée, identifiée et pondérée dans ce périmètre. Ni univers Europe incluant d'autres pays, ni poids relatifs au Developed mondial renormalisés."
+          }
+        ],
+        "contentType": "html",
+        "tableColumns": [],
+        "tableDataRowCount": 0,
+        "percentBearingTableRowCount": 0,
+        "isinBearingTableRowCount": 0,
+        "accessRestrictionMentioned": true,
+        "documentCandidates": [
+          "https://crm.epra.com/media/EPRA_JUNE_2026_Final (3).pdf",
+          "https://crm.epra.com/media/MMR September.pdf",
+          "https://crm.epra.com/media/MMR August.pdf",
+          "https://crm.epra.com/media/Monthly_Market_Review_1785933770068.pdf",
+          "https://crm.epra.com/media/MMR_June_1783323420239.pdf",
+          "https://crm.epra.com/media/MMR_May_1780996831992.pdf",
+          "https://crm.epra.com/media/MMR_April_1778251300275.pdf",
+          "https://crm.epra.com/media/MMR_March_1780996721731.pdf",
+          "https://crm.epra.com/media/EPRA_Monthly_Market_Report_2026-02_1772714016988.pdf",
+          "https://crm.epra.com/media/EPRA_Monthly_Market_Report_2026-01_January_1770212258843.pdf",
+          "https://crm.epra.com/media/EPRA_Annual_Market_Report_2025_1768819489341.pdf",
+          "https://crm.epra.com/media/EPRA Monthly Market Report_2025-11.pdf"
+        ],
+        "blocker": "Page de recherche non admise : vérifier un fichier intégral daté, pondéré et identifié du benchmark exact. Les tableaux et liens détectés ne prouvent ni couverture ni droits d’utilisation.",
+        "sha256": "de4b542990a372a6467336a1e434067e853225abde159ce55369d090502e1895",
+        "finalUrl": "https://www.epra.com/research/monthly-reports"
+      }
+    }
+  },
+  "observations": {
+    "FR0011550193:completeHoldings": {
+      "prerequisite": "economic-index-holdings-required",
+      "sourceUrl": "https://stoxx.com/index/sxxr/?components=true",
+      "lastAccessAttemptAt": "2026-10-29T20:24:33.935654+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://stoxx.com/index/sxxr/?components=true",
+      "sha256": "71d4cd9e02d1443b547ecfa3019a4e3981571f878587917d6dcb8583382f3baf",
+      "bytes": 115147,
+      "lastAccessibleAt": "2026-10-29T20:24:33.935654+00:00",
+      "nativeCompositionProbe": {
+        "checkedAt": "2026-10-29T20:24:33.935654+00:00",
+        "financialDataQualified": false,
+        "qualification": "research-content-only",
+        "contracts": [
+          {
+            "subjectIsin": "FR0011550193",
+            "benchmark": "STOXX Europe 600 Net Return EUR",
+            "requirements": "Composition native intégrale STOXX Europe 600 NR : identifiants, poids, date de photographie et lien au benchmark exact. Ni top 10 ni portefeuille d'un ETF physique différent."
+          }
+        ],
+        "contentType": "html",
+        "tableColumns": [
+          [
+            "Company",
+            "Supersector",
+            "Country",
+            "Weight (%)"
+          ]
+        ],
+        "tableDataRowCount": 0,
+        "percentBearingTableRowCount": 0,
+        "isinBearingTableRowCount": 0,
+        "accessRestrictionMentioned": false,
+        "documentCandidates": [],
+        "blocker": "Page de recherche non admise : vérifier un fichier intégral daté, pondéré et identifié du benchmark exact. Les tableaux et liens détectés ne prouvent ni couverture ni droits d’utilisation.",
+        "sha256": "71d4cd9e02d1443b547ecfa3019a4e3981571f878587917d6dcb8583382f3baf",
+        "finalUrl": "https://stoxx.com/index/sxxr/?components=true"
+      },
+      "primarySourceUrl": "https://stoxx.com/index/sxxr/?components=true",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://stoxx.com/index/sxxr/?components=true",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://stoxx.com/index/sxxr/?data=true",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
+    },
+    "FR0011871110:completeHoldings": {
+      "prerequisite": "economic-index-holdings-required",
+      "sourceUrl": "https://indexes.nasdaqomx.com/Index/Weighting/NDX",
+      "lastAccessAttemptAt": "2026-10-29T20:24:33.935654+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://indexes.nasdaqomx.com/Index/Weighting/NDX",
+      "sha256": "ef282cad01509cfcacf9db79c228c97e698b9659ff053563745b6eca8d5eaeba",
+      "bytes": 55603,
+      "lastAccessibleAt": "2026-10-29T20:24:33.935654+00:00",
+      "nativeCompositionProbe": {
+        "checkedAt": "2026-10-29T20:24:33.935654+00:00",
+        "financialDataQualified": false,
+        "qualification": "research-content-only",
+        "contracts": [
+          {
+            "subjectIsin": "FR0011871110",
+            "benchmark": "NASDAQ-100 Notional Net Total Return",
+            "requirements": "Accès officiel à la composition pondérée intégrale ; qualifier le benchmark exact, la méthode, la date et les identifiants. Un aperçu sans poids ou la composition de QQQ ne suffisent pas."
+          }
+        ],
+        "contentType": "html",
+        "tableColumns": [
+          [
+            "Number",
+            "Company Name",
+            "Security Symbol"
+          ]
+        ],
+        "tableDataRowCount": 0,
+        "percentBearingTableRowCount": 0,
+        "isinBearingTableRowCount": 0,
+        "accessRestrictionMentioned": true,
+        "documentCandidates": [],
+        "blocker": "Page de recherche non admise : vérifier un fichier intégral daté, pondéré et identifié du benchmark exact. Les tableaux et liens détectés ne prouvent ni couverture ni droits d’utilisation.",
+        "sha256": "ef282cad01509cfcacf9db79c228c97e698b9659ff053563745b6eca8d5eaeba",
+        "finalUrl": "https://indexes.nasdaqomx.com/Index/Weighting/NDX"
+      },
+      "primarySourceUrl": "https://indexes.nasdaqomx.com/Index/Weighting/NDX",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://indexes.nasdaqomx.com/Index/Weighting/NDX",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://indexes.nasdaq.com/Index/Weighting/XNDXNNR",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.nasdaq.com/NDX",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
+    },
+    "FR0011869304:completeHoldings": {
+      "prerequisite": "economic-index-holdings-required",
+      "sourceUrl": "https://www.lseg.com/en/ftse-russell/indices/epra-nareit",
+      "lastAccessAttemptAt": "2026-10-29T20:24:33.935654+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.lseg.com/en/ftse-russell/indices/epra-nareit",
+      "sha256": "4e98e2d9bba151574b5eed3af1838a2ba5b11d158cea9c70cd59a620dff390d8",
+      "bytes": 280547,
+      "lastAccessibleAt": "2026-10-29T20:24:33.935654+00:00",
+      "nativeCompositionProbe": {
+        "checkedAt": "2026-10-29T20:24:33.935654+00:00",
+        "financialDataQualified": false,
+        "qualification": "research-content-only",
+        "contracts": [
+          {
+            "subjectIsin": "FR0011869304",
+            "benchmark": "FTSE EPRA Nareit Developed Europe Index Net TRI",
+            "requirements": "Composition exacte Developed Europe datée, identifiée et pondérée dans ce périmètre. Ni univers Europe incluant d'autres pays, ni poids relatifs au Developed mondial renormalisés."
+          }
+        ],
+        "contentType": "html",
+        "tableColumns": [],
+        "tableDataRowCount": 11,
+        "percentBearingTableRowCount": 0,
+        "isinBearingTableRowCount": 0,
+        "accessRestrictionMentioned": false,
+        "documentCandidates": [
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/ftse-celebrating-20-years-of-ftse-russell-epra-and-nareit.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-epra-nareit-global-real-estate-index-series-ground-rules.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-epra-nareit-global-real-estate-extended-index-series-ground-rules.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-epra-nareit-dividend-plus-index-ground-rules.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-epra-nareit-global-real-estate-index-series-history-of-ground-rule-updates.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/ftse-epra-nareit-global-real-estate-index-series-methodology-overview.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/ftse-epra-nareit-global-real-estate-index-series-v3-ja.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-faq-document-ftse-epra-nareit-2026.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/ftse-faq-document-ftse-epra-nareit-2024.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/epra-nareit-global-index-series.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/investing-in-real-estate-presentation-sergiy-lesyk-feb2020.pdf",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/other/investing-in-listed-real-estate.pdf"
+        ],
+        "blocker": "Page de recherche non admise : vérifier un fichier intégral daté, pondéré et identifié du benchmark exact. Les tableaux et liens détectés ne prouvent ni couverture ni droits d’utilisation.",
+        "sha256": "4e98e2d9bba151574b5eed3af1838a2ba5b11d158cea9c70cd59a620dff390d8",
+        "finalUrl": "https://www.lseg.com/en/ftse-russell/indices/epra-nareit"
+      },
+      "primarySourceUrl": "https://www.lseg.com/en/ftse-russell/indices/epra-nareit",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.lseg.com/en/ftse-russell/indices/epra-nareit",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.epra.com/research/monthly-reports",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-10-30 18:11:41 UTC",
+  "runId": 41102654029,
+  "jobId": 124229408535,
+  "pullRequest": 1095,
+  "failure": [
+    "2026-10-30T18:08:51.1818842Z ##[error]Unable to download artifact(s): Failed to GetSignedArtifactURL: Unable to make request: ECONNRESET"
+  ],
+  "phase": "download validated CI artifacts before browser execution",
+  "classification": "GitHub artifact transport; no consumer test had run",
+  "action": "Retry this PR job only; preserve the failed attempt"
+}

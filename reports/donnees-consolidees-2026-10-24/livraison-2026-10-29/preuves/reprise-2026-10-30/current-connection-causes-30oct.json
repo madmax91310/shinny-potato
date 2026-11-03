@@ -1,0 +1,2450 @@
+{
+  "checkedAt": "2026-10-30T12:14:36.231Z",
+  "url": "/shinny-potato/data/data-automation-inventory.json",
+  "status": 200,
+  "etag": "W/\"6ae4862b-2705983\"",
+  "sha256": "70111350812d298d400e7e7e8c5083f88c0e09c0119554a25cf2b9ef35642f09",
+  "bytes": 40721457,
+  "summary": {
+    "fieldKinds": {
+      "reference": 688,
+      "live": 2591,
+      "unavailable": 14,
+      "archive": 169,
+      "history": 1059,
+      "simulation": 12,
+      "editorial": 44
+    },
+    "registryRoles": {
+      "mixed-or-derived": 109,
+      "unclassified": 18,
+      "collector-output": 90,
+      "logic": 22,
+      "historical-fallback": 18,
+      "configuration": 18,
+      "editorial": 15,
+      "manual-observation": 4,
+      "simulation": 6
+    },
+    "liveProvenanceGaps": 0,
+    "connectionStates": {
+      "unqualified": 64,
+      "not-applicable": 102,
+      "current": 3982,
+      "tracked-index-needed": 31,
+      "outside-equity-scope": 43,
+      "waiting-first-year": 13,
+      "check-overdue": 17,
+      "collection-error": 4,
+      "not-published": 18,
+      "source-conflict": 2,
+      "manual": 1,
+      "connector-needed": 24,
+      "waiting-publication": 3,
+      "archived": 3
+    },
+    "actionableConnections": 161,
+    "unclassifiedFields": 0,
+    "unclassifiedModules": 18,
+    "registries": 300,
+    "registryModes": {
+      "mixed-or-derived": 108,
+      "manual-or-editorial": 102,
+      "scheduled-output": 90
+    },
+    "catalogRecords": 1591,
+    "catalogFields": 4577,
+    "catalogTypes": {
+      "reference": 11,
+      "series": 745,
+      "insurance": 7,
+      "actor": 11,
+      "scpi": 8,
+      "household": 29,
+      "instrument": 672,
+      "index": 56,
+      "broker": 8,
+      "lexicon": 44
+    },
+    "fieldsWithoutSource": 16,
+    "fieldsWithoutCheckDate": 23,
+    "scheduledWorkflows": 25,
+    "coverageRows": 4289,
+    "coverageStates": {
+      "current": 4049,
+      "not-applicable": 145,
+      "missing": 37,
+      "waiting-first-year": 13,
+      "check-overdue": 17,
+      "not-published": 18,
+      "manual": 2,
+      "unqualified": 1,
+      "source-conflict": 1,
+      "waiting-publication": 3,
+      "archived": 3
+    },
+    "peaQualified": 257,
+    "peaRemaining": 2,
+    "priorityMarkets": {
+      "performance": {
+        "total": 262,
+        "current": 239,
+        "actions": 7,
+        "waiting": 13,
+        "calculatedAlternative": 7,
+        "equityAlternative": 0
+      },
+      "monthly": {
+        "total": 714,
+        "current": 711,
+        "actions": 0,
+        "waiting": 0,
+        "calculatedAlternative": 0,
+        "equityAlternative": 0
+      },
+      "countries": {
+        "total": 262,
+        "current": 233,
+        "actions": 6,
+        "waiting": 0,
+        "calculatedAlternative": 0,
+        "equityAlternative": 1
+      },
+      "sectors": {
+        "total": 262,
+        "current": 233,
+        "actions": 6,
+        "waiting": 0,
+        "calculatedAlternative": 0,
+        "equityAlternative": 1
+      },
+      "completeHoldings": {
+        "total": 262,
+        "current": 115,
+        "actions": 104,
+        "waiting": 0,
+        "calculatedAlternative": 0,
+        "equityAlternative": 0
+      },
+      "returns": {
+        "total": 56,
+        "current": 56,
+        "actions": 0,
+        "waiting": 0,
+        "calculatedAlternative": 0,
+        "equityAlternative": 0
+      },
+      "facts": {
+        "total": 52,
+        "current": 52,
+        "actions": 0,
+        "waiting": 0,
+        "calculatedAlternative": 0,
+        "equityAlternative": 0
+      }
+    },
+    "assetAutomation": {
+      "profiles": 1591,
+      "fields": 6743,
+      "states": {
+        "blocked": 214,
+        "connected": 775,
+        "qualification-needed": 91,
+        "reference-only": 457,
+        "scheduled-evidence": 54
+      }
+    },
+    "consumerUsage": {
+      "tools": 23,
+      "usages": 31792,
+      "required": 28064,
+      "connected": 22967,
+      "blocked": 1225,
+      "unconfirmed": 3872,
+      "unmapped": 0
+    }
+  },
+  "keys": [
+    "schemaVersion",
+    "generatedAt",
+    "method",
+    "summary",
+    "workflows",
+    "registries",
+    "fields",
+    "connections",
+    "backlog",
+    "datasets",
+    "coverage",
+    "pea",
+    "assets",
+    "consumerUsage"
+  ],
+  "selected": [
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BDVPNG13",
+      "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-16",
+      "asOf": "2026-10-15",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-16",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": null,
+        "sha256": null,
+        "primarySourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BKLF1R75",
+      "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-16",
+      "asOf": "2026-10-15",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-16",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": null,
+        "sha256": null,
+        "primarySourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "JE00B78CGV99",
+      "name": "WisdomTree Brent Crude Oil",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-21",
+      "asOf": "2026-10-19",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-brent-crude-oil",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-21",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-brent-crude-oil",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": null,
+        "sha256": null,
+        "primarySourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-brent-crude-oil",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-brent-crude-oil",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "GB00B15KXV33",
+      "name": "WisdomTree WTI Crude Oil",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-21",
+      "asOf": "2026-10-19",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-21",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": null,
+        "sha256": null,
+        "primarySourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "JE00BN7KB334",
+      "name": "WisdomTree Natural Gas",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-21",
+      "asOf": "2026-10-19",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-21",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": null,
+        "sha256": null,
+        "primarySourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "JE00BN7KB557",
+      "name": "WisdomTree Coffee",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-21",
+      "asOf": "2026-10-19",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-coffee",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-21",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-coffee",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": null,
+        "sha256": null,
+        "primarySourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-coffee",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-coffee",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "JE00B2QXZK10",
+      "name": "WisdomTree Cocoa",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-21",
+      "asOf": "2026-10-19",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-cocoa",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-21",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-cocoa",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": null,
+        "sha256": null,
+        "primarySourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-cocoa",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-cocoa",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "JE00BN7KB664",
+      "name": "WisdomTree Wheat",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-21",
+      "asOf": "2026-10-19",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-21",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": null,
+        "sha256": null,
+        "primarySourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "collection-incomplete",
+        "reason": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72: Metadata source cooldown after HTTP 403; no new field evidence · https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72: Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut."
+      },
+      "tools": [
+        "etf-sheets",
+        "practical-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-10-30T10:49:23.528722+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00B0M62S72",
+        "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+        "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+        "https://www.quantalys.com/Fonds/17300",
+        "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00B0M62S72"
+      ],
+      "id": "IE00B0M62S72",
+      "name": "iShares Euro Dividend UCITS ETF",
+      "type": "instrument",
+      "field": "pea",
+      "label": "Éligibilité PEA",
+      "state": "manual",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": null,
+      "reason": "Déclarations PEA contradictoires : clarification explicite nécessaire.",
+      "observationState": "manual",
+      "actionState": "source-conflict",
+      "requiresAction": true,
+      "priority": 1,
+      "lastAttemptAt": "2026-10-30T10:49:23.528722+00:00",
+      "lastSuccessAt": null,
+      "configuredSourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE00B0M62S72",
+        "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+        "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+        "https://www.quantalys.com/Fonds/17300",
+        "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00B0M62S72"
+      ],
+      "nextAction": "Obtenir une clarification ou un accord documenté des sources avant publication du champ.",
+      "sourceAccess": {
+        "prerequisite": "contradictory-evidence-requires-qualification",
+        "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE00B0M62S72",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://bourse.fortuneo.fr/api/search?term=IE00B0M62S72",
+        "sha256": "167fb978aa00e5b29bf911eff5ce58396ba36aff56a797bee53a637985d40945",
+        "bytes": 281,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE00B0M62S72",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE00B0M62S72",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+            "status": "changed-unqualified"
+          },
+          {
+            "sourceUrl": "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+            "status": "changed-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.quantalys.com/Fonds/17300",
+            "status": "changed-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00B0M62S72",
+            "status": "changed-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "collection-incomplete",
+        "reason": "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf: No explicit supported metadata fields · https://www.justetf.com/fr/etf-profile.html?isin=IE0003R87OG3: Metadata source cooldown after HTTP 403; no new field evidence · https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3: No exact-share broker reference found; this is not a negative PEA statement. · https://extraetf.com/fr/etf-profile/IE0003R87OG3: No explicit supported metadata fields · https://www.quantalys.com/Recherche?search=IE0003R87OG3: No public exact-share fund reference found · https://www.quantalys.com/Recherche?search=IE0003R87OG3: No explicit supported metadata fields"
+      },
+      "tools": [
+        "etf-sheets",
+        "practical-sheets"
+      ],
+      "automationConfigured": true,
+      "lastAttempt": "2026-10-30T10:49:23.528722+00:00",
+      "sourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3",
+        "https://extraetf.com/fr/etf-profile/IE0003R87OG3",
+        "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
+        "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE0003R87OG3",
+        "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0003R87OG3"
+      ],
+      "id": "IE0003R87OG3",
+      "name": "Avantis Global Small Cap Value UCITS ETF USD Acc",
+      "type": "instrument",
+      "field": "pea",
+      "label": "Éligibilité PEA",
+      "state": "manual",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": null,
+      "reason": "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf: No explicit supported metadata fields · https://www.justetf.com/fr/etf-profile.html?isin=IE0003R87OG3: Metadata source cooldown after HTTP 403; no new field evidence · https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3: No exact-share broker reference found; this is not a negative PEA statement. · https://extraetf.com/fr/etf-profile/IE0003R87OG3: No explicit supported metadata fields · https://www.quantalys.com/Recherche?search=IE0003R87OG3: No public exact-share fund reference found · https://www.quantalys.com/Recherche?search=IE0003R87OG3: No explicit supported metadata fields",
+      "observationState": "manual",
+      "actionState": "manual",
+      "requiresAction": true,
+      "priority": 3,
+      "lastAttemptAt": "2026-10-30T10:49:23.528722+00:00",
+      "lastSuccessAt": null,
+      "configuredSourceUrls": [
+        "https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3",
+        "https://extraetf.com/fr/etf-profile/IE0003R87OG3",
+        "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
+        "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE0003R87OG3",
+        "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0003R87OG3"
+      ],
+      "nextAction": "Qualifier une source explicite et raccorder le champ au collecteur.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3",
+        "sha256": "4d5b54a82a364b8320d68a53c68c1651d2578d24245eb0df30ed875fb36605a5",
+        "bytes": 46,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://extraetf.com/fr/etf-profile/IE0003R87OG3",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0003R87OG3",
+            "status": "changed-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0003R87OG3",
+            "status": "changed-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "not-configured",
+        "reason": "Source automatique à qualifier."
+      },
+      "tools": [
+        "dca-profiles"
+      ],
+      "automationConfigured": false,
+      "id": "IE00BK5BCH80",
+      "name": "L&G Clean Energy UCITS ETF",
+      "type": "instrument",
+      "field": "completeHoldings",
+      "label": "Positions intégrales",
+      "state": "missing",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "reason": "Découverte du portefeuille intégral non qualifiée : Missing or ambiguous L&G share state. Aucune donnée financière admise par ce contrôle.",
+      "observationState": "missing",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 3,
+      "lastAttemptAt": "2026-10-30T11:44:35.128860+00:00",
+      "lastSuccessAt": null,
+      "configuredSourceUrls": [
+        "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1"
+      ],
+      "nextAction": "Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "sha256": "7e1d14f01b1ef3c1cff45b5c9775a98fe63cb18fd28a0ac6742159a8f268f83c",
+        "bytes": 189939,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      },
+      "sourceDiscovery": {
+        "isin": "IE00BK5BCH80",
+        "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "lastAttemptAt": "2026-10-30T11:44:35.128860+00:00",
+        "qualification": "complete-holdings-discovery",
+        "financialDataQualified": false,
+        "status": "qualification-required",
+        "error": "Missing or ambiguous L&G share state"
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BJGWQN72",
+      "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-20",
+      "asOf": "2026-10-19",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-20",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": null,
+        "sha256": null,
+        "primarySourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "GB00B15KXQ89",
+      "name": "WisdomTree Copper",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-16",
+      "asOf": "2026-10-15",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-16",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": null,
+        "sha256": null,
+        "primarySourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "GB00BJYDH287",
+      "name": "WisdomTree Physical Bitcoin",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-16",
+      "asOf": "2026-10-15",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/digital-assets/wisdomtree-physical-bitcoin",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-16",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/digital-assets/wisdomtree-physical-bitcoin",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": null,
+        "sha256": null,
+        "primarySourceUrl": "https://www.wisdomtree.com/gb/products/digital-assets/wisdomtree-physical-bitcoin",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.wisdomtree.com/gb/products/digital-assets/wisdomtree-physical-bitcoin",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE0002XZSHO1",
+      "name": "iShares MSCI World Swap PEA UCITS ETF (Acc)",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-16",
+      "asOf": "2026-10-15",
+      "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-16",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": "2026-10-29T22:33:38.186306+00:00",
+        "sha256": "16f04f26d651e399790eb43b8ef5c823c0fc88dc6d60dc7be64caf21deeec854",
+        "primarySourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE0002Y8CX98",
+      "name": "WisdomTree Europe Defence UCITS ETF",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-17",
+      "asOf": "2026-10-15",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-17",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": null,
+        "sha256": null,
+        "primarySourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE000DQLYVB9",
+      "name": "iShares S&P 500 Swap PEA UCITS ETF",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-16",
+      "asOf": "2026-10-15",
+      "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-16",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": null,
+        "sha256": null,
+        "primarySourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "not-configured",
+        "reason": "Source automatique à qualifier."
+      },
+      "tools": [
+        "dca-profiles"
+      ],
+      "automationConfigured": false,
+      "id": "IE000QDFFK00",
+      "name": "BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc)",
+      "type": "instrument",
+      "field": "completeHoldings",
+      "label": "Positions intégrales",
+      "state": "missing",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": null,
+      "reason": "Source de positions intégrales et contrôle de l’identité du fonds à raccorder.",
+      "observationState": "missing",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 3,
+      "lastAttemptAt": null,
+      "lastSuccessAt": null,
+      "configuredSourceUrls": [],
+      "nextAction": "Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "status": "not-configured",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "primarySourceUrl": null,
+        "sourceChecks": [],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE000W8WMSL2",
+      "name": "WisdomTree Quantum Computing UCITS ETF",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-17",
+      "asOf": "2026-10-15",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-17",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": null,
+        "sha256": null,
+        "primarySourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "not-configured",
+        "reason": "Source automatique à qualifier."
+      },
+      "tools": [
+        "dca-profiles"
+      ],
+      "automationConfigured": false,
+      "id": "IE00BD4TXV59",
+      "name": "UBS Core MSCI World UCITS ETF",
+      "type": "instrument",
+      "field": "completeHoldings",
+      "label": "Positions intégrales",
+      "state": "missing",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": null,
+      "reason": "Source de positions intégrales et contrôle de l’identité du fonds à raccorder.",
+      "observationState": "missing",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 3,
+      "lastAttemptAt": null,
+      "lastSuccessAt": null,
+      "configuredSourceUrls": [],
+      "nextAction": "Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "status": "not-configured",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "primarySourceUrl": null,
+        "sourceChecks": [],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "not-configured",
+        "reason": "Source automatique à qualifier."
+      },
+      "tools": [
+        "dca-profiles"
+      ],
+      "automationConfigured": false,
+      "id": "IE00BF0M2Z96",
+      "name": "L&G Battery Value-Chain UCITS ETF",
+      "type": "instrument",
+      "field": "completeHoldings",
+      "label": "Positions intégrales",
+      "state": "missing",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "reason": "Découverte du portefeuille intégral non qualifiée : Missing or ambiguous L&G share state. Aucune donnée financière admise par ce contrôle.",
+      "observationState": "missing",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 3,
+      "lastAttemptAt": "2026-10-30T11:44:35.128860+00:00",
+      "lastSuccessAt": null,
+      "configuredSourceUrls": [
+        "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1"
+      ],
+      "nextAction": "Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "sha256": "7e1d14f01b1ef3c1cff45b5c9775a98fe63cb18fd28a0ac6742159a8f268f83c",
+        "bytes": 189939,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      },
+      "sourceDiscovery": {
+        "isin": "IE00BF0M2Z96",
+        "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "lastAttemptAt": "2026-10-30T11:44:35.128860+00:00",
+        "qualification": "complete-holdings-discovery",
+        "financialDataQualified": false,
+        "status": "qualification-required",
+        "error": "Missing or ambiguous L&G share state"
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "not-configured",
+        "reason": "Source automatique à qualifier."
+      },
+      "tools": [
+        "dca-profiles"
+      ],
+      "automationConfigured": false,
+      "id": "IE00BK5BCD43",
+      "name": "L&G Artificial Intelligence UCITS ETF",
+      "type": "instrument",
+      "field": "completeHoldings",
+      "label": "Positions intégrales",
+      "state": "missing",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "reason": "Découverte du portefeuille intégral non qualifiée : Missing or ambiguous L&G share state. Aucune donnée financière admise par ce contrôle.",
+      "observationState": "missing",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 3,
+      "lastAttemptAt": "2026-10-30T11:44:35.128860+00:00",
+      "lastSuccessAt": null,
+      "configuredSourceUrls": [
+        "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1"
+      ],
+      "nextAction": "Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "sha256": "7e1d14f01b1ef3c1cff45b5c9775a98fe63cb18fd28a0ac6742159a8f268f83c",
+        "bytes": 189939,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      },
+      "sourceDiscovery": {
+        "isin": "IE00BK5BCD43",
+        "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "lastAttemptAt": "2026-10-30T11:44:35.128860+00:00",
+        "qualification": "complete-holdings-discovery",
+        "financialDataQualified": false,
+        "status": "qualification-required",
+        "error": "Missing or ambiguous L&G share state"
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "source-conflict",
+        "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, MSFT, NVDA, TSLA."
+      },
+      "tools": [
+        "dca-profiles",
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BM8R0J59",
+      "name": "Global X Nasdaq 100 Covered Call UCITS ETF",
+      "type": "instrument",
+      "field": "holdings",
+      "label": "Principales positions",
+      "state": "source-conflict",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+      "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, MSFT, NVDA, TSLA.",
+      "observationState": "source-conflict",
+      "actionState": "source-conflict",
+      "requiresAction": true,
+      "priority": 1,
+      "lastAttemptAt": null,
+      "lastSuccessAt": null,
+      "configuredSourceUrls": [],
+      "nextAction": "Obtenir une clarification ou un accord documenté des sources avant publication du champ.",
+      "sourceAccess": {
+        "prerequisite": "contradictory-evidence-requires-qualification",
+        "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "changed-unqualified",
+        "finalUrl": "https://globalxetfs.eu/funds/qyld",
+        "sha256": "98f8b2d8e1e27e7bcb68e93c6fa49879d3ce02c27d9a479a3c1f15f708ccd155",
+        "bytes": 425692,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://globalxetfs.eu/funds/qyld/",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+            "status": "changed-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "not-configured",
+        "reason": "Source automatique à qualifier."
+      },
+      "tools": [
+        "dca-profiles"
+      ],
+      "automationConfigured": false,
+      "id": "IE00BYPLS672",
+      "name": "L&G Cyber Security UCITS ETF",
+      "type": "instrument",
+      "field": "completeHoldings",
+      "label": "Positions intégrales",
+      "state": "missing",
+      "present": false,
+      "checkedAt": null,
+      "asOf": null,
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "reason": "Découverte du portefeuille intégral non qualifiée : Missing or ambiguous L&G share state. Aucune donnée financière admise par ce contrôle.",
+      "observationState": "missing",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 3,
+      "lastAttemptAt": "2026-10-30T11:44:35.128860+00:00",
+      "lastSuccessAt": null,
+      "configuredSourceUrls": [
+        "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1"
+      ],
+      "nextAction": "Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "sha256": "7e1d14f01b1ef3c1cff45b5c9775a98fe63cb18fd28a0ac6742159a8f268f83c",
+        "bytes": 189939,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      },
+      "sourceDiscovery": {
+        "isin": "IE00BYPLS672",
+        "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "lastAttemptAt": "2026-10-30T11:44:35.128860+00:00",
+        "qualification": "complete-holdings-discovery",
+        "financialDataQualified": false,
+        "status": "qualification-required",
+        "error": "Missing or ambiguous L&G share state"
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "IE00BZ56SW52",
+      "name": "WisdomTree Global Quality Dividend Growth UCITS ETF",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-17",
+      "asOf": "2026-10-15",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-17",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": null,
+        "sha256": null,
+        "primarySourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "diagnostic": {
+        "code": "available",
+        "reason": null
+      },
+      "tools": [
+        "etf-sheets"
+      ],
+      "automationConfigured": true,
+      "id": "JE00B1VS3770",
+      "name": "WisdomTree Physical Gold",
+      "type": "instrument",
+      "field": "aum",
+      "label": "Encours",
+      "state": "check-overdue",
+      "present": true,
+      "checkedAt": "2026-10-16",
+      "asOf": "2026-10-15",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold",
+      "reason": null,
+      "observationState": "check-overdue",
+      "actionState": "check-overdue",
+      "requiresAction": true,
+      "priority": 2,
+      "lastAttemptAt": null,
+      "lastSuccessAt": "2026-10-16",
+      "configuredSourceUrls": [],
+      "nextAction": "Renouveler le contrôle via le collecteur et examiner son dernier échec.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "unavailable",
+        "error": "HTTP Error 403: Forbidden",
+        "lastAccessibleAt": null,
+        "sha256": null,
+        "primarySourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "insurance",
+      "id": "insurance:placement-direct-vie",
+      "name": "Placement-direct Vie",
+      "field": "catalog:Actif général SwissLife · Allocation maximale à confirmer",
+      "label": "Actif général SwissLife · Allocation maximale à confirmer",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+      "configuredSourceUrls": [
+        "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+        "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
+        "https://static.placement-direct.fr/documents/fiche-synthetique-des-frais-placement-direct-vie.pdf"
+      ],
+      "checkedAt": "2026-10-29",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/presentations?famille=insurance",
+        "/fiches-pratiques"
+      ],
+      "reason": "La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas.",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "changed-unqualified",
+        "finalUrl": "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+        "sha256": "177e5f26136ede7a261b53bad35aeb7d3a682d893e77dd78e132a80487016daf",
+        "bytes": 293513,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+            "status": "changed-unqualified"
+          },
+          {
+            "sourceUrl": "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://static.placement-direct.fr/documents/fiche-synthetique-des-frais-placement-direct-vie.pdf",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "actor",
+      "id": "actor:fundora",
+      "name": "Fundora",
+      "field": "catalog:Fundora — Classique · À compléter",
+      "label": "Fundora — Classique · À compléter",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://www.fundora.fr/",
+      "configuredSourceUrls": [
+        "https://www.fundora.fr/",
+        "https://www.fundora.fr/questions"
+      ],
+      "checkedAt": "2026-10-29",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/presentations?famille=private-equity"
+      ],
+      "reason": "Frais complets des fonds sous-jacents et stratégie sélectionnée",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "exact-offer-and-underlying-documents-required",
+        "sourceUrl": "https://www.fundora.fr/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://www.fundora.fr/",
+        "sha256": "eebfb4f8e87f7e40daaa89f16f5f8c8c383e73ad250c74448b4b24b79b50b595",
+        "bytes": 161046,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://www.fundora.fr/",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.fundora.fr/",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.fundora.fr/questions",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "actor",
+      "id": "actor:fundora",
+      "name": "Fundora",
+      "field": "catalog:Fundora — Horizon · À compléter",
+      "label": "Fundora — Horizon · À compléter",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://www.fundora.fr/",
+      "configuredSourceUrls": [
+        "https://www.fundora.fr/",
+        "https://www.fundora.fr/questions"
+      ],
+      "checkedAt": "2026-10-29",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/presentations?famille=private-equity"
+      ],
+      "reason": "Frais complets des fonds sous-jacents et stratégie sélectionnée",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "exact-offer-and-underlying-documents-required",
+        "sourceUrl": "https://www.fundora.fr/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://www.fundora.fr/",
+        "sha256": "eebfb4f8e87f7e40daaa89f16f5f8c8c383e73ad250c74448b4b24b79b50b595",
+        "bytes": 161046,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://www.fundora.fr/",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.fundora.fr/",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.fundora.fr/questions",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "actor",
+      "id": "actor:anaxago",
+      "name": "Anaxago",
+      "field": "catalog:AxClimat I — part E · À compléter",
+      "label": "AxClimat I — part E · À compléter",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://www.anaxago.com/investir-private-equity",
+      "configuredSourceUrls": [
+        "https://www.anaxago.com/investir-private-equity",
+        "https://www.anaxago.com/axclimat"
+      ],
+      "checkedAt": "2026-10-29",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/presentations?famille=private-equity"
+      ],
+      "reason": "DIC et règlement de la part : bases des frais, coûts sous-jacents, cession et échéancier de versement",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "exact-offer-and-underlying-documents-required",
+        "sourceUrl": "https://www.anaxago.com/investir-private-equity",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://www.anaxago.com/investir-private-equity",
+        "sha256": "8e4487760df02cfd2ad202138a9f8fa531f29415c6b5fdcf0b2c14b0d9b41eac",
+        "bytes": 433818,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://www.anaxago.com/investir-private-equity",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.anaxago.com/investir-private-equity",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.anaxago.com/axclimat",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "actor",
+      "id": "actor:anaxago",
+      "name": "Anaxago",
+      "field": "catalog:AxClimat I — part B · À compléter",
+      "label": "AxClimat I — part B · À compléter",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://www.anaxago.com/investir-private-equity",
+      "configuredSourceUrls": [
+        "https://www.anaxago.com/investir-private-equity",
+        "https://www.anaxago.com/axclimat"
+      ],
+      "checkedAt": "2026-10-29",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/presentations?famille=private-equity"
+      ],
+      "reason": "DIC et règlement de la part : bases des frais, coûts sous-jacents, cession",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "exact-offer-and-underlying-documents-required",
+        "sourceUrl": "https://www.anaxago.com/investir-private-equity",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://www.anaxago.com/investir-private-equity",
+        "sha256": "8e4487760df02cfd2ad202138a9f8fa531f29415c6b5fdcf0b2c14b0d9b41eac",
+        "bytes": 433818,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://www.anaxago.com/investir-private-equity",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.anaxago.com/investir-private-equity",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.anaxago.com/axclimat",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "actor",
+      "id": "actor:mymarguerit",
+      "name": "MyMarguerit",
+      "field": "catalog:Cheptel MyMarguerit · À compléter",
+      "label": "Cheptel MyMarguerit · À compléter",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://www.mymarguerit.com/",
+      "configuredSourceUrls": [
+        "https://www.mymarguerit.com/"
+      ],
+      "checkedAt": "2026-10-29",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/presentations?famille=bovins"
+      ],
+      "reason": "Minimum contractuel d’UC, coûts complets de régie/assurance, délai et prix de sortie",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "exact-offer-and-underlying-documents-required",
+        "sourceUrl": "https://www.mymarguerit.com/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "changed-unqualified",
+        "finalUrl": "https://www.mymarguerit.com/en",
+        "sha256": "5e48f340df5ab03f1a64f935593e35c76340ee943d0399ae1e42cfddd626bf52",
+        "bytes": 198441,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://www.mymarguerit.com/",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.mymarguerit.com/",
+            "status": "changed-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "actor",
+      "id": "actor:bacchus",
+      "name": "Bacchus Conseil",
+      "field": "catalog:GFV Cave de Tain — Crozes-Hermitage · À compléter",
+      "label": "GFV Cave de Tain — Crozes-Hermitage · À compléter",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://bacchusconseil.com/gfv-gfa/",
+      "configuredSourceUrls": [
+        "https://bacchusconseil.com/gfv-gfa/",
+        "https://bacchusconseil.com/investir/",
+        "https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/",
+        "https://bacchusconseil.com/fonctionnement/"
+      ],
+      "checkedAt": "2026-10-29",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/presentations?famille=vignobles"
+      ],
+      "reason": "Dossier du GFV : ticket, frais chiffrés, bail et dotation exacte",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "exact-offer-and-underlying-documents-required",
+        "sourceUrl": "https://bacchusconseil.com/gfv-gfa/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "changed-unqualified",
+        "finalUrl": "https://bacchusconseil.com/gfv-gfa/",
+        "sha256": "d0cee968318d0f023e48b474ce656fa951b5f97f30bf9e0a3f7760374705e7f2",
+        "bytes": 383330,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://bacchusconseil.com/gfv-gfa/",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://bacchusconseil.com/gfv-gfa/",
+            "status": "changed-unqualified"
+          },
+          {
+            "sourceUrl": "https://bacchusconseil.com/investir/",
+            "status": "changed-unqualified"
+          },
+          {
+            "sourceUrl": "https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/",
+            "status": "changed-unqualified"
+          },
+          {
+            "sourceUrl": "https://bacchusconseil.com/fonctionnement/",
+            "status": "changed-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "actor",
+      "id": "actor:france-valley",
+      "name": "France Valley",
+      "field": "catalog:GFI France Valley Patrimoine · À compléter",
+      "label": "GFI France Valley Patrimoine · À compléter",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://www.france-valley.com/",
+      "configuredSourceUrls": [
+        "https://www.france-valley.com/",
+        "https://www.france-valley.com/gfi-france-valley-patrimoine",
+        "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+      ],
+      "checkedAt": "2026-10-29",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/presentations?famille=forets"
+      ],
+      "reason": "Note d’information et bulletin de souscription actualisés ; conditions du marché secondaire",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "exact-offer-and-underlying-documents-required",
+        "sourceUrl": "https://www.france-valley.com/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://www.france-valley.com/",
+        "sha256": "3e21c4b8000603c4cd2f1df78e576ff1d7067551c92456d528a41b37e5d4c282",
+        "bytes": 577390,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://www.france-valley.com/",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.france-valley.com/",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.france-valley.com/gfi-france-valley-patrimoine",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "actor",
+      "id": "actor:france-valley",
+      "name": "France Valley",
+      "field": "catalog:GFI France Valley Forêts · À compléter",
+      "label": "GFI France Valley Forêts · À compléter",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://www.france-valley.com/",
+      "configuredSourceUrls": [
+        "https://www.france-valley.com/",
+        "https://www.france-valley.com/gfi-france-valley-patrimoine",
+        "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+      ],
+      "checkedAt": "2026-10-29",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/presentations?famille=forets"
+      ],
+      "reason": "DIC, statuts et bulletin du véhicule effectivement souscrit ; détail des charges",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "exact-offer-and-underlying-documents-required",
+        "sourceUrl": "https://www.france-valley.com/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://www.france-valley.com/",
+        "sha256": "3e21c4b8000603c4cd2f1df78e576ff1d7067551c92456d528a41b37e5d4c282",
+        "bytes": 577390,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://www.france-valley.com/",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.france-valley.com/",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.france-valley.com/gfi-france-valley-patrimoine",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "actor",
+      "id": "actor:france-valley",
+      "name": "France Valley",
+      "field": "catalog:France Valley Foncière Europe · À compléter",
+      "label": "France Valley Foncière Europe · À compléter",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://www.france-valley.com/",
+      "configuredSourceUrls": [
+        "https://www.france-valley.com/",
+        "https://www.france-valley.com/gfi-france-valley-patrimoine",
+        "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf"
+      ],
+      "checkedAt": "2026-10-29",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/presentations?famille=forets"
+      ],
+      "reason": "DIC, statuts et bulletin du véhicule effectivement souscrit ; détail des charges",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "exact-offer-and-underlying-documents-required",
+        "sourceUrl": "https://www.france-valley.com/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://www.france-valley.com/",
+        "sha256": "3e21c4b8000603c4cd2f1df78e576ff1d7067551c92456d528a41b37e5d4c282",
+        "bytes": 577390,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://www.france-valley.com/",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://www.france-valley.com/",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.france-valley.com/gfi-france-valley-patrimoine",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "actor",
+      "id": "actor:hectarea",
+      "name": "Hectarea",
+      "field": "catalog:Obligations foncières Hectarea · À compléter",
+      "label": "Obligations foncières Hectarea · À compléter",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://app.hectarea.io/club/investir/",
+      "configuredSourceUrls": [
+        "https://app.hectarea.io/club/investir/",
+        "https://www.hectarea.io/aide/fonctionnement",
+        "https://www.hectarea.io/aide/portefeuille",
+        "https://www.hectarea.io/aide/investir"
+      ],
+      "checkedAt": "2026-10-29",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/presentations?famille=terres"
+      ],
+      "reason": "Montant des frais de petits retraits non publié.",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "published-general-platform-condition-required",
+        "sourceUrl": "https://app.hectarea.io/club/investir/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "changed-unqualified",
+        "finalUrl": "https://app.hectarea.io/club/investir/",
+        "sha256": "93b6bed1cdee8448d7d92df0f813cec57f217be21f5fb270d960e8bc6c6c989c",
+        "bytes": 559436,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://app.hectarea.io/club/investir/",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://app.hectarea.io/club/investir/",
+            "status": "changed-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.hectarea.io/aide/fonctionnement",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.hectarea.io/aide/portefeuille",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.hectarea.io/aide/investir",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BM8R0J59",
+      "name": "Global X Nasdaq 100 Covered Call UCITS ETF",
+      "field": "catalog:Rendements glissants à qualifier",
+      "label": "Rendements glissants à qualifier",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+      "configuredSourceUrls": [
+        "https://globalxetfs.eu/funds/qyld/"
+      ],
+      "checkedAt": "2026-10-20",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/fiches-etf",
+        "/generateur-portefeuilles",
+        "/duels-portefeuilles"
+      ],
+      "reason": "La table courante de performance est intitulée USD Accumulating. Les anciens rendements glissants ne sont pas recertifiés pour la part USD distribuante IE00BM8R0J59 ; ils restent en archive, sans substitution de part.",
+      "nextAction": "Recollecter la table liée à la part exacte, qualifier la période et brancher sa valeur au registre commun.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "changed-unqualified",
+        "finalUrl": "https://globalxetfs.eu/funds/qyld",
+        "sha256": "98f8b2d8e1e27e7bcb68e93c6fa49879d3ce02c27d9a479a3c1f15f708ccd155",
+        "bytes": 425692,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://globalxetfs.eu/funds/qyld/",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+            "status": "changed-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "broker",
+      "id": "broker:bourso",
+      "name": "BoursoBank · Découverte",
+      "field": "catalog:Recoupement externe · cash",
+      "label": "Recoupement externe · cash",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://sinvestir.fr/cto-boursobank-avis/",
+      "configuredSourceUrls": [
+        "https://sinvestir.fr/cto-boursobank-avis/",
+        "https://brokerchooser.com/fr/broker-reviews/boursobank-review"
+      ],
+      "checkedAt": "2026-10-13",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/comparatif-courtiers"
+      ],
+      "reason": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://sinvestir.fr/cto-boursobank-avis/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "changed-unqualified",
+        "finalUrl": "https://sinvestir.fr/cto-boursobank-avis/",
+        "sha256": "b576239e7bb7cc4bd94f03aeb42c3b87f8d5c7164e69fe9e73682161c11c68c8",
+        "bytes": 825455,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://sinvestir.fr/cto-boursobank-avis/",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://sinvestir.fr/cto-boursobank-avis/",
+            "status": "changed-unqualified"
+          },
+          {
+            "sourceUrl": "https://brokerchooser.com/fr/broker-reviews/boursobank-review",
+            "status": "unavailable"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "broker",
+      "id": "broker:fortuneo",
+      "name": "Fortuneo · Starter",
+      "field": "catalog:Recoupement externe · dca",
+      "label": "Recoupement externe · dca",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
+      "configuredSourceUrls": [
+        "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
+        "https://www.lemonde.fr/argent/article/2025/09/26/comment-faire-des-investissements-programmes-sur-un-pea_6642989_1657007.html"
+      ],
+      "checkedAt": "2026-10-13",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/comparatif-courtiers"
+      ],
+      "reason": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
+        "sha256": "a5be574a0063eb8a2a4a170f1ac25aa9bbe0eef0cf9707b40db5675dc93223e6",
+        "bytes": 373201,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.lemonde.fr/argent/article/2025/09/26/comment-faire-des-investissements-programmes-sur-un-pea_6642989_1657007.html",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "broker",
+      "id": "broker:fortuneo",
+      "name": "Fortuneo · Starter",
+      "field": "catalog:Recoupement externe · cash",
+      "label": "Recoupement externe · cash",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees",
+      "configuredSourceUrls": [
+        "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees",
+        "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/"
+      ],
+      "checkedAt": "2026-10-13",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/comparatif-courtiers"
+      ],
+      "reason": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/",
+        "sha256": "3922a10e38becdbec4cd8c5e872fa027b86a585673fc4e57d86de066e2f0eead",
+        "bytes": 456360,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees",
+            "status": "unavailable"
+          },
+          {
+            "sourceUrl": "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "broker",
+      "id": "broker:tr",
+      "name": "Trade Republic",
+      "field": "catalog:Recoupement externe · pme",
+      "label": "Recoupement externe · pme",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+      "configuredSourceUrls": [
+        "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+        "https://www.ideal-investisseur.fr/pea/trade-republic-8.html"
+      ],
+      "checkedAt": "2026-10-13",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/comparatif-courtiers"
+      ],
+      "reason": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+        "sha256": "8ef7fc3fe9f2a4d129b66c4cd7368fbf6b7426949370a8279365ae54eb4026cb",
+        "bytes": 268777,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://www.ideal-investisseur.fr/pea/trade-republic-8.html",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "broker",
+      "id": "broker:tr",
+      "name": "Trade Republic",
+      "field": "catalog:Recoupement externe · garde",
+      "label": "Recoupement externe · garde",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+      "configuredSourceUrls": [
+        "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+        "https://extraetf.com/fr/ressources/pea-trade-republic"
+      ],
+      "checkedAt": "2026-10-13",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/comparatif-courtiers"
+      ],
+      "reason": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+        "sha256": "8ef7fc3fe9f2a4d129b66c4cd7368fbf6b7426949370a8279365ae54eb4026cb",
+        "bytes": 268777,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+            "status": "accessible-unqualified"
+          },
+          {
+            "sourceUrl": "https://extraetf.com/fr/ressources/pea-trade-republic",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    },
+    {
+      "type": "broker",
+      "id": "broker:bd",
+      "name": "Bourse Direct",
+      "field": "catalog:Recoupement externe · cash",
+      "label": "Recoupement externe · cash",
+      "observationState": "manual",
+      "actionState": "connector-needed",
+      "requiresAction": true,
+      "priority": 2,
+      "sourceUrl": "https://brokerchooser.com/fr/broker-reviews/bourse-direct-review",
+      "configuredSourceUrls": [
+        "https://brokerchooser.com/fr/broker-reviews/bourse-direct-review",
+        "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/"
+      ],
+      "checkedAt": "2026-10-13",
+      "lastSuccessAt": null,
+      "lastAttemptAt": null,
+      "tools": [
+        "/comparatif-courtiers"
+      ],
+      "reason": "Condition de courtage corroborée manuellement par des sources externes, avec échéance de revue ; pas de renouvellement automatique établi.",
+      "nextAction": "Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.",
+      "sourceAccess": {
+        "prerequisite": "source-and-field-qualification-required",
+        "sourceUrl": "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/",
+        "lastAccessAttemptAt": "2026-10-30T11:46:18.310219+00:00",
+        "qualification": "access-check-only",
+        "financialDataQualified": false,
+        "status": "accessible-unqualified",
+        "finalUrl": "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/",
+        "sha256": "3922a10e38becdbec4cd8c5e872fa027b86a585673fc4e57d86de066e2f0eead",
+        "bytes": 456360,
+        "lastAccessibleAt": "2026-10-30T11:46:18.310219+00:00",
+        "primarySourceUrl": "https://brokerchooser.com/fr/broker-reviews/bourse-direct-review",
+        "sourceChecks": [
+          {
+            "sourceUrl": "https://brokerchooser.com/fr/broker-reviews/bourse-direct-review",
+            "status": "unavailable"
+          },
+          {
+            "sourceUrl": "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/",
+            "status": "accessible-unqualified"
+          }
+        ],
+        "notCheckedSourceUrls": []
+      }
+    }
+  ],
+  "version": {
+    "sha": "af9a5ca29e00314c00df9cdce5fa662db8acb7f0",
+    "dataSha": "7732d35283aae963453e67130200db18a7d9affe",
+    "lane": "validated-data",
+    "builtAt": "2026-10-30T11:56:29.118Z"
+  }
+}

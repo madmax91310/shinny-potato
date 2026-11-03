@@ -52,12 +52,13 @@ try{
  await page.route('**/automation-status/automation-status.json*',r=>r.fulfill({json:model.state}))
  await page.route('https://api.github.com/**/actions/workflows/automation-status.yml/runs?**',r=>r.fulfill({json:{workflow_runs:[{id:999999,status:'completed',conclusion:'success',head_branch:'master',event:'workflow_dispatch'}]}}))
  await page.goto('http://127.0.0.1:4326/shinny-potato/donnees-a-revoir?q='+encodeURIComponent('Résultat attendu absent'),{waitUntil:'networkidle'})
+ await page.getByRole('searchbox',{name:'Recherche globale des problèmes'}).fill('Résultat attendu absent')
  await page.getByText('Résultat attendu absent',{exact:false}).first().waitFor()
  await mkdir('test-artifacts/producer-omissions',{recursive:true})
  for(const [name,width,height]of[['desktop',1440,1000],['mobile',390,844]]){
   await page.setViewportSize({width,height});assert.match(await page.locator('body').innerText(),/Résultat attendu absent/)
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2))
-  await page.screenshot({path:'test-artifacts/producer-omissions/'+name+'.png',fullPage:true})
+  await page.getByRole('region',{name:'Tous les problèmes de données',exact:true}).screenshot({path:'test-artifacts/producer-omissions/'+name+'.png'})
  }
  await page.locator('article.dr-item').filter({hasText:'Résultat attendu absent'}).filter({hasText:model.missing}).first().getByRole('button',{name:'Copier le diagnostic complet'}).click()
  const diagnostic=await page.evaluate(()=>navigator.clipboard.readText());await writeFile('test-artifacts/producer-omissions/diagnostic.txt',diagnostic);assert(diagnostic.includes(model.missing));assert(diagnostic.includes('expectedIds'))
@@ -66,7 +67,7 @@ try{
  await recording.waitFor();assert.match(await recording.innerText(),/enregistrement/i)
  for(const [name,width,height]of[['desktop',1440,1000],['mobile',390,844]]){
   await page.setViewportSize({width,height});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2))
-  await page.screenshot({path:'test-artifacts/producer-omissions/13f-'+name+'.png',fullPage:true})
+  await recording.screenshot({path:'test-artifacts/producer-omissions/13f-'+name+'.png'})
  }
  assert.deepEqual(errors,[])
  await writeFile('test-artifacts/producer-omissions/results.json',JSON.stringify({mode:model.mode,missing:model.missing,errors,viewports:['desktop','mobile'],greenWorkflowWithMissingIndividualResult:true,unchanged13FSourceChecks:28,sourceSuccessDoesNotCloseRecordingFailure:true},null,2))

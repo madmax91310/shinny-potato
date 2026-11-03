@@ -36,6 +36,12 @@ for (const r of EXPOSURE_ADDITIONS) {
 groups['Fonds confirmé chez l’émetteur'] += ' health_world_dws new_energy_amundi em_pea_amundi europe_pea_amundi health_europe_pea tech_europe_pea industry_world_dws em_small_ishares utilities_world_dws health_world_ishares materials_world_dws';
 groups['Fonds confirmé chez l’émetteur'] += ' ' + [...roadmapIds].join(' ')
 groups['Actions individuelles · cours ajustés et change BCE'] = PORTFOLIO_EQUITIES.map(a=>a.id).join(' ')
+// These existing supports now use the partial exact-share issuer calendar,
+// not the former spot/index/other-share archive. Validate that stricter contract
+// below; keep the old fixed oracles for every other instrument unchanged.
+const repairedPartialIds = new Set('bitcoin ethereum bitcoin_etcgroup quality_dividend tech_europe actions_asie_ex_japon'.split(' '))
+for (const key of Object.keys(groups)) groups[key]=groups[key].split(' ').filter(id=>!repairedPartialIds.has(id)).join(' ')
+groups['Fonds confirmé chez l’émetteur']+=' '+[...repairedPartialIds].join(' ')
 const tagged = new Map()
 let errors = 0
 for (const [basis, list] of Object.entries(groups)) {
@@ -241,6 +247,13 @@ const requiredDisclosures = new Map(Object.entries({
   quality_dividend: /2020.*part distribuante/i,
   bitcoin_etcgroup: /2020.*spot.*2021-2025.*NAV/i,
 }))
+for(const id of repairedPartialIds){
+ const asset=ASSETS.find(a=>a.id===id),official=getInstrumentAnnualPerformance(asset.isin)
+ issuerSources[id]=official?.source
+ delete indexSources[id];delete partialIssuerSources[id];delete proxySources[id]
+ primarySeries.delete(id);verifiedSeries.delete(id);mixedSeries.delete(id);requiredDisclosures.delete(id)
+ partialOrSyntheticYears.delete(id)
+}
 for (const asset of ASSETS) {
   const basis = tagged.get(asset.id)
   if (!basis) { console.error(`Sans provenance : ${asset.id}`); errors++; continue }
@@ -278,8 +291,14 @@ for (const asset of ASSETS) {
     market.currency===asset.returnCurrency && latestCommonYears([market.years],{minimum:3}).length>=3 &&
     JSON.stringify(asset.calendarReturns)===JSON.stringify(market.years) && JSON.stringify(asset.r)===JSON.stringify(market.values)
   if(asset.distinctCandidate && (!qualifiedMarket || !asset.confidenceNote)) { console.error(`Source de marché divergente : ${asset.id}`); errors++ }
+  const exactPartial = repairedPartialIds.has(asset.id) && official?.basis==='fund'
+    && /^https:\/\//.test(official.source??'') && (!official.sha256 || /^[a-f0-9]{64}$/.test(official.sha256)) && official.checkedAt
+    && ['EUR','USD'].includes(official.currency) && asset.r.filter(Number.isFinite).length>=3
+    && asset.r.every((v,i)=>v===(official.years[2020+i]??null))
+    && JSON.stringify(asset.calendarReturns)===JSON.stringify(official.years)
+  if(repairedPartialIds.has(asset.id) && !exactPartial){console.error(`Calendrier exact partiel divergent : ${asset.id}`);errors++}
   const qualifiedShort = roadmapIds.has(asset.id) && asset.manualOnly && official?.basis === 'fund' && official.source && asset.r.filter(Number.isFinite).length >= 3 && asset.r.every((v,i) => v === null ? official.values[i] === null : Number.isFinite(official.values[i]) && Math.abs(v-official.values[i]) <= .051)
-  if (!asset.r.every(Number.isFinite) && !qualifiedShort && !qualifiedMarket && !(LIFESTRATEGY_RECORDS[asset.isin] && asset.manualOnly && asset.r[0] === null && asset.r.slice(1).every(Number.isFinite))) {
+  if (!asset.r.every(Number.isFinite) && !exactPartial && !qualifiedShort && !qualifiedMarket && !(LIFESTRATEGY_RECORDS[asset.isin] && asset.manualOnly && asset.r[0] === null && asset.r.slice(1).every(Number.isFinite))) {
     console.error(`Année manquante pour un actif sélectionnable : ${asset.id}`); errors++
   }
 }
@@ -313,6 +332,6 @@ for (const id of groups['Hypothèse non liée à un titre précis'].split(' ')) 
 }
 for (const [basis, list] of Object.entries(groups)) console.log(`${basis} : ${list.split(' ').filter(Boolean).length}`)
 console.log(`${ASSETS.length} supports inventoriés ; ${errors} erreur(s) de traçabilité structurelle.`)
-console.log(`${usdReturns.size} séries USD signalées, ${partialOrSyntheticYears.size} historiques partiels ou synthétiques, ${Object.keys(issuerSources).length} fonds complets et ${Object.keys(partialIssuerSources).length} fonds partiels recoupés auprès de l'émetteur.`)
+console.log(`${usdReturns.size} séries USD signalées, ${partialOrSyntheticYears.size} historiques partiels ou synthétiques, ${Object.keys(issuerSources).length} calendriers émetteur contrôlés (dont des périodes partielles) et ${Object.keys(partialIssuerSources).length} historiques mixtes documentés.`)
 console.log('« Fonds confirmé » désigne une lecture des performances calendaires de l’émetteur ; les arrondis suivent la précision publiée dans chaque fiche.')
 if (errors) process.exitCode = 1

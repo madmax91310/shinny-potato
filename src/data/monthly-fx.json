@@ -1,8 +1,8 @@
 {
   "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
-  "checkedAt": "2026-10-29",
+  "checkedAt": "2026-11-03",
   "convention": "Units of currency per EUR, final ECB reference observation in each completed month",
-  "sha256": "c8523df51684f3db17a09bc59e3b3c58c3718269896eacb98e73ec648f5f3c76",
+  "sha256": "e25f694c47efc95848866963b136520bc3c8e77e2589c8520ad06327dccc4696",
   "months": {
     "1999-01": {
       "asOf": "1999-01-29",
@@ -12696,18 +12696,55 @@
         "ZAR": 18.6123,
         "TWD": 36.1657
       }
+    },
+    "2026-10": {
+      "asOf": "2026-10-30",
+      "rates": {
+        "EUR": 1.0,
+        "USD": 1.1172,
+        "JPY": 175.68,
+        "CZK": 24.353,
+        "DKK": 7.4735,
+        "GBP": 0.8338,
+        "HUF": 366.33,
+        "PLN": 4.4038,
+        "RON": 5.3447,
+        "SEK": 10.978,
+        "CHF": 0.9194,
+        "ISK": 136.0,
+        "NOK": 10.312,
+        "TRY": 55.8015,
+        "AUD": 1.5904,
+        "BRL": 6.0692,
+        "CAD": 1.5606,
+        "CNY": 7.4326,
+        "HKD": 8.7652,
+        "IDR": 20275.17,
+        "ILS": 3.495,
+        "INR": 106.084,
+        "KRW": 1491.76,
+        "MXN": 21.1237,
+        "MYR": 4.5325,
+        "NZD": 1.9823,
+        "PHP": 71.143,
+        "SGD": 1.4282,
+        "THB": 37.683,
+        "ZAR": 18.6455,
+        "TWD": 36.4095
+      }
     }
   },
   "derived": {
     "TWD": {
-      "sourceUrl": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01%2F01%2F1999&to=10%2F29%2F2026&filetype=csv&label=include&layout=seriescolumn&type=package",
+      "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
       "series": "DEXTAUS",
       "secondarySourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
-      "checkedAt": "2026-10-29",
-      "sha256": "a83befb1c2526ea354520a4af0a60140e6fb5363c9b37525f33a3b6990a1169d",
-      "secondarySha256": "c8523df51684f3db17a09bc59e3b3c58c3718269896eacb98e73ec648f5f3c76",
+      "checkedAt": "2026-11-03",
+      "sha256": "1c312d2fc1de99f174c26178a2cb1f0f0f6a4a08b6dce25b043603fec9a3f24a",
+      "secondarySha256": "e25f694c47efc95848866963b136520bc3c8e77e2589c8520ad06327dccc4696",
       "sourceSeries": "H10/H10/RXI_N.B.TA",
-      "sourceDiscoveryUrl": "https://www.federalreserve.gov/datadownload/Choose.aspx?rel=H10",
+      "sourceDiscoveryUrl": "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm",
+      "sourceFormat": "Official complete H.10 SDMX XML ZIP",
       "seriesEquivalence": "Federal Reserve H.10 RXI_N.B.TA is the primary daily TWD per USD series republished as FRED DEXTAUS; independently checked over all common observations",
       "convention": "TWD per EUR = Federal Reserve H.10 noon buying rate (TWD per USD, FRED DEXTAUS) × ECB USD per EUR reference rate, latest day of each completed month published by both; decimal half-up rounding to four places",
       "observations": {
@@ -26069,11 +26106,49 @@
             "THB": 38.113,
             "ZAR": 18.6123
           }
+        },
+        "2026-10": {
+          "asOf": "2026-10-30",
+          "usdPerEur": 1.1172,
+          "perUsd": 32.59,
+          "value": 36.4095,
+          "ecbRates": {
+            "EUR": 1.0,
+            "USD": 1.1172,
+            "JPY": 175.68,
+            "CZK": 24.353,
+            "DKK": 7.4735,
+            "GBP": 0.8338,
+            "HUF": 366.33,
+            "PLN": 4.4038,
+            "RON": 5.3447,
+            "SEK": 10.978,
+            "CHF": 0.9194,
+            "ISK": 136.0,
+            "NOK": 10.312,
+            "TRY": 55.8015,
+            "AUD": 1.5904,
+            "BRL": 6.0692,
+            "CAD": 1.5606,
+            "CNY": 7.4326,
+            "HKD": 8.7652,
+            "IDR": 20275.17,
+            "ILS": 3.495,
+            "INR": 106.084,
+            "KRW": 1491.76,
+            "MXN": 21.1237,
+            "MYR": 4.5325,
+            "NZD": 1.9823,
+            "PHP": 71.143,
+            "SGD": 1.4282,
+            "THB": 37.683,
+            "ZAR": 18.6455
+          }
         }
       },
       "sourceAttempts": [
         {
-          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-29",
+          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-11-03",
           "error": "The read operation timed out"
         },
         {
@@ -26081,9 +26156,9 @@
           "error": "The read operation timed out"
         },
         {
-          "sourceUrl": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01%2F01%2F1999&to=10%2F29%2F2026&filetype=csv&label=include&layout=seriescolumn&type=package",
+          "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
           "status": "downloaded",
-          "sha256": "a83befb1c2526ea354520a4af0a60140e6fb5363c9b37525f33a3b6990a1169d"
+          "sha256": "1c312d2fc1de99f174c26178a2cb1f0f0f6a4a08b6dce25b043603fec9a3f24a"
         }
       ]
     }

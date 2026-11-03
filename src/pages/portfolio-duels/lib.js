@@ -2,6 +2,7 @@ import { duelEditorial } from './editorial.js';
 import { SIMULATION_PROXIES } from '../../data/simulation-proxies.js';
 import { latestCommonYears } from '../../data/annual-window.js'
 import { ITEM_BY_ID, CATALOG, FX_SOURCE, ROLES, euroReturn } from './catalog.js'
+import { weightedAnnualReturn } from '../../lib/weighted-annual-return.js'
 
 export { CATALOG, ROLES }
 const INITIAL = 10_000
@@ -120,7 +121,7 @@ export function buildCustomDuel(definition) {
   const makePortfolio = (lines, name) => {
     const assets = lines.map((line) => ({ ...ITEM_BY_ID.get(line.id), pct: line.pct }))
       .sort((a, b) => ['base', 'complement', 'theme'].indexOf(a.role) - ['base', 'complement', 'theme'].indexOf(b.role))
-    const annual = Object.fromEntries(years.map((year) => [year, assets.reduce((total, asset) => total + asset.pct * euroReturn(asset, year) / 100, 0)]))
+    const annual = Object.fromEntries(years.map((year) => [year, weightedAnnualReturn(assets.map(asset => ({ value: euroReturn(asset, year), weight: asset.pct })))]))
     const final = years.reduce((capital, year) => capital * (1 + annual[year] / 100), INITIAL)
     const worstYear = years.reduce((worst, year) => annual[year] < annual[worst] ? year : worst)
     return { name, assets, annual, final, worstYear, worst: annual[worstYear] }
@@ -140,7 +141,7 @@ export function buildCustomDuel(definition) {
     hookQuestion: definition.hookQuestion ?? (definition.hook?.trim().endsWith('?') && !definition.hook.startsWith('Tu gardes 100 % de World') ? definition.hook : undefined),
     currency: 'EUR', years, a, b,
     readings: [exposureReading(a), exposureReading(b)],
-    sources: [...unique.map((asset) => ({ name: asset.name, isin: asset.isin, url: asset.source, note: asset.note })),
+    sources: [...unique.map((asset) => ({ name: asset.name, isin: asset.isin, url: asset.source, note: asset.performanceNote ?? asset.note })),
       ...(unique.some((asset) => asset.currency !== 'EUR') ? [{ name: 'Taux de change de fin d’année (BCE)', url: FX_SOURCE, note: 'Conversion des rendements en euros, sans couverture de change.' }] : [])],
   }
   // Avoid explaining the same base twice; make a changed weight explicit.

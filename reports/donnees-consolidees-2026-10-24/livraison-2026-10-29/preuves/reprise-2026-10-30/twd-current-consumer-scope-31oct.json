@@ -1,0 +1,2991 @@
+{
+  "checkedAt": "2026-10-31T03:36:46.595Z",
+  "clientCode": "4213389fd53845831b27587b08ec28cf20e66060",
+  "dataCommit": "4d2096e9e41ec339fcb67cbc007edc4f51790715",
+  "denominator": "Distinct selectable history series identifiers, not unique investment products",
+  "seriesCount": 738,
+  "nativeTwdSeries": [],
+  "currencyCounts": {
+    "USD": 366,
+    "EUR": 264,
+    "KRW": 5,
+    "DKK": 4,
+    "CHF": 12,
+    "JPY": 27,
+    "HKD": 12,
+    "GBp": 14,
+    "SGD": 3,
+    "CNY": 2,
+    "INR": 14,
+    "CAD": 6,
+    "NOK": 1,
+    "SEK": 4,
+    "AUD": 4
+  },
+  "series": [
+    {
+      "id": "gold-invesco-usd",
+      "currency": "USD"
+    },
+    {
+      "id": "aerospace-paris-eur",
+      "currency": "EUR"
+    },
+    {
+      "id": "bitcoin",
+      "currency": "USD"
+    },
+    {
+      "id": "ethereum",
+      "currency": "USD"
+    },
+    {
+      "id": "stoxx600",
+      "currency": "EUR"
+    },
+    {
+      "id": "sp500",
+      "currency": "USD"
+    },
+    {
+      "id": "msciWorld",
+      "currency": "USD"
+    },
+    {
+      "id": "nasdaq100",
+      "currency": "USD"
+    },
+    {
+      "id": "soxx",
+      "currency": "USD"
+    },
+    {
+      "id": "or",
+      "currency": "USD"
+    },
+    {
+      "id": "silver",
+      "currency": "USD"
+    },
+    {
+      "id": "apple",
+      "currency": "USD"
+    },
+    {
+      "id": "microsoft",
+      "currency": "USD"
+    },
+    {
+      "id": "broadcom",
+      "currency": "USD"
+    },
+    {
+      "id": "tesla",
+      "currency": "USD"
+    },
+    {
+      "id": "msciEurope",
+      "currency": "USD"
+    },
+    {
+      "id": "msciUsa",
+      "currency": "USD"
+    },
+    {
+      "id": "msciIndia",
+      "currency": "USD"
+    },
+    {
+      "id": "msciEmergingExChina",
+      "currency": "USD"
+    },
+    {
+      "id": "msciWorldMomentum",
+      "currency": "USD"
+    },
+    {
+      "id": "msciWorldQuality",
+      "currency": "USD"
+    },
+    {
+      "id": "msciWorldValue",
+      "currency": "USD"
+    },
+    {
+      "id": "russell2000",
+      "currency": "USD"
+    },
+    {
+      "id": "msciEmerging",
+      "currency": "USD"
+    },
+    {
+      "id": "msciWorldSmallCap",
+      "currency": "USD"
+    },
+    {
+      "id": "msciAcwiImi",
+      "currency": "USD"
+    },
+    {
+      "id": "msciWorldExUsa",
+      "currency": "USD"
+    },
+    {
+      "id": "msciAcwi",
+      "currency": "USD"
+    },
+    {
+      "id": "nike",
+      "currency": "USD"
+    },
+    {
+      "id": "disney",
+      "currency": "USD"
+    },
+    {
+      "id": "procter-gamble",
+      "currency": "USD"
+    },
+    {
+      "id": "johnson-johnson",
+      "currency": "USD"
+    },
+    {
+      "id": "exxonmobil",
+      "currency": "USD"
+    },
+    {
+      "id": "jpmorgan",
+      "currency": "USD"
+    },
+    {
+      "id": "caterpillar",
+      "currency": "USD"
+    },
+    {
+      "id": "waste-management",
+      "currency": "USD"
+    },
+    {
+      "id": "mastercard",
+      "currency": "USD"
+    },
+    {
+      "id": "adobe",
+      "currency": "USD"
+    },
+    {
+      "id": "home-depot",
+      "currency": "USD"
+    },
+    {
+      "id": "booking",
+      "currency": "USD"
+    },
+    {
+      "id": "totalenergies",
+      "currency": "EUR"
+    },
+    {
+      "id": "vinci",
+      "currency": "EUR"
+    },
+    {
+      "id": "sanofi",
+      "currency": "EUR"
+    },
+    {
+      "id": "pepsico",
+      "currency": "USD"
+    },
+    {
+      "id": "unitedhealth",
+      "currency": "USD"
+    },
+    {
+      "id": "berkshire",
+      "currency": "USD"
+    },
+    {
+      "id": "asml",
+      "currency": "EUR"
+    },
+    {
+      "id": "costco",
+      "currency": "USD"
+    },
+    {
+      "id": "mcdonalds",
+      "currency": "USD"
+    },
+    {
+      "id": "airliquide",
+      "currency": "EUR"
+    },
+    {
+      "id": "schneider",
+      "currency": "EUR"
+    },
+    {
+      "id": "hermes",
+      "currency": "EUR"
+    },
+    {
+      "id": "loreal",
+      "currency": "EUR"
+    },
+    {
+      "id": "intel",
+      "currency": "USD"
+    },
+    {
+      "id": "paypal",
+      "currency": "USD"
+    },
+    {
+      "id": "cac40",
+      "currency": "EUR"
+    },
+    {
+      "id": "lvmh",
+      "currency": "EUR"
+    },
+    {
+      "id": "nvidia",
+      "currency": "USD"
+    },
+    {
+      "id": "amazon",
+      "currency": "USD"
+    },
+    {
+      "id": "google",
+      "currency": "USD"
+    },
+    {
+      "id": "meta",
+      "currency": "USD"
+    },
+    {
+      "id": "nestle",
+      "currency": "USD"
+    },
+    {
+      "id": "sap",
+      "currency": "USD"
+    },
+    {
+      "id": "visa",
+      "currency": "USD"
+    },
+    {
+      "id": "netflix",
+      "currency": "USD"
+    },
+    {
+      "id": "cocacola",
+      "currency": "USD"
+    },
+    {
+      "id": "euroMoney",
+      "currency": "EUR"
+    },
+    {
+      "id": "euroGovShort",
+      "currency": "EUR"
+    },
+    {
+      "id": "euroGov13",
+      "currency": "EUR"
+    },
+    {
+      "id": "globalBondEur",
+      "currency": "EUR"
+    },
+    {
+      "id": "euroInflationBond",
+      "currency": "EUR"
+    },
+    {
+      "id": "euroCorporateBond",
+      "currency": "EUR"
+    },
+    {
+      "id": "euroHighYieldBond",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfVwce",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfMinVol",
+      "currency": "USD"
+    },
+    {
+      "id": "etfWqdv",
+      "currency": "USD"
+    },
+    {
+      "id": "etfTdiv",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfEpra",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfCmod",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfSemi",
+      "currency": "USD"
+    },
+    {
+      "id": "etfLock",
+      "currency": "USD"
+    },
+    {
+      "id": "etfImie",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfEqualWeight",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfAvantisSmallValue",
+      "currency": "EUR"
+    },
+    {
+      "id": "etcPlatinum",
+      "currency": "USD"
+    },
+    {
+      "id": "etcPalladium",
+      "currency": "USD"
+    },
+    {
+      "id": "etf_water_ishares",
+      "currency": "USD"
+    },
+    {
+      "id": "etf_agribusiness_ishares",
+      "currency": "USD"
+    },
+    {
+      "id": "etf_world_staples",
+      "currency": "USD"
+    },
+    {
+      "id": "etf_world_discretionary",
+      "currency": "USD"
+    },
+    {
+      "id": "etf_world_energy",
+      "currency": "USD"
+    },
+    {
+      "id": "etf_world_communication",
+      "currency": "USD"
+    },
+    {
+      "id": "etf_private_equity_ishares",
+      "currency": "EUR"
+    },
+    {
+      "id": "etf_timber_ishares",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIndustrials",
+      "currency": "EUR"
+    },
+    {
+      "id": "etf_clean_energy",
+      "currency": "EUR"
+    },
+    {
+      "id": "etf_financials",
+      "currency": "USD"
+    },
+    {
+      "id": "etf_gold_miners",
+      "currency": "EUR"
+    },
+    {
+      "id": "etf_health",
+      "currency": "USD"
+    },
+    {
+      "id": "etf_infrastructure",
+      "currency": "USD"
+    },
+    {
+      "id": "etf_momentum",
+      "currency": "USD"
+    },
+    {
+      "id": "etf_quality",
+      "currency": "USD"
+    },
+    {
+      "id": "etf_robotics",
+      "currency": "USD"
+    },
+    {
+      "id": "etf_smallcap",
+      "currency": "USD"
+    },
+    {
+      "id": "etf_value",
+      "currency": "USD"
+    },
+    {
+      "id": "etfWorldMaterials",
+      "currency": "USD"
+    },
+    {
+      "id": "etfHealthcareInnovation",
+      "currency": "USD"
+    },
+    {
+      "id": "etfWorldUtilities",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfCloudWisdomtree",
+      "currency": "USD"
+    },
+    {
+      "id": "etfWorldMultifactor",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIbondsEuro2028",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfSilverMiners",
+      "currency": "USD"
+    },
+    {
+      "id": "etcSilverPhysical",
+      "currency": "USD"
+    },
+    {
+      "id": "etfLifeStrategy20",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLifeStrategy40",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLifeStrategy60",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLifeStrategy80",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfCopperMiners",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfEuropeConstruction",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfEmSmallCap",
+      "currency": "USD"
+    },
+    {
+      "id": "etfWorldExUs",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfWorldTech",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfAiBigData",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfEmExChina",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfAmundiWater",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfAmundiLuxury",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLgArtificialIntelligence",
+      "currency": "USD"
+    },
+    {
+      "id": "etfLgBattery",
+      "currency": "USD"
+    },
+    {
+      "id": "etfUsaSmallValue",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfWorldMidEqual",
+      "currency": "USD"
+    },
+    {
+      "id": "etfEmValue",
+      "currency": "USD"
+    },
+    {
+      "id": "etfEuroUltrashort",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfWorldMaterialsDws",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00B4L5Y983",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0013411998",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B53L3W79",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B5BMR087",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00B579F325",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B42NKQ00",
+      "currency": "USD"
+    },
+    {
+      "id": "etfCH0454664001",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU1931975079",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BFZPF546",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BM67HK77",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BK95B138",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE0007Y8Y157",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B4JNQZ49",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0013412012",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0011550193",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BYPLS672",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0013412004",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0014017NX3",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR001400S9V0",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BYTRR863",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B5M1WJ87",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR001400U5Q4",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BZCQB185",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0013380607",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BMW42413",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B4WXJJ64",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE000DQLYVB9",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0013412038",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BK5BCH80",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BJ38QD84",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU2970735911",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE0003UVYC20",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B40B8R38",
+      "currency": "USD"
+    },
+    {
+      "id": "etfLU1737652823",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B6YX5D40",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE000M7V94E1",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0010342592",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BZ163G84",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BKPSFC54",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE000RDRMSD1",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00B8GKDB10",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU1834988518",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B2NPKV68",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B43HR379",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BYWQWR46",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B4KBBD01",
+      "currency": "USD"
+    },
+    {
+      "id": "etfFR001400ZGO4",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BK5BR733",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B5W4TY14",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU1834983550",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BZ56SW52",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BYXG2H39",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE000YYE6WK5",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BDFBTQ78",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B3T9LM79",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BDFL4P12",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE000YU9K6K2",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BKPX3K41",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU1834986900",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BK5BR626",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B3WJKG14",
+      "currency": "USD"
+    },
+    {
+      "id": "etfFR0013412020",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE0000N55FP4",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BM8R0J59",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B9CQXS71",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B6R52259",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0010755611",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0011440478",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0011869320",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0011871110",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0011871128",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B1FZS350",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B1FZS913",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B44Z5B48",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B4L5YX21",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B52MJY50",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BKM4GZ66",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU1681043599",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU1681045370",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU1681047236",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfNL0009690239",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BF3N7094",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfDE000A27Z304",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfGB00BLD4ZL17",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE0002XZSHO1",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B469F816",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B4ND3602",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00B53SZB19",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BJ5JP659",
+      "currency": "USD"
+    },
+    {
+      "id": "etfFR0010524777",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfGB00BJYDH287",
+      "currency": "USD"
+    },
+    {
+      "id": "etfGB00BLD4ZM24",
+      "currency": "USD"
+    },
+    {
+      "id": "etfJE00B1VS3770",
+      "currency": "USD"
+    },
+    {
+      "id": "etfFR0013416716",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE0008471009",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfDE0002635307",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfDE000A0H08Q4",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE0008470928",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE000C6ITGC8",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE000U9ODG19",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00B02KXK85",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B0M62S72",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B0M63623",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B1YZSC51",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B2QWCY14",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B3VWMM18",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B4K48X80",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B52SFT06",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00B53QG562",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BD1F4L37",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00BD1F4M44",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00BD1F4N50",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00BGL86Z12",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00BJ5JPG56",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00BQN1K562",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BQN1K786",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BQN1K901",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BQT3WG13",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00BYX2JD69",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BYZK4669",
+      "currency": "USD"
+    },
+    {
+      "id": "etfFR0007054358",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0007056841",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0011869304",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0011871078",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0013346681",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0013411980",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfGB00B15KXQ89",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE0002Y8CX98",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE0003XJA0J9",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE0009HF1MK9",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE000W8WMSL2",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE000XZSV718",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00BDVPNG13",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00BFY0GT14",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BKLF1R75",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BKWQ0Q14",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BMC38736",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU0908500753",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU1681038672",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU1681040223",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU1829219390",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU1834983634",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU2089238385",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU3038520774",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU3180074463",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE000L6ZMMC4",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BJ0KDQ92",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BK1PV551",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BTJRMP35",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU0274209237",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU0328475792",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU0380865021",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU1875395870",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU2196470426",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU2903252349",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE000NDWFGA5",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00B3RBWM25",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00B3VVMM84",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00B3XXRP09",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00B945VV12",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00BFMXXD54",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00BK5BQV03",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00BK5BQX27",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00BLCHJB90",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00BMH5Y871",
+      "currency": "USD"
+    },
+    {
+      "id": "etfFR0011550185",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE0000QLH0G6",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE000716YHJ7",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE000QDFFK00",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00B4K6B022",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BD4TXV59",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0010342592Nav",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfFR0007054358Nav",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU2196470426Nav",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfCH0454664001Nav",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU1737652823Nav",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfLU1875395870Nav",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfGB00B15KXQ89Nav",
+      "currency": "USD"
+    },
+    {
+      "id": "etc_brent_crude_oilNav",
+      "currency": "USD"
+    },
+    {
+      "id": "etc_wti_crude_oilNav",
+      "currency": "USD"
+    },
+    {
+      "id": "etc_coffeeNav",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00BK5BCD43Nav",
+      "currency": "USD"
+    },
+    {
+      "id": "etfIE00BK5BCH80Nav",
+      "currency": "USD"
+    },
+    {
+      "id": "etfFR0011550185Nav",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIE00BDVPNG13Nav",
+      "currency": "USD"
+    },
+    {
+      "id": "etfCloudWisdomtreeNav",
+      "currency": "USD"
+    },
+    {
+      "id": "etc_cocoaNav",
+      "currency": "USD"
+    },
+    {
+      "id": "etc_natural_gasNav",
+      "currency": "USD"
+    },
+    {
+      "id": "etc_wheatNav",
+      "currency": "USD"
+    },
+    {
+      "id": "etfFR0013412269",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfNasdaqEqual",
+      "currency": "USD"
+    },
+    {
+      "id": "etfSmallValueEurope",
+      "currency": "EUR"
+    },
+    {
+      "id": "etc_brent_crude_oil",
+      "currency": "USD"
+    },
+    {
+      "id": "etc_wti_crude_oil",
+      "currency": "USD"
+    },
+    {
+      "id": "etc_natural_gas",
+      "currency": "USD"
+    },
+    {
+      "id": "etc_coffee",
+      "currency": "USD"
+    },
+    {
+      "id": "etc_cocoa",
+      "currency": "USD"
+    },
+    {
+      "id": "etc_wheat",
+      "currency": "USD"
+    },
+    {
+      "id": "etfWorldIslamic",
+      "currency": "USD"
+    },
+    {
+      "id": "etfEuropeBanks",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfEuropeInsurance",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfWorldEurHedged",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfEuroGovt57",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfEuropeProperty",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfIbondsEuro2029",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfEuropeUtilities",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfEuropeTelecom",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfEuropeFood",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfEuropeMedia",
+      "currency": "EUR"
+    },
+    {
+      "id": "etfEuropeRetail",
+      "currency": "EUR"
+    },
+    {
+      "id": "walmart",
+      "currency": "USD"
+    },
+    {
+      "id": "oracle",
+      "currency": "USD"
+    },
+    {
+      "id": "salesforce",
+      "currency": "USD"
+    },
+    {
+      "id": "amd",
+      "currency": "USD"
+    },
+    {
+      "id": "qualcomm",
+      "currency": "USD"
+    },
+    {
+      "id": "texas-instruments",
+      "currency": "USD"
+    },
+    {
+      "id": "applied-materials",
+      "currency": "USD"
+    },
+    {
+      "id": "lam-research",
+      "currency": "USD"
+    },
+    {
+      "id": "micron",
+      "currency": "USD"
+    },
+    {
+      "id": "ibm",
+      "currency": "USD"
+    },
+    {
+      "id": "servicenow",
+      "currency": "USD"
+    },
+    {
+      "id": "intuit",
+      "currency": "USD"
+    },
+    {
+      "id": "palantir",
+      "currency": "USD"
+    },
+    {
+      "id": "goldman-sachs",
+      "currency": "USD"
+    },
+    {
+      "id": "bank-of-america",
+      "currency": "USD"
+    },
+    {
+      "id": "morgan-stanley",
+      "currency": "USD"
+    },
+    {
+      "id": "blackrock",
+      "currency": "USD"
+    },
+    {
+      "id": "american-express",
+      "currency": "USD"
+    },
+    {
+      "id": "charles-schwab",
+      "currency": "USD"
+    },
+    {
+      "id": "chevron",
+      "currency": "USD"
+    },
+    {
+      "id": "conocophillips",
+      "currency": "USD"
+    },
+    {
+      "id": "abbvie",
+      "currency": "USD"
+    },
+    {
+      "id": "merck",
+      "currency": "USD"
+    },
+    {
+      "id": "eli-lilly",
+      "currency": "USD"
+    },
+    {
+      "id": "abbott",
+      "currency": "USD"
+    },
+    {
+      "id": "thermo-fisher",
+      "currency": "USD"
+    },
+    {
+      "id": "ge-aerospace",
+      "currency": "USD"
+    },
+    {
+      "id": "honeywell",
+      "currency": "USD"
+    },
+    {
+      "id": "siemens",
+      "currency": "EUR"
+    },
+    {
+      "id": "allianz",
+      "currency": "EUR"
+    },
+    {
+      "id": "munich-re",
+      "currency": "EUR"
+    },
+    {
+      "id": "deutsche-telekom",
+      "currency": "EUR"
+    },
+    {
+      "id": "deutsche-boerse",
+      "currency": "EUR"
+    },
+    {
+      "id": "santander",
+      "currency": "EUR"
+    },
+    {
+      "id": "iberdrola",
+      "currency": "EUR"
+    },
+    {
+      "id": "inditex",
+      "currency": "EUR"
+    },
+    {
+      "id": "ferrari",
+      "currency": "EUR"
+    },
+    {
+      "id": "infineon",
+      "currency": "EUR"
+    },
+    {
+      "id": "adidas",
+      "currency": "EUR"
+    },
+    {
+      "id": "bmw",
+      "currency": "EUR"
+    },
+    {
+      "id": "bayer",
+      "currency": "EUR"
+    },
+    {
+      "id": "samsung",
+      "currency": "KRW"
+    },
+    {
+      "id": "sk-hynix",
+      "currency": "KRW"
+    },
+    {
+      "id": "airbus",
+      "currency": "EUR"
+    },
+    {
+      "id": "safran",
+      "currency": "EUR"
+    },
+    {
+      "id": "dassault-systemes",
+      "currency": "EUR"
+    },
+    {
+      "id": "essilorluxottica",
+      "currency": "EUR"
+    },
+    {
+      "id": "axa",
+      "currency": "EUR"
+    },
+    {
+      "id": "bnp-paribas",
+      "currency": "EUR"
+    },
+    {
+      "id": "danone",
+      "currency": "EUR"
+    },
+    {
+      "id": "thales",
+      "currency": "EUR"
+    },
+    {
+      "id": "legrand",
+      "currency": "EUR"
+    },
+    {
+      "id": "saint-gobain",
+      "currency": "EUR"
+    },
+    {
+      "id": "michelin",
+      "currency": "EUR"
+    },
+    {
+      "id": "novo-nordisk",
+      "currency": "DKK"
+    },
+    {
+      "id": "novartis",
+      "currency": "CHF"
+    },
+    {
+      "id": "astrazeneca",
+      "currency": "USD"
+    },
+    {
+      "id": "abb",
+      "currency": "CHF"
+    },
+    {
+      "id": "sp-global",
+      "currency": "USD"
+    },
+    {
+      "id": "moodys",
+      "currency": "USD"
+    },
+    {
+      "id": "intuitive-surgical",
+      "currency": "USD"
+    },
+    {
+      "id": "deere",
+      "currency": "USD"
+    },
+    {
+      "id": "palo-alto-networks",
+      "currency": "USD"
+    },
+    {
+      "id": "linde",
+      "currency": "USD"
+    },
+    {
+      "id": "tsmc",
+      "currency": "USD"
+    },
+    {
+      "id": "sony",
+      "currency": "JPY"
+    },
+    {
+      "id": "toyota",
+      "currency": "JPY"
+    },
+    {
+      "id": "nintendo",
+      "currency": "JPY"
+    },
+    {
+      "id": "tencent",
+      "currency": "HKD"
+    },
+    {
+      "id": "hd",
+      "currency": "USD"
+    },
+    {
+      "id": "low",
+      "currency": "USD"
+    },
+    {
+      "id": "sbux",
+      "currency": "USD"
+    },
+    {
+      "id": "cl",
+      "currency": "USD"
+    },
+    {
+      "id": "mdlz",
+      "currency": "USD"
+    },
+    {
+      "id": "syk",
+      "currency": "USD"
+    },
+    {
+      "id": "unp",
+      "currency": "USD"
+    },
+    {
+      "id": "lmt",
+      "currency": "USD"
+    },
+    {
+      "id": "rsg",
+      "currency": "USD"
+    },
+    {
+      "id": "adp",
+      "currency": "USD"
+    },
+    {
+      "id": "adi",
+      "currency": "USD"
+    },
+    {
+      "id": "nem",
+      "currency": "USD"
+    },
+    {
+      "id": "etn",
+      "currency": "USD"
+    },
+    {
+      "id": "tt",
+      "currency": "USD"
+    },
+    {
+      "id": "regn",
+      "currency": "USD"
+    },
+    {
+      "id": "vrtx",
+      "currency": "USD"
+    },
+    {
+      "id": "zts",
+      "currency": "USD"
+    },
+    {
+      "id": "msci",
+      "currency": "USD"
+    },
+    {
+      "id": "fds",
+      "currency": "USD"
+    },
+    {
+      "id": "cdns",
+      "currency": "USD"
+    },
+    {
+      "id": "roche",
+      "currency": "CHF"
+    },
+    {
+      "id": "ubs",
+      "currency": "CHF"
+    },
+    {
+      "id": "zurich",
+      "currency": "CHF"
+    },
+    {
+      "id": "swiss-re",
+      "currency": "CHF"
+    },
+    {
+      "id": "bbva",
+      "currency": "EUR"
+    },
+    {
+      "id": "unilever",
+      "currency": "EUR"
+    },
+    {
+      "id": "diageo",
+      "currency": "GBp"
+    },
+    {
+      "id": "relx",
+      "currency": "GBp"
+    },
+    {
+      "id": "lseg",
+      "currency": "GBp"
+    },
+    {
+      "id": "rolls-royce",
+      "currency": "GBp"
+    },
+    {
+      "id": "bae-systems",
+      "currency": "GBp"
+    },
+    {
+      "id": "rheinmetall",
+      "currency": "EUR"
+    },
+    {
+      "id": "dhl",
+      "currency": "EUR"
+    },
+    {
+      "id": "basf",
+      "currency": "EUR"
+    },
+    {
+      "id": "enel",
+      "currency": "EUR"
+    },
+    {
+      "id": "alibaba",
+      "currency": "HKD"
+    },
+    {
+      "id": "jd",
+      "currency": "HKD"
+    },
+    {
+      "id": "meituan",
+      "currency": "HKD"
+    },
+    {
+      "id": "xiaomi",
+      "currency": "HKD"
+    },
+    {
+      "id": "byd",
+      "currency": "HKD"
+    },
+    {
+      "id": "keyence",
+      "currency": "JPY"
+    },
+    {
+      "id": "hitachi",
+      "currency": "JPY"
+    },
+    {
+      "id": "mitsubishi-electric",
+      "currency": "JPY"
+    },
+    {
+      "id": "tokyo-electron",
+      "currency": "JPY"
+    },
+    {
+      "id": "advantest",
+      "currency": "JPY"
+    },
+    {
+      "id": "mitsubishi-corp",
+      "currency": "JPY"
+    },
+    {
+      "id": "softbank-group",
+      "currency": "JPY"
+    },
+    {
+      "id": "recruit",
+      "currency": "JPY"
+    },
+    {
+      "id": "dbs",
+      "currency": "SGD"
+    },
+    {
+      "id": "csco",
+      "currency": "USD"
+    },
+    {
+      "id": "arista",
+      "currency": "USD"
+    },
+    {
+      "id": "dell",
+      "currency": "USD"
+    },
+    {
+      "id": "crowdstrike",
+      "currency": "USD"
+    },
+    {
+      "id": "fortinet",
+      "currency": "USD"
+    },
+    {
+      "id": "snps",
+      "currency": "USD"
+    },
+    {
+      "id": "klac",
+      "currency": "USD"
+    },
+    {
+      "id": "uber",
+      "currency": "USD"
+    },
+    {
+      "id": "airbnb",
+      "currency": "USD"
+    },
+    {
+      "id": "cme",
+      "currency": "USD"
+    },
+    {
+      "id": "ice",
+      "currency": "USD"
+    },
+    {
+      "id": "pfe",
+      "currency": "USD"
+    },
+    {
+      "id": "amgn",
+      "currency": "USD"
+    },
+    {
+      "id": "gilead",
+      "currency": "USD"
+    },
+    {
+      "id": "catl",
+      "currency": "CNY"
+    },
+    {
+      "id": "reliance",
+      "currency": "INR"
+    },
+    {
+      "id": "hdfc-bank",
+      "currency": "INR"
+    },
+    {
+      "id": "icici-bank",
+      "currency": "INR"
+    },
+    {
+      "id": "infosys",
+      "currency": "INR"
+    },
+    {
+      "id": "tcs",
+      "currency": "INR"
+    },
+    {
+      "id": "stockAN8068571086",
+      "currency": "USD"
+    },
+    {
+      "id": "stockCH0038863350",
+      "currency": "CHF"
+    },
+    {
+      "id": "stockCH0114405324",
+      "currency": "USD"
+    },
+    {
+      "id": "stockDE0007164600",
+      "currency": "EUR"
+    },
+    {
+      "id": "stockFR0000120271",
+      "currency": "EUR"
+    },
+    {
+      "id": "stockFR0000120578",
+      "currency": "EUR"
+    },
+    {
+      "id": "stockFR0000124141",
+      "currency": "EUR"
+    },
+    {
+      "id": "stockFR0000125486",
+      "currency": "EUR"
+    },
+    {
+      "id": "stockFR0000133308",
+      "currency": "EUR"
+    },
+    {
+      "id": "stockFR0010208488",
+      "currency": "EUR"
+    },
+    {
+      "id": "stockIE00BFRT3W74",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS00724F1012",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS00846U1016",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS00971T1016",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS0311001004",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS0527691069",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS0536111091",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS0865161014",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS09857L1089",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS1011371077",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS1101221083",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS11133T1034",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS12514G1085",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS12541W2098",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS1491231015",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS1713401024",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS1924461023",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS1999081045",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS2310211063",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS23331A1097",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS2546871060",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS2566771059",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS25754A2015",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS2600031080",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS26875P1012",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS2786421030",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS2788651006",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS28176E1082",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS29414B1044",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS3021301094",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS30233Q1085",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS3032501047",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS3156161024",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS35671D8570",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS3666511072",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS3695501086",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS3724601055",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS3841091040",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS4262811015",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS4278661081",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS43300A2033",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS4404521001",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS4456581077",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS45073V1089",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS45168D1046",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS4523081093",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS46625H1005",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS4781601046",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS49338L1035",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS4943681035",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS5018892084",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS5261071071",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS5339001068",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS5500211090",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS5719032022",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS5732841060",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS5745991068",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS57636Q1040",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS5926881054",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS6098391054",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS64110D1046",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS6541061031",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS6556631025",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS6558441084",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS6668071029",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS6703461052",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS68902V1070",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS6935061076",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS7010941042",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS7043261079",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS70432V1026",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS7134481081",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS73278L1052",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS7427181091",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS7458671010",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS74762E1029",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS74834L1008",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS75513E1010",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS7611521078",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS7703231032",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS7757111049",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS7782961038",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS8064071025",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS83088M1027",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS8318652091",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS8330341012",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS8545021011",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS8725401090",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS87612E1064",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS8807701029",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS9022521051",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS90384S3031",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS9113121068",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS91324P1021",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS92343E1029",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS92343V1044",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS92345Y1064",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS9291601097",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS9297401088",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS94106L1098",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS9418481035",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS95082P1057",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS98419M1009",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS9884981013",
+      "currency": "USD"
+    },
+    {
+      "id": "stockUS9892071054",
+      "currency": "USD"
+    },
+    {
+      "id": "stockGB0009895292",
+      "currency": "GBp"
+    },
+    {
+      "id": "brookfield",
+      "currency": "CAD"
+    },
+    {
+      "id": "canadian-national-railway",
+      "currency": "CAD"
+    },
+    {
+      "id": "enbridge",
+      "currency": "CAD"
+    },
+    {
+      "id": "royal-bank-of-canada",
+      "currency": "CAD"
+    },
+    {
+      "id": "shopify",
+      "currency": "CAD"
+    },
+    {
+      "id": "toronto-dominion",
+      "currency": "CAD"
+    },
+    {
+      "id": "givaudan",
+      "currency": "CHF"
+    },
+    {
+      "id": "holcim",
+      "currency": "CHF"
+    },
+    {
+      "id": "lonza",
+      "currency": "CHF"
+    },
+    {
+      "id": "richemont",
+      "currency": "CHF"
+    },
+    {
+      "id": "sika",
+      "currency": "CHF"
+    },
+    {
+      "id": "kweichow-moutai",
+      "currency": "CNY"
+    },
+    {
+      "id": "china-construction-bank",
+      "currency": "HKD"
+    },
+    {
+      "id": "icbc",
+      "currency": "HKD"
+    },
+    {
+      "id": "ping-an",
+      "currency": "HKD"
+    },
+    {
+      "id": "deutsche-bank",
+      "currency": "EUR"
+    },
+    {
+      "id": "mercedes-benz",
+      "currency": "EUR"
+    },
+    {
+      "id": "volkswagen",
+      "currency": "EUR"
+    },
+    {
+      "id": "siemens-energy",
+      "currency": "EUR"
+    },
+    {
+      "id": "siemens-healthineers",
+      "currency": "EUR"
+    },
+    {
+      "id": "dsv",
+      "currency": "DKK"
+    },
+    {
+      "id": "orsted",
+      "currency": "DKK"
+    },
+    {
+      "id": "novonesis",
+      "currency": "DKK"
+    },
+    {
+      "id": "nordea",
+      "currency": "EUR"
+    },
+    {
+      "id": "credit-agricole",
+      "currency": "EUR"
+    },
+    {
+      "id": "carrefour",
+      "currency": "EUR"
+    },
+    {
+      "id": "bouygues",
+      "currency": "EUR"
+    },
+    {
+      "id": "pernod-ricard",
+      "currency": "EUR"
+    },
+    {
+      "id": "kering",
+      "currency": "EUR"
+    },
+    {
+      "id": "capgemini",
+      "currency": "EUR"
+    },
+    {
+      "id": "publicis",
+      "currency": "EUR"
+    },
+    {
+      "id": "societe-generale",
+      "currency": "EUR"
+    },
+    {
+      "id": "renault",
+      "currency": "EUR"
+    },
+    {
+      "id": "bat",
+      "currency": "GBp"
+    },
+    {
+      "id": "hsbc",
+      "currency": "GBp"
+    },
+    {
+      "id": "rio-tinto",
+      "currency": "GBp"
+    },
+    {
+      "id": "gsk",
+      "currency": "GBp"
+    },
+    {
+      "id": "shell",
+      "currency": "GBp"
+    },
+    {
+      "id": "aia",
+      "currency": "HKD"
+    },
+    {
+      "id": "hkex",
+      "currency": "HKD"
+    },
+    {
+      "id": "accenture",
+      "currency": "USD"
+    },
+    {
+      "id": "medtronic",
+      "currency": "USD"
+    },
+    {
+      "id": "larsen-toubro",
+      "currency": "INR"
+    },
+    {
+      "id": "hindustan-unilever",
+      "currency": "INR"
+    },
+    {
+      "id": "sun-pharma",
+      "currency": "INR"
+    },
+    {
+      "id": "sbi",
+      "currency": "INR"
+    },
+    {
+      "id": "itc",
+      "currency": "INR"
+    },
+    {
+      "id": "axis-bank",
+      "currency": "INR"
+    },
+    {
+      "id": "bharti-airtel",
+      "currency": "INR"
+    },
+    {
+      "id": "generali",
+      "currency": "EUR"
+    },
+    {
+      "id": "intesa-sanpaolo",
+      "currency": "EUR"
+    },
+    {
+      "id": "eni",
+      "currency": "EUR"
+    },
+    {
+      "id": "unicredit",
+      "currency": "EUR"
+    },
+    {
+      "id": "glencore",
+      "currency": "GBp"
+    },
+    {
+      "id": "itochu",
+      "currency": "JPY"
+    },
+    {
+      "id": "shin-etsu",
+      "currency": "JPY"
+    },
+    {
+      "id": "takeda",
+      "currency": "JPY"
+    },
+    {
+      "id": "daiichi-sankyo",
+      "currency": "JPY"
+    },
+    {
+      "id": "kddi",
+      "currency": "JPY"
+    },
+    {
+      "id": "chugai",
+      "currency": "JPY"
+    },
+    {
+      "id": "disco",
+      "currency": "JPY"
+    },
+    {
+      "id": "nidec",
+      "currency": "JPY"
+    },
+    {
+      "id": "ntt",
+      "currency": "JPY"
+    },
+    {
+      "id": "fast-retailing",
+      "currency": "JPY"
+    },
+    {
+      "id": "hoya",
+      "currency": "JPY"
+    },
+    {
+      "id": "honda",
+      "currency": "JPY"
+    },
+    {
+      "id": "smfg",
+      "currency": "JPY"
+    },
+    {
+      "id": "mitsui",
+      "currency": "JPY"
+    },
+    {
+      "id": "mufg",
+      "currency": "JPY"
+    },
+    {
+      "id": "murata",
+      "currency": "JPY"
+    },
+    {
+      "id": "kia",
+      "currency": "KRW"
+    },
+    {
+      "id": "hyundai-motor",
+      "currency": "KRW"
+    },
+    {
+      "id": "naver",
+      "currency": "KRW"
+    },
+    {
+      "id": "netease",
+      "currency": "HKD"
+    },
+    {
+      "id": "heineken",
+      "currency": "EUR"
+    },
+    {
+      "id": "philips",
+      "currency": "EUR"
+    },
+    {
+      "id": "stmicroelectronics",
+      "currency": "EUR"
+    },
+    {
+      "id": "asm-international",
+      "currency": "EUR"
+    },
+    {
+      "id": "wolters-kluwer",
+      "currency": "EUR"
+    },
+    {
+      "id": "ing",
+      "currency": "EUR"
+    },
+    {
+      "id": "adyen",
+      "currency": "EUR"
+    },
+    {
+      "id": "prosus",
+      "currency": "EUR"
+    },
+    {
+      "id": "stellantis",
+      "currency": "EUR"
+    },
+    {
+      "id": "equinor",
+      "currency": "NOK"
+    },
+    {
+      "id": "volvo",
+      "currency": "SEK"
+    },
+    {
+      "id": "investor-ab",
+      "currency": "SEK"
+    },
+    {
+      "id": "atlas-copco",
+      "currency": "SEK"
+    },
+    {
+      "id": "uob",
+      "currency": "SGD"
+    },
+    {
+      "id": "ocbc",
+      "currency": "SGD"
+    },
+    {
+      "id": "t",
+      "currency": "USD"
+    },
+    {
+      "id": "applovin",
+      "currency": "USD"
+    },
+    {
+      "id": "boeing",
+      "currency": "USD"
+    },
+    {
+      "id": "csx",
+      "currency": "USD"
+    },
+    {
+      "id": "citigroup",
+      "currency": "USD"
+    },
+    {
+      "id": "cmcsa",
+      "currency": "USD"
+    },
+    {
+      "id": "dhr",
+      "currency": "USD"
+    },
+    {
+      "id": "emr",
+      "currency": "USD"
+    },
+    {
+      "id": "marvell",
+      "currency": "USD"
+    },
+    {
+      "id": "oxy",
+      "currency": "USD"
+    },
+    {
+      "id": "philip-morris",
+      "currency": "USD"
+    },
+    {
+      "id": "shw",
+      "currency": "USD"
+    },
+    {
+      "id": "tmus",
+      "currency": "USD"
+    },
+    {
+      "id": "3m",
+      "currency": "USD"
+    },
+    {
+      "id": "wells-fargo",
+      "currency": "USD"
+    },
+    {
+      "id": "ab-inbev",
+      "currency": "EUR"
+    },
+    {
+      "id": "bp",
+      "currency": "GBp"
+    },
+    {
+      "id": "national-grid",
+      "currency": "GBp"
+    },
+    {
+      "id": "kotak-mahindra",
+      "currency": "INR"
+    },
+    {
+      "id": "bajaj-finance",
+      "currency": "INR"
+    },
+    {
+      "id": "fdx",
+      "currency": "USD"
+    },
+    {
+      "id": "bhp",
+      "currency": "AUD"
+    },
+    {
+      "id": "commonwealth-bank",
+      "currency": "AUD"
+    },
+    {
+      "id": "csl",
+      "currency": "AUD"
+    },
+    {
+      "id": "macquarie",
+      "currency": "AUD"
+    },
+    {
+      "id": "stockUS45167R1041",
+      "currency": "USD"
+    },
+    {
+      "id": "cameco",
+      "currency": "USD"
+    },
+    {
+      "id": "nu",
+      "currency": "USD"
+    },
+    {
+      "id": "nebius",
+      "currency": "USD"
+    },
+    {
+      "id": "saab-b",
+      "currency": "SEK"
+    },
+    {
+      "id": "ast-spacemobile",
+      "currency": "USD"
+    },
+    {
+      "id": "cloudflare",
+      "currency": "USD"
+    },
+    {
+      "id": "coinbase",
+      "currency": "USD"
+    },
+    {
+      "id": "constellation-energy",
+      "currency": "USD"
+    },
+    {
+      "id": "datadog",
+      "currency": "USD"
+    },
+    {
+      "id": "duolingo",
+      "currency": "USD"
+    },
+    {
+      "id": "ge-vernova",
+      "currency": "USD"
+    },
+    {
+      "id": "mercadolibre",
+      "currency": "USD"
+    },
+    {
+      "id": "strategy",
+      "currency": "USD"
+    },
+    {
+      "id": "reddit",
+      "currency": "USD"
+    },
+    {
+      "id": "robinhood",
+      "currency": "USD"
+    },
+    {
+      "id": "rocket-lab",
+      "currency": "USD"
+    },
+    {
+      "id": "snowflake",
+      "currency": "USD"
+    },
+    {
+      "id": "sofi",
+      "currency": "USD"
+    },
+    {
+      "id": "vertiv",
+      "currency": "USD"
+    },
+    {
+      "id": "zscaler",
+      "currency": "USD"
+    },
+    {
+      "id": "spotify",
+      "currency": "USD"
+    },
+    {
+      "id": "world-net",
+      "currency": "USD"
+    },
+    {
+      "id": "emerging-net",
+      "currency": "USD"
+    },
+    {
+      "id": "japan-net",
+      "currency": "USD"
+    },
+    {
+      "id": "acwi-gross",
+      "currency": "USD"
+    },
+    {
+      "id": "ftseAllWorld",
+      "currency": "USD"
+    }
+  ],
+  "calculatorTargetCurrencies": [
+    "EUR",
+    "USD"
+  ],
+  "evidenceFiles": [
+    "src/data/market-history.js",
+    "src/data/history-currency.js",
+    "src/pages/investment-calculator/App.jsx"
+  ],
+  "scope": "No current native TWD history nor TWD calculator target found. TWD helper and historical reference retained, not removed. Five TWD cash/currency rows in complete holdings are not proof of monthly rate consumption.",
+  "financialFunctionsRestoredClaimed": 0,
+  "limit": "A shared reference acquisition is repaired; this is not counted as a newly restored current financial tool. Other currencies and tools are not certified by this inventory."
+}

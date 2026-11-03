@@ -1,0 +1,73 @@
+[
+  {
+    "id": "history:collection:update-market-monthly.yml:history:etfCloudWisdomtreeNav:2026-10-30T15:12:57.173263+00:00",
+    "dataId": "history:etfCloudWisdomtreeNav",
+    "resolvedAt": "2026-10-30T15:12:57.173263+00:00",
+    "resolution": null,
+    "resolutionEvidence": {
+      "checkedAt": "2026-10-30T14:44:28.754204+00:00",
+      "recordedAt": "2026-10-30T15:10:04Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41072651357",
+      "evidence": {
+        "scopeExplicit": true,
+        "scopePlanVerified": false,
+        "producerContract": null,
+        "file": "monthly-observation.json",
+        "sha256": "a888ce4b44832872e2b02dcb2e41b0d8cf90943692da3d3039dff7d0571e7840",
+        "reportedAt": "2026-10-30T14:44:28.754204+00:00",
+        "schema": "series",
+        "artifactId": 12987288713,
+        "sourcePhaseStartedAt": "2026-10-30T14:42:39Z",
+        "sourcePhaseCompletedAt": "2026-10-30T15:10:04Z",
+        "scopeRef": "99a552556472435448da982b8f1017b122d9b5814d138a1653570363541bad65",
+        "scopeSummary": {
+          "expectedIdsCount": 684,
+          "requestedIdsCount": 684
+        }
+      },
+      "runId": 41072651357,
+      "attempt": 1
+    },
+    "resolutionProof": null,
+    "sourcePhaseCompletedAt": "2026-10-30T08:55:00Z",
+    "runId": 41067979913,
+    "attemptedDataIds": [
+      "history:etfFR0013412269",
+      "index-bitcoin-returns",
+      "index-ethereum-returns",
+      "index-sp500-pea-returns",
+      "listing:CA13321L1085",
+      "listing:FR0010524777",
+      "listing:FR0013416716",
+      "listing:GB00BJYDH287",
+      "listing:GB00BLD4ZM24",
+      "listing:JE00B1VS3770",
+      "listing:KYG6683N1034",
+      "listing:LU1778762911",
+      "listing:NL0009805522",
+      "listing:SE0021921269",
+      "listing:US00217D1000",
+      "listing:US18915M1071",
+      "listing:US19260Q1076",
+      "listing:US21037T1097",
+      "listing:US23804L1035",
+      "listing:US26603R1068",
+      "listing:US36828A1016",
+      "listing:US58733R1023",
+      "listing:US5949724083",
+      "listing:US75734B1008",
+      "listing:US7707001027",
+      "listing:US7731211089",
+      "listing:US8334451098",
+      "listing:US83406F1021",
+      "listing:US92537N1081",
+      "listing:US98980G1022"
+    ],
+    "lastSuccessAt": "2026-10-29T22:51:29.215377+00:00",
+    "proofKeys": [
+      "evidence",
+      "resolvedAt",
+      "resolutionEvidence"
+    ]
+  }
+]

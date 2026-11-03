@@ -35,9 +35,11 @@ const duplicateSignals = ['IE00BJGWQN72','IE00BDVPNG13'].flatMap(isin=>[
  {...rows[0],id:`collection:update-qualified-exposures.yml:dca-holdings:${isin}`,tools:['A'],sourceUrls:['https://issuer.example/a']},
  {...rows[1],id:`field:instrument:${isin}:completeHoldings`,tools:['B'],cause:'Different diagnostic retained',sourceUrls:['https://issuer.example/b']}
 ])
-const presentations=incidentPresentations(duplicateSignals)
+assert.equal(incidentPresentations(duplicateSignals).length,4,'Unknown period/convention/stage cannot prove a duplicate')
+const provenSignals=duplicateSignals.map(r=>({...r,asOf:'2026-10-30',currency:'EUR',scope:'Exact share',method:'Full physical portfolio',stage:'Collecte'}))
+const presentations=incidentPresentations(provenSignals)
 assert.equal(presentations.length,2)
 assert.deepEqual(presentations.flatMap(r=>r.signals.map(s=>s.id)).sort(),duplicateSignals.map(r=>r.id).sort())
 assert(presentations.every(r=>r.tools.length===2&&r.sourceUrls.length===2))
-assert.equal(incidentPresentations([...duplicateSignals,{...rows[0],id:'field:instrument:IE00BJGWQN72:topHoldings'}]).length,3)
+assert.equal(incidentPresentations([...provenSignals,{...rows[0],id:'field:instrument:IE00BJGWQN72:topHoldings'}]).length,3)
 assert(duplicateSignals.every(r=>!r.signals),'No mutation of monitoring history')

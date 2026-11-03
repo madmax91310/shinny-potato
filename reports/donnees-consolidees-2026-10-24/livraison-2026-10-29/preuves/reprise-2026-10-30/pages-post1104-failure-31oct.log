@@ -1,0 +1,27 @@
+deploy	Run node scripts/prepare-code-data-refresh.mjs	﻿2026-10-31T01:10:53.5915874Z ##[group]Run node scripts/prepare-code-data-refresh.mjs
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:10:53.5916592Z [36;1mnode scripts/prepare-code-data-refresh.mjs[0m
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:10:53.5948243Z shell: /usr/bin/bash -e {0}
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:10:53.5948533Z env:
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:10:53.5948826Z   VALIDATED_CODE_SHA: cdb627ba2588e1dec61f0f2dcbe5036fcadb62f7
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:10:53.5949303Z   REQUIRED_DATA_RECEIPT: /home/runner/work/_temp/code-data-required.json
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:10:53.5949689Z ##[endgroup]
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0221070Z node:internal/modules/run_main:107
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0221819Z     triggerUncaughtException(
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0222611Z     ^
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0222910Z 
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0223503Z AssertionError [ERR_ASSERTION]: New identifiers need their own full validation before code/data promotion
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0224077Z 
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0224303Z 3 !== 0
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0224530Z 
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0225058Z     at main (file:///home/runner/work/shinny-potato/shinny-potato/scripts/prepare-code-data-refresh.mjs:39:10)
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0226871Z     at file:///home/runner/work/shinny-potato/shinny-potato/scripts/prepare-code-data-refresh.mjs:44:59 {
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0227707Z   generatedMessage: false,
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0227967Z   code: 'ERR_ASSERTION',
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0228204Z   actual: 3,
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0228413Z   expected: 0,
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0228631Z   operator: 'strictEqual',
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0228864Z   diff: 'simple'
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0229075Z }
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0229182Z 
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0229276Z Node.js v24.22.1
+deploy	Run node scripts/prepare-code-data-refresh.mjs	2026-10-31T01:11:11.0572602Z ##[error]Process completed with exit code 1.

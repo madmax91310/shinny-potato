@@ -46,5 +46,10 @@ export function contrastText(hex) {
   return luminance > .179 ? '#101c29' : '#ffffff'
 }
 
-export const annualImagePercent = value => `${value >= 0 ? '+' : '−'}${Math.abs(value).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
+export function annualImagePercent(value) {
+  const magnitude = Math.abs(value), sign = value < 0 ? '−' : '+'
+  if (magnitude > 0 && magnitude < .005) return `${sign}< 0,01 %`
+  const digits = magnitude > 0 && magnitude < .05 ? 2 : 1
+  return `${sign}${magnitude.toLocaleString('fr-FR', { minimumFractionDigits: digits, maximumFractionDigits: digits })} %`
+}
 

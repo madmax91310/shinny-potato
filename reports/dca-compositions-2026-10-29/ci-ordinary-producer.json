@@ -1,0 +1,326 @@
+{
+  "conclusion": "failure",
+  "databaseId": 40876841984,
+  "event": "pull_request",
+  "headSha": "9b07065da3e82fb4d821140bc10d42cdd12f066c",
+  "jobs": [
+    {
+      "name": "refresh",
+      "status": "completed",
+      "conclusion": "failure",
+      "startedAt": "2026-10-29T12:52:06Z",
+      "completedAt": "2026-10-29T12:54:30Z",
+      "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40876841984/job/123457725930",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v7.0.1",
+          "number": 2,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/setup-python@v7.0.0",
+          "number": 3,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/setup-node@v7.0.0",
+          "number": 4,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run pip install beautifulsoup4==4.15.0 xlrd==2.0.2",
+          "number": 5,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run npm ci",
+          "number": 6,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run python -m unittest discover -s scripts -p 'test_qualified_aum_retention.py'",
+          "number": 7,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run node scripts/test-qualified-aum-retention.mjs",
+          "number": 8,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run sudo apt-get update && sudo apt-get install -y poppler-utils",
+          "number": 9,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Install browser for public issuer API fallback",
+          "number": 10,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Collect observations: collect",
+          "number": 11,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Collect observations: equities",
+          "number": 12,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run node scripts/build-automation-targets.mjs",
+          "number": 13,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Validate staged source qualification",
+          "number": 14,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_regional_routes.py'",
+          "number": 15,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run python -m unittest discover -s scripts -p 'test_independent_portfolio_identities.py'",
+          "number": 16,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run node scripts/test-issuer-product-routes.mjs",
+          "number": 17,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run python -m unittest discover -s scripts -p 'test_security_candidate_names.py'",
+          "number": 18,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Validate public holdings API identities and complete weights",
+          "number": 19,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Refresh exact security identifier evidence",
+          "number": 20,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run python -m unittest discover -s scripts -p 'test_lg_discovery.py'",
+          "number": 21,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Discover complete issuer portfolios without replacing qualified values on failure",
+          "number": 22,
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "Collect observations: holdings",
+          "number": 23,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Collect observations: sleeves",
+          "number": 24,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Collect observations: underliers",
+          "number": 25,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Run python -m unittest discover -s scripts -p \"test_exposure_sleeves.py\"",
+          "number": 26,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Run python -m unittest discover -s scripts -p 'test_topix_holdings.py'",
+          "number": 27,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Validate complete DWS parser",
+          "number": 28,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Validate complete physical issuer portfolios",
+          "number": 29,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Run python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py' && python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py' && python -m unittest discover -s scripts -p 'test_pending_sources.py'",
+          "number": 30,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Validate DCA observations",
+          "number": 31,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Validate observations: node scripts test-qualified-exposures.mjs",
+          "number": 32,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Validate observations: npm run audit:instrument-catalog",
+          "number": 33,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Check access to remaining unqualified sources",
+          "number": 34,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Validate observations: npm run build",
+          "number": 35,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Verify complete portfolios in the browser",
+          "number": 36,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "number": 37,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Validate collected observations",
+          "number": 38,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Commit validated observations",
+          "number": 39,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "number": 76,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Post Run actions/setup-python@v7.0.0",
+          "number": 77,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v7.0.1",
+          "number": 78,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 79,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "report-failures",
+      "status": "completed",
+      "conclusion": "failure",
+      "startedAt": "2026-10-29T12:54:33Z",
+      "completedAt": "2026-10-29T12:54:35Z",
+      "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40876841984/job/123458913389",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "Run echo 'Collecte partielle : dernières valeurs fiables conservées ; données validées publiées si les contrôles réussissent.' >> \"$GITHUB_STEP_SUMMARY\"",
+          "number": 2,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 3,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "deploy",
+      "status": "completed",
+      "conclusion": "skipped",
+      "startedAt": "2026-10-29T12:54:30Z",
+      "completedAt": "2026-10-29T12:54:30Z",
+      "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40876841984/job/123458915985",
+      "steps": []
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40876841984",
+  "holdingsSummary": "176/183; identified securities: 410;",
+  "supportErrors": {
+    "IE00BDVPNG13": "Public Dataspan acquisition unavailable at https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI+LN&isoCode=en-GB: HTTP Error 403: Forbidden; Issuer API unavailable: Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n; public full portfolio unqualified: Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]",
+    "IE00BKLF1R75": "Public Dataspan acquisition unavailable at https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT+LN&isoCode=en-GB: HTTP Error 403: Forbidden; Issuer API unavailable: Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n; public full portfolio unqualified: Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]",
+    "IE0002Y8CX98": "Public Dataspan acquisition unavailable at https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF+LN&isoCode=en-GB: HTTP Error 403: Forbidden; Issuer API unavailable: Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n; public full portfolio unqualified: Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.eu/en-ie/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]",
+    "IE000W8WMSL2": "Public Dataspan acquisition unavailable at https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM+LN&isoCode=en-GB: HTTP Error 403: Forbidden; Issuer API unavailable: Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n; public full portfolio unqualified: Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]",
+    "IE00BZ56SW52": "Public Dataspan acquisition unavailable at https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA+LN&isoCode=en-GB: HTTP Error 403: Forbidden; Issuer API unavailable: Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n; public full portfolio unqualified: Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]",
+    "IE00BJGWQN72": "Public Dataspan acquisition unavailable at https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD+LN&isoCode=en-GB: HTTP Error 403: Forbidden; Issuer API unavailable: Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n; public full portfolio unqualified: Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]",
+    "IE00B441G979": "Equity NAV weights 100.762180% exceed the existing 100.5% limit; cash/derivatives excluded, no renormalisation"
+  },
+  "interpretation": "Ordinary pull_request producer execution; acquisition attempted for all declared supports, no production commit or deployment. Six WisdomTree public ranking endpoints returned HTTP 403; last valid records retained. World EUR Hedged failed the unchanged equity NAV weight cap."
+}

@@ -1,3 +1,4 @@
+import { BITCOIN_OPTIONS } from './theses.js';
 import { AUTOMATIC_FACTOR_ADMISSIONS } from '../../data/portfolio-admissions.js';
 // 16/10/2026: already-collected exact shares, newly used in automatic recipes.
 // No return series or issuer observations are copied here.
@@ -35,8 +36,8 @@ export function routingRecipes(profile,risk) {
   if(profile==='anti_inflation'&&i>=2) return [make('inflation-resources','Obligations indexées et producteurs de ressources', [['oblig_inflation',50],['basic_resources_pea',satellite],['fonds_euros',50-satellite]])];
   if(profile==='crypto_curieux'&&i>=1) {
     const btc=[0,5,12,20,35][i],core=[0,15,35,60,55][i];
-    return [make('crypto-imi','ACWI IMI et Bitcoin', [['bitcoin',btc,0],['acwi_imi_spdr',core],['fonds_euros',100-btc-core]]),
-      make('crypto-europe','Europe et Bitcoin', [['bitcoin',btc,0],['europe_pea_amundi',core],['fonds_euros',100-btc-core]])];
+    return [make('crypto-imi','ACWI IMI et Bitcoin', [[BITCOIN_OPTIONS,btc,0],['acwi_imi_spdr',core],['fonds_euros',100-btc-core]]),
+      make('crypto-europe','Europe et Bitcoin', [[BITCOIN_OPTIONS,btc,0],['europe_pea_amundi',core],['fonds_euros',100-btc-core]])];
   }
   return [];
 }

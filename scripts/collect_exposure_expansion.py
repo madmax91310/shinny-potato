@@ -1,4 +1,4 @@
-"""Daily exact-share refresh for the 35 requested exposure references.
+"""Daily exact-share refresh for the configured exposure references.
 
 Only dated, validated issuer observations enter the shared catalogue. A failed
 refresh preserves previous evidence and produces a failed workflow signal.
@@ -156,7 +156,7 @@ def main():
                 print(f"::warning::{share['isin']} {field['field']} retained at {field['asOf']}: {field['reason']}",flush=True)
             siblings={share['isin']:fund_siblings(share, config, fund_aum)}
             merged=merge_collection({'checkedAt': now.isoformat(), 'shares':[result]},current,{},siblings)
-            return {'isin':share['isin'],'status':'validated','record':merged[share['isin']], 'retainedFields':retained, 'unavailable':result.get('unavailable',[]), 'collectionErrors':result.get('collectionErrors',[])}
+            return {'isin':share['isin'],'status':'validated','record':merged[share['isin']], 'retainedFields':retained, 'unavailable':result.get('unavailable',[]), 'collectionErrors':result.get('collectionErrors',[]), 'sourceAttempts':result.get('sourceAttempts',[])}
         except Exception as error:
             return {'isin':share['isin'],'status':'failed','reason':str(error)}
     report=[]

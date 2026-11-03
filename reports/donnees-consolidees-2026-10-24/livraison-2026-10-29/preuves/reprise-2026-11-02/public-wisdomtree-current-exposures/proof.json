@@ -1,0 +1,163 @@
+{
+  "checkedAt": "2026-11-02T06:11:22.608Z",
+  "buildInfo": {
+    "sha": "28745bf683c489f60146d745d47dc5c786bdfee5",
+    "dataSha": "756a1fa93a76f82d0b9a68a2b25db77b92adde26",
+    "lane": "validated-data",
+    "builtAt": "2026-11-02T05:54:51.470Z"
+  },
+  "projectionBlobs": {
+    "src/pages/dca-profiles/exposures.json": "3b3371bc6107e55bf75e17c68b495b7934c8c9c2",
+    "src/pages/dca-profiles/exposures-extra-0.json": "e7dea5235378939234e145df93ed772909b8b83d",
+    "src/pages/dca-profiles/exposures-extra-1.json": "f6a688cfc0eb0965b0cda5b5a40ceca63f0096de",
+    "src/pages/dca-profiles/exposures-extra-2.json": "12593398f3108454d5bdbb399b5f8e51df00ac28"
+  },
+  "results": [
+    {
+      "isin": "IE0002Y8CX98",
+      "key": "IE0002Y8CX98",
+      "fields": [
+        {
+          "field": "countries",
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+          "rows": 14,
+          "originalWeightSum": 99.99989999999998,
+          "independentlyComparedRows": 14
+        },
+        {
+          "field": "sectors",
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+          "rows": 3,
+          "originalWeightSum": 99.9998,
+          "independentlyComparedRows": 3
+        }
+      ],
+      "shots": [
+        {
+          "width": 1440,
+          "bytes": 542401,
+          "sha256": "ae4d89fc928dd98e457ec3d81e28b7649fd3152e82eb710698bfc78abdff3b33"
+        },
+        {
+          "width": 390,
+          "bytes": 542401,
+          "sha256": "ae4d89fc928dd98e457ec3d81e28b7649fd3152e82eb710698bfc78abdff3b33"
+        }
+      ]
+    },
+    {
+      "isin": "IE000W8WMSL2",
+      "key": "IE000W8WMSL2",
+      "fields": [
+        {
+          "field": "countries",
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB",
+          "rows": 13,
+          "originalWeightSum": 100.0001,
+          "independentlyComparedRows": 13
+        },
+        {
+          "field": "sectors",
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB",
+          "rows": 4,
+          "originalWeightSum": 99.9998,
+          "independentlyComparedRows": 4
+        }
+      ],
+      "shots": [
+        {
+          "width": 1440,
+          "bytes": 547442,
+          "sha256": "35f07a4eb1c807841a552cf4e2a155b21a999e06b5035aa32a38e49d5c523c6e"
+        },
+        {
+          "width": 390,
+          "bytes": 547442,
+          "sha256": "35f07a4eb1c807841a552cf4e2a155b21a999e06b5035aa32a38e49d5c523c6e"
+        }
+      ]
+    },
+    {
+      "isin": "IE00BZ56SW52",
+      "key": "IE00BZ56SW52",
+      "fields": [
+        {
+          "field": "countries",
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+          "rows": 27,
+          "originalWeightSum": 99.99980000000005,
+          "independentlyComparedRows": 27
+        },
+        {
+          "field": "sectors",
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+          "rows": 11,
+          "originalWeightSum": 99.99930000000002,
+          "independentlyComparedRows": 11
+        }
+      ],
+      "shots": [
+        {
+          "width": 1440,
+          "bytes": 561355,
+          "sha256": "6b3b79f4ff9d03bd279230d22be9193169985a7cd55a26c7d946710723ed23ca"
+        },
+        {
+          "width": 390,
+          "bytes": 561355,
+          "sha256": "6b3b79f4ff9d03bd279230d22be9193169985a7cd55a26c7d946710723ed23ca"
+        }
+      ]
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "key": "cloud",
+      "fields": [
+        {
+          "field": "countries",
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB",
+          "rows": 3,
+          "originalWeightSum": 100,
+          "independentlyComparedRows": 3
+        },
+        {
+          "field": "sectors",
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB",
+          "rows": 4,
+          "originalWeightSum": 99.9999,
+          "independentlyComparedRows": 4
+        }
+      ],
+      "shots": [
+        {
+          "width": 1440,
+          "bytes": 528003,
+          "sha256": "75ef6d0cdc6f55da2be0555826d625fb393b7dc059ef2c105391768cd346410f"
+        },
+        {
+          "width": 390,
+          "bytes": 528003,
+          "sha256": "75ef6d0cdc6f55da2be0555826d625fb393b7dc059ef2c105391768cd346410f"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "limit": "Current effective country/sector consumers and identical preview/download. A newer complete fund book may legitimately supersede older rankings; no index composition or full overlap inferred."
+}

@@ -1,0 +1,36 @@
+{
+  "runId": 41028955055,
+  "jobId": 123973785749,
+  "sourceRecord": "03e082e",
+  "scope": "etfImie plus ordinary shared listing and ranking controls; no whole catalogue recollection",
+  "validation": {
+    "startedAt": "2026-10-30T09:04:07Z",
+    "completedAt": "2026-10-30T09:25:06Z",
+    "seconds": 1259,
+    "poolSize": 4020448,
+    "partitions": 2,
+    "checkedPerPartition": 2010224,
+    "failures": 0,
+    "lines": [
+      "2026-10-30T09:24:54.7508514Z [1/2] TWEET_MIDI_RESULT {\"shardIndex\":0,\"shardCount\":2,\"poolSize\":4020448,\"checked\":2010224,\"failures\":0}",
+      "2026-10-30T09:25:04.8852455Z [2/2] TWEET_MIDI_RESULT {\"shardIndex\":1,\"shardCount\":2,\"poolSize\":4020448,\"checked\":2010224,\"failures\":0}",
+      "2026-10-30T09:25:06.1285480Z Complete verifier: 4020448/4020448 entries; both disjoint partitions succeeded."
+    ]
+  },
+  "previous": {
+    "runId": 41021945751,
+    "startedAt": "2026-10-30T08:12:28Z",
+    "completedAt": "2026-10-30T08:53:31Z",
+    "seconds": 2463
+  },
+  "limitation": "Observed runs, not a controlled hardware benchmark. Exact financial convention and exhaustive pool preserved. Publication verified separately below; manual execution is not a scheduled-trigger proof.",
+  "limitationBeforePublicationCheck": "Observed runs, not a controlled hardware benchmark. No financial convention or pool reduced. Publication still to verify.",
+  "publication": {
+    "verifiedArtifact": 12966633901,
+    "sourceCommit": "03e082e211f2d1b8f562a10bf2149efb17bdb269",
+    "publicCode": "9e41b88239ddebcb842402e90bd6601ae1323823",
+    "publicData": "03e082e211f2d1b8f562a10bf2149efb17bdb269",
+    "receipt": "imie-41028955055-12966633901-publication-verified.json.gz",
+    "qualificationScope": "Only exact target etfImie and declared common derived projections; no new financial window inferred"
+  }
+}

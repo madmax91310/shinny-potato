@@ -58,9 +58,18 @@ def parse_document(body,share,now):
     if not assets or assets[1].strip().replace('€','EUR').replace('$','USD')!=share['currency']:reject('VanEck asset currency mismatch')
     ter=float(re.search(r'Total Expense Ratio\s+(\d+\.\d+)%',text)[1])
     if not 0<=ter<=5:reject('Invalid VanEck TER')
-    result={**share,'productId':share['isin'],'terPct':ter,'index':share['benchmark'],'distribution':share.get('distribution'),
+    # Reuse the exact-share metadata parser. Configured identity references are
+    # not freshly observed characteristics and must not renew their evidence.
+    from collect_instrument_metadata import parse_text
+    metadata = parse_text(text, share['isin'])
+    observed = {'terPct':ter, **{key:metadata[key] for key in ('distribution','domicile','replicationMethod') if key in metadata},
+                'asOf':stamp, 'sourceUrl':share['sourceUrl'], 'sha256':proof(body)}
+    result={**share,'productId':share['isin'],'terPct':ter,'index':share['benchmark'],'distribution':metadata.get('distribution'),
+        'characteristics':observed,
         'aum':{'amount':float(assets[2].replace(',',''))*(1e6 if assets[3]=='M' else 1e9),'currency':share['currency'],'scope':'fund','asOf':stamp},
         'documentSha256':proof(body),'unavailable':[]}
+    for key in ('distribution','domicile','replicationMethod'):
+        if key not in metadata:result['unavailable'].append(key+': explicit exact-share metadata missing from official document')
     country=[];left=pdf_text(body,(0,185))
     if 'Country Breakdown'in left:
         block=left.split('Country Breakdown',1)[1].split('\f',1)[0]
@@ -97,7 +106,7 @@ def download_document(share, fetch=download):
     for url in urls:
         parsed=urlparse(url)
         if (parsed.scheme!='https' or parsed.netloc!='www.vaneck.com' or parsed.query or parsed.fragment
-                or not re.fullmatch(r'/(?:ucits|[a-z]{2}/en)/library/fact-sheets/[a-z0-9]+-fact-sheet\.pdf',parsed.path)
+                or not re.fullmatch(r'/(?:ucits|[a-z]{2}/en|fr/fr)/library/fact-sheets/[a-z0-9]+-fact-sheet\.pdf',parsed.path)
                 or pathlib.PurePosixPath(parsed.path).name!=document):
             reject('Unexpected VanEck regional document URL')
     last_error=None

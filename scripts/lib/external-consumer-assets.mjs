@@ -49,7 +49,6 @@ export function externalConsumerAssets(workflows,now=new Date().toISOString()){
  }
  const regulatory=read('src/data/automated-regulatory.json').sources
  const contracts=[
-  {path:'/simulateur-patrimoine',files:['src/pages/wealth-simulator/data.js','src/pages/wealth-simulator/App.jsx'],extra:['pel']},
   {path:'/fiches-pratiques',files:['src/pages/practical-sheets/lib.js'],extra:[]},
  ]
  const regulations=Object.entries(regulatory).flatMap(([id,o])=>{

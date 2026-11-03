@@ -9,6 +9,7 @@ if (!Number.isInteger(shard) || !Number.isInteger(total) || shard < 0 || shard >
 const planned = planShards(commands, total, durations)[shard]
 const measured = {shard,total,checks:[]}
 console.log(`Browser shard ${shard + 1}/${total}: ${planned.commands.length} checks, estimated ${planned.seconds.toFixed(1)}s`)
+mkdirSync('test-artifacts', {recursive:true})
 for (const command of planned.commands) {
   console.log(`::group::${command}`)
   const started = Date.now()

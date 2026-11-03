@@ -1,9 +1,11 @@
-import {chromium} from 'playwright'
+import {chromium,firefox,webkit} from 'playwright'
 import {readFile} from 'node:fs/promises'
 import {resolve,extname} from 'node:path'
 export const staticBase='https://production.test/shinny-potato/'
-export async function staticBrowser(width=390){
- const browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']}: {})})
+export async function staticBrowser(width=390,engine='chromium'){
+ const launcher={chromium,firefox,webkit}[engine]
+ if(!launcher)throw new Error('Unknown browser engine')
+ const browser=await launcher.launch({headless:true,...(engine==='chromium'&&process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']}: {})})
  const context=await browser.newContext({viewport:{width,height:950}})
  await context.route('**/*',async route=>{
   const url=route.request().url();if(!url.startsWith(staticBase))return route.abort()

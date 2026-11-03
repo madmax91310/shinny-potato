@@ -1,0 +1,656 @@
+{
+  "source": "current tracked workflows; counts include validations, producers, supervision, pilots and deployment, not just collectors",
+  "rows": [
+    {
+      "file": ".github/workflows/automation-status.yml",
+      "name": "Publish automation failures",
+      "scheduled": true,
+      "triggers": [
+        "workflow_run",
+        "workflow_dispatch",
+        "schedule",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "file": ".github/workflows/collect-etf-pilot.yml",
+      "name": "Update active ETF issuer data",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/deploy-pages.yml",
+      "name": "Deploy to GitHub Pages",
+      "scheduled": false,
+      "triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch",
+        "workflow_call"
+      ]
+    },
+    {
+      "file": ".github/workflows/investment-image-check.yml",
+      "name": "Investment image regression",
+      "scheduled": false,
+      "triggers": [
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/onboard-assets.yml",
+      "name": "Onboard new assets",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "file": ".github/workflows/probe-bitcoin-monthly.yml",
+      "name": "Free Bitcoin monthly data pilot",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/publish-validated-data.yml",
+      "name": "Publish validated data with published code",
+      "scheduled": false,
+      "triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "file": ".github/workflows/qualify-wti-nav.yml",
+      "name": "Qualify existing WisdomTree issuer routes",
+      "scheduled": false,
+      "triggers": [
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/refresh-automated-index-sheets.yml",
+      "name": "Refresh fully automated index sheets",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/rehearse-refresh.yml",
+      "name": "Rehearse future data refreshes",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "push",
+        "workflow_dispatch",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/retire-closed-pr-validation.yml",
+      "name": "Retire closed PR validation",
+      "scheduled": false,
+      "triggers": [
+        "pull_request_target"
+      ]
+    },
+    {
+      "file": ".github/workflows/review-freshness.yml",
+      "name": "Revue hebdomadaire des données",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "file": ".github/workflows/test-tweet-bank-private.yml",
+      "name": "Validate private tweet bank",
+      "scheduled": false,
+      "triggers": [
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-bitcoin-monthly.yml",
+      "name": "Update active Bitcoin Yahoo data",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-economic-data.yml",
+      "name": "Update official economic data",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-editorial-radar.yml",
+      "name": "Update editorial radar",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "workflow_run"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-exposure-expansion.yml",
+      "name": "Refresh 35 portfolio exposure ETFs",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-gold-monthly.yml",
+      "name": "Update World Bank monthly gold data",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-inflation.yml",
+      "name": "Update INSEE monthly inflation",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-instrument-metadata.yml",
+      "name": "Update exact instrument metadata",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-insurance.yml",
+      "name": "Update insurance presentations",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-investor-13f.yml",
+      "name": "Update investor 13F portfolios",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-lifestrategy.yml",
+      "name": "Update Vanguard LifeStrategy data",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-market-monthly.yml",
+      "name": "Update active monthly market histories",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-non-bond-expansion.yml",
+      "name": "Update non-bond expansion",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-practical-sheets.yml",
+      "name": "Update practical sheet references",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-presentation-actors.yml",
+      "name": "Update actor presentations",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-publication-observations.yml",
+      "name": "Update publication observations",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-qualified-exposures.yml",
+      "name": "Update qualified exposure ETF data",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-regulatory-data.yml",
+      "name": "Update official regulatory data",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/update-scpi.yml",
+      "name": "Update SCPI presentations",
+      "scheduled": true,
+      "triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "file": ".github/workflows/validate-asset-automation.yml",
+      "name": "Validate asset field automation",
+      "scheduled": false,
+      "triggers": [
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/validate-automation-lots.yml",
+      "name": "Validate automation lots 1 to 5",
+      "scheduled": false,
+      "triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "file": ".github/workflows/validate-code-data-refresh.yml",
+      "name": "Validate code and data publication refresh",
+      "scheduled": false,
+      "triggers": [
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/validate-dws-aum.yml",
+      "name": "Validate dated DWS AUM recovery",
+      "scheduled": false,
+      "triggers": [
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/validate-global-equities.yml",
+      "name": "Validate global equity connections",
+      "scheduled": false,
+      "triggers": [
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/validate-issuer-recovery.yml",
+      "name": "Validate issuer holdings recovery",
+      "scheduled": false,
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "file": ".github/workflows/validate-non-bond-expansion.yml",
+      "name": "Validate non-bond expansion",
+      "scheduled": false,
+      "triggers": [
+        "workflow_dispatch",
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/validate-performance-rankings.yml",
+      "name": "Validate performance rankings",
+      "scheduled": false,
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "file": ".github/workflows/validate-roadmap-34.yml",
+      "name": "Validate asset roadmap 3 and 4",
+      "scheduled": false,
+      "triggers": [
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/validate-russell-composition.yml",
+      "name": "Validate Russell 1000 printed composition",
+      "scheduled": false,
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "file": ".github/workflows/validate-sp-public-data.yml",
+      "name": "Validate S&P public composition data",
+      "scheduled": false,
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "file": ".github/workflows/validate-tool-expansion-round3.yml",
+      "name": "Validate automated tool expansion",
+      "scheduled": false,
+      "triggers": [
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/validate-tool-expansion-round4.yml",
+      "name": "Validate automated expansion round 4",
+      "scheduled": false,
+      "triggers": [
+        "pull_request"
+      ]
+    },
+    {
+      "file": ".github/workflows/verify-amundi-distributions.yml",
+      "name": "Verify historical Amundi cash reconciliation",
+      "scheduled": false,
+      "triggers": [
+        "workflow_dispatch",
+        "push"
+      ]
+    },
+    {
+      "file": ".github/workflows/verify-data-review.yml",
+      "name": "Verify data review sources without publication",
+      "scheduled": false,
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "file": ".github/workflows/verify-etf-publication-954.yml",
+      "name": "Verify ETF publication 954",
+      "scheduled": false,
+      "triggers": [
+        "push"
+      ]
+    },
+    {
+      "file": ".github/workflows/verify-reliquat-sources.yml",
+      "name": "Verify exact official sources for audit remainder",
+      "scheduled": false,
+      "triggers": [
+        "workflow_dispatch",
+        "push"
+      ]
+    },
+    {
+      "file": ".github/workflows/verify-remainder-nav.yml",
+      "name": "Verify remainder exact-share NAV routes",
+      "scheduled": false,
+      "triggers": [
+        "workflow_dispatch",
+        "push"
+      ]
+    },
+    {
+      "file": ".github/workflows/verify-vaneck-nav.yml",
+      "name": "Qualify existing VanEck NAV routes",
+      "scheduled": false,
+      "triggers": [
+        "workflow_dispatch",
+        "push"
+      ]
+    },
+    {
+      "file": ".github/workflows/verify-wfns-distribution.yml",
+      "name": "Verify official distribution reconciliation",
+      "scheduled": false,
+      "triggers": [
+        "workflow_dispatch",
+        "push"
+      ]
+    }
+  ],
+  "workflows": 51,
+  "scheduled": 25,
+  "registeredMonitoredWorkflows": 24,
+  "registeredMissingFiles": [],
+  "scheduledOutsideProducerRegistry": [
+    "automation-status.yml",
+    "probe-bitcoin-monthly.yml"
+  ],
+  "registeredWithoutSchedule": [
+    "deploy-pages.yml"
+  ],
+  "registryRows": [
+    {
+      "workflow": "update-practical-sheets.yml",
+      "name": "Sources des fiches pratiques",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-editorial-radar.yml",
+      "name": "Radar éditorial quotidien",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-publication-observations.yml",
+      "name": "Pouvoir d’achat et niveaux des anniversaires",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-insurance.yml",
+      "name": "Présentations d’assurance-vie",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-scpi.yml",
+      "name": "Présentations de SCPI",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-presentation-actors.yml",
+      "name": "Présentations des acteurs et offres",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-regulatory-data.yml",
+      "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "collect-etf-pilot.yml",
+      "name": "ETF et compositions d’indices",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-market-monthly.yml",
+      "name": "Historiques mensuels des marchés",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-bitcoin-monthly.yml",
+      "name": "Historique du bitcoin",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-gold-monthly.yml",
+      "name": "Historique de l’or",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-inflation.yml",
+      "name": "Inflation INSEE",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-investor-13f.yml",
+      "name": "Portefeuilles des investisseurs",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-economic-data.yml",
+      "name": "Taux d’épargne, ménages, SCPI et fonds euros",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-lifestrategy.yml",
+      "name": "Vanguard LifeStrategy",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-non-bond-expansion.yml",
+      "name": "Nouveaux actifs et historiques",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-qualified-exposures.yml",
+      "name": "Expositions ETF qualifiées",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "refresh-automated-index-sheets.yml",
+      "name": "Fiches d’indices automatisées",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-exposure-expansion.yml",
+      "name": "35 ETF des allocations",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "update-instrument-metadata.yml",
+      "name": "Caractéristiques et statut PEA par ISIN",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "onboard-assets.yml",
+      "name": "Intégration des nouveaux actifs",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "rehearse-refresh.yml",
+      "name": "Répétition des futures collectes",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "review-freshness.yml",
+      "name": "Revue hebdomadaire des données",
+      "scheduled": true,
+      "filePresent": true
+    },
+    {
+      "workflow": "deploy-pages.yml",
+      "name": "Construction et publication de l’application",
+      "scheduled": false,
+      "filePresent": true
+    }
+  ],
+  "countingExplanation": "25workflowsprogrammés =21producteurs surveillés programmés +2contrôles (rehearse-refresh/review-freshness) +1supervision automation-status +1pilote Bitcoin. Les24entrées du registre =21producteurs +2contrôles +publication deploy-pages, conditionnelle sans cron. Les51fichiers incluent également lesCI/recettes/maintenance. Aucun workflow IA restauré."
+}

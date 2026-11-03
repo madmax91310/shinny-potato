@@ -1,0 +1,40 @@
+{
+  "environment": "Isolated real-source replay through main(), one real configured PayPal source; no production data modified",
+  "checkedAt": "2026-11-01T17:23:11.992562+00:00",
+  "beforePeriodEnd": "2026-09",
+  "afterPeriodEnd": "2026-10",
+  "report": {
+    "checkedAt": "2026-11-01T17:23:11.565609+00:00",
+    "scope": {
+      "requestedIds": [
+        "paypal"
+      ],
+      "expectedIds": [
+        "paypal"
+      ],
+      "selection": "failed-or-missing"
+    },
+    "series": [
+      {
+        "id": "paypal",
+        "status": "validated",
+        "sourceState": "succeeded",
+        "periodEnd": "2026-10",
+        "responseSha256": "2163b71954964ffc8cd2451c29a393ca85ea135f872c17a3ccf57947d7c52fa7"
+      }
+    ]
+  },
+  "sourceConfiguration": {
+    "id": "paypal",
+    "label": "PayPal",
+    "currency": "USD",
+    "periodStart": "2015-08",
+    "method": "Cl\u00f4ture quotidienne ajust\u00e9e des dividendes et divisions \u00e0 la derni\u00e8re s\u00e9ance mensuelle ; recoupement avec la cl\u00f4ture de la bougie mensuelle Yahoo",
+    "parser": "yahoo",
+    "symbol": "PYPL",
+    "field": "adjclose",
+    "precision": 6,
+    "collectAnniversary": true,
+    "timezone": "America/New_York"
+  }
+}

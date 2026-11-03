@@ -1,0 +1,68 @@
+{
+  "scope": "Real unmodified AMZN responses for isolated month-boundary regressions; not a source refresh or a new financial admission.",
+  "config": {
+    "id": "long-amazon",
+    "label": "Amazon",
+    "currency": "USD",
+    "periodStart": "2005-12",
+    "method": "Clôture quotidienne ajustée des dividendes et divisions à la dernière séance mensuelle ; recoupement avec la clôture de la bougie mensuelle Yahoo",
+    "parser": "yahoo",
+    "symbol": "AMZN",
+    "field": "adjclose",
+    "precision": 6,
+    "collectAnniversary": false,
+    "timezone": "America/New_York",
+    "targetId": "amazon",
+    "discoverStart": true
+  },
+  "responses": {
+    "daily": {
+      "checkedAt": "2026-11-01T14:41:26.787888+00:00",
+      "url": "https://query2.finance.yahoo.com/v8/finance/chart/AMZN?period1=1133395200&period2=1793491200&interval=1d&events=div%2Csplits",
+      "sha256": "8096d7143919dae46c2f9f2fbd9b9aa12729680e46f7954ad445fa78bda24cce",
+      "bytes": 580040,
+      "rows": 5261,
+      "lastClose": 240.35000610351562,
+      "lastAdjustedClose": 240.35000610351562
+    },
+    "monthly": {
+      "checkedAt": "2026-11-01T14:37:07.629733+00:00",
+      "url": "https://query2.finance.yahoo.com/v8/finance/chart/AMZN?period1=1133395200&period2=1793491200&interval=1mo&events=div%2Csplits",
+      "sha256": "1a78566d795eda40f1515793bd4c6c259e330fb45f1cfa8b0bc37a8d46a59d0d",
+      "bytes": 29385,
+      "symbol": "AMZN",
+      "currency": "USD",
+      "timezone": "America/New_York",
+      "rows": 252,
+      "shiftedRows": [
+        {
+          "epoch": 1793390401,
+          "localDate": "2026-10-30T16:00:01-04:00",
+          "close": 240.35000610351562
+        }
+      ],
+      "lastRows": [
+        {
+          "epoch": 1785556800,
+          "localDate": "2026-08-01T00:00:00-04:00",
+          "close": 259.7699890136719
+        },
+        {
+          "epoch": 1788235200,
+          "localDate": "2026-09-01T00:00:00-04:00",
+          "close": 249.14999389648438
+        },
+        {
+          "epoch": 1790827200,
+          "localDate": "2026-10-01T00:00:00-04:00",
+          "close": 240.35000610351562
+        },
+        {
+          "epoch": 1793390401,
+          "localDate": "2026-10-30T16:00:01-04:00",
+          "close": 240.35000610351562
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "kind": "actual producer in PR; no production write",
+  "runId": 41348646379,
+  "rows": [
+    {
+      "isin": "JE00B1VS3770",
+      "aum": {
+        "amount": 6446813696.0,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-30",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2741017"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "87019d756083a523821d75dfdbcc37228b22eb6010476d0cecad9e8f48be7760",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+        "identitySha256": "49ef74415799fcbce3e4327caf91421cc14fdc3af7dc78133d01df9ce7fbd2d1",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-11-01",
+        "modifiedAt": "2026-11-01"
+      },
+      "collectionErrors": [],
+      "attempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ],
+          "sharedCurrentResponse": true,
+          "transportAttempts": [
+            {
+              "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+              "transport": "http",
+              "status": "downloaded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "GB00BJYDH287",
+      "aum": {
+        "amount": 1514638976.0,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-30",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "3371846"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "87019d756083a523821d75dfdbcc37228b22eb6010476d0cecad9e8f48be7760",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
+        "identitySha256": "95ebfd8527743eb82559f322974f45e67c7f8ab980eea6b3fc30b87a15d4b637",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-11-01",
+        "modifiedAt": "2026-11-01"
+      },
+      "collectionErrors": [],
+      "attempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ],
+          "sharedCurrentResponse": true,
+          "transportAttempts": [
+            {
+              "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+              "transport": "http",
+              "status": "downloaded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "GB00B15KXQ89",
+      "aum": {
+        "amount": 1877425664.0,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-30",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2740790"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "87019d756083a523821d75dfdbcc37228b22eb6010476d0cecad9e8f48be7760",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+        "identitySha256": "c89045facb7d2abef28fae55bf8e85684e926edfa9c3373b7fcb55d606c8cca0",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-11-01",
+        "modifiedAt": "2026-11-01"
+      },
+      "collectionErrors": [],
+      "attempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ],
+          "sharedCurrentResponse": true,
+          "transportAttempts": [
+            {
+              "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+              "transport": "http",
+              "status": "downloaded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE0002Y8CX98",
+      "aum": {
+        "amount": 4581734912.0,
+        "currency": "EUR",
+        "scope": "fund",
+        "asOf": "2026-10-30",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "3474438"
+        ],
+        "nonNativeListingsExcluded": 2,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "87019d756083a523821d75dfdbcc37228b22eb6010476d0cecad9e8f48be7760",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+        "identitySha256": "30ac82d29be5d8453df9ef0c390ac4d882749e6d6c1df6a85420ddc8d2e4c63b",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-11-01",
+        "modifiedAt": "2026-11-01"
+      },
+      "collectionErrors": [],
+      "attempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ],
+          "sharedCurrentResponse": true,
+          "transportAttempts": [
+            {
+              "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+              "transport": "http",
+              "status": "downloaded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE000W8WMSL2",
+      "aum": {
+        "amount": 324516800.0,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-30",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "3578824"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "87019d756083a523821d75dfdbcc37228b22eb6010476d0cecad9e8f48be7760",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+        "identitySha256": "326008744e0620d65c217d18d5b5af9ada7812ef9ba63bbcd00a351f20dd4eaa",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-11-01",
+        "modifiedAt": "2026-11-01"
+      },
+      "collectionErrors": [],
+      "attempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ],
+          "sharedCurrentResponse": true,
+          "transportAttempts": [
+            {
+              "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+              "transport": "http",
+              "status": "downloaded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BZ56SW52",
+      "aum": {
+        "amount": 1706268800.0,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-30",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2000433"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "87019d756083a523821d75dfdbcc37228b22eb6010476d0cecad9e8f48be7760",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+        "identitySha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-11-01",
+        "modifiedAt": "2026-11-01"
+      },
+      "collectionErrors": [],
+      "attempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ],
+          "sharedCurrentResponse": true,
+          "transportAttempts": [
+            {
+              "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+              "transport": "http",
+              "status": "downloaded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "aum": {
+        "amount": 400637024.0,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-10-30",
+        "method": "Issuer collective directory AUM, native fund/base/listing currency; no AUMusd, NAV-times-shares or Net_Assets substitution",
+        "controlledListingIds": [
+          "2921038"
+        ],
+        "nonNativeListingsExcluded": 1,
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+        "sha256": "87019d756083a523821d75dfdbcc37228b22eb6010476d0cecad9e8f48be7760",
+        "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+        "identitySha256": "7ab5627948d2b2b95c578d10e741db9738894ca076bb8ce4d67713fac91219ee",
+        "identityAsOf": "2026-09-30",
+        "checkedAt": "2026-11-01",
+        "modifiedAt": "2026-11-01"
+      },
+      "collectionErrors": [],
+      "attempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ],
+          "sharedCurrentResponse": true,
+          "transportAttempts": [
+            {
+              "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+              "transport": "http",
+              "status": "downloaded"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

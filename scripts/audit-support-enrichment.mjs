@@ -5,7 +5,12 @@ import { readFileSync } from 'node:fs';
 import { INSTRUMENT_FACTS_BY_ISIN } from '../src/data/instrument-facts.js';
 import { applyAutomatedCharacteristics } from '../src/data/automated-characteristics.js';
 import { ETF_TER_BY_ISIN } from '../src/data/etf-ter.js';
-import { ASSETS } from '../src/data/portfolio-assets.js';
+import { ASSETS, YEARS } from '../src/data/portfolio-assets.js';
+import { AUTOMATED_PORTFOLIO_FUNDS } from '../src/data/automated-portfolio-funds.js';
+import { assertQualifiedManualSupport } from './lib/portfolio-support-evidence.mjs';
+import MONTHLY_RETURNS from '../src/data/monthly-duel-returns.json' with {type:'json'};
+import ETF_HISTORIES from '../src/data/automated-etf-monthly.json' with {type:'json'};
+import NON_BOND_HISTORIES from '../src/data/non-bond-monthly-records.json' with {type:'json'};
 import { ETFS } from '../src/data/etf-cards.js';
 import EQUITY_RETURNS from '../src/data/equity-duel-returns.json' with {type:'json'};
 import { buildText } from '../src/pages/etf-sheets/lib.js';
@@ -42,11 +47,13 @@ for (const asset of ASSETS.filter(a => a.isin)) {
     const source=EQUITY_RETURNS.find(r=>r.id===asset.id && r.isin===asset.isin);
     assert(source?.source?.startsWith('https://') && source.checkedAt && asset.manualOnly && asset.returnCurrency==='EUR',`Source action manquante : ${asset.id}`);
     assert.deepEqual(asset.calendarReturns,source.euroCalendarReturns);
+  } else if(!ETFS.some(c=>c.isin===asset.isin)&&asset.automatedManual) {
+    assertQualifiedManualSupport(asset,{candidates:AUTOMATED_PORTFOLIO_FUNDS,projections:MONTHLY_RETURNS,histories:{...ETF_HISTORIES,...NON_BOND_HISTORIES},calendarYears:YEARS});
   } else assert(ETFS.some(c => c.isin === asset.isin), `Fiche manquante : ${asset.id}`);
 }
 assert.equal(new Set(ETFS.map(c => c.isin)).size, ETFS.length);
 assert.equal(new Set(ETFS.map(c => c.hook)).size, ETFS.length);
-console.log('52 fiches ajoutées : profils ISIN rejoués, TER et caractéristiques concordants ; tous les supports du générateur couverts.');
+console.log('52 fiches ajoutées : profils ISIN rejoués, TER et caractéristiques concordants ; supports du générateur liés à leur fiche ou à leur historique manuel qualifié.');
 
 for (const card of ETFS) {
   const copy = getPresentationCopy(card);

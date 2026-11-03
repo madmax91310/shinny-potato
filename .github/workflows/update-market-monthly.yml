@@ -2,32 +2,57 @@ name: Update active monthly market histories
 on:
   schedule:
     - cron: '15 6 2,4,8,16 * *'
-    # Recover transient failures daily without downloading healthy histories.
+    # Recover failures and missing closed months; current histories are skipped.
     - cron: '45 6 * * *'
   workflow_dispatch:
     inputs:
+      series:
+        description: 'Séries exactes à recollecter, séparées par des virgules ; vide = périmètre habituel'
+        type: string
+        default: ''
+      ranking_sources:
+        description: 'Sources classement/change exactes à reprendre ; fx = changes seulement, vide = sélection habituelle'
+        type: string
+        default: ''
       listings_only:
         description: 'Vérifier uniquement les 21 identités communes, sans recollecter les historiques'
         type: boolean
         default: false
       retry_failed:
-        description: 'Reprendre uniquement les sources échouées ou manquantes ; conserver les données déjà qualifiées'
+        description: 'Reprendre les sources échouées ou dont le dernier mois clos manque ; ignorer les séries à jour'
         type: boolean
         default: false
   push:
     branches: [master]
     paths:
+      - 'src/pages/portfolio-duels/visualIdentity.js'
       - '.github/workflows/update-market-monthly.yml'
+      - 'scripts/observation_rebase_guard.py'
+      - 'scripts/test_observation_rebase.py'
       - 'scripts/derive_index_returns.py'
       - 'scripts/refresh_index_sources.py'
       - 'scripts/index-automation.json'
       - 'scripts/refresh_monthly_history.py'
+      - 'scripts/nasdaq_month_close.py'
+      - 'scripts/test_nasdaq_month_close.py'
+      - 'scripts/fixtures/starbucks-month-close-20261101/**'
+      - 'scripts/qualified_split_comparison.py'
+      - 'scripts/lib/split-comparison-proof.mjs'
+      - 'scripts/test-split-comparison-proof.mjs'
+      - 'scripts/fixtures/imie-split-2026/**'
       - 'scripts/qualified_distributions.py'
       - 'scripts/test_qualified_distributions.py'
       - 'scripts/issuer_nav_history.py'
       - 'scripts/bnp_nav_history.py'
       - 'scripts/test_bnp_nav_history.py'
       - 'scripts/collect_official_share_history.py'
+      - 'scripts/blackrock_income_history.py'
+      - 'scripts/new-distributing-nav-sources.json'
+      - 'scripts/test_blackrock_income_history.py'
+      - 'scripts/fixtures/income-recovery-20261102/**'
+      - 'scripts/new-instrument-nav-sources.json'
+      - 'scripts/test_new_instruments.py'
+      - 'scripts/fixtures/new-instruments/**'
       - 'scripts/qualify_monthly_candidates.py'
       - 'scripts/build-equity-history-links.mjs'
       - 'scripts/export-equity-candidates.mjs'
@@ -48,11 +73,27 @@ on:
       - 'scripts/test_h10_fx.py'
   pull_request:
     paths:
+      - 'scripts/collect_ranking_sources.py'
+      - 'scripts/h10_fx.py'
+      - 'scripts/test_h10_fx.py'
+      - 'scripts/test_h10_xml.py'
+      - 'scripts/test_cross_fx_fallback.py'
+      - 'scripts/qualify_h10_xml.py'
+      - 'scripts/fixtures/h10-xml/**'
       - '.github/workflows/update-market-monthly.yml'
+      - 'scripts/observation_rebase_guard.py'
+      - 'scripts/test_observation_rebase.py'
       - 'scripts/derive_index_returns.py'
       - 'scripts/refresh_index_sources.py'
       - 'scripts/index-automation.json'
       - 'scripts/*monthly*'
+      - 'scripts/nasdaq_month_close.py'
+      - 'scripts/test_nasdaq_month_close.py'
+      - 'scripts/fixtures/starbucks-month-close-20261101/**'
+      - 'scripts/qualified_split_comparison.py'
+      - 'scripts/lib/split-comparison-proof.mjs'
+      - 'scripts/test-split-comparison-proof.mjs'
+      - 'scripts/fixtures/imie-split-2026/**'
       - 'scripts/data_automation.py'
       - 'scripts/test_data_automation.py'
       - 'src/data/*monthly*'
@@ -72,7 +113,8 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: python -m pip install beautifulsoup4
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4
       - name: Install official document reader for new source controls
         run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - uses: actions/setup-node@v7.0.0
@@ -85,6 +127,42 @@ jobs:
         id: collect
         continue-on-error: true
         run: python scripts/collect_official_share_history.py --missing-source-controls --output "$RUNNER_TEMP/new-nav-controls.json" --capture-dir "$RUNNER_TEMP/new-nav-control-sources"
+      - name: Qualify the official complete H10 XML release (read-only)
+        id: collectfx
+        continue-on-error: true
+        run: python scripts/qualify_h10_xml.py --output "$RUNNER_TEMP/h10-xml-controls.json"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: h10-xml-source-controls
+          path: |
+            ${{ runner.temp }}/h10-xml-controls.json
+            ${{ runner.temp }}/h10-xml-controls.zip
+          if-no-files-found: error
+          retention-days: 35
+      - name: Qualify the official Nasdaq closing-price source (read-only)
+        id: nasdaqclose
+        continue-on-error: true
+        run: python scripts/nasdaq_month_close.py --source-control-fixture scripts/fixtures/starbucks-month-close-20261101 --output "$RUNNER_TEMP/nasdaq-close-source-control.json"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: nasdaq-close-source-controls
+          path: ${{ runner.temp }}/nasdaq-close-source-control.json
+          if-no-files-found: error
+          retention-days: 35
+      - name: Verify exact IMIE split comparison against current real sources
+        run: |
+          node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/imie-baseline.json"
+          python scripts/refresh_monthly_history.py --only etfImie --baseline "$RUNNER_TEMP/imie-baseline.json" --output "$RUNNER_TEMP/imie-source-control.json" --evidence-output "$RUNNER_TEMP/imie-source-evidence.json"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: imie-split-source-controls
+          path: |
+            ${{ runner.temp }}/imie-source-control.json
+            ${{ runner.temp }}/imie-source-evidence.json
+          if-no-files-found: error
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -96,7 +174,7 @@ jobs:
           retention-days: 35
       - name: Preserve a failed qualification after its evidence upload
         if: always()
-        run: test "${{ steps.collect.outcome }}" = 'success'
+        run: test "${{ steps.collect.outcome }}" = 'success' && test "${{ steps.collectfx.outcome }}" = 'success' && test "${{ steps.nasdaqclose.outcome }}" = 'success'
   refresh:
     concurrency:
       # Serialize writers of automated-indices.json; keep PR validations independent.
@@ -128,7 +206,9 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: python -m pip install beautifulsoup4
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4
+      - run: python -m unittest discover -s scripts -p 'test_observation_rebase.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'
       - run: python -m unittest discover -s scripts -p 'test_abtc_nav_history.py'
       - run: python -m unittest discover -s scripts -p 'test_amundi_nav_history.py'
@@ -147,6 +227,9 @@ jobs:
       - run: node scripts/test-income-nav-consumers.mjs
       - run: python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
+      - run: python -m unittest discover -s scripts -p 'test_yahoo_terminal_monthly_quote.py'
+      - run: python -m unittest discover -s scripts -p 'test_nasdaq_month_close.py'
+      - run: python -m unittest discover -s scripts -p 'test_monthly_split_comparison.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
       - run: python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'
       - run: python -m unittest discover -s scripts -p 'test_ranking_sources.py'
@@ -172,14 +255,33 @@ jobs:
 
       - run: node scripts/build-equity-history-links.mjs
         if: inputs.listings_only != true
-      - name: Qualify missing equity histories
+      # NAV qualification converts completed months with the shared BCE registry.
+      # Renew that dependency before both candidate admission and active histories.
+      - name: Refresh exact ranking histories and ECB conversion
+        id: rankings
         if: github.event_name != 'pull_request' && inputs.listings_only != true
+        continue-on-error: true
+        env:
+          RETRY_FAILED: ${{ inputs.series != '' || inputs.retry_failed == true || github.event_name == 'push' || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
+          REQUESTED_RANKING_SOURCES: ${{ inputs.ranking_sources }}
+          CROSS_FX_EVIDENCE_DIR: ${{ runner.temp }}/cross-fx-evidence
+        run: |
+          args=()
+          if [ -n "$REQUESTED_RANKING_SOURCES" ]; then
+            requested="${REQUESTED_RANKING_SOURCES//,/ }"
+            read -r -a selected <<< "$requested"
+            if [ "${#selected[@]}" = '0' ]; then echo 'Empty explicit ranking scope'; exit 1; fi
+            args+=(--only "${selected[@]}")
+          elif [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
+          python scripts/collect_ranking_sources.py --apply --output "$RUNNER_TEMP/ranking-collection-status.json" "${args[@]}"
+      - name: Qualify missing equity histories
+        if: github.event_name != 'pull_request' && inputs.listings_only != true && inputs.series == ''
         run: |
           node scripts/export-equity-candidates.mjs > "$RUNNER_TEMP/equity-candidates.json"
           python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/equity-candidates.json" --limit 12 --apply
           node scripts/build-equity-history-links.mjs
       - name: Qualify missing exact-share monthly histories
-        if: github.event_name != 'pull_request' && inputs.listings_only != true
+        if: github.event_name != 'pull_request' && inputs.listings_only != true && inputs.series == ''
         run: |
           node scripts/export-monthly-candidates.mjs > "$RUNNER_TEMP/monthly-candidates.json"
           python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/monthly-candidates.json" --limit 12 --apply
@@ -190,22 +292,17 @@ jobs:
         id: collect
         continue-on-error: true
         env:
-          RETRY_FAILED: ${{ inputs.retry_failed == true || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
+          RETRY_FAILED: ${{ inputs.retry_failed == true || github.event_name == 'push' || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
+          REQUESTED_SERIES: ${{ inputs.series }}
         run: |
           args=()
-          if [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
+          if [ -n "$REQUESTED_SERIES" ]; then
+            if [ "$RETRY_FAILED" = 'true' ]; then echo 'Sélection explicite incompatible avec retry_failed'; exit 1; fi
+            requested="${REQUESTED_SERIES//,/ }"
+            read -r -a selected <<< "$requested"
+            args+=(--only "${selected[@]}")
+          elif [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
           python scripts/refresh_monthly_history.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/monthly-observation.json" --apply "${args[@]}"
-      - name: Refresh exact ranking histories and ECB conversion
-        id: rankings
-        if: github.event_name != 'pull_request' && inputs.listings_only != true
-        continue-on-error: true
-        env:
-          RETRY_FAILED: ${{ inputs.retry_failed == true || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
-          CROSS_FX_EVIDENCE_DIR: ${{ runner.temp }}/cross-fx-evidence
-        run: |
-          args=()
-          if [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
-          python scripts/collect_ranking_sources.py --apply --output "$RUNNER_TEMP/ranking-collection-status.json" "${args[@]}"
       - run: node scripts/build-equity-history-links.mjs
         if: inputs.listings_only != true
       - run: node scripts/build-ranking-annual.mjs && node scripts/test-performance-rankings.mjs
@@ -254,6 +351,7 @@ jobs:
             ${{ runner.temp }}/derived-index-observation.json
             ${{ runner.temp }}/derived-index-observation.contract-plan.json
             ${{ runner.temp }}/listing-observation.json
+            ${{ runner.temp }}/listing-observation.contract-plan.json
             ${{ runner.temp }}/ranking-collection-status.json
             src/data/monthly-fx.json
             ${{ runner.temp }}/cross-fx-evidence/

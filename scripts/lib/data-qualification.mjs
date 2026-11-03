@@ -11,6 +11,7 @@ export function registryQualification(registry){
 const FIELD_KEYS={'Frais annuels (%)':'ter','Encours':'aum','Éligibilité PEA':'pea','Caractéristiques':null};
 export function fieldQualification(field,record){
  const label=field.label, registry=field.registry;
+ if(registry==='src/data/investor-models.js'&&record.type==='portfolio'&&label==='Allocation cible documentée')return {kind:'reference',reason:'Cibles fixes d’une publication identifiée, ou adaptation pédagogique explicitée ; ni positions vivantes ni performance. Toute nouvelle version exige une revue des sources, sans rajeunir cette référence.'};
  if(registry==='src/data/presentation-actors.js'&&field.archived===true)return {kind:'archive',reason:'Anciennes conditions conservées à leur date ; cessation d’activité qualifiée séparément, aucune offre actuelle.'};
  if(registry==='src/data/presentation-actors.js'&&label==='Statut de l’activité')return {kind:'reference',reason:'Avis officiel sur l’activité de la plateforme, distinct des anciens tarifs.'};
  if(registry==='src/data/presentation-actors.js'&&label.endsWith(' · Conditions variables selon le projet'))return {kind:'reference',reason:'Limites de la fiche générale de plateforme ; les conditions d’une opération non sélectionnée ne sont pas des observations manquantes de la plateforme.'};

@@ -1,0 +1,23 @@
+
+> patrimoine-et-compagnie@0.0.0 test:dca
+> node scripts/test-dca-profiles.mjs && node scripts/test-dca-selections.mjs && node scripts/test-dca-engine.mjs && node scripts/test-dca-holdings-contracts.mjs && node scripts/test-holdings-reconciliation.mjs && node scripts/test-native-index-compositions.mjs && node scripts/test-wisdomtree-holdings-routing.mjs && node scripts/test-dca-asset-scope.mjs && node scripts/test-dca-upgrade.mjs && node scripts/test-exposure-checker.mjs && node scripts/test-exposure-complete.mjs && node scripts/test-dca-analytics.mjs && node scripts/test-published-exposure.mjs && node scripts/test-exposure-scope.mjs && node scripts/test-dca-roadmap.mjs
+
+100 profils DCA : budgets, format, navigation et tirage sans répétition validés.
+50 nouveaux profils : chiffres, supports, exports neutres, 500 combinaisons de filtres/tirages et anciennes sauvegardes validés.
+DCA moteur : 100 profils, pondérations, couverture, absences, zéro DCA, première position et validation vérifiés.
+Donuts : total, couverture partielle, dates séparées et accroche validée.
+Holdings contracts: shared completeness, real source metadata, stale/incompatible/neutral/synthetic safeguards, exact identifiers and no double counting verified.
+NAV reconciliation: exact original weights, excluded classes and unknown identities survive projection; invalid proofs rejected; no effect on conservative overlap; three native-index sourcing leads monitored without financial admission.
+Native index contracts: exact share, benchmark, source, full census, original weights and same-date identities required; unsupported full Europe/PEA references refused; observed partial weights retained.
+Six existing WisdomTree shares survive ordinary target regeneration and targeted producer declaration.
+Semantic route checks retain +/%20 and document-qualified same-ISIN listings; wrong hosts, products, duplicate/extra parameters and unproved listings refused.
+Equity scope: 43 retained non-applicable field rows; exact iBonds classified, weights and unrelated requirements preserved.
+DCA upgrade: recency, compatibility, stocks, neutral assets, both donuts, filters and multiple saves verified.
+34/33/33: all three positions included, weighted countries and partial-coverage warning verified.
+Exposure checker: 259 exact supports connected; 673 coverage records; conservation, contributions, permutations, sources, synthetic safeguards and partial holdings verified.
+Complete exposures: 411 equity entries, 50 positions, complete holdings, direct/indirect totals and missing-data guards verified.
+DCA analytics: contributions, direct/indirect totals, concentration, partial coverage and compatible comparisons verified.
+Published portfolio synthesis: 70/20/10 fully represented, provenance, exact weighted results, missing data and catalog mass conservation verified.
+Equity scope: 43 retained non-applicable field rows; exact iBonds classified, weights and unrelated requirements preserved.
+Exposure scope: metals/crypto excluded, 80/15/5, missing data, all-neutral, 3/4/6 categories and exact support classifications verified.
+DCA roadmap: 1/2/3/8/50-line actions, versioned lossless transport, legacy selection, invalid imports and consent revocation; shared precise partial/stale/scope qualification verified.

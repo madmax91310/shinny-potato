@@ -8,7 +8,7 @@ import urllib.parse
 from data_automation import UTC, get_json, month_shift, number, reject, write_json_atomic
 
 
-def parse_chart(body, interval):
+def parse_chart(body, interval, exclusive_end=None):
     chart = body['chart']
     if chart.get('error') or len(chart['result']) != 1:
         reject('Yahoo chart failed')
@@ -21,7 +21,16 @@ def parse_chart(body, interval):
     closes = result['indicators']['quote'][0]['close']
     if len(times) != len(closes) or not times or times != sorted(set(times)):
         reject('Invalid or duplicate Bitcoin timestamps')
-    return [(dt.datetime.fromtimestamp(number(t), UTC), number(p)) for t, p in zip(times, closes)]
+    rows = []
+    for timestamp, price in zip(times, closes):
+        stamp = dt.datetime.fromtimestamp(number(timestamp), UTC)
+        # Yahoo can append the current candle even with period2 at its start.
+        # Its null close is outside the requested closed-month window. Validate
+        # every timestamp first; never discard a missing price inside the window.
+        if exclusive_end is not None and stamp >= exclusive_end:
+            continue
+        rows.append((stamp, number(price)))
+    return rows
 
 
 def collect(now=None, fetch=get_json):
@@ -33,8 +42,8 @@ def collect(now=None, fetch=get_json):
         query = urllib.parse.urlencode({'period1': int(start.timestamp()), 'period2': int(end.timestamp()), 'interval': interval})
         urls[interval] = 'https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?' + query
         raw[interval] = fetch(urls[interval])
-    monthly = parse_chart(raw['1mo'], '1mo')
-    daily = dict(parse_chart(raw['1d'], '1d'))
+    monthly = parse_chart(raw['1mo'], '1mo', end)
+    daily = dict(parse_chart(raw['1d'], '1d', end))
     points = []
     month = start
     for stamp, price in monthly:

@@ -1,0 +1,19 @@
+{
+  "rows": [
+    {
+      "file": "current.json.gz",
+      "sha256Uncompressed": "03444a44bbfed3f57ffbe9c41645d047e4f7df177666c3ecd1b9d40969522a82",
+      "source": "Official BlackRock get-product-data, product251737,EUR",
+      "fetchedAt": "2026-11-03T08:48Z",
+      "role": "Current product with sector20261030 and holdings20261102"
+    },
+    {
+      "file": "dated.json.gz",
+      "sha256Uncompressed": "86c4f335f765411d2cd74c04963d208f7e24ac42f129f69266892358979206c2",
+      "source": "Official BlackRock get-product-data, product251737,EUR",
+      "fetchedAt": "2026-11-03T08:48Z",
+      "role": "holdings.all explicitly requested asOfDate20261030 and actually returned20261030"
+    }
+  ],
+  "scope": "Real public issuer responses; original weights and independent dates. No licence inferred from HTTP access."
+}

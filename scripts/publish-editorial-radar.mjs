@@ -1,3 +1,4 @@
+import {radarReportContent} from './lib/radar-report-content.mjs'
 import {radarStateContent,unpackRadarState} from './lib/radar-state-codec.mjs'
 import {qualifyCompositionCandidates} from './lib/radar-composition-verification.mjs'
 import { radarToolActions } from './lib/radar-tool-actions.mjs'
@@ -166,7 +167,7 @@ if (refresh) {
 }
 const output = resolve(process.env.RUNNER_TEMP ?? '/tmp', 'editorial-radar')
 await mkdir(output, { recursive: true })
-await writeFile(resolve(output, 'feed.json'), `${JSON.stringify(result.feed, null, 2)}\n`)
+await writeFile(resolve(output, 'feed.json'), radarReportContent(result.feed))
 
 // Data has already been committed. A notification failure leaves the daily
 // feed working and the unacknowledged events available for tomorrow's retry.
@@ -189,5 +190,5 @@ if (JSON.stringify(notification.ledger) !== JSON.stringify(ledger)) {
 console.log(`Notifications radar : ${notification.sent} signaux envoyés, ${notification.recovered} déjà présents dans les issues.`)
 if (process.env.GITHUB_STEP_SUMMARY) await writeFile(process.env.GITHUB_STEP_SUMMARY, `\n## Notifications GitHub\n\n${notification.sent} signaux notifiés ; ${notification.recovered} reçus retrouvés.\n${notification.issues.map(url => `- ${url}`).join('\n')}\n`, { flag: 'a' })
 
-await writeFile(resolve(output, 'feed.json'), `${JSON.stringify(result.feed, null, 2)}\n`)
+await writeFile(resolve(output, 'feed.json'), radarReportContent(result.feed))
 if (notificationError) throw notificationError

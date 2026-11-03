@@ -1,0 +1,42 @@
+{
+  "baseline": "16254ce",
+  "checks": [
+    {
+      "file": "matrice-donnees-usages.csv.gz",
+      "oldIdentities": 41432,
+      "currentIdentities": 41516,
+      "oldValuesUnchanged": true
+    },
+    {
+      "file": "suivi-consolide.csv.gz",
+      "oldIdentities": 50069,
+      "currentIdentities": 57741,
+      "oldValuesUnchanged": true
+    },
+    {
+      "file": "restant-a-verifier.csv.gz",
+      "oldIdentities": 38067,
+      "currentIdentities": 45458,
+      "oldValuesUnchanged": true
+    },
+    {
+      "file": "perimetre-initial-complet.csv.gz",
+      "oldIdentities": 661,
+      "currentIdentities": 661,
+      "oldValuesUnchanged": true
+    },
+    {
+      "file": "reconciliation-79-ecarts.csv",
+      "oldIdentities": 79,
+      "currentIdentities": 79,
+      "oldValuesUnchanged": true
+    },
+    {
+      "file": "statut-19-actions.csv",
+      "oldIdentities": 19,
+      "currentIdentities": 19,
+      "oldValuesUnchanged": true
+    }
+  ],
+  "limit": "Identity and historical-value preservation only; source/financial/publication proofs remain separate."
+}

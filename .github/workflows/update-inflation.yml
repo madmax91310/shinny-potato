@@ -12,12 +12,14 @@ on:
     paths:
       - '.github/workflows/update-inflation.yml'
       - 'scripts/update_inflation.py'
+      - 'scripts/insee_month_maturity.py'
       - 'scripts/data_automation.py'
       - 'scripts/export-inflation-baseline.mjs'
   pull_request:
     paths:
       - '.github/workflows/update-inflation.yml'
       - 'scripts/update_inflation.py'
+      - 'scripts/insee_month_maturity.py'
       - 'scripts/data_automation.py'
       - 'scripts/test_data_refresh.py'
       - 'scripts/export-inflation-baseline.mjs'

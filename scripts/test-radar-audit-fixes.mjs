@@ -1,3 +1,4 @@
+import './test-radar-requalification-queue.mjs'
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import { extraDiscovery,EXTRA_SOURCES } from './lib/radar-extra-sources.mjs'

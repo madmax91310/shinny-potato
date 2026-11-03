@@ -16,7 +16,7 @@ export function reviewInboxProjection(report){
   return Array.isArray(value)?value.map(encode):value
  }
  const assets=[...report.assets,...(report.consumerUsage.externalAssets??[])].map(a=>({id:a.id,type:a.type,name:a.name,
-  fields:(a.fields??[]).filter(f=>needed.has(a.id+':'+f.key)).map(f=>Object.fromEntries(Object.entries(pick(f,['key','label','reason','action','nextAction','asOf','checkedAt','sourceUrls','scope','currency','present','actionState','qualificationBlock','coverageReference','periodStart','periodEnd','lastAttemptAt','lastSuccessAt','method'])).map(([k,v])=>[k,encode(v)])))})).filter(a=>a.fields.length)
+  fields:(a.fields??[]).filter(f=>needed.has(a.id+':'+f.key)).map(f=>Object.fromEntries(Object.entries(pick(f,['key','label','reason','action','nextAction','asOf','checkedAt','sourceUrls','scope','currency','present','actionState','qualificationBlock','coverageReference','periodStart','periodEnd','lastAttemptAt','lastSuccessAt','method','qualificationEvidence'])).map(([k,v])=>[k,encode(v)])))})).filter(a=>a.fields.length)
  return {schemaVersion:1,toolNames,fieldStrings:strings,contract:'data-review-inbox-v1',generatedAt:report.generatedAt,
   summary:report.summary,fieldConsumers,consumerUsage:{requiredRowsOnly:true,summary:report.consumerUsage.summary??report.summary.consumerUsage,tools},
   backlog:report.backlog.map(r=>pick(r,['type','id','name','field','label','actionState','reason','nextAction','asOf','checkedAt','lastAttemptAt','lastSuccessAt','tools','sourceUrl','configuredSourceUrls','scope','currency','method'])),

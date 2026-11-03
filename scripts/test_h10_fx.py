@@ -1,4 +1,5 @@
 import csv,datetime as dt,gzip,io,pathlib,unittest
+from test_h10_xml import H10XmlTests
 from h10_fx import parse,source_url,SERIES
 from collect_ranking_sources import parse_fred_series,parse_cross_fx
 from data_automation import UTC

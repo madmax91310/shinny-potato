@@ -1,5 +1,7 @@
+import { instrumentSearchText, instrumentOption } from '../../data/asset-selection.js'
 import { downloadImage } from '../../design-system/downloadImage.js'
 import { historyCurrencies } from '../../data/history-currency.js'
+import { monthlyHistoryMethod } from '../../lib/performance-conventions.js'
 import { useSelectedHistory } from '../../lib/useSelectedHistory.js'
 import HistoricalContext from '../../design-system/HistoricalContext.jsx'
 import { readPreference, writePreference } from '../../lib/publication-preferences.js'
@@ -11,7 +13,6 @@ import { copyPublicationText } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
 import AssetPicker from '../../design-system/AssetPicker'
-import { exposureGroup } from '../../data/asset-labels.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import SettingsDetails from '../../design-system/SettingsDetails'
 import { useEffect, useMemo, useState } from 'react'
@@ -180,8 +181,8 @@ function ResultCard({ state, d, copied, onCopy }) {
           // change n'est appliqué (demande utilisateur du 22/09/2026 — même principe que le montant
           // simulé, jamais mélanger deux devises sans le dire).
           <p className="ic-compare-note">
-            Comparaison Livret A / inflation non affichée : {assetLabel} est coté en dollars, pas
-            directement comparable à un produit d'épargne en euros sans taux de change.
+            Comparaison Livret A / inflation non affichée : la série de {assetLabel} est en {currency},
+            sans conversion vers les euros des repères d’épargne français.
           </p>
         )}
       </div>
@@ -190,13 +191,13 @@ function ResultCard({ state, d, copied, onCopy }) {
         {asset && <>Série en {currency} : {observedMonths} points présents dans le code sur {simulatedMonths} mois de simulation. {observedMonths < simulatedMonths ? 'Les mois sans point sont interpolés entre les points connus. ' : ''}{state.overridePriceRaw !== '' ? 'Le dernier prix a été saisi manuellement. ' : ''}</>}
         Le versement unique achète au prix de départ ; en DCA, chaque versement mensuel achète au prix du mois. Le pourcentage rapporte le gain ou la perte à la somme versée, sans annualisation. Le panier de dépenses illustre la hausse des prix : ce n'est pas un placement. Le Livret A suit les taux en vigueur, avec versements en fin de mois et capitalisation annuelle, sans plafond. L’inflation suit les variations mensuelles INSEE publiées depuis 2017 (arrondies), et les moyennes annuelles avant 2017.
         {asset?.methodNote ? ` ${asset.methodNote}` : ''}
-        {asset?.priceMethod === 'adjusted' && <> {asset.instrumentType === 'ETC' ? 'Cours de l’ETC, frais du produit déjà reflétés dans son cours ; hors frais du courtier et fiscalité.' : asset.isin && asset.instrumentType !== 'EQUITY' ? 'Cours ajustés de l’ETF : revenus réinvestis, frais du fonds déjà inclus ; hors frais du courtier et fiscalité.' : 'Cours ajustés des dividendes et des divisions d’actions : simulation théorique de réinvestissement, hors frais et fiscalité.'} {asset.returnNote}</>}
+        {asset && <> {monthlyHistoryMethod(asset)} {asset.returnNote}</>}
         {monthlyIndex ? ' Pour cet indice, la simulation part d’une clôture de décembre et relie uniquement les points annuels vérifiés ; elle ne représente pas la performance nette d’un ETF précis.' : ''}
       </p>
 
       <div className="ic-card-footer">
         <p className="ic-disclaimer">
-          Éducation financière, pas un conseil en investissement. Données historiques parfois approximatives, frais et fiscalité non pris en compte. Les performances passées ne préjugent pas des performances futures.
+          Éducation financière, pas un conseil en investissement. Données historiques parfois approximatives, frais de courtage et fiscalité non pris en compte. Les performances passées ne préjugent pas des performances futures.
         </p>
         <WorkspaceActions>
           {exportMode === 'simple' && <Button type="button" onClick={onCopy}>
@@ -379,7 +380,7 @@ function InvestmentEditor({state,setState}){
             <div className="ic-field">
               <div className="ic-select-wrap">
                 <AssetPicker className="ic-control" label="Choisir un actif" value={state.assetId}
-                  items={ASSET_ORDER.map(id => ({ id, isin:ASSETS[id].isin, search:ASSETS[id].ticker??'', label: historyOptionLabel(id, ASSETS[id]), group: exposureGroup(ASSETS[id]) }))}
+                  items={ASSET_ORDER.map(id => ({ id, isin:ASSETS[id].isin, search:instrumentSearchText(ASSETS[id]), label: historyOptionLabel(id, ASSETS[id]), group: instrumentOption(ASSETS[id]).group }))}
                   emptyOption={{ id: 'custom', label: 'Autre (saisie manuelle)' }}
                   onChange={(id) => {
                     const requestedStart = `${state.startYear}-${String(state.startMonth).padStart(2, '0')}`

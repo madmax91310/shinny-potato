@@ -1,0 +1,121 @@
+{
+  "checkedAt": "2026-11-01T14:55:03.050Z",
+  "buildInfo": {
+    "sha": "16fd8b562535a1fc3e0c1a38e55c9576f45f0bdb",
+    "dataSha": "ca2fc6fcab51433ebeac86b00538d99d20669797",
+    "lane": "validated-data",
+    "builtAt": "2026-11-01T14:50:02.358Z"
+  },
+  "records": [
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/publication-manifest.json",
+      "status": 200,
+      "bytes": 31752,
+      "etag": "W/\"6ae751dc-7c08\"",
+      "lastModified": "Sun, 01 Nov 2026 14:51:08 GMT"
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/financial-reconciliation.json",
+      "status": 200,
+      "bytes": 417677,
+      "etag": "W/\"6ae751dc-65f8d\"",
+      "lastModified": "Sun, 01 Nov 2026 14:51:08 GMT"
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/financial-reconciliation.json",
+      "status": 200,
+      "bytes": 417677,
+      "etag": "W/\"6ae751dc-65f8d\"",
+      "lastModified": "Sun, 01 Nov 2026 14:51:08 GMT"
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/asset-field-coverage.json",
+      "status": 200,
+      "bytes": 3573956,
+      "etag": "W/\"6ae751dc-3688c4\"",
+      "lastModified": "Sun, 01 Nov 2026 14:51:08 GMT"
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/asset-field-coverage.json",
+      "status": 200,
+      "bytes": 3573956,
+      "etag": "W/\"6ae751dc-3688c4\"",
+      "lastModified": "Sun, 01 Nov 2026 14:51:08 GMT"
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/data-review-inbox.json",
+      "status": 200,
+      "bytes": 1731305,
+      "etag": "W/\"6ae751dc-1a6ae9\"",
+      "lastModified": "Sun, 01 Nov 2026 14:51:08 GMT"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/madmax91310/shinny-potato/automation-status/automation-status.json",
+      "status": 200,
+      "bytes": 17512637,
+      "etag": "W/\"99ce08a8fea713de51409bb9b5bef93ba5c55a041b13c5137fdc792b8c67476c\""
+    }
+  ],
+  "consumed": [
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/publication-manifest.json",
+      "etag": "W/\"6ae751dc-7c08\"",
+      "lastModified": "Sun, 01 Nov 2026 14:51:08 GMT",
+      "status": 200
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/financial-reconciliation.json",
+      "etag": "W/\"6ae751dc-65f8d\"",
+      "lastModified": "Sun, 01 Nov 2026 14:51:08 GMT",
+      "status": 200
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/financial-reconciliation.json",
+      "etag": "W/\"6ae751dc-65f8d\"",
+      "lastModified": "Sun, 01 Nov 2026 14:51:08 GMT",
+      "status": 200
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/asset-field-coverage.json",
+      "etag": "W/\"6ae751dc-3688c4\"",
+      "lastModified": "Sun, 01 Nov 2026 14:51:08 GMT",
+      "status": 200
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/asset-field-coverage.json",
+      "etag": "W/\"6ae751dc-3688c4\"",
+      "lastModified": "Sun, 01 Nov 2026 14:51:08 GMT",
+      "status": 200
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/data-review-inbox.json",
+      "etag": "W/\"6ae751dc-1a6ae9\"",
+      "lastModified": "Sun, 01 Nov 2026 14:51:08 GMT",
+      "status": 200
+    },
+    {
+      "url": "https://raw.githubusercontent.com/madmax91310/shinny-potato/automation-status/automation-status.json",
+      "etag": "W/\"99ce08a8fea713de51409bb9b5bef93ba5c55a041b13c5137fdc792b8c67476c\"",
+      "status": 200
+    }
+  ],
+  "errors": [],
+  "storageProof": {
+    "wireBytes": 17512637,
+    "wireSha256": "22d95dfb6bfe89323191bf9d24159737e27180a54a2dea841a34b69e6d6621b8",
+    "encoding": "gzip+base64-v1",
+    "decodedBytes": 183749020,
+    "decodedSha256": "0b45bd41297bedc9bcf9ce17907d17f015b5806c3952392c9cdc27ec5e7e7d9d",
+    "verifiedEnvelopeSha256": "0b45bd41297bedc9bcf9ce17907d17f015b5806c3952392c9cdc27ec5e7e7d9d",
+    "decodedForReportingOnly": true
+  },
+  "allDiagnostics": 7624,
+  "activeDiagnostics": 5619,
+  "activeKinds": {
+    "connection": 30,
+    "failure": 780,
+    "monitoring": 7,
+    "qualification": 4802
+  },
+  "interpretation": "Counts are diagnostic rows, not independent data failures or certified consumer contracts"
+}

@@ -10,9 +10,9 @@ const Home = lazy(() => import('./pages/Home'))
 const RankingIdeas = lazy(() => import('./pages/ranking-ideas/App'))
 const HeyGrok = lazy(() => import('./pages/hey-grok/App'))
 const DcaProfiles = lazy(() => import('./pages/dca-profiles/App'))
+const BudgetProfiles = lazy(() => import('./pages/budget-profiles/App'))
 const PracticalSheets = lazy(() => import('./pages/practical-sheets/App'))
 const EditorialRadar = lazy(() => import('./pages/editorial-radar/App'))
-const WealthSimulator = lazy(() => import('./pages/wealth-simulator/App'))
 const PortfolioGenerator = lazy(() => import('./pages/portfolio-generator/App'))
 const PortfolioDuels = lazy(() => import('./pages/portfolio-duels/App'))
 const PerformanceRankings = lazy(() => import('./pages/performance-rankings/App'))
@@ -20,7 +20,6 @@ const BrokerComparator = lazy(() => import('./pages/broker-comparator/App'))
 const InvestmentCalculator = lazy(() => import('./pages/investment-calculator/App'))
 const EtfSheets = lazy(() => import('./pages/etf-sheets/App'))
 const TweetMidi = lazy(() => import('./pages/tweet-midi/App'))
-const FeeImpact = lazy(() => import('./pages/fee-impact/App'))
 const MarketFacts = lazy(() => import('./pages/market-facts/App'))
 const TweetBank = lazy(() => import('./pages/tweet-bank/App'))
 const FactsheetTweets = lazy(() => import('./pages/factsheet-tweets/App'))
@@ -46,9 +45,9 @@ const TOOL_ELEMENTS = {
   '/hey-grok': <HeyGrok />,
   '/classements-performances': <PerformanceRankings />,
   '/le-dca-de': <DcaProfiles />,
+  '/le-budget-de': <BudgetProfiles />,
   '/fiches-pratiques': <PracticalSheets />,
   '/radar-editorial': <EditorialRadar />,
-  '/simulateur-patrimoine': <WealthSimulator />,
   '/presentations': <Presentations />,
   '/france-100-menages': <HouseholdApp />,
   '/donnees-a-revoir': <DataReview />,
@@ -58,7 +57,6 @@ const TOOL_ELEMENTS = {
   '/comparatif-courtiers': <BrokerComparator />,
   '/calculateur-investissement': <InvestmentCalculator />,
   '/fiches-etf': <EtfSheets />,
-  '/impact-frais': <FeeImpact />,
   '/faits-marquants-marches': <MarketFacts />,
   '/banque-tweets': <TweetBank />,
   '/tweets-factsheets': <FactsheetTweets />,
@@ -77,6 +75,8 @@ export default function App() {
             element={tool.format ? <FormatRoute tool={tool} /> : TOOL_ELEMENTS[tool.to] ?? <ComingSoon title={tool.title} description={tool.description} />}
           />
         ))}
+        <Route path="impact-frais/*" element={<Navigate to="/" replace />} />
+        <Route path="simulateur-patrimoine/*" element={<Navigate to="/" replace />} />
         <Route path="portefeuilles-ia/*" element={<Navigate to="/" replace />} />
         <Route path="presentation-assurance-vie" element={<Navigate to="/presentations?famille=insurance" replace />} />
         <Route path="presentation-scpi" element={<Navigate to="/presentations?famille=scpi" replace />} />

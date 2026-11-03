@@ -1,0 +1,1052 @@
+[
+  {
+    "id": "finary-freelance-lille-2025-03-02",
+    "name": "Benoît",
+    "age": 29,
+    "job": "Indépendant dans l’informatique",
+    "location": "Lille",
+    "household": "En couple · budget personnel · propriétaire avec crédit",
+    "kind": "declared",
+    "currency": "EUR",
+    "approximate": false,
+    "publishedAt": "2025-03-02",
+    "checkedAt": "2026-11-02",
+    "editorialReviewedAt": "2026-11-02",
+    "period": "Mars 2025",
+    "budgetAsOf": "2025-03-02",
+    "country": "France",
+    "family": "couple",
+    "children": "",
+    "housing": "owner",
+    "source": {
+      "publisher": "Communauté Finary",
+      "title": "Budget d’un indépendant propriétaire · message du 2 mars 2025",
+      "url": "https://community.finary.com/t/23767"
+    },
+    "incomeBasis": "Net après impôt",
+    "incomeNote": "Budget individuel : les revenus de la conjointe ne sont pas indiqués. Les 1 200 € regroupent les deux remboursements ; les 1 900 € de vie courante ne sont pas ventilés.",
+    "income": [
+      {
+        "label": "Revenu net de l’activité indépendante",
+        "amount": 5130,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Remboursements immobilier et voiture",
+        "amount": 1200,
+        "category": "credit"
+      },
+      {
+        "label": "Courses, activités, abonnements et vie courante",
+        "amount": 1900,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Livret A · réserve de précaution",
+        "amount": 2000,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Benoît reconstitue sa réserve après l’achat de son logement. Les 2 000 € vont sur son Livret A ; les 30 € restants restent disponibles. Un éventuel revenu locatif futur ne fait pas partie de ce budget.",
+    "caveat": "Reprise des trois enveloppes mensuelles publiées : 5 130 − 1 200 − 1 900 − 2 000 = 30 €. Aucun revenu du conjoint, loyer futur, ventilation des crédits ou dépense supplémentaire inventé.",
+    "hook": "",
+    "question": "Après un achat immobilier, quelle réserve te semblerait adaptée à une activité indépendante ?",
+    "provenance": {
+      "type": "public-testimony",
+      "scope": "individuel",
+      "original": {
+        "name": "Maxime847",
+        "topicId": 23767,
+        "postNumber": 1
+      },
+      "method": "Reprise des trois enveloppes mensuelles publiées : 5 130 − 1 200 − 1 900 − 2 000 = 30 €. Aucun revenu du conjoint, loyer futur, ventilation des crédits ou dépense supplémentaire inventé.",
+      "hypotheses": [],
+      "unknowns": [
+        "Ne pas déduire les métadonnées laissées vides."
+      ],
+      "expectedIncome": 5130,
+      "expectedExpenses": 3100,
+      "expectedTransfers": 2000,
+      "expectedBalance": 30,
+      "sourceSha256": "8a9fc2c78020a1d8b2b869c2cb5ec5bb90ac99800b08a542aca3449c83ea010d"
+    }
+  },
+  {
+    "id": "finary-installation-projet-2026-02-21",
+    "name": "Axel",
+    "age": 27,
+    "job": "",
+    "location": "",
+    "household": "Célibataire · budget personnel · installation dans son logement",
+    "kind": "planned",
+    "currency": "EUR",
+    "approximate": false,
+    "publishedAt": "2026-02-21",
+    "checkedAt": "2026-11-02",
+    "editorialReviewedAt": "2026-11-02",
+    "period": "Installation en 2026",
+    "budgetAsOf": "2026",
+    "country": "",
+    "family": "single",
+    "children": "",
+    "housing": "owner",
+    "source": {
+      "publisher": "Communauté Finary",
+      "title": "Répartition prévue après emménagement · message du 21 février 2026",
+      "url": "https://community.finary.com/t/34498"
+    },
+    "incomeBasis": "Net après impôt",
+    "incomeNote": "Le pays, le métier et la composition du revenu ne sont pas déclarés. Les 1 350 € incluent charges, alimentation et prêts, sans ventilation. Projet publié avant l’emménagement, pas dépenses réalisées.",
+    "income": [
+      {
+        "label": "Revenu mensuel net d’impôt",
+        "amount": 2500,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Charges, alimentation et remboursements",
+        "amount": 1350,
+        "category": "other"
+      },
+      {
+        "label": "Loisirs",
+        "amount": 150,
+        "category": "leisure"
+      }
+    ],
+    "savings": [
+      {
+        "label": "PEA · investissement prévu",
+        "amount": 500,
+        "category": "other"
+      },
+      {
+        "label": "Fonds euros · projets à moyen terme",
+        "amount": 300,
+        "category": "other"
+      },
+      {
+        "label": "LDDS · provision pour dépenses annuelles et projets",
+        "amount": 200,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Axel prépare son installation dans un logement déjà acheté. Il prévoit 500 € pour investir et deux enveloppes pour ses projets et dépenses à venir. Les 200 € du LDDS pourront être dépensés dans l’année : ce n’est pas entièrement une épargne nouvelle.",
+    "caveat": "Répartition théorique complète publiée pour l’installation avant mi-2026 : 2 500 − 1 350 − 150 − 500 − 300 − 200 = 0 €. Période annuelle seulement : aucun jour d’emménagement inventé. Pays et profession restent inconnus.",
+    "hook": "",
+    "question": "Pour une première installation, quelle marge garderais-tu avant de fixer les versements mensuels ?",
+    "provenance": {
+      "type": "public-testimony",
+      "scope": "individuel",
+      "original": {
+        "name": "Pegasus",
+        "topicId": 34498,
+        "postNumber": 1
+      },
+      "method": "Répartition théorique complète publiée pour l’installation avant mi-2026 : 2 500 − 1 350 − 150 − 500 − 300 − 200 = 0 €. Période annuelle seulement : aucun jour d’emménagement inventé. Pays et profession restent inconnus.",
+      "hypotheses": [],
+      "unknowns": [
+        "Ne pas déduire les métadonnées laissées vides."
+      ],
+      "expectedIncome": 2500,
+      "expectedExpenses": 1500,
+      "expectedTransfers": 1000,
+      "expectedBalance": 0,
+      "sourceSha256": "13be7cfeed14fdfa81e99c49451323ce952767553a4ff79d40aea973ed0befef"
+    }
+  },
+  {
+    "id": "finary-alternante-projet-2026-10-06",
+    "name": "Apolline",
+    "age": 20,
+    "job": "Étudiante en alternance",
+    "location": "",
+    "household": "Budget personnel · loyer payé par ses parents",
+    "kind": "planned",
+    "currency": "EUR",
+    "approximate": false,
+    "publishedAt": "2026-10-06",
+    "checkedAt": "2026-11-02",
+    "editorialReviewedAt": "2026-11-02",
+    "period": "Novembre–décembre 2026",
+    "budgetAsOf": "2026-11-01",
+    "country": "",
+    "family": "",
+    "children": "",
+    "housing": "",
+    "source": {
+      "publisher": "Communauté Finary",
+      "title": "Budget prévu pour novembre et décembre · message du 6 octobre 2026",
+      "url": "https://community.finary.com/t/40101"
+    },
+    "incomeBasis": "Salaire net · impôt non précisé",
+    "incomeNote": "Budget personnel prévu pour novembre/décembre 2026, publié en octobre. Salaire de janvier, augmentation liée à l’âge, prime d’activité et autres aides futures exclus. Pays, configuration et enfants non déclarés.",
+    "income": [
+      {
+        "label": "Salaire net d’alternance prévu",
+        "amount": 1184.78,
+        "category": "other"
+      },
+      {
+        "label": "Aide Mobili-Jeune prévue",
+        "amount": 100,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Charges fixes à sa charge",
+        "amount": 50,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "PEA · investissement prévu",
+        "amount": 500,
+        "category": "other"
+      },
+      {
+        "label": "Livret A · réserve et projets",
+        "amount": 400,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Ses parents paient le loyer. Après les charges et les versements prévus, les 334,78 € restants doivent encore financer la vie courante et les loisirs. Le Livret A sert à la fois de réserve, aux voyages et à un futur apport.",
+    "caveat": "Projet de novembre/décembre : 1 184,78 + 100 − 50 − 500 − 400 = 334,78 €. Les 384,78 € laissés sur le compte courant incluent les 50 € fixes : ne pas compter deux fois ces charges. Le solde finance encore des dépenses variables non ventilées, il ne constitue pas une épargne. Même personne que /38004 (ancienne projection) : une seule fiche admise.",
+    "hook": "",
+    "question": "Avec le logement pris en charge, quelle enveloppe garderais-tu pour vivre et sortir pendant les études ?",
+    "provenance": {
+      "type": "public-testimony",
+      "scope": "individuel",
+      "original": {
+        "name": "Lyslelys",
+        "topicId": 40101,
+        "postNumber": 1,
+        "relatedSource": "https://community.finary.com/t/38004"
+      },
+      "method": "Projet de novembre/décembre : 1 184,78 + 100 − 50 − 500 − 400 = 334,78 €. Les 384,78 € laissés sur le compte courant incluent les 50 € fixes : ne pas compter deux fois ces charges. Le solde finance encore des dépenses variables non ventilées, il ne constitue pas une épargne. Même personne que /38004 (ancienne projection) : une seule fiche admise.",
+      "hypotheses": [],
+      "unknowns": [
+        "Ne pas déduire les métadonnées laissées vides."
+      ],
+      "expectedIncome": 1284.78,
+      "expectedExpenses": 50,
+      "expectedTransfers": 900,
+      "expectedBalance": 334.78,
+      "sourceSha256": "3726e55b0a714b8de812ceb1efe42756494048b1309ad7a5f8ed596e02f8678b"
+    }
+  },
+  {
+    "id": "finary-ingenieur-colocation-projet-2026-08-18",
+    "name": "Émilien",
+    "age": 20,
+    "job": "Élève ingénieur",
+    "location": "Marseille",
+    "household": "Budget personnel · colocation financée en partie par ses parents",
+    "kind": "planned",
+    "currency": "EUR",
+    "approximate": true,
+    "publishedAt": "2026-08-18",
+    "checkedAt": "2026-11-02",
+    "editorialReviewedAt": "2026-11-02",
+    "period": "Rentrée à venir · année non précisée",
+    "country": "France",
+    "family": "",
+    "children": "",
+    "housing": "tenant",
+    "source": {
+      "publisher": "Communauté Finary",
+      "title": "Budget prévu pour une alternance à Marseille · message du 18 août 2026",
+      "url": "https://community.finary.com/t/39107"
+    },
+    "incomeBasis": "Revenus prévus · impôt non précisé",
+    "incomeNote": "Les 400 € d’aides prévus sont groupés par le témoignage, puis reversés aux parents : pas de fausse ventilation APL/prime. Parents payeurs du loyer, montant total inconnu. Date de rentrée exacte non précisée.",
+    "income": [
+      {
+        "label": "Salaire d’alternance prévu",
+        "amount": 1325,
+        "category": "other"
+      },
+      {
+        "label": "Aide mensuelle des parents",
+        "amount": 200,
+        "category": "other"
+      },
+      {
+        "label": "Aides prévues · logement et activité",
+        "amount": 400,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Aides reversées aux parents pour le logement",
+        "amount": 400,
+        "category": "housing"
+      },
+      {
+        "label": "Transports et trajets Lille–Marseille",
+        "amount": 150,
+        "category": "transport"
+      },
+      {
+        "label": "Alimentation",
+        "amount": 250,
+        "category": "food"
+      },
+      {
+        "label": "Électricité",
+        "amount": 50,
+        "category": "housing"
+      }
+    ],
+    "savings": [],
+    "capacity": null,
+    "context": "Ses parents financeraient le loyer et recevraient les 400 € d’aides. Il prévoit 450 € pour les transports, les repas et l’électricité. Les 1 075 € restants doivent encore se partager entre loisirs, épargne et investissements ; aucun versement n’est encore arrêté.",
+    "caveat": "Flux personnels prévus, aides et reversement comptés chacun une fois : 1 325 + 200 + 400 − 400 − 150 − 250 − 50 = 1 075 €. La source arrondit à 1 100 €, soit 25 € de plus ; seules les lignes sont retenues. Les 750 € d’épargne/investissement sont une option débattue, non un versement décidé : savings vide. Année de rentrée non déduite de « l’an prochain ».",
+    "hook": "",
+    "question": "Quelle part de ce reste consacrerais-tu aux projets, tout en gardant de quoi profiter de tes études ?",
+    "provenance": {
+      "type": "public-testimony",
+      "scope": "individuel",
+      "original": {
+        "name": "Jules304",
+        "topicId": 39107,
+        "postNumber": 1
+      },
+      "method": "Flux personnels prévus, aides et reversement comptés chacun une fois : 1 325 + 200 + 400 − 400 − 150 − 250 − 50 = 1 075 €. La source arrondit à 1 100 €, soit 25 € de plus ; seules les lignes sont retenues. Les 750 € d’épargne/investissement sont une option débattue, non un versement décidé : savings vide. Année de rentrée non déduite de « l’an prochain ».",
+      "hypotheses": [],
+      "unknowns": [
+        "Ne pas déduire les métadonnées laissées vides."
+      ],
+      "expectedIncome": 1925,
+      "expectedExpenses": 850,
+      "expectedTransfers": 0,
+      "expectedBalance": 1075,
+      "sourceSha256": "6a63842535ef5cf2426353e163c6473b790d0ed7f9e41062b2ef38a2d3ab81da"
+    }
+  },
+  {
+    "id": "reference-bordeaux-budget-2026-03",
+    "name": "Clémence",
+    "age": 28,
+    "job": "Ingénieure en environnement",
+    "location": "Bordeaux",
+    "household": "Seule · sans enfant · locataire",
+    "kind": "prepared",
+    "currency": "EUR",
+    "approximate": false,
+    "publishedAt": "2026-05-04",
+    "checkedAt": "2026-11-02",
+    "editorialReviewedAt": "2026-11-02",
+    "period": "Mars 2026",
+    "budgetAsOf": "2026-03-01",
+    "country": "France",
+    "family": "single",
+    "children": "no",
+    "housing": "tenant",
+    "source": {
+      "publisher": "Plan & Multiply",
+      "title": "Guide du budget mensuel · première étude de cas, mars 2026",
+      "url": "https://www.planandmultiply.fr/blog/budget-mensuel-guide-complet-2026"
+    },
+    "incomeBasis": "Salaire net après impôt · hors prime semestrielle",
+    "incomeNote": "Exemple publié, pas témoignage vérifié. Le titre de section annonce 2 350 €, mais le salaire et le total récurrent explicités sont 2 280 €. Prime de 1 200 € en juin/décembre exclue du mois courant.",
+    "income": [
+      {
+        "label": "Salaire net après prélèvement à la source",
+        "amount": 2280,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Loyer",
+        "amount": 760,
+        "category": "housing"
+      },
+      {
+        "label": "Électricité et eau chaude",
+        "amount": 95,
+        "category": "housing"
+      },
+      {
+        "label": "Assurance habitation",
+        "amount": 22,
+        "category": "housing"
+      },
+      {
+        "label": "Internet et télévision",
+        "amount": 38,
+        "category": "bills"
+      },
+      {
+        "label": "Téléphone mobile",
+        "amount": 15,
+        "category": "bills"
+      },
+      {
+        "label": "Mutuelle",
+        "amount": 48,
+        "category": "health"
+      },
+      {
+        "label": "Assurance et crédit automobile",
+        "amount": 217,
+        "category": "transport"
+      },
+      {
+        "label": "Streaming et salle de sport",
+        "amount": 50,
+        "category": "leisure"
+      },
+      {
+        "label": "Courses et restaurants",
+        "amount": 380,
+        "category": "food"
+      },
+      {
+        "label": "Carburant et péages",
+        "amount": 110,
+        "category": "transport"
+      },
+      {
+        "label": "Loisirs et sorties",
+        "amount": 95,
+        "category": "leisure"
+      },
+      {
+        "label": "Vêtements et soins",
+        "amount": 75,
+        "category": "other"
+      },
+      {
+        "label": "Cadeaux et imprévus",
+        "amount": 60,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Livret A · virement prévu",
+        "amount": 250,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Dans cet exemple, le virement prévu de 250 € laisse 65 € de marge. La prime semestrielle reste à part. Le crédit auto se termine huit mois après ce budget ; assurance et crédit étant groupés, toute la ligne ne disparaîtra pas à cette échéance.",
+    "caveat": "Exemple éditorial publié, prénom changé. Ressource mensuelle récurrente explicitement retenue par la source : 2 280 €, et non 2 350 € du sous-titre ni 2 480 € avec prime mensualisée. Fixes 1 245 + flexibles 720 = 1 965 € ; capacité 315, virement prévu 250, disponible 65. Aucun futur gain de 217 € attribué car cette ligne inclut assurance et crédit.",
+    "hook": "",
+    "question": "Entre les restaurants et les abonnements, quel poste ajusterais-tu pour élargir la marge mensuelle ?",
+    "provenance": {
+      "type": "reference",
+      "scope": "individuel",
+      "original": {
+        "name": "Sophie",
+        "section": "Étude de cas 1",
+        "sourceModifiedMetadata": "2026-10-27",
+        "visibleUpdate": "2026-09-06"
+      },
+      "method": "Exemple éditorial publié, prénom changé. Ressource mensuelle récurrente explicitement retenue par la source : 2 280 €, et non 2 350 € du sous-titre ni 2 480 € avec prime mensualisée. Fixes 1 245 + flexibles 720 = 1 965 € ; capacité 315, virement prévu 250, disponible 65. Aucun futur gain de 217 € attribué car cette ligne inclut assurance et crédit.",
+      "hypotheses": [],
+      "unknowns": [
+        "Ne pas déduire les métadonnées laissées vides."
+      ],
+      "expectedIncome": 2280,
+      "expectedExpenses": 1965,
+      "expectedTransfers": 250,
+      "expectedBalance": 65,
+      "sourceSha256": "40bc7d664d6ccf8a345bf5a8f697aeb490a3a89709deded88ff4858116becbee"
+    },
+    "preparedAt": "2026-11-02"
+  },
+  {
+    "id": "reference-couple-lille-budget-2026-01",
+    "name": "Hugo et Océane",
+    "age": null,
+    "job": "Comptable de 32 ans et infirmière de 30 ans",
+    "location": "Lille",
+    "household": "Couple · sans enfant · locataires · budget du foyer",
+    "kind": "prepared",
+    "currency": "EUR",
+    "approximate": false,
+    "publishedAt": "2026-05-04",
+    "checkedAt": "2026-11-02",
+    "editorialReviewedAt": "2026-11-02",
+    "period": "Janvier 2026",
+    "budgetAsOf": "2026-01-01",
+    "country": "France",
+    "family": "couple",
+    "children": "no",
+    "housing": "tenant",
+    "source": {
+      "publisher": "Plan & Multiply",
+      "title": "Guide du budget mensuel · seconde étude de cas, janvier 2026",
+      "url": "https://www.planandmultiply.fr/blog/budget-mensuel-guide-complet-2026"
+    },
+    "incomeBasis": "Salaires nets et primes moyennes · impôt non précisé",
+    "incomeNote": "Exemple de foyer : 2 400 + 1 800 + 350 de primes de nuit lissées. Net avant/après IR non précisé. Ages du modèle : 32 et 30 ans ; ne pas attribuer un âge unique au couple.",
+    "income": [
+      {
+        "label": "Salaire net d’Hugo",
+        "amount": 2400,
+        "category": "other"
+      },
+      {
+        "label": "Salaire net d’Océane",
+        "amount": 1800,
+        "category": "other"
+      },
+      {
+        "label": "Primes de nuit moyennes d’Océane",
+        "amount": 350,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Loyer",
+        "amount": 920,
+        "category": "housing"
+      },
+      {
+        "label": "Énergie et eau",
+        "amount": 145,
+        "category": "housing"
+      },
+      {
+        "label": "Assurance habitation",
+        "amount": 28,
+        "category": "housing"
+      },
+      {
+        "label": "Internet et deux mobiles",
+        "amount": 75,
+        "category": "bills"
+      },
+      {
+        "label": "Mutuelles du couple",
+        "amount": 96,
+        "category": "health"
+      },
+      {
+        "label": "Assurance automobile",
+        "amount": 89,
+        "category": "transport"
+      },
+      {
+        "label": "Crédit automobile",
+        "amount": 187,
+        "category": "credit"
+      },
+      {
+        "label": "Courses et restaurants",
+        "amount": 620,
+        "category": "food"
+      },
+      {
+        "label": "Carburant et transports",
+        "amount": 175,
+        "category": "transport"
+      },
+      {
+        "label": "Sorties, week-ends et abonnements",
+        "amount": 320,
+        "category": "leisure"
+      },
+      {
+        "label": "Vêtements et soins du couple",
+        "amount": 200,
+        "category": "other"
+      },
+      {
+        "label": "Cadeaux et imprévus",
+        "amount": 65,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Livret · apport immobilier prévu",
+        "amount": 800,
+        "category": "other"
+      },
+      {
+        "label": "Livret · vacances prévues",
+        "amount": 250,
+        "category": "other"
+      },
+      {
+        "label": "Épargne de précaution prévue",
+        "amount": 400,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Ce couple prépare un apport immobilier tout en prévoyant les vacances et une réserve de précaution. Les 180 € laissés sur le compte courant restent une marge : ils ne sont pas comptés parmi les versements.",
+    "caveat": "Exemple éditorial publié, deux prénoms changés. 4 550 − 1 540 de fixes − 1 380 de dépenses flexibles = 1 630 €. Versements prévus 800 + 250 + 400 = 1 450 € ; marge courante 180 €, non un quatrième versement. Primes déjà dans les ressources, pas de second ajout. Crédit prévu soldé en septembre 2026, sans présenter janvier comme actuel.",
+    "hook": "",
+    "question": "Comment répartirais-tu les versements entre l’apport, les vacances et la réserve de sécurité ?",
+    "provenance": {
+      "type": "reference",
+      "scope": "foyer",
+      "original": {
+        "names": [
+          "Mathieu",
+          "Léa"
+        ],
+        "ages": [
+          32,
+          30
+        ],
+        "section": "Étude de cas 2",
+        "sourceModifiedMetadata": "2026-10-27",
+        "visibleUpdate": "2026-09-06"
+      },
+      "method": "Exemple éditorial publié, deux prénoms changés. 4 550 − 1 540 de fixes − 1 380 de dépenses flexibles = 1 630 €. Versements prévus 800 + 250 + 400 = 1 450 € ; marge courante 180 €, non un quatrième versement. Primes déjà dans les ressources, pas de second ajout. Crédit prévu soldé en septembre 2026, sans présenter janvier comme actuel.",
+      "hypotheses": [],
+      "unknowns": [
+        "Ne pas déduire les métadonnées laissées vides."
+      ],
+      "expectedIncome": 4550,
+      "expectedExpenses": 2920,
+      "expectedTransfers": 1450,
+      "expectedBalance": 180,
+      "sourceSha256": "40bc7d664d6ccf8a345bf5a8f697aeb490a3a89709deded88ff4858116becbee"
+    },
+    "preparedAt": "2026-11-02"
+  },
+  {
+    "id": "reference-indexo-belgique-2026-11",
+    "name": "un salarié seul en Belgique",
+    "age": null,
+    "job": "",
+    "location": "",
+    "household": "Locataire · budget individuel de référence",
+    "kind": "prepared",
+    "currency": "EUR",
+    "approximate": false,
+    "publishedAt": null,
+    "checkedAt": "2026-11-02",
+    "editorialReviewedAt": "2026-11-02",
+    "period": "Référence novembre 2026",
+    "budgetAsOf": "2026-11-01",
+    "country": "Belgique",
+    "family": "single",
+    "children": "no",
+    "housing": "tenant",
+    "source": {
+      "publisher": "Indexo",
+      "title": "Le salaire nécessaire · budget illustratif de 2 200 € net moyen",
+      "url": "https://indexo.be/budget/salaire-necessaire/"
+    },
+    "incomeBasis": "Net cible après précompte · primes annualisées",
+    "incomeNote": "Modèle du calculateur, pas salaire observé. Cible annuelle de 2 200 € nets par mois, pécule et prime de fin d’année compris. Le net réellement versé les mois sans prime est inférieur. Métier et âge inconnus.",
+    "income": [
+      {
+        "label": "Salaire net cible · moyenne sur l’année",
+        "amount": 2200,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Loyer",
+        "amount": 850,
+        "category": "housing"
+      },
+      {
+        "label": "Énergie, eau, internet et téléphone",
+        "amount": 250,
+        "category": "bills"
+      },
+      {
+        "label": "Courses et repas",
+        "amount": 450,
+        "category": "food"
+      },
+      {
+        "label": "Transports",
+        "amount": 150,
+        "category": "transport"
+      },
+      {
+        "label": "Autres dépenses",
+        "amount": 300,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Épargne prévue",
+        "amount": 200,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Cet exemple prévoit 200 € à mettre de côté. Les 2 200 € de ressources sont une moyenne sur l’année, pécule de vacances et prime compris : ils ne sont pas versés chaque mois. Il faut donc réserver une partie des primes pour les mois ordinaires.",
+    "caveat": "Reprise du budget illustratif proposé : cible de net annuel moyen 2 200 €, dépenses 850 + 250 + 450 + 150 + 300 = 2 000 €, épargne prévue 200 €. Aucun salaire brut ni revenu net observé inventé. La ventilation des primes calculées présente un centime d’arrondi annuel : elle n’est pas transformée en ressources supplémentaires. Nature de l’épargne non ventilée, aucune affectation financière inventée.",
+    "hook": "",
+    "question": "Comment organiserais-tu les primes annuelles pour garder le même budget tout au long de l’année ?",
+    "provenance": {
+      "type": "reference",
+      "scope": "individuel",
+      "original": {
+        "section": "Calculez le salaire qu’il vous faut",
+        "versionParameters": "2026-11-01"
+      },
+      "method": "Reprise du budget illustratif proposé : cible de net annuel moyen 2 200 €, dépenses 850 + 250 + 450 + 150 + 300 = 2 000 €, épargne prévue 200 €. Aucun salaire brut ni revenu net observé inventé. La ventilation des primes calculées présente un centime d’arrondi annuel : elle n’est pas transformée en ressources supplémentaires. Nature de l’épargne non ventilée, aucune affectation financière inventée.",
+      "hypotheses": [],
+      "unknowns": [
+        "Ne pas déduire les métadonnées laissées vides."
+      ],
+      "expectedIncome": 2200,
+      "expectedExpenses": 2000,
+      "expectedTransfers": 200,
+      "expectedBalance": 0,
+      "sourceSha256": "d6e389b65b40a94b39efc7f47c7208ba91ab628f9563236dc6187ce059572675",
+      "sourceUpdatedAt": "2026-10-31"
+    },
+    "preparedAt": "2026-11-02"
+  },
+  {
+    "id": "reference-vendeuse-rennes-2026",
+    "name": "Nolwenn",
+    "age": 28,
+    "job": "Vendeuse en prêt-à-porter",
+    "location": "Rennes",
+    "household": "Budget personnel · locataire d’un studio",
+    "kind": "prepared",
+    "currency": "EUR",
+    "approximate": false,
+    "publishedAt": "2026-05-01",
+    "checkedAt": "2026-11-02",
+    "editorialReviewedAt": "2026-11-02",
+    "period": "Référence 2026",
+    "budgetAsOf": "2026",
+    "country": "France",
+    "family": "",
+    "children": "",
+    "housing": "tenant",
+    "source": {
+      "publisher": "Plan & Multiply",
+      "title": "Méthode des enveloppes · exemple d’une vendeuse à Rennes",
+      "url": "https://www.planandmultiply.fr/blog/economiser-petit-salaire-enveloppes"
+    },
+    "incomeBasis": "Salaire net du scénario · impôt non précisé",
+    "incomeNote": "Modèle publié, sans témoignage individuel. Les 1 398 € sont une hypothèse de salaire, pas le SMIC applicable en 2026 malgré le libellé de l’article. Temps de travail, impôt, enfants et configuration non précisés.",
+    "income": [
+      {
+        "label": "Salaire net retenu pour l’exemple",
+        "amount": 1398,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Loyer du studio",
+        "amount": 480,
+        "category": "housing"
+      },
+      {
+        "label": "Électricité",
+        "amount": 55,
+        "category": "housing"
+      },
+      {
+        "label": "Assurance habitation",
+        "amount": 18,
+        "category": "housing"
+      },
+      {
+        "label": "Mutuelle",
+        "amount": 35,
+        "category": "health"
+      },
+      {
+        "label": "Téléphone mobile",
+        "amount": 10,
+        "category": "bills"
+      },
+      {
+        "label": "Internet",
+        "amount": 20,
+        "category": "bills"
+      },
+      {
+        "label": "Abonnement de bus",
+        "amount": 42,
+        "category": "transport"
+      },
+      {
+        "label": "Crédit à la consommation",
+        "amount": 90,
+        "category": "credit"
+      },
+      {
+        "label": "Courses alimentaires",
+        "amount": 280,
+        "category": "food"
+      },
+      {
+        "label": "Covoiturage et transports occasionnels",
+        "amount": 40,
+        "category": "transport"
+      },
+      {
+        "label": "Loisirs",
+        "amount": 60,
+        "category": "leisure"
+      },
+      {
+        "label": "Vêtements et soins",
+        "amount": 50,
+        "category": "other"
+      },
+      {
+        "label": "Hygiène et santé",
+        "amount": 38,
+        "category": "other"
+      },
+      {
+        "label": "Divers et imprévus",
+        "amount": 30,
+        "category": "other"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Livret A · virement de précaution prévu",
+        "amount": 50,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Avec ce salaire, les dépenses et le virement prévu de 50 € laissent une marge de 100 €. Elle reste disponible pour les imprévus ; elle n’est pas comptée d’avance comme de l’épargne.",
+    "caveat": "Exemple publié : fixes 750 €, enveloppes variables 498 €, virement prévu 50 €, solde 100 €. Aucun versement additionnel de 100 € supposé. Les 1 400 € d’épargne annuelle racontés ne remplacent pas le virement mensuel de 50 €. Le montant de salaire hypothétique n’est ni validé ni diffusé comme SMIC 2026. Date de publication visible et JSON-LD 1 mai ; dateModified antérieure conservée séparément sans dater le budget. Aucun métier ou âge ajouté.",
+    "hook": "",
+    "question": "Garderais-tu cette marge sur le compte courant ou dans une enveloppe séparée pour les imprévus ?",
+    "provenance": {
+      "type": "reference",
+      "scope": "individuel",
+      "original": {
+        "name": "Julie",
+        "section": "Exemple concret",
+        "sourceModifiedMetadata": "2026-04-06",
+        "visiblePublication": "2026-05-01"
+      },
+      "method": "Exemple publié : fixes 750 €, enveloppes variables 498 €, virement prévu 50 €, solde 100 €. Aucun versement additionnel de 100 € supposé. Les 1 400 € d’épargne annuelle racontés ne remplacent pas le virement mensuel de 50 €. Le montant de salaire hypothétique n’est ni validé ni diffusé comme SMIC 2026. Date de publication visible et JSON-LD 1 mai ; dateModified antérieure conservée séparément sans dater le budget. Aucun métier ou âge ajouté.",
+      "hypotheses": [],
+      "unknowns": [
+        "Ne pas déduire les métadonnées laissées vides."
+      ],
+      "expectedIncome": 1398,
+      "expectedExpenses": 1248,
+      "expectedTransfers": 50,
+      "expectedBalance": 100,
+      "sourceSha256": "ed19a612706b495ccb8c0f95e50fbdef605d0ae9104cd9fdd82ba718ff3de577"
+    },
+    "preparedAt": "2026-11-02"
+  },
+  {
+    "id": "reference-famille-lyon-2026",
+    "name": "Mélina et Loïc",
+    "age": null,
+    "job": "",
+    "location": "Banlieue de Lyon",
+    "household": "Deux adultes et deux enfants · locataires · budget du foyer",
+    "kind": "prepared",
+    "currency": "EUR",
+    "approximate": false,
+    "publishedAt": "2026-04-10",
+    "checkedAt": "2026-11-02",
+    "editorialReviewedAt": "2026-11-02",
+    "period": "Référence 2026",
+    "budgetAsOf": "2026",
+    "country": "France",
+    "family": "couple",
+    "children": "yes",
+    "housing": "tenant",
+    "source": {
+      "publisher": "Plan & Multiply",
+      "title": "Budget familial · exemple de deux adultes et deux enfants",
+      "url": "https://www.planandmultiply.fr/blog/budget-familial-guide-complet"
+    },
+    "incomeBasis": "Montants mensuels",
+    "incomeNote": "Modèle entièrement fictif publié : revenus du foyer non ventilés en salaires ou aides. Pas de métier ni d’âge indiqué. Le logement est un T4 en location en banlieue lyonnaise.",
+    "income": [
+      {
+        "label": "Revenus disponibles du foyer",
+        "amount": 4500,
+        "category": "other"
+      }
+    ],
+    "expenses": [
+      {
+        "label": "Loyer",
+        "amount": 950,
+        "category": "housing"
+      },
+      {
+        "label": "Assurances habitation et automobile",
+        "amount": 130,
+        "category": "bills"
+      },
+      {
+        "label": "Mutuelle familiale",
+        "amount": 180,
+        "category": "health"
+      },
+      {
+        "label": "Électricité et gaz",
+        "amount": 140,
+        "category": "housing"
+      },
+      {
+        "label": "Internet et deux mobiles",
+        "amount": 75,
+        "category": "bills"
+      },
+      {
+        "label": "Cantine des deux enfants",
+        "amount": 185,
+        "category": "food"
+      },
+      {
+        "label": "Centre de loisirs du mercredi",
+        "amount": 120,
+        "category": "other"
+      },
+      {
+        "label": "Crédit automobile",
+        "amount": 280,
+        "category": "credit"
+      },
+      {
+        "label": "Streaming",
+        "amount": 25,
+        "category": "leisure"
+      },
+      {
+        "label": "Assurance scolaire et prévoyance",
+        "amount": 45,
+        "category": "bills"
+      },
+      {
+        "label": "Crédit à la consommation",
+        "amount": 150,
+        "category": "credit"
+      },
+      {
+        "label": "Judo et piano des enfants",
+        "amount": 100,
+        "category": "leisure"
+      },
+      {
+        "label": "Courses alimentaires",
+        "amount": 620,
+        "category": "food"
+      },
+      {
+        "label": "Carburant et transports",
+        "amount": 180,
+        "category": "transport"
+      },
+      {
+        "label": "Vêtements de la famille",
+        "amount": 100,
+        "category": "other"
+      },
+      {
+        "label": "Consultations et pharmacie",
+        "amount": 70,
+        "category": "health"
+      },
+      {
+        "label": "Sorties en famille",
+        "amount": 150,
+        "category": "leisure"
+      },
+      {
+        "label": "Divers et imprévus",
+        "amount": 100,
+        "category": "other"
+      },
+      {
+        "label": "Argent de poche des enfants",
+        "amount": 30,
+        "category": "other"
+      },
+      {
+        "label": "Cadeaux et anniversaires",
+        "amount": 40,
+        "category": "other"
+      },
+      {
+        "label": "Produits ménagers et hygiène",
+        "amount": 80,
+        "category": "other"
+      },
+      {
+        "label": "Restaurants et sorties du couple",
+        "amount": 100,
+        "category": "food"
+      }
+    ],
+    "savings": [
+      {
+        "label": "Livret A · précaution prévue",
+        "amount": 200,
+        "category": "other"
+      },
+      {
+        "label": "Enveloppe vacances prévue",
+        "amount": 150,
+        "category": "other"
+      },
+      {
+        "label": "Enveloppe rentrée scolaire prévue",
+        "amount": 100,
+        "category": "other"
+      }
+    ],
+    "capacity": null,
+    "context": "Cet exemple prévoit trois enveloppes distinctes pour la réserve de sécurité, les vacances et la rentrée scolaire. Après ces affectations, 200 € restent disponibles. Le crédit à la consommation doit encore durer dix-huit mois à partir de ce budget.",
+    "caveat": "Exemple de référence, prénoms changés. Les douze lignes fixes totalisent 2 380 €, contre 2 580 € annoncés dans le sous-total. Variables 1 470 € : dépenses détaillées 3 850 €. Affectations prévues 450 €, reste 200 €. Aucun poste de 200 € inventé pour forcer le solde nul annoncé. Toutes les 22 lignes sont conservées, crédits séparés des autres postes ; provisions vacances/rentrée non présentées comme épargne de précaution.",
+    "hook": "",
+    "question": "Avec deux enfants, comment répartirais-tu la marge entre les imprévus, les vacances et la prochaine rentrée ?",
+    "provenance": {
+      "type": "reference",
+      "scope": "foyer",
+      "original": {
+        "names": [
+          "Sophie",
+          "Marc"
+        ],
+        "section": "Exemple concret : famille de quatre",
+        "sourceModifiedMetadata": "2026-10-03"
+      },
+      "method": "Exemple de référence, prénoms changés. Les douze lignes fixes totalisent 2 380 €, contre 2 580 € annoncés dans le sous-total. Variables 1 470 € : dépenses détaillées 3 850 €. Affectations prévues 450 €, reste 200 €. Aucun poste de 200 € inventé pour forcer le solde nul annoncé. Toutes les 22 lignes sont conservées, crédits séparés des autres postes ; provisions vacances/rentrée non présentées comme épargne de précaution.",
+      "hypotheses": [],
+      "unknowns": [
+        "Ne pas déduire les métadonnées laissées vides."
+      ],
+      "expectedIncome": 4500,
+      "expectedExpenses": 3850,
+      "expectedTransfers": 450,
+      "expectedBalance": 200,
+      "sourceSha256": "6ffb3cc412552c52b35927dea7f42428d2c1d4ee27939faa814abdb37aff7377"
+    },
+    "preparedAt": "2026-11-02"
+  }
+]

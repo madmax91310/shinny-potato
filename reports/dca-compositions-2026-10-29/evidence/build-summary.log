@@ -1,0 +1,50 @@
+dist/assets/selected-annual-returns-8XKKYj3u.js            521.53 kB │ gzip:  85.12 kB
+dist/assets/App-tcy43aBh.js                                597.84 kB │ gzip: 139.48 kB
+dist/assets/anniversaire-DNLVHVve.js                       659.25 kB │ gzip:  86.57 kB
+dist/assets/App-B9RUbegd.js                                675.95 kB │ gzip: 131.52 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.14s
+[33m[PLUGIN_TIMINGS] [0mYour build spent 71% of 5.1s inside plugin hooks (3.6s).
+Measured inside the callback, so queue time is excluded and time the callback itself awaited is not:
+  - @tailwindcss/vite:generate:build transform (48%, 2.5s, 29 calls)
+Those rows are 48% of the build; the rest of the 71% is below.
+Not measurable — 1 hook whose calls overlap, so elapsed time covers work other calls were doing. Profile with `node --cpu-prof`:
+  - vite:asset load (32 calls)
+See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+
+Route bundles: 28 lazy tools; initial JS 271.81 kB, gzip 89.04 kB; largest chunk 675.95 kB.
+Route total: src/pages/broker-comparator/App.jsx: 522.0 kB (144.1 kB gzip), 13 files; code 755.9/804 kB, data 162.5 kB
+Route total: src/pages/data-review/App.jsx: 1943.7 kB (327.4 kB gzip), 28 files; code 885.7/892 kB, data 1901.5 kB
+Route total: src/pages/data-search/App.jsx: 572.4 kB (165.7 kB gzip), 12 files; code 656.2/672 kB, data 339.9 kB
+Route total: src/pages/dca-profiles/App.jsx: 644.0 kB (187.8 kB gzip), 20 files; code 769.5/805 kB, data 372.4 kB
+Route total: src/pages/editorial-radar/App.jsx: 293.7 kB (97.2 kB gzip), 10 files; code 661.5/703 kB, data 0.0 kB
+Route total: src/pages/etf-sheets/App.jsx: 2660.3 kB (604.7 kB gzip), 44 files; code 889.1/906 kB, data 3039.8 kB
+Route total: src/pages/factsheet-tweets/App.jsx: 1369.8 kB (337.8 kB gzip), 26 files; code 983.1/2102 kB, data 978.9 kB
+Route total: src/pages/fee-impact/App.jsx: 510.3 kB (130.8 kB gzip), 18 files; code 699.9/724 kB, data 238.7 kB
+Route total: src/pages/france-100-menages/App.jsx: 372.9 kB (119.1 kB gzip), 16 files; code 736.3/1930 kB, data 21.8 kB
+Route total: src/pages/hey-grok/App.jsx: 456.4 kB (146.9 kB gzip), 12 files; code 914.4/930 kB, data 0.0 kB
+Route total: src/pages/investment-calculator/App.jsx: 1200.7 kB (293.6 kB gzip), 26 files; code 805.0/850 kB, data 978.2 kB
+Route total: src/pages/investor-portfolio/App.jsx: 322.4 kB (109.3 kB gzip), 14 files; code 690.7/725 kB, data 11.3 kB
+Route total: src/pages/market-facts/App.jsx: 587.5 kB (177.7 kB gzip), 12 files; code 658.1/699 kB, data 321.7 kB
+Route total: src/pages/performance-rankings/App.jsx: 3328.3 kB (1045.0 kB gzip), 63 files; code 808.5/847 kB, data 3930.2 kB
+Route total: src/pages/portfolio-duels/App.jsx: 1247.0 kB (333.6 kB gzip), 20 files; code 752.7/775 kB, data 1126.8 kB
+Route total: src/pages/portfolio-generator/App.jsx: 1462.4 kB (412.0 kB gzip), 26 files; code 1033.6/1105 kB, data 1156.6 kB
+Route total: src/pages/practical-sheets/App.jsx: 1365.6 kB (328.0 kB gzip), 24 files; code 779.0/793 kB, data 1332.5 kB
+Route total: src/pages/presentations/App.jsx: 438.0 kB (133.5 kB gzip), 16 files; code 744.0/1935 kB, data 106.8 kB
+Route total: src/pages/ranking-ideas/App.jsx: 299.0 kB (99.7 kB gzip), 11 files; code 646.4/650 kB, data 17.3 kB
+Route total: src/pages/tweet-bank/App.jsx: 1836.9 kB (411.6 kB gzip), 26 files; code 692.3/694 kB, data 2180.4 kB
+Route total: src/pages/tweet-midi/App.jsx: 7233.6 kB (1805.3 kB gzip), 110 files; code 1152.6/1307 kB, data 8801.2 kB
+Route total: src/pages/tweet-midi/formats/anniversaire/App.jsx: 1811.9 kB (393.1 kB gzip), 27 files; code 771.3/810 kB, data 1750.2 kB
+Route total: src/pages/tweet-midi/formats/comparatif/App.jsx: 3571.0 kB (795.5 kB gzip), 50 files; code 996.2/1189 kB, data 4072.9 kB
+Route total: src/pages/tweet-midi/formats/dilemme/App.jsx: 742.4 kB (228.7 kB gzip), 23 files; code 761.1/786 kB, data 466.6 kB
+Route total: src/pages/tweet-midi/formats/lexique/App.jsx: 878.7 kB (266.7 kB gzip), 27 files; code 887.0/896 kB, data 482.4 kB
+Route total: src/pages/tweet-midi/formats/performance/App.jsx: 1685.7 kB (367.7 kB gzip), 28 files; code 761.8/773 kB, data 1762.5 kB
+Route total: src/pages/tweet-midi/formats/pouvoir/App.jsx: 770.9 kB (233.0 kB gzip), 23 files; code 771.9/788 kB, data 493.3 kB
+Route total: src/pages/wealth-simulator/App.jsx: 351.5 kB (112.7 kB gzip), 18 files; code 713.0/1897 kB, data 32.4 kB
+Published coverage: 4275 field certificates agree with the inventory and generated collection targets.
+Publication manifest matches all 41 built public data files.

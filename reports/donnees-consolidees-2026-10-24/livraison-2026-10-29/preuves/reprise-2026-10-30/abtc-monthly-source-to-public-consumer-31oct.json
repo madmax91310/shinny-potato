@@ -1,0 +1,142 @@
+{
+  "checkedAt": "2026-10-31T03:33:33.713160+00:00",
+  "run": 41161437914,
+  "event": "workflow_dispatch",
+  "record": "4d2096e9e41ec339fcb67cbc007edc4f51790715",
+  "sourceScope": {
+    "requestedIds": [
+      "etfCH0454664001Nav"
+    ],
+    "expectedIds": [
+      "etfCH0454664001Nav"
+    ],
+    "selection": "explicit"
+  },
+  "sourceResult": {
+    "id": "etfCH0454664001Nav",
+    "status": "validated",
+    "sourceState": "unchanged-verified",
+    "periodEnd": "2026-09",
+    "responseSha256": "d53992ba63cbb9f54d0260545a2f2bc6f0c1a0eb4a7176886d871a443632c4ca",
+    "controlScope": {
+      "controlledInstrument": "CH0454664001",
+      "controlledFields": [
+        "product_details.details.isin",
+        "product_details.ticker",
+        "product_details.currency.short_name",
+        "product_details.inception_date",
+        "product_details.valuation_date",
+        "product_details.nav_per_unit",
+        "product_valuation_history.valuation_date",
+        "product_valuation_history.nav_per_share",
+        "product_valuation_history.fiat_denominator",
+        "product_valuation_history.index:split-check-only",
+        "product_performance_metrics.performance_monthly",
+        "product_performance_metrics.performance_details"
+      ],
+      "requestedStart": "2019-03-01",
+      "controlledCalendarYears": [
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ]
+    }
+  },
+  "recordedInstrument": "CH0454664001",
+  "projectionCurrency": "EUR",
+  "nativeNavCurrency": "USD",
+  "rawSourceHashes": {
+    "https://api.primary.21shares.com/api/product_details/ABTC": "41d934e76b5ffcbe09604658ba828dd9ed9db267ed7e7a8264a5f7b7e176d22a",
+    "https://api.primary.21shares.com/api/product_valuation_history/ABTC": "0f156fdd9be0c28b38116506ca900afe7921a36baa794c2c42ee58476c6da517",
+    "https://api.primary.21shares.com/api/product_performance_metrics/ABTC": "1a462fdd1aea07e7159ef8be04997c558b9d5d8c9922903cb98a4e88b96cb220",
+    "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "11764c276d0702f36e8e324f1a94eab76a85d3b5e86e0b20e6e42417dcc7d7aa"
+  },
+  "financialConvention": "exact-share accumulated net NAV; no exchange-price claim",
+  "points": 91,
+  "periodStart": "2019-03",
+  "periodEnd": "2026-09",
+  "publicVersion": {
+    "sha": "4213389fd53845831b27587b08ec28cf20e66060",
+    "dataSha": "4d2096e9e41ec339fcb67cbc007edc4f51790715",
+    "lane": "validated-data",
+    "builtAt": "2026-10-31T03:16:57.788Z"
+  },
+  "bindings": [
+    {
+      "path": "src/data/anniversary-levels.json",
+      "expected": "40cca032903a511d3a7fc48e93cab19e58fae9e6",
+      "served": "40cca032903a511d3a7fc48e93cab19e58fae9e6",
+      "matches": true
+    },
+    {
+      "path": "src/data/auto-history-identities.json",
+      "expected": "ed6ef8dfac260910a311de0e1f59588a9157cf5a",
+      "served": "ed6ef8dfac260910a311de0e1f59588a9157cf5a",
+      "matches": true
+    },
+    {
+      "path": "src/data/automated-etf-monthly.json",
+      "expected": "ebc8e838ea46e6cb89ecae26fce04d6ae124a5ae",
+      "served": "ebc8e838ea46e6cb89ecae26fce04d6ae124a5ae",
+      "matches": true
+    },
+    {
+      "path": "src/data/automated-indices.json",
+      "expected": "14214c4eb49403cdeb7eb2f700a03dc01fcd69af",
+      "served": "14214c4eb49403cdeb7eb2f700a03dc01fcd69af",
+      "matches": true
+    },
+    {
+      "path": "src/data/automated-monthly.json",
+      "expected": "eb5b254cc8d32c64bad17909702464ff8d7a22c9",
+      "served": "eb5b254cc8d32c64bad17909702464ff8d7a22c9",
+      "matches": true
+    },
+    {
+      "path": "src/data/monthly-fx.json",
+      "expected": "167b4d15fe50278c399112ef3ed42b62cf6ed375",
+      "served": "167b4d15fe50278c399112ef3ed42b62cf6ed375",
+      "matches": true
+    },
+    {
+      "path": "src/data/qualified-listing-records.json",
+      "expected": "ad60a019832259e2125967e9cf3c5bb6ee4fb5ed",
+      "served": "ad60a019832259e2125967e9cf3c5bb6ee4fb5ed",
+      "matches": true
+    },
+    {
+      "path": "src/data/ranking-histories.json",
+      "expected": "f8fd0ba0df01fa78f969d54c5077cf798014c6a2",
+      "served": "f8fd0ba0df01fa78f969d54c5077cf798014c6a2",
+      "matches": true
+    },
+    {
+      "path": "src/data/shared-listing-identities.json",
+      "expected": "6bdc79ef19ef896140da8eeb61ce523c13d93667",
+      "served": "6bdc79ef19ef896140da8eeb61ce523c13d93667",
+      "matches": true
+    }
+  ],
+  "sourceValidated": true,
+  "publicationVerified": true,
+  "publicConsumerResults": {
+    "calculator": 8,
+    "performanceSince": 2,
+    "png": 10,
+    "currencies": [
+      "EUR",
+      "USD"
+    ]
+  },
+  "new79MonthlyWindows": 0,
+  "otherFailure": {
+    "id": "fx:TWD",
+    "status": "failed",
+    "reason": "FRED timeouts; empty DDP response. Source group retained separately; not a failure of EUR/USD ECB or ABTC."
+  },
+  "notScheduledProof": true,
+  "limit": "Only requested ABTC history and FX attempted scope, not all catalog histories. Historical levels unchanged-verified. TWD not repaired by this successful ABTC and ECB source result."
+}

@@ -1,0 +1,64 @@
+{
+  "collectedAt": "2026-10-30T23:28:51.790800+00:00",
+  "entryPoint": "refresh_additional_etf.collect_one",
+  "scope": [
+    "CH0454664001"
+  ],
+  "record": {
+    "isin": "CH0454664001",
+    "name": "21Shares Bitcoin ETP",
+    "provider": "21Shares",
+    "parser": "document",
+    "documentType": "21shares",
+    "preferProductApi": true,
+    "calendarApiBase": "https://api.primary.21shares.com",
+    "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+    "currency": "USD",
+    "productId": "CH0454664001",
+    "unavailable": [],
+    "collectionErrors": [],
+    "sourceAttempts": [
+      {
+        "url": "https://api.primary.21shares.com/api/product_details/ABTC",
+        "status": "validated",
+        "sha256": "f8b52bd7264cc881eb499ab35d7622ba5d74a79745ccda6e107096413e6d62b1"
+      }
+    ],
+    "aum": {
+      "amount": 618385969.835628,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-30",
+      "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+      "sha256": "f8b52bd7264cc881eb499ab35d7622ba5d74a79745ccda6e107096413e6d62b1",
+      "method": "Issuer product_details.total_nav; native USD product assets, not NAV-times-units"
+    },
+    "characteristics": {
+      "terPct": 1.49,
+      "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+      "sha256": "f8b52bd7264cc881eb499ab35d7622ba5d74a79745ccda6e107096413e6d62b1"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "years": {
+        "2020": 277.89,
+        "2021": 65.02,
+        "2022": -65.41,
+        "2023": 151.83,
+        "2024": 114.17,
+        "2025": -4.71
+      },
+      "asOf": "2026-10-30",
+      "sourceUrl": "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
+      "sha256": "b69ad512ed8af0b317b6a9db1ddd3459f60239f7bd50df1640bd3a1931da3850",
+      "method": "calendar-year exact ETP USD NAV return, net of fees, issuer-adjusted for share splits; monthly issuer returns cross-checked; derived from rounded issuer NAV levels",
+      "validationSources": [
+        "https://api.primary.21shares.com/api/product_details/ABTC",
+        "https://api.primary.21shares.com/api/product_performance_metrics/ABTC"
+      ]
+    }
+  },
+  "localRealSourceOnly": true,
+  "notGithubProductionProof": true
+}

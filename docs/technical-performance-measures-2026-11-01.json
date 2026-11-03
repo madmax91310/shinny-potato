@@ -1,0 +1,354 @@
+{
+  "scenario": "Cold anniversary Apple route; Chromium; 390 CPU x4 and1440 CPU x1; local static files; three contexts per width and build; forced GC for JS heap; three PNG downloads per context",
+  "beforeBase": "6d6bd434b159e2d9f0a9753e04d10ff31e5c69c8",
+  "samples": [
+    {
+      "phase": "before",
+      "width": 390,
+      "repetition": 0,
+      "readyMs": 2434.5,
+      "jsAndDataBytes": 1829041,
+      "jsHeapBeforePng": 279614404,
+      "jsHeapAfterPng": 292269724,
+      "exports": [
+        {
+          "ms": 1020.8616039999997,
+          "bytes": 1463708,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 459.3164420000003,
+          "bytes": 1463708,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 419.4051950000003,
+          "bytes": 1463708,
+          "width": 1600,
+          "height": 2000
+        }
+      ]
+    },
+    {
+      "phase": "before",
+      "width": 390,
+      "repetition": 1,
+      "readyMs": 2320.100000000093,
+      "jsAndDataBytes": 1829041,
+      "jsHeapBeforePng": 279611776,
+      "jsHeapAfterPng": 292272712,
+      "exports": [
+        {
+          "ms": 966.9754420000008,
+          "bytes": 1446662,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 439.4970090000006,
+          "bytes": 1446662,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 416.5938810000007,
+          "bytes": 1446662,
+          "width": 1600,
+          "height": 2000
+        }
+      ]
+    },
+    {
+      "phase": "before",
+      "width": 390,
+      "repetition": 2,
+      "readyMs": 2167,
+      "jsAndDataBytes": 1829041,
+      "jsHeapBeforePng": 279614900,
+      "jsHeapAfterPng": 292270744,
+      "exports": [
+        {
+          "ms": 961.8016329999991,
+          "bytes": 1457552,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 498.5225090000022,
+          "bytes": 1457552,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 449.6679049999984,
+          "bytes": 1457552,
+          "width": 1600,
+          "height": 2000
+        }
+      ]
+    },
+    {
+      "phase": "before",
+      "width": 1440,
+      "repetition": 0,
+      "readyMs": 730.1000000000931,
+      "jsAndDataBytes": 1829041,
+      "jsHeapBeforePng": 278752172,
+      "jsHeapAfterPng": 292332312,
+      "exports": [
+        {
+          "ms": 504.47788299999957,
+          "bytes": 1446662,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 140.84725700000126,
+          "bytes": 1446662,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 142.04683800000203,
+          "bytes": 1446662,
+          "width": 1600,
+          "height": 2000
+        }
+      ]
+    },
+    {
+      "phase": "before",
+      "width": 1440,
+      "repetition": 1,
+      "readyMs": 701.1999999997206,
+      "jsAndDataBytes": 1829041,
+      "jsHeapBeforePng": 278751752,
+      "jsHeapAfterPng": 292332164,
+      "exports": [
+        {
+          "ms": 535.5512970000018,
+          "bytes": 1442642,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 125.65416200000254,
+          "bytes": 1442642,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 132.1134299999976,
+          "bytes": 1442642,
+          "width": 1600,
+          "height": 2000
+        }
+      ]
+    },
+    {
+      "phase": "before",
+      "width": 1440,
+      "repetition": 2,
+      "readyMs": 720.9000000003725,
+      "jsAndDataBytes": 1829041,
+      "jsHeapBeforePng": 278748396,
+      "jsHeapAfterPng": 292328544,
+      "exports": [
+        {
+          "ms": 522.300987999999,
+          "bytes": 1446662,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 136.30572200000097,
+          "bytes": 1446662,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 140.89839500000016,
+          "bytes": 1446662,
+          "width": 1600,
+          "height": 2000
+        }
+      ]
+    },
+    {
+      "phase": "after",
+      "width": 390,
+      "repetition": 0,
+      "readyMs": 928,
+      "jsAndDataBytes": 1829174,
+      "jsHeapBeforePng": 7011372,
+      "jsHeapAfterPng": 19662236,
+      "exports": [
+        {
+          "ms": 864.3992410000001,
+          "bytes": 1463014,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 458.6051050000001,
+          "bytes": 1463014,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 402.7789170000001,
+          "bytes": 1463014,
+          "width": 1600,
+          "height": 2000
+        }
+      ]
+    },
+    {
+      "phase": "after",
+      "width": 390,
+      "repetition": 1,
+      "readyMs": 877.2999999998137,
+      "jsAndDataBytes": 1829174,
+      "jsHeapBeforePng": 7011308,
+      "jsHeapAfterPng": 19662164,
+      "exports": [
+        {
+          "ms": 822.1390710000005,
+          "bytes": 1463708,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 468.51128700000027,
+          "bytes": 1463708,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 447.306192,
+          "bytes": 1463708,
+          "width": 1600,
+          "height": 2000
+        }
+      ]
+    },
+    {
+      "phase": "after",
+      "width": 390,
+      "repetition": 2,
+      "readyMs": 774.5,
+      "jsAndDataBytes": 1829174,
+      "jsHeapBeforePng": 7079000,
+      "jsHeapAfterPng": 19670772,
+      "exports": [
+        {
+          "ms": 892.3952849999996,
+          "bytes": 1442642,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 485.2729130000007,
+          "bytes": 1442642,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 514.0194219999994,
+          "bytes": 1442642,
+          "width": 1600,
+          "height": 2000
+        }
+      ]
+    },
+    {
+      "phase": "after",
+      "width": 1440,
+      "repetition": 0,
+      "readyMs": 471.09999999962747,
+      "jsAndDataBytes": 1829174,
+      "jsHeapBeforePng": 6171496,
+      "jsHeapAfterPng": 19837916,
+      "exports": [
+        {
+          "ms": 311.2789900000007,
+          "bytes": 1472229,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 138.77311400000144,
+          "bytes": 1472229,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 133.33745400000043,
+          "bytes": 1472229,
+          "width": 1600,
+          "height": 2000
+        }
+      ]
+    },
+    {
+      "phase": "after",
+      "width": 1440,
+      "repetition": 1,
+      "readyMs": 478.79999999981374,
+      "jsAndDataBytes": 1829174,
+      "jsHeapBeforePng": 6236000,
+      "jsHeapAfterPng": 19837884,
+      "exports": [
+        {
+          "ms": 324.42569399999957,
+          "bytes": 1446662,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 123.59610500000053,
+          "bytes": 1446662,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 141.39941800000088,
+          "bytes": 1446662,
+          "width": 1600,
+          "height": 2000
+        }
+      ]
+    },
+    {
+      "phase": "after",
+      "width": 1440,
+      "repetition": 2,
+      "readyMs": 444.70000000018626,
+      "jsAndDataBytes": 1829174,
+      "jsHeapBeforePng": 6162408,
+      "jsHeapAfterPng": 19834832,
+      "exports": [
+        {
+          "ms": 304.4051039999995,
+          "bytes": 1472229,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 143.5796250000003,
+          "bytes": 1472229,
+          "width": 1600,
+          "height": 2000
+        },
+        {
+          "ms": 126.1674380000004,
+          "bytes": 1472229,
+          "width": 1600,
+          "height": 2000
+        }
+      ]
+    }
+  ]
+}

@@ -26,3 +26,16 @@ const newlyHedged=applyAutomatedCharacteristics({...previous,location:'Irlande, 
 assert.match(newlyHedged.location,/couverture de change/);assert.doesNotMatch(newlyHedged.location,/sans|euros/);
 console.log('Collected replication wording, generic/full distinction, hedge annotations and immutable source facts verified.');
 
+
+// A previously listing-only owner ignored an explicit usable hedging source.
+import {restrictedMetadataRoute} from './lib/metadata-field-routing.mjs';
+const exact='IE00BZ048462',primary='https://issuer.test/key-facts?isin='+exact,profile='https://www.justetf.com/fr/etf-profile.html?isin='+exact;
+assert.deepEqual(restrictedMetadataRoute(exact,primary,['listings'],{urls:[profile]}),{fields:['listings'],urls:[primary]},'An undeclared supplemental URL cannot certify every metadata field');
+const supplied={fields:['currencyHedge'],urls:[profile]},copy=structuredClone(supplied);
+assert.deepEqual(restrictedMetadataRoute(exact,primary,['listings'],supplied),{fields:['listings','currencyHedge'],urls:[primary,profile]});
+assert.deepEqual(supplied,copy);assert(!restrictedMetadataRoute(exact,primary,['listings'],supplied).fields.includes('pea'));
+assert.deepEqual(restrictedMetadataRoute(exact,primary,['listings','currencyHedge'],{fields:['currencyHedge'],urls:[profile,profile]}).fields,['listings','currencyHedge']);
+assert.throws(()=>restrictedMetadataRoute(exact,primary,['listings'],{fields:['aum'],urls:[profile]}),/Unsupported/);
+assert.throws(()=>restrictedMetadataRoute(exact,primary,['listings'],{fields:['currencyHedge'],urls:[]}),/no source/);
+assert.throws(()=>restrictedMetadataRoute(exact,primary,['listings'],{fields:['currencyHedge'],urls:[profile.replace(exact,'IE00B4L5Y983')]}),/another share/);
+console.log('Restricted metadata: explicit supplemental field only, unchanged legacy URL ownership, no PEA inference, exact-share URL and source invariants verified.');

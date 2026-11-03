@@ -53,6 +53,18 @@ def build_plan(producer, args, report_stem=None, module=None):
         for c in cfg(file):
             enabled=c.get('enabled',True);selected=enabled and (not only or c['isin']in only)
             add('etf-'+stem+'-'+c['isin'],c['isin'],['issuer share observation','individual collectionErrors','unavailable/retained fields'],selected,'Excluded by explicit selection or disabled configuration' if not selected else None)
+    elif producer=='refresh_qualified_listings':
+        common=read('src/data/shared-listing-identities.json')['listings']
+        aliases={r['aiListingId']:r['isin'] for r in read('src/data/global-equities.json') if r.get('aiListingId')}
+        for row in common:
+            if row.get('sourceId') in ('nasdaq','us-other','nordic-main'):
+                identifier=row.get('isin')or aliases.get(row['id'])or row['id']
+                add('listing:'+identifier,identifier,['listing-identity'])
+        if any(r.get('sourceId')=='us-other'for r in common):
+            add('listing:directory:us-other','directory:us-other',['primary-directory'])
+        if '--common-identities-only'not in args:
+            for source in read('scripts/qualified-listing-sources.json')['sources']:
+                add('listing:'+source['isin'],source['isin'],['issuer listing table'])
     elif producer=='collect_presentation_performance':
         for c in mod().SOURCES:add('etf-'+stem+'-'+c['isin'],c['isin'],['exact-share published cumulative performance <= 1 year','currency','reinvestment convention'])
     elif producer in {'refresh_index_sources','refresh_index_companies'}:
@@ -106,7 +118,10 @@ def build_plan(producer, args, report_stem=None, module=None):
         for key,isin in read('scripts/dca-equity-identities.json').items():add('dca-equity:'+key,isin,['country of risk','sector'])
     elif producer=='collect_dca_complete_holdings':
         configs={**read('scripts/dca-complete-holdings-sources.json'),**read('scripts/generated-holdings-sources.json')}
-        for isin in configs:add('dca-holdings:'+isin,isin,['complete economic holdings','security identities','weights','asOf'],not only or isin in only,'Outside requested holdings selection'if only and isin not in only else None)
+        for isin,config in configs.items():
+            derived=config.get('parser')=='lifestrategy-lookthrough'
+            add('dca-holdings:'+isin,isin,['complete economic holdings','security identities','weights','asOf'],not only or isin in only,'Outside requested holdings selection'if only and isin not in only else None,
+                **({'phase':'validation','sourceAttempted':False}if derived else{}))
     elif producer=='collect_vanguard_sleeves':
         for c in mod().SOURCES:add('vanguard-underlier:'+c[1],c[1],['countries','sectors','factsheet/API identity'])
     elif producer=='collect_exposure_sleeves':
@@ -115,7 +130,13 @@ def build_plan(producer, args, report_stem=None, module=None):
         for code in m.US_FUNDS:add('exposure-sleeve:'+code,code,['US holdings classification source'])
         for key in ['US8740391003','GB0009895292','IE000UL6CLP7','IE0003R87OG3','IE00BM8R0J59','avantis-AVDV','avantis-AVUV','morningstar-SILV']:add('exposure-sleeve:'+key,key,['economic sleeve classification'])
     elif producer=='refresh_anniversary_levels':
-        for c in mod().configurations():add('anniversary-'+c['id'],c.get('isin',c['id']),['dated closing level',c.get('field','close'),c.get('currency','')])
+        anniversary_sources=mod().configurations()
+        for c in anniversary_sources:
+            selected=not only or c['id']in only
+            add('anniversary-'+c['id'],c.get('isin',c['id']),['dated closing level',c.get('field','close'),c.get('currency','')],
+                selected,'Outside explicit anniversary selection'if not selected else None)
+        # The native collector always validates the existing EUR gold derivation,
+        # including in targeted mode; this is not a new external source control.
         add('anniversary-or','or',['derived EUR gold level; no new source control'])
     elif producer=='refresh_anniversary_indices':
         for c in mod().configurations():add('anniversary-index-'+c['id'],c['id'],['completed official monthly index levels',c.get('currency','USD')])
@@ -123,9 +144,15 @@ def build_plan(producer, args, report_stem=None, module=None):
         m=mod();sources=cfg('instrument-metadata-sources');chosen=m.select_sources(sources,only)
         selected={s['isin']for s in chosen}
         for s in sources:
+            # Keep every operation identity, with capability exclusions declared
+            # before fetching results. These fields remain requirements elsewhere.
             for field in m.FIELDS:
+                owned=field in s.get('fields', m.FIELDS)
+                requested=s['isin']in selected and owned
+                reason=('Outside declared fields for this metadata source; no field control claimed'if not owned
+                        else 'Outside explicit metadata selection'if s['isin']not in selected else None)
                 for suffix in ['',':qualification']:
-                    add(s['isin']+':'+field+suffix,s['isin'],[field],s['isin']in selected,'Outside explicit metadata selection'if s['isin']not in selected else None,**({'phase':'qualification','sourceAttempted':False}if suffix else{}))
+                    add(s['isin']+':'+field+suffix,s['isin'],[field],requested,reason,**({'phase':'qualification','sourceAttempted':False}if suffix else{}))
     elif producer=='update-investor-13f':
         for entry in [{'slug':slug}for slug in mod().MANAGERS]:add('investor:'+entry['slug'],entry['slug'],['13F last successful check','positions date','report quarter','amendments'])
     elif producer=='refresh_non_bond_sources':
@@ -149,6 +176,7 @@ def build_plan(producer, args, report_stem=None, module=None):
     if only:
         selectable={r['instrument']for r in items}|{r['id']for r in items}
         if producer=='collect_qualified_exposures':selectable|={c['id']for c in cfg('qualified-exposure-sources')}
+        if producer=='refresh_anniversary_levels':selectable={c['id']for c in anniversary_sources}
         if set(only)-selectable:raise ValueError('Unknown producer target: '+','.join(set(only)-selectable))
     return {'items':items,'mode':'targeted'if only or any(flag in args for flag in ('--ids','--only-derived','--family','--fields','--limit'))else'full',
             'selectionReason':'Parsed CLI selection and producer input configuration, before collection',

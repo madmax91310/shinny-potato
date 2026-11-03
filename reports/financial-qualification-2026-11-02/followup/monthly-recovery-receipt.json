@@ -1,0 +1,59 @@
+{
+  "checkedAt": "2026-11-02T16:53:47.341254+00:00",
+  "scope": {
+    "requestedIds": [
+      "etf_world_communication",
+      "etfIE00B2QWCY14"
+    ],
+    "expectedIds": [
+      "etf_world_communication",
+      "etfIE00B2QWCY14"
+    ],
+    "selection": "explicit"
+  },
+  "series": [
+    {
+      "id": "etf_world_communication",
+      "isin": "IE00BJ5JP436",
+      "status": "validated",
+      "periodStart": "2022-05",
+      "periodEnd": "2026-10",
+      "currency": "USD",
+      "navCurrency": "USD",
+      "scaleProof": {
+        "anchorDate": "2026-10-30",
+        "officialPerShareNav": 7.32678,
+        "sourceIncomeIndex": 15615.095800000001,
+        "factor": 0.0004692113384280358
+      },
+      "historyExcludedMonths": [],
+      "withheldMonthlyEnds": [],
+      "rawSourceHashes": {
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true": "a98b399949423d3d43dc4668bf6667eee3b3a13fcdb2db9ac7e4aa004d5358c0"
+      },
+      "responseSha256": "67d7b58a9516fc058581a4568524770d46b45bd38fd49429100034550dd9e9ee"
+    },
+    {
+      "id": "etfIE00B2QWCY14",
+      "isin": "IE00B2QWCY14",
+      "status": "validated",
+      "periodStart": "2015-01",
+      "periodEnd": "2026-10",
+      "currency": "EUR",
+      "navCurrency": "USD",
+      "scaleProof": {
+        "anchorDate": "2026-10-30",
+        "officialPerShareNav": 113.625838,
+        "sourceIncomeIndex": 53488.5862,
+        "factor": 0.0021243006419190045
+      },
+      "historyExcludedMonths": [],
+      "withheldMonthlyEnds": [],
+      "rawSourceHashes": {
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true": "f7f841604c090ec404164b0a3998a1a9afe59eddd2f6b5d52487bc567b37cc8a",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "f5a838828ed438a6b9e76ba4897e3952d23d55d99989db8684e1f010473d43ce"
+      },
+      "responseSha256": "6fa14343f88f5cabe1a7696044756eb74f60a307f3cb7057de1de3260a80d92d"
+    }
+  ]
+}

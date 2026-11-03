@@ -1,0 +1,209 @@
+[
+  {
+    "isin": "IE00B6R52259",
+    "asOf": 20261028,
+    "rows": 1739,
+    "classTotals": {
+      "Equity": 99.6371999999999,
+      "Money Market": 0.1449,
+      "Cash": 0.2002000000000001,
+      "Cash Collateral and Margins": 0.018029999999999997,
+      "FX": -9.000000000000002e-05,
+      "Futures": 0.0
+    },
+    "unknownEquity": [
+      {
+        "assetClass": "Equity",
+        "countryOfRisk": "Taiwan",
+        "exchange": "NO MARKET (E.G. UNLISTED)",
+        "holdingPercent": 0.0001,
+        "isin": null,
+        "issueName": "SINOPAC FIN HOLDINGS CO LTD DUMMY",
+        "marketCurrencyCode": "TWD",
+        "marketValue": 38165.52,
+        "notionalValue": 38165.52,
+        "sectorName": "Financials",
+        "ticker": "2684290D",
+        "unitPrice": 0.01,
+        "unitsHeld": 3206452.0
+      }
+    ],
+    "nonEquityLarge": [],
+    "columns": [
+      "asOfDate",
+      "assetClass",
+      "countryOfRisk",
+      "dateList",
+      "exchange",
+      "holdingPercent",
+      "isin",
+      "issueName",
+      "marketCurrencyCode",
+      "marketValue",
+      "notionalValue",
+      "sectorName",
+      "ticker",
+      "unitPrice",
+      "unitsHeld"
+    ],
+    "sha256": "5c80b20bcb6da4665b410b5e41ee7bd1145920b3fa0f25003b6e2524e781741a",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-29T17:18:20.077448+00:00"
+  },
+  {
+    "isin": "IE00BF4RFH31",
+    "asOf": 20261028,
+    "rows": 3596,
+    "classTotals": {
+      "Equity": 99.51429999999989,
+      "Cash": 0.3940600000000001,
+      "Money Market": 0.05026,
+      "Cash Collateral and Margins": 0.04141,
+      "FX": 3e-05,
+      "Futures": 0.0
+    },
+    "unknownEquity": [
+      {
+        "assetClass": "Equity",
+        "countryOfRisk": "United States",
+        "exchange": "NASDAQ",
+        "holdingPercent": 0.0003,
+        "isin": null,
+        "issueName": "AKERO THERAPEUTICS CVR",
+        "marketCurrencyCode": "USD",
+        "marketValue": 27306.24,
+        "notionalValue": 27306.24,
+        "sectorName": "Health Care",
+        "ticker": "AKE",
+        "unitPrice": 0.64,
+        "unitsHeld": 42666.0
+      }
+    ],
+    "nonEquityLarge": [
+      {
+        "issueName": "USD CASH",
+        "holdingPercent": 0.21088,
+        "assetClass": "Cash",
+        "isin": null
+      }
+    ],
+    "columns": [
+      "asOfDate",
+      "assetClass",
+      "countryOfRisk",
+      "dateList",
+      "exchange",
+      "holdingPercent",
+      "isin",
+      "issueName",
+      "marketCurrencyCode",
+      "marketValue",
+      "notionalValue",
+      "sectorName",
+      "ticker",
+      "unitPrice",
+      "unitsHeld"
+    ],
+    "sha256": "7b3487fbd95a1876adfe6f6f490b40a0164510f9b8d5a63e194de6825e7d0f87",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-29T17:18:20.920254+00:00"
+  },
+  {
+    "isin": "IE00B1FZS467",
+    "asOf": 20261028,
+    "rows": 316,
+    "classTotals": {
+      "Equity": 99.35594999999995,
+      "Cash": 0.41493,
+      "Money Market": 0.1053,
+      "Other": 0.08706,
+      "Cash Collateral and Margins": 0.03676,
+      "FX": 0.0,
+      "Futures": 0.0
+    },
+    "unknownEquity": [],
+    "nonEquityLarge": [
+      {
+        "issueName": "USD CASH",
+        "holdingPercent": 0.16479,
+        "assetClass": "Cash",
+        "isin": null
+      }
+    ],
+    "columns": [
+      "asOfDate",
+      "assetClass",
+      "countryOfRisk",
+      "dateList",
+      "exchange",
+      "holdingPercent",
+      "isin",
+      "issueName",
+      "marketCurrencyCode",
+      "marketValue",
+      "notionalValue",
+      "sectorName",
+      "ticker",
+      "unitPrice",
+      "unitsHeld"
+    ],
+    "sha256": "b558431bac0f22b6227140fc8a3e27c2367731c9899a97a7d9922a29b6073b8b",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-29T17:18:19.872131+00:00"
+  },
+  {
+    "isin": "IE00B441G979",
+    "asOf": 20261028,
+    "rows": 1307,
+    "classTotals": {
+      "Equity": 100.76217999999992,
+      "Money Market": 0.71231,
+      "Cash": 0.35268,
+      "Cash Collateral and Margins": 0.06606,
+      "Forwards": -1.89321,
+      "Futures": 0.0,
+      "FX": -1e-05
+    },
+    "unknownEquity": [],
+    "nonEquityLarge": [
+      {
+        "issueName": "BLK ICS USD LIQ AGENCY DIS",
+        "holdingPercent": 0.67746,
+        "assetClass": "Money Market",
+        "isin": "IE00B50QMP13"
+      },
+      {
+        "issueName": "USD CASH",
+        "holdingPercent": 0.2286,
+        "assetClass": "Cash",
+        "isin": null
+      },
+      {
+        "issueName": "USD/EUR",
+        "holdingPercent": -1.54929,
+        "assetClass": "Forwards",
+        "isin": null
+      }
+    ],
+    "columns": [
+      "asOfDate",
+      "assetClass",
+      "countryOfRisk",
+      "dateList",
+      "exchange",
+      "holdingPercent",
+      "isin",
+      "issueName",
+      "marketCurrencyCode",
+      "marketValue",
+      "notionalValue",
+      "sectorName",
+      "ticker",
+      "unitPrice",
+      "unitsHeld"
+    ],
+    "sha256": "3c17432d76690251a2c38ec3d4ba39339fc14ecff33c56e33126c3289cab34ba",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-29T17:18:22.701257+00:00"
+  }
+]

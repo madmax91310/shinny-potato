@@ -1,3 +1,5 @@
+import { investorModel } from '../../data/investor-models.js'
+import { modelPortfolio, buildModelTweet } from './models.js'
 import { investorIntroduction } from '../../data/investor-profiles.js'
 import { INVESTORS } from '../../data/investor-roster.js'
 export { INVESTORS } from '../../data/investor-roster.js'
@@ -129,7 +131,7 @@ export function portfolioEditorial(portfolio) {
   } else if ((cumulative[2] ?? topSum) >= .7) {
     const n = Math.min(3, top.length)
     const concentratedWeight = cumulative[n - 1] < 1 && cumulative[n - 1] >= .9995 ? 'près de 100 %' : percentage(cumulative[n - 1])
-    explanation = leadName + ' arrive en tête avec ' + percentage(lead.weight) + (second ? ', devant ' + holdingName(second) + ' à ' + percentage(second.weight) : '') + '. ' + (otherCount ? 'Les ' + otherCount + ' autres ' + unit + ' hors du top ' + top.length + ' représentent ' + percentage(rest) + ' du relevé.' : 'Toutes les ' + unit + ' déclarées figurent dans cette liste.')
+    explanation = leadName + ' arrive en tête avec ' + percentage(lead.weight) + (second ? ', devant ' + holdingName(second) + ' à ' + percentage(second.weight) : '') + '. ' + (otherCount ? (otherCount === 1 ? 'L’autre ' + singularUnit + ' hors du top ' + top.length + ' représente ' : 'Les ' + otherCount + ' autres ' + unit + ' hors du top ' + top.length + ' représentent ') + percentage(rest) + ' du relevé.' : 'Toutes les ' + unit + ' déclarées figurent dans cette liste.')
     question = 'Concentrer ' + concentratedWeight + ' sur ' + n + ' ' + unit + ' comme ici : tu pourrais garder cette répartition ?'
   } else if (second && lead.weight - second.weight <= .005 + 1e-9) {
     explanation = leadName + ' et ' + holdingName(second) + ' sont presque à égalité en tête : ' + percentage(lead.weight) + ' et ' + percentage(second.weight) + '. Aucune ligne ne domine seule cette répartition.'
@@ -174,6 +176,7 @@ export function movementExcerpt(snapshot) {
 }
 
 export function buildTweet(portfolio, intro = '') {
+  if (portfolio.kind === 'model') return buildModelTweet(portfolio, intro, percentage)
   const { identity, snapshot } = portfolio
   const editorial = portfolioEditorial(portfolio)
   const icon = ['🥇', '🥈', '🥉', '📍', '📍']
@@ -190,6 +193,7 @@ export function buildTweet(portfolio, intro = '') {
 }
 
 export async function loadPortfolio(slug, signal) {
+  if (investorModel(slug)) return modelPortfolio(slug)
   if (!INVESTORS.some(([key]) => key === slug)) throw new Error('Investisseur inconnu.')
   const url = `${import.meta.env.BASE_URL}data/investors/${slug}.json`
   const response = await fetch(url, { signal, cache: 'no-cache' })

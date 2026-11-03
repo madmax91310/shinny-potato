@@ -1,0 +1,152 @@
+{
+  "checkedAt": "2026-10-30T02:05:12.804382+00:00",
+  "run": 40986217139,
+  "head": "e0f8b53b69a017de2b1fc4ae5c39291f1acdb57c",
+  "jobs": [
+    {
+      "id": 123837766723,
+      "name": "current-snapshot",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T01:30:12Z",
+      "completed_at": "2026-10-30T01:32:33Z"
+    },
+    {
+      "id": 123838533267,
+      "name": "python-checks",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T01:32:36Z",
+      "completed_at": "2026-10-30T01:34:25Z"
+    },
+    {
+      "id": 123838533284,
+      "name": "scope",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T01:32:36Z",
+      "completed_at": "2026-10-30T01:34:36Z"
+    },
+    {
+      "id": 123838533315,
+      "name": "build",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T01:32:36Z",
+      "completed_at": "2026-10-30T01:37:37Z"
+    },
+    {
+      "id": 123838533328,
+      "name": "exposure-browser-check",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T01:32:36Z",
+      "completed_at": "2026-10-30T01:33:29Z"
+    },
+    {
+      "id": 123840095864,
+      "name": "smoke",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T01:37:40Z",
+      "completed_at": "2026-10-30T01:39:05Z"
+    },
+    {
+      "id": 123840095936,
+      "name": "tweet-midi-checks (0)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T01:37:39Z",
+      "completed_at": "2026-10-30T01:44:44Z"
+    },
+    {
+      "id": 123840095939,
+      "name": "tweet-midi-checks (1)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T01:37:40Z",
+      "completed_at": "2026-10-30T01:44:49Z"
+    },
+    {
+      "id": 123840095940,
+      "name": "tweet-midi-checks (2)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T01:37:39Z",
+      "completed_at": "2026-10-30T01:47:44Z"
+    },
+    {
+      "id": 123840095942,
+      "name": "browser-checks (2)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T01:37:40Z",
+      "completed_at": "2026-10-30T01:54:36Z"
+    },
+    {
+      "id": 123840095970,
+      "name": "browser-checks (0)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T01:37:40Z",
+      "completed_at": "2026-10-30T01:58:14Z"
+    },
+    {
+      "id": 123840096012,
+      "name": "browser-checks (1)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T01:37:40Z",
+      "completed_at": "2026-10-30T01:55:20Z"
+    },
+    {
+      "id": 123840096018,
+      "name": "browser-checks (3)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T01:37:40Z",
+      "completed_at": "2026-10-30T01:57:30Z"
+    },
+    {
+      "id": 123840096201,
+      "name": "tweet-midi-checks (3)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-30T01:37:40Z",
+      "completed_at": "2026-10-30T01:44:59Z"
+    },
+    {
+      "id": 123846366239,
+      "name": "fallback-build",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-30T01:58:15Z",
+      "completed_at": "2026-10-30T01:58:14Z"
+    },
+    {
+      "id": 123846366262,
+      "name": "deploy",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-30T01:58:15Z",
+      "completed_at": "2026-10-30T01:58:14Z"
+    },
+    {
+      "id": 123846366491,
+      "name": "advisory-checks",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-30T01:58:15Z",
+      "completed_at": "2026-10-30T01:58:14Z"
+    },
+    {
+      "id": 123846366765,
+      "name": "deploy-fallback",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-30T01:58:15Z",
+      "completed_at": "2026-10-30T01:58:14Z"
+    }
+  ],
+  "scope": "Full application gate succeeded; independent unpartitioned monthly PR validation remains separate, not a source collection."
+}

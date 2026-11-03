@@ -10,6 +10,8 @@ import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor
 from data_automation import UTC, get_text, number, reject, write_json_atomic
 
+from insee_month_maturity import pending_price_month
+
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 PREFIX = 'Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - '
 SOURCES = {
@@ -30,7 +32,7 @@ def parse_series(body, key, now):
             ('IDBANK', 'FREQ', 'REF_AREA', 'TITLE_FR'), expected)):
         reject('Identité, fréquence, champ ou base INSEE modifiés')
     series = series[0]
-    values, quality = {}, {}
+    values, quality, pending, seen = {}, {}, [], set()
     for obs in series:
         period = obs.get('TIME_PERIOD', '')
         if key == 'irl':
@@ -42,23 +44,30 @@ def parse_series(body, key, now):
             try: date = dt.datetime.strptime(period, '%Y-%m').date()
             except ValueError: reject('Mois invalide')
             if date.strftime('%Y-%m') != period or date > now.date().replace(day=1): reject('Observation future')
-            if key != 'smic' and date == now.date().replace(day=1): reject('Mois de prix inachevé')
-        if period in values or obs.get('OBS_STATUS') not in ('A', 'P') or obs.get('OBS_QUAL') not in ('DEF', 'P'):
+        if period in seen or obs.get('OBS_STATUS') not in ('A', 'P') or obs.get('OBS_QUAL') not in ('DEF', 'P'):
             reject('Observation dupliquée, manquante ou qualité inconnue')
         value = number(float(obs.get('OBS_VALUE', 'nan')))
         if not 0 < value < (10_000 if key == 'smic' else 1000): reject('Niveau INSEE hors limites')
+        seen.add(period)
+        provisional = pending_price_month(date, now, value=value, quality=obs.get('OBS_QUAL'),
+                                          observation_status=obs.get('OBS_STATUS')) if key not in ('smic', 'irl') else None
+        if provisional:
+            pending.append(provisional)
+            continue
         values[period], quality[period] = value, obs.get('OBS_QUAL')
     if not values: reject('Série INSEE vide')
     # Reject missing intermediate periods, including incomplete annual averages.
-    last = max(values)
+    last = max(seen)
     required = [f'{y}-Q{q}' for y in range(2010, int(last[:4]) + 1) for q in range(1, 5)] if key == 'irl' else [
         f'{y}-{m:02}' for y in range(2010, int(last[:4]) + 1) for m in range(1, 13)]
-    if any(p not in values for p in required if p <= last): reject('Trou dans la série INSEE depuis 2010')
+    if any(p not in seen for p in required if p <= last): reject('Trou dans la série INSEE depuis 2010')
+    last = max(values)
     last_date = dt.date(int(last[:4]), (int(last[-1]) - 1) * 3 + 1, 1) if key == 'irl' else dt.date.fromisoformat(last + '-01')
     if (now.date() - last_date).days > (200 if key == 'irl' else 75): reject('Publication INSEE trop ancienne')
     return {'seriesId': expected[0], 'sourceUrl': source_url(key), 'sourceUpdatedAt': series.get('LAST_UPDATE'),
             'title': expected[3], 'scope': expected[2], 'frequency': expected[1],
             'values': dict(sorted(values.items())), 'quality': dict(sorted(quality.items())),
+            'pendingObservations': pending,
             'sha256': hashlib.sha256(body.encode()).hexdigest()}
 
 def refresh(current, now, fetch=None):

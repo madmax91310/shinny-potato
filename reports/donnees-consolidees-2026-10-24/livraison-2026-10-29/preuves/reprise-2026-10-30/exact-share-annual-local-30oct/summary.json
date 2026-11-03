@@ -1,0 +1,344 @@
+{
+  "scope": "isolated source worktree; not production proof",
+  "scenarios": 40,
+  "instruments": 10,
+  "results": [
+    {
+      "isin": "IE00B4K6B022",
+      "base": "http://127.0.0.1:4427/shinny-potato",
+      "checkedAt": "2026-10-30T19:49:18.879Z",
+      "scenarios": 4,
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "downloadProofs": [
+        {
+          "name": "manual-1280.png",
+          "bytes": 3254451,
+          "sha256": "95c36df8b2d47f5db4e2d1ae95df9df82fa8ead166d7298f564120167aba9924"
+        },
+        {
+          "name": "duel-1280.png",
+          "bytes": 2092604,
+          "sha256": "10a8ed7a79e358cc7eaa376ae9d8fde03df2c706ec0cb145d83bb4b768cf9e42"
+        },
+        {
+          "name": "manual-390.png",
+          "bytes": 3254451,
+          "sha256": "95c36df8b2d47f5db4e2d1ae95df9df82fa8ead166d7298f564120167aba9924"
+        },
+        {
+          "name": "duel-390.png",
+          "bytes": 2092604,
+          "sha256": "10a8ed7a79e358cc7eaa376ae9d8fde03df2c706ec0cb145d83bb4b768cf9e42"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "isin": "FR0013412004",
+      "base": "http://127.0.0.1:4427/shinny-potato",
+      "checkedAt": "2026-10-30T19:48:56.473Z",
+      "scenarios": 4,
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "downloadProofs": [
+        {
+          "name": "manual-1280.png",
+          "bytes": 3285782,
+          "sha256": "4dcfe882b42783eb7b28aac9e59dbfb6de82e8a3d490d89dfa8b652301f2d9cb"
+        },
+        {
+          "name": "duel-1280.png",
+          "bytes": 2108382,
+          "sha256": "1d120481bab97c88e0421742aa38dbebca38471bb4ec5d9b7e588bb51d64d917"
+        },
+        {
+          "name": "manual-390.png",
+          "bytes": 3285782,
+          "sha256": "4dcfe882b42783eb7b28aac9e59dbfb6de82e8a3d490d89dfa8b652301f2d9cb"
+        },
+        {
+          "name": "duel-390.png",
+          "bytes": 2108382,
+          "sha256": "1d120481bab97c88e0421742aa38dbebca38471bb4ec5d9b7e588bb51d64d917"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "isin": "IE00BJ5JP097",
+      "base": "http://127.0.0.1:4427/shinny-potato",
+      "checkedAt": "2026-10-30T19:48:34.614Z",
+      "scenarios": 4,
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "downloadProofs": [
+        {
+          "name": "manual-1280.png",
+          "bytes": 3241083,
+          "sha256": "31e7376e5866d3932dfb0e8998733f7d015ae3b4f94c31ac6f0fdf1187921fa3"
+        },
+        {
+          "name": "duel-1280.png",
+          "bytes": 2082806,
+          "sha256": "9a0c9fd0fcd75341930048d10378fc4a03479eacce546813fea984a58b853152"
+        },
+        {
+          "name": "manual-390.png",
+          "bytes": 3241083,
+          "sha256": "31e7376e5866d3932dfb0e8998733f7d015ae3b4f94c31ac6f0fdf1187921fa3"
+        },
+        {
+          "name": "duel-390.png",
+          "bytes": 2082806,
+          "sha256": "9a0c9fd0fcd75341930048d10378fc4a03479eacce546813fea984a58b853152"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "isin": "IE00BMG6Z448",
+      "base": "http://127.0.0.1:4427/shinny-potato",
+      "checkedAt": "2026-10-30T19:48:12.808Z",
+      "scenarios": 4,
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "downloadProofs": [
+        {
+          "name": "manual-1280.png",
+          "bytes": 3227728,
+          "sha256": "ac1a28f9fd2eef6d4b663381a7edb35476fd573161516c53a3fcbe063212cd78"
+        },
+        {
+          "name": "duel-1280.png",
+          "bytes": 2080036,
+          "sha256": "712251857c4833be0aae59d66e3e2e49f16aca19e52a10d3bfa2c1901fc88d5c"
+        },
+        {
+          "name": "manual-390.png",
+          "bytes": 3227728,
+          "sha256": "ac1a28f9fd2eef6d4b663381a7edb35476fd573161516c53a3fcbe063212cd78"
+        },
+        {
+          "name": "duel-390.png",
+          "bytes": 2080036,
+          "sha256": "712251857c4833be0aae59d66e3e2e49f16aca19e52a10d3bfa2c1901fc88d5c"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "isin": "IE00BKPSFC54",
+      "base": "http://127.0.0.1:4427/shinny-potato",
+      "checkedAt": "2026-10-30T19:47:47.784Z",
+      "scenarios": 4,
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "downloadProofs": [
+        {
+          "name": "manual-1280.png",
+          "bytes": 3205596,
+          "sha256": "86a355de11daac91307f7b2a82b05374da83d2b0801defd017a631444b9cfb84"
+        },
+        {
+          "name": "duel-1280.png",
+          "bytes": 2086217,
+          "sha256": "441a33cbcf48a318d8e1a1e2430cb7167b030e121384aa68cb74d4b05cbd5f6c"
+        },
+        {
+          "name": "manual-390.png",
+          "bytes": 3205596,
+          "sha256": "86a355de11daac91307f7b2a82b05374da83d2b0801defd017a631444b9cfb84"
+        },
+        {
+          "name": "duel-390.png",
+          "bytes": 2086217,
+          "sha256": "441a33cbcf48a318d8e1a1e2430cb7167b030e121384aa68cb74d4b05cbd5f6c"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "isin": "IE00BMW42413",
+      "base": "http://127.0.0.1:4427/shinny-potato",
+      "checkedAt": "2026-10-30T19:47:25.663Z",
+      "scenarios": 4,
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "downloadProofs": [
+        {
+          "name": "manual-1280.png",
+          "bytes": 3224779,
+          "sha256": "ee826d33b0d508e856df7a989e11ce428dd000d0bd09ba547b593cd47f4b93d8"
+        },
+        {
+          "name": "duel-1280.png",
+          "bytes": 2106731,
+          "sha256": "ad518d2ba53f5f477fa42eecd9576a43e40af24f27f123d59ea2fdf15f679f5b"
+        },
+        {
+          "name": "manual-390.png",
+          "bytes": 3224779,
+          "sha256": "ee826d33b0d508e856df7a989e11ce428dd000d0bd09ba547b593cd47f4b93d8"
+        },
+        {
+          "name": "duel-390.png",
+          "bytes": 2106731,
+          "sha256": "ad518d2ba53f5f477fa42eecd9576a43e40af24f27f123d59ea2fdf15f679f5b"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "isin": "IE00BKPX3K41",
+      "base": "http://127.0.0.1:4427/shinny-potato",
+      "checkedAt": "2026-10-30T19:47:03.547Z",
+      "scenarios": 4,
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "downloadProofs": [
+        {
+          "name": "manual-1280.png",
+          "bytes": 3242436,
+          "sha256": "cbb96eddd0c28e2a41ce2a1c5bc27ee4c0422b62201511e4e1f876182877eff0"
+        },
+        {
+          "name": "duel-1280.png",
+          "bytes": 2100644,
+          "sha256": "1fc62482df2f226cb0f0d920a1d37e7dafab49bdb8d8c975990052cf79038ba8"
+        },
+        {
+          "name": "manual-390.png",
+          "bytes": 3242436,
+          "sha256": "cbb96eddd0c28e2a41ce2a1c5bc27ee4c0422b62201511e4e1f876182877eff0"
+        },
+        {
+          "name": "duel-390.png",
+          "bytes": 2100644,
+          "sha256": "1fc62482df2f226cb0f0d920a1d37e7dafab49bdb8d8c975990052cf79038ba8"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "isin": "GB00BLD4ZM24",
+      "base": "http://127.0.0.1:4427/shinny-potato",
+      "checkedAt": "2026-10-30T19:46:40.616Z",
+      "scenarios": 4,
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "downloadProofs": [
+        {
+          "name": "manual-1280.png",
+          "bytes": 3197091,
+          "sha256": "9c551ecffdf6a9085ba988178bb897c81a041bd4276fea76a6bc57cf904c80e0"
+        },
+        {
+          "name": "duel-1280.png",
+          "bytes": 2091713,
+          "sha256": "dde7891ba5523cf85d49d20bb0925d689848d3fa0b6379da5c3a6e415de93522"
+        },
+        {
+          "name": "manual-390.png",
+          "bytes": 3197091,
+          "sha256": "9c551ecffdf6a9085ba988178bb897c81a041bd4276fea76a6bc57cf904c80e0"
+        },
+        {
+          "name": "duel-390.png",
+          "bytes": 2091713,
+          "sha256": "dde7891ba5523cf85d49d20bb0925d689848d3fa0b6379da5c3a6e415de93522"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "isin": "GB00BLD4ZL17",
+      "base": "http://127.0.0.1:4427/shinny-potato",
+      "checkedAt": "2026-10-30T19:46:18.463Z",
+      "scenarios": 4,
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "downloadProofs": [
+        {
+          "name": "manual-1280.png",
+          "bytes": 3202457,
+          "sha256": "454201002a2c22ae9b5acc8b8dbc5d1cd7334fd21d0b9a4cc9bc8de4a7eb486b"
+        },
+        {
+          "name": "duel-1280.png",
+          "bytes": 2085323,
+          "sha256": "ffefedaaf069ac2d813e5df1ca99603935d69460ef65215c91b818fc68dba738"
+        },
+        {
+          "name": "manual-390.png",
+          "bytes": 3202457,
+          "sha256": "454201002a2c22ae9b5acc8b8dbc5d1cd7334fd21d0b9a4cc9bc8de4a7eb486b"
+        },
+        {
+          "name": "duel-390.png",
+          "bytes": 2085323,
+          "sha256": "ffefedaaf069ac2d813e5df1ca99603935d69460ef65215c91b818fc68dba738"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "isin": "DE000A27Z304",
+      "base": "http://127.0.0.1:4427/shinny-potato",
+      "checkedAt": "2026-10-30T19:45:03.944Z",
+      "scenarios": 4,
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "downloadProofs": [],
+      "errors": []
+    }
+  ]
+}

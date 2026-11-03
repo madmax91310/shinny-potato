@@ -10,6 +10,8 @@ import xml.etree.ElementTree as ET
 
 from data_automation import UTC, get_text, number, reject, write_json_atomic
 
+from insee_month_maturity import pending_price_month
+
 SERIES = '011814631'
 URL = f'https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/{SERIES}?startPeriod=2026-01'
 
@@ -48,12 +50,14 @@ def parse_rates(body, now):
     title = 'Indice des prix à la consommation - Base 2025 - Variation mensuelle - Ensemble des ménages - France - Nomenclature Coicop : 00 - Ensemble'
     if series.get('IDBANK') != SERIES or series.get('FREQ') != 'M' or series.get('REF_AREA') != 'FE' or series.get('TITLE_FR') != title:
         reject('INSEE series identity, population or method changed')
-    rates, quality = {}, {}
+    rates, quality, pending, seen = {}, {}, [], set()
     for obs in series:
         month = obs.get('TIME_PERIOD', '')
         date = dt.datetime.strptime(month, '%Y-%m').date()
-        if date.strftime('%Y-%m') != month or date >= now.date().replace(day=1) or month in rates:
-            reject('Duplicate, invalid or incomplete month')
+        current_month = now.date().replace(day=1)
+        if date.strftime('%Y-%m') != month or date > current_month or month in seen:
+            reject('Duplicate, invalid or future month')
+        seen.add(month)
         result = float(obs.get('OBS_VALUE', 'nan'))
         # Deflation is valid. Avoid number(positive=False), which prohibits negative values.
         number(abs(result), positive=False)
@@ -62,11 +66,17 @@ def parse_rates(body, now):
         status = obs.get('OBS_QUAL')
         if status not in ('DEF', 'P'):
             reject('Unknown INSEE observation quality')
+        provisional = pending_price_month(date, now, value=result, quality=status,
+                                          observation_status=obs.get('OBS_STATUS'))
+        if provisional:
+            pending.append(provisional)
+            continue
         rates[month], quality[month] = result, status
     if not rates or min(rates) != '2026-01':
         reject('Current-year history missing')
     months = sorted(rates)
-    for left, right in zip(months, months[1:]):
+    published_months = sorted(seen)
+    for left, right in zip(published_months, published_months[1:]):
         year, month = map(int, left.split('-'))
         expected = f'{year + (month == 12):04}-{month % 12 + 1:02}'
         if right != expected:
@@ -77,7 +87,8 @@ def parse_rates(body, now):
     return {'seriesId': SERIES, 'sourceUrl': URL, 'sourceUpdatedAt': series.get('LAST_UPDATE'),
             'scope': 'France, all households, all items, not seasonally adjusted',
             'method': 'published monthly change (%), base 2025',
-            'rates': dict(sorted(rates.items())), 'quality': dict(sorted(quality.items()))}
+            'rates': dict(sorted(rates.items())), 'quality': dict(sorted(quality.items())),
+            'pendingObservations': pending}
 
 
 def merge_rates(baseline, report):
@@ -128,8 +139,8 @@ def main():
         snapshot = root / 'scripts/source-snapshots/inflation-automated.json'
         previous = json.loads(snapshot.read_text()) if snapshot.exists() else None
         # A successful unchanged collection does not cause commits or deployments.
-        fields = ('seriesId', 'sourceUpdatedAt', 'rates', 'quality')
-        if previous is None or any(previous.get(key) != report[key] for key in fields):
+        fields = ('seriesId', 'sourceUpdatedAt', 'rates', 'quality', 'pendingObservations')
+        if previous is None or any(previous.get(key, [] if key == 'pendingObservations' else None) != report[key] for key in fields):
             write_json_atomic(snapshot, report)
     print(f"INSEE {SERIES}: latest {max(report['rates'])}; {len(report['changes'])} changes; provisional months: {[m for m, q in report['quality'].items() if q == 'P']}")
     if os.environ.get('GITHUB_STEP_SUMMARY'):

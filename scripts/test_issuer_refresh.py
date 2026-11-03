@@ -1,5 +1,6 @@
 """Regression checks for unattended issuer extensions: dates, identity, basis, partial history and atomic writes."""
 import copy
+import gzip
 import html
 import datetime as dt
 import json
@@ -207,5 +208,95 @@ class IssuerRefreshTests(unittest.TestCase):
         p,s=amundi();payload=request_payload([s],NOW)
         self.assertNotIn('2026',[m['period']for m in payload['metrics']])
         self.assertEqual(payload['historics'][0]['indicator'],'shareAumInMCcy')
+
+class IndividualFeeControls(unittest.TestCase):
+    def setUp(self):
+        from collect_public_issuer import wisdomtree_factsheet
+        self.isin = 'IE00BJGWQN72'
+        self.now = dt.datetime(2026, 10, 29, tzinfo=UTC)
+        config = json.loads((ROOT/'scripts/additional-etf-sources.json').read_text())
+        self.share = next(r for r in config['instruments'] if r['isin']==self.isin)
+        self.body = gzip.decompress((ROOT/'scripts/fixtures/wisdomtree-complete'/f'{self.isin}.pdf.gz').read_bytes())
+        self.incoming = wisdomtree_factsheet(self.body, self.share, self.now)
+        self.old = json.loads(gzip.decompress((ROOT/'scripts/fixtures/characteristic-controls/wisdomtree-cloud-before-20261029.json.gz').read_bytes()))['record']
+
+    def merge(self, incoming=None, old=None, checked='2026-10-29'):
+        return merge_collection({'checkedAt': checked, 'shares':[self.incoming if incoming is None else incoming]},
+                                {self.isin:self.old if old is None else old}, {})[self.isin]
+
+    def test_real_official_fee_is_controlled_without_replacing_newer_bundle(self):
+        self.assertEqual(self.incoming['characteristics']['asOf'], '2026-09-30')
+        self.assertEqual(self.old['characteristics']['asOf'], '2026-10-19')
+        self.assertEqual(self.incoming['characteristics']['terPct'], self.old['characteristics']['terPct'])
+        self.assertNotEqual(self.incoming['characteristics']['listings'], self.old['characteristics']['listings'])
+        result = self.merge()
+        self.assertEqual(result['characteristics'], self.old['characteristics'])
+        check = result['characteristicChecks']['terPct']
+        self.assertEqual(check['checkedAt'], '2026-10-29')
+        self.assertEqual(check['asOf'], '2026-10-19')
+        self.assertEqual(check['sourceAsOf'], '2026-09-30')
+        self.assertEqual(check['sourceUrl'], self.share['factsheetUrl'])
+        self.assertEqual(check['sha256'], self.incoming['characteristics']['sha256'])
+        self.assertEqual(check['observationEvidence'], self.old['characteristicChecks']['terPct'])
+        self.assertEqual(result['characteristicChecks']['listings'], self.old['characteristicChecks']['listings'])
+        for key in ['aum','countries','sectors','holdings']:
+            self.assertEqual(result.get(key), self.old.get(key))
+
+    def test_same_receipt_is_idempotent_and_later_control_preserves_original_observation(self):
+        first = self.merge()
+        self.assertEqual(self.merge(old=first), first)
+        later = self.merge(old=first, checked='2026-10-30')
+        self.assertEqual(later['characteristicChecks']['terPct']['checkedAt'], '2026-10-30')
+        self.assertEqual(later['characteristicChecks']['terPct']['observationEvidence'], self.old['characteristicChecks']['terPct'])
+        self.assertEqual(later['characteristics'], self.old['characteristics'])
+
+    def test_out_of_order_control_never_replaces_a_newer_one(self):
+        first = self.merge()
+        older = self.merge(old=first, checked='2026-10-28')
+        self.assertEqual(older['characteristicChecks'], first['characteristicChecks'])
+
+    def test_different_fee_in_older_document_does_not_replace_or_renew(self):
+        changed=copy.deepcopy(self.incoming);changed['characteristics']['terPct']=0.41
+        result=self.merge(changed)
+        self.assertEqual(result['characteristics'],self.old['characteristics'])
+        self.assertEqual(result['characteristicChecks'],self.old['characteristicChecks'])
+
+    def test_absent_fee_or_cache_does_not_become_a_source_control(self):
+        for mode in ['absent','cached','unattempted']:
+            with self.subTest(mode=mode):
+                incoming=copy.deepcopy(self.incoming)
+                if mode=='absent':incoming['characteristics'].pop('terPct')
+                elif mode=='cached':incoming['sourceState']='cached'
+                else:incoming['sourceAttempted']=False
+                self.assertEqual(self.merge(incoming)['characteristicChecks'],self.old['characteristicChecks'])
+
+    def test_incomplete_proof_or_invalid_date_does_not_renew(self):
+        for key,value in [('sha256',None),('sha256','not-a-hash'),('sourceUrl',None),
+                          ('asOf','2026-09-99')]:
+            with self.subTest(key=key,value=value):
+                incoming=copy.deepcopy(self.incoming);incoming['characteristics'][key]=value
+                self.assertEqual(self.merge(incoming)['characteristicChecks'],self.old['characteristicChecks'])
+
+    def test_only_existing_finite_numeric_fee_fields_are_corroborated(self):
+        for value in [True,None,float('nan'),float('inf')]:
+            with self.subTest(value=value):
+                incoming=copy.deepcopy(self.incoming);incoming['characteristics']['terPct']=value
+                try:result=self.merge(incoming)
+                except ValueError:continue  # Earlier financial validation may reject it.
+                self.assertEqual(result['characteristicChecks'],self.old['characteristicChecks'])
+        incoming=copy.deepcopy(self.incoming);incoming['characteristics']['unqualifiedFee']=.4
+        self.assertNotIn('unqualifiedFee',self.merge(incoming)['characteristicChecks'])
+
+    def test_exposure_only_collection_and_wrong_identity_cannot_renew_fees(self):
+        incoming=copy.deepcopy(self.incoming);incoming['exposureOnly']=True
+        self.assertEqual(self.merge(incoming)['characteristicChecks'],self.old['characteristicChecks'])
+        incoming=copy.deepcopy(self.incoming);incoming['currency']='EUR'
+        with self.assertRaises(ValueError):self.merge(incoming)
+
+    def test_wrong_official_pdf_identity_is_rejected_before_merge(self):
+        from collect_public_issuer import wisdomtree_factsheet
+        wrong={**self.share,'isin':'IE00WRONG0000'}
+        with self.assertRaises(ValueError):wisdomtree_factsheet(self.body,wrong,self.now)
+        with self.assertRaises(ValueError):wisdomtree_factsheet(self.body,self.share,dt.datetime(2026,9,29,tzinfo=UTC))
 
 if __name__=='__main__':unittest.main()

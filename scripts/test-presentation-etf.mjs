@@ -7,6 +7,11 @@ import { ASSETS } from '../src/data/portfolio-assets.js';
 import { AUTOMATED_ETF, buildAnnualPerformance } from '../src/data/automated-etf.js';
 import { getAnnualPerformance, performanceEntries } from '../src/pages/etf-sheets/annualPerformance.js';
 import { getETFArt } from '../src/pages/etf-sheets/visualIdentity.js';
+import {isQualifiedAnnualPortfolioFund} from '../src/data/annual-portfolio-funds.js';
+function assertManualConvention(asset) {
+  if (asset.annualManual) assert(isQualifiedAnnualPortfolioFund(asset), 'Exact qualified annual NAV contract, never a market-price alias')
+  else assert.match(asset.confidenceNote, /marché/)
+}
 const config = [...JSON.parse(readFileSync(new URL('./additional-etf-sources.json', import.meta.url))).instruments, ...JSON.parse(readFileSync(new URL('./etf-pilot.json', import.meta.url))).instruments.map(s => ({...s, enabled:true, required:true}))];
 const marketCalendars=JSON.parse(readFileSync(new URL('../src/data/monthly-duel-returns.json',import.meta.url)));
 assert.equal(PRESENTATION_ETF_ADDITIONS.length, 11);
@@ -17,7 +22,7 @@ for (const r of PRESENTATION_ETF_ADDITIONS.filter(r=>!r.reviewedAt)) {
   assert.equal(card.presentationOnly, !r.portfolioEnabled);
   const asset = ASSETS.find(a => a.isin === r.isin);
   if (r.portfolioEnabled) { assert(asset); assert.equal(asset.r.length, 6); assert(asset.r.every(Number.isFinite)); }
-  else if(asset) { assert(asset.distinctCandidate); assert(Object.values(asset.calendarReturns).filter(Number.isFinite).length>=3); assert.match(asset.confidenceNote,/marché/); } // Recent exact-share market histories may serve manual portfolios, independently of NAV presentation history.
+  else if(asset) { assert(asset.distinctCandidate); assert(Object.values(asset.calendarReturns).filter(Number.isFinite).length>=3); assertManualConvention(asset); } // Market and independently qualified annual NAV routes remain distinct.
   assert(config.some(s => s.isin === r.isin && s.enabled && s.required));
   assert(record.aum.amount > 0 && record.aum.asOf && record.aum.checkedAt);
   assert(Number.isFinite(record.characteristics.terPct));
@@ -66,7 +71,7 @@ for (const r of PRESENTATION_ETF_ADDITIONS.filter(r=>r.reviewedAt)) {
  assert.equal(card.presentationOnly, !r.portfolioEnabled);
  assert(card.listing && getETFArt(card.id));
  if(r.portfolioEnabled) assert(ASSETS.find(a=>a.isin===r.isin)?.r.every(Number.isFinite));
- else {const asset=ASSETS.find(a=>a.isin===r.isin);if(asset){assert(asset.distinctCandidate && asset.manualOnly);assert(Object.values(asset.calendarReturns).filter(Number.isFinite).length>=3);assert.match(asset.confidenceNote,/marché/);}}
+ else {const asset=ASSETS.find(a=>a.isin===r.isin);if(asset){assert(asset.distinctCandidate && asset.manualOnly);assert(Object.values(asset.calendarReturns).filter(Number.isFinite).length>=3);assertManualConvention(asset);}}
  assert.equal(card.lastVerified,'15/10/2026');
  assert.equal(card.distribution,r.distribution);
  const series=getAnnualPerformance(card);

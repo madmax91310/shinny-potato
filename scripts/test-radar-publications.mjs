@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import './test-bdf-debt-charts.mjs'
+import './test-insee-book-routing.mjs'
 import { readFile } from 'node:fs/promises'
 import { PUBLICATION_SOURCES, collectPublications, discoverPublications, parsePublication, canonicalUrl } from './lib/radar-publications.mjs'
 import { advanceRadar, meaningful } from './lib/editorial-radar.mjs'

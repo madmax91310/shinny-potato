@@ -1,0 +1,120 @@
+{
+  "collectedAt": "2026-11-02T11:21:43.601451+00:00",
+  "sources": [
+    {
+      "id": "etf_clean_energy",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "9076bbe5ab0d9278caa0befb6e24541246eb2d4e2902c059bf238d617ea1eed7",
+      "fixture": "9076bbe5ab0d9278caa0befb6e24541246eb2d4e2902c059bf238d617ea1eed7.json.gz"
+    },
+    {
+      "id": "etf_clean_energy",
+      "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
+      "sha256": "11764c276d0702f36e8e324f1a94eab76a85d3b5e86e0b20e6e42417dcc7d7aa",
+      "fixture": "11764c276d0702f36e8e324f1a94eab76a85d3b5e86e0b20e6e42417dcc7d7aa.xml.gz"
+    },
+    {
+      "id": "etfIE00B2QWCY14",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "aa4ae48cecf5d23e1a1729b0e95d3388ec0eb7b500a14f1971208755f87fd087",
+      "fixture": "aa4ae48cecf5d23e1a1729b0e95d3388ec0eb7b500a14f1971208755f87fd087.json.gz"
+    },
+    {
+      "id": "etfIE00B2QWCY14",
+      "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
+      "sha256": "11764c276d0702f36e8e324f1a94eab76a85d3b5e86e0b20e6e42417dcc7d7aa",
+      "fixture": "11764c276d0702f36e8e324f1a94eab76a85d3b5e86e0b20e6e42417dcc7d7aa.xml.gz"
+    },
+    {
+      "id": "etcPalladium",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "fc8befa946e777cc84a8c29fcd140781eb4b326d9f982dedb4edccb6a69558d3",
+      "fixture": "fc8befa946e777cc84a8c29fcd140781eb4b326d9f982dedb4edccb6a69558d3.json.gz"
+    },
+    {
+      "id": "etf_financials",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "7cbc5f557c361a5938ceb3d45ab9fe443f16b72cd2abbee39f6c56c505e2fd64",
+      "fixture": "7cbc5f557c361a5938ceb3d45ab9fe443f16b72cd2abbee39f6c56c505e2fd64.json.gz"
+    },
+    {
+      "id": "etf_world_communication",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "ce7581ec450a5bda34534d8423854344d129554eeebe625766db7b7358000f4b",
+      "fixture": "ce7581ec450a5bda34534d8423854344d129554eeebe625766db7b7358000f4b.json.gz"
+    },
+    {
+      "id": "etfIE00B0M63516Nav",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251853&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "25fcdc30569125f5d282225bb231c45454f0f278ba8a11de0c86983000ad4764",
+      "fixture": "25fcdc30569125f5d282225bb231c45454f0f278ba8a11de0c86983000ad4764.json.gz"
+    },
+    {
+      "id": "etfIE00BJ5JPJ87Nav",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308477&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "b7af3ef1f9b962f6fbf6ccf637e2bcffffdfef9bf05d8778dad47322e61670ba",
+      "fixture": "b7af3ef1f9b962f6fbf6ccf637e2bcffffdfef9bf05d8778dad47322e61670ba.json.gz"
+    },
+    {
+      "id": "etfIE00B1FZS574Nav",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "63677b587684d5aeec4f8482717c77b4c47a2d94656320e27e368065da766334",
+      "fixture": "63677b587684d5aeec4f8482717c77b4c47a2d94656320e27e368065da766334.json.gz"
+    },
+    {
+      "id": "etfIE00B2QWDY88Nav",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "d98a22b856ef83eacff73a1e699901b1a368ab39d1ec470391b1b4f449950cfe",
+      "fixture": "d98a22b856ef83eacff73a1e699901b1a368ab39d1ec470391b1b4f449950cfe.json.gz"
+    },
+    {
+      "id": "etfIE00B14X4S71Nav",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251715&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "49562cacb5c5610ca88a31a1f3b4bdaec95e0186d44c96e583f98339d49ab5d2",
+      "fixture": "49562cacb5c5610ca88a31a1f3b4bdaec95e0186d44c96e583f98339d49ab5d2.json.gz"
+    },
+    {
+      "id": "etfIE00B1FZS798Nav",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "5def5ec319280f45f4890bef5f7d8bb198cd1270f25a29e515d982ef00d7c6d1",
+      "fixture": "5def5ec319280f45f4890bef5f7d8bb198cd1270f25a29e515d982ef00d7c6d1.json.gz"
+    },
+    {
+      "id": "etfIE00BSKRJZ44Nav",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "ce57a05b73e8fb4eb54eeb6708fbe9560e4dad51fe078bfee95009b5b6ea45c3",
+      "fixture": "ce57a05b73e8fb4eb54eeb6708fbe9560e4dad51fe078bfee95009b5b6ea45c3.json.gz"
+    },
+    {
+      "id": "etfIE00BZ048462Nav",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "0ee3231ba936a57c361427b43224979524584f37f120929bd8fc4d05060e51ee",
+      "fixture": "0ee3231ba936a57c361427b43224979524584f37f120929bd8fc4d05060e51ee.json.gz"
+    },
+    {
+      "id": "etfIE00BYPC1H27Nav",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "f4c0dfb9b882c2859f00d14df7953c23d6364a79e072b7203d8e21a16e07c418",
+      "fixture": "f4c0dfb9b882c2859f00d14df7953c23d6364a79e072b7203d8e21a16e07c418.json.gz"
+    },
+    {
+      "id": "etfIE00BZ6V7883Nav",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "0161c7b90fe8c5bc738e744eec9987b3427b3b8d242f412c2f77c18d2d04a22f",
+      "fixture": "0161c7b90fe8c5bc738e744eec9987b3427b3b8d242f412c2f77c18d2d04a22f.json.gz"
+    },
+    {
+      "id": "etfIE00B3F81K65Nav",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "405a0f82ea143721052b9998d834fed024a56b672023ce9d870db255e205cafd",
+      "fixture": "405a0f82ea143721052b9998d834fed024a56b672023ce9d870db255e205cafd.json.gz"
+    },
+    {
+      "id": "etfIE00BSKRJX20Nav",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "a0f030516f186754249f8f87218d09a86f6a1a1e4aef423f4296862bc0d43dcf",
+      "fixture": "a0f030516f186754249f8f87218d09a86f6a1a1e4aef423f4296862bc0d43dcf.json.gz"
+    }
+  ],
+  "monthlyFXSha256": "26549f7b574056e4b53410867d01db8cbdc2df04c27b4062fa1007a63fb69206"
+}

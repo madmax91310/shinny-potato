@@ -1,15 +1,14 @@
 import { exposureRecords } from './records.js'
 import { exposureView } from './exposure.js'
-import { analyzeProfile, prepareProfile, euro, pct, references } from './engine.js'
-import { incomeLabel } from './lib.js'
+import { MAX_POSITIONS, analyzeProfile, prepareProfile, euro, pct, references } from './engine.js'
+import { incomeLabel, sortHoldings, sortContributions } from './lib.js'
 import { portfolioAnalytics, analyzedLines, analysisView, selectConcentrationGroup } from './analytics.js'
 const C={navy:'#071d36',ivory:'#fff4df',yellow:'#ffd342',muted:'#9eb7d2',panel:'#0d263e'}
 const colors=['#ffd342','#3899ff','#63dfbd','#bd9eff','#ff9b70','#b7ce6e','#ec99cd','#aec8df']
 export function allocationRows(lines){
- const ordered=lines.filter(l=>l.weight>0).map(l=>({name:l.label,weight:l.weight}))
+ const ordered=sortHoldings(lines).map(l=>({name:l.label,weight:l.weight}))
  if(ordered.length<=8)return ordered.map((r,i)=>({...r,color:colors[i]}))
- ordered.sort((a,b)=>b.weight-a.weight)
- return [...ordered.slice(0,7),{name:`${ordered.length-7} autres positions`,weight:ordered.slice(7).reduce((s,l)=>s+l.weight,0)}].map((r,i)=>({...r,color:colors[i]}))
+ return [...ordered.slice(0,7),{name:`${ordered.length-7} autres positions`,weight:ordered.slice(7).reduce((s,l)=>s+l.weight,0)}].sort((a,b)=>b.weight-a.weight).map((r,i)=>({...r,color:colors[i]}))
 }
 function text(ctx,value,x,y,width,size,color=C.ivory,weight=700,family='Arial'){
  value=String(value);ctx.font=`${weight} ${size}px ${family}`
@@ -41,22 +40,30 @@ export function donutData(analysis,field='countries',limit=4){
  if(missing>1e-9)rows.push({name:missing<.01?'Écart d’arrondi':'Non ventilé ici',weight:missing,color:'#57718e'})
  return {...view,group,rows}
 }
-function exposurePanel(ctx,a,field,x,y,width,limit){
+function exposurePanel(ctx,a,field,x,y,width,limit,showScope=true){
  const {rows,scope}=donutData(a,field,limit)
  centered(ctx,field==='countries'?'Exposition géographique':'Exposition sectorielle',x+width/2,y,width,36)
- const cx=x+width/2,cy=y+280,r=220,inner=150
+ const cx=x+width/2,cy=y+(showScope?280:205),r=showScope?220:150,inner=showScope?150:102
  let angle=-Math.PI/2
  for(const row of rows){const end=angle+row.weight/100*Math.PI*2;ctx.beginPath();ctx.arc(cx,cy,r,angle,end);ctx.arc(cx,cy,inner,end,angle,true);ctx.closePath();ctx.fillStyle=row.color;ctx.fill();angle=end}
  const percentages=integerPercentages(rows)
  const lead=rows.findIndex(r=>!['Non ventilé ici','Écart d’arrondi','Sans objet'].includes(r.name))
  if(lead>=0){centered(ctx,exposurePercentage(rows[lead].weight,percentages[lead]),cx,cy+5,270,52);centered(ctx,rows[lead].name,cx,cy+47,260,23,C.muted,400)}
  rows.forEach((row,i)=>{
+  if(!showScope){
+   const left=x+34,top=y+405+i*43
+   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(left+8,top-9,7,0,Math.PI*2);ctx.fill()
+   text(ctx,row.name,left+24,top,width-180,30,C.ivory,400)
+   ctx.save();ctx.textAlign='right';text(ctx,exposurePercentage(row.weight,percentages[i]),x+width-25,top,110,32);ctx.restore()
+   return
+  }
   const left=rows.length===1?cx-110:x+65+(i%2)*(width-80)/2,top=y+(rows.length>6?530:540)+Math.floor(i/2)*(rows.length>6?48:65)
   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(left+8,top-7,7,0,Math.PI*2);ctx.fill()
   text(ctx,row.name,left+24,top,width/2-35,rows.length>6?18:22,C.ivory,400)
   text(ctx,exposurePercentage(row.weight,percentages[i]),left+24,top+(rows.length>6?23:28),width/2-35,rows.length>6?20:25)
  })
- ctx.save();ctx.textAlign='center';text(ctx,scope,x+width/2,y+32,width,18,C.muted,400);ctx.restore()
+ if(showScope){ctx.save();ctx.textAlign='center';text(ctx,scope,x+width/2,y+32,width,18,C.muted,400);ctx.restore()}
+ else if(lead<0)centered(ctx,'Non ventilé',cx,cy+5,270,32,C.muted,400)
 }
 function ring(ctx,rows,cx,cy,r,inner){
  let angle=-Math.PI/2
@@ -64,13 +71,54 @@ function ring(ctx,rows,cx,cy,r,inner){
 }
 function panel(ctx,x,y,width,height){ctx.fillStyle=C.panel;ctx.strokeStyle='#23425e';ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(x,y,width,height,24);ctx.fill();ctx.stroke()}
 function centered(ctx,value,x,y,width,size,color=C.ivory,weight=700){ctx.save();ctx.textAlign='center';text(ctx,value,x,y,width,size,color,weight,'DcaEditorial');ctx.restore()}
-function wrappedLabel(ctx,value,x,y,width,size){
- ctx.font=`400 ${size}px Arial`
- if(ctx.measureText(value).width<=width){text(ctx,value,x,y,width,size,C.ivory,400);return}
+function wrappedLabel(ctx,value,x,y,width,size,family='Arial',weight=400){
+ ctx.font=`${weight} ${size}px ${family}`
+ if(ctx.measureText(value).width<=width){text(ctx,value,x,y,width,size,C.ivory,weight,family);return}
  const words=value.split(' ');let first=''
  while(words.length&&ctx.measureText((first+' '+words[0]).trim()).width<=width)first=(first+' '+words.shift()).trim()
- text(ctx,first||words.shift(),x,y-8,width,size,C.ivory,400)
- text(ctx,words.join(' '),x,y+size-8,width,size,C.ivory,400)
+ text(ctx,first||words.shift(),x,y-8,width,size,C.ivory,weight,family)
+ text(ctx,words.join(' '),x,y+size*1.25-8,width,size,C.ivory,weight,family)
+}
+function allocationLabelLines(ctx,value,width,size){
+ ctx.font=`400 ${size}px Arial`
+ const rows=[];let line=''
+ for(const word of value.split(/\s+/)){
+  if(line&&ctx.measureText(`${line}${word}`).width>width){rows.push(line.trim());line=''}
+  for(const char of word){
+   if(ctx.measureText(line+char).width>width){rows.push(line.trim());line=''}
+   line+=char
+  }
+  line+=' '
+ }
+ if(line.trim())rows.push(line.trim())
+ return rows
+}
+function denseAllocationPlan(ctx,p){
+ const holdings=allocationRows(p.lines)
+ ctx.font='400 26px Arial'
+ if(holdings.length<=4||holdings.every(row=>ctx.measureText(row.name).width<=445))return null
+ const rows=holdings.map(row=>({...row,labels:allocationLabelLines(ctx,row.name,810,36)}))
+ const height=Math.max(600,130+rows.reduce((sum,row)=>sum+Math.max(80,row.labels.length*45+22),0))
+ return {rows,height,exposureTop:125+height+25,totalHeight:125+height+25+815+60}
+}
+function densePortfolio(ctx,p,a,plan){
+ centered(ctx,'Épargnant Libre',800,83,1480,49)
+ panel(ctx,35,125,1530,plan.height)
+ text(ctx,'Répartition des actifs',70,190,1460,40,C.ivory,700,'DcaEditorial')
+ ring(ctx,plan.rows,270,425,170,114)
+ centered(ctx,'100 %',270,433,280,56)
+ centered(ctx,'du portefeuille',270,475,265,26,C.muted,400)
+ const percentages=integerPercentages(plan.rows);let top=255
+ plan.rows.forEach((row,i)=>{
+  ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(510,top-10,8,0,Math.PI*2);ctx.fill()
+  row.labels.forEach((label,j)=>text(ctx,label,535,top+j*45,810,36,C.ivory,400))
+  text(ctx,exposurePercentage(row.weight,percentages[i]),1400,top,130,38)
+  top+=Math.max(80,row.labels.length*45+22)
+ })
+ for(const [field,x] of [['countries',35],['sectors',825]]){
+  panel(ctx,x,plan.exposureTop,740,815)
+  exposurePanel(ctx,a,field,x+20,plan.exposureTop+55,700,p.exposureLimit,false)
+ }
 }
 function fullPortfolio(ctx,p,a){
  centered(ctx,'Épargnant Libre',800,83,1480,49)
@@ -81,12 +129,12 @@ function fullPortfolio(ctx,p,a){
  const crowded=holdings.length>4
  // Keep identity and monthly contributions in the tweet; reserve this panel for holdings.
  const lift=p.imageOnly?0:90
- const cy=(crowded?435:p.imageOnly?469:490)-lift,r=crowded?120:p.imageOnly?230:185
+ const cy=crowded?345:(p.imageOnly?469:490)-lift,r=crowded?120:p.imageOnly?230:185
  ring(ctx,holdings,368,cy,r,r*.67)
  centered(ctx,'100 %',368,cy+12,r*1.7,crowded?42:64)
  centered(ctx,'du portefeuille',368,cy+48,r*1.55,crowded?18:26,C.muted,400)
- const percentages=integerPercentages(holdings),top=(crowded?575:holdings.length===4?725:775)-lift
- const gap=Math.min(62,(915-top)/Math.max(holdings.length-1,1)),size=crowded?(p.imageOnly?19:23):holdings.length===4?23:28
+ const percentages=integerPercentages(holdings),top=crowded?500:(holdings.length===4?725:775)-lift
+ const gap=Math.min(62,(915-top)/Math.max(holdings.length-1,1)),size=crowded?26:holdings.length===4?23:28
  holdings.forEach((row,i)=>{
   const y=top+i*gap
   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(83,y-9,7,0,Math.PI*2);ctx.fill()
@@ -169,19 +217,20 @@ async function loadDcaFont(){
  if(!fontReady)fontReady=new FontFace('DcaEditorial',`url("${import.meta.env.BASE_URL}asset-art/editorial.woff2")`,{weight:'500'}).load().then(font=>document.fonts.add(font)).catch(()=>{fontReady=undefined;return false})
  return fontReady
 }
-export async function renderDcaImage(input,field='countries'){
+export async function renderDcaImage(input,field='countries',maxPositions=MAX_POSITIONS){
  await loadDcaFont()
  const p=input.lines.every(l=>Number.isFinite(l.weight))?input:prepareProfile(input)
  await Promise.all([...new Set(p.lines.map(line=>line.asset))].map(id=>exposureRecords.load(id)))
- const a=analyzeProfile(p)
+ const a=analyzeProfile(p,maxPositions)
  if(a.errors.length)throw Error(a.errors.join(' '))
- const baseHeight=['all','overlap'].includes(field)?1000:p.imageOnly?960:1067
+ const dense=field==='all'?denseAllocationPlan(document.createElement('canvas').getContext('2d'),p):null
+ const baseHeight=dense?.totalHeight??(['all','overlap'].includes(field)?1000:p.imageOnly?960:1067)
  const includeCompanies=p.showCompanies===true&&field!=='overlap'
  const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=baseHeight+(includeCompanies?300:0);const ctx=canvas.getContext('2d')
  const bg=ctx.createLinearGradient(0,0,1600,1067);bg.addColorStop(0,'#071b36');bg.addColorStop(.5,'#03152c');bg.addColorStop(1,'#092952');ctx.fillStyle=bg;ctx.fillRect(0,0,1600,canvas.height)
  const finish=async()=>{if(includeCompanies)await companiesPanel(ctx,p,baseHeight);return canvas}
  if(field==='overlap'){await overlapPortfolio(ctx,p);return canvas}
- if(field==='all'){fullPortfolio(ctx,p,a);return finish()}
+ if(field==='all'){if(dense)densePortfolio(ctx,p,a,dense);else fullPortfolio(ctx,p,a);return finish()}
  if(p.imageOnly||field==='both'){
   centered(ctx,p.imageOnly?'Épargnant Libre':`Le DCA de ${p.name}`,800,83,1472,49)
   if(!p.imageOnly)centered(ctx,`${euro(a.monthly)} investis par mois`,800,158,1470,34,C.yellow)
@@ -198,16 +247,17 @@ export async function renderDcaImage(input,field='countries'){
  text(ctx,p.name,62,161,710,96,C.ivory,700,'DcaEditorial')
  text(ctx,[p.age&&`${p.age} ans`,p.job].filter(Boolean).join(' · '),66,212,710,30,C.ivory,400)
  if(p.income)text(ctx,`${incomeLabel(p)} : ${euro(p.income)} / mois`,66,263,710,32,C.ivory,400)
- text(ctx,'CHAQUE MOIS',66,341,710,26,C.muted)
- text(ctx,euro(a.monthly),56,495,720,160,C.yellow,700,'DcaEditorial')
- text(ctx,'investis par mois',66,552,710,40,C.ivory,700,'DcaEditorial')
- const displayLines=p.lines.length>8?[...p.lines.slice(0,7),{label:`${p.lines.length-7} autres positions`,amount:p.lines.slice(7).reduce((s,l)=>s+l.amount,0),weight:p.lines.slice(7).reduce((s,l)=>s+l.weight,0)}]:p.lines
- const rowHeight=Math.min(112,366/displayLines.length),top=597
+ const contributions=sortContributions(p.lines),crowded=contributions.length>4
+ text(ctx,'CHAQUE MOIS',66,crowded?311:341,710,26,C.muted)
+ text(ctx,euro(a.monthly),56,crowded?415:495,720,crowded?110:160,C.yellow,700,'DcaEditorial')
+ text(ctx,'investis par mois',66,crowded?465:552,710,40,C.ivory,700,'DcaEditorial')
+ const displayLines=contributions.length>8?sortContributions([...contributions.slice(0,7),{label:`${contributions.length-7} autres positions`,amount:contributions.slice(7).reduce((s,l)=>s+l.amount,0),weight:contributions.slice(7).reduce((s,l)=>s+l.weight,0)}]):contributions
+ const top=crowded?505:597,rowHeight=Math.min(112,(963-top)/displayLines.length)
  displayLines.forEach((l,i)=>{
   const y=top+i*rowHeight
   rule(ctx,66,y,710)
-  text(ctx,euro(l.amount),66,y+rowHeight*.66,220,Math.min(49,rowHeight*.55),C.yellow,700,'DcaEditorial')
-  text(ctx,l.label,312,y+rowHeight*.62,464,Math.min(31,rowHeight*.45),C.ivory,700,'DcaEditorial')
+  text(ctx,euro(l.amount),66,y+rowHeight*.66,235,Math.min(49,rowHeight*.65),C.yellow,700,'DcaEditorial')
+  wrappedLabel(ctx,l.label,324,y+rowHeight*.42,450,Math.min(31,rowHeight*.40),'DcaEditorial',700)
  })
  text(ctx,'Son portefeuille',865,112,670,65,C.ivory,700,'DcaEditorial')
  text(ctx,field==='sectors'?'Exposition sectorielle':'Exposition géographique',880,163,650,32,C.muted,400)

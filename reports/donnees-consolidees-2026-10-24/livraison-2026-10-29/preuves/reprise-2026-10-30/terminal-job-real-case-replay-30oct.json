@@ -1,0 +1,19 @@
+{
+  "replayedAt": "2026-10-30T21:48:16.268136+00:00",
+  "run": 41103721731,
+  "attempt": 1,
+  "originalMonitorRecordingStatus": "not-run",
+  "originalMonitorStepResults": {},
+  "actualFailedSteps": [
+    {
+      "job": "update",
+      "step": "Commit validated observations"
+    }
+  ],
+  "replayedRecordingStatus": "failure",
+  "unchangedLastSourceSuccessAt": "2026-10-29T18:40:23.344479+00:00",
+  "allSourceChecksUnchanged": true,
+  "existingRecoveryEligibleReason": "recording-failed",
+  "replay": "isolated reducer with actual original monitored row and real GitHub API job evidence; no provider call or production write",
+  "latestRecoveryRunHandledSeparately": 41132216612
+}

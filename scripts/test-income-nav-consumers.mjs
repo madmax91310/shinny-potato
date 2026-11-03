@@ -50,7 +50,11 @@ console.log('Five exact iShares parts: issuer income-return oracle, explicit FX,
 const {historyAlerts,historyConsumerTools}=await import('./history-alerts.mjs')
 const checks={},alerts=historyAlerts('2026-10-25',[],checks)
 const key='automated-etf-monthly:etcPalladium'
-assert.deepEqual(alerts.find(r=>r.id===key+':qualification').invalidPeriods,['2014-12'])
+const excluded=alerts.find(r=>r.id===key+':qualification').invalidPeriods
+assert(excluded.includes('2014-12'),'The original unresolved component remains explicit')
+const currentPalladium=JSON.parse(fs.readFileSync('src/data/automated-etf-monthly.json')).etcPalladium
+assert.deepEqual(excluded,currentPalladium.historyExcludedMonths,'Monitoring retains every currently refused month, including a withheld trailing month')
+for(const month of excluded)assert(!checks[key].periods.includes(month))
 assert(!checks[key].periods.includes('2014-12'))
 assert(checks[key].periods.includes('2015-12'))
 console.log('The unresolved December 2014 palladium component remains an explicit monitoring incident after a successful source control.')

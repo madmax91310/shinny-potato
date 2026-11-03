@@ -1,0 +1,40 @@
+
+> patrimoine-et-compagnie@0.0.0 test:radar
+> node scripts/test-dws-reconciliation.mjs && node scripts/test-editorial-radar.mjs && node scripts/test-radar-editorial.mjs && node scripts/test-radar-notifications.mjs && node scripts/test-purchasing-power-news.mjs && node scripts/test-radar-publications.mjs && node scripts/test-radar-extensions.mjs && node scripts/test-radar-consumer.mjs && node scripts/test-radar-coverage.mjs && node scripts/test-radar-depth.mjs && node scripts/test-radar-audit-fixes.mjs && node scripts/test-radar-source-recovery.mjs && node scripts/test-radar-publication-policy.mjs && node scripts/test-browser-radar-chrome.mjs && node scripts/test-radar-observation-reliability.mjs && node scripts/test-radar-workflow-state.mjs && node scripts/test-radar-composition-verification.mjs && node scripts/test-radar-state-codec.mjs
+
+DWS: 34 source revisions reconciled; missing, stale, partial, changing and replayed evidence remain guarded; no editorial signal.
+Radar : seuils cumulés, périmètres, dates, bootstrap, publications, déduplication, conservation et 7280 observations vérifiés.
+All qualified ETFs monitored once; metric thresholds and same-date revisions verified.
+Replication: bidirectional aliases, unknowns, real method changes, raw evidence, legacy migration and notification correction verified.
+Legacy bot comments corrected even when aliases are excluded from the ready feed; human comments and receipts preserved.
+Three actual DWS omissions: no false zero, original dates/conflicts preserved, qualification visible; old complete-classification zero scenarios remain valid.
+Editorial radar: relevance, factual titles, grouping, launch evidence, future announcements, ambiguous multi-fund documents, failure preservation and no duplicate launch verified.
+13F radar: same-quarter revisions, legacy migration, pending notifications, unchanged later quarter and unknown periods verified.
+Notifications radar : silence initial, seuils, issue suivie, preuves, attribution, reprise, pagination, issues fermées et déduplication vérifiés.
+Issue suivie du radar : fenêtre glissante, fermeture et réouverture automatiques, anciennes issues regroupées.
+Veille pouvoir d’achat : thèmes, statuts, dates, sécurité, déduplication, bootstrap, révisions, conservation et reprise validés.
+Lois adoptées : votes intermédiaires exclus, adoption définitive et promulgation acceptées, anciens textes retirés.
+BDF debt: 11/12 actual documents qualified, inconsistent2023T2 retained; periods, axes, four series, null/partial/malformed responses and isolated producer errors verified.
+BDF versioned recovery: future-backoff legacy failures requalified once within ordinary budget; valid history, failed periods, no-source-cache and unattempted identities preserved.
+BDF congested queue: latest two real documents recovered before eight older failures, two background attempts retained, old contradiction unattempted and not certified.
+INSEE: exact pure index→12qualified chapter routes, own title/figures/date, no fan-out; scope/retention/partial retry/cache/migration/quiet archives verified.
+Radar publications: reference INSEE/Amundi cases, units, publication/data/collection dates, source proofs, group products, unknowns, scoring, diversity, durable retries, outage, migration, retention and DST verified.
+Notification simulation: same ranked groups, per-run noise cap, no daily discard, single daily recap, failure after tracker creation, retry and durable receipts verified. No real notification sent.
+Radar extensions: real BNP/Xtrackers/HANetf/Xetra/CSA/OLL publications, share classes, unknowns, housing conventions, DVF sample/filters, mortgage assumptions, revisions, bootstrap silence and durable recovery verified.
+Consumer Radar: real excerpts, 12 themes, exclusions, dates, unknown evidence, expired promotions, duplicate discovery, persistent recovery, silent backfill, calendar, correction history, quota overflow and simulated notification receipts verified. No real notification sent.
+Explicit original linkage, distinct publication dates and dated correction of an old event verified.
+Post-backfill correction and stable observation scope verified.
+Recovered official global Revolut listing: French article identified, original August date and partial coverage preserved.
+CM-CIC actual fixtures: 18 dates corroborated with the linked PDF; 17 retained if that proof fails. Empty/partial/failure/cache/recovery and targeted discovery requalification verified in isolation.
+Coverage Radar: real bounded excerpts, separate dated cards, PDF listings, partial archive, national/regional clauses, unknown rates, semantic presentation guard, grouped ETF proof, US/UCITS rejection, housing conventions, persistence, outage recovery and silent migration verified. No notification sent.
+Radar depth: silent baselines, semantic changes, expiry, failure/recovery, durable receipts, CSA diffusion and INSEE discovery passed.
+Measured four-document queue: bounded latest-parser recovery, unchanged fresh reserve/time/traffic ceilings, background fairness, 0/1/2/3/4/6/24 budgets, scope and immutable dates verified.
+Radar audit fixes: measured queue, fairness, time precision, scope/forecast qualification, all Xetra rows, semantic clauses, INSEE dossiers, proof grouping and quiet migrations passed. No notification sent.
+Six-source recovery: recorded failures, denial/challenge non-bypass, bounded transport retry, partial LBP archive, HANetf cards/cache migration and original observation proofs preserved.
+Publication policy: real INSEE, BPCE, generic advice, proposal, exclusions, relative ranking, original dates, copy deduplication, qualified tools, silent migration and simulated durable notifications passed. No user notification sent.
+Navigation-only API fixture: exact GET/fetch, no real news; images, fonts, scripts and every other URL remain checked as export resources.
+Observation reliability: partial allocation, signed and qualified extreme moves, method change, source isolation, dossier grouping, repeated collection, correction, preserved dates/IDs and quiet migration passed. No notification sent.
+Radar editorial workflow: independent reading, discard/use/undo, grouped IDs, correction, badge, preserved favourites/drafts, events, corruption and save failure passed.
+Complementary composition verification: recorded iShares date mismatch, complete same-date signed portfolio, truncated response, cache/conditional request, bounded retry and allowed official source passed. No financial registry changed.
+Radar state storage: lossless restart, unchanged legacy history/queues, nested reviews, deduplicated evidence, idempotence and rejection of missing/altered/unknown proofs passed.
+Large Radar state: bounded escaped request, full restoration, legacy compatibility, idempotence, corruption rejection and unchanged restart/signals verified.

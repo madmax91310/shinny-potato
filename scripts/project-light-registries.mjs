@@ -46,7 +46,7 @@ export function projectLightRegistries() {
     ['portfolio-assets', portfolio, ''], ['portfolio-admissions', admissions, ''], ['certified-monthly-indices', certifiedIndices, ''], ['portfolio-currencies', currencies, ''], ['practical-source-data', practical, ''], ['preferred-instrument-tickers',preferredTickers,''],
   ]
   const projections = new Map(definitions.map(([name, exports, imports]) => {
-    if(name==='portfolio-assets') exports={...exports,ASSETS:exports.ASSETS.map(asset=>asset.manualOnly && /^(?:equity-|manual-)/.test(asset.id)?Object.fromEntries([...['id','isin','name','instrumentType','cat','emoji','manualOnly','returnCurrency'].filter(k=>asset[k]!==undefined).map(k=>[k,asset[k]]),['historyPending',true]]):asset)}
+    if(name==='portfolio-assets') exports={...exports,ASSETS:exports.ASSETS.map(asset=>asset.manualOnly && /^(?:equity-|manual-)/.test(asset.id)?Object.fromEntries([...['id','isin','name','instrumentType','cat','emoji','manualOnly','returnCurrency','basis','underlyingMechanism'].filter(k=>asset[k]!==undefined).map(k=>[k,asset[k]]),['historyPending',true]]):asset)}
     const source = readFileSync(new URL(`../src/data/${name}.js`, import.meta.url), 'utf8')
     const functions = exportedFunctionDeclarations(source, `${name}.js`)
     const counts = new Map(),shapeCounts=new Map()

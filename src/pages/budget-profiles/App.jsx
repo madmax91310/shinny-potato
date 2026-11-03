@@ -1,0 +1,188 @@
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import PageHeader from '../../design-system/PageHeader'
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
+import Button from '../../design-system/Button'
+import { copyPublicationText } from '../../design-system/publicationActions.js'
+import { BUDGET_PROFILES, EXPENSE_CATEGORIES } from './data.js'
+import { analyzeBudget, budgetPublicPresentation, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, dateLabel, euro, MAX_BUDGET_LINES, publicationContextFor, refreshBudgetDraft, sourceReply } from './lib.js'
+import { findSavedDraft, loadSavedDrafts, loadDraft, loadPublished, loadQueued, loadUsage, saveDraft, savePublished, saveQueued, saveUsage, WORKSPACE_KEY } from './storage.js'
+import PublicationStatus from './PublicationStatus.jsx'
+import { useBudgetImage } from './useBudgetImage.js'
+import '../dca-profiles/dca-profiles.css'
+import './budget-profiles.css'
+
+const profiles = [...BUDGET_PROFILES].sort(compareBudgetRecency)
+const BackupPanel = lazy(() => import('./BackupPanel.jsx'))
+const number = value => value === '' ? null : Number(value)
+
+export default function App() {
+  const [initial] = useState(() => {
+    const loaded = loadDraft({ profile: profiles[0], text: buildBudgetText(profiles[0]), edited: false })
+    return { ...loaded, value: refreshBudgetDraft(loaded.value) }
+  })
+  const [record, setRecord] = useState(initial.value)
+  const { profile, text, edited } = record
+  const money = value => euro(value, profile.currency)
+  const [usageInitial] = useState(loadUsage), [used, setUsed] = useState(usageInitial.value)
+  const [publishedInitial] = useState(loadPublished), [published, setPublished] = useState(publishedInitial.value)
+  const [publicationDates, setPublicationDates] = useState(publishedInitial.dates)
+  const [queuedInitial] = useState(loadQueued), [queued, setQueued] = useState(queuedInitial.value)
+  const [saved, setSaved] = useState(loadSavedDrafts)
+  const [filters, setFilters] = useState({ country: '', income: '', family: '', children: '', housing: '' })
+  const [imageMode, setImageMode] = useState('detailed'), [backupOpen, setBackupOpen] = useState(false)
+  const [hidePublished, setHidePublished] = useState(false)
+  const [unused, setUnused] = useState(false), [query, setQuery] = useState(''), [feedback, setFeedback] = useState('')
+  const memoryDrafts = useRef(new Map(loadSavedDrafts().map(d => [d.profile.id, d])))
+  const seen = useRef(new Set([profile.id]))
+  const [approved, setApproved] = useState(false)
+  useEffect(() => {
+    memoryDrafts.current.set(record.profile.id, record)
+    setSaved([...new Map([...loadSavedDrafts(), ...memoryDrafts.current.values()].map(d => [d.profile.id, d])).values()])
+    if (!saveDraft(record)) setFeedback('Brouillon en mémoire : le stockage est indisponible, illisible ou modifié dans un autre onglet. Les données précédentes sont conservées.')
+  }, [record])
+  useEffect(() => {
+    const changed = event => { if (event.key === WORKSPACE_KEY) setFeedback('Les données ont changé dans un autre onglet. Recharge la page après avoir conservé ton texte en cours.') }
+    window.addEventListener('storage', changed); return () => window.removeEventListener('storage', changed)
+  }, [])
+  const a = analyzeBudget(profile), image = useBudgetImage(profile, !a.errors.length, imageMode)
+  const prepared = profile.kind !== 'participant'
+  const filtered = profiles.filter(p => matchesBudgetFilters(p, filters) && (!unused || !used.includes(p.id)) && (!hidePublished || !published.includes(p.id)) &&
+    `${budgetDisplayName(p)} ${p.name} ${p.job} ${p.household} ${p.period} ${p.source.publisher} ${analyzeBudget(p).income}`.toLocaleLowerCase('fr').includes(query.toLocaleLowerCase('fr').trim()))
+  function update(next) { setApproved(false); setRecord(current => ({ profile: next, text: current.edited ? current.text : buildBudgetText(next), edited: current.edited })); setFeedback('') }
+  function edit(patch) { update({ ...profile, ...patch }) }
+  function choose(next) {
+    if (!next) return
+    const p = structuredClone(next); setApproved(false); setRecord(refreshBudgetDraft(memoryDrafts.current.get(p.id) || findSavedDraft(p.id) || { profile: p, text: buildBudgetText(p), edited: false })); seen.current.add(p.id); setFeedback('')
+  }
+  function random() {
+    let pool = filtered.filter(p => p.id !== profile.id && !seen.current.has(p.id))
+    if (!pool.length) { seen.current = new Set([profile.id]); pool = filtered.filter(p => p.id !== profile.id) }
+    choose(pool[Math.floor(Math.random() * pool.length)])
+  }
+  function adapt() {
+    const p = { ...structuredClone(profile), id: `participation-${crypto.randomUUID()}`, name: budgetDisplayName(profile), kind: 'participant', source: null, publishedAt: null, checkedAt: null,
+      incomeNote: '', context: '', caveat: '', hook: '', question: 'Quel poste pèse le plus dans ton budget ?' }
+    choose(p)
+  }
+  function toggleUsed() {
+    const next = used.includes(profile.id) ? used.filter(id => id !== profile.id) : [...used, profile.id]
+    if (saveUsage(next)) { setUsed(next); setFeedback('Historique mis à jour.') }
+    else setFeedback('L’historique n’a pas pu être enregistré. Les données précédentes sont conservées.')
+  }
+  function markPublished(checked, date = null) {
+    const next = checked ? [...new Set([...published, profile.id])] : published.filter(id => id !== profile.id)
+    const dates = { ...publicationDates, [profile.id]: date }
+    if (savePublished(next, dates)) { setPublished(next); setPublicationDates(dates); setFeedback(checked ? 'Publication déclarée enregistrée.' : 'Statut publié retiré.'); return true }
+    setFeedback('Le statut publié n’a pas pu être enregistré. Le suivi précédent est conservé.'); return false
+  }
+  function markQueued(checked) {
+    const next = checked ? [...new Set([...queued, profile.id])] : queued.filter(id => id !== profile.id)
+    if (saveQueued(next)) { setQueued(next); setFeedback('Statut à publier prochainement mis à jour.') }
+    else setFeedback('Le statut n’a pas pu être enregistré. Les données précédentes sont conservées.')
+  }
+  function restored() {
+    memoryDrafts.current = new Map(loadSavedDrafts().map(d => [d.profile.id, d]))
+    setRecord(refreshBudgetDraft(loadDraft(record).value)); setUsed(loadUsage().value); setPublished(loadPublished().value); setPublicationDates(loadPublished().dates); setQueued(loadQueued().value); setSaved(loadSavedDrafts())
+  }
+  function filter(key, title, options) {
+    return <label>{title}<ChoicePicker aria-label={title} value={filters[key]} onChange={e => setFilters({ ...filters, [key]: e.target.value })}><option value="">Tous</option>{options.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</ChoicePicker></label>
+  }
+  async function copy(value) { try { await copyPublicationText(value); setFeedback('Texte copié.') } catch { setFeedback('Copie impossible. Sélectionne le texte.') } }
+  function changeRow(key, index, patch) { edit({ [key]: profile[key].map((row, i) => i === index ? { ...row, ...patch } : row) }) }
+  function rows(key, title) {
+    return <fieldset className="budget-lines"><legend>{title}</legend>
+      {profile[key].map((row, index) => <div className="budget-row" key={index}>
+        <label>Poste {index + 1}<input aria-label={`${title} · poste ${index + 1}`} maxLength={90} value={row.label} onChange={e => changeRow(key, index, { label: e.target.value })}/></label>
+        <label>Montant ({profile.currency || 'EUR'} / mois)<input aria-label={`${title} · montant ${index + 1}`} type="number" min="0" max="10000000" step="0.01" value={row.amount ?? ''} onChange={e => changeRow(key, index, { amount: number(e.target.value) })}/></label>
+        <button type="button" className="dca-remove" aria-label={`Retirer ${title.toLowerCase()} ${index + 1}`} onClick={() => edit({ [key]: profile[key].filter((_, i) => i !== index) })}>×</button>
+        {key === 'expenses' && <label className="budget-category">Catégorie<select value={row.category || 'other'} onChange={e => changeRow(key, index, { category: e.target.value })}>{EXPENSE_CATEGORIES.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}</select></label>}
+      </div>)}
+      <Button variant="secondary" disabled={profile[key].length >= MAX_BUDGET_LINES} onClick={() => edit({ [key]: [...profile[key], { label: '', amount: null, ...(key === 'expenses' && { category: 'other' }) }] })}>Ajouter un poste</Button>
+    </fieldset>
+  }
+  return <div className="dca-profiles-scope dca-simple budget-profiles-scope">
+    <PageHeader title="Le budget de…" subtitle="Choisis un budget public sourcé ou prépare une participation, puis récupère le texte et l’image."/>
+    {(!initial.readable || !usageInitial.readable || !publishedInitial.readable || !queuedInitial.readable) && <p role="alert">Un ancien enregistrement local est illisible. Il est conservé sans modification.</p>}
+    <details className="dca-simple-card" onToggle={e => { if (e.currentTarget.open) setBackupOpen(true) }}><summary>Brouillons et transfert entre appareils</summary>
+      {saved.length > 0 && <label>Reprendre un brouillon<ChoicePicker aria-label="Reprendre un brouillon" value={saved.some(d => d.profile.id === profile.id) ? profile.id : ''} onChange={e => { const draft = memoryDrafts.current.get(e.target.value) || findSavedDraft(e.target.value); if (draft) { setRecord(refreshBudgetDraft(draft)); setApproved(false) } }}><option value="">Choisir un brouillon</option>{saved.map(d => <option key={d.profile.id} value={d.profile.id}>{budgetDisplayName(d.profile)}{d.edited ? ' · personnalisé' : ''}</option>)}</ChoicePicker></label>}
+      {backupOpen && <Suspense fallback={<p>Chargement…</p>}><BackupPanel drafts={saved} record={record} onRestored={restored}/></Suspense>}
+    </details>
+    <div className="dca-simple-grid">
+      <section className="dca-simple-card" aria-label="Composer le budget">
+        <div className="dca-mode"><button aria-pressed={prepared} onClick={() => choose(profiles[0])}>Profils sourcés</button><button aria-pressed={!prepared} onClick={() => choose({ ...blankBudget(), id: `participation-${crypto.randomUUID()}` })}>Créer une participation</button></div>
+        {prepared && <>
+          <label>Rechercher un profil<input type="search" value={query} onChange={e => setQuery(e.target.value)} placeholder="Profil, revenu, mois…"/></label>
+          <details><summary>Filtrer les profils</summary><div className="budget-filters">
+            {filter('country', 'Pays de résidence', [...new Set(profiles.map(p => p.country).filter(Boolean))].sort().map(c => [c, c]).concat([['unknown', 'Non renseigné']]))}
+            {filter('income', 'Ressources mensuelles par devise', ['EUR', 'CHF'].flatMap(c => [[0,1500],[1500,2500],[2500,4000],[4000,7000],[7000,Infinity]].map(([min,max]) => [`${c}:${min}:${max}`, `${min.toLocaleString('fr-FR')}${max === Infinity ? ' et plus' : ` à moins de ${max.toLocaleString('fr-FR')}`} ${c}`])))}
+            {filter('family', 'Configuration du foyer', [['single','Personne seule'],['couple','Couple'],['other','Autre configuration'],['unknown','Non renseignée']])}
+            {filter('children', 'Enfants au foyer', [['yes','Avec enfants'],['no','Sans enfants'],['unknown','Non renseigné']])}
+            {filter('housing', 'Logement', [['tenant','Locataire'],['owner','Propriétaire'],['other','Autre situation'],['unknown','Non renseigné']])}
+          </div><p className="dca-note">Les tranches EUR et CHF sont séparées, sans conversion. Une information absente reste non renseignée.</p><Button variant="secondary" onClick={() => setFilters({ country: '', income: '', family: '', children: '', housing: '' })}>Effacer les filtres</Button></details>
+          <label className="budget-check"><input type="checkbox" checked={unused} onChange={e => setUnused(e.target.checked)}/>Masquer les profils déjà utilisés</label>
+          <label className="budget-check"><input type="checkbox" checked={hidePublished} onChange={e => setHidePublished(e.target.checked)}/>Masquer les profils publiés</label>
+          <p className="dca-note">{filtered.length} profil{filtered.length > 1 ? 's' : ''} · {profiles.filter(p => published.includes(p.id)).length} publié(s) · triés par période du budget</p>
+          {filtered.length ? <ChoicePicker aria-label="Choisir un profil budget" value={profile.id} onChange={e => choose(filtered.find(p => p.id === e.target.value))}>
+            {filtered.map(p => <option key={p.id} value={p.id}>{budgetDisplayName(p)} · {euro(analyzeBudget(p).income, p.currency)} · {p.period}{published.includes(p.id) ? ' · publié' : ''}{used.includes(p.id) ? ' · utilisé' : ''}{queued.includes(p.id) ? ' · à publier prochainement' : ''}</option>)}
+          </ChoicePicker> : <p role="status">Aucun profil ne correspond. Le budget ouvert reste affiché.</p>}
+          <div className="dca-buttons"><Button variant="secondary" disabled={!filtered.some(p => p.id !== profile.id)} onClick={random}>Autre profil aléatoire</Button><Button variant="secondary" onClick={toggleUsed}>{used.includes(profile.id) ? 'Marquer non utilisé' : 'Marquer utilisé'}</Button></div>
+          <h2>{budgetDisplayName(profile)}</h2>
+
+          <p>{[budgetPublicPresentation(profile).job, budgetPublicPresentation(profile).household, profile.location].filter(Boolean).join(' · ')}</p>
+          <p>{budgetKind(profile)} · {profile.period}{profile.approximate && ' · montants approximatifs'}</p>
+
+          <dl className="budget-breakdown"><div><dt>Revenus mensuels</dt><dd>{money(a.income)}</dd></div>{profile.expenses.map((row, i) => <div key={i}><dt>{row.label}</dt><dd>{money(row.amount)}</dd></div>)}</dl>
+
+          <Button variant="secondary" onClick={adapt}>Adapter ce budget</Button>
+        </>}
+        {!prepared && <>
+          <label>Prénom ou pseudonyme<input maxLength={70} value={profile.name} onChange={e => edit({ name: e.target.value })}/></label>
+          <details><summary>Présentation du profil</summary><div className="dca-fields">
+            <label>Âge, facultatif<input type="number" min="18" max="110" value={profile.age ?? ''} onChange={e => edit({ age: number(e.target.value) })}/></label>
+            <label>Activité<input maxLength={250} value={profile.job} onChange={e => edit({ job: e.target.value })}/></label>
+            <label>Localisation générale<input maxLength={250} value={profile.location} onChange={e => edit({ location: e.target.value })}/></label>
+            <label>Situation familiale / logement<input maxLength={250} value={profile.household} onChange={e => edit({ household: e.target.value })}/></label>
+            <label>Mois du budget<input maxLength={250} value={profile.period} onChange={e => edit({ period: e.target.value })} placeholder="Octobre 2026"/></label>
+            <label>Devise<select aria-label="Devise du budget" value={profile.currency || 'EUR'} onChange={e => edit({ currency: e.target.value })}><option value="EUR">EUR · Euro</option><option value="CHF">CHF · Franc suisse</option></select></label>
+            <label>Base des revenus<input maxLength={250} value={profile.incomeBasis} onChange={e => edit({ incomeBasis: e.target.value })}/></label>
+          </div><label className="budget-check"><input type="checkbox" checked={profile.approximate} onChange={e => edit({ approximate: e.target.checked })}/>Montants approximatifs</label></details>
+          {rows('income', 'Revenus')}{rows('expenses', 'Dépenses')}
+          <details><summary>Épargne et projets</summary>{rows('savings', 'Épargne prévue')}<p className="dca-note">Ces versements sont retirés du solde. Une simple capacité envisagée reste séparée.</p>
+            <label>Capacité d’épargne annoncée, facultative<input type="number" min="0" max="10000000" step="0.01" value={profile.capacity ?? ''} onChange={e => edit({ capacity: number(e.target.value) })}/></label>
+          </details>
+          <label>Contexte<textarea maxLength={3000} value={profile.context} onChange={e => edit({ context: e.target.value })}/></label>
+        </>}
+        {!!a.errors.length && <div className="dca-errors" role="alert">{a.errors.map(error => <p key={error}>{error}</p>)}</div>}
+        {!a.errors.length && <dl className="budget-totals"><div><dt>Dépenses</dt><dd>{money(a.expenses)}</dd></div><div><dt>{a.available < 0 ? 'Déficit avant versements' : 'Reste avant versements'}</dt><dd>{money(a.available)}</dd></div>{!!profile.savings.length && <div><dt>Reste disponible après versements</dt><dd>{money(a.balance)}</dd></div>}</dl>}
+        {profile.source && <details className="dca-evidence"><summary>Source et vérification du profil</summary>
+          <a href={profile.source.url} target="_blank" rel="noreferrer">{profile.source.publisher} · {profile.source.title}</a>
+          <p>Période du budget : {profile.period}. {profile.publishedAt ? `Source publiée le ${dateLabel(profile.publishedAt)}.` : 'Date exacte de publication non indiquée.'} Vérifiée le {dateLabel(profile.checkedAt)}.{profile.preparedAt && ` Exemple préparé le ${dateLabel(profile.preparedAt)}.`}{profile.editorialReviewedAt && ` Texte relu le ${dateLabel(profile.editorialReviewedAt)}.`}</p><p>{profile.incomeNote}</p><p>{profile.context}</p>{profile.provenance && <pre className="budget-provenance">{JSON.stringify(profile.provenance, null, 2)}</pre>}
+          <p>{profile.provenance?.type === 'reference' ? 'Exemple de référence publié, sans témoignage individuel.' : profile.kind === 'prepared' ? 'Budget préparé avec compléments et arrondis ; voir les hypothèses ci-dessous.' : 'Budget autodéclaré, sans accès aux comptes bancaires. Les postes groupés et les arrondis sont conservés.'}</p><p>{profile.caveat}</p>
+          {publicationContextFor(profile) && <details><summary>Provenance du récit et des questions</summary><p>Les questions marquées « expressed » reformulent une interrogation sourcée ; « editorial » désigne une question aux lecteurs. Les éléments conservés sans nouvelle lecture sont signalés dans la revue.</p><pre className="budget-provenance">{JSON.stringify(publicationContextFor(profile), null, 2)}</pre></details>}
+          <p>Les prénoms du texte sont fictifs. La séparation entre dépenses contraintes et non contraintes est éditoriale ; les postes mixtes restent groupés.</p>
+          <Button variant="secondary" onClick={() => copy(sourceReply(profile))}>Copier la source pour une réponse</Button>
+        </details>}
+      </section>
+      <div className="dca-publication-column">
+        <section className="dca-simple-card dca-simple-preview" aria-label="Image du budget" aria-busy={image.busy}>
+          <h2>Mon aperçu</h2><label>Version de l’image<ChoicePicker aria-label="Version de l’image" value={imageMode} onChange={e => setImageMode(e.target.value)}><option value="detailed">Détaillée</option><option value="summary">Synthétique</option></ChoicePicker></label><p className="dca-note">La synthèse regroupe les dépenses par catégorie ; tous les postes restent accessibles dans la version détaillée. Les totaux sont identiques.</p>
+          {image.url ? <img src={image.url} alt={`Le budget de ${profile.name} : revenus, dépenses et reste avant épargne`}/> : <p>{a.errors.length ? 'Complète le budget pour préparer l’image.' : 'Préparation de l’image…'}</p>}
+          <div className="dca-export-actions"><Button disabled={!image.url} onClick={() => { try { image.download(`budget-${profile.id}-${imageMode}.png`); setFeedback('Téléchargement lancé.') } catch { setFeedback('L’image n’est pas encore disponible.') } }}>Télécharger le PNG</Button>
+            {image.url && <a href={image.url} target="_blank" rel="noreferrer">Ouvrir l’image</a>}
+            {image.error && <Button variant="secondary" onClick={image.retry}>Réessayer l’image</Button>}
+          </div><p role="status">{image.error || (image.busy ? 'Préparation de l’image…' : '')}</p>
+        </section>
+        <section className="dca-simple-card dca-text-card">
+          <label htmlFor="budget-draft">Texte prêt à publier</label><textarea id="budget-draft" maxLength={20000} value={text} onChange={e => { setApproved(false); setRecord({ ...record, text: e.target.value, edited: true }) }}/>
+          <div className="dca-buttons"><Button disabled={!text.trim() || !!a.errors.length} onClick={() => copy(text)}>Copier le texte</Button><Button variant="secondary" onClick={() => { setApproved(false); setRecord({ ...record, text: buildBudgetText(profile), edited: false }) }}>Rétablir le texte</Button></div>
+          <PublicationStatus key={profile.id} published={published.includes(profile.id)} date={publicationDates[profile.id] ?? null} onSave={markPublished}/>
+          <label className="budget-check"><input type="checkbox" checked={queued.includes(profile.id)} onChange={e => markQueued(e.target.checked)}/>À publier prochainement</label><p className="dca-note">Trois statuts indépendants, enregistrés manuellement dans ce navigateur.</p>
+          {edited && <p className="dca-note">Texte personnalisé conservé. « Rétablir le texte » reprend les chiffres du budget.</p>}
+          {!prepared && <label className="budget-check"><input type="checkbox" checked={approved} onChange={e => setApproved(e.target.checked)}/>La personne a validé les informations à publier.</label>}
+          {!prepared && !approved && <p className="dca-note">Participation à faire valider avant publication.</p>}
+          <p role="status" aria-live="polite">{feedback}</p>
+        </section>
+      </div>
+    </div>
+  </div>
+}

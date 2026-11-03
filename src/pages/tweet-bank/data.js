@@ -1,3 +1,4 @@
+import { SUNDAY_QUESTIONS } from './sunday-questions.js'
 import { MARKET_STORIES } from './market-stories.js'
 import { AUTOMATED_ETF } from '../../data/automated-etf.js'
 import { resolveGuideFees, reusableContract } from '../../data/reusable-data-contracts.js'
@@ -19,6 +20,7 @@ import { EDITORIAL_CASES } from '../../data/editorial-cases.js'
 
 export const MONTHS = ["Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Intemporel"]
 export const CATEGORIES = [
+  "Question dimanche",
   "Histoires de marché",
   "Storytelling",
   "Simulation & chiffres",
@@ -29,7 +31,7 @@ export const CATEGORIES = [
   "Actu & humour",
   "Pédagogie",
 ]
-export const FORMATS = ["Preuve vendredi soir", "Bilan de la semaine", "Explication pédagogique"]
+export const FORMATS = ["Question dimanche", "Preuve vendredi soir", "Bilan de la semaine", "Explication pédagogique"]
 
 // Sous-ensemble de CATEGORIES mis en avant visuellement (couleur "or" plutôt que "vert" dans le
 // prototype d'origine) — repris tel quel, aucune règle nouvelle inventée ici.
@@ -295,7 +297,7 @@ Il baisse ? J'accumule, sans regarder le prix.
 ]
 
 // Stable ids retain publication tracking when the catalogue order changes.
-export const TWEETS = [...ARCHIVED_TWEETS, ...MARKET_STORIES, ...EDITORIAL_CASES.map(item => ({
+export const TWEETS = [...ARCHIVED_TWEETS, ...SUNDAY_QUESTIONS, ...MARKET_STORIES, ...EDITORIAL_CASES.map(item => ({
   ...item, id: `pedagogy:${item.id}`, month: 'Intemporel', category: 'Pédagogie',
   formats: ['Explication pédagogique'],
 }))].map(tweet=>{const resolved=resolveGuideFees(tweet,AUTOMATED_ETF);return {...resolved,dataContract:reusableContract(resolved)}})

@@ -1,0 +1,45 @@
+name: Qualify official VanEck document routes
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/verify-vaneck-documents.yml'
+      - 'scripts/probe_vaneck_documents.py'
+      - 'scripts/collect_vaneck_etf.py'
+      - 'scripts/additional-etf-sources.json'
+      - 'scripts/collect_presentation_performance.py'
+      - 'scripts/vaneck-document.mjs'
+      - 'scripts/download-vaneck-document.mjs'
+permissions:
+  contents: read
+concurrency:
+  group: vaneck-document-qualification-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  source-documents:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/test-vaneck-gate-ui.mjs
+      - name: Qualify exactly the configured VanEck document routes
+        run: python scripts/probe_vaneck_documents.py --output "$RUNNER_TEMP/vaneck-documents.json" --evidence-dir "$RUNNER_TEMP/vaneck-document-evidence"
+      - if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: vaneck-official-document-qualification
+          path: |
+            ${{ runner.temp }}/vaneck-documents*
+            ${{ runner.temp }}/vaneck-document-evidence
+          retention-days: 35

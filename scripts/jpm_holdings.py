@@ -23,7 +23,9 @@ def parse(body,now):
     count=fund['numberOfHoldings']
     if isinstance(count,bool) or count!=len(positions) or count<20:
         raise ValueError('Truncated JPM dailyHoldingsAll list')
-    if fund['fundValuationDate']!=stamp:raise ValueError('JPM valuation and holdings dates differ')
+    # fundValuationDate dates the separate fund headline, never used below.
+    # Qualify the complete positions by their own effectiveDate/navDate, top
+    # list and independently reconciled market values, without mixing snapshots.
     records=[];excluded=[];total=0;market_total=0
     for p in positions:
         weight=p['marketValuePercent'];value=p['marketValue'];kind=p['securityType']
@@ -53,4 +55,6 @@ def collect(share,now):
     raw=download(URL,max_bytes=6_000_000);rows,stamp,excluded=parse(json.loads(raw),now)
     result=observation(rows,stamp,URL,raw,excludedPositions=excluded,scope='direct-equity-securities')
     result['method']='Complete direct equity and listed REIT positions in dailyHoldingsAll; index options, cash and rights retained separately, with original NAV weights; no option look-through or renormalisation'
+    result['snapshotDates']={'holdings':stamp,'headlineValuationRaw':json.loads(raw)['fundData'].get('fundValuationDate'),
+                             'headlineValuationUsedInCalculation':False}
     return result

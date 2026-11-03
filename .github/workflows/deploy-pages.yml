@@ -24,9 +24,7 @@ on:
 
 permissions:
   contents: read
-  pages: write
   deployments: read
-  id-token: write
 
 concurrency:
   # Producers and master pushes share one full validation queue. The selector
@@ -46,12 +44,15 @@ jobs:
     timeout-minutes: 5
     outputs:
       current: ${{ steps.head.outputs.current }}
+      public_required: ${{ steps.surface.outputs.required }}
       commit_sha: ${{ steps.head.outputs.commit_sha }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
           ref: ${{ inputs.ref || github.sha }}
           fetch-depth: 0
+          # Keep complete ancestry; fetch historical file bodies only when needed.
+          filter: blob:none
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
@@ -61,6 +62,10 @@ jobs:
           PAGES_DEFINITION_SHA: ${{ github.workflow_sha }}
           PAGES_GATE_RECEIPT: ${{ runner.temp }}/pages-gate-definition.json
         run: node scripts/resolve-pages-snapshot.mjs
+      - id: surface
+        env:
+          PUBLIC_VALIDATION_BASE: ${{ github.event.pull_request.base.sha }}
+        run: node scripts/public-validation-scope.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: steps.head.outputs.current == 'true'
         with:
@@ -75,7 +80,7 @@ jobs:
   # Pull requests, code changes and any uncertainty keep the full gate.
   scope:
     needs: current-snapshot
-    if: needs.current-snapshot.outputs.current == 'true'
+    if: needs.current-snapshot.outputs.current == 'true' && needs.current-snapshot.outputs.public_required == 'true'
     runs-on: ubuntu-26.04
     permissions:
       contents: read
@@ -84,11 +89,17 @@ jobs:
       published: ${{ steps.scope.outputs.published }}
       commit_sha: ${{ needs.current-snapshot.outputs.commit_sha }}
     steps:
+      - name: Keep full public validation for pull requests
+        if: github.event_name == 'pull_request'
+        run: echo "Public validation remains complete; publication classification is unnecessary for a PR."
       - uses: actions/checkout@v7.0.1
+        if: github.event_name != 'pull_request'
         with:
           ref: ${{ needs.current-snapshot.outputs.commit_sha }}
           fetch-depth: 0
+          filter: blob:none
       - uses: actions/setup-node@v7.0.0
+        if: github.event_name != 'pull_request'
         with:
           node-version: 20
       - name: Record the data snapshot requested for publication
@@ -107,8 +118,12 @@ jobs:
         run: node scripts/classify-deploy-scope.mjs --published-url "https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/build-info.json"
 
   build:
+    permissions:
+      contents: read
+      deployments: read
+      pages: write
     needs: current-snapshot
-    if: needs.current-snapshot.outputs.current == 'true'
+    if: needs.current-snapshot.outputs.current == 'true' && needs.current-snapshot.outputs.public_required == 'true'
     # Explicitly validate the next ubuntu-latest image before its rollout.
     runs-on: ubuntu-26.04
     outputs:
@@ -125,12 +140,17 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
       - run: python -m unittest discover -s scripts -p 'test_ranking_sources.py'
+      - run: python -m unittest discover -s scripts -p 'test_yahoo_terminal_monthly_quote.py'
       - run: python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'
+      - run: python -m unittest discover -s scripts -p 'test_h10_fx.py'
       - run: python -m unittest discover -s scripts -p 'test_market_transport.py'
       - run: python -m unittest discover -s scripts -p 'test_invesco_characteristics.py'
       - run: node scripts/test-performance-rankings.mjs
-      - run: node scripts/test-official-nav-consumers.mjs && node scripts/test-abtc-nav-consumers.mjs && node scripts/test-amundi-reit-nav-consumers.mjs && node scripts/test-nikkei-nav-consumers.mjs && node scripts/test-dws-income-consumers.mjs && node scripts/test-qualified-return-windows.mjs && node scripts/test-wisdomtree-nav-consumers.mjs && node scripts/test-remainder-nav-consumers.mjs && node scripts/test-wfns-distribution-consumers.mjs && node scripts/test-remainder-financial.mjs
+      - run: node scripts/test-official-nav-consumers.mjs && node scripts/test-abtc-nav-consumers.mjs && node scripts/test-amundi-reit-nav-consumers.mjs && node scripts/test-nikkei-nav-consumers.mjs && node scripts/test-copper-manual-nav-consumers.mjs && node scripts/test-exact-share-annual-consumers.mjs && node scripts/test-dws-income-consumers.mjs && node scripts/test-qualified-return-windows.mjs && node scripts/test-wisdomtree-nav-consumers.mjs && node scripts/test-remainder-nav-consumers.mjs && node scripts/test-wfns-distribution-consumers.mjs && node scripts/test-remainder-financial.mjs
       - run: node scripts/test-audit-history-quality.mjs && node scripts/test-reusable-data-contracts.mjs && node scripts/test-soxx-conventions.mjs && node scripts/test-dated-records.mjs && node scripts/test-shared-history-art.mjs
       - run: node scripts/build-tool-links.mjs && node scripts/test-tools-roadmap.mjs
       - run: python -m unittest discover -s scripts -p 'test_qualified_listings.py'
@@ -138,9 +158,11 @@ jobs:
       - run: node scripts/test-index-proxy-identity.mjs
       - run: node scripts/test-shared-listing-identities.mjs
       - run: node scripts/test-selected-data.mjs && node scripts/test-selected-records.mjs
-      - run: node scripts/test-tool-projections.mjs
+      # Canonical + Vite SSR copies exceed Node20’s default 2 GiB heap with
+      # the current catalogue. Keep every parity/route assertion unchanged.
+      - run: node --max-old-space-size=4096 scripts/test-tool-projections.mjs
       - run: node scripts/test-light-registries.mjs
-      - run: node scripts/test-browser-shards.mjs
+      - run: node scripts/test-browser-shards.mjs && node scripts/test-ci-browser-runner.mjs && node scripts/test-vite-file-boundary.mjs && node scripts/test-public-validation-scope.mjs
       - run: node scripts/test-broker-automation.mjs
       - run: node scripts/test-lifestrategy.mjs
       - run: node scripts/test-resource-selections.mjs
@@ -158,7 +180,6 @@ jobs:
       - run: node scripts/test-scpi.mjs
       - run: node scripts/test-insurance.mjs
       - run: npm run test:radar
-      - run: node scripts/test-wealth-simulator.mjs
       - run: python -m unittest discover -s scripts -p "test_performance_currency.py"
       - run: node scripts/test-performance-currency.mjs
       - run: node scripts/test-cross-tool-currency.mjs
@@ -217,7 +238,7 @@ jobs:
       - run: node scripts/test-world-factors-step-one.mjs
       - run: node scripts/test-property-infrastructure-step-two.mjs
       - run: node scripts/test-data-reuse.mjs
-      - run: node scripts/test-fee-impact-editorial.mjs
+      - run: node scripts/test-market-stories.mjs && node scripts/test-market-story-selection.mjs
       - run: npm run audit:data-catalog
       - run: npm run audit:data-provenance
       - run: node scripts/test-index-comparison-copy.mjs
@@ -319,7 +340,7 @@ jobs:
 
   python-checks:
     needs: current-snapshot
-    if: needs.current-snapshot.outputs.current == 'true'
+    if: needs.current-snapshot.outputs.current == 'true' && needs.current-snapshot.outputs.public_required == 'true'
     runs-on: ubuntu-26.04
     permissions:
       contents: read
@@ -335,15 +356,16 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: pip install beautifulsoup4==4.15.0 openpyxl==3.1.5 xlrd==2.0.2 exchange_calendars==4.13.2
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt -r scripts/python-requirements.in
       - run: python -m unittest discover -s scripts -p "test_dca*py"
       - run: python -m unittest discover -s scripts -p 'test_broker_tariff*.py'
       - run: python scripts/audit_broker_coverage.py
       - run: python -m unittest discover -s scripts -p 'test_data*.py'
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
+      - run: python -m unittest discover -s scripts -p 'test_source_incidents.py'
       - run: python -m unittest discover -s scripts -p 'test_etf_resilience.py'
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
-      - run: pip install Pillow==12.3.0
       - run: python -m unittest discover -s scripts -p 'test_russell_composition.py'
       - run: python -m unittest discover -s scripts -p 'test_sp_composition.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'
@@ -356,6 +378,9 @@ jobs:
       - run: node scripts/test-bnp-nav-consumers.mjs
       - run: python -m unittest discover -s scripts -p 'test_initial_diagnostics.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
+      - name: Install the official PDF reader for split qualification regressions
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: python -m unittest discover -s scripts -p 'test_monthly_split_comparison.py'
       - run: python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'
       - run: node scripts/test-nasdaq-total-return.mjs
       - run: python -m unittest discover -s scripts -p 'test_roadmap_assets.py'
@@ -389,7 +414,6 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_index_companies.py'
       - run: python -m unittest discover -s scripts -p 'test_korea_companies.py'
       - run: python -m unittest discover -s scripts -p 'test_remaining_aum.py'
-      - run: pip install -r scripts/company-requirements.txt
       - run: python -m unittest discover -s scripts -p 'test_scpi.py'
       - run: python -m unittest discover -s scripts -p 'test_iroko_snapshot.py'
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr tesseract-ocr-fra
@@ -397,7 +421,9 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_corum.py'
       - run: python -m unittest discover -s scripts -p 'test_corum_vector.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_actors.py'
+      - run: python -m unittest discover -s scripts -p "test_partial_official_publications.py"
       - run: python -m unittest discover -s scripts -p 'test_extended_scpi.py'
+      - run: python -m unittest discover -s scripts -p 'test_scpi_current_bulletins.py'
       - run: python -m unittest discover -s scripts -p 'test_insurance.py'
       - run: python -m unittest discover -s scripts -p 'test_publication_periods.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_expansion.py'
@@ -406,7 +432,6 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_publication*.py'
       - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
       - run: python -m unittest discover -s scripts -p "test_data_automation.py"
-      - run: pip install -r scripts/requirements-gold.txt
       - run: python -m unittest discover -s scripts -p "test_gold_monthly.py"
       - run: python -m unittest discover -s scripts -p "test_pages_head.py"
       - run: python -m unittest discover -s scripts -p 'test_automation*.py'
@@ -419,12 +444,14 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_metadata_lse_listing_reference.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_listing_retention.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_incidents.py'
+      - run: python -m unittest discover -s scripts -p 'test_venue_ticker_identities.py'
+      - run: python -m unittest discover -s scripts -p 'test_invesco_physical_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_physical_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_regional_routes.py'
       - run: python -m unittest discover -s scripts -p 'test_independent_portfolio_identities.py'
       - run: node scripts/test-issuer-product-routes.mjs
-      - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py'
+      - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py' && python -m unittest discover -s scripts -p 'test_security_residual_identities.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_identity_isolation.py'
       - run: python -m unittest discover -s scripts -p 'test_lg_discovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_topix_holdings.py'
@@ -432,6 +459,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py'
       - run: python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_pending_sources.py'
+      - run: python -m unittest discover -s scripts -p 'test_native_source_evidence.py'
       - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py'
       - run: python -m unittest discover -s scripts -p 'test_consolidated_data_followup.py'
       - run: python -m unittest discover -s scripts -p 'test_removed_ai_scope.py'
@@ -487,43 +515,18 @@ jobs:
           path: ~/.cache/ms-playwright
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
-      - run: node scripts/playwright-review-product.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-data-review-recovery.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-removed-ai.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-data-automation-inventory.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-acwi-allocation-recovery.mjs
-        if: matrix.shard == 1
-      - run: node scripts/playwright-remainder-nav.mjs
-        env:
-          TEST_NAV_IDS: etfFR0007054358Nav,etfIE00BK5BCD43Nav,etfIE00BK5BCH80Nav,etfLU1875395870Nav,etfGB00B15KXQ89Nav,etc_brent_crude_oilNav,etc_wti_crude_oilNav,etc_coffeeNav
-        if: matrix.shard == 1
-      - run: node scripts/playwright-official-nav.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-currency-consistency.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-distinct-asset-routing.mjs
-        if: matrix.shard == 1
-      - run: node scripts/playwright-routing-additions.mjs
-        if: matrix.shard == 1
-      - run: node scripts/playwright-model-portfolios.mjs
-        if: matrix.shard == 1
-      - run: node scripts/test-simple-exposure.mjs
-        if: matrix.shard == 1
+      - id: portable-engines
+        run: node scripts/browser-portability-engines.mjs ${{ matrix.shard }} 4
+      - uses: actions/cache@v4
+        if: steps.portable-engines.outputs.extra == 'true'
+        with:
+          path: |
+            ~/.cache/ms-playwright/firefox-*
+            ~/.cache/ms-playwright/webkit-*
+          key: portable-engines-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
+      - if: steps.portable-engines.outputs.extra == 'true'
+        run: npx playwright install --with-deps firefox webkit
       - run: node scripts/run-browser-checks.mjs ${{ matrix.shard }} 4
-      - run: node scripts/playwright-etf-completeness.mjs
-        if: matrix.shard == 0
-      - run: node scripts/test-asset-picker-preferences.mjs && node scripts/playwright-asset-picker-modes.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-tool-links.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-equity-monthly.mjs
-        if: matrix.shard == 0
-      - run: node scripts/playwright-nasdaq-total-return.mjs
-        if: matrix.shard == 0
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -552,7 +555,7 @@ jobs:
 
   exposure-browser-check:
     needs: current-snapshot
-    if: needs.current-snapshot.outputs.current == 'true'
+    if: needs.current-snapshot.outputs.current == 'true' && needs.current-snapshot.outputs.public_required == 'true'
     runs-on: ubuntu-26.04
     permissions:
       contents: read
@@ -627,6 +630,11 @@ jobs:
           exit 1
 
   deploy:
+    permissions:
+      contents: read
+      deployments: read
+      pages: write
+      id-token: write
     needs: [scope, build, tweet-midi-checks, python-checks, browser-checks, exposure-browser-check, smoke]
     if: >-
       always() && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
@@ -649,6 +657,7 @@ jobs:
         with:
           ref: ${{ needs.build.outputs.commit_sha }}
           fetch-depth: 0
+          filter: blob:none
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
@@ -759,6 +768,7 @@ jobs:
         with:
           ref: ${{ needs.scope.outputs.commit_sha }}
           fetch-depth: 0
+          filter: blob:none
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
@@ -788,6 +798,11 @@ jobs:
           retention-days: 2
 
   deploy-fallback:
+    permissions:
+      contents: read
+      deployments: read
+      pages: write
+      id-token: write
     needs: fallback-build
     if: always() && needs.fallback-build.result == 'success'
     runs-on: ubuntu-26.04

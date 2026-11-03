@@ -1,3 +1,4 @@
+import {radarReportContent} from './lib/radar-report-content.mjs'
 import {radarStateContent} from './lib/radar-state-codec.mjs'
 import {compositionEvidence,compositionEventKey} from './lib/radar-composition-evidence.mjs'
 import {makeRadarOverview} from '../src/lib/radar-overview.js'
@@ -65,7 +66,7 @@ export function collectObservationsSync(root = ROOT) {
   }
   const economic = load('src/data/automated-economic.json')
   const savings = Object.values(economic?.savings ?? {}).sort((a, b) => a.effectiveAt.localeCompare(b.effectiveAt)).at(-1)
-  if (savings) add({ family: 'epargne', entity: 'livret-a', label: 'Livret A', sourceUrl: savings.sourceUrl, checkedAt: savings.checkedAt, scope: 'Taux réglementé · date d’effet indiquée', tool: '/simulateur-patrimoine' }, 'rate', 'Taux annuel', savings.rate, savings, { unit: '%', priority: 'high' })
+  if (savings) add({ family: 'epargne', entity: 'livret-a', label: 'Livret A', sourceUrl: savings.sourceUrl, checkedAt: savings.checkedAt, scope: 'Taux réglementé · date d’effet indiquée', tool: '/fiches-pratiques?fiche=livret-euro' }, 'rate', 'Taux annuel', savings.rate, savings, { unit: '%', priority: 'high' })
   for (const [id, r] of Object.entries(economic?.households ?? {})) add({ family: 'economie', entity: id, ...householdMetadata(id, r), scope: `${r.population} · ${id}`, tool: '/france-100-menages', maxAgeDays: 400 }, 'value', 'Repère publié', r.value, r, { period: `${r.year}`, rule: 'publication' })
   for (const [id, r] of Object.entries(economic?.benchmarks ?? {})) add({ family: 'epargne', entity: id.split(':')[0], label: id.startsWith('scpi') ? 'SCPI · moyenne du marché' : 'Fonds euros · moyenne du marché', scope: r.method, tool: '/pouvoir-achat', maxAgeDays: 400 }, 'annual', 'Rendement annuel publié', r.value, r, { unit: '%', period: `${r.year}`, rule: 'publication' })
   const regulatory = load('src/data/automated-regulatory.json')
@@ -130,7 +131,7 @@ export async function run({ statePath, outputDir, now = new Date(), sourceRevisi
   await mkdir(outputDir, { recursive: true })
   for (const [name, value] of [['state.json', result.state], ['feed.json', result.feed], ['summary.json',makeRadarOverview(result.feed,publicationSelection(result.feed.events,{now:+now}))]]) {
     const path = resolve(outputDir, name)
-    await writeFile(`${path}.tmp`, name==='state.json'?radarStateContent(value):`${JSON.stringify(value, null, 2)}\n`)
+    await writeFile(`${path}.tmp`, name==='state.json'?radarStateContent(value):name==='feed.json'?radarReportContent(value):`${JSON.stringify(value, null, 2)}\n`)
     await rename(`${path}.tmp`, path)
   }
   console.log(`Radar : ${result.feed.observationCount} observations, ${result.newEvents.length} nouveaux signaux, ${result.feed.errors.length} réserves.`)

@@ -1,0 +1,173 @@
+{
+  "baseSha": "414bd67a1afa1ae9cc003e5e98a3f0c0f6b92d2d",
+  "correctedRendererBlobs": {
+    "src/pages/dca-profiles/image.js": "10221b0e62c47b62c1eaa3ce5349d1601fe34712",
+    "src/pages/performance-rankings/image.js": "6ea359f78689292feddb96385752a696c15db0df",
+    "src/pages/performance-rankings/annualRanking.js": "4675dd0ac0fd491279aeafc49f7846cca4458e7f"
+  },
+  "checks": [
+    {
+      "check": "build-initial",
+      "result": "passed",
+      "log": "logs/build-initial.log.gz",
+      "lastLine": "Publication manifest matches all 42 built public data files."
+    },
+    {
+      "check": "generator",
+      "result": "passed",
+      "log": "logs/generator.log.gz",
+      "lastLine": "Backdrop failure and retry verified; no incomplete PNG download."
+    },
+    {
+      "check": "dca-before",
+      "result": "passed",
+      "log": "logs/dca-before.log.gz",
+      "lastLine": "636 DCA images and simplified workflow: participant draft export, text-independent PNG, stale image protection, saves, automatic restore, filters and mobile verified."
+    },
+    {
+      "check": "rankings-layout",
+      "result": "passed",
+      "log": "logs/rankings-layout.log.gz",
+      "lastLine": "50 formats de classement : visuel approuvé sans pastilles, noms longs contenus dans leurs colonnes, 2–6 actifs et 1–10 années vérifiés."
+    },
+    {
+      "check": "budget",
+      "result": "passed",
+      "log": "logs/budget.log.gz",
+      "lastLine": "Budget browser: 162 profile/viewport exports, clipboard, discovery, filters, drafts, invalidation and corrupt storage passed."
+    },
+    {
+      "check": "formats",
+      "result": "passed",
+      "log": "logs/formats.log.gz",
+      "lastLine": "156 comparatifs et 759 actifs : visuels explicites, chiffres inchangés, devises, références, signature, aucun chevauchement."
+    },
+    {
+      "check": "practical",
+      "result": "passed",
+      "log": "logs/practical.log.gz",
+      "lastLine": "Tableau papier : 74 fiches. Images factuelles : chiffres conservés, pied de page retiré, aucun chevauchement ni rognage ; mobile, export PNG et scénario vérifiés."
+    },
+    {
+      "check": "etf",
+      "result": "passed",
+      "log": "logs/etf.log.gz",
+      "lastLine": "279 sculpted relief ETF exports: identities, complete facts, no overlaps, X dimensions, local assets and download/retry verified."
+    },
+    {
+      "check": "presentations",
+      "result": "passed",
+      "log": "logs/presentations.log.gz",
+      "lastLine": "Presentation images: summary facts and conditions, text bounds, identical preview/download, selection, mobile and asset retry OK."
+    },
+    {
+      "check": "investors",
+      "result": "passed",
+      "log": "logs/investors.log.gz",
+      "lastLine": "28 vrais portraits distincts, positions, poids, dates, absence de chevauchement, export asynchrone, reprise après erreur et mobile vérifiés dans Chromium."
+    },
+    {
+      "check": "duels",
+      "result": "passed",
+      "log": "logs/duels.log.gz",
+      "lastLine": "662 supports, 55 duels, 1–6 actifs par côté : fond papier text-free et format carré effectivement dessinés, poids, dates communes, capitaux, performances, pertes, égalités, grands montants, textes sans chevauchement et téléchargement/reprise vérifiés dans Chromium."
+    },
+    {
+      "check": "calculator",
+      "result": "passed",
+      "log": "logs/calculator.log.gz",
+      "lastLine": "759 actifs × versement unique/DCA : identités, devises, résultats, points annuels, prix saisi, pertes, grands montants et absence de chevauchement vérifiés."
+    },
+    {
+      "check": "france",
+      "result": "passed",
+      "log": "logs/france.log.gz",
+      "lastLine": "29 editorial cards: real values/populations, comparisons, thresholds, share distinction, signature-only footer, no titles, no overlap; mobile refresh/download and legacy design verified."
+    },
+    {
+      "check": "purchasing-editorial",
+      "result": "passed",
+      "log": "logs/purchasing-editorial.log.gz",
+      "lastLine": "960 scénarios éditoriaux : données conservées, comparaisons et conclusions vérifiées."
+    },
+    {
+      "check": "purchasing-image",
+      "result": "passed",
+      "log": "logs/purchasing-image.log.gz",
+      "lastLine": "321 PNG: dates, montants, inverse inflation, signature, absence de coupure/chevauchement; export et contrôles UI desktop/mobile validés."
+    },
+    {
+      "check": "anniversary",
+      "result": "passed",
+      "log": "logs/anniversary.log.gz",
+      "lastLine": "736 anniversary exports: every eligible identity, units, ratios, comparisons, long levels, local resources and fallback/retry verified."
+    },
+    {
+      "check": "logos",
+      "result": "passed",
+      "log": "logs/logos.log.gz",
+      "lastLine": "234 built-Pages previews; 468 real PNG downloads match preview logo pixels and text/layout; picker changes, delayed load, missing/corrupt logo and retry passed."
+    },
+    {
+      "check": "copy",
+      "result": "passed",
+      "log": "logs/copy.log.gz",
+      "lastLine": "910 PNG exports: copy, signatures and duplicate removal verified."
+    },
+    {
+      "check": "index-composition-built",
+      "result": "passed",
+      "log": "logs/index-composition-built.log.gz",
+      "lastLine": "Published: own-index previews, PNG byte equality, real downloads, rapid switching, unavailable composition, 390px mobile and Dow verified"
+    },
+    {
+      "check": "variants",
+      "result": "passed",
+      "log": "logs/variants.log.gz",
+      "lastLine": "presentations_famille_private-equity-320 {\"width\":1600,\"height\":1000,\"matches\":[\"IMG:Visuel de Fundora\"],\"differences\":[]}"
+    },
+    {
+      "check": "secondary",
+      "result": "passed",
+      "log": "logs/secondary.log.gz",
+      "lastLine": "ranking-annual 320"
+    },
+    {
+      "check": "build-final",
+      "result": "passed",
+      "log": "logs/build-final.log.gz",
+      "lastLine": "Publication manifest matches all 42 built public data files."
+    },
+    {
+      "check": "dca-after",
+      "result": "passed",
+      "log": "logs/dca-after.log.gz",
+      "lastLine": "636 DCA images and simplified workflow: participant draft export, text-independent PNG, stale image protection, saves, automatic restore, filters and mobile verified."
+    },
+    {
+      "check": "density",
+      "result": "passed",
+      "log": "logs/density.log.gz",
+      "lastLine": "22 synthetic rendering cases saved; bounds, collisions, signed small returns and dense label type verified. No browser financial storage written."
+    },
+    {
+      "check": "dense-journey-final",
+      "result": "passed",
+      "log": "logs/dense-journey-final.log.gz",
+      "lastLine": "Dense canonical eight-position portfolios: real downloads equal preview bytes at 390/320px, no horizontal overflow, unchanged draft, isolated storage discarded."
+    },
+    {
+      "check": "fifty-downloads",
+      "result": "passed",
+      "log": "logs/fifty-downloads.log.gz",
+      "lastLine": "overlap 320"
+    },
+    {
+      "check": "budget-integrated-new",
+      "result": "passed",
+      "log": "logs/budget-integrated-new.log.gz",
+      "lastLine": "Budget browser: 14 profile/viewport exports, clipboard, discovery, filters, drafts, invalidation and corrupt storage passed."
+    }
+  ],
+  "integratedMaster": "371917391aec892a955bb1f52875015766fe7bb2"
+}

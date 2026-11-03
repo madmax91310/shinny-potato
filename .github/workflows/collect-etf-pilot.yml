@@ -58,7 +58,13 @@ on:
       - 'scripts/refresh_additional_etf.py'
       - 'scripts/collect_public_issuer.py'
       - 'scripts/globalx_sections.py'
+      - 'scripts/test_new_instruments.py'
+      - 'scripts/fixtures/new-instruments/**'
+      - 'docs/new-instruments-sources-2026-11-01.json'
       - 'scripts/test_globalx_sections.py'
+      - 'scripts/test_publication_benchmarks.py'
+      - 'scripts/fixtures/publication-expansion/**'
+      - 'docs/publication-expansion-sources-2026-11-01.json'
       - 'scripts/fixtures/official-documents/globalx-streamed/**'
       - 'scripts/collect_priority_issuer_etf.py'
       - 'scripts/test_priority_issuer_etf.py'
@@ -66,11 +72,18 @@ on:
       - 'scripts/collect_vanguard_holdings.py'
       - 'scripts/test_priority_etf_completion.py'
       - 'scripts/*wisdomtree*.py'
+      - 'scripts/download-wisdomtree-directory.mjs'
+      - 'scripts/wisdomtree-holdings-classes.json'
+      - 'scripts/issuer-access-routes.json'
+      - 'scripts/download-wisdomtree-rankings.mjs'
+      - 'scripts/wisdomtree_rankings_transport.py'
+      - 'scripts/test_wisdomtree_rankings_transport.py'
       - 'scripts/collect_lg_api.py'
       - 'scripts/collect_remaining_documents.py'
       - 'scripts/collect_coinshares_aum.py'
       - 'scripts/collect_product_calendars.py'
       - 'scripts/test_product_calendars.py'
+      - 'scripts/test_abtc_product_fields.py'
       - 'scripts/collect_commodity_allocations.py'
       - 'scripts/test_commodity_allocations.py'
       - 'scripts/collect_annual_fx.py'
@@ -82,6 +95,8 @@ on:
       - 'scripts/test_new_issuer_sources.py'
   pull_request:
     paths:
+      - 'scripts/test_source_incidents.py'
+      - 'scripts/fixtures/source-incidents-20261102/**'
       - 'scripts/validate-etf-publication.sh'
       - 'scripts/test_etf_publication.py'
       - 'scripts/observation_rebase_guard.py'
@@ -137,7 +152,13 @@ on:
       - 'scripts/refresh_additional_etf.py'
       - 'scripts/collect_public_issuer.py'
       - 'scripts/globalx_sections.py'
+      - 'scripts/test_new_instruments.py'
+      - 'scripts/fixtures/new-instruments/**'
+      - 'docs/new-instruments-sources-2026-11-01.json'
       - 'scripts/test_globalx_sections.py'
+      - 'scripts/test_publication_benchmarks.py'
+      - 'scripts/fixtures/publication-expansion/**'
+      - 'docs/publication-expansion-sources-2026-11-01.json'
       - 'scripts/fixtures/official-documents/globalx-streamed/**'
       - 'scripts/collect_priority_issuer_etf.py'
       - 'scripts/test_priority_issuer_etf.py'
@@ -145,11 +166,18 @@ on:
       - 'scripts/collect_vanguard_holdings.py'
       - 'scripts/test_priority_etf_completion.py'
       - 'scripts/*wisdomtree*.py'
+      - 'scripts/download-wisdomtree-directory.mjs'
+      - 'scripts/wisdomtree-holdings-classes.json'
+      - 'scripts/issuer-access-routes.json'
+      - 'scripts/download-wisdomtree-rankings.mjs'
+      - 'scripts/wisdomtree_rankings_transport.py'
+      - 'scripts/test_wisdomtree_rankings_transport.py'
       - 'scripts/collect_lg_api.py'
       - 'scripts/collect_remaining_documents.py'
       - 'scripts/collect_coinshares_aum.py'
       - 'scripts/collect_product_calendars.py'
       - 'scripts/test_product_calendars.py'
+      - 'scripts/test_abtc_product_fields.py'
       - 'scripts/collect_commodity_allocations.py'
       - 'scripts/test_commodity_allocations.py'
       - 'scripts/collect_annual_fx.py'
@@ -196,7 +224,8 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
-      - run: pip install Pillow==12.3.0 beautifulsoup4==4.15.0
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
       - name: Check official HTML parser runtime before collecting
         run: python -c "import bs4; from collect_public_issuer import collect_one"
         working-directory: scripts
@@ -205,6 +234,9 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
       - run: npm ci
+      - name: Prepare the ordinary public issuer browser
+        run: |
+          if ! test -x /usr/bin/google-chrome && ! test -x /usr/bin/chromium; then npx playwright install --with-deps chromium; fi
       - run: python -m unittest discover -s scripts -p 'test_etf_publication.py'
       - run: python -m unittest discover -s scripts -p 'test_observation_rebase.py'
       - run: node scripts/test-comparison-automation.mjs
@@ -216,25 +248,41 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_document_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+      - run: python -m unittest discover -s scripts -p 'test_new_instruments.py'
       - run: python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+      - run: python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_performance.py'
       - run: node scripts/test-presentation-etf.mjs
       - run: python -m unittest discover -s scripts -p 'test_product_calendars.py'
+      - run: python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
       - run: python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
       - run: python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
       - run: python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
       - run: python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+      - name: Qualify the exact public AUM browser route without publication
+        if: github.event_name == 'pull_request'
+        run: python scripts/wisdomtree_directory_aum.py --browser-control "$RUNNER_TEMP/wisdomtree-directory-control"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always() && github.event_name == 'pull_request'
+        with:
+          name: wisdomtree-directory-source-control
+          path: ${{ runner.temp }}/wisdomtree-directory-control/
+          if-no-files-found: error
       - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
       - run: python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
       - run: python -m unittest discover -s scripts -p 'test_remaining_aum.py'
       - run: node scripts/test-annual-rollover.mjs
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
+      - run: python -m unittest discover -s scripts -p 'test_source_incidents.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_etf_resilience.py'
       - run: python -m unittest discover -s scripts -p 'test_data_refresh.py'
@@ -270,6 +318,7 @@ jobs:
         id: indices
         continue-on-error: true
         run: python scripts/refresh_index_sources.py --output "$RUNNER_TEMP/index-observation.json" --apply
+      - run: node scripts/build-automation-targets.mjs
       - run: node scripts/report-automation-coverage.mjs --write
       - name: Validate ETF observations and consumers
         run: bash scripts/validate-etf-publication.sh validate
@@ -294,12 +343,12 @@ jobs:
         env:
           VALIDATED_DATA_CHECK: bash scripts/validate-etf-publication.sh check
           VALIDATED_DATA_PREPARE: bash scripts/validate-etf-publication.sh prepare
-          VALIDATED_DATA_DERIVED_PATHS: '["docs/automation-coverage.md","docs/automation-gaps.md","docs/automation-gaps.json","docs/asset-field-coverage.md","public/data/asset-field-coverage.json","docs/app-inventory.md"]'
+          VALIDATED_DATA_DERIVED_PATHS: '["docs/automation-coverage.md","docs/automation-gaps.md","docs/automation-gaps.json","docs/asset-field-coverage.md","public/data/asset-field-coverage.json","docs/app-inventory.md","scripts/instrument-metadata-sources.json","scripts/generated-holdings-sources.json"]'
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh validated active ETF issuer data' src/data/annual-fx.json src/data/official-performance-currencies.json src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json docs/asset-field-coverage.md public/data/asset-field-coverage.json docs/app-inventory.md
+          bash scripts/commit-validated-data.sh 'Refresh validated active ETF issuer data' src/data/annual-fx.json src/data/official-performance-currencies.json src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json docs/asset-field-coverage.md public/data/asset-field-coverage.json docs/app-inventory.md scripts/instrument-metadata-sources.json scripts/generated-holdings-sources.json
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

@@ -1,3 +1,6 @@
+import NEW_COMPARISONS from '../../../data/new-instrument-comparisons.json' with {type:'json'}
+import NEW_COPY from '../../../data/new-instrument-copy.json' with {type:'json'}
+import { PUBLICATION_SELECTIONS } from '../../../data/publication-selections.js'
 import { PRESENTATION_ETF_ADDITIONS } from '../../../data/presentation-etf-additions.js'
 import { NON_BOND_SHEETS } from '../../../data/non-bond-expansion.js'
 import { LIFESTRATEGY_SHEETS } from '../../../data/lifestrategy.js'
@@ -11,6 +14,9 @@ const ACWI = 'Il couvre les grandes et moyennes entreprises des pays développé
 const EURO50 = 'Il suit 50 grandes entreprises de la zone euro. Il couvre moins de marchés que le MSCI Europe ou le STOXX Europe 600 : le Royaume-Uni et la Suisse n’en font pas partie.'
 const TECH_EUROPE = 'Il cible les entreprises technologiques du STOXX Europe 600. Tu investis dans un secteur européen précis, plutôt que dans l’ensemble du marché européen.'
 export const ETF_EXPOSURE_COPY = {
+ ...Object.fromEntries(NEW_COMPARISONS.flatMap(c=>c.funds.map((isin,i)=>[isin,c.descriptions[i]]))),
+ ...Object.fromEntries(Object.entries(NEW_COPY).map(([isin,copy])=>[isin,copy.whatIs])),
+ ...Object.fromEntries(PUBLICATION_SELECTIONS.flatMap(selection => selection.funds.map((isin, i) => [isin, selection.descriptions[i]]))),
  IE00BF0M2Z96:'Il cible des entreprises de la chaîne de valeur des batteries, des matériaux aux technologies de stockage. Tu détiens des actions ; leur résultat ne suit pas directement le prix d’un métal.',
  IE000M7V94E1:'Il cible des entreprises liées à l’uranium et aux infrastructures de l’énergie nucléaire. Tu détiens des actions minières et industrielles, sans exposition directe au prix de l’uranium.',
  IE00BJ38QD84:'Il suit les petites entreprises américaines du Russell 2000. Leur poids dépend de leur capitalisation, sans le filtre de valorisation de la sélection value.',
@@ -126,21 +132,21 @@ export const COMPARISON_HOOKS = {
   'monetaire-obligations-courtes': 'Monétaire ou obligations courtes : que choisir pour une poche en euros ?',
   'world-meme-indice-pea': 'Plusieurs ETF World sont accessibles sur PEA. Sur quels critères les choisir ?',
   'sp500-meme-indice-pea': 'Deux ETF pour suivre le S&P 500 dans ton PEA : comment les départager ?',
-  monde: 'Quel ETF choisir pour investir dans le monde entier ?',
+  monde: 'World, ACWI, All-World : lesquels incluent les marchés émergents, et dans quelle enveloppe ?',
   'monde-toutes-tailles': 'World, ACWI ou ACWI IMI : quelle différence pour ton portefeuille ?',
   usa: 'S&P 500, Nasdaq-100 ou Dow Jones : lequel choisir ?',
-  europe: 'Quel ETF choisir pour investir en Europe ?',
-  'tech-europe': 'Quel ETF choisir pour investir dans la technologie européenne ?',
-  emergents: 'Quel ETF choisir pour investir dans les marchés émergents ?',
-  luxe: 'Quel ETF choisir pour investir dans le luxe ?',
+  europe: 'Europe ou zone euro : ces ETF ne couvrent pas les mêmes pays. Que change ce choix ?',
+  'tech-europe': 'Deux ETF suivent le même indice de technologie européenne. Que reste-t-il à comparer ?',
+  emergents: 'Petites entreprises, critères de sélection : que change le choix de ces ETF émergents ?',
+  luxe: 'Deux ETF Amundi sur le luxe : que change le choix du PEA ou du compte-titres ?',
   'ia-robotique': 'IA ou robotique : quel ETF choisir ?',
-  sante: 'Quel ETF choisir pour investir dans la santé ?',
-  renouvelables: 'Quel ETF choisir pour investir dans les énergies propres ?',
+  sante: 'Santé mondiale ou européenne : quelles entreprises et quels filtres derrière ces ETF ?',
+  renouvelables: 'Trois ETF sur les énergies propres, trois indices : portent-ils sur les mêmes entreprises ?',
   dividendes: 'Quel ETF à dividendes choisir pour ton portefeuille ?',
-  japon: 'Quel ETF choisir pour investir au Japon ?',
-  defense: 'Quel ETF choisir pour investir dans la défense ?',
-  quantique: 'Quel ETF choisir pour investir dans l’informatique quantique ?',
-  spatial: 'Quel ETF choisir pour investir dans l’industrie spatiale ?',
+  japon: 'TOPIX ou Nikkei 225, yen couvert ou non : quelle exposition au Japon recherches-tu ?',
+  defense: 'Défense mondiale ou européenne : quelle place veux-tu laisser aux entreprises américaines ?',
+  quantique: 'Le même thème quantique, mais des indices différents : comment ces ETF sélectionnent-ils les entreprises ?',
+  spatial: 'Quelles entreprises détient VanEck Space Innovators, et pour quels frais ?',
   'ressources-naturelles': 'Minières ou matériaux : quel ETF choisir ?',
   'etc-metaux': 'Or, argent ou cuivre : quel ETC choisir ?',
   'world-minvol': 'World classique ou volatilité réduite : quel ETF choisir ?',
@@ -150,7 +156,7 @@ export const COMPARISON_HOOKS = {
   'immobilier-infrastructures': 'Immobilier coté ou infrastructures : quel ETF choisir ?',
   'world-avec-sans-usa': 'Un ETF World avec ou sans les États-Unis ?',
   'grandes-petites-monde': 'Quelles entreprises ajouter à ton ETF World ?',
-  financieres: 'Quel ETF choisir pour investir dans la finance ?',
+  financieres: 'Banques, assurances, paiements : quelle place occupent-ils dans ces ETF financiers ?',
   'semiconducteurs-tech': 'Semi-conducteurs ou technologie : quel ETF choisir ?',
   blockchain: 'Que contient un ETF consacré à la blockchain ?',
   'world-pea': 'World ou ACWI : quel ETF choisir pour ton PEA ?',

@@ -1,0 +1,18 @@
+...E....
+======================================================================
+ERROR: test_actual_full_release_equals_every_common_fred_and_ddp_observation (test_h10_xml.H10XmlTests.test_actual_full_release_equals_every_common_fred_and_ddp_observation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/data-automation-20261028/bnp/scripts/test_h10_xml.py", line 27, in test_actual_full_release_equals_every_common_fred_and_ddp_observation
+    x = parse_cross_fx(body, ecb, NOW, source_url=XML_SOURCE)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/data-automation-20261028/bnp/scripts/collect_ranking_sources.py", line 151, in parse_cross_fx
+    reject('Incomplete cross-rate month-end coverage')
+  File "/dev/shm/data-automation-20261028/bnp/scripts/data_automation.py", line 98, in reject
+    raise ValueError(message)
+ValueError: Incomplete cross-rate month-end coverage
+
+----------------------------------------------------------------------
+Ran 8 tests in 4.522s
+
+FAILED (errors=1)

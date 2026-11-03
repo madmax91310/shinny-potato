@@ -8,25 +8,29 @@ import datetime as dt
 import io
 import json
 import re
+from pathlib import Path
 from urllib.parse import urljoin, urlsplit, parse_qs, urlencode
 from bs4 import BeautifulSoup
 from issuer_documents import download, document_date, pdf_text, proof
 
-JPX='https://www.jpx.co.jp/automation/markets/indices/topix/files/topixweight_j.csv'
-IDENTITY='https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf'
+CONTRACTS=json.loads((Path(__file__).resolve().parents[1]/'src/data/native-index-composition-contracts.json').read_text())
+INDEX=CONTRACTS['indices']['topix']
+JPX=INDEX['weightSourceUrl']
+IDENTITY=INDEX['identityDiscoverySourceUrl']
 HEADERS=['日付','銘柄名','コード','業種','TOPIXに占める個別銘柄のウエイト','ニューインデックス区分']
-SHARES={'FR0013411980':False,'FR0013411998':True}
+SHARES={isin:share['hedged']for isin,share in CONTRACTS['shares'].items()}
 
 
 def jpx_rows(raw, now):
     reader=csv.DictReader(io.StringIO(raw.decode('cp932')))
     if reader.fieldnames!=HEADERS:raise ValueError('TOPIX CSV schema changed')
-    rows=[];dates=set();footer=False
+    rows=[];dates=set();footer=False;end_marker=False
     for entry in reader:
         if not re.fullmatch(r'\d{8}',entry['日付'] or ''):
             # The publisher appends a note/disclaimer block with no tabular fields.
             if any(entry.get(k) for k in HEADERS[1:]) or None in entry:raise ValueError('Malformed TOPIX data/footer')
             if not footer and entry['日付'] and not entry['日付'].startswith('（注1）'):raise ValueError('Unknown TOPIX footer')
+            if entry['日付']and entry['日付'].startswith('（注1）'):end_marker=True
             footer=True;continue
         if footer:raise ValueError('TOPIX data after footer')
         if not re.fullmatch(r'[0-9A-Z]{4}',entry['コード']) or not entry['銘柄名'] or not entry['業種']:raise ValueError('Invalid TOPIX member')
@@ -37,7 +41,8 @@ def jpx_rows(raw, now):
         if not 0<=value<=100:raise ValueError('Invalid TOPIX weight')
         dates.add(document_date(dt.datetime.strptime(entry['日付'],'%Y%m%d').date().isoformat(),now))
         rows.append({'memberCode':entry['コード'],'name':entry['銘柄名'],'weightPct':value})
-    if not 1000<=len(rows)<=5000 or len({r['memberCode']for r in rows})!=len(rows) or len(dates)!=1:raise ValueError('Truncated, duplicate or mixed-date TOPIX')
+    if not end_marker:raise ValueError('TOPIX complete-file end marker missing')
+    if not INDEX['minimumMembers']<=len(rows)<=INDEX['maximumMembers'] or len({r['memberCode']for r in rows})!=len(rows) or len(dates)!=1:raise ValueError('Truncated, duplicate or mixed-date TOPIX')
     stamp=dates.pop()
     if (dt.date.fromisoformat(stamp)+dt.timedelta(days=1)).day!=1:raise ValueError('TOPIX weights must describe a month end')
     # Four published decimals per position: allow their cumulative rounding only.
@@ -102,6 +107,8 @@ def combine(rows,identities,stamp):
     if len(set(known))!=len(known):raise ValueError('Duplicate TOPIX security identities')
     return {'rows':output,'asOf':stamp,'basis':'index','index':'TOPIX','indexId':'topix',
             'scope':'equity-index','complete':True,'unidentifiedSecurityCount':len(unresolved),
+            'coverageProof':{'kind':'complete-native-index','indexId':'topix','sourceRowCount':len(rows),
+                             'originalPublishedWeights':True,'normalizationApplied':False},
             'unidentifiedWeightPct':round(sum(r['weightPct']for r in unresolved),8),
             'method':'Full official JPX TOPIX month-end member weights, without renormalisation; exact Tokyo codes/JPY mapped to separately dated BlackRock identities only. Unknown identities remain explicit. Equity index exposure excludes fund cash, fees, swaps and currency hedges.'}
 
@@ -119,6 +126,7 @@ def qualify_share(text,isin,now):
 
 def collect(share,now,fetch=download):
     if share['isin'] not in SHARES or share.get('currency')!='EUR':raise ValueError('Unqualified TOPIX share')
+    if share.get('identitySourceUrl')!=CONTRACTS['shares'][share['isin']]['shareDocumentBase']:raise ValueError('Unqualified exact-share benchmark source')
     # Exact-share current document proves the economic benchmark, not holdings.
     document=fetch(share['identitySourceUrl']);share_stamp=qualify_share(pdf_text(document),share['isin'],now)
     raw=fetch(JPX);rows,stamp=jpx_rows(raw,now)
@@ -129,13 +137,20 @@ def collect(share,now,fetch=download):
     # issuer no longer serves that date, current identities remain separately dated.
     try:
         old_ids,history=historical_identities(page,url,stamp,now,fetch)
-        identities={**identities,**old_ids}
+        # Later fund positions cannot fill identities absent from this historical
+        # snapshot: those native index members remain explicitly unidentified.
+        identities=old_ids
     except Exception as error:
         history_error=str(error)[:300]
+        if identity_stamp!=stamp:raise ValueError('No independently dated identities for the native index snapshot: '+history_error)from error
     result=combine(rows,identities,stamp)
+    result['coverageProof']['endMarkerPresent']=True
     if history:result['identityHistory']=history
     elif history_error:result['identityHistoryError']=history_error
-    result.update(sourceUrl=JPX,sha256=proof(raw),identitySourceUrl=url,identitySha256=proof(ids),
-                  identityAsOf=identity_stamp,shareAsOf=share_stamp,shareSourceUrl=share['identitySourceUrl'],shareSha256=proof(document),
-                  sourceUrls=[JPX,url,share['identitySourceUrl'],*([history['sourceUrl'],history['dateSourceUrl']] if history else [])])
+    identity_url=history['sourceUrl']if history else url
+    result.update(subjectIsin=share['isin'],sourceUrl=JPX,sha256=proof(raw),identitySourceUrl=identity_url,
+                  identitySha256=history['sha256']if history else proof(ids),identityAsOf=stamp,
+                  identityDiscoverySourceUrl=IDENTITY,identityDiscoverySha256=proof(page),
+                  shareAsOf=share_stamp,shareSourceUrl=share['identitySourceUrl'],shareSha256=proof(document),
+                  sourceUrls=[JPX,IDENTITY,identity_url,share['identitySourceUrl'],*([history['dateSourceUrl']]if history else [])])
     return result

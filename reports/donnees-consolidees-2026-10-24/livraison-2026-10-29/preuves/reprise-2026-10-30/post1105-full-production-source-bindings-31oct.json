@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-31T02:19:49.616962+00:00",
+  "productionRun": 41154898433,
+  "publicVersion": {
+    "sha": "4213389fd53845831b27587b08ec28cf20e66060",
+    "builtAt": "2026-10-31T01:48:48Z"
+  },
+  "publicationManifestSha256": "596ac532c34a0b05dde714bf72e0058d31b29f0cba39d7a9b62c34cf3ee175c1",
+  "exactRequiredFields": {
+    "src/data/automated-etf.json": "9ec83516bc09554acb94e251c923d92cfb84b17e",
+    "src/data/dca-complete-holdings.json": "28617e121250d6d71c1bbb06e63d130f003e3ed8",
+    "src/data/security-identifier-observations.json": "ec1f0a1995da02b635d8be5004407f06c29511df"
+  },
+  "ETFSourceCommit": "4213389fd53845831b27587b08ec28cf20e66060",
+  "qualifiedHoldingsSourceCommit": "62fbee7ac293d7558b1d84bc62582f1e99fdaf91",
+  "scope": "Previously held new security identifiers and exact ETF data are now present in actual published manifest; consumers checked separately. No source failures relabelled successful."
+}

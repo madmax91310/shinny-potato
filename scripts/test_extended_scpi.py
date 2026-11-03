@@ -64,7 +64,7 @@ class ExtendedScpiTests(unittest.TestCase):
         rows += [{'name':'asset_count','value':999,'update_date':'2027-01-01'},{'name':'tenant_count','value':None,'update_date':'2026-09-30'}]
         r=iroko_portfolio(rows,TODAY);self.assertEqual(r['buildings']['value'],183);self.assertEqual(r['tenants']['value'],471)
     def test_bad_metrics_or_regression_preserve_whole_record(self):
-        row=next(r for r in json.loads((ROOT/'src/data/automated-scpi.json').read_text())['records'] if r['id']=='corum-origin');previous={'records':[row]}
+        row=next(r for r in json.loads((FIXTURES/'publication-records-before-q3.json').read_text())['records'] if r['id']=='corum-origin');previous={'records':[row]}
         for mutation in [lambda r:r['portfolio']['occupancy'].update(value=101),lambda r:r['portfolio']['tenants'].update(value=float('nan')),lambda r:r['portfolio']['buildings'].update(asOf='2024-12-31'),lambda r:r.pop('priceHistory')]:
             bad=copy.deepcopy(row);mutation(bad)
             result,obs=refresh(previous,{row['id']:lambda today:bad},TODAY)
@@ -86,7 +86,7 @@ class ExtendedScpiTests(unittest.TestCase):
 
 class BulletinPublicationCalendar(unittest.TestCase):
     def record(self,identifier):
-        return copy.deepcopy(next(r for r in json.loads((ROOT/'src/data/automated-scpi.json').read_text())['records']if r['id']==identifier))
+        return copy.deepcopy(next(r for r in json.loads((FIXTURES/'publication-records-before-q3.json').read_text())['records']if r['id']==identifier))
     def metadata(self,record):
         from collect_extended_scpi import bulletin_calendar
         patterns={'transitions-europe':r'te_(?:t(?P<quarter>\d)|s(?P<semester>\d))[-_](?P<year>\d{4})',

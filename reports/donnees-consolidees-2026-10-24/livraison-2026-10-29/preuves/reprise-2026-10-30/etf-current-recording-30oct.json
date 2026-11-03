@@ -1,0 +1,328 @@
+{
+  "observedAt": "2026-10-30T21:50:34.901539+00:00",
+  "run": 41130420592,
+  "event": "workflow_dispatch",
+  "record": "675da4543f5bc1f7b4286b444e44bc2459eaac09",
+  "changedPaths": [
+    "docs/automation-gaps.json",
+    "src/data/automated-etf.json",
+    "src/data/automated-indices.json"
+  ],
+  "financialRegistryChanges": [
+    {
+      "path": "src/data/automated-etf.json",
+      "entriesBefore": 207,
+      "entriesAfter": 207,
+      "changedEntries": [
+        {
+          "id": "IE00BJGWQN72",
+          "fields": [
+            "aum"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE00BP3QZ825",
+          "fields": [
+            "metrics",
+            "characteristics",
+            "characteristicChecks",
+            "holdings",
+            "sourceUrl"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE00BF4RFH31",
+          "fields": [
+            "metrics",
+            "characteristics",
+            "characteristicChecks",
+            "holdings",
+            "sourceUrl"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE00BJ5JNZ06",
+          "fields": [
+            "metrics",
+            "characteristics",
+            "characteristicChecks",
+            "holdings",
+            "sourceUrl"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "DE000A27Z304",
+          "fields": [
+            "characteristics",
+            "aum",
+            "performance"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "GB00BLD4ZM24",
+          "fields": [
+            "performance"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE00BP3QZ601",
+          "fields": [
+            "metrics",
+            "characteristics",
+            "characteristicChecks",
+            "holdings",
+            "sourceUrl"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "GB00B15KXQ89",
+          "fields": [
+            "aum"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE00BJ5JP329",
+          "fields": [
+            "metrics",
+            "characteristics",
+            "characteristicChecks",
+            "holdings",
+            "sourceUrl"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "GB00BLD4ZL17",
+          "fields": [
+            "performance"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE00BM8R0J59",
+          "fields": [
+            "characteristics",
+            "aum",
+            "fieldQualification"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE00B1XNHC34",
+          "fields": [
+            "metrics",
+            "characteristics",
+            "characteristicChecks",
+            "holdings",
+            "sourceUrl"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE00BP3QZB59",
+          "fields": [
+            "metrics",
+            "characteristics",
+            "characteristicChecks",
+            "holdings",
+            "sourceUrl"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "LU0290358497",
+          "fields": [
+            "aum"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE000UL6CLP7",
+          "fields": [
+            "characteristics",
+            "aum",
+            "performance",
+            "fieldQualification",
+            "holdings",
+            "countries"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "CH0454664001",
+          "fields": [
+            "performance"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "GB00BJYDH287",
+          "fields": [
+            "aum"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE0002Y8CX98",
+          "fields": [
+            "aum"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE0003Z9E2Y3",
+          "fields": [
+            "characteristics",
+            "aum",
+            "holdings",
+            "sectors",
+            "countries"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE000W8WMSL2",
+          "fields": [
+            "aum"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "JE00B1VS3770",
+          "fields": [
+            "aum"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE00B3F81G20",
+          "fields": [
+            "metrics",
+            "characteristics",
+            "characteristicChecks",
+            "holdings",
+            "sourceUrl"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE0007Y8Y157",
+          "fields": [
+            "performance"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE00BZ56SW52",
+          "fields": [
+            "aum"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE00BYZK4776",
+          "fields": [
+            "metrics",
+            "characteristics",
+            "characteristicChecks",
+            "holdings",
+            "sourceUrl"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE00B1FZS467",
+          "fields": [
+            "metrics",
+            "characteristics",
+            "characteristicChecks",
+            "holdings",
+            "sourceUrl"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE00BYZK4552",
+          "fields": [
+            "metrics",
+            "characteristics",
+            "characteristicChecks",
+            "holdings",
+            "sourceUrl"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE00BM67HK77",
+          "fields": [
+            "aum"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "IE00BJ5JP097",
+          "fields": [
+            "metrics",
+            "characteristics",
+            "characteristicChecks",
+            "holdings",
+            "sourceUrl"
+          ],
+          "calendarChanged": false
+        }
+      ]
+    },
+    {
+      "path": "src/data/automated-indices.json",
+      "entriesBefore": 56,
+      "entriesAfter": 56,
+      "changedEntries": [
+        {
+          "id": "topix",
+          "fields": [
+            "returns"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "nikkei225",
+          "fields": [
+            "returns",
+            "facts"
+          ],
+          "calendarChanged": false
+        },
+        {
+          "id": "stoxx600",
+          "fields": [
+            "returns"
+          ],
+          "calendarChanged": false
+        }
+      ]
+    },
+    {
+      "path": "src/data/official-performance-currencies.json",
+      "entriesBefore": 3,
+      "entriesAfter": 3,
+      "changedEntries": []
+    },
+    {
+      "path": "src/data/annual-fx.json",
+      "entriesBefore": 4,
+      "entriesAfter": 4,
+      "changedEntries": []
+    }
+  ],
+  "publicationVerified": false,
+  "revalidationBranchObserved": false,
+  "note": "Actual ordinary ETF recovery source/record success; does not prove the proposed actor-race branch has executed in production."
+}

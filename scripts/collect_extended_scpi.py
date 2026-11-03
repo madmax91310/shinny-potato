@@ -68,7 +68,12 @@ def parse_transitions(text,pages,note,url,today):
     date=end_date(text,r'Bulletin d’information (\d{2})/(\d{2})/(\d{4})')
     page=next(p for p in pages if any(w['text']=='typologique' for w in p['words']))
     words=page['words'];width=page['width']
-    countries=allocation(words,['Espagne','Allemagne','Pays-Bas','Irlande','Italie','Pologne','Belgique'],lambda w:width*.39<w['x']<width*.63 and 350<w['y']<470,True,30)
+    country_region=lambda w:width*.39<w['x']<width*.63 and 350<w['y']<470
+    # The issuer added Switzerland in the real Q3 bulletin. Absence in an
+    # older bulletin is not a zero allocation; totals retain the same guard.
+    country_labels=['Espagne','Allemagne','Pays-Bas','Irlande','Italie','Pologne','Belgique']
+    if phrase([w for w in words if country_region(w)],'Suisse'):country_labels.append('Suisse')
+    countries=allocation(words,country_labels,country_region,True,30)
     sectors=allocation(words,['Bureaux','Commerce','Logistique','Life Science','Hospitalité','Activité','Éducation'],lambda w:width*.10<w['x']<width*.36 and 350<w['y']<470,True,30)
     compact=re.sub(r'\s+',' ',text)
     fees=compact.split('Informations générales Frais',1)[1]

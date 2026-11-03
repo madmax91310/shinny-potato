@@ -1,0 +1,340 @@
+{
+  "checkedAt": "2026-10-31T03:30:59.062Z",
+  "run": 41163406543,
+  "event": "push",
+  "sourceCode": "d6c1bd7f22d6f391cae145310788da5a2287546e",
+  "dataBranchCommit": "89e5e5d1f5a7b2572330241ce3387a557f0eaca2",
+  "parent": {
+    "url": "https://www.insee.fr/fr/statistiques/8733125",
+    "status": "rejected",
+    "attemptedAt": "2026-10-31T03:14:02.944Z",
+    "lastFailureAt": "2026-10-30T07:54:15.483Z",
+    "hasActiveError": false
+  },
+  "bookDiscovery": {
+    "chapters": [
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733055",
+        "title": "Inégalités face au chômage",
+        "discoveredHref": "https://www.insee.fr/fr/statistiques/8733055?sommaire=8733125"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733085",
+        "title": "Évolutions conjoncturelles du coût du travail et des salaires",
+        "discoveredHref": "https://www.insee.fr/fr/statistiques/8733085?sommaire=8733125"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733087",
+        "title": "Salaire minimum de croissance",
+        "discoveredHref": "https://www.insee.fr/fr/statistiques/8733087?sommaire=8733125"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733089",
+        "title": "Salaires dans le secteur privé : caractéristiques des individus",
+        "discoveredHref": "https://www.insee.fr/fr/statistiques/8733089?sommaire=8733125"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733091",
+        "title": "Salaires dans le secteur privé : caractéristiques des employeurs",
+        "discoveredHref": "https://www.insee.fr/fr/statistiques/8733091?sommaire=8733125"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733093",
+        "title": "Salaires dans la fonction publique : caractéristiques des individus",
+        "discoveredHref": "https://www.insee.fr/fr/statistiques/8733093?sommaire=8733125"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733095",
+        "title": "Salaires dans la fonction publique : caractéristiques des employeurs",
+        "discoveredHref": "https://www.insee.fr/fr/statistiques/8733095?sommaire=8733125"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733097",
+        "title": "Revenu salarial",
+        "discoveredHref": "https://www.insee.fr/fr/statistiques/8733097?sommaire=8733125"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733099",
+        "title": "Inégalités salariales",
+        "discoveredHref": "https://www.insee.fr/fr/statistiques/8733099?sommaire=8733125"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733101",
+        "title": "Revenus d’activité des non-salariés",
+        "discoveredHref": "https://www.insee.fr/fr/statistiques/8733101?sommaire=8733125"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733103",
+        "title": "Disparités territoriales de salaires et de revenus d'activité",
+        "discoveredHref": "https://www.insee.fr/fr/statistiques/8733103?sommaire=8733125"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733109",
+        "title": "Salaires et coût du travail en Europe",
+        "discoveredHref": "https://www.insee.fr/fr/statistiques/8733109?sommaire=8733125"
+      }
+    ],
+    "excluded": [
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733111",
+        "title": "",
+        "reason": "Lien sans titre statistique qualifié"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733113",
+        "title": "",
+        "reason": "Lien sans titre statistique qualifié"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733115",
+        "title": "",
+        "reason": "Lien sans titre statistique qualifié"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733117",
+        "title": "",
+        "reason": "Lien sans titre statistique qualifié"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733119",
+        "title": "",
+        "reason": "Lien sans titre statistique qualifié"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733121",
+        "title": "",
+        "reason": "Lien sans titre statistique qualifié"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733039",
+        "title": "Évolution de l’emploi",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733041",
+        "title": "Caractéristiques des personnes en emploi",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733043",
+        "title": "Professions et secteurs d’activité",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733045",
+        "title": "Statuts d’emploi",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733047",
+        "title": "Emplois aidés",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733049",
+        "title": "Embauches et fins de contrat dans le secteur privé",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733051",
+        "title": "Emploi dans les régions",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733053",
+        "title": "Évolution du chômage",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733057",
+        "title": "Inscrits à France Travail",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733059",
+        "title": "Indemnisation du chômage",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733061",
+        "title": "Chômage dans les régions",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733063",
+        "title": "Évolution de la population active",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733065",
+        "title": "Transitions sur le marché du travail",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733067",
+        "title": "Halo autour du chômage et sous-emploi",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733069",
+        "title": "Situations contraintes sur le marché du travail",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733071",
+        "title": "Durée du travail",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733073",
+        "title": "Organisation du temps de travail",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733075",
+        "title": "Temps partiel",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733077",
+        "title": "Pluriactivité",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733079",
+        "title": "Conditions de travail",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733081",
+        "title": "Travail, santé et handicap",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733083",
+        "title": "Négociations et grèves dans les entreprises",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733105",
+        "title": "Emploi et chômage en Europe",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8733107",
+        "title": "Professions en Europe",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9014559",
+        "title": "Sources, méthodes et nomenclatures",
+        "reason": "Chapitre hors des thèmes ménages suivis"
+      }
+    ],
+    "sourceHash": "9b7048eb8346bc0d66de340e25d7a2c24ffd9a4a0501d175ff59d631255c2e85",
+    "checkedAt": "2026-10-31T03:14:02.944Z",
+    "parentPublishedAt": "2026-07-02"
+  },
+  "children": [
+    {
+      "identity": "https://www.insee.fr/fr/statistiques/8733055",
+      "title": "Inégalités face au chômage",
+      "status": "pending",
+      "attempts": 0,
+      "discoveredVia": "https://www.insee.fr/fr/statistiques/8733125",
+      "discoveredAt": "2026-10-31T03:14:02.944Z"
+    },
+    {
+      "identity": "https://www.insee.fr/fr/statistiques/8733085",
+      "title": "Évolutions conjoncturelles du coût du travail et des salaires",
+      "status": "pending",
+      "attempts": 0,
+      "discoveredVia": "https://www.insee.fr/fr/statistiques/8733125",
+      "discoveredAt": "2026-10-31T03:14:02.944Z"
+    },
+    {
+      "identity": "https://www.insee.fr/fr/statistiques/8733087",
+      "title": "Salaire minimum de croissance",
+      "status": "pending",
+      "attempts": 0,
+      "discoveredVia": "https://www.insee.fr/fr/statistiques/8733125",
+      "discoveredAt": "2026-10-31T03:14:02.944Z"
+    },
+    {
+      "identity": "https://www.insee.fr/fr/statistiques/8733089",
+      "title": "Salaires dans le secteur privé : caractéristiques des individus",
+      "status": "pending",
+      "attempts": 0,
+      "discoveredVia": "https://www.insee.fr/fr/statistiques/8733125",
+      "discoveredAt": "2026-10-31T03:14:02.944Z"
+    },
+    {
+      "identity": "https://www.insee.fr/fr/statistiques/8733091",
+      "title": "Salaires dans le secteur privé : caractéristiques des employeurs",
+      "status": "pending",
+      "attempts": 0,
+      "discoveredVia": "https://www.insee.fr/fr/statistiques/8733125",
+      "discoveredAt": "2026-10-31T03:14:02.944Z"
+    },
+    {
+      "identity": "https://www.insee.fr/fr/statistiques/8733093",
+      "title": "Salaires dans la fonction publique : caractéristiques des individus",
+      "status": "pending",
+      "attempts": 0,
+      "discoveredVia": "https://www.insee.fr/fr/statistiques/8733125",
+      "discoveredAt": "2026-10-31T03:14:02.944Z"
+    },
+    {
+      "identity": "https://www.insee.fr/fr/statistiques/8733095",
+      "title": "Salaires dans la fonction publique : caractéristiques des employeurs",
+      "status": "pending",
+      "attempts": 0,
+      "discoveredVia": "https://www.insee.fr/fr/statistiques/8733125",
+      "discoveredAt": "2026-10-31T03:14:02.944Z"
+    },
+    {
+      "identity": "https://www.insee.fr/fr/statistiques/8733097",
+      "title": "Revenu salarial",
+      "status": "pending",
+      "attempts": 0,
+      "discoveredVia": "https://www.insee.fr/fr/statistiques/8733125",
+      "discoveredAt": "2026-10-31T03:14:02.944Z"
+    },
+    {
+      "identity": "https://www.insee.fr/fr/statistiques/8733099",
+      "title": "Inégalités salariales",
+      "status": "pending",
+      "attempts": 0,
+      "discoveredVia": "https://www.insee.fr/fr/statistiques/8733125",
+      "discoveredAt": "2026-10-31T03:14:02.944Z"
+    },
+    {
+      "identity": "https://www.insee.fr/fr/statistiques/8733101",
+      "title": "Revenus d’activité des non-salariés",
+      "status": "pending",
+      "attempts": 0,
+      "discoveredVia": "https://www.insee.fr/fr/statistiques/8733125",
+      "discoveredAt": "2026-10-31T03:14:02.944Z"
+    },
+    {
+      "identity": "https://www.insee.fr/fr/statistiques/8733103",
+      "title": "Disparités territoriales de salaires et de revenus d'activité",
+      "status": "pending",
+      "attempts": 0,
+      "discoveredVia": "https://www.insee.fr/fr/statistiques/8733125",
+      "discoveredAt": "2026-10-31T03:14:02.944Z"
+    },
+    {
+      "identity": "https://www.insee.fr/fr/statistiques/8733109",
+      "title": "Salaires et coût du travail en Europe",
+      "status": "pending",
+      "attempts": 0,
+      "discoveredVia": "https://www.insee.fr/fr/statistiques/8733125",
+      "discoveredAt": "2026-10-31T03:14:02.944Z"
+    }
+  ],
+  "financialValuesAdded": 0,
+  "sourceBranchVerified": true,
+  "childrenSourceCollectionVerified": false,
+  "limit": "Ordinary source really acquired index and queued12standalone chapters. Pending chapters are not declared collected or published statistics. Historical failure date retained, no statistical period refreshed by metadata."
+}

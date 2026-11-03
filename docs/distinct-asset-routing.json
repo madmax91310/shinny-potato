@@ -34,7 +34,7 @@
           "id": "etfGB00B15KXQ89",
           "automatic": true,
           "first": "2015-01",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "USD",
           "performance": true,
           "simulation": true,
@@ -44,7 +44,7 @@
           "id": "etfGB00B15KXQ89Nav",
           "automatic": true,
           "first": "2015-01",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "USD",
           "performance": true,
           "simulation": true,
@@ -82,15 +82,15 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-10-28T16:15:20.481164+00:00"
+        "checkedAt": "2026-11-02T19:59:03.895137+00:00"
       },
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.94963738920146,
+        "coverage": 99.93961352657037,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-27"
+        "date": "2026-10-30"
       },
       "sectors": {
         "status": "available",
@@ -100,9 +100,9 @@
         "date": "2026-09-30"
       },
       "holdings": {
-        "asOf": "2026-10-27",
+        "asOf": "2026-10-30",
         "complete": true,
-        "identifiedCoverage": 99.28000000000145,
+        "identifiedCoverage": 99.36000000000152,
         "automatic": true
       },
       "monthly": [
@@ -110,7 +110,7 @@
           "id": "etfAvantisSmallValue",
           "automatic": true,
           "first": "2024-10",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "EUR",
           "performance": true,
           "simulation": true,
@@ -150,19 +150,19 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-09-30"
+        "date": "2026-10-31"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-09-30"
+        "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-10-27",
+        "asOf": "2026-10-30",
         "complete": true,
-        "identifiedCoverage": 99.93199999999999,
+        "identifiedCoverage": 100.007,
         "automatic": true
       },
       "monthly": [
@@ -170,7 +170,7 @@
           "id": "etfCopperMiners",
           "automatic": true,
           "first": "2022-03",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "EUR",
           "performance": true,
           "simulation": true,
@@ -227,9 +227,9 @@
         "date": "2026-09-30"
       },
       "holdings": {
-        "asOf": "2026-10-27",
+        "asOf": "2026-10-30",
         "complete": true,
-        "identifiedCoverage": 99.88,
+        "identifiedCoverage": 99.85000000000002,
         "automatic": true
       },
       "monthly": [
@@ -237,7 +237,7 @@
           "id": "etfIE0007Y8Y157",
           "automatic": true,
           "first": "2025-06",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "EUR",
           "performance": false,
           "simulation": false,
@@ -276,27 +276,21 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-10-28T16:15:20.481164+00:00"
+        "checkedAt": "2026-11-02T19:59:03.895137+00:00"
       },
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 99.99999999999999,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-01"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 99.97999999999998,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-26"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-10-27",
+        "asOf": "2026-10-30",
         "complete": false,
-        "identifiedCoverage": 6.066700000000001,
+        "identifiedCoverage": 6.07179,
         "automatic": false
       },
       "monthly": [
@@ -304,7 +298,7 @@
           "id": "etfIbondsEuro2028",
           "automatic": true,
           "first": "2023-10",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "EUR",
           "performance": true,
           "simulation": true,
@@ -343,7 +337,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-10-28T16:15:20.481164+00:00"
+        "checkedAt": "2026-11-02T19:59:03.895137+00:00"
       },
       "dca": true,
       "countries": {
@@ -361,9 +355,9 @@
         "date": "2026-09-30"
       },
       "holdings": {
-        "asOf": "2026-10-27",
+        "asOf": "2026-10-30",
         "complete": true,
-        "identifiedCoverage": 100.02,
+        "identifiedCoverage": 99.97000000000003,
         "automatic": true
       },
       "monthly": [
@@ -371,7 +365,7 @@
           "id": "etfNasdaqEqual",
           "automatic": true,
           "first": "2023-08",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "USD",
           "performance": true,
           "simulation": true,
@@ -386,7 +380,8 @@
       "name": "VanEck Uranium and Nuclear Technologies UCITS ETF",
       "kind": "etf",
       "practical": [
-        "defence-nuclear-quantum-selection"
+        "defence-nuclear-quantum-selection",
+        "uranium-nuclear-chain"
       ],
       "duel": false,
       "qualification": {
@@ -425,9 +420,9 @@
         "date": "2026-09-30"
       },
       "holdings": {
-        "asOf": "2026-10-27",
+        "asOf": "2026-10-30",
         "complete": true,
-        "identifiedCoverage": 91.86999999999998,
+        "identifiedCoverage": 91.57,
         "automatic": true
       },
       "monthly": [
@@ -435,7 +430,7 @@
           "id": "etfIE000M7V94E1",
           "automatic": true,
           "first": "2023-03",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "EUR",
           "performance": true,
           "simulation": true,
@@ -473,27 +468,21 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-10-28T16:15:20.481164+00:00"
+        "checkedAt": "2026-11-02T19:59:03.895137+00:00"
       },
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 99.97999999999998,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-08"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-26"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
-        "asOf": "2026-10-27",
+        "asOf": "2026-10-30",
         "complete": false,
-        "identifiedCoverage": 5.33882,
+        "identifiedCoverage": 5.36796,
         "automatic": false
       },
       "monthly": [
@@ -501,7 +490,7 @@
           "id": "etfIbondsEuro2029",
           "automatic": true,
           "first": "2024-09",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "EUR",
           "performance": true,
           "simulation": true,
@@ -557,9 +546,9 @@
         "date": "2026-09-30"
       },
       "holdings": {
-        "asOf": "2026-10-27",
+        "asOf": "2026-10-30",
         "complete": true,
-        "identifiedCoverage": 99.52000000000004,
+        "identifiedCoverage": 99.51999999999998,
         "automatic": true
       },
       "monthly": [
@@ -567,7 +556,7 @@
           "id": "etfIE000YYE6WK5",
           "automatic": true,
           "first": "2024-11",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "EUR",
           "performance": true,
           "simulation": true,
@@ -595,22 +584,22 @@
       "dca": true,
       "countries": {
         "status": "incomplete",
-        "coverage": 99.17831,
-        "outside": 0.8216899999999612,
+        "coverage": 99.17842999999999,
+        "outside": 0.8215700000000083,
         "reason": "Hors classification",
-        "date": "2026-10-27"
+        "date": "2026-10-30"
       },
       "sectors": {
         "status": "incomplete",
-        "coverage": 99.17831000000004,
-        "outside": 0.8216899999999612,
+        "coverage": 99.17842999999999,
+        "outside": 0.8215700000000083,
         "reason": "Hors classification",
-        "date": "2026-10-27"
+        "date": "2026-10-30"
       },
       "holdings": {
-        "asOf": "2026-10-27",
+        "asOf": "2026-10-30",
         "complete": true,
-        "identifiedCoverage": 99.17831000000004,
+        "identifiedCoverage": 99.17842999999999,
         "automatic": true
       },
       "monthly": [
@@ -618,7 +607,7 @@
           "id": "etfEuropeProperty",
           "automatic": true,
           "first": "2015-01",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "EUR",
           "performance": true,
           "simulation": true,
@@ -646,22 +635,22 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.70177000000004,
-        "outside": 0.2982299999999469,
+        "coverage": 99.58805000000001,
+        "outside": 0.4119500000000045,
         "reason": "Hors classification",
-        "date": "2026-10-27"
+        "date": "2026-10-30"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.70177000000004,
-        "outside": 0.2982299999999469,
+        "coverage": 99.58805000000001,
+        "outside": 0.4119500000000045,
         "reason": "Hors classification",
-        "date": "2026-10-27"
+        "date": "2026-10-30"
       },
       "holdings": {
-        "asOf": "2026-10-27",
+        "asOf": "2026-10-30",
         "complete": true,
-        "identifiedCoverage": 99.70177000000005,
+        "identifiedCoverage": 99.58805,
         "automatic": true
       },
       "monthly": [
@@ -669,7 +658,7 @@
           "id": "etfIE00B1FZS350",
           "automatic": true,
           "first": "2015-01",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "EUR",
           "performance": true,
           "simulation": true,
@@ -697,22 +686,22 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.96798000000003,
-        "outside": 0.0320199999999744,
+        "coverage": 99.95123999999994,
+        "outside": 0.04876000000002989,
         "reason": "Hors classification",
-        "date": "2026-10-27"
+        "date": "2026-10-30"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.96798000000001,
-        "outside": 0.0320199999999744,
+        "coverage": 99.95123999999996,
+        "outside": 0.04876000000002989,
         "reason": "Hors classification",
-        "date": "2026-10-27"
+        "date": "2026-10-30"
       },
       "holdings": {
-        "asOf": "2026-10-27",
+        "asOf": "2026-10-30",
         "complete": true,
-        "identifiedCoverage": 99.96798000000003,
+        "identifiedCoverage": 99.95123999999997,
         "automatic": true
       },
       "monthly": [
@@ -720,7 +709,7 @@
           "id": "etfIE00B53SZB19",
           "automatic": true,
           "first": "2010-06",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "EUR",
           "performance": true,
           "simulation": true,
@@ -771,7 +760,7 @@
           "id": "etfLgBattery",
           "automatic": true,
           "first": "2020-01",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "USD",
           "performance": true,
           "simulation": true,
@@ -786,7 +775,8 @@
       "name": "iShares MSCI World Small Cap UCITS ETF",
       "kind": "etf",
       "practical": [
-        "small-value-global-selection"
+        "small-value-global-selection",
+        "small-europe-world"
       ],
       "duel": true,
       "qualification": null,
@@ -799,22 +789,22 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99973999999999,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-27"
+        "date": "2026-10-30"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99999999999999,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-26"
+        "date": "2026-10-30"
       },
       "holdings": {
-        "asOf": "2026-10-27",
+        "asOf": "2026-11-02",
         "complete": true,
-        "identifiedCoverage": 99.51703999999975,
+        "identifiedCoverage": 99.39886,
         "automatic": true
       },
       "monthly": [
@@ -822,7 +812,7 @@
           "id": "etf_smallcap",
           "automatic": true,
           "first": "2018-04",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "USD",
           "performance": true,
           "simulation": true,
@@ -850,22 +840,22 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999999999999,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-19"
-      },
-      "sectors": {
-        "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-30"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 99.99969999999999,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-30"
       },
       "holdings": {
-        "asOf": "2026-10-22",
+        "asOf": "2026-10-30",
         "complete": true,
-        "identifiedCoverage": 98.37128186039267,
+        "identifiedCoverage": 100.00030000000002,
         "automatic": true
       },
       "monthly": [
@@ -873,7 +863,7 @@
           "id": "etfCloudWisdomtree",
           "automatic": true,
           "first": "2019-10",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "USD",
           "performance": true,
           "simulation": true,
@@ -883,7 +873,7 @@
           "id": "etfCloudWisdomtreeNav",
           "automatic": true,
           "first": "2019-09",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "USD",
           "performance": true,
           "simulation": true,
@@ -898,7 +888,8 @@
       "name": "iShares Automation & Robotics UCITS ETF",
       "kind": "etf",
       "practical": [
-        "cloud-robotics-batteries-selection"
+        "cloud-robotics-batteries-selection",
+        "robotics-methods"
       ],
       "duel": true,
       "qualification": null,
@@ -911,22 +902,22 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.66401999999998,
-        "outside": 0.3359800000000206,
+        "coverage": 99.63167999999996,
+        "outside": 0.3683200000000397,
         "reason": "Hors classification",
-        "date": "2026-10-27"
+        "date": "2026-10-30"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.66401999999998,
-        "outside": 0.3359800000000206,
+        "coverage": 99.63167999999995,
+        "outside": 0.3683200000000397,
         "reason": "Hors classification",
-        "date": "2026-10-27"
+        "date": "2026-10-30"
       },
       "holdings": {
-        "asOf": "2026-10-27",
+        "asOf": "2026-10-30",
         "complete": true,
-        "identifiedCoverage": 99.66401999999998,
+        "identifiedCoverage": 99.63167999999996,
         "automatic": true
       },
       "monthly": [
@@ -934,7 +925,7 @@
           "id": "etf_robotics",
           "automatic": true,
           "first": "2016-10",
-          "last": "2026-09",
+          "last": "2026-10",
           "currency": "USD",
           "performance": true,
           "simulation": true,

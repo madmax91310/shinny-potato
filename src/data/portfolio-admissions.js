@@ -14,3 +14,6 @@ export const AUTOMATIC_FACTOR_ADMISSIONS = factors.flatMap(([id, isin, factor]) 
     minPct: 5, maxPct: 20, peaRequired: false, exclusiveGroup: 'europe-factor', core: 'europe_pea_amundi' }]
 })
 export const AUTOMATIC_FACTOR_IDS = AUTOMATIC_FACTOR_ADMISSIONS.map(row => row.id)
+
+// Explicit source declarations do not grant any automatic allocation permission.
+export {default as MANUAL_SOURCE_ROUTES} from './manual-source-routes.json' with {type:'json'}

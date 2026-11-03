@@ -1,0 +1,215 @@
+{
+  "producerStarted": "producer-results-v1",
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "etf-presentation-performance-FR001400U5Q4",
+          "instrument": "FR001400U5Q4",
+          "fields": [
+            "exact-share published cumulative performance <= 1 year",
+            "currency",
+            "reinvestment convention"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-presentation-performance-LU2970735911",
+          "instrument": "LU2970735911",
+          "fields": [
+            "exact-share published cumulative performance <= 1 year",
+            "currency",
+            "reinvestment convention"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-presentation-performance-IE000DQLYVB9",
+          "instrument": "IE000DQLYVB9",
+          "fields": [
+            "exact-share published cumulative performance <= 1 year",
+            "currency",
+            "reinvestment convention"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-presentation-performance-IE0007Y8Y157",
+          "instrument": "IE0007Y8Y157",
+          "fields": [
+            "exact-share published cumulative performance <= 1 year",
+            "currency",
+            "reinvestment convention"
+          ],
+          "selected": true
+        }
+      ],
+      "mode": "full",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "collect_presentation_performance",
+      "reportStem": "presentation-performance",
+      "declaredAt": "2026-10-31T00:39:03.626014+00:00",
+      "nonce": "9f568ee5-fca2-4426-b51f-8e9c17d69640",
+      "codeSha": "cdb627ba2588e1dec61f0f2dcbe5036fcadb62f7",
+      "durablePlan": true,
+      "runId": "41150996233",
+      "attempt": "1",
+      "sha256": "227cc74d99dd805ed536107baf584537533e160242a39b382aa2538354d163d0"
+    },
+    "scope": {
+      "kind": "collect_presentation_performance",
+      "mode": "full",
+      "expectedIds": [
+        "etf-presentation-performance-FR001400U5Q4",
+        "etf-presentation-performance-LU2970735911",
+        "etf-presentation-performance-IE000DQLYVB9",
+        "etf-presentation-performance-IE0007Y8Y157"
+      ],
+      "requestedIds": [
+        "etf-presentation-performance-FR001400U5Q4",
+        "etf-presentation-performance-LU2970735911",
+        "etf-presentation-performance-IE000DQLYVB9",
+        "etf-presentation-performance-IE0007Y8Y157"
+      ],
+      "items": [
+        {
+          "id": "etf-presentation-performance-FR001400U5Q4",
+          "instrument": "FR001400U5Q4",
+          "fields": [
+            "exact-share published cumulative performance <= 1 year",
+            "currency",
+            "reinvestment convention"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-presentation-performance-LU2970735911",
+          "instrument": "LU2970735911",
+          "fields": [
+            "exact-share published cumulative performance <= 1 year",
+            "currency",
+            "reinvestment convention"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-presentation-performance-IE000DQLYVB9",
+          "instrument": "IE000DQLYVB9",
+          "fields": [
+            "exact-share published cumulative performance <= 1 year",
+            "currency",
+            "reinvestment convention"
+          ],
+          "selected": true
+        },
+        {
+          "id": "etf-presentation-performance-IE0007Y8Y157",
+          "instrument": "IE0007Y8Y157",
+          "fields": [
+            "exact-share published cumulative performance <= 1 year",
+            "currency",
+            "reinvestment convention"
+          ],
+          "selected": true
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-10-31T00:39:03.626014+00:00",
+      "planSha256": "227cc74d99dd805ed536107baf584537533e160242a39b382aa2538354d163d0",
+      "attemptedIds": [],
+      "attemptUnknownIds": [
+        "etf-presentation-performance-FR001400U5Q4",
+        "etf-presentation-performance-LU2970735911",
+        "etf-presentation-performance-IE000DQLYVB9",
+        "etf-presentation-performance-IE0007Y8Y157"
+      ],
+      "networkRequestedIds": [],
+      "networkAttemptUnknownIds": [
+        "etf-presentation-performance-FR001400U5Q4",
+        "etf-presentation-performance-LU2970735911",
+        "etf-presentation-performance-IE000DQLYVB9",
+        "etf-presentation-performance-IE0007Y8Y157"
+      ],
+      "runId": "41150996233",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "9f568ee5-fca2-4426-b51f-8e9c17d69640"
+    },
+    "outcomes": [
+      {
+        "id": "etf-presentation-performance-FR001400U5Q4",
+        "instrument": "FR001400U5Q4",
+        "fields": [
+          "exact-share published cumulative performance <= 1 year",
+          "currency",
+          "reinvestment convention"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : exact-share published cumulative performance <= 1 year, currency, reinvestment convention",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "etf-presentation-performance-LU2970735911",
+        "instrument": "LU2970735911",
+        "fields": [
+          "exact-share published cumulative performance <= 1 year",
+          "currency",
+          "reinvestment convention"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : exact-share published cumulative performance <= 1 year, currency, reinvestment convention",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "etf-presentation-performance-IE000DQLYVB9",
+        "instrument": "IE000DQLYVB9",
+        "fields": [
+          "exact-share published cumulative performance <= 1 year",
+          "currency",
+          "reinvestment convention"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : exact-share published cumulative performance <= 1 year, currency, reinvestment convention",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "etf-presentation-performance-IE0007Y8Y157",
+        "instrument": "IE0007Y8Y157",
+        "fields": [
+          "exact-share published cumulative performance <= 1 year",
+          "currency",
+          "reinvestment convention"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : exact-share published cumulative performance <= 1 year, currency, reinvestment convention",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

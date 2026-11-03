@@ -1,0 +1,663 @@
+{
+  "runId": "41392515583",
+  "attempt": "1",
+  "expected": [
+    {
+      "isin": "IE0002Y8CX98",
+      "fields": [
+        "countries",
+        "holdings",
+        "sectors"
+      ]
+    },
+    {
+      "isin": "IE000W8WMSL2",
+      "fields": [
+        "countries",
+        "holdings",
+        "sectors"
+      ]
+    },
+    {
+      "isin": "IE00BZ56SW52",
+      "fields": [
+        "countries",
+        "holdings",
+        "sectors"
+      ]
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "fields": [
+        "countries",
+        "holdings",
+        "sectors"
+      ]
+    }
+  ],
+  "outcomes": [
+    {
+      "isin": "IE0002Y8CX98",
+      "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+      "sourceAttempted": true,
+      "attemptedAt": "2026-11-02T05:11:44.722060+00:00",
+      "status": "succeeded",
+      "sha256": "4d6bd523f4d0eee0b85e0d322fd6b93901b0e608b076b5d90c7a423f1a63a16e",
+      "fields": {
+        "holdings": {
+          "rows": [
+            {
+              "name": "BAE Systems PLC",
+              "weightPct": 12.9884
+            },
+            {
+              "name": "Thales SA",
+              "weightPct": 12.7518
+            },
+            {
+              "name": "Rheinmetall AG",
+              "weightPct": 12.6246
+            },
+            {
+              "name": "SAAB AB-B SEK NPV",
+              "weightPct": 7.8431
+            },
+            {
+              "name": "Airbus SE",
+              "weightPct": 7.4311
+            },
+            {
+              "name": "Leonardo Spa",
+              "weightPct": 6.6812
+            },
+            {
+              "name": "Safran SA",
+              "weightPct": 6.3834
+            },
+            {
+              "name": "Rolls-Royce Holdings PLC",
+              "weightPct": 6.3187
+            },
+            {
+              "name": "Kongsberg Gruppen Asa",
+              "weightPct": 5.868
+            },
+            {
+              "name": "DASSAULT AVIATION EUR 0.8",
+              "weightPct": 4.6643
+            }
+          ],
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "rankClassificationID": 1,
+          "scope": "top-10",
+          "method": "Top ten of the exact issuer Fund ranking; original fund weights, not renormalised"
+        },
+        "sectors": {
+          "rows": [
+            {
+              "name": "Industrials",
+              "weightPct": 97.47489999999999
+            },
+            {
+              "name": "Information Technology",
+              "weightPct": 2.1923000000000004
+            },
+            {
+              "name": "Communication Services",
+              "weightPct": 0.3326
+            }
+          ],
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "rankClassificationID": 2,
+          "method": "Exact issuer Fund Sector ranking; original percentages, not country or index groups"
+        },
+        "countries": {
+          "rows": [
+            {
+              "name": "France",
+              "weightPct": 32.5648
+            },
+            {
+              "name": "United Kingdom",
+              "weightPct": 24.108
+            },
+            {
+              "name": "Germany",
+              "weightPct": 17.872
+            },
+            {
+              "name": "Sweden",
+              "weightPct": 8.1515
+            },
+            {
+              "name": "Italy",
+              "weightPct": 7.4527
+            },
+            {
+              "name": "Norway",
+              "weightPct": 6.3594
+            },
+            {
+              "name": "Spain",
+              "weightPct": 1.7053
+            },
+            {
+              "name": "Czech Republic",
+              "weightPct": 0.6076
+            },
+            {
+              "name": "Cyprus",
+              "weightPct": 0.5247
+            },
+            {
+              "name": "Finland",
+              "weightPct": 0.266
+            },
+            {
+              "name": "Denmark",
+              "weightPct": 0.2329
+            },
+            {
+              "name": "Luxembourg",
+              "weightPct": 0.0932
+            },
+            {
+              "name": "Switzerland",
+              "weightPct": 0.0483
+            },
+            {
+              "name": "Poland",
+              "weightPct": 0.0135
+            }
+          ],
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "rankClassificationID": 6,
+          "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation"
+        }
+      }
+    },
+    {
+      "isin": "IE000W8WMSL2",
+      "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB",
+      "sourceAttempted": true,
+      "attemptedAt": "2026-11-02T05:11:54.413643+00:00",
+      "status": "succeeded",
+      "sha256": "a6d8e1d89cbfa11848f750943f186fda20b7336b312c176cf4a30b0e6b26a2fe",
+      "fields": {
+        "holdings": {
+          "rows": [
+            {
+              "name": "Ionq Inc",
+              "weightPct": 4.460299999999999
+            },
+            {
+              "name": "Fujitsu Ltd",
+              "weightPct": 4.189699999999999
+            },
+            {
+              "name": "Rigetti Computing Inc",
+              "weightPct": 3.9697999999999998
+            },
+            {
+              "name": "International Business Machines Corp",
+              "weightPct": 3.6956
+            },
+            {
+              "name": "Microsoft Corp",
+              "weightPct": 3.6404
+            },
+            {
+              "name": "D-Wave Quantum Inc",
+              "weightPct": 3.5799
+            },
+            {
+              "name": "Infleqtion Inc",
+              "weightPct": 3.5461
+            },
+            {
+              "name": "Quantum Computing Inc",
+              "weightPct": 3.49
+            },
+            {
+              "name": "Quantinuum Inc-A",
+              "weightPct": 3.4187000000000003
+            },
+            {
+              "name": "Nvidia Corp",
+              "weightPct": 3.2335999999999996
+            }
+          ],
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "rankClassificationID": 1,
+          "scope": "top-10",
+          "method": "Top ten of the exact issuer Fund ranking; original fund weights, not renormalised"
+        },
+        "sectors": {
+          "rows": [
+            {
+              "name": "Information Technology",
+              "weightPct": 81.7123
+            },
+            {
+              "name": "Communication Services",
+              "weightPct": 12.0735
+            },
+            {
+              "name": "Consumer Discretionary",
+              "weightPct": 3.2327000000000004
+            },
+            {
+              "name": "Industrials",
+              "weightPct": 2.9813
+            }
+          ],
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "rankClassificationID": 2,
+          "method": "Exact issuer Fund Sector ranking; original percentages, not country or index groups"
+        },
+        "countries": {
+          "rows": [
+            {
+              "name": "United States",
+              "weightPct": 59.8324
+            },
+            {
+              "name": "Japan",
+              "weightPct": 15.7414
+            },
+            {
+              "name": "Canada",
+              "weightPct": 5.6996
+            },
+            {
+              "name": "Germany",
+              "weightPct": 3.708
+            },
+            {
+              "name": "Netherlands",
+              "weightPct": 3.3766
+            },
+            {
+              "name": "Finland",
+              "weightPct": 3.0414
+            },
+            {
+              "name": "South Korea",
+              "weightPct": 2.3295
+            },
+            {
+              "name": "United Kingdom",
+              "weightPct": 1.5596
+            },
+            {
+              "name": "France",
+              "weightPct": 1.5134
+            },
+            {
+              "name": "Luxembourg",
+              "weightPct": 1.3079
+            },
+            {
+              "name": "Singapore",
+              "weightPct": 0.8458
+            },
+            {
+              "name": "Switzerland",
+              "weightPct": 0.6971
+            },
+            {
+              "name": "Poland",
+              "weightPct": 0.3474
+            }
+          ],
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "rankClassificationID": 6,
+          "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation"
+        }
+      }
+    },
+    {
+      "isin": "IE00BZ56SW52",
+      "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+      "sourceAttempted": true,
+      "attemptedAt": "2026-11-02T05:11:57.378327+00:00",
+      "status": "succeeded",
+      "sha256": "96f0cca4506395b30023aef53748554878a39e18507d69553772194303179855",
+      "fields": {
+        "holdings": {
+          "rows": [
+            {
+              "name": "Apple Inc",
+              "weightPct": 4.6649
+            },
+            {
+              "name": "Microsoft Corp",
+              "weightPct": 4.6531
+            },
+            {
+              "name": "AbbVie Inc",
+              "weightPct": 3.1894
+            },
+            {
+              "name": "Merck & Co Inc/NJ",
+              "weightPct": 2.8565
+            },
+            {
+              "name": "Coca-Cola Co/The",
+              "weightPct": 2.8207
+            },
+            {
+              "name": "Nvidia Corp",
+              "weightPct": 2.3678999999999997
+            },
+            {
+              "name": "Toyota Motor Corp",
+              "weightPct": 2.3467
+            },
+            {
+              "name": "Broadcom Inc",
+              "weightPct": 2.3317
+            },
+            {
+              "name": "UnitedHealth Group Inc",
+              "weightPct": 2.1477
+            },
+            {
+              "name": "Cisco Systems Inc",
+              "weightPct": 2.1153
+            }
+          ],
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "rankClassificationID": 1,
+          "scope": "top-10",
+          "method": "Top ten of the exact issuer Fund ranking; original fund weights, not renormalised"
+        },
+        "sectors": {
+          "rows": [
+            {
+              "name": "Information Technology",
+              "weightPct": 21.326
+            },
+            {
+              "name": "Industrials",
+              "weightPct": 18.3211
+            },
+            {
+              "name": "Health Care",
+              "weightPct": 17.6859
+            },
+            {
+              "name": "Consumer Discretionary",
+              "weightPct": 15.2171
+            },
+            {
+              "name": "Financials",
+              "weightPct": 8.8088
+            },
+            {
+              "name": "Communication Services",
+              "weightPct": 7.2908
+            },
+            {
+              "name": "Consumer Staples",
+              "weightPct": 7.1032
+            },
+            {
+              "name": "Materials",
+              "weightPct": 3.6654
+            },
+            {
+              "name": "Utilities",
+              "weightPct": 0.33899999999999997
+            },
+            {
+              "name": "Real Estate",
+              "weightPct": 0.22490000000000002
+            },
+            {
+              "name": "Energy",
+              "weightPct": 0.0171
+            }
+          ],
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "rankClassificationID": 2,
+          "method": "Exact issuer Fund Sector ranking; original percentages, not country or index groups"
+        },
+        "countries": {
+          "rows": [
+            {
+              "name": "United States",
+              "weightPct": 61.5919
+            },
+            {
+              "name": "Japan",
+              "weightPct": 8.6506
+            },
+            {
+              "name": "United Kingdom",
+              "weightPct": 5.5045
+            },
+            {
+              "name": "France",
+              "weightPct": 3.7899
+            },
+            {
+              "name": "Switzerland",
+              "weightPct": 3.4239
+            },
+            {
+              "name": "Germany",
+              "weightPct": 3.4085
+            },
+            {
+              "name": "Sweden",
+              "weightPct": 2.1696
+            },
+            {
+              "name": "Netherlands",
+              "weightPct": 2.0708
+            },
+            {
+              "name": "Spain",
+              "weightPct": 1.816
+            },
+            {
+              "name": "Australia",
+              "weightPct": 1.2595
+            },
+            {
+              "name": "Denmark",
+              "weightPct": 1.148
+            },
+            {
+              "name": "Canada",
+              "weightPct": 1.1471
+            },
+            {
+              "name": "Ireland",
+              "weightPct": 0.7562
+            },
+            {
+              "name": "Austria",
+              "weightPct": 0.6424
+            },
+            {
+              "name": "Italy",
+              "weightPct": 0.6382
+            },
+            {
+              "name": "Singapore",
+              "weightPct": 0.5084
+            },
+            {
+              "name": "Finland",
+              "weightPct": 0.3593
+            },
+            {
+              "name": "Hong Kong",
+              "weightPct": 0.2569
+            },
+            {
+              "name": "Belgium",
+              "weightPct": 0.1995
+            },
+            {
+              "name": "Norway",
+              "weightPct": 0.1439
+            },
+            {
+              "name": "Israel",
+              "weightPct": 0.143
+            },
+            {
+              "name": "Portugal",
+              "weightPct": 0.0998
+            },
+            {
+              "name": "Bermuda",
+              "weightPct": 0.0964
+            },
+            {
+              "name": "Macau",
+              "weightPct": 0.0751
+            },
+            {
+              "name": "Puerto Rico",
+              "weightPct": 0.0567
+            },
+            {
+              "name": "Luxembourg",
+              "weightPct": 0.0295
+            },
+            {
+              "name": "Lithuania",
+              "weightPct": 0.0142
+            }
+          ],
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "rankClassificationID": 6,
+          "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation"
+        }
+      }
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB",
+      "sourceAttempted": true,
+      "attemptedAt": "2026-11-02T05:12:00.441189+00:00",
+      "status": "succeeded",
+      "sha256": "cec9cbf54d417ef9251e68cadc628e1614ea4ef0e2e6709be7d40677597fcfb1",
+      "fields": {
+        "holdings": {
+          "rows": [
+            {
+              "name": "Netskope Inc-Cl A",
+              "weightPct": 2.2852
+            },
+            {
+              "name": "Okta Inc",
+              "weightPct": 2.1524
+            },
+            {
+              "name": "Braze Inc-A",
+              "weightPct": 2.0184
+            },
+            {
+              "name": "Pagerduty Inc",
+              "weightPct": 1.9383000000000001
+            },
+            {
+              "name": "Zscaler Inc",
+              "weightPct": 1.9175999999999997
+            },
+            {
+              "name": "Docusign Inc",
+              "weightPct": 1.8788
+            },
+            {
+              "name": "Gitlab Inc-Cl A",
+              "weightPct": 1.8451
+            },
+            {
+              "name": "Crowdstrike Holdings Inc - A",
+              "weightPct": 1.8334
+            },
+            {
+              "name": "Atlassian Corp -Class A",
+              "weightPct": 1.8099
+            },
+            {
+              "name": "Veeva Systems Inc-Class A",
+              "weightPct": 1.7794999999999999
+            }
+          ],
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "rankClassificationID": 1,
+          "scope": "top-10",
+          "method": "Top ten of the exact issuer Fund ranking; original fund weights, not renormalised"
+        },
+        "sectors": {
+          "rows": [
+            {
+              "name": "Information Technology",
+              "weightPct": 92.20970000000001
+            },
+            {
+              "name": "Health Care",
+              "weightPct": 3.3550999999999997
+            },
+            {
+              "name": "Industrials",
+              "weightPct": 3.216
+            },
+            {
+              "name": "Financials",
+              "weightPct": 1.2191
+            }
+          ],
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "rankClassificationID": 2,
+          "method": "Exact issuer Fund Sector ranking; original percentages, not country or index groups"
+        },
+        "countries": {
+          "rows": [
+            {
+              "name": "United States",
+              "weightPct": 92.5013
+            },
+            {
+              "name": "Israel",
+              "weightPct": 5.9539
+            },
+            {
+              "name": "Canada",
+              "weightPct": 1.5448
+            }
+          ],
+          "asOf": "2026-10-23",
+          "basis": "fund",
+          "rankClassificationID": 6,
+          "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation"
+        }
+      }
+    }
+  ],
+  "sourceCodeBlobs": {
+    "scripts/wisdomtree_rankings_transport.py": "69a9679a166d6a908c4733e27ba8f2e52d54a650",
+    "scripts/download-wisdomtree-rankings.mjs": "7620f6380bc1d20f6c6569f77a8b6c8da646702e",
+    "scripts/collect_wisdomtree_holdings.py": "53d84c8320888ddabe588384c68888127bae133d",
+    "scripts/wisdomtree_ranked_fields.py": "e5500da251fd24e84aa4b106ea6fc55b319f2c74"
+  },
+  "limit": "Read-only source/transport/field validation; no production write, publication or scheduled trigger claimed."
+}

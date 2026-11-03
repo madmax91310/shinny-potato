@@ -1,4 +1,8 @@
 import unittest
+import copy
+import urllib.error
+import gzip
+import hashlib
 import io
 import json
 import pathlib
@@ -6,11 +10,86 @@ import subprocess
 import tempfile
 import zipfile
 from unittest.mock import Mock
-from publish_automation_status import update_status, read_report, publication_summary, repair_publication_history, include_configured_workflows, normalize_report
+from publish_automation_status import update_status, read_report, publication_summary, repair_publication_history, include_configured_workflows, normalize_report, require_completed_job_evidence, unseen_failed_workflow_runs
 
 def run(id=1,conclusion='failure',workflow='update-economic-data.yml',**kwargs):
  return {'id':id,'path':'.github/workflows/'+workflow,'head_branch':'master','event':'schedule','status':'completed','conclusion':conclusion,'updated_at':f'2026-10-{id:02d}T10:00:00Z','html_url':f'https://github.com/test/repo/actions/runs/{id}',**kwargs}
+
+class EventCatchupTests(unittest.TestCase):
+ def state(self):
+  return {'schemaVersion':1,'workflows':{
+   'update-bitcoin-monthly.yml':{'status':'failure','runId':10,'attempt':1,
+    'failures':[{'step':'Invalid numeric value'}],
+    'sourceChecks':{'old':{'checkedAt':'2026-11-01','asOf':'2026-10-31','price':77434.75}}},
+   'healthy.yml':{'status':'success','runId':20}}}
+
+ def test_late_unrelated_event_discovers_recovery_without_certifying_or_redating_it(self):
+  state=self.state();before=copy.deepcopy(state);calls=[]
+  rows=[run(9),run(10),run(11),run(12,event='pull_request'),run(13,head_branch='feature'),
+        run(14,status='in_progress'),run(15,conclusion='cancelled'),run(16,'success')]
+  for item in rows:item['path']='.github/workflows/update-bitcoin-monthly.yml'
+  def api(path):calls.append(path);return {'workflow_runs':rows}
+  selected=unseen_failed_workflow_runs(state,['update-bitcoin-monthly.yml','healthy.yml'],api)
+  self.assertEqual([r['id']for r in selected],[11,16])
+  self.assertIs(selected[-1],rows[-1],'The ordinary reducer receives the actual API run, not a fabricated success')
+  self.assertEqual(state['workflows'],before['workflows'],'Discovery alone cannot clear a failure or change an observation')
+  self.assertEqual(calls,['/actions/workflows/update-bitcoin-monthly.yml/runs?branch=master&status=completed&per_page=30'])
+
+ def test_missing_partial_or_failed_api_keeps_the_failure_and_a_visible_observer_error(self):
+  for response in [{},{'workflow_runs':None},{'workflow_runs':[None]},{'workflow_runs':[{'id':11}]}]:
+   state=self.state();before=copy.deepcopy(state)
+   self.assertEqual(unseen_failed_workflow_runs(state,['update-bitcoin-monthly.yml'],lambda _:response),[])
+   self.assertEqual(state['workflows'],before['workflows'])
+   self.assertIn('runs:update-bitcoin-monthly.yml',state['observerErrors'])
+  for code in [403,429,500]:
+   state=self.state();before=copy.deepcopy(state)
+   def api(_):raise urllib.error.HTTPError('https://api.github.com/test',code,'failure',{},None)
+   self.assertEqual(unseen_failed_workflow_runs(state,['update-bitcoin-monthly.yml'],api),[])
+   self.assertEqual(state['workflows'],before['workflows'])
+   self.assertIn(str(code),state['observerErrors']['runs:update-bitcoin-monthly.yml']['cause'])
+
+ def test_bounded_window_retains_a_gap_instead_of_discarding_unseen_history(self):
+  state=self.state();rows=[run(i,updated_at='2026-11-02T19:00:00Z')for i in range(100,130)]
+  selected=unseen_failed_workflow_runs(state,['update-bitcoin-monthly.yml'],lambda _:{'workflow_runs':rows})
+  self.assertEqual(len(selected),30)
+  gap=state['observerErrors']['history-window:update-bitcoin-monthly.yml']
+  self.assertEqual(gap['anchorRunId'],10)
+  self.assertIn('non couvert',gap['cause'])
+  self.assertEqual(state['workflows']['update-bitcoin-monthly.yml']['runId'],10)
+
+ def test_new_attempt_is_discovered_once_and_transport_recovery_does_not_clear_history_gap(self):
+  state=self.state();state['observerErrors']={'runs:update-bitcoin-monthly.yml':{'cause':'HTTP500'},
+   'history-window:update-bitcoin-monthly.yml':{'cause':'Unproved older interval'}}
+  retry=run(10,'success',workflow='update-bitcoin-monthly.yml',run_attempt=2)
+  selected=unseen_failed_workflow_runs(state,['update-bitcoin-monthly.yml'],lambda _:{'workflow_runs':[retry]})
+  self.assertEqual(selected,[retry]);self.assertNotIn('runs:update-bitcoin-monthly.yml',state['observerErrors'])
+  self.assertIn('history-window:update-bitcoin-monthly.yml',state['observerErrors'])
+  state['workflows']['update-bitcoin-monthly.yml']['attempt']=2
+  self.assertEqual(unseen_failed_workflow_runs(state,['update-bitcoin-monthly.yml'],lambda _:{'workflow_runs':[retry]}),[])
+
 class StatusTests(unittest.TestCase):
+ def test_compact_real_radar_artifact_keeps_all_results_and_envelope(self):
+  root=pathlib.Path(__file__).resolve().parents[1]
+  raw=gzip.decompress((root/'scripts/fixtures/radar-feed-envelope-41364143338.json.gz').read_bytes())
+  self.assertEqual(hashlib.sha256(raw).hexdigest(),'fe90ab83c97fe1805dab0f9f71ecba046813b6dec88cbeb8085d50e09db9f2d6')
+  planned=json.loads(gzip.decompress((root/'scripts/fixtures/radar-feed-envelope-41364143338.contract-plan.json.gz').read_bytes()))
+  compact=subprocess.check_output(['node','--input-type=module','-e',"import {radarReportContent} from './scripts/lib/radar-report-content.mjs';import fs from 'node:fs';process.stdout.write(radarReportContent(JSON.parse(fs.readFileSync(0,'utf8'))))"],input=raw,cwd=root)
+  self.assertEqual(json.loads(compact),json.loads(raw))
+  self.assertGreater(len(raw),8_000_000)
+  self.assertLess(len(compact),8_000_000)
+  with tempfile.TemporaryDirectory() as directory:
+   path=pathlib.Path(directory)/'feed.json';path.write_bytes(raw)
+   with self.assertRaisesRegex(ValueError,'trop volumineux'):read_report(path,'update-editorial-radar.yml',planned)
+   path.write_bytes(compact);report=read_report(path,'update-editorial-radar.yml',planned)
+  self.assertTrue(report['_reportEvidence']['scopePlanVerified'])
+  self.assertEqual(len(report['successes']),35)
+  self.assertEqual(len(report['errors']),8)
+  from producer_report_contract import normalize_contract
+  expected=normalize_contract(json.loads(raw)['resultContract'])
+  for kind in ['successes','errors']:
+   self.assertEqual({r['id'] for r in report[kind]},{r['id'] for r in expected[kind]})
+  self.assertEqual(report['_reportEvidence']['scope'],json.loads(raw)['resultContract']['scope'])
+
  def test_explicit_fresh_quarter_closes_only_its_own_incident(self):
   def report(rows):return {'_collector':'company-universe-observation','companies':rows}
   initial=update_status({},run(workflow='update-scpi.yml'),[],[report({
@@ -225,6 +304,46 @@ class StatusTests(unittest.TestCase):
   failed=update_status(previous,run(2),[{'name':'refresh','conclusion':'failure','steps':[{'name':'collect','conclusion':'failure'}]}])['workflows']['update-economic-data.yml']
   self.assertEqual(failed['lastSuccessAt'],'2026-10-01T10:00:00Z')
   self.assertEqual(failed['failures'][0]['step'],'collect')
+
+class MissingTerminalJobsTests(unittest.TestCase):
+ def test_empty_and_missing_terminal_job_evidence_is_not_a_phase_result(self):
+  terminal=run(workflow='update-investor-13f.yml')
+  for jobs in ([], [{'name':'deploy','steps':[]}], [{'name':'update','conclusion':'failure','steps':[]}]):
+   with self.subTest(jobs=jobs):
+    with self.assertRaises(ValueError):require_completed_job_evidence(terminal,jobs,'update')
+  for conclusion in ('skipped','cancelled'):
+   require_completed_job_evidence(terminal,[{'name':'update','conclusion':conclusion,'steps':[]}],'update')
+  for conclusion in ('skipped','cancelled','neutral'):
+   ignored={**terminal,'conclusion':conclusion}
+   self.assertEqual(require_completed_job_evidence(ignored,[],'update'),[])
+  with self.assertRaises(ValueError):
+   require_completed_job_evidence(terminal,[{'name':'update','conclusion':None,'steps':[{'status':'in_progress'}]}],'update')
+
+ def test_real_13f_recording_failure_is_recovered_from_missing_jobs_same_attempt(self):
+  terminal=run(workflow='update-investor-13f.yml')
+  old=update_status({},terminal,[])
+  self.assertEqual(old['workflows']['update-investor-13f.yml']['recordingStatus'],'not-run')
+  jobs=[{'name':'update','conclusion':'failure','steps':[
+   {'name':'Collect observations: python -u scripts update-investor-13f.py --output  RUNNER_TEMP investor-observations.json','conclusion':'success'},
+   {'name':'Validate collected observations','conclusion':'success'},
+   {'name':'Commit validated observations','conclusion':'failure'}]}]
+  require_completed_job_evidence(terminal,jobs,'update')
+  repaired=update_status(old,terminal,jobs)
+  row=repaired['workflows']['update-investor-13f.yml']
+  self.assertEqual(row['recordingStatus'],'failure')
+  self.assertEqual(row['failures'],[{'job':'update','step':'Commit validated observations'}])
+  self.assertIsNone(row['lastCollectionSuccessAt'],'Job evidence cannot invent a source-control clock')
+  from automation_recovery import recovery_reason
+  import datetime as dt
+  self.assertEqual(recovery_reason(row,{'maxAgeHours':48},dt.datetime(2026,10,2,tzinfo=dt.timezone.utc)),'recording-failed')
+  self.assertEqual(update_status(repaired,terminal,[]),repaired,'A later empty response must not erase known terminal evidence')
+  retained=old['workflows']['update-investor-13f.yml']
+  retained['dataFailures']={'exact-manager':{'cause':'Quarter identity conflict','completedAt':'2026-09-30T10:00:00Z'}}
+  still=update_status(old,terminal,jobs)['workflows']['update-investor-13f.yml']
+  self.assertIn('exact-manager',still['dataFailures'],'Job hydration must not close a financial conflict')
+  self.assertNotEqual(still['publicationStatus'],'success')
+  newer=update_status(repaired,run(2,'success',workflow='update-investor-13f.yml'),jobs)
+  self.assertEqual(update_status(newer,terminal,jobs),newer,'An older attempt cannot replace newer evidence')
 
 class NewCollectorStatusTests(unittest.TestCase):
  def test_named_collection_jobs_are_independent_from_deploy(self):

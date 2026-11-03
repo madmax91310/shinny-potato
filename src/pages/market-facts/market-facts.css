@@ -59,3 +59,15 @@
 .mf-meta li.mf-note { color: var(--mf-text-faint); font-size: 13px; }
 
 .mf-disclaimer { margin: 0; font-size: 12px; color: var(--mf-text-faint); line-height: 1.5; }
+
+.mf-editor { margin-top: 18px; }
+.mf-editor summary { cursor: pointer; color: var(--mf-accent); }
+.mf-editor p { font-size: 13px; line-height: 1.5; color: var(--mf-text-dim); }
+.mf-editor label { display: block; margin: 12px 0 6px; }
+.mf-editor textarea {
+  width: 100%; box-sizing: border-box; resize: vertical; min-height: 260px;
+  padding: 12px; border: 1px solid var(--mf-border); border-radius: 10px;
+  font: inherit; font-size: 16px; line-height: 1.55; color: var(--mf-text);
+  background: var(--mf-surface); margin-bottom: 10px;
+}
+.mf-fact-text { overflow-wrap: anywhere; }

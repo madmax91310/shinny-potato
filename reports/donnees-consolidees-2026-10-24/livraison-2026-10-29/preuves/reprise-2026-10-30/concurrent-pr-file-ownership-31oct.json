@@ -1,0 +1,30 @@
+{
+  "verifiedAt": "2026-10-31T00:10:04.624624+00:00",
+  "concurrentPRFiles": {
+    "1061": [
+      "docs/ishares-pea-live-aum-2026-10-29.md",
+      "scripts/additional-etf-sources.json",
+      "scripts/fixtures/ishares-pea-live-20261029/IE0002XZSHO1.html.gz",
+      "scripts/fixtures/ishares-pea-live-20261029/IE000DQLYVB9.html.gz",
+      "scripts/fixtures/ishares-pea-live-20261029/receipts.json",
+      "scripts/test_document_etf.py"
+    ],
+    "1042": [
+      "public/data/tweet-bank-catalog.json",
+      "scripts/test-tweet-bank-curation.mjs",
+      "services/tweet-bank-private/worker/catalog.js",
+      "services/tweet-bank-private/worker/discovery.js",
+      "services/tweet-bank-private/worker/page.js",
+      "src/lib/tweet-discovery.js",
+      "src/pages/tweet-bank/App.jsx",
+      "src/pages/tweet-bank/data.js",
+      "src/pages/tweet-bank/validity.js"
+    ]
+  },
+  "sharedConfig": "scripts/additional-etf-sources.json",
+  "onlyChangedConfigurationInstrument": [
+    "CH0454664001"
+  ],
+  "otherInstrumentsByteEquivalentAsJsonObjects": true,
+  "otherPRScopes": "1061 owns two iShares PEA entries and its fixtures/tests;1042 owns editorial files; no overlapping instrument or implementation hunk changed"
+}

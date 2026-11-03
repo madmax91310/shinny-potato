@@ -1,0 +1,113 @@
+{
+  "runId": 41333315930,
+  "sourceStatusCounts": {
+    "validated": 658,
+    "failed": 26
+  },
+  "expectedAndAttempted": 684,
+  "fxDependencyFailures": [
+    {
+      "id": "etfEqualWeight",
+      "isin": "IE00BLNMYC90",
+      "currency": "EUR",
+      "parser": "official-nav",
+      "reason": "'2026-10'"
+    },
+    {
+      "id": "etf_gold_miners",
+      "isin": "IE00BQQP9F84",
+      "currency": "EUR",
+      "parser": "official-nav",
+      "reason": "'2026-10'"
+    },
+    {
+      "id": "etfUsaSmallValue",
+      "isin": "IE00BSPLC413",
+      "currency": "EUR",
+      "parser": "official-nav",
+      "reason": "'2026-10'"
+    },
+    {
+      "id": "etfIE00B4JNQZ49",
+      "isin": "IE00B4JNQZ49",
+      "currency": "EUR",
+      "parser": "official-nav",
+      "reason": "'2026-10'"
+    },
+    {
+      "id": "etfIE000M7V94E1",
+      "isin": "IE000M7V94E1",
+      "currency": "EUR",
+      "parser": "official-nav",
+      "reason": "'2026-10'"
+    },
+    {
+      "id": "etfIE00B43HR379",
+      "isin": "IE00B43HR379",
+      "currency": "EUR",
+      "parser": "official-nav",
+      "reason": "'2026-10'"
+    },
+    {
+      "id": "etfIE00BYWQWR46",
+      "isin": "IE00BYWQWR46",
+      "currency": "EUR",
+      "parser": "official-nav",
+      "reason": "'2026-10'"
+    },
+    {
+      "id": "etfIE00B5W4TY14",
+      "isin": "IE00B5W4TY14",
+      "currency": "EUR",
+      "parser": "official-nav",
+      "reason": "'2026-10'"
+    },
+    {
+      "id": "etfIE00BDFBTQ78",
+      "isin": "IE00BDFBTQ78",
+      "currency": "EUR",
+      "parser": "official-nav",
+      "reason": "'2026-10'"
+    },
+    {
+      "id": "etfIE000YU9K6K2",
+      "isin": "IE000YU9K6K2",
+      "currency": "EUR",
+      "parser": "official-nav",
+      "reason": "'2026-10'"
+    },
+    {
+      "id": "etfFR0013416716",
+      "isin": "FR0013416716",
+      "currency": "EUR",
+      "parser": "official-nav",
+      "reason": "'2026-10'"
+    },
+    {
+      "id": "etfLU2089238385",
+      "isin": "LU2089238385",
+      "currency": "EUR",
+      "parser": "official-nav",
+      "reason": "'2026-10'"
+    },
+    {
+      "id": "etfLU2196470426Nav",
+      "isin": "LU2196470426",
+      "currency": "EUR",
+      "parser": "official-nav",
+      "reason": "'2026-10'"
+    },
+    {
+      "id": "etfCH0454664001Nav",
+      "isin": "CH0454664001",
+      "currency": "EUR",
+      "parser": "official-nav",
+      "reason": "'2026-10'"
+    }
+  ],
+  "isolatedConfirmedExample": "IE00B5W4TY14, exact same official body before/after actual ECB registry",
+  "recordingStatus": "refused: workflow, monthly selector and regression input changed while collecting; protection preserved",
+  "publicationStatus": "not published by this failed attempt",
+  "nextOrdinaryRun": 41334240597,
+  "limit": "Not all14 fields certified by one example; ordinary re-execution and public consumption still required."
+}

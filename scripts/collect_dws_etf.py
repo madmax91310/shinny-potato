@@ -216,9 +216,20 @@ def parse_holdings(body, share, now, url, *, complete=False, non_equity_funds=No
         excluded_ids={p['isin'] for p in excluded}
         direct=[dict(p) for p in holdings if p['isin'] not in excluded_ids]
         if len(direct)<10:reject('Incomplete direct DWS equity list')
+        from holdings_reconciliation import reconcile_positions
+        accounting=[{'isin':p['header']['value'],'name':p['column_0']['value'],
+                     'assetClass':p['column_5']['value'],'weightPct':p['column_1']['sortValue']}for p in positions]
+        selected_ids={p['isin']for p in direct}
+        reconciliation=reconcile_positions(accounting,[i for i,p in enumerate(accounting)if p['isin']in selected_ids],stamp)
+        reconciliation['qualifiedExcludedPositions']=[{
+            'isin':p['isin'],'name':p['qualification'].get('name',p['name']),'weightPct':p['weightPct'],
+            'sourceAssetClass':next(a['assetClass']for a in accounting if a['isin']==p['isin']),
+            **{key:p['qualification'][key]for key in ['kind','sourceUrl','sha256','asOf','checkedAt']}}
+            for p in excluded]
         result['completeHoldings'] = {'asOf': stamp, 'basis': 'fund', 'sourceUrl': url,
             'sha256': digest, 'complete': True, 'rows': direct,
             'excludedPositions':excluded,'excludedNonEquityFundWeightPct':sum(p['weightPct'] for p in excluded),
+            'navReconciliation':reconciliation,
             'method':'Complete physical securities; qualified non-equity money-market fund shares and net cash/derivatives excluded; original fund NAV weights, no renormalisation',
             'sourceUrls':[url,*sorted({p['qualification']['sourceUrl'] for p in excluded})]}
     holdings = sorted(holdings, key=lambda r: -r['weightPct'])[:10]

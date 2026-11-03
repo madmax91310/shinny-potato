@@ -2,6 +2,7 @@
 import copy
 import datetime as dt
 import re
+import math
 import json
 from pathlib import Path
 from data_automation import reject, write_json_atomic
@@ -9,6 +10,8 @@ from data_automation import reject, write_json_atomic
 RECENT_LAUNCHES = json.loads((Path(__file__).with_name('recent-calendar-evidence.json')).read_text())['shares']
 
 SECTORS = {
+    'Government Related': 'Émetteurs liés aux États',
+    'MBS Pass-Through': 'Titrisations hypothécaires avec transmission des flux',
     # iShares EM Value, official product 297452, checked 2026-10-15.
     # Preserve published sub-industry labels; never aggregate these as broad sectors.
     **{name:name for name in ['Steel', 'Automobile Manufacturers', 'Automotive Parts & Equipment', 'Marine Transportation', 'Copper', 'Aluminum', 'Specialized Finance', 'Gold', 'Diversified Chemicals', 'Precious Metals & Minerals', 'Construction & Engineering', 'Paper Products', 'Construction Materials', 'Tires & Rubber', 'Passenger Airlines', 'Construction Machinery & Heavy Transportation Equipment', 'Marine Ports & Services', 'Automotive Retail', 'Coal & Consumable Fuels', 'Oil & Gas Drilling', 'Renewable Electricity', 'Wireless Telecommunication Services', 'MULTI-LINE INSURANCE']},
@@ -91,10 +94,17 @@ def merge_collection(report, current, baseline, sibling_aum=None):
             characteristics.update(share.get('characteristics') or {'terPct': share['terPct'], 'index': share['index'], 'distribution': share['distribution']})
             # Monthly document facts must not overwrite more recent page facts.
             facts_date = share.get('characteristics', {}).get('asOf')
-            active_facts_date = old.get('characteristics', {}).get('asOf') or old.get('characteristics', {}).get('checkedAt', '')
+            active_facts_date = old.get('characteristics', {}).get('asOf')
+            # A poll is only a conservative bound when the observation date is
+            # unknown, never the date assigned to the data. A dated document may
+            # fill null/absent fields without replacing any known value.
+            known_values_unchanged = (bool(old.get('characteristics'))
+                and all(characteristics.get(k) == v for k,v in old['characteristics'].items()
+                        if v is not None and k not in AUDIT_DATES | {'sha256','sourceUrl','asOf'}))
+            date_bound = active_facts_date or old.get('characteristics', {}).get('checkedAt', '')
             if (checked >= old.get('characteristics', {}).get('checkedAt', '')
-                    and (not facts_date or not active_facts_date or facts_date > active_facts_date
-                         or (bool(old.get('characteristics')) and all(characteristics.get(k) == v for k,v in old.get('characteristics', {}).items() if k not in AUDIT_DATES | {'sha256','sourceUrl','asOf'})))):
+                    and (not facts_date or not date_bound or facts_date > date_bound
+                         or (known_values_unchanged and (not active_facts_date or facts_date == active_facts_date)))):
                 record['characteristics'] = checked_observation(characteristics, old.get('characteristics', {}), checked)
                 provenance = copy.deepcopy(old.get('characteristicChecks', {}))
                 for key in old.get('characteristics', {}):
@@ -105,6 +115,41 @@ def merge_collection(report, current, baseline, sibling_aum=None):
                     if key not in AUDIT_DATES | {'sha256','sourceUrl','asOf'}:
                         provenance[key] = {'checkedAt':checked, 'sourceUrl':observed.get('sourceUrl',share['sourceUrl']), 'asOf':observed.get('asOf')}
                 record['characteristicChecks'] = provenance
+            else:
+                # A current official document can corroborate an unchanged fee
+                # even while its older snapshot cannot replace a newer bundle
+                # (e.g. renewed listing receipts). Never re-date the value or
+                # borrow that control for the other characteristics.
+                observed = share.get('characteristics', {})
+                stamp, digest = observed.get('asOf'), observed.get('sha256')
+                try:
+                    valid_stamp = dt.date.fromisoformat(stamp).isoformat() == stamp and stamp <= checked
+                except (ValueError, TypeError):
+                    valid_stamp = False
+                if (share.get('sourceAttempted') is not False
+                        and share.get('sourceState') not in ('cached', 'not-attempted')
+                        and valid_stamp and re.fullmatch(r'[a-f0-9]{64}', str(digest))
+                        and observed.get('sourceUrl')):
+                    provenance = copy.deepcopy(old.get('characteristicChecks', {}))
+                    for key in ('terPct', 'annualSwapRatePct'):
+                        value, previous = observed.get(key), old.get('characteristics', {}).get(key)
+                        if (isinstance(value, bool) or not isinstance(value, (int, float))
+                                or isinstance(previous, bool) or not isinstance(previous, (int, float))
+                                or not math.isfinite(value) or value != previous):
+                            continue
+                        proof = provenance.get(key) or {
+                            'checkedAt': old['characteristics'].get('checkedAt'),
+                            'sourceUrl': old['characteristics'].get('sourceUrl', old.get('sourceUrl')),
+                            'asOf': old['characteristics'].get('asOf')}
+                        if checked < (proof.get('checkedAt') or ''):
+                            continue
+                        provenance[key] = {
+                            'checkedAt': checked, 'asOf': proof.get('asOf'),
+                            'sourceUrl': observed['sourceUrl'], 'sourceAsOf': stamp,
+                            'sha256': digest, 'controlMethod': 'unchanged-fee-corroboration',
+                            'observationEvidence': copy.deepcopy(proof.get('observationEvidence', proof))}
+                    if provenance != old.get('characteristicChecks', {}):
+                        record['characteristicChecks'] = provenance
         if share.get('fieldQualification') and checked >= old.get('qualificationCheckedAt', ''):
             record['fieldQualification'] = copy.deepcopy(share['fieldQualification'])
             record['qualificationCheckedAt'] = checked
@@ -119,7 +164,6 @@ def merge_collection(report, current, baseline, sibling_aum=None):
         years = performance['years']
         observations = performance.get('observations', [])
         for observation in observations:
-            import math
             date = dt.date.fromisoformat(observation['asOf'])
             value = observation['value']
             if (date.isoformat() > checked or not observation.get('label') or
@@ -131,7 +175,6 @@ def merge_collection(report, current, baseline, sibling_aum=None):
         if not years and not observations:
             next_records[isin] = record
             continue
-        import math
         if any(not str(y).isdigit() or int(y) >= int(checked[:4]) or
                isinstance(v, bool) or not isinstance(v, (int, float)) or
                not math.isfinite(v) or not -100 < v < 1000 for y, v in years.items()):

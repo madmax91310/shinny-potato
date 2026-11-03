@@ -1,0 +1,9 @@
+{
+  "query": "query ExactShareRefresh($portIds: [String!]!) {\n  funds(portIds: $portIds) {\n    profile {\n      portId fundFullName fundCurrency primaryMarketEquityClassification\n      identifiers(altIds: [\"ISIN\"]) { altId altIdValue }\n    }\n    performanceDetails { items { quarterlyReturns {\n      totalReturns(limit: -1, returnPeriodCodes: [ONE_YEAR], sortAsc: true) {\n        items { returnPeriod percent effectiveDate }\n      }\n    } } }\n    marketAllocation {\n      portId date countryCode countryName fundMktPercent holdingStatCode\n    }\n  }\n}",
+  "variables": {
+    "portIds": [
+      "9679"
+    ]
+  },
+  "operationName": "ExactShareRefresh"
+}

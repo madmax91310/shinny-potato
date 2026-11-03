@@ -1,0 +1,55 @@
+{
+  "source": "scripts/fixtures/official-documents/wisdomtree-ie-usd-eur-20261023.html.gz",
+  "method": "Actual issuer RSC component props for exact Cloud share, not matching a different date/API table",
+  "sections": [
+    {
+      "sectionKey": "holdings",
+      "entityId": "3104137",
+      "keys": [
+        "sectionId",
+        "sectionKey",
+        "sectionClassName",
+        "sectionTitle",
+        "ranking",
+        "entityId",
+        "fundHoldingDetails",
+        "tableFooter"
+      ],
+      "rankingRows": 65,
+      "classes": {
+        "('1', 'Fund')": 65
+      },
+      "otherValues": {
+        "sectionId": "holdings",
+        "sectionKey": "holdings",
+        "sectionClassName": "scroll-mt-30",
+        "sectionTitle": "Holdings",
+        "entityId": "3104137",
+        "fundHoldingDetails": "$undefined",
+        "tableFooter": "$L95"
+      }
+    },
+    {
+      "sectionKey": "sectorBreakdown",
+      "entityId": null,
+      "keys": [
+        "sectionId",
+        "sectionKey",
+        "sectionClassName",
+        "sectionTitle",
+        "ranking",
+        "holdings"
+      ],
+      "rankingRows": 4,
+      "classes": {
+        "('2', 'Sector')": 4
+      },
+      "otherValues": {
+        "sectionId": "sector-breakdown",
+        "sectionKey": "sectorBreakdown",
+        "sectionClassName": "scroll-mt-16",
+        "sectionTitle": "Sector Breakdown"
+      }
+    }
+  ]
+}

@@ -1367,5 +1367,13 @@ export const PORTFOLIO_RETURN_EVIDENCE = {
     "scope": "Rendements calendaires NAV de la part IE000RDRMSD1",
     "method": "Rendements de la part exacte dans la devise publiée ; années complètes indisponibles conservées null",
     "note": "Source de la série déjà recoupée dans verified-returns. asOf désigne la fin de la période de rendement, pas la publication ni la consultation. Les sources oppl.io sont des copies de documents émetteur. Contrôle individuel du 02/10/2026 : les rendements complets 2020–2025 disponibles concordent avec la publication. Capture data-review-2026-10-02.json. La date de contrôle ne modifie pas la période historique."
-  }
+  },
+ // Source consumed after the exact-share repair. Keep the producer's own
+ // observation/control dates; no new proof is inferred from this projection.
+ ...Object.fromEntries(['GB00BLD4ZL17','GB00BLD4ZM24','DE000A27Z304','IE00BKPSFC54','IE00BMW42413','IE00BKPX3K41'].map(isin=>{
+   const p=getInstrumentAnnualPerformance(isin),years=Object.keys(p.years).map(Number).filter(y=>Number.isFinite(p.years[y]))
+   return [isin,{sourceUrls:[p.source],sha256:p.sha256,checkedAt:p.checkedAt,asOf:p.asOf,
+     periodStart:`${Math.min(...years)}-01-01`,periodEnd:`${Math.max(...years)}-12-31`,currency:p.currency,
+     scope:`Part exacte ${isin}`,method:p.method,note:'Années complètes effectivement publiées ; aucune année absente complétée par un cours spot, un indice ou une autre part.'}]
+ }))
 };

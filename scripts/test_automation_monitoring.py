@@ -140,6 +140,9 @@ class MonitoringTests(unittest.TestCase):
         self.assertEqual(len(recovered['active']), 1)
         self.assertEqual(len(recovered['resolved']), 1)
         self.assertTrue(next(iter(recovered['active'].values()))['proofStatus']=='resolution-unproven')
+        observed_again = evaluate({**STATE, 'monitoring': recovered}, radar=radar)
+        renewed = next(r for r in observed_again['active'].values() if r.get('kind') == 'conflict')
+        self.assertNotIn('proofStatus', renewed, 'A reobserved source contradiction must not retain the historical-qualification marker')
 
     def test_repaired_field_gap_needs_exact_new_proof_and_cannot_clear_usage(self):
         identifier = 'gap:instrument:IE00BYZK4776:listings'

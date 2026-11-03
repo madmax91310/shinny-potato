@@ -1,0 +1,2831 @@
+{
+  "checkedAt": "2026-10-31T04:06:41.510862+00:00",
+  "id": "collection:update-editorial-radar.yml:radar-source:hanetf",
+  "run": 41163406543,
+  "event": "push",
+  "sourceCode": "d6c1bd7f22d6f391cae145310788da5a2287546e",
+  "dataBranchCommit": "89e5e5d1f5a7b2572330241ce3387a557f0eaca2",
+  "before": {
+    "id": "hanetf",
+    "name": "HANetf · communiqués UCITS",
+    "url": "https://hanetf.com/press_releases-sitemap.xml",
+    "method": "extra-hanetf-sitemap",
+    "depth": "24 URL anglaises les plus récemment modifiées du sitemap officiel ; lastmod ne date pas la publication, vérifiée dans chaque communiqué",
+    "attemptedAt": "2026-10-31T00:41:48.813Z",
+    "discovered": 24,
+    "etag": null,
+    "lastModified": null,
+    "checkedAt": "2026-10-31T00:41:48.773Z",
+    "lastSuccessAt": "2026-10-31T00:41:48.773Z",
+    "status": "ok",
+    "nextCheckAt": "2026-10-31T01:41:48.773Z",
+    "queue": {
+      "pending": 0,
+      "done": 26,
+      "error": 0,
+      "rejected": 0,
+      "partial": 0
+    },
+    "extractionStatus": "validated",
+    "lastExtractionSuccessAt": "2026-10-30T07:54:15.483Z",
+    "archiveWarning": null,
+    "silentBaselines": 0,
+    "discoveryVersion": 2,
+    "discoveryFailures": [],
+    "expectedListingItems": 24,
+    "discoveryDateEvidence": []
+  },
+  "after": {
+    "id": "hanetf",
+    "name": "HANetf · communiqués UCITS",
+    "url": "https://hanetf.com/press_releases-sitemap.xml",
+    "method": "extra-hanetf-sitemap",
+    "depth": "24 URL anglaises les plus récemment modifiées du sitemap officiel ; lastmod ne date pas la publication, vérifiée dans chaque communiqué",
+    "attemptedAt": "2026-10-31T03:14:02.983Z",
+    "discovered": 24,
+    "etag": null,
+    "lastModified": null,
+    "checkedAt": "2026-10-31T03:14:02.944Z",
+    "lastSuccessAt": "2026-10-31T03:14:02.944Z",
+    "status": "ok",
+    "nextCheckAt": "2026-10-31T04:14:02.944Z",
+    "queue": {
+      "pending": 0,
+      "done": 26,
+      "error": 0,
+      "rejected": 0,
+      "partial": 0
+    },
+    "extractionStatus": "validated",
+    "lastExtractionSuccessAt": "2026-10-30T07:54:15.483Z",
+    "archiveWarning": null,
+    "silentBaselines": 0,
+    "discoveryVersion": 2,
+    "discoveryFailures": [],
+    "expectedListingItems": 24,
+    "discoveryDateEvidence": []
+  },
+  "observedExpectedListingItems": 24,
+  "allArticlesCertified": false,
+  "newStatisticalValuesClaimed": 0,
+  "articleExtractionLastSuccess": "2026-10-30T07:54:15.483Z",
+  "publicationDateFromLastmod": false,
+  "publicHistoryRows": [
+    {
+      "name": "radar-source:hanetf",
+      "tools": [
+        "Radar éditorial"
+      ],
+      "impactScope": "collector",
+      "workflow": "update-editorial-radar.yml",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40233524650",
+      "to": "/donnees-a-revoir",
+      "lastSuccessAt": "2026-10-25T19:42:33.739Z",
+      "completedAt": "2026-10-25T21:03:20Z",
+      "sourcePhaseCompletedAt": "2026-10-25T21:03:20Z",
+      "runId": 40234172964,
+      "attempt": 1,
+      "attemptedDataIds": [],
+      "cause": "Résolution documentée · 2026-10-25T21:37:37.156203+00:00 · Liste officielle vide ou format modifié",
+      "field": "Champs du collecteur",
+      "evidence": {
+        "scopeExplicit": true,
+        "scopePlanVerified": true,
+        "producerContract": "producer-results-v1",
+        "file": "feed.json",
+        "sha256": "081fc220f6150cf7a488ed8a4d4b10a9f9fc9385ed0bf1987cc7c6782b413054",
+        "reportedAt": "2026-10-25T21:03:02.666Z",
+        "schema": "radar",
+        "artifactId": 12614275915,
+        "sourcePhaseStartedAt": "2026-10-25T21:01:50Z",
+        "sourcePhaseCompletedAt": "2026-10-25T21:03:20Z",
+        "scopeRef": "f596bf65869689759252fc24f9de90228924237e3d65b83a846b261ff5c464ba",
+        "scopeSummary": {
+          "kind": "editorial-radar-sources",
+          "expectedIdsCount": 62,
+          "requestedIdsCount": 62,
+          "networkRequestedIdsCount": 41
+        }
+      },
+      "sourceUrls": [
+        "https://hanetf.com/press-releases/"
+      ],
+      "attemptedAt": "2026-10-25T21:02:33.280Z",
+      "sourceAttempted": true,
+      "historicalDiscovery": true,
+      "kind": "history",
+      "dataId": "radar-source:hanetf",
+      "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-25T21:37:37.156203+00:00",
+      "firstSeenAt": "2026-10-25T21:04:27.136153+00:00",
+      "lastSeenAt": "2026-10-25T21:36:00.129141+00:00",
+      "observations": [
+        {
+          "cause": "Liste officielle vide ou format modifié",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40233524650",
+          "attemptedAt": "2026-10-25T21:02:33.280Z",
+          "completedAt": "2026-10-25T21:03:20Z",
+          "lastSuccessAt": "2026-10-25T19:42:33.739Z",
+          "sourceUrls": [
+            "https://hanetf.com/press-releases/"
+          ]
+        }
+      ],
+      "resolvedAt": "2026-10-25T21:37:37.156203+00:00",
+      "resolutionEvidence": {
+        "checkedAt": "2026-10-25T21:35:24.713Z",
+        "recordedAt": "2026-10-25T21:36:25Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40236150320",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "feed.json",
+          "sha256": "fa3873546102b7ac50213d40cc7d81d87749e3e07bed3f0f7c10bc64e9b53891",
+          "reportedAt": "2026-10-25T21:36:03.350Z",
+          "schema": "radar",
+          "artifactId": 12615136363,
+          "sourcePhaseStartedAt": "2026-10-25T21:34:51Z",
+          "sourcePhaseCompletedAt": "2026-10-25T21:36:25Z",
+          "scopeRef": "53b7b2af041181a1296244b6284d2671bbf3ee6eefe057333968383cabf74c6e",
+          "scopeSummary": {
+            "kind": "editorial-radar-sources",
+            "expectedIdsCount": 62,
+            "requestedIdsCount": 62,
+            "networkRequestedIdsCount": 19
+          }
+        },
+        "runId": 40236150320,
+        "attempt": 1,
+        "verifiedInAttempt": true
+      },
+      "stage": "Historique",
+      "signals": [
+        {
+          "name": "radar-source:hanetf",
+          "tools": [
+            "Radar éditorial"
+          ],
+          "impactScope": "collector",
+          "workflow": "update-editorial-radar.yml",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40233524650",
+          "to": "/donnees-a-revoir",
+          "lastSuccessAt": "2026-10-25T19:42:33.739Z",
+          "completedAt": "2026-10-25T21:03:20Z",
+          "sourcePhaseCompletedAt": "2026-10-25T21:03:20Z",
+          "runId": 40234172964,
+          "attempt": 1,
+          "attemptedDataIds": [],
+          "cause": "Résolution documentée · 2026-10-25T21:37:37.156203+00:00 · Liste officielle vide ou format modifié",
+          "field": "Champs du collecteur",
+          "evidence": {
+            "scopeExplicit": true,
+            "scopePlanVerified": true,
+            "producerContract": "producer-results-v1",
+            "file": "feed.json",
+            "sha256": "081fc220f6150cf7a488ed8a4d4b10a9f9fc9385ed0bf1987cc7c6782b413054",
+            "reportedAt": "2026-10-25T21:03:02.666Z",
+            "schema": "radar",
+            "artifactId": 12614275915,
+            "sourcePhaseStartedAt": "2026-10-25T21:01:50Z",
+            "sourcePhaseCompletedAt": "2026-10-25T21:03:20Z",
+            "scopeRef": "f596bf65869689759252fc24f9de90228924237e3d65b83a846b261ff5c464ba",
+            "scopeSummary": {
+              "kind": "editorial-radar-sources",
+              "expectedIdsCount": 62,
+              "requestedIdsCount": 62,
+              "networkRequestedIdsCount": 41
+            }
+          },
+          "sourceUrls": [
+            "https://hanetf.com/press-releases/"
+          ],
+          "attemptedAt": "2026-10-25T21:02:33.280Z",
+          "sourceAttempted": true,
+          "historicalDiscovery": true,
+          "kind": "history",
+          "dataId": "radar-source:hanetf",
+          "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-25T21:37:37.156203+00:00",
+          "firstSeenAt": "2026-10-25T21:04:27.136153+00:00",
+          "lastSeenAt": "2026-10-25T21:36:00.129141+00:00",
+          "observations": [
+            {
+              "cause": "Liste officielle vide ou format modifié",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40233524650",
+              "attemptedAt": "2026-10-25T21:02:33.280Z",
+              "completedAt": "2026-10-25T21:03:20Z",
+              "lastSuccessAt": "2026-10-25T19:42:33.739Z",
+              "sourceUrls": [
+                "https://hanetf.com/press-releases/"
+              ]
+            }
+          ],
+          "resolvedAt": "2026-10-25T21:37:37.156203+00:00",
+          "resolutionEvidence": {
+            "checkedAt": "2026-10-25T21:35:24.713Z",
+            "recordedAt": "2026-10-25T21:36:25Z",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40236150320",
+            "evidence": {
+              "scopeExplicit": true,
+              "scopePlanVerified": true,
+              "producerContract": "producer-results-v1",
+              "file": "feed.json",
+              "sha256": "fa3873546102b7ac50213d40cc7d81d87749e3e07bed3f0f7c10bc64e9b53891",
+              "reportedAt": "2026-10-25T21:36:03.350Z",
+              "schema": "radar",
+              "artifactId": 12615136363,
+              "sourcePhaseStartedAt": "2026-10-25T21:34:51Z",
+              "sourcePhaseCompletedAt": "2026-10-25T21:36:25Z",
+              "scopeRef": "53b7b2af041181a1296244b6284d2671bbf3ee6eefe057333968383cabf74c6e",
+              "scopeSummary": {
+                "kind": "editorial-radar-sources",
+                "expectedIdsCount": 62,
+                "requestedIdsCount": 62,
+                "networkRequestedIdsCount": 19
+              }
+            },
+            "runId": 40236150320,
+            "attempt": 1,
+            "verifiedInAttempt": true
+          },
+          "stage": "Historique"
+        }
+      ]
+    },
+    {
+      "name": "radar-source:hanetf",
+      "tools": [
+        "Radar éditorial"
+      ],
+      "impactScope": "collector",
+      "workflow": "update-editorial-radar.yml",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40301972709",
+      "to": "/donnees-a-revoir",
+      "lastSuccessAt": "2026-10-26T08:07:50.717Z",
+      "completedAt": "2026-10-26T09:47:13Z",
+      "sourcePhaseCompletedAt": "2026-10-26T09:47:13Z",
+      "runId": 40301972709,
+      "attempt": 1,
+      "attemptedDataIds": [
+        "radar-source:Communiqués Global X Europe",
+        "radar-source:Communiqués Vanguard",
+        "radar-source:banque-france-credit",
+        "radar-source:bercy",
+        "radar-source:cre-prix",
+        "radar-source:service-public",
+        "radar-source:vie-publique-actualites",
+        "radar-source:vie-publique-lois"
+      ],
+      "cause": "Résolution documentée · 2026-10-26T10:06:58.090501+00:00 · Liste officielle HANetf vide ou format modifié",
+      "field": "Champs du collecteur",
+      "evidence": {
+        "scopeExplicit": true,
+        "scopePlanVerified": true,
+        "producerContract": "producer-results-v1",
+        "file": "feed.json",
+        "sha256": "81456f1777f17dbdf67aace46be29e8b144aefcad6926baa3fa20f8a59e302c2",
+        "reportedAt": "2026-10-26T09:46:52.293Z",
+        "schema": "radar",
+        "artifactId": 12641575290,
+        "sourcePhaseStartedAt": "2026-10-26T09:45:29Z",
+        "sourcePhaseCompletedAt": "2026-10-26T09:47:13Z",
+        "scopeRef": "784509a9068c6d8b79a4eb07f5674ab761ca002ea27e937a2d431936ddc25d34",
+        "scopeSummary": {
+          "kind": "editorial-radar-sources",
+          "expectedIdsCount": 62,
+          "requestedIdsCount": 62,
+          "networkRequestedIdsCount": 13
+        }
+      },
+      "sourceUrls": [
+        "https://hanetf.com/press-releases/"
+      ],
+      "attemptedAt": "2026-10-26T09:46:05.456Z",
+      "sourceAttempted": true,
+      "historicalDiscovery": true,
+      "kind": "history",
+      "dataId": "radar-source:hanetf",
+      "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-26T10:06:58.090501+00:00",
+      "firstSeenAt": "2026-10-26T09:24:29.743621+00:00",
+      "lastSeenAt": "2026-10-26T09:59:00.890569+00:00",
+      "observations": [
+        {
+          "cause": "Liste officielle vide ou format modifié",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40298608489",
+          "attemptedAt": "2026-10-26T09:19:54.493Z",
+          "completedAt": "2026-10-26T09:21:20Z",
+          "lastSuccessAt": "2026-10-26T08:07:50.717Z",
+          "sourceUrls": [
+            "https://hanetf.com/press-releases/"
+          ]
+        },
+        {
+          "cause": "Liste officielle vide ou format modifié",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40298709346",
+          "attemptedAt": "2026-10-26T09:22:08.759Z",
+          "completedAt": "2026-10-26T09:23:40Z",
+          "lastSuccessAt": "2026-10-26T08:07:50.717Z",
+          "sourceUrls": [
+            "https://hanetf.com/press-releases/"
+          ]
+        },
+        {
+          "cause": "Liste officielle HANetf vide ou format modifié",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40301667965",
+          "attemptedAt": "2026-10-26T09:43:54.867Z",
+          "completedAt": "2026-10-26T09:45:26Z",
+          "lastSuccessAt": "2026-10-26T08:07:50.717Z",
+          "sourceUrls": [
+            "https://hanetf.com/press-releases/"
+          ]
+        },
+        {
+          "cause": "Liste officielle HANetf vide ou format modifié",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40301972709",
+          "attemptedAt": "2026-10-26T09:46:05.456Z",
+          "completedAt": "2026-10-26T09:47:13Z",
+          "lastSuccessAt": "2026-10-26T08:07:50.717Z",
+          "sourceUrls": [
+            "https://hanetf.com/press-releases/"
+          ]
+        }
+      ],
+      "resolvedAt": "2026-10-26T10:06:58.090501+00:00",
+      "resolutionEvidence": {
+        "checkedAt": "2026-10-26T10:04:57.016Z",
+        "recordedAt": "2026-10-26T10:05:49Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40304496177",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "feed.json",
+          "sha256": "70274583bf9393bce0ea08cf2e08f1bb1bfbcb5bea256cd1571a533c4d467ac8",
+          "reportedAt": "2026-10-26T10:05:24.916Z",
+          "schema": "radar",
+          "artifactId": 12642305167,
+          "sourcePhaseStartedAt": "2026-10-26T10:04:21Z",
+          "sourcePhaseCompletedAt": "2026-10-26T10:05:49Z",
+          "scopeRef": "42245417faa2d1e66d3eddc0c40a0233da13bd5eb5f409bafae9b3d422fecb17",
+          "scopeSummary": {
+            "kind": "editorial-radar-sources",
+            "expectedIdsCount": 62,
+            "requestedIdsCount": 62,
+            "networkRequestedIdsCount": 19
+          }
+        },
+        "runId": 40304496177,
+        "attempt": 1,
+        "verifiedInAttempt": true
+      },
+      "stage": "Historique",
+      "signals": [
+        {
+          "name": "radar-source:hanetf",
+          "tools": [
+            "Radar éditorial"
+          ],
+          "impactScope": "collector",
+          "workflow": "update-editorial-radar.yml",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40301972709",
+          "to": "/donnees-a-revoir",
+          "lastSuccessAt": "2026-10-26T08:07:50.717Z",
+          "completedAt": "2026-10-26T09:47:13Z",
+          "sourcePhaseCompletedAt": "2026-10-26T09:47:13Z",
+          "runId": 40301972709,
+          "attempt": 1,
+          "attemptedDataIds": [
+            "radar-source:Communiqués Global X Europe",
+            "radar-source:Communiqués Vanguard",
+            "radar-source:banque-france-credit",
+            "radar-source:bercy",
+            "radar-source:cre-prix",
+            "radar-source:service-public",
+            "radar-source:vie-publique-actualites",
+            "radar-source:vie-publique-lois"
+          ],
+          "cause": "Résolution documentée · 2026-10-26T10:06:58.090501+00:00 · Liste officielle HANetf vide ou format modifié",
+          "field": "Champs du collecteur",
+          "evidence": {
+            "scopeExplicit": true,
+            "scopePlanVerified": true,
+            "producerContract": "producer-results-v1",
+            "file": "feed.json",
+            "sha256": "81456f1777f17dbdf67aace46be29e8b144aefcad6926baa3fa20f8a59e302c2",
+            "reportedAt": "2026-10-26T09:46:52.293Z",
+            "schema": "radar",
+            "artifactId": 12641575290,
+            "sourcePhaseStartedAt": "2026-10-26T09:45:29Z",
+            "sourcePhaseCompletedAt": "2026-10-26T09:47:13Z",
+            "scopeRef": "784509a9068c6d8b79a4eb07f5674ab761ca002ea27e937a2d431936ddc25d34",
+            "scopeSummary": {
+              "kind": "editorial-radar-sources",
+              "expectedIdsCount": 62,
+              "requestedIdsCount": 62,
+              "networkRequestedIdsCount": 13
+            }
+          },
+          "sourceUrls": [
+            "https://hanetf.com/press-releases/"
+          ],
+          "attemptedAt": "2026-10-26T09:46:05.456Z",
+          "sourceAttempted": true,
+          "historicalDiscovery": true,
+          "kind": "history",
+          "dataId": "radar-source:hanetf",
+          "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-26T10:06:58.090501+00:00",
+          "firstSeenAt": "2026-10-26T09:24:29.743621+00:00",
+          "lastSeenAt": "2026-10-26T09:59:00.890569+00:00",
+          "observations": [
+            {
+              "cause": "Liste officielle vide ou format modifié",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40298608489",
+              "attemptedAt": "2026-10-26T09:19:54.493Z",
+              "completedAt": "2026-10-26T09:21:20Z",
+              "lastSuccessAt": "2026-10-26T08:07:50.717Z",
+              "sourceUrls": [
+                "https://hanetf.com/press-releases/"
+              ]
+            },
+            {
+              "cause": "Liste officielle vide ou format modifié",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40298709346",
+              "attemptedAt": "2026-10-26T09:22:08.759Z",
+              "completedAt": "2026-10-26T09:23:40Z",
+              "lastSuccessAt": "2026-10-26T08:07:50.717Z",
+              "sourceUrls": [
+                "https://hanetf.com/press-releases/"
+              ]
+            },
+            {
+              "cause": "Liste officielle HANetf vide ou format modifié",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40301667965",
+              "attemptedAt": "2026-10-26T09:43:54.867Z",
+              "completedAt": "2026-10-26T09:45:26Z",
+              "lastSuccessAt": "2026-10-26T08:07:50.717Z",
+              "sourceUrls": [
+                "https://hanetf.com/press-releases/"
+              ]
+            },
+            {
+              "cause": "Liste officielle HANetf vide ou format modifié",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40301972709",
+              "attemptedAt": "2026-10-26T09:46:05.456Z",
+              "completedAt": "2026-10-26T09:47:13Z",
+              "lastSuccessAt": "2026-10-26T08:07:50.717Z",
+              "sourceUrls": [
+                "https://hanetf.com/press-releases/"
+              ]
+            }
+          ],
+          "resolvedAt": "2026-10-26T10:06:58.090501+00:00",
+          "resolutionEvidence": {
+            "checkedAt": "2026-10-26T10:04:57.016Z",
+            "recordedAt": "2026-10-26T10:05:49Z",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40304496177",
+            "evidence": {
+              "scopeExplicit": true,
+              "scopePlanVerified": true,
+              "producerContract": "producer-results-v1",
+              "file": "feed.json",
+              "sha256": "70274583bf9393bce0ea08cf2e08f1bb1bfbcb5bea256cd1571a533c4d467ac8",
+              "reportedAt": "2026-10-26T10:05:24.916Z",
+              "schema": "radar",
+              "artifactId": 12642305167,
+              "sourcePhaseStartedAt": "2026-10-26T10:04:21Z",
+              "sourcePhaseCompletedAt": "2026-10-26T10:05:49Z",
+              "scopeRef": "42245417faa2d1e66d3eddc0c40a0233da13bd5eb5f409bafae9b3d422fecb17",
+              "scopeSummary": {
+                "kind": "editorial-radar-sources",
+                "expectedIdsCount": 62,
+                "requestedIdsCount": 62,
+                "networkRequestedIdsCount": 19
+              }
+            },
+            "runId": 40304496177,
+            "attempt": 1,
+            "verifiedInAttempt": true
+          },
+          "stage": "Historique"
+        }
+      ]
+    },
+    {
+      "name": "radar-source:hanetf",
+      "tools": [
+        "Radar éditorial"
+      ],
+      "impactScope": "collector",
+      "workflow": "update-editorial-radar.yml",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40483935875",
+      "to": "/donnees-a-revoir",
+      "lastSuccessAt": "2026-10-27T07:24:04.875Z",
+      "completedAt": "2026-10-27T09:52:37Z",
+      "sourcePhaseCompletedAt": "2026-10-27T09:52:37Z",
+      "runId": 40483935875,
+      "attempt": 1,
+      "attemptedDataIds": [
+        "radar-source:Communiqués Global X Europe",
+        "radar-source:Communiqués Vanguard",
+        "radar-source:afg",
+        "radar-source:amf-alerts",
+        "radar-source:banque-france-credit",
+        "radar-source:bdf-credit",
+        "radar-source:bdf-debt",
+        "radar-source:bdf-savings",
+        "radar-source:bercy",
+        "radar-source:bnp",
+        "radar-source:bnp-bank",
+        "radar-source:bourse-direct-news",
+        "radar-source:boursobank-news",
+        "radar-source:boursobank-offers",
+        "radar-source:boursobank-tariffs",
+        "radar-source:bpce-bank",
+        "radar-source:cm-cic",
+        "radar-source:cre-prix",
+        "radar-source:credit-agricole-news",
+        "radar-source:credit-logement",
+        "radar-source:dvf",
+        "radar-source:dws",
+        "radar-source:energie-info",
+        "radar-source:fortuneo-offers",
+        "radar-source:fortuneo-tariffs",
+        "radar-source:insee-conjoncture",
+        "radar-source:insee-publications",
+        "radar-source:insee-studies",
+        "radar-source:invesco",
+        "radar-source:lbp-tariffs",
+        "radar-source:moneyvox",
+        "radar-source:notaires-paris",
+        "radar-source:oll",
+        "radar-source:saxo-news",
+        "radar-source:service-public",
+        "radar-source:sg-bank",
+        "radar-source:spdr-news",
+        "radar-source:vie-publique-actualites",
+        "radar-source:vie-publique-lois",
+        "radar-source:xetra",
+        "radar-source:xtrackers"
+      ],
+      "evidence": {
+        "scopeExplicit": true,
+        "scopePlanVerified": true,
+        "producerContract": "producer-results-v1",
+        "file": "feed.json",
+        "sha256": "4579294ed0ec6831156c023b41fea98b07378390adaa15ccfe4d3ceb87694a1a",
+        "reportedAt": "2026-10-27T09:52:15.035Z",
+        "schema": "radar",
+        "artifactId": 12724107802,
+        "sourcePhaseStartedAt": "2026-10-27T09:51:13Z",
+        "sourcePhaseCompletedAt": "2026-10-27T09:52:37Z",
+        "scopeRef": "bda8a684be7830d7d7634638665139bf7f106ff3643dea76b76877e0738ac2a0",
+        "scopeSummary": {
+          "kind": "editorial-radar-sources",
+          "expectedIdsCount": 62,
+          "requestedIdsCount": 62,
+          "networkRequestedIdsCount": 47
+        }
+      },
+      "cause": "Résolution documentée · 2026-10-27T10:34:37.649592+00:00 · Sitemap officiel HANetf absent ou tronqué",
+      "sourceUrls": [
+        "https://hanetf.com/press_releases-sitemap.xml"
+      ],
+      "attemptedAt": "2026-10-27T09:52:01.277Z",
+      "sourceAttempted": true,
+      "kind": "history",
+      "field": "Champs du collecteur",
+      "dataId": "radar-source:hanetf",
+      "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-27T10:34:37.649592+00:00",
+      "firstSeenAt": "2026-10-27T09:53:56.567087+00:00",
+      "lastSeenAt": "2026-10-27T10:33:08.275819+00:00",
+      "observations": [
+        {
+          "cause": "Sitemap officiel HANetf absent ou tronqué",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40483935875",
+          "attemptedAt": "2026-10-27T09:52:01.277Z",
+          "completedAt": "2026-10-27T09:52:37Z",
+          "lastSuccessAt": "2026-10-27T07:24:04.875Z",
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ]
+        }
+      ],
+      "resolvedAt": "2026-10-27T10:34:37.649592+00:00",
+      "resolutionEvidence": {
+        "checkedAt": "2026-10-27T10:32:41.911Z",
+        "recordedAt": "2026-10-27T10:33:18Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40489188866",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "feed.json",
+          "sha256": "1626825b10b0a2a66ffb8b50cf8cddbf6f8ba6ca10d106fcab30c4ae0d2b307b",
+          "reportedAt": "2026-10-27T10:32:50.989Z",
+          "schema": "radar",
+          "artifactId": 12726651884,
+          "sourcePhaseStartedAt": "2026-10-27T10:31:55Z",
+          "sourcePhaseCompletedAt": "2026-10-27T10:33:18Z",
+          "scopeRef": "63a90c498a026822e81c088fd21c2cc77bdfac053a1507845d427752d5ae5504",
+          "scopeSummary": {
+            "kind": "editorial-radar-sources",
+            "expectedIdsCount": 62,
+            "requestedIdsCount": 62,
+            "networkRequestedIdsCount": 19
+          }
+        },
+        "runId": 40489188866,
+        "attempt": 1,
+        "verifiedInAttempt": true
+      },
+      "stage": "Historique",
+      "signals": [
+        {
+          "name": "radar-source:hanetf",
+          "tools": [
+            "Radar éditorial"
+          ],
+          "impactScope": "collector",
+          "workflow": "update-editorial-radar.yml",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40483935875",
+          "to": "/donnees-a-revoir",
+          "lastSuccessAt": "2026-10-27T07:24:04.875Z",
+          "completedAt": "2026-10-27T09:52:37Z",
+          "sourcePhaseCompletedAt": "2026-10-27T09:52:37Z",
+          "runId": 40483935875,
+          "attempt": 1,
+          "attemptedDataIds": [
+            "radar-source:Communiqués Global X Europe",
+            "radar-source:Communiqués Vanguard",
+            "radar-source:afg",
+            "radar-source:amf-alerts",
+            "radar-source:banque-france-credit",
+            "radar-source:bdf-credit",
+            "radar-source:bdf-debt",
+            "radar-source:bdf-savings",
+            "radar-source:bercy",
+            "radar-source:bnp",
+            "radar-source:bnp-bank",
+            "radar-source:bourse-direct-news",
+            "radar-source:boursobank-news",
+            "radar-source:boursobank-offers",
+            "radar-source:boursobank-tariffs",
+            "radar-source:bpce-bank",
+            "radar-source:cm-cic",
+            "radar-source:cre-prix",
+            "radar-source:credit-agricole-news",
+            "radar-source:credit-logement",
+            "radar-source:dvf",
+            "radar-source:dws",
+            "radar-source:energie-info",
+            "radar-source:fortuneo-offers",
+            "radar-source:fortuneo-tariffs",
+            "radar-source:insee-conjoncture",
+            "radar-source:insee-publications",
+            "radar-source:insee-studies",
+            "radar-source:invesco",
+            "radar-source:lbp-tariffs",
+            "radar-source:moneyvox",
+            "radar-source:notaires-paris",
+            "radar-source:oll",
+            "radar-source:saxo-news",
+            "radar-source:service-public",
+            "radar-source:sg-bank",
+            "radar-source:spdr-news",
+            "radar-source:vie-publique-actualites",
+            "radar-source:vie-publique-lois",
+            "radar-source:xetra",
+            "radar-source:xtrackers"
+          ],
+          "evidence": {
+            "scopeExplicit": true,
+            "scopePlanVerified": true,
+            "producerContract": "producer-results-v1",
+            "file": "feed.json",
+            "sha256": "4579294ed0ec6831156c023b41fea98b07378390adaa15ccfe4d3ceb87694a1a",
+            "reportedAt": "2026-10-27T09:52:15.035Z",
+            "schema": "radar",
+            "artifactId": 12724107802,
+            "sourcePhaseStartedAt": "2026-10-27T09:51:13Z",
+            "sourcePhaseCompletedAt": "2026-10-27T09:52:37Z",
+            "scopeRef": "bda8a684be7830d7d7634638665139bf7f106ff3643dea76b76877e0738ac2a0",
+            "scopeSummary": {
+              "kind": "editorial-radar-sources",
+              "expectedIdsCount": 62,
+              "requestedIdsCount": 62,
+              "networkRequestedIdsCount": 47
+            }
+          },
+          "cause": "Résolution documentée · 2026-10-27T10:34:37.649592+00:00 · Sitemap officiel HANetf absent ou tronqué",
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ],
+          "attemptedAt": "2026-10-27T09:52:01.277Z",
+          "sourceAttempted": true,
+          "kind": "history",
+          "field": "Champs du collecteur",
+          "dataId": "radar-source:hanetf",
+          "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-27T10:34:37.649592+00:00",
+          "firstSeenAt": "2026-10-27T09:53:56.567087+00:00",
+          "lastSeenAt": "2026-10-27T10:33:08.275819+00:00",
+          "observations": [
+            {
+              "cause": "Sitemap officiel HANetf absent ou tronqué",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40483935875",
+              "attemptedAt": "2026-10-27T09:52:01.277Z",
+              "completedAt": "2026-10-27T09:52:37Z",
+              "lastSuccessAt": "2026-10-27T07:24:04.875Z",
+              "sourceUrls": [
+                "https://hanetf.com/press_releases-sitemap.xml"
+              ]
+            }
+          ],
+          "resolvedAt": "2026-10-27T10:34:37.649592+00:00",
+          "resolutionEvidence": {
+            "checkedAt": "2026-10-27T10:32:41.911Z",
+            "recordedAt": "2026-10-27T10:33:18Z",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40489188866",
+            "evidence": {
+              "scopeExplicit": true,
+              "scopePlanVerified": true,
+              "producerContract": "producer-results-v1",
+              "file": "feed.json",
+              "sha256": "1626825b10b0a2a66ffb8b50cf8cddbf6f8ba6ca10d106fcab30c4ae0d2b307b",
+              "reportedAt": "2026-10-27T10:32:50.989Z",
+              "schema": "radar",
+              "artifactId": 12726651884,
+              "sourcePhaseStartedAt": "2026-10-27T10:31:55Z",
+              "sourcePhaseCompletedAt": "2026-10-27T10:33:18Z",
+              "scopeRef": "63a90c498a026822e81c088fd21c2cc77bdfac053a1507845d427752d5ae5504",
+              "scopeSummary": {
+                "kind": "editorial-radar-sources",
+                "expectedIdsCount": 62,
+                "requestedIdsCount": 62,
+                "networkRequestedIdsCount": 19
+              }
+            },
+            "runId": 40489188866,
+            "attempt": 1,
+            "verifiedInAttempt": true
+          },
+          "stage": "Historique"
+        }
+      ]
+    },
+    {
+      "name": "radar-source:hanetf",
+      "tools": [
+        "Radar éditorial"
+      ],
+      "impactScope": "collector",
+      "workflow": "update-editorial-radar.yml",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40500312705",
+      "to": "/donnees-a-revoir",
+      "lastSuccessAt": "2026-10-27T10:32:41.911Z",
+      "completedAt": "2026-10-27T12:01:14Z",
+      "sourcePhaseCompletedAt": "2026-10-27T12:01:14Z",
+      "runId": 40500312705,
+      "attempt": 1,
+      "attemptedDataIds": [
+        "radar-source:Communiqués Global X Europe",
+        "radar-source:Communiqués Vanguard",
+        "radar-source:afg",
+        "radar-source:banque-france-credit",
+        "radar-source:bercy",
+        "radar-source:bourse-direct-news",
+        "radar-source:boursobank-news",
+        "radar-source:boursobank-offers",
+        "radar-source:boursobank-tariffs",
+        "radar-source:cre-prix",
+        "radar-source:energie-info",
+        "radar-source:fortuneo-offers",
+        "radar-source:fortuneo-tariffs",
+        "radar-source:invesco",
+        "radar-source:lbp-tariffs",
+        "radar-source:moneyvox",
+        "radar-source:service-public",
+        "radar-source:spdr-news",
+        "radar-source:vie-publique-actualites",
+        "radar-source:vie-publique-lois"
+      ],
+      "evidence": {
+        "scopeExplicit": true,
+        "scopePlanVerified": true,
+        "producerContract": "producer-results-v1",
+        "file": "feed.json",
+        "sha256": "cac59fb16e3b8fc9875a7b55392feaacf5c777c89376eaa7863756e2023a5a8e",
+        "reportedAt": "2026-10-27T12:00:49.732Z",
+        "schema": "radar",
+        "artifactId": 12732353411,
+        "sourcePhaseStartedAt": "2026-10-27T11:59:53Z",
+        "sourcePhaseCompletedAt": "2026-10-27T12:01:14Z",
+        "scopeRef": "134fb63372b1c333574888cd211eab6f0cc68fc7d2454dc8031250d04228f61b",
+        "scopeSummary": {
+          "kind": "editorial-radar-sources",
+          "expectedIdsCount": 62,
+          "requestedIdsCount": 62,
+          "networkRequestedIdsCount": 26
+        }
+      },
+      "cause": "Résolution documentée · 2026-10-27T13:24:25.014817+00:00 · Sitemap officiel HANetf absent ou tronqué",
+      "sourceUrls": [
+        "https://hanetf.com/press_releases-sitemap.xml"
+      ],
+      "attemptedAt": "2026-10-27T12:00:37.019Z",
+      "sourceAttempted": true,
+      "kind": "history",
+      "field": "Champs du collecteur",
+      "dataId": "radar-source:hanetf",
+      "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-27T13:24:25.014817+00:00",
+      "firstSeenAt": "2026-10-27T11:35:21.740085+00:00",
+      "lastSeenAt": "2026-10-27T13:20:57.005694+00:00",
+      "observations": [
+        {
+          "cause": "Sitemap officiel HANetf absent ou tronqué",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40496751092",
+          "attemptedAt": "2026-10-27T11:32:58.619Z",
+          "completedAt": "2026-10-27T11:33:40Z",
+          "lastSuccessAt": "2026-10-27T10:32:41.911Z",
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ]
+        },
+        {
+          "cause": "Sitemap officiel HANetf absent ou tronqué",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40500312705",
+          "attemptedAt": "2026-10-27T12:00:37.019Z",
+          "completedAt": "2026-10-27T12:01:14Z",
+          "lastSuccessAt": "2026-10-27T10:32:41.911Z",
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ]
+        }
+      ],
+      "resolvedAt": "2026-10-27T13:24:25.014817+00:00",
+      "resolutionEvidence": {
+        "checkedAt": "2026-10-27T13:22:10.699Z",
+        "recordedAt": "2026-10-27T13:23:04Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40511052897",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "feed.json",
+          "sha256": "31f8c92cb4da5a786763e777ea95d6fcb9cb9e7522f30ef2292b754372c414e8",
+          "reportedAt": "2026-10-27T13:22:36.230Z",
+          "schema": "radar",
+          "artifactId": 12738151155,
+          "sourcePhaseStartedAt": "2026-10-27T13:19:44Z",
+          "sourcePhaseCompletedAt": "2026-10-27T13:23:04Z",
+          "scopeRef": "9edf4cbc9a67b8aecc8e3b6751459e41146c9c768df8fe465cb50fcfd95df05e",
+          "scopeSummary": {
+            "kind": "editorial-radar-sources",
+            "expectedIdsCount": 62,
+            "requestedIdsCount": 62,
+            "networkRequestedIdsCount": 40
+          }
+        },
+        "runId": 40511052897,
+        "attempt": 1,
+        "verifiedInAttempt": true
+      },
+      "stage": "Historique",
+      "signals": [
+        {
+          "name": "radar-source:hanetf",
+          "tools": [
+            "Radar éditorial"
+          ],
+          "impactScope": "collector",
+          "workflow": "update-editorial-radar.yml",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40500312705",
+          "to": "/donnees-a-revoir",
+          "lastSuccessAt": "2026-10-27T10:32:41.911Z",
+          "completedAt": "2026-10-27T12:01:14Z",
+          "sourcePhaseCompletedAt": "2026-10-27T12:01:14Z",
+          "runId": 40500312705,
+          "attempt": 1,
+          "attemptedDataIds": [
+            "radar-source:Communiqués Global X Europe",
+            "radar-source:Communiqués Vanguard",
+            "radar-source:afg",
+            "radar-source:banque-france-credit",
+            "radar-source:bercy",
+            "radar-source:bourse-direct-news",
+            "radar-source:boursobank-news",
+            "radar-source:boursobank-offers",
+            "radar-source:boursobank-tariffs",
+            "radar-source:cre-prix",
+            "radar-source:energie-info",
+            "radar-source:fortuneo-offers",
+            "radar-source:fortuneo-tariffs",
+            "radar-source:invesco",
+            "radar-source:lbp-tariffs",
+            "radar-source:moneyvox",
+            "radar-source:service-public",
+            "radar-source:spdr-news",
+            "radar-source:vie-publique-actualites",
+            "radar-source:vie-publique-lois"
+          ],
+          "evidence": {
+            "scopeExplicit": true,
+            "scopePlanVerified": true,
+            "producerContract": "producer-results-v1",
+            "file": "feed.json",
+            "sha256": "cac59fb16e3b8fc9875a7b55392feaacf5c777c89376eaa7863756e2023a5a8e",
+            "reportedAt": "2026-10-27T12:00:49.732Z",
+            "schema": "radar",
+            "artifactId": 12732353411,
+            "sourcePhaseStartedAt": "2026-10-27T11:59:53Z",
+            "sourcePhaseCompletedAt": "2026-10-27T12:01:14Z",
+            "scopeRef": "134fb63372b1c333574888cd211eab6f0cc68fc7d2454dc8031250d04228f61b",
+            "scopeSummary": {
+              "kind": "editorial-radar-sources",
+              "expectedIdsCount": 62,
+              "requestedIdsCount": 62,
+              "networkRequestedIdsCount": 26
+            }
+          },
+          "cause": "Résolution documentée · 2026-10-27T13:24:25.014817+00:00 · Sitemap officiel HANetf absent ou tronqué",
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ],
+          "attemptedAt": "2026-10-27T12:00:37.019Z",
+          "sourceAttempted": true,
+          "kind": "history",
+          "field": "Champs du collecteur",
+          "dataId": "radar-source:hanetf",
+          "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-27T13:24:25.014817+00:00",
+          "firstSeenAt": "2026-10-27T11:35:21.740085+00:00",
+          "lastSeenAt": "2026-10-27T13:20:57.005694+00:00",
+          "observations": [
+            {
+              "cause": "Sitemap officiel HANetf absent ou tronqué",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40496751092",
+              "attemptedAt": "2026-10-27T11:32:58.619Z",
+              "completedAt": "2026-10-27T11:33:40Z",
+              "lastSuccessAt": "2026-10-27T10:32:41.911Z",
+              "sourceUrls": [
+                "https://hanetf.com/press_releases-sitemap.xml"
+              ]
+            },
+            {
+              "cause": "Sitemap officiel HANetf absent ou tronqué",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40500312705",
+              "attemptedAt": "2026-10-27T12:00:37.019Z",
+              "completedAt": "2026-10-27T12:01:14Z",
+              "lastSuccessAt": "2026-10-27T10:32:41.911Z",
+              "sourceUrls": [
+                "https://hanetf.com/press_releases-sitemap.xml"
+              ]
+            }
+          ],
+          "resolvedAt": "2026-10-27T13:24:25.014817+00:00",
+          "resolutionEvidence": {
+            "checkedAt": "2026-10-27T13:22:10.699Z",
+            "recordedAt": "2026-10-27T13:23:04Z",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40511052897",
+            "evidence": {
+              "scopeExplicit": true,
+              "scopePlanVerified": true,
+              "producerContract": "producer-results-v1",
+              "file": "feed.json",
+              "sha256": "31f8c92cb4da5a786763e777ea95d6fcb9cb9e7522f30ef2292b754372c414e8",
+              "reportedAt": "2026-10-27T13:22:36.230Z",
+              "schema": "radar",
+              "artifactId": 12738151155,
+              "sourcePhaseStartedAt": "2026-10-27T13:19:44Z",
+              "sourcePhaseCompletedAt": "2026-10-27T13:23:04Z",
+              "scopeRef": "9edf4cbc9a67b8aecc8e3b6751459e41146c9c768df8fe465cb50fcfd95df05e",
+              "scopeSummary": {
+                "kind": "editorial-radar-sources",
+                "expectedIdsCount": 62,
+                "requestedIdsCount": 62,
+                "networkRequestedIdsCount": 40
+              }
+            },
+            "runId": 40511052897,
+            "attempt": 1,
+            "verifiedInAttempt": true
+          },
+          "stage": "Historique"
+        }
+      ]
+    },
+    {
+      "name": "radar-source:hanetf",
+      "tools": [
+        "Radar éditorial"
+      ],
+      "impactScope": "collector",
+      "workflow": "update-editorial-radar.yml",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40689535326",
+      "to": "/donnees-a-revoir",
+      "lastSuccessAt": "2026-10-28T11:37:31.086Z",
+      "completedAt": "2026-10-28T12:40:43Z",
+      "sourcePhaseCompletedAt": "2026-10-28T12:40:43Z",
+      "runId": 40689535326,
+      "attempt": 1,
+      "attemptedDataIds": [
+        "radar-source:Communiqués Global X Europe",
+        "radar-source:Communiqués Vanguard",
+        "radar-source:afg",
+        "radar-source:amf-alerts",
+        "radar-source:banque-france-credit",
+        "radar-source:bdf-credit",
+        "radar-source:bdf-debt",
+        "radar-source:bdf-savings",
+        "radar-source:bercy",
+        "radar-source:bnp",
+        "radar-source:bnp-bank",
+        "radar-source:bourse-direct-news",
+        "radar-source:boursobank-news",
+        "radar-source:bpce-bank",
+        "radar-source:cre-prix",
+        "radar-source:credit-agricole-news",
+        "radar-source:credit-logement",
+        "radar-source:dvf",
+        "radar-source:dws",
+        "radar-source:energie-info",
+        "radar-source:insee-conjoncture",
+        "radar-source:insee-publications",
+        "radar-source:insee-studies",
+        "radar-source:moneyvox",
+        "radar-source:notaires-paris",
+        "radar-source:oll",
+        "radar-source:saxo-news",
+        "radar-source:service-public",
+        "radar-source:sg-bank",
+        "radar-source:vie-publique-actualites",
+        "radar-source:vie-publique-lois",
+        "radar-source:xetra",
+        "radar-source:xtrackers"
+      ],
+      "evidence": {
+        "scopeExplicit": true,
+        "scopePlanVerified": true,
+        "producerContract": "producer-results-v1",
+        "file": "feed.json",
+        "sha256": "09785fe3de47e95c37236521aa1c810368ce8c2f1d55b5c2cc155f8fd29cb1a5",
+        "reportedAt": "2026-10-28T12:40:20.498Z",
+        "schema": "radar",
+        "artifactId": 12815839748,
+        "sourcePhaseStartedAt": "2026-10-28T12:38:57Z",
+        "sourcePhaseCompletedAt": "2026-10-28T12:40:43Z",
+        "scopeRef": "14e6a6f855812f174077bd1b0a5535d45eda19249c3645056770bb93d4973f71",
+        "scopeSummary": {
+          "kind": "editorial-radar-sources",
+          "expectedIdsCount": 62,
+          "requestedIdsCount": 62,
+          "networkRequestedIdsCount": 40
+        }
+      },
+      "cause": "Résolution documentée · 2026-10-28T14:07:47.315495+00:00 · Sitemap officiel HANetf absent ou tronqué",
+      "sourceUrls": [
+        "https://hanetf.com/press_releases-sitemap.xml"
+      ],
+      "attemptedAt": "2026-10-28T12:40:04.709Z",
+      "sourceAttempted": true,
+      "kind": "history",
+      "field": "Champs du collecteur",
+      "dataId": "radar-source:hanetf",
+      "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-28T14:07:47.315495+00:00",
+      "firstSeenAt": "2026-10-28T12:42:14.416273+00:00",
+      "lastSeenAt": "2026-10-28T14:06:14.509618+00:00",
+      "observations": [
+        {
+          "cause": "Sitemap officiel HANetf absent ou tronqué",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40689535326",
+          "attemptedAt": "2026-10-28T12:40:04.709Z",
+          "completedAt": "2026-10-28T12:40:43Z",
+          "lastSuccessAt": "2026-10-28T11:37:31.086Z",
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ]
+        }
+      ],
+      "resolvedAt": "2026-10-28T14:07:47.315495+00:00",
+      "resolutionEvidence": {
+        "checkedAt": "2026-10-28T14:05:06.189Z",
+        "recordedAt": "2026-10-28T14:05:46Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40702334567",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "feed.json",
+          "sha256": "52af32fe07e9917d41625d446717a8163bb9a2987384fe8027ec217aa6a524d8",
+          "reportedAt": "2026-10-28T14:05:25.835Z",
+          "schema": "radar",
+          "artifactId": 12821743084,
+          "sourcePhaseStartedAt": "2026-10-28T14:04:21Z",
+          "sourcePhaseCompletedAt": "2026-10-28T14:05:46Z",
+          "scopeRef": "b51f266bd43cd23aabfbce9b5598b570e518152110d53bb62e6409bbd0d4ba4a",
+          "scopeSummary": {
+            "kind": "editorial-radar-sources",
+            "expectedIdsCount": 62,
+            "requestedIdsCount": 62,
+            "networkRequestedIdsCount": 47
+          }
+        },
+        "runId": 40702334567,
+        "attempt": 1,
+        "verifiedInAttempt": true
+      },
+      "stage": "Historique",
+      "signals": [
+        {
+          "name": "radar-source:hanetf",
+          "tools": [
+            "Radar éditorial"
+          ],
+          "impactScope": "collector",
+          "workflow": "update-editorial-radar.yml",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40689535326",
+          "to": "/donnees-a-revoir",
+          "lastSuccessAt": "2026-10-28T11:37:31.086Z",
+          "completedAt": "2026-10-28T12:40:43Z",
+          "sourcePhaseCompletedAt": "2026-10-28T12:40:43Z",
+          "runId": 40689535326,
+          "attempt": 1,
+          "attemptedDataIds": [
+            "radar-source:Communiqués Global X Europe",
+            "radar-source:Communiqués Vanguard",
+            "radar-source:afg",
+            "radar-source:amf-alerts",
+            "radar-source:banque-france-credit",
+            "radar-source:bdf-credit",
+            "radar-source:bdf-debt",
+            "radar-source:bdf-savings",
+            "radar-source:bercy",
+            "radar-source:bnp",
+            "radar-source:bnp-bank",
+            "radar-source:bourse-direct-news",
+            "radar-source:boursobank-news",
+            "radar-source:bpce-bank",
+            "radar-source:cre-prix",
+            "radar-source:credit-agricole-news",
+            "radar-source:credit-logement",
+            "radar-source:dvf",
+            "radar-source:dws",
+            "radar-source:energie-info",
+            "radar-source:insee-conjoncture",
+            "radar-source:insee-publications",
+            "radar-source:insee-studies",
+            "radar-source:moneyvox",
+            "radar-source:notaires-paris",
+            "radar-source:oll",
+            "radar-source:saxo-news",
+            "radar-source:service-public",
+            "radar-source:sg-bank",
+            "radar-source:vie-publique-actualites",
+            "radar-source:vie-publique-lois",
+            "radar-source:xetra",
+            "radar-source:xtrackers"
+          ],
+          "evidence": {
+            "scopeExplicit": true,
+            "scopePlanVerified": true,
+            "producerContract": "producer-results-v1",
+            "file": "feed.json",
+            "sha256": "09785fe3de47e95c37236521aa1c810368ce8c2f1d55b5c2cc155f8fd29cb1a5",
+            "reportedAt": "2026-10-28T12:40:20.498Z",
+            "schema": "radar",
+            "artifactId": 12815839748,
+            "sourcePhaseStartedAt": "2026-10-28T12:38:57Z",
+            "sourcePhaseCompletedAt": "2026-10-28T12:40:43Z",
+            "scopeRef": "14e6a6f855812f174077bd1b0a5535d45eda19249c3645056770bb93d4973f71",
+            "scopeSummary": {
+              "kind": "editorial-radar-sources",
+              "expectedIdsCount": 62,
+              "requestedIdsCount": 62,
+              "networkRequestedIdsCount": 40
+            }
+          },
+          "cause": "Résolution documentée · 2026-10-28T14:07:47.315495+00:00 · Sitemap officiel HANetf absent ou tronqué",
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ],
+          "attemptedAt": "2026-10-28T12:40:04.709Z",
+          "sourceAttempted": true,
+          "kind": "history",
+          "field": "Champs du collecteur",
+          "dataId": "radar-source:hanetf",
+          "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-28T14:07:47.315495+00:00",
+          "firstSeenAt": "2026-10-28T12:42:14.416273+00:00",
+          "lastSeenAt": "2026-10-28T14:06:14.509618+00:00",
+          "observations": [
+            {
+              "cause": "Sitemap officiel HANetf absent ou tronqué",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40689535326",
+              "attemptedAt": "2026-10-28T12:40:04.709Z",
+              "completedAt": "2026-10-28T12:40:43Z",
+              "lastSuccessAt": "2026-10-28T11:37:31.086Z",
+              "sourceUrls": [
+                "https://hanetf.com/press_releases-sitemap.xml"
+              ]
+            }
+          ],
+          "resolvedAt": "2026-10-28T14:07:47.315495+00:00",
+          "resolutionEvidence": {
+            "checkedAt": "2026-10-28T14:05:06.189Z",
+            "recordedAt": "2026-10-28T14:05:46Z",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40702334567",
+            "evidence": {
+              "scopeExplicit": true,
+              "scopePlanVerified": true,
+              "producerContract": "producer-results-v1",
+              "file": "feed.json",
+              "sha256": "52af32fe07e9917d41625d446717a8163bb9a2987384fe8027ec217aa6a524d8",
+              "reportedAt": "2026-10-28T14:05:25.835Z",
+              "schema": "radar",
+              "artifactId": 12821743084,
+              "sourcePhaseStartedAt": "2026-10-28T14:04:21Z",
+              "sourcePhaseCompletedAt": "2026-10-28T14:05:46Z",
+              "scopeRef": "b51f266bd43cd23aabfbce9b5598b570e518152110d53bb62e6409bbd0d4ba4a",
+              "scopeSummary": {
+                "kind": "editorial-radar-sources",
+                "expectedIdsCount": 62,
+                "requestedIdsCount": 62,
+                "networkRequestedIdsCount": 47
+              }
+            },
+            "runId": 40702334567,
+            "attempt": 1,
+            "verifiedInAttempt": true
+          },
+          "stage": "Historique"
+        }
+      ]
+    },
+    {
+      "name": "radar-source:hanetf",
+      "tools": [
+        "Radar éditorial"
+      ],
+      "impactScope": "collector",
+      "workflow": "update-editorial-radar.yml",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40841747894",
+      "to": "/donnees-a-revoir",
+      "lastSuccessAt": "2026-10-29T07:19:15.176Z",
+      "completedAt": "2026-10-29T08:24:49Z",
+      "sourcePhaseCompletedAt": "2026-10-29T08:24:49Z",
+      "runId": 40841747894,
+      "attempt": 1,
+      "attemptedDataIds": [
+        "radar-source:Communiqués Global X Europe",
+        "radar-source:Communiqués Vanguard",
+        "radar-source:afg",
+        "radar-source:amf-alerts",
+        "radar-source:banque-france-credit",
+        "radar-source:bdf-credit",
+        "radar-source:bdf-debt",
+        "radar-source:bdf-savings",
+        "radar-source:bercy",
+        "radar-source:bnp",
+        "radar-source:bnp-bank",
+        "radar-source:bourse-direct-news",
+        "radar-source:boursobank-news",
+        "radar-source:bpce-bank",
+        "radar-source:cre-prix",
+        "radar-source:credit-agricole-news",
+        "radar-source:credit-logement",
+        "radar-source:degiro-news",
+        "radar-source:dvf",
+        "radar-source:dws",
+        "radar-source:energie-info",
+        "radar-source:fortuneo-news",
+        "radar-source:ibkr-news",
+        "radar-source:insee-calendar",
+        "radar-source:insee-conjoncture",
+        "radar-source:insee-publications",
+        "radar-source:insee-studies",
+        "radar-source:lcl-news",
+        "radar-source:moneyvox",
+        "radar-source:notaires-paris",
+        "radar-source:oll",
+        "radar-source:saxo-news",
+        "radar-source:service-public",
+        "radar-source:sg-bank",
+        "radar-source:spdr",
+        "radar-source:vie-publique-actualites",
+        "radar-source:vie-publique-lois",
+        "radar-source:xetra",
+        "radar-source:xtb-news",
+        "radar-source:xtrackers"
+      ],
+      "evidence": {
+        "scopeExplicit": true,
+        "scopePlanVerified": true,
+        "producerContract": "producer-results-v1",
+        "file": "feed.json",
+        "sha256": "25252ca06799139936f0058fa165de7305ccd89772ecb51d127c08f66a18bd51",
+        "reportedAt": "2026-10-29T08:24:23.391Z",
+        "schema": "radar",
+        "artifactId": 12883545506,
+        "sourcePhaseStartedAt": "2026-10-29T08:23:14Z",
+        "sourcePhaseCompletedAt": "2026-10-29T08:24:49Z",
+        "scopeRef": "0a4cdfee7a362bed6e05cd85bdd1555d22153bd4359be6fc477d7e705e484d2a",
+        "scopeSummary": {
+          "kind": "editorial-radar-sources",
+          "expectedIdsCount": 62,
+          "requestedIdsCount": 62,
+          "networkRequestedIdsCount": 49
+        }
+      },
+      "cause": "Résolution documentée · 2026-10-29T08:31:57.158182+00:00 · Sitemap officiel HANetf absent ou tronqué",
+      "sourceUrls": [
+        "https://hanetf.com/press_releases-sitemap.xml"
+      ],
+      "attemptedAt": "2026-10-29T08:23:57.387Z",
+      "sourceAttempted": true,
+      "kind": "history",
+      "field": "Champs du collecteur",
+      "dataId": "radar-source:hanetf",
+      "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-29T08:31:57.158182+00:00",
+      "firstSeenAt": "2026-10-29T08:27:45.809064+00:00",
+      "lastSeenAt": "2026-10-29T08:29:49.432892+00:00",
+      "observations": [
+        {
+          "cause": "Sitemap officiel HANetf absent ou tronqué",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40841747894",
+          "attemptedAt": "2026-10-29T08:23:57.387Z",
+          "completedAt": "2026-10-29T08:24:49Z",
+          "lastSuccessAt": "2026-10-29T07:19:15.176Z",
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ]
+        }
+      ],
+      "resolvedAt": "2026-10-29T08:31:57.158182+00:00",
+      "resolutionEvidence": {
+        "checkedAt": "2026-10-29T08:25:53.862Z",
+        "recordedAt": "2026-10-29T08:26:40Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40841979206",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "feed.json",
+          "sha256": "220550eedfa2bd474c17a15782d91121e42ee4c353cf7de49815c528ded83738",
+          "reportedAt": "2026-10-29T08:26:17.211Z",
+          "schema": "radar",
+          "artifactId": 12883336613,
+          "sourcePhaseStartedAt": "2026-10-29T08:25:10Z",
+          "sourcePhaseCompletedAt": "2026-10-29T08:26:40Z",
+          "scopeRef": "df651c58a976f0b30da7dd9c1b2ec9ff2c2577cdec9f6f65dd4d14ee227379b7",
+          "scopeSummary": {
+            "kind": "editorial-radar-sources",
+            "expectedIdsCount": 62,
+            "requestedIdsCount": 62,
+            "networkRequestedIdsCount": 14
+          }
+        },
+        "runId": 40841979206,
+        "attempt": 1,
+        "verifiedInAttempt": true
+      },
+      "stage": "Historique",
+      "signals": [
+        {
+          "name": "radar-source:hanetf",
+          "tools": [
+            "Radar éditorial"
+          ],
+          "impactScope": "collector",
+          "workflow": "update-editorial-radar.yml",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40841747894",
+          "to": "/donnees-a-revoir",
+          "lastSuccessAt": "2026-10-29T07:19:15.176Z",
+          "completedAt": "2026-10-29T08:24:49Z",
+          "sourcePhaseCompletedAt": "2026-10-29T08:24:49Z",
+          "runId": 40841747894,
+          "attempt": 1,
+          "attemptedDataIds": [
+            "radar-source:Communiqués Global X Europe",
+            "radar-source:Communiqués Vanguard",
+            "radar-source:afg",
+            "radar-source:amf-alerts",
+            "radar-source:banque-france-credit",
+            "radar-source:bdf-credit",
+            "radar-source:bdf-debt",
+            "radar-source:bdf-savings",
+            "radar-source:bercy",
+            "radar-source:bnp",
+            "radar-source:bnp-bank",
+            "radar-source:bourse-direct-news",
+            "radar-source:boursobank-news",
+            "radar-source:bpce-bank",
+            "radar-source:cre-prix",
+            "radar-source:credit-agricole-news",
+            "radar-source:credit-logement",
+            "radar-source:degiro-news",
+            "radar-source:dvf",
+            "radar-source:dws",
+            "radar-source:energie-info",
+            "radar-source:fortuneo-news",
+            "radar-source:ibkr-news",
+            "radar-source:insee-calendar",
+            "radar-source:insee-conjoncture",
+            "radar-source:insee-publications",
+            "radar-source:insee-studies",
+            "radar-source:lcl-news",
+            "radar-source:moneyvox",
+            "radar-source:notaires-paris",
+            "radar-source:oll",
+            "radar-source:saxo-news",
+            "radar-source:service-public",
+            "radar-source:sg-bank",
+            "radar-source:spdr",
+            "radar-source:vie-publique-actualites",
+            "radar-source:vie-publique-lois",
+            "radar-source:xetra",
+            "radar-source:xtb-news",
+            "radar-source:xtrackers"
+          ],
+          "evidence": {
+            "scopeExplicit": true,
+            "scopePlanVerified": true,
+            "producerContract": "producer-results-v1",
+            "file": "feed.json",
+            "sha256": "25252ca06799139936f0058fa165de7305ccd89772ecb51d127c08f66a18bd51",
+            "reportedAt": "2026-10-29T08:24:23.391Z",
+            "schema": "radar",
+            "artifactId": 12883545506,
+            "sourcePhaseStartedAt": "2026-10-29T08:23:14Z",
+            "sourcePhaseCompletedAt": "2026-10-29T08:24:49Z",
+            "scopeRef": "0a4cdfee7a362bed6e05cd85bdd1555d22153bd4359be6fc477d7e705e484d2a",
+            "scopeSummary": {
+              "kind": "editorial-radar-sources",
+              "expectedIdsCount": 62,
+              "requestedIdsCount": 62,
+              "networkRequestedIdsCount": 49
+            }
+          },
+          "cause": "Résolution documentée · 2026-10-29T08:31:57.158182+00:00 · Sitemap officiel HANetf absent ou tronqué",
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ],
+          "attemptedAt": "2026-10-29T08:23:57.387Z",
+          "sourceAttempted": true,
+          "kind": "history",
+          "field": "Champs du collecteur",
+          "dataId": "radar-source:hanetf",
+          "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-29T08:31:57.158182+00:00",
+          "firstSeenAt": "2026-10-29T08:27:45.809064+00:00",
+          "lastSeenAt": "2026-10-29T08:29:49.432892+00:00",
+          "observations": [
+            {
+              "cause": "Sitemap officiel HANetf absent ou tronqué",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40841747894",
+              "attemptedAt": "2026-10-29T08:23:57.387Z",
+              "completedAt": "2026-10-29T08:24:49Z",
+              "lastSuccessAt": "2026-10-29T07:19:15.176Z",
+              "sourceUrls": [
+                "https://hanetf.com/press_releases-sitemap.xml"
+              ]
+            }
+          ],
+          "resolvedAt": "2026-10-29T08:31:57.158182+00:00",
+          "resolutionEvidence": {
+            "checkedAt": "2026-10-29T08:25:53.862Z",
+            "recordedAt": "2026-10-29T08:26:40Z",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40841979206",
+            "evidence": {
+              "scopeExplicit": true,
+              "scopePlanVerified": true,
+              "producerContract": "producer-results-v1",
+              "file": "feed.json",
+              "sha256": "220550eedfa2bd474c17a15782d91121e42ee4c353cf7de49815c528ded83738",
+              "reportedAt": "2026-10-29T08:26:17.211Z",
+              "schema": "radar",
+              "artifactId": 12883336613,
+              "sourcePhaseStartedAt": "2026-10-29T08:25:10Z",
+              "sourcePhaseCompletedAt": "2026-10-29T08:26:40Z",
+              "scopeRef": "df651c58a976f0b30da7dd9c1b2ec9ff2c2577cdec9f6f65dd4d14ee227379b7",
+              "scopeSummary": {
+                "kind": "editorial-radar-sources",
+                "expectedIdsCount": 62,
+                "requestedIdsCount": 62,
+                "networkRequestedIdsCount": 14
+              }
+            },
+            "runId": 40841979206,
+            "attempt": 1,
+            "verifiedInAttempt": true
+          },
+          "stage": "Historique"
+        }
+      ]
+    },
+    {
+      "name": "radar-source:hanetf",
+      "tools": [
+        "Radar éditorial"
+      ],
+      "impactScope": "collector",
+      "workflow": "update-editorial-radar.yml",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40980852311",
+      "to": "/donnees-a-revoir",
+      "lastSuccessAt": "2026-10-29T22:37:18.354Z",
+      "completedAt": "2026-10-30T00:39:11Z",
+      "sourcePhaseCompletedAt": "2026-10-30T00:39:11Z",
+      "runId": 40980852311,
+      "attempt": 1,
+      "attemptedDataIds": [
+        "radar-source:Communiqués Global X Europe",
+        "radar-source:Communiqués Vanguard",
+        "radar-source:banque-france-credit",
+        "radar-source:bercy",
+        "radar-source:cre-prix",
+        "radar-source:service-public",
+        "radar-source:vie-publique-actualites",
+        "radar-source:vie-publique-lois"
+      ],
+      "cause": "Résolution documentée · 2026-10-30T01:21:13.598099+00:00 · Sitemap officiel HANetf absent ou tronqué",
+      "field": "Champs du collecteur",
+      "evidence": {
+        "scopeExplicit": true,
+        "scopePlanVerified": true,
+        "producerContract": "producer-results-v1",
+        "file": "feed.json",
+        "sha256": "b4c4920d1a9c2a369cca2d25f45f94403a62621132c7816dc5f3025bade560bb",
+        "reportedAt": "2026-10-30T00:38:45.009Z",
+        "schema": "radar",
+        "artifactId": 12944657781,
+        "sourcePhaseStartedAt": "2026-10-30T00:37:35Z",
+        "sourcePhaseCompletedAt": "2026-10-30T00:39:11Z",
+        "scopeRef": "f0784ccdaef8b0cea2720e739d2dee081e92c0ea9036b4185c1d350b41e4cc77",
+        "scopeSummary": {
+          "kind": "editorial-radar-sources",
+          "expectedIdsCount": 62,
+          "requestedIdsCount": 62,
+          "networkRequestedIdsCount": 13
+        }
+      },
+      "sourceUrls": [
+        "https://hanetf.com/press_releases-sitemap.xml"
+      ],
+      "attemptedAt": "2026-10-30T00:38:23.138Z",
+      "sourceAttempted": true,
+      "historicalDiscovery": true,
+      "kind": "history",
+      "dataId": "radar-source:hanetf",
+      "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-30T01:21:13.598099+00:00",
+      "firstSeenAt": "2026-10-30T00:39:55.691495+00:00",
+      "lastSeenAt": "2026-10-30T01:19:01.342646+00:00",
+      "observations": [
+        {
+          "cause": "Sitemap officiel HANetf absent ou tronqué",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40980306593",
+          "attemptedAt": "2026-10-30T00:33:21.510Z",
+          "completedAt": "2026-10-30T00:34:20Z",
+          "lastSuccessAt": "2026-10-29T22:37:18.354Z",
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ]
+        },
+        {
+          "cause": "Sitemap officiel HANetf absent ou tronqué",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40980852311",
+          "attemptedAt": "2026-10-30T00:38:23.138Z",
+          "completedAt": "2026-10-30T00:39:11Z",
+          "lastSuccessAt": "2026-10-29T22:37:18.354Z",
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ]
+        }
+      ],
+      "resolvedAt": "2026-10-30T01:21:13.598099+00:00",
+      "resolutionEvidence": {
+        "checkedAt": "2026-10-30T01:17:51.551Z",
+        "recordedAt": "2026-10-30T01:18:49Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40984912928",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "feed.json",
+          "sha256": "e8694c1fee98c66359e356059f8e8f17ea32cf9a891df22e17a0b5e9bd0b4d94",
+          "reportedAt": "2026-10-30T01:18:26.345Z",
+          "schema": "radar",
+          "artifactId": 12945484790,
+          "sourcePhaseStartedAt": "2026-10-30T01:17:10Z",
+          "sourcePhaseCompletedAt": "2026-10-30T01:18:49Z",
+          "scopeRef": "84cdc536ab54b6cae249d7430ac8134def3819f7790322451aeec3583ef6d6d0",
+          "scopeSummary": {
+            "kind": "editorial-radar-sources",
+            "expectedIdsCount": 62,
+            "requestedIdsCount": 62,
+            "networkRequestedIdsCount": 19
+          }
+        },
+        "runId": 40984912928,
+        "attempt": 1,
+        "verifiedInAttempt": true
+      },
+      "stage": "Historique",
+      "signals": [
+        {
+          "name": "radar-source:hanetf",
+          "tools": [
+            "Radar éditorial"
+          ],
+          "impactScope": "collector",
+          "workflow": "update-editorial-radar.yml",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40980852311",
+          "to": "/donnees-a-revoir",
+          "lastSuccessAt": "2026-10-29T22:37:18.354Z",
+          "completedAt": "2026-10-30T00:39:11Z",
+          "sourcePhaseCompletedAt": "2026-10-30T00:39:11Z",
+          "runId": 40980852311,
+          "attempt": 1,
+          "attemptedDataIds": [
+            "radar-source:Communiqués Global X Europe",
+            "radar-source:Communiqués Vanguard",
+            "radar-source:banque-france-credit",
+            "radar-source:bercy",
+            "radar-source:cre-prix",
+            "radar-source:service-public",
+            "radar-source:vie-publique-actualites",
+            "radar-source:vie-publique-lois"
+          ],
+          "cause": "Résolution documentée · 2026-10-30T01:21:13.598099+00:00 · Sitemap officiel HANetf absent ou tronqué",
+          "field": "Champs du collecteur",
+          "evidence": {
+            "scopeExplicit": true,
+            "scopePlanVerified": true,
+            "producerContract": "producer-results-v1",
+            "file": "feed.json",
+            "sha256": "b4c4920d1a9c2a369cca2d25f45f94403a62621132c7816dc5f3025bade560bb",
+            "reportedAt": "2026-10-30T00:38:45.009Z",
+            "schema": "radar",
+            "artifactId": 12944657781,
+            "sourcePhaseStartedAt": "2026-10-30T00:37:35Z",
+            "sourcePhaseCompletedAt": "2026-10-30T00:39:11Z",
+            "scopeRef": "f0784ccdaef8b0cea2720e739d2dee081e92c0ea9036b4185c1d350b41e4cc77",
+            "scopeSummary": {
+              "kind": "editorial-radar-sources",
+              "expectedIdsCount": 62,
+              "requestedIdsCount": 62,
+              "networkRequestedIdsCount": 13
+            }
+          },
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ],
+          "attemptedAt": "2026-10-30T00:38:23.138Z",
+          "sourceAttempted": true,
+          "historicalDiscovery": true,
+          "kind": "history",
+          "dataId": "radar-source:hanetf",
+          "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-30T01:21:13.598099+00:00",
+          "firstSeenAt": "2026-10-30T00:39:55.691495+00:00",
+          "lastSeenAt": "2026-10-30T01:19:01.342646+00:00",
+          "observations": [
+            {
+              "cause": "Sitemap officiel HANetf absent ou tronqué",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40980306593",
+              "attemptedAt": "2026-10-30T00:33:21.510Z",
+              "completedAt": "2026-10-30T00:34:20Z",
+              "lastSuccessAt": "2026-10-29T22:37:18.354Z",
+              "sourceUrls": [
+                "https://hanetf.com/press_releases-sitemap.xml"
+              ]
+            },
+            {
+              "cause": "Sitemap officiel HANetf absent ou tronqué",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40980852311",
+              "attemptedAt": "2026-10-30T00:38:23.138Z",
+              "completedAt": "2026-10-30T00:39:11Z",
+              "lastSuccessAt": "2026-10-29T22:37:18.354Z",
+              "sourceUrls": [
+                "https://hanetf.com/press_releases-sitemap.xml"
+              ]
+            }
+          ],
+          "resolvedAt": "2026-10-30T01:21:13.598099+00:00",
+          "resolutionEvidence": {
+            "checkedAt": "2026-10-30T01:17:51.551Z",
+            "recordedAt": "2026-10-30T01:18:49Z",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40984912928",
+            "evidence": {
+              "scopeExplicit": true,
+              "scopePlanVerified": true,
+              "producerContract": "producer-results-v1",
+              "file": "feed.json",
+              "sha256": "e8694c1fee98c66359e356059f8e8f17ea32cf9a891df22e17a0b5e9bd0b4d94",
+              "reportedAt": "2026-10-30T01:18:26.345Z",
+              "schema": "radar",
+              "artifactId": 12945484790,
+              "sourcePhaseStartedAt": "2026-10-30T01:17:10Z",
+              "sourcePhaseCompletedAt": "2026-10-30T01:18:49Z",
+              "scopeRef": "84cdc536ab54b6cae249d7430ac8134def3819f7790322451aeec3583ef6d6d0",
+              "scopeSummary": {
+                "kind": "editorial-radar-sources",
+                "expectedIdsCount": 62,
+                "requestedIdsCount": 62,
+                "networkRequestedIdsCount": 19
+              }
+            },
+            "runId": 40984912928,
+            "attempt": 1,
+            "verifiedInAttempt": true
+          },
+          "stage": "Historique"
+        }
+      ]
+    },
+    {
+      "name": "radar-source:hanetf",
+      "tools": [
+        "Radar éditorial"
+      ],
+      "impactScope": "collector",
+      "workflow": "update-editorial-radar.yml",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41099452164",
+      "to": "/donnees-a-revoir",
+      "lastSuccessAt": "2026-10-30T18:07:35.545Z",
+      "completedAt": "2026-10-30T17:32:11Z",
+      "sourcePhaseCompletedAt": "2026-10-30T17:32:11Z",
+      "runId": 41099452164,
+      "attempt": 1,
+      "attemptedDataIds": [
+        "radar-source:Communiqués Global X Europe",
+        "radar-source:Communiqués Vanguard",
+        "radar-source:afg",
+        "radar-source:amf-alerts",
+        "radar-source:banque-france-credit",
+        "radar-source:bdf-credit",
+        "radar-source:bdf-debt",
+        "radar-source:bdf-savings",
+        "radar-source:bercy",
+        "radar-source:bnp",
+        "radar-source:bnp-bank",
+        "radar-source:bourse-direct-news",
+        "radar-source:boursobank-news",
+        "radar-source:bpce-bank",
+        "radar-source:cm-cic",
+        "radar-source:cre-prix",
+        "radar-source:credit-agricole-news",
+        "radar-source:credit-logement",
+        "radar-source:dvf",
+        "radar-source:dws",
+        "radar-source:energie-info",
+        "radar-source:insee-conjoncture",
+        "radar-source:insee-publications",
+        "radar-source:insee-studies",
+        "radar-source:moneyvox",
+        "radar-source:notaires-paris",
+        "radar-source:oll",
+        "radar-source:saxo-news",
+        "radar-source:service-public",
+        "radar-source:sg-bank",
+        "radar-source:vie-publique-actualites",
+        "radar-source:vie-publique-lois",
+        "radar-source:xetra",
+        "radar-source:xtrackers"
+      ],
+      "evidence": {
+        "scopeExplicit": true,
+        "scopePlanVerified": true,
+        "producerContract": "producer-results-v1",
+        "file": "feed.json",
+        "sha256": "0cce047cd0687227c4f89bb9342631210f5ce9fc3fd9ae891aa603cc938477b2",
+        "reportedAt": "2026-10-30T17:31:50.439Z",
+        "schema": "radar",
+        "artifactId": 12998850466,
+        "sourcePhaseStartedAt": "2026-10-30T17:30:47Z",
+        "sourcePhaseCompletedAt": "2026-10-30T17:32:11Z",
+        "scopeRef": "db183d2ff2e6ef81a68138cd39963204aab5fd7aadd6a81f04fd623bf0a724a5",
+        "scopeSummary": {
+          "kind": "editorial-radar-sources",
+          "expectedIdsCount": 62,
+          "requestedIdsCount": 62,
+          "networkRequestedIdsCount": 40
+        }
+      },
+      "cause": "Résolution documentée · 2026-10-30T18:20:27.895636+00:00 · Sitemap officiel HANetf absent ou tronqué",
+      "sourceUrls": [
+        "https://hanetf.com/press_releases-sitemap.xml"
+      ],
+      "attemptedAt": "2026-10-30T17:31:34.199Z",
+      "sourceAttempted": true,
+      "kind": "history",
+      "field": "Champs du collecteur",
+      "dataId": "radar-source:hanetf",
+      "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-30T18:20:27.895636+00:00",
+      "firstSeenAt": "2026-10-30T18:17:22.228651+00:00",
+      "lastSeenAt": "2026-10-30T18:17:22.228651+00:00",
+      "observations": [
+        {
+          "cause": "Sitemap officiel HANetf absent ou tronqué",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41099452164",
+          "attemptedAt": "2026-10-30T17:31:34.199Z",
+          "completedAt": "2026-10-30T17:32:11Z",
+          "lastSuccessAt": "2026-10-30T18:07:35.545Z",
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ]
+        }
+      ],
+      "resolvedAt": "2026-10-30T18:20:27.895636+00:00",
+      "resolutionEvidence": {
+        "checkedAt": "2026-10-30T18:07:35.545Z",
+        "recordedAt": "2026-10-30T18:10:42Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41104034317",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "feed.json",
+          "sha256": "2d9ae84e42428d32983cec5dc99b637f511143485832dfc06e64b7a4d8fd8f75",
+          "reportedAt": "2026-10-30T18:08:10.909Z",
+          "schema": "radar",
+          "artifactId": 12999993130,
+          "sourcePhaseStartedAt": "2026-10-30T18:06:48Z",
+          "sourcePhaseCompletedAt": "2026-10-30T18:10:42Z",
+          "scopeRef": "933dca13190ef05a2b255d4911df80d4ffcc89c735cd10ff2b757051ad36abac",
+          "scopeSummary": {
+            "kind": "editorial-radar-sources",
+            "expectedIdsCount": 62,
+            "requestedIdsCount": 62,
+            "networkRequestedIdsCount": 19
+          }
+        },
+        "runId": 41104034317,
+        "attempt": 1,
+        "verifiedInAttempt": true
+      },
+      "stage": "Historique",
+      "signals": [
+        {
+          "name": "radar-source:hanetf",
+          "tools": [
+            "Radar éditorial"
+          ],
+          "impactScope": "collector",
+          "workflow": "update-editorial-radar.yml",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41099452164",
+          "to": "/donnees-a-revoir",
+          "lastSuccessAt": "2026-10-30T18:07:35.545Z",
+          "completedAt": "2026-10-30T17:32:11Z",
+          "sourcePhaseCompletedAt": "2026-10-30T17:32:11Z",
+          "runId": 41099452164,
+          "attempt": 1,
+          "attemptedDataIds": [
+            "radar-source:Communiqués Global X Europe",
+            "radar-source:Communiqués Vanguard",
+            "radar-source:afg",
+            "radar-source:amf-alerts",
+            "radar-source:banque-france-credit",
+            "radar-source:bdf-credit",
+            "radar-source:bdf-debt",
+            "radar-source:bdf-savings",
+            "radar-source:bercy",
+            "radar-source:bnp",
+            "radar-source:bnp-bank",
+            "radar-source:bourse-direct-news",
+            "radar-source:boursobank-news",
+            "radar-source:bpce-bank",
+            "radar-source:cm-cic",
+            "radar-source:cre-prix",
+            "radar-source:credit-agricole-news",
+            "radar-source:credit-logement",
+            "radar-source:dvf",
+            "radar-source:dws",
+            "radar-source:energie-info",
+            "radar-source:insee-conjoncture",
+            "radar-source:insee-publications",
+            "radar-source:insee-studies",
+            "radar-source:moneyvox",
+            "radar-source:notaires-paris",
+            "radar-source:oll",
+            "radar-source:saxo-news",
+            "radar-source:service-public",
+            "radar-source:sg-bank",
+            "radar-source:vie-publique-actualites",
+            "radar-source:vie-publique-lois",
+            "radar-source:xetra",
+            "radar-source:xtrackers"
+          ],
+          "evidence": {
+            "scopeExplicit": true,
+            "scopePlanVerified": true,
+            "producerContract": "producer-results-v1",
+            "file": "feed.json",
+            "sha256": "0cce047cd0687227c4f89bb9342631210f5ce9fc3fd9ae891aa603cc938477b2",
+            "reportedAt": "2026-10-30T17:31:50.439Z",
+            "schema": "radar",
+            "artifactId": 12998850466,
+            "sourcePhaseStartedAt": "2026-10-30T17:30:47Z",
+            "sourcePhaseCompletedAt": "2026-10-30T17:32:11Z",
+            "scopeRef": "db183d2ff2e6ef81a68138cd39963204aab5fd7aadd6a81f04fd623bf0a724a5",
+            "scopeSummary": {
+              "kind": "editorial-radar-sources",
+              "expectedIdsCount": 62,
+              "requestedIdsCount": 62,
+              "networkRequestedIdsCount": 40
+            }
+          },
+          "cause": "Résolution documentée · 2026-10-30T18:20:27.895636+00:00 · Sitemap officiel HANetf absent ou tronqué",
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ],
+          "attemptedAt": "2026-10-30T17:31:34.199Z",
+          "sourceAttempted": true,
+          "kind": "history",
+          "field": "Champs du collecteur",
+          "dataId": "radar-source:hanetf",
+          "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-30T18:20:27.895636+00:00",
+          "firstSeenAt": "2026-10-30T18:17:22.228651+00:00",
+          "lastSeenAt": "2026-10-30T18:17:22.228651+00:00",
+          "observations": [
+            {
+              "cause": "Sitemap officiel HANetf absent ou tronqué",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41099452164",
+              "attemptedAt": "2026-10-30T17:31:34.199Z",
+              "completedAt": "2026-10-30T17:32:11Z",
+              "lastSuccessAt": "2026-10-30T18:07:35.545Z",
+              "sourceUrls": [
+                "https://hanetf.com/press_releases-sitemap.xml"
+              ]
+            }
+          ],
+          "resolvedAt": "2026-10-30T18:20:27.895636+00:00",
+          "resolutionEvidence": {
+            "checkedAt": "2026-10-30T18:07:35.545Z",
+            "recordedAt": "2026-10-30T18:10:42Z",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41104034317",
+            "evidence": {
+              "scopeExplicit": true,
+              "scopePlanVerified": true,
+              "producerContract": "producer-results-v1",
+              "file": "feed.json",
+              "sha256": "2d9ae84e42428d32983cec5dc99b637f511143485832dfc06e64b7a4d8fd8f75",
+              "reportedAt": "2026-10-30T18:08:10.909Z",
+              "schema": "radar",
+              "artifactId": 12999993130,
+              "sourcePhaseStartedAt": "2026-10-30T18:06:48Z",
+              "sourcePhaseCompletedAt": "2026-10-30T18:10:42Z",
+              "scopeRef": "933dca13190ef05a2b255d4911df80d4ffcc89c735cd10ff2b757051ad36abac",
+              "scopeSummary": {
+                "kind": "editorial-radar-sources",
+                "expectedIdsCount": 62,
+                "requestedIdsCount": 62,
+                "networkRequestedIdsCount": 19
+              }
+            },
+            "runId": 41104034317,
+            "attempt": 1,
+            "verifiedInAttempt": true
+          },
+          "stage": "Historique"
+        }
+      ]
+    },
+    {
+      "name": "radar-source:hanetf",
+      "tools": [
+        "Radar éditorial"
+      ],
+      "impactScope": "collector",
+      "workflow": "update-editorial-radar.yml",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41124088420",
+      "to": "/donnees-a-revoir",
+      "lastSuccessAt": "2026-10-30T18:07:35.545Z",
+      "completedAt": "2026-10-30T20:35:54Z",
+      "sourcePhaseCompletedAt": "2026-10-30T20:35:54Z",
+      "runId": 41124088420,
+      "attempt": 1,
+      "attemptedDataIds": [
+        "radar-source:Communiqués Global X Europe",
+        "radar-source:Communiqués Vanguard",
+        "radar-source:afg",
+        "radar-source:amf-alerts",
+        "radar-source:banque-france-credit",
+        "radar-source:bdf-credit",
+        "radar-source:bdf-debt",
+        "radar-source:bdf-savings",
+        "radar-source:bercy",
+        "radar-source:bnp",
+        "radar-source:bnp-bank",
+        "radar-source:bourse-direct-news",
+        "radar-source:boursobank-news",
+        "radar-source:boursobank-offers",
+        "radar-source:boursobank-tariffs",
+        "radar-source:bpce-bank",
+        "radar-source:cm-cic",
+        "radar-source:cre-prix",
+        "radar-source:credit-agricole-news",
+        "radar-source:credit-logement",
+        "radar-source:dvf",
+        "radar-source:dws",
+        "radar-source:energie-info",
+        "radar-source:fortuneo-offers",
+        "radar-source:fortuneo-tariffs",
+        "radar-source:insee-conjoncture",
+        "radar-source:insee-publications",
+        "radar-source:insee-studies",
+        "radar-source:invesco",
+        "radar-source:lbp-tariffs",
+        "radar-source:moneyvox",
+        "radar-source:notaires-paris",
+        "radar-source:oll",
+        "radar-source:saxo-news",
+        "radar-source:service-public",
+        "radar-source:sg-bank",
+        "radar-source:spdr-news",
+        "radar-source:vie-publique-actualites",
+        "radar-source:vie-publique-lois",
+        "radar-source:xetra",
+        "radar-source:xtrackers"
+      ],
+      "cause": "Résolution documentée · 2026-10-30T21:18:27.089569+00:00 · Sitemap officiel HANetf absent ou tronqué",
+      "field": "Champs du collecteur",
+      "evidence": {
+        "scopeExplicit": true,
+        "scopePlanVerified": true,
+        "producerContract": "producer-results-v1",
+        "file": "feed.json",
+        "sha256": "686ba9eea5c99609b2671f3b4b4258294e314a5860b806c06c6f96d9bb146d6e",
+        "reportedAt": "2026-10-30T20:35:31.829Z",
+        "schema": "radar",
+        "artifactId": 13010061595,
+        "sourcePhaseStartedAt": "2026-10-30T20:32:57Z",
+        "sourcePhaseCompletedAt": "2026-10-30T20:35:54Z",
+        "scopeRef": "e836b94c4129ec9a46df347373be46bce3af4704b4cfebb3a15461f93dbf5e20",
+        "scopeSummary": {
+          "kind": "editorial-radar-sources",
+          "expectedIdsCount": 62,
+          "requestedIdsCount": 62,
+          "networkRequestedIdsCount": 47
+        }
+      },
+      "sourceUrls": [
+        "https://hanetf.com/press_releases-sitemap.xml"
+      ],
+      "attemptedAt": "2026-10-30T20:33:43.758Z",
+      "sourceAttempted": true,
+      "historicalDiscovery": true,
+      "kind": "history",
+      "dataId": "radar-source:hanetf",
+      "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-30T21:18:27.089569+00:00",
+      "firstSeenAt": "2026-10-30T19:53:19.067996+00:00",
+      "lastSeenAt": "2026-10-30T21:16:06.901188+00:00",
+      "observations": [
+        {
+          "cause": "Sitemap officiel HANetf absent ou tronqué",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41115329714",
+          "attemptedAt": "2026-10-30T19:27:40.192Z",
+          "completedAt": "2026-10-30T19:28:28Z",
+          "lastSuccessAt": "2026-10-30T18:07:35.545Z",
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ]
+        },
+        {
+          "cause": "Sitemap officiel HANetf absent ou tronqué",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41124088420",
+          "attemptedAt": "2026-10-30T20:33:43.758Z",
+          "completedAt": "2026-10-30T20:35:54Z",
+          "lastSuccessAt": "2026-10-30T18:07:35.545Z",
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ]
+        }
+      ],
+      "resolvedAt": "2026-10-30T21:18:27.089569+00:00",
+      "resolutionEvidence": {
+        "checkedAt": "2026-10-30T20:41:12.797Z",
+        "recordedAt": "2026-10-30T20:42:50Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41125028757",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "feed.json",
+          "sha256": "3420af0e866508f5cb805466453a3e6b0608551756498eca42be90066f460f39",
+          "reportedAt": "2026-10-30T20:42:26.099Z",
+          "schema": "radar",
+          "artifactId": 13009109922,
+          "sourcePhaseStartedAt": "2026-10-30T20:40:24Z",
+          "sourcePhaseCompletedAt": "2026-10-30T20:42:50Z",
+          "scopeRef": "f75904acdca7310791019bc4755738bba78c62c7496561ffe19e8c90299c350f",
+          "scopeSummary": {
+            "kind": "editorial-radar-sources",
+            "expectedIdsCount": 62,
+            "requestedIdsCount": 62,
+            "networkRequestedIdsCount": 13
+          }
+        },
+        "runId": 41125028757,
+        "attempt": 1,
+        "verifiedInAttempt": true
+      },
+      "stage": "Historique",
+      "signals": [
+        {
+          "name": "radar-source:hanetf",
+          "tools": [
+            "Radar éditorial"
+          ],
+          "impactScope": "collector",
+          "workflow": "update-editorial-radar.yml",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41124088420",
+          "to": "/donnees-a-revoir",
+          "lastSuccessAt": "2026-10-30T18:07:35.545Z",
+          "completedAt": "2026-10-30T20:35:54Z",
+          "sourcePhaseCompletedAt": "2026-10-30T20:35:54Z",
+          "runId": 41124088420,
+          "attempt": 1,
+          "attemptedDataIds": [
+            "radar-source:Communiqués Global X Europe",
+            "radar-source:Communiqués Vanguard",
+            "radar-source:afg",
+            "radar-source:amf-alerts",
+            "radar-source:banque-france-credit",
+            "radar-source:bdf-credit",
+            "radar-source:bdf-debt",
+            "radar-source:bdf-savings",
+            "radar-source:bercy",
+            "radar-source:bnp",
+            "radar-source:bnp-bank",
+            "radar-source:bourse-direct-news",
+            "radar-source:boursobank-news",
+            "radar-source:boursobank-offers",
+            "radar-source:boursobank-tariffs",
+            "radar-source:bpce-bank",
+            "radar-source:cm-cic",
+            "radar-source:cre-prix",
+            "radar-source:credit-agricole-news",
+            "radar-source:credit-logement",
+            "radar-source:dvf",
+            "radar-source:dws",
+            "radar-source:energie-info",
+            "radar-source:fortuneo-offers",
+            "radar-source:fortuneo-tariffs",
+            "radar-source:insee-conjoncture",
+            "radar-source:insee-publications",
+            "radar-source:insee-studies",
+            "radar-source:invesco",
+            "radar-source:lbp-tariffs",
+            "radar-source:moneyvox",
+            "radar-source:notaires-paris",
+            "radar-source:oll",
+            "radar-source:saxo-news",
+            "radar-source:service-public",
+            "radar-source:sg-bank",
+            "radar-source:spdr-news",
+            "radar-source:vie-publique-actualites",
+            "radar-source:vie-publique-lois",
+            "radar-source:xetra",
+            "radar-source:xtrackers"
+          ],
+          "cause": "Résolution documentée · 2026-10-30T21:18:27.089569+00:00 · Sitemap officiel HANetf absent ou tronqué",
+          "field": "Champs du collecteur",
+          "evidence": {
+            "scopeExplicit": true,
+            "scopePlanVerified": true,
+            "producerContract": "producer-results-v1",
+            "file": "feed.json",
+            "sha256": "686ba9eea5c99609b2671f3b4b4258294e314a5860b806c06c6f96d9bb146d6e",
+            "reportedAt": "2026-10-30T20:35:31.829Z",
+            "schema": "radar",
+            "artifactId": 13010061595,
+            "sourcePhaseStartedAt": "2026-10-30T20:32:57Z",
+            "sourcePhaseCompletedAt": "2026-10-30T20:35:54Z",
+            "scopeRef": "e836b94c4129ec9a46df347373be46bce3af4704b4cfebb3a15461f93dbf5e20",
+            "scopeSummary": {
+              "kind": "editorial-radar-sources",
+              "expectedIdsCount": 62,
+              "requestedIdsCount": 62,
+              "networkRequestedIdsCount": 47
+            }
+          },
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ],
+          "attemptedAt": "2026-10-30T20:33:43.758Z",
+          "sourceAttempted": true,
+          "historicalDiscovery": true,
+          "kind": "history",
+          "dataId": "radar-source:hanetf",
+          "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-30T21:18:27.089569+00:00",
+          "firstSeenAt": "2026-10-30T19:53:19.067996+00:00",
+          "lastSeenAt": "2026-10-30T21:16:06.901188+00:00",
+          "observations": [
+            {
+              "cause": "Sitemap officiel HANetf absent ou tronqué",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41115329714",
+              "attemptedAt": "2026-10-30T19:27:40.192Z",
+              "completedAt": "2026-10-30T19:28:28Z",
+              "lastSuccessAt": "2026-10-30T18:07:35.545Z",
+              "sourceUrls": [
+                "https://hanetf.com/press_releases-sitemap.xml"
+              ]
+            },
+            {
+              "cause": "Sitemap officiel HANetf absent ou tronqué",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41124088420",
+              "attemptedAt": "2026-10-30T20:33:43.758Z",
+              "completedAt": "2026-10-30T20:35:54Z",
+              "lastSuccessAt": "2026-10-30T18:07:35.545Z",
+              "sourceUrls": [
+                "https://hanetf.com/press_releases-sitemap.xml"
+              ]
+            }
+          ],
+          "resolvedAt": "2026-10-30T21:18:27.089569+00:00",
+          "resolutionEvidence": {
+            "checkedAt": "2026-10-30T20:41:12.797Z",
+            "recordedAt": "2026-10-30T20:42:50Z",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41125028757",
+            "evidence": {
+              "scopeExplicit": true,
+              "scopePlanVerified": true,
+              "producerContract": "producer-results-v1",
+              "file": "feed.json",
+              "sha256": "3420af0e866508f5cb805466453a3e6b0608551756498eca42be90066f460f39",
+              "reportedAt": "2026-10-30T20:42:26.099Z",
+              "schema": "radar",
+              "artifactId": 13009109922,
+              "sourcePhaseStartedAt": "2026-10-30T20:40:24Z",
+              "sourcePhaseCompletedAt": "2026-10-30T20:42:50Z",
+              "scopeRef": "f75904acdca7310791019bc4755738bba78c62c7496561ffe19e8c90299c350f",
+              "scopeSummary": {
+                "kind": "editorial-radar-sources",
+                "expectedIdsCount": 62,
+                "requestedIdsCount": 62,
+                "networkRequestedIdsCount": 13
+              }
+            },
+            "runId": 41125028757,
+            "attempt": 1,
+            "verifiedInAttempt": true
+          },
+          "stage": "Historique"
+        }
+      ]
+    },
+    {
+      "name": "radar-source:hanetf",
+      "tools": [
+        "Radar éditorial"
+      ],
+      "impactScope": "collector",
+      "workflow": "update-editorial-radar.yml",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41156646464",
+      "to": "/donnees-a-revoir",
+      "lastSuccessAt": "2026-10-31T00:41:48.773Z",
+      "completedAt": "2026-10-31T01:44:01Z",
+      "sourcePhaseCompletedAt": "2026-10-31T01:44:01Z",
+      "runId": 41156646464,
+      "attempt": 1,
+      "attemptedDataIds": [
+        "radar-source:Communiqués Global X Europe",
+        "radar-source:Communiqués Vanguard",
+        "radar-source:banque-france-credit",
+        "radar-source:bdf-credit",
+        "radar-source:bdf-debt",
+        "radar-source:bdf-savings",
+        "radar-source:bercy",
+        "radar-source:bnp",
+        "radar-source:bnp-bank",
+        "radar-source:bpce-bank",
+        "radar-source:cm-cic",
+        "radar-source:cre-prix",
+        "radar-source:credit-agricole-news",
+        "radar-source:credit-logement",
+        "radar-source:dvf",
+        "radar-source:dws",
+        "radar-source:insee-conjoncture",
+        "radar-source:insee-publications",
+        "radar-source:insee-studies",
+        "radar-source:notaires-paris",
+        "radar-source:oll",
+        "radar-source:saxo-news",
+        "radar-source:service-public",
+        "radar-source:sg-bank",
+        "radar-source:vie-publique-actualites",
+        "radar-source:vie-publique-lois",
+        "radar-source:xetra",
+        "radar-source:xtrackers"
+      ],
+      "cause": "Résolution documentée · 2026-10-31T03:17:02.255848+00:00 · Sitemap officiel HANetf absent ou tronqué",
+      "field": "Champs du collecteur",
+      "evidence": {
+        "scopeExplicit": true,
+        "scopePlanVerified": true,
+        "producerContract": "producer-results-v1",
+        "file": "feed.json",
+        "sha256": "623b6348e4114e23f5899439d317f50ab068ce6a2aba969dc35485ea56edb802",
+        "reportedAt": "2026-10-31T01:43:38.570Z",
+        "schema": "radar",
+        "artifactId": 13024304856,
+        "sourcePhaseStartedAt": "2026-10-31T01:42:39Z",
+        "sourcePhaseCompletedAt": "2026-10-31T01:44:01Z",
+        "scopeRef": "1c3be8d6432b95233d72a49d9b5a2816ed227172e6c1c13186d4e0b435168044",
+        "scopeSummary": {
+          "kind": "editorial-radar-sources",
+          "expectedIdsCount": 62,
+          "requestedIdsCount": 62,
+          "networkRequestedIdsCount": 34
+        }
+      },
+      "sourceUrls": [
+        "https://hanetf.com/press_releases-sitemap.xml"
+      ],
+      "attemptedAt": "2026-10-31T01:43:20.218Z",
+      "sourceAttempted": true,
+      "historicalDiscovery": true,
+      "kind": "history",
+      "dataId": "radar-source:hanetf",
+      "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-31T03:17:02.255848+00:00",
+      "firstSeenAt": "2026-10-31T01:46:52.557062+00:00",
+      "lastSeenAt": "2026-10-31T02:41:27.201763+00:00",
+      "observations": [
+        {
+          "cause": "Sitemap officiel HANetf absent ou tronqué",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41156646464",
+          "attemptedAt": "2026-10-31T01:43:20.218Z",
+          "completedAt": "2026-10-31T01:44:01Z",
+          "lastSuccessAt": "2026-10-31T00:41:48.773Z",
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ]
+        }
+      ],
+      "resolvedAt": "2026-10-31T03:17:02.255848+00:00",
+      "resolutionEvidence": {
+        "checkedAt": "2026-10-31T03:14:02.944Z",
+        "recordedAt": "2026-10-31T03:15:01Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41163406543",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "feed.json",
+          "sha256": "adc8048e1406b80147585a0a727dd7570bb2366e6462628b52bba1fe1133ee02",
+          "reportedAt": "2026-10-31T03:14:37.151Z",
+          "schema": "radar",
+          "artifactId": 13028088266,
+          "sourcePhaseStartedAt": "2026-10-31T03:13:18Z",
+          "sourcePhaseCompletedAt": "2026-10-31T03:15:01Z",
+          "scopeRef": "c60fa00ae9cb4e0fa111f7930df0e6e7f2dd21200e0fb9263b48367e1ece4398",
+          "scopeSummary": {
+            "kind": "editorial-radar-sources",
+            "expectedIdsCount": 62,
+            "requestedIdsCount": 62,
+            "networkRequestedIdsCount": 40
+          }
+        },
+        "runId": 41163406543,
+        "attempt": 1,
+        "verifiedInAttempt": true
+      },
+      "stage": "Historique",
+      "signals": [
+        {
+          "name": "radar-source:hanetf",
+          "tools": [
+            "Radar éditorial"
+          ],
+          "impactScope": "collector",
+          "workflow": "update-editorial-radar.yml",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41156646464",
+          "to": "/donnees-a-revoir",
+          "lastSuccessAt": "2026-10-31T00:41:48.773Z",
+          "completedAt": "2026-10-31T01:44:01Z",
+          "sourcePhaseCompletedAt": "2026-10-31T01:44:01Z",
+          "runId": 41156646464,
+          "attempt": 1,
+          "attemptedDataIds": [
+            "radar-source:Communiqués Global X Europe",
+            "radar-source:Communiqués Vanguard",
+            "radar-source:banque-france-credit",
+            "radar-source:bdf-credit",
+            "radar-source:bdf-debt",
+            "radar-source:bdf-savings",
+            "radar-source:bercy",
+            "radar-source:bnp",
+            "radar-source:bnp-bank",
+            "radar-source:bpce-bank",
+            "radar-source:cm-cic",
+            "radar-source:cre-prix",
+            "radar-source:credit-agricole-news",
+            "radar-source:credit-logement",
+            "radar-source:dvf",
+            "radar-source:dws",
+            "radar-source:insee-conjoncture",
+            "radar-source:insee-publications",
+            "radar-source:insee-studies",
+            "radar-source:notaires-paris",
+            "radar-source:oll",
+            "radar-source:saxo-news",
+            "radar-source:service-public",
+            "radar-source:sg-bank",
+            "radar-source:vie-publique-actualites",
+            "radar-source:vie-publique-lois",
+            "radar-source:xetra",
+            "radar-source:xtrackers"
+          ],
+          "cause": "Résolution documentée · 2026-10-31T03:17:02.255848+00:00 · Sitemap officiel HANetf absent ou tronqué",
+          "field": "Champs du collecteur",
+          "evidence": {
+            "scopeExplicit": true,
+            "scopePlanVerified": true,
+            "producerContract": "producer-results-v1",
+            "file": "feed.json",
+            "sha256": "623b6348e4114e23f5899439d317f50ab068ce6a2aba969dc35485ea56edb802",
+            "reportedAt": "2026-10-31T01:43:38.570Z",
+            "schema": "radar",
+            "artifactId": 13024304856,
+            "sourcePhaseStartedAt": "2026-10-31T01:42:39Z",
+            "sourcePhaseCompletedAt": "2026-10-31T01:44:01Z",
+            "scopeRef": "1c3be8d6432b95233d72a49d9b5a2816ed227172e6c1c13186d4e0b435168044",
+            "scopeSummary": {
+              "kind": "editorial-radar-sources",
+              "expectedIdsCount": 62,
+              "requestedIdsCount": 62,
+              "networkRequestedIdsCount": 34
+            }
+          },
+          "sourceUrls": [
+            "https://hanetf.com/press_releases-sitemap.xml"
+          ],
+          "attemptedAt": "2026-10-31T01:43:20.218Z",
+          "sourceAttempted": true,
+          "historicalDiscovery": true,
+          "kind": "history",
+          "dataId": "radar-source:hanetf",
+          "id": "history:collection:update-editorial-radar.yml:radar-source:hanetf:2026-10-31T03:17:02.255848+00:00",
+          "firstSeenAt": "2026-10-31T01:46:52.557062+00:00",
+          "lastSeenAt": "2026-10-31T02:41:27.201763+00:00",
+          "observations": [
+            {
+              "cause": "Sitemap officiel HANetf absent ou tronqué",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41156646464",
+              "attemptedAt": "2026-10-31T01:43:20.218Z",
+              "completedAt": "2026-10-31T01:44:01Z",
+              "lastSuccessAt": "2026-10-31T00:41:48.773Z",
+              "sourceUrls": [
+                "https://hanetf.com/press_releases-sitemap.xml"
+              ]
+            }
+          ],
+          "resolvedAt": "2026-10-31T03:17:02.255848+00:00",
+          "resolutionEvidence": {
+            "checkedAt": "2026-10-31T03:14:02.944Z",
+            "recordedAt": "2026-10-31T03:15:01Z",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41163406543",
+            "evidence": {
+              "scopeExplicit": true,
+              "scopePlanVerified": true,
+              "producerContract": "producer-results-v1",
+              "file": "feed.json",
+              "sha256": "adc8048e1406b80147585a0a727dd7570bb2366e6462628b52bba1fe1133ee02",
+              "reportedAt": "2026-10-31T03:14:37.151Z",
+              "schema": "radar",
+              "artifactId": 13028088266,
+              "sourcePhaseStartedAt": "2026-10-31T03:13:18Z",
+              "sourcePhaseCompletedAt": "2026-10-31T03:15:01Z",
+              "scopeRef": "c60fa00ae9cb4e0fa111f7930df0e6e7f2dd21200e0fb9263b48367e1ece4398",
+              "scopeSummary": {
+                "kind": "editorial-radar-sources",
+                "expectedIdsCount": 62,
+                "requestedIdsCount": 62,
+                "networkRequestedIdsCount": 40
+              }
+            },
+            "runId": 41163406543,
+            "attempt": 1,
+            "verifiedInAttempt": true
+          },
+          "stage": "Historique"
+        }
+      ]
+    }
+  ],
+  "sourceBranchRecovered": true,
+  "reasonOfPriorTransientProviderFailureExplained": false,
+  "limit": "Actual discovery control recovered; no code change to HANetf and no claim of newly extracted articles. Depth24 English links only, no full archive certification; old errors remain dated.",
+  "beforeActiveFailure": {
+    "name": "radar-source:hanetf",
+    "tools": [
+      "Radar éditorial"
+    ],
+    "impactScope": "collector",
+    "workflow": "update-editorial-radar.yml",
+    "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41156646464",
+    "to": "/donnees-a-revoir",
+    "lastSuccessAt": "2026-10-31T00:41:48.773Z",
+    "completedAt": "2026-10-31T01:44:01Z",
+    "sourcePhaseCompletedAt": "2026-10-31T01:44:01Z",
+    "runId": 41156646464,
+    "attempt": 1,
+    "attemptedDataIds": [
+      "radar-source:Communiqués Global X Europe",
+      "radar-source:Communiqués Vanguard",
+      "radar-source:banque-france-credit",
+      "radar-source:bdf-credit",
+      "radar-source:bdf-debt",
+      "radar-source:bdf-savings",
+      "radar-source:bercy",
+      "radar-source:bnp",
+      "radar-source:bnp-bank",
+      "radar-source:bpce-bank",
+      "radar-source:cm-cic",
+      "radar-source:cre-prix",
+      "radar-source:credit-agricole-news",
+      "radar-source:credit-logement",
+      "radar-source:dvf",
+      "radar-source:dws",
+      "radar-source:insee-conjoncture",
+      "radar-source:insee-publications",
+      "radar-source:insee-studies",
+      "radar-source:notaires-paris",
+      "radar-source:oll",
+      "radar-source:saxo-news",
+      "radar-source:service-public",
+      "radar-source:sg-bank",
+      "radar-source:vie-publique-actualites",
+      "radar-source:vie-publique-lois",
+      "radar-source:xetra",
+      "radar-source:xtrackers"
+    ],
+    "cause": "Sitemap officiel HANetf absent ou tronqué",
+    "field": "Champs du collecteur",
+    "evidence": {
+      "scopeExplicit": true,
+      "scopePlanVerified": true,
+      "producerContract": "producer-results-v1",
+      "file": "feed.json",
+      "sha256": "623b6348e4114e23f5899439d317f50ab068ce6a2aba969dc35485ea56edb802",
+      "reportedAt": "2026-10-31T01:43:38.570Z",
+      "schema": "radar",
+      "artifactId": 13024304856,
+      "sourcePhaseStartedAt": "2026-10-31T01:42:39Z",
+      "sourcePhaseCompletedAt": "2026-10-31T01:44:01Z",
+      "scopeRef": "1c3be8d6432b95233d72a49d9b5a2816ed227172e6c1c13186d4e0b435168044",
+      "scopeSummary": {
+        "kind": "editorial-radar-sources",
+        "expectedIdsCount": 62,
+        "requestedIdsCount": 62,
+        "networkRequestedIdsCount": 34
+      }
+    },
+    "sourceUrls": [
+      "https://hanetf.com/press_releases-sitemap.xml"
+    ],
+    "attemptedAt": "2026-10-31T01:43:20.218Z",
+    "sourceAttempted": true,
+    "historicalDiscovery": true,
+    "kind": "failure",
+    "dataId": "radar-source:hanetf",
+    "id": "collection:update-editorial-radar.yml:radar-source:hanetf",
+    "firstSeenAt": "2026-10-31T01:46:52.557062+00:00",
+    "lastSeenAt": "2026-10-31T02:41:27.201763+00:00",
+    "observations": [
+      {
+        "cause": "Sitemap officiel HANetf absent ou tronqué",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41156646464",
+        "attemptedAt": "2026-10-31T01:43:20.218Z",
+        "completedAt": "2026-10-31T01:44:01Z",
+        "lastSuccessAt": "2026-10-31T00:41:48.773Z",
+        "sourceUrls": [
+          "https://hanetf.com/press_releases-sitemap.xml"
+        ]
+      }
+    ],
+    "members": [
+      "radar-source:Communiqués Global X Europe",
+      "radar-source:Communiqués Vanguard",
+      "radar-source:banque-france-credit",
+      "radar-source:bdf-credit",
+      "radar-source:bdf-debt",
+      "radar-source:bdf-savings",
+      "radar-source:bercy",
+      "radar-source:bnp",
+      "radar-source:bnp-bank",
+      "radar-source:bpce-bank",
+      "radar-source:cm-cic",
+      "radar-source:cre-prix",
+      "radar-source:credit-agricole-news",
+      "radar-source:credit-logement",
+      "radar-source:dvf",
+      "radar-source:dws",
+      "radar-source:insee-conjoncture",
+      "radar-source:insee-publications",
+      "radar-source:insee-studies",
+      "radar-source:notaires-paris",
+      "radar-source:oll",
+      "radar-source:saxo-news",
+      "radar-source:service-public",
+      "radar-source:sg-bank",
+      "radar-source:vie-publique-actualites",
+      "radar-source:vie-publique-lois",
+      "radar-source:xetra",
+      "radar-source:xtrackers"
+    ],
+    "impactQualified": false,
+    "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+    "collectorTools": [
+      "Radar éditorial"
+    ],
+    "stage": "Donnée / collecte",
+    "key": "collection:update-editorial-radar.yml:radar-source:hanetf",
+    "recovery": {
+      "attempts": [
+        {
+          "at": "2026-10-30T07:52:56.506876+00:00",
+          "reason": "transient-source",
+          "sourceRunId": 40992549003,
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
+        },
+        {
+          "at": "2026-10-30T21:26:30.549639+00:00",
+          "reason": "transient-source",
+          "sourceRunId": 41128190878,
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
+        }
+      ],
+      "reason": null,
+      "lastSuccessAt": null,
+      "observedRunId": 41156646464,
+      "status": "idle",
+      "nextAttemptAt": null
+    },
+    "signals": [
+      {
+        "name": "radar-source:hanetf",
+        "tools": [
+          "Radar éditorial"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-editorial-radar.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41156646464",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-31T00:41:48.773Z",
+        "completedAt": "2026-10-31T01:44:01Z",
+        "sourcePhaseCompletedAt": "2026-10-31T01:44:01Z",
+        "runId": 41156646464,
+        "attempt": 1,
+        "attemptedDataIds": [
+          "radar-source:Communiqués Global X Europe",
+          "radar-source:Communiqués Vanguard",
+          "radar-source:banque-france-credit",
+          "radar-source:bdf-credit",
+          "radar-source:bdf-debt",
+          "radar-source:bdf-savings",
+          "radar-source:bercy",
+          "radar-source:bnp",
+          "radar-source:bnp-bank",
+          "radar-source:bpce-bank",
+          "radar-source:cm-cic",
+          "radar-source:cre-prix",
+          "radar-source:credit-agricole-news",
+          "radar-source:credit-logement",
+          "radar-source:dvf",
+          "radar-source:dws",
+          "radar-source:insee-conjoncture",
+          "radar-source:insee-publications",
+          "radar-source:insee-studies",
+          "radar-source:notaires-paris",
+          "radar-source:oll",
+          "radar-source:saxo-news",
+          "radar-source:service-public",
+          "radar-source:sg-bank",
+          "radar-source:vie-publique-actualites",
+          "radar-source:vie-publique-lois",
+          "radar-source:xetra",
+          "radar-source:xtrackers"
+        ],
+        "cause": "Sitemap officiel HANetf absent ou tronqué",
+        "field": "Champs du collecteur",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "feed.json",
+          "sha256": "623b6348e4114e23f5899439d317f50ab068ce6a2aba969dc35485ea56edb802",
+          "reportedAt": "2026-10-31T01:43:38.570Z",
+          "schema": "radar",
+          "artifactId": 13024304856,
+          "sourcePhaseStartedAt": "2026-10-31T01:42:39Z",
+          "sourcePhaseCompletedAt": "2026-10-31T01:44:01Z",
+          "scopeRef": "1c3be8d6432b95233d72a49d9b5a2816ed227172e6c1c13186d4e0b435168044",
+          "scopeSummary": {
+            "kind": "editorial-radar-sources",
+            "expectedIdsCount": 62,
+            "requestedIdsCount": 62,
+            "networkRequestedIdsCount": 34
+          }
+        },
+        "sourceUrls": [
+          "https://hanetf.com/press_releases-sitemap.xml"
+        ],
+        "attemptedAt": "2026-10-31T01:43:20.218Z",
+        "sourceAttempted": true,
+        "historicalDiscovery": true,
+        "kind": "failure",
+        "dataId": "radar-source:hanetf",
+        "id": "collection:update-editorial-radar.yml:radar-source:hanetf",
+        "firstSeenAt": "2026-10-31T01:46:52.557062+00:00",
+        "lastSeenAt": "2026-10-31T02:41:27.201763+00:00",
+        "observations": [
+          {
+            "cause": "Sitemap officiel HANetf absent ou tronqué",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41156646464",
+            "attemptedAt": "2026-10-31T01:43:20.218Z",
+            "completedAt": "2026-10-31T01:44:01Z",
+            "lastSuccessAt": "2026-10-31T00:41:48.773Z",
+            "sourceUrls": [
+              "https://hanetf.com/press_releases-sitemap.xml"
+            ]
+          }
+        ],
+        "members": [
+          "radar-source:Communiqués Global X Europe",
+          "radar-source:Communiqués Vanguard",
+          "radar-source:banque-france-credit",
+          "radar-source:bdf-credit",
+          "radar-source:bdf-debt",
+          "radar-source:bdf-savings",
+          "radar-source:bercy",
+          "radar-source:bnp",
+          "radar-source:bnp-bank",
+          "radar-source:bpce-bank",
+          "radar-source:cm-cic",
+          "radar-source:cre-prix",
+          "radar-source:credit-agricole-news",
+          "radar-source:credit-logement",
+          "radar-source:dvf",
+          "radar-source:dws",
+          "radar-source:insee-conjoncture",
+          "radar-source:insee-publications",
+          "radar-source:insee-studies",
+          "radar-source:notaires-paris",
+          "radar-source:oll",
+          "radar-source:saxo-news",
+          "radar-source:service-public",
+          "radar-source:sg-bank",
+          "radar-source:vie-publique-actualites",
+          "radar-source:vie-publique-lois",
+          "radar-source:xetra",
+          "radar-source:xtrackers"
+        ],
+        "impactQualified": false,
+        "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+        "collectorTools": [
+          "Radar éditorial"
+        ],
+        "stage": "Donnée / collecte",
+        "key": "collection:update-editorial-radar.yml:radar-source:hanetf",
+        "recovery": {
+          "attempts": [
+            {
+              "at": "2026-10-30T07:52:56.506876+00:00",
+              "reason": "transient-source",
+              "sourceRunId": 40992549003,
+              "status": "dispatched",
+              "ref": "master",
+              "error": null
+            },
+            {
+              "at": "2026-10-30T21:26:30.549639+00:00",
+              "reason": "transient-source",
+              "sourceRunId": 41128190878,
+              "status": "dispatched",
+              "ref": "master",
+              "error": null
+            }
+          ],
+          "reason": null,
+          "lastSuccessAt": null,
+          "observedRunId": 41156646464,
+          "status": "idle",
+          "nextAttemptAt": null
+        }
+      }
+    ]
+  },
+  "metadataLimit": "Previous source metadata retained its older successful state; the separately observed failed attempt is the active diagnostic above. A retained status ok is not proof of a new successful check.",
+  "producerOutcome": {
+    "id": "radar-source:hanetf",
+    "instrument": "hanetf",
+    "fields": [
+      "official publication listing"
+    ],
+    "sourceUrl": "https://hanetf.com/press_releases-sitemap.xml",
+    "selected": true,
+    "checkedAt": "2026-10-31T03:14:02.944Z",
+    "attemptedAt": "2026-10-31T03:14:02.983Z",
+    "status": "succeeded",
+    "sourceAttempted": true,
+    "operationAttempted": true
+  }
+}

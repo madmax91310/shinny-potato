@@ -30,11 +30,16 @@ def parse_epargne(text,pages,annual,url,annual_url,today,product_html):
         if len(weights)!=1:raise ValueError('Missing sector weight')
         sectors.append({'label':label,'value':weights[0]['value']})
     if abs(sum(r['value'] for r in regions)-100)>.15:raise ValueError('Incomplete French regional allocation')
-    split=required(r'division par dix du prix de part, passant de ([\d,.]+) € à ([\d,.]+) € à compter du 1er juillet',compact)
-    old,price=number(split[1]),number(split[2])
-    required(r'multiplication par dix du nombre de parts détenues',compact)
+    legacy=re.search(r'division par dix du prix de part, passant de ([\d,.]+) € à ([\d,.]+) € à compter du 1er juillet',compact)
+    current=re.search(r'prix de la part de la SCPI Épargne Pierre a été divisé par dix le 1er juillet (20\d{2})\. Il est passé de ([\d,.]+) € à ([\d,.]+) €\. En parallèle, le nombre de parts détenues par chaque associé a été multiplié par dix',compact)
+    if bool(legacy)==bool(current):raise ValueError('Missing or ambiguous official share split')
+    if legacy:
+        old,price=number(legacy[1]),number(legacy[2])
+        required(r'multiplication par dix du nombre de parts détenues',compact)
+    else:old,price=number(current[2]),number(current[3])
     if abs(old/10-price)>.001:raise ValueError('Inconsistent share split')
     year=int(required(r'prix de souscription d.une part depuis le 1er juillet (20\d{2})',compact)[1])
+    if current and int(current[1])!=year:raise ValueError('Contradictory official split dates')
     effective=f'{year}-07-01'
     if dt.date.fromisoformat(effective)>today:raise ValueError('Future price not current')
     required(r'prix de souscription d.une part depuis le 1er juillet '+str(year),compact)
@@ -50,13 +55,24 @@ def parse_epargne(text,pages,annual,url,annual_url,today,product_html):
     required(r'jouissance au premier jour du mois suivant',compact)
     enjoyment=f'Premier jour du mois suivant la souscription et son règlement, pour les souscriptions du 01/02/{year} au 31/12/{year} ; règle habituelle : premier jour du 6e mois.'
     if today>dt.date(year,12,31):enjoyment='Premier jour du 6e mois suivant la souscription et son règlement.'
-    future=int(required(r'À partir de janvier (20\d{2}), les revenus potentiels seront distribués mensuellement',compact)[1])
-    required(r'à compter de janvier prochain.*?chaque mois, et non plus.*?chaque trimestre',compact)
+    legacy_frequency=re.search(r'À partir de janvier (20\d{2}), les revenus potentiels seront distribués mensuellement',compact)
+    current_frequency=re.search(r'À compter de janvier (20\d{2}), les revenus potentiels de votre SCPI seront distribués chaque mois, et non plus chaque trimestre',compact)
+    if bool(legacy_frequency)==bool(current_frequency):raise ValueError('Missing or ambiguous distribution frequency change')
+    future=int((legacy_frequency or current_frequency)[1])
+    if legacy_frequency:required(r'à compter de janvier prochain.*?chaque mois, et non plus.*?chaque trimestre',compact)
     frequency='mensuels' if today>=dt.date(future,1,1) else 'trimestriels'
     info=next(p for p in pages if any(w['text']=='ACTIFS' for w in p['words']))
     assets=counter(info['words'],'ACTIFS',lambda w:w['y']>300)
     tenants=counter(info['words'],'LOCATAIRES',lambda w:w['y']>300)
-    tof=number(required(r'taux d.occupation financier s.établit à ([\d,.]+)\s*%',compact)[1])
+    tof_match=re.search(r'taux d.occupation financier s.établit à ([\d,.]+)\s*%',compact,re.I)
+    if not tof_match:
+        # In the Q3 PDF, pdftotext interleaves the right-hand distribution
+        # calendar inside this left-column sentence. Use its actual geometry.
+        first=pages[0]
+        editorial=' '.join(w['text'] for w in sorted(first['words'],key=lambda w:(w['y'],w['x']))
+                           if w['right']<first['width']/2)
+        tof_match=required(r'taux d.occupation financier atteint ([\d,.]+)\s*%',editorial)
+    tof=number(tof_match[1])
     block=required(r'Évolution du prix de la part\s+(.*?)❯ Taux de distribution\(1\)([^\n]+)',annual)
     periods=[int(y) for y in required(r'(20\d{2}\s+20\d{2}\s+20\d{2}\s+20\d{2}\s+20\d{2})',block[1])[1].split()]
     completed_year(periods,today,count=5)

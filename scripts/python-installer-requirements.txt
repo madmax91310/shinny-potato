@@ -1,0 +1,3 @@
+# Bootstrap a fixed, patched installer from the official PyPI wheel.
+--only-binary=:all:
+pip==26.2 --hash=sha256:931c303696af6fa3417112103b1cad26890e5a07eccb5b99783700e33f2b8aad

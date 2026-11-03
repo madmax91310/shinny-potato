@@ -1,0 +1,18 @@
+{
+  "sourceUrl": "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239710&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
+  "checkedAt": "2026-10-30T14:58:40.973722+00:00",
+  "sha256": "76c1bfb53f2d2480d491b6fa613c1234f213d4bdc71cdb96a1dd62b91620cd37",
+  "productId": 239710,
+  "asOf": 20261029,
+  "rows": 1983,
+  "negativeEquities": [
+    {
+      "name": "NAVIENT HOLDINGS",
+      "isin": "US63938C1080",
+      "weightPct": -7e-05,
+      "country": "United States",
+      "sector": "Financials"
+    }
+  ],
+  "existingParserFailure": "Short or missing equity sleeve"
+}

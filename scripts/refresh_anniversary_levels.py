@@ -226,7 +226,12 @@ def refresh(current, now, collect=collect_one, selected=None, date_fetch=xndx_fr
     def one(config):
         try:return config['id'],collect(config,now),None
         except PublicationPending as e:return config['id'],None,e
-        except Exception as e:return config['id'],None,str(e)
+        except Exception as e:
+            # Keep the actual failed public endpoint. A generic410 otherwise
+            # gets attributed to a configured factsheet which was not requested.
+            url=getattr(e,'url',None)
+            return config['id'],None,{'error':str(e)+(f' [source: {url}]' if url else ''),
+                **({'sourceUrl':url}if url else{})}
     with ThreadPoolExecutor(max_workers=4) as pool:
         for id_,record,error in pool.map(one,requested):
             if isinstance(error,PublicationPending):
@@ -253,7 +258,9 @@ def refresh(current, now, collect=collect_one, selected=None, date_fetch=xndx_fr
                     error=None
                 except Exception as e:
                     errors.append({'id':'anniversary-'+id_,'error':str(e)});continue
-            if error:errors.append({'id':'anniversary-'+id_,'error':error});continue
+            if error:
+                errors.append({'id':'anniversary-'+id_,**(error if isinstance(error,dict)else{'error':error})})
+                continue
             old=merged.get(id_)
             # Older equity/index observations predate exact-identity metadata.
             # Enrich absent identifiers while preserving the same quote convention;

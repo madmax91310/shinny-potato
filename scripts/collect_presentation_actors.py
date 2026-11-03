@@ -239,11 +239,24 @@ def platform_activity(id_, documents, today):
  judgment=dt.date(int(stamp[3]),months.index(stamp[2].lower())+1,int(stamp[1]))
  if judgment>today:raise ValueError('Future platform judgment date')
  required(r'gestion extinctive opérée par Capsens',t)
- required(r'Vos accès ne sont pas encore ouverts',t)
+ access_closed='Vos accès ne sont pas encore ouverts' in t
+ access_open='Vos accès à Run Off sont désormais ouverts' in t
+ if access_closed and access_open:raise ValueError('Contradictory Run Off access notices')
+ access='not-open' if access_closed else 'open' if access_open else 'not-published'
+ migration='in-progress' if 'La migration de vos données est toujours en cours' in t else 'not-established'
+ notice='La plateforme annonce sa cessation d’activité et une liquidation judiciaire par jugement du tribunal de commerce de Bordeaux. '
+ if access_closed:
+  notice+='Un transfert des investissements, documents et porte-monnaie vers Run Off, solution de gestion extinctive opérée par Capsens, est annoncé ; les accès ne sont pas encore ouverts. La date de transfert et les résultats des investissements ne sont pas établis par cet avis.'
+ else:
+  notice+='Run Off, solution de gestion extinctive opérée par Capsens, assure la gestion annoncée par cet avis. '
+  if access_open:notice+='L’avis indique que les accès à Run Off sont désormais ouverts. '
+  if migration=='in-progress':notice+='La migration des données reste en cours et certaines informations peuvent manquer. '
+  notice+='Cet avis ne démontre ni la récupération ni les résultats des investissements.'
  return {'status':'ceased','judgmentAt':judgment.isoformat(),'checkedAt':today.isoformat(),
   'sourceUrl':SOURCES[id_][0], 'sha256':hashlib.sha256(documents[0].encode()).hexdigest(),
   'sources':[{'url':u,'sha256':hashlib.sha256(d.encode()).hexdigest()}for u,d in zip(SOURCES[id_],documents)],
-  'notice':'La plateforme annonce sa cessation d’activité et une liquidation judiciaire par jugement du tribunal de commerce de Bordeaux. Un transfert des investissements, documents et porte-monnaie vers Run Off, solution de gestion extinctive opérée par Capsens, est annoncé ; les accès ne sont pas encore ouverts. La date de transfert et les résultats des investissements ne sont pas établis par cet avis.'}
+  'runoffAccess':access,'runoffAccessCheckedAt':today.isoformat() if access!='not-published' else None,
+  'runoffDataMigration':migration,'runoffMigrationCheckedAt':today.isoformat() if migration=='in-progress' else None,'notice':notice}
 
 def collect(id_,today):
  raw=[fetch(u) for u in SOURCES[id_]]
@@ -268,6 +281,14 @@ def refresh(previous,adapters,today):
     if record['id']!=id_ or not old or activity.get('status')!='ceased' or activity.get('checkedAt')!=today.isoformat():raise ValueError('Invalid platform activity evidence')
     if activity['judgmentAt']>today.isoformat() or activity['checkedAt']<old.get('activity',{}).get('checkedAt',''):raise ValueError('Regressing or future activity evidence')
     if len(activity.get('sources',[]))!=len(SOURCES[id_]) or [s['url']for s in activity['sources']]!=SOURCES[id_] or any(not re.fullmatch('[a-f0-9]{64}',s.get('sha256',''))for s in activity['sources']):raise ValueError('Incomplete cessation source identity')
+    prior=old.get('activity',{})
+    prior_access=prior.get('runoffAccess') or ('not-open' if 'accès ne sont pas encore ouverts' in prior.get('notice','') else None)
+    last_access=prior.get('lastKnownRunoffAccess')
+    if prior_access in ('open','not-open'):
+     last_access={'state':prior_access,'checkedAt':prior.get('runoffAccessCheckedAt') or prior.get('checkedAt'),'sourceUrl':prior.get('sourceUrl'),'sha256':prior.get('sha256')}
+    if last_access and last_access.get('state')=='open' and activity.get('runoffAccess')=='not-open':raise ValueError('Regressing initial Run Off access notice; prior activity retained')
+    if activity.get('runoffAccess')=='not-published' and last_access:
+     activity={**activity,'lastKnownRunoffAccess':copy.deepcopy(last_access)}
     result[id_]=copy.deepcopy(old);result[id_]['activity']=copy.deepcopy(activity)
     observations.append({'id':id_,'name':id_,'status':'success','scope':'platform-activity','historicalTermsRetained':True})
     continue

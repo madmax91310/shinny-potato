@@ -1,0 +1,242 @@
+{
+  "products": [
+    {
+      "productId": "FR0013412269",
+      "characteristics": {
+        "ISIN": "FR0013412269",
+        "BENCHMARK_NAME": "Solactive ISS ESG US Tech 100 Index",
+        "INDEX_BREAKDOWNS_AS_OF_DATE": "2026-10-27",
+        "FUND_REPLICATION_METHODOLOGY": "Indirect(Swap Based)"
+      },
+      "productType": "PRODUCT",
+      "currencies": {
+        "CURRENCY": "EUR",
+        "BASE_CURRENCY": "EUR",
+        "INDEX_CURRENCY": "USD"
+      },
+      "metrics": [],
+      "historics": [],
+      "passportingCountries": null,
+      "composition": null,
+      "breakDowns": [
+        {
+          "aggregationField": "INDEX_TOP10",
+          "breakDownData": [
+            {
+              "aggregationName": "NVIDIA CORP",
+              "weight": 0.0,
+              "adjustedWeight": 0.17310999570652,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "NVDA UW",
+                "currency": "USD",
+                "sector": "Information Technology",
+                "isin": "US67066G1040",
+                "countryOfRisk": "United States"
+              }
+            },
+            {
+              "aggregationName": "APPLE INC",
+              "weight": 0.0,
+              "adjustedWeight": 0.16348119303689,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "AAPL UW",
+                "currency": "USD",
+                "sector": "Information Technology",
+                "isin": "US0378331005",
+                "countryOfRisk": "United States"
+              }
+            },
+            {
+              "aggregationName": "MICROSOFT CORP",
+              "weight": 0.0,
+              "adjustedWeight": 0.11906054033777,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "MSFT UW",
+                "currency": "USD",
+                "sector": "Information Technology",
+                "isin": "US5949181045",
+                "countryOfRisk": "United States"
+              }
+            },
+            {
+              "aggregationName": "ALPHABET INC CL A",
+              "weight": 0.0,
+              "adjustedWeight": 0.06343957123511,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "GOOGL UW",
+                "currency": "USD",
+                "sector": "Communication Services",
+                "isin": "US02079K3059",
+                "countryOfRisk": "United States"
+              }
+            },
+            {
+              "aggregationName": "META PLATFORMS INC-CLASS A",
+              "weight": 0.0,
+              "adjustedWeight": 0.06205349872951,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "META UW",
+                "currency": "USD",
+                "sector": "Communication Services",
+                "isin": "US30303M1027",
+                "countryOfRisk": "United States"
+              }
+            },
+            {
+              "aggregationName": "TESLA INC",
+              "weight": 0.0,
+              "adjustedWeight": 0.06128908032568,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "TSLA UW",
+                "currency": "USD",
+                "sector": "Consumer Discretionary",
+                "isin": "US88160R1014",
+                "countryOfRisk": "United States"
+              }
+            },
+            {
+              "aggregationName": "ALPHABET INC CL C",
+              "weight": 0.0,
+              "adjustedWeight": 0.05445776954279,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "GOOG UW",
+                "currency": "USD",
+                "sector": "Communication Services",
+                "isin": "US02079K1079",
+                "countryOfRisk": "United States"
+              }
+            },
+            {
+              "aggregationName": "MICRON TECHNOLOGY INC",
+              "weight": 0.0,
+              "adjustedWeight": 0.03171291990744,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "MU UW",
+                "currency": "USD",
+                "sector": "Information Technology",
+                "isin": "US5951121038",
+                "countryOfRisk": "United States"
+              }
+            },
+            {
+              "aggregationName": "ADVANCED MICRO DEVICES",
+              "weight": 0.0,
+              "adjustedWeight": 0.02472048286636,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "AMD UW",
+                "currency": "USD",
+                "sector": "Information Technology",
+                "isin": "US0079031078",
+                "countryOfRisk": "United States"
+              }
+            },
+            {
+              "aggregationName": "CISCO SYSTEMS INC",
+              "weight": 0.0,
+              "adjustedWeight": 0.01635851547147,
+              "additionalProperties": {
+                "quantity": 0.0,
+                "bbg": "CSCO UW",
+                "currency": "USD",
+                "sector": "Information Technology",
+                "isin": "US17275R1023",
+                "countryOfRisk": "United States"
+              }
+            }
+          ]
+        },
+        {
+          "aggregationField": "INDEX_SECTORS",
+          "breakDownData": [
+            {
+              "aggregationName": "Information Technology",
+              "weight": 0.65955740452022,
+              "adjustedWeight": 0.65955740452022,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Communication Services",
+              "weight": 0.18664541304238,
+              "adjustedWeight": 0.18664541304238,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Consumer Discretionary",
+              "weight": 0.06751329800263,
+              "adjustedWeight": 0.06751329800263,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Health Care",
+              "weight": 0.04193105920298,
+              "adjustedWeight": 0.04193105920298,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Consumer Staples",
+              "weight": 0.01582234124177,
+              "adjustedWeight": 0.01582234124177,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Industrials",
+              "weight": 0.01208413618383,
+              "adjustedWeight": 0.01208413618383,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Materials",
+              "weight": 0.01132218089541,
+              "adjustedWeight": 0.01132218089541,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Utilities",
+              "weight": 0.00273816477528,
+              "adjustedWeight": 0.00273816477528,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Energy",
+              "weight": 0.0023860021355,
+              "adjustedWeight": 0.0023860021355,
+              "additionalProperties": null
+            }
+          ]
+        },
+        {
+          "aggregationField": "INDEX_COUNTRIES",
+          "breakDownData": [
+            {
+              "aggregationName": "United States",
+              "weight": 0.98195536177137,
+              "adjustedWeight": 0.98195536177137,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Ireland",
+              "weight": 0.01559484352269,
+              "adjustedWeight": 0.01559484352269,
+              "additionalProperties": null
+            },
+            {
+              "aggregationName": "Netherlands",
+              "weight": 0.00244979470594,
+              "adjustedWeight": 0.00244979470594,
+              "additionalProperties": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

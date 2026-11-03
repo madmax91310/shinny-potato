@@ -158,6 +158,76 @@ class ProducerEntryPoints(unittest.TestCase):
                     with patch('urllib.request.urlopen',side_effect=AssertionError('Planning must not query a source')):
                         p=plans.build_plan(name,[])
                     self.assertEqual(len({r['id']for r in p['items']}),len(p['items']));self.assertTrue(all(r.get('fields')for r in p['items']))
+    def test_anniversary_selection_uses_native_source_ids_and_preserves_omissions(self):
+        from types import SimpleNamespace
+        module=SimpleNamespace(configurations=lambda:[
+            {'id':'source-A','isin':'TEST-ISIN-A','currency':'EUR'},
+            {'id':'source-B','isin':'TEST-ISIN-B','currency':'USD'},
+        ])
+        p=plans.build_plan('refresh_anniversary_levels',['--only','source-A'],module=module)
+        selected=[r['id']for r in p['items']if r['selected']]
+        self.assertEqual(selected,['anniversary-source-A','anniversary-or'])
+        self.assertFalse(next(r for r in p['items']if r['id']=='anniversary-source-B')['selected'])
+        contract_plan=plan(tuple(r['id']for r in p['items']),set(selected))
+        result=c.normalize_contract(finished({'outcomes':[{'id':'anniversary-or','status':'not-attempted','sourceAttempted':False}]},contract_plan)['resultContract'])
+        self.assertEqual([r['expectedId']for r in result['errors']],['anniversary-source-A'])
+        self.assertFalse(result['successes'])
+        for invalid in ['unknown-source','TEST-ISIN-A','anniversary-source-A']:
+            with self.subTest(invalid=invalid):
+                self.assertRaisesRegex(ValueError,'Unknown producer target',plans.build_plan,'refresh_anniversary_levels',['--only',invalid],module=module)
+        full=plans.build_plan('refresh_anniversary_levels',[],module=module)
+        self.assertTrue(all(r['selected']for r in full['items']))
+
+    def test_anniversary_workflow_selections_match_predeclared_source_scope(self):
+        import re, shlex
+        commands=[]
+        for path in (plans.ROOT/'.github/workflows').glob('*.yml'):
+            commands.extend(re.findall(r'(?m)^.*run: python scripts/refresh_anniversary_levels.py (.*--only[^\n]+)',path.read_text()))
+        self.assertTrue(commands)
+        for command in commands:
+            args=shlex.split(command);selected=[]
+            for value in args[args.index('--only')+1:]:
+                if value.startswith('--'):break
+                selected.append(value)
+            with self.subTest(command=command),patch('urllib.request.urlopen',side_effect=AssertionError('No source request during planning')):
+                p=plans.build_plan('refresh_anniversary_levels',args)
+                self.assertEqual({r['id']for r in p['items']if r['selected']},{'anniversary-'+value for value in selected}|{'anniversary-or'})
+
+    def test_real_listing_and_hedge_metadata_sources_declare_only_owned_fields(self):
+        sources=plans.read('scripts/instrument-metadata-sources.json')['instruments']
+        identities=plans.read('src/data/new-instrument-identities.json')
+        ids={r['isin']for r in identities};declared={r['isin']:r for r in sources if r['isin']in ids}
+        self.assertEqual(len(declared),21)
+        self.assertTrue(all(r['fields']==['listings','currencyHedge']for r in declared.values()))
+        with patch('urllib.request.urlopen',side_effect=AssertionError('Plan must precede source/results')):
+            p=plans.build_plan('collect_instrument_metadata',['--only',','.join(sorted(ids))])
+        selected={r['id']for r in p['items']if r['selected']}
+        expected={isin+':'+field+suffix for isin in ids for field in ('listings','currencyHedge')for suffix in ('',':qualification')}
+        self.assertEqual(selected,expected)
+        self.assertEqual(len(selected),84)
+        # Four unowned fields per part remain excluded, including PEA; no expansion from a missing badge.
+        excluded=[r for r in p['items']if r['instrument']in ids and not r['selected']]
+        self.assertEqual(len(excluded),168)
+        self.assertTrue(all(r['reason'].startswith('Outside declared fields')for r in excluded))
+        complete_plan={**plan(),**p,'producer':'collect_instrument_metadata','reportStem':'metadata-observation'}
+        reported=finished({},complete_plan)
+        missing=[r for r in reported['resultContract']['outcomes']if r['id']in expected]
+        self.assertEqual(len(missing),84)
+        self.assertTrue(all(r['status']=='failed'for r in missing),'An owned result omitted from a green job remains a real omission')
+        unowned=[r for r in reported['resultContract']['outcomes']if r['instrument']in ids and r['id']not in expected]
+        self.assertEqual(len(unowned),168)
+        self.assertTrue(all(r['status']=='not-attempted' and r['sourceAttempted']is False for r in unowned))
+
+    def test_metadata_targeting_preserves_defaults_and_excludes_other_sources(self):
+        sources=plans.read('scripts/instrument-metadata-sources.json')['instruments']
+        full=next(r for r in sources if 'fields'not in r)
+        narrow=next(r for r in sources if r.get('fields')==['listings','currencyHedge'])
+        p=plans.build_plan('collect_instrument_metadata',['--only',full['isin']])
+        import collect_instrument_metadata as metadata
+        self.assertEqual({r['id']for r in p['items']if r['selected']},{full['isin']+':'+field+suffix for field in metadata.FIELDS for suffix in ('',':qualification')})
+        self.assertTrue(all(not r['selected']for r in p['items']if r['instrument']==narrow['isin']))
+        self.assertEqual({r['id']for r in p['items']if r['instrument']==narrow['isin']},{narrow['isin']+':'+field+suffix for field in metadata.FIELDS for suffix in ('',':qualification')})
+
     def test_targeted_metadata_accepts_existing_comma_separated_cli(self):
         sources=plans.read('scripts/instrument-metadata-sources.json')['instruments'];ids=[r['isin']for r in sources[:2]]
         p=plans.build_plan('collect_instrument_metadata',['--only',','.join(ids)])
@@ -330,5 +400,157 @@ class InputScopeRegressions(unittest.TestCase):
         from publish_automation_status import normalize_attempt_report
         report={'successes':[{'id':'A'}],'errors':[],'_reportEvidence':{'scope':{'runId':'1','attempt':'1'}}}
         r=normalize_attempt_report(report,{'id':2,'run_attempt':1});self.assertFalse(r['successes']);self.assertTrue(r['errors'][0]['id'].startswith('report-contract:'))
+
+class CompleteHoldingsReceipts(unittest.TestCase):
+    def setUp(self):
+        import gzip
+        path=Path(__file__).parent/'fixtures/producer-reports/dca-holdings-40952108356.json.gz'
+        self.original=json.loads(gzip.decompress(path.read_bytes()))
+        self.p=self.original['resultContract']['inputPlan']
+        # Strip only wrapper-generated metadata for this isolated replay. The
+        # immutable historical report/plan are never rewritten or renewed.
+        self.native={k:v for k,v in self.original.items()if k not in ('producerStarted','resultContract')}
+
+    def test_real_bounded_dictionary_keeps_182_results_and_one_financial_failure(self):
+        self.assertEqual(len(self.p['items']),183)
+        self.assertTrue(all(r.get('kind')=='omission'for r in self.original['resultContract']['outcomes']))
+        before=copy.deepcopy(self.native)
+        output=c.finish(self.native,self.p);r=c.normalize_contract(output['resultContract'])
+        self.assertEqual(len(r['successes']),182);self.assertEqual(len(r['errors']),1)
+        self.assertEqual(r['errors'][0]['id'],'dca-holdings:IE00B441G979')
+        self.assertIn('100.762180%',r['errors'][0]['error']);self.assertIn('100.5%',r['errors'][0]['error'])
+        self.assertFalse(any(x.get('kind')=='omission'for x in output['resultContract']['outcomes']))
+        self.assertEqual(output['resultContract']['inputPlan'],self.p)
+        self.assertEqual(self.native,before)
+        self.assertEqual(output['observations'],before['observations'])
+        self.assertNotIn('producerStarted',output)
+
+    def test_original_source_period_and_check_are_not_replaced_by_report_time(self):
+        output=c.finish(self.native,self.p)
+        row=next(r for r in output['resultContract']['outcomes']if r['id']=='dca-holdings:IE00BJGWQN72')
+        receipt=self.native['observations']['IE00BJGWQN72']
+        for key in ('asOf','checkedAt','sourceUrl','sha256'):self.assertEqual(row[key],receipt[key])
+        self.assertEqual(row['asOf'],'2026-10-23');self.assertTrue(row['sourceAttempted'])
+        self.assertNotIn('sourceUrls',row,'Pooled identity URLs remain in native evidence, not attributed as fund observations')
+
+    def test_incomplete_or_cached_receipt_is_not_a_source_success(self):
+        for key,value in [('checkedAt',None),('asOf','invalid'),('sha256',''),('sourceUrl',None),('sourceAttempted',False)]:
+            native=copy.deepcopy(self.native);native['observations']['IE00BJGWQN72'][key]=value
+            with self.subTest(key=key):
+                r=c.finish(native,self.p)['resultContract']['outcomes']
+                row=next(r for r in r if r['id']=='dca-holdings:IE00BJGWQN72')
+                self.assertEqual(row['status'],'failed');self.assertEqual(row['phase'],'qualification')
+                self.assertEqual(row['kind'],'evidence-incomplete');self.assertIsNone(row['sourceAttempted'])
+                self.assertNotIn('checkedAt',row)
+
+    def test_targeted_retry_does_not_certify_the_other_181_instruments(self):
+        p=copy.deepcopy(self.p)
+        selected={'dca-holdings:IE00BJGWQN72','dca-holdings:IE00B441G979'}
+        for item in p['items']:
+            item['selected']=item['id']in selected
+            if not item['selected']:item['reason']='Outside this isolated targeted retry'
+        native=copy.deepcopy(self.native)
+        native['successes']=[r for r in native['successes']if r['id']in selected]
+        native['observations']={'IE00BJGWQN72':native['observations']['IE00BJGWQN72']}
+        output=finished(native,p);r=c.normalize_contract(output['resultContract'])
+        self.assertEqual(len(r['successes']),1);self.assertEqual(len(r['errors']),1)
+        self.assertEqual(len(output['resultContract']['scope']['networkRequestedIds']),1)
+        self.assertEqual(sum(x['status']=='not-attempted'for x in output['resultContract']['outcomes']),181)
+
+    def test_interruption_and_cache_mode_still_cannot_certify_source_controls(self):
+        output=c.finish(self.native,self.p,completed=False)
+        self.assertTrue(all(r.get('kind')=='omission'for r in output['resultContract']['outcomes']))
+        p=copy.deepcopy(self.p);p['cacheRequested']=True
+        output=finished(self.native,p);self.assertFalse(c.normalize_contract(output['resultContract'])['successes'])
+
+    def test_existing_monitor_reads_the_completed_contract(self):
+        output=c.finish(self.native,self.p)
+        with tempfile.TemporaryDirectory()as folder:
+            path=Path(folder)/'dca-complete-holdings.json';path.write_text(json.dumps(output))
+            import gzip
+            declared=Path(__file__).parent/'fixtures/producer-reports/dca-holdings-40952108356-plan.json.gz'
+            path.with_name('dca-complete-holdings.contract-plan.json').write_bytes(gzip.decompress(declared.read_bytes()))
+            result=read_report(path,'update-qualified-exposures.yml',json.loads(gzip.decompress(declared.read_bytes())))
+        self.assertTrue(result['_reportEvidence']['scopeExplicit'])
+        self.assertNotIn('_scopeWarning',result)
+        self.assertEqual(len(result['successes']),182);self.assertEqual(len(result['errors']),1)
+
+    def test_missing_independent_plan_keeps_the_completeness_qualification(self):
+        output=c.finish(self.native,self.p)
+        with tempfile.TemporaryDirectory()as folder:
+            path=Path(folder)/'dca-complete-holdings.json';path.write_text(json.dumps(output))
+            result=read_report(path,'update-qualified-exposures.yml')
+        self.assertIn('_scopeWarning',result)
+
+
+
+
+class DerivedHoldingsControls(unittest.TestCase):
+    def report(self):
+        import gzip
+        original=json.loads(gzip.decompress((Path(__file__).parent/'fixtures/producer-reports/dca-holdings-40952108356.json.gz').read_bytes()))
+        native={k:v for k,v in original.items()if k not in ('producerStarted','resultContract')}
+        return c.finish(native,original['resultContract']['inputPlan'])
+    def derived(self):return next(r for r in self.report()['resultContract']['outcomes']if r.get('scope')=='equity-lookthrough')
+    def test_scope_declared_before_results_separates_four_derivations(self):
+        p=plans.build_plan('collect_dca_complete_holdings',[])
+        rows=[r for r in p['items']if r.get('phase')=='validation']
+        self.assertEqual(len(rows),4)
+        self.assertTrue(all(r['sourceAttempted']is False for r in rows))
+    def test_four_successful_derivations_do_not_certify_network_controls(self):
+        r=self.report()['resultContract'];derived=[x for x in r['outcomes']if x.get('scope')=='equity-lookthrough']
+        self.assertEqual(len(derived),4)
+        self.assertTrue(all(x['status']=='succeeded'and x['phase']=='validation'and x['sourceAttempted']is False for x in derived))
+        self.assertTrue(all(x['id']not in r['scope']['networkRequestedIds']for x in derived))
+        self.assertEqual(len(r['scope']['networkRequestedIds']),178)
+    def test_old_receipts_requalified_without_mutating_archive(self):
+        r=self.report()['resultContract']
+        for x in r['outcomes']:
+            if x.get('scope')=='equity-lookthrough':x.pop('phase');x['sourceAttempted']=True
+        before=copy.deepcopy(r);out=c.normalize_contract(r)
+        self.assertEqual(r,before)
+        self.assertTrue(all(x['phase']=='validation'and x['sourceAttempted']is False for x in out['successes']if x.get('scope')=='equity-lookthrough'))
+    def test_requalification_preserves_original_clock_failure_and_history(self):
+        from publish_automation_status import merge_proof_retry
+        from test_automation_product import event
+        w='update-qualified-exposures.yml';success=self.derived();key=success['id'];old={'checkedAt':'2026-10-20','recordedAt':'2026-10-21','runId':90,'evidence':{'sha256':'immutable'}}
+        state={'workflows':{w:{'runId':102,'sourceChecks':{key:old},'dataFailures':{key:{'cause':'Unproven source failure','phase':'collection'}}}}}
+        actual=merge_proof_retry(state,event(w,101),[{'successes':[success],'errors':[]}]);row=actual['workflows'][w]
+        self.assertNotIn(key,row['sourceChecks']);self.assertEqual(row['dataFailures'][key]['phase'],'collection')
+        self.assertEqual(row['validationChecks'][key]['sourceControlsRequalified'][0]['originalSourceControl'],old)
+        again=merge_proof_retry(actual,event(w,101),[{'successes':[success],'errors':[]}])['workflows'][w]
+        self.assertEqual(len(again['validationChecks'][key]['sourceControlsRequalified']),1)
+        self.assertEqual(state['workflows'][w]['sourceChecks'][key],old)
+    def test_derived_only_run_does_not_renew_last_collection_success(self):
+        from publish_automation_status import update_status
+        from test_automation_product import event,jobs
+        w='update-qualified-exposures.yml';old='2026-10-20T12:00:00Z'
+        state={'workflows':{w:{'monitorVersion':3,'lastCollectionSuccessAt':old}}}
+        out=update_status(state,event(w,101),jobs(w),[{'successes':[self.derived()],'errors':[]}])['workflows'][w]
+        self.assertEqual(out['lastCollectionSuccessAt'],old);self.assertFalse(out['sourceChecks'])
+
+    def test_reader_does_not_certify_the_historical_network_claim(self):
+        import gzip
+        output=self.report()
+        for row in output['resultContract']['outcomes']:
+            if row.get('scope')=='equity-lookthrough':row.pop('phase');row['sourceAttempted']=True
+        with tempfile.TemporaryDirectory()as folder:
+            path=Path(folder)/'dca-complete-holdings.json';path.write_text(json.dumps(output));before=path.read_bytes()
+            declared=Path(__file__).parent/'fixtures/producer-reports/dca-holdings-40952108356-plan.json.gz'
+            path.with_name('dca-complete-holdings.contract-plan.json').write_bytes(gzip.decompress(declared.read_bytes()))
+            report=read_report(path,'update-qualified-exposures.yml',json.loads(gzip.decompress(declared.read_bytes())))
+            self.assertEqual(path.read_bytes(),before)
+        rows=[r for r in report['successes']if r.get('scope')=='equity-lookthrough']
+        self.assertEqual(len(rows),4)
+        self.assertTrue(all(r['sourceAttempted']is False and r['phase']=='validation'and not r.get('verifiedInAttempt')for r in rows))
+
+    def test_native_validation_clock_is_not_overwritten_by_global_or_missing_clock(self):
+        p=plan(('A',));p['items'][0]['phase']='validation'
+        for global_date in [None,'2026-10-20']:
+            native={'successes':[{'id':'A','validatedAt':'2026-10-29T12:00:00Z','sourceAttempted':False,'phase':'validation'}],'errors':[]}
+            if global_date:native['checkedAt']=global_date
+            row=finished(native,p)['resultContract']['outcomes'][0]
+            self.assertEqual(row['validatedAt'],'2026-10-29T12:00:00Z')
+            self.assertFalse(row['sourceAttempted'])
 
 if __name__=='__main__':unittest.main()

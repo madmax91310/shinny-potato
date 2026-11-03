@@ -59,6 +59,31 @@ class RankingSourcesTest(unittest.TestCase):
         self.assertEqual(fx['months']['1999-01']['rates'], {'EUR': 1.0, 'USD': 1.2})
         self.assertEqual(fx['months']['1999-02']['asOf'], '1999-02-26')
 
+    def test_partial_recent_h10_month_waits_without_inventing_a_month_end_rate(self):
+        ecb = document([('1999-01-29', 1.2), ('1999-02-18', 1.3), ('1999-02-26', 1.35)])
+        partial = fred([('1999-01-29', 32), ('1999-02-18', 33)])
+        waiting = parse_cross_fx(partial, ecb, dt.datetime(1999, 3, 3, tzinfo=UTC))
+        self.assertEqual(list(waiting['observations']), ['1999-01'])
+        self.assertEqual(waiting['observations']['1999-01']['value'], 38.4)
+        self.assertEqual(waiting['pendingMonths'][0]['month'], '1999-02')
+        self.assertNotIn('1999-02', waiting['observations'])
+        with self.assertRaisesRegex(ValueError, 'Stale cross-rate'):
+            parse_cross_fx(partial, ecb, dt.datetime(1999, 3, 9, tzinfo=UTC))
+        recovered = parse_cross_fx(fred([('1999-01-29', 32), ('1999-02-26', 33)]), ecb, dt.datetime(1999, 3, 4, tzinfo=UTC))
+        self.assertNotIn('pendingMonths', recovered)
+        self.assertEqual(recovered['observations']['1999-01'], waiting['observations']['1999-01'])
+        self.assertEqual(recovered['observations']['1999-02']['value'], 44.55)
+
+    def test_weekly_release_wait_also_preserves_the_year_boundary(self):
+        last_days = [(dt.date(1999, m+1, 1)-dt.timedelta(days=1)).isoformat() for m in range(1, 12)]
+        ecb = document([(d, 1.2) for d in last_days]+[('1999-12-23', 1.25), ('1999-12-31', 1.3)])
+        rows = [(d, 32) for d in last_days]+[('1999-12-23', 33)]
+        result = parse_cross_fx(fred(rows), ecb, dt.datetime(2000, 1, 2, tzinfo=UTC))
+        self.assertEqual(len(result['observations']), 11)
+        self.assertEqual(result['pendingMonths'][0]['month'], '1999-12')
+        with self.assertRaisesRegex(ValueError, 'Stale cross-rate'):
+            parse_cross_fx(fred(rows), ecb, dt.datetime(2000, 1, 9, tzinfo=UTC))
+
     def test_ecb_reject_missing_stale_duplicate_future_nonfinite(self):
         now = dt.datetime(1999, 3, 3, tzinfo=UTC)
         valid = [('1999-01-29', 1.2), ('1999-02-26', 1.3)]
@@ -80,6 +105,25 @@ if __name__ == '__main__':
     unittest.main()
 
 class RankingRetryTest(unittest.TestCase):
+    def test_recent_partial_release_cannot_erase_a_previously_qualified_month(self):
+        from unittest.mock import patch
+        from collect_ranking_sources import refresh_fx, ECB
+        old_time = dt.datetime(1999, 3, 1, tzinfo=UTC)
+        now = dt.datetime(1999, 3, 3, tzinfo=UTC)
+        ecb = document([('1999-01-29', 1.2), ('1999-02-18', 1.3), ('1999-02-26', 1.35)])
+        old = apply_cross_rates(parse_fx(ecb, old_time), {'TWD':parse_cross_fx(
+            fred([('1999-01-29', 32), ('1999-02-26', 33)]), ecb, old_time)})
+        original = copy.deepcopy(old['derived'])
+        def fetch(url, **kwargs):
+            return ecb if url == ECB else fred([('1999-01-29', 32), ('1999-02-18', 33)])
+        with patch('collect_ranking_sources.download', side_effect=fetch):
+            result, reports = refresh_fx(old, {'fxSources':{'TWD':{'status':'failed'}}}, now, retry=True)
+        self.assertEqual(reports['TWD']['status'], 'failed')
+        self.assertIn('coverage would regress', reports['TWD']['reason'])
+        self.assertEqual(result['derived'], original)
+        self.assertEqual(result['derived']['TWD']['checkedAt'], '1999-03-01')
+        self.assertEqual(result['months']['1999-02']['rates']['TWD'], 44.55)
+
     def test_cross_retry_is_independent_and_failure_preserves_original_dates(self):
         from unittest.mock import patch
         from collect_ranking_sources import refresh_fx, ECB

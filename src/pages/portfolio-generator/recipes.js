@@ -1,3 +1,5 @@
+import { getAsset } from '../../data/portfolio-assets.js';
+import { hasCompleteAutomaticWindow } from './performance.js';
 // Constructions : les rendements, noms et instruments restent dans la banque commune.
 // Deux nouvelles structures par couple, en complément de sa construction historique.
 import { routingRecipes } from './routingRecipes.js';
@@ -193,7 +195,10 @@ export function getRecipes(profileId, riskId) {
     ...expandedRecipes(profileId, riskId),
     ...routingRecipes(profileId, riskId),
     ...[...additions[profileId][riskId], ...(profileId === 'generaliste' && ['dynamique','offensif'].includes(riskId) ? focusedWorldRecipes : []), ...(newConstructions[profileId]?.[riskId] ?? [])].map(r => ({ ...r, assets: protectSlots(r.assets, profileId) })),
-  ];
+  ].map(recipe=>({...recipe,assets:recipe.assets.map(slot=>{
+    if(!slot.idOptions)return slot;
+    return {...slot,idOptions:slot.idOptions.filter(id=>hasCompleteAutomaticWindow(getAsset(id)))};
+  })})).filter(recipe=>recipe.assets.every(slot=>slot.idOptions?.length || (!slot.idOptions && hasCompleteAutomaticWindow(getAsset(slot.id)))));
 }
 
 export function withinRecipe(selection, recipe) {

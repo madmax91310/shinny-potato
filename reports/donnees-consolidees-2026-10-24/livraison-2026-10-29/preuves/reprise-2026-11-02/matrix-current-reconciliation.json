@@ -1,0 +1,449 @@
+{
+  "summary": {
+    "build": {
+      "sha": "414bd67a1afa1ae9cc003e5e98a3f0c0f6b92d2d",
+      "builtAt": "2026-11-02T06:26:04Z"
+    },
+    "oldIdentitiesPreserved": 41516,
+    "currentDeclaredContracts": 33830,
+    "matrixAfter": 41516,
+    "newTrackingIdentities": 0,
+    "unmatchedOlderIdentities": 7686,
+    "ambiguousNotReused": 0,
+    "previouslyAmbiguousListingsResolvedByExactQuoteIdentity": 42,
+    "currentDeclarationSummary": {
+      "tools": 21,
+      "usages": 33830,
+      "required": 30232,
+      "connected": 24642,
+      "blocked": 1295,
+      "unconfirmed": 4295,
+      "unmapped": 0
+    },
+    "limit": "Declarations are not individual outage or success proofs; bounded native/public/browser evidence remains separate."
+  },
+  "ambiguous": [],
+  "listingIdentityProofs": [
+    {
+      "declaredId": "usage:/bibliotheque-donnees|LU1681048630|catalog:6",
+      "oldTrackingId": "usage:/bibliotheque-donnees|LU1681048630|catalog:6|field:7f0c0e1b7bb3",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "XPAR",
+        "EUR",
+        "GLUX.PA"
+      ]
+    },
+    {
+      "declaredId": "usage:/bibliotheque-donnees|LU1681048630|catalog:7",
+      "oldTrackingId": "usage:/bibliotheque-donnees|LU1681048630|catalog:7|field:5aa5cfc86aa3",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "ETFP",
+        "EUR",
+        "GLUX.MI"
+      ]
+    },
+    {
+      "declaredId": "usage:/bibliotheque-donnees|LU1681048630|catalog:8",
+      "oldTrackingId": "usage:/bibliotheque-donnees|LU1681048630|catalog:8|field:f0846945c384",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "XETR",
+        "EUR",
+        "AMGLUX.DE"
+      ]
+    },
+    {
+      "declaredId": "usage:/bibliotheque-donnees|LU1681048630|catalog:10",
+      "oldTrackingId": "usage:/bibliotheque-donnees|LU1681048630|catalog:10|field:5aa5cfc86aa3",
+      "exactTickerMicCurrencySymbol": [
+        "CI5",
+        "ETFP",
+        "EUR",
+        "CI5.MI"
+      ]
+    },
+    {
+      "declaredId": "usage:/bibliotheque-donnees|LU1681048630|catalog:11",
+      "oldTrackingId": "usage:/bibliotheque-donnees|LU1681048630|catalog:11|field:f0846945c384",
+      "exactTickerMicCurrencySymbol": [
+        "CI5GR",
+        "XETR",
+        "EUR",
+        "CI5.DE"
+      ]
+    },
+    {
+      "declaredId": "usage:/bibliotheque-donnees|LU1681048630|catalog:12",
+      "oldTrackingId": "usage:/bibliotheque-donnees|LU1681048630|catalog:12|field:7f0c0e1b7bb3",
+      "exactTickerMicCurrencySymbol": [
+        "CI5",
+        "XPAR",
+        "EUR",
+        "CI5.PA"
+      ]
+    },
+    {
+      "declaredId": "usage:/comparatif-etf|LU1681048630|catalog:6",
+      "oldTrackingId": "usage:/comparatif-etf|LU1681048630|catalog:6|field:7f0c0e1b7bb3",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "XPAR",
+        "EUR",
+        "GLUX.PA"
+      ]
+    },
+    {
+      "declaredId": "usage:/comparatif-etf|LU1681048630|catalog:7",
+      "oldTrackingId": "usage:/comparatif-etf|LU1681048630|catalog:7|field:5aa5cfc86aa3",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "ETFP",
+        "EUR",
+        "GLUX.MI"
+      ]
+    },
+    {
+      "declaredId": "usage:/comparatif-etf|LU1681048630|catalog:8",
+      "oldTrackingId": "usage:/comparatif-etf|LU1681048630|catalog:8|field:f0846945c384",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "XETR",
+        "EUR",
+        "AMGLUX.DE"
+      ]
+    },
+    {
+      "declaredId": "usage:/comparatif-etf|LU1681048630|catalog:10",
+      "oldTrackingId": "usage:/comparatif-etf|LU1681048630|catalog:10|field:5aa5cfc86aa3",
+      "exactTickerMicCurrencySymbol": [
+        "CI5",
+        "ETFP",
+        "EUR",
+        "CI5.MI"
+      ]
+    },
+    {
+      "declaredId": "usage:/comparatif-etf|LU1681048630|catalog:11",
+      "oldTrackingId": "usage:/comparatif-etf|LU1681048630|catalog:11|field:f0846945c384",
+      "exactTickerMicCurrencySymbol": [
+        "CI5GR",
+        "XETR",
+        "EUR",
+        "CI5.DE"
+      ]
+    },
+    {
+      "declaredId": "usage:/comparatif-etf|LU1681048630|catalog:12",
+      "oldTrackingId": "usage:/comparatif-etf|LU1681048630|catalog:12|field:7f0c0e1b7bb3",
+      "exactTickerMicCurrencySymbol": [
+        "CI5",
+        "XPAR",
+        "EUR",
+        "CI5.PA"
+      ]
+    },
+    {
+      "declaredId": "usage:/duels-portefeuilles|LU1681048630|catalog:6",
+      "oldTrackingId": "usage:/duels-portefeuilles|LU1681048630|catalog:6|field:7f0c0e1b7bb3",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "XPAR",
+        "EUR",
+        "GLUX.PA"
+      ]
+    },
+    {
+      "declaredId": "usage:/duels-portefeuilles|LU1681048630|catalog:7",
+      "oldTrackingId": "usage:/duels-portefeuilles|LU1681048630|catalog:7|field:5aa5cfc86aa3",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "ETFP",
+        "EUR",
+        "GLUX.MI"
+      ]
+    },
+    {
+      "declaredId": "usage:/duels-portefeuilles|LU1681048630|catalog:8",
+      "oldTrackingId": "usage:/duels-portefeuilles|LU1681048630|catalog:8|field:f0846945c384",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "XETR",
+        "EUR",
+        "AMGLUX.DE"
+      ]
+    },
+    {
+      "declaredId": "usage:/duels-portefeuilles|LU1681048630|catalog:10",
+      "oldTrackingId": "usage:/duels-portefeuilles|LU1681048630|catalog:10|field:5aa5cfc86aa3",
+      "exactTickerMicCurrencySymbol": [
+        "CI5",
+        "ETFP",
+        "EUR",
+        "CI5.MI"
+      ]
+    },
+    {
+      "declaredId": "usage:/duels-portefeuilles|LU1681048630|catalog:11",
+      "oldTrackingId": "usage:/duels-portefeuilles|LU1681048630|catalog:11|field:f0846945c384",
+      "exactTickerMicCurrencySymbol": [
+        "CI5GR",
+        "XETR",
+        "EUR",
+        "CI5.DE"
+      ]
+    },
+    {
+      "declaredId": "usage:/duels-portefeuilles|LU1681048630|catalog:12",
+      "oldTrackingId": "usage:/duels-portefeuilles|LU1681048630|catalog:12|field:7f0c0e1b7bb3",
+      "exactTickerMicCurrencySymbol": [
+        "CI5",
+        "XPAR",
+        "EUR",
+        "CI5.PA"
+      ]
+    },
+    {
+      "declaredId": "usage:/calculateur-investissement|LU1681048630|catalog:6",
+      "oldTrackingId": "usage:/calculateur-investissement|LU1681048630|catalog:6|field:7f0c0e1b7bb3",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "XPAR",
+        "EUR",
+        "GLUX.PA"
+      ]
+    },
+    {
+      "declaredId": "usage:/calculateur-investissement|LU1681048630|catalog:7",
+      "oldTrackingId": "usage:/calculateur-investissement|LU1681048630|catalog:7|field:5aa5cfc86aa3",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "ETFP",
+        "EUR",
+        "GLUX.MI"
+      ]
+    },
+    {
+      "declaredId": "usage:/calculateur-investissement|LU1681048630|catalog:8",
+      "oldTrackingId": "usage:/calculateur-investissement|LU1681048630|catalog:8|field:f0846945c384",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "XETR",
+        "EUR",
+        "AMGLUX.DE"
+      ]
+    },
+    {
+      "declaredId": "usage:/calculateur-investissement|LU1681048630|catalog:10",
+      "oldTrackingId": "usage:/calculateur-investissement|LU1681048630|catalog:10|field:5aa5cfc86aa3",
+      "exactTickerMicCurrencySymbol": [
+        "CI5",
+        "ETFP",
+        "EUR",
+        "CI5.MI"
+      ]
+    },
+    {
+      "declaredId": "usage:/calculateur-investissement|LU1681048630|catalog:11",
+      "oldTrackingId": "usage:/calculateur-investissement|LU1681048630|catalog:11|field:f0846945c384",
+      "exactTickerMicCurrencySymbol": [
+        "CI5GR",
+        "XETR",
+        "EUR",
+        "CI5.DE"
+      ]
+    },
+    {
+      "declaredId": "usage:/calculateur-investissement|LU1681048630|catalog:12",
+      "oldTrackingId": "usage:/calculateur-investissement|LU1681048630|catalog:12|field:7f0c0e1b7bb3",
+      "exactTickerMicCurrencySymbol": [
+        "CI5",
+        "XPAR",
+        "EUR",
+        "CI5.PA"
+      ]
+    },
+    {
+      "declaredId": "usage:/fiches-pratiques|LU1681048630|catalog:6",
+      "oldTrackingId": "usage:/fiches-pratiques|LU1681048630|catalog:6|field:7f0c0e1b7bb3",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "XPAR",
+        "EUR",
+        "GLUX.PA"
+      ]
+    },
+    {
+      "declaredId": "usage:/fiches-pratiques|LU1681048630|catalog:7",
+      "oldTrackingId": "usage:/fiches-pratiques|LU1681048630|catalog:7|field:5aa5cfc86aa3",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "ETFP",
+        "EUR",
+        "GLUX.MI"
+      ]
+    },
+    {
+      "declaredId": "usage:/fiches-pratiques|LU1681048630|catalog:8",
+      "oldTrackingId": "usage:/fiches-pratiques|LU1681048630|catalog:8|field:f0846945c384",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "XETR",
+        "EUR",
+        "AMGLUX.DE"
+      ]
+    },
+    {
+      "declaredId": "usage:/fiches-pratiques|LU1681048630|catalog:10",
+      "oldTrackingId": "usage:/fiches-pratiques|LU1681048630|catalog:10|field:5aa5cfc86aa3",
+      "exactTickerMicCurrencySymbol": [
+        "CI5",
+        "ETFP",
+        "EUR",
+        "CI5.MI"
+      ]
+    },
+    {
+      "declaredId": "usage:/fiches-pratiques|LU1681048630|catalog:11",
+      "oldTrackingId": "usage:/fiches-pratiques|LU1681048630|catalog:11|field:f0846945c384",
+      "exactTickerMicCurrencySymbol": [
+        "CI5GR",
+        "XETR",
+        "EUR",
+        "CI5.DE"
+      ]
+    },
+    {
+      "declaredId": "usage:/fiches-pratiques|LU1681048630|catalog:12",
+      "oldTrackingId": "usage:/fiches-pratiques|LU1681048630|catalog:12|field:7f0c0e1b7bb3",
+      "exactTickerMicCurrencySymbol": [
+        "CI5",
+        "XPAR",
+        "EUR",
+        "CI5.PA"
+      ]
+    },
+    {
+      "declaredId": "usage:/generateur-portefeuilles|LU1681048630|catalog:6",
+      "oldTrackingId": "usage:/generateur-portefeuilles|LU1681048630|catalog:6|field:7f0c0e1b7bb3",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "XPAR",
+        "EUR",
+        "GLUX.PA"
+      ]
+    },
+    {
+      "declaredId": "usage:/generateur-portefeuilles|LU1681048630|catalog:7",
+      "oldTrackingId": "usage:/generateur-portefeuilles|LU1681048630|catalog:7|field:5aa5cfc86aa3",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "ETFP",
+        "EUR",
+        "GLUX.MI"
+      ]
+    },
+    {
+      "declaredId": "usage:/generateur-portefeuilles|LU1681048630|catalog:8",
+      "oldTrackingId": "usage:/generateur-portefeuilles|LU1681048630|catalog:8|field:f0846945c384",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "XETR",
+        "EUR",
+        "AMGLUX.DE"
+      ]
+    },
+    {
+      "declaredId": "usage:/generateur-portefeuilles|LU1681048630|catalog:10",
+      "oldTrackingId": "usage:/generateur-portefeuilles|LU1681048630|catalog:10|field:5aa5cfc86aa3",
+      "exactTickerMicCurrencySymbol": [
+        "CI5",
+        "ETFP",
+        "EUR",
+        "CI5.MI"
+      ]
+    },
+    {
+      "declaredId": "usage:/generateur-portefeuilles|LU1681048630|catalog:11",
+      "oldTrackingId": "usage:/generateur-portefeuilles|LU1681048630|catalog:11|field:f0846945c384",
+      "exactTickerMicCurrencySymbol": [
+        "CI5GR",
+        "XETR",
+        "EUR",
+        "CI5.DE"
+      ]
+    },
+    {
+      "declaredId": "usage:/generateur-portefeuilles|LU1681048630|catalog:12",
+      "oldTrackingId": "usage:/generateur-portefeuilles|LU1681048630|catalog:12|field:7f0c0e1b7bb3",
+      "exactTickerMicCurrencySymbol": [
+        "CI5",
+        "XPAR",
+        "EUR",
+        "CI5.PA"
+      ]
+    },
+    {
+      "declaredId": "usage:/fiches-etf|LU1681048630|catalog:6",
+      "oldTrackingId": "usage:/fiches-etf|LU1681048630|catalog:6|field:7f0c0e1b7bb3",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "XPAR",
+        "EUR",
+        "GLUX.PA"
+      ]
+    },
+    {
+      "declaredId": "usage:/fiches-etf|LU1681048630|catalog:7",
+      "oldTrackingId": "usage:/fiches-etf|LU1681048630|catalog:7|field:5aa5cfc86aa3",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "ETFP",
+        "EUR",
+        "GLUX.MI"
+      ]
+    },
+    {
+      "declaredId": "usage:/fiches-etf|LU1681048630|catalog:8",
+      "oldTrackingId": "usage:/fiches-etf|LU1681048630|catalog:8|field:f0846945c384",
+      "exactTickerMicCurrencySymbol": [
+        "GLUX",
+        "XETR",
+        "EUR",
+        "AMGLUX.DE"
+      ]
+    },
+    {
+      "declaredId": "usage:/fiches-etf|LU1681048630|catalog:10",
+      "oldTrackingId": "usage:/fiches-etf|LU1681048630|catalog:10|field:5aa5cfc86aa3",
+      "exactTickerMicCurrencySymbol": [
+        "CI5",
+        "ETFP",
+        "EUR",
+        "CI5.MI"
+      ]
+    },
+    {
+      "declaredId": "usage:/fiches-etf|LU1681048630|catalog:11",
+      "oldTrackingId": "usage:/fiches-etf|LU1681048630|catalog:11|field:f0846945c384",
+      "exactTickerMicCurrencySymbol": [
+        "CI5GR",
+        "XETR",
+        "EUR",
+        "CI5.DE"
+      ]
+    },
+    {
+      "declaredId": "usage:/fiches-etf|LU1681048630|catalog:12",
+      "oldTrackingId": "usage:/fiches-etf|LU1681048630|catalog:12|field:7f0c0e1b7bb3",
+      "exactTickerMicCurrencySymbol": [
+        "CI5",
+        "XPAR",
+        "EUR",
+        "CI5.PA"
+      ]
+    }
+  ],
+  "added": []
+}

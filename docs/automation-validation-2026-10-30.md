@@ -1,0 +1,9 @@
+# Validation avant enregistrement — 30 octobre 2026
+
+Le passage ciblé WTI41018522954 a reçu403 sur la source. Il a ensuite effectué la validation exhaustive des textes et un build, avant de refuser correctement l’enregistrement après des changements de master, dont une nouvelle source financière S&P. Aucun cours WTI ni aucune date de preuve conservée n’a été remplacé. Ce refus ne justifie pas de désactiver le garde de recalage.
+
+Le lanceur npm vérifie désormais le même pool complet en deux partitions disjointes. Un seul bundle fixe les données et la date de référence, comme dans la CI existante. Le dénominateur attendu est lu et enregistré depuis ce bundle avant de lancer les validations, jamais reconstruit à partir de leurs succès. Les deux processus doivent terminer avec succès et fournir exactement un reçu chacun, avec leur identité, le même dénominateur, le nombre exact d’entrées attendu et zéro erreur. Le total doit couvrir le pool ; un changement du bundle pendant la vérification échoue également. Aucun texte financier, algorithme de rendement, seuil ou maquette modifié. Les validations des autres producteurs utilisant cette commande restent exhaustives.
+
+Tests : douze défauts de processus/reçu/scope/bundle sont refusés avec de vrais processus enfants isolés ; les partitions existantes sont toujours disjointes et exhaustives. Exécution locale réelle :4 020 448 entrées vérifiées,17min11s, mémoire maximale enfant1 405 396KiB. Ces mesures locales ne prouvent ni le gain de durée dansGitHub ni une collecte fournisseur. Ceux-ci restent à vérifier par le producteur ordinaire après fusion.
+
+Les deux fichiers de preuve sont `test-artifacts/tweet-midi-parallel.json` et le journal du job. Aucun résultat absent n’est assimilé à une réussite. Les quatre partitions de la CI de publication sont conservées ; elles lisent le même protocole de preuve supplémentaire sans changement de leurs contrôles.

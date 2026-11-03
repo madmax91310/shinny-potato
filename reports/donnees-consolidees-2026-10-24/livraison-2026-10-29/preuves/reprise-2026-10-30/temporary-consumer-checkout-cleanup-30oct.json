@@ -1,0 +1,9 @@
+{
+  "checkedAt": "2026-10-30T12:04:58.289117+00:00",
+  "scope": "Only the agent-owned duplicate immutable source checkout; no repository, financial source record or sole evidence deleted",
+  "sourceCommit": "f4a8ae867b3c264863918251ac11d61245b98c84",
+  "verifiedGitBlobFiles": 332,
+  "recipePreserved": "wisdom-public-consumer-recipe-30oct.mjs",
+  "resultsPreserved": "../browser-wisdom-recovered-30oct/results.json",
+  "reconstruction": "git archive f4a8ae867b3c264863918251ac11d61245b98c84 package.json src/pages/dca-profiles src/data src/lib | tar -x -C <isolated directory>; copy recipe into scripts/; install/link matching dependencies"
+}

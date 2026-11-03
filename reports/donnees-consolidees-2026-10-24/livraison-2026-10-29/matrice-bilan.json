@@ -1,0 +1,299 @@
+{
+  "generatedAt": "2026-11-02T07:12:15.002681+00:00",
+  "denominateur": "Identités de suivi historiques et courantes ; déclarations actuelles séparées, aucune certification financière globale",
+  "usages": 41516,
+  "outils": {
+    "activeRoutes": 26,
+    "financialConsumerContractTools": 21
+  },
+  "profils_identifiants_uniques": 3900,
+  "parts_isin_uniques": 673,
+  "statuts": {
+    "limite": "Anciennes qualifications conservées ; voir chaque ligne et ses preuves, pas de taux global de couverture."
+  },
+  "types": {
+    "reference": 2738,
+    "live": 25531,
+    "history": 5961,
+    "archive": 534,
+    "simulation": 63,
+    "unavailable": 36,
+    "editorial": 88
+  },
+  "diagnostics": {
+    "monitoring": 496,
+    "failure": 45,
+    "qualification": 6293,
+    "connection": 30,
+    "editorial": 832,
+    "waiting": 15,
+    "not-applicable": 431,
+    "history": 850
+  },
+  "limites": "B reste non résolu ; les références/hypothèses/archives ne sont pas des pannes. Les fenêtres historiques contestées restent dans les 79 cas, indépendamment de cette vue.",
+  "generatorCommit": "66c27cda4ef5154446d33b0fcaeed15db93f0dfd",
+  "sourceCommit": "66c27cda4ef5154446d33b0fcaeed15db93f0dfd",
+  "publishedVersion": {
+    "sha": "414bd67a1afa1ae9cc003e5e98a3f0c0f6b92d2d",
+    "builtAt": "2026-11-02T06:26:04Z"
+  },
+  "inputVerificationReceipt": "published-inputs.json",
+  "publishedInventoryContracts": 31792,
+  "additionalPubliclyObservedUsages": 2,
+  "additionalDynamicEquityUses": 822,
+  "additionalExistingRankingUses": 765,
+  "dynamicEquities": 411,
+  "initialMatrixContractsPreserved": 33381,
+  "additionalDatedBudgetRecords": 50,
+  "updateScope": "3 preuves de chaînes intégrales renforcées, Quantum gardé partiel, 30 usages AUM et12 usages pays démontrés et 6 faux besoins bibliothèque requalifiés non applicables, budgets datés/hypothétiques rapprochés à leur nombre réellement publié. Les autres lignes restent à leur niveau de preuve daté ; ne pas confondre B avec panne.",
+  "notAnAutomationCoverageRate": true,
+  "currentPublishedContracts": 31762,
+  "currentContractsMatchedByMeaning": 30242,
+  "previousContractIdentitiesPreserved": 33431,
+  "currentPublishedInputReceipt": "preuves/reprise-2026-10-30/published-inputs-final-30oct.json",
+  "scopedCurrentProofsAdded": {
+    "exact-share-annual-public-30oct/FR0013412004/results.json": 2,
+    "exact-share-annual-public-30oct/DE000A27Z304/results.json": 2,
+    "exact-share-annual-public-30oct/GB00BLD4ZM24/results.json": 2,
+    "exact-share-annual-public-30oct/GB00BLD4ZL17/results.json": 2,
+    "exact-share-annual-public-30oct/IE00B4K6B022/results.json": 2,
+    "exact-share-annual-public-30oct/IE00BKPX3K41/results.json": 2,
+    "exact-share-annual-public-30oct/IE00BMG6Z448/results.json": 2,
+    "exact-share-annual-public-30oct/IE00BMW42413/results.json": 2,
+    "exact-share-annual-public-30oct/IE00BJ5JP097/results.json": 2,
+    "exact-share-annual-public-30oct/IE00BKPSFC54/results.json": 2,
+    "copper-manual-nav-public-30oct/results.json": 2,
+    "five-wisdom-panx-ordinary-recording-30oct.json": 10,
+    "purchasing-public-independent-calculation-30oct.json": 1,
+    "browser-scpi-q3-public-30oct/results.json": 6
+  },
+  "noCatalogueCertificationFromGreenJob": true,
+  "scopedFields31oct": {
+    "uniqueInstruments": 8,
+    "uniqueDataFields": 10,
+    "dataUseContracts": 22,
+    "matchedIds": [
+      "usage:/bibliotheque-donnees|CH0454664001|catalog:1",
+      "usage:/bibliotheque-donnees|CH0454664001|catalog:4",
+      "usage:/bibliotheque-donnees|IE00BJGWQN72|catalog:4",
+      "usage:/bibliotheque-donnees|GB00B15KXQ89|catalog:3",
+      "usage:/bibliotheque-donnees|IE0002Y8CX98|catalog:3",
+      "usage:/bibliotheque-donnees|IE00BZ56SW52|catalog:4",
+      "usage:/bibliotheque-donnees|GB00BJYDH287|catalog:4",
+      "usage:/bibliotheque-donnees|JE00B1VS3770|catalog:4",
+      "usage:/bibliotheque-donnees|IE000W8WMSL2|catalog:3",
+      "usage:/comparatif-etf|CH0454664001|catalog:1",
+      "usage:/comparatif-etf|CH0454664001|catalog:4",
+      "usage:/fiches-etf|CH0454664001|catalog:1",
+      "usage:/fiches-etf|CH0454664001|catalog:4",
+      "usage:/fiches-etf|IE00BJGWQN72|catalog:4",
+      "usage:/fiches-etf|GB00B15KXQ89|catalog:3",
+      "usage:/fiches-etf|IE0002Y8CX98|catalog:3",
+      "usage:/fiches-etf|IE00BZ56SW52|catalog:4",
+      "usage:/fiches-etf|GB00BJYDH287|catalog:4",
+      "usage:/fiches-etf|JE00B1VS3770|catalog:4",
+      "usage:/fiches-etf|IE000W8WMSL2|catalog:3",
+      "usage:/calculateur-investissement|history:etfCH0454664001Nav|catalog:0",
+      "usage:/performance-depuis|history:etfCH0454664001Nav|catalog:0"
+    ],
+    "counts": {
+      "fee": 3,
+      "aum": 16,
+      "aum-gate": 1,
+      "history": 2
+    },
+    "notAnAutomationCoverageRate": true
+  },
+  "snapshot1nov": {
+    "logicalContractsIncludingHistory": 34955,
+    "activeToolLogicalContracts": 34475,
+    "activeRoutes": 26,
+    "historicalRemovedRoutes": 2,
+    "newDatedBudgetArchives": 4,
+    "previousContractsPreserved": 34951,
+    "statesIncludingHistoricalQualifications": {
+      "non applicable": 3796,
+      "B": 31067,
+      "A": 92
+    },
+    "statesAreNotNewSourceCertificates": true,
+    "boundedSourceAndConsumerEvidence": "preuves/reprise-2026-11-01/manifest.json",
+    "newPublicHistoryCalculationsIndividuallyChecked": 14,
+    "additionalComparisonIndividuallyChecked": "Adobe USD octobre2024–octobre2026 et année2026 partielle, texte/PNG ordinateur/mobile",
+    "limit": "Les anciennes colonnes et qualifications restent datées. Pas de nouveau taux de couverture, ni de nouvelle panne déduite des contrats B.",
+    "activeScopeHistoricalQualificationStates": {
+      "non applicable": 3558,
+      "B": 30825,
+      "A": 92
+    },
+    "removedScopeHistoricalQualificationStates": {
+      "non applicable": 238,
+      "B": 242
+    },
+    "qualificationStateLimit": "Les états A/B de la matrice restent les qualifications historiques conservées, pas une certification actuelle. Les nouvelles preuves sont dans les colonnes1nov bornées à chaque usage."
+  },
+  "publication1nov": {
+    "sourceRun": 41348779291,
+    "recordCommit": "06a8557f7cfdf03ae72570981d536f532767d575",
+    "validatedSeries": 679,
+    "expectedSeries": 684,
+    "failedSeries": [
+      "etcPalladium",
+      "etfIE00B2QWCY14",
+      "etf_clean_energy",
+      "etf_financials",
+      "etf_world_communication"
+    ],
+    "sourceOutcomeConsumerRowsMatched": 3830,
+    "independentBrowserCalculations": 19,
+    "publicInputsProof": "preuves/reprise-2026-11-01/monthly-october-publication-proof.json",
+    "qualificationStatesPreserved": true,
+    "coverageLimit": "Comptes de séries, de contrats et de recettes distincts ; aucun taux global de certification."
+  },
+  "scopeMaster1130": {
+    "master": "2c8a19d",
+    "newUniqueIsins": 21,
+    "listingAliasesNotCountedAsAssets": 105,
+    "currentDeclaredContracts": 33806,
+    "matrixBefore": 34955,
+    "matrixAfter": 41432,
+    "newContracts": 6477,
+    "newContractsLinkedTo21Isins": 2118,
+    "oldIdentitiesPreserved": 34955,
+    "previousContractsNotMatchedToCurrentDeclaration": 7626,
+    "positionalKeysReboundByExactFinancialField": 2420,
+    "ambiguousLabelsNotAutomaticallyReused": 42,
+    "limit": "Le nouvel indice suivi inséré dans le catalogue décalait des catalog:n. Rapprochement par outil, instrument exact, famille de champ et libellé financier unique ; preuve de valeur distincte, anciennes identités conservées."
+  },
+  "terminalPublication2Nov": {
+    "code": "246849a07ebdcf725912ac9eeb701b7f57d01256",
+    "verifiedAt": "2026-11-01T23:53:38.333Z",
+    "diagnosticsAll": 7954,
+    "diagnosticsActive": 5862,
+    "failure": 46,
+    "qualification": 5778,
+    "connection": 30,
+    "monitoring": 8,
+    "matrixTrackingIdentities": 41432,
+    "historicalComparisons": 79,
+    "qualifiedMonthlyWindows": 70,
+    "refusedMonthlyWindows": 9,
+    "new21ConcurrentScope": "Fusionné master ; non servi dans la photographie246849a, publication distincte"
+  },
+  "reprise2novembre": {
+    "checkedAt": "2026-11-02T07:12:15.002681+00:00",
+    "published": {
+      "sha": "414bd67a1afa1ae9cc003e5e98a3f0c0f6b92d2d",
+      "builtAt": "2026-11-02T06:26:04Z"
+    },
+    "snapshotCheckedAt": "2026-11-02T07:03:18.782Z",
+    "diagnostics": {
+      "oldDiagnosticIdentitiesPreserved": 8711,
+      "canonicalDiagnosticIdentitiesAfter": 9880,
+      "allIntermediateObservedIdentities": 9117,
+      "currentPublicDiagnostics": 8992,
+      "currentActiveDiagnostics": 6864,
+      "activeClasses": {
+        "qualification": 6293,
+        "connection": 30,
+        "monitoring": 496,
+        "failure": 45
+      },
+      "initial661Preserved": 661,
+      "oldLedgerRowsPreserved": 50069,
+      "ledgerRowsAfter": 57741,
+      "previousMatrixIdentitiesNotPreviouslyInLedgerAdded": 6565,
+      "oldRemainingRowsPreserved": 45457,
+      "remainingRowsAfter": 45458,
+      "old79CasesPreserved": 79,
+      "qualifiedMonthlyWindows": 70,
+      "refusedMonthlyWindows": 9,
+      "limit": "Rows are identities/contracts and history, not a count of independent outages. Absence never closes a cause without bounded evidence."
+    },
+    "matrix": {
+      "build": {
+        "sha": "414bd67a1afa1ae9cc003e5e98a3f0c0f6b92d2d",
+        "builtAt": "2026-11-02T06:26:04Z"
+      },
+      "oldIdentitiesPreserved": 41516,
+      "currentDeclaredContracts": 33830,
+      "matrixAfter": 41516,
+      "newTrackingIdentities": 0,
+      "unmatchedOlderIdentities": 7686,
+      "ambiguousNotReused": 0,
+      "previouslyAmbiguousListingsResolvedByExactQuoteIdentity": 42,
+      "currentDeclarationSummary": {
+        "tools": 21,
+        "usages": 33830,
+        "required": 30232,
+        "connected": 24642,
+        "blocked": 1295,
+        "unconfirmed": 4295,
+        "unmapped": 0
+      },
+      "limit": "Declarations are not individual outage or success proofs; bounded native/public/browser evidence remains separate."
+    },
+    "actions19Preserved": 19,
+    "financial79": {
+      "total": 79,
+      "qualified": 70,
+      "refused": 9,
+      "oldDivergencesNotClosedByIndependentRoutes": 77,
+      "unexplainedResiduals": 2
+    },
+    "consumerProofs": {
+      "newMarketQuotes": 12,
+      "independentPublicCalculations": 24,
+      "calculationAndComparisonPngs": 26,
+      "manualAndAnnualSelectorFunds": 21,
+      "manualAndAnnualPngs": 6,
+      "newPhysicalBooks": 11,
+      "completeOverlapBooks": 9,
+      "partialOverlapBooks": 2,
+      "holdingsPngs": 22,
+      "overlapPngs": 4,
+      "nativePerformanceIsolatedPngs": 42
+    },
+    "scheduledWorkflowBreakdown": "workflow-schedule-reconciliation.json",
+    "completeAutomationClaimed": false,
+    "limit": "No global certification inferred from declarations, CI success or one shared collection. Historical refusals and external blocks are unresolved work."
+  },
+  "completeAutomationClaimed": false,
+  "snapshotAvantReprise2nov": {
+    "generatedAt": "2026-10-31T04:58:14.755022+00:00",
+    "denominateur": "Contrats logiques de champ ou série × outil, issus des consommateurs actuels ; pas nombre de points de marché ni certification de toutes les valeurs",
+    "usages": 34951,
+    "outils": 24,
+    "statuts": {
+      "non applicable": 3792,
+      "B": 31067,
+      "A": 92
+    },
+    "types": {
+      "reference": 2738,
+      "live": 25531,
+      "history": 5961,
+      "archive": 534,
+      "simulation": 63,
+      "unavailable": 36,
+      "editorial": 88
+    },
+    "diagnostics": {
+      "non applicable": 3756,
+      "preuve documentaire ou qualification incomplète": 31007,
+      "défaut réel de donnée ou de collecte": 29,
+      "raccordement manquant": 39,
+      "ancien proxy archivé, remplacé dans cet usage par le calendrier exact non vide": 30,
+      "collecte, enregistrement, publication et usage du champ exact démontrés": 30,
+      "non applicable au format effectivement exporté": 6,
+      "chaîne automatisée et usage vérifiés sur le périmètre exact": 39,
+      "preuve source et usage automatisé démontrés sur périmètre qualifié": 3,
+      "collecte, publication et usage exact démontrés": 12
+    },
+    "publishedVersion": {
+      "sha": "66c27cda4ef5154446d33b0fcaeed15db93f0dfd",
+      "builtAt": "2026-10-30T02:10:12Z"
+    }
+  },
+  "currentDeclaredContracts": 33830
+}

@@ -4,6 +4,15 @@ from check_pending_sources import check, public_url
 
 NOW=dt.datetime(2026,10,20,tzinfo=dt.timezone.utc)
 class PendingSources(unittest.TestCase):
+    def test_http_200_error_page_is_not_successful_access_and_keeps_last_proof(self):
+        url='https://issuer.example/components'
+        row={'id':'fund','field':'completeHoldings','sourceUrl':url}
+        previous=check([row],{},NOW,lambda url,**kwargs:(b'original',url))
+        current=check([row],previous,NOW,lambda url,**kwargs:(b'<html><title>429 Too Many Requests</title></html>',url))
+        source=current['sources'][url]
+        self.assertEqual(source['status'],'unavailable');self.assertFalse(source['financialDataQualified'])
+        self.assertEqual(source['sha256'],previous['sources'][url]['sha256'])
+        self.assertIn('error document',source['error'])
     def test_public_access_never_qualifies_or_renews_financial_observations(self):
         original={'id':'actor:bricks','field':'catalog:Projet','sourceUrl':'https://www.bricks.co/',
                   'checkedAt':'2026-08-01','lastSuccessAt':'2026-08-01','actionState':'connector-needed'}

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "sp-global-dividend-aristocrats",
+    "url": "https://www.spglobal.com/spdji/en/documents/factsheets/fs-sp-global-dividend-aristocrats-quality-income-index-usd.pdf",
+    "checkedAt": "2026-11-01T21:58:21.126728+00:00",
+    "strategy": "Static official document filename explicitly supplied by the qualified issuer JSON; distinct from the rejected idsEnhancedFactsheet and data-widget routes",
+    "productionChanged": false,
+    "status": "blocked",
+    "http": 404,
+    "reason": "HTTP Error 404: Not Found",
+    "urlQualification": "Candidate official-host path derived from a published filename; path not confirmed.404 does not prove the official factsheet does not exist."
+  },
+  {
+    "id": "sp-euro-dividend-aristocrats",
+    "url": "https://www.spglobal.com/spdji/en/documents/factsheets/fs-sp-euro-high-yield-dividend-aristocrats-index.pdf",
+    "checkedAt": "2026-11-01T21:58:21.127398+00:00",
+    "strategy": "Static official document filename explicitly supplied by the qualified issuer JSON; distinct from the rejected idsEnhancedFactsheet and data-widget routes",
+    "productionChanged": false,
+    "status": "blocked",
+    "http": 404,
+    "reason": "HTTP Error 404: Not Found",
+    "urlQualification": "Candidate official-host path derived from a published filename; path not confirmed.404 does not prove the official factsheet does not exist."
+  },
+  {
+    "id": "sp-global-dividend-aristocrats",
+    "url": "https://www.spglobal.com/spdji/en/idsenhancedfactsheet/file.pdf?calcFrequency=M&force_download=true&hostIdentifier=48190c8c-42c4-46af-8d1a-0cd5db894797&languageId=1&indexId=92388578",
+    "checkedAt": "2026-11-01T21:59:01.210949+00:00",
+    "strategy": "Existing declared official dynamic PDF, separate from the data-widget primary; ordinary public document headers, one attempt",
+    "productionChanged": false,
+    "http": 200,
+    "bytes": 715576,
+    "sha256": "464d93e59a6c08068e528f818bf71c87ecb0dda283bd3253ed1802986cb80011",
+    "isPdf": true
+  },
+  {
+    "id": "sp-euro-dividend-aristocrats",
+    "url": "https://www.spglobal.com/spdji/en/idsenhancedfactsheet/file.pdf?calcFrequency=M&force_download=true&hostIdentifier=48190c8c-42c4-46af-8d1a-0cd5db894797&languageId=1&indexId=5475610",
+    "checkedAt": "2026-11-01T21:59:01.211395+00:00",
+    "strategy": "Existing declared official dynamic PDF, separate from the data-widget primary; ordinary public document headers, one attempt",
+    "productionChanged": false,
+    "http": 200,
+    "bytes": 725741,
+    "sha256": "1e59a5980e7d503e0b59fb4069aee5f38a00e2d07b2a1c21e50c1231746ac07a",
+    "isPdf": true
+  }
+]

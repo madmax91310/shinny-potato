@@ -34,8 +34,28 @@ def parse(source,body,checked):
   rows.append({k:spec[k] for k in ['ticker','mic','exchange','currency']}|dict(symbol=symbol,evidenceId=evidence_id,sourceUrl=source['url'],checkedAt=checked,excerpt=excerpt,sha256=hashlib.sha256(body).hexdigest()))
  return rows
 
+def listing_report(results,identity_report,expected,checked,common_only=False):
+ report={'checkedAt':checked,'validated':[isin for isin,rows,error in results if rows],'failed':[{'isin':isin,'reason':error} for isin,rows,error in results if error]}
+ report['scope']={'kind':'common-listing-identities'if common_only else'qualified-listings','requestedIds':expected,'expectedIds':expected}
+ raw_outcomes=identity_report['directoryOutcomes']+identity_report['successes']+[{'id':r['id'],'status':'failed','field':'listing-identity','attemptedAt':r['attemptedAt'],'reason':r['error'],'lastSuccessAt':r['lastSuccessAt'],'sourceUrl':r['sourceUrl']}for r in identity_report['errors']]
+ report['outcomes']=[{**r,'id':'listing:'+r['id'],**({'reason':'Source réellement recontrôlée ; réponse inchangée'}if r['status']=='unchanged-verified'else{})}for r in raw_outcomes]
+ report['validated'] += [r['id']for r in identity_report['successes']]
+ report['failed'] += [{'isin':r['id'],'reason':r['error'],'sourceUrl':r['sourceUrl'],'lastSuccessAt':r['lastSuccessAt']}for r in identity_report['errors']]
+ for outcome in identity_report['directoryOutcomes']:
+  if outcome['status']=='failed':report['failed'].append({'isin':outcome['id'],'reason':outcome['error'],'field':outcome['field'],'sourceUrl':outcome['sourceUrl']})
+ report['contractResults']={'successes':[], 'errors':[]}
+ for isin,rows,error in results:
+  report['contractResults']['errors'if error else'successes'].append({'id':'listing:'+isin,'status':'failed'if error else'succeeded','field':'issuer listing table','sourceAttempted':True,**({'error':error}if error else{'checkedAt':checked})})
+ for outcome in report['outcomes']:
+  report['contractResults']['errors'if outcome['status']=='failed'else'successes'].append(dict(outcome))
+ return report
+
 def main():
  p=argparse.ArgumentParser();p.add_argument('--apply',action='store_true');p.add_argument('--output',type=Path);p.add_argument('--common-identities-only',action='store_true');args=p.parse_args()
+ shared_path=ROOT/'src/data/shared-listing-identities.json'
+ shared_original=json.loads(shared_path.read_text())
+ from producer_report_plans import build_plan
+ expected=[r['id'].removeprefix('listing:')for r in build_plan('refresh_qualified_listings',['--common-identities-only']if args.common_identities_only else[])['items']]
  sources=[] if args.common_identities_only else json.loads((ROOT/'scripts/qualified-listing-sources.json').read_text())['sources'];path=ROOT/'src/data/qualified-listing-records.json'
  records=json.loads(path.read_text()) if path.exists() else {};checked=dt.datetime.now(UTC).date().isoformat()
  def one(s):
@@ -52,17 +72,12 @@ def main():
   if rows:records[isin]=rows
  if args.apply:write_json_atomic(path,records)
  from exchange_listing_refresh import refresh
- shared_path=ROOT/'src/data/shared-listing-identities.json'
- shared_original=json.loads(shared_path.read_text())
- shared,identity_report=refresh(shared_original,dt.datetime.now(UTC))
+ shared,identity_report=refresh(shared_original,dt.datetime.now(UTC),clock=lambda:dt.datetime.now(UTC))
  if args.apply:write_json_atomic(shared_path,shared)
- report={'checkedAt':checked,'validated':[isin for isin,rows,error in results if rows],'failed':[{'isin':isin,'reason':error} for isin,rows,error in results if error]}
- expected=[r['id']for r in identity_report['successes']]+[r['id']for r in identity_report['errors']]+[s['isin']for s in sources]
- report['scope']={'kind':'common-listing-identities'if args.common_identities_only else'qualified-listings','requestedIds':expected,'expectedIds':expected}
- report['outcomes']=identity_report['successes']+[{'id':r['id'],'status':'failed','field':'listing-identity','attemptedAt':r['attemptedAt'],'reason':r['error'],'lastSuccessAt':r['lastSuccessAt'],'sourceUrl':r['sourceUrl']}for r in identity_report['errors']]
- report['validated'] += [r['id']for r in identity_report['successes']]
- report['failed'] += [{'isin':r['id'],'reason':r['error'],'sourceUrl':r['sourceUrl'],'lastSuccessAt':r['lastSuccessAt']}for r in identity_report['errors']]
+ report=listing_report(results,identity_report,expected,checked,args.common_identities_only)
  if args.output:write_json_atomic(args.output,report)
  print(json.dumps(report))
  if report['failed']:raise SystemExit(1)
-if __name__=='__main__':main()
+if __name__=='__main__':
+ from producer_report_contract import run
+ run('refresh_qualified_listings',main)

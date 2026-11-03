@@ -22,7 +22,10 @@
         "pea-group-status.js",
         "review-projection.js",
         "search-text.js",
-        "src/pages/performance-rankings/engine.js"
+        "src/pages/performance-rankings/engine.js",
+        "new-instrument-facts.js",
+        "investor-model-classes.js",
+        "selection-search.js"
       ]
     },
     {
@@ -40,7 +43,8 @@
         "presentation-etf-additions.js",
         "presentation-etf-expansion.js",
         "retired-automations.json",
-        "equity-candidates.json"
+        "equity-candidates.json",
+        "new-instrument-identities.json"
       ]
     },
     {
@@ -58,7 +62,12 @@
         "resource-selections.js",
         "routing-presentations.js",
         "src/pages/investor-portfolio/data.js",
-        "src/pages/practical-sheets/data.js"
+        "src/pages/practical-sheets/data.js",
+        "new-instrument-sheets.js",
+        "new-instrument-copy.json",
+        "new-instrument-comparisons.json",
+        "french-characteristics.json",
+        "publication-selections.js"
       ]
     },
     {
@@ -67,7 +76,6 @@
       "paths": [
         "investment-presets.js",
         "simulation-proxies.js",
-        "src/pages/fee-impact/data.js",
         "src/pages/portfolio-duels/data.js",
         "src/pages/portfolio-generator/theses.js"
       ]
@@ -121,7 +129,9 @@
         "history-window-quality.js",
         "index-company-compositions.js",
         "index-concentration-core.js",
-        "reusable-data-contracts.js"
+        "reusable-data-contracts.js",
+        "investor-model-classes.js",
+        "selection-search.js"
       ]
     },
     {
@@ -142,7 +152,8 @@
       "reviewedAt": "2026-10-23",
       "paths": [
         "etf-presentation-copy.js",
-        "etf-presentation-reviewed-ids.json"
+        "etf-presentation-reviewed-ids.json",
+        "publication-selections.js"
       ]
     },
     {
@@ -174,7 +185,8 @@
       "reviewedAt": "2026-10-24",
       "reason": "Corpus de récits historiques avec sources et dates propres à chaque récit ; cette qualification du rôle ne renouvelle aucune revue éditoriale et ne constitue pas une collecte de données de marché.",
       "paths": [
-        "src/pages/tweet-bank/market-stories.json"
+        "src/pages/tweet-bank/market-stories.json",
+        "publication-selections.js"
       ]
     },
     {
@@ -183,6 +195,23 @@
       "reason": "Montants et situations hypothétiques du format Dilemme, explicitement sans prévision ni recommandation ; matrice statique identique aux 97 scénarios précédents, aucune observation financière.",
       "paths": [
         "src/pages/tweet-midi/data/dilemmes-data.json"
+      ]
+    },
+    {
+      "role": "manual-observation",
+      "reviewedAt": "2026-10-30",
+      "reason": "Témoignages budgétaires personnels publiés à une période explicite ; les montants déclarés ou prévus et leurs sources restent des archives datées, pas des chiffres vivants à actualiser. Les calculs du solde et les saisies locales ne constituent pas une nouvelle observation de ces personnes.",
+      "paths": [
+        "src/pages/budget-profiles/data.js"
+      ]
+    },
+    {
+      "role": "reference",
+      "reason": "Allocations fixes publiées et adaptations documentées ; versions conservées, aucune position vivante à collecter.",
+      "reviewedAt": "2026-11-01",
+      "paths": [
+        "investor-models.js",
+        "investor-model-classes.json"
       ]
     }
   ]

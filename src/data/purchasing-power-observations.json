@@ -1,6 +1,6 @@
 {
   "prices": {
-    "asOf": "2026-09",
+    "asOf": "2026-10",
     "baseYear": 2025,
     "annualLevels": {
       "general": {
@@ -59,16 +59,16 @@
       }
     },
     "latestLevels": {
-      "general": 103.07,
-      "alimentation": 101.83,
-      "energie": 120.13
+      "general": 103.47,
+      "alimentation": 101.42,
+      "energie": 122.43
     },
-    "provisional": false,
+    "provisional": true,
     "sources": {
       "general": {
         "seriesId": "011814630",
         "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011814630?startPeriod=2010",
-        "sourceUpdatedAt": "2026-10-15",
+        "sourceUpdatedAt": "2026-10-30",
         "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Nomenclature Coicop : 00 - Ensemble",
         "scope": "FE",
         "frequency": "M",
@@ -273,7 +273,8 @@
           "2026-06": 102.11,
           "2026-07": 102.68,
           "2026-08": 103.35,
-          "2026-09": 103.07
+          "2026-09": 103.07,
+          "2026-10": 103.47
         },
         "quality": {
           "2010-01": "DEF",
@@ -476,15 +477,17 @@
           "2026-06": "DEF",
           "2026-07": "DEF",
           "2026-08": "DEF",
-          "2026-09": "DEF"
+          "2026-09": "DEF",
+          "2026-10": "P"
         },
-        "sha256": "ab4e91dbe40e8dafde8e0789fa799995851adcfdb2b2d914b34e9a6392c23f41",
-        "checkedAt": "2026-10-29T11:53:24.358050+00:00"
+        "pendingObservations": [],
+        "sha256": "6c84f3619521f7ce4494d4eebf279c52a6db4cd19cebd7dc32262768be9b357b",
+        "checkedAt": "2026-11-03T10:26:01.282919+00:00"
       },
       "alimentation": {
         "seriesId": "011813717",
         "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813717?startPeriod=2010",
-        "sourceUpdatedAt": "2026-10-15",
+        "sourceUpdatedAt": "2026-10-30",
         "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Alimentation",
         "scope": "FE",
         "frequency": "M",
@@ -689,7 +692,8 @@
           "2026-06": 101.14,
           "2026-07": 101.29,
           "2026-08": 101.69,
-          "2026-09": 101.83
+          "2026-09": 101.83,
+          "2026-10": 101.42
         },
         "quality": {
           "2010-01": "DEF",
@@ -892,15 +896,17 @@
           "2026-06": "DEF",
           "2026-07": "DEF",
           "2026-08": "DEF",
-          "2026-09": "DEF"
+          "2026-09": "DEF",
+          "2026-10": "P"
         },
-        "sha256": "66805ed3726f33a34fb56fd1dbb9bf5f417e902cd229e7121ba5dff8390aca07",
-        "checkedAt": "2026-10-29T11:53:24.358050+00:00"
+        "pendingObservations": [],
+        "sha256": "5304e72abb692c278470d50db6a99b7045631441e0fa8f68e35d40b86a7b5a74",
+        "checkedAt": "2026-11-03T10:26:01.282919+00:00"
       },
       "energie": {
         "seriesId": "011813864",
         "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813864?startPeriod=2010",
-        "sourceUpdatedAt": "2026-10-15",
+        "sourceUpdatedAt": "2026-10-30",
         "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Énergie",
         "scope": "FE",
         "frequency": "M",
@@ -1105,7 +1111,8 @@
           "2026-06": 109.24,
           "2026-07": 111.75,
           "2026-08": 115.6,
-          "2026-09": 120.13
+          "2026-09": 120.13,
+          "2026-10": 122.43
         },
         "quality": {
           "2010-01": "DEF",
@@ -1308,13 +1315,15 @@
           "2026-06": "DEF",
           "2026-07": "DEF",
           "2026-08": "DEF",
-          "2026-09": "DEF"
+          "2026-09": "DEF",
+          "2026-10": "P"
         },
-        "sha256": "907adf68756a776523cdaa9386aa9962e391e84e92905193b3834236663733b5",
-        "checkedAt": "2026-10-29T11:53:24.358050+00:00"
+        "pendingObservations": [],
+        "sha256": "34585fa2b53eddaf0af5699732106d94cf87dd17f3056f30ca94a7a2b0980a83",
+        "checkedAt": "2026-11-03T10:26:01.282919+00:00"
       }
     },
-    "checkedAt": "2026-10-29T11:53:24.358050+00:00"
+    "checkedAt": "2026-11-03T10:26:01.282919+00:00"
   },
   "irl": {
     "asOf": "2026-Q3",
@@ -1532,13 +1541,14 @@
         "2026-Q2": "DEF",
         "2026-Q3": "DEF"
       },
-      "sha256": "2461dc10a942ada14b90866aa25d1ece2be1a5cc54cb8c729a376c8fd69efc67",
-      "checkedAt": "2026-10-29T11:53:24.358050+00:00"
+      "pendingObservations": [],
+      "sha256": "f6d1bebe0ad39420352adc41de0171a8be0a780debee96e826765fd8864f7def",
+      "checkedAt": "2026-11-03T10:26:01.282919+00:00"
     },
-    "checkedAt": "2026-10-29T11:53:24.358050+00:00"
+    "checkedAt": "2026-11-03T10:26:01.282919+00:00"
   },
   "smic": {
-    "asOf": "2026-10",
+    "asOf": "2026-11",
     "values": {
       "2010-01": 1343.77,
       "2010-02": 1343.77,
@@ -1741,12 +1751,13 @@
       "2026-07": 1867.02,
       "2026-08": 1867.02,
       "2026-09": 1867.02,
-      "2026-10": 1867.02
+      "2026-10": 1867.02,
+      "2026-11": 1867.02
     },
     "source": {
       "seriesId": "000879877",
       "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/000879877?startPeriod=2010",
-      "sourceUpdatedAt": "2026-10-01",
+      "sourceUpdatedAt": "2026-11-02",
       "title": "Montant mensuel brut du Smic (Salaire minimum interprofessionnel de croissance) pour 35 heures de travail par semaine (151,67 heures par mois)",
       "scope": "FE",
       "frequency": "M",
@@ -1952,7 +1963,8 @@
         "2026-07": 1867.02,
         "2026-08": 1867.02,
         "2026-09": 1867.02,
-        "2026-10": 1867.02
+        "2026-10": 1867.02,
+        "2026-11": 1867.02
       },
       "quality": {
         "2010-01": "DEF",
@@ -2156,12 +2168,14 @@
         "2026-07": "DEF",
         "2026-08": "DEF",
         "2026-09": "DEF",
-        "2026-10": "DEF"
+        "2026-10": "DEF",
+        "2026-11": "DEF"
       },
-      "sha256": "3e26870c849bdfc849da8e461d1040a2b8693f00ba4bceb2801ed7aa204f9726",
-      "checkedAt": "2026-10-29T11:53:24.358050+00:00"
+      "pendingObservations": [],
+      "sha256": "42b08ba97356d5e5d8c6f3d8344a0eadc513ffed1ac597fc8d775b162d3bda9f",
+      "checkedAt": "2026-11-03T10:26:01.282919+00:00"
     },
-    "checkedAt": "2026-10-29T11:53:24.358050+00:00"
+    "checkedAt": "2026-11-03T10:26:01.282919+00:00"
   },
   "schemaVersion": 1
 }

@@ -1,4 +1,5 @@
 import {buildReview} from '../src/pages/data-review/lib.js'
+import './test-financial-reserve-qualification.mjs'
 import assert from 'node:assert/strict'
 import {TOPICS,FUND_GROUPS} from '../src/data/practical-sheet-topics.js'
 import {buildSheet,buildTweet,calculateScenario} from '../src/pages/practical-sheets/lib.js'
@@ -54,6 +55,20 @@ assert(europeSubset.includes('Royaume-Uni'))
 assert(!europeSubset.includes('Euro STOXX 50'))
 assert(buildTweet(buildSheet('em-pea')).includes('hors Égypte'))
 assert(buildTweet(buildSheet('em-pea')).includes('charbon thermique'))
+// The exact-share Amundi DICs allow a management decision; a shared prefix
+// must not turn that mixed policy into exclusively reinvested income.
+const emergingPolicy=buildSheet('em-pea'), emergingCopy=buildTweet(emergingPolicy)
+for(const isin of ['FR0013412020','FR0013412012']) {
+ assert.equal(emergingPolicy.funds.find(f=>f.isin===isin).distribution,'Capitalisation et/ou distribution',isin)
+ assert(emergingCopy.includes(`💰 Dividendes : Capitalisation et/ou distribution`))
+}
+assert(!emergingCopy.includes('Les parts présentées sont capitalisantes'))
+assert(emergingCopy.includes('décision à la société de gestion'))
+const europePolicy=buildSheet('europe-pea'),europeCopy=buildTweet(europePolicy)
+assert.equal(europePolicy.funds.find(f=>f.isin==='FR0013412038').distribution,'Capitalisation et/ou distribution')
+assert(europeCopy.includes('💰 Dividendes : Capitalisation et/ou distribution'))
+assert(!europeCopy.includes('Les parts présentées sont capitalisantes'))
+assert.equal(emergingPolicy.funds.find(f=>f.isin==='FR001400ZGO4').distribution,'Capitalisation','Separate S-ACC share remains accumulating')
 for(const isins of Object.values(FUND_GROUPS)) for(const isin of isins) assert.equal(getInstrumentPeaStatus(isin),true,isin)
 assert.throws(()=>buildSheet('world-pea',{isins:['FR001400U5Q4']}))
 assert.throws(()=>buildSheet('world-pea',{isins:['FR001400U5Q4','FR001400U5Q4']}))

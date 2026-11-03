@@ -39,3 +39,15 @@ for (const archivePrefix of ['', 'archive:']) {
   const pair = [short,original].map(t=>({...t,id:archivePrefix+t.id}))
   assert.equal(groupTweetVariants(pair).length,1,'Static and private catalogs share the same family')
 }
+// The concise guide is an editorial addition, never a rewrite of the five-fund original.
+assert.equal(original.text.includes('NL0009272772'), true)
+assert.deepEqual(short.performanceEvidence, {
+  status:'published',currency:'EUR',period:'calendar-year',precisionDecimals:1,calculated:false,
+  returns:{IE00BMVB5K07:{2024:5.1,2025:4.2},IE00BMVB5M21:{2024:9.8,2025:5.4},IE00BMVB5P51:{2024:14.7,2025:6.4},IE00BMVB5R75:{2024:19.9,2025:7.1}}
+})
+for (const [isin,returns] of Object.entries(short.performanceEvidence.returns)) {
+  assert(short.text.includes(isin))
+  for (const [year,value] of Object.entries(returns)) assert(short.text.includes(`${year} : +${String(value).replace('.',',')} %`))
+  assert(short.sources.some(s=>s.url===`https://fund-docs.vanguard.com/${isin.toLowerCase()}-en.pdf` && s.publishedAt==='2026-02-17'))
+}
+assert.equal(short.text.match(/Frais courants : 0,25 %\/an/g).length,4)

@@ -122,7 +122,7 @@ def configurations():
             **({'navCalendarSource':prior['navCalendarSource']}if 'navCalendarSource'in prior else{}),
             **extras[id]}.items()})
     remainder = json.loads((ROOT/'scripts/official-nav-remainder-sources.json').read_text())
-    return result + remainder
+    return result + remainder + json.loads((ROOT/'scripts/new-instrument-nav-sources.json').read_text()) + json.loads((ROOT/'scripts/new-distributing-nav-sources.json').read_text())
 
 
 def daily_nav_fx_factor(native, currency, latest, body):
@@ -147,7 +147,7 @@ def _landg_catalogue(fetch,url):
     return fetch(url)
 
 
-def collect_one(source, now, json_fetch=get_json, document_fetch=download, capture=None):
+def collect_one(source, now, json_fetch=get_json, document_fetch=download, capture=None, text_fetch=None, fx_data=None):
     urls, hashes = [], {}
     def document(url, supplied=None):
         if supplied is not None:body=supplied
@@ -416,12 +416,13 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         calendar_proof['qualificationScope']='Only independent corroborated return intervals; unresolved official daily/calendar differences remain refused. No price interpolation or threshold change.'
     else:checks=calendar_checks(checked_nav,years,calendar_precision,now,identity_from)
     if kind=='landg':calendar_proof['controlledCalendarYears']=sorted(str(c['year'])for c in checks)
-    fx=json.loads((ROOT/'src/data/monthly-fx.json').read_text())
-    points,proof_rows=monthly(nav,native,source['currency'],source['periodStart'],now,fx)
+    fx=json.loads((ROOT/'src/data/monthly-fx.json').read_text()) if fx_data is None else fx_data
+    monthly_end=calendar_proof.get('monthlyEndExclusive')
+    points,proof_rows=monthly(nav,native,source['currency'],source['periodStart'],now,fx,end_exclusive=monthly_end)
     points=[[d,math.floor(v*10**source['precision']+.5)/10**source['precision']]for d,v in points]
     anniversary_points=points
     if anniversary_nav:
-        prices,price_proofs=monthly(anniversary_nav,native,source['currency'],source['periodStart'],now,fx)
+        prices,price_proofs=monthly(anniversary_nav,native,source['currency'],source['periodStart'],now,fx,end_exclusive=monthly_end)
         by_month={row['date'][:7]:row for row in price_proofs}
         for row in proof_rows:
             price=by_month[row['date'][:7]]
@@ -436,9 +437,12 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     if native!=source['currency']:
         from collect_ranking_sources import ECB
         ECB=ECB.replace('eurofxref-hist.xml','eurofxref-hist-90d.xml')
-        xml=get_text(ECB,('application/xml','text/xml'),2_000_000)
+        xml=(text_fetch or get_text)(ECB,('application/xml','text/xml'),2_000_000)
         fx_date,factor=daily_nav_fx_factor(native,source['currency'],latest,xml)
         urls.append(ECB);hashes[ECB]=hashlib.sha256(xml.encode()).hexdigest()
+        if capture:
+            capture.mkdir(parents=True,exist_ok=True)
+            (capture/(hashes[ECB]+'.xml.gz')).write_bytes(gzip.compress(xml.encode(),mtime=0))
     latest_level={'value':latest_values[latest]*factor,'asOf':latest,'currency':source['currency'],'isin':isin,
        'parser':'official-nav','valuationBasis':'fund-nav-price'if anniversary_nav else source['valuationBasis'],'nativeValue':latest_values[latest],'nativeCurrency':native,
        'fxAsOf':fx_date,'fxFactor':factor,'sourceUrl':urls[0],'sourceUrls':urls,'checkedAt':now.date().isoformat(),
@@ -494,7 +498,8 @@ def main():
     for source in sources:
         try:
             record=collect_one(source,now,capture=args.capture_dir)
-            results.append({'id':source['id'],'status':'validated','record':record,**({'usageState':'partial','usageLimits':{'historyUnqualifiedReturnWindows':record['historyUnqualifiedReturnWindows']}}if record.get('historyUnqualifiedReturnWindows')else{})})
+            limits={key:record[key]for key in ['historyExcludedMonths','anniversaryExcludedMonths','historyUnqualifiedReturnWindows']if record.get(key)}
+            results.append({'id':source['id'],'status':'validated','record':record,**({'usageState':'partial','usageLimits':limits}if limits else{})})
             print(source['id'],'validated',len(record['points']),'months',flush=True)
         except Exception as error:
             results.append({'id':source['id'],'status':'failed','reason':str(error)})

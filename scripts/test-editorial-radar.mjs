@@ -1,3 +1,5 @@
+import {gunzipSync} from 'node:zlib'
+import {radarReportContent} from './lib/radar-report-content.mjs'
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import { advanceRadar, shouldRefreshRadar, observationKey, meaningful, displayValue } from './lib/editorial-radar.mjs'
@@ -356,4 +358,42 @@ console.log('All qualified ETFs monitored once; metric thresholds and same-date 
   assert.equal(changed.newEvents[0].field, structure.field)
   assert.equal(editorialState(changed.newEvents[0]), 'ready')
   assert.equal(notifiableEvents(changed.newEvents).length, 1)
+}
+
+// Actual29October DWS portfolios: complete positions do not fully identify all
+// registration countries. Unknown weights must not manufacture absent-country0.
+{
+  const fixture = JSON.parse(await readFile(new URL('./fixtures/radar-unknown-classifications-20261030.json', import.meta.url)))
+  const before = JSON.stringify(fixture)
+  const opts = {now: new Date('2026-10-31T01:00:00Z')}
+  const emptyConflicts = {...fixture.state, conflicts: {}}
+  const result = advanceRadar(emptyConflicts, fixture.rows, opts)
+  for (const {key} of fixture.affected) {
+    assert.deepEqual(result.state.current[key], fixture.state.current[key], 'Original dated country value stays untouched; omission is not0')
+    assert.deepEqual(result.state.anchors[key], fixture.state.anchors[key])
+    assert(!Object.values(result.state.conflicts).some(c => observationKey(c.accepted) === key), 'No manufactured zero proposal')
+  }
+  assert.equal(result.newEvents.length, 0)
+  const unknownIssues = result.feed.errors.filter(e => e.phase === 'qualification' && e.reason.includes('aucun zéro déduit'))
+  assert.equal(unknownIssues.length, 2, 'Both partial classification results remain explicit')
+  assert(unknownIssues.every(e => e.sourceAttempted === false), 'An inference check is not a fresh provider request')
+  const proofs = fixture.proofs.map(p => ({...p,checkedAt:opts.now.toISOString()})) // Isolated later reread, never written to real source records.
+  const confirmed = advanceRadar(fixture.state, fixture.rows, {...opts,verifiedCompositions:proofs})
+  for (const [key, conflict] of Object.entries(fixture.state.conflicts)) {
+    assert(!confirmed.state.conflicts[key].resolvedAt, 'Stable remaining aggregates cannot confirm a missing classification')
+    assert.deepEqual(confirmed.state.conflicts[key].accepted, conflict.accepted)
+    assert.deepEqual(confirmed.state.conflicts[key].proposals, conflict.proposals, 'Preserve original conflicting evidence')
+  }
+  assert.equal(JSON.stringify(fixture), before, 'Source weights, dates and proofs stay immutable')
+  console.log('Three actual DWS omissions: no false zero, original dates/conflicts preserved, qualification visible; old complete-classification zero scenarios remain valid.')
+}
+
+// The real ordinary producer report used to exceed the unchanged monitor envelope.
+{
+ const bytes=gunzipSync(await readFile(new URL('./fixtures/radar-feed-envelope-41364143338.json.gz',import.meta.url)))
+ assert.equal(bytes.length,8052546)
+ const feed=JSON.parse(bytes),compact=radarReportContent(feed)
+ assert(Buffer.byteLength(compact)<8000000)
+ assert.deepEqual(JSON.parse(compact),feed,'No source, individual status, scope, dates or financial observation is removed')
+ assert(compact.endsWith('\n'))
 }

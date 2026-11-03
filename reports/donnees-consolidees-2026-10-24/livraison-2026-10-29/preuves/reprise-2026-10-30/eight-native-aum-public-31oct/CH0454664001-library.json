@@ -1,0 +1,264 @@
+{
+  "schemaVersion": 1,
+  "id": "CH0454664001",
+  "type": "instrument",
+  "name": "21Shares Bitcoin ETP",
+  "aliases": [
+    "CH0454664001",
+    "ABTC"
+  ],
+  "consumers": [
+    {
+      "tool": "Présentation ETF",
+      "path": "/fiches-etf"
+    },
+    {
+      "tool": "Générateur de portefeuilles",
+      "path": "/generateur-portefeuilles"
+    },
+    {
+      "tool": "Duels de portefeuilles",
+      "path": "/duels-portefeuilles"
+    },
+    {
+      "tool": "Comparatif ETF",
+      "path": "/comparatif-etf"
+    }
+  ],
+  "fields": [
+    {
+      "label": "Identité",
+      "registry": "src/data/instruments.js",
+      "value": {
+        "name": "21Shares Bitcoin ETP"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-03",
+        "currency": null,
+        "scope": "Part CH0454664001",
+        "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+        "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit.",
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Frais annuels (%)",
+      "registry": "src/data/etf-ter.js",
+      "value": "1,49",
+      "metadata": {
+        "sourceUrls": [
+          "https://api.primary.21shares.com/api/product_details/ABTC"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-31",
+        "currency": null,
+        "scope": "Part CH0454664001",
+        "method": "TER publié sur le profil de la part, consulté par ISIN",
+        "note": "Frais observés au contrôle ; aucune date d’entrée en vigueur déduite de la consultation.",
+        "dateStatus": "not-published",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Caractéristiques",
+      "registry": "src/data/instrument-facts.js",
+      "value": {
+        "distribution": "Capitalisant",
+        "location": "Suisse, Réplication physique, distinct d’un fonds UCITS, sans couverture de change",
+        "benchmark": "Bitcoin",
+        "incomePolicy": "accumulating",
+        "replicationMethod": "Physical",
+        "domicile": "Switzerland",
+        "currencyHedge": false,
+        "reviewedAt": "03/10/2026",
+        "instrumentType": "ETN",
+        "positionsLabel": "Exposition suivie : Bitcoin",
+        "positionsAsOf": null,
+        "characteristicsSource": {
+          "url": "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001",
+          "checkedAt": "2026-10-03"
+        },
+        "automatedFields": {
+          "distribution": {
+            "checkedAt": "2026-10-29",
+            "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001",
+            "sha256": "69a9505502bdf9c3c4f8b3d1e687902d00b9b2b19cf7ea25794a04eae39cb1c4"
+          },
+          "domicile": {
+            "checkedAt": "2026-10-30",
+            "sourceUrl": "https://cdn.21shares.com/uploads/current-documents/factsheets/all/Factsheet_ABTC.pdf",
+            "sha256": "8e44e9f02d27f575211ab3711df8fc732514f8d3c2c4211aa519b2029879ca79"
+          },
+          "replicationMethod": {
+            "checkedAt": "2026-10-30",
+            "sourceUrl": "https://cdn.21shares.com/uploads/current-documents/factsheets/all/Factsheet_ABTC.pdf",
+            "sha256": "8e44e9f02d27f575211ab3711df8fc732514f8d3c2c4211aa519b2029879ca79"
+          },
+          "currencyHedge": {
+            "checkedAt": "2026-10-29",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=CH0454664001",
+            "sha256": "96ce4fce14754a0127e1e8a678b76a09f4474b7a632980ee189928f0d867c9e1"
+          }
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-03",
+        "currency": null,
+        "scope": "Part CH0454664001",
+        "method": "Caractéristiques de la part ; aucune inférence sur la cotation.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Éligibilité PEA",
+      "registry": "src/data/instrument-pea.js",
+      "value": false,
+      "metadata": {
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-21shares-btc-etp-ABTC-CH0454664001-23"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "currency": null,
+        "scope": "Part CH0454664001",
+        "method": "Explicit exact-share PEA statement collected automatically.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Encours",
+      "registry": "src/data/instrument-aum.js",
+      "value": {
+        "sheet": "Part : 618,39 M$ au 30/10/2026",
+        "index": "Part : 618,39 M$ au 30/10/2026",
+        "source": {
+          "amount": 618385969.835628,
+          "currency": "USD",
+          "scope": "Actif net de la part exacte",
+          "asOf": "2026-10-30",
+          "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+          "sha256": "ae760afbcbadcb45ec3515be16bc76349487ab3598b67331afbd901bf8a3de20",
+          "method": "Issuer product_details.total_nav; native USD product assets, not NAV-times-units",
+          "checkedAt": "2026-10-31",
+          "modifiedAt": "2026-10-31",
+          "amountMillions": 618.3859698356281,
+          "url": "https://api.primary.21shares.com/api/product_details/ABTC"
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://api.primary.21shares.com/api/product_details/ABTC"
+        ],
+        "asOf": "2026-10-30",
+        "checkedAt": "2026-10-31",
+        "currency": "USD",
+        "scope": "Actif net de la part exacte",
+        "method": "Issuer product_details.total_nav; native USD product assets, not NAV-times-units",
+        "note": "Date publiée par l’émetteur ; la consultation reste distincte.",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": "2026-10-31"
+      }
+    },
+    {
+      "label": "Cotation XPAR",
+      "registry": "src/data/instrument-listings.js",
+      "value": {
+        "ticker": "ABTC",
+        "mic": "XPAR",
+        "exchange": "Euronext Paris",
+        "currency": "EUR",
+        "excerpt": "CH0454664001 | Euronext Paris ABTC FP EUR",
+        "sourceUrl": "https://cdn.21shares.com/uploads/current-documents/factsheets/all/Factsheet_ABTC.pdf",
+        "checkedAt": "2026-10-30",
+        "sha256": "8e44e9f02d27f575211ab3711df8fc732514f8d3c2c4211aa519b2029879ca79",
+        "evidenceId": "CH0454664001-XPAR-ABTC-EUR"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://cdn.21shares.com/uploads/current-documents/factsheets/all/Factsheet_ABTC.pdf"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-30",
+        "currency": "EUR",
+        "scope": "Part CH0454664001 ; Euronext Paris",
+        "method": "Devise de négociation, distincte de celle des rendements.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Rendements 2020–2025",
+      "registry": "src/data/instrument-returns.js",
+      "value": [
+        277.89,
+        65.02,
+        -65.41,
+        151.83,
+        114.17,
+        -4.71
+      ],
+      "metadata": {
+        "sourceUrls": [
+          "https://api.primary.21shares.com/api/product_valuation_history/ABTC"
+        ],
+        "asOf": "2025-12-31",
+        "checkedAt": "2026-10-31",
+        "currency": "USD",
+        "scope": "Part CH0454664001",
+        "method": "Rendements calendaires NAV de la part exacte ; années complètes uniquement",
+        "note": null,
+        "dateStatus": "dated",
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": "2026-10-31"
+      }
+    }
+  ]
+}

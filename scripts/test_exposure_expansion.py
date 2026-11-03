@@ -8,6 +8,47 @@ from collect_dws_etf import parse_holdings
 from collect_invesco_allocations import parse_allocations
 
 class Expansion(unittest.TestCase):
+    def test_panx_exact_index_not_collateral_or_nasdaq(self):
+        from collect_amundi_index_exposure import parse_product
+        config=json.loads((Path(__file__).parent/'exposure-etf-expansion.json').read_text())
+        share=next(s for s in config['instruments'] if s['isin']=='FR0013412269')
+        product=json.loads((Path(__file__).parent/'fixtures/official-documents/amundi-panx-index.json').read_text())['products'][0]
+        now=dt.datetime(2026,10,29,tzinfo=dt.timezone.utc)
+        result=parse_product(product,share,now)
+        self.assertEqual(result['holdings']['basis'],'index')
+        self.assertFalse(result['holdings'].get('complete',False))
+        self.assertEqual(len(result['holdings']['rows']),10)
+        self.assertTrue(all(r['isin'] for r in result['holdings']['rows']))
+        for field in ('countries','sectors','holdings'):
+            self.assertEqual(result[field]['asOf'],'2026-10-27')
+        for key,value in [('ISIN','FR0011871110'),('BENCHMARK_NAME','NASDAQ 100'),('FUND_REPLICATION_METHODOLOGY','Direct(Physical)')]:
+            changed=copy.deepcopy(product);changed['characteristics'][key]=value
+            with self.assertRaises(ValueError):parse_product(changed,share,now)
+
+    def test_german_other_is_explicit_and_keeps_raw_weights_and_dates(self):
+        from collect_ishares_german import normalize
+        body={'productId':251931,'currencyCode':'EUR','componentsByNameMap':{
+            'keyFundFacts':{'containersByNameMap':{'default':{'dataPointsByNameMap':{
+                'isin':{'value':'DE0002635307'},'useOfProfitsCode':{'value':'ausschüttend'}}}}},
+            'exposureBreakdowns':{'containersByNameMap':{
+                'sector':{'asOfDate':20261028,'dataPointsByNameMap':{
+                    'type':{'value':['Industrie','Sonstige']},'weight':{'value':[17.23,0.01]}}},
+                'geography':{'subContainersByNameMap':{'countries':{'dataPointsByNameMap':{
+                    'type':{'value':['Deutschland']},'weight':{'value':[12.34]}}}}}}},
+            'holdings':{'containersByNameMap':{'all':{'dataPointsByNameMap':{
+                'countryOfRisk':{'value':['Deutschland']},'assetClass':{'value':['Aktien']}}}}}}}
+        original=copy.deepcopy(body)
+        result=normalize(body)
+        sector=result['componentsByNameMap']['exposureBreakdowns']['containersByNameMap']['sector']
+        self.assertEqual(sector['dataPointsByNameMap']['type']['value'],['Industrials','Other'])
+        self.assertEqual(sector['dataPointsByNameMap']['weight']['value'],[17.23,0.01])
+        self.assertEqual(sector['asOfDate'],20261028)
+        self.assertEqual(body,original,'Issuer proof is never rewritten')
+        body['componentsByNameMap']['exposureBreakdowns']['containersByNameMap']['sector']['dataPointsByNameMap']['type']['value']=['New unknown sector']
+        with self.assertRaises(KeyError):normalize(body)
+        body=copy.deepcopy(original);body['productId']=123
+        with self.assertRaises(ValueError):normalize(body)
+
     def test_wrong_share_and_incomplete_exposure_rejected(self):
         s={'isin':'IE00B3RBWM25'}
         with self.assertRaises(ValueError):qualify({'isin':'IE00BK5BQT80'},s)

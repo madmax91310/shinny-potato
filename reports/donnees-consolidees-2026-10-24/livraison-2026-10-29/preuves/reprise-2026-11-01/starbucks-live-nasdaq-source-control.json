@@ -1,0 +1,292 @@
+{
+  "checkedAt": "2026-11-01T19:25:10.724769+00:00",
+  "kind": "read-only live Nasdaq control with immutable real Yahoo witness",
+  "witnessSha256": "66a09cb980f4fcbc2646c5cefb9e6178d78b28cfc75dc0fc02ce8a56ffa34a6b",
+  "productionObservationApplied": false,
+  "proof": {
+    "kind": "exact-stock-official-historical-close",
+    "isin": "US8552441094",
+    "symbol": "SBUX",
+    "market": "NASDAQ-GS",
+    "currency": "USD",
+    "sessionDate": "2026-10-30",
+    "officialClose": 103.67,
+    "canonicalHistoricalClose": 103.66999816894531,
+    "dailyHistoricalClose": 103.66999816894531,
+    "excludedRegularQuote": 103.6500015258789,
+    "publishedPriceDecimals": 2,
+    "sourceUrls": [
+      "https://api.nasdaq.com/api/quote/SBUX/info?assetclass=stocks",
+      "https://api.nasdaq.com/api/quote/SBUX/historical?assetclass=stocks&fromdate=2026-10-01&todate=2026-10-31&limit=100"
+    ],
+    "sourceHashes": {
+      "https://api.nasdaq.com/api/quote/SBUX/info?assetclass=stocks": "d0187a3f0020dcdf6e2816bf26e18a83800853c438e1dc731079307363fd987b",
+      "https://api.nasdaq.com/api/quote/SBUX/historical?assetclass=stocks&fromdate=2026-10-01&todate=2026-10-31&limit=100": "18bcdbdbc1cde716beaa9e7443efcb103defec66b501d49211abc094ceaf267f"
+    },
+    "rawResponses": {
+      "https://api.nasdaq.com/api/quote/SBUX/info?assetclass=stocks": {
+        "data": {
+          "symbol": "SBUX",
+          "companyName": "Starbucks Corporation Common Stock",
+          "stockType": "Common Stock",
+          "exchange": "NASDAQ-GS",
+          "isNasdaqListed": true,
+          "isNasdaq100": true,
+          "isHeld": false,
+          "primaryData": {
+            "lastSalePrice": "$103.67",
+            "netChange": "-1.84",
+            "percentageChange": "-1.74%",
+            "deltaIndicator": "down",
+            "lastTradeTimestamp": "Oct 30, 2026",
+            "isRealTime": false,
+            "bidPrice": "N/A",
+            "askPrice": "N/A",
+            "bidSize": "N/A",
+            "askSize": "N/A",
+            "volume": "14,220,259",
+            "currency": null
+          },
+          "secondaryData": null,
+          "marketStatus": "Closed",
+          "assetClass": "STOCKS",
+          "keyStats": {
+            "fiftyTwoWeekHighLow": {
+              "label": "52 Week Range:",
+              "value": "77.99 - 110.51"
+            },
+            "dayrange": {
+              "label": "High/Low:",
+              "value": "NA"
+            }
+          },
+          "notifications": [
+            {
+              "headline": "UPCOMING EVENTS",
+              "eventTypes": [
+                {
+                  "message": "Ex-Dividend Date : Nov 13, 2026",
+                  "eventName": "Dividend Date",
+                  "url": {
+                    "label": "SBUX Ex-Dividend Date : Nov 13, 2026",
+                    "value": "/market-activity/stocks/SBUX/dividend-history"
+                  },
+                  "id": "upcoming_events"
+                }
+              ]
+            }
+          ]
+        },
+        "message": null,
+        "status": {
+          "rCode": 200,
+          "bCodeMessage": null,
+          "developerMessage": null
+        }
+      },
+      "https://api.nasdaq.com/api/quote/SBUX/historical?assetclass=stocks&fromdate=2026-10-01&todate=2026-10-31&limit=100": {
+        "data": {
+          "symbol": "SBUX",
+          "totalRecords": 22,
+          "tradesTable": {
+            "asOf": null,
+            "headers": {
+              "date": "Date",
+              "close": "Close/Last",
+              "volume": "Volume",
+              "open": "Open",
+              "high": "High",
+              "low": "Low"
+            },
+            "rows": [
+              {
+                "date": "10/30/2026",
+                "close": "$103.67",
+                "volume": "14,220,250",
+                "open": "$105.71",
+                "high": "$106.25",
+                "low": "$102.235"
+              },
+              {
+                "date": "10/29/2026",
+                "close": "$105.51",
+                "volume": "11,122,870",
+                "open": "$105.13",
+                "high": "$105.76",
+                "low": "$103.08"
+              },
+              {
+                "date": "10/28/2026",
+                "close": "$103.20",
+                "volume": "7,606,222",
+                "open": "$103.09",
+                "high": "$104.45",
+                "low": "$102.5413"
+              },
+              {
+                "date": "10/27/2026",
+                "close": "$103.04",
+                "volume": "5,668,414",
+                "open": "$102.52",
+                "high": "$103.135",
+                "low": "$101.37"
+              },
+              {
+                "date": "10/26/2026",
+                "close": "$102.69",
+                "volume": "6,333,548",
+                "open": "$101.15",
+                "high": "$103.40",
+                "low": "$101.04"
+              },
+              {
+                "date": "10/23/2026",
+                "close": "$100.80",
+                "volume": "5,917,989",
+                "open": "$101.375",
+                "high": "$102.20",
+                "low": "$100.428"
+              },
+              {
+                "date": "10/22/2026",
+                "close": "$101.91",
+                "volume": "9,593,938",
+                "open": "$99.17",
+                "high": "$102.025",
+                "low": "$98.63"
+              },
+              {
+                "date": "10/21/2026",
+                "close": "$99.08",
+                "volume": "5,758,958",
+                "open": "$98.95",
+                "high": "$99.19",
+                "low": "$97.92"
+              },
+              {
+                "date": "10/20/2026",
+                "close": "$99.37",
+                "volume": "8,336,025",
+                "open": "$98.24",
+                "high": "$100.33",
+                "low": "$98.19"
+              },
+              {
+                "date": "10/19/2026",
+                "close": "$97.87",
+                "volume": "7,068,616",
+                "open": "$97.53",
+                "high": "$98.40",
+                "low": "$96.655"
+              },
+              {
+                "date": "10/16/2026",
+                "close": "$97.52",
+                "volume": "9,375,208",
+                "open": "$97.365",
+                "high": "$97.98",
+                "low": "$96.48"
+              },
+              {
+                "date": "10/15/2026",
+                "close": "$96.88",
+                "volume": "15,380,370",
+                "open": "$94.82",
+                "high": "$97.01",
+                "low": "$94.805"
+              },
+              {
+                "date": "10/14/2026",
+                "close": "$93.25",
+                "volume": "6,784,401",
+                "open": "$92.00",
+                "high": "$93.415",
+                "low": "$91.31"
+              },
+              {
+                "date": "10/13/2026",
+                "close": "$92.00",
+                "volume": "9,751,938",
+                "open": "$92.33",
+                "high": "$92.70",
+                "low": "$90.52"
+              },
+              {
+                "date": "10/12/2026",
+                "close": "$92.285",
+                "volume": "10,980,540",
+                "open": "$91.21",
+                "high": "$92.44",
+                "low": "$90.71"
+              },
+              {
+                "date": "10/09/2026",
+                "close": "$90.75",
+                "volume": "12,765,430",
+                "open": "$93.00",
+                "high": "$93.49",
+                "low": "$90.69"
+              },
+              {
+                "date": "10/08/2026",
+                "close": "$93.21",
+                "volume": "30,310,600",
+                "open": "$93.00",
+                "high": "$94.17",
+                "low": "$87.35"
+              },
+              {
+                "date": "10/07/2026",
+                "close": "$93.58",
+                "volume": "9,429,294",
+                "open": "$96.22",
+                "high": "$96.282",
+                "low": "$93.19"
+              },
+              {
+                "date": "10/06/2026",
+                "close": "$96.11",
+                "volume": "6,263,763",
+                "open": "$94.05",
+                "high": "$96.7311",
+                "low": "$93.8101"
+              },
+              {
+                "date": "10/05/2026",
+                "close": "$94.43",
+                "volume": "8,825,002",
+                "open": "$94.76",
+                "high": "$95.00",
+                "low": "$93.55"
+              },
+              {
+                "date": "10/02/2026",
+                "close": "$94.71",
+                "volume": "6,366,524",
+                "open": "$95.08",
+                "high": "$95.29",
+                "low": "$94.27"
+              },
+              {
+                "date": "10/01/2026",
+                "close": "$94.88",
+                "volume": "5,147,364",
+                "open": "$94.04",
+                "high": "$94.985",
+                "low": "$93.77"
+              }
+            ]
+          }
+        },
+        "message": null,
+        "status": {
+          "rCode": 200,
+          "bCodeMessage": null,
+          "developerMessage": null
+        }
+      }
+    },
+    "method": "Nasdaq exact common-stock identity and same-session historical USD close corroborate the agreeing Yahoo daily/monthly historical candles; the distinct regular quote is not used as a monthly candle. No retained price or adjustment changed.",
+    "providerQuoteDiscrepancyExplained": false
+  }
+}

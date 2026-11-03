@@ -7,6 +7,7 @@ import { buildReview, reviewCalendar } from '../src/pages/data-review/lib.js';
 import { groupReviews } from '../src/pages/data-review/groups.js';
 import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { choose } from './card-selection.mjs'
+import { monthlyHistoryMethod } from '../src/lib/performance-conventions.js'
 import { TOPICS as PRACTICAL_TOPICS } from '../src/data/practical-sheet-topics.js'
 import { buildSheet as buildPracticalSheet, buildTweet as buildPracticalTweet } from '../src/pages/practical-sheets/lib.js'
 import { FACTS as MARKET_FACTS } from '../src/pages/market-facts/data.js';
@@ -71,7 +72,7 @@ import { fmtEUR as fmtHistoryPrice, fmtPct as fmtHistoryPct } from '../src/pages
 import { TWEETS } from '../src/pages/tweet-bank/data.js';
 import { EDITORIAL_CASES as CASES } from "../src/data/editorial-cases.js";
 
-const PORT = 4310;
+const PORT = Number(process.env.PLAYWRIGHT_TOOLS_PORT ?? 4310);
 const BASE = `http://localhost:${PORT}/shinny-potato`;
 
 function waitForServer(url, timeoutMs = 30000) {
@@ -133,8 +134,8 @@ async function testWorkspaceNavigation(page) {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.screenshot({ path: 'test-artifacts/weekly-home/desktop.png', fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.locator('.workspace-tool-card[href$="/impact-frais"]').click();
-  await page.getByRole('heading', { name: "Impact des frais", exact: true }).waitFor();
+  await page.locator('.workspace-tool-card[href$="/comparatif-courtiers"]').click();
+  await page.getByRole('heading', { name: "Comparatif courtiers", exact: true }).waitFor();
   await page.locator('.workspace-mobile-menu summary').click();
   await page.locator('.workspace-mobile-menu').getByRole('link', { name: "Présentation d'ETF", exact: true }).click();
   await page.getByRole('group', { name: 'Choisir un ETF', exact: true }).waitFor();
@@ -281,7 +282,8 @@ async function testCalculateur(page) {
   await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'or');
   septemberOk &&= (await page.locator('.ic-current-level').innerText()).includes(latestMonth('or'));
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
-  septemberOk &&= (await page.evaluate(() => window.__investmentCopiedText)).includes(`En ${latestMonth('or')}`);
+  const goldPost = await page.evaluate(() => window.__investmentCopiedText);
+  septemberOk &&= goldPost.includes(`En ${latestMonth('or')}`) && goldPost.includes('moyennes mensuelles') && !goldPost.includes('clôture');
   await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), "lvmh");
   await page.waitForTimeout(150);
   const text = await page.locator("body").innerText();
@@ -294,7 +296,7 @@ async function testCalculateur(page) {
     await page.locator('.ic-method-note').filter({ hasText: 'Cours ajustés' }).waitFor();
     await page.getByRole('button', { name: /Copier le texte du post/ }).click();
     const post = await page.evaluate(() => window.__investmentCopiedText);
-    companiesOk &&= !post.includes('Cours ajustés') && post.includes('Capital final :') && post.includes(latestMonth(id)) && !/NaN|undefined/.test(post);
+    companiesOk &&= post.includes(monthlyHistoryMethod(HISTORY[id])) && post.includes('Capital final :') && post.includes(latestMonth(id)) && !/NaN|undefined/.test(post);
     if (id === 'airliquide') companiesOk &&= (await page.locator('.ic-method-note').innerText()).includes('Prime de fidélité exclue');
     companiesOk &&= !(await page.locator('body').innerText()).includes('DCA non disponible pour');
   }
@@ -386,7 +388,7 @@ async function testPortfolioGenerator(page) {
   await page.locator(".pg-manual-pct-input").fill("100");
   await page.getByRole("button", { name: "Générer le tweet", exact: true }).click();
   const manualTweet = await page.locator(".pg-tweet-body").innerText();
-  let manualEditorialOk = performanceHookOk(manualTweet) && /100% Fonds euros/.test(manualTweet) && /toute l’allocation/i.test(manualTweet) && !/La logique de l’ensemble/.test(manualTweet) && !/Bitcoin|Ethereum/.test(manualTweet);
+  let manualEditorialOk = performanceHookOk(manualTweet) && /100 % Fonds euros/.test(manualTweet) && /toute l’allocation/i.test(manualTweet) && !/La logique de l’ensemble/.test(manualTweet) && !/Bitcoin|Ethereum/.test(manualTweet);
   const euroPerf = Object.fromEntries(portfolioYears.map((year, i) => [year, portfolioAsset('fonds_euros').r[i]]));
   manualEditorialOk &&= portfolioYears.every(year => manualTweet.includes(`${year} : ${formatPerformance(euroPerf[year])}`))
     && manualTweet.includes(`Performance annualisée (2020 à 2025) : ${formatPerformance(annualizedReturn(euroPerf))} par an`);
@@ -398,7 +400,7 @@ async function testPortfolioGenerator(page) {
   await page.locator('.pg-manual-pct-input').last().fill('50');
   await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
   const cryptoTweet = await page.locator('.pg-tweet-body').innerText();
-  manualEditorialOk &&= performanceHookOk(cryptoTweet) && /50% .*Bitcoin/.test(cryptoTweet) && !/à la carte/i.test(cryptoTweet);
+  manualEditorialOk &&= performanceHookOk(cryptoTweet) && /50 % .*Bitcoin/.test(cryptoTweet) && !/à la carte/i.test(cryptoTweet);
   manualStages.crypto = manualEditorialOk;
   await page.getByRole('button', { name: /Modifier la composition/ }).click();
   await page.locator('.pg-manual-remove').first().click();
@@ -407,7 +409,7 @@ async function testPortfolioGenerator(page) {
   await page.locator('.pg-manual-pct-input').last().fill('50');
   await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
   const worldBitcoinTweet = await page.locator('.pg-tweet-body').innerText();
-  manualEditorialOk &&= performanceHookOk(worldBitcoinTweet) && /50% .*Bitcoin/.test(worldBitcoinTweet) && /50 %/.test(worldBitcoinTweet);
+  manualEditorialOk &&= performanceHookOk(worldBitcoinTweet) && /50 % .*Bitcoin/.test(worldBitcoinTweet) && /50 %/.test(worldBitcoinTweet);
   manualStages.worldBitcoin = manualEditorialOk;
   await page.getByRole('button', { name: /Nouveau texte, même composition/ }).click();
   const rotatedTweet = await page.locator('.pg-tweet-body').innerText();
@@ -422,10 +424,10 @@ async function testPortfolioGenerator(page) {
   const personalTweet = await page.locator('.pg-tweet-body').innerText();
   manualEditorialOk &&= performanceHookOk(personalTweet)
     && /60 % de fonds euros/.test(personalTweet)
-    && /10% .*Bitcoin/.test(personalTweet)
+    && /10 % .*Bitcoin/.test(personalTweet)
     && /💬 Que penses-tu de ce portefeuille \?/.test(personalTweet)
-    && personalTweet.indexOf('60% Fonds euros') < personalTweet.indexOf('30% Amundi MSCI World')
-    && personalTweet.indexOf('30% Amundi MSCI World') < personalTweet.indexOf('10% CoinShares Physical Bitcoin')
+    && personalTweet.indexOf('60 % Fonds euros') < personalTweet.indexOf('30 % Amundi MSCI World')
+    && personalTweet.indexOf('30 % Amundi MSCI World') < personalTweet.indexOf('10 % CoinShares Physical Bitcoin')
     && /Bitcoin représente 10 %.*60 % de fonds euros/s.test(personalTweet);
   manualStages.personal = manualEditorialOk;
   // Les corrections éditoriales doivent aussi traverser l’interface manuelle.
@@ -568,7 +570,7 @@ async function testEtfSheets(page) {
     const copied = await page.evaluate(() => window.__etfCopiedText);
     const sectionPositions = sectionLabels.map(label => copied?.indexOf(label) ?? -1);
     if (copied !== buildText(card) || !copied?.startsWith(card.hook + "\n\n") || !copied.includes(card.name)
-      || !copied.includes(card.isin) || !copied.includes(card.ter) || !copied.includes(card.hook)
+      || !copied.includes(card.isin) || !copied.replace(/\s/g, '').includes(card.ter.replace(/\s/g, '')) || !copied.includes(card.hook)
       || (copied.includes('🏦 PEA : ✅') !== (card.pea === true))
       || !explanations.every(value => copied.includes(value))
       || !sectionPositions.every((position, index) => position >= 0 && (index === 0 || position > sectionPositions[index - 1]))
@@ -772,49 +774,6 @@ async function testTweetMidi(page) {
     if (!(await download.path())) failed.push(`Pouvoir d’achat ${poste ?? 'général'} : PNG`);
   }
   record("Tweet Midi", failed.length === 0, failed.length ? `formats sans contenu suffisant: ${failed.join(", ")}` : `${formats.length} formats cyclés`);
-}
-
-async function testFeeImpact(page) {
-  await page.goto(`${BASE}/impact-frais`, { waitUntil: "networkidle" });
-  const preview = page.locator('.fi-preview-text');
-  const initial = await preview.innerText();
-  let editorialOk = /^💸 21\s442\s€ de moins après 20 ans/.test(initial)
-    && /148\s612\s€/.test(initial) && /127\s170\s€/.test(initial)
-    && /Dans les deux cas, tu as versé 72\s000\s€/.test(initial)
-    && initial.includes('ils comprennent aussi ces gains manqués')
-    && initial.includes('Tu connais le montant des frais annuels de tes placements ?')
-    && initial.includes('Hypothèse de rendement constant')
-    && !/Brouillon|à compléter|Quand je vois ça|Tu connais celui/.test(initial);
-  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
-    configurable: true, value: { writeText: async text => { window.__feeCopiedText = text; } },
-  }));
-  await page.getByRole('button', { name: 'Copier le texte', exact: true }).click();
-  editorialOk &&= await page.evaluate(expected => window.__feeCopiedText === expected, initial);
-  // Les couleurs suivent le niveau des frais, même si les scénarios sont inversés.
-  await page.getByRole('button', { name: '1,5 %', exact: true }).first().click();
-  await page.getByRole('button', { name: '0,20 %', exact: true }).last().click();
-  editorialOk &&= /🔴 Avec 1,5 %/.test(await preview.innerText()) && /🟢 Avec 0,20 %/.test(await preview.innerText());
-  await page.getByRole('button', { name: '0,20 %', exact: true }).first().click();
-  editorialOk &&= (await preview.innerText()).includes('capitaux simulés sont identiques') && !(await preview.innerText()).includes('gains manqués');
-  await page.locator('#fi-punchline').fill('Ma conclusion personnalisée');
-  editorialOk &&= (await preview.innerText()).includes('Ma conclusion personnalisée');
-  await page.getByRole('button', { name: '500 €', exact: true }).click();
-  await page.waitForFunction(() => document.querySelector('#fi-punchline').value === '');
-  editorialOk &&= !(await preview.innerText()).includes('Ma conclusion personnalisée');
-  await page.getByRole("button", { name: /Aléatoire/i }).click();
-  await page.waitForTimeout(150);
-  const text = await page.locator("body").innerText();
-  const canvas = page.locator(".fi-image");
-  const drawing = await canvas.evaluate((node) => ({ width: node.width, height: node.height, png: node.toDataURL("image/png").startsWith("data:image/png;base64,") }));
-  const [download] = await Promise.all([
-    page.waitForEvent("download"),
-    page.getByRole("button", { name: "Télécharger l’image PNG" }).click(),
-  ]);
-  const file = await stat(await download.path());
-  const ok = editorialOk && /Avec [\d,]+\s*%\s+de frais/.test(text)
-    && drawing.width === 1600 && drawing.height === 1600 && drawing.png
-    && download.suggestedFilename() === "epargnant-libre-impact-des-frais.png" && file.size > 10000;
-  record("Impact des frais", ok, "texte validé, chiffres, copie, frais inversés/égaux, personnalisation, génération et PNG");
 }
 
 async function testMarketFacts(page) {
@@ -1205,19 +1164,7 @@ async function testInvestorIntroductions(page) {
 }
 
 async function testDataReuse(page) {
-  await page.goto(`${BASE}/impact-frais`, { waitUntil: 'networkidle' });
-  await page.getByText('Utiliser les frais d’un ETF', { exact: true }).click();
-  await choose(page.getByLabel('ETF du scénario 1', { exact: true }), 'FR001400U5Q4');
-  await choose(page.getByLabel('ETF du scénario 2', { exact: true }), 'IE00BP3QZ601');
   const checks = {};
-  checks.preview = (await page.locator('.fi-preview-text').innerText()).includes('FR001400U5Q4')
-    && (await page.locator('.fi-preview-text').innerText()).includes('sans comparer leurs performances réelles');
-  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async text => { window.__reuseCopied = text; } } }));
-  await page.getByRole('button', { name: 'Copier le texte', exact: true }).click();
-  checks.clipboard = (await page.evaluate(() => window.__reuseCopied)).includes('IE00BP3QZ601');
-  await page.setViewportSize({ width: 390, height: 844 });
-  checks.mobile = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
-  await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto(`${BASE}/duels-portefeuilles`, { waitUntil: 'networkidle' });
   // Reuse the saved three-line allocation and replace its complement with XEON.
   await page.getByRole('button', { name: 'Composer A et B', exact: true }).click();
@@ -1241,7 +1188,7 @@ async function testDataReuse(page) {
   await page.goto(`${BASE}/banque-tweets`, { waitUntil: 'networkidle' });
   await page.getByRole('button', {name:'Pédagogie',exact:true}).click();
   checks.editorialCase = (await page.locator('.tb-tweet-text').allTextContents()).includes(CASES.find(item => item.id === 'world-europe-chiffre').text);
-  record('Réutilisation des données', Object.values(checks).every(Boolean), JSON.stringify(checks) + ' · ' + 'ETF et copie frais, mobile, nouvelles périodes des duels, faits mensuels, banque et cas chiffré');
+  record('Réutilisation des données', Object.values(checks).every(Boolean), JSON.stringify(checks) + ' · ' + 'Nouvelles périodes des duels, faits mensuels, banque et cas chiffré');
 }
 
 async function testAssetSelection(page) {
@@ -1334,7 +1281,9 @@ try {
     : {});
   const page = await browser.newPage();
 
-  if (process.argv.includes('--data-reuse')) {
+  if (process.argv.includes('--calculator')) {
+    await testCalculateur(page);
+  } else if (process.argv.includes('--data-reuse')) {
     await testPortfolioDuels(page);
     await testDataReuse(page);
   } else if (process.argv.includes('--navigation')) {
@@ -1374,7 +1323,6 @@ try {
   await testBrokerComparator(page);
   await testTweetMidi(page);
   await testLexicon(page);
-  await testFeeImpact(page);
   await testDataReuse(page);
   await testMarketFacts(page);
   await testTweetBank(page);
@@ -1388,6 +1336,7 @@ try {
   await page.route('**/automation-status/automation-status.json', route => route.fulfill({json: {schemaVersion: 1, workflows: {economic: {name: 'Données économiques', status: 'failure', completedAt: '2026-10-07T10:00:00Z', runUrl: 'https://github.com/madmax91310/shinny-potato/actions/runs/1'}}}}));
   // Automation failure cards also use .dr-item; only count the filtered review list.
   await page.goto(`${BASE}/donnees-a-revoir?view=reserve&q=IBKR`, { waitUntil: 'networkidle' });
+  await page.getByText('Documents sources : moniteur, producteurs et couverture par champ', {exact:true}).click();
   await page.getByRole('region', { name: 'Échecs des mises à jour automatiques' }).getByRole('heading', {name: 'Données économiques', exact: true}).waitFor();
   const ibkrCount = buildReview().items.filter(item => item.category === 'reserve' && item.id.startsWith('broker:ibkr:')).length;
   const reviewChecks = { alert: (await page.getByRole('region', { name: 'Échecs des mises à jour automatiques', exact: true }).locator('.dr-item').count()) === 1, ibkr: (await page.locator('.data-review > .dr-list > .dr-item').count()) === ibkrCount };

@@ -106,9 +106,13 @@ def wisdomtree(text, share, now):
         if not candidates: result['unavailable'].append(field+': no published equity allocation'); continue
         t = only(candidates, title)
         dates = re.findall(r'\d{2}/\d{2}/\d{4}', t['context'])
-        # Country allocation shares the dated holdings section on this issuer page.
-        allocation_stamp = document_date(dates[-1],now) if dates else stamp
         rows = [r for r in t['rows'][1:] if r[0] != 'Remaining Portfolio']
+        if field=='countries':
+            from wisdomtree_country_allocation import primary_country
+            try:result[field]={**primary_country(text,share,rows,now),'sourceUrl':share['sourceUrl'],'sha256':digest}
+            except ValueError as error:result.setdefault('collectionErrors',[]).append({'field':field,'url':share['sourceUrl'],'phase':'validation','reason':str(error)})
+            continue
+        allocation_stamp = document_date(dates[-1],now) if dates else stamp
         result[field] = composition(rows, allocation_stamp, share, digest, complete=field!='holdings')
     result['unavailable'].append('performance: HTML calendar series not published; prior exact-share history preserved')
     return result
@@ -244,7 +248,10 @@ def collect_one(share, now):
             result=wisdomtree_factsheet(body,share,now)
             result['sourceAttempts']=[{'url':share['sourceUrl'],'reason':str(error)},
                                       {'url':share['factsheetUrl'],'status':'validated'}]
-            return result
+            from wisdomtree_ranked_fields import augment_document
+            result=augment_document(result,share,now,body)
+            from wisdomtree_directory_aum import augment_aum
+            return augment_aum(result,share,now,fetch=download)
     elif share['parser']=='globalx-html':
         from urllib.parse import urlparse
         urls=[share['sourceUrl'],*share.get('fallbackUrls',[])]
@@ -274,8 +281,9 @@ def collect_one(share, now):
         except (urllib.error.URLError, TimeoutError, ValueError) as error:
             # Independently dated HTML AUM/fees remain valid even when the
             # calendar PDF is temporarily unavailable. Keep the failure visible.
-            result['collectionErrors'] = [{'field':'performance', 'url':share['factsheetUrl'], 'reason':str(error)}]
-            return result
+            result.setdefault('collectionErrors',[]).append({'field':'performance', 'url':share['factsheetUrl'], 'reason':str(error)})
+            from wisdomtree_directory_aum import augment_aum
+            return augment_aum(result,share,now,fetch=download)
         if document.get('collectionErrors'):
             result.setdefault('collectionErrors', []).extend(document['collectionErrors'])
         if document.get('characteristics',{}).get('listings'):
@@ -283,6 +291,9 @@ def collect_one(share, now):
         if document.get('performance'):
             result['performance']=document['performance']
             result['unavailable']=[item for item in result['unavailable'] if not item.startswith('performance:')]
+    if share['parser']=='wisdomtree-html':
+        from wisdomtree_directory_aum import augment_aum
+        result=augment_aum(result,share,now,fetch=download)
     return result
 
 

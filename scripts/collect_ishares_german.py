@@ -13,6 +13,7 @@ COUNTRIES=dict(zip(
 SECTORS=dict(zip(
  ['Finanzwesen','Industrie','Gesundheitsversorgung','IT','Nichtzyklische Konsumgüter','Zyklische Konsumgüter','Energie','Materialien','Versorger','Kommunikation','Immobilien','Barmittel & Derivate'],
  ['Financials','Industrials','Health Care','Information Technology','Consumer Staples','Consumer Discretionary','Energy','Materials','Utilities','Communication Services','Real Estate','Cash and/or Derivatives']))
+SECTORS['Sonstige']='Other'
 
 
 def normalize(raw):

@@ -6,20 +6,45 @@ on:
   push:
     branches: [master]
     paths:
+      - 'scripts/collect_exposure_sleeves.py'
+      - 'scripts/native_source_evidence.py'
+      - 'scripts/test_native_source_evidence.py'
+      - 'scripts/test_security_residual_identities.py'
+      - 'scripts/test_wisdomtree_identity_isolation.py'
+      - 'scripts/fixtures/security-residual-identities.json.gz'
+      - 'scripts/holdings_reconciliation.py'
+      - 'scripts/test_dca_nav_reconciliation.py'
+      - 'scripts/native-index-source-candidates.json'
+      - 'scripts/lib/native-index-source-candidates.mjs'
       - 'scripts/collect_dca_complete_holdings.py'
       - 'scripts/collect_physical_holdings.py'
       - 'scripts/collect_wisdomtree_holdings.py'
+      - 'scripts/download-wisdomtree-rankings.mjs'
+      - 'scripts/wisdomtree_rankings_transport.py'
+      - 'scripts/test_wisdomtree_rankings_transport.py'
       - 'scripts/wisdomtree_api_holdings.py'
+      - 'scripts/wisdomtree_identity_cache.py'
+      - 'scripts/wisdomtree-holdings-classes.json'
+      - 'scripts/wisdomtree-identity-methods.json'
+      - 'scripts/test_wisdomtree_complete_api.py'
+      - 'scripts/fixtures/wisdomtree-complete/precise-qualified-books.json.gz'
+      - 'scripts/test_wisdomtree_public_rankings.py'
+      - 'scripts/test_dca_holdings_retention.py'
       - 'scripts/capture-wisdomtree-api.mjs'
       - 'scripts/test_wisdomtree_api_holdings.py'
       - 'scripts/discover_holdings_sources.py'
       - 'scripts/discover_lg_holdings.py'
       - 'scripts/test_lg_discovery.py'
       - 'scripts/security_identifier_observations.py'
+      - 'scripts/test_venue_ticker_identities.py'
+      - 'scripts/fixtures/venue-ticker-identities/**'
       - 'scripts/test_security_candidate_names.py'
       - 'scripts/security-identity-sources.json'
       - 'scripts/security-identifier-candidates.json'
       - 'scripts/test_wisdomtree_discovery.py'
+      - 'src/data/native-index-composition-contracts.json'
+      - 'src/data/native-index-composition.js'
+      - 'scripts/test-native-index-compositions.mjs'
       - 'scripts/collect_topix_holdings.py'
       - 'scripts/test_topix_holdings.py'
       - 'scripts/dws_liquidity_funds.py'
@@ -29,11 +54,22 @@ on:
       - 'scripts/lifestrategy_holdings.py'
       - 'scripts/test_lifestrategy_holdings.py'
       - 'scripts/test_physical_holdings.py'
+      - 'scripts/invesco_physical_holdings.py'
+      - 'scripts/capture-invesco-physical.mjs'
+      - 'scripts/invesco-physical-holdings-contracts.json'
+      - 'scripts/test_invesco_physical_holdings.py'
+      - 'scripts/invesco_economic_index.py'
+      - 'scripts/capture-invesco-economic-index.mjs'
+      - 'scripts/test_invesco_economic_index.py'
+      - 'scripts/fixtures/invesco-economic-index/**'
+      - 'scripts/fixtures/invesco-physical/**'
       - 'scripts/build-automation-targets.mjs'
       - 'scripts/dca-complete-holdings-sources.json'
       - '.github/workflows/update-qualified-exposures.yml'
   pull_request:
     paths:
+      - 'scripts/native_source_evidence.py'
+      - 'scripts/test_native_source_evidence.py'
       - 'scripts/collect_qualified_exposures.py'
       - 'scripts/dws_liquidity_funds.py'
       - 'scripts/hsbc_holdings.py'
@@ -45,24 +81,55 @@ on:
       - 'scripts/collect_vanguard_sleeves.py'
       - 'scripts/derive-exposure-sleeves.mjs'
       - 'scripts/dca-equity-identities.json'
+      - 'scripts/test_security_residual_identities.py'
+      - 'scripts/test_wisdomtree_identity_isolation.py'
+      - 'scripts/fixtures/security-residual-identities.json.gz'
+      - 'scripts/holdings_reconciliation.py'
+      - 'scripts/test_dca_nav_reconciliation.py'
+      - 'scripts/native-index-source-candidates.json'
+      - 'scripts/lib/native-index-source-candidates.mjs'
       - 'scripts/collect_dca_complete_holdings.py'
       - 'scripts/collect_physical_holdings.py'
       - 'scripts/collect_wisdomtree_holdings.py'
+      - 'scripts/download-wisdomtree-rankings.mjs'
+      - 'scripts/wisdomtree_rankings_transport.py'
+      - 'scripts/test_wisdomtree_rankings_transport.py'
       - 'scripts/wisdomtree_api_holdings.py'
+      - 'scripts/wisdomtree_identity_cache.py'
+      - 'scripts/wisdomtree-holdings-classes.json'
+      - 'scripts/wisdomtree-identity-methods.json'
+      - 'scripts/test_wisdomtree_complete_api.py'
+      - 'scripts/fixtures/wisdomtree-complete/precise-qualified-books.json.gz'
+      - 'scripts/test_wisdomtree_public_rankings.py'
+      - 'scripts/test_dca_holdings_retention.py'
       - 'scripts/capture-wisdomtree-api.mjs'
       - 'scripts/test_wisdomtree_api_holdings.py'
       - 'scripts/discover_holdings_sources.py'
       - 'scripts/discover_lg_holdings.py'
       - 'scripts/test_lg_discovery.py'
       - 'scripts/security_identifier_observations.py'
+      - 'scripts/test_venue_ticker_identities.py'
+      - 'scripts/fixtures/venue-ticker-identities/**'
       - 'scripts/security-identity-sources.json'
       - 'scripts/security-identifier-candidates.json'
       - 'scripts/test_wisdomtree_discovery.py'
+      - 'src/data/native-index-composition-contracts.json'
+      - 'src/data/native-index-composition.js'
+      - 'scripts/test-native-index-compositions.mjs'
       - 'scripts/collect_topix_holdings.py'
       - 'scripts/test_topix_holdings.py'
       - 'scripts/lifestrategy_holdings.py'
       - 'scripts/test_lifestrategy_holdings.py'
       - 'scripts/test_physical_holdings.py'
+      - 'scripts/invesco_physical_holdings.py'
+      - 'scripts/capture-invesco-physical.mjs'
+      - 'scripts/invesco-physical-holdings-contracts.json'
+      - 'scripts/test_invesco_physical_holdings.py'
+      - 'scripts/invesco_economic_index.py'
+      - 'scripts/capture-invesco-economic-index.mjs'
+      - 'scripts/test_invesco_economic_index.py'
+      - 'scripts/fixtures/invesco-economic-index/**'
+      - 'scripts/fixtures/invesco-physical/**'
       - 'scripts/collect_dws_etf.py'
       - 'scripts/collect_ssga_etf.py'
       - 'scripts/test_dca_dws_complete.py'
@@ -99,7 +166,8 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
-      - run: pip install beautifulsoup4==4.15.0 xlrd==2.0.2
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4==4.15.0 xlrd==2.0.2
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_qualified_aum_retention.py'
       - run: node scripts/test-qualified-aum-retention.mjs
@@ -118,11 +186,15 @@ jobs:
       - name: Validate staged source qualification
         run: python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_regional_routes.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
       - run: python -m unittest discover -s scripts -p 'test_independent_portfolio_identities.py'
       - run: node scripts/test-issuer-product-routes.mjs
-      - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py'
+      - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py' && python -m unittest discover -s scripts -p 'test_security_residual_identities.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_identity_isolation.py'
       - name: Validate public holdings API identities and complete weights
-        run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py'
+        run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_complete_api.py' && python -m unittest discover -s scripts -p 'test_wisdomtree_public_rankings.py' && python -m unittest discover -s scripts -p 'test_dca_holdings_retention.py'
+      - name: Validate exact native-index and dated-identity contracts
+        run: python -m unittest discover -s scripts -p 'test_topix_holdings.py' && node scripts/test-native-index-compositions.mjs
+      - run: python -m unittest discover -s scripts -p 'test_venue_ticker_identities.py'
       - name: Refresh exact security identifier evidence
         id: identifiers
         continue-on-error: true
@@ -135,6 +207,7 @@ jobs:
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         env:
           WISDOMTREE_BROWSER_CAPTURE: '1'
+          PHYSICAL_SOURCE_PROOF_DIR: ${{ runner.temp }}/physical-source-proofs
         run: python scripts/collect_dca_complete_holdings.py --apply --output "$RUNNER_TEMP/dca-complete-holdings.json"
       - name: "Collect observations: sleeves"
         id: sleeves
@@ -145,12 +218,13 @@ jobs:
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_vanguard_sleeves.py --apply --output "$RUNNER_TEMP/vanguard-sleeves.json"
       - run: python -m unittest discover -s scripts -p "test_exposure_sleeves.py"
-      - run: python -m unittest discover -s scripts -p 'test_topix_holdings.py'
       - name: Validate complete DWS parser
         run: python -m unittest discover -s scripts -p "test_dca*py"
+      - name: Validate issuer economic index books
+        run: python -m unittest discover -s scripts -p "test_invesco_economic_index.py"
       - name: Validate complete physical issuer portfolios
-        run: python -m unittest discover -s scripts -p "test_physical_holdings.py" && python -m unittest discover -s scripts -p "test_lifestrategy_holdings.py"
-      - run: python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py' && python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py' && python -m unittest discover -s scripts -p 'test_pending_sources.py'
+        run: python -m unittest discover -s scripts -p "test_invesco_physical_holdings.py" && python -m unittest discover -s scripts -p "test_physical_holdings.py" && python -m unittest discover -s scripts -p "test_lifestrategy_holdings.py"
+      - run: python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py' && python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py' && python -m unittest discover -s scripts -p 'test_pending_sources.py' && python -m unittest discover -s scripts -p 'test_native_source_evidence.py'
       - name: Validate DCA observations
         run: node scripts/build-dca-exposures.mjs && npm run test:dca
       - name: "Validate observations: node scripts test-qualified-exposures.mjs"
@@ -168,15 +242,18 @@ jobs:
           node scripts/playwright-live-data-connections.mjs --new-issuers
           node scripts/playwright-live-data-connections.mjs --wisdomtree
           node scripts/playwright-live-data-connections.mjs --defence
+          node scripts/playwright-dca-holdings-contracts.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: qualified-exposures-observation
           path: |
             test-artifacts/live-data-connections
+            test-artifacts/dca-compositions
             ${{ runner.temp }}/qualified-exposures.json
             ${{ runner.temp }}/dca-equities.json
             ${{ runner.temp }}/dca-complete-holdings.json
+            ${{ runner.temp }}/physical-source-proofs
             ${{ runner.temp }}/exposure-sleeves.json
             ${{ runner.temp }}/vanguard-sleeves.json
             public/data/pending-source-checks.json

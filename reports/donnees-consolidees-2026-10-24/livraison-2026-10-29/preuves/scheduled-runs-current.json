@@ -1,0 +1,822 @@
+{
+  "checkedAt": "2026-10-30T02:48:59.899607+00:00",
+  "master": "66c27cda4ef5154446d33b0fcaeed15db93f0dfd",
+  "scheduledWorkflowFiles": 25,
+  "registeredWorkflows": 24,
+  "scheduledRegistered": 23,
+  "scheduledUnregistered": [
+    "automation-status.yml",
+    "probe-bitcoin-monthly.yml"
+  ],
+  "registeredWithoutCron": [
+    "deploy-pages.yml"
+  ],
+  "runs": [
+    {
+      "workflow": "automation-status.yml",
+      "crons": [
+        "8,23,38,53 * * * *"
+      ],
+      "registered": false,
+      "paths": [],
+      "latestScheduled": {
+        "id": 40985188588,
+        "event": "schedule",
+        "head_sha": "3b2ea3628949d7ab4a6275c4bc0217f9d29e04cb",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-30T01:19:49Z",
+        "updated_at": "2026-10-30T01:24:00Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40985188588"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40985188588,
+        "event": "schedule",
+        "head_sha": "3b2ea3628949d7ab4a6275c4bc0217f9d29e04cb",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-30T01:19:49Z",
+        "updated_at": "2026-10-30T01:24:00Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40985188588"
+      }
+    },
+    {
+      "workflow": "collect-etf-pilot.yml",
+      "crons": [
+        "10 7 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/fiches-etf",
+        "/comparatif-etf",
+        "/tweets-factsheets",
+        "/impact-frais",
+        "/classements-performances",
+        "/duels-portefeuilles",
+        "/generateur-portefeuilles",
+        "/bibliotheque-donnees"
+      ],
+      "latestScheduled": {
+        "id": 40888590947,
+        "event": "schedule",
+        "head_sha": "4dd1b262501fed1ca5e2dfbc55d4930cf9a7663b",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T14:08:50Z",
+        "updated_at": "2026-10-29T14:54:18Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40888590947"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40888590947,
+        "event": "schedule",
+        "head_sha": "4dd1b262501fed1ca5e2dfbc55d4930cf9a7663b",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T14:08:50Z",
+        "updated_at": "2026-10-29T14:54:18Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40888590947"
+      }
+    },
+    {
+      "workflow": "onboard-assets.yml",
+      "crons": [
+        "35 5 3 * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/calculateur-investissement",
+        "/performance-depuis",
+        "/il-y-a-x-ans",
+        "/classements-performances",
+        "/duels-portefeuilles",
+        "/generateur-portefeuilles",
+        "/le-dca-de",
+        "/fiches-etf"
+      ],
+      "latestScheduled": null,
+      "lastSuccessfulScheduled": null
+    },
+    {
+      "workflow": "probe-bitcoin-monthly.yml",
+      "crons": [
+        "40 6 2 * *"
+      ],
+      "registered": false,
+      "paths": [],
+      "latestScheduled": null,
+      "lastSuccessfulScheduled": null
+    },
+    {
+      "workflow": "refresh-automated-index-sheets.yml",
+      "crons": [
+        "40 6 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/tweets-factsheets"
+      ],
+      "latestScheduled": {
+        "id": 40884026994,
+        "event": "schedule",
+        "head_sha": "4bc4831b4bf23c220e728123c11e7f6c2b410191",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-10-29T13:40:00Z",
+        "updated_at": "2026-10-29T14:14:11Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40884026994"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40505318942,
+        "event": "schedule",
+        "head_sha": "f309df2ce9cb63fcebb692f4dafe215867740698",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-27T12:38:10Z",
+        "updated_at": "2026-10-27T12:56:58Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40505318942"
+      }
+    },
+    {
+      "workflow": "rehearse-refresh.yml",
+      "crons": [
+        "17 4 20 * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/donnees-a-revoir"
+      ],
+      "latestScheduled": {
+        "id": 39400644927,
+        "event": "schedule",
+        "head_sha": "8276a5d4c8c26de43109f38b1c399d97482eb578",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-20T09:26:09Z",
+        "updated_at": "2026-10-20T09:36:31Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39400644927"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 39400644927,
+        "event": "schedule",
+        "head_sha": "8276a5d4c8c26de43109f38b1c399d97482eb578",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-20T09:26:09Z",
+        "updated_at": "2026-10-20T09:36:31Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39400644927"
+      }
+    },
+    {
+      "workflow": "review-freshness.yml",
+      "crons": [
+        "0 8 * * 1"
+      ],
+      "registered": true,
+      "paths": [
+        "/donnees-a-revoir"
+      ],
+      "latestScheduled": {
+        "id": 40343260521,
+        "event": "schedule",
+        "head_sha": "8eb7a05fd1c4bfebacc56277c9f33a1cb78e8feb",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-26T14:49:29Z",
+        "updated_at": "2026-10-26T14:50:08Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40343260521"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40343260521,
+        "event": "schedule",
+        "head_sha": "8eb7a05fd1c4bfebacc56277c9f33a1cb78e8feb",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-26T14:49:29Z",
+        "updated_at": "2026-10-26T14:50:08Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40343260521"
+      }
+    },
+    {
+      "workflow": "update-bitcoin-monthly.yml",
+      "crons": [
+        "40 6 2,4,8 * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/calculateur-investissement",
+        "/performance-depuis",
+        "/il-y-a-x-ans",
+        "/duels-portefeuilles",
+        "/classements-performances",
+        "/faits-marquants-marches"
+      ],
+      "latestScheduled": {
+        "id": 37788601032,
+        "event": "schedule",
+        "head_sha": "3976ea40d5c12e4fd7e27af63bdf064bbe3f88cd",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-08T13:58:09Z",
+        "updated_at": "2026-10-08T14:09:35Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/37788601032"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 37788601032,
+        "event": "schedule",
+        "head_sha": "3976ea40d5c12e4fd7e27af63bdf064bbe3f88cd",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-08T13:58:09Z",
+        "updated_at": "2026-10-08T14:09:35Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/37788601032"
+      }
+    },
+    {
+      "workflow": "update-economic-data.yml",
+      "crons": [
+        "20 8 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/france-100-menages",
+        "/simulateur-patrimoine",
+        "/calculateur-investissement",
+        "/generateur-portefeuilles",
+        "/fiches-pratiques",
+        "/fiche-lexique"
+      ],
+      "latestScheduled": {
+        "id": 40900148804,
+        "event": "schedule",
+        "head_sha": "ec54cd27b53cd56889bd5a06ec8b53bff03de1c6",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T15:18:04Z",
+        "updated_at": "2026-10-29T15:26:44Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40900148804"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40900148804,
+        "event": "schedule",
+        "head_sha": "ec54cd27b53cd56889bd5a06ec8b53bff03de1c6",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T15:18:04Z",
+        "updated_at": "2026-10-29T15:26:44Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40900148804"
+      }
+    },
+    {
+      "workflow": "update-editorial-radar.yml",
+      "crons": [
+        "7,37 6-19 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/radar-editorial"
+      ],
+      "latestScheduled": {
+        "id": 40971593750,
+        "event": "schedule",
+        "head_sha": "4b8c1bd1ef36b2876b256f61345b97c495ad2505",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T23:13:07Z",
+        "updated_at": "2026-10-29T23:13:58Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40971593750"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40971593750,
+        "event": "schedule",
+        "head_sha": "4b8c1bd1ef36b2876b256f61345b97c495ad2505",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T23:13:07Z",
+        "updated_at": "2026-10-29T23:13:58Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40971593750"
+      }
+    },
+    {
+      "workflow": "update-exposure-expansion.yml",
+      "crons": [
+        "45 7 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/le-dca-de"
+      ],
+      "latestScheduled": {
+        "id": 40893772375,
+        "event": "schedule",
+        "head_sha": "23ef83f86bb7787eda6bf86e9f1984f71b27caf0",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-10-29T14:40:04Z",
+        "updated_at": "2026-10-29T15:34:59Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40893772375"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40706853346,
+        "event": "schedule",
+        "head_sha": "d1b00c36778a2b30bc4f0317a10109d0771188b0",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-28T14:31:56Z",
+        "updated_at": "2026-10-28T15:12:13Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40706853346"
+      }
+    },
+    {
+      "workflow": "update-gold-monthly.yml",
+      "crons": [
+        "15 7 3-10 * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/calculateur-investissement",
+        "/performance-depuis",
+        "/il-y-a-x-ans",
+        "/duels-portefeuilles",
+        "/classements-performances",
+        "/faits-marquants-marches"
+      ],
+      "latestScheduled": {
+        "id": 38056933146,
+        "event": "schedule",
+        "head_sha": "bdbbdfec5e5a74b8cc422fda9412f27ab08ea812",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-10T13:45:14Z",
+        "updated_at": "2026-10-10T13:45:44Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/38056933146"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 38056933146,
+        "event": "schedule",
+        "head_sha": "bdbbdfec5e5a74b8cc422fda9412f27ab08ea812",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-10T13:45:14Z",
+        "updated_at": "2026-10-10T13:45:44Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/38056933146"
+      }
+    },
+    {
+      "workflow": "update-inflation.yml",
+      "crons": [
+        "15 7 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/calculateur-investissement",
+        "/pouvoir-achat"
+      ],
+      "latestScheduled": {
+        "id": 40890876050,
+        "event": "schedule",
+        "head_sha": "f7911210e3573d8cc0ea93d47928ce07c0a2058f",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T14:22:50Z",
+        "updated_at": "2026-10-29T14:23:32Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40890876050"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40890876050,
+        "event": "schedule",
+        "head_sha": "f7911210e3573d8cc0ea93d47928ce07c0a2058f",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T14:22:50Z",
+        "updated_at": "2026-10-29T14:23:32Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40890876050"
+      }
+    },
+    {
+      "workflow": "update-instrument-metadata.yml",
+      "crons": [
+        "20 9 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/fiches-etf",
+        "/comparatif-etf",
+        "/generateur-portefeuilles",
+        "/le-dca-de",
+        "/bibliotheque-donnees"
+      ],
+      "latestScheduled": {
+        "id": 40909714476,
+        "event": "schedule",
+        "head_sha": "076af6beceb14636b9a9e91ab144b38ab309a8d5",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-10-29T16:15:09Z",
+        "updated_at": "2026-10-29T16:31:16Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40909714476"
+      },
+      "lastSuccessfulScheduled": null
+    },
+    {
+      "workflow": "update-insurance.yml",
+      "crons": [
+        "25 7 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/presentations",
+        "/fiches-pratiques"
+      ],
+      "latestScheduled": {
+        "id": 40892004256,
+        "event": "schedule",
+        "head_sha": "f7911210e3573d8cc0ea93d47928ce07c0a2058f",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T14:29:37Z",
+        "updated_at": "2026-10-29T14:58:03Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40892004256"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40892004256,
+        "event": "schedule",
+        "head_sha": "f7911210e3573d8cc0ea93d47928ce07c0a2058f",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T14:29:37Z",
+        "updated_at": "2026-10-29T14:58:03Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40892004256"
+      }
+    },
+    {
+      "workflow": "update-investor-13f.yml",
+      "crons": [
+        "25 12 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/portefeuilles-investisseurs"
+      ],
+      "latestScheduled": {
+        "id": 40931806917,
+        "event": "schedule",
+        "head_sha": "b223c5f20a9830fee75745954d37e504779537d6",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T18:32:41Z",
+        "updated_at": "2026-10-29T19:18:35Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40931806917"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40931806917,
+        "event": "schedule",
+        "head_sha": "b223c5f20a9830fee75745954d37e504779537d6",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T18:32:41Z",
+        "updated_at": "2026-10-29T19:18:35Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40931806917"
+      }
+    },
+    {
+      "workflow": "update-lifestrategy.yml",
+      "crons": [
+        "35 5 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/fiches-etf",
+        "/comparatif-etf",
+        "/duels-portefeuilles",
+        "/generateur-portefeuilles",
+        "/le-dca-de"
+      ],
+      "latestScheduled": {
+        "id": 40867275988,
+        "event": "schedule",
+        "head_sha": "7c56c23cd70ea6f0dffc7843565702ba57e41b37",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T11:41:05Z",
+        "updated_at": "2026-10-29T12:25:31Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40867275988"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40867275988,
+        "event": "schedule",
+        "head_sha": "7c56c23cd70ea6f0dffc7843565702ba57e41b37",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T11:41:05Z",
+        "updated_at": "2026-10-29T12:25:31Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40867275988"
+      }
+    },
+    {
+      "workflow": "update-market-monthly.yml",
+      "crons": [
+        "15 6 2,4,8,16 * *",
+        "45 6 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/calculateur-investissement",
+        "/performance-depuis",
+        "/il-y-a-x-ans",
+        "/duels-portefeuilles",
+        "/generateur-portefeuilles",
+        "/classements-performances",
+        "/faits-marquants-marches"
+      ],
+      "latestScheduled": {
+        "id": 40884415624,
+        "event": "schedule",
+        "head_sha": "ec0027998e400d31a7748a6fa45fe36b748b0489",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-10-29T13:42:31Z",
+        "updated_at": "2026-10-29T14:15:55Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40884415624"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40697086797,
+        "event": "schedule",
+        "head_sha": "297bfaefce1829e980bb0c122d66526662d5189c",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-28T13:30:44Z",
+        "updated_at": "2026-10-28T15:03:28Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40697086797"
+      }
+    },
+    {
+      "workflow": "update-non-bond-expansion.yml",
+      "crons": [
+        "15 7 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/fiches-etf",
+        "/comparatif-etf",
+        "/calculateur-investissement",
+        "/il-y-a-x-ans",
+        "/performance-depuis",
+        "/classements-performances"
+      ],
+      "latestScheduled": {
+        "id": 40889238529,
+        "event": "schedule",
+        "head_sha": "4dd1b262501fed1ca5e2dfbc55d4930cf9a7663b",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T14:12:50Z",
+        "updated_at": "2026-10-29T14:52:04Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40889238529"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40889238529,
+        "event": "schedule",
+        "head_sha": "4dd1b262501fed1ca5e2dfbc55d4930cf9a7663b",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T14:12:50Z",
+        "updated_at": "2026-10-29T14:52:04Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40889238529"
+      }
+    },
+    {
+      "workflow": "update-practical-sheets.yml",
+      "crons": [
+        "15 9 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/fiches-pratiques"
+      ],
+      "latestScheduled": {
+        "id": 40907622654,
+        "event": "schedule",
+        "head_sha": "b7109c2f4c0a927ddf19c13ce16c4927beb8a17d",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T16:02:36Z",
+        "updated_at": "2026-10-29T16:08:48Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40907622654"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40907622654,
+        "event": "schedule",
+        "head_sha": "b7109c2f4c0a927ddf19c13ce16c4927beb8a17d",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T16:02:36Z",
+        "updated_at": "2026-10-29T16:08:48Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40907622654"
+      }
+    },
+    {
+      "workflow": "update-presentation-actors.yml",
+      "crons": [
+        "30 7 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/presentations"
+      ],
+      "latestScheduled": {
+        "id": 40893199192,
+        "event": "schedule",
+        "head_sha": "9c31ba9fbbb1a62f40318f515eb04a90e6735204",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T14:36:38Z",
+        "updated_at": "2026-10-29T14:59:38Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40893199192"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40893199192,
+        "event": "schedule",
+        "head_sha": "9c31ba9fbbb1a62f40318f515eb04a90e6735204",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T14:36:38Z",
+        "updated_at": "2026-10-29T14:59:38Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40893199192"
+      }
+    },
+    {
+      "workflow": "update-publication-observations.yml",
+      "crons": [
+        "40 7 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/pouvoir-achat",
+        "/il-y-a-x-ans"
+      ],
+      "latestScheduled": {
+        "id": 40893319635,
+        "event": "schedule",
+        "head_sha": "9c31ba9fbbb1a62f40318f515eb04a90e6735204",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-10-29T14:37:21Z",
+        "updated_at": "2026-10-29T14:40:24Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40893319635"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 39784477156,
+        "event": "schedule",
+        "head_sha": "1d93e6e12757e34e67a801d4173a73e701f84805",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-22T13:10:05Z",
+        "updated_at": "2026-10-22T13:16:55Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39784477156"
+      }
+    },
+    {
+      "workflow": "update-qualified-exposures.yml",
+      "crons": [
+        "50 7 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/fiches-etf",
+        "/comparatif-etf",
+        "/duels-portefeuilles",
+        "/generateur-portefeuilles",
+        "/le-dca-de"
+      ],
+      "latestScheduled": {
+        "id": 40893795840,
+        "event": "schedule",
+        "head_sha": "23ef83f86bb7787eda6bf86e9f1984f71b27caf0",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-10-29T14:40:12Z",
+        "updated_at": "2026-10-29T15:41:50Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40893795840"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 38738108490,
+        "event": "schedule",
+        "head_sha": "308367ca4bee0041afa1bb7f1576aa5b4d798ef1",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-15T12:53:14Z",
+        "updated_at": "2026-10-15T13:04:12Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/38738108490"
+      }
+    },
+    {
+      "workflow": "update-regulatory-data.yml",
+      "crons": [
+        "45 8 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/comparatif-courtiers",
+        "/fiches-pratiques",
+        "/fiche-lexique",
+        "/simulateur-patrimoine"
+      ],
+      "latestScheduled": {
+        "id": 40902771410,
+        "event": "schedule",
+        "head_sha": "a1d5e00acffe99f8367e984ef04c8be7e145d8ec",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T15:33:28Z",
+        "updated_at": "2026-10-29T15:45:50Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40902771410"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40902771410,
+        "event": "schedule",
+        "head_sha": "a1d5e00acffe99f8367e984ef04c8be7e145d8ec",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T15:33:28Z",
+        "updated_at": "2026-10-29T15:45:50Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40902771410"
+      }
+    },
+    {
+      "workflow": "update-scpi.yml",
+      "crons": [
+        "20 7 * * *"
+      ],
+      "registered": true,
+      "paths": [
+        "/presentations"
+      ],
+      "latestScheduled": {
+        "id": 40891762848,
+        "event": "schedule",
+        "head_sha": "f7911210e3573d8cc0ea93d47928ce07c0a2058f",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T14:28:09Z",
+        "updated_at": "2026-10-29T14:55:47Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40891762848"
+      },
+      "lastSuccessfulScheduled": {
+        "id": 40891762848,
+        "event": "schedule",
+        "head_sha": "f7911210e3573d8cc0ea93d47928ce07c0a2058f",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-29T14:28:09Z",
+        "updated_at": "2026-10-29T14:55:47Z",
+        "run_attempt": 1,
+        "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40891762848"
+      }
+    }
+  ],
+  "limit": "Scheduled job outcome does not certify every individual field; a manual run is never reclassified as a cron. Source/runtime/publication proofs remain separate."
+}

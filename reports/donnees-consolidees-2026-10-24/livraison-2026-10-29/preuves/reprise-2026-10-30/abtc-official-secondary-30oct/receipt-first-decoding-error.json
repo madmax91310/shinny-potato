@@ -1,0 +1,26 @@
+{
+  "retrievedAt": "2026-10-30T23:21:34.586073+00:00",
+  "sourceRouteEvidence": "abtc-official-page-0-30oct.html.gz: EU_API_CONFIG and apiFetch explicit official failover",
+  "rows": [
+    {
+      "url": "https://api.primary.21shares.com/api/product_details/ABTC",
+      "error": "UnicodeDecodeError",
+      "status": null
+    },
+    {
+      "url": "https://api.secondary.21shares.com/api/product_details/ABTC",
+      "error": "UnicodeDecodeError",
+      "status": null
+    },
+    {
+      "url": "https://api.secondary.21shares.com/api/product_valuation_history/ABTC",
+      "error": "UnicodeDecodeError",
+      "status": null
+    },
+    {
+      "url": "https://api.secondary.21shares.com/api/product_performance_metrics/ABTC",
+      "error": "UnicodeDecodeError",
+      "status": null
+    }
+  ]
+}

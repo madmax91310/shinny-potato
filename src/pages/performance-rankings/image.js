@@ -60,7 +60,9 @@ export function rankingImageLayout(assetCount, columnCount, regularity = false) 
   const tableBottom = tableY + headerHeight + gridRows * rowHeight
   return { width, height: tableBottom + 28 + (regularity ? 142 : 0), margin, labelWidth, cellWidth, rowHeight, tableY, headerHeight, tableBottom, transposed, gridColumns, gridRows }
 }
-const imagePercent = value => `${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
+const imagePercent = value => Math.abs(value) > 0 && Math.abs(value) < .05
+  ? annualImagePercent(value)
+  : `${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
 export function renderRankingImage(result, _title, regularity, presentation = 'current') {
   if (presentation === 'annual') return renderAnnualRankingImage(result)
   const columns = annualColumns(result)

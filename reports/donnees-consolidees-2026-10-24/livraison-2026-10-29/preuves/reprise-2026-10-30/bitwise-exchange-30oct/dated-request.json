@@ -1,0 +1,68 @@
+{
+  "checkedAt": "2026-10-30T07:32:05.622Z",
+  "method": "Ordinary public issuer exchange connection established by its own client; registered request schema reused, dates explicit; no authentication token archived",
+  "uiRequests": [
+    {
+      "listTimeseries": {
+        "resolution": "1D",
+        "marketstateId": "DELAYED[DE000A27Z304,EUR@ETR>STX]",
+        "start": "2025-10-29T00:00:00.000Z",
+        "end": "2026-10-29T23:59:00.000Z",
+        "cleanSplits": false,
+        "cleanDividends": false,
+        "cleanDistributions": false,
+        "cleanSubscriptions": false,
+        "quality": "DELAYED"
+      },
+      "requestId": "request-5"
+    },
+    {
+      "listTimeseries": {
+        "resolution": "1D",
+        "marketstateId": "DELAYED[DE000A27Z304,EUR@ETR>STX]",
+        "start": "2024-12-01T00:00:00.000Z",
+        "end": "2024-12-31T23:59:00.000Z",
+        "cleanSplits": false,
+        "cleanDividends": false,
+        "cleanDistributions": false,
+        "cleanSubscriptions": false,
+        "quality": "DELAYED"
+      },
+      "requestId": "request-7"
+    }
+  ],
+  "scope": {
+    "isin": "DE000A27Z304",
+    "currency": "EUR",
+    "venue": "XETR",
+    "start": "2024-12-01",
+    "end": "2024-12-31"
+  },
+  "form": "Historical prices and volumes Bitwise Physical Bitcoin ETP\nSearch by date range\nStart date\nEnd date\nMarket place\nXetra\nFrankfurt\n Search\nAdjusted prices\nSplitsDividendsSubscription rights\n\nno results for the selected criteria",
+  "messages": [
+    {
+      "direction": "sent",
+      "data": {
+        "listTimeseries": {
+          "resolution": "1D",
+          "marketstateId": "DELAYED[DE000A27Z304,EUR@ETR>STX]",
+          "start": "2024-12-01T00:00:00.000Z",
+          "end": "2024-12-31T23:59:00.000Z",
+          "cleanSplits": false,
+          "cleanDividends": false,
+          "cleanDistributions": false,
+          "cleanSubscriptions": false,
+          "quality": "DELAYED"
+        },
+        "requestId": "qualified-scope-2024-dec"
+      }
+    },
+    {
+      "direction": "received",
+      "data": {
+        "requestId": "qualified-scope-2024-dec",
+        "isComplete": true
+      }
+    }
+  ]
+}

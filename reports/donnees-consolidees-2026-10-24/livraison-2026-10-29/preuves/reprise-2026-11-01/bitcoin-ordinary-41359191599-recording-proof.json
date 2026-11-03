@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-11-01T22:56:50.861380+00:00",
+  "runId": 41359191599,
+  "event": "workflow_dispatch",
+  "recordCommit": "fb5051293340d0584ffdf07019de9b3df7400f2d",
+  "path": "src/data/bitcoin-yahoo-monthly.json",
+  "periodStart": "2015-01",
+  "periodEnd": "2026-10",
+  "validatedMonths": 142,
+  "previousMonthsPreservedExactly": 141,
+  "newMonth": {
+    "month": "2026-10",
+    "price": 77434.75,
+    "independentDailyClose": {
+      "date": "2026-10-31",
+      "price": 77434.75
+    }
+  },
+  "sourceUrls": [
+    "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1mo",
+    "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1d"
+  ],
+  "publication": "à vérifier par manifeste et consommateurs, distinct de cet enregistrement",
+  "scheduledEventObservedAfterRefresh": false,
+  "limit": "Producteur existant exercé une fois avant sa première échéance mensuelle2novembre ; aucune correction de cours, aucun cron prétendu observé."
+}

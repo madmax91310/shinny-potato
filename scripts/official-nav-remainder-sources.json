@@ -365,7 +365,8 @@
     "distributionValidationYears": [
       2020
     ],
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data"
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data",
+    "incomeMonthEndPolicy": "withhold-trailing-unreconciled-month"
   },
   {
     "id": "etfIE00B2QWCY14",
@@ -390,7 +391,8 @@
       2024,
       2025
     ],
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data"
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data",
+    "incomeMonthEndPolicy": "withhold-trailing-unreconciled-month"
   },
   {
     "id": "etcPalladium",
@@ -411,7 +413,8 @@
     "navCurrency": "USD",
     "productId": 256574,
     "distributionValidationYears": [],
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data"
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data",
+    "incomeMonthEndPolicy": "withhold-trailing-unreconciled-month"
   },
   {
     "id": "etf_financials",
@@ -434,7 +437,8 @@
     "distributionValidationYears": [
       2023
     ],
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data"
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data",
+    "incomeMonthEndPolicy": "withhold-trailing-unreconciled-month"
   },
   {
     "id": "etf_world_communication",
@@ -457,7 +461,8 @@
     "distributionValidationYears": [
       2024
     ],
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data"
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data",
+    "incomeMonthEndPolicy": "withhold-trailing-unreconciled-month"
   },
   {
     "id": "etfLU2089238385",
@@ -637,7 +642,8 @@
     "wisdomProductName": "WisdomTree Copper",
     "wisdomListingId": 2740790,
     "wisdomInception": "2006-09-22",
-    "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
+    "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+    "wisdomPerformancePathStyle": "issuer-widget"
   },
   {
     "id": "etc_brent_crude_oilNav",
@@ -695,6 +701,7 @@
       2023
     ],
     "wisdomTicker": "CRUD",
+    "wisdomPerformancePathStyle": "issuer-widget",
     "wisdomProductName": "WisdomTree WTI Crude Oil",
     "wisdomListingId": 2740803,
     "wisdomInception": "2006-09-22",
@@ -729,7 +736,8 @@
     "wisdomProductName": "WisdomTree Coffee",
     "wisdomListingId": 2740785,
     "wisdomInception": "2006-09-22",
-    "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
+    "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
+    "wisdomPerformancePathStyle": "issuer-widget"
   },
   {
     "id": "etfIE00BK5BCD43Nav",
@@ -825,7 +833,8 @@
     "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
     "documentType": "wisdomtree-ucits",
     "documentName": "WisdomTree Artificial Intelligence UCITS ETF - USD Acc",
-    "wisdomChartInception": "2018-12-05"
+    "wisdomChartInception": "2018-12-05",
+    "wisdomPerformancePathStyle": "issuer-widget"
   },
   {
     "id": "etfCloudWisdomtreeNav",
@@ -889,7 +898,8 @@
     "wisdomProductName": "WisdomTree Cocoa",
     "wisdomListingId": 2740782,
     "wisdomInception": "2009-11-09",
-    "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10"
+    "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
+    "wisdomPerformancePathStyle": "issuer-widget"
   },
   {
     "id": "etc_natural_gasNav",
@@ -919,7 +929,8 @@
     "wisdomProductName": "WisdomTree Natural Gas",
     "wisdomListingId": 2741004,
     "wisdomInception": "2006-09-22",
-    "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
+    "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
+    "wisdomPerformancePathStyle": "issuer-widget"
   },
   {
     "id": "etc_wheatNav",
@@ -950,6 +961,7 @@
     "wisdomProductName": "WisdomTree Wheat",
     "wisdomListingId": 2741190,
     "wisdomInception": "2006-09-22",
-    "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664"
+    "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
+    "wisdomPerformancePathStyle": "issuer-widget"
   }
 ]

@@ -20,3 +20,6 @@
 @media (max-width: 760px) { .ip-scope { padding: 0; } .ip-panel { padding: 17px; } .ip-grid { grid-template-columns: 1fr; } }
 
 .ip-bio{font-size:14px;line-height:1.65;color:#626a7a;margin:16px 0}.ip-editor .ip-note a{color:#6552c4;overflow-wrap:anywhere}
+
+.ip-row span:nth-child(2) { min-width: 0; overflow-wrap: anywhere; }
+.ip-row strong { flex: none; white-space: nowrap; }

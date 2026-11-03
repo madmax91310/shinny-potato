@@ -1,0 +1,133 @@
+{
+  "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41020731803",
+  "jobId": 123947210193,
+  "artifactId": 12961488425,
+  "artifactDigest": "sha256:95fe29172f0ab24472ec8908da4cea42f69c0d5baa7c2b58719534e3759318de",
+  "attempted": 183,
+  "validated": 173,
+  "failures": 10,
+  "errors": [
+    {
+      "id": "dca-holdings:IE000716YHJ7",
+      "field": "Composition complète",
+      "error": "'NoneType' object is not iterable"
+    },
+    {
+      "id": "dca-holdings:IE0000QLH0G6",
+      "field": "Composition complète",
+      "error": "'NoneType' object is not iterable"
+    },
+    {
+      "id": "dca-holdings:IE00BDVPNG13",
+      "field": "Composition complète",
+      "error": "Public Dataspan acquisition unavailable at public issuer route: Qualified exact-share public rankings unavailable: [{\"sourceUrl\": \"https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]; Issuer API unavailable: Issuer API HTTP 403; public browser also failed: [{\"url\":\"https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc\",\"status\":\"unavailable\",\"error\":\"Public product page HTTP 403\"},{\"url\":\"https://www.wisdomtree.com/ie/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc\",\"status\":\"unavailable\",\"error\":\"Public product page HTTP 403\"},{\"url\":\"https://www.wisdomtree.com/api/fund-holdings/1123138\",\"status\":\"unavailable\",\"error\":\"Public issuer API unavailable in browser: HTTP 403\"}]\n; public full portfolio unqualified: Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]"
+    },
+    {
+      "id": "dca-holdings:IE00BKLF1R75",
+      "field": "Composition complète",
+      "error": "Public Dataspan acquisition unavailable at public issuer route: Qualified exact-share public rankings unavailable: [{\"sourceUrl\": \"https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]; Issuer API unavailable: Issuer API HTTP 403; public browser also failed: [{\"url\":\"https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc\",\"status\":\"unavailable\",\"error\":\"Public product page HTTP 403\"},{\"url\":\"https://www.wisdomtree.com/ie/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc\",\"status\":\"unavailable\",\"error\":\"Public product page HTTP 403\"},{\"url\":\"https://www.wisdomtree.com/api/fund-holdings/7369317\",\"status\":\"unavailable\",\"error\":\"Public issuer API unavailable in browser: HTTP 403\"}]\n; public full portfolio unqualified: Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]"
+    },
+    {
+      "id": "dca-holdings:IE000NDWFGA5",
+      "field": "Composition complète",
+      "error": "Missing Global X NET_ASSETS at CSV record 2 (name='CURRENCY CONTRACT - ZAR', isin='', asOf='2026-10-29')"
+    },
+    {
+      "id": "dca-holdings:IE0002Y8CX98",
+      "field": "Composition complète",
+      "error": "Public Dataspan acquisition unavailable at public issuer route: Qualified exact-share public rankings unavailable: [{\"sourceUrl\": \"https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]; Issuer API unavailable: Issuer API HTTP 403; public browser also failed: [{\"url\":\"https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\",\"status\":\"unavailable\",\"error\":\"Public product page HTTP 403\"},{\"url\":\"https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\",\"status\":\"unavailable\",\"error\":\"Public product page HTTP 403\"},{\"url\":\"https://www.wisdomtree.com/api/fund-holdings/57124746\",\"status\":\"unavailable\",\"error\":\"Public issuer API unavailable in browser: HTTP 403\"}]\n; public full portfolio unqualified: Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.eu/en-ie/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]"
+    },
+    {
+      "id": "dca-holdings:IE000W8WMSL2",
+      "field": "Composition complète",
+      "error": "Public Dataspan acquisition unavailable at public issuer route: Qualified exact-share public rankings unavailable: [{\"sourceUrl\": \"https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]; Issuer API unavailable: Issuer API HTTP 403; public browser also failed: [{\"url\":\"https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc\",\"status\":\"unavailable\",\"error\":\"Public product page HTTP 403\"},{\"url\":\"https://www.wisdomtree.com/ie/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc\",\"status\":\"unavailable\",\"error\":\"Public product page HTTP 403\"},{\"url\":\"https://www.wisdomtree.com/api/fund-holdings/58690128\",\"status\":\"unavailable\",\"error\":\"Public issuer API unavailable in browser: HTTP 403\"}]\n; public full portfolio unqualified: Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]"
+    },
+    {
+      "id": "dca-holdings:IE00BZ56SW52",
+      "field": "Composition complète",
+      "error": "Public Dataspan acquisition unavailable at public issuer route: Qualified exact-share public rankings unavailable: [{\"sourceUrl\": \"https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRG%20LN&isoCode=en-GB\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]; Issuer API unavailable: Issuer API HTTP 403; public browser also failed: [{\"url\":\"https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc\",\"status\":\"unavailable\",\"error\":\"Public product page HTTP 403\"},{\"url\":\"https://www.wisdomtree.com/ie/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc\",\"status\":\"unavailable\",\"error\":\"Public product page HTTP 403\"},{\"url\":\"https://www.wisdomtree.com/api/fund-holdings/1000422\",\"status\":\"unavailable\",\"error\":\"Public issuer API unavailable in browser: HTTP 403\"}]\n; public full portfolio unqualified: Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]"
+    },
+    {
+      "id": "dca-holdings:IE00BJGWQN72",
+      "field": "Composition complète",
+      "error": "Public Dataspan acquisition unavailable at public issuer route: Qualified exact-share public rankings unavailable: [{\"sourceUrl\": \"https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]; Issuer API unavailable: Issuer API HTTP 403; public browser also failed: [{\"url\":\"https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc\",\"status\":\"unavailable\",\"error\":\"Public product page HTTP 403\"},{\"url\":\"https://www.wisdomtree.com/ie/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc\",\"status\":\"unavailable\",\"error\":\"Public product page HTTP 403\"},{\"url\":\"https://www.wisdomtree.com/api/fund-holdings/3104137\",\"status\":\"unavailable\",\"error\":\"Public issuer API unavailable in browser: HTTP 403\"}]\n; public full portfolio unqualified: Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}]"
+    },
+    {
+      "id": "dca-holdings:IE00B441G979",
+      "field": "Composition complète",
+      "error": "Equity NAV weights 100.641400% exceed the existing 100.5% limit; published net NAV 100.000070%; excluded classes {\"Cash\": 0.34412, \"Cash Collateral and Margins\": 0.066, \"Equity\": 0.0, \"Forwards\": -1.77325, \"Futures\": 0.0, \"Money Market\": 0.7218}; unsupported gross/net perimeter, no renormalisation"
+    }
+  ],
+  "rejectedObservations": {
+    "IE000NDWFGA5": {
+      "kind": "missing-published-nav-weight",
+      "asOf": "2026-10-29",
+      "recordNumber": 2,
+      "name": "CURRENCY CONTRACT - ZAR",
+      "positionIsin": null,
+      "missingFields": [
+        "NET_ASSETS",
+        "MARKET_VALUE"
+      ],
+      "financialDataQualified": false,
+      "normalizationApplied": false,
+      "subjectIsin": "IE000NDWFGA5",
+      "sourceUrl": "https://globalxetfs.eu/api/funds/urnu/topholdingscsv",
+      "sha256": "646eebe2df1649fe10d70aaa97830ace5d1b539efd896dd437ad14d9bcadd5fc",
+      "checkedAt": "2026-10-30T07:35:59.029928+00:00"
+    },
+    "IE00B441G979": {
+      "kind": "unsupported-gross-net-perimeter",
+      "subjectIsin": "IE00B441G979",
+      "asOf": "2026-10-29",
+      "benchmark": "MSCI World 100% Hedged to EUR Index (EUR)",
+      "navReconciliation": {
+        "schemaVersion": 1,
+        "asOf": "2026-10-29",
+        "sourceRowCount": 1306,
+        "selectedRowCount": 1245,
+        "excludedRowCount": 61,
+        "publishedNetWeightPct": 100.00006999999987,
+        "selectedWeightPct": 100.6414,
+        "sourceWeightPctByType": {
+          "Equity": 100.64139999999986,
+          "Money Market": 0.7218,
+          "Cash": 0.34412,
+          "Cash Collateral and Margins": 0.066,
+          "Forwards": -1.77325,
+          "Futures": 0.0
+        },
+        "excludedWeightPctByType": {
+          "Money Market": 0.7218,
+          "Cash": 0.34412,
+          "Cash Collateral and Margins": 0.066,
+          "Forwards": -1.77325,
+          "Equity": 0.0,
+          "Futures": 0.0
+        },
+        "unidentifiedPositions": [],
+        "normalizationApplied": false,
+        "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+      },
+      "financialDataQualified": false,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sha256": "d3e1436c175f6fe8dfe209663710473e71e18d55efa0f55787da4c84cb18b307",
+      "checkedAt": "2026-10-30T07:35:59.029928+00:00"
+    }
+  },
+  "jpm": {
+    "asOf": "2026-10-29",
+    "checkedAt": "2026-10-30T07:35:59.029928+00:00",
+    "basis": "fund",
+    "scope": "direct-equity-securities",
+    "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+    "sha256": "92acad726c8465ff957071984f622fd7ead30222f0442e969eaa5ad015375ef3",
+    "method": "Complete direct equity and listed REIT positions in dailyHoldingsAll; index options, cash and rights retained separately, with original NAV weights; no option look-through or renormalisation",
+    "completeFile": true,
+    "rows": 236,
+    "publishedEquityWeightPct": 99.77775411414972,
+    "identifiedEquityWeightPct": 99.77775411414972
+  },
+  "nativeReportSha256": "8fc031871458404bba6510c7914164c19bba9afa88e145589da7e72505a30be0",
+  "scope": "Actual ordinary workflow on PR head 0ef82a542; no commit or publication of these observations; partial failure remains failure"
+}

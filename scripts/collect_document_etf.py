@@ -93,6 +93,10 @@ def collect_pdf_fields(share,now):
 
 
 def collect_one(share,now):
+    if share.get('preferProductApi') is True:
+        if share.get('documentType')!='21shares':reject('Unexpected product API document type')
+        from collect_product_calendars import collect_abtc_product_fields
+        return collect_abtc_product_fields(share,now)
     if not share.get('calendarApiBase'):
         return collect_pdf_fields(share,now)
     # The calendar API and factsheet are independent official publications.
@@ -108,7 +112,7 @@ def collect_one(share,now):
             result['performance'] = collect_abtc_calendar(share, now)
             result['unavailable'] = [s for s in result['unavailable'] if not s.startswith('performance:')]
         except (urllib.error.URLError, TimeoutError, ValueError, KeyError, TypeError, OSError) as error:
-            result.setdefault('collectionErrors', []).append({'field':'performance','url':share['calendarApiBase'],'reason':str(error)})
+            result.setdefault('collectionErrors', []).append({'field':'performance','url':getattr(error,'url',share['calendarApiBase']),'reason':str(error)})
     return result
 
 

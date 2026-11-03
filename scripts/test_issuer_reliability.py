@@ -141,7 +141,8 @@ class Reliability(unittest.TestCase):
         s = share('IE00BZ56SW52')
         with patch('collect_public_issuer.get_text', side_effect=ResponseFormatError('blocked')), patch('collect_public_issuer.download', return_value=b'%PDF-test'), patch('collect_public_issuer.wisdomtree_factsheet', return_value={'sourceUrl': s['factsheetUrl']}) as pdf:
             result = public_collect(s, NOW)
-        self.assertEqual(result['sourceAttempts'][-1]['url'], s['factsheetUrl']); pdf.assert_called_once()
+        self.assertTrue(any(a['url']==s['factsheetUrl']and a.get('status')=='validated'for a in result['sourceAttempts'])); pdf.assert_called_once()
+        self.assertTrue(any(e['field']=='aum'for e in result['collectionErrors']))
         text = (FIX/'official-documents/new-issuers/wisdomtree.html').read_text().replace(s['isin'], 'IE00WRONG000')
         with patch('collect_public_issuer.get_text', return_value=text), patch('collect_public_issuer.download') as pdf:
             with self.assertRaises(ValueError): public_collect(s, NOW)

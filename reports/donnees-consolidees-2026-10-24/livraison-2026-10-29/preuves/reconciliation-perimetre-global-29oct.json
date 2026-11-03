@@ -1,0 +1,42 @@
+{
+  "initialDiagnosticIdentities": 5092,
+  "currentDiagnosticIdentities": 6486,
+  "unionIdentities": 6681,
+  "initialKinds": {
+    "monitoring": 6,
+    "failure": 311,
+    "qualification": 3347,
+    "connection": 73,
+    "editorial": 792,
+    "waiting": 13,
+    "not-applicable": 380,
+    "history": 170
+  },
+  "currentKinds": {
+    "monitoring": 6,
+    "failure": 97,
+    "qualification": 4588,
+    "connection": 30,
+    "editorial": 798,
+    "waiting": 13,
+    "not-applicable": 423,
+    "history": 531
+  },
+  "status": {
+    "présent ; qualification ou correction à poursuivre": 5519,
+    "résolution opérationnelle documentée ; historique conservé": 50,
+    "absent de la photographie actuelle ; résolution non prouvée": 145,
+    "historique conservé": 531,
+    "non applicable / périmètre retiré": 423,
+    "attente normale déclarée": 13
+  },
+  "structuralInvestigationGroups": 1235,
+  "initialBaselineLedgerRows": 38176,
+  "ledgerRowsBefore": 46215,
+  "ledgerRowsAfter": 46216,
+  "allInitialAndCurrentIdentitiesMappedExactlyOnce": true,
+  "sourceEvidence": "Immutable initial export plus current ordinary public page export; no absence considered a repair",
+  "initialGeneratedAt": "2026-10-29T07:01:16.213Z",
+  "currentGeneratedAt": "2026-10-30T02:43:01.261Z",
+  "currentMonitorCheckedAt": "2026-10-30T02:35:02.283378+00:00"
+}

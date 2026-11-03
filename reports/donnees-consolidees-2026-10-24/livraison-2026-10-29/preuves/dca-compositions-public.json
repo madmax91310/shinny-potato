@@ -1,0 +1,119 @@
+{
+  "base": "https://madmax91310.github.io/shinny-potato/",
+  "results": [
+    {
+      "id": "core",
+      "version": {
+        "sha": "f570662c6146aa49bfdfc3e70be63ddd349f1adf",
+        "dataSha": "3b2ea3628949d7ab4a6275c4bc0217f9d29e04cb",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T01:13:56Z"
+      },
+      "coverage": 99.73714600000017,
+      "top5": 24.482915,
+      "top10": 34.591015,
+      "complete": true,
+      "pairs": [
+        {
+          "left": "iShares Nasdaq 100 UCITS ETF",
+          "right": "iShares Core S&P 500 UCITS ETF",
+          "full": true,
+          "overlap": 54.32593000000002
+        },
+        {
+          "left": "iShares Nasdaq 100 UCITS ETF",
+          "right": "iShares Core MSCI World UCITS ETF (Acc)",
+          "full": true,
+          "overlap": 39.52729999999998
+        },
+        {
+          "left": "iShares Core S&P 500 UCITS ETF",
+          "right": "iShares Core MSCI World UCITS ETF (Acc)",
+          "full": true,
+          "overlap": 70.96806999999997
+        }
+      ],
+      "pngSha256": "4d002f0526a7fa0de4ca48672e00bc852c1ca1b5e1e94381d01b204999567071",
+      "checkedAt": "2026-10-30T01:31:20.714Z"
+    },
+    {
+      "id": "cloud",
+      "version": {
+        "sha": "f570662c6146aa49bfdfc3e70be63ddd349f1adf",
+        "dataSha": "3b2ea3628949d7ab4a6275c4bc0217f9d29e04cb",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T01:13:56Z"
+      },
+      "coverage": 99.93408000000015,
+      "top5": 13.91133,
+      "top10": 19.658685,
+      "complete": true,
+      "pairs": [
+        {
+          "left": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+          "right": "iShares Core S&P 500 UCITS ETF",
+          "full": true,
+          "overlap": 2.5747499999999994
+        }
+      ],
+      "pngSha256": "9a1f96f25e5b2e83e336a2ee121e386b6a539f03ef787c4b6b2627035daeebae",
+      "checkedAt": "2026-10-30T01:31:24.874Z"
+    },
+    {
+      "id": "new-issuer-portfolios",
+      "version": {
+        "sha": "f570662c6146aa49bfdfc3e70be63ddd349f1adf",
+        "dataSha": "3b2ea3628949d7ab4a6275c4bc0217f9d29e04cb",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T01:13:56Z"
+      },
+      "coverage": 98.80608843036683,
+      "top5": 12.426592772462685,
+      "top10": 20.620850715659095,
+      "complete": false,
+      "pairs": [
+        {
+          "left": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+          "right": "WisdomTree Global Quality Dividend Growth UCITS ETF",
+          "full": true,
+          "overlap": 1.5851925825662696
+        }
+      ],
+      "pngSha256": "e7ac8f5e4b92c25570c5d8ec0353ead21ef1e7220caddd4a61ef1ff54cabedab",
+      "checkedAt": "2026-10-30T01:31:29.027Z"
+    },
+    {
+      "id": "neutral",
+      "version": {
+        "sha": "f570662c6146aa49bfdfc3e70be63ddd349f1adf",
+        "dataSha": "3b2ea3628949d7ab4a6275c4bc0217f9d29e04cb",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T01:13:56Z"
+      },
+      "coverage": 59.720003999999996,
+      "top5": 11.896223999999998,
+      "top10": 16.299924,
+      "complete": false,
+      "pairs": [],
+      "pngSha256": "1ecf9abf129c4af3d75e735ffead67c0798feba01094ad8c88a1de7845061f17",
+      "checkedAt": "2026-10-30T01:31:33.467Z"
+    },
+    {
+      "id": "fund-and-index",
+      "version": {
+        "sha": "f570662c6146aa49bfdfc3e70be63ddd349f1adf",
+        "dataSha": "3b2ea3628949d7ab4a6275c4bc0217f9d29e04cb",
+        "lane": "fallback",
+        "builtAt": "2026-10-30T01:13:56Z"
+      },
+      "coverage": 59.720003999999996,
+      "top5": 11.896223999999998,
+      "top10": 16.299924,
+      "complete": false,
+      "pairs": [],
+      "pngSha256": "1ecf9abf129c4af3d75e735ffead67c0798feba01094ad8c88a1de7845061f17",
+      "checkedAt": "2026-10-30T01:31:38.345Z"
+    }
+  ],
+  "errors": []
+}

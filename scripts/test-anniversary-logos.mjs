@@ -120,6 +120,8 @@ try {
       if (id === 'broadcom') {
         assert.equal(draws.length, 0)
         assert.ok((await page.evaluate(() => window.exportLabels)).filter(v => v === 'BROADCOM').length >= 2, 'Clean fallback missing')
+      } else if (id === 'bitcoin' || id === 'microsoft') {
+        assert.equal(draws.length, 0, `${id}: approved sculptural hero must not be overlaid twice`)
       } else {
         assert.ok(draws.length > 0, `${id}: logo never drawn`)
         for (const d of draws) {
@@ -143,7 +145,7 @@ try {
     await page.getByRole('button', { name: /Générer$/, exact: false }).click()
     await showImage(page); await ready(page)
     await expect.poll(() => page.locator('.publication-image-stage img').getAttribute('src')).not.toBe(previous)
-    assert.ok((await page.evaluate(() => window.logoDraws)).at(-1).src.endsWith('/official-logos/microsoft.png'))
+    assert.equal(await page.locator('.publication-image-stage img').evaluate(img => img.naturalWidth), 1600)
     await ctx.close()
   }))
   for (const check of deviceChecks) if (check.status === 'rejected') throw check.reason

@@ -1,0 +1,73 @@
+{
+  "monitorCheckedAt": null,
+  "sourceSha256": "ec9583a7a3271066d07427d1ab1de43779497d7ae48a582a480059c702889ad2",
+  "sourceSnapshot": "public-1759-30oct/automation-status.json.gz",
+  "recovery": {
+    "update-presentation-actors.yml": {
+      "attempts": [],
+      "reason": null,
+      "lastSuccessAt": null,
+      "observedRunId": 41071751329,
+      "status": "idle",
+      "nextAttemptAt": null
+    },
+    "update-publication-observations.yml": {
+      "attempts": [
+        {
+          "at": "2026-10-29T21:05:47.181853+00:00",
+          "reason": "recording-failed",
+          "sourceRunId": 40940222955,
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
+        }
+      ],
+      "reason": null,
+      "lastSuccessAt": "2026-10-29T22:50:41.196486+00:00",
+      "observedRunId": 41071892383,
+      "status": "idle",
+      "nextAttemptAt": null
+    },
+    "update-market-monthly.yml": {
+      "attempts": [
+        {
+          "at": "2026-10-29T21:08:45.483243+00:00",
+          "reason": "transient-run",
+          "sourceRunId": 40940222927,
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
+        },
+        {
+          "at": "2026-10-30T07:44:10.266803+00:00",
+          "reason": "recording-failed",
+          "sourceRunId": 41018522954,
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
+        },
+        {
+          "at": "2026-10-30T14:33:14.279977+00:00",
+          "reason": "recording-failed",
+          "sourceRunId": 41067979913,
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
+        }
+      ],
+      "reason": "recording-failed",
+      "lastSuccessAt": "2026-10-30T14:47:00.532282+00:00",
+      "observedRunId": 41072651357,
+      "nextAttemptAt": "2026-10-30T21:08:45.483243+00:00",
+      "status": "budget-exhausted"
+    },
+    "update-qualified-exposures.yml": {
+      "attempts": [],
+      "reason": null,
+      "lastSuccessAt": null,
+      "observedRunId": 41074951411,
+      "status": "idle",
+      "nextAttemptAt": null
+    }
+  }
+}

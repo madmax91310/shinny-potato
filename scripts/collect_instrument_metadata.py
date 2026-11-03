@@ -28,7 +28,7 @@ VANECK_FACTSHEET=re.compile(r'https://www\.vaneck\.com/(?:ucits|[a-z]{2}/[a-z]{2
 # Amundi publishes exact-share characteristics and listings through a POST API only: a GET on this
 # URL answers 405 and had left every Amundi instrument without metadata or listing evidence.
 AMUNDI_API='https://www.amundietf.fr/mapi/ProductAPI/getProductsData'
-AMUNDI_CHARACTERISTICS=['ISIN','DISTRIBUTION_POLICY','FUND_REPLICATION_METHODOLOGY','LISTINGS','MAIN_LISTINGS']
+AMUNDI_CHARACTERISTICS=['ISIN','DISTRIBUTION_POLICY','FUND_REPLICATION_METHODOLOGY','FUND_PEA','LISTINGS','MAIN_LISTINGS']
 # Exchange labels as the issuers print them, mapped to the MIC used across the registries.
 EXCHANGE_MICS={'London Stock Exchange':'XLON','LSE':'XLON','Deutsche Boerse Xetra':'XETR','Xetra':'XETR','XETRA':'XETR',
   'Euronext Amsterdam':'XAMS','Nyse Euronext - Euronext Paris':'XPAR','Euronext Paris':'XPAR','Borsa Italiana':'ETFP','SIX Swiss Exchange':'XSWX',
@@ -89,6 +89,12 @@ def fetch_exchange_document(url):
 def fetch_document(url,fetch=download,isin=None):
     """Returns (body, url actually read)."""
     try:
+        from twentyone_shares_listing import URL as ABTC_URL, decode_document
+        if url == ABTC_URL:
+            if fetch is download:
+                body,actual=TRANSPORT.read(url,fetch=download,return_source=True,url_validator=lambda candidate:candidate==ABTC_URL)
+            else:body,actual=fetch(url),url
+            return decode_document(body,url,actual),actual
         if re.fullmatch(r'https://www\.quantalys\.com/(?:Fonds/[1-9]\d*|Recherche/RechercheRapide\?inputSearch=[A-Z]{2}[A-Z0-9]{9}\d)',url) and fetch is download:return TRANSPORT.read(url,fetch=fetch_quantalys_document)
         if re.fullmatch(r'https://live\.euronext\.com/en/product/etfs/[A-Z]{2}[A-Z0-9]{9}\d-[A-Z0-9]{4}',url) and fetch is download:return TRANSPORT.read(url,fetch=fetch_exchange_document)
         if url==AMUNDI_API and fetch is download:return fetch_amundi(isin),url
@@ -174,7 +180,12 @@ def parse_json(body,isin):
     if isinstance(doc,dict) and 'products' in doc:
         facts=amundi_product(doc,isin)['characteristics']
         mapping={'DISTRIBUTION_POLICY':'distribution','FUND_REPLICATION_METHODOLOGY':'replicationMethod'}
-        return {field:facts[key] for key,field in mapping.items() if isinstance(facts.get(key),str) and facts[key]}
+        values = {field:facts[key] for key,field in mapping.items() if isinstance(facts.get(key),str) and facts[key]}
+        # The official website requests this explicit boolean for the exact
+        # product. Missing/null/text values never become an ineligibility.
+        if type(facts.get('FUND_PEA')) is bool:
+            values['pea'] = facts['FUND_PEA']
+        return values
     if isinstance(doc,dict) and 'pdpResult' in doc:
         from collect_dws_etf import items
         section=dws_identity(body,isin)
@@ -418,7 +429,7 @@ def invesco_listing_rows(body,isin,url):
     """The issuer's ISIN-keyed API returns one array of trading rows, not facts JSON."""
     from urllib.parse import urlsplit, parse_qs
     parts=urlsplit(url)
-    if parts.hostname!='dng-api.invesco.com' or parts.path!=f'/cache/v1/accounts/en_GB/shareclasses/{isin}' or parse_qs(parts.query)!={'expand':['marketdata'],'idType':['isin'],'variationType':['exchangeTradingInformationWithMarketData']}:
+    if parts.scheme!='https' or parts.netloc!='dng-api.invesco.com' or parts.fragment or parts.path not in {f'/cache/v1/accounts/{locale}/shareclasses/{isin}' for locale in ('en_GB','fr_FR')} or parse_qs(parts.query)!={'expand':['marketdata'],'idType':['isin'],'variationType':['exchangeTradingInformationWithMarketData']}:
         raise ValueError('Wrong Invesco exact-share endpoint')
     data=json.loads(body)
     if not isinstance(data,list) or not data:raise ValueError('Missing Invesco listing rows')
@@ -566,11 +577,15 @@ def parse_listings(body,source,url,checked):
     if 'www.justetf.com/' in url:return []  # Listings require an issuer or exchange row, not a specialist profile alone.
     # Mirrors (fund-data platforms, document aggregators) may describe a fund but are not listing evidence.
     from urllib.parse import urlsplit
+    from twentyone_shares_listing import URL as ABTC_URL, listing_rows
+    if url == ABTC_URL:
+        digest=hashlib.sha256(body).hexdigest();isin=source['isin']
+        return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"}for r in listing_rows(body,source,url,checked)]
     if urlsplit(url).scheme!='https' or urlsplit(url).hostname not in LISTING_HOSTS:return []
     isin=source['isin'];digest=hashlib.sha256(body).hexdigest();rows=[]
     if urlsplit(url).hostname=='apidata.londonstockexchange.com':
         return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"}for r in lse_listing_rows(body,source,url,checked)]
-    if urlsplit(url).hostname=='dng-api.invesco.com' and urlsplit(url).path==f'/cache/v1/accounts/fr_FR/shareclasses/{isin}':
+    if urlsplit(url).hostname=='dng-api.invesco.com' and urlsplit(url).path==f'/cache/v1/accounts/fr_FR/shareclasses/{isin}' and 'variationType=' not in urlsplit(url).query:
         return []  # Characteristics endpoint; the independent listing endpoint remains required.
     markets=EXCHANGE_MICS
     if urlsplit(url).hostname=='live.euronext.com' and re.fullmatch(r'/en/product/etfs/[A-Z0-9]{12}-[A-Z0-9]{4}',urlsplit(url).path):
@@ -671,8 +686,9 @@ def collect(source,now,fetch=download,on_document=None):
             try:
                 from urllib.parse import urlsplit
                 if urlsplit(url).hostname=='apidata.londonstockexchange.com':fields={}
+                elif url=='https://api.primary.21shares.com/api/product_details/ABTC':fields={}  # Exact listing only; null product characteristics are not negative statements.
                 elif urlsplit(url).hostname=='dng-api.invesco.com':
-                    fields=invesco_characteristics(body,source['isin'],url,now.date()) if '/fr_FR/' in urlsplit(url).path else {}
+                    fields=invesco_characteristics(body,source['isin'],url,now.date()) if '/fr_FR/' in urlsplit(url).path and 'variationType=' not in urlsplit(url).query else {}
                 elif urlsplit(url).hostname=='www.justetf.com':fields=parse_justetf(body,source['isin'])
                 elif urlsplit(url).hostname=='www.quantalys.com':fields=parse_quantalys_pea(body,source['isin'],url)
                 elif urlsplit(url).hostname=='extraetf.com':fields=parse_extraetf_pea(body,source['isin'],url)
@@ -686,6 +702,10 @@ def collect(source,now,fetch=download,on_document=None):
                 fields={};errors.append({'sourceUrl':url,'error':str(error)})
             listing_rows=parse_listings(body,source,url,checked)
             if listing_rows:fields['listings']=listing_rows
+            if 'fields' in source:
+                if not source['fields'] or any(field not in FIELDS for field in source['fields']):
+                    raise ValueError('Unsupported metadata field route')
+                fields={field:value for field,value in fields.items() if field in source['fields']}
             if not fields:raise ValueError('No explicit supported metadata fields')
             for field,value in fields.items():
                 if field in ('pea','currencyHedge'):
@@ -734,7 +754,7 @@ def field_diagnostics(source, values, failures, old, now):
     """Separate the attempt date from actual field evidence and retained values."""
     errors=[{'sourceUrl':row.get('sourceUrl'),'error':row.get('error')} for row in failures]
     result={}
-    for field in FIELDS:
+    for field in source.get('fields', FIELDS):
         observed=values.get(field)
         retained=old.get(field,{})
         conflict=next((failure for failure in failures if failure.get('qualificationRequired') and failure.get('field')==field),None)
@@ -793,11 +813,12 @@ def main():
             for field,value in values.items():
                 old[field]=merge_field_observation(field,old.get(field),value)
             records[isin]=old
-            missing=[field for field in FIELDS if field not in values]
+            declared=next(s for s in sources if s['isin']==isin)
+            missing=[field for field in declared.get('fields',FIELDS) if field not in values]
             prior=status.get(isin,{})
             first_pending={field:prior.get('firstPendingAt',{}).get(field,prior.get('checkedAt',now.isoformat()) if field in prior.get('pending',[]) else now.isoformat()) for field in missing}
             status[isin]={'checkedAt':now.isoformat(),'observed':list(values),'pending':missing,'firstPendingAt':first_pending,'errors':failures,
-                          'fields':field_diagnostics(next(s for s in sources if s['isin']==isin),values,failures,old,now)}
+                          'fields':field_diagnostics(declared,values,failures,old,now)}
             for field in missing:
                 if field not in old and renewal_overdue({'checkedAt':first_pending[field]},now):
                     errors.append({'id':f'{isin}:{field}:qualification','field':field,'error':'Qualification de publication requise : champ jamais observé ; vérifier la source exacte ou documenter explicitement sa non-publication.'})

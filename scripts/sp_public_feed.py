@@ -35,6 +35,10 @@ def read_response(config, now, path=FEED):
     body = base64.b64decode(row['bodyBase64'], validate=True)
     if len(body) > 4_000_000 or proof(body) != row['sha256']: reject('S&P handoff checksum/size mismatch')
     facts = parse_public_data(body, config, now)
+    # Parsing a retained response is validation, not a new supplier control.
+    # Keep current-date financial validation above, but preserve the actual
+    # successful retrieval clock even when this cache is read the next day.
+    facts['source']['checkedAt'] = stamp.date().isoformat()
     facts['source']['retrievedAt'] = stamp.isoformat()
     facts['source']['transport'] = 'official-response-handoff'
     return facts

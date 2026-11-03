@@ -59,7 +59,7 @@ const karim={...p,name:'Karim',emoji:'👦',age:32,job:'informaticien',income:25
  {asset:'world',label:'MSCI World',emoji:'🌍',weight:70,amount:350,isin:references.world.isin},
  {asset:'europe',label:'STOXX Europe 600',emoji:'🇪🇺',weight:20,amount:100,isin:references.europe.isin},
  {asset:'emerging',label:'MSCI Emerging Markets',emoji:'🌏',weight:10,amount:50,isin:references.emerging.isin}],variable:false}
-assert(buildTweetText(karim).startsWith('👦 Karim, 32 ans, informaticien\n💸 Salaire : 2500€/mois\n📊 DCA de 500€ par mois'))
+assert(buildTweetText(karim).startsWith('👦 Karim, 32 ans, informaticien\n💸 Salaire : 2\u202f500 €/mois\n📊 DCA de 500 € par mois'))
 assert(!buildTweetText(karim).includes('Le World reste son placement principal.'))
 assert(!/undefined|NaN/.test(buildTweetText({...karim,age:null,job:'',income:0})))
 console.log('Donuts : total, couverture partielle, dates séparées et accroche validée.')
@@ -81,3 +81,44 @@ for(const scope of PROFILE_SCOPES){
 }
 for(const scope of [undefined,'undefined','','Inconnu'])assert(validateProfile({...p,scope}).length)
 
+
+// Publication ordering is independent for holdings and flows, including manual edits.
+const {sortHoldings,sortContributions}=await import('../src/pages/dca-profiles/lib.js')
+const {allocationRows}=await import('../src/pages/dca-profiles/image.js')
+function checkOrder(profile){
+ const held=sortHoldings(profile.lines),flows=sortContributions(profile.lines)
+ const tweet=buildTweetText(profile)
+ assert.deepEqual(allocationRows(profile.lines).map(r=>r.name),held.map(l=>l.label))
+ for(const [rows,entry] of [[held,l=>`${l.emoji || '•'} ${l.weight.toLocaleString('fr-FR',{maximumFractionDigits:2})} % ${l.label}`],[flows,l=>`→ ${l.amount.toLocaleString('fr-FR',{maximumFractionDigits:2})} € sur ${l.label}`]]){
+  const positions=rows.map(l=>tweet.indexOf(entry(l)))
+  assert(positions.every(n=>n>=0))
+  assert(positions.every((n,i)=>!i||n>positions[i-1]))
+ }
+}
+for(const raw of PROFILES){
+ const profile=prepareProfile(raw),before=structuredClone(profile)
+ checkOrder(profile)
+ assert.deepEqual(profile,before,'Publication must preserve editor and saved row order')
+}
+const manual={...karim,mode:'participant',lines:[
+ {...karim.lines[0],weight:10,amount:80},
+ {...karim.lines[1],weight:70,amount:20},
+ {...karim.lines[2],weight:20,amount:80},
+]}
+checkOrder(manual)
+assert.deepEqual(sortHoldings(manual.lines).map(l=>l.asset),['europe','emerging','world'])
+assert.deepEqual(sortContributions(manual.lines).map(l=>l.asset),['world','emerging','europe'],'Equal amounts retain input order')
+manual.lines[0]={...manual.lines[0],weight:75,amount:100}
+manual.lines[1]={...manual.lines[1],weight:5}
+checkOrder(manual)
+manual.lines=manual.lines.map(l=>({...l,weight:l.weight*.5})).concat({...p.lines[1],weight:50,amount:250})
+checkOrder(manual)
+assert.equal(sortHoldings(manual.lines)[0].asset,'sp500','Manually appended row is sorted by weight')
+assert.equal(sortContributions(manual.lines)[0].asset,'sp500','Manually appended row is sorted by amount')
+const zero={...manual,lines:manual.lines.slice(0,2).map((l,i)=>({...l,weight:i===0?100:0,amount:i===1?100:0}))}
+checkOrder(zero)
+const many=Array.from({length:10},(_,i)=>({label:`Position ${i}`,weight:i+1}))
+assert.deepEqual(allocationRows(many).map(r=>r.weight),[10,9,8,7,6,6,5,4])
+assert.equal(allocationRows(many).find(r=>r.name==='3 autres positions').weight,6)
+assert.deepEqual(many.map(l=>l.weight),[1,2,3,4,5,6,7,8,9,10])
+console.log('Tri DCA : tous les profils, saisie manuelle, modifications, égalités, zéros et image regroupée validés.')

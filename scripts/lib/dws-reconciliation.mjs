@@ -1,3 +1,4 @@
+import {unknownAllocationGroups} from './radar-allocation-coverage.mjs'
 import { observationKey } from './editorial-radar.mjs'
 
 const STABILITY_MS = 4 * 60 * 60 * 1000
@@ -38,6 +39,10 @@ export function reconcileDws(state, observations, proofs, now, failedEntities = 
       if (!Array.isArray(expected) || !expected.length || new Set(expected.map(r => r.name)).size !== expected.length ||
           !expected.every(r => Number.isFinite(r.weightPct)) ||
           Math.abs(expected.reduce((s, r) => s + r.weightPct, 0) - 100) > 1) return false
+      // Old synthesized zero proposals are not independent evidence for an
+      // omitted group when the complete source still has unclassified weight.
+      if (unknownAllocationGroups(expected).length && actual.some(o =>
+          !expected.some(r => o.field === `${field}:${r.name}`))) return false
       return expected.every(r => actual.some(o => o.field === `${field}:${r.name}` && equal(o.value, r.weightPct))) &&
         actual.every(o => equal(o.value, expected.find(r => o.field === `${field}:${r.name}`)?.weightPct ?? 0))
     })) continue

@@ -5,6 +5,7 @@ import datetime as dt
 import hashlib
 import ipaddress
 import json
+import re
 from pathlib import Path
 from urllib.parse import urlsplit
 from issuer_documents import download
@@ -33,13 +34,29 @@ def inspect(url,now,previous,fetch=download):
         if not public_url(url):raise ValueError('Public HTTPS source not configured')
         raw,actual=fetch(url,max_bytes=4_000_000,timeout=15,max_attempts=1,url_validator=public_url,return_source=True)
         if not public_url(actual):raise ValueError('Redirect outside public HTTPS scope')
+        # Some official download routes return an nginx error page with HTTP
+        # 200. A reachable error page is not a successful access observation.
+        title=re.search(br'<title[^>]*>\s*((?:403|429|500|502|503|504)\b[^<]*)</title>',raw[:100_000],re.I)
+        if title:raise ValueError('HTTP 200 contains an error document: '+title[1].decode('utf-8',errors='replace'))
         digest=hashlib.sha256(raw).hexdigest()
         changed=bool(previous.get('sha256') and previous['sha256']!=digest)
         row.update(status='changed-unqualified' if changed else 'accessible-unqualified',
                    finalUrl=actual,sha256=digest,bytes=len(raw),lastAccessibleAt=now.isoformat())
+        # Content qualification remains separate from HTTP availability. This
+        # is the same ordinary monitor, never an alternative finance producer.
+        from native_source_evidence import describe_native_source
+        try:
+            content=describe_native_source(url,raw,now)
+            if content:row['nativeCompositionProbe']={**content,'sha256':digest,'finalUrl':actual}
+        except Exception as error:
+            row['nativeCompositionProbe']={'checkedAt':now.isoformat(),'sha256':digest,
+                'qualification':'research-content-only','financialDataQualified':False,
+                'error':str(error)[:350]}
     except Exception as error:
         row.update(status='unavailable',error=str(error)[:350],lastAccessibleAt=previous.get('lastAccessibleAt'),
                    sha256=previous.get('sha256'))
+        if previous.get('nativeCompositionProbe'):
+            row['nativeCompositionProbe']=previous['nativeCompositionProbe']
     return row
 
 MAX_SOURCES_PER_CONNECTION = 8

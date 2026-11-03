@@ -1040,13 +1040,13 @@
   "ftse-all-world": {
     "facts": {
       "index": "FTSE All-World",
-      "asOf": "2026-09-30",
-      "constituents": 4204,
+      "asOf": "2026-10-30",
+      "constituents": 4200,
       "sectorMethod": "ICB Industry Breakdown",
       "countries": [
         [
           "🇦🇺 Australie",
-          1.53
+          1.61
         ],
         [
           "Austria",
@@ -1054,15 +1054,15 @@
         ],
         [
           "Belgium",
-          0.24
+          0.25
         ],
         [
           "🇧🇷 Brésil",
-          0.45
+          0.4
         ],
         [
           "🇨🇦 Canada",
-          2.91
+          3.07
         ],
         [
           "🇨🇱 Chili",
@@ -1070,7 +1070,7 @@
         ],
         [
           "🇨🇳 Chine",
-          2.68
+          2.53
         ],
         [
           "🇨🇴 Colombie",
@@ -1082,7 +1082,7 @@
         ],
         [
           "Denmark",
-          0.32
+          0.35
         ],
         [
           "Egypt",
@@ -1090,23 +1090,23 @@
         ],
         [
           "Finland",
-          0.24
+          0.23
         ],
         [
           "🇫🇷 France",
-          1.89
+          1.9
         ],
         [
           "🇩🇪 Allemagne",
-          1.78
+          1.83
         ],
         [
           "Greece",
-          0.07
+          0.06
         ],
         [
           "Hong Kong",
-          0.46
+          0.45
         ],
         [
           "Hungary",
@@ -1118,11 +1118,11 @@
         ],
         [
           "🇮🇳 Inde",
-          1.5
+          1.54
         ],
         [
           "Indonesia",
-          0.07
+          0.06
         ],
         [
           "Ireland",
@@ -1130,19 +1130,19 @@
         ],
         [
           "Israel",
-          0.32
+          0.3
         ],
         [
           "Italy",
-          0.75
+          0.72
         ],
         [
           "🇯🇵 Japon",
-          6.06
+          5.93
         ],
         [
           "🇰🇷 Corée du Sud",
-          2.6
+          2.25
         ],
         [
           "Kuwait",
@@ -1154,11 +1154,11 @@
         ],
         [
           "🇲🇽 Mexique",
-          0.21
+          0.22
         ],
         [
           "Netherlands",
-          1.17
+          1.09
         ],
         [
           "New Zealand",
@@ -1166,7 +1166,7 @@
         ],
         [
           "Norway",
-          0.14
+          0.15
         ],
         [
           "Philippines",
@@ -1178,7 +1178,7 @@
         ],
         [
           "Portugal",
-          0.05
+          0.04
         ],
         [
           "Qatar",
@@ -1190,31 +1190,31 @@
         ],
         [
           "Saudi Arabia",
-          0.31
+          0.3
         ],
         [
           "Singapore",
-          0.37
+          0.36
         ],
         [
           "South Africa",
-          0.37
+          0.36
         ],
         [
           "Spain",
-          0.84
+          0.8
         ],
         [
           "Sweden",
-          0.68
+          0.7
         ],
         [
           "🇨🇭 Suisse",
-          1.88
+          2.08
         ],
         [
           "🇹🇼 Taïwan",
-          3.54
+          3.31
         ],
         [
           "Thailand",
@@ -1222,7 +1222,7 @@
         ],
         [
           "Turkiye",
-          0.08
+          0.07
         ],
         [
           "UAE",
@@ -1230,115 +1230,115 @@
         ],
         [
           "🇬🇧 Royaume-Uni",
-          3.06
+          3.18
         ],
         [
           "🇺🇸 États-Unis",
-          62.28
+          62.7
         ],
         [
           "Vietnam",
-          0
+          0.0
         ]
       ],
       "sectors": [
         [
           "💻 Technologie",
-          36.11
+          33.43
         ],
         [
           "📡 Communication",
-          3.4
+          3.18
         ],
         [
           "🏥 Santé",
-          7.94
+          8.8
         ],
         [
           "🏦 Finance",
-          14.86
+          15.1
         ],
         [
           "🏠 Immobilier",
-          1.63
+          1.72
         ],
         [
           "🛍️ Consommation cyclique",
-          10.46
+          10.92
         ],
         [
           "🛒 Consommation de base",
-          3.77
+          4.17
         ],
         [
           "🏭 Industrie",
-          12.01
+          12.23
         ],
         [
           "🪨 Matériaux",
-          3.24
+          3.15
         ],
         [
           "⚡ Énergie",
-          4.12
+          4.62
         ],
         [
           "💡 Services publics",
-          2.46
+          2.68
         ]
       ],
       "holdings": [
         [
-          "Nvidia",
-          5.02
+          "Apple Inc.",
+          4.79
         ],
         [
-          "Apple Inc.",
-          4.54
+          "Nvidia",
+          4.59
         ],
         [
           "Microsoft Corp",
-          3.59
+          3.73
         ],
         [
           "Amazon.Com",
-          2.28
-        ],
-        [
-          "Alphabet Class A",
-          1.89
+          2.24
         ],
         [
           "Taiwan Semiconductor Manufacturing",
-          1.79
+          1.7
+        ],
+        [
+          "Alphabet Class A",
+          1.57
         ],
         [
           "Broadcom",
-          1.54
-        ],
-        [
-          "Alphabet Class C",
-          1.53
+          1.46
         ],
         [
           "Meta Platforms Inc",
-          1.5
+          1.3
         ],
         [
-          "Micron Technology",
-          1.13
+          "Alphabet Class C",
+          1.27
+        ],
+        [
+          "Tesla",
+          1.12
         ]
       ],
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open",
-        "checkedAt": "2026-10-06",
+        "checkedAt": "2026-11-03",
         "label": "Composition officielle automatisée · FTSE All-World",
-        "sha256": "84b28ab9759fd2a844340b86d5ab42a738e5a08ec703315a231dedcf5d8935b0"
+        "sha256": "0713c82b28fc910b0cf93bd7c3b7d3c78f51bf6e5fcd1270ba3288246e49f961"
       },
       "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
     },
     "returns": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-30",
       "currency": "USD",
       "variant": "TOTAL",
       "values": [
@@ -1371,14 +1371,14 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open",
-        "checkedAt": "2026-10-05",
-        "sha256": "84b28ab9759fd2a844340b86d5ab42a738e5a08ec703315a231dedcf5d8935b0",
+        "checkedAt": "2026-11-03",
+        "sha256": "0713c82b28fc910b0cf93bd7c3b7d3c78f51bf6e5fcd1270ba3288246e49f961",
         "label": "Rendements calendaires officiels automatisés · FTSE All-World"
       },
       "performance": {
         "kind": "indice",
         "detail": "FTSE All-World, rendement total en dollars, dividendes réinvestis ; secteurs selon la classification ICB de FTSE",
-        "date": "2026-09-30"
+        "date": "2026-10-30"
       }
     },
     "factsHistory": {
@@ -1680,6 +1680,305 @@
           "sha256": "84b28ab9759fd2a844340b86d5ab42a738e5a08ec703315a231dedcf5d8935b0"
         },
         "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      },
+      "2026-10-30": {
+        "index": "FTSE All-World",
+        "asOf": "2026-10-30",
+        "constituents": 4200,
+        "sectorMethod": "ICB Industry Breakdown",
+        "countries": [
+          [
+            "🇦🇺 Australie",
+            1.61
+          ],
+          [
+            "Austria",
+            0.09
+          ],
+          [
+            "Belgium",
+            0.25
+          ],
+          [
+            "🇧🇷 Brésil",
+            0.4
+          ],
+          [
+            "🇨🇦 Canada",
+            3.07
+          ],
+          [
+            "🇨🇱 Chili",
+            0.06
+          ],
+          [
+            "🇨🇳 Chine",
+            2.53
+          ],
+          [
+            "🇨🇴 Colombie",
+            0.03
+          ],
+          [
+            "Czech Rep.",
+            0.01
+          ],
+          [
+            "Denmark",
+            0.35
+          ],
+          [
+            "Egypt",
+            0.01
+          ],
+          [
+            "Finland",
+            0.23
+          ],
+          [
+            "🇫🇷 France",
+            1.9
+          ],
+          [
+            "🇩🇪 Allemagne",
+            1.83
+          ],
+          [
+            "Greece",
+            0.06
+          ],
+          [
+            "Hong Kong",
+            0.45
+          ],
+          [
+            "Hungary",
+            0.04
+          ],
+          [
+            "Iceland",
+            0.01
+          ],
+          [
+            "🇮🇳 Inde",
+            1.54
+          ],
+          [
+            "Indonesia",
+            0.06
+          ],
+          [
+            "Ireland",
+            0.08
+          ],
+          [
+            "Israel",
+            0.3
+          ],
+          [
+            "Italy",
+            0.72
+          ],
+          [
+            "🇯🇵 Japon",
+            5.93
+          ],
+          [
+            "🇰🇷 Corée du Sud",
+            2.25
+          ],
+          [
+            "Kuwait",
+            0.07
+          ],
+          [
+            "Malaysia",
+            0.15
+          ],
+          [
+            "🇲🇽 Mexique",
+            0.22
+          ],
+          [
+            "Netherlands",
+            1.09
+          ],
+          [
+            "New Zealand",
+            0.05
+          ],
+          [
+            "Norway",
+            0.15
+          ],
+          [
+            "Philippines",
+            0.04
+          ],
+          [
+            "Poland",
+            0.12
+          ],
+          [
+            "Portugal",
+            0.04
+          ],
+          [
+            "Qatar",
+            0.06
+          ],
+          [
+            "Romania",
+            0.01
+          ],
+          [
+            "Saudi Arabia",
+            0.3
+          ],
+          [
+            "Singapore",
+            0.36
+          ],
+          [
+            "South Africa",
+            0.36
+          ],
+          [
+            "Spain",
+            0.8
+          ],
+          [
+            "Sweden",
+            0.7
+          ],
+          [
+            "🇨🇭 Suisse",
+            2.08
+          ],
+          [
+            "🇹🇼 Taïwan",
+            3.31
+          ],
+          [
+            "Thailand",
+            0.15
+          ],
+          [
+            "Turkiye",
+            0.07
+          ],
+          [
+            "UAE",
+            0.17
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            3.18
+          ],
+          [
+            "🇺🇸 États-Unis",
+            62.7
+          ],
+          [
+            "Vietnam",
+            0.0
+          ]
+        ],
+        "sectors": [
+          [
+            "💻 Technologie",
+            33.43
+          ],
+          [
+            "📡 Communication",
+            3.18
+          ],
+          [
+            "🏥 Santé",
+            8.8
+          ],
+          [
+            "🏦 Finance",
+            15.1
+          ],
+          [
+            "🏠 Immobilier",
+            1.72
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            10.92
+          ],
+          [
+            "🛒 Consommation de base",
+            4.17
+          ],
+          [
+            "🏭 Industrie",
+            12.23
+          ],
+          [
+            "🪨 Matériaux",
+            3.15
+          ],
+          [
+            "⚡ Énergie",
+            4.62
+          ],
+          [
+            "💡 Services publics",
+            2.68
+          ]
+        ],
+        "holdings": [
+          [
+            "Apple Inc.",
+            4.79
+          ],
+          [
+            "Nvidia",
+            4.59
+          ],
+          [
+            "Microsoft Corp",
+            3.73
+          ],
+          [
+            "Amazon.Com",
+            2.24
+          ],
+          [
+            "Taiwan Semiconductor Manufacturing",
+            1.7
+          ],
+          [
+            "Alphabet Class A",
+            1.57
+          ],
+          [
+            "Broadcom",
+            1.46
+          ],
+          [
+            "Meta Platforms Inc",
+            1.3
+          ],
+          [
+            "Alphabet Class C",
+            1.27
+          ],
+          [
+            "Tesla",
+            1.12
+          ]
+        ],
+        "source": {
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open",
+          "checkedAt": "2026-11-03",
+          "label": "Composition officielle automatisée · FTSE All-World",
+          "sha256": "0713c82b28fc910b0cf93bd7c3b7d3c78f51bf6e5fcd1270ba3288246e49f961"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
       }
     },
     "returnsHistory": {
@@ -1725,6 +2024,50 @@
           "kind": "indice",
           "detail": "FTSE All-World, rendement total en dollars, dividendes réinvestis ; secteurs selon la classification ICB de FTSE",
           "date": "2026-09-30"
+        }
+      },
+      "2026-10-30": {
+        "asOf": "2026-10-30",
+        "currency": "USD",
+        "variant": "TOTAL",
+        "values": [
+          [
+            2025,
+            23.1
+          ],
+          [
+            2024,
+            17.7
+          ],
+          [
+            2023,
+            22.6
+          ],
+          [
+            2022,
+            -17.7
+          ],
+          [
+            2021,
+            18.9
+          ],
+          [
+            2020,
+            16.6
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open",
+          "checkedAt": "2026-11-03",
+          "sha256": "0713c82b28fc910b0cf93bd7c3b7d3c78f51bf6e5fcd1270ba3288246e49f961",
+          "label": "Rendements calendaires officiels automatisés · FTSE All-World"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "FTSE All-World, rendement total en dollars, dividendes réinvestis ; secteurs selon la classification ICB de FTSE",
+          "date": "2026-10-30"
         }
       }
     }
@@ -11586,7 +11929,7 @@
       "method": "Poids officiels trimestriels du Russell 1000 exact ; top dix des lignes, classes d’actions séparées. Photographie indépendante des secteurs mensuels.",
       "source": {
         "url": "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000",
-        "checkedAt": "2026-10-29",
+        "checkedAt": "2026-11-03",
         "sha256": "5da48894939e99dbe2b9c3c3295c53cb6b8bf28b157b289aa34662c95c5e9f29",
         "label": "FTSE Russell · ESMA Quarterly Membership Weights · Russell 1000"
       }
@@ -12632,7 +12975,7 @@
   },
   "sp500-pea": {
     "returns": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "currency": "USD",
       "variant": "TOTAL",
       "values": [
@@ -12664,19 +13007,19 @@
       "periodStart": "2020-01-01",
       "periodEnd": "2025-12-31",
       "source": {
-        "url": "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "url": "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
         "sourceUrls": [
-          "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
-          "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+          "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+          "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits"
         ],
-        "checkedAt": "2026-10-29",
-        "sha256": "f78bb294d232fcc6f5e4d833ef8a635300c298f3667daea4d85bd6148c19c8f6",
+        "checkedAt": "2026-11-02",
+        "sha256": "73bb9b61352bdcd9f7c4ff530c4f42db9c98f10d3537eba3b304b13c3d8421b9",
         "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
       },
       "performance": {
         "kind": "indice",
         "detail": "S&P 500 · USD · dividendes réinvestis",
-        "date": "2026-09-30"
+        "date": "2026-10-31"
       }
     },
     "returnsHistory": {
@@ -12726,6 +13069,54 @@
           "kind": "indice",
           "detail": "S&P 500 · USD · dividendes réinvestis",
           "date": "2026-09-30"
+        }
+      },
+      "2026-10-31": {
+        "asOf": "2026-10-31",
+        "currency": "USD",
+        "variant": "TOTAL",
+        "values": [
+          [
+            2025,
+            17.88
+          ],
+          [
+            2024,
+            25.02
+          ],
+          [
+            2023,
+            26.29
+          ],
+          [
+            2022,
+            -18.11
+          ],
+          [
+            2021,
+            28.71
+          ],
+          [
+            2020,
+            18.4
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "checkedAt": "2026-11-01",
+          "sha256": "9688cce97e0b0bd5f75188db859bbbb0df40a2bdd551ef9e51204bda14b73cca",
+          "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "S&P 500 · USD · dividendes réinvestis",
+          "date": "2026-10-31"
         }
       }
     },
@@ -13052,7 +13443,7 @@
   },
   "bitcoin": {
     "returns": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "currency": "USD",
       "variant": "PRICE",
       "values": [
@@ -13084,19 +13475,19 @@
       "periodStart": "2020-01-01",
       "periodEnd": "2025-12-31",
       "source": {
-        "url": "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo",
+        "url": "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1mo",
         "sourceUrls": [
-          "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo",
-          "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1d"
+          "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1mo",
+          "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1d"
         ],
-        "checkedAt": "2026-10-05",
-        "sha256": "f13a624ba98c7b66cb3e0999f73e538fc0b968e21a91e8224c4393d8c5c0762e",
+        "checkedAt": "2026-11-01",
+        "sha256": "9610a37c9a34a7ada9acd0be38fd415ac4f23ace22b90651697c9bf4269f6301",
         "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
       },
       "performance": {
         "kind": "actif",
         "detail": "Bitcoin · USD · cours spot",
-        "date": "2026-09-30"
+        "date": "2026-10-31"
       }
     },
     "returnsHistory": {
@@ -13147,12 +13538,60 @@
           "detail": "Bitcoin · USD · cours spot",
           "date": "2026-09-30"
         }
+      },
+      "2026-10-31": {
+        "asOf": "2026-10-31",
+        "currency": "USD",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            -6.34
+          ],
+          [
+            2024,
+            121.05
+          ],
+          [
+            2023,
+            155.42
+          ],
+          [
+            2022,
+            -64.27
+          ],
+          [
+            2021,
+            59.67
+          ],
+          [
+            2020,
+            303.16
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1mo",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1mo",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1793491200&interval=1d"
+          ],
+          "checkedAt": "2026-11-01",
+          "sha256": "9610a37c9a34a7ada9acd0be38fd415ac4f23ace22b90651697c9bf4269f6301",
+          "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
+        },
+        "performance": {
+          "kind": "actif",
+          "detail": "Bitcoin · USD · cours spot",
+          "date": "2026-10-31"
+        }
       }
     }
   },
   "ethereum": {
     "returns": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "currency": "USD",
       "variant": "PRICE",
       "values": [
@@ -13184,19 +13623,19 @@
       "periodStart": "2020-01-01",
       "periodEnd": "2025-12-31",
       "source": {
-        "url": "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "url": "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1793491200&interval=1d&events=div%2Csplits",
         "sourceUrls": [
-          "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1790812800&interval=1d&events=div%2Csplits",
-          "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1790812800&interval=1mo&events=div%2Csplits"
+          "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1793491200&interval=1d&events=div%2Csplits",
+          "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1793491200&interval=1mo&events=div%2Csplits"
         ],
-        "checkedAt": "2026-10-29",
-        "sha256": "f78bb294d232fcc6f5e4d833ef8a635300c298f3667daea4d85bd6148c19c8f6",
+        "checkedAt": "2026-11-02",
+        "sha256": "73bb9b61352bdcd9f7c4ff530c4f42db9c98f10d3537eba3b304b13c3d8421b9",
         "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
       },
       "performance": {
         "kind": "actif",
         "detail": "Ethereum · USD · cours spot",
-        "date": "2026-09-30"
+        "date": "2026-10-31"
       }
     },
     "returnsHistory": {
@@ -13247,13 +13686,61 @@
           "detail": "Ethereum · USD · cours spot",
           "date": "2026-09-30"
         }
+      },
+      "2026-10-31": {
+        "asOf": "2026-10-31",
+        "currency": "USD",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            -10.97
+          ],
+          [
+            2024,
+            46.07
+          ],
+          [
+            2023,
+            90.64
+          ],
+          [
+            2022,
+            -67.5
+          ],
+          [
+            2021,
+            399.14
+          ],
+          [
+            2020,
+            469.25
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1793491200&interval=1d&events=div%2Csplits",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "checkedAt": "2026-11-01",
+          "sha256": "9688cce97e0b0bd5f75188db859bbbb0df40a2bdd551ef9e51204bda14b73cca",
+          "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
+        },
+        "performance": {
+          "kind": "actif",
+          "detail": "Ethereum · USD · cours spot",
+          "date": "2026-10-31"
+        }
       }
     }
   },
   "nikkei225": {
     "facts": {
       "index": "Nikkei 225",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-30",
       "constituents": 225,
       "countries": [
         [
@@ -13261,79 +13748,83 @@
           100
         ]
       ],
-      "sectorMethod": "Nikkei six-sector classification",
+      "sectorMethod": "Nikkei seven-sector classification",
       "sectors": [
         [
           "Technology",
-          56.96
+          41.11
         ],
         [
           "Consumer Goods",
-          19.66
+          23.82
         ],
         [
           "Materials",
-          12.26
+          12.36
+        ],
+        [
+          "Information and Communications",
+          11.18
         ],
         [
           "Capital Goods/Others",
-          6.84
+          7.04
         ],
         [
           "Financials",
-          2.98
+          3.08
         ],
         [
           "Transportation and Utilities",
-          1.3
+          1.43
         ]
       ],
       "holdings": [
         [
           "ADVANTEST CORP.",
-          12.39
-        ],
-        [
-          "TOKYO ELECTRON LTD.",
-          8.9
+          11.88
         ],
         [
           "FAST RETAILING CO., LTD.",
-          8.54
+          9.63
+        ],
+        [
+          "TOKYO ELECTRON LTD.",
+          7.6
         ],
         [
           "SOFTBANK GROUP CORP.",
-          7.75
+          5.73
         ],
         [
           "RECRUIT HOLDINGS CO., LTD.",
-          2.53
+          3.07
         ],
         [
           "TDK CORP.",
-          2.25
-        ],
-        [
-          "IBIDEN CO., LTD.",
-          2.22
-        ],
-        [
-          "KIOXIA HOLDINGS CORP.",
-          1.91
+          2.05
         ],
         [
           "KDDI CORP.",
-          1.76
+          1.81
         ],
         [
-          "FUJIKURA LTD.",
-          1.57
+          "IBIDEN CO., LTD.",
+          1.78
+        ],
+        [
+          "SHIN-ETSU CHEMICAL CO., LTD.",
+          1.59
+        ],
+        [
+          "FANUC CORP.",
+          1.52
         ]
       ],
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
-        "checkedAt": "2026-10-29",
-        "sha256": "146838e0f5f151b42bc87a5581f4159e45a2a13c7eee5f2f42c91965204308d3",
+        "checkedAt": "2026-11-03",
+        "sha256": "e9c0da1a9f924bb348c3f40432dccbd4778ad30901785e5c7c6b7b7dbe337a5e",
         "label": "Composition officielle automatisée · Nikkei 225"
       },
       "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
@@ -13425,10 +13916,101 @@
           "label": "Composition officielle automatisée · Nikkei 225"
         },
         "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
+      },
+      "2026-10-30": {
+        "index": "Nikkei 225",
+        "asOf": "2026-10-30",
+        "constituents": 225,
+        "countries": [
+          [
+            "🇯🇵 Japon",
+            100
+          ]
+        ],
+        "sectorMethod": "Nikkei seven-sector classification",
+        "sectors": [
+          [
+            "Technology",
+            41.11
+          ],
+          [
+            "Consumer Goods",
+            23.82
+          ],
+          [
+            "Materials",
+            12.36
+          ],
+          [
+            "Information and Communications",
+            11.18
+          ],
+          [
+            "Capital Goods/Others",
+            7.04
+          ],
+          [
+            "Financials",
+            3.08
+          ],
+          [
+            "Transportation and Utilities",
+            1.43
+          ]
+        ],
+        "holdings": [
+          [
+            "ADVANTEST CORP.",
+            11.88
+          ],
+          [
+            "FAST RETAILING CO., LTD.",
+            9.63
+          ],
+          [
+            "TOKYO ELECTRON LTD.",
+            7.6
+          ],
+          [
+            "SOFTBANK GROUP CORP.",
+            5.73
+          ],
+          [
+            "RECRUIT HOLDINGS CO., LTD.",
+            3.07
+          ],
+          [
+            "TDK CORP.",
+            2.05
+          ],
+          [
+            "KDDI CORP.",
+            1.81
+          ],
+          [
+            "IBIDEN CO., LTD.",
+            1.78
+          ],
+          [
+            "SHIN-ETSU CHEMICAL CO., LTD.",
+            1.59
+          ],
+          [
+            "FANUC CORP.",
+            1.52
+          ]
+        ],
+        "source": {
+          "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
+          "checkedAt": "2026-11-02",
+          "sha256": "f54cc08d824e9f89d407b8cca701f240a204caa1f76f4f97d0558e176a0b30d5",
+          "label": "Composition officielle automatisée · Nikkei 225"
+        },
+        "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
       }
     },
     "returns": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-30",
       "currency": "JPY",
       "variant": "TOTAL",
       "values": [
@@ -13457,14 +14039,14 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
-        "checkedAt": "2026-10-29",
-        "sha256": "764123322a3030300a44891c77d2e52876e39f876a8b48257590c709ab8943af",
+        "checkedAt": "2026-11-03",
+        "sha256": "d6b3f9d31598463108f9a0c2e3f967c16e29d082c419e63c67b749df501b84c0",
         "label": "Rendements calendaires officiels automatisés · Nikkei 225"
       },
       "performance": {
         "kind": "indice",
         "detail": "Nikkei 225 · JPY · dividendes réinvestis",
-        "date": "2026-09-30"
+        "date": "2026-10-30"
       }
     },
     "returnsHistory": {
@@ -13507,12 +14089,52 @@
           "detail": "Nikkei 225 · JPY · dividendes réinvestis",
           "date": "2026-09-30"
         }
+      },
+      "2026-10-30": {
+        "asOf": "2026-10-30",
+        "currency": "JPY",
+        "variant": "TOTAL",
+        "values": [
+          [
+            2025,
+            28.65
+          ],
+          [
+            2024,
+            21.33
+          ],
+          [
+            2023,
+            30.96
+          ],
+          [
+            2022,
+            -7.34
+          ],
+          [
+            2021,
+            6.66
+          ]
+        ],
+        "periodStart": "2021-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
+          "checkedAt": "2026-11-02",
+          "sha256": "59db634c60ff114e901229abd07dabaad489b173e9745957aa3c1a2a8f852ee3",
+          "label": "Rendements calendaires officiels automatisés · Nikkei 225"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "Nikkei 225 · JPY · dividendes réinvestis",
+          "date": "2026-10-30"
+        }
       }
     }
   },
   "stoxx600": {
     "returns": {
-      "asOf": "2026-10-28",
+      "asOf": "2026-11-03",
       "currency": "EUR",
       "variant": "NET",
       "values": [
@@ -13545,14 +14167,14 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://stoxx.com/index/sxxr/",
-        "checkedAt": "2026-10-29",
-        "sha256": "0dcbfb5b3ff83977d6906dc33b3547666f8ed189fae0308d99c66884d2efd2aa",
+        "checkedAt": "2026-11-03",
+        "sha256": "3c8e3dfe1fa229d0b14e9f85ea042dc5358737355b3f92a01db104a5ace10a74",
         "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
       },
       "performance": {
         "kind": "indice",
         "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
-        "date": "2026-10-28"
+        "date": "2026-11-03"
       }
     },
     "returnsHistory": {
@@ -14303,6 +14925,182 @@
           "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
           "date": "2026-10-28"
         }
+      },
+      "2026-10-29": {
+        "asOf": "2026-10-29",
+        "currency": "EUR",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            19.8
+          ],
+          [
+            2024,
+            8.79
+          ],
+          [
+            2023,
+            15.8
+          ],
+          [
+            2022,
+            -10.64
+          ],
+          [
+            2021,
+            24.91
+          ],
+          [
+            2020,
+            -1.99
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sxxr/",
+          "checkedAt": "2026-10-29",
+          "sha256": "ea432a88ad1b5c3bdba784b20cbe3f6049bbf90559be14a4fdc32295229a6cf2",
+          "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
+          "date": "2026-10-29"
+        }
+      },
+      "2026-10-30": {
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            19.8
+          ],
+          [
+            2024,
+            8.79
+          ],
+          [
+            2023,
+            15.8
+          ],
+          [
+            2022,
+            -10.64
+          ],
+          [
+            2021,
+            24.91
+          ],
+          [
+            2020,
+            -1.99
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sxxr/",
+          "checkedAt": "2026-10-30",
+          "sha256": "e97f44c79227ff84847100008edbf7f6a270ffabeb76ccb07b0dc5f334d07c73",
+          "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
+          "date": "2026-10-30"
+        }
+      },
+      "2026-11-02": {
+        "asOf": "2026-11-02",
+        "currency": "EUR",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            19.8
+          ],
+          [
+            2024,
+            8.79
+          ],
+          [
+            2023,
+            15.8
+          ],
+          [
+            2022,
+            -10.64
+          ],
+          [
+            2021,
+            24.91
+          ],
+          [
+            2020,
+            -1.99
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sxxr/",
+          "checkedAt": "2026-11-02",
+          "sha256": "7bc9bbfa3f74e3de88b9cf225da247319ce7c327fb225ddbd9adc1a07cc40316",
+          "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
+          "date": "2026-11-02"
+        }
+      },
+      "2026-11-03": {
+        "asOf": "2026-11-03",
+        "currency": "EUR",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            19.8
+          ],
+          [
+            2024,
+            8.79
+          ],
+          [
+            2023,
+            15.8
+          ],
+          [
+            2022,
+            -10.64
+          ],
+          [
+            2021,
+            24.91
+          ],
+          [
+            2020,
+            -1.99
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sxxr/",
+          "checkedAt": "2026-11-03",
+          "sha256": "3c8e3dfe1fa229d0b14e9f85ea042dc5358737355b3f92a01db104a5ace10a74",
+          "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
+          "date": "2026-11-03"
+        }
       }
     },
     "facts": {
@@ -14816,7 +15614,7 @@
   },
   "eurostoxx50": {
     "returns": {
-      "asOf": "2026-10-29",
+      "asOf": "2026-11-03",
       "currency": "EUR",
       "variant": "NET",
       "values": [
@@ -14849,14 +15647,14 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://stoxx.com/index/sx5t/",
-        "checkedAt": "2026-10-29",
-        "sha256": "7d78d7a6a919928c2e8abbb16b55445045f84f86138d87e3510f3a29e2dcfafe",
+        "checkedAt": "2026-11-03",
+        "sha256": "a791326e3bd94646ba0ff547722f64bdac2346408ca081d678c9de08fc9655a2",
         "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
       },
       "performance": {
         "kind": "indice",
         "detail": "EURO STOXX 50, en EUR, dividendes nets réinvestis",
-        "date": "2026-10-29"
+        "date": "2026-11-03"
       }
     },
     "returnsHistory": {
@@ -15519,6 +16317,138 @@
           "detail": "EURO STOXX 50, en EUR, dividendes nets réinvestis",
           "date": "2026-10-29"
         }
+      },
+      "2026-10-30": {
+        "asOf": "2026-10-30",
+        "currency": "EUR",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            21.2
+          ],
+          [
+            2024,
+            11.01
+          ],
+          [
+            2023,
+            22.23
+          ],
+          [
+            2022,
+            -9.49
+          ],
+          [
+            2021,
+            23.34
+          ],
+          [
+            2020,
+            -3.21
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sx5t/",
+          "checkedAt": "2026-10-30",
+          "sha256": "fb2247260a0077b163d96dd4ffaf229a39e558748282defacbe933885d806219",
+          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "EURO STOXX 50, en EUR, dividendes nets réinvestis",
+          "date": "2026-10-30"
+        }
+      },
+      "2026-11-02": {
+        "asOf": "2026-11-02",
+        "currency": "EUR",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            21.2
+          ],
+          [
+            2024,
+            11.01
+          ],
+          [
+            2023,
+            22.23
+          ],
+          [
+            2022,
+            -9.49
+          ],
+          [
+            2021,
+            23.34
+          ],
+          [
+            2020,
+            -3.21
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sx5t/",
+          "checkedAt": "2026-11-02",
+          "sha256": "da794bf27cb066d39a3893905d04345119e937b11c1970b6e8fad257870a5ee9",
+          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "EURO STOXX 50, en EUR, dividendes nets réinvestis",
+          "date": "2026-11-02"
+        }
+      },
+      "2026-11-03": {
+        "asOf": "2026-11-03",
+        "currency": "EUR",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            21.2
+          ],
+          [
+            2024,
+            11.01
+          ],
+          [
+            2023,
+            22.23
+          ],
+          [
+            2022,
+            -9.49
+          ],
+          [
+            2021,
+            23.34
+          ],
+          [
+            2020,
+            -3.21
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sx5t/",
+          "checkedAt": "2026-11-03",
+          "sha256": "a791326e3bd94646ba0ff547722f64bdac2346408ca081d678c9de08fc9655a2",
+          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "EURO STOXX 50, en EUR, dividendes nets réinvestis",
+          "date": "2026-11-03"
+        }
       }
     },
     "facts": {
@@ -16029,8 +16959,8 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
-        "checkedAt": "2026-10-29",
-        "sha256": "02bd9f2a7ae2639f0099a4b707dc4235d5dd1d50cb600932fbfceffedc6af49b",
+        "checkedAt": "2026-11-03",
+        "sha256": "8d58246941bce22b24554705f02cbab9da87f7bed190be6f88017aaf6ff5918d",
         "label": "Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income"
       },
       "performance": {
@@ -16083,183 +17013,184 @@
     },
     "facts": {
       "index": "S&P Global Dividend Aristocrats Quality Income",
-      "asOf": "2026-09-30",
-      "constituents": 90,
+      "asOf": "2026-10-30",
+      "constituents": 88,
       "sectorClassification": "GICS",
-      "topWeight": 17.62,
+      "topWeight": 18.04,
       "countries": [
         [
           "🇺🇸 États-Unis",
-          53.4572
+          54.2269
         ],
         [
           "🇨🇦 Canada",
-          8.4185
+          9.108
         ],
         [
           "🇬🇧 Royaume-Uni",
-          5.7895
+          4.8761
         ],
         [
           "🇨🇳 Chine",
-          3.9678
+          3.8874
         ],
         [
           "🇫🇷 France",
-          3.356
+          3.5532
         ],
         [
           "Italy",
-          3.176
-        ],
-        [
-          "🇰🇷 Corée du Sud",
-          2.8255
-        ],
-        [
-          "🇯🇵 Japon",
-          2.6753
+          3.1825
         ],
         [
           "🇨🇭 Suisse",
-          2.5248
+          2.6951
+        ],
+        [
+          "🇯🇵 Japon",
+          2.6218
         ],
         [
           "Hong Kong SAR, China",
-          2.467
+          2.5316
+        ],
+        [
+          "🇰🇷 Corée du Sud",
+          2.3494
         ],
         [
           "Finland",
-          2.1598
+          2.0314
         ],
         [
           "🇦🇺 Australie",
-          1.6138
-        ],
-        [
-          "🇹🇼 Taïwan",
-          1.238
-        ],
-        [
-          "Portugal",
-          1.2019
+          1.7129
         ],
         [
           "Norway",
-          1.1566
+          1.2112
+        ],
+        [
+          "Portugal",
+          1.1729
         ],
         [
           "United Arab Emirates",
-          1.0586
-        ],
-        [
-          "Saudi Arabia",
-          1.0263
+          1.0113
         ],
         [
           "🇲🇽 Mexique",
-          0.9439
+          0.9933
+        ],
+        [
+          "Saudi Arabia",
+          0.9772
+        ],
+        [
+          "🇹🇼 Taïwan",
+          0.9504
         ],
         [
           "Belgium",
-          0.9436
+          0.9074
         ]
       ],
       "sectors": [
         [
           "🏦 Finance",
-          25.7409
+          24.9296
         ],
         [
           "💡 Services publics",
-          16.1586
+          16.6173
         ],
         [
           "🏠 Immobilier",
-          12.395
+          12.5995
         ],
         [
           "🏭 Industrie",
-          10.979
-        ],
-        [
-          "📡 Communication",
-          8.6386
-        ],
-        [
-          "🛒 Consommation de base",
-          8.3806
+          10.9648
         ],
         [
           "⚡ Énergie",
-          7.625
+          8.612
+        ],
+        [
+          "📡 Communication",
+          8.474
+        ],
+        [
+          "🛒 Consommation de base",
+          7.614
         ],
         [
           "🏥 Santé",
-          3.9896
+          4.1393
         ],
         [
           "🪨 Matériaux",
-          3.7036
-        ],
-        [
-          "💻 Technologie",
-          1.238
+          3.9118
         ],
         [
           "🛍️ Consommation cyclique",
-          1.151
+          1.1873
+        ],
+        [
+          "💻 Technologie",
+          0.9504
         ]
       ],
       "holdings": [
         [
           "Highwoods Properties",
-          1.9934
-        ],
-        [
-          "Verizon Communications Inc",
-          1.9016
-        ],
-        [
-          "GS Holdings Corp",
-          1.8926
+          2.103
         ],
         [
           "Pfizer Inc",
-          1.8267
+          1.9318
         ],
         [
           "LTC Properties",
-          1.8036
+          1.8606
         ],
         [
-          "John Wiley & Sons Inc. A",
-          1.6874
-        ],
-        [
-          "Target Corp",
-          1.6548
+          "Verizon Communications Inc",
+          1.8325
         ],
         [
           "Teleperformance",
-          1.6273
+          1.8073
         ],
         [
-          "Getty Realty Corp",
-          1.6234
+          "John Wiley & Sons Inc. A",
+          1.7866
         ],
         [
           "APA Group",
-          1.6138
+          1.7129
+        ],
+        [
+          "ONEOK Inc",
+          1.7025
+        ],
+        [
+          "Amcor plc",
+          1.6532
+        ],
+        [
+          "Energizer Holdings Inc",
+          1.6493
         ]
       ],
       "source": {
         "url": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=92388578&language_id=1",
-        "checkedAt": "2026-10-29",
-        "sha256": "e5a0735c54199c9b7514514fde9f80118987d62b9e39e54f3aef9f407deab440",
+        "checkedAt": "2026-11-03",
+        "sha256": "044bcdfd52db1dc1d32175d3fb201bb5d5bd4b0f763b10624fe76ed41062b5fb",
         "label": "Données publiques numériques S&P DJI",
-        "retrievedAt": "2026-10-29T07:12:32.570883+00:00",
-        "transport": "official-response-handoff"
+        "retrievedAt": "2026-11-03T07:19:02.352766+00:00",
+        "transport": "official-response-handoff",
+        "primaryAccessError": "HTTP Error 403: Forbidden"
       },
       "provenance": "Données publiques utilisées par la page S&P DJI de l’indice exact. Dates d’effet, identités, classification, totaux des pays/secteurs et poids cumulé du top dix contrôlés. Rendements conservés séparément."
     },
@@ -16402,6 +17333,188 @@
           "sha256": "a4ff0da04a1f1af20e84d32b42509ec380bb8d3339e32eb85c7fac2c35f8e42d",
           "label": "Composition officielle S&P DJI automatisée"
         }
+      },
+      "2026-10-30": {
+        "index": "S&P Global Dividend Aristocrats Quality Income",
+        "asOf": "2026-10-30",
+        "constituents": 88,
+        "sectorClassification": "GICS",
+        "topWeight": 18.04,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            54.2269
+          ],
+          [
+            "🇨🇦 Canada",
+            9.108
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            4.8761
+          ],
+          [
+            "🇨🇳 Chine",
+            3.8874
+          ],
+          [
+            "🇫🇷 France",
+            3.5532
+          ],
+          [
+            "Italy",
+            3.1825
+          ],
+          [
+            "🇨🇭 Suisse",
+            2.6951
+          ],
+          [
+            "🇯🇵 Japon",
+            2.6218
+          ],
+          [
+            "Hong Kong SAR, China",
+            2.5316
+          ],
+          [
+            "🇰🇷 Corée du Sud",
+            2.3494
+          ],
+          [
+            "Finland",
+            2.0314
+          ],
+          [
+            "🇦🇺 Australie",
+            1.7129
+          ],
+          [
+            "Norway",
+            1.2112
+          ],
+          [
+            "Portugal",
+            1.1729
+          ],
+          [
+            "United Arab Emirates",
+            1.0113
+          ],
+          [
+            "🇲🇽 Mexique",
+            0.9933
+          ],
+          [
+            "Saudi Arabia",
+            0.9772
+          ],
+          [
+            "🇹🇼 Taïwan",
+            0.9504
+          ],
+          [
+            "Belgium",
+            0.9074
+          ]
+        ],
+        "sectors": [
+          [
+            "🏦 Finance",
+            24.9296
+          ],
+          [
+            "💡 Services publics",
+            16.6173
+          ],
+          [
+            "🏠 Immobilier",
+            12.5995
+          ],
+          [
+            "🏭 Industrie",
+            10.9648
+          ],
+          [
+            "⚡ Énergie",
+            8.612
+          ],
+          [
+            "📡 Communication",
+            8.474
+          ],
+          [
+            "🛒 Consommation de base",
+            7.614
+          ],
+          [
+            "🏥 Santé",
+            4.1393
+          ],
+          [
+            "🪨 Matériaux",
+            3.9118
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            1.1873
+          ],
+          [
+            "💻 Technologie",
+            0.9504
+          ]
+        ],
+        "holdings": [
+          [
+            "Highwoods Properties",
+            2.103
+          ],
+          [
+            "Pfizer Inc",
+            1.9318
+          ],
+          [
+            "LTC Properties",
+            1.8606
+          ],
+          [
+            "Verizon Communications Inc",
+            1.8325
+          ],
+          [
+            "Teleperformance",
+            1.8073
+          ],
+          [
+            "John Wiley & Sons Inc. A",
+            1.7866
+          ],
+          [
+            "APA Group",
+            1.7129
+          ],
+          [
+            "ONEOK Inc",
+            1.7025
+          ],
+          [
+            "Amcor plc",
+            1.6532
+          ],
+          [
+            "Energizer Holdings Inc",
+            1.6493
+          ]
+        ],
+        "source": {
+          "url": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=92388578&language_id=1",
+          "checkedAt": "2026-10-31",
+          "sha256": "1bc2075708852fe5168c93cbfbe1bd7736fc420f2409f9dee104c3abba873d84",
+          "label": "Données publiques numériques S&P DJI",
+          "retrievedAt": "2026-10-31T07:24:45.120330+00:00",
+          "transport": "official-response-handoff"
+        },
+        "provenance": "Données publiques utilisées par la page S&P DJI de l’indice exact. Dates d’effet, identités, classification, totaux des pays/secteurs et poids cumulé du top dix contrôlés. Rendements conservés séparément."
       }
     }
   },
@@ -16440,8 +17553,8 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
-        "checkedAt": "2026-10-29",
-        "sha256": "addfeeceba49d9d64c4aea5c1bc42849f9ef765e46a64d299ee1d1ebf492e42e",
+        "checkedAt": "2026-11-03",
+        "sha256": "e154891023715ef6695673e0eaf957da7a10a3c05bd0818ef2e3587d0c25d0c1",
         "label": "Rendements calendaires officiels automatisés · S&P Euro High Yield Dividend Aristocrats"
       },
       "performance": {
@@ -16498,139 +17611,140 @@
     },
     "facts": {
       "index": "S&P Euro High Yield Dividend Aristocrats",
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-30",
       "constituents": 40,
       "sectorClassification": "GICS",
-      "topWeight": 37.14,
+      "topWeight": 37.74,
       "countries": [
         [
           "🇩🇪 Allemagne",
-          20.9589
+          21.6985
         ],
         [
           "Italy",
-          19.6179
+          18.8586
         ],
         [
           "Finland",
-          17.2209
+          16.2904
         ],
         [
           "🇫🇷 France",
-          12.2946
+          12.7849
         ],
         [
           "Netherlands",
-          11.7448
+          12.4602
         ],
         [
           "Belgium",
-          6.0877
+          5.9153
         ],
         [
           "Austria",
-          5.548
+          5.4861
         ],
         [
           "Spain",
-          3.4798
+          3.5632
         ],
         [
           "Portugal",
-          3.0473
+          2.9428
         ]
       ],
       "sectors": [
         [
           "🏦 Finance",
-          28.9807
+          28.9695
         ],
         [
           "🏭 Industrie",
-          21.4322
+          22.4255
         ],
         [
           "💡 Services publics",
-          15.4772
+          15.312
         ],
         [
           "🪨 Matériaux",
-          9.6045
+          8.532
         ],
         [
           "🏥 Santé",
-          6.6416
-        ],
-        [
-          "📡 Communication",
-          5.3725
+          7.0533
         ],
         [
           "⚡ Énergie",
-          5.2361
+          5.4709
+        ],
+        [
+          "📡 Communication",
+          5.136
         ],
         [
           "🛒 Consommation de base",
-          3.5991
+          3.6467
         ],
         [
           "🏠 Immobilier",
-          2.2332
+          2.1252
         ],
         [
           "💻 Technologie",
-          1.4229
+          1.3288
         ]
       ],
       "holdings": [
         [
           "Teleperformance",
-          5.1854
-        ],
-        [
-          "AGEAS",
-          3.8545
-        ],
-        [
-          "OMV AG",
-          3.7312
-        ],
-        [
-          "Unipol Gruppo Finanziario SpA Ord",
-          3.6854
-        ],
-        [
-          "UPM-Kymmene Oyj",
-          3.6276
+          5.6994
         ],
         [
           "Hannover Ruck SE",
-          3.5519
+          3.9225
         ],
         [
-          "NN Group N.V.",
-          3.5489
+          "OMV AG",
+          3.8249
         ],
         [
           "Munich Re AG",
-          3.4973
+          3.7936
         ],
         [
-          "Valmet",
-          3.2583
+          "AGEAS",
+          3.7901
+        ],
+        [
+          "Unipol Gruppo Finanziario SpA Ord",
+          3.4175
+        ],
+        [
+          "NN Group N.V.",
+          3.4005
         ],
         [
           "Sanofi-Aventis",
-          3.1988
+          3.375
+        ],
+        [
+          "Wolters Kluwer NV",
+          3.3055
+        ],
+        [
+          "Valmet",
+          3.2119
         ]
       ],
       "source": {
         "url": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=5475610&language_id=1",
-        "checkedAt": "2026-10-29",
-        "sha256": "cdb04878b9b3730ab201d5c2925e30988bcc99b9a1fd68a653538f0b26bac8a5",
+        "checkedAt": "2026-11-03",
+        "sha256": "2d9d3fecab32c1758fd32c545e1e487527a5cb8c3640ca950a8a2d6a3ff7aadd",
         "label": "Données publiques numériques S&P DJI",
-        "retrievedAt": "2026-10-29T07:12:32.570883+00:00",
-        "transport": "official-response-handoff"
+        "retrievedAt": "2026-11-03T07:19:02.352766+00:00",
+        "transport": "official-response-handoff",
+        "primaryAccessError": "HTTP Error 403: Forbidden"
       },
       "provenance": "Données publiques utilisées par la page S&P DJI de l’indice exact. Dates d’effet, identités, classification, totaux des pays/secteurs et poids cumulé du top dix contrôlés. Rendements conservés séparément."
     },
@@ -16729,6 +17843,144 @@
           "sha256": "8421e9bff2f1d704206f882ce93e90c87432d049c4d1236a127d8131a5b2f253",
           "label": "Composition officielle S&P DJI automatisée"
         }
+      },
+      "2026-10-30": {
+        "index": "S&P Euro High Yield Dividend Aristocrats",
+        "asOf": "2026-10-30",
+        "constituents": 40,
+        "sectorClassification": "GICS",
+        "topWeight": 37.74,
+        "countries": [
+          [
+            "🇩🇪 Allemagne",
+            21.6985
+          ],
+          [
+            "Italy",
+            18.8586
+          ],
+          [
+            "Finland",
+            16.2904
+          ],
+          [
+            "🇫🇷 France",
+            12.7849
+          ],
+          [
+            "Netherlands",
+            12.4602
+          ],
+          [
+            "Belgium",
+            5.9153
+          ],
+          [
+            "Austria",
+            5.4861
+          ],
+          [
+            "Spain",
+            3.5632
+          ],
+          [
+            "Portugal",
+            2.9428
+          ]
+        ],
+        "sectors": [
+          [
+            "🏦 Finance",
+            28.9695
+          ],
+          [
+            "🏭 Industrie",
+            22.4255
+          ],
+          [
+            "💡 Services publics",
+            15.312
+          ],
+          [
+            "🪨 Matériaux",
+            8.532
+          ],
+          [
+            "🏥 Santé",
+            7.0533
+          ],
+          [
+            "⚡ Énergie",
+            5.4709
+          ],
+          [
+            "📡 Communication",
+            5.136
+          ],
+          [
+            "🛒 Consommation de base",
+            3.6467
+          ],
+          [
+            "🏠 Immobilier",
+            2.1252
+          ],
+          [
+            "💻 Technologie",
+            1.3288
+          ]
+        ],
+        "holdings": [
+          [
+            "Teleperformance",
+            5.6994
+          ],
+          [
+            "Hannover Ruck SE",
+            3.9225
+          ],
+          [
+            "OMV AG",
+            3.8249
+          ],
+          [
+            "Munich Re AG",
+            3.7936
+          ],
+          [
+            "AGEAS",
+            3.7901
+          ],
+          [
+            "Unipol Gruppo Finanziario SpA Ord",
+            3.4175
+          ],
+          [
+            "NN Group N.V.",
+            3.4005
+          ],
+          [
+            "Sanofi-Aventis",
+            3.375
+          ],
+          [
+            "Wolters Kluwer NV",
+            3.3055
+          ],
+          [
+            "Valmet",
+            3.2119
+          ]
+        ],
+        "source": {
+          "url": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=5475610&language_id=1",
+          "checkedAt": "2026-10-31",
+          "sha256": "42e7dd6e209a1b1c2f24b2d6d5de1bfdda599d03f48045381f049ba128b80a99",
+          "label": "Données publiques numériques S&P DJI",
+          "retrievedAt": "2026-10-31T07:24:45.120330+00:00",
+          "transport": "official-response-handoff"
+        },
+        "provenance": "Données publiques utilisées par la page S&P DJI de l’indice exact. Dates d’effet, identités, classification, totaux des pays/secteurs et poids cumulé du top dix contrôlés. Rendements conservés séparément."
       }
     }
   },
@@ -16763,8 +18015,8 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
-        "checkedAt": "2026-10-29",
-        "sha256": "8047109cc9b057ca7939daa054bfcd17e84bfb4da1e97e3019081323db353e04",
+        "checkedAt": "2026-11-03",
+        "sha256": "b3a9b029c85f0aad55ab51a475b867d9c0dda3713e3ba8b7bdd3112eda81a4f6",
         "label": "Rendements calendaires officiels automatisés · TOPIX"
       },
       "performance": {

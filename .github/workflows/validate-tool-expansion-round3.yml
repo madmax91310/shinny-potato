@@ -23,7 +23,8 @@ jobs:
         with:
           node-version: 20
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
-      - run: pip install -r scripts/company-requirements.txt
+      - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+      - run: python -m pip install -c scripts/python-constraints.txt -r scripts/company-requirements.txt
       - run: npm ci
       - run: python scripts/validate_round3_funds.py
       - run: python scripts/collect_qualified_exposures.py --apply --only world-materials history-healthcare-innovation --output "$RUNNER_TEMP/round3-funds.json"

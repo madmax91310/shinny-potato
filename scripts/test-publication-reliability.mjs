@@ -7,6 +7,7 @@ import { buildManualPortfolio, renderTweetText, RISK_BOUNDS } from '../src/pages
 import { TWEETS } from '../src/pages/tweet-bank/data.js'
 import { contentValidity, renderBankCopy, reviewPolicy } from '../src/pages/tweet-bank/validity.js'
 import { countAvailable } from '../src/pages/tweet-bank/lib.js'
+import { weightedAnnualReturn } from '../src/lib/weighted-annual-return.js'
 
 for (const asset of ASSETS) assert.ok(['EUR', 'USD'].includes(returnCurrency(asset)), `Undocumented historical currency: ${asset.id}`)
 for (const [id, item] of ITEM_BY_ID) {
@@ -19,7 +20,11 @@ for (const [id, item] of ITEM_BY_ID) {
 }
 const usd = { returnCurrency: 'USD', calendarReturns: { 2020: 10 }, pct: 50 }
 const eur = { returnCurrency: 'EUR', calendarReturns: { 2020: 10 }, pct: 50 }
-const expected = ((1.1 * annualFx.years[2019].value / annualFx.years[2020].value - 1) * 100 + 10) / 2
+const usdExpected = (1.1 * annualFx.years[2019].value / annualFx.years[2020].value - 1) * 100
+assert.equal(assetReturn(usd, 2020), usdExpected, 'Independent two-boundary FX expectation remains exact')
+// The arithmetic helper has independent decimal fixtures. This integration
+// check preserves strict equality while exercising the new weighting contract.
+const expected = weightedAnnualReturn([{ value: usdExpected, weight: 50 }, { value: 10, weight: 50 }])
 assert.equal(computeYearlyPerf([usd, eur])[2020], expected)
 assert.notEqual(expected, 10, 'A USD/EUR mixture must never use the raw weighted average')
 assert.equal(assetReturn({ returnCurrency: 'USD', calendarReturns: { 2099: 10 } }, 2099), null, 'Missing FX cannot silently assume 1:1')
@@ -34,7 +39,9 @@ assert.match(post, /Simulation sur l'indice/)
 assert.match(post, /Pas un conseil\./)
 assert.doesNotMatch(post, /n’est pas une perte maximale/)
 assert.doesNotMatch(post, /999/)
-assert.match(performanceNotes(portfolio.selection), /2020/)
+assert.deepEqual(Object.keys(portfolio.perf), ['2022','2023','2024','2025'], 'Exact CoinShares calendar bounds the mixed simulation')
+assert.match(performanceNotes(portfolio.selection), /4 années communes \(2022–2025\)/)
+assert.doesNotMatch(performanceNotes(portfolio.selection), /2020.*spot|cours spot.*2020/, 'Retired spot backfill is not the current product provenance')
 for (const bound of Object.values(RISK_BOUNDS)) assert.doesNotMatch(bound.text, /perte max acceptable/)
 
 const today = '2026-10-09'

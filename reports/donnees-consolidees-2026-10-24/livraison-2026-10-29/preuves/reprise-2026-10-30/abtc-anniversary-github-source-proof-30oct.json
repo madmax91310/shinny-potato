@@ -1,0 +1,45 @@
+{
+  "verifiedAt": "2026-10-30T23:39:09.626816+00:00",
+  "run": 41145068358,
+  "event": "pull_request",
+  "sourceCheckedAt": "2026-10-30T23:33:40.689648+00:00",
+  "successes": [
+    {
+      "id": "anniversary-etfCH0454664001",
+      "checkedAt": "2026-10-30T23:33:40.689648+00:00",
+      "asOf": "2026-10-29",
+      "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/ABTC.PA?period1=1792022400&period2=1793318400&interval=1d&events=splits",
+      "responseSha256": "d3cdb15b65f56793c62c9aa4b451fdc0bbc9926a680f687c6129a431d13210cd"
+    },
+    {
+      "id": "anniversary-etfCH0454664001Nav",
+      "checkedAt": "2026-10-30T23:33:40.689648+00:00",
+      "asOf": "2026-10-29",
+      "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+      "responseSha256": "23f1bb7e9d9fd1a632759ad0d2a8b1a3e38830902577ab4d3de38db8f3bcc89d"
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "anniversary-etfCH0454664001",
+      "checkedAt": "2026-10-30T23:33:40.689648+00:00",
+      "asOf": "2026-10-29",
+      "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/ABTC.PA?period1=1792022400&period2=1793318400&interval=1d&events=splits",
+      "responseSha256": "d3cdb15b65f56793c62c9aa4b451fdc0bbc9926a680f687c6129a431d13210cd",
+      "status": "unchanged-verified",
+      "sourceAttempted": true
+    },
+    {
+      "id": "anniversary-etfCH0454664001Nav",
+      "checkedAt": "2026-10-30T23:33:40.689648+00:00",
+      "asOf": "2026-10-29",
+      "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
+      "responseSha256": "23f1bb7e9d9fd1a632759ad0d2a8b1a3e38830902577ab4d3de38db8f3bcc89d",
+      "status": "unchanged-verified",
+      "sourceAttempted": true
+    }
+  ],
+  "scope": "Only ABTC exact source outcome individually examined here; not670sources certified by a green workflow",
+  "productionRecorded": false,
+  "publicationVerified": false
+}
