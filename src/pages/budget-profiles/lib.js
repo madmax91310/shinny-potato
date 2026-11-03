@@ -1,4 +1,4 @@
-import { budgetRowSymbol, budgetPublicBasis, budgetIntroduction, budgetTransfers, budgetGeneralQuestion } from './presentation.js'
+import { budgetRowSymbol, budgetPublicBasis, budgetIntroduction, budgetTransfers, budgetGeneralQuestion, budgetPublicContext } from './presentation.js'
 import { BUDGET_EDITORIAL, BUDGET_PROFILES, BUDGET_PUBLICATION_CONTEXT, EXPENSE_CATEGORIES } from './data.js'
 
 export const MAX_BUDGET_LINES = 24
@@ -74,9 +74,8 @@ export function budgetPublicPresentation(profile) {
     name: budgetDisplayName(profile),
     balanceLabel: copy?.balanceLabel ?? e?.balanceLabel ?? 'Reste disponible après versements',
     job: e?.publicJob ?? profile.job,
-    household: copy?.household ?? e?.publicHousehold ?? (profile.household === 'Situation familiale non précisée' ? '' : profile.household),
-    incomeNote: copy?.incomeNote ?? e?.publicIncomeNote ?? profile.incomeNote,
-    period: copy?.period ?? profile.period,
+    household: budgetPublicContext(copy?.household ?? e?.publicHousehold ?? (profile.household === 'Situation familiale non précisée' ? '' : profile.household)),
+    incomeNote: budgetPublicContext(copy?.incomeNote ?? e?.publicIncomeNote ?? profile.incomeNote),
     location: copy?.location ?? profile.location,
     story: e?.publicStory ?? profile.context,
     basis: copy?.basis ?? (profile.kind === 'prepared' ? (e?.publicBasis || 'Montants mensuels') : profile.incomeBasis),
@@ -86,7 +85,7 @@ export function budgetPublicPresentation(profile) {
 
 export function budgetPublicIncomeRows(profile) {
   const labels = publicationContextFor(profile)?.budget?.incomeLabels || {}
-  return profile.income.map(row => ({ ...row, label: Object.hasOwn(labels, row.label) ? labels[row.label] : row.label }))
+  return profile.income.map(row => ({ ...row, label: (Object.hasOwn(labels, row.label) ? labels[row.label] : row.label).replace(/ au budget personnel$/i, '') }))
 }
 
 // A reported capacity is useful when it differs from the calculated remainder.
@@ -97,8 +96,7 @@ export const hasSeparateBudgetCapacity = (profile, a = analyzeBudget(profile)) =
 export const budgetPossessive = name => /^(?:[aàâäeéèêëiîïoôöuùûüyœ]|h(?:ugo|adrien))/i.test(name) ? `d’${name}` : `de ${name}`
 export function budgetHeading(profile) {
   const name = budgetDisplayName(profile)
-  const prefix = 'Budget'
-  return `${prefix} ${budgetPossessive(name)}${profile.age && !name.includes(' et ') && !name.includes(String(profile.age)) ? `, ${profile.age} ans` : ''}`
+  return `Budget ${budgetPossessive(name)}${profile.age && !name.includes(' et ') && !name.includes(String(profile.age)) ? `, ${profile.age} ans` : ''}`
 }
 
 export function buildBudgetText(profile) {

@@ -28,9 +28,10 @@ export function budgetRowSymbol(row, section = 'expenses') {
   return { kind: Object.hasOwn(symbols, kind) ? kind : 'other', emoji: symbols[kind] || symbols.other }
 }
 export function budgetQualification(profile) {
-  if (profile.kind === 'planned') return 'Budget prévu'
-  if (profile.kind !== 'prepared') return ''
-  return /^(budget-conseil|reference-)/.test(profile.id) ? (profile.household.match(/budget[^·]*de référence/i)?.[0].trim() || 'Budget de référence') : 'Budget reconstitué'
+  return profile.kind === 'planned' ? 'Budget prévu' : profile.kind === 'prepared' && /^(budget-conseil|reference-)/.test(profile.id) ? profile.household.match(/budget[^·]*de référence/i)?.[0] || 'Budget de référence' : ''
+}
+export function budgetPublicContext(value) {
+  return value.replace(/(^| · )budget personnel(?: avec |\.?(?: · |$))/gi, '$1').replace(/ · $/, '')
 }
 export function budgetPublicBasis(profile, basis) {
   let result = basis.replace(/Moyennes\s+20\d{2}/g, 'Moyennes').replace(/(net moyen)\s+20\d{2}\b/gi, '$1')
@@ -43,9 +44,9 @@ export function budgetIntroduction(profile, p) {
   const qualification = budgetQualification(profile)
   const h = normalize(p.household)
   const family = /mere celibataire/.test(h) ? '👩‍👧' : /enfant|filles|fils/.test(h) && !/sans enfant|projet d.enfant|avant.*naissance/.test(h) ? '👪' : /couple|adultes|marie|concubin/.test(h) ? '👥' : /locataire|proprietaire|heberge|loge/.test(h) ? '🏠' : '👤'
-  const qualify = value => `${value}${qualification && !normalize(value).includes(normalize(qualification)) ? ` · ${qualification.toLocaleLowerCase('fr')}` : ''}`
-  return [p.job && `💼 ${qualify(p.job)}`, p.household && `${family} ${(p.job ? p.household : qualify(p.household)).replace(/ · (?=un enfant|deux enfants|trois enfants)/g, ', ')}`,
-    p.location && `📍 ${p.location}`, !p.job && !p.household && qualification && `👤 ${qualification}`].filter(Boolean).join('\n')
+  const introduction = [p.job && `💼 ${p.job}`, p.household && `${family} ${p.household.replace(/ · (?=(?:un|deux|trois) enfants?)/g, ', ')}`, p.location && `📍 ${p.location}`].filter(Boolean)
+  if (qualification && !normalize(introduction.join(' ')).includes(normalize(qualification))) introduction[0] = `${introduction[0] || '👤'} · ${qualification.toLowerCase()}`
+  return introduction.join('\n')
 }
 export function budgetTransfers(profile, heading = 'Versements') {
   const n = normalize(heading)
@@ -63,5 +64,5 @@ export function budgetTransfers(profile, heading = 'Versements') {
 export function budgetGeneralQuestion(profile, question) {
   const name = profile.name
   const owner = / et /.test(name) ? 'leur' : /^(un |une )/.test(name) ? 'ce' : 'son'
-  return question.replace('cet exemple de budget', `${owner} budget`).replace('Ce budget prévu', `${owner[0].toUpperCase()}${owner.slice(1)} budget`)
+  return question.replace('cet exemple de budget', `${owner} budget`).replace('Ce budget prévu', 'Ce budget').replace(/budget personnel/gi, 'budget')
 }
