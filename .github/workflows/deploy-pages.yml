@@ -53,6 +53,17 @@ jobs:
           fetch-depth: 0
           # Keep complete ancestry; fetch historical file bodies only when needed.
           filter: blob:none
+          # This selector reads workflow metadata and five small scripts only.
+          # A sparse worktree keeps the full commit graph while avoiding a
+          # multi-gigabyte checkout that cannot complete within its 5-minute guard.
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows
+            scripts/resolve-pages-snapshot.mjs
+            scripts/classify-deploy-scope.mjs
+            scripts/pages-gate-definition.mjs
+            scripts/pages-gate-definition.json
+            scripts/public-validation-scope.mjs
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
