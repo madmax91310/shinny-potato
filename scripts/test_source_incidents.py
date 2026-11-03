@@ -153,4 +153,20 @@ class SourceIncidents(unittest.TestCase):
                     with self.subTest(defect=defect), self.assertRaises((ValueError, KeyError)):
                         parse_share(bad, share, now)
 
+    def test_normal_positive_sectors_keep_independent_holdings_publication_date(self):
+        share = next(s for s in json.loads((ROOT/'scripts/additional-etf-sources.json').read_text())['instruments']
+                     if s['isin'] == 'IE00B14X4S71')
+        body = json.loads(gzip.decompress((ROOT/'scripts/fixtures/new-instruments/IE00B14X4S71.json.gz').read_bytes()))
+        sector = body['componentsByNameMap']['exposureBreakdowns']['containersByNameMap']['sector']['dataPointsByNameMap']
+        holdings = body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+        self.assertEqual(sector['fund']['value'], [99.89, 0.11])
+        self.assertNotEqual(sector['asOf']['value'], holdings['asOfDate']['value'])
+        result = parse_share(body, share, NOW)
+        self.assertEqual(result['sectors']['asOf'], '2026-10-29')
+        self.assertNotIn('weightConvention', result['sectors'], 'No signed reconciliation was performed')
+        # The signed exception still needs a matching complete holdings snapshot.
+        sector['fund']['value'] = [100.03, -0.03]
+        with self.assertRaisesRegex(ValueError, 'Signed allocation and holdings dates disagree'):
+            parse_share(body, share, NOW)
+
 if __name__=='__main__':unittest.main()
