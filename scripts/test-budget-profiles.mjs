@@ -1,3 +1,4 @@
+import './test-budget-presentation.mjs'
 import assert from 'node:assert/strict'
 import './test-budget-editorial-context.mjs'
 import { createHash } from 'node:crypto'
@@ -15,13 +16,13 @@ for (const p of BUDGET_PROFILES) {
   const text = buildBudgetText(p)
   assert(text.includes(budgetDisplayName(p)))
   assert(!/prénoms? fictifs?/.test(text))
-  assert(text.includes(budgetPublicPresentation(p).period), 'Public periods stay distinct from preparation dates; uncertain years remain in verification metadata')
+  assert(!text.split('\n')[0].includes(' — '), 'Dates stay in verification, outside the public title')
   assert(!text.includes(p.source.publisher), 'Sources remain available in the separate source reply')
   assert(!text.includes('Situation familiale non précisée'))
   assert(!/prénoms? fictifs?|scénario mensuel préparé|données de 2025|l’auteur|sa femme|la personne|à confirmer|placeholder|\.json|PR #/i.test(text), p.id)
   assert.equal(typeof BUDGET_EDITORIAL[p.id]?.publicIncomeNote, 'string', `Every profile needs a contextual editorial review: ${p.id}`)
   for (const row of budgetPublicIncomeRows(p)) assert(text.includes(`${row.label} : ${euro(row.amount, p.currency)}`), 'Even a single resource is detailed')
-  if (p.kind === 'prepared') assert(text.startsWith('Exemple de budget'), p.id)
+  if (p.kind === 'prepared') assert(/budget reconstitué|budget(?: individuel)? de référence/i.test(text), p.id)
   const a = analyzeBudget(p)
   const sumCents = key => p[key].reduce((n, r) => n + Math.round(r.amount * 100), 0)
   assert.equal(Math.round(a.balance * 100), sumCents('income') - sumCents('expenses') - sumCents('savings'))
@@ -30,7 +31,7 @@ for (const p of BUDGET_PROFILES) {
   for (const row of p.expenses) assert(text.includes(`${row.label} : ${euro(row.amount, p.currency)}`), row.label)
   const sections = budgetExpenseSections(p)
   assert.deepEqual(sections.flatMap(s => s.rows).map(r => r.label).sort(), p.expenses.map(r => r.label).sort(), 'Every expense appears once')
-  if (p.kind === 'planned') assert(text.includes('Budget prévu'))
+  if (p.kind === 'planned') assert.match(text, /budget prévu/i)
   if (p.age === null) assert(!/\d+ ans/.test(text.split('\n')[0]))
   assert(sourceReply(p).includes(p.source.url))
   assert(!/prépar|compléments|arrondis|prénoms? fictifs?|l’auteur|sa femme|vérification|\.json|PR\s*#/i.test(sourceReply(p)), `${p.id}: source replies must also be ready to publish`)
@@ -44,13 +45,13 @@ assert.match(buildBudgetText(grouped), /pas intégralement une épargne nouvelle
 const detailed = BUDGET_PROFILES.find(p => p.id === 'finary-alternant-19-2025-09-27')
 assert.equal(budgetExpenseSections(detailed).length, 2)
 assert.equal(budgetExpenseSections({ ...detailed, expenses: [...detailed.expenses, { label: 'Poste non ventilé', amount: 10 }] }).length, 1)
-assert(buildBudgetText(detailed).includes(`Reste avant versements : ${euro(200.01)}`))
-assert(buildBudgetText(detailed).includes(`Reste disponible après versements : ${euro(50.01)}`))
+assert(buildBudgetText(detailed).includes(`Reste avant épargne et investissements : ${euro(200.01)}`))
+assert(buildBudgetText(detailed).includes(`Reste après épargne et investissements : ${euro(50.01)}`))
 assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-ingenieur-aero-2025-11-30')), /net avant impôt/i)
 assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-fonctionnaire-30-2025-05-21')), /vacances ne sont pas comprises/)
 const techText = buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'reddit-tech-26-2026-02-06'))
-assert(techText.includes(`Reste avant versements : ${euro(830)}`))
-assert(techText.includes(`Reste disponible après versements : ${euro(230)}`))
+assert(techText.includes(`Reste avant épargne : ${euro(830)}`))
+assert(techText.includes(`Reste après épargne : ${euro(230)}`))
 assert(!techText.includes('Épargne déjà constituée'), 'Missing assets are not invented')
 const generatedDraft = { profile: structuredClone(BUDGET_PROFILES[0]), text: 'Ancien texte généré', edited: false }
 assert.equal(refreshBudgetDraft(generatedDraft).text, buildBudgetText(BUDGET_PROFILES[0]))
@@ -107,7 +108,8 @@ assert(!validBudget({ ...swiss, currency: 'USD' }))
 assert(!validBudget({ ...swiss, currency: null }))
 const futureApprentice = BUDGET_PROFILES.find(p => p.id === 'finary-etudiant-20-2025-03-19')
 assert.equal(futureApprentice.kind, 'planned')
-assert.match(buildBudgetText(futureApprentice), /septembre 2025/i)
+assert.match(futureApprentice.period, /septembre 2025/i)
+assert.match(buildBudgetText(futureApprentice), /budget prévu/i)
 assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-celibataire-31-2026-02-03')), /enveloppe calculée/)
 
 assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-batiment-21-2025-09-30')), /deux années suivant ce budget/)
@@ -147,7 +149,7 @@ console.log(`Budget profiles: ${BUDGET_PROFILES.length} source ledgers and edito
 for (const p of BUDGET_PROFILES.filter(p => p.kind === 'prepared')) {
   assert.equal(analyzeBudget(p).balance, p.provenance?.expectedBalance ?? 0, p.id)
   assert.match(sourceReply(p), /^Exemple de budget — source : /)
-  assert.match(buildBudgetText(p), /^Exemple de budget /)
+  assert.match(buildBudgetText(p), /^Budget /)
   assert(!sourceReply(p).includes('Montants déclarés par la personne'))
   assert(p.provenance?.method)
 }
@@ -191,7 +193,7 @@ for (const [id, income, expenses, transfers, balance] of [
   const p = BUDGET_PROFILES.find(p => p.id === id), a = analyzeBudget(p)
   assert.deepEqual([a.income,a.expenses,a.savings,a.balance],[income,expenses,transfers,balance],id)
   assert.equal(BUDGET_PROFILES.filter(q=>q.source.url===p.source.url).length,1,'No renamed source duplicate')
-  if(p.currency==='CHF') { assert(!buildBudgetText(p).includes('€')); assert.match(buildBudgetText(p), /Exemple de budget/); assert.match(buildBudgetText(p), /Reste[^\n]*(?:frais|repas)/); assert(!buildBudgetText(p).includes('Reste disponible')) }
+  if(p.currency==='CHF') { assert(!buildBudgetText(p).includes('€')); assert.match(buildBudgetText(p), /[Bb]udget de référence/); assert.match(buildBudgetText(p), /Reste[^\n]*(?:frais|repas)/); assert(!buildBudgetText(p).includes('Reste disponible')) }
 }
 const apprenticeReference = BUDGET_PROFILES.find(p=>p.id==='budget-conseil-apprenties_majeures-2025-2026')
 assert.equal(apprenticeReference.housing,'');assert.equal(apprenticeReference.family,'');assert.equal(apprenticeReference.children,'')
