@@ -161,8 +161,10 @@ def qualified(row,now):
     # Equity depositary receipts retain their own exact ISIN/FIGI; no
     # equivalence with the underlying stock is inferred (SES FDR proof in
     # reports/donnees-consolidees-2026-10-24/preuves/reprise-20261026/).
+    # Listed partnership units retain their own exact FIGI/share class/type.
+    # Never equate an LP with its parent, ordinary shares or another unit class.
     def identifiers(result):
-        return {(r.get('figi'),r.get('shareClassFIGI'),r.get('securityType')) for r in result.get('data',[])if r.get('marketSector')=='Equity'and (r.get('securityType') in ('Common Stock','ADR','NY Reg Shrs') or (r.get('securityType')=='Receipt' and r.get('securityType2')=='Depositary Receipt'))and re.fullmatch(r'BBG[A-Z0-9]{9}',(r.get('figi')or''))and re.fullmatch(r'BBG[A-Z0-9]{9}',(r.get('shareClassFIGI')or''))}
+        return {(r.get('figi'),r.get('shareClassFIGI'),r.get('securityType')) for r in result.get('data',[])if r.get('marketSector')=='Equity'and (r.get('securityType') in ('Common Stock','ADR','NY Reg Shrs') or (r.get('securityType')=='Receipt' and r.get('securityType2')=='Depositary Receipt') or (r.get('securityType')=='Ltd Part' and r.get('securityType2')=='Partnership Shares'))and re.fullmatch(r'BBG[A-Z0-9]{9}',(r.get('figi')or''))and re.fullmatch(r'BBG[A-Z0-9]{9}',(r.get('shareClassFIGI')or''))}
     source=identifiers(response[0]);matches=set()
     for job,result in zip(jobs[1:],response[1:]):
         if job.get('idType')!='ID_ISIN'or not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',job.get('idValue','')):raise ValueError('Invalid candidate ISIN')

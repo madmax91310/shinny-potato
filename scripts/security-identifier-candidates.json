@@ -264,6 +264,16 @@
       ],
       "sourceSha256": "f1e4263942b24a39741c87a42545a3211e9a8685047e24175cc00f4a535b2bd7",
       "method": "Hypothesis only from company reference; must pass independently matching exact SEDOL and ISIN FIGI queries; no name join"
+    },
+    {
+      "sedol": "BMV1436",
+      "isin": "US6687711084",
+      "name": "Nortonlifelock Inc (issuer portfolio label)",
+      "sourceUrls": [
+        "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE0000QLH0G6/holdings/index?idType=isin&loadType=initial",
+        "https://api.openfigi.com/v3/mapping"
+      ],
+      "method": "Lookup hypothesis only: retained exact issuer ISIN and independent SEDOL discovery. Fresh SEDOL/ISIN responses must match exact FIGI, share class and security type; no name/rename join."
     }
   ],
   "independentPortfolioFunds": [
