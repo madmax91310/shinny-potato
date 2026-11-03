@@ -4,6 +4,7 @@ import fs from 'node:fs/promises'
 import {chromium} from 'playwright'
 import {references}from'../src/pages/dca-profiles/records.js'
 import {equityChartObservations}from'./equity-chart-observations.mjs'
+import {selectDcaCountryObservation}from'./select-dca-country-observation.mjs'
 const isin='IE00B6R52259',source=JSON.parse(await fs.readFile('src/data/automated-etf.json','utf8'))[isin]
 const complete=JSON.parse(await fs.readFile('src/data/dca-complete-holdings.json','utf8'))[isin]
 const equityCharts=equityChartObservations(complete)
@@ -16,9 +17,18 @@ for(const field of ['countries','sectors']){
  if(Number.isFinite(source[field].portfolioWeightPct))assert(Math.abs(total-source[field].portfolioWeightPct)<1e-5)
  // A newer qualified equity-holdings snapshot has its own date and scope.
  // It must not be forced back to the older all-position NAV observation.
- const expected=equityCharts?.[field]??source[field]
+ // A current risk-country observation is a distinct contract from the published
+ // geography table; use its own date and weights when it is selected.
+ const fallback=field==='countries'?selectDcaCountryObservation(source[field],source):source[field]
+ const expected=equityCharts?.[field]??fallback
  assert.equal(reference[field].asOf,expected.asOf)
  if(equityCharts){assert.equal(reference[field].compatibility,expected.compatibility);assert.deepEqual(reference[field].rows,expected.rows)}
+ if(!equityCharts&&expected!==source[field]){
+  assert.equal(reference[field].sourceUrl,expected.sourceUrl)
+  assert.equal(reference[field].compatibility,`${expected.classificationMetadata.id}:fund`)
+  assert.equal(reference[field].basis,'fund')
+  assert.deepEqual(reference[field].rows,expected.rows.map(r=>({name:r.label||r.name,weightPct:r.weightPct})))
+ }
 }
 const port=4398,base=process.env.TEST_BASE_URL??`http://127.0.0.1:${port}/shinny-potato`,out=process.env.TEST_OUTPUT_DIR??'test-artifacts/acwi-allocation'
 const server=process.env.TEST_BASE_URL?null:spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port',String(port)],{stdio:'ignore'})
