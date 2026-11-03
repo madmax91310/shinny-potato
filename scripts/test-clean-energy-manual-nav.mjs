@@ -6,6 +6,8 @@ import {qualifyPreferredManualNav, isQualifiedAnnualPortfolioFund} from '../src/
 import {assetReturn, hasCompleteAutomaticWindow, computeYearlyPerf} from '../src/pages/portfolio-generator/performance.js'
 import {convertCalendarReturn} from '../src/data/calendar-fx.js'
 import {portfolioHistoryContract} from './lib/portfolio-history-contract.mjs'
+import {buildCustomDuel} from '../src/pages/portfolio-duels/lib.js'
+import {automationPaths, classify} from './classify-deploy-scope.mjs'
 const isin = 'IE00BK5BCH80', id = 'manual-' + isin, source = QUALIFIED_FUND_CALENDARS[isin]
 assert(source && qualifyPreferredManualNav(source))
 const matches = ASSETS.filter(a => a.isin === isin), duels = CATALOG.filter(a => a.isin === isin)
@@ -17,6 +19,8 @@ assert.equal(asset.returnCurrency, 'USD'); assert.equal(duel.role, 'complement')
 assert.equal(asset.manualOnly, true); assert.equal(hasCompleteAutomaticWindow(asset), false)
 assert.equal(portfolioHistoryContract(asset), 'partial-manual')
 assert.match(asset.confidenceNote, /valeur liquidative.*dollars.*réinvestis/)
+assert.equal(buildCustomDuel({left: [{id, pct: 100}], right: [{id: 'msci_world_ishares', pct: 100}]}).sources.find(s => s.isin === isin).note, asset.confidenceNote)
+assert.equal(classify(['src/data/manual-source-routes.json'], automationPaths()).dataOnly, false, 'Changing an admission policy still requires the full code gate')
 assert.deepEqual(Object.keys(asset.calendarReturns), ['2021', '2022', '2023', '2024', '2025'])
 for (const [year, native] of Object.entries(source.years)) {
   const expected = convertCalendarReturn(native, Number(year), 'USD', 'EUR')

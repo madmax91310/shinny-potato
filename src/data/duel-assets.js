@@ -160,6 +160,7 @@ const existingFundIsins = new Set([...allAutomatedFunds, ...routedFunds, ...expa
 existingFundIsins.add(stoxxIsin);
 const annualFunds = ANNUAL_PORTFOLIO_FUNDS.filter(a => !existingFundIsins.has(a.isin)).map(a => ({ ...a,
   label: a.name, exposure: a.isin, role: 'complement', group: ROLES.complement, currency: a.returnCurrency, values: a.r,
+  performanceNote: a.confidenceNote,
 }));
 export const CATALOG = [...annualFunds, ...allAutomatedFunds, ...equityItems, ...routedFunds, ...expansionFunds, ...fundItems, ...extraFunds, {
   id: 'stoxx600_bnp', isin: stoxxIsin, name: getInstrumentName(stoxxIsin),
