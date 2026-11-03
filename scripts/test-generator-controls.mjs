@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import './test-portfolio-history-contract.mjs';
 import './test-clean-energy-manual-nav.mjs';
+import './test-existing-manual-annual-routes.mjs';
 import { generatePortfolio, replacePortfolioAsset, getReplacementCandidates } from '../src/pages/portfolio-generator/engine.js';
 import { constructionIssues, constructionMetrics, diversityReport, overlapNotes } from '../src/pages/portfolio-generator/controls.js';
 import { PROFILES } from '../src/pages/portfolio-generator/theses.js';

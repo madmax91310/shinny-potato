@@ -37,5 +37,45 @@
     "source": "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/kiid",
     "existingDuelRole": "complement",
     "note": "Performances de la valeur liquidative de la part en euros, revenus réinvestis et frais inclus, arrondies au dixième par l’émetteur ; elles peuvent différer de sa cotation."
+  },
+  "IE00BMC38736": {
+    "id": "manual-IE00BMC38736",
+    "currency": "USD",
+    "instrumentType": "ETF",
+    "minimumYears": 3,
+    "category": "actions_larges",
+    "source": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+    "existingDuelRole": "complement",
+    "note": "Performances de la valeur liquidative de la part en dollars, revenus réinvestis et frais inclus ; conversion en euros aux changes historiques BCE. Elles peuvent différer de la cotation. Années complètes communes uniquement."
+  },
+  "LU1875395870": {
+    "id": "manual-LU1875395870",
+    "currency": "EUR",
+    "instrumentType": "ETF",
+    "minimumYears": 3,
+    "category": "actions_larges",
+    "source": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
+    "existingDuelRole": "complement",
+    "note": "Performances de la valeur liquidative de la part en euros, revenus réinvestis et frais inclus ; Elles peuvent différer de la cotation. Années complètes communes uniquement."
+  },
+  "FR0011550185": {
+    "id": "manual-FR0011550185",
+    "currency": "EUR",
+    "instrumentType": "ETF",
+    "minimumYears": 3,
+    "category": "actions_larges",
+    "source": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
+    "existingDuelRole": "complement",
+    "note": "Performances de la valeur liquidative de la part en euros, revenus réinvestis et frais inclus ; Elles peuvent différer de la cotation. Années complètes communes uniquement."
+  },
+  "IE00BYPC1H27": {
+    "id": "manual-IE00BYPC1H27",
+    "currency": "USD",
+    "instrumentType": "ETF",
+    "minimumYears": 3,
+    "category": "obligataire",
+    "source": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "existingDuelRole": "complement",
+    "note": "Performances de la valeur liquidative de la part en dollars, revenus réinvestis et frais inclus ; conversion en euros aux changes historiques BCE. Elles peuvent différer de la cotation. Années complètes communes uniquement."
   }
 }
