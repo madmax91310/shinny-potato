@@ -452,10 +452,10 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Amundi STOXX Europe 600 Basic Materials UCITS ETF | LU1834983634 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
 | Amundi STOXX Europe 600 Healthcare UCITS ETF | LU1834986900 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi STOXX Europe 600 Technology UCITS ETF | LU1834988518 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
-| Xtrackers Nikkei 225 UCITS ETF | LU1875395870 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| Xtrackers Nikkei 225 UCITS ETF | LU1875395870 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | Amundi Core EUR Corporate Bond UCITS ETF | LU1931975079 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
 | Amundi Prime Japan UCITS ETF | LU2089238385 | Oui | Oui | missing | Oui / Oui | Complète | Oui / Oui / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
-| Xtrackers Nikkei 225 UCITS ETF 1C (Acc) | LU2196470426 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| Xtrackers Nikkei 225 UCITS ETF 1C (Acc) | LU2196470426 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | Xtrackers Scalable MSCI AC World UCITS ETF 1C | LU2903252349 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | Amundi Core EUR High Yield Bond UCITS ETF | LU2970735911 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | — / — / Oui | — |
 | Amundi STOXX Europe Defense UCITS ETF | LU3038520774 | Oui | Oui | missing | Oui / Oui | Complète | — / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
