@@ -1,0 +1,3653 @@
+{
+  "reddit-actif-2026-09-27": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le logement, les charges et les courses restent groupés à 750 €. La voiture est connue ; entretien, soins non remboursés, vêtements et cadeaux ne sont pas isolés. Aucun pays ni foyer n’est déduit.",
+    "coverage": {
+      "alimentation_hygiene": "grouped",
+      "energie_eau": "grouped",
+      "telecoms": "grouped",
+      "assurances_sante": "prepared_assumption",
+      "transports": "prepared_assumption",
+      "vetements": "prepared_assumption",
+      "loisirs": "grouped",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Provision entretien automobile",
+        "amount": 50,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 600,
+        "reason": "Voiture de 2005 connue ; distinct de l’assurance et du carburant.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Soins non remboursés",
+        "amount": 20,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Reste à charge préparé, pas une seconde prime d’assurance.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Vêtements",
+        "amount": 35,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Pas de vêtement isolé dans le groupe logement/charges/courses.",
+        "covers": [
+          "vetements"
+        ]
+      },
+      {
+        "label": "Provision cadeaux",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 360,
+        "reason": "Dépense irrégulière distincte des sorties, annualisée à 360 €.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "reddit-couple-nord-2026-07-09": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les 1 367 € de fixes restent intacts, sans nouvelle ventilation de crédit. Les courses comprennent déjà hygiène et chats. La marge de 347 € devait encore payer santé, loisirs et autres variables.",
+    "coverage": {
+      "alimentation_hygiene": "grouped",
+      "energie_eau": "grouped",
+      "telecoms": "grouped",
+      "assurances_sante": "prepared_assumption",
+      "transports": "grouped",
+      "vetements": "prepared_assumption",
+      "loisirs": "prepared_assumption",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Soins non remboursés",
+        "amount": 40,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Distinct des primes éventuellement présentes dans les fixes.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Vêtements du foyer",
+        "amount": 60,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Pour les deux adultes et les besoins occasionnels de l’enfant, sans âge inventé.",
+        "covers": [
+          "vetements"
+        ]
+      },
+      {
+        "label": "Loisirs",
+        "amount": 60,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La marge devait encore payer les loisirs ; les trajets restent dans les 150 € existants.",
+        "covers": [
+          "loisirs"
+        ]
+      },
+      {
+        "label": "Provision cadeaux et remplacements",
+        "amount": 80,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 960,
+        "reason": "Dépenses irrégulières distinctes des fixes et des courses.",
+        "covers": [
+          "cadeaux_vacances",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "public": {
+      "budget": {
+        "transfersHeading": "Épargne de sécurité prévue"
+      }
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": true
+  },
+  "reddit-salarie-26-2026-01-04": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le logement parental est conservé sans loyer ajouté. Les courses existent déjà. Entretien de la voiture, vêtements et achats occasionnels sont préparés séparément ; aucun paiement parental supplémentaire n’est supposé.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "external",
+      "telecoms": "unknown",
+      "assurances_sante": "unknown",
+      "transports": "prepared_assumption",
+      "vetements": "prepared_assumption",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "unknown",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Provision entretien automobile",
+        "amount": 40,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Voiture connue, hors assurance et carburant.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Vêtements",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Dépense personnelle, sans nouveau logement parental.",
+        "covers": [
+          "vetements"
+        ]
+      },
+      {
+        "label": "Provision cadeaux et achats occasionnels",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Petits achats irréguliers non ventilés dans les six lignes source.",
+        "covers": [
+          "cadeaux_vacances",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": true
+  },
+  "finary-ingenieur-aero-2025-11-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "L’assurance du prêt est comprise dans les 780 €. Santé, coiffure, cantine, cadeaux et voyages sont déjà couverts. Seul un entretien automobile distinct du carburant et des crédits est ajouté.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "prepared_assumption",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Provision entretien automobile et contrôle technique",
+        "amount": 40,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Les crédits, assurances et carburant ne comprennent pas cette provision de 480 € par an.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [
+      {
+        "label": "Versement PEA au budget",
+        "amount": 300,
+        "category": "other"
+      }
+    ],
+    "savingsReason": "408 € déclarés restent dans la photographie ; 300 € sont une proposition préparée laissant une marge après entretien.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "finary-alternant-22-2025-05-15": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les 400 € couvrent essence, train, assurances, sport et abonnements. La participation familiale reste groupée. Entretien automobile, vêtements et cadeaux manquent à cette répartition qui verse tout le reste au PEA.",
+    "coverage": {
+      "alimentation_hygiene": "grouped",
+      "energie_eau": "grouped",
+      "telecoms": "grouped",
+      "assurances_sante": "grouped",
+      "transports": "prepared_assumption",
+      "vetements": "prepared_assumption",
+      "loisirs": "grouped",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Provision entretien automobile",
+        "amount": 50,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 600,
+        "reason": "450 km hebdomadaires connus ; distinct du forfait essence/train/assurances/abonnements.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Vêtements et achats personnels",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La participation familiale ne sert pas à inventer une prise en charge des vêtements.",
+        "covers": [
+          "vetements"
+        ]
+      },
+      {
+        "label": "Provision cadeaux",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 360,
+        "reason": "Cadeaux irréguliers hors forfait d’abonnements.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [
+      {
+        "label": "Versement mensuel prévu sur le PEA",
+        "amount": 750,
+        "category": "other",
+        "sourceLabel": "Versement mensuel annoncé sur le PEA"
+      }
+    ],
+    "savingsReason": "Le versement source de 1 000 € pouvait provenir du livret ; la préparation propose 750 € financés par les ressources mensuelles, sans retrait de patrimoine supposé.",
+    "public": {
+      "paragraphs": [
+        "Lucas investit sur son PEA depuis février 2023. Il détient environ 13 000 € sur ce PEA, 7 000 € sur un Livret A, 7 000 € sur un PEE, 500 € en assurance-vie et 500 € en cryptomonnaies.",
+        "Lucas vise le long terme avec des ETF World et Nasdaq, sans projet immobilier. Il se demande ce qu’une assurance-vie investie elle aussi en actions mondiales lui apporterait. Ses trajets atteignent 450 km par semaine ; il a déjà financé certains versements sur le PEA depuis le Livret A."
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "finary-fonctionnaire-30-2025-05-21": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le tableau très détaillé couvre déjà entretien automobile, logement et cadeaux. Les vacances étaient explicitement payées depuis le livret sans provision mensuelle. Baisse de salaire et sport futurs restent hors des flux courants.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "unknown",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "unknown"
+    },
+    "additions": [
+      {
+        "label": "Provision vacances",
+        "amount": 100,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 1200,
+        "reason": "Vacances explicitement absentes du tableau et financées depuis le livret : provision illustrative de 1 200 € par an.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "public": {
+      "paragraphs": [
+        "Après l’achat de son appartement avec un prêt familial sans intérêts, Nicolas conserve 7 360 € sur Livret A et 3 000 € sur un PEA ouvert un mois plus tôt.",
+        "Nicolas envisageait 500 € par mois sur un ETF S&P 500. Il réglait ses vacances depuis son Livret A et prévoyait aussi environ 100 € de salaire en moins ainsi qu’un abonnement sportif de 24,99 €."
+      ],
+      "display": {
+        "essential": [
+          "Remboursement du prêt familial",
+          "Courses",
+          "Énergie",
+          "Charges de copropriété",
+          "Assurance automobile",
+          "Carburant",
+          "Entretien automobile et contrôle technique",
+          "Entretien chaudière et climatisation",
+          "Assurance habitation",
+          "Internet fibre",
+          "Téléphone mobile",
+          "Taxe foncière du parking"
+        ],
+        "discretionary": [
+          "Restaurants",
+          "Dépenses plaisir",
+          "Cadeaux et divers mensualisés",
+          "Coiffeur",
+          "Netflix",
+          "Amazon Prime",
+          "Disney+",
+          "Provision vacances"
+        ]
+      }
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "finary-alternant-19-2025-09-27": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les charges du logement ne sont pas redoublées par une énergie inventée. Assurance habitation et soins variables sont préparés. Loisirs et extras restent une enveloppe pouvant couvrir vêtements et petits achats.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "prepared_assumption",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "unknown"
+    },
+    "additions": [
+      {
+        "label": "Assurance habitation",
+        "amount": 15,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Locataire connu ; distinct des charges et sans nouvelle prime de mutuelle supposée.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Provision soins non remboursés",
+        "amount": 15,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 180,
+        "reason": "Reste à charge illustratif, pas une cotisation employeur inventée.",
+        "covers": [
+          "assurances_sante"
+        ]
+      }
+    ],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "public": {
+      "questions": [
+        "Sans compter sur le bonus, combien garderiez-vous sur le livret avant d’investir ?",
+        "Son objectif vous paraît-il réaliste avec ce rythme de versements ?"
+      ],
+      "display": {
+        "essential": [
+          "Loyer",
+          "Charges du logement",
+          "Courses",
+          "Téléphone",
+          "Assurance habitation",
+          "Provision soins non remboursés"
+        ],
+        "discretionary": [
+          "Loisirs et extras",
+          "iCloud"
+        ]
+      }
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "reddit-couple-35-2025-10-15": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les argents de poche couvrent les achats personnels ; pas de vêtements ajoutés une seconde fois. Le leasing pourrait inclure l’entretien, qui reste inconnu. Habitation, soins et vacances sont provisionnés sans inventer un enfant déjà né.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "prepared_assumption",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "unknown"
+    },
+    "additions": [
+      {
+        "label": "Assurance habitation",
+        "amount": 20,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Distincte de l’assurance automobile déjà présente.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Provision soins non remboursés",
+        "amount": 30,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 360,
+        "reason": "Reste à charge, pas une deuxième cotisation santé.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 150,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 1800,
+        "reason": "Les argents de poche restent groupés ; cette provision annuelle de 1 800 € couvre les vacances.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "public": {
+      "paragraphs": [
+        "La fin du remboursement du téléphone pourrait laisser davantage de place à leur projet d’enfant."
+      ],
+      "display": {
+        "essential": [
+          "Loyer",
+          "Électricité",
+          "Transports en commun",
+          "Loyers des deux mères à l’étranger",
+          "Frais bancaires",
+          "Téléphone de Louis",
+          "Internet",
+          "Téléphone de Clara",
+          "Leasing automobile",
+          "Assurance automobile",
+          "Carburant",
+          "Courses",
+          "Achat du téléphone en dix fois",
+          "Assurance habitation",
+          "Provision soins non remboursés"
+        ],
+        "discretionary": [
+          "Deux abonnements de sport",
+          "Google Drive",
+          "Cinéma UGC",
+          "Spotify",
+          "Canal+",
+          "Argent de poche de Louis",
+          "Argent de poche de Clara",
+          "Sorties, restaurants, cafés et musées",
+          "Provision vacances"
+        ]
+      }
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "reddit-tech-26-2026-02-06": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "La participation parentale, les abonnements et les 600 € de vie courante sont des enveloppes larges : les détailler par de nouveaux montants doublerait possiblement les dépenses. Le reliquat n’est pas une épargne certaine.",
+    "coverage": {
+      "alimentation_hygiene": "grouped",
+      "energie_eau": "grouped",
+      "telecoms": "grouped",
+      "assurances_sante": "grouped",
+      "transports": "grouped",
+      "vetements": "grouped",
+      "loisirs": "grouped",
+      "cadeaux_vacances": "grouped",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "public": {
+      "paragraphs": [
+        "Il reste 230 € après le versement sur le livret, mais des achats ou des abonnements peuvent encore passer sur le compte."
+      ]
+    },
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "reddit-alternant-20-2025-09-03": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Logé et nourri est explicite : aucun loyer ni alimentation ne sont ajoutés. Le forfait fixe couvre déjà assurance, essence et téléphone. Une provision d’entretien automobile reste distincte.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "external",
+      "telecoms": "unknown",
+      "assurances_sante": "unknown",
+      "transports": "prepared_assumption",
+      "vetements": "unknown",
+      "loisirs": "listed",
+      "cadeaux_vacances": "unknown",
+      "enfants_garde": "unknown",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Provision entretien automobile",
+        "amount": 40,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Logement et repas sont couverts par les parents, pas l’entretien du véhicule.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [
+      {
+        "label": "Livret A",
+        "amount": 200,
+        "category": "other"
+      },
+      {
+        "label": "PEA",
+        "amount": 100,
+        "category": "other"
+      },
+      {
+        "label": "Bricks",
+        "amount": 60,
+        "category": "other"
+      },
+      {
+        "label": "Cryptomonnaies",
+        "amount": 20,
+        "category": "other"
+      }
+    ],
+    "savingsReason": "Les 500 € du projet source restent conservés ; la préparation laisse 80 € après les besoins et 380 € de versements.",
+    "forecast": true,
+    "public": {
+      "questions": [
+        "Quelle part des versements garderiez-vous sur le livret avant d’investir le reste ?"
+      ],
+      "display": {
+        "essential": [
+          "Assurance automobile, essence et téléphone",
+          "Provision entretien automobile"
+        ],
+        "discretionary": [
+          "Enveloppe sorties et plaisirs"
+        ]
+      }
+    },
+    "financialChange": true,
+    "status": "incomplete_completed"
+  },
+  "finary-cyber-24-2026-08-27": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les 350 € incluent courses, loisirs, restaurants et autres dépenses. Aucun forfait supplémentaire n’est empilé sur cette enveloppe sans détail. Le prêt étudiant ne commence que plus tard ; aucun remboursement actuel n’est inventé.",
+    "coverage": {
+      "alimentation_hygiene": "grouped",
+      "energie_eau": "grouped",
+      "telecoms": "grouped",
+      "assurances_sante": "grouped",
+      "transports": "grouped",
+      "vetements": "grouped",
+      "loisirs": "grouped",
+      "cadeaux_vacances": "grouped",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "finary-ingenieur-21-2025-03-08": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le loyer est déjà net d’APL. Des ressources parentales de 400 € sont déjà comptées et ne sont pas doublées. Énergie, télécoms, habitation et petites dépenses non détaillées sont préparées sans nouvelle aide.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "prepared_assumption",
+      "telecoms": "prepared_assumption",
+      "assurances_sante": "prepared_assumption",
+      "transports": "listed",
+      "vetements": "prepared_assumption",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "unknown",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Énergie et eau",
+        "amount": 80,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Hypothèse de charges distinctes du loyer net d’APL.",
+        "covers": [
+          "energie_eau"
+        ]
+      },
+      {
+        "label": "Téléphone et internet",
+        "amount": 25,
+        "category": "bills",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Pas de forfait détaillé ; aucune seconde APL ni aide parentale ajoutée.",
+        "covers": [
+          "telecoms"
+        ]
+      },
+      {
+        "label": "Assurance habitation",
+        "amount": 15,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Locataire ; cotisation distincte des loisirs.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Soins non remboursés",
+        "amount": 20,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Reste à charge illustratif sans inventer de prime employeur.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Vêtements et hygiène",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Complément personnel distinct de l’alimentation et des loisirs.",
+        "covers": [
+          "alimentation_hygiene",
+          "vetements"
+        ]
+      },
+      {
+        "label": "Provision cadeaux et remplacements",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Dépenses annuelles préparées sur douze mois.",
+        "covers": [
+          "cadeaux_vacances",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "finary-alternant-21-2025-05-08": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Vie quotidienne et forfait transports/assurances/abonnements sont des enveloppes groupées. Le logement parental reste pris en charge ; les détails ne permettent pas d’ajouter avec certitude de nouvelles charges sans double compte.",
+    "coverage": {
+      "alimentation_hygiene": "grouped",
+      "energie_eau": "grouped",
+      "telecoms": "grouped",
+      "assurances_sante": "grouped",
+      "transports": "grouped",
+      "vetements": "grouped",
+      "loisirs": "grouped",
+      "cadeaux_vacances": "grouped",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "finary-locataire-25-2025-11-08": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les 900 € incluent déjà sa part des charges. Les 600 € de courses, restaurants, abonnements et vie courante restent groupés. Aucun salaire de conjoint ni poste annuel déjà susceptible d’y figurer n’est ajouté.",
+    "coverage": {
+      "alimentation_hygiene": "grouped",
+      "energie_eau": "grouped",
+      "telecoms": "grouped",
+      "assurances_sante": "grouped",
+      "transports": "grouped",
+      "vetements": "grouped",
+      "loisirs": "grouped",
+      "cadeaux_vacances": "grouped",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "finary-batiment-21-2025-09-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le logement est gratuit, pas nécessairement les repas. Alimentation, vêtements, téléphone et provisions personnelles manquent à une répartition intégrale du salaire ; aucune personne payeuse ni aide nouvelle n’est inventée.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "external",
+      "telecoms": "prepared_assumption",
+      "assurances_sante": "unknown",
+      "transports": "listed",
+      "vetements": "prepared_assumption",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "unknown",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Alimentation",
+        "amount": 250,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Logement gratuit ne prouve pas repas gratuits.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Hygiène",
+        "amount": 25,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Consommables personnels non isolés.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Téléphone mobile",
+        "amount": 15,
+        "category": "bills",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Hors forfait explicitement consacré aux déplacements.",
+        "covers": [
+          "telecoms"
+        ]
+      },
+      {
+        "label": "Vêtements",
+        "amount": 35,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Pas de prise en charge extérieure documentée.",
+        "covers": [
+          "vetements"
+        ]
+      },
+      {
+        "label": "Provision cadeaux et achats occasionnels",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Dépenses annuelles distinctes des loisirs et transports.",
+        "covers": [
+          "cadeaux_vacances",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [
+      {
+        "label": "Livret A",
+        "amount": 500
+      },
+      {
+        "label": "PEA",
+        "amount": 175
+      },
+      {
+        "label": "CTO",
+        "amount": 50
+      }
+    ],
+    "savingsReason": "Les 1 200 € de versements source ne financeraient pas ces besoins. La préparation retient 725 €, sans compléter les ressources.",
+    "public": {
+      "paragraphs": [
+        "Antoine a 23 500 € sur des livrets et 1 500 € sur PEA et compte-titres. Il souhaite investir à long terme.",
+        "Antoine aimerait profiter de ses compétences dans le bâtiment pour rénover un logement, mais hésite entre sa résidence principale et un premier bien locatif."
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "finary-etudiant-20-2025-03-19": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "La participation au foyer du père reste groupée ; le scénario la conserve pour logement et repas à domicile. Repas extérieurs, mobile, vêtements et cadeaux sont préparés séparément, sans nouveau versement PEA décidé.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "grouped",
+      "telecoms": "prepared_assumption",
+      "assurances_sante": "grouped",
+      "transports": "grouped",
+      "vetements": "prepared_assumption",
+      "loisirs": "grouped",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [
+      {
+        "label": "Repas hors du foyer",
+        "amount": 80,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La participation au foyer reste groupée pour logement et repas à domicile ; repas extérieurs préparés séparément.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Téléphone mobile",
+        "amount": 15,
+        "category": "bills",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Forfait personnel, sans seconde charge de logement.",
+        "covers": [
+          "telecoms"
+        ]
+      },
+      {
+        "label": "Vêtements et hygiène",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Hors sport et compléments de l’enveloppe de 100 €.",
+        "covers": [
+          "alimentation_hygiene",
+          "vetements"
+        ]
+      },
+      {
+        "label": "Provision cadeaux",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 360,
+        "reason": "Provision annuelle personnelle.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": true
+  },
+  "finary-celibataire-31-2026-02-03": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les 895 € sont une enveloppe calculée de dépenses courantes couvrant le reste du budget. Le voyage ponctuel de 2 000 € et le transfert de capital de 5 000 € restent dans le récit ; aucun calendrier de mensualisation n’est inventé.",
+    "coverage": {
+      "alimentation_hygiene": "grouped",
+      "energie_eau": "grouped",
+      "telecoms": "grouped",
+      "assurances_sante": "grouped",
+      "transports": "grouped",
+      "vetements": "grouped",
+      "loisirs": "grouped",
+      "cadeaux_vacances": "grouped",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "finary-frontalier-37-2025-06-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les 2 000 € de dépenses personnelles restent groupés. Véhicule et carte essence sont de fonction : aucun carburant ni assurance automobile personnels ne sont ajoutés. Les futurs loyers ne sont pas des ressources actuelles.",
+    "coverage": {
+      "alimentation_hygiene": "grouped",
+      "energie_eau": "grouped",
+      "telecoms": "grouped",
+      "assurances_sante": "grouped",
+      "transports": "grouped",
+      "vetements": "grouped",
+      "loisirs": "grouped",
+      "cadeaux_vacances": "grouped",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "finary-bois-18-2025-10-16": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Loyer et alimentation sont des moyennes de fourchettes. Les assurances et abonnements ne sont pas ventilés à nouveau. Entretien automobile, vêtements et remplacements du logement complètent le projet d’installation.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "prepared_assumption",
+      "vetements": "prepared_assumption",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "unknown",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Vêtements",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Distinct des loisirs et courses.",
+        "covers": [
+          "vetements"
+        ]
+      },
+      {
+        "label": "Provision entretien automobile",
+        "amount": 40,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Distinct du carburant et des assurances.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Provision équipement et cadeaux",
+        "amount": 50,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 600,
+        "reason": "Petits équipements et achats annuels ; aucun achat immobilier ni crédit inventé.",
+        "covers": [
+          "cadeaux_vacances",
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "public": {
+      "paragraphs": [
+        "Enzo envisage un loyer de 450 à 650 € et des courses de 200 à 300 €. Ces deux postes peuvent donc faire varier les dépenses de 150 € autour du montant présenté. Il se demande combien investir une fois installé, tout en vivant confortablement."
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": true
+  },
+  "mustachian-ingenieur-28-2025-08-16": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le bilan regroupe les dépenses moyennes observées, y compris vêtements, cadeaux, santé et vacances. Les ressources incluent des éléments exceptionnels : aucune nouvelle capacité d’épargne régulière n’est déduite.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "prepared-nicolas1499-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le groupe shopping/coiffure/loisirs/bricolage couvre déjà achats et logement. La garde occasionnelle, les soins non remboursés et l’entretien des deux voitures sont préparés ; aucune aide de garde n’est inventée.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "prepared_assumption",
+      "transports": "prepared_assumption",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "prepared_assumption",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Garde occasionnelle de l’enfant",
+        "amount": 150,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Hypothèse de garde occasionnelle pour l’enfant de deux ans ; aucun mode de garde habituel ni aide ne sont attribués à la source.",
+        "covers": [
+          "enfants_garde"
+        ]
+      },
+      {
+        "label": "Provision soins non remboursés",
+        "amount": 30,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 360,
+        "reason": "Les 222 € couvrent habitation et voitures, pas une seconde mutuelle.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Provision entretien des deux voitures",
+        "amount": 80,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 960,
+        "reason": "Deux voitures connues ; hors assurance et carburant.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [
+      {
+        "label": "Épargne",
+        "amount": 150
+      }
+    ],
+    "savingsReason": "Les 504 € préparés auparavant ne tiennent plus ; proposition de 150 € sans retrait sur la donation.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "prepared-carl78-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les charges énergétiques de sa quote-part et l’hygiène ne sont pas explicites dans le loyer. Les autres dépenses annuelles sont déjà couvertes par vacances et cadeaux/imprévus. Le revenu de sa compagne reste exclu.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "prepared_assumption",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "unknown"
+    },
+    "additions": [
+      {
+        "label": "Part de l’énergie et de l’eau",
+        "amount": 40,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Quote-part préparée hors part de loyer ; revenu de la compagne toujours exclu.",
+        "covers": [
+          "energie_eau"
+        ]
+      },
+      {
+        "label": "Hygiène et entretien courant",
+        "amount": 20,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Distinct des vêtements/coiffure et du loyer.",
+        "covers": [
+          "alimentation_hygiene",
+          "entretien_logement"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [
+      {
+        "label": "PEA",
+        "amount": 900
+      },
+      {
+        "label": "Épargne disponible",
+        "amount": 150
+      }
+    ],
+    "savingsReason": "Répartition préparée réduite à 1 050 € pour conserver une marge, sans prétendre modifier les versements authentiques.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "prepared-theoo-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Logement, énergie et internet sont déjà regroupés à 700 €. Déplacements, téléphone, soins, vêtements et imprévus sont présents. Aucun futur remboursement étudiant ni hausse de salaire ne sont ajoutés.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "unknown"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "prepared-gritz-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le budget couvre déjà chien, soins, vacances et imprévus groupés. Aucun mode de transport n’est connu : une enveloppe de déplacements courants est proposée sans inventer de voiture ni crédit.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "prepared_assumption",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [
+      {
+        "label": "Déplacements courants",
+        "amount": 80,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Aucun mode ni véhicule inventé : enveloppe personnelle de déplacements.",
+        "covers": [
+          "transports"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [
+      {
+        "label": "PEA",
+        "amount": 350
+      },
+      {
+        "label": "PEL",
+        "amount": 28
+      }
+    ],
+    "savingsReason": "PEA préparé à 350 €, PEL existant à 28 €, reste conservé disponible.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "prepared-tom281-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Entretien moto et vacances sont déjà mensualisés. Les divers couvrent les petites dépenses non isolées. L’interprétation antérieure de TR en avantage repas reste une hypothèse héritée, pas une nouvelle ressource ni une certitude de source.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "unknown"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "prepared-alessgiu-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Énergie/eau, transports, santé, vêtements/hygiène et cadeaux/imprévus sont présents. Vacances non décrites : aucun voyage n’est imposé. Les enveloppes déjà préparées sont conservées.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "prepared-xiaolongbao641-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Entretien du logement, santé, cadeaux/divers, vacances et transports sont déjà couverts. Les revenus restent la moyenne de la fourchette connue, sans hausse future ni double compte des salaires luxembourgeois.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "prepared-abar4-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le bilan annuel comprend 1 070 CHF non classés : les télécoms ou achats non ventilés ne sont pas réputés gratuits, mais ne peuvent être ajoutés une seconde fois au total annuel. Le bébé n’est pas compté comme déjà né.",
+    "coverage": {
+      "alimentation_hygiene": "grouped",
+      "energie_eau": "grouped",
+      "telecoms": "grouped",
+      "assurances_sante": "grouped",
+      "transports": "grouped",
+      "vetements": "grouped",
+      "loisirs": "grouped",
+      "cadeaux_vacances": "grouped",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "public": {
+      "budget": {
+        "incomeNote": "Le budget précède la naissance attendue en février 2026. Les impôts sont compris dans les dépenses."
+      },
+      "questions": [
+        "Avant une naissance, quelle réserve garderiez-vous avec un seul revenu ?",
+        "Garderiez-vous autant de métaux précieux dans leur portefeuille ?"
+      ]
+    },
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "prepared-justbob-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le bilan annuel comprend voyages, électronique, santé ponctuelle et 5 000 CHF non classés. L’opération n’est pas transformée en abonnement mensuel. Aucun poste supplémentaire n’est superposé au total annuel.",
+    "coverage": {
+      "alimentation_hygiene": "grouped",
+      "energie_eau": "grouped",
+      "telecoms": "grouped",
+      "assurances_sante": "grouped",
+      "transports": "grouped",
+      "vetements": "grouped",
+      "loisirs": "grouped",
+      "cadeaux_vacances": "grouped",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "prepared-markus654-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le mobilier de cuisine (35) et les plantes (14) donnent 49 CHF, pas les 48 préparés pour forcer l’équilibre. La ligne est rétablie. Les versements source et leur écart de 1 CHF restent dans la photographie ; la proposition ETF compatible laisse 70 CHF disponibles.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "expenseCorrections": [
+      {
+        "label": "Équipement du logement et plantes",
+        "amount": 49,
+        "origin": "declared-source",
+        "reason": "35 CHF de mobilier + 14 CHF de plantes dans provenance.original ; correction du précédent ajustement à 48 pour forcer zéro."
+      }
+    ],
+    "savingsPlan": [
+      {
+        "label": "Troisième pilier",
+        "amount": 605
+      },
+      {
+        "label": "ETF",
+        "amount": 2000
+      }
+    ],
+    "savingsReason": "Les 605 + 2 071 CHF source restent dans la photographie et leur écart de 1 CHF est documenté. Le versement ETF préparé de 2 000 CHF laisse 70 CHF disponibles, sans forcer le solde à zéro.",
+    "public": {
+      "budget": {
+        "incomeNote": "Les impôts sont comptés dans les dépenses."
+      }
+    },
+    "financialChange": true,
+    "status": "source_correction",
+    "forecast": false
+  },
+  "prepared-lot2-01-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Sa quote-part fixe de 900 € et ses parts variables couvrent le foyer ; téléphone/santé/assurances et cadeaux/dépenses occasionnelles sont déjà regroupés. Ne pas inventer le salaire du conjoint ni une seconde facture familiale.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "grouped",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "prepared-lot2-02-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "École, activités, énergie/eau, assurances/santé, voiture/carburant et hygiène sont présents. Petits remplacements du logement et cadeaux annuels complètent les dépenses ; la réserve n’est pas une épargne réalisée.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "listed",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Provision équipement du logement",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Petits remplacements distincts du loyer et des charges.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Provision cadeaux",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Cadeaux annuels distincts des projets encore à financer et de la réserve.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [
+      {
+        "label": "Réserves pour projets et imprévus",
+        "amount": 800,
+        "category": "other"
+      }
+    ],
+    "savingsReason": "La réserve de 1 050 € était une affectation préparée, pas une épargne attestée. Proposition de 800 €, avec marge disponible de 170 €. La ligne voiture/carburant reste groupée, sans second entretien auto supposé.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "prepared-lot2-03-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le budget couvre école, transports et santé, mais l’hygiène ménagère et certaines dépenses annuelles n’étaient pas isolées. Les aides non chiffrées restent exclues ; les provisions vacances ne sont pas doublées.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "listed",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Hygiène et produits ménagers",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Distinct de l’alimentation et des vêtements.",
+        "covers": [
+          "alimentation_hygiene",
+          "entretien_logement"
+        ]
+      },
+      {
+        "label": "Provision cadeaux et achats annuels",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 360,
+        "reason": "Les vacances sont déjà dans une autre affectation, non doublées.",
+        "covers": [
+          "cadeaux_vacances",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [
+      {
+        "label": "Épargne de précaution",
+        "amount": 150,
+        "category": "other"
+      },
+      {
+        "label": "Réserve vacances et projets",
+        "amount": 100,
+        "category": "other"
+      }
+    ],
+    "savingsReason": "Répartitions hypothétiques de précaution et vacances réduites ; aucune aide non chiffrée ajoutée.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "prepared-lot2-04-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "La source ne donne que les indemnités personnelles de 2 000 € et une fourchette de dépenses du couple. Le salaire de conjoint de 2 600 € était inventé auparavant. La nouvelle version utilise uniquement les indemnités connues et une quote-part préparée des charges ; les totaux avant/après n’ont donc pas le même périmètre.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "listed",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "unknown"
+    },
+    "additions": [],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Suppression dans la version préparée du salaire hypothétique de 2 600 €. Seules les indemnités source de 2 000 € restent ; aucune ressource créée. Ancienne version et source primaire conservées.",
+    "scopeChange": "Ancien foyer à 4 600 € dont salaire du conjoint fictif ; nouvelle quote-part personnelle sur les seules indemnités connues de 2 000 €. Totaux non directement comparables.",
+    "profileOverrides": {
+      "name": "Élodie",
+      "age": 39,
+      "job": "Entrepreneure",
+      "household": "Mariée · deux enfants · part des charges du foyer",
+      "housing": "",
+      "incomeBasis": "Indemnités chômage",
+      "income": [
+        {
+          "label": "Indemnités chômage d’Élodie",
+          "amount": 2000,
+          "category": "other"
+        }
+      ],
+      "expenses": [
+        {
+          "label": "Part du logement et des charges",
+          "amount": 700,
+          "category": "housing",
+          "origin": "editorial-assumption",
+          "reason": "Quote-part mensuelle de 1 750 € entièrement préparée, sans déduire le revenu du conjoint ni prétendre connaître le partage réel des dépenses du couple de 3 600 à 4 000 €.",
+          "periodicity": "monthly"
+        },
+        {
+          "label": "Part de l’énergie et de l’eau",
+          "amount": 80,
+          "category": "housing",
+          "origin": "editorial-assumption",
+          "reason": "Quote-part mensuelle de 1 750 € entièrement préparée, sans déduire le revenu du conjoint ni prétendre connaître le partage réel des dépenses du couple de 3 600 à 4 000 €.",
+          "periodicity": "monthly"
+        },
+        {
+          "label": "Part des assurances",
+          "amount": 60,
+          "category": "bills",
+          "origin": "editorial-assumption",
+          "reason": "Quote-part mensuelle de 1 750 € entièrement préparée, sans déduire le revenu du conjoint ni prétendre connaître le partage réel des dépenses du couple de 3 600 à 4 000 €.",
+          "periodicity": "monthly"
+        },
+        {
+          "label": "Entretien du logement et produits ménagers",
+          "amount": 60,
+          "category": "housing",
+          "origin": "editorial-assumption",
+          "reason": "Quote-part mensuelle de 1 750 € entièrement préparée, sans déduire le revenu du conjoint ni prétendre connaître le partage réel des dépenses du couple de 3 600 à 4 000 €.",
+          "periodicity": "monthly"
+        },
+        {
+          "label": "Part des courses",
+          "amount": 300,
+          "category": "food",
+          "origin": "editorial-assumption",
+          "reason": "Quote-part mensuelle de 1 750 € entièrement préparée, sans déduire le revenu du conjoint ni prétendre connaître le partage réel des dépenses du couple de 3 600 à 4 000 €.",
+          "periodicity": "monthly"
+        },
+        {
+          "label": "Part des dépenses des enfants",
+          "amount": 180,
+          "category": "other",
+          "origin": "editorial-assumption",
+          "reason": "Quote-part mensuelle de 1 750 € entièrement préparée, sans déduire le revenu du conjoint ni prétendre connaître le partage réel des dépenses du couple de 3 600 à 4 000 €.",
+          "periodicity": "monthly"
+        },
+        {
+          "label": "Déplacements personnels",
+          "amount": 100,
+          "category": "transport",
+          "origin": "editorial-assumption",
+          "reason": "Quote-part mensuelle de 1 750 € entièrement préparée, sans déduire le revenu du conjoint ni prétendre connaître le partage réel des dépenses du couple de 3 600 à 4 000 €.",
+          "periodicity": "monthly"
+        },
+        {
+          "label": "Téléphone et internet",
+          "amount": 35,
+          "category": "bills",
+          "origin": "editorial-assumption",
+          "reason": "Quote-part mensuelle de 1 750 € entièrement préparée, sans déduire le revenu du conjoint ni prétendre connaître le partage réel des dépenses du couple de 3 600 à 4 000 €.",
+          "periodicity": "monthly"
+        },
+        {
+          "label": "Restaurants et sorties",
+          "amount": 60,
+          "category": "leisure",
+          "origin": "editorial-assumption",
+          "reason": "Quote-part mensuelle de 1 750 € entièrement préparée, sans déduire le revenu du conjoint ni prétendre connaître le partage réel des dépenses du couple de 3 600 à 4 000 €.",
+          "periodicity": "monthly"
+        },
+        {
+          "label": "Vêtements",
+          "amount": 50,
+          "category": "other",
+          "origin": "editorial-assumption",
+          "reason": "Quote-part mensuelle de 1 750 € entièrement préparée, sans déduire le revenu du conjoint ni prétendre connaître le partage réel des dépenses du couple de 3 600 à 4 000 €.",
+          "periodicity": "monthly"
+        },
+        {
+          "label": "Provision personnelle pour vacances",
+          "amount": 60,
+          "category": "leisure",
+          "origin": "editorial-assumption",
+          "reason": "Quote-part mensuelle de 1 750 € entièrement préparée, sans déduire le revenu du conjoint ni prétendre connaître le partage réel des dépenses du couple de 3 600 à 4 000 €.",
+          "periodicity": "annual-provision",
+          "annualAmount": 720
+        },
+        {
+          "label": "Provision cadeaux et remplacements",
+          "amount": 40,
+          "category": "other",
+          "origin": "editorial-assumption",
+          "reason": "Quote-part mensuelle de 1 750 € entièrement préparée, sans déduire le revenu du conjoint ni prétendre connaître le partage réel des dépenses du couple de 3 600 à 4 000 €.",
+          "periodicity": "annual-provision",
+          "annualAmount": 480
+        },
+        {
+          "label": "Soins non remboursés",
+          "amount": 25,
+          "category": "health",
+          "origin": "editorial-assumption",
+          "reason": "Quote-part mensuelle de 1 750 € entièrement préparée, sans déduire le revenu du conjoint ni prétendre connaître le partage réel des dépenses du couple de 3 600 à 4 000 €.",
+          "periodicity": "monthly"
+        }
+      ]
+    },
+    "replacementExpensesReason": "Quote-part mensuelle de 1 750 € entièrement préparée, sans déduire le revenu du conjoint ni prétendre connaître le partage réel des dépenses du couple de 3 600 à 4 000 €.",
+    "savingsPlan": [
+      {
+        "label": "Financement de son entreprise",
+        "amount": 100
+      }
+    ],
+    "savingsReason": "Proposition hypothétique de 100 € après les besoins personnels, pas les 800 € financés auparavant par un salaire de conjoint inventé.",
+    "public": {
+      "display": {
+        "alias": "Élodie",
+        "publicJob": "Entrepreneure",
+        "publicHousehold": "Mariée · deux enfants · part des charges du foyer"
+      },
+      "budget": {
+        "household": "Mariée · deux enfants · part des charges du foyer",
+        "incomeNote": "Seules les indemnités d’Élodie sont comptées. Elles devaient s’arrêter en septembre 2026."
+      },
+      "questions": [
+        "Avec la fin annoncée des indemnités, combien garderiez-vous pour les imprévus avant de financer l’entreprise ?",
+        "Que faudrait-il revoir si sa participation aux charges du foyer était plus élevée ?"
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "prepared-lot2-05-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les catégories personnelles et vacances sont déjà présentes ; les produits ménagers et l’entretien courant manquent. Aucun versement n’est créé : le léger déficit devient visible.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "unknown"
+    },
+    "additions": [
+      {
+        "label": "Produits ménagers et entretien courant",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Les soins personnels sont déjà dans coiffure/soins ; cette dépense concerne le logement, sans nouvelle épargne.",
+        "covers": [
+          "alimentation_hygiene",
+          "entretien_logement"
+        ]
+      }
+    ],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "public": {
+      "questions": [
+        "Quelle enveloppe ajusteriez-vous en premier pour retrouver un peu de marge ?"
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "prepared-lot2-06-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les charges de logement restent groupées et ne sont pas redoublées. Une enveloppe d’hygiène et de produits ménagers complète l’alimentation. La ventilation PER/assurance-vie/livret est adaptée sans promettre une épargne réalisée.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "unknown"
+    },
+    "additions": [
+      {
+        "label": "Hygiène et produits ménagers",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Les charges immobilières restent inchangées ; ce sont des consommables personnels.",
+        "covers": [
+          "alimentation_hygiene",
+          "entretien_logement"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [
+      {
+        "label": "PER",
+        "amount": 550,
+        "category": "other"
+      },
+      {
+        "label": "Assurance-vie",
+        "amount": 450,
+        "category": "other"
+      },
+      {
+        "label": "Livret A",
+        "amount": 350,
+        "category": "other"
+      }
+    ],
+    "savingsReason": "Les trois enveloppes préparées sont réduites sans modifier la photographie source ni forcer un solde nul.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "prepared-lot2-07-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Maison payée : aucun crédit ajouté. Charges et entretien couvrent déjà le logement ; alimentation, santé, voiture, vêtements, cadeaux et vacances sont détaillés. La retraite future d’Alain ne remplace pas son salaire actuel.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "prepared-lot2-08-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les six charges communes ventilent déjà la contribution de 1 480 €. Aucune facture du conjoint n’est ajoutée. Une provision personnelle de cadeaux et vacances complète les dépenses ; elle est distincte de l’apport immobilier.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "unknown"
+    },
+    "additions": [
+      {
+        "label": "Provision personnelle pour cadeaux et vacances",
+        "amount": 80,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 960,
+        "reason": "Les six charges communes restent à 1 480 € ; provision personnelle distincte de l’apport.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [
+      {
+        "label": "Épargne pour apport immobilier",
+        "amount": 500,
+        "category": "other"
+      }
+    ],
+    "savingsReason": "Apport préparé réduit à 500 € ; contribution du conjoint non ajoutée au revenu.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "prepared-lot2-09-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "La prime repas et le pressing ne sont pas mensualisés sans jours travaillés. Les vacances requièrent une aide parentale non chiffrée : seule une quote-part personnelle préparée est ajoutée, sans inventer le montant de l’aide.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "unknown",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "unknown"
+    },
+    "additions": [
+      {
+        "label": "Provision personnelle pour vacances",
+        "amount": 60,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 720,
+        "reason": "Quote-part illustrative de 720 € par an ; aide parentale non chiffrée inchangée et non ajoutée aux revenus.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [
+      {
+        "label": "Épargne pour projet immobilier",
+        "amount": 150,
+        "category": "other"
+      }
+    ],
+    "savingsReason": "Proposition de 150 € pour le projet immobilier, distincte de la provision vacances.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "prepared-lot2-10-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les parts des deux prêts et des courses restent identifiées comme telles. L’entretien des deux logements et les vêtements personnels sont préparés ; les coûts des enfants déjà présents ne sont pas doublés.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "prepared_assumption",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "listed",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Provision entretien des deux logements",
+        "amount": 70,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 840,
+        "reason": "Quote-part d’entretien, pas un second remboursement des prêts.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Vêtements personnels",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Les 40 € existants concernent déjà les vêtements des enfants.",
+        "covers": [
+          "vetements"
+        ]
+      }
+    ],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [
+      {
+        "label": "Épargne de précaution",
+        "amount": 100,
+        "category": "other"
+      },
+      {
+        "label": "Projets des enfants",
+        "amount": 100,
+        "category": "other"
+      }
+    ],
+    "savingsReason": "Les enveloppes préparées sont adaptées ; les parts de crédits source restent intactes.",
+    "public": {
+      "questions": [
+        "Conserveriez-vous ces versements pour les enfants avec l’entretien de deux logements à financer ?"
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "prepared-lot2-11-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "La prise en charge du loyer par les parents n’est pas établie. Seuls les 100 € d’aide connue sont conservés en ressources. Une participation au logement et charges est préparée, sans nouveau revenu : le déficit n’est pas masqué.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "prepared_assumption",
+      "telecoms": "listed",
+      "assurances_sante": "prepared_assumption",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "unknown",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Participation au logement, charges et assurance",
+        "amount": 550,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Coût illustratif à sa charge ; le paiement du loyer par les parents n’est pas établi. Inclut charges, eau, énergie, assurance du logement et accès internet, sans poste ajouté une deuxième fois.",
+        "covers": [
+          "energie_eau",
+          "assurances_sante",
+          "entretien_logement"
+        ]
+      },
+      {
+        "label": "Provision cadeaux et remplacements",
+        "amount": 20,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 240,
+        "reason": "Provision annuelle distincte des études et des vêtements.",
+        "covers": [
+          "cadeaux_vacances",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [],
+    "savingsReason": "Les ressources connues ne couvrent pas les dépenses préparées : aucun versement n’est prévu, sans inventer une aide pour équilibrer.",
+    "profileOverrides": {
+      "household": "Étudiante · stage temporaire",
+      "housing": ""
+    },
+    "public": {
+      "display": {
+        "publicHousehold": "Stage temporaire"
+      },
+      "budget": {
+        "household": "Stage temporaire",
+        "incomeNote": "Le stage est temporaire. Le loyer exact et son éventuelle prise en charge par les parents restent inconnus."
+      },
+      "questions": [
+        "Comment couvririez-vous le logement et garderiez-vous une réserve pour les mois sans stage ?"
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "prepared-lot2-12-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Charges et abonnements, voyages, santé et équipement/divers couvrent déjà les catégories. Les retraits occasionnels sur l’épargne restent explicités. Aucun coût de transport ou de voiture non documenté n’est imposé.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "prepared-lot2-13-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "La contribution du conjoint de 600 € n’est pas son salaire. Équipement du logement et autres dépenses sont déjà couverts ; mobile, entretien auto et provision d’impôt restent distincts des factures et crédits connus.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "prepared_assumption",
+      "assurances_sante": "listed",
+      "transports": "prepared_assumption",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Téléphone mobile",
+        "amount": 10,
+        "category": "bills",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Le forfait source de 27 € est l’accès internet, pas un forfait mobile identifié.",
+        "covers": [
+          "telecoms"
+        ]
+      },
+      {
+        "label": "Provision entretien automobile",
+        "amount": 40,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Distinct de l’assurance auto et du carburant.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Provision de régularisation de l’impôt",
+        "amount": 50,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 600,
+        "reason": "Réserve illustrative de 600 € par an, pas un calcul fiscal ni une dette établie ; le prélèvement doit être revu.",
+        "covers": [
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [
+      {
+        "label": "Épargne de précaution",
+        "amount": 50,
+        "category": "other"
+      }
+    ],
+    "savingsReason": "La provision d’impôt et l’entretien réduisent la marge ; 200 € source conservés, 50 € proposés dans la préparation.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "prepared-lot2-14-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le loyer actuel inclut les charges, l’auto a déjà une ligne d’entretien et les vacances sont provisionnées. Aucun nouveau loyer, dépôt de garantie ou coût futur d’installation n’est présenté comme dépense actuelle.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "prepared-lot2-15-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le total annuel de dépenses est connu : la ventilation hypothétique ne permet pas d’ajouter une catégorie à ce total une seconde fois. Salaire et dépenses restent de périodes différentes. La question est recentrée sur les versements et la réserve, sans patrimoine inventé.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "public": {
+      "questions": [
+        "Avec ce budget, quelle réserve garderiez-vous disponible à côté des ETF ?"
+      ]
+    },
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "prepared-lot2-16-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les dépenses de base et vacances sont couvertes. Une provision de remplacement des petits équipements manque. Aucun salaire à temps plein ni voiture n’est ajouté ; les placements préparés sont rendus compatibles.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Provision remplacement des petits équipements",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 360,
+        "reason": "Dépenses occasionnelles non isolées ; aucun véhicule ni crédit supposé.",
+        "covers": [
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [
+      {
+        "label": "Investissements",
+        "amount": 650,
+        "category": "other"
+      }
+    ],
+    "savingsReason": "750 € source restent conservés ; proposition de 650 € laissant une marge, sans salaire à temps plein inventé.",
+    "public": {
+      "paragraphs": [
+        "Victor envisageait entre 700 et 800 € de placements par mois. Avec ces dépenses, 650 € sont prévus ici pour garder une marge."
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "prepared-lot2-17-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les 2 700 € d’autres dépenses source sont déjà une enveloppe globale, ensuite ventilée. Crèche, ménage et courses y figurent ; aucun poste courant n’est ajouté à nouveau. Le solde de 950 € ne devient pas un versement.",
+    "coverage": {
+      "alimentation_hygiene": "grouped",
+      "energie_eau": "grouped",
+      "telecoms": "grouped",
+      "assurances_sante": "grouped",
+      "transports": "grouped",
+      "vetements": "grouped",
+      "loisirs": "grouped",
+      "cadeaux_vacances": "grouped",
+      "enfants_garde": "listed",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "prepared-lot2-18-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Logement/entretien, santé, transports, cadeaux et vacances sont déjà couverts. Les revenus sont une moyenne annuelle, intéressement compris ; le PEE attendu en 2027 reste hors ressources actuelles.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "prepared-lot2-19-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Charges, nourriture, santé, frais professionnels, cadeaux/divers et vacances sont déjà préparés. L’épargne détenue n’est pas un revenu ; aucun futur salaire médical ni crédit locatif n’est ajouté.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "prepared-lot2-20-2026-10-30": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "L’excédent locatif de 400 € est déjà net de crédits, charges et impôt : aucune facture locative n’est soustraite une seconde fois. L’entretien et la réserve immobilière sont déjà distincts ; aucun futur loyer n’est compté.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "reddit-famille-bourges-2026-07-12": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "L’épicerie solidaire explique les 150 € de courses, qui ne sont pas remplacés par un panier standard. Les deux voitures et les chats sont connus ; entretien, vétérinaire, soins non remboursés et dépenses personnelles manquantes sont préparés sans nouveau crédit ni aide.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "prepared_assumption",
+      "transports": "prepared_assumption",
+      "vetements": "prepared_assumption",
+      "loisirs": "prepared_assumption",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "prepared_assumption",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Vêtements et fournitures du foyer",
+        "amount": 60,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Pour le foyer avec un jeune enfant ; aucun âge scolaire précis inventé.",
+        "covers": [
+          "vetements",
+          "enfants_garde"
+        ]
+      },
+      {
+        "label": "Loisirs et sorties en famille",
+        "amount": 50,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Spotify est déjà payé, cette enveloppe couvre les sorties.",
+        "covers": [
+          "loisirs"
+        ]
+      },
+      {
+        "label": "Provision soins non remboursés",
+        "amount": 25,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 300,
+        "reason": "Distinct de la mutuelle et des anciennes factures médicales déjà dans le regroupement de crédits.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Provision entretien des deux voitures",
+        "amount": 70,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 840,
+        "reason": "Hors deux assurances et carburants déjà présents.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Provision cadeaux et remplacements",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Dépenses annuelles distinctes des courses solidaires.",
+        "covers": [
+          "cadeaux_vacances",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Provision soins vétérinaires",
+        "amount": 20,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 240,
+        "reason": "Les chats sont connus ; les 39 € existants sont leur nourriture.",
+        "covers": [
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": true
+  },
+  "budget-conseil-personne_seule-2025-2026": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le modèle de base exclut repas extérieurs, vacances et appareils. Ces trois dépenses sont préparées. Les transports publics restent le seul mode retenu ; voiture, formations et assurances complémentaires restent inconnus, sans gratuité supposée.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "listed",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Repas hors domicile",
+        "amount": 50,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence exclut les repas extérieurs : enveloppe des adultes, sans doubler les repas et camps des enfants.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 60,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 720,
+        "reason": "Vacances explicitement exclues du modèle de base ; montant préparé en CHF, sans destination ni projet personnel attribué.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Provision remplacement des appareils",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Les consommables ménagers existent déjà ; la référence exclut le remplacement des appareils.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [],
+    "savingsReason": "Les dépenses dépassent les ressources sans la réserve pour imprévus. Le versement de référence est conservé dans la photographie, pas financé par une recette inventée.",
+    "public": {
+      "budget": {
+        "household": "Dépenses de base · hors voiture"
+      },
+      "paragraphs": [
+        "Les montants dépendent du canton."
+      ],
+      "questions": [
+        "Le logement ou les dépenses flexibles : que regarderiez-vous en premier pour retrouver une marge ?"
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "budget-conseil-monoparent_1enfant-2025-2026": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le parent et un enfant de moins de douze ans sont connus. Santé, cadeaux et école sont déjà provisionnés. Repas extérieurs de l’adulte, vacances et remplacements sont ajoutés ; le mode et le coût de garde restent inconnus.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "listed",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "listed",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Repas hors domicile",
+        "amount": 50,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence exclut les repas extérieurs : enveloppe des adultes, sans doubler les repas et camps des enfants.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 80,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 960,
+        "reason": "Vacances explicitement exclues du modèle de base ; montant préparé en CHF, sans destination ni projet personnel attribué.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Provision remplacement des appareils",
+        "amount": 50,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 600,
+        "reason": "Les consommables ménagers existent déjà ; la référence exclut le remplacement des appareils.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [],
+    "savingsReason": "Les dépenses dépassent les ressources sans la réserve pour imprévus. Le versement de référence est conservé dans la photographie, pas financé par une recette inventée.",
+    "public": {
+      "budget": {
+        "household": "Enfant de moins de 12 ans · hors garde"
+      },
+      "paragraphs": [
+        "Les frais de garde éventuels ne sont pas compris. Dès 12 ans, la référence prévoit aussi 50 à 100 CHF d’alimentation en plus par enfant."
+      ],
+      "questions": [
+        "Avec un enfant, quelles dépenses pourraient être revues sans toucher aux besoins essentiels ?"
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "budget-conseil-monoparent_2enfants-2025-2026": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le parent et deux enfants de moins de douze ans sont connus. École/camps et santé ne sont pas doublés. Repas extérieurs, vacances et appareils sont préparés ; aucune garde payante ni voiture n’est inventée.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "listed",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "listed",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Repas hors domicile",
+        "amount": 50,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence exclut les repas extérieurs : enveloppe des adultes, sans doubler les repas et camps des enfants.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 100,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 1200,
+        "reason": "Vacances explicitement exclues du modèle de base ; montant préparé en CHF, sans destination ni projet personnel attribué.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Provision remplacement des appareils",
+        "amount": 60,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 720,
+        "reason": "Les consommables ménagers existent déjà ; la référence exclut le remplacement des appareils.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [],
+    "savingsReason": "Les dépenses dépassent les ressources sans la réserve pour imprévus. Le versement de référence est conservé dans la photographie, pas financé par une recette inventée.",
+    "public": {
+      "budget": {
+        "household": "Enfants de moins de 12 ans · hors garde"
+      },
+      "paragraphs": [
+        "Les frais de garde éventuels ne sont pas compris. Dès 12 ans, la référence prévoit aussi 50 à 100 CHF d’alimentation en plus par enfant."
+      ],
+      "questions": [
+        "Cette répartition vous paraît-elle réaliste avec deux enfants, avant même une éventuelle garde ?"
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "budget-conseil-couple-2025-2026": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Deux adultes sans enfant : aucune garde ajoutée. Repas extérieurs, vacances et appareils complètent le modèle de base. Les impôts et assurances restent ceux de la référence, sans nouveau taux calculé.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "listed",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Repas hors domicile",
+        "amount": 100,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence exclut les repas extérieurs : enveloppe des adultes, sans doubler les repas et camps des enfants.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 120,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 1440,
+        "reason": "Vacances explicitement exclues du modèle de base ; montant préparé en CHF, sans destination ni projet personnel attribué.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Provision remplacement des appareils",
+        "amount": 50,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 600,
+        "reason": "Les consommables ménagers existent déjà ; la référence exclut le remplacement des appareils.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [],
+    "savingsReason": "Les dépenses dépassent les ressources sans la réserve pour imprévus. Le versement de référence est conservé dans la photographie, pas financé par une recette inventée.",
+    "public": {
+      "budget": {
+        "household": "Dépenses de base · hors voiture"
+      },
+      "paragraphs": [
+        "Les montants dépendent du canton."
+      ],
+      "questions": [
+        "Le logement ou les loisirs : par quoi commenceriez-vous pour faire tenir ce budget ?"
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "budget-conseil-couple_1enfant-2025-2026": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Deux adultes et un enfant de moins de douze ans : école et santé sont déjà couverts. Trois provisions distinctes complètent le modèle ; garde éventuelle et voiture restent hors périmètre, pas réputées gratuites.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "listed",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "listed",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Repas hors domicile",
+        "amount": 100,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence exclut les repas extérieurs : enveloppe des adultes, sans doubler les repas et camps des enfants.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 140,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 1680,
+        "reason": "Vacances explicitement exclues du modèle de base ; montant préparé en CHF, sans destination ni projet personnel attribué.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Provision remplacement des appareils",
+        "amount": 60,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 720,
+        "reason": "Les consommables ménagers existent déjà ; la référence exclut le remplacement des appareils.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [],
+    "savingsReason": "Les dépenses dépassent les ressources sans la réserve pour imprévus. Le versement de référence est conservé dans la photographie, pas financé par une recette inventée.",
+    "public": {
+      "budget": {
+        "household": "Enfant de moins de 12 ans · hors garde"
+      },
+      "paragraphs": [
+        "Les frais de garde éventuels ne sont pas compris. Dès 12 ans, la référence prévoit aussi 50 à 100 CHF d’alimentation en plus par enfant."
+      ],
+      "questions": [
+        "Quelle place garderiez-vous aux vacances tant que les dépenses dépassent les revenus ?"
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "budget-conseil-couple_2enfants-2025-2026": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Deux adultes et deux enfants de moins de douze ans : vêtements, école et cadeaux existent déjà. Repas extérieurs des adultes, vacances et appareils sont préparés, sans double allocation alimentaire ou garde inventée.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "listed",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "listed",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Repas hors domicile",
+        "amount": 100,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence exclut les repas extérieurs : enveloppe des adultes, sans doubler les repas et camps des enfants.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 160,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 1920,
+        "reason": "Vacances explicitement exclues du modèle de base ; montant préparé en CHF, sans destination ni projet personnel attribué.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Provision remplacement des appareils",
+        "amount": 70,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 840,
+        "reason": "Les consommables ménagers existent déjà ; la référence exclut le remplacement des appareils.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [],
+    "savingsReason": "Les dépenses dépassent les ressources sans la réserve pour imprévus. Le versement de référence est conservé dans la photographie, pas financé par une recette inventée.",
+    "public": {
+      "budget": {
+        "household": "Enfants de moins de 12 ans · hors garde"
+      },
+      "paragraphs": [
+        "Les frais de garde éventuels ne sont pas compris. Dès 12 ans, la référence prévoit aussi 50 à 100 CHF d’alimentation en plus par enfant."
+      ],
+      "questions": [
+        "Que changeriez-vous en premier avant de mettre de l’argent de côté pour un projet ?"
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "budget-conseil-couple_3enfants-2025-2026": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Deux adultes et trois enfants de moins de douze ans : les besoins des enfants sont déjà détaillés. Les repas extérieurs, vacances et appareils sont ajoutés ; le déficit reste visible, garde éventuelle non comprise.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "listed",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "listed",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Repas hors domicile",
+        "amount": 100,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence exclut les repas extérieurs : enveloppe des adultes, sans doubler les repas et camps des enfants.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 180,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 2160,
+        "reason": "Vacances explicitement exclues du modèle de base ; montant préparé en CHF, sans destination ni projet personnel attribué.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Provision remplacement des appareils",
+        "amount": 80,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 960,
+        "reason": "Les consommables ménagers existent déjà ; la référence exclut le remplacement des appareils.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [],
+    "savingsReason": "Les dépenses dépassent les ressources sans la réserve pour imprévus. Le versement de référence est conservé dans la photographie, pas financé par une recette inventée.",
+    "public": {
+      "budget": {
+        "household": "Enfants de moins de 12 ans · hors garde"
+      },
+      "paragraphs": [
+        "Les frais de garde éventuels ne sont pas compris. Dès 12 ans, la référence prévoit aussi 50 à 100 CHF d’alimentation en plus par enfant."
+      ],
+      "questions": [
+        "Les repas à l’extérieur et les vacances vous paraissent-ils réalistes pour cette famille ?"
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "budget-conseil-monoparent_3enfants-2025-2026": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Un parent et trois enfants de moins de douze ans : les provisions de santé et cadeaux restent intactes. Les dépenses exclues du modèle de base sont préparées, sans nouveau revenu ni garde supposée gratuite.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "listed",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "listed",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Repas hors domicile",
+        "amount": 50,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence exclut les repas extérieurs : enveloppe des adultes, sans doubler les repas et camps des enfants.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 120,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 1440,
+        "reason": "Vacances explicitement exclues du modèle de base ; montant préparé en CHF, sans destination ni projet personnel attribué.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Provision remplacement des appareils",
+        "amount": 70,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 840,
+        "reason": "Les consommables ménagers existent déjà ; la référence exclut le remplacement des appareils.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [],
+    "savingsReason": "Les dépenses dépassent les ressources sans la réserve pour imprévus. Le versement de référence est conservé dans la photographie, pas financé par une recette inventée.",
+    "public": {
+      "budget": {
+        "household": "Enfants de moins de 12 ans · hors garde"
+      },
+      "paragraphs": [
+        "Les frais de garde éventuels ne sont pas compris. Dès 12 ans, la référence prévoit aussi 50 à 100 CHF d’alimentation en plus par enfant."
+      ],
+      "questions": [
+        "Comment préserveriez-vous les dépenses des enfants tout en retrouvant une marge ?"
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "budget-conseil-apprenties_majeures-2025-2026": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le salaire d’apprentissage ne suffit pas à financer logement et nourriture absents du modèle. Une participation au logement, charges et assurances, puis une alimentation sont préparées ; ni parent payeur, ni bourse, ni nouveau salaire ne sont inventés.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "prepared_assumption",
+      "telecoms": "listed",
+      "assurances_sante": "prepared_assumption",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "prepared_assumption",
+      "remplacements_annuels": "provisioned"
+    },
+    "additions": [
+      {
+        "label": "Participation au logement, charges et assurances",
+        "amount": 650,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Participation préparée incluant eau, énergie, accès internet et assurance du logement ; aucun mode de logement ni payeur familial n’est attribué à la source.",
+        "covers": [
+          "energie_eau",
+          "assurances_sante",
+          "entretien_logement"
+        ]
+      },
+      {
+        "label": "Alimentation",
+        "amount": 300,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence ne finance pas les repas ; aucune alimentation gratuite n’est supposée.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      }
+    ],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [],
+    "savingsReason": "Le déficit de vie courante empêche les versements vacances/permis ; aucun revenu complémentaire ajouté.",
+    "public": {
+      "budget": {
+        "household": "Participation au logement et repas"
+      },
+      "paragraphs": [],
+      "questions": [
+        "Ce budget est-il tenable avec une participation de 650 CHF au logement ?",
+        "Que faudrait-il revoir avant de mettre de côté pour le permis ?"
+      ]
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "websourd-retraite-normandie-2026-10-02": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les douze lignes couvrent les besoins courants et une enveloppe de 60 € pour imprévus. Le voyage et le réfrigérateur sont des souhaits, pas des achats décidés à mensualiser automatiquement. Aucun complément de pension n’est créé.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "finary-freelance-lille-2025-03-02": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les 1 900 € de vie courante sont une enveloppe globale, les deux crédits sont regroupés à 1 200 €. Ajouter assurance, courses ou déplacements à nouveau doublerait potentiellement les frais. Aucun revenu locatif futur ni revenu du conjoint n’est ajouté.",
+    "coverage": {
+      "alimentation_hygiene": "grouped",
+      "energie_eau": "grouped",
+      "telecoms": "grouped",
+      "assurances_sante": "grouped",
+      "transports": "grouped",
+      "vetements": "grouped",
+      "loisirs": "grouped",
+      "cadeaux_vacances": "grouped",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "finary-installation-projet-2026-02-21": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les 1 350 € couvrent déjà charges, alimentation et remboursements. Le LDDS de 200 € provisionne des dépenses annuelles et projets : ne pas ajouter une seconde provision ni appeler tous ces versements épargne nouvelle.",
+    "coverage": {
+      "alimentation_hygiene": "grouped",
+      "energie_eau": "grouped",
+      "telecoms": "grouped",
+      "assurances_sante": "grouped",
+      "transports": "grouped",
+      "vetements": "grouped",
+      "loisirs": "grouped",
+      "cadeaux_vacances": "grouped",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "finary-alternante-projet-2026-10-06": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Seul le loyer parental est établi : aucune alimentation gratuite n’est déduite. Les 50 € de fixes restent groupés. Déplacements, alimentation, hygiène/vêtements, loisirs, soins et dépenses annuelles sont préparés ; revenus futurs exclus.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "external",
+      "telecoms": "listed",
+      "assurances_sante": "prepared_assumption",
+      "transports": "prepared_assumption",
+      "vetements": "prepared_assumption",
+      "loisirs": "prepared_assumption",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "unknown",
+      "entretien_logement": "unknown",
+      "remplacements_annuels": "unknown"
+    },
+    "additions": [
+      {
+        "label": "Alimentation",
+        "amount": 220,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Seul le loyer parental est documenté ; pas de repas gratuits déduits.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Déplacements courants",
+        "amount": 60,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Aucun mode de transport ni véhicule inventé.",
+        "covers": [
+          "transports"
+        ]
+      },
+      {
+        "label": "Hygiène et vêtements",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Hors fixes de 50 € qui restent groupés.",
+        "covers": [
+          "alimentation_hygiene",
+          "vetements"
+        ]
+      },
+      {
+        "label": "Loisirs et sorties",
+        "amount": 60,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Enveloppe courante préparée, pas un nouveau projet attribué.",
+        "covers": [
+          "loisirs"
+        ]
+      },
+      {
+        "label": "Provision voyages et cadeaux",
+        "amount": 60,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 720,
+        "reason": "Voyages déjà évoqués, cadeaux annuels ; aucun nouveau voyage décidé.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Soins non remboursés",
+        "amount": 20,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Reste à charge, distinct des éventuelles cotisations dans les fixes.",
+        "covers": [
+          "assurances_sante"
+        ]
+      }
+    ],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "savingsPlan": [
+      {
+        "label": "PEA · investissement prévu",
+        "amount": 300,
+        "category": "other"
+      },
+      {
+        "label": "Livret A · réserve et projets",
+        "amount": 350,
+        "category": "other"
+      }
+    ],
+    "savingsReason": "500 + 400 € du projet source resteraient incompatibles avec les besoins préparés ; proposition de 650 € au total, sans nouvelle aide.",
+    "public": {
+      "questions": [
+        "Combien garderiez-vous sur le livret pour les imprévus et les voyages, avec ces dépenses courantes à financer ?",
+        "Son objectif avant 25 ans vous paraît-il réaliste, et que faudrait-il prévoir après l’alternance ?"
+      ],
+      "budget": {
+        "balanceLabel": "Reste disponible après versements"
+      }
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": true
+  },
+  "finary-ingenieur-colocation-projet-2026-08-18": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Les aides de 400 € puis leur reversement sont comptés chacun une fois. Le loyer parental et l’électricité ne sont pas doublés. Mobile, soins, vêtements, loisirs et achats annuels sont préparés ; les 750 € discutés ne deviennent pas un versement décidé.",
+    "coverage": {
+      "alimentation_hygiene": "prepared_assumption",
+      "energie_eau": "listed",
+      "telecoms": "prepared_assumption",
+      "assurances_sante": "prepared_assumption",
+      "transports": "listed",
+      "vetements": "prepared_assumption",
+      "loisirs": "prepared_assumption",
+      "cadeaux_vacances": "prepared_assumption",
+      "enfants_garde": "unknown",
+      "entretien_logement": "external",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Téléphone mobile",
+        "amount": 15,
+        "category": "bills",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Forfait personnel distinct du logement payé par les parents.",
+        "covers": [
+          "telecoms"
+        ]
+      },
+      {
+        "label": "Soins non remboursés",
+        "amount": 20,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Dépense personnelle préparée, pas une nouvelle prime.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Hygiène et vêtements",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Distinct de l’alimentation existante.",
+        "covers": [
+          "alimentation_hygiene",
+          "vetements"
+        ]
+      },
+      {
+        "label": "Loisirs et sorties",
+        "amount": 100,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Les loisirs étaient au cœur du choix source mais pas détaillés dans les frais.",
+        "covers": [
+          "loisirs"
+        ]
+      },
+      {
+        "label": "Provision cadeaux et achats occasionnels",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Petits achats annuels, sans nouvelle aide ni double loyer.",
+        "covers": [
+          "cadeaux_vacances",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "reformulées pour les dépenses, le solde ou le périmètre revus ; adaptation éditoriale, sans nouvelle interrogation attribuée",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "public": {
+      "questions": [
+        "Avec les frais du quotidien comptés, quel versement vous semblerait tenable pendant ses trois années d’alternance ?"
+      ],
+      "budget": {
+        "balanceLabel": "Reste disponible après versements"
+      }
+    },
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": true
+  },
+  "reference-bordeaux-budget-2026-03": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Crédit et assurance auto sont groupés, pas l’entretien ; une provision de 40 € le complète. Les vêtements/soins et cadeaux/imprévus restent groupés. Aucune prime semestrielle ni libération complète des 217 € n’est ajoutée.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "prepared_assumption",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Provision entretien automobile",
+        "amount": 40,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Les 217 € groupent assurance et crédit, pas l’entretien.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "reference-couple-lille-budget-2026-01": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Vacances et précaution sont déjà prévues dans les versements. L’entretien auto est ajouté séparément de l’assurance et du crédit ; les soins et les petits imprévus sont déjà dans les enveloppes existantes.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "grouped",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "prepared_assumption",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Provision entretien automobile",
+        "amount": 50,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 600,
+        "reason": "Distinct des deux lignes assurance et crédit. Les vacances sont déjà dans les versements.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "reference-indexo-belgique-2026-11": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le modèle regroupe énergie/eau/télécoms et 300 € d’autres dépenses. Aucun poste n’est superposé sans ventilation. La cible annuelle de revenu inclut prime et pécule, pas un salaire réellement encaissé chaque mois.",
+    "coverage": {
+      "alimentation_hygiene": "grouped",
+      "energie_eau": "grouped",
+      "telecoms": "grouped",
+      "assurances_sante": "grouped",
+      "transports": "grouped",
+      "vetements": "grouped",
+      "loisirs": "grouped",
+      "cadeaux_vacances": "grouped",
+      "enfants_garde": "not_applicable",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [],
+    "questionsReview": "relues et conservées : pas de somme nécessaire au quotidien présentée comme argent à investir",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": false,
+    "status": "complete_with_grouped_or_known_scope"
+  },
+  "reference-vendeuse-rennes-2026": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Le loyer et l’électricité ne précisent pas l’eau. Le scénario retient 20 € d’eau hors loyer ; les soins et les divers ne sont pas ajoutés à nouveau. Le salaire reste une hypothèse de la référence, pas le SMIC certifié.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "prepared_assumption",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "listed",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "unknown",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "grouped"
+    },
+    "additions": [
+      {
+        "label": "Eau",
+        "amount": 20,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Hypothèse explicite d’eau hors loyer, sans modifier la référence de salaire ni prétendre connaître les charges réelles.",
+        "covers": [
+          "energie_eau"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  },
+  "reference-famille-lyon-2026": {
+    "reviewedAt": "2026-11-03",
+    "conclusion": "Garde, cantine, activités, hygiène et santé sont déjà détaillées. Vacances et rentrée sont dans les versements et ne sont pas doublées. L’eau hors loyer et l’entretien automobile sont préparés ; aucun nouveau crédit ni revenu n’est créé.",
+    "coverage": {
+      "alimentation_hygiene": "listed",
+      "energie_eau": "prepared_assumption",
+      "telecoms": "listed",
+      "assurances_sante": "listed",
+      "transports": "prepared_assumption",
+      "vetements": "listed",
+      "loisirs": "listed",
+      "cadeaux_vacances": "provisioned",
+      "enfants_garde": "listed",
+      "entretien_logement": "grouped",
+      "remplacements_annuels": "prepared_assumption"
+    },
+    "additions": [
+      {
+        "label": "Eau",
+        "amount": 40,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Le scénario retient l’eau hors loyer ; électricité et gaz ne sont pas comptés une seconde fois.",
+        "covers": [
+          "energie_eau"
+        ]
+      },
+      {
+        "label": "Provision entretien automobile",
+        "amount": 60,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 720,
+        "reason": "Distinct des assurances, du crédit automobile et du carburant.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "questionsReview": "conservées : sens et conditions cohérents avec le budget révisé",
+    "resourcesReview": "Aucune nouvelle ressource. Les inconnues et conditions de la photographie restent conservées.",
+    "financialChange": true,
+    "status": "incomplete_completed",
+    "forecast": false
+  }
+}

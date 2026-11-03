@@ -1,4 +1,6 @@
 import bankProfiles from './qualified-profiles-bank-2026-11-02.json' with { type: 'json' }
+import completeness from './completeness-2026-11-03.json' with { type: 'json' }
+import { prepareBudgetProfile, prepareBudgetContext } from './completion.js'
 import publicationContext from './publication-context.json' with { type: 'json' }
 import bankEditorial from './qualified-editorial-bank-2026-11-02.json' with { type: 'json' }
 import newQualifiedProfiles from './qualified-profiles-2026-11-02.json' with { type: 'json' }
@@ -19,12 +21,14 @@ import additionalProfiles from './additional-profiles-2026-10-30.json' with { ty
 const sourceProfiles = [...baseProfiles, ...additionalProfiles, ...preparedProfiles, ...preparedLotTwo, ...qualifiedProfiles, ...newQualifiedProfiles, ...bankProfiles]
 
 // Explicitly reviewed metadata and public labels; the original evidence stays intact.
-export const BUDGET_PROFILES = sourceProfiles.map(profile => {
+export const BUDGET_ORIGINAL_PROFILES = sourceProfiles.map(profile => {
   const e = profileEditorial[profile.id] || {}
   const labels = e.rowLabels || {}
   return { ...profile, ...Object.fromEntries(['country', 'family', 'children', 'housing', 'budgetAsOf', 'period', 'preparedAt', 'editorialReviewedAt'].filter(key => key in e).map(key => [key, e[key]])),
     ...Object.fromEntries(['income', 'expenses', 'savings'].map(key => [key, profile[key].map(row => ({ ...row, label: labels[row.label] || row.label }))])) }
 })
+export const BUDGET_COMPLETENESS = completeness
+export const BUDGET_PROFILES = BUDGET_ORIGINAL_PROFILES.map(profile => prepareBudgetProfile(profile, completeness[profile.id]))
 
 export const EXPENSE_CATEGORIES = [
   { id: 'housing', label: 'Logement', emoji: '🏠' },
@@ -37,8 +41,10 @@ export const EXPENSE_CATEGORIES = [
   { id: 'other', label: 'Autres dépenses', emoji: '🧾' },
 ]
 
-export const BUDGET_EDITORIAL = Object.fromEntries(sourceProfiles.map(p => [p.id, { ...editorial[p.id], ...profileEditorial[p.id], ...newQualifiedEditorial[p.id], ...bankEditorial[p.id] }]))
+export const BUDGET_ORIGINAL_EDITORIAL = Object.fromEntries(sourceProfiles.map(p => [p.id, { ...editorial[p.id], ...profileEditorial[p.id], ...newQualifiedEditorial[p.id], ...bankEditorial[p.id] }]))
+export const BUDGET_EDITORIAL = Object.fromEntries(sourceProfiles.map(p => [p.id, { ...BUDGET_ORIGINAL_EDITORIAL[p.id], ...completeness[p.id].public?.display }]))
 
 // Publication copy and its evidence; public labels may be shared by text and image.
-// The financial profiles and source metadata remain untouched.
-export const BUDGET_PUBLICATION_CONTEXT = publicationContext
+// The original photographs stay intact; prepared views explicitly carry the completion audit.
+export const BUDGET_ORIGINAL_PUBLICATION_CONTEXT = publicationContext
+export const BUDGET_PUBLICATION_CONTEXT = Object.fromEntries(sourceProfiles.map(p => [p.id, prepareBudgetContext(publicationContext[p.id], completeness[p.id])]))

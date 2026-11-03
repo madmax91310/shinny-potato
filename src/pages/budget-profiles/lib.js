@@ -1,10 +1,11 @@
-import { budgetRowSymbol, budgetPublicBasis, budgetIntroduction, budgetTransfers, budgetGeneralQuestion, budgetPublicContext } from './presentation.js'
+import { budgetRowSymbol, budgetPublicBasis, budgetIntroduction, budgetTransfers, budgetGeneralQuestion, budgetPublicContext, budgetQualification } from './presentation.js'
+import { budgetFinancialReference } from './completion.js'
 import { BUDGET_EDITORIAL, BUDGET_PROFILES, BUDGET_PUBLICATION_CONTEXT, EXPENSE_CATEGORIES } from './data.js'
 
 export const MAX_BUDGET_LINES = 24
 export const euro = (value, currency = 'EUR') => Number(value).toLocaleString('fr-FR', { style: 'currency', currency, minimumFractionDigits: Number.isInteger(Math.round(Number(value) * 100) / 100) ? 0 : 2, maximumFractionDigits: 2 })
 export const dateLabel = date => new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${date}T12:00:00Z`))
-export const budgetKind = profile => profile.kind === 'prepared' ? 'Exemple de budget' : profile.kind === 'planned' ? 'Budget prévu' : profile.kind === 'participant' ? 'Budget communiqué' : 'Budget déclaré'
+export const budgetKind = profile => profile.kind === 'prepared' ? budgetQualification(profile) : profile.kind === 'planned' ? 'Budget prévu' : profile.kind === 'participant' ? 'Budget communiqué' : 'Budget déclaré'
 const cents = value => Math.round(value * 100)
 const validAmount = value => typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 10000000
 const safeText = (value, max) => typeof value === 'string' && value.length <= max
@@ -44,13 +45,13 @@ export function analyzeBudget(profile) {
   if (!profile.expenses.length) errors.push('Ajoute les dépenses du budget.')
   const available = income - expenses, balance = available - savings
   return { errors, income: income / 100, expenses: expenses / 100, savings: savings / 100, available: available / 100, balance: balance / 100,
-    expenseShare: income > 0 ? expenses / income * 100 : 0 }
+    expenseShare: income > 0 ? expenses * 100 / income : 0 }
 }
 
 export const editorialFor = profile => profile.kind === 'participant' ? null : BUDGET_EDITORIAL[profile.id]
 export const publicationContextFor = profile => profile.kind === 'participant' ? null : BUDGET_PUBLICATION_CONTEXT[profile.id]
 export const budgetDisplayName = profile => editorialFor(profile)?.alias || profile.name
-const share = (amount, income) => `${Math.round(amount / income * 100)} %`
+const share = (amount, income) => `${Math.round(cents(amount) * 100 / cents(income))} %`
 const rowTotal = rows => rows.reduce((sum, row) => sum + cents(row.amount), 0) / 100
 
 // Never infer constraints from the broad categories: restaurants and groceries,
@@ -147,7 +148,7 @@ export function budgetImageExpenses(profile, mode = 'detailed') {
   if (mode !== 'summary') return profile.expenses
   const groups = new Map(), result = []
   for (const row of profile.expenses) {
-    if (!row.category || row.category === 'other') { result.push(row); continue }
+    if (!row.category || row.category === 'other' || /^Provision\b|mensualis|^Enveloppe.*vacances/i.test(row.label)) { result.push(row); continue }
     let group = groups.get(row.category)
     if (!group) {
       group = { label: EXPENSE_CATEGORIES.find(c => c.id === row.category)?.label || row.category, amount: 0, category: row.category, members: [] }
@@ -174,12 +175,13 @@ export const compareBudgetRecency = (a, b) => (b.budgetAsOf || '').localeCompare
 // Refresh generated drafts after a text update, but never replace a personal text.
 export function refreshBudgetDraft(record) {
   const profile = record.profile.kind === 'participant' ? record.profile : BUDGET_PROFILES.find(p => p.id === record.profile.id) || record.profile
-  return { ...record, profile, text: record.edited ? record.text : buildBudgetText(profile) }
+  return { ...record, profile, text: record.edited ? record.text : buildBudgetText(profile),
+    textFinance: record.edited ? record.textFinance ?? budgetFinancialReference(record.profile) : budgetFinancialReference(profile) }
 }
 
 export function sourceReply(profile) {
   if (!profile.source) return ''
-  const prefix = profile.kind === 'prepared' ? 'Exemple de budget — source' : profile.kind === 'planned' ? 'Budget prévu — source' : 'Source'
+  const prefix = profile.kind === 'prepared' ? 'Source du budget d’origine' : profile.kind === 'planned' ? 'Budget prévu — source' : 'Source'
   return `${prefix} : ${profile.source.publisher}\n${profile.source.url}`
 }
 

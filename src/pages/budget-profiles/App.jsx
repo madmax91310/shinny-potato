@@ -3,8 +3,9 @@ import PageHeader from '../../design-system/PageHeader'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import Button from '../../design-system/Button'
 import { copyPublicationText } from '../../design-system/publicationActions.js'
-import { BUDGET_PROFILES, EXPENSE_CATEGORIES } from './data.js'
-import { analyzeBudget, budgetPublicPresentation, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, dateLabel, euro, MAX_BUDGET_LINES, publicationContextFor, refreshBudgetDraft, sourceReply } from './lib.js'
+import { BUDGET_PROFILES } from './data.js'
+import { analyzeBudget, budgetPublicPresentation, blankBudget, compareBudgetRecency, matchesBudgetFilters, budgetDisplayName, budgetKind, buildBudgetText, euro, refreshBudgetDraft } from './lib.js'
+import { budgetFinancialReference, staleBudgetText } from './completion.js'
 import { findSavedDraft, loadSavedDrafts, loadDraft, loadPublished, loadQueued, loadUsage, saveDraft, savePublished, saveQueued, saveUsage, WORKSPACE_KEY } from './storage.js'
 import PublicationStatus from './PublicationStatus.jsx'
 import { useBudgetImage } from './useBudgetImage.js'
@@ -13,7 +14,8 @@ import './budget-profiles.css'
 
 const profiles = [...BUDGET_PROFILES].sort(compareBudgetRecency)
 const BackupPanel = lazy(() => import('./BackupPanel.jsx'))
-const number = value => value === '' ? null : Number(value)
+const SourceEvidencePanel = lazy(() => import('./SourceEvidencePanel.jsx'))
+const ParticipantEditor = lazy(() => import('./ParticipantEditor.jsx'))
 
 export default function App() {
   const [initial] = useState(() => {
@@ -30,6 +32,7 @@ export default function App() {
   const [saved, setSaved] = useState(loadSavedDrafts)
   const [filters, setFilters] = useState({ country: '', income: '', family: '', children: '', housing: '' })
   const [imageMode, setImageMode] = useState('detailed'), [backupOpen, setBackupOpen] = useState(false)
+  const [evidenceOpen, setEvidenceOpen] = useState(false)
   const [hidePublished, setHidePublished] = useState(false)
   const [unused, setUnused] = useState(false), [query, setQuery] = useState(''), [feedback, setFeedback] = useState('')
   const memoryDrafts = useRef(new Map(loadSavedDrafts().map(d => [d.profile.id, d])))
@@ -48,7 +51,7 @@ export default function App() {
   const prepared = profile.kind !== 'participant'
   const filtered = profiles.filter(p => matchesBudgetFilters(p, filters) && (!unused || !used.includes(p.id)) && (!hidePublished || !published.includes(p.id)) &&
     `${budgetDisplayName(p)} ${p.name} ${p.job} ${p.household} ${p.period} ${p.source.publisher} ${analyzeBudget(p).income}`.toLocaleLowerCase('fr').includes(query.toLocaleLowerCase('fr').trim()))
-  function update(next) { setApproved(false); setRecord(current => ({ profile: next, text: current.edited ? current.text : buildBudgetText(next), edited: current.edited })); setFeedback('') }
+  function update(next) { setApproved(false); setRecord(current => ({ ...current, profile: next, text: current.edited ? current.text : buildBudgetText(next), textFinance: current.edited ? current.textFinance : budgetFinancialReference(next) })); setFeedback('') }
   function edit(patch) { update({ ...profile, ...patch }) }
   function choose(next) {
     if (!next) return
@@ -88,18 +91,6 @@ export default function App() {
     return <label>{title}<ChoicePicker aria-label={title} value={filters[key]} onChange={e => setFilters({ ...filters, [key]: e.target.value })}><option value="">Tous</option>{options.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</ChoicePicker></label>
   }
   async function copy(value) { try { await copyPublicationText(value); setFeedback('Texte copié.') } catch { setFeedback('Copie impossible. Sélectionne le texte.') } }
-  function changeRow(key, index, patch) { edit({ [key]: profile[key].map((row, i) => i === index ? { ...row, ...patch } : row) }) }
-  function rows(key, title) {
-    return <fieldset className="budget-lines"><legend>{title}</legend>
-      {profile[key].map((row, index) => <div className="budget-row" key={index}>
-        <label>Poste {index + 1}<input aria-label={`${title} · poste ${index + 1}`} maxLength={90} value={row.label} onChange={e => changeRow(key, index, { label: e.target.value })}/></label>
-        <label>Montant ({profile.currency || 'EUR'} / mois)<input aria-label={`${title} · montant ${index + 1}`} type="number" min="0" max="10000000" step="0.01" value={row.amount ?? ''} onChange={e => changeRow(key, index, { amount: number(e.target.value) })}/></label>
-        <button type="button" className="dca-remove" aria-label={`Retirer ${title.toLowerCase()} ${index + 1}`} onClick={() => edit({ [key]: profile[key].filter((_, i) => i !== index) })}>×</button>
-        {key === 'expenses' && <label className="budget-category">Catégorie<select value={row.category || 'other'} onChange={e => changeRow(key, index, { category: e.target.value })}>{EXPENSE_CATEGORIES.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}</select></label>}
-      </div>)}
-      <Button variant="secondary" disabled={profile[key].length >= MAX_BUDGET_LINES} onClick={() => edit({ [key]: [...profile[key], { label: '', amount: null, ...(key === 'expenses' && { category: 'other' }) }] })}>Ajouter un poste</Button>
-    </fieldset>
-  }
   return <div className="dca-profiles-scope dca-simple budget-profiles-scope">
     <PageHeader title="Le budget de…" subtitle="Choisis un budget public sourcé ou prépare une participation, puis récupère le texte et l’image."/>
     {(!initial.readable || !usageInitial.readable || !publishedInitial.readable || !queuedInitial.readable) && <p role="alert">Un ancien enregistrement local est illisible. Il est conservé sans modification.</p>}
@@ -135,32 +126,11 @@ export default function App() {
 
           <Button variant="secondary" onClick={adapt}>Adapter ce budget</Button>
         </>}
-        {!prepared && <>
-          <label>Prénom ou pseudonyme<input maxLength={70} value={profile.name} onChange={e => edit({ name: e.target.value })}/></label>
-          <details><summary>Présentation du profil</summary><div className="dca-fields">
-            <label>Âge, facultatif<input type="number" min="18" max="110" value={profile.age ?? ''} onChange={e => edit({ age: number(e.target.value) })}/></label>
-            <label>Activité<input maxLength={250} value={profile.job} onChange={e => edit({ job: e.target.value })}/></label>
-            <label>Localisation générale<input maxLength={250} value={profile.location} onChange={e => edit({ location: e.target.value })}/></label>
-            <label>Situation familiale / logement<input maxLength={250} value={profile.household} onChange={e => edit({ household: e.target.value })}/></label>
-            <label>Mois du budget<input maxLength={250} value={profile.period} onChange={e => edit({ period: e.target.value })} placeholder="Octobre 2026"/></label>
-            <label>Devise<select aria-label="Devise du budget" value={profile.currency || 'EUR'} onChange={e => edit({ currency: e.target.value })}><option value="EUR">EUR · Euro</option><option value="CHF">CHF · Franc suisse</option></select></label>
-            <label>Base des revenus<input maxLength={250} value={profile.incomeBasis} onChange={e => edit({ incomeBasis: e.target.value })}/></label>
-          </div><label className="budget-check"><input type="checkbox" checked={profile.approximate} onChange={e => edit({ approximate: e.target.checked })}/>Montants approximatifs</label></details>
-          {rows('income', 'Revenus')}{rows('expenses', 'Dépenses')}
-          <details><summary>Épargne et projets</summary>{rows('savings', 'Épargne prévue')}<p className="dca-note">Ces versements sont retirés du solde. Une simple capacité envisagée reste séparée.</p>
-            <label>Capacité d’épargne annoncée, facultative<input type="number" min="0" max="10000000" step="0.01" value={profile.capacity ?? ''} onChange={e => edit({ capacity: number(e.target.value) })}/></label>
-          </details>
-          <label>Contexte<textarea maxLength={3000} value={profile.context} onChange={e => edit({ context: e.target.value })}/></label>
-        </>}
+        {!prepared && <Suspense fallback={<p>Chargement de la participation…</p>}><ParticipantEditor profile={profile} edit={edit}/></Suspense>}
         {!!a.errors.length && <div className="dca-errors" role="alert">{a.errors.map(error => <p key={error}>{error}</p>)}</div>}
         {!a.errors.length && <dl className="budget-totals"><div><dt>Dépenses</dt><dd>{money(a.expenses)}</dd></div><div><dt>{a.available < 0 ? 'Déficit avant versements' : 'Reste avant versements'}</dt><dd>{money(a.available)}</dd></div>{!!profile.savings.length && <div><dt>Reste disponible après versements</dt><dd>{money(a.balance)}</dd></div>}</dl>}
-        {profile.source && <details className="dca-evidence"><summary>Source et vérification du profil</summary>
-          <a href={profile.source.url} target="_blank" rel="noreferrer">{profile.source.publisher} · {profile.source.title}</a>
-          <p>Période du budget : {profile.period}. {profile.publishedAt ? `Source publiée le ${dateLabel(profile.publishedAt)}.` : 'Date exacte de publication non indiquée.'} Vérifiée le {dateLabel(profile.checkedAt)}.{profile.preparedAt && ` Exemple préparé le ${dateLabel(profile.preparedAt)}.`}{profile.editorialReviewedAt && ` Texte relu le ${dateLabel(profile.editorialReviewedAt)}.`}</p><p>{profile.incomeNote}</p><p>{profile.context}</p>{profile.provenance && <pre className="budget-provenance">{JSON.stringify(profile.provenance, null, 2)}</pre>}
-          <p>{profile.provenance?.type === 'reference' ? 'Exemple de référence publié, sans témoignage individuel.' : profile.kind === 'prepared' ? 'Budget préparé avec compléments et arrondis ; voir les hypothèses ci-dessous.' : 'Budget autodéclaré, sans accès aux comptes bancaires. Les postes groupés et les arrondis sont conservés.'}</p><p>{profile.caveat}</p>
-          {publicationContextFor(profile) && <details><summary>Provenance du récit et des questions</summary><p>Les questions marquées « expressed » reformulent une interrogation sourcée ; « editorial » désigne une question aux lecteurs. Les éléments conservés sans nouvelle lecture sont signalés dans la revue.</p><pre className="budget-provenance">{JSON.stringify(publicationContextFor(profile), null, 2)}</pre></details>}
-          <p>Les prénoms du texte sont fictifs. La séparation entre dépenses contraintes et non contraintes est éditoriale ; les postes mixtes restent groupés.</p>
-          <Button variant="secondary" onClick={() => copy(sourceReply(profile))}>Copier la source pour une réponse</Button>
+        {profile.source && <details className="dca-evidence" onToggle={e => { if (e.currentTarget.open) setEvidenceOpen(true) }}><summary>Source et vérification du profil</summary>
+          {evidenceOpen && <Suspense fallback={<p>Chargement de la vérification…</p>}><SourceEvidencePanel profile={profile} onCopy={copy}/></Suspense>}
         </details>}
       </section>
       <div className="dca-publication-column">
@@ -174,7 +144,8 @@ export default function App() {
         </section>
         <section className="dca-simple-card dca-text-card">
           <label htmlFor="budget-draft">Texte prêt à publier</label><textarea id="budget-draft" maxLength={20000} value={text} onChange={e => { setApproved(false); setRecord({ ...record, text: e.target.value, edited: true }) }}/>
-          <div className="dca-buttons"><Button disabled={!text.trim() || !!a.errors.length} onClick={() => copy(text)}>Copier le texte</Button><Button variant="secondary" onClick={() => { setApproved(false); setRecord({ ...record, text: buildBudgetText(profile), edited: false }) }}>Rétablir le texte</Button></div>
+          {staleBudgetText(record) && <div className="dca-errors" role="alert"><p>Les montants du budget ont changé. Votre texte personnalisé est conservé, mais il peut encore afficher les anciens chiffres. « Rétablir le texte » le régénère volontairement.</p><Button variant="secondary" onClick={() => setRecord({ ...record, textFinance: budgetFinancialReference(profile) })}>J’ai vérifié les montants de mon texte</Button></div>}
+          <div className="dca-buttons"><Button disabled={!text.trim() || !!a.errors.length} onClick={() => copy(text)}>Copier le texte</Button><Button variant="secondary" onClick={() => { setApproved(false); setRecord({ ...record, text: buildBudgetText(profile), edited: false, textFinance: budgetFinancialReference(profile) }) }}>Rétablir le texte</Button></div>
           <PublicationStatus key={profile.id} published={published.includes(profile.id)} date={publicationDates[profile.id] ?? null} onSave={markPublished}/>
           <label className="budget-check"><input type="checkbox" checked={queued.includes(profile.id)} onChange={e => markQueued(e.target.checked)}/>À publier prochainement</label><p className="dca-note">Trois statuts indépendants, enregistrés manuellement dans ce navigateur.</p>
           {edited && <p className="dca-note">Texte personnalisé conservé. « Rétablir le texte » reprend les chiffres du budget.</p>}
