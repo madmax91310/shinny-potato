@@ -1,6 +1,6 @@
 # Couverture des expositions
 
-Contrôle automatique : 2026-11-03T02:11:44.298Z.
+Contrôle automatique : 2026-11-03T12:57:47.538Z.
 
 694 actifs distincts ; 640 avec au moins 99,5 % de pays et secteurs ; 53 hors classification ; 1 à compléter. Les alias d’un même ISIN sont comptés une fois.
 
