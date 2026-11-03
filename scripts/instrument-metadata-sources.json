@@ -7338,17 +7338,6 @@
       "listings": [
         {
           "ticker": "XDWM",
-          "exchange": "London Stock Exchange",
-          "mic": "XLON",
-          "currency": "USD",
-          "symbol": "XDWM.L",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "checkedAt": "2026-11-03",
-          "evidenceId": "IE00BM67HS53-XLON-XDWM-USD",
-          "excerpt": "IE00BM67HS53 | London Stock Exchange | XDWM | USD | XDWM.L"
-        },
-        {
-          "ticker": "XDWM",
           "exchange": "Xetra",
           "mic": "XETR",
           "currency": "EUR",
@@ -7357,6 +7346,17 @@
           "checkedAt": "2026-11-03",
           "evidenceId": "IE00BM67HS53-XETR-XDWM-EUR",
           "excerpt": "IE00BM67HS53 | XETRA | XDWM | EUR | XDWM.DE"
+        },
+        {
+          "ticker": "XDWM",
+          "exchange": "London Stock Exchange",
+          "mic": "XLON",
+          "currency": "USD",
+          "symbol": "XDWM.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-03",
+          "evidenceId": "IE00BM67HS53-XLON-XDWM-USD",
+          "excerpt": "IE00BM67HS53 | London Stock Exchange | XDWM | USD | XDWM.L"
         },
         {
           "ticker": "XDWM",
