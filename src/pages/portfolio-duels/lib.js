@@ -141,7 +141,7 @@ export function buildCustomDuel(definition) {
     hookQuestion: definition.hookQuestion ?? (definition.hook?.trim().endsWith('?') && !definition.hook.startsWith('Tu gardes 100 % de World') ? definition.hook : undefined),
     currency: 'EUR', years, a, b,
     readings: [exposureReading(a), exposureReading(b)],
-    sources: [...unique.map((asset) => ({ name: asset.name, isin: asset.isin, url: asset.source, note: asset.note })),
+    sources: [...unique.map((asset) => ({ name: asset.name, isin: asset.isin, url: asset.source, note: asset.performanceNote ?? asset.note })),
       ...(unique.some((asset) => asset.currency !== 'EUR') ? [{ name: 'Taux de change de fin d’année (BCE)', url: FX_SOURCE, note: 'Conversion des rendements en euros, sans couverture de change.' }] : [])],
   }
   // Avoid explaining the same base twice; make a changed weight explicit.

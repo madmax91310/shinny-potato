@@ -1,0 +1,34 @@
+{
+  "isin": "IE00BK5BCH80",
+  "sourceRun": 41563424241,
+  "event": "push",
+  "artifactId": 13198622244,
+  "sourceCheckedAt": "2026-11-03T02:03:55.413522+00:00",
+  "sourcePerformance": {
+    "currency": "USD",
+    "basis": "fund",
+    "years": {
+      "2021": -6.32,
+      "2022": -9.4,
+      "2023": -8.57,
+      "2024": -14.5,
+      "2025": 52.01
+    },
+    "asOf": "2026-09-30",
+    "method": "calendar-year exact-share NAV total return, net income reinvested, net of fees",
+    "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+    "sha256": "d60b331dd9f39b0387db7869fcb78f0df904a8e6fe843b0d39aad7ff33897d23",
+    "checkedAt": "2026-11-03",
+    "modifiedAt": "2026-11-03"
+  },
+  "rawSourceHash": "d60b331dd9f39b0387db7869fcb78f0df904a8e6fe843b0d39aad7ff33897d23",
+  "recordingCommits": [
+    "5b72dafa3cf176343718fbba65eacd5a0a566f4c",
+    "0e8ab37407021391b4bcc56f93952787e3cb0c1d"
+  ],
+  "publicCode": "a4b1c48d191b27235e4bbf2efada345d87cf9c59",
+  "publicData": "0e8ab37407021391b4bcc56f93952787e3cb0c1d",
+  "publicRegistryBlob": "cdc3414c0e2a2bfe8370208deccf63498c94217e",
+  "sourceExactlyMatchesPublishedRegistry": true,
+  "qualificationScope": "Existing exact-share annual NAV total return, USD, net income reinvested, net fees; no new cash-event claim and no repair of old market-price divergence."
+}

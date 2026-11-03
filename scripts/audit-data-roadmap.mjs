@@ -8,7 +8,7 @@ import { ASSETS as CALCULATOR } from '../src/data/market-history.js'
 import { INSTRUMENT_AUM_BY_ISIN } from '../src/data/instrument-aum.js'
 import { PEA_REVIEWS_BY_ISIN } from '../src/data/instrument-pea.js'
 import { ETFS } from '../src/data/etf-cards.js'
-import { latestCommonYears } from '../src/data/annual-window.js'
+import {portfolioHistoryContract} from './lib/portfolio-history-contract.mjs'
 
 import { LEXICON_SOURCES as sources } from './lexicon-sources.mjs'
 const fiscal = new Set(`pea cto assurance-vie per livret-a ldds pee-perco flat-tax abattement-pea prelevements-sociaux plus-value-imposable plus-value-immobiliere`.split(' '))
@@ -37,9 +37,9 @@ const sourcedAum = Object.entries(INSTRUMENT_AUM_BY_ISIN).filter(([, value]) => 
 const absentPortfolioUrls = gaps.filter(x => x.tool === 'portefeuilles' && !x.sourceUrls.length)
 if (absentPortfolioUrls.length) { console.error(`Supports sans URL : ${absentPortfolioUrls.map(x => x.name).join(', ')}`); errors += absentPortfolioUrls.length }
 for (const a of PORTFOLIO) {
-  const qualifiedManual = a.manualOnly && latestCommonYears([a.calendarReturns], {minimum:3}).length >= 3
-    && a.r?.length === 6 && a.r.every(n => n === null || Number.isFinite(n))
-  if ((!Array.isArray(a.r) || a.r.length !== 6 || a.r.some(n => !Number.isFinite(n))) && !qualifiedManual) { console.error(`Historique annuel incomplet : ${a.id}`); errors++ }
+  const contract = portfolioHistoryContract(a)
+  if (contract === 'invalid') { console.error(`Historique annuel incomplet ou incohérent : ${a.id}`); errors++ }
+  else if (contract === 'partial-manual') console.log(`Historique partiel daté : ${a.id} ; fenêtre manuelle existante, six années automatiques non disponibles.`)
 }
 for (const [id, a] of Object.entries(CALCULATOR)) {
   if (!['EUR', 'USD', 'KRW', 'CHF', 'DKK', 'JPY', 'HKD', 'GBp', 'CNY', 'INR', 'SGD', 'NOK', 'SEK', 'CAD', 'AUD', 'TWD'].includes(a.currency)) { console.error(`Devise inconnue : ${id}`); errors++ }
