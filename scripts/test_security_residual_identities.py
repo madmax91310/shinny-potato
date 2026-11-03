@@ -1,5 +1,5 @@
 """Replay actual independent identifier responses, not names or assumed aliases."""
-import datetime as dt,gzip,json,unittest,copy
+import datetime as dt,gzip,json,unittest,copy,math
 from pathlib import Path
 from security_identifier_observations import qualified,digest
 
@@ -60,5 +60,53 @@ class GgraExactResidualIdentities(unittest.TestCase):
   with self.assertRaises(ValueError):self.admit(row)
   row=self.row('6245883')
   with self.assertRaises(ValueError):qualified(row,dt.datetime.fromisoformat(row['checkedAt'])+dt.timedelta(days=366))
+
+class GgraDistinctListingPositions(unittest.TestCase):
+ @classmethod
+ def setUpClass(cls):
+  root=Path(__file__).parent/'fixtures'
+  cls.native=json.loads(gzip.decompress((root/'ggra-original-sedol-positions-20261103.json.gz').read_bytes()))['rows']
+  cls.mapping={r['sedol']:r['isin']for r in cls.native if r['isin']}
+  for row in json.loads(gzip.decompress((root/'ggra-exact-residual-identities-20261103.json.gz').read_bytes())).values():
+   sedol,isin=qualified(row,dt.datetime.fromisoformat(row['checkedAt']));cls.mapping[sedol]=isin
+ def mapped(self):return [{**r,'isin':self.mapping.get(r['sedol'])}for r in self.native]
+ def test_exact_native_positions_are_consolidated_with_all_weights_and_proofs_retained(self):
+  from collect_wisdomtree_holdings import consolidate_ranked_securities
+  from collect_physical_holdings import checked_rows
+  native=self.mapped();original=copy.deepcopy(native)
+  with self.assertRaisesRegex(ValueError,'Duplicate physical security'):checked_rows(native)
+  rows=consolidate_ranked_securities(native,self.mapping)
+  self.assertEqual(native,original);self.assertEqual(len(native),440);self.assertEqual(len(rows),439)
+  self.assertEqual(len(checked_rows(rows)),439)
+  self.assertEqual(math.fsum(r['weightPct']for r in rows),math.fsum(r['weightPct']for r in native))
+  gen=next(r for r in rows if r['isin']=='US6687711084')
+  self.assertEqual(gen['weightPct'],.0228)
+  self.assertEqual([r['sedol']for r in gen['sourcePositions']],['BJN4XN5','BMV1436'])
+  self.assertEqual([r['weightPct']for r in gen['sourcePositions']],[.0114,.0114])
+  self.assertEqual(next(r['weightPct']for r in rows if r['isin']=='IL0004750209'),.0388)
+  self.assertTrue(all(r['isin']for r in rows))
+ def test_replay_and_input_order_do_not_change_the_consolidated_exposure(self):
+  from collect_wisdomtree_holdings import consolidate_ranked_securities
+  native=self.mapped();a=consolidate_ranked_securities(native,self.mapping)
+  self.assertEqual(a,consolidate_ranked_securities(native,self.mapping))
+  b=consolidate_ranked_securities(list(reversed(native)),self.mapping)
+  self.assertEqual({r['isin']:(r['weightPct'],r.get('sourcePositions'))for r in a},
+                   {r['isin']:(r['weightPct'],r.get('sourcePositions'))for r in b})
+ def test_same_company_name_never_merges_different_or_unknown_securities(self):
+  from collect_wisdomtree_holdings import consolidate_ranked_securities
+  # Actual historical unknowns stay separate; equal labels confer no identity.
+  unknown=[{**r,'name':'Same displayed issuer'}for r in self.native if not r['isin']]
+  self.assertEqual(len(consolidate_ranked_securities(unknown,{})),2)
+  distinct=[{**r,'name':'Same displayed issuer'}for r in self.mapped()[:2]]
+  self.assertEqual(len(consolidate_ranked_securities(distinct,self.mapping)),2)
+ def test_duplicate_sedol_unbound_mapping_and_invalid_weights_stay_refused(self):
+  from collect_wisdomtree_holdings import consolidate_ranked_securities
+  native=self.mapped()
+  mutations=[lambda rows:rows.append(dict(rows[0])),lambda rows:rows[0].update(weightPct=-1),
+             lambda rows:rows[0].update(weightPct=True),lambda rows:rows[0].update(isin='US0000000001'),
+             lambda rows:rows[0].update(sedol='')]
+  for mutate in mutations:
+   rows=copy.deepcopy(native);mutate(rows)
+   with self.subTest(mutation=mutate),self.assertRaises(ValueError):consolidate_ranked_securities(rows,self.mapping)
 
 if __name__=='__main__':unittest.main()

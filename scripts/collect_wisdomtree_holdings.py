@@ -359,12 +359,45 @@ def public_identity_candidates(share,now,fetch=download):
              'candidateSourceUrl':url,'candidateAsOf':stamp,'candidateShareIsin':share['isin']}for r in rows]
 
 
+
+def consolidate_ranked_securities(rows, mapping):
+    """Sum distinct native positions of a proved exact ISIN, never discard one.
+
+    Only the public Fund-ranking adapter calls this; generic physical duplicate
+    rejection stays unchanged. Unidentified positions remain separate. Every
+    source SEDOL and its original weight/name are retained in merged rows.
+    """
+    groups = {}; seen = set()
+    for row in rows:
+        sedol, identity, weight = row.get('sedol'), row.get('isin'), row.get('weightPct')
+        if (not re.fullmatch(r'[A-Z0-9]{7}', sedol or '') or sedol in seen
+                or row.get('sourcePositions') or not isinstance(row.get('name'),str) or not row['name']
+                or type(weight) not in (int, float) or not math.isfinite(weight) or not 0 <= weight <= 100
+                or (identity is not None and not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d', identity))
+                or mapping.get(sedol) != identity):
+            raise ValueError('Unbound or duplicate native ranked security position')
+        seen.add(sedol)
+        key = identity or 'unidentified:' + sedol
+        groups.setdefault(key, []).append(row)
+    out = []
+    for positions in groups.values():
+        if len(positions) == 1:
+            out.append(dict(positions[0])); continue
+        native = sorted(positions, key=lambda r: r['sedol'])
+        out.append({**native[0], 'weightPct': math.fsum(r['weightPct'] for r in native),
+                    'sourcePositions': [dict(r) for r in native],
+                    'aggregationMethod': 'Sum of distinct issuer SEDOL positions independently matched to the same exact ISIN; original weights, no renormalisation'})
+    return out
+
+
 def collect_public_rankings(share,now,fetch=download):
     from collect_physical_holdings import observation
     raw,url,identity,listing,attempts=acquire_qualified_public_rankings(share,now,fetch)
     snapshot=complete_identity_mapping(now)
     mapping,dates,proofs=snapshot
     rows,stamp=parse_public_rankings(json.loads(raw),share,now,mapping,listing['ticker'])
+    native_rows = rows
+    rows = consolidate_ranked_securities(native_rows, mapping)
     # Mapping dates stay distinct from portfolio dates, under the same existing
     # identity compatibility window used by the SSR collector.
     policy=json.loads((Path(__file__).resolve().parents[1]/'src/data/freshness-policy.json').read_text())
@@ -376,8 +409,11 @@ def collect_public_rankings(share,now,fetch=download):
         captureMethod='public-dataspan-fund-rankings',requestedListingTicker=listing['ticker'],
         accessAttempts=[*attempts,{'sourceUrl':url,'status':'validated-public-portfolio'}],
         sourceUrls=[url,identity['identitySourceUrl'],*proofs],
-        coverageProof={'rankClassificationID':1,'rankClassification':'Fund','rowCount':len(rows),
-            'publishedWeightPct':sum(r['weightPct']for r in rows),'otherRankingGroupsExcluded':True})
+        coverageProof={'rankClassificationID':1,'rankClassification':'Fund','rowCount':len(native_rows),
+            'securityRowCount':len(rows),'consolidatedSecurityGroups':sum('sourcePositions'in r for r in rows),
+            'publishedWeightPct':sum(r['weightPct']for r in native_rows),'otherRankingGroupsExcluded':True})
     result['method']='Complete issuer Fund ranking (rankClassificationID 1); original published pct weights, no renormalisation; sector/country/index groups excluded; identities independently matched by exact SEDOL; access listings are document-qualified routes for the same ISIN, no trading-currency conversion of fund weights'
+    if result['coverageProof']['consolidatedSecurityGroups']:
+        result['method'] += '; distinct native SEDOL positions of the same qualified ISIN summed with every original position retained in sourcePositions'
     if getattr(snapshot,'source_failures',[]):result['identitySourceFailures']=snapshot.source_failures
     return result
