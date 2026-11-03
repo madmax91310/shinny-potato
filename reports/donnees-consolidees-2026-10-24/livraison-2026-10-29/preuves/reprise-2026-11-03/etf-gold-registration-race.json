@@ -1,0 +1,22 @@
+{
+  "run": 41600148933,
+  "head": "8486dbd5afd76b4dae266b35529c4853572c93ec",
+  "failedStage": "Commit validated observations",
+  "concurrentProducer": 41600673313,
+  "concurrentCommit": "239f4c9",
+  "protectedInput": "src/data/worldbank-gold-monthly.json",
+  "evidence": [
+    "2026-11-03T08:14:48.4098454Z   VALIDATED_DATA_CHECK: bash scripts/validate-etf-publication.sh check",
+    "2026-11-03T08:14:48.4098955Z   VALIDATED_DATA_PREPARE: bash scripts/validate-etf-publication.sh prepare",
+    "2026-11-03T08:14:54.7673465Z Successfully rebased and updated detached HEAD.",
+    "2026-11-03T08:14:54.8150102Z ValueError: Collection inputs may have changed; recollect from master: src/data/worldbank-gold-monthly.json"
+  ],
+  "tests": {
+    "command": "python -m unittest discover -s scripts -p test_observation_rebase.py",
+    "count": 100,
+    "passed": true,
+    "newCases": 7,
+    "scope": "Isolated actual Git repositories: both outputs retained, failed financial revalidation denies push, FX/ETF source/config/observations remain protected, ETF Python and JS baseline dependency graphs exclude monthly gold, anniversary still requires recollection"
+  },
+  "productionReplay": "Not yet performed on this change; no intentional production race; ordinary producer required after merge"
+}
