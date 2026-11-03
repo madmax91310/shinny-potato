@@ -1,13 +1,16 @@
 {
   "schemaVersion": 1,
   "policyVersion": 4,
-  "checkedAt": "2026-11-03T06:34:58.499Z",
-  "sourceRevision": "f24145149789efeab9338469336c95a784de72c5",
+  "checkedAt": "2026-11-03T08:17:47.030Z",
+  "sourceRevision": "239f4c995e1544c4b4fb475c7c1179695d5a4e36",
   "groups": [
     [
       "9977149042677757b663c372",
       "0d02d80eb57568918b943369",
       "4a8cf33092c21057405eb5ce"
+    ],
+    [
+      "25355c5524533d61a458aee0"
     ],
     [
       "0ea6fdc936e144a8a097aec7",
@@ -33,6 +36,9 @@
     ],
     [
       "bdd2709d791b13345414bb06"
+    ],
+    [
+      "bb68e55629b7ec4c0cba2967"
     ],
     [
       "b05d1dddb3be7b485711c50c"
@@ -86,6 +92,24 @@
     ]
   ],
   "selection": [
+    {
+      "id": "25355c5524533d61a458aee0",
+      "eventIds": [
+        "25355c5524533d61a458aee0"
+      ],
+      "readEventIds": [
+        "25355c5524533d61a458aee0"
+      ],
+      "title": "Taux assurance vie à 5,81% en 2027 : que vaut la nouvelle offre de bonification du contrat Lucya Abeille ?",
+      "mainFact": "Les épargnants détenant déjà un contrat d'assurance vie Lucya Abeille ou souhaitant en ouvrir un peuvent en ce moment bénéficier d'une bonification du rendement du fonds en euros à hauteur de +3,30%.",
+      "publishedAt": "2026-11-03",
+      "observedAt": null,
+      "whyNow": "Publication originale ou changement documenté depuis moins de 48 h.",
+      "reason": "Arbitrage lié à une condition financière prouvée",
+      "score": 80,
+      "sourceUrl": "https://www.moneyvox.fr/assurance-vie/actualites/111080/taux-assurance-vie-a-5-81-en-2027-que-vaut-la-nouvelle-offre-de-bonification-du-contrat-lucya-abeille",
+      "to": "/radar-editorial?subject=25355c5524533d61a458aee0"
+    },
     {
       "id": "0ea6fdc936e144a8a097aec7",
       "eventIds": [
@@ -141,24 +165,6 @@
       "score": 71,
       "sourceUrl": "https://www.moneyvox.fr/placement/actualites/111083/assurance-vie-livret-bancaire-le-prelevement-de-17-sur-epargne-en-desherence-supprime-par-les-deputes",
       "to": "/radar-editorial?subject=f32f2607819735e76402782f"
-    },
-    {
-      "id": "c9c9ab4012998b35098cf0cc",
-      "eventIds": [
-        "c9c9ab4012998b35098cf0cc"
-      ],
-      "readEventIds": [
-        "c9c9ab4012998b35098cf0cc"
-      ],
-      "title": "Crédit immobilier : voici les nouveaux taux sur 15, 20 et 25 ans en novembre 2026",
-      "mainFact": "Chez CAFPI, les taux moyens obtenus en octobre atteignent désormais 3,40% sur 15 ans, 3,61% sur 20 ans et 3,75% sur 25 ans.",
-      "publishedAt": "2026-10-30",
-      "observedAt": null,
-      "whyNow": "Publication originale de moins de sept jours.",
-      "reason": "Arbitrage lié à une condition financière prouvée",
-      "score": 68,
-      "sourceUrl": "https://www.moneyvox.fr/credit/actualites/111043/credit-immobilier-voici-les-nouveaux-taux-sur-15-20-et-25-ans-en-novembre-2026",
-      "to": "/radar-editorial?subject=c9c9ab4012998b35098cf0cc"
     }
   ]
 }
