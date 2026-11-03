@@ -15,8 +15,26 @@ for(const [i,p] of PROFILES.entries()){
 const p={...prepareProfile(PROFILES[0]),lines:[{asset:'world',label:'World',weight:80,amount:50,isin:references.world.isin},{asset:'sp500',label:'S&P 500',weight:20,amount:50,isin:references.sp500.isin}]}
 assert.equal(analyzeProfile(p).changes[0].share,50)
 assert.equal(analyzeProfile(p).changes[0].delta,-30)
-// Physical funds retain their observed cash allocation outside the equity pocket.
-const expectedCoverage = profile => profile.lines.reduce((sum, line) => sum + line.weight * (references[line.asset].equitySleeve?.weightPct ?? 100) / 100, 0)
+// Physical funds retain cash outside equities; a short published country table
+// also retains its missing slice (World currently totals 99.99995%, not 100%).
+const expectedCoverage = profile => profile.lines.reduce((sum, line) => {
+ const ref=references[line.asset]
+ const published=ref.countries.rows.reduce((total,row)=>total+row.weightPct,0)
+ return sum+line.weight*(ref.equitySleeve?.weightPct??100)/100*Math.min(published,100)/100
+},0)
+// Independent fixed example: 80% holding with 60% classified countries, plus a
+// 20% holding with an 80% equity sleeve. No filling the missing 32% of the former.
+const {publishedExposure}=await import('../src/pages/dca-profiles/exposure.js')
+const sample={asOf:'2026-11-02',basis:'fund',sourceUrl:'https://example.test/source',compatibility:'fixture'}
+const partialCountries=publishedExposure([
+ {asset:'partial',isin:'partial',weight:80},{asset:'sleeved',isin:'sleeved',weight:20}
+],{
+ partial:{isin:'partial',countries:{...sample,rows:[{name:'France',weightPct:50},{name:'Japan',weightPct:10}]}},
+ sleeved:{isin:'sleeved',equitySleeve:{...sample,weightPct:80},countries:{...sample,rows:[{name:'France',weightPct:100}]}}
+},'countries',new Date('2026-11-03T12:00:00Z'))
+assert.equal(partialCountries.coverage,64)
+assert.equal(partialCountries.neutralWeight,4)
+assert.equal(exposureDisplay(partialCountries).missing,32)
 assert(Math.abs(analyzeProfile(p).countries.coverage - expectedCoverage(p)) < 1e-8)
 const countries=analyzeProfile(p).countries
 assert(countries.coverage>0 && countries.coverage<=100)
