@@ -446,6 +446,33 @@ else:
         self.assertEqual(result.returncode,0,result.stderr)
         self.assertEqual(self.f.git(self.f.remote,'show','master:src/data/worldbank-gold-monthly.json'),'concurrent update')
 
+    def test_etf_gold_race_preserves_gold_and_validated_etf_after_revalidation(self):
+        path = 'src/data/worldbank-gold-monthly.json'
+        self.f.advance_remote(path)
+        result = self.publish('etf', f'test "$(cat {path})" = "concurrent update"')
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'concurrent update')
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
+
+    def test_etf_gold_race_never_bypasses_failed_financial_revalidation(self):
+        self.assert_refused('src/data/worldbank-gold-monthly.json', 'etf', validation='false')
+
+    def test_gold_race_does_not_hide_changed_etf_fx(self):
+        self.f.advance_remote('src/data/worldbank-gold-monthly.json')
+        self.assert_refused('src/data/annual-fx.json', 'etf')
+
+    def test_gold_race_does_not_hide_competing_etf_observations(self):
+        self.f.advance_remote('src/data/worldbank-gold-monthly.json')
+        self.assert_refused('src/data/automated-etf.json', 'etf')
+
+    def test_gold_race_does_not_hide_changed_etf_collector(self):
+        self.f.advance_remote('src/data/worldbank-gold-monthly.json')
+        self.assert_refused('scripts/collect_etf_pilot.py', 'etf')
+
+    def test_gold_race_does_not_hide_changed_etf_configuration(self):
+        self.f.advance_remote('src/data/worldbank-gold-monthly.json')
+        self.assert_refused('scripts/etf-pilot.json', 'etf')
+
     def test_gold_input_change_cannot_reuse_anniversary_collection(self):
         self.assert_refused('src/data/worldbank-gold-monthly.json','publication')
 
@@ -711,6 +738,28 @@ class CurrentAcquisitionIndependence(unittest.TestCase):
             if path.suffix not in ('.js', '.mjs'):continue
             text = path.read_text()
             self.assertNotIn(pathlib.Path(ACTOR_OUTPUT).name, text, str(path))
+            for relative in re.findall(r"(?:from\s*|import\s*|import\s*\(\s*)['\"](\.[^'\"]+)['\"]", text):
+                pending.append(path.parent / relative)
+        self.assertGreater(len(seen), 1)
+
+    def test_etf_acquisition_and_baseline_do_not_read_monthly_gold(self):
+        forbidden = 'src/data/worldbank-gold-monthly.json'
+        self.python_graph(['collect_etf_pilot.py', 'collect_amundi_etf.py',
+                           'collect_ssga_etf.py', 'refresh_additional_etf.py',
+                           'collect_presentation_performance.py', 'collect_annual_fx.py',
+                           'collect_performance_currency.py', 'refresh_index_sources.py'], [forbidden])
+        pending = [ROOT / 'scripts/export-etf-pilot-baseline.mjs']
+        seen = set()
+        while pending:
+            path = pending.pop().resolve()
+            if path in seen:
+                continue
+            seen.add(path)
+            self.assertNotEqual(path, ROOT / forbidden)
+            if path.suffix not in ('.js', '.mjs'):
+                continue
+            text = path.read_text()
+            self.assertNotIn(pathlib.Path(forbidden).name, text, str(path))
             for relative in re.findall(r"(?:from\s*|import\s*|import\s*\(\s*)['\"](\.[^'\"]+)['\"]", text):
                 pending.append(path.parent / relative)
         self.assertGreater(len(seen), 1)
