@@ -1,0 +1,4287 @@
+[
+  {
+    "id": "reddit-actif-2026-09-27",
+    "name": "Camille",
+    "status": "incomplete_completed",
+    "source": "https://www.reddit.com/r/VosSous/comments/1wrad88/quel_est_le_choix_le_plus_judicieux/",
+    "period": "Septembre 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 160000,
+      "expenses": 129300,
+      "available": 30700,
+      "savings": 0,
+      "balance": 30700
+    },
+    "after": {
+      "income": 160000,
+      "expenses": 142800,
+      "available": 17200,
+      "savings": 0,
+      "balance": 17200
+    },
+    "additions": [
+      {
+        "label": "Provision entretien automobile",
+        "amount": 50,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 600,
+        "reason": "Voiture de 2005 connue ; distinct de l’assurance et du carburant.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Soins non remboursés",
+        "amount": 20,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Reste à charge préparé, pas une seconde prime d’assurance.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Vêtements",
+        "amount": 35,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Pas de vêtement isolé dans le groupe logement/charges/courses.",
+        "covers": [
+          "vetements"
+        ]
+      },
+      {
+        "label": "Provision cadeaux",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 360,
+        "reason": "Dépense irrégulière distincte des sorties, annualisée à 360 €.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Combien garderiez-vous de côté pendant le changement de travail ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      },
+      {
+        "text": "Vous garderiez la voiture tant qu’elle roule ou vous prépareriez déjà son remplacement ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reddit-couple-nord-2026-07-09",
+    "name": "Julie et Alex",
+    "status": "incomplete_completed",
+    "source": "https://www.reddit.com/r/VosSous/comments/1urtc6n/reprise_en_main_des_finances_apr%C3%A8s_avoir_touch%C3%A9/",
+    "period": "Juillet 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 246400,
+      "expenses": 201700,
+      "available": 44700,
+      "savings": 10000,
+      "balance": 34700
+    },
+    "after": {
+      "income": 246400,
+      "expenses": 225700,
+      "available": 20700,
+      "savings": 10000,
+      "balance": 10700
+    },
+    "additions": [
+      {
+        "label": "Soins non remboursés",
+        "amount": 40,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Distinct des primes éventuellement présentes dans les fixes.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Vêtements du foyer",
+        "amount": 60,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Pour les deux adultes et les besoins occasionnels de l’enfant, sans âge inventé.",
+        "covers": [
+          "vetements"
+        ]
+      },
+      {
+        "label": "Loisirs",
+        "amount": 60,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La marge devait encore payer les loisirs ; les trajets restent dans les 150 € existants.",
+        "covers": [
+          "loisirs"
+        ]
+      },
+      {
+        "label": "Provision cadeaux et remplacements",
+        "amount": 80,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 960,
+        "reason": "Dépenses irrégulières distinctes des fixes et des courses.",
+        "covers": [
+          "cadeaux_vacances",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Comment utiliseriez-vous cette marge sans reprendre sur les 100 € prévus pour les imprévus ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reddit-salarie-26-2026-01-04",
+    "name": "Thomas",
+    "status": "incomplete_completed",
+    "source": "https://www.reddit.com/r/VosSous/comments/1q3tkwk/plan_finance_pour_mon_profil/",
+    "period": "Janvier 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 170000,
+      "expenses": 49500,
+      "available": 120500,
+      "savings": 0,
+      "balance": 120500
+    },
+    "after": {
+      "income": 170000,
+      "expenses": 60500,
+      "available": 109500,
+      "savings": 0,
+      "balance": 109500
+    },
+    "additions": [
+      {
+        "label": "Provision entretien automobile",
+        "amount": 40,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Voiture connue, hors assurance et carburant.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Vêtements",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Dépense personnelle, sans nouveau logement parental.",
+        "covers": [
+          "vetements"
+        ]
+      },
+      {
+        "label": "Provision cadeaux et achats occasionnels",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Petits achats irréguliers non ventilés dans les six lignes source.",
+        "covers": [
+          "cadeaux_vacances",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Vous compléteriez d’abord le livret jusqu’à 10 000 € ou vous commenceriez déjà à investir une petite somme ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-ingenieur-aero-2025-11-30",
+    "name": "Mathieu",
+    "status": "incomplete_completed",
+    "source": "https://community.finary.com/t/optimisation-des-charges-fixes-50-30-20/32236",
+    "period": "Novembre 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 305000,
+      "expenses": 264200,
+      "available": 40800,
+      "savings": 40800,
+      "balance": 0
+    },
+    "after": {
+      "income": 305000,
+      "expenses": 268200,
+      "available": 36800,
+      "savings": 30000,
+      "balance": 6800
+    },
+    "additions": [
+      {
+        "label": "Provision entretien automobile et contrôle technique",
+        "amount": 40,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Les crédits, assurances et carburant ne comprennent pas cette provision de 480 € par an.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "La règle 50/30/20 vous semble-t-elle adaptée à son budget avec ces deux crédits ?",
+        "origin": "expressed",
+        "evidence": [
+          0
+        ]
+      },
+      {
+        "text": "Pour quelles dépenses annuelles mettez-vous de l’argent de côté chaque mois ?",
+        "origin": "expressed",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-alternant-22-2025-05-15",
+    "name": "Lucas",
+    "status": "incomplete_completed",
+    "source": "https://community.finary.com/t/conseil-strategie-patrimoine-alternant-de-22-ans/26062",
+    "period": "Mai 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 150000,
+      "expenses": 50000,
+      "available": 100000,
+      "savings": 100000,
+      "balance": 0
+    },
+    "after": {
+      "income": 150000,
+      "expenses": 62000,
+      "available": 88000,
+      "savings": 75000,
+      "balance": 13000
+    },
+    "additions": [
+      {
+        "label": "Provision entretien automobile",
+        "amount": 50,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 600,
+        "reason": "450 km hebdomadaires connus ; distinct du forfait essence/train/assurances/abonnements.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Vêtements et achats personnels",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La participation familiale ne sert pas à inventer une prise en charge des vêtements.",
+        "covers": [
+          "vetements"
+        ]
+      },
+      {
+        "label": "Provision cadeaux",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 360,
+        "reason": "Cadeaux irréguliers hors forfait d’abonnements.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "À quoi servirait selon vous l’assurance-vie à côté de son PEA World/Nasdaq ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1
+        ]
+      },
+      {
+        "text": "Vous garderiez un versement fixe sur le PEA ou vous l’ajusteriez aux dépenses du mois ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-fonctionnaire-30-2025-05-21",
+    "name": "Nicolas",
+    "status": "incomplete_completed",
+    "source": "https://community.finary.com/t/votre-capacite-depargne/26044/63",
+    "period": "Mai 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 215500,
+      "expenses": 153201,
+      "available": 62299,
+      "savings": 0,
+      "balance": 62299
+    },
+    "after": {
+      "income": 215500,
+      "expenses": 163201,
+      "available": 52299,
+      "savings": 0,
+      "balance": 52299
+    },
+    "additions": [
+      {
+        "label": "Provision vacances",
+        "amount": 100,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 1200,
+        "reason": "Vacances explicitement absentes du tableau et financées depuis le livret : provision illustrative de 1 200 € par an.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Avec la baisse de salaire et les vacances à financer, combien mettriez-vous chaque mois sur son PEA ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-alternant-19-2025-09-27",
+    "name": "Hugo",
+    "status": "incomplete_completed",
+    "source": "https://community.finary.com/t/alternant-19-conseil-strat-dinvestissement/30020",
+    "period": "Septembre 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 122100,
+      "expenses": 102099,
+      "available": 20001,
+      "savings": 15000,
+      "balance": 5001
+    },
+    "after": {
+      "income": 122100,
+      "expenses": 105099,
+      "available": 17001,
+      "savings": 15000,
+      "balance": 2001
+    },
+    "additions": [
+      {
+        "label": "Assurance habitation",
+        "amount": 15,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Locataire connu ; distinct des charges et sans nouvelle prime de mutuelle supposée.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Provision soins non remboursés",
+        "amount": 15,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 180,
+        "reason": "Reste à charge illustratif, pas une cotisation employeur inventée.",
+        "covers": [
+          "assurances_sante"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Sans compter sur le bonus, combien garderiez-vous sur le livret avant d’investir ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Combien garderiez-vous sur un livret avant de renforcer le compte-titres ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          },
+          {
+            "text": "Son objectif vous paraît-il réaliste avec ce rythme de versements ?",
+            "evidence": [
+              0
+            ],
+            "origin": "expressed"
+          }
+        ]
+      },
+      {
+        "text": "Son objectif vous paraît-il réaliste avec ce rythme de versements ?",
+        "origin": "expressed",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reddit-couple-35-2025-10-15",
+    "name": "Clara et Louis",
+    "status": "incomplete_completed",
+    "source": "https://www.reddit.com/r/VosSous/comments/1o78v4m/",
+    "period": "Octobre 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 505000,
+      "expenses": 443900,
+      "available": 61100,
+      "savings": 0,
+      "balance": 61100
+    },
+    "after": {
+      "income": 505000,
+      "expenses": 463900,
+      "available": 41100,
+      "savings": 0,
+      "balance": 41100
+    },
+    "additions": [
+      {
+        "label": "Assurance habitation",
+        "amount": 20,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Distincte de l’assurance automobile déjà présente.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Provision soins non remboursés",
+        "amount": 30,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 360,
+        "reason": "Reste à charge, pas une deuxième cotisation santé.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 150,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 1800,
+        "reason": "Les argents de poche restent groupés ; cette provision annuelle de 1 800 € couvre les vacances.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Quelle part de la marge garderiez-vous pour les imprévus, et quelle part pour préparer l’arrivée d’un enfant ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reddit-tech-26-2026-02-06",
+    "name": "Maxime",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://www.reddit.com/r/VosSous/comments/1qxm6ev/26_ans_cdi_grand_m%C3%A9nage_dans_les_banques_et/",
+    "period": "Février 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 190000,
+      "expenses": 107000,
+      "available": 83000,
+      "savings": 60000,
+      "balance": 23000
+    },
+    "after": {
+      "income": 190000,
+      "expenses": 107000,
+      "available": 83000,
+      "savings": 60000,
+      "balance": 23000
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Combien laisseriez-vous sur le compte courant avant de transférer le surplus sur le livret ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reddit-alternant-20-2025-09-03",
+    "name": "Léo",
+    "status": "incomplete_completed",
+    "source": "https://www.reddit.com/r/VosSous/comments/1n71114/",
+    "period": "Septembre 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 90000,
+      "expenses": 40000,
+      "available": 50000,
+      "savings": 50000,
+      "balance": 0
+    },
+    "after": {
+      "income": 90000,
+      "expenses": 44000,
+      "available": 46000,
+      "savings": 38000,
+      "balance": 8000
+    },
+    "additions": [
+      {
+        "label": "Provision entretien automobile",
+        "amount": 40,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Logement et repas sont couverts par les parents, pas l’entretien du véhicule.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Quelle part des versements garderiez-vous sur le livret avant d’investir le reste ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Sur les 500 € prévus, combien garderiez-vous sur le livret avant d’investir le reste ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-cyber-24-2026-08-27",
+    "name": "Adrien",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://community.finary.com/t/debutant-en-investissement-besoin-de-conseils/39359",
+    "period": "Août 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 280000,
+      "expenses": 90000,
+      "available": 190000,
+      "savings": 0,
+      "balance": 190000
+    },
+    "after": {
+      "income": 280000,
+      "expenses": 90000,
+      "available": 190000,
+      "savings": 0,
+      "balance": 190000
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Combien garderiez-vous de côté avant d’investir, avec ce prêt étudiant à rembourser plus tard ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-ingenieur-21-2025-03-08",
+    "name": "Bastien",
+    "status": "incomplete_completed",
+    "source": "https://community.finary.com/t/plan-dinvestissement-debutant-alternant-ingenieur/23973",
+    "period": "Mars 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 255000,
+      "expenses": 85200,
+      "available": 169800,
+      "savings": 30000,
+      "balance": 139800
+    },
+    "after": {
+      "income": 255000,
+      "expenses": 107200,
+      "available": 147800,
+      "savings": 30000,
+      "balance": 117800
+    },
+    "additions": [
+      {
+        "label": "Énergie et eau",
+        "amount": 80,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Hypothèse de charges distinctes du loyer net d’APL.",
+        "covers": [
+          "energie_eau"
+        ]
+      },
+      {
+        "label": "Téléphone et internet",
+        "amount": 25,
+        "category": "bills",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Pas de forfait détaillé ; aucune seconde APL ni aide parentale ajoutée.",
+        "covers": [
+          "telecoms"
+        ]
+      },
+      {
+        "label": "Assurance habitation",
+        "amount": 15,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Locataire ; cotisation distincte des loisirs.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Soins non remboursés",
+        "amount": 20,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Reste à charge illustratif sans inventer de prime employeur.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Vêtements et hygiène",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Complément personnel distinct de l’alimentation et des loisirs.",
+        "covers": [
+          "alimentation_hygiene",
+          "vetements"
+        ]
+      },
+      {
+        "label": "Provision cadeaux et remplacements",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Dépenses annuelles préparées sur douze mois.",
+        "covers": [
+          "cadeaux_vacances",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Un seul ETF ou plusieurs lignes pour investir ses 300 € par mois ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-alternant-21-2025-05-08",
+    "name": "Quentin",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://community.finary.com/t/strategie-dinvestissement-d-un-etudiant-en-alternance/25836",
+    "period": "Mai 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 109000,
+      "expenses": 21000,
+      "available": 88000,
+      "savings": 75000,
+      "balance": 13000
+    },
+    "after": {
+      "income": 109000,
+      "expenses": 21000,
+      "available": 88000,
+      "savings": 75000,
+      "balance": 13000
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Combien garderiez-vous sur le livret pour son achat immobilier avant de renforcer le PEA ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "text": "Vous ajouteriez d’autres pays à ses ETF actuels ou vous garderiez cette répartition ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-locataire-25-2025-11-08",
+    "name": "Julien",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://community.finary.com/t/dissimuler-un-credit-loyer-besoin-de-vos-avis/31245/3",
+    "period": "Novembre 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 290000,
+      "expenses": 216000,
+      "available": 74000,
+      "savings": 0,
+      "balance": 74000
+    },
+    "after": {
+      "income": 290000,
+      "expenses": 216000,
+      "available": 74000,
+      "savings": 0,
+      "balance": 74000
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Combien garderiez-vous de côté avant un achat locatif avec ce prêt étudiant encore en cours ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "text": "Vous achèteriez dès maintenant ou vous prendriez plus de temps pour réunir l’apport ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-batiment-21-2025-09-30",
+    "name": "Antoine",
+    "status": "incomplete_completed",
+    "source": "https://community.finary.com/t/21ans-apprentissage-23-5k-de-disponible/30076",
+    "period": "Septembre 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 150000,
+      "expenses": 30000,
+      "available": 120000,
+      "savings": 120000,
+      "balance": 0
+    },
+    "after": {
+      "income": 150000,
+      "expenses": 66500,
+      "available": 83500,
+      "savings": 72500,
+      "balance": 11000
+    },
+    "additions": [
+      {
+        "label": "Alimentation",
+        "amount": 250,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Logement gratuit ne prouve pas repas gratuits.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Hygiène",
+        "amount": 25,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Consommables personnels non isolés.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Téléphone mobile",
+        "amount": 15,
+        "category": "bills",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Hors forfait explicitement consacré aux déplacements.",
+        "covers": [
+          "telecoms"
+        ]
+      },
+      {
+        "label": "Vêtements",
+        "amount": 35,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Pas de prise en charge extérieure documentée.",
+        "covers": [
+          "vetements"
+        ]
+      },
+      {
+        "label": "Provision cadeaux et achats occasionnels",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Dépenses annuelles distinctes des loisirs et transports.",
+        "covers": [
+          "cadeaux_vacances",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Combien garderiez-vous de côté pour l’achat et les travaux ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      },
+      {
+        "text": "À sa place, vous commenceriez par votre logement ou par un bien à louer ?",
+        "origin": "expressed",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-etudiant-20-2025-03-19",
+    "name": "Simon",
+    "status": "incomplete_completed",
+    "source": "https://community.finary.com/t/questions-etudiants-debutant-avec-un-budget-de-7-10k/24298",
+    "period": "Septembre 2025 · budget prévu en mars",
+    "currency": "EUR",
+    "before": {
+      "income": 120000,
+      "expenses": 40000,
+      "available": 80000,
+      "savings": 0,
+      "balance": 80000
+    },
+    "after": {
+      "income": 120000,
+      "expenses": 56500,
+      "available": 63500,
+      "savings": 0,
+      "balance": 63500
+    },
+    "additions": [
+      {
+        "label": "Repas hors du foyer",
+        "amount": 80,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La participation au foyer reste groupée pour logement et repas à domicile ; repas extérieurs préparés séparément.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Téléphone mobile",
+        "amount": 15,
+        "category": "bills",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Forfait personnel, sans seconde charge de logement.",
+        "covers": [
+          "telecoms"
+        ]
+      },
+      {
+        "label": "Vêtements et hygiène",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Hors sport et compléments de l’enveloppe de 100 €.",
+        "covers": [
+          "alimentation_hygiene",
+          "vetements"
+        ]
+      },
+      {
+        "label": "Provision cadeaux",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 360,
+        "reason": "Provision annuelle personnelle.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Vous garderiez ses économies pour un futur apport ou vous en investiriez déjà une partie en bourse ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-celibataire-31-2026-02-03",
+    "name": "Sébastien",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://community.finary.com/t/question-pour-investissement/34118",
+    "period": "Février 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 240000,
+      "expenses": 177500,
+      "available": 62500,
+      "savings": 62500,
+      "balance": 0
+    },
+    "after": {
+      "income": 240000,
+      "expenses": 177500,
+      "available": 62500,
+      "savings": 62500,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Combien garderiez-vous sur les livrets après le voyage et ce transfert ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1
+        ]
+      },
+      {
+        "text": "Pour les 5 000 €, vous feriez un seul versement ou plusieurs achats répartis dans le temps ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-frontalier-37-2025-06-30",
+    "name": "Paul",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://community.finary.com/t/37-ans-cadre-frontalier-vos-suggestions-de-strategie-patrimoniale/27399",
+    "period": "Juin 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 670000,
+      "expenses": 332000,
+      "available": 338000,
+      "savings": 157200,
+      "balance": 180800
+    },
+    "after": {
+      "income": 670000,
+      "expenses": 332000,
+      "available": 338000,
+      "savings": 157200,
+      "balance": 180800
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Avec ces projets, combien laisseriez-vous sur les livrets ?",
+        "origin": "expressed",
+        "evidence": [
+          0
+        ]
+      },
+      {
+        "text": "Vous rembourseriez le crédit plus vite ou vous renforceriez les placements ?",
+        "origin": "expressed",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-bois-18-2025-10-16",
+    "name": "Enzo",
+    "status": "incomplete_completed",
+    "source": "https://community.finary.com/t/2-200-par-moi-a-18-ans/30510/5",
+    "period": "Octobre 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 220000,
+      "expenses": 137300,
+      "available": 82700,
+      "savings": 0,
+      "balance": 82700
+    },
+    "after": {
+      "income": 220000,
+      "expenses": 149300,
+      "available": 70700,
+      "savings": 0,
+      "balance": 70700
+    },
+    "additions": [
+      {
+        "label": "Vêtements",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Distinct des loisirs et courses.",
+        "covers": [
+          "vetements"
+        ]
+      },
+      {
+        "label": "Provision entretien automobile",
+        "amount": 40,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Distinct du carburant et des assurances.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Provision équipement et cadeaux",
+        "amount": 50,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 600,
+        "reason": "Petits équipements et achats annuels ; aucun achat immobilier ni crédit inventé.",
+        "covers": [
+          "cadeaux_vacances",
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Combien garderiez-vous pour les premiers mois dans l’appartement avant de commencer à investir chaque mois ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": "mustachian-ingenieur-28-2025-08-16",
+    "name": "Romain",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://forum.mustachianpost.com/t/todds-introduction/16886",
+    "period": "Août 2025",
+    "currency": "CHF",
+    "before": {
+      "income": 739300,
+      "expenses": 364400,
+      "available": 374900,
+      "savings": 0,
+      "balance": 374900
+    },
+    "after": {
+      "income": 739300,
+      "expenses": 364400,
+      "available": 374900,
+      "savings": 0,
+      "balance": 374900
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Une fois son objectif atteint, continueriez-vous à investir autant en travaillant moins ?",
+        "origin": "expressed",
+        "evidence": [
+          0
+        ]
+      },
+      {
+        "text": "Quelle place laisseriez-vous aux loisirs pendant cette période ?",
+        "origin": "expressed",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-nicolas1499-2026-10-30",
+    "name": "Nicolas et Marion",
+    "status": "incomplete_completed",
+    "source": "https://community.finary.com/t/avis-conseils-sur-strategie-dinvestissement-190-000-suite-donation/31448",
+    "period": "Novembre 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 405000,
+      "expenses": 354600,
+      "available": 50400,
+      "savings": 50400,
+      "balance": 0
+    },
+    "after": {
+      "income": 405000,
+      "expenses": 380600,
+      "available": 24400,
+      "savings": 15000,
+      "balance": 9400
+    },
+    "additions": [
+      {
+        "label": "Garde occasionnelle de l’enfant",
+        "amount": 150,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Hypothèse de garde occasionnelle pour l’enfant de deux ans ; aucun mode de garde habituel ni aide ne sont attribués à la source.",
+        "covers": [
+          "enfants_garde"
+        ]
+      },
+      {
+        "label": "Provision soins non remboursés",
+        "amount": 30,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 360,
+        "reason": "Les 222 € couvrent habitation et voitures, pas une seconde mutuelle.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Provision entretien des deux voitures",
+        "amount": 80,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 960,
+        "reason": "Deux voitures connues ; hors assurance et carburant.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Où garderiez-vous l’argent des travaux, à côté des placements pour les enfants et la retraite ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1
+        ]
+      },
+      {
+        "text": "Vous feriez quelle place à l’immobilier et aux obligations ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-carl78-2026-10-30",
+    "name": "Julien en couple",
+    "status": "incomplete_completed",
+    "source": "https://community.finary.com/t/avis-et-conseils-sur-ma-situation-financiere/29280",
+    "period": "Août 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 250000,
+      "expenses": 130000,
+      "available": 120000,
+      "savings": 120000,
+      "balance": 0
+    },
+    "after": {
+      "income": 250000,
+      "expenses": 136000,
+      "available": 114000,
+      "savings": 105000,
+      "balance": 9000
+    },
+    "additions": [
+      {
+        "label": "Part de l’énergie et de l’eau",
+        "amount": 40,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Quote-part préparée hors part de loyer ; revenu de la compagne toujours exclu.",
+        "covers": [
+          "energie_eau"
+        ]
+      },
+      {
+        "label": "Hygiène et entretien courant",
+        "amount": 20,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Distinct des vêtements/coiffure et du loyer.",
+        "covers": [
+          "alimentation_hygiene",
+          "entretien_logement"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Vous garderiez combien pour le mariage, l’enfant et la voiture avant d’investir davantage ?",
+        "origin": "expressed",
+        "evidence": [
+          0
+        ]
+      },
+      {
+        "text": "Quels placements garderiez-vous pour plus tard, et lesquels pourraient l’aider à travailler moins ?",
+        "origin": "expressed",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-theoo-2026-10-30",
+    "name": "Théo",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://community.finary.com/t/25-ans-debut-de-parcours-patrimonial-et-objectif-liberte-financiere/36307",
+    "period": "Mai 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 176000,
+      "expenses": 156000,
+      "available": 20000,
+      "savings": 20000,
+      "balance": 0
+    },
+    "after": {
+      "income": 176000,
+      "expenses": 156000,
+      "available": 20000,
+      "savings": 20000,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Vous garderiez l’ETF World seul pour commencer ou vous ajouteriez déjà d’autres placements ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1
+        ]
+      },
+      {
+        "text": "Combien garderiez-vous de côté pour le prêt étudiant avant d’augmenter les versements ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-gritz-2026-10-30",
+    "name": "Guillaume",
+    "status": "incomplete_completed",
+    "source": "https://community.finary.com/t/avis-pour-optimisation-depenses-et-placements-court-terme-1-an-et-moyen-terme-2-4-ans/34334",
+    "period": "Février 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 280000,
+      "expenses": 229600,
+      "available": 50400,
+      "savings": 50400,
+      "balance": 0
+    },
+    "after": {
+      "income": 280000,
+      "expenses": 237600,
+      "available": 42400,
+      "savings": 37800,
+      "balance": 4600
+    },
+    "additions": [
+      {
+        "label": "Déplacements courants",
+        "amount": 80,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Aucun mode ni véhicule inventé : enveloppe personnelle de déplacements.",
+        "covers": [
+          "transports"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Combien garderiez-vous accessible pour les prochaines années avant de renforcer les placements à long terme ?",
+        "origin": "expressed",
+        "evidence": [
+          0
+        ]
+      },
+      {
+        "text": "Vous privilégieriez l’achat sans crédit ou vous continueriez à épargner en attendant ?",
+        "origin": "expressed",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-tom281-2026-10-30",
+    "name": "Thomas à Paris",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://community.finary.com/t/projet-d-achat-de-parking-credit-immo-15-ans-sans-apport/32675",
+    "period": "Décembre 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 253000,
+      "expenses": 181000,
+      "available": 72000,
+      "savings": 72000,
+      "balance": 0
+    },
+    "after": {
+      "income": 253000,
+      "expenses": 181000,
+      "available": 72000,
+      "savings": 72000,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Le projet tiendrait-il avec un crédit plus court et plusieurs mois sans locataires ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "text": "Quelle mensualité maximale accepteriez-vous pour continuer à alimenter le PEA ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-alessgiu-2026-10-30",
+    "name": "Alexandre",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://community.finary.com/t/plan-dinvestissement-personnel-jen-suis-quau-debut/34261",
+    "period": "Février 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 230000,
+      "expenses": 161200,
+      "available": 68800,
+      "savings": 68800,
+      "balance": 0
+    },
+    "after": {
+      "income": 230000,
+      "expenses": 161200,
+      "available": 68800,
+      "savings": 68800,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Comment partageriez-vous les versements entre l’argent à garder accessible, les ETF et l’épargne-pension ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ]
+      },
+      {
+        "text": "Un nouvel ETF apporterait-il vraiment quelque chose à côté d’un All-World ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-xiaolongbao641-2026-10-30",
+    "name": "Maxime et Clara",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://community.finary.com/t/strategie-patrimoniale-presentation-et-echanges/38311",
+    "period": "Juillet 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 835000,
+      "expenses": 385000,
+      "available": 450000,
+      "savings": 450000,
+      "balance": 0
+    },
+    "after": {
+      "income": 835000,
+      "expenses": 385000,
+      "available": 450000,
+      "savings": 450000,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Sur quelles lignes concentreriez-vous les nouveaux versements pour simplifier le portefeuille ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "text": "Une fois les PEA remplis, où placeriez-vous les nouveaux versements pour préparer une baisse d’activité ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-abar4-2026-10-30",
+    "name": "Adrien et Léa",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://forum.mustachianpost.com/t/pants-down-yearly-spending/1249/450",
+    "period": "Moyenne mensuelle 2025",
+    "currency": "CHF",
+    "before": {
+      "income": 695600,
+      "expenses": 495600,
+      "available": 200000,
+      "savings": 200000,
+      "balance": 0
+    },
+    "after": {
+      "income": 695600,
+      "expenses": 495600,
+      "available": 200000,
+      "savings": 200000,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Avant une naissance, quelle réserve garderiez-vous avec un seul revenu ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Combien garderiez-vous de côté pour l’arrivée du bébé avec un seul revenu ?",
+            "evidence": [
+              0,
+              1,
+              2
+            ],
+            "origin": "editorial"
+          },
+          {
+            "text": "Garderiez-vous autant de métaux précieux dans leur portefeuille ?",
+            "evidence": [
+              0,
+              1,
+              2
+            ],
+            "origin": "expressed"
+          }
+        ]
+      },
+      {
+        "text": "Garderiez-vous autant de métaux précieux dans leur portefeuille ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-justbob-2026-10-30",
+    "name": "Marc",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://forum.mustachianpost.com/t/pants-down-yearly-spending/1249/426",
+    "period": "Moyenne mensuelle 2025",
+    "currency": "CHF",
+    "before": {
+      "income": 2250000,
+      "expenses": 633300,
+      "available": 1616700,
+      "savings": 1616700,
+      "balance": 0
+    },
+    "after": {
+      "income": 2250000,
+      "expenses": 633300,
+      "available": 1616700,
+      "savings": 1616700,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Quel budget loisirs garderiez-vous quand une partie de la rémunération varie ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ]
+      },
+      {
+        "text": "Combien laisseriez-vous de côté avant de travailler moins ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-markus654-2026-10-30",
+    "name": "Samuel",
+    "status": "source_correction",
+    "source": "https://forum.mustachianpost.com/t/pants-down-yearly-spending/1249/418",
+    "period": "Moyenne mensuelle 2025",
+    "currency": "CHF",
+    "before": {
+      "income": 611400,
+      "expenses": 343800,
+      "available": 267600,
+      "savings": 267600,
+      "balance": 0
+    },
+    "after": {
+      "income": 611400,
+      "expenses": 343900,
+      "available": 267500,
+      "savings": 260500,
+      "balance": 7000
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Quelle part garderiez-vous accessible avant de verser le reste au troisième pilier et sur les ETF ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-01-2026-10-30",
+    "name": "Inès",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://www.elle.fr/Societe/News/Dans-les-comptes-de-Julie-42-ans-Avant-j-avais-une-expertise-plus-rien-a-prouver-et-un-tres-bon-salaire-4675888",
+    "period": "Octobre 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 240000,
+      "expenses": 175500,
+      "available": 64500,
+      "savings": 64500,
+      "balance": 0
+    },
+    "after": {
+      "income": 240000,
+      "expenses": 175500,
+      "available": 64500,
+      "savings": 64500,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "À sa place, combien garderiez-vous pour les imprévus personnels avant de financer l’entreprise ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-02-2026-10-30",
+    "name": "Aïcha",
+    "status": "incomplete_completed",
+    "source": "https://www.elle.fr/Societe/News/Dans-les-comptes-d-Aminata-mere-celibataire-Je-ne-suis-plus-a-decouvert-depuis-2018-4672401",
+    "period": "Octobre 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 335000,
+      "expenses": 230000,
+      "available": 105000,
+      "savings": 105000,
+      "balance": 0
+    },
+    "after": {
+      "income": 335000,
+      "expenses": 238000,
+      "available": 97000,
+      "savings": 80000,
+      "balance": 17000
+    },
+    "additions": [
+      {
+        "label": "Provision équipement du logement",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Petits remplacements distincts du loyer et des charges.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Provision cadeaux",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Cadeaux annuels distincts des projets encore à financer et de la réserve.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Avec des astreintes variables, quel salaire prendriez-vous comme base pour les dépenses du mois ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      },
+      {
+        "text": "Comment partageriez-vous l’argent mis de côté entre les besoins de l’enfant et les imprévus ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-03-2026-10-30",
+    "name": "Céline",
+    "status": "incomplete_completed",
+    "source": "https://www.elle.fr/Societe/News/Dans-les-comptes-de-Nathalie-mere-celibataire-Les-aides-sont-primordiales-pour-vivre-4559255",
+    "period": "Septembre 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 167200,
+      "expenses": 130000,
+      "available": 37200,
+      "savings": 37200,
+      "balance": 0
+    },
+    "after": {
+      "income": 167200,
+      "expenses": 136000,
+      "available": 31200,
+      "savings": 25000,
+      "balance": 6200
+    },
+    "additions": [
+      {
+        "label": "Hygiène et produits ménagers",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Distinct de l’alimentation et des vêtements.",
+        "covers": [
+          "alimentation_hygiene",
+          "entretien_logement"
+        ]
+      },
+      {
+        "label": "Provision cadeaux et achats annuels",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 360,
+        "reason": "Les vacances sont déjà dans une autre affectation, non doublées.",
+        "covers": [
+          "cadeaux_vacances",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Combien mettriez-vous de côté pour les imprévus tout en gardant un budget vacances ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-04-2026-10-30",
+    "name": "Élodie",
+    "status": "incomplete_completed",
+    "source": "https://www.elle.fr/Societe/News/Dans-le-budget-de-Laura-39-ans-J-ai-ouvert-les-yeux-sur-l-investissement-pour-me-mettre-a-l-abri-4496119",
+    "period": "Août 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 460000,
+      "expenses": 380000,
+      "available": 80000,
+      "savings": 80000,
+      "balance": 0
+    },
+    "after": {
+      "income": 200000,
+      "expenses": 175000,
+      "available": 25000,
+      "savings": 10000,
+      "balance": 15000
+    },
+    "additions": [],
+    "scopeChange": "Ancien foyer à 4 600 € dont salaire du conjoint fictif ; nouvelle quote-part personnelle sur les seules indemnités connues de 2 000 €. Totaux non directement comparables.",
+    "questions": [
+      {
+        "text": "Avec la fin annoncée des indemnités, combien garderiez-vous pour les imprévus avant de financer l’entreprise ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Combien garderiez-vous pour le foyer avant la fin des indemnités ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          },
+          {
+            "text": "Quelle somme pourriez-vous encore consacrer à l’entreprise pendant cette transition ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      },
+      {
+        "text": "Que faudrait-il revoir si sa participation aux charges du foyer était plus élevée ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Combien garderiez-vous pour le foyer avant la fin des indemnités ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          },
+          {
+            "text": "Quelle somme pourriez-vous encore consacrer à l’entreprise pendant cette transition ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-05-2026-10-30",
+    "name": "Soraya",
+    "status": "incomplete_completed",
+    "source": "https://www.elle.fr/Societe/News/Dans-le-budget-de-Fouzia-49-ans-Je-n-ai-jamais-epargne-sur-une-assurance-vie-ou-un-livret-4481353",
+    "period": "Août 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 275000,
+      "expenses": 275000,
+      "available": 0,
+      "savings": 0,
+      "balance": 0
+    },
+    "after": {
+      "income": 275000,
+      "expenses": 278000,
+      "available": -3000,
+      "savings": 0,
+      "balance": -3000
+    },
+    "additions": [
+      {
+        "label": "Produits ménagers et entretien courant",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Les soins personnels sont déjà dans coiffure/soins ; cette dépense concerne le logement, sans nouvelle épargne.",
+        "covers": [
+          "alimentation_hygiene",
+          "entretien_logement"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Quelle enveloppe ajusteriez-vous en premier pour retrouver un peu de marge ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Par quoi commenceriez-vous pour mettre un peu d’argent de côté sans trop serrer les dépenses du quotidien ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-06-2026-10-30",
+    "name": "Maud",
+    "status": "incomplete_completed",
+    "source": "https://www.elle.fr/Societe/News/Dans-le-budget-de-Marina-38-ans-Mon-salaire-a-presque-double-en-10-ans-mais-je-n-ai-pas-augmente-mon-train-de-vie-4478788",
+    "period": "Juillet 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 470000,
+      "expenses": 320000,
+      "available": 150000,
+      "savings": 150000,
+      "balance": 0
+    },
+    "after": {
+      "income": 470000,
+      "expenses": 323000,
+      "available": 147000,
+      "savings": 135000,
+      "balance": 12000
+    },
+    "additions": [
+      {
+        "label": "Hygiène et produits ménagers",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Les charges immobilières restent inchangées ; ce sont des consommables personnels.",
+        "covers": [
+          "alimentation_hygiene",
+          "entretien_logement"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Combien mettriez-vous pour la retraite, et combien garderiez-vous accessible pour les projets plus proches ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-07-2026-10-30",
+    "name": "Sylvie et Alain",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://www.elle.fr/Societe/News/Dans-les-comptes-de-Sacha-62-ans-Nous-avons-une-liberte-financiere-depuis-le-depart-de-nos-filles-4476431",
+    "period": "Juin 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 400000,
+      "expenses": 300000,
+      "available": 100000,
+      "savings": 100000,
+      "balance": 0
+    },
+    "after": {
+      "income": 400000,
+      "expenses": 300000,
+      "available": 100000,
+      "savings": 100000,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Si Alain partait à la retraite, que faudrait-il revoir dans leur budget ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-08-2026-10-30",
+    "name": "Émilie",
+    "status": "incomplete_completed",
+    "source": "https://www.elle.fr/Societe/News/Dans-le-budget-d-Angele-30-ans-Je-ne-suis-pas-spontanee-je-calcule-tout-4473494",
+    "period": "Juin 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 230000,
+      "expenses": 163000,
+      "available": 67000,
+      "savings": 67000,
+      "balance": 0
+    },
+    "after": {
+      "income": 230000,
+      "expenses": 171000,
+      "available": 59000,
+      "savings": 50000,
+      "balance": 9000
+    },
+    "additions": [
+      {
+        "label": "Provision personnelle pour cadeaux et vacances",
+        "amount": 80,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 960,
+        "reason": "Les six charges communes restent à 1 480 € ; provision personnelle distincte de l’apport.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Comment prépareriez-vous l’apport tout en gardant une réserve à elle, séparée du budget de son conjoint ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-09-2026-10-30",
+    "name": "Anaïs",
+    "status": "incomplete_completed",
+    "source": "https://www.aufeminin.com/societe/dossiers/gerer-son-budget/dans-les-comptes-de-lisa-hotesse-de-lair-depuis-7-ans-avec-mon-salaire-pas-de-vacances-sans-le-soutien-de-mes-parents-2805143.html",
+    "period": "Juillet 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 140000,
+      "expenses": 115000,
+      "available": 25000,
+      "savings": 25000,
+      "balance": 0
+    },
+    "after": {
+      "income": 140000,
+      "expenses": 121000,
+      "available": 19000,
+      "savings": 15000,
+      "balance": 4000
+    },
+    "additions": [
+      {
+        "label": "Provision personnelle pour vacances",
+        "amount": 60,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 720,
+        "reason": "Quote-part illustrative de 720 € par an ; aide parentale non chiffrée inchangée et non ajoutée aux revenus.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Entre les imprévus, les vacances et l’achat immobilier, par quoi commenceriez-vous avec ce revenu ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-10-2026-10-30",
+    "name": "Pauline",
+    "status": "incomplete_completed",
+    "source": "https://www.aufeminin.com/societe/dossiers/gerer-son-budget/je-ne-machete-plus-rien-pour-moi-dans-les-comptes-de-laetitia-34-ans-institutrice-a-2-100-euros-par-mois-2660501.html",
+    "period": "Octobre 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 210000,
+      "expenses": 176000,
+      "available": 34000,
+      "savings": 34000,
+      "balance": 0
+    },
+    "after": {
+      "income": 210000,
+      "expenses": 186000,
+      "available": 24000,
+      "savings": 20000,
+      "balance": 4000
+    },
+    "additions": [
+      {
+        "label": "Provision entretien des deux logements",
+        "amount": 70,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 840,
+        "reason": "Quote-part d’entretien, pas un second remboursement des prêts.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Vêtements personnels",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Les 40 € existants concernent déjà les vêtements des enfants.",
+        "covers": [
+          "vetements"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Conserveriez-vous ces versements pour les enfants avec l’entretien de deux logements à financer ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Quelle part garderiez-vous pour l’entretien des deux logements, et quelle part pour les projets des enfants ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-11-2026-10-30",
+    "name": "Zoé",
+    "status": "incomplete_completed",
+    "source": "https://www.aufeminin.com/societe/dossiers/gerer-son-budget/je-vais-voir-mes-applis-bancaires-tous-les-jours-dans-les-comptes-de-nina-24-ans-etudiante-boursiere-2668147.html",
+    "period": "Octobre 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 90400,
+      "expenses": 49797,
+      "available": 40603,
+      "savings": 40603,
+      "balance": 0
+    },
+    "after": {
+      "income": 90400,
+      "expenses": 106797,
+      "available": -16397,
+      "savings": 0,
+      "balance": -16397
+    },
+    "additions": [
+      {
+        "label": "Participation au logement, charges et assurance",
+        "amount": 550,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Coût illustratif à sa charge ; le paiement du loyer par les parents n’est pas établi. Inclut charges, eau, énergie, assurance du logement et accès internet, sans poste ajouté une deuxième fois.",
+        "covers": [
+          "energie_eau",
+          "assurances_sante",
+          "entretien_logement"
+        ]
+      },
+      {
+        "label": "Provision cadeaux et remplacements",
+        "amount": 20,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 240,
+        "reason": "Provision annuelle distincte des études et des vêtements.",
+        "covers": [
+          "cadeaux_vacances",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Comment couvririez-vous le logement et garderiez-vous une réserve pour les mois sans stage ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Combien faudrait-il garder disponible entre deux stages avant de continuer les versements sur l’assurance-vie ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-12-2026-10-30",
+    "name": "Jade",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://www.reddit.com/r/VosSous/comments/1wzbhtz/besoin_de_conseils/",
+    "period": "Octobre 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 350000,
+      "expenses": 250000,
+      "available": 100000,
+      "savings": 100000,
+      "balance": 0
+    },
+    "after": {
+      "income": 350000,
+      "expenses": 250000,
+      "available": 100000,
+      "savings": 100000,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Vous sépareriez l’argent des voyages et des achats prévus de la réserve pour les imprévus ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-13-2026-10-30",
+    "name": "Lucie",
+    "status": "incomplete_completed",
+    "source": "https://www.reddit.com/r/VosSous/comments/1r58gwd/est_ce_que_je_peux_mieux_gérer_mes_sous/",
+    "period": "Février 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 265000,
+      "expenses": 245000,
+      "available": 20000,
+      "savings": 20000,
+      "balance": 0
+    },
+    "after": {
+      "income": 265000,
+      "expenses": 255000,
+      "available": 10000,
+      "savings": 5000,
+      "balance": 5000
+    },
+    "additions": [
+      {
+        "label": "Téléphone mobile",
+        "amount": 10,
+        "category": "bills",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Le forfait source de 27 € est l’accès internet, pas un forfait mobile identifié.",
+        "covers": [
+          "telecoms"
+        ]
+      },
+      {
+        "label": "Provision entretien automobile",
+        "amount": 40,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Distinct de l’assurance auto et du carburant.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Provision de régularisation de l’impôt",
+        "amount": 50,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 600,
+        "reason": "Réserve illustrative de 600 € par an, pas un calcul fiscal ni une dette établie ; le prélèvement doit être revu.",
+        "covers": [
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Comment garderiez-vous de l’argent pour les impôts et l’entretien du logement tout en remboursant les deux prêts ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-14-2026-10-30",
+    "name": "Chloé et Nathan",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://www.reddit.com/r/VosSous/comments/1ry5wws/demande_de_conseil_pour_changement_dappartement/",
+    "period": "Mars 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 365000,
+      "expenses": 285000,
+      "available": 80000,
+      "savings": 80000,
+      "balance": 0
+    },
+    "after": {
+      "income": 365000,
+      "expenses": 285000,
+      "available": 80000,
+      "savings": 80000,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Combien voudriez-vous qu’il leur reste chaque mois après le nouveau loyer ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      },
+      {
+        "text": "Quels frais d’installation ajouteriez-vous au budget avant de déménager ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-15-2026-10-30",
+    "name": "Hadrien",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://www.reddit.com/r/BEFire/comments/1v2i8oa/29m_in_belgium_69_savings_rate_able_to_fire_at_31/",
+    "period": "Salaire 2026 · dépenses moyennes 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 360000,
+      "expenses": 121158,
+      "available": 238842,
+      "savings": 238842,
+      "balance": 0
+    },
+    "after": {
+      "income": 360000,
+      "expenses": 121158,
+      "available": 238842,
+      "savings": 238842,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Avec ce budget, quelle réserve garderiez-vous disponible à côté des ETF ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Combien faudrait-il garder de côté pour envisager de vivre sans salaire ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-16-2026-10-30",
+    "name": "Victor",
+    "status": "incomplete_completed",
+    "source": "https://www.reddit.com/r/BEFire/comments/1s8xlyt/what_is_or_was_your_salary_and_how_much_do_or_did/",
+    "period": "Mars 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 230000,
+      "expenses": 155000,
+      "available": 75000,
+      "savings": 75000,
+      "balance": 0
+    },
+    "after": {
+      "income": 230000,
+      "expenses": 158000,
+      "available": 72000,
+      "savings": 65000,
+      "balance": 7000
+    },
+    "additions": [
+      {
+        "label": "Provision remplacement des petits équipements",
+        "amount": 30,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 360,
+        "reason": "Dépenses occasionnelles non isolées ; aucun véhicule ni crédit supposé.",
+        "covers": [
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Vous garderiez le temps libre des 32 heures ou vous passeriez à temps plein pour investir davantage ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-17-2026-10-30",
+    "name": "Olivier et Alice",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://community.finary.com/t/conseil-sur-strategie-globale-marie-2-enfants/33785",
+    "period": "Janvier 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 860000,
+      "expenses": 480000,
+      "available": 380000,
+      "savings": 285000,
+      "balance": 95000
+    },
+    "after": {
+      "income": 860000,
+      "expenses": 480000,
+      "available": 380000,
+      "savings": 285000,
+      "balance": 95000
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Pour acheter dans huit ans, où placeriez-vous l’argent destiné à l’apport ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "text": "Vous garderiez l’appartement en location ou vous le vendriez pour préparer la maison ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-18-2026-10-30",
+    "name": "Sébastien et Mélanie",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://community.finary.com/t/31-ans-ingenieur-cyber-etf-world-immobilier-locatif-ou-scpi/40234",
+    "period": "Octobre 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 770833,
+      "expenses": 435000,
+      "available": 335833,
+      "savings": 335833,
+      "balance": 0
+    },
+    "after": {
+      "income": 770833,
+      "expenses": 435000,
+      "available": 335833,
+      "savings": 335833,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Avec cet horizon, vous ajouteriez de l’immobilier à leurs placements financiers ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "text": "Si les fonds attendus arrivent, comment les partageriez-vous entre ETF et apport immobilier ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-19-2026-10-30",
+    "name": "Arthur et Emma",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://community.finary.com/t/premier-achat-locatif-internes-en-medecine/38931",
+    "period": "Août 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 330000,
+      "expenses": 250000,
+      "available": 80000,
+      "savings": 80000,
+      "balance": 0
+    },
+    "after": {
+      "income": 330000,
+      "expenses": 250000,
+      "available": 80000,
+      "savings": 80000,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Vous commenceriez ce projet locatif pendant l’internat ou vous attendriez une situation plus stable ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "text": "Combien garderiez-vous de côté et quelle marge d’emprunt laisseriez-vous pour leur futur logement ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepared-lot2-20-2026-10-30",
+    "name": "Vincent et Sarah",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://community.finary.com/t/mon-plan-pour-devenir-rentier-a-35-ans/33501",
+    "period": "Janvier 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 560000,
+      "expenses": 300000,
+      "available": 260000,
+      "savings": 260000,
+      "balance": 0
+    },
+    "after": {
+      "income": 560000,
+      "expenses": 300000,
+      "available": 260000,
+      "savings": 260000,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Vous achèteriez un autre bien ou vous renforceriez d’abord la réserve pour les trois appartements ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1
+        ]
+      },
+      {
+        "text": "L’objectif de rente vous semble-t-il atteignable sans compter d’avance sur les prochains achats ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reddit-famille-bourges-2026-07-12",
+    "name": "Élise et Karim",
+    "status": "incomplete_completed",
+    "source": "https://www.reddit.com/r/VosSous/comments/1uue6ca/jai_besoin_daide_sur_mon_budget/",
+    "period": "Juillet 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 309290,
+      "expenses": 253592,
+      "available": 55698,
+      "savings": 0,
+      "balance": 55698
+    },
+    "after": {
+      "income": 309290,
+      "expenses": 280092,
+      "available": 29198,
+      "savings": 0,
+      "balance": 29198
+    },
+    "additions": [
+      {
+        "label": "Vêtements et fournitures du foyer",
+        "amount": 60,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Pour le foyer avec un jeune enfant ; aucun âge scolaire précis inventé.",
+        "covers": [
+          "vetements",
+          "enfants_garde"
+        ]
+      },
+      {
+        "label": "Loisirs et sorties en famille",
+        "amount": 50,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Spotify est déjà payé, cette enveloppe couvre les sorties.",
+        "covers": [
+          "loisirs"
+        ]
+      },
+      {
+        "label": "Provision soins non remboursés",
+        "amount": 25,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 300,
+        "reason": "Distinct de la mutuelle et des anciennes factures médicales déjà dans le regroupement de crédits.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Provision entretien des deux voitures",
+        "amount": 70,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 840,
+        "reason": "Hors deux assurances et carburants déjà présents.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Provision cadeaux et remplacements",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Dépenses annuelles distinctes des courses solidaires.",
+        "covers": [
+          "cadeaux_vacances",
+          "remplacements_annuels"
+        ]
+      },
+      {
+        "label": "Provision soins vétérinaires",
+        "amount": 20,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 240,
+        "reason": "Les chats sont connus ; les 39 € existants sont leur nourriture.",
+        "covers": [
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Comment utiliseriez-vous la marge pour éviter de retomber à découvert ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      },
+      {
+        "text": "Quand les 150 € de crédit seront libérés, à quoi les consacreriez-vous en premier ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "budget-conseil-personne_seule-2025-2026",
+    "name": "une personne seule",
+    "status": "incomplete_completed",
+    "source": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_personne_seule.pdf",
+    "period": "Référence 2025–2026",
+    "currency": "CHF",
+    "before": {
+      "income": 250000,
+      "expenses": 248000,
+      "available": 2000,
+      "savings": 2000,
+      "balance": 0
+    },
+    "after": {
+      "income": 250000,
+      "expenses": 263000,
+      "available": -13000,
+      "savings": 0,
+      "balance": -13000
+    },
+    "additions": [
+      {
+        "label": "Repas hors domicile",
+        "amount": 50,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence exclut les repas extérieurs : enveloppe des adultes, sans doubler les repas et camps des enfants.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 60,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 720,
+        "reason": "Vacances explicitement exclues du modèle de base ; montant préparé en CHF, sans destination ni projet personnel attribué.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Provision remplacement des appareils",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Les consommables ménagers existent déjà ; la référence exclut le remplacement des appareils.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Le logement ou les dépenses flexibles : que regarderiez-vous en premier pour retrouver une marge ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Quels frais ajouteriez-vous en premier pour adapter ce budget à votre quotidien ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "budget-conseil-monoparent_1enfant-2025-2026",
+    "name": "un parent avec un enfant",
+    "status": "incomplete_completed",
+    "source": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_monoparent_1enfant.pdf",
+    "period": "Référence 2025–2026",
+    "currency": "CHF",
+    "before": {
+      "income": 330000,
+      "expenses": 316000,
+      "available": 14000,
+      "savings": 8000,
+      "balance": 6000
+    },
+    "after": {
+      "income": 330000,
+      "expenses": 334000,
+      "available": -4000,
+      "savings": 0,
+      "balance": -4000
+    },
+    "additions": [
+      {
+        "label": "Repas hors domicile",
+        "amount": 50,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence exclut les repas extérieurs : enveloppe des adultes, sans doubler les repas et camps des enfants.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 80,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 960,
+        "reason": "Vacances explicitement exclues du modèle de base ; montant préparé en CHF, sans destination ni projet personnel attribué.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Provision remplacement des appareils",
+        "amount": 50,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 600,
+        "reason": "Les consommables ménagers existent déjà ; la référence exclut le remplacement des appareils.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Avec un enfant, quelles dépenses pourraient être revues sans toucher aux besoins essentiels ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Si des frais de garde s’ajoutaient, sur quoi pourriez-vous jouer pour les financer ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "budget-conseil-monoparent_2enfants-2025-2026",
+    "name": "un parent avec deux enfants",
+    "status": "incomplete_completed",
+    "source": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_monoparent_2enfants.pdf",
+    "period": "Référence 2025–2026",
+    "currency": "CHF",
+    "before": {
+      "income": 400000,
+      "expenses": 389000,
+      "available": 11000,
+      "savings": 10000,
+      "balance": 1000
+    },
+    "after": {
+      "income": 400000,
+      "expenses": 410000,
+      "available": -10000,
+      "savings": 0,
+      "balance": -10000
+    },
+    "additions": [
+      {
+        "label": "Repas hors domicile",
+        "amount": 50,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence exclut les repas extérieurs : enveloppe des adultes, sans doubler les repas et camps des enfants.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 100,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 1200,
+        "reason": "Vacances explicitement exclues du modèle de base ; montant préparé en CHF, sans destination ni projet personnel attribué.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Provision remplacement des appareils",
+        "amount": 60,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 720,
+        "reason": "Les consommables ménagers existent déjà ; la référence exclut le remplacement des appareils.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Cette répartition vous paraît-elle réaliste avec deux enfants, avant même une éventuelle garde ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Avec cette petite marge, comment prépareriez-vous la hausse des dépenses quand les enfants grandissent ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "budget-conseil-couple-2025-2026",
+    "name": "un couple sans enfant",
+    "status": "incomplete_completed",
+    "source": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_couple.pdf",
+    "period": "Référence 2025–2026",
+    "currency": "CHF",
+    "before": {
+      "income": 375000,
+      "expenses": 372000,
+      "available": 3000,
+      "savings": 3000,
+      "balance": 0
+    },
+    "after": {
+      "income": 375000,
+      "expenses": 399000,
+      "available": -24000,
+      "savings": 0,
+      "balance": -24000
+    },
+    "additions": [
+      {
+        "label": "Repas hors domicile",
+        "amount": 100,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence exclut les repas extérieurs : enveloppe des adultes, sans doubler les repas et camps des enfants.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 120,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 1440,
+        "reason": "Vacances explicitement exclues du modèle de base ; montant préparé en CHF, sans destination ni projet personnel attribué.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Provision remplacement des appareils",
+        "amount": 50,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 600,
+        "reason": "Les consommables ménagers existent déjà ; la référence exclut le remplacement des appareils.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Le logement ou les loisirs : par quoi commenceriez-vous pour faire tenir ce budget ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Comment prévoiriez-vous les factures occasionnelles avant de vous lancer dans un autre projet ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "budget-conseil-couple_1enfant-2025-2026",
+    "name": "un couple avec un enfant",
+    "status": "incomplete_completed",
+    "source": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_couple_1enfant.pdf",
+    "period": "Référence 2025–2026",
+    "currency": "CHF",
+    "before": {
+      "income": 440000,
+      "expenses": 436000,
+      "available": 4000,
+      "savings": 4000,
+      "balance": 0
+    },
+    "after": {
+      "income": 440000,
+      "expenses": 466000,
+      "available": -26000,
+      "savings": 0,
+      "balance": -26000
+    },
+    "additions": [
+      {
+        "label": "Repas hors domicile",
+        "amount": 100,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence exclut les repas extérieurs : enveloppe des adultes, sans doubler les repas et camps des enfants.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 140,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 1680,
+        "reason": "Vacances explicitement exclues du modèle de base ; montant préparé en CHF, sans destination ni projet personnel attribué.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Provision remplacement des appareils",
+        "amount": 60,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 720,
+        "reason": "Les consommables ménagers existent déjà ; la référence exclut le remplacement des appareils.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Quelle place garderiez-vous aux vacances tant que les dépenses dépassent les revenus ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Où trouveriez-vous de la marge si vous deviez ajouter des frais de garde ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "budget-conseil-couple_2enfants-2025-2026",
+    "name": "un couple avec deux enfants",
+    "status": "incomplete_completed",
+    "source": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_couple_2enfants.pdf",
+    "period": "Référence 2025–2026",
+    "currency": "CHF",
+    "before": {
+      "income": 500000,
+      "expenses": 492000,
+      "available": 8000,
+      "savings": 8000,
+      "balance": 0
+    },
+    "after": {
+      "income": 500000,
+      "expenses": 525000,
+      "available": -25000,
+      "savings": 0,
+      "balance": -25000
+    },
+    "additions": [
+      {
+        "label": "Repas hors domicile",
+        "amount": 100,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence exclut les repas extérieurs : enveloppe des adultes, sans doubler les repas et camps des enfants.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 160,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 1920,
+        "reason": "Vacances explicitement exclues du modèle de base ; montant préparé en CHF, sans destination ni projet personnel attribué.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Provision remplacement des appareils",
+        "amount": 70,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 840,
+        "reason": "Les consommables ménagers existent déjà ; la référence exclut le remplacement des appareils.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Que changeriez-vous en premier avant de mettre de l’argent de côté pour un projet ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Si un peu d’argent se libérait, vous le garderiez pour les enfants ou pour renforcer la réserve ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "budget-conseil-couple_3enfants-2025-2026",
+    "name": "un couple avec trois enfants",
+    "status": "incomplete_completed",
+    "source": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_couple_3enfants.pdf",
+    "period": "Référence 2025–2026",
+    "currency": "CHF",
+    "before": {
+      "income": 550000,
+      "expenses": 544000,
+      "available": 6000,
+      "savings": 6000,
+      "balance": 0
+    },
+    "after": {
+      "income": 550000,
+      "expenses": 580000,
+      "available": -30000,
+      "savings": 0,
+      "balance": -30000
+    },
+    "additions": [
+      {
+        "label": "Repas hors domicile",
+        "amount": 100,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence exclut les repas extérieurs : enveloppe des adultes, sans doubler les repas et camps des enfants.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 180,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 2160,
+        "reason": "Vacances explicitement exclues du modèle de base ; montant préparé en CHF, sans destination ni projet personnel attribué.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Provision remplacement des appareils",
+        "amount": 80,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 960,
+        "reason": "Les consommables ménagers existent déjà ; la référence exclut le remplacement des appareils.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Les repas à l’extérieur et les vacances vous paraissent-ils réalistes pour cette famille ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Comment prépareriez-vous l’augmentation des dépenses des enfants avant d’épargner pour un projet à long terme ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "budget-conseil-monoparent_3enfants-2025-2026",
+    "name": "un parent avec trois enfants",
+    "status": "incomplete_completed",
+    "source": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_monoparent_3enfants.pdf",
+    "period": "Référence 2025–2026",
+    "currency": "CHF",
+    "before": {
+      "income": 450000,
+      "expenses": 442000,
+      "available": 8000,
+      "savings": 8000,
+      "balance": 0
+    },
+    "after": {
+      "income": 450000,
+      "expenses": 466000,
+      "available": -16000,
+      "savings": 0,
+      "balance": -16000
+    },
+    "additions": [
+      {
+        "label": "Repas hors domicile",
+        "amount": 50,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence exclut les repas extérieurs : enveloppe des adultes, sans doubler les repas et camps des enfants.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Provision vacances",
+        "amount": 120,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 1440,
+        "reason": "Vacances explicitement exclues du modèle de base ; montant préparé en CHF, sans destination ni projet personnel attribué.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Provision remplacement des appareils",
+        "amount": 70,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 840,
+        "reason": "Les consommables ménagers existent déjà ; la référence exclut le remplacement des appareils.",
+        "covers": [
+          "entretien_logement",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Comment préserveriez-vous les dépenses des enfants tout en retrouvant une marge ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Quelles dépenses manquantes regarderiez-vous d’abord pour savoir si ce budget peut tenir ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "budget-conseil-apprenties_majeures-2025-2026",
+    "name": "une personne en apprentissage",
+    "status": "incomplete_completed",
+    "source": "https://conseil-budgetaire.ch/fileadmin/budgetberatung.ch/Downloads/FR/RL_WZ/25_26_BB_apprenties_majeures.pdf",
+    "period": "Référence 2025–2026",
+    "currency": "CHF",
+    "before": {
+      "income": 140000,
+      "expenses": 110500,
+      "available": 29500,
+      "savings": 21000,
+      "balance": 8500
+    },
+    "after": {
+      "income": 140000,
+      "expenses": 205500,
+      "available": -65500,
+      "savings": 0,
+      "balance": -65500
+    },
+    "additions": [
+      {
+        "label": "Participation au logement, charges et assurances",
+        "amount": 650,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Participation préparée incluant eau, énergie, accès internet et assurance du logement ; aucun mode de logement ni payeur familial n’est attribué à la source.",
+        "covers": [
+          "energie_eau",
+          "assurances_sante",
+          "entretien_logement"
+        ]
+      },
+      {
+        "label": "Alimentation",
+        "amount": 300,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "La référence ne finance pas les repas ; aucune alimentation gratuite n’est supposée.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Ce budget est-il tenable avec une participation de 650 CHF au logement ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Avant d’épargner pour le permis, combien faudrait-il prévoir pour manger et se loger ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      },
+      {
+        "text": "Que faudrait-il revoir avant de mettre de côté pour le permis ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Avant d’épargner pour le permis, combien faudrait-il prévoir pour manger et se loger ?",
+            "evidence": [
+              0
+            ],
+            "origin": "editorial"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "websourd-retraite-normandie-2026-10-02",
+    "name": "Michel",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://websourd-media.fr/actualites-02-il-vit-avec-1-100-euros-de-retraite-en-normandie-son-budget-detaille-poste-par-poste/",
+    "period": "Octobre 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 110000,
+      "expenses": 110000,
+      "available": 0,
+      "savings": 0,
+      "balance": 0
+    },
+    "after": {
+      "income": 110000,
+      "expenses": 110000,
+      "available": 0,
+      "savings": 0,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Comment prépareriez-vous une grosse facture ou le remplacement du réfrigérateur avec ce budget ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-freelance-lille-2025-03-02",
+    "name": "Benoît",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://community.finary.com/t/23767",
+    "period": "Mars 2025",
+    "currency": "EUR",
+    "before": {
+      "income": 513000,
+      "expenses": 310000,
+      "available": 203000,
+      "savings": 200000,
+      "balance": 3000
+    },
+    "after": {
+      "income": 513000,
+      "expenses": 310000,
+      "available": 203000,
+      "savings": 200000,
+      "balance": 3000
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Vous attendriez d’avoir 17 000 € de côté avant de commencer à investir ?",
+        "origin": "expressed",
+        "evidence": [
+          0
+        ]
+      },
+      {
+        "text": "Vous lanceriez les placements en bourse et le projet locatif en même temps ou l’un après l’autre ?",
+        "origin": "expressed",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-installation-projet-2026-02-21",
+    "name": "Axel",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://community.finary.com/t/34498",
+    "period": "Installation en 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 250000,
+      "expenses": 150000,
+      "available": 100000,
+      "savings": 100000,
+      "balance": 0
+    },
+    "after": {
+      "income": 250000,
+      "expenses": 150000,
+      "available": 100000,
+      "savings": 100000,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Pour des projets à cinq ans, vous choisiriez les livrets, le fonds euros ou un peu des deux ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "text": "Vous ajouteriez déjà d’autres placements au PEA ou vous garderiez le World pendant l’installation ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-alternante-projet-2026-10-06",
+    "name": "Apolline",
+    "status": "incomplete_completed",
+    "source": "https://community.finary.com/t/40101",
+    "period": "Novembre–décembre 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 128478,
+      "expenses": 5000,
+      "available": 123478,
+      "savings": 90000,
+      "balance": 33478
+    },
+    "after": {
+      "income": 128478,
+      "expenses": 51000,
+      "available": 77478,
+      "savings": 65000,
+      "balance": 12478
+    },
+    "additions": [
+      {
+        "label": "Alimentation",
+        "amount": 220,
+        "category": "food",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Seul le loyer parental est documenté ; pas de repas gratuits déduits.",
+        "covers": [
+          "alimentation_hygiene"
+        ]
+      },
+      {
+        "label": "Déplacements courants",
+        "amount": 60,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Aucun mode de transport ni véhicule inventé.",
+        "covers": [
+          "transports"
+        ]
+      },
+      {
+        "label": "Hygiène et vêtements",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Hors fixes de 50 € qui restent groupés.",
+        "covers": [
+          "alimentation_hygiene",
+          "vetements"
+        ]
+      },
+      {
+        "label": "Loisirs et sorties",
+        "amount": 60,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Enveloppe courante préparée, pas un nouveau projet attribué.",
+        "covers": [
+          "loisirs"
+        ]
+      },
+      {
+        "label": "Provision voyages et cadeaux",
+        "amount": 60,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 720,
+        "reason": "Voyages déjà évoqués, cadeaux annuels ; aucun nouveau voyage décidé.",
+        "covers": [
+          "cadeaux_vacances"
+        ]
+      },
+      {
+        "label": "Soins non remboursés",
+        "amount": 20,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Reste à charge, distinct des éventuelles cotisations dans les fixes.",
+        "covers": [
+          "assurances_sante"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Combien garderiez-vous sur le livret pour les imprévus et les voyages, avec ces dépenses courantes à financer ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Combien garderiez-vous sur le livret pour les imprévus, les voyages et l’apport ?",
+            "evidence": [
+              0,
+              1,
+              2
+            ],
+            "origin": "expressed"
+          },
+          {
+            "text": "Son objectif avant 25 ans vous paraît-il réaliste, et que faudrait-il prévoir après l’alternance ?",
+            "evidence": [
+              0,
+              1,
+              2
+            ],
+            "origin": "expressed"
+          }
+        ]
+      },
+      {
+        "text": "Son objectif avant 25 ans vous paraît-il réaliste, et que faudrait-il prévoir après l’alternance ?",
+        "origin": "expressed",
+        "evidence": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finary-ingenieur-colocation-projet-2026-08-18",
+    "name": "Émilien",
+    "status": "incomplete_completed",
+    "source": "https://community.finary.com/t/39107",
+    "period": "Rentrée à venir · année non précisée",
+    "currency": "EUR",
+    "before": {
+      "income": 192500,
+      "expenses": 85000,
+      "available": 107500,
+      "savings": 0,
+      "balance": 107500
+    },
+    "after": {
+      "income": 192500,
+      "expenses": 106500,
+      "available": 86000,
+      "savings": 0,
+      "balance": 86000
+    },
+    "additions": [
+      {
+        "label": "Téléphone mobile",
+        "amount": 15,
+        "category": "bills",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Forfait personnel distinct du logement payé par les parents.",
+        "covers": [
+          "telecoms"
+        ]
+      },
+      {
+        "label": "Soins non remboursés",
+        "amount": 20,
+        "category": "health",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Dépense personnelle préparée, pas une nouvelle prime.",
+        "covers": [
+          "assurances_sante"
+        ]
+      },
+      {
+        "label": "Hygiène et vêtements",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Distinct de l’alimentation existante.",
+        "covers": [
+          "alimentation_hygiene",
+          "vetements"
+        ]
+      },
+      {
+        "label": "Loisirs et sorties",
+        "amount": 100,
+        "category": "leisure",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Les loisirs étaient au cœur du choix source mais pas détaillés dans les frais.",
+        "covers": [
+          "loisirs"
+        ]
+      },
+      {
+        "label": "Provision cadeaux et achats occasionnels",
+        "amount": 40,
+        "category": "other",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Petits achats annuels, sans nouvelle aide ni double loyer.",
+        "covers": [
+          "cadeaux_vacances",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Avec les frais du quotidien comptés, quel versement vous semblerait tenable pendant ses trois années d’alternance ?",
+        "origin": "editorial",
+        "evidence": [
+          0,
+          1,
+          2
+        ],
+        "adaptedFrom": [
+          {
+            "text": "Vous mettriez combien de côté et vous garderiez combien pour les loisirs pendant l’alternance ?",
+            "evidence": [
+              0,
+              1
+            ],
+            "origin": "expressed"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reference-bordeaux-budget-2026-03",
+    "name": "Clémence",
+    "status": "incomplete_completed",
+    "source": "https://www.planandmultiply.fr/blog/budget-mensuel-guide-complet-2026",
+    "period": "Mars 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 228000,
+      "expenses": 196500,
+      "available": 31500,
+      "savings": 25000,
+      "balance": 6500
+    },
+    "after": {
+      "income": 228000,
+      "expenses": 200500,
+      "available": 27500,
+      "savings": 25000,
+      "balance": 2500
+    },
+    "additions": [
+      {
+        "label": "Provision entretien automobile",
+        "amount": 40,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 480,
+        "reason": "Les 217 € groupent assurance et crédit, pas l’entretien.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Avec ses dépenses, combien chercheriez-vous d’abord à réunir sur le livret ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      },
+      {
+        "text": "Une fois le crédit terminé, que feriez-vous de l’argent libéré ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reference-couple-lille-budget-2026-01",
+    "name": "Hugo et Océane",
+    "status": "incomplete_completed",
+    "source": "https://www.planandmultiply.fr/blog/budget-mensuel-guide-complet-2026",
+    "period": "Janvier 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 455000,
+      "expenses": 292000,
+      "available": 163000,
+      "savings": 145000,
+      "balance": 18000
+    },
+    "after": {
+      "income": 455000,
+      "expenses": 297000,
+      "available": 158000,
+      "savings": 145000,
+      "balance": 13000
+    },
+    "additions": [
+      {
+        "label": "Provision entretien automobile",
+        "amount": 50,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 600,
+        "reason": "Distinct des deux lignes assurance et crédit. Les vacances sont déjà dans les versements.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Comment partageriez-vous les versements entre l’apport et les imprévus ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      },
+      {
+        "text": "Combien laisseriez-vous sur le compte courant pour éviter de reprendre sur les livrets ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reference-indexo-belgique-2026-11",
+    "name": "un salarié seul en Belgique",
+    "status": "complete_with_grouped_or_known_scope",
+    "source": "https://indexo.be/budget/salaire-necessaire/",
+    "period": "Référence novembre 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 220000,
+      "expenses": 200000,
+      "available": 20000,
+      "savings": 20000,
+      "balance": 0
+    },
+    "after": {
+      "income": 220000,
+      "expenses": 200000,
+      "available": 20000,
+      "savings": 20000,
+      "balance": 0
+    },
+    "additions": [],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Comment utiliseriez-vous les primes pour tenir le budget toute l’année et garder un peu d’argent de côté ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reference-vendeuse-rennes-2026",
+    "name": "Nolwenn",
+    "status": "incomplete_completed",
+    "source": "https://www.planandmultiply.fr/blog/economiser-petit-salaire-enveloppes",
+    "period": "Référence 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 139800,
+      "expenses": 124800,
+      "available": 15000,
+      "savings": 5000,
+      "balance": 10000
+    },
+    "after": {
+      "income": 139800,
+      "expenses": 126800,
+      "available": 13000,
+      "savings": 5000,
+      "balance": 8000
+    },
+    "additions": [
+      {
+        "label": "Eau",
+        "amount": 20,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Hypothèse explicite d’eau hors loyer, sans modifier la référence de salaire ni prétendre connaître les charges réelles.",
+        "covers": [
+          "energie_eau"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Vous garderiez le virement de 50 € même les mois serrés, ou vous l’ajusteriez aux dépenses ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      },
+      {
+        "text": "Combien laisseriez-vous pour le mois suivant quand toute la marge n’a pas été dépensée ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reference-famille-lyon-2026",
+    "name": "Mélina et Loïc",
+    "status": "incomplete_completed",
+    "source": "https://www.planandmultiply.fr/blog/budget-familial-guide-complet",
+    "period": "Référence 2026",
+    "currency": "EUR",
+    "before": {
+      "income": 450000,
+      "expenses": 385000,
+      "available": 65000,
+      "savings": 45000,
+      "balance": 20000
+    },
+    "after": {
+      "income": 450000,
+      "expenses": 395000,
+      "available": 55000,
+      "savings": 45000,
+      "balance": 10000
+    },
+    "additions": [
+      {
+        "label": "Eau",
+        "amount": 40,
+        "category": "housing",
+        "origin": "editorial-assumption",
+        "periodicity": "monthly",
+        "annualAmount": null,
+        "reason": "Le scénario retient l’eau hors loyer ; électricité et gaz ne sont pas comptés une seconde fois.",
+        "covers": [
+          "energie_eau"
+        ]
+      },
+      {
+        "label": "Provision entretien automobile",
+        "amount": 60,
+        "category": "transport",
+        "origin": "editorial-assumption",
+        "periodicity": "annual-provision",
+        "annualAmount": 720,
+        "reason": "Distinct des assurances, du crédit automobile et du carburant.",
+        "covers": [
+          "transports",
+          "remplacements_annuels"
+        ]
+      }
+    ],
+    "scopeChange": null,
+    "questions": [
+      {
+        "text": "Vous utiliseriez la marge pour renforcer la réserve ou rembourser les crédits plus vite ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      },
+      {
+        "text": "Quelle enveloppe ajusteriez-vous si les dépenses des enfants dépassaient ce qui était prévu ?",
+        "origin": "editorial",
+        "evidence": [
+          0
+        ]
+      }
+    ]
+  }
+]

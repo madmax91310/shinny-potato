@@ -51,7 +51,7 @@ try {
   await page.getByText('Brouillons et transfert entre appareils',{exact:true}).click()
   const promise=page.waitForEvent('download');await page.getByRole('button',{name:'Exporter les brouillons et statuts',exact:true}).click()
   const backup=JSON.parse(readFileSync(await(await promise).path(),'utf8'))
-  assert.equal(backup.version,3);assert.deepEqual(backup.workspace.publicationDates,{});assert.equal(backup.workspace.drafts.find(d=>d.profile.id===p.id).text,custom)
+  assert.equal(backup.version,4);assert.deepEqual(backup.workspace.publicationDates,{});assert.equal(backup.workspace.drafts.find(d=>d.profile.id===p.id).text,custom)
   const incoming=structuredClone(backup);incoming.workspace.drafts.find(d=>d.profile.id===p.id).text='Version de mon autre appareil';incoming.workspace.published=[p.id];incoming.workspace.publicationDates={[p.id]:"2026-10-14"};incoming.workspace.queued=[]
   const before=await page.evaluate(key=>localStorage.getItem(key),WORKSPACE_KEY)
   await upload(page,incoming);await expect(page.getByRole('region',{name:'Aperçu de l’import'})).toContainText('conflit')

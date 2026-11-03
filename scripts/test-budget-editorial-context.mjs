@@ -1,17 +1,17 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
-import { BUDGET_PROFILES, BUDGET_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_PUBLICATION_CONTEXT, BUDGET_ORIGINAL_PROFILES, BUDGET_ORIGINAL_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
 import { budgetTransfers } from '../src/pages/budget-profiles/presentation.js'
 import { analyzeBudget, budgetExpenseSections, budgetPublicIncomeRows, buildBudgetText, euro, hasSeparateBudgetCapacity, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 const before = JSON.parse(readFileSync(new URL('./fixtures/budget-editorial/before-2026-11-02.json', import.meta.url)))
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex')
-const original = before.profiles.map(({ id }) => BUDGET_PROFILES.find(p => p.id === id))
+const original = before.profiles.map(({ id }) => BUDGET_ORIGINAL_PROFILES.find(p => p.id === id))
 assert(original.every(Boolean), 'Every original identity remains available')
 assert.equal(hash(original), before.profileHash, 'Editorial work must not change any original profile field or amount')
 assert.equal(BUDGET_PROFILES.length, before.profiles.length, 'A copy pass neither adds nor removes profiles')
-const proofs = BUDGET_PROFILES.map(p => {
-  const c = publicationContextFor(p)
+const proofs = BUDGET_ORIGINAL_PROFILES.map(p => {
+  const c = BUDGET_ORIGINAL_PUBLICATION_CONTEXT[p.id]
   return { id: p.id, evidence: c.evidence, review: c.review, questions: c.questions.map(({ origin, evidence }) => ({ origin, evidence })) }
 })
 assert.equal(hash(proofs), before.provenanceHash, 'Copy editing preserves every source, qualification and question origin')
@@ -56,7 +56,7 @@ for (const profile of BUDGET_PROFILES) {
   }
   if (c.review.access === 'inaccessible') {
     assert(c.review.limit)
-    assert(c.evidence.every(e => e.basis === 'verified-repository-record'))
+    assert(c.evidence.every(e => ['verified-repository-record','editorial-preparation'].includes(e.basis)))
     assert(c.questions.every(q => q.origin === 'editorial'))
   }
   const auto = { profile: structuredClone(profile), text: 'Ancien texte automatique', edited: false }

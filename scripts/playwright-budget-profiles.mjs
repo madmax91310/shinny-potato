@@ -27,7 +27,7 @@ function captureCanvasText() {
 function assertPublicBudgetHeader(drawn, profile) {
   assert.equal(drawn[0].text, 'LE BUDGET DE')
   assert(!drawn.some(item => /EXEMPLE DE BUDGET|\b20\d{2}\b/i.test(item.text)), 'Exports have no editorial date or example title')
-  assert(!/budget personnel|budget reconstitu[eé]/i.test(drawn.map(item=>item.text).join(' ')), 'Both image modes omit production labels')
+  assert(!/budget personnel/i.test(drawn.map(item=>item.text).join(' ')), 'Both image modes omit production labels')
   const index = drawn.findIndex(item => item.text === 'RESSOURCES')
   assert(index > 0)
   const header = drawn.slice(0, index)

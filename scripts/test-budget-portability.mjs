@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { parisToday, validPublicationDate, publicationLabel } from '../src/pages/budget-profiles/publication.js'
-import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
+import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-profiles/completion.js'
+import { BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, budgetImageExpenses, matchesBudgetFilters, compareBudgetRecency, refreshBudgetDraft, buildBudgetText, budgetHeading } from '../src/pages/budget-profiles/lib.js'
 import { DRAFT_KEY, USAGE_KEY, PUBLISHED_KEY, WORKSPACE_KEY, loadWorkspace, loadDraft, saveDraft, findSavedDraft, loadPublished, savePublished, saveUsage, saveQueued, exportBudgetBackup, parseBudgetBackup, previewBudgetImport, restoreBudgetBackup, budgetStorageSnapshot, listBudgetRecoveries } from '../src/pages/budget-profiles/storage.js'
 const memory = new Map(), previous = globalThis.localStorage
@@ -22,7 +23,15 @@ try {
   assert.equal(findSavedDraft(p.id).text, custom.text, 'Switching profiles preserves a personal draft')
   assert(savePublished([p.id], { [p.id]: '2026-10-14' }))
   const backup = exportBudgetBackup(), incoming = parseBudgetBackup(JSON.stringify(backup))
-  assert.equal(incoming.publicationDates[p.id], '2026-10-14'); assert.equal(backup.version, 3)
+  assert.equal(incoming.publicationDates[p.id], '2026-10-14'); assert.equal(backup.version, 4)
+  // A dated v3 snapshot migrates on read without changing bytes or inventing dates.
+  const source=BUDGET_ORIGINAL_PROFILES[0], oldText='Mon budget avant compléments : 307 € restants.'
+  const datedV3={...backup,version:3,workspace:{...backup.workspace,version:3,drafts:[{profile:source,text:oldText,edited:true}],activeId:source.id}}
+  const migrated=parseBudgetBackup(JSON.stringify(datedV3));assert.equal(migrated.version,4)
+  assert.equal(migrated.drafts[0].textFinance,budgetFinancialReference(source));assert.equal(migrated.publicationDates[p.id],'2026-10-14')
+  assert(staleBudgetText(refreshBudgetDraft(migrated.drafts[0])));assert.equal(refreshBudgetDraft(migrated.drafts[0]).text,oldText)
+  const bytesBefore=memory.get(WORKSPACE_KEY);parseBudgetBackup(JSON.stringify(datedV3));assert.equal(memory.get(WORKSPACE_KEY),bytesBefore,'Import preview cannot write a migration')
+  const invalidRef={...backup,workspace:{...backup.workspace,drafts:[{...custom,textFinance:3}]}};assert.throws(()=>parseBudgetBackup(JSON.stringify(invalidRef)))
   const oldBackup = { ...backup, version: 2, workspace: { ...backup.workspace, version: 2 } }; delete oldBackup.workspace.publicationDates
   assert.equal(parseBudgetBackup(JSON.stringify(oldBackup)).publicationDates[p.id], null)
   assert.equal(parseBudgetBackup(JSON.stringify(oldBackup)).drafts[0].text, custom.text)
@@ -67,9 +76,9 @@ for (const profile of BUDGET_PROFILES) {
 }
 assert(compareBudgetRecency({ id:'a',budgetAsOf:'2025-05-01',preparedAt:'2026-11-01' },{id:'b',budgetAsOf:'2026-01-01',preparedAt:'2026-01-01'}) > 0)
 assert.match(budgetHeading(BUDGET_PROFILES.find(p => p.name === 'Inès')), /d’Inès/)
-assert.equal(analyzeBudget(BUDGET_PROFILES.find(p => p.id === 'reddit-famille-bourges-2026-07-12')).balance, 556.98)
+assert.equal(analyzeBudget(BUDGET_PROFILES.find(p => p.id === 'reddit-famille-bourges-2026-07-12')).balance, 291.98)
 for (const [id, expenses, savings, balance] of [['personne_seule',2480,20,0],['monoparent_1enfant',3160,80,60],['monoparent_2enfants',3890,100,10]]) {
-  const a = analyzeBudget(BUDGET_PROFILES.find(p => p.id === `budget-conseil-${id}-2025-2026`))
+  const a = analyzeBudget(BUDGET_ORIGINAL_PROFILES.find(p => p.id === `budget-conseil-${id}-2025-2026`))
   assert.deepEqual([a.expenses,a.savings,a.balance],[expenses,savings,balance])
 }
 console.log('Budget portability: legacy migration, all drafts, three independent statuses, validated backup, both conflict choices, concurrency, corrupt-byte recovery, blocked storage, filters and exact summary totals passed.')

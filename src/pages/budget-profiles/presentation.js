@@ -28,7 +28,9 @@ export function budgetRowSymbol(row, section = 'expenses') {
   return { kind: Object.hasOwn(symbols, kind) ? kind : 'other', emoji: symbols[kind] || symbols.other }
 }
 export function budgetQualification(profile) {
-  return profile.kind === 'planned' ? 'Budget prévu' : profile.kind === 'prepared' && /^(budget-conseil|reference-)/.test(profile.id) ? profile.household.match(/budget[^·]*de référence/i)?.[0] || 'Budget de référence' : ''
+  if (profile.kind === 'participant') return ''
+  if (profile.completion) return profile.completion.forecast ? 'Budget reconstitué, prévisionnel' : 'Budget reconstitué'
+  return profile.kind === 'planned' ? 'Budget prévu' : profile.kind === 'prepared' ? (/^(budget-conseil|reference-)/.test(profile.id) ? profile.household.match(/budget[^·]*de référence/i)?.[0] || 'Budget de référence' : 'Budget reconstitué') : ''
 }
 export function budgetPublicContext(value) {
   return value.replace(/(^| · )budget personnel(?: avec |\.?(?: · |$))/gi, '$1').replace(/ · $/, '')
@@ -45,7 +47,7 @@ export function budgetIntroduction(profile, p) {
   const h = normalize(p.household)
   const family = /mere celibataire/.test(h) ? '👩‍👧' : /enfant|filles|fils/.test(h) && !/sans enfant|projet d.enfant|avant.*naissance/.test(h) ? '👪' : /couple|adultes|marie|concubin/.test(h) ? '👥' : /locataire|proprietaire|heberge|loge/.test(h) ? '🏠' : '👤'
   const introduction = [p.job && `💼 ${p.job}`, p.household && `${family} ${p.household.replace(/ · (?=(?:un|deux|trois) enfants?)/g, ', ')}`, p.location && `📍 ${p.location}`].filter(Boolean)
-  if (qualification && !normalize(introduction.join(' ')).includes(normalize(qualification))) introduction[0] = `${introduction[0] || '👤'} · ${qualification.toLowerCase()}`
+  if (qualification && !normalize(introduction.join(' ')).includes(normalize(qualification))) introduction[0] = introduction[0] ? `${introduction[0]} · ${qualification.toLowerCase()}` : `👤 ${qualification}`
   return introduction.join('\n')
 }
 export function budgetTransfers(profile, heading = 'Versements') {

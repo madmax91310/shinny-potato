@@ -1,14 +1,14 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
-import { BUDGET_PROFILES } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES, BUDGET_ORIGINAL_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
 import { buildBudgetText, budgetHeading, budgetPublicPresentation, budgetPublicIncomeRows, publicationContextFor, analyzeBudget, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { budgetQualification, budgetRowSymbol, budgetPublicBasis, budgetTransfers } from '../src/pages/budget-profiles/presentation.js'
 const baseline = JSON.parse(readFileSync(new URL('./fixtures/budget-editorial/presentation-2026-11-02.json', import.meta.url)))
 const hash = v => createHash('sha256').update(JSON.stringify(v)).digest('hex')
 assert.equal(BUDGET_PROFILES.length, baseline.count)
-assert.equal(hash(BUDGET_PROFILES), baseline.profilesHash, 'No profile, amount, date, source, hypothesis or filter field changes')
-assert.equal(hash(BUDGET_PROFILES.map(publicationContextFor)), baseline.contextsHash, 'Private qualifications, narratives, questions and evidence stay intact')
+assert.equal(hash(BUDGET_ORIGINAL_PROFILES), baseline.profilesHash, 'No profile, amount, date, source, hypothesis or filter field changes')
+assert.equal(hash(BUDGET_ORIGINAL_PROFILES.map(p=>BUDGET_ORIGINAL_PUBLICATION_CONTEXT[p.id])), baseline.contextsHash, 'Private qualifications, narratives, questions and evidence stay intact')
 for (const p of BUDGET_PROFILES) {
   const text = buildBudgetText(p), c = publicationContextFor(p)
   assert.equal(text.split('\n')[0], budgetHeading(p))
@@ -16,9 +16,9 @@ for (const p of BUDGET_PROFILES) {
   assert(!text.includes('cet exemple de budget'))
   const qualifier = budgetQualification(p)
   if (qualifier) assert(text.toLowerCase().includes(qualifier.toLowerCase()), 'Forecasts and reference budgets keep their meaningful context')
-  assert(!/budget personnel|budget reconstitu[eé]/i.test(text), `${p.id}: production labels stay outside the copied publication`)
+  assert(!/budget personnel/i.test(text), `${p.id}: production labels stay outside the copied publication`)
   const presentation = budgetPublicPresentation(p)
-  assert(!/budget personnel|budget reconstitu[eé]/i.test([presentation.job, presentation.household, presentation.location, presentation.basis].join(' ')), `${p.id}: both images use cleaned presentation data`)
+  assert(!/budget personnel/i.test([presentation.job, presentation.household, presentation.location, presentation.basis].join(' ')), `${p.id}: both images use cleaned presentation data`)
   for (const part of [...c.paragraphs, ...c.questions]) assert(text.includes(part.text), 'Enriched facts and targeted questions remain verbatim')
   for (const row of p.expenses) assert(text.includes(`• ${budgetRowSymbol(row).emoji} ${row.label}`))
   for (const row of budgetPublicIncomeRows(p)) assert(text.includes(`• ${budgetRowSymbol(row, 'income').emoji} ${row.label}`))
@@ -29,7 +29,7 @@ const aicha = BUDGET_PROFILES.find(p => p.name === 'Aïcha'), a = buildBudgetTex
 assert(a.startsWith('Budget d’Aïcha, 41 ans\n'))
 for (const line of ['💼 Cheffe de service', '👩‍👧 Mère célibataire, un enfant de 11 ans', '📍 Région parisienne', '• ⚡ Énergie et eau', '• 📚 École et cours particuliers', '• 🎨 Activités de son enfant', '• 🩺 Assurances et santé', '• 👕 Vêtements et hygiène', '👉 Reste avant épargne', '💳 Reste après épargne', 'Que pensez-vous de son budget ? 🤔💬']) assert(a.includes(line),line)
 assert(!a.includes('• 💰 Réserves pour projets'), 'A single synonymous allocation is not repeated under its heading')
-assert.equal(analyzeBudget(aicha).savings,1050)
+assert.equal(analyzeBudget(aicha).savings,800)
 const business = BUDGET_PROFILES.find(p => p.name === 'Inès')
 assert(buildBudgetText(business).includes('Reste avant financement de son entreprise'))
 assert(!buildBudgetText(business).includes('Reste avant épargne'))
