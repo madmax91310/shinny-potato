@@ -168,9 +168,20 @@ def parse_share(body, share, now):
         countries={'status':'collection-error','rows':[]}
         allocation_errors.append({'field':'countries-primary','url':product_data_url(share),'reason':str(error),'fallbackQualified':False})
     sector_failure=None
+    signed_sectors=False
     try:
-        sectors = allocation(exposure['sector'], now,
-            components['holdings']['containersByNameMap']['all'] if share.get('sectorAllocationConvention') == 'signed-net-assets-reconciled-holdings' else None) if share.get('collectSectors', True) and 'sector' in exposure else {'status': 'not-published', 'rows': []}
+        if share.get('collectSectors', True) and 'sector' in exposure:
+            weights = exposure['sector']['dataPointsByNameMap']['fund']['value']
+            # Reconcile the exceptional signed/net table only. An ordinary
+            # positive table keeps its own publication date, independently of
+            # the holdings snapshot; no signed reconciliation is then claimed.
+            signed_sectors = (share.get('sectorAllocationConvention') == 'signed-net-assets-reconciled-holdings'
+                              and any(type(w) in (int, float) and math.isfinite(w) and (w < 0 or w > 100)
+                                      for w in weights))
+            sectors = allocation(exposure['sector'], now,
+                components['holdings']['containersByNameMap']['all'] if signed_sectors else None)
+        else:
+            sectors = {'status': 'not-published', 'rows': []}
     except ValueError as error:
         try:
             if str(error)!='Incomplete allocation' or not isinstance(body,dict):raise error
@@ -187,7 +198,7 @@ def parse_share(body, share, now):
             sectors={'status':'collection-error','rows':[]}
             sector_failure={'field':'sectors-primary','url':product_data_url(share),'reason':str(error)+'; independent allocation unqualified: '+str(fallback_error),'fallbackQualified':False}
     if sector_failure:allocation_errors.append(sector_failure)
-    if sectors.get('rows') and share.get('sectorAllocationConvention'):
+    if sectors.get('rows') and signed_sectors:
         sectors['weightConvention'] = share['sectorAllocationConvention']
 
     if countries.get('rows'): countries['sourceComponent'] = 'exposureBreakdowns.geography.countries'

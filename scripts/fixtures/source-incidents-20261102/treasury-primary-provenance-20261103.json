@@ -1,0 +1,137 @@
+[
+  {
+    "isin": "IE00B1FZS913",
+    "scope": "read-only local primary investigation; not GitHub production",
+    "source": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "a0e96990358c032fb857905601fd32d066de5b48c294c1755e83cd1f35eb3759",
+    "existing": {
+      "status": "failed",
+      "error": "Invalid allocation weight for Treasury: 100.36"
+    },
+    "explicit-reconciliation": {
+      "status": "validated",
+      "sectors": {
+        "asOf": "2026-10-30",
+        "rows": [
+          {
+            "name": "Treasury",
+            "weightPct": 100.36
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": -0.36
+          }
+        ],
+        "weightConvention": "signed-net-assets-reconciled-holdings",
+        "sourceComponent": "exposureBreakdowns.sector"
+      },
+      "keys": [
+        "isin",
+        "productId",
+        "name",
+        "currency",
+        "distribution",
+        "requireFullHistory",
+        "collectHoldings",
+        "provider",
+        "parser",
+        "collectSectors",
+        "holdingsAssetClass",
+        "sectorAllocationConvention",
+        "characteristics",
+        "terPct",
+        "index",
+        "aum",
+        "countries",
+        "sectors",
+        "performance",
+        "rawComponents"
+      ]
+    }
+  },
+  {
+    "isin": "IE00B14X4S71",
+    "scope": "read-only local primary investigation; not GitHub production",
+    "source": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251715&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "db86a28a151a65a0acd6eeee4aa063b9e9d95e86a3a0ecb3f10b5ccb68cf9863",
+    "existing": {
+      "status": "failed",
+      "error": "Invalid allocation weight for Treasury: 100.03"
+    },
+    "explicit-reconciliation": {
+      "status": "validated",
+      "sectors": {
+        "asOf": "2026-10-30",
+        "rows": [
+          {
+            "name": "Treasury",
+            "weightPct": 100.03
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": -0.03
+          }
+        ],
+        "weightConvention": "signed-net-assets-reconciled-holdings",
+        "sourceComponent": "exposureBreakdowns.sector"
+      },
+      "keys": [
+        "isin",
+        "productId",
+        "name",
+        "provider",
+        "parser",
+        "currency",
+        "distribution",
+        "requireFullHistory",
+        "collectHoldings",
+        "sourceUrl",
+        "holdingsAssetClass",
+        "expectedIndex",
+        "expectedAssetClass",
+        "expectedStructure",
+        "expectedUcits",
+        "sourceProof",
+        "combinedReplication",
+        "metadataFields",
+        "sectorAllocationConvention",
+        "characteristics",
+        "terPct",
+        "index",
+        "aum",
+        "countries",
+        "sectors",
+        "performance",
+        "rawComponents"
+      ]
+    }
+  },
+  {
+    "isin": "IE00B4WXJG34",
+    "source": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251737&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "247cd500ebcc181e2e8ada84faa50681bd7c6404465f9f0e893237098decec3d",
+    "scope": "local real source, not GitHub",
+    "existing": {
+      "status": "failed",
+      "error": "Invalid allocation weight for Treasury: 100.03"
+    },
+    "explicit-reconciliation": {
+      "status": "validated",
+      "sectors": {
+        "asOf": "2026-10-30",
+        "rows": [
+          {
+            "name": "Treasury",
+            "weightPct": 100.03
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": -0.03
+          }
+        ],
+        "weightConvention": "signed-net-assets-reconciled-holdings",
+        "sourceComponent": "exposureBreakdowns.sector"
+      }
+    }
+  }
+]
