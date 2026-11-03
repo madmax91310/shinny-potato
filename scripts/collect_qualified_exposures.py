@@ -3,7 +3,7 @@ import copy
 import argparse, datetime as dt, hashlib, json, re
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from collect_etf_pilot import product_data_url, parse_share, source_date, replication_characteristics
+from collect_etf_pilot import product_data_url, parse_share_with_dated_holdings, source_date, replication_characteristics
 from collect_etf_holdings import parse_holdings, collect_holdings
 from data_automation import get_text, UTC, write_json_atomic
 from apply_etf_collection import merge_collection
@@ -39,7 +39,7 @@ def collect_one(config,now):
   parse_body=copy.deepcopy(body)
   parse_body['componentsByNameMap']['exposureBreakdowns']['containersByNameMap'].pop('geography',None)
  if config.get('compositionFromHoldings'):parse_body['componentsByNameMap'].pop('exposureBreakdowns',None)
- result=parse_share(parse_body,share,now)
+ result=parse_share_with_dated_holdings(parse_body,share,now,fetch=get_text)
  if not result.get('performance',{}).get('years'):raise ValueError('No complete annual NAV total return yet')
  holdings,countries=parse_holdings(body,share,now) if isinstance(body,dict) else collect_holdings(components['holdings'],share,now)
  result['holdings']=holdings

@@ -1,5 +1,6 @@
 """Collect issuer-embedded structured data for catalog shares; with optional validated application."""
 import argparse
+import copy
 from concurrent.futures import ThreadPoolExecutor
 import datetime as dt
 from html.parser import HTMLParser
@@ -9,7 +10,7 @@ import math
 import os
 import pathlib
 import urllib.error
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urlsplit, parse_qsl
 
 from data_automation import UTC, get_text, number, reject, write_json_atomic, ResponseFormatError
 
@@ -247,19 +248,66 @@ def parse_share(body, share, now):
             'rawComponents': components, **({'collectionErrors':allocation_errors} if allocation_errors else {})}
 
 
+
+def parse_share_with_dated_holdings(body, share, now, fetch=None):
+    """Reconcile a signed sector table only against its exact official snapshot.
+
+    The primary page and current holdings keep their own dates. The dedicated
+    all-holdings endpoint supports asOfDate; it must actually return that date,
+    product and currency. No fallback after identity or financial disagreement.
+    """
+    try:
+        return parse_share(body, share, now)
+    except ValueError as error:
+        if (str(error) != 'Signed allocation and holdings dates disagree'
+                or not isinstance(body, dict)
+                or share.get('sectorAllocationConvention') != 'signed-net-assets-reconciled-holdings'
+                or share.get('holdingsAssetClass') != 'Fixed Income'):
+            raise
+    components = body['componentsByNameMap']
+    sector = components['exposureBreakdowns']['containersByNameMap']['sector']
+    requested = sector['dataPointsByNameMap']['asOf']['value']
+    stamp = source_date(requested, now)
+    route = urlsplit(product_data_url(share))
+    query = dict(parse_qsl(route.query))
+    query.update(component='holdings.all', asOfDate=str(requested))
+    url = route._replace(query=urlencode(query)).geturl()
+    text = (fetch or get_text)(url, ('application/json',), 20_000_000)
+    dated = json.loads(text, parse_constant=lambda value: reject(f'Invalid JSON number: {value}'))
+    if str(dated['productId']) != str(share['productId']) or dated['currencyCode'] != share['currency']:
+        reject('Dated sector reconciliation has a different product or currency')
+    historical = dated['componentsByNameMap']['holdings']['containersByNameMap']['all']
+    if source_date(historical['dataPointsByNameMap']['asOfDate']['value'], now) != stamp:
+        reject('Dated sector reconciliation did not return the requested holdings snapshot')
+    # The very same allocation() gate checks every original signed position,
+    # complete net total, class/sector scope and each published sector weight.
+    allocation(sector, now, historical)
+    aligned = copy.deepcopy(body)
+    aligned['componentsByNameMap']['holdings'] = dated['componentsByNameMap']['holdings']
+    result = parse_share(aligned, share, now)
+    result['rawComponents'] = components  # all other consumers retain the current native book
+    evidence = {'sourceUrl': url, 'asOf': stamp, 'sha256': hashlib.sha256(text.encode()).hexdigest(),
+                'sourceComponent': 'holdings.all', 'method': 'Official all-holdings query with explicit asOfDate matching the published signed sector table; original weights, no scaling',
+                'latestHoldingsAsOf': source_date(components['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['asOfDate']['value'], now)}
+    result['sectors']['reconciliationSource'] = evidence
+    result.setdefault('sourceAttempts', []).append({'url': url, 'status': 'validated', 'fields': ['sectors'],
+                                                   'asOf': stamp, 'sha256': evidence['sha256']})
+    return result
+
+
 def collect(config, baseline, now=None, fetch=get_text):
     now = now or dt.datetime.now(UTC)
     def collect_one(share):
         # This public endpoint is published in the official product-page components.
         # Fetch the latest structured snapshot directly, without the HTML consent page.
         body, url, attempts = fetch_product(share, fetch)
-        result = parse_share(body, share, now)
+        result = parse_share_with_dated_holdings(body, share, now, fetch=fetch)
         from ishares_metrics import parse_metrics
         try:
             result['metrics'] = parse_metrics(result['rawComponents'], now, url)
         except (ValueError, KeyError, TypeError) as error:
             result.setdefault('collectionErrors', []).append({'field': 'metrics', 'url': url, 'reason': str(error)})
-        if attempts: result['sourceAttempts'] = attempts
+        if attempts: result.setdefault('sourceAttempts', []).extend(attempts)
         if share.get('collectHoldings'):
             from collect_etf_holdings import parse_holdings, collect_holdings
             try:

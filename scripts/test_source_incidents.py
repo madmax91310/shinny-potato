@@ -1,5 +1,6 @@
 """Replay the official 2 November responses without relaxing financial windows."""
 import copy
+import hashlib
 import datetime as dt
 import gzip
 import json
@@ -9,7 +10,7 @@ import unittest
 import urllib.error
 from unittest.mock import patch
 from data_automation import UTC
-from collect_etf_pilot import parse_share, collect as collect_etf
+from collect_etf_pilot import parse_share, parse_share_with_dated_holdings, collect as collect_etf
 from update_bitcoin_monthly import collect, parse_chart, apply
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -168,5 +169,115 @@ class SourceIncidents(unittest.TestCase):
         sector['fund']['value'] = [100.03, -0.03]
         with self.assertRaisesRegex(ValueError, 'Signed allocation and holdings dates disagree'):
             parse_share(body, share, NOW)
+
+class DatedSignedSectorSnapshots(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        path = ROOT/'scripts/fixtures/ishares-dated-sector-reconciliation-20261103'
+        cls.raw = gzip.decompress((path/'current.json.gz').read_bytes()).decode()
+        cls.dated_raw = gzip.decompress((path/'dated.json.gz').read_bytes()).decode()
+        cls.now = dt.datetime(2026,11,3,9,tzinfo=UTC)
+        config = json.loads((ROOT/'scripts/qualified-exposure-sources.json').read_text())
+        cls.config = next(r for r in config['instruments']if r['isin']=='IE00B4WXJG34')
+        cls.share = {**cls.config, 'collectHoldings':True, 'requireFullHistory':False,
+                     'distribution':'Distributing', 'sourceProof':True}
+    def body(self):return json.loads(self.raw)
+    def test_real_dated_book_reconciles_original_sector_weights_without_redating_current_holdings(self):
+        body = self.body();original = copy.deepcopy(body)
+        with self.assertRaisesRegex(ValueError,'Signed allocation and holdings dates disagree'):
+            parse_share(body,self.share,self.now)
+        with patch('collect_etf_pilot.get_text',return_value=self.dated_raw)as fetch:
+            result=parse_share_with_dated_holdings(body,self.share,self.now)
+        self.assertEqual(body,original)
+        self.assertEqual(result['sectors']['asOf'],'2026-10-30')
+        self.assertEqual([r['weightPct']for r in result['sectors']['rows']],[100.03,-.03])
+        self.assertEqual(result['sectors']['weightConvention'],'signed-net-assets-reconciled-holdings')
+        self.assertEqual(result['rawComponents']['holdings'],original['componentsByNameMap']['holdings'])
+        proof=result['sectors']['reconciliationSource']
+        self.assertEqual(proof['asOf'],'2026-10-30');self.assertEqual(proof['latestHoldingsAsOf'],'2026-11-02')
+        self.assertEqual(proof['sha256'],hashlib.sha256(self.dated_raw.encode()).hexdigest())
+        from urllib.parse import urlsplit,parse_qs
+        route=urlsplit(fetch.call_args.args[0]);query=parse_qs(route.query)
+        self.assertEqual(route.netloc,'www.blackrock.com')
+        self.assertEqual(query['component'],['holdings.all']);self.assertEqual(query['asOfDate'],['20261030'])
+        self.assertEqual(query['portfolioId'],['251737']);self.assertEqual(fetch.call_count,1)
+    def test_repeated_qualification_is_idempotent_and_never_scales_weights(self):
+        with patch('collect_etf_pilot.get_text',return_value=self.dated_raw):
+            a=parse_share_with_dated_holdings(self.body(),self.share,self.now)
+            b=parse_share_with_dated_holdings(self.body(),self.share,self.now)
+        self.assertEqual(a,b)
+    def test_ignored_historical_date_is_refused(self):
+        with patch('collect_etf_pilot.get_text',return_value=self.raw)as fetch:
+            with self.assertRaisesRegex(ValueError,'requested holdings snapshot'):
+                parse_share_with_dated_holdings(self.body(),self.share,self.now)
+        self.assertEqual(fetch.call_count,1)
+    def test_different_product_or_currency_is_never_used(self):
+        for field,value in [('productId',251738),('currencyCode','USD')]:
+            dated=json.loads(self.dated_raw);dated[field]=value
+            with self.subTest(field=field),patch('collect_etf_pilot.get_text',return_value=json.dumps(dated)):
+                with self.assertRaisesRegex(ValueError,'different product or currency'):
+                    parse_share_with_dated_holdings(self.body(),self.share,self.now)
+    def test_dated_book_keeps_the_existing_financial_reconciliation_gates(self):
+        mutations=[lambda p:p['holdingPercent']['value'].__setitem__(0,p['holdingPercent']['value'][0]+.1),
+                   lambda p:p['holdingPercent']['value'].__setitem__(0,-1),
+                   lambda p:p['assetClass']['value'].__setitem__(0,'Equity'),
+                   lambda p:p['sectorName']['value'].__setitem__(0,'Financials'),
+                   lambda p:p['holdingPercent']['value'].pop()]
+        for mutate in mutations:
+            dated=json.loads(self.dated_raw);mutate(dated['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap'])
+            with self.subTest(mutation=mutate),patch('collect_etf_pilot.get_text',return_value=json.dumps(dated)):
+                with self.assertRaises(ValueError):parse_share_with_dated_holdings(self.body(),self.share,self.now)
+    def test_failed_acquisition_and_empty_or_html_response_do_not_mutate_or_requalify_old_values(self):
+        for reply in ['', '<html>Access denied</html>']:
+            body=self.body();original=copy.deepcopy(body)
+            with patch('collect_etf_pilot.get_text',return_value=reply),self.assertRaises(ValueError):
+                parse_share_with_dated_holdings(body,self.share,self.now)
+            self.assertEqual(body,original)
+        with patch('collect_etf_pilot.get_text',side_effect=urllib.error.URLError('offline')):
+            with self.assertRaises(urllib.error.URLError):parse_share_with_dated_holdings(self.body(),self.share,self.now)
+    def test_no_extra_request_when_signed_photographs_already_match(self):
+        body=self.body();body['componentsByNameMap']['holdings']=json.loads(self.dated_raw)['componentsByNameMap']['holdings']
+        with patch('collect_etf_pilot.get_text')as fetch:
+            result=parse_share_with_dated_holdings(body,self.share,self.now)
+        fetch.assert_not_called();self.assertNotIn('reconciliationSource',result['sectors'])
+    def test_positive_primary_tables_keep_their_own_date_without_historical_lookup(self):
+        body=self.body();body['componentsByNameMap']['exposureBreakdowns']['containersByNameMap']['sector']['dataPointsByNameMap']['fund']['value']=[99.89,.11]
+        with patch('collect_etf_pilot.get_text')as fetch:
+            result=parse_share_with_dated_holdings(body,self.share,self.now)
+        fetch.assert_not_called();self.assertNotIn('weightConvention',result['sectors'])
+    def test_identity_errors_do_not_trigger_the_dated_route(self):
+        body=self.body();body['currencyCode']='USD'
+        with patch('collect_etf_pilot.get_text')as fetch:
+            with self.assertRaisesRegex(ValueError,'product or currency'):parse_share_with_dated_holdings(body,self.share,self.now)
+        fetch.assert_not_called()
+    def test_same_date_financial_contradiction_never_tries_another_book(self):
+        body=self.body();body['componentsByNameMap']['holdings']=json.loads(self.dated_raw)['componentsByNameMap']['holdings']
+        body['componentsByNameMap']['exposureBreakdowns']['containersByNameMap']['sector']['dataPointsByNameMap']['fund']['value']=[100.1,-.1]
+        with patch('collect_etf_pilot.get_text')as fetch:
+            with self.assertRaisesRegex(ValueError,'disagrees with complete holdings'):
+                parse_share_with_dated_holdings(body,self.share,self.now)
+        fetch.assert_not_called()
+    def test_dated_route_requires_the_explicit_signed_fixed_income_contract(self):
+        for key,value in [('sectorAllocationConvention','unqualified'),('holdingsAssetClass','Equity')]:
+            with self.subTest(key=key),patch('collect_etf_pilot.get_text')as fetch:
+                with self.assertRaises(ValueError):parse_share_with_dated_holdings(self.body(),{**self.share,key:value},self.now)
+                fetch.assert_not_called()
+
+    def test_both_etf_pilot_and_qualified_collectors_keep_latest_holdings_and_sector_proof(self):
+        baseline={self.share['isin']:{'currency':'EUR','values':[None]*6}}
+        with patch('collect_etf_pilot.get_text',side_effect=[self.raw,self.dated_raw])as fetch:
+            report=collect_etf({'instruments':[self.share]},baseline,self.now,fetch=fetch)
+        self.assertEqual(report['failures'],[]);self.assertEqual(len(report['shares']),1)
+        r=report['shares'][0];self.assertEqual(r['sectors']['asOf'],'2026-10-30');self.assertEqual(r['holdings']['asOf'],'2026-11-02')
+        from apply_etf_collection import merge_collection
+        stored=merge_collection(report,{},baseline)[self.share['isin']]
+        self.assertEqual(stored['sectors']['reconciliationSource']['asOf'],'2026-10-30')
+        self.assertEqual([r['weightPct']for r in stored['sectors']['rows']],[100.03,-.03])
+        from collect_qualified_exposures import collect_one
+        with patch('collect_qualified_exposures.get_text',side_effect=[self.raw,self.dated_raw]):
+            qualified=collect_one(self.config,self.now)
+        self.assertEqual(qualified['holdings']['asOf'],'2026-11-02')
+        self.assertEqual(qualified['sectors']['asOf'],'2026-10-30')
+        self.assertEqual(qualified['sectors']['reconciliationSource']['sha256'],stored['sectors']['reconciliationSource']['sha256'])
 
 if __name__=='__main__':unittest.main()
