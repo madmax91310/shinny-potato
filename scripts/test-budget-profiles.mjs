@@ -22,7 +22,7 @@ for (const p of BUDGET_PROFILES) {
   assert(!/prénoms? fictifs?|scénario mensuel préparé|données de 2025|l’auteur|sa femme|la personne|à confirmer|placeholder|\.json|PR #/i.test(text), p.id)
   assert.equal(typeof BUDGET_EDITORIAL[p.id]?.publicIncomeNote, 'string', `Every profile needs a contextual editorial review: ${p.id}`)
   for (const row of budgetPublicIncomeRows(p)) assert(text.includes(`${row.label} : ${euro(row.amount, p.currency)}`), 'Even a single resource is detailed')
-  if (p.kind === 'prepared') assert(/budget reconstitué|budget(?: individuel)? de référence/i.test(text), p.id)
+  assert(!/budget personnel|budget reconstitu[eé]/i.test(text), p.id)
   const a = analyzeBudget(p)
   const sumCents = key => p[key].reduce((n, r) => n + Math.round(r.amount * 100), 0)
   assert.equal(Math.round(a.balance * 100), sumCents('income') - sumCents('expenses') - sumCents('savings'))
