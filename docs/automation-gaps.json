@@ -130,7 +130,7 @@
       "status": "waiting-first-year",
       "firstYear": null,
       "years": [],
-      "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf"
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/qntm-fact-sheet.pdf"
     },
     {
       "id": "IE000C6ITGC8",
@@ -407,7 +407,7 @@
       "active": true
     }
   ],
-  "checkedAt": "2026-11-02",
+  "checkedAt": "2026-11-03",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
   "instruments": 283,
   "covered": {
@@ -1094,9 +1094,9 @@
       "configured": true,
       "status": "not-published",
       "asOf": "2026-10-30",
-      "checkedAt": "2026-11-02",
+      "checkedAt": "2026-11-03",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "f6b7355ff163fafecb9f5a2a073dca2f22b791ae116282188f36e2ea69c76a59",
+      "sha256": "ba8e415e57057c6e605177d0474da628f8856e95ef0f4a96f091a876720c152e",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1156,7 +1156,7 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-11-02",
+      "checkedAt": "2026-11-03",
       "asOf": "2026-09-30",
       "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
       "sha256": "43ac17cfbd6ff218e06494094aa3b80b00c93549cf8f22fb1a5544afab9907e4",
@@ -1590,7 +1590,7 @@
       "earliestPublicationDate": "2027-01-01",
       "status": "waiting-first-year",
       "reason": "Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté.",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf"
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/qntm-fact-sheet.pdf"
     },
     {
       "type": "instrument",
@@ -1830,9 +1830,9 @@
       "configured": true,
       "status": "unqualified",
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
-      "checkedAt": "2026-11-02",
+      "checkedAt": "2026-11-03",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "c2bde247dafe68bbd661d871e297230dff2c1fc725e73af1e5eeda95d8a4ed36",
+      "sha256": "b45046b4f44b91114b89c47bcbde4a409226a055f1889211576a98aa308e8101",
       "evidence": []
     },
     {
@@ -1844,9 +1844,9 @@
       "configured": true,
       "status": "unqualified",
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
-      "checkedAt": "2026-11-02",
+      "checkedAt": "2026-11-03",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "c2bde247dafe68bbd661d871e297230dff2c1fc725e73af1e5eeda95d8a4ed36",
+      "sha256": "b45046b4f44b91114b89c47bcbde4a409226a055f1889211576a98aa308e8101",
       "evidence": []
     },
     {
@@ -1858,9 +1858,9 @@
       "configured": true,
       "status": "unqualified",
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
-      "checkedAt": "2026-11-02",
+      "checkedAt": "2026-11-03",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "c2bde247dafe68bbd661d871e297230dff2c1fc725e73af1e5eeda95d8a4ed36",
+      "sha256": "b45046b4f44b91114b89c47bcbde4a409226a055f1889211576a98aa308e8101",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 31 Oct 2026",
@@ -1899,9 +1899,9 @@
       "configured": true,
       "status": "source-conflict",
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, MSFT, NVDA.",
-      "checkedAt": "2026-11-02",
+      "checkedAt": "2026-11-03",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "c2bde247dafe68bbd661d871e297230dff2c1fc725e73af1e5eeda95d8a4ed36",
+      "sha256": "b45046b4f44b91114b89c47bcbde4a409226a055f1889211576a98aa308e8101",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 29 Oct 2026",
