@@ -125,4 +125,32 @@ class SourceIncidents(unittest.TestCase):
             else:sector['fund']['value'][1]=0
             with self.subTest(defect=defect),self.assertRaises((ValueError,KeyError)):parse_share(bad,share,NOW)
 
+    def test_three_treasury_contracts_require_same_date_complete_signed_holdings(self):
+        configs = [s for name in ('additional-etf-sources.json', 'qualified-exposure-sources.json')
+                   for s in json.loads((ROOT/'scripts'/name).read_text())['instruments']]
+        now = dt.datetime(2026, 11, 3, tzinfo=UTC)
+        for isin, gross in [('IE00B1FZS913', 100.36), ('IE00B14X4S71', 100.03), ('IE00B4WXJG34', 100.03)]:
+            share = next(s for s in configs if s['isin'] == isin)
+            share = {**share, 'distribution': 'Distributing', 'requireFullHistory': False}
+            body = fixture('treasury-' + isin)
+            with self.subTest(isin=isin):
+                self.assertEqual(share['sectorAllocationConvention'], 'signed-net-assets-reconciled-holdings')
+                result = parse_share(body, share, now)
+                self.assertEqual(result['sectors']['asOf'], '2026-10-30')
+                self.assertEqual(result['sectors']['rows'], [
+                    {'name': 'Treasury', 'weightPct': gross},
+                    {'name': 'Cash and/or Derivatives', 'weightPct': round(100-gross, 2)}])
+                strict = dict(share); strict.pop('sectorAllocationConvention')
+                with self.assertRaisesRegex(ValueError, 'Invalid allocation weight'):
+                    parse_share(body, strict, now)
+                for defect in ('date', 'partial', 'mismatch', 'identity'):
+                    bad = copy.deepcopy(body)
+                    points = bad['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+                    if defect == 'date': points['asOfDate']['value'] = 20261029
+                    elif defect == 'partial': points['holdingPercent']['value'].pop()
+                    elif defect == 'mismatch': points['holdingPercent']['value'][0] += 1
+                    else: bad['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']['isin']['value'] = 'WRONG'
+                    with self.subTest(defect=defect), self.assertRaises((ValueError, KeyError)):
+                        parse_share(bad, share, now)
+
 if __name__=='__main__':unittest.main()
