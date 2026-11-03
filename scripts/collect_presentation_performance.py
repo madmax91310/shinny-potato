@@ -20,8 +20,8 @@ SOURCES = [
      'sourceUrl': 'https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf',
      'method': 'calendar-year exact share NAV total return, net of fees'},
     {'isin': 'IE0007Y8Y157', 'currency': 'USD', 'provider': 'VanEck', 'parser': 'vaneck',
-     'sourceUrl': 'https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf',
-     'fallbackUrls': ['https://www.vaneck.com/nl/en/library/fact-sheets/qntm-fact-sheet.pdf', 'https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf'],
+     'sourceUrl': 'https://www.vaneck.com/fr/en/library/fact-sheets/qntm-fact-sheet.pdf',
+     'fallbackUrls': ['https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf', 'https://www.vaneck.com/nl/en/library/fact-sheets/qntm-fact-sheet.pdf', 'https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf'],
      'method': 'calendar-year NAV total return, net income reinvested, net of fees'}
 ]
 
