@@ -1,9 +1,14 @@
 import assert from 'node:assert/strict'
-import {spawn} from 'node:child_process'
+import {execFileSync,spawn} from 'node:child_process'
 import fs from 'node:fs/promises'
 import {chromium} from 'playwright'
-import {references}from'../src/pages/dca-profiles/records.js'
+// The build regenerates these projections; a checkout may contain an older one.
+// Regenerate before importing so Node and the tested dist use the same source snapshot.
+execFileSync(process.execPath,['scripts/build-dca-exposures.mjs'],{stdio:'pipe'})
+const {references}=await import('../src/pages/dca-profiles/records.js')
 import {equityChartObservations}from'./equity-chart-observations.mjs'
+import {PORTFOLIO_EXPOSURES}from'../src/data/portfolio-exposure-data.js'
+import {selectDcaCountryObservation}from'./select-dca-country-observation.mjs'
 const isin='IE00B6R52259',source=JSON.parse(await fs.readFile('src/data/automated-etf.json','utf8'))[isin]
 const complete=JSON.parse(await fs.readFile('src/data/dca-complete-holdings.json','utf8'))[isin]
 const equityCharts=equityChartObservations(complete)
@@ -16,9 +21,14 @@ for(const field of ['countries','sectors']){
  if(Number.isFinite(source[field].portfolioWeightPct))assert(Math.abs(total-source[field].portfolioWeightPct)<1e-5)
  // A newer qualified equity-holdings snapshot has its own date and scope.
  // It must not be forced back to the older all-position NAV observation.
- const expected=equityCharts?.[field]??source[field]
+ // The qualified risk-country table has its own date and classification contract,
+ // distinct from the issuer's geographic table. Respect the shared selection rule.
+ const issuer=PORTFOLIO_EXPOSURES[isin]?.[field]
+ const selected=field==='countries'?selectDcaCountryObservation(issuer,source):issuer
+ const expected=equityCharts?.[field]??selected
  assert.equal(reference[field].asOf,expected.asOf)
- if(equityCharts){assert.equal(reference[field].compatibility,expected.compatibility);assert.deepEqual(reference[field].rows,expected.rows)}
+ assert.equal(reference[field].compatibility,expected.compatibility??`${expected.classificationMetadata.id}:${expected.basis}`)
+ assert.deepEqual(reference[field].rows,expected.rows.map(r=>({name:r.label||r.name,weightPct:r.weightPct})))
 }
 const port=4398,base=process.env.TEST_BASE_URL??`http://127.0.0.1:${port}/shinny-potato`,out=process.env.TEST_OUTPUT_DIR??'test-artifacts/acwi-allocation'
 const server=process.env.TEST_BASE_URL?null:spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port',String(port)],{stdio:'ignore'})

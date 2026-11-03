@@ -56,7 +56,7 @@ for(const engine of ['chromium','firefox','webkit']){
    const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Exporter les brouillons et statuts',exact:true}).click()
    const download=await pending;assert.equal(await download.failure(),null)
    const data=JSON.parse(await readFile(await download.path(),'utf8'))
-   assert.equal(data.version,3);assert.equal(data.workspace.version,3);assert.deepEqual(data.workspace.published,[]);assert.deepEqual(data.workspace.publicationDates,{});assert.equal(data.workspace.drafts.find(d=>d.profile.id===BUDGET_PROFILES[0].id).text,text)
+   assert.equal(data.version,4);assert.equal(data.workspace.version,4);assert.deepEqual(data.workspace.published,[]);assert.deepEqual(data.workspace.publicationDates,{});assert.equal(data.workspace.drafts.find(d=>d.profile.id===BUDGET_PROFILES[0].id).text,text)
    await download.saveAs(`${dir}/${engine}-budget.json`)
    await expect.poll(()=>page.evaluate(()=>[...window.__activeExports])).toEqual(initialUrls)
   }
