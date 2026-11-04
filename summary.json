@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "policyVersion": 4,
-  "checkedAt": "2026-11-04T02:45:48.031Z",
-  "sourceRevision": "ae86da4ae704c9e9c8fc0c9f65e7ab24d3dedccd",
+  "checkedAt": "2026-11-04T08:08:09.392Z",
+  "sourceRevision": "d76eba6f7573f55cf7817bb78b9ffcb5128ca2b7",
   "groups": [
     [
       "9977149042677757b663c372",
@@ -11,6 +11,13 @@
     ],
     [
       "25355c5524533d61a458aee0"
+    ],
+    [
+      "594f1882be0ff4fdfd0896ab",
+      "d2d6f8f117ccc63132e273d1"
+    ],
+    [
+      "cc6c3e242f972bdc44865591"
     ],
     [
       "0ea6fdc936e144a8a097aec7",
@@ -117,6 +124,44 @@
       "to": "/radar-editorial?subject=25355c5524533d61a458aee0"
     },
     {
+      "id": "594f1882be0ff4fdfd0896ab",
+      "eventIds": [
+        "594f1882be0ff4fdfd0896ab",
+        "d2d6f8f117ccc63132e273d1"
+      ],
+      "readEventIds": [
+        "594f1882be0ff4fdfd0896ab",
+        "d2d6f8f117ccc63132e273d1"
+      ],
+      "title": "iShares Blockchain Technology UCITS ETF : poids du secteur Technologie, 66,72 % → 54,64 %",
+      "mainFact": "Poids du secteur Technologie : 54,64 %",
+      "publishedAt": null,
+      "observedAt": "2026-11-04",
+      "whyNow": "Changement constaté entre deux contrôles depuis moins de 48 h ; date d’annonce inconnue.",
+      "reason": "Exposition modifiée ; aucun achat ni flux déduit",
+      "score": 76,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "to": "/radar-editorial?subject=594f1882be0ff4fdfd0896ab"
+    },
+    {
+      "id": "cc6c3e242f972bdc44865591",
+      "eventIds": [
+        "cc6c3e242f972bdc44865591"
+      ],
+      "readEventIds": [
+        "cc6c3e242f972bdc44865591"
+      ],
+      "title": "VanEck Space Innovators UCITS ETF : poids du secteur Industrie, 50,9 % → 48,9 %",
+      "mainFact": "Poids du secteur Industrie : 48,9 %",
+      "publishedAt": null,
+      "observedAt": "2026-11-04",
+      "whyNow": "Changement constaté entre deux contrôles depuis moins de 48 h ; date d’annonce inconnue.",
+      "reason": "Exposition modifiée ; aucun achat ni flux déduit",
+      "score": 76,
+      "sourceUrl": "https://www.vaneck.com/Main/HoldingsWeightingsChartBlock/GetContent/?blockid=194841&pageid=233159&ticker=UCTJEDI&reactlang=en&reactctr=uk",
+      "to": "/radar-editorial?subject=cc6c3e242f972bdc44865591"
+    },
+    {
       "id": "0ea6fdc936e144a8a097aec7",
       "eventIds": [
         "0ea6fdc936e144a8a097aec7",
@@ -153,24 +198,6 @@
       "score": 72,
       "sourceUrl": "https://newsroom.groupebpce.fr/actualites/barometre-2026-caisse-d-epargne-association-e-enfance-3018-sur-le-harcelement-et-le-cyberharcelement-des-jeunes-de-6-a-18-ans-219df-7b707.html",
       "to": "/radar-editorial?subject=7c5a322d054377b56e75fecd"
-    },
-    {
-      "id": "2f5cc6594843193f596f6b66",
-      "eventIds": [
-        "2f5cc6594843193f596f6b66"
-      ],
-      "readEventIds": [
-        "2f5cc6594843193f596f6b66"
-      ],
-      "title": "34% des ménages interrogés par le médiateur de l'énergie ont eu des difficultés pour payer leurs factures de gaz ou d'électricité",
-      "mainFact": "Ainsi, 34% (des foyers interrogés) déclarent avoir rencontré des difficultés à payer certaines factures d'électricité ou de gaz , contre 18% en 2020 , selon la 20ᵉ édition de ce baromètre énergie-info, réalisé en septembre.",
-      "publishedAt": "2026-11-03",
-      "observedAt": null,
-      "whyNow": "Publication originale ou changement documenté depuis moins de 48 h.",
-      "reason": "Réponses déclarées ; méthode conservée",
-      "score": 72,
-      "sourceUrl": "https://www.moneyvox.fr/energie/actualites/111088/34-des-menages-interroges-par-le-mediateur-de-energie-ont-eu-des-difficultes-pour-payer-leurs-factures-de-gaz-ou-electricite",
-      "to": "/radar-editorial?subject=2f5cc6594843193f596f6b66"
     }
   ]
 }
