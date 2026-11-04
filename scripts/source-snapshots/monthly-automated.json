@@ -542235,7 +542235,7 @@
     "wisdomInception": "2006-09-22",
     "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
     "anniversaryAvailable": false,
-    "checkedAt": "2026-11-02",
+    "checkedAt": "2026-11-04",
     "periodEnd": "2026-10",
     "sourceUrls": [
       "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=gro10k",
@@ -542265,7 +542265,7 @@
       "unitQualification": "historical-reference-only"
     },
     "nativeValuationCurrency": "USD",
-    "lastOfficialValuation": "2026-10-29",
+    "lastOfficialValuation": "2026-11-03",
     "financialConvention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
     "calendarProof": {
       "controlledInstrument": "JE00BN7KB557",
@@ -542291,11 +542291,11 @@
       "requestedStart": "2021-12-01",
       "incomeTreatment": "Issuer exact-product NAV (TR); no additional cash",
       "navHistoryTransport": "official-dataspan-nav-tr",
-      "dailyObservations": 1207,
-      "sourceSnapshotDate": "2026-10-29",
+      "dailyObservations": 1210,
+      "sourceSnapshotDate": "2026-11-03",
       "issuerProductInception": "2006-09-22",
       "issuerChartInception": "2006-09-22",
-      "tablePublicationDate": "2026-10-30",
+      "tablePublicationDate": "2026-11-03",
       "closedTableCalendarChecks": [
         {
           "year": 2022,
@@ -542374,14 +542374,14 @@
         }
       ],
       "sourceRuntime": {
-        "runId": "41379698791",
+        "runId": "41851900526",
         "attempt": "1",
-        "event": "workflow_dispatch",
-        "codeRevision": "70b7e839f7ad96a3c03a3ec94989710eeb9b47ad",
+        "event": "schedule",
+        "codeRevision": "fa269245cba28bfea2230ebb978681125082ee26",
         "kind": "github"
       },
       "calendarRegistry": "src/data/non-bond-etf-records.json",
-      "calendarRegistryPerformanceHash": "90f46c6ac084a6b5a3e40a0ef5f9ca8d26b24cc2928df288ebf4f2ab7ada34c3",
+      "calendarRegistryPerformanceHash": "a88a8d5632dde52b3cfe16e4b4f1f33103e0229c0cea433ea0c94b805bdd8ed3",
       "calendarSource": {
         "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
         "sha256": "f0deee10717cc07e2d23608b6412cf32356173d5e30c61f08296948a3ddd7593",
@@ -542979,19 +542979,19 @@
         "fxFactor": 1
       },
       {
-        "date": "2026-10-29",
-        "nav": 64.12962529652285,
+        "date": "2026-10-30",
+        "nav": 64.52787021155706,
         "navCurrency": "USD",
-        "value": 64.12962529652285,
+        "value": 64.52787021155706,
         "currency": "USD",
         "fxAsOf": null,
         "fxFactor": 1
       }
     ],
-    "responseSha256": "67c6e6565d11e6cdc2c2c440950c5e4f0c135dd5300b932f59ba618f364f2746",
+    "responseSha256": "6ce0f28115b0d943a06110117a829c0d073c731b45568fbed025e230e48c67ea",
     "rawSourceHashes": {
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=gro10k": "a93646d9e16b311bf6d5b0888af96a4d8dc81fc2410c19c62dd8d99556060d67",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=tabular": "8570d8cc952eb616cda45032ac3158cad191b8703dfd1a9ccfe7043411061ea0",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=gro10k": "4e4c96d1fd1809f78c469e2a60a0630b942132f2b31d456473c424983c0c4510",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=tabular": "eceefff9e3c2aeed868934eb9fda36dc5234101ca49bcf15c074fbfece2fc99b",
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557": "f0deee10717cc07e2d23608b6412cf32356173d5e30c61f08296948a3ddd7593"
     }
   },

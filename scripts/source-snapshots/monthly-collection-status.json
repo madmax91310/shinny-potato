@@ -4045,9 +4045,10 @@
       "responseSha256": "a0f67f675241bfcb498df6e1e52dab854e8af25708d91ed7ec33e9d2a47c9c00"
     },
     "etc_coffeeNav": {
-      "status": "failed",
-      "checkedAt": "2026-11-04T14:37:58.585926+00:00",
-      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n\nNode.js v20.20.2\n"
+      "status": "validated",
+      "checkedAt": "2026-11-04T15:10:27.988060+00:00",
+      "periodEnd": "2026-10",
+      "responseSha256": "6ce0f28115b0d943a06110117a829c0d073c731b45568fbed025e230e48c67ea"
     },
     "etfIE00BK5BCD43Nav": {
       "status": "validated",
@@ -4087,8 +4088,8 @@
     },
     "etc_natural_gasNav": {
       "status": "failed",
-      "checkedAt": "2026-11-04T14:37:58.585926+00:00",
-      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n\nNode.js v20.20.2\n"
+      "checkedAt": "2026-11-04T15:10:27.988060+00:00",
+      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n\nNode.js v20.20.2\n"
     },
     "etc_wheatNav": {
       "status": "validated",
