@@ -4088,7 +4088,7 @@
     },
     "etc_natural_gasNav": {
       "status": "failed",
-      "checkedAt": "2026-11-04T15:10:27.988060+00:00",
+      "checkedAt": "2026-11-05T15:00:37.795608+00:00",
       "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n\nNode.js v20.20.2\n"
     },
     "etc_wheatNav": {
