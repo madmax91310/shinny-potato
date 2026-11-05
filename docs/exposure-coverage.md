@@ -1,13 +1,10 @@
 # Couverture des expositions
 
-Contrôle automatique : 2026-11-04T16:40:28.552Z.
+Contrôle automatique : 2026-11-05T14:42:03.223Z.
 
-694 actifs distincts ; 638 avec au moins 99,5 % de pays et secteurs ; 53 hors classification ; 3 à compléter. Les alias d’un même ISIN sont comptés une fois.
+694 actifs distincts ; 641 avec au moins 99,5 % de pays et secteurs ; 53 hors classification ; 0 à compléter. Les alias d’un même ISIN sont comptés une fois.
 
 Les actifs hors classification ne sont pas des lacunes. Une date expirée, une table partielle ou une source absente reste un manque ; aucun proxy n’est ajouté. Les collectes émetteurs et fournisseurs de données sont réutilisées à chaque actualisation.
 
 | Actif | ISIN | Pays | Secteurs | Motifs |
 |---|---|---:|---:|---|
-| Xtrackers Nikkei 225 UCITS ETF | LU1875395870 | 0.00 % | 0.00 % | Poids signés incompatibles avec un donut |
-| Xtrackers Nikkei 225 UCITS ETF 1C (Acc) | LU2196470426 | 0.00 % | 0.00 % | Poids signés incompatibles avec un donut |
-| SPDR S&P 500 UCITS ETF Acc | IE000XZSV718 | 0.00 % | 100.00 % | Poids signés incompatibles avec un donut |

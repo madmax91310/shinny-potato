@@ -1,89 +1,9 @@
 {
-  "checkedAt": "2026-11-04T16:40:28.552Z",
+  "checkedAt": "2026-11-05T14:42:03.223Z",
   "total": 694,
   "outside": 53,
-  "complete": 638,
-  "gaps": [
-    {
-      "asset": "LU1875395870",
-      "isin": "LU1875395870",
-      "name": "Xtrackers Nikkei 225 UCITS ETF",
-      "kind": "etf",
-      "provider": "DWS",
-      "countries": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Poids signés incompatibles avec un donut"
-        ],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Poids signés incompatibles avec un donut"
-        ],
-        "asOf": null
-      }
-    },
-    {
-      "asset": "LU2196470426",
-      "isin": "LU2196470426",
-      "name": "Xtrackers Nikkei 225 UCITS ETF 1C (Acc)",
-      "kind": "etf",
-      "provider": "DWS",
-      "countries": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Poids signés incompatibles avec un donut"
-        ],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Poids signés incompatibles avec un donut"
-        ],
-        "asOf": null
-      }
-    },
-    {
-      "asset": "IE000XZSV718",
-      "isin": "IE000XZSV718",
-      "name": "SPDR S&P 500 UCITS ETF Acc",
-      "kind": "etf",
-      "provider": "State Street",
-      "countries": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Poids signés incompatibles avec un donut"
-        ],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 100,
-        "eligible": 100,
-        "outside": false,
-        "missing": 0,
-        "reasons": [],
-        "asOf": "2026-11-03"
-      }
-    }
-  ],
+  "complete": 641,
+  "gaps": [],
   "outsideAssets": [
     {
       "asset": "gold",
