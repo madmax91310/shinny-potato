@@ -19101,7 +19101,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
         "checkedAt": "2026-11-05",
-        "sha256": "3578fcdaa7845cc31f62d7621d71e698076ca482986cb28dc4938adf3c2369aa",
+        "sha256": "e1af625d9c3469c5d29163474a1d33acd9bb143e32bc524addfd17c587890af1",
         "label": "Composition officielle automatisée · Nikkei 225"
       },
       "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
@@ -19317,7 +19317,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
         "checkedAt": "2026-11-05",
-        "sha256": "540d65692d5c676fb73aa314872694e983e4c9e96328cdc955ebe5da9e307959",
+        "sha256": "273cd9090deb9056c93dc3b2f03db5086812f24773d518635944d91c1699f52d",
         "label": "Rendements calendaires officiels automatisés · Nikkei 225"
       },
       "performance": {
@@ -19445,7 +19445,7 @@
       "source": {
         "url": "https://stoxx.com/index/sxxr/",
         "checkedAt": "2026-11-05",
-        "sha256": "a0212358c62aeee0a90dba17793c5e587fcf5108cd84a1ac346a467dac65fe2c",
+        "sha256": "e2089f6e629832d450589209c59249ee1c887560ee3abe4f8475d98186c80300",
         "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
       },
       "performance": {
@@ -21013,7 +21013,7 @@
       "source": {
         "url": "https://stoxx.com/index/sx5t/",
         "checkedAt": "2026-11-05",
-        "sha256": "4d4cd257c51f29e903d25557bfc35b0a3cbfae63d04a4088fd6d23402c45d322",
+        "sha256": "fd2717aaecd2fa4a55c78ef0c05d76999c294a4705713150ff6fedb5485ecc1a",
         "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
       },
       "performance": {
@@ -22383,7 +22383,7 @@
   },
   "sp-global-dividend-aristocrats": {
     "returns": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "currency": "USD",
       "variant": "NET",
       "values": [
@@ -22413,13 +22413,13 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
         "checkedAt": "2026-11-05",
-        "sha256": "a94e6c78a8e8c008bc688c55b2a51d91c4f72552753965b013c54ce92a944d29",
+        "sha256": "e382fbaae15ed68e56f7ec7613fe3b774503c2e28412664a6e9216e6fc658309",
         "label": "Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income"
       },
       "performance": {
         "kind": "indice",
         "detail": "S&P Global Dividend Aristocrats Quality Income · USD · dividendes nets réinvestis",
-        "date": "2026-09-30"
+        "date": "2026-10-31"
       }
     },
     "returnsHistory": {
@@ -22461,6 +22461,46 @@
           "kind": "indice",
           "detail": "S&P Global Dividend Aristocrats Quality Income · USD · dividendes nets réinvestis",
           "date": "2026-09-30"
+        }
+      },
+      "2026-10-31": {
+        "asOf": "2026-10-31",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            16.97
+          ],
+          [
+            2024,
+            7.48
+          ],
+          [
+            2023,
+            6.9
+          ],
+          [
+            2022,
+            -6.85
+          ],
+          [
+            2021,
+            15.41
+          ]
+        ],
+        "periodStart": "2021-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
+          "checkedAt": "2026-11-05",
+          "sha256": "e382fbaae15ed68e56f7ec7613fe3b774503c2e28412664a6e9216e6fc658309",
+          "label": "Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "S&P Global Dividend Aristocrats Quality Income · USD · dividendes nets réinvestis",
+          "date": "2026-10-31"
         }
       }
     },
@@ -22973,7 +23013,7 @@
   },
   "sp-euro-dividend-aristocrats": {
     "returns": {
-      "asOf": "2026-09-30",
+      "asOf": "2026-10-31",
       "currency": "EUR",
       "variant": "NET",
       "values": [
@@ -23007,13 +23047,13 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
         "checkedAt": "2026-11-05",
-        "sha256": "33c0340635d6e2680def3913b656113d89078fa014568ceb127a1684e7f5b7c5",
+        "sha256": "f758d4eb2663d37c242401c3ee8da918adca83bafba63a915913ed6b7e0e5547",
         "label": "Rendements calendaires officiels automatisés · S&P Euro High Yield Dividend Aristocrats"
       },
       "performance": {
         "kind": "indice",
         "detail": "S&P Euro High Yield Dividend Aristocrats · EUR · dividendes nets réinvestis",
-        "date": "2026-09-30"
+        "date": "2026-10-31"
       }
     },
     "returnsHistory": {
@@ -23059,6 +23099,50 @@
           "kind": "indice",
           "detail": "S&P Euro High Yield Dividend Aristocrats · EUR · dividendes nets réinvestis",
           "date": "2026-09-30"
+        }
+      },
+      "2026-10-31": {
+        "asOf": "2026-10-31",
+        "currency": "EUR",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            19.47
+          ],
+          [
+            2024,
+            8.23
+          ],
+          [
+            2023,
+            17.95
+          ],
+          [
+            2022,
+            -11.86
+          ],
+          [
+            2021,
+            14.59
+          ],
+          [
+            2020,
+            -12.45
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
+          "checkedAt": "2026-11-05",
+          "sha256": "f758d4eb2663d37c242401c3ee8da918adca83bafba63a915913ed6b7e0e5547",
+          "label": "Rendements calendaires officiels automatisés · S&P Euro High Yield Dividend Aristocrats"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "S&P Euro High Yield Dividend Aristocrats · EUR · dividendes nets réinvestis",
+          "date": "2026-10-31"
         }
       }
     },
@@ -23469,7 +23553,7 @@
       "source": {
         "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
         "checkedAt": "2026-11-05",
-        "sha256": "8c352cb50d7770d23542c11a97cc0b1bf250b2470d460a263cc38fbefb5e11f5",
+        "sha256": "dbda989c3172f083302fe6c71cb39a27f1b02da31ab6c9566931eebed8632ed5",
         "label": "Rendements calendaires officiels automatisés · TOPIX"
       },
       "performance": {
