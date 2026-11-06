@@ -4087,10 +4087,9 @@
       "responseSha256": "499185a5a64f3da2a9f570ed035819a7cd841aff6a1b0b72181a398ca5170714"
     },
     "etc_natural_gasNav": {
-      "status": "validated",
-      "checkedAt": "2026-11-06T15:38:06.171774+00:00",
-      "periodEnd": "2026-10",
-      "responseSha256": "19643dc420b4d2cae76cac8fae2030cba910dbdd56f6f9ccd70a10f268cd1dd2"
+      "status": "failed",
+      "checkedAt": "2026-11-06T21:39:01.999253+00:00",
+      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n\nNode.js v20.20.2\n"
     },
     "etc_wheatNav": {
       "status": "validated",
