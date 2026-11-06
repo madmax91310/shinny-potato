@@ -1,0 +1,144 @@
+{
+  "checkedAt": "2026-11-06T19:06:35.093124+00:00",
+  "publishedRegistryBlob": "a0bcc534029c6a73b582feefe08b4629ee85ca6c",
+  "capturedBuild": {
+    "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+    "dataSha": "f212ab74eebaf825b930a67e636da03bebb32638",
+    "lane": "validated-data",
+    "builtAt": "2026-11-06T18:17:53.186Z"
+  },
+  "isin": "IE00B4K6B022",
+  "asOf": "2026-11-03",
+  "sourceCheckedAt": "2026-11-06T17:14:02.149423+00:00",
+  "sourceUrl": "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/holdings",
+  "sha256": "09d8706ee53f086baa58efdc04ed1e97e4cc4ecda50e9ff405d60650b9a29d00",
+  "equityWeightPct": 99.1478,
+  "excludedPositions": [
+    {
+      "isin": "DE000F0GDJX7",
+      "name": "Euro Stoxx 50 Future Dec 26",
+      "weightPct": 0.63394,
+      "kind": "index-future"
+    },
+    {
+      "name": "Capital Cash Ctrl",
+      "weightPct": 6.57378,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Capital Cash Ctrl Class B",
+      "weightPct": -6.55303,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Futures Liability",
+      "weightPct": -0.63394,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Class Ffx Control",
+      "weightPct": -0.6022,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Class Ffx Control Class S",
+      "weightPct": 0.6022,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Capital Cash",
+      "weightPct": 0.42106,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Reclaimable Tax On Dividends",
+      "weightPct": 0.34651,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Initial Margin",
+      "weightPct": 0.04514,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Overseas Dividend Income Receivable",
+      "weightPct": 0.03856,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Capital Cash Ctrl Class J",
+      "weightPct": -0.01455,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Capital Cash Ctrl Class S",
+      "weightPct": -0.0062,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Accrued Mgment Chg Capital B",
+      "weightPct": -0.00557,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Gbp Capital Cash",
+      "weightPct": 0.0052,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Usd Reclaimable Tax On Dividends",
+      "weightPct": 0.00489,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Accrued Mgment Chg Capital J",
+      "weightPct": -0.00222,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Irrec Overseas Tax On Divs Receivable",
+      "weightPct": -0.00215,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Futures Broker Account",
+      "weightPct": 0.00208,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Accrued Mgment Chg Capital S",
+      "weightPct": -0.0014,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Stocklending Commission Receivable",
+      "weightPct": 0.00032,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Accrued Passive Hedging Fees S",
+      "weightPct": -0.00028,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Usd Capital Cash",
+      "weightPct": 5e-05,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Usd Irrec Overseas Tax On Divs Receivable",
+      "weightPct": 0.0,
+      "kind": "cash-receivable-payable"
+    }
+  ],
+  "futurePositions": [
+    {
+      "isin": "DE000F0GDJX7",
+      "name": "Euro Stoxx 50 Future Dec 26",
+      "weightPct": 0.63394,
+      "kind": "index-future"
+    }
+  ],
+  "explanatoryOnlyNotARepair": true,
+  "missingPiece": "Economic look-through of the exact futures contract: notional exposure, multiplier, FX and dated underlying index constituents. Published mark-to-market weight is not an equity notional allocation. Cash/receivables cannot be used to certify that missing economic exposure."
+}

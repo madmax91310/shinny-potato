@@ -1,0 +1,145 @@
+{
+  "checkedAt": "2026-11-06T22:53:18.223428+00:00",
+  "runId": 42278834427,
+  "definition": {
+    "schemaVersion": 1,
+    "definitionSha": "6e22c6add7d87d89d91d8d1189d8dc5fba78cb23",
+    "codeSha": "b641e888850898e6fdf392e62540e45c96ccb3d9",
+    "files": {
+      ".github/workflows/deploy-pages.yml": "e2ffcfb107aa6d4e43b42dac66a53057257c6a3b",
+      "scripts/pages-gate-definition.json": "e9b2234b2aa884e6e40823fc9fdc24c9c4ebd9c6"
+    },
+    "fingerprint": "5105fedb902c8e50d3ef600f91f5b9ebb44b260a82a956f6d1a47a59365e5f02"
+  },
+  "requiredNames": [
+    "browser-checks (0)",
+    "browser-checks (1)",
+    "browser-checks (2)",
+    "browser-checks (3)",
+    "build",
+    "current-snapshot",
+    "exposure-browser-check",
+    "python-checks",
+    "scope",
+    "smoke",
+    "tweet-midi-checks (0)",
+    "tweet-midi-checks (1)",
+    "tweet-midi-checks (2)",
+    "tweet-midi-checks (3)"
+  ],
+  "all14ExactSnapshotSucceeded": true,
+  "jobs": [
+    {
+      "id": 128112640884,
+      "name": "deploy / publish-code / current-snapshot",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T22:06:09Z",
+      "completed_at": "2026-11-06T22:06:23Z"
+    },
+    {
+      "id": 128182149234,
+      "name": "deploy / publish-code / scope",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T22:06:26Z",
+      "completed_at": "2026-11-06T22:07:07Z"
+    },
+    {
+      "id": 128182149258,
+      "name": "deploy / publish-code / exposure-browser-check",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T22:06:26Z",
+      "completed_at": "2026-11-06T22:07:48Z"
+    },
+    {
+      "id": 128182149300,
+      "name": "deploy / publish-code / python-checks",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T22:06:26Z",
+      "completed_at": "2026-11-06T22:08:49Z"
+    },
+    {
+      "id": 128182149368,
+      "name": "deploy / publish-code / build",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T22:06:26Z",
+      "completed_at": "2026-11-06T22:19:59Z"
+    },
+    {
+      "id": 128188238602,
+      "name": "deploy / publish-code / smoke",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T22:20:02Z",
+      "completed_at": "2026-11-06T22:21:32Z"
+    },
+    {
+      "id": 128188238681,
+      "name": "deploy / publish-code / tweet-midi-checks (2)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T22:20:02Z",
+      "completed_at": "2026-11-06T22:25:28Z"
+    },
+    {
+      "id": 128188238690,
+      "name": "deploy / publish-code / browser-checks (2)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T22:20:03Z",
+      "completed_at": "2026-11-06T22:49:43Z"
+    },
+    {
+      "id": 128188238708,
+      "name": "deploy / publish-code / browser-checks (1)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T22:20:02Z",
+      "completed_at": "2026-11-06T22:51:29Z"
+    },
+    {
+      "id": 128188238711,
+      "name": "deploy / publish-code / tweet-midi-checks (3)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T22:20:03Z",
+      "completed_at": "2026-11-06T22:29:10Z"
+    },
+    {
+      "id": 128188238726,
+      "name": "deploy / publish-code / browser-checks (0)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T22:20:03Z",
+      "completed_at": "2026-11-06T22:52:57Z"
+    },
+    {
+      "id": 128188238734,
+      "name": "deploy / publish-code / browser-checks (3)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T22:20:03Z",
+      "completed_at": "2026-11-06T22:42:11Z"
+    },
+    {
+      "id": 128188238806,
+      "name": "deploy / publish-code / tweet-midi-checks (0)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T22:20:03Z",
+      "completed_at": "2026-11-06T22:30:45Z"
+    },
+    {
+      "id": 128188238835,
+      "name": "deploy / publish-code / tweet-midi-checks (1)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T22:20:03Z",
+      "completed_at": "2026-11-06T22:30:52Z"
+    }
+  ]
+}

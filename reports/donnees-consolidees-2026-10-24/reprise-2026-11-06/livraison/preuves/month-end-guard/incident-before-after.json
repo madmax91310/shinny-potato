@@ -1,0 +1,69 @@
+{
+  "observedAt": "2026-11-06T17:49:58.231450+00:00",
+  "oldPublishedContext": {
+    "sha": "2850b220841fa19e4aa561804b474e5e280a956d",
+    "dataSha": "ad419ccfcc929e2b67a794255ef9c04caa60e579",
+    "lane": "validated-data",
+    "builtAt": "2026-11-06T14:39:59.270Z"
+  },
+  "newRecording": "5739c1c16cb3452af46322b4f547faf2b159bc48",
+  "before": {
+    "id": "etc_natural_gasNav",
+    "isin": "JE00BN7KB334",
+    "currency": "USD",
+    "navCurrency": "USD",
+    "periodStart": "2021-12",
+    "periodEnd": "2026-10",
+    "checkedAt": "2026-11-02",
+    "lastOfficialValuation": "2026-10-29",
+    "responseSha256": "131b099d1e0aff7d45774bab2cc24ea14708a51b6a3c5f6a71aa212d8a0b20d1",
+    "navHistoryTransport": "official-dataspan-nav-tr",
+    "financialConvention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
+    "lastThreePoints": [
+      [
+        "2026-08",
+        4.63962909
+      ],
+      [
+        "2026-09",
+        4.63610898
+      ],
+      [
+        "2026-10",
+        4.24195266
+      ]
+    ],
+    "sourceSnapshotDate": "2026-10-29",
+    "tablePublicationDate": "2026-10-30"
+  },
+  "after": {
+    "id": "etc_natural_gasNav",
+    "isin": "JE00BN7KB334",
+    "currency": "USD",
+    "navCurrency": "USD",
+    "periodStart": "2021-12",
+    "periodEnd": "2026-10",
+    "checkedAt": "2026-11-06",
+    "lastOfficialValuation": "2026-11-05",
+    "responseSha256": "19643dc420b4d2cae76cac8fae2030cba910dbdd56f6f9ccd70a10f268cd1dd2",
+    "navHistoryTransport": "official-dataspan-nav-tr",
+    "financialConvention": "exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim",
+    "lastThreePoints": [
+      [
+        "2026-08",
+        4.63962909
+      ],
+      [
+        "2026-09",
+        4.63610898
+      ],
+      [
+        "2026-10",
+        4.21602288
+      ]
+    ],
+    "sourceSnapshotDate": "2026-11-05",
+    "tablePublicationDate": "2026-11-05"
+  },
+  "lastPriceComparisonIsNotAnAnnualDivergenceExplanation": true
+}

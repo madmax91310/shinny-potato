@@ -1,0 +1,306 @@
+{
+  "headRefOid": "af01cec0cfb1f96cfb9b1c8f6dc3895e99d71283",
+  "mergeable": "MERGEABLE",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T13:45:36Z",
+      "conclusion": "FAILURE",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877768/job/127925900778",
+      "name": "refresh",
+      "startedAt": "2026-11-06T13:44:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Refresh 35 portfolio exposure ETFs"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T14:01:45Z",
+      "conclusion": "FAILURE",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877613/job/127925899873",
+      "name": "refresh",
+      "startedAt": "2026-11-06T13:44:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Update qualified exposure ETF data"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T13:45:29Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127926455639",
+      "name": "current-snapshot",
+      "startedAt": "2026-11-06T13:45:20Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T13:46:26Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877666/job/127925900277",
+      "name": "refresh",
+      "startedAt": "2026-11-06T13:44:08Z",
+      "status": "COMPLETED",
+      "workflowName": "Update active Bitcoin Yahoo data"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T13:52:06Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877820/job/127925901348",
+      "name": "refresh",
+      "startedAt": "2026-11-06T13:44:50Z",
+      "status": "COMPLETED",
+      "workflowName": "Update active ETF issuer data"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T13:45:36Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877768/job/127926611075",
+      "name": "deploy",
+      "startedAt": "2026-11-06T13:45:37Z",
+      "status": "COMPLETED",
+      "workflowName": "Refresh 35 portfolio exposure ETFs"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T13:46:26Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877666/job/127926998322",
+      "name": "deploy",
+      "startedAt": "2026-11-06T13:46:27Z",
+      "status": "COMPLETED",
+      "workflowName": "Update active Bitcoin Yahoo data"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T13:52:07Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877820/job/127929623922",
+      "name": "deploy",
+      "startedAt": "2026-11-06T13:52:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Update active ETF issuer data"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T14:01:46Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877613/job/127934158484",
+      "name": "deploy",
+      "startedAt": "2026-11-06T14:01:46Z",
+      "status": "COMPLETED",
+      "workflowName": "Update qualified exposure ETF data"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T13:45:37Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127926551634",
+      "name": "scope",
+      "startedAt": "2026-11-06T13:45:32Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T13:53:20Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127926551460",
+      "name": "build",
+      "startedAt": "2026-11-06T13:45:32Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T13:48:39Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127926551758",
+      "name": "python-checks",
+      "startedAt": "2026-11-06T13:45:32Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T13:47:31Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127926551471",
+      "name": "exposure-browser-check",
+      "startedAt": "2026-11-06T13:45:32Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T13:59:42Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127930188900",
+      "name": "tweet-midi-checks (0)",
+      "startedAt": "2026-11-06T13:54:27Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T14:02:29Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127930188863",
+      "name": "tweet-midi-checks (1)",
+      "startedAt": "2026-11-06T13:54:40Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T14:05:54Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127930188920",
+      "name": "tweet-midi-checks (2)",
+      "startedAt": "2026-11-06T13:55:40Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T14:02:50Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127930188889",
+      "name": "tweet-midi-checks (3)",
+      "startedAt": "2026-11-06T13:57:08Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T14:21:47Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127930188962",
+      "name": "browser-checks (0)",
+      "startedAt": "2026-11-06T13:55:10Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T14:25:35Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127930188860",
+      "name": "browser-checks (1)",
+      "startedAt": "2026-11-06T13:53:23Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T14:17:45Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127930188938",
+      "name": "browser-checks (2)",
+      "startedAt": "2026-11-06T13:53:28Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T14:20:40Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127930188874",
+      "name": "browser-checks (3)",
+      "startedAt": "2026-11-06T13:53:24Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T13:55:07Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127930188776",
+      "name": "smoke",
+      "startedAt": "2026-11-06T13:53:24Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T14:25:35Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127946086976",
+      "name": "deploy",
+      "startedAt": "2026-11-06T14:25:36Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T14:25:35Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127946087032",
+      "name": "fallback-build",
+      "startedAt": "2026-11-06T14:25:36Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T14:25:35Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127946087957",
+      "name": "advisory-checks",
+      "startedAt": "2026-11-06T14:25:36Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T14:25:35Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877746/job/127946087534",
+      "name": "deploy-fallback",
+      "startedAt": "2026-11-06T14:25:36Z",
+      "status": "COMPLETED",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T13:45:42Z",
+      "conclusion": "FAILURE",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877768/job/127926609711",
+      "name": "report-failures",
+      "startedAt": "2026-11-06T13:45:39Z",
+      "status": "COMPLETED",
+      "workflowName": "Refresh 35 portfolio exposure ETFs"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T13:52:13Z",
+      "conclusion": "FAILURE",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877820/job/127929622203",
+      "name": "report-failures",
+      "startedAt": "2026-11-06T13:52:10Z",
+      "status": "COMPLETED",
+      "workflowName": "Update active ETF issuer data"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T14:01:51Z",
+      "conclusion": "FAILURE",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877613/job/127934156730",
+      "name": "report-failures",
+      "startedAt": "2026-11-06T14:01:48Z",
+      "status": "COMPLETED",
+      "workflowName": "Update qualified exposure ETF data"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-06T13:46:26Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42227877666/job/127926998074",
+      "name": "report-failures",
+      "startedAt": "2026-11-06T13:46:27Z",
+      "status": "COMPLETED",
+      "workflowName": "Update active Bitcoin Yahoo data"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "checkedAt": "2026-11-06T21:21:27.755Z",
+  "cases": [
+    {
+      "width": 1440,
+      "before": {
+        "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+        "dataSha": "74ccfbd9fd5176e17861780a16f7b80e8dc6abec",
+        "lane": "validated-data",
+        "builtAt": "2026-11-06T20:58:55.766Z"
+      },
+      "after": {
+        "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+        "dataSha": "74ccfbd9fd5176e17861780a16f7b80e8dc6abec",
+        "lane": "validated-data",
+        "builtAt": "2026-11-06T20:58:55.766Z"
+      },
+      "sourceAsOf": "2026-11-05",
+      "checkedAt": "2026-11-06T15:13:10.899521+00:00",
+      "rows": 439,
+      "consolidated": [
+        {
+          "isin": "US6687711084",
+          "sedol": "BJN4XN5",
+          "name": "Gen Digital Inc",
+          "weightPct": 0.024,
+          "sourcePositions": [
+            {
+              "isin": "US6687711084",
+              "sedol": "BJN4XN5",
+              "name": "Gen Digital Inc",
+              "weightPct": 0.012
+            },
+            {
+              "isin": "US6687711084",
+              "sedol": "BMV1436",
+              "name": "Nortonlifelock Inc",
+              "weightPct": 0.012
+            }
+          ],
+          "aggregationMethod": "Sum of distinct issuer SEDOL positions independently matched to the same exact ISIN; original weights, no renormalisation"
+        }
+      ],
+      "identifiedPositionsOverlapOnly": 36.110750000000046,
+      "qualifiedFullOverlap": false,
+      "qualification": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.00080000000007,
+        "identifiedCoverage": 100.00080000000007,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.0008000000000691898
+      },
+      "peerQualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.95357999999997,
+        "identifiedCoverage": 99.95357999999997,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.04642000000002611
+      },
+      "scores": [
+        "Partiel"
+      ],
+      "receipts": [
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-24-Bn0Qt8qd.json",
+          "bucket": "24",
+          "blob": "1b0024d45630bfaf31d14d131326beae90ea1c1b",
+          "status": 200
+        },
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-22-BSVX9vqS.json",
+          "bucket": "22",
+          "blob": "8f3f3892ff71242dfd1017854708b574f978d3d4",
+          "status": 200
+        }
+      ],
+      "png": "/tmp/automation-20261106/proofs/wisdomtree-four-public/IE00BZ56SW52/1440.png",
+      "pngSha256": "972e7c40ea48dd43185a610de6c642089c5ece3fedec7d30889ac3fabd16e2c7",
+      "previewEqualsExport": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "before": {
+        "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+        "dataSha": "74ccfbd9fd5176e17861780a16f7b80e8dc6abec",
+        "lane": "validated-data",
+        "builtAt": "2026-11-06T20:58:55.766Z"
+      },
+      "after": {
+        "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+        "dataSha": "74ccfbd9fd5176e17861780a16f7b80e8dc6abec",
+        "lane": "validated-data",
+        "builtAt": "2026-11-06T20:58:55.766Z"
+      },
+      "sourceAsOf": "2026-11-05",
+      "checkedAt": "2026-11-06T15:13:10.899521+00:00",
+      "rows": 439,
+      "consolidated": [
+        {
+          "isin": "US6687711084",
+          "sedol": "BJN4XN5",
+          "name": "Gen Digital Inc",
+          "weightPct": 0.024,
+          "sourcePositions": [
+            {
+              "isin": "US6687711084",
+              "sedol": "BJN4XN5",
+              "name": "Gen Digital Inc",
+              "weightPct": 0.012
+            },
+            {
+              "isin": "US6687711084",
+              "sedol": "BMV1436",
+              "name": "Nortonlifelock Inc",
+              "weightPct": 0.012
+            }
+          ],
+          "aggregationMethod": "Sum of distinct issuer SEDOL positions independently matched to the same exact ISIN; original weights, no renormalisation"
+        }
+      ],
+      "identifiedPositionsOverlapOnly": 36.110750000000046,
+      "qualifiedFullOverlap": false,
+      "qualification": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.00080000000007,
+        "identifiedCoverage": 100.00080000000007,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.0008000000000691898
+      },
+      "peerQualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.95357999999997,
+        "identifiedCoverage": 99.95357999999997,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.04642000000002611
+      },
+      "scores": [
+        "Partiel"
+      ],
+      "receipts": [
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-22-BSVX9vqS.json",
+          "bucket": "22",
+          "blob": "8f3f3892ff71242dfd1017854708b574f978d3d4",
+          "status": 200
+        },
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-24-Bn0Qt8qd.json",
+          "bucket": "24",
+          "blob": "1b0024d45630bfaf31d14d131326beae90ea1c1b",
+          "status": 200
+        }
+      ],
+      "png": "/tmp/automation-20261106/proofs/wisdomtree-four-public/IE00BZ56SW52/390.png",
+      "pngSha256": "972e7c40ea48dd43185a610de6c642089c5ece3fedec7d30889ac3fabd16e2c7",
+      "previewEqualsExport": true,
+      "errors": []
+    }
+  ],
+  "scope": "Existing WisdomTree/SP500 consumers: exact currently published stock books and weights, independent company overlap and unchanged full/partial gate; PNG preview equals download. Country classification and historical performance are separate. This is a verification of preserved acquisitions, not a new source repair."
+}

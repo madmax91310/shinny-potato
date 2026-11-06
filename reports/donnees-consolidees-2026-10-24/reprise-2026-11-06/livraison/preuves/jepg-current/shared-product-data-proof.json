@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-11-06T13:14:39.669116+00:00",
+  "url": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+  "status": 200,
+  "bytes": 366637,
+  "sha256": "255a9f3c3724d9842f16fbcbb7305def29692c61298beca76be5f25f2f1f59bf",
+  "fundAum": {
+    "date": "2026-11-05",
+    "netAsset": null,
+    "value": 1717570208.0,
+    "currencyCode": null
+  },
+  "shareAum": 1591637806.0,
+  "types": {
+    "regionOfInvestmentCode": null,
+    "emeaSectorBreakdown": {
+      "date": "2026-09-30",
+      "rows": 21
+    },
+    "emeaRegionalBreakdown": {
+      "date": "2026-09-30",
+      "rows": 24
+    }
+  },
+  "existingSharedParser": {
+    "equities": 233,
+    "asOf": "2026-11-05",
+    "excluded": 10,
+    "offlineCorrectionOfLocalProbeArgument": true,
+    "newSourceRequestMade": false
+  }
+}

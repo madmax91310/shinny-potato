@@ -1,0 +1,68 @@
+{
+  "run": 42280175362,
+  "job": 128106821219,
+  "runtimeCheckout": "10186161e4f1603573186f233698f4c0a60a3663",
+  "artifact": 13537224045,
+  "scope": {
+    "requestedIds": [
+      "etc_natural_gasNav"
+    ],
+    "expectedIds": [
+      "etc_natural_gasNav"
+    ],
+    "selection": "explicit"
+  },
+  "series": [
+    {
+      "id": "etc_natural_gasNav",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-10",
+      "responseSha256": "19643dc420b4d2cae76cac8fae2030cba910dbdd56f6f9ccd70a10f268cd1dd2",
+      "controlScope": {
+        "controlledInstrument": "JE00BN7KB334",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2021-12-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    }
+  ],
+  "sourceValidation": "succeeded; unchanged-verified source and qualified October window",
+  "recording": "refused correctly because concurrent Budget1194 code/data changed",
+  "publication": "not-run; current public October record from5739 remains independently proved",
+  "fxNoNewAttempt": {
+    "attemptedIds": [],
+    "TWDLastActualControl": "2026-11-06T15:34:58.424846+00:00",
+    "TWDSource": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip"
+  },
+  "isolatedTestLogNotAProviderFailure": "TWD coverage would regress was printed in test_ranking_sources.py; no new TWD source outage inferred"
+}

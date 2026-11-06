@@ -1,0 +1,166 @@
+{
+  "checkedAt": "2026-11-06T09:34:41.290Z",
+  "cases": [
+    {
+      "width": 1440,
+      "before": {
+        "sha": "997a84064cdbf06f01a1902a71f57b5ab2beade8",
+        "builtAt": "2026-11-06T08:53:26Z"
+      },
+      "after": {
+        "sha": "997a84064cdbf06f01a1902a71f57b5ab2beade8",
+        "builtAt": "2026-11-06T08:53:26Z"
+      },
+      "sourceAsOf": "2026-11-04",
+      "checkedAt": "2026-11-06T08:27:27.781656+00:00",
+      "rows": 439,
+      "consolidated": [
+        {
+          "isin": "US6687711084",
+          "sedol": "BJN4XN5",
+          "name": "Gen Digital Inc",
+          "weightPct": 0.0238,
+          "sourcePositions": [
+            {
+              "isin": "US6687711084",
+              "sedol": "BJN4XN5",
+              "name": "Gen Digital Inc",
+              "weightPct": 0.0119
+            },
+            {
+              "isin": "US6687711084",
+              "sedol": "BMV1436",
+              "name": "Nortonlifelock Inc",
+              "weightPct": 0.0119
+            }
+          ],
+          "aggregationMethod": "Sum of distinct issuer SEDOL positions independently matched to the same exact ISIN; original weights, no renormalisation"
+        }
+      ],
+      "identifiedPositionsOverlapOnly": 36.76091000000005,
+      "qualifiedFullOverlap": false,
+      "qualification": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.0004999999999,
+        "identifiedCoverage": 100.0004999999999,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.0004999999999029114
+      },
+      "peerQualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.96058000000015,
+        "identifiedCoverage": 99.96058000000015,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.039419999999850575
+      },
+      "scores": [
+        "Partiel"
+      ],
+      "receipts": [
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-24-Bh_w09R8.json",
+          "bucket": "24",
+          "blob": "610febd668acd539b150745afdf22396a1b692c7",
+          "status": 200
+        },
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-22-BapCrPPY.json",
+          "bucket": "22",
+          "blob": "6dd07e3823fab91219b762fae57675c03234a588",
+          "status": 200
+        }
+      ],
+      "png": "/tmp/automation-20261106/proofs/ggra-public-final/1440.png",
+      "pngSha256": "12532e86962209a5bf826d33f27a2a60df86909098f95a287f8879a5cc0f82d9",
+      "previewEqualsExport": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "before": {
+        "sha": "997a84064cdbf06f01a1902a71f57b5ab2beade8",
+        "builtAt": "2026-11-06T08:53:26Z"
+      },
+      "after": {
+        "sha": "997a84064cdbf06f01a1902a71f57b5ab2beade8",
+        "builtAt": "2026-11-06T08:53:26Z"
+      },
+      "sourceAsOf": "2026-11-04",
+      "checkedAt": "2026-11-06T08:27:27.781656+00:00",
+      "rows": 439,
+      "consolidated": [
+        {
+          "isin": "US6687711084",
+          "sedol": "BJN4XN5",
+          "name": "Gen Digital Inc",
+          "weightPct": 0.0238,
+          "sourcePositions": [
+            {
+              "isin": "US6687711084",
+              "sedol": "BJN4XN5",
+              "name": "Gen Digital Inc",
+              "weightPct": 0.0119
+            },
+            {
+              "isin": "US6687711084",
+              "sedol": "BMV1436",
+              "name": "Nortonlifelock Inc",
+              "weightPct": 0.0119
+            }
+          ],
+          "aggregationMethod": "Sum of distinct issuer SEDOL positions independently matched to the same exact ISIN; original weights, no renormalisation"
+        }
+      ],
+      "identifiedPositionsOverlapOnly": 36.76091000000005,
+      "qualifiedFullOverlap": false,
+      "qualification": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.0004999999999,
+        "identifiedCoverage": 100.0004999999999,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.0004999999999029114
+      },
+      "peerQualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.96058000000015,
+        "identifiedCoverage": 99.96058000000015,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.039419999999850575
+      },
+      "scores": [
+        "Partiel"
+      ],
+      "receipts": [
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-22-BapCrPPY.json",
+          "bucket": "22",
+          "blob": "6dd07e3823fab91219b762fae57675c03234a588",
+          "status": 200
+        },
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-24-Bh_w09R8.json",
+          "bucket": "24",
+          "blob": "610febd668acd539b150745afdf22396a1b692c7",
+          "status": 200
+        }
+      ],
+      "png": "/tmp/automation-20261106/proofs/ggra-public-final/390.png",
+      "pngSha256": "12532e86962209a5bf826d33f27a2a60df86909098f95a287f8879a5cc0f82d9",
+      "previewEqualsExport": true,
+      "errors": []
+    }
+  ],
+  "scope": "Actually consumed complete GGRA/SP500 books, exact-ISIN consolidation, independent issuer-overlap sum, live text and native PNG; country exposure qualification remains separate."
+}

@@ -1,0 +1,147 @@
+{
+  "checkedAt": "2026-11-06T12:35:22.869262+00:00",
+  "url": "https://globalxetfs.eu/funds/qyld/",
+  "sha256": "62f4cd20cfb9c275628926c745e7ea13a87909fe3423c8f6c4751adee170d9a3",
+  "primaryIsin": "IE00BM8R0J59",
+  "datedHeading": "Top 10 Reference Index Constituents As of 03 Nov 2026",
+  "tables": [
+    {
+      "tag": "table",
+      "class": [
+        "w-full",
+        "caption-bottom",
+        "text-lg"
+      ],
+      "parentClass": [
+        "w-full",
+        "overflow-auto"
+      ],
+      "rows": [
+        [
+          "Weight (%)",
+          "Ticker",
+          "Name"
+        ],
+        [
+          "8.10",
+          "NVDA",
+          "NVIDIA Corp"
+        ],
+        [
+          "7.90",
+          "AAPL",
+          "Apple Inc"
+        ],
+        [
+          "6.30",
+          "MSFT",
+          "Microsoft Corp"
+        ],
+        [
+          "4.40",
+          "AMZN",
+          "Amazon.com Inc"
+        ],
+        [
+          "4.40",
+          "MU",
+          "Micron Technology Inc"
+        ],
+        [
+          "3.60",
+          "AMD",
+          "Advanced Micro Devices Inc"
+        ],
+        [
+          "3.40",
+          "TSLA",
+          "Tesla Inc"
+        ],
+        [
+          "3.00",
+          "META",
+          "Meta Platforms Inc Class A"
+        ],
+        [
+          "2.70",
+          "WMT",
+          "Walmart Inc"
+        ],
+        [
+          "2.70",
+          "SPCX",
+          "Space Exploration Technologies Corp Class A"
+        ],
+        [
+          "9.20",
+          "NVDA",
+          "NVIDIA Corp"
+        ],
+        [
+          "8.60",
+          "AAPL",
+          "Apple Inc"
+        ],
+        [
+          "7.50",
+          "MSFT",
+          "Microsoft Corp"
+        ],
+        [
+          "6.60",
+          "AVGO",
+          "Broadcom Inc"
+        ],
+        [
+          "5.10",
+          "AMZN",
+          "Amazon.com Inc"
+        ],
+        [
+          "3.80",
+          "GOOGL",
+          "Alphabet Inc Class A"
+        ],
+        [
+          "3.60",
+          "GOOG",
+          "Alphabet Inc Class C"
+        ],
+        [
+          "3.40",
+          "TSLA",
+          "Tesla Inc"
+        ],
+        [
+          "3.00",
+          "META",
+          "Meta Platforms Inc Class A"
+        ],
+        [
+          "2.20",
+          "PLTR",
+          "Palantir Technologies Inc Ordinary Shares - Class A"
+        ]
+      ]
+    }
+  ],
+  "decision": "Contradiction conservée : une table de vingt lignes sous le même titre et la même date, avec des pondérations différentes pour quatre identités de titres. Aucun choix arbitraire entre les deux groupes de dix. La ventilation sectorielle doit être qualifiée pour le buy-write exact avant usage.",
+  "conflictingWeights": {
+    "NVDA": [
+      "8.10",
+      "9.20"
+    ],
+    "AAPL": [
+      "7.90",
+      "8.60"
+    ],
+    "MSFT": [
+      "6.30",
+      "7.50"
+    ],
+    "AMZN": [
+      "4.40",
+      "5.10"
+    ]
+  }
+}

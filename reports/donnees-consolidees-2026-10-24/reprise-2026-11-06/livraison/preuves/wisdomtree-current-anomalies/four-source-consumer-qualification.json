@@ -1,0 +1,128 @@
+{
+  "checkedAt": "2026-11-06T21:18:48.405Z",
+  "oldPublicBlob": "a0bcc534029c6a73b582feefe08b4629ee85ca6c",
+  "recordingCommit": "16bdfc9e90c522729b06744d7471e530cfe62a60",
+  "rows": [
+    {
+      "isin": "IE0002Y8CX98",
+      "asset": "IE0002Y8CX98",
+      "rows": 42,
+      "asOf": "2026-11-05",
+      "oldAsOf": "2026-11-05",
+      "old": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.99980000000002,
+        "identifiedCoverage": 99.99980000000002,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.0001999999999782176
+      },
+      "recorded": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.99980000000002,
+        "identifiedCoverage": 99.99980000000002,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.0001999999999782176
+      },
+      "sourceSha256": "ee6a87f1ca8b5711750c188745f20ac80ee2dfd75fa889ce23afcda6a63d0fd5",
+      "publicNewVersionNotYetVerified": true
+    },
+    {
+      "isin": "IE000W8WMSL2",
+      "asset": "IE000W8WMSL2",
+      "rows": 47,
+      "asOf": "2026-11-05",
+      "oldAsOf": "2026-11-05",
+      "old": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.0001,
+        "identifiedCoverage": 100.0001,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.00010000000000331966
+      },
+      "recorded": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.0001,
+        "identifiedCoverage": 100.0001,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.00010000000000331966
+      },
+      "sourceSha256": "62450417d1910d5f1d6d6b217e4b08b8b15cedb19000ab08903f765acfd9b28d",
+      "publicNewVersionNotYetVerified": true
+    },
+    {
+      "isin": "IE00BDVPNG13",
+      "asset": "IE00BDVPNG13",
+      "rows": 58,
+      "asOf": "2026-11-05",
+      "oldAsOf": "2026-11-05",
+      "old": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.00020000000002,
+        "identifiedCoverage": 100.00020000000002,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.00020000000002085017
+      },
+      "recorded": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.00020000000002,
+        "identifiedCoverage": 100.00020000000002,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.00020000000002085017
+      },
+      "sourceSha256": "efe96cf0f75450c96e8d2e0c7f0f395a73898ec91929e696bf14a1cdaf166071",
+      "publicNewVersionNotYetVerified": true
+    },
+    {
+      "isin": "IE00BZ56SW52",
+      "asset": "IE00BZ56SW52",
+      "rows": 439,
+      "asOf": "2026-11-05",
+      "oldAsOf": "2026-11-05",
+      "old": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.00080000000007,
+        "identifiedCoverage": 100.00080000000007,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.0008000000000691898
+      },
+      "recorded": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.00080000000007,
+        "identifiedCoverage": 100.00080000000007,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.0008000000000691898
+      },
+      "sourceSha256": "a01c13a409b6814d949f0df92e545f3da1b6fe1972affc25acdefcdae9aed457",
+      "publicNewVersionNotYetVerified": true
+    }
+  ],
+  "limits": "Existing engine gates unchanged. This is qualification over recorded source files, not a public browser export proof."
+}

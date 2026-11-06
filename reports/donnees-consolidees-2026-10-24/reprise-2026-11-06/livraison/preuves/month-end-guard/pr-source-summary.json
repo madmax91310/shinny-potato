@@ -1,0 +1,59 @@
+{
+  "run": 42264837278,
+  "job": 128053925734,
+  "artifact": 13526597436,
+  "readOnly": true,
+  "scope": {
+    "requestedIds": [
+      "etfGB00B15KXQ89Nav",
+      "etc_coffeeNav",
+      "etc_cocoaNav",
+      "etc_natural_gasNav",
+      "etc_wheatNav"
+    ],
+    "expectedIds": [
+      "etfGB00B15KXQ89Nav",
+      "etc_coffeeNav",
+      "etc_cocoaNav",
+      "etc_natural_gasNav",
+      "etc_wheatNav"
+    ]
+  },
+  "rows": [
+    {
+      "id": "etfGB00B15KXQ89Nav",
+      "status": "validated",
+      "reason": "",
+      "periodEnd": "2026-10",
+      "responseSha256": "ddee884ea1e7fe116a85b1dc98fdd27bb1223c236ca04371a296d2ec53ce7ca2"
+    },
+    {
+      "id": "etc_coffeeNav",
+      "status": "validated",
+      "reason": "",
+      "periodEnd": "2026-10",
+      "responseSha256": "155dacb9fd302101c2a9089ee4c3ca3c48e847dbb9a3e5c05d5d684fc6e5942f"
+    },
+    {
+      "id": "etc_cocoaNav",
+      "status": "failed",
+      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COCO&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COCO&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n\nNode.js v24.22.2\n",
+      "periodEnd": null,
+      "responseSha256": null
+    },
+    {
+      "id": "etc_natural_gasNav",
+      "status": "validated",
+      "reason": "",
+      "periodEnd": "2026-10",
+      "responseSha256": "19643dc420b4d2cae76cac8fae2030cba910dbdd56f6f9ccd70a10f268cd1dd2"
+    },
+    {
+      "id": "etc_wheatNav",
+      "status": "failed",
+      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WEAT&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:541:9)\n\nNode.js v24.22.2\n",
+      "periodEnd": null,
+      "responseSha256": null
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "head": "9465ea5ff80a6dafd5f2809020e48f90b57018e6",
+  "run": 42284479655,
+  "job": 128121659042,
+  "event": "pull_request",
+  "jobConclusion": "success",
+  "scope": "SCPI genuine read-only PR path; no production recording or publication inferred",
+  "localRebaseTests": 105,
+  "fixtureRegression": "Russell fixed September observation, separate from live October refresh",
+  "rebaseRegressionGitHub": {
+    "run": 42284479529,
+    "job": 128121659296,
+    "test": "test_observation_rebase.py",
+    "tests": 105,
+    "conclusion": "success",
+    "limit": "ETF source workflow remains partial independently; regression step only"
+  }
+}

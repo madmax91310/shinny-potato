@@ -1,0 +1,59 @@
+{
+  "run": 42267456291,
+  "job": 128062976001,
+  "validatedHead": "835a51945fa184dafb4e589f1d003100fc9c06e4",
+  "observation": {
+    "asOf": "2026-11-05",
+    "checkedAt": "2026-11-06T18:10:08.233443+00:00",
+    "basis": "fund",
+    "sourceUrl": "https://globalxetfs.eu/api/funds/bug/topholdingscsv",
+    "sha256": "76879c3635a63dce8e744d27469b39dc5e5ad98ce6386fa733f7ec4c3c4136c5",
+    "method": "Complete published physical equity securities; cash and non-equity positions excluded; original fund NAV weights, no renormalisation",
+    "identitySourceUrl": "https://globalxetfs.eu/funds/bug/",
+    "identitySha256": "c21773a7d830a9e6580d172e7a3d94dc211117b245f65d884750e056011f4452",
+    "settlementCashProof": {
+      "method": "Published signed settlement cash netted only for validation; equity weights unchanged",
+      "netAssetsFromPublishedMarketValues": "80576648.31",
+      "netCashWeightPct": 0.204,
+      "publishedTotalWeightPct": 100.0,
+      "normalizationApplied": false,
+      "cashRows": [
+        {
+          "NAME": "CASH",
+          "NET_ASSETS": "33.897",
+          "MARKET_VALUE": "27312790.39",
+          "AS_OF_DATE": "2026-11-05"
+        },
+        {
+          "NAME": "JAPANESE YEN",
+          "NET_ASSETS": "0",
+          "MARKET_VALUE": "3.22",
+          "AS_OF_DATE": "2026-11-05"
+        },
+        {
+          "NAME": "BRITISH STERLING POUND",
+          "NET_ASSETS": "0",
+          "MARKET_VALUE": "2.51",
+          "AS_OF_DATE": "2026-11-05"
+        },
+        {
+          "NAME": "CANADIAN DOLLAR",
+          "NET_ASSETS": "0",
+          "MARKET_VALUE": "0.21",
+          "AS_OF_DATE": "2026-11-05"
+        },
+        {
+          "NAME": "OTHER PAYABLE & RECEIVABLES",
+          "NET_ASSETS": "-33.693",
+          "MARKET_VALUE": "-27148928.53",
+          "AS_OF_DATE": "2026-11-05"
+        }
+      ]
+    },
+    "completeFile": true,
+    "rows": 30,
+    "publishedEquityWeightPct": 99.796,
+    "identifiedEquityWeightPct": 99.796
+  },
+  "notRecordedReadOnlyPr": true
+}

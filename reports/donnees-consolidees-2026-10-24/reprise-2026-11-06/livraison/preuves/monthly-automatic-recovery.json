@@ -1,0 +1,33 @@
+{
+  "monitorBranchCommit": "b030093f4c1fbe78135044e106e83f5a308388bd",
+  "workflow": "update-market-monthly.yml",
+  "recoveryLedger": {
+    "attempts": [
+      {
+        "at": "2026-11-06T15:22:34.025336+00:00",
+        "reason": "recording-failed",
+        "sourceRunId": 42235436731,
+        "status": "dispatched",
+        "ref": "master",
+        "error": null
+      }
+    ],
+    "reason": "recording-failed",
+    "lastSuccessAt": "2026-11-03T14:41:07.533153+00:00",
+    "observedRunId": 42235436731,
+    "nextAttemptAt": "2026-11-06T16:22:34.025336+00:00",
+    "status": "awaiting-current-run"
+  },
+  "currentWorkflow": {
+    "runId": 42235436731,
+    "attempt": 1,
+    "completedAt": "2026-11-06T15:05:41Z",
+    "status": "failure",
+    "recordingStatus": "failure",
+    "publicationStatus": "not-run",
+    "lastCollectionSuccessAt": "2026-11-03T14:41:07.533153+00:00"
+  },
+  "observedRecoveryRun": 42242620055,
+  "observedActor": "github-actions[bot]",
+  "recoveryCompletionNotInferred": true
+}

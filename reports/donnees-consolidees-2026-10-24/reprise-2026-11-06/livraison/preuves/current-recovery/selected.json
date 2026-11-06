@@ -1,0 +1,289 @@
+{
+  "readAt": "2026-11-06T20:35:04.595562+00:00",
+  "url": "https://raw.githubusercontent.com/madmax91310/shinny-potato/automation-status/automation-status.json",
+  "workflows": {
+    "update-market-monthly.yml": {
+      "runId": 42280175362,
+      "status": "failure",
+      "attempt": 1,
+      "completedAt": "2026-11-06T20:21:30Z",
+      "recordingStatus": "failure",
+      "validationStatus": "success",
+      "collectionStatus": "failure",
+      "publicationStatus": "not-run",
+      "failures": [
+        {
+          "job": "refresh",
+          "step": "Commit validated observations"
+        }
+      ],
+      "lastCollectionSuccessAt": "2026-11-03T14:41:07.533153+00:00",
+      "lastPublicationSuccessAt": "2026-11-06T17:21:42Z"
+    },
+    "collect-etf-pilot.yml": {
+      "runId": 42278834415,
+      "status": "failure",
+      "attempt": 1,
+      "completedAt": "2026-11-06T19:33:43Z",
+      "recordingStatus": "failure",
+      "validationStatus": "success",
+      "collectionStatus": "failure",
+      "publicationStatus": "not-run",
+      "failures": [
+        {
+          "job": "refresh",
+          "step": "Commit validated observations"
+        },
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "lastCollectionSuccessAt": null,
+      "lastPublicationSuccessAt": "2026-11-06T19:09:53.031Z"
+    },
+    "update-regulatory-data.yml": {
+      "runId": 42251135635,
+      "status": "failure",
+      "attempt": 1,
+      "completedAt": "2026-11-06T16:33:30Z",
+      "recordingStatus": "not-run",
+      "validationStatus": "unknown",
+      "collectionStatus": "failure",
+      "publicationStatus": "not-run",
+      "failures": [],
+      "lastCollectionSuccessAt": "2026-10-26",
+      "lastPublicationSuccessAt": "2026-11-06T14:49:24Z"
+    },
+    "update-scpi.yml": {
+      "runId": 42281603537,
+      "status": "success",
+      "attempt": 1,
+      "completedAt": "2026-11-06T19:50:05Z",
+      "recordingStatus": "success",
+      "validationStatus": "success",
+      "collectionStatus": "success",
+      "publicationStatus": "success",
+      "failures": [],
+      "lastCollectionSuccessAt": "2026-11-06T19:41:42.504772+00:00",
+      "lastPublicationSuccessAt": "2026-11-06T19:48:49.538Z"
+    },
+    "update-insurance.yml": {
+      "runId": 42240788127,
+      "status": "failure",
+      "attempt": 1,
+      "completedAt": "2026-11-06T16:37:41Z",
+      "recordingStatus": "success",
+      "validationStatus": "success",
+      "collectionStatus": "failure",
+      "publicationStatus": "success",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Collecte assurance-vie partielle : les dernières fiches validées sont conservées. Voir insurance-observations.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "lastCollectionSuccessAt": null,
+      "lastPublicationSuccessAt": "2026-11-06T19:48:49.538Z"
+    },
+    "update-qualified-exposures.yml": {
+      "runId": 42242712749,
+      "status": "failure",
+      "attempt": 1,
+      "completedAt": "2026-11-06T17:31:54Z",
+      "recordingStatus": "success",
+      "validationStatus": "success",
+      "collectionStatus": "failure",
+      "publicationStatus": "success",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Collecte partielle : dernières valeurs fiables conservées ; données validées publiées si les contrôles réussissent.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "lastCollectionSuccessAt": null,
+      "lastPublicationSuccessAt": "2026-11-06T17:52:12.970Z"
+    },
+    "update-exposure-expansion.yml": {
+      "runId": 42242779345,
+      "status": "failure",
+      "attempt": 1,
+      "completedAt": "2026-11-06T17:47:04Z",
+      "recordingStatus": "success",
+      "validationStatus": "success",
+      "collectionStatus": "failure",
+      "publicationStatus": "success",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "lastCollectionSuccessAt": "2026-10-28T15:05:02.097479+00:00",
+      "lastPublicationSuccessAt": "2026-11-06T19:09:53.031Z"
+    }
+  },
+  "recovery": {
+    "update-insurance.yml": {
+      "attempts": [],
+      "reason": null,
+      "lastSuccessAt": null,
+      "observedRunId": 42240788127,
+      "nextAttemptAt": null,
+      "status": "idle"
+    },
+    "update-scpi.yml": {
+      "attempts": [
+        {
+          "at": "2026-11-06T08:28:21.556840+00:00",
+          "reason": "recording-failed",
+          "sourceRunId": 42186981489,
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
+        },
+        {
+          "at": "2026-11-06T15:17:42.954536+00:00",
+          "reason": "recording-failed",
+          "sourceRunId": 42240486490,
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
+        },
+        {
+          "at": "2026-11-06T19:39:01.027997+00:00",
+          "reason": "recording-failed",
+          "sourceRunId": 42280725727,
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
+        }
+      ],
+      "reason": null,
+      "lastSuccessAt": "2026-11-06T19:41:42.504772+00:00",
+      "observedRunId": 42281603537,
+      "status": "idle",
+      "nextAttemptAt": null
+    },
+    "update-regulatory-data.yml": {
+      "attempts": [
+        {
+          "at": "2026-11-06T00:12:04.941295+00:00",
+          "reason": "transient-source",
+          "sourceRunId": 42080464792,
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
+        },
+        {
+          "at": "2026-11-06T13:46:05.097135+00:00",
+          "reason": "transient-source",
+          "sourceRunId": 42186981501,
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
+        },
+        {
+          "at": "2026-11-06T18:02:09.045382+00:00",
+          "reason": "transient-source",
+          "sourceRunId": 42251135635,
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
+        }
+      ],
+      "reason": "transient-source",
+      "lastSuccessAt": "2026-10-26",
+      "observedRunId": 42251135635,
+      "status": "budget-exhausted",
+      "nextAttemptAt": "2026-11-07T00:12:04.941295+00:00"
+    },
+    "collect-etf-pilot.yml": {
+      "attempts": [
+        {
+          "at": "2026-11-06T07:04:33.996160+00:00",
+          "reason": "transient-source",
+          "sourceRunId": 42080468744,
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
+        },
+        {
+          "at": "2026-11-06T13:46:05.097135+00:00",
+          "reason": "transient-source",
+          "sourceRunId": 42182676960,
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
+        },
+        {
+          "at": "2026-11-06T18:02:09.045382+00:00",
+          "reason": "recording-failed",
+          "sourceRunId": 42238454396,
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
+        }
+      ],
+      "reason": "recording-failed",
+      "lastSuccessAt": null,
+      "observedRunId": 42278834415,
+      "nextAttemptAt": "2026-11-07T07:04:33.996160+00:00",
+      "status": "budget-exhausted"
+    },
+    "update-market-monthly.yml": {
+      "attempts": [
+        {
+          "at": "2026-11-06T15:22:34.025336+00:00",
+          "reason": "recording-failed",
+          "sourceRunId": 42235436731,
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
+        },
+        {
+          "at": "2026-11-06T20:24:51.108442+00:00",
+          "reason": "recording-failed",
+          "sourceRunId": 42280175362,
+          "status": "dispatched",
+          "ref": "master",
+          "inputs": {
+            "series": "etc_natural_gasNav"
+          },
+          "error": null
+        }
+      ],
+      "reason": "recording-failed",
+      "lastSuccessAt": "2026-11-03T14:41:07.533153+00:00",
+      "observedRunId": 42280175362,
+      "nextAttemptAt": "2026-11-07T00:24:51.108442+00:00",
+      "status": "dispatched",
+      "dispatchScope": {
+        "file": "monthly-observation.json",
+        "reportSha256": "8600657f9b4cf75be4a4e58c15ee81eb401094cee311bef3ba9b85bc8a35397d",
+        "scopeSha256": "8c1e132819ca9ae023dc4417f204ee936e45a8db83a1ffca1a75bc0eff7f2500",
+        "expectedIdsCount": 1,
+        "requestedIdsCount": 1,
+        "sourceRunId": 42280175362,
+        "sourceAttempt": 1,
+        "oldReportQualificationUnchanged": true
+      }
+    },
+    "update-qualified-exposures.yml": {
+      "attempts": [],
+      "reason": null,
+      "lastSuccessAt": null,
+      "observedRunId": 42242712749,
+      "status": "idle",
+      "nextAttemptAt": null
+    },
+    "update-exposure-expansion.yml": {
+      "attempts": [],
+      "reason": null,
+      "lastSuccessAt": "2026-10-28T15:05:02.097479+00:00",
+      "observedRunId": 42242779345,
+      "status": "idle",
+      "nextAttemptAt": null
+    }
+  }
+}

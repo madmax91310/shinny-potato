@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-11-06T22:54:31.654375+00:00",
+  "build": {
+    "sha": "b641e888850898e6fdf392e62540e45c96ccb3d9",
+    "builtAt": "2026-11-06T22:19:37Z"
+  },
+  "blobByPath": {
+    "scripts/source-snapshots/monthly-collection-status.json": "d57ba863c62c4788e1b5aad242f78301c2376844",
+    "src/data/automated-etf-monthly.json": "31374befd42f15c5575ce9eb9b030f81fb490cf9"
+  },
+  "series": {
+    "etc_natural_gasNav": {
+      "latestSourceObservation": {
+        "status": "failed",
+        "checkedAt": "2026-11-06T21:39:01.999253+00:00",
+        "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n\nNode.js v20.20.2\n"
+      },
+      "financialRecordCheckedAt": "2026-11-06",
+      "lastOfficialValuation": "2026-11-05",
+      "responseSha256": "19643dc420b4d2cae76cac8fae2030cba910dbdd56f6f9ccd70a10f268cd1dd2",
+      "pointsUnchangedSinceQualified5739": true,
+      "pointCount": 59
+    },
+    "etfIE00BDVPNG13Nav": {
+      "latestSourceObservation": {
+        "status": "validated",
+        "checkedAt": "2026-11-06T21:19:13.350582+00:00",
+        "periodEnd": "2026-10",
+        "responseSha256": "77e54f58769cc7a89a559cd40b50dfe85c7ad9909c8d407dafe83a94a0b16173"
+      },
+      "financialRecordCheckedAt": "2026-11-06",
+      "lastOfficialValuation": "2026-11-05",
+      "responseSha256": "77e54f58769cc7a89a559cd40b50dfe85c7ad9909c8d407dafe83a94a0b16173",
+      "pointsUnchangedSinceQualified5739": true,
+      "pointCount": 95
+    }
+  },
+  "sourceFailureIsNotFinancialSuccess": true,
+  "stableBuild": true
+}

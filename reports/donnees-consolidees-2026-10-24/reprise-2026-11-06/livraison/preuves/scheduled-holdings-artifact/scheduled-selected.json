@@ -1,0 +1,25 @@
+{
+  "run": 42058877562,
+  "event": "schedule",
+  "successCount": 198,
+  "errors": [
+    {
+      "id": "dca-holdings:IE00BDFBTQ78",
+      "field": "Composition complète",
+      "error": "Unqualified VanEck asset class: Other"
+    },
+    {
+      "id": "dca-holdings:IE00B4K6B022",
+      "field": "Composition complète",
+      "error": "Unqualified HSBC account: Eur Overseas Dividend Income Receivable"
+    },
+    {
+      "id": "dca-holdings:IE00BQQP9F84",
+      "field": "Composition complète",
+      "error": "Unqualified VanEck asset class: Other"
+    }
+  ],
+  "targetSuccesses": [],
+  "targetObservations": {},
+  "limits": "Nov5 scheduled run demonstrated source failures for GDX/Mining/HSBC; Nov6 production push repaired HSBC and later issuer documents qualified GDX. That Nov6 success is not a scheduled proof."
+}

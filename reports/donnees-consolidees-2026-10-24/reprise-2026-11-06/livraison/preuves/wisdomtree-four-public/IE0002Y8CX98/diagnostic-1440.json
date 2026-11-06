@@ -1,0 +1,2971 @@
+{
+  "build": {
+    "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+    "dataSha": "74ccfbd9fd5176e17861780a16f7b80e8dc6abec",
+    "lane": "validated-data",
+    "builtAt": "2026-11-06T20:58:55.766Z"
+  },
+  "scores": [
+    "0 %"
+  ],
+  "independentOverlap": 0,
+  "pairText": "WisdomTree Europe Defence UCITS ETF\niShares Core S&P 500 UCITS ETF\n0 %\n0 entreprises communes · 100 % / 99,95 % identifiés",
+  "fund": {
+    "coverageProof": {
+      "rankClassificationID": 1,
+      "rankClassification": "Fund",
+      "rowCount": 42,
+      "securityRowCount": 42,
+      "consolidatedSecurityGroups": 0,
+      "publishedWeightPct": 99.99980000000001,
+      "otherRankingGroupsExcluded": true
+    },
+    "requestedListingTicker": "WDEF LN",
+    "checkedAt": "2026-11-06T15:13:10.899521+00:00",
+    "sha256": "ee6a87f1ca8b5711750c188745f20ac80ee2dfd75fa889ce23afcda6a63d0fd5",
+    "method": "Complete issuer Fund ranking (rankClassificationID 1); original published pct weights, no renormalisation; sector/country/index groups excluded; identities independently matched by exact SEDOL; access listings are document-qualified routes for the same ISIN, no trading-currency conversion of fund weights",
+    "sourceUrls": [
+      "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+      "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+      "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyi-gy.xlsx",
+      "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyl-gy.xlsx",
+      "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-ero-fp.xlsx",
+      "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-sppw-gy.xlsx",
+      "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprr-gy.xlsx",
+      "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyy-gy.xlsx",
+      "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spym-gy.xlsx",
+      "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyw-gy.xlsx",
+      "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-spyd-gy.xlsx",
+      "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprg-gy.xlsx",
+      "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-wnrg-na.xlsx",
+      "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprx-gy.xlsx",
+      "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprv-gy.xlsx",
+      "https://globalxetfs.eu/api/funds/copx/topholdingscsv",
+      "https://globalxetfs.eu/api/funds/silv/topholdingscsv",
+      "https://globalxetfs.eu/api/funds/botz/topholdingscsv",
+      "https://globalxetfs.eu/api/funds/bug/topholdingscsv",
+      "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WCLD%20LN&isoCode=en-GB",
+      "https://globalxetfs.eu/api/funds/urnu/topholdingscsv",
+      "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+      "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB",
+      "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB",
+      "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=VOLT%20LN&isoCode=en-GB",
+      "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BN7GN02",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BTQKW99",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BQ7WV85",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BMYGDM0",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD21M27",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6599483",
+      "https://api.openfigi.com/v3/mapping#SEDOL=5962343",
+      "https://api.openfigi.com/v3/mapping#SEDOL=0378105",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BMW7F63",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BJJRL67",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP4W0F1",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BS9B786",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B01DCL2",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BKF1H51",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6295974",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BGMJQJ7",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6496324",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B02RK08",
+      "https://api.openfigi.com/v3/mapping#SEDOL=2516022",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6158709",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BF09MJ4",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6376169",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B01C7R0",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B0WHPP8",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BWV03W5",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6641146",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B3CY709",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD1DM79",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BF5BQF9",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6689533",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B60DR09",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BTDY3B3",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B908F01",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BWJFCD6",
+      "https://api.openfigi.com/v3/mapping#SEDOL=2120371",
+      "https://api.openfigi.com/v3/mapping#SEDOL=0336299",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B0YW9N7",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BW9NLS8",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BWTYYX7",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BTCLFZ3",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BNBXP47",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BMW1X61",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B4PFFW4",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6301871",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP3R9W7",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BNRLFZ6",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6184306",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP3R7V2",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BZ1JH10",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6744250",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BQ0QV95",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6900182",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6022105",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP41ZD1",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD5CGV4",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BHQPSF8",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B0ZV9X3",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6666343",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BNHNGG0",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD5CKD4",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BZ7NDP2",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD5LRQ3",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6641168",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD5CQT2",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BNHPNL0",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BK71726",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BFCCQ55",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD5C8H4",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP91NN2",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD5LSZ9",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD760M3",
+      "https://api.openfigi.com/v3/mapping#SEDOL=2639736",
+      "https://api.openfigi.com/v3/mapping#SEDOL=0263494",
+      "https://api.openfigi.com/v3/mapping#SEDOL=4162791",
+      "https://api.openfigi.com/v3/mapping#SEDOL=5334588",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BPXZH27",
+      "https://api.openfigi.com/v3/mapping#SEDOL=4012250",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B058TZ6",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B63H849",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B0DJNG0",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BSTRB82",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BMT9L19",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BN0SDX8",
+      "https://api.openfigi.com/v3/mapping#SEDOL=4476210",
+      "https://api.openfigi.com/v3/mapping#SEDOL=0969703",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BS801X7",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BNGDN82",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BMD6RR4",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B0WMWD0",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BQKMP24",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BT19SD7",
+      "https://api.openfigi.com/v3/mapping#SEDOL=0797379",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B06BGH5",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B45C9X4",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BVMZHV9",
+      "https://api.openfigi.com/v3/mapping#SEDOL=7058228",
+      "https://api.openfigi.com/v3/mapping#SEDOL=5792982",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B06G108",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BM8H426",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BW5VWD8",
+      "https://api.openfigi.com/v3/mapping#SEDOL=0066701",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B0YD2B9",
+      "https://api.openfigi.com/v3/mapping#SEDOL=5399684",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B0M7KJ7",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BYWZZF0",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B00ZQQ2",
+      "https://api.openfigi.com/v3/mapping#SEDOL=5451302",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD76119",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP3RJ05",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP91MC4",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BP91MY6",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD5C960",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BK71FC2",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BMBR1M2",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BTFRHB8",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BLC7SW3",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD5C777",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD580M1",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD73L54",
+      "https://api.openfigi.com/v3/mapping#SEDOL=2771122",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BD76120",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B1XDJC7",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6296201",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BLGJ610",
+      "https://api.openfigi.com/v3/mapping#SEDOL=5964640",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BSN5BP9",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BQ3RX55",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BS28Y61",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B5M6XQ7",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B1QH7Y4",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BZ404X1",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BKLNP24",
+      "https://api.openfigi.com/v3/mapping#SEDOL=B8BRV46",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6245883",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BYSJJ43",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6639163",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BKT7807",
+      "https://api.openfigi.com/v3/mapping#SEDOL=6437947",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BMV1436",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BXDZ9Z0",
+      "https://api.openfigi.com/v3/mapping#SEDOL=BLHDDX2"
+    ],
+    "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+    "identitySha256": "30ac82d29be5d8453df9ef0c390ac4d882749e6d6c1df6a85420ddc8d2e4c63b",
+    "identityAsOf": "2026-09-30",
+    "identityMethod": "Exact SEDOL to ISIN; identity-source weights never imported",
+    "unidentifiedSecurityCount": 0,
+    "unidentifiedWeightPct": 0,
+    "asOf": "2026-11-05",
+    "basis": "fund",
+    "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+    "complete": true,
+    "rows": [
+      {
+        "name": "BAE Systems PLC",
+        "isin": "GB0002634946",
+        "weightPct": 12.8092
+      },
+      {
+        "name": "Thales SA",
+        "isin": "FR0000121329",
+        "weightPct": 12.667800000000002
+      },
+      {
+        "name": "Rheinmetall AG",
+        "isin": "DE0007030009",
+        "weightPct": 10.5134
+      },
+      {
+        "name": "Airbus SE",
+        "isin": "NL0000235190",
+        "weightPct": 7.744
+      },
+      {
+        "name": "SAAB AB-B SEK NPV",
+        "isin": "SE0021921269",
+        "weightPct": 7.6055
+      },
+      {
+        "name": "Safran SA",
+        "isin": "FR0000073272",
+        "weightPct": 7.0481
+      },
+      {
+        "name": "Leonardo Spa",
+        "isin": "IT0003856405",
+        "weightPct": 6.8621
+      },
+      {
+        "name": "Rolls-Royce Holdings PLC",
+        "isin": "GB00B63H8491",
+        "weightPct": 6.816800000000001
+      },
+      {
+        "name": "Kongsberg Gruppen Asa",
+        "isin": "NO0013536151",
+        "weightPct": 6.6829
+      },
+      {
+        "name": "DASSAULT AVIATION EUR 0.8",
+        "isin": "FR0014004L86",
+        "weightPct": 4.7504
+      },
+      {
+        "name": "HENSOLDT AG EUR NPV",
+        "isin": "DE000HAG0005",
+        "weightPct": 2.4457
+      },
+      {
+        "name": "Indra Sistemas SA",
+        "isin": "ES0118594417",
+        "weightPct": 1.6507999999999998
+      },
+      {
+        "name": "Babcock International Group PL",
+        "isin": "GB0009697037",
+        "weightPct": 1.4973999999999998
+      },
+      {
+        "name": "Tkms Ag& Co Kgaa",
+        "isin": "DE000TKMS001",
+        "weightPct": 1.2671
+      },
+      {
+        "name": "MELROSE INDUSTRIES PLC GBP NPV",
+        "isin": "GB00BNGDN821",
+        "weightPct": 1.1413
+      },
+      {
+        "name": "RENK GMBH EUR 1.0000",
+        "isin": "DE000RENK730",
+        "weightPct": 0.9032
+      },
+      {
+        "name": "QinetiQ Group PLC",
+        "isin": "GB00B0WMWD03",
+        "weightPct": 0.7997000000000001
+      },
+      {
+        "name": "Fincantieri Spa",
+        "isin": "IT0005599938",
+        "weightPct": 0.6538
+      },
+      {
+        "name": "Exosens Sas",
+        "isin": "FR001400Q9V2",
+        "weightPct": 0.6364
+      },
+      {
+        "name": "Serco Group PLC",
+        "isin": "GB0007973794",
+        "weightPct": 0.5326
+      },
+      {
+        "name": "Csg Nv",
+        "isin": "NL0015073TS8",
+        "weightPct": 0.5193
+      },
+      {
+        "name": "Theon International Plc",
+        "isin": "CY0200751713",
+        "weightPct": 0.5034000000000001
+      },
+      {
+        "name": "Exail Technologies",
+        "isin": "FR0000062671",
+        "weightPct": 0.4903
+      },
+      {
+        "name": "Chemring Group PLC",
+        "isin": "GB00B45C9X44",
+        "weightPct": 0.4178
+      },
+      {
+        "name": "Kongsberg Maritime As",
+        "isin": "NO0013697029",
+        "weightPct": 0.3645
+      },
+      {
+        "name": "OHB AG NPV",
+        "isin": "DE0005936124",
+        "weightPct": 0.3476
+      },
+      {
+        "name": "Bittium Oyj",
+        "isin": "FI0009007264",
+        "weightPct": 0.26749999999999996
+      },
+      {
+        "name": "GOODWIN PLC GBP0.1",
+        "isin": "GB0003781050",
+        "weightPct": 0.24910000000000002
+      },
+      {
+        "name": "MILDEF GROUP AB SEK 0.2500",
+        "isin": "SE0016074249",
+        "weightPct": 0.247
+      },
+      {
+        "name": "INVISIO AB SEK1",
+        "isin": "SE0001200015",
+        "weightPct": 0.20509999999999998
+      },
+      {
+        "name": "AVON RUBBER PLC GBP1",
+        "isin": "GB0000667013",
+        "weightPct": 0.20149999999999998
+      },
+      {
+        "name": "Vincorion Se",
+        "isin": "DE000VNC0014",
+        "weightPct": 0.19880000000000003
+      },
+      {
+        "name": "COHORT PLC GBp 10.0000",
+        "isin": "GB00B0YD2B94",
+        "weightPct": 0.16999999999999998
+      },
+      {
+        "name": "Eutelsat Communications",
+        "isin": "FR0010221234",
+        "weightPct": 0.1594
+      },
+      {
+        "name": "Kitron Asa",
+        "isin": "NO0003079709",
+        "weightPct": 0.13240000000000002
+      },
+      {
+        "name": "AVIO SPA NPV",
+        "isin": "IT0005119810",
+        "weightPct": 0.11249999999999999
+      },
+      {
+        "name": "Ses",
+        "isin": "LU0088087324",
+        "weightPct": 0.10679999999999999
+      },
+      {
+        "name": "Ovzon Ab",
+        "isin": "SE0010948711",
+        "weightPct": 0.0911
+      },
+      {
+        "name": "Colt Cz Group Se",
+        "isin": "CZ0009008942",
+        "weightPct": 0.084
+      },
+      {
+        "name": "Cicor Technologies-Reg",
+        "isin": "CH0008702190",
+        "weightPct": 0.0486
+      },
+      {
+        "name": "Filtronic Plc",
+        "isin": "GB0003362992",
+        "weightPct": 0.0422
+      },
+      {
+        "name": "Lubawa Sa",
+        "isin": "PLLUBAW00013",
+        "weightPct": 0.0127
+      }
+    ],
+    "synthetic": false
+  },
+  "peer": {
+    "navReconciliation": {
+      "schemaVersion": 1,
+      "asOf": "2026-11-05",
+      "sourceRowCount": 510,
+      "selectedRowCount": 503,
+      "excludedRowCount": 7,
+      "publishedNetWeightPct": 100.00004999999997,
+      "selectedWeightPct": 99.95358,
+      "sourceWeightPctByType": {
+        "Equity": 99.95357999999997,
+        "Cash": 0.04377,
+        "Cash Collateral and Margins": 0.0027,
+        "Futures": 0
+      },
+      "excludedWeightPctByType": {
+        "Cash": 0.04377,
+        "Cash Collateral and Margins": 0.0027,
+        "Equity": 0,
+        "Futures": 0
+      },
+      "unidentifiedPositions": [],
+      "normalizationApplied": false,
+      "method": "Same dated complete issuer securities table; original fund NAV weights; signed excluded classes retained separately; no normalization or identity inference"
+    },
+    "checkedAt": "2026-11-06T15:13:10.899521+00:00",
+    "sha256": "761bb402c75e775bcf43d4e2c3e7d9fe5a1b74c2d24afceb163f2f36b573f269",
+    "method": "Complete physical equity holdings from the exact BlackRock share; original NAV weights, non-equity positions excluded, no renormalisation",
+    "asOf": "2026-11-05",
+    "basis": "fund",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "complete": true,
+    "rows": [
+      {
+        "name": "APPLE",
+        "isin": "US0378331005",
+        "weightPct": 7.92161
+      },
+      {
+        "name": "NVIDIA",
+        "isin": "US67066G1040",
+        "weightPct": 6.93093
+      },
+      {
+        "name": "MICROSOFT",
+        "isin": "US5949181045",
+        "weightPct": 6.27619
+      },
+      {
+        "name": "AMAZON.COM INC",
+        "isin": "US0231351067",
+        "weightPct": 4.0281
+      },
+      {
+        "name": "ALPHABET CLASS A",
+        "isin": "US02079K3059",
+        "weightPct": 2.61503
+      },
+      {
+        "name": "BROADCOM INC",
+        "isin": "US11135F1012",
+        "weightPct": 2.18741
+      },
+      {
+        "name": "ALPHABET CLASS C",
+        "isin": "US02079K1079",
+        "weightPct": 2.11202
+      },
+      {
+        "name": "META PLATFORMS CLASS A",
+        "isin": "US30303M1027",
+        "weightPct": 2.1043
+      },
+      {
+        "name": "ELI LILLY",
+        "isin": "US5324571083",
+        "weightPct": 1.72218
+      },
+      {
+        "name": "BERKSHIRE HATHAWAY INC CLASS B",
+        "isin": "US0846707026",
+        "weightPct": 1.68106
+      },
+      {
+        "name": "TESLA INC",
+        "isin": "US88160R1014",
+        "weightPct": 1.52759
+      },
+      {
+        "name": "JPMORGAN CHASE & CO",
+        "isin": "US46625H1005",
+        "weightPct": 1.41421
+      },
+      {
+        "name": "MICRON TECHNOLOGY",
+        "isin": "US5951121038",
+        "weightPct": 1.16914
+      },
+      {
+        "name": "VISA CLASS A",
+        "isin": "US92826C8394",
+        "weightPct": 1.13574
+      },
+      {
+        "name": "EXXONMOBIL HOLDINGS CORP",
+        "isin": "US30233Q1085",
+        "weightPct": 1.07196
+      },
+      {
+        "name": "ADVANCED MICRO DEVICES",
+        "isin": "US0079031078",
+        "weightPct": 1.04116
+      },
+      {
+        "name": "JOHNSON & JOHNSON",
+        "isin": "US4781601046",
+        "weightPct": 1.035
+      },
+      {
+        "name": "WALMART",
+        "isin": "US9311421039",
+        "weightPct": 0.89768
+      },
+      {
+        "name": "MASTERCARD CLASS A",
+        "isin": "US57636Q1040",
+        "weightPct": 0.83645
+      },
+      {
+        "name": "ABBVIE",
+        "isin": "US00287Y1091",
+        "weightPct": 0.80331
+      },
+      {
+        "name": "COSTCO WHOLESALE CORP",
+        "isin": "US22160K1051",
+        "weightPct": 0.74529
+      },
+      {
+        "name": "CHEVRON",
+        "isin": "US1667641005",
+        "weightPct": 0.66349
+      },
+      {
+        "name": "PROCTER & GAMBLE",
+        "isin": "US7427181091",
+        "weightPct": 0.61257
+      },
+      {
+        "name": "CISCO SYSTEMS INC",
+        "isin": "US17275R1023",
+        "weightPct": 0.59501
+      },
+      {
+        "name": "COCA-COLA",
+        "isin": "US1912161007",
+        "weightPct": 0.58463
+      },
+      {
+        "name": "MERCK & CO INC",
+        "isin": "US58933Y1055",
+        "weightPct": 0.57175
+      },
+      {
+        "name": "PALANTIR TECHNOLOGIES CLASS A",
+        "isin": "US69608A1088",
+        "weightPct": 0.56238
+      },
+      {
+        "name": "UNITEDHEALTH GROUP",
+        "isin": "US91324P1021",
+        "weightPct": 0.56019
+      },
+      {
+        "name": "HOME DEPOT",
+        "isin": "US4370761029",
+        "weightPct": 0.5503
+      },
+      {
+        "name": "GE AEROSPACE",
+        "isin": "US3696043013",
+        "weightPct": 0.51501
+      },
+      {
+        "name": "BANK OF AMERICA",
+        "isin": "US0605051046",
+        "weightPct": 0.51036
+      },
+      {
+        "name": "PHILIP MORRIS INTERNATIONAL",
+        "isin": "US7181721090",
+        "weightPct": 0.49531
+      },
+      {
+        "name": "NETFLIX",
+        "isin": "US64110L1061",
+        "weightPct": 0.43054
+      },
+      {
+        "name": "INTEL CORPORATION",
+        "isin": "US4581401001",
+        "weightPct": 0.40946
+      },
+      {
+        "name": "RTX",
+        "isin": "US75513E1010",
+        "weightPct": 0.40791
+      },
+      {
+        "name": "PALO ALTO NETWORKS",
+        "isin": "US6974351057",
+        "weightPct": 0.40446
+      },
+      {
+        "name": "WELLS FARGO",
+        "isin": "US9497461015",
+        "weightPct": 0.40443
+      },
+      {
+        "name": "CATERPILLAR INC",
+        "isin": "US1491231015",
+        "weightPct": 0.40136
+      },
+      {
+        "name": "TEXAS INSTRUMENT",
+        "isin": "US8825081040",
+        "weightPct": 0.40062
+      },
+      {
+        "name": "APPLIED MATERIAL INC",
+        "isin": "US0382221051",
+        "weightPct": 0.39975
+      },
+      {
+        "name": "GOLDMAN SACHS GROUP",
+        "isin": "US38141G1040",
+        "weightPct": 0.39903
+      },
+      {
+        "name": "THERMO FISHER SCIENTIFIC",
+        "isin": "US8835561023",
+        "weightPct": 0.39475
+      },
+      {
+        "name": "AMGEN INC",
+        "isin": "US0311621009",
+        "weightPct": 0.39244
+      },
+      {
+        "name": "LINDE PLC",
+        "isin": "IE000S9YS762",
+        "weightPct": 0.37893
+      },
+      {
+        "name": "INTERNATIONAL BUSINESS MACHINES CO",
+        "isin": "US4592001014",
+        "weightPct": 0.36717
+      },
+      {
+        "name": "LAM RESEARCH",
+        "isin": "US5128073062",
+        "weightPct": 0.36549
+      },
+      {
+        "name": "ORACLE",
+        "isin": "US68389X1054",
+        "weightPct": 0.35653
+      },
+      {
+        "name": "CROWDSTRIKE HOLDINGS CLASS A",
+        "isin": "US22788C1053",
+        "weightPct": 0.34883
+      },
+      {
+        "name": "MORGAN STANLEY",
+        "isin": "US6174464486",
+        "weightPct": 0.34345
+      },
+      {
+        "name": "GILEAD SCIENCES",
+        "isin": "US3755581036",
+        "weightPct": 0.3277
+      },
+      {
+        "name": "GE VERNOVA",
+        "isin": "US36828A1016",
+        "weightPct": 0.32365
+      },
+      {
+        "name": "WALT DISNEY",
+        "isin": "US2546871060",
+        "weightPct": 0.31922
+      },
+      {
+        "name": "CITIGROUP",
+        "isin": "US1729674242",
+        "weightPct": 0.31336
+      },
+      {
+        "name": "MCDONALDS CORP",
+        "isin": "US5801351017",
+        "weightPct": 0.31033
+      },
+      {
+        "name": "ABBOTT LABORATORIES",
+        "isin": "US0028241000",
+        "weightPct": 0.31002
+      },
+      {
+        "name": "PEPSICO",
+        "isin": "US7134481081",
+        "weightPct": 0.30721
+      },
+      {
+        "name": "VERIZON COMMUNICATIONS INC",
+        "isin": "US92343V1044",
+        "weightPct": 0.30221
+      },
+      {
+        "name": "NEXTERA ENERGY",
+        "isin": "US65339F1012",
+        "weightPct": 0.29034
+      },
+      {
+        "name": "SALESFORCE",
+        "isin": "US79466L3024",
+        "weightPct": 0.287
+      },
+      {
+        "name": "UNION PACIFIC",
+        "isin": "US9078181081",
+        "weightPct": 0.27908
+      },
+      {
+        "name": "WELLTOWER",
+        "isin": "US95040Q1040",
+        "weightPct": 0.27908
+      },
+      {
+        "name": "AMPHENOL CORP CLASS A",
+        "isin": "US0320951017",
+        "weightPct": 0.27862
+      },
+      {
+        "name": "ANALOG DEVICES",
+        "isin": "US0326541051",
+        "weightPct": 0.27732
+      },
+      {
+        "name": "AMERICAN EXPRESS",
+        "isin": "US0258161092",
+        "weightPct": 0.27
+      },
+      {
+        "name": "PFIZER",
+        "isin": "US7170811035",
+        "weightPct": 0.26832
+      },
+      {
+        "name": "KLA",
+        "isin": "US4824801009",
+        "weightPct": 0.26753
+      },
+      {
+        "name": "BLACKROCK",
+        "isin": "US09290D1019",
+        "weightPct": 0.2654
+      },
+      {
+        "name": "QUALCOMM",
+        "isin": "US7475251036",
+        "weightPct": 0.26404
+      },
+      {
+        "name": "ARISTA NETWORKS",
+        "isin": "US0404132054",
+        "weightPct": 0.26277
+      },
+      {
+        "name": "DEERE",
+        "isin": "US2441991054",
+        "weightPct": 0.26262
+      },
+      {
+        "name": "INTUITIVE SURGICAL",
+        "isin": "US46120E6023",
+        "weightPct": 0.26113
+      },
+      {
+        "name": "CONOCOPHILLIPS",
+        "isin": "US20825C1045",
+        "weightPct": 0.25668
+      },
+      {
+        "name": "ACCENTURE PLC CLASS A",
+        "isin": "IE00B4BNMY34",
+        "weightPct": 0.25612
+      },
+      {
+        "name": "TJX",
+        "isin": "US8725401090",
+        "weightPct": 0.24152
+      },
+      {
+        "name": "CHARLES SCHWAB",
+        "isin": "US8085131055",
+        "weightPct": 0.23739
+      },
+      {
+        "name": "AT&T",
+        "isin": "US00206R1023",
+        "weightPct": 0.23582
+      },
+      {
+        "name": "S&P GLOBAL",
+        "isin": "US78409V1044",
+        "weightPct": 0.22519
+      },
+      {
+        "name": "DANAHER",
+        "isin": "US2358511028",
+        "weightPct": 0.22344
+      },
+      {
+        "name": "UBER TECHNOLOGIES",
+        "isin": "US90353T1007",
+        "weightPct": 0.22157
+      },
+      {
+        "name": "VERTEX PHARMACEUTICALS",
+        "isin": "US92532F1003",
+        "weightPct": 0.21681
+      },
+      {
+        "name": "BOEING",
+        "isin": "US0970231058",
+        "weightPct": 0.21502
+      },
+      {
+        "name": "PROGRESSIVE",
+        "isin": "US7433151039",
+        "weightPct": 0.21395
+      },
+      {
+        "name": "CHUBB",
+        "isin": "CH0044328745",
+        "weightPct": 0.2059
+      },
+      {
+        "name": "ALTRIA GROUP INC",
+        "isin": "US02209S1033",
+        "weightPct": 0.20436
+      },
+      {
+        "name": "BRISTOL MYERS SQUIBB",
+        "isin": "US1101221083",
+        "weightPct": 0.20344
+      },
+      {
+        "name": "MEDTRONIC PLC",
+        "isin": "IE00BTN1Y115",
+        "weightPct": 0.2024
+      },
+      {
+        "name": "LOWES COMPANIES INC",
+        "isin": "US5486611073",
+        "weightPct": 0.20074
+      },
+      {
+        "name": "EATON PLC",
+        "isin": "IE00B8KQN827",
+        "weightPct": 0.20047
+      },
+      {
+        "name": "BOOKING HOLDINGS",
+        "isin": "US09857L1089",
+        "weightPct": 0.20008
+      },
+      {
+        "name": "NEWMONT",
+        "isin": "US6516391066",
+        "weightPct": 0.19908
+      },
+      {
+        "name": "CAPITAL ONE FINANCIAL CORP",
+        "isin": "US14040H1059",
+        "weightPct": 0.19737
+      },
+      {
+        "name": "MCKESSON CORP",
+        "isin": "US58155Q1031",
+        "weightPct": 0.19726
+      },
+      {
+        "name": "PROLOGIS REIT",
+        "isin": "US74340W1036",
+        "weightPct": 0.19267
+      },
+      {
+        "name": "AUTOMATIC DATA PROCESSING INC",
+        "isin": "US0530151036",
+        "weightPct": 0.19206
+      },
+      {
+        "name": "STARBUCKS CORP",
+        "isin": "US8552441094",
+        "weightPct": 0.19106
+      },
+      {
+        "name": "SANDISK",
+        "isin": "US80004C2008",
+        "weightPct": 0.18556
+      },
+      {
+        "name": "STRYKER",
+        "isin": "US8636671013",
+        "weightPct": 0.18478
+      },
+      {
+        "name": "MARVELL TECHNOLOGY",
+        "isin": "US5738741041",
+        "weightPct": 0.18446
+      },
+      {
+        "name": "LOCKHEED MARTIN",
+        "isin": "US5398301094",
+        "weightPct": 0.18423
+      },
+      {
+        "name": "PARKER-HANNIFIN",
+        "isin": "US7010941042",
+        "weightPct": 0.17725
+      },
+      {
+        "name": "CME GROUP CLASS A",
+        "isin": "US12572Q1058",
+        "weightPct": 0.17388
+      },
+      {
+        "name": "SOUTHERN",
+        "isin": "US8425871071",
+        "weightPct": 0.16904
+      },
+      {
+        "name": "MARATHON PETROLEUM",
+        "isin": "US56585A1025",
+        "weightPct": 0.1672
+      },
+      {
+        "name": "SERVICENOW",
+        "isin": "US81762P1021",
+        "weightPct": 0.16692
+      },
+      {
+        "name": "SEAGATE TECHNOLOGY HOLDINGS PLC",
+        "isin": "IE00BKVD2N49",
+        "weightPct": 0.16675
+      },
+      {
+        "name": "CVS HEALTH",
+        "isin": "US1266501006",
+        "weightPct": 0.16406
+      },
+      {
+        "name": "DUKE ENERGY CORP",
+        "isin": "US26441C2044",
+        "weightPct": 0.16014
+      },
+      {
+        "name": "VALERO ENERGY CORP",
+        "isin": "US91913Y1001",
+        "weightPct": 0.15958
+      },
+      {
+        "name": "MARSH",
+        "isin": "US5717481023",
+        "weightPct": 0.15793
+      },
+      {
+        "name": "BANK OF NEW YORK MELLON CORP",
+        "isin": "US0640581007",
+        "weightPct": 0.15751
+      },
+      {
+        "name": "PHILLIPS 66",
+        "isin": "US7185461040",
+        "weightPct": 0.15564
+      },
+      {
+        "name": "EQUINIX REIT",
+        "isin": "US29444U7000",
+        "weightPct": 0.15514
+      },
+      {
+        "name": "ADOBE INC",
+        "isin": "US00724F1012",
+        "weightPct": 0.15473
+      },
+      {
+        "name": "INTERCONTINENTAL EXCHANGE INC",
+        "isin": "US45866F1049",
+        "weightPct": 0.15435
+      },
+      {
+        "name": "INTUIT",
+        "isin": "US4612021034",
+        "weightPct": 0.15341
+      },
+      {
+        "name": "3M",
+        "isin": "US88579Y1010",
+        "weightPct": 0.15302
+      },
+      {
+        "name": "WESTERN DIGITAL CORP",
+        "isin": "US9581021055",
+        "weightPct": 0.1523
+      },
+      {
+        "name": "APPLOVIN CLASS A",
+        "isin": "US03831W1080",
+        "weightPct": 0.15178
+      },
+      {
+        "name": "DELL TECHNOLOGIES INC CLASS C",
+        "isin": "US24703L2025",
+        "weightPct": 0.15114
+      },
+      {
+        "name": "CSX",
+        "isin": "US1264081035",
+        "weightPct": 0.14878
+      },
+      {
+        "name": "ELEVANCE HEALTH INC",
+        "isin": "US0367521038",
+        "weightPct": 0.14798
+      },
+      {
+        "name": "US BANCORP",
+        "isin": "US9029733048",
+        "weightPct": 0.14683
+      },
+      {
+        "name": "EMERSON ELECTRIC",
+        "isin": "US2910111044",
+        "weightPct": 0.14331
+      },
+      {
+        "name": "GENERAL DYNAMICS CORP",
+        "isin": "US3695501086",
+        "weightPct": 0.14299
+      },
+      {
+        "name": "PNC FINANCIAL SERVICES GROUP",
+        "isin": "US6934751057",
+        "weightPct": 0.14292
+      },
+      {
+        "name": "AMERICAN TOWER REIT",
+        "isin": "US03027X1000",
+        "weightPct": 0.14256
+      },
+      {
+        "name": "BLACKSTONE",
+        "isin": "US09260D1072",
+        "weightPct": 0.14215
+      },
+      {
+        "name": "WASTE MANAGEMENT INC",
+        "isin": "US94106L1098",
+        "weightPct": 0.1418
+      },
+      {
+        "name": "MODERNA",
+        "isin": "US60770K1079",
+        "weightPct": 0.14117
+      },
+      {
+        "name": "MARRIOTT INTERNATIONAL CLASS A",
+        "isin": "US5719032022",
+        "weightPct": 0.14105
+      },
+      {
+        "name": "REGENERON PHARMACEUTICALS",
+        "isin": "US75886F1075",
+        "weightPct": 0.13994
+      },
+      {
+        "name": "COMCAST CLASS A",
+        "isin": "US20030N1019",
+        "weightPct": 0.13898
+      },
+      {
+        "name": "TRANE TECHNOLOGIES PLC",
+        "isin": "IE00BK9ZQ967",
+        "weightPct": 0.13592
+      },
+      {
+        "name": "CADENCE DESIGN SYSTEMS",
+        "isin": "US1273871087",
+        "weightPct": 0.13549
+      },
+      {
+        "name": "MOTOROLA SOLUTIONS INC",
+        "isin": "US6200763075",
+        "weightPct": 0.13529
+      },
+      {
+        "name": "MONDELEZ INTERNATIONAL CLASS A",
+        "isin": "US6092071058",
+        "weightPct": 0.13423
+      },
+      {
+        "name": "SYNOPSYS",
+        "isin": "US8716071076",
+        "weightPct": 0.13296
+      },
+      {
+        "name": "TRAVELERS COMPANIES",
+        "isin": "US89417E1091",
+        "weightPct": 0.13286
+      },
+      {
+        "name": "UNITED PARCEL SERVICE INC CLASS B",
+        "isin": "US9113121068",
+        "weightPct": 0.13134
+      },
+      {
+        "name": "FREEPORT MCMORAN INC",
+        "isin": "US35671D8570",
+        "weightPct": 0.13115
+      },
+      {
+        "name": "HILTON WORLDWIDE HOLDINGS",
+        "isin": "US43300A2033",
+        "weightPct": 0.13095
+      },
+      {
+        "name": "CORNING",
+        "isin": "US2193501051",
+        "weightPct": 0.12936
+      },
+      {
+        "name": "ROYAL CARIBBEAN GROUP",
+        "isin": "LR0008862868",
+        "weightPct": 0.12689
+      },
+      {
+        "name": "HOWMET AEROSPACE",
+        "isin": "US4432011082",
+        "weightPct": 0.12659
+      },
+      {
+        "name": "SHERWIN WILLIAMS",
+        "isin": "US8243481061",
+        "weightPct": 0.12593
+      },
+      {
+        "name": "JOHNSON CONTROLS INTERNATIONAL PLC",
+        "isin": "IE00BY7QL619",
+        "weightPct": 0.12578
+      },
+      {
+        "name": "CIGNA",
+        "isin": "US1255231003",
+        "weightPct": 0.12539
+      },
+      {
+        "name": "CONSTELLATION ENERGY CORP",
+        "isin": "US21037T1097",
+        "weightPct": 0.12432
+      },
+      {
+        "name": "GENERAL MOTORS",
+        "isin": "US37045V1008",
+        "weightPct": 0.12393
+      },
+      {
+        "name": "WILLIAMS",
+        "isin": "US9694571004",
+        "weightPct": 0.12383
+      },
+      {
+        "name": "COLGATE-PALMOLIVE",
+        "isin": "US1941621039",
+        "weightPct": 0.12383
+      },
+      {
+        "name": "CINTAS",
+        "isin": "US1729081059",
+        "weightPct": 0.12265
+      },
+      {
+        "name": "T MOBILE US INC",
+        "isin": "US8725901040",
+        "weightPct": 0.12204
+      },
+      {
+        "name": "ECOLAB",
+        "isin": "US2788651006",
+        "weightPct": 0.12145
+      },
+      {
+        "name": "QUANTA SERVICES INC",
+        "isin": "US74762E1029",
+        "weightPct": 0.12083
+      },
+      {
+        "name": "MOODYS CORP",
+        "isin": "US6153691059",
+        "weightPct": 0.12078
+      },
+      {
+        "name": "EOG RESOURCES",
+        "isin": "US26875P1012",
+        "weightPct": 0.11961
+      },
+      {
+        "name": "FORTINET",
+        "isin": "US34959E1091",
+        "weightPct": 0.11919
+      },
+      {
+        "name": "ROSS STORES INC",
+        "isin": "US7782961038",
+        "weightPct": 0.11878
+      },
+      {
+        "name": "HCA HEALTHCARE",
+        "isin": "US40412C1018",
+        "weightPct": 0.11756
+      },
+      {
+        "name": "OREILLY AUTOMOTIVE INC",
+        "isin": "US67103H1077",
+        "weightPct": 0.11704
+      },
+      {
+        "name": "NORFOLK SOUTHERN CORP",
+        "isin": "US6558441084",
+        "weightPct": 0.11656
+      },
+      {
+        "name": "ILLINOIS TOOL INC",
+        "isin": "US4523081093",
+        "weightPct": 0.11643
+      },
+      {
+        "name": "ARTHUR J GALLAGHER",
+        "isin": "US3635761097",
+        "weightPct": 0.11642
+      },
+      {
+        "name": "SLB",
+        "isin": "AN8068571086",
+        "weightPct": 0.11596
+      },
+      {
+        "name": "SIMON PROPERTY GROUP REIT INC",
+        "isin": "US8288061091",
+        "weightPct": 0.11589
+      },
+      {
+        "name": "AON PLC CLASS A",
+        "isin": "IE00BLP1HW54",
+        "weightPct": 0.115
+      },
+      {
+        "name": "TARGET CORP",
+        "isin": "US87612E1064",
+        "weightPct": 0.11297
+      },
+      {
+        "name": "AIRBNB CLASS A",
+        "isin": "US0090661010",
+        "weightPct": 0.11273
+      },
+      {
+        "name": "NORTHROP GRUMMAN CORP",
+        "isin": "US6668071029",
+        "weightPct": 0.11057
+      },
+      {
+        "name": "FEDEX CORP",
+        "isin": "US31428X1063",
+        "weightPct": 0.10968
+      },
+      {
+        "name": "AMERICAN ELECTRIC POWER INC",
+        "isin": "US0255371017",
+        "weightPct": 0.10885
+      },
+      {
+        "name": "AIR PRODUCTS AND CHEMICALS",
+        "isin": "US0091581068",
+        "weightPct": 0.10878
+      },
+      {
+        "name": "MONSTER BEVERAGE",
+        "isin": "US61174X1090",
+        "weightPct": 0.10777
+      },
+      {
+        "name": "HONEYWELL INTERNATIONAL INC",
+        "isin": "US4385162056",
+        "weightPct": 0.10776
+      },
+      {
+        "name": "KKR AND CO INC",
+        "isin": "US48251W1045",
+        "weightPct": 0.10742
+      },
+      {
+        "name": "VERTIV HOLDINGS CLASS A",
+        "isin": "US92537N1081",
+        "weightPct": 0.10731
+      },
+      {
+        "name": "KIMBERLY CLARK",
+        "isin": "US4943681035",
+        "weightPct": 0.10682
+      },
+      {
+        "name": "DOORDASH CLASS A",
+        "isin": "US25809K1051",
+        "weightPct": 0.10655
+      },
+      {
+        "name": "ALLSTATE CORP",
+        "isin": "US0200021014",
+        "weightPct": 0.10575
+      },
+      {
+        "name": "TRANSDIGM GROUP",
+        "isin": "US8936411003",
+        "weightPct": 0.10345
+      },
+      {
+        "name": "UNITED RENTALS",
+        "isin": "US9113631090",
+        "weightPct": 0.10224
+      },
+      {
+        "name": "CENCORA",
+        "isin": "US03073E1055",
+        "weightPct": 0.10201
+      },
+      {
+        "name": "BOSTON SCIENTIFIC",
+        "isin": "US1011371077",
+        "weightPct": 0.10181
+      },
+      {
+        "name": "CRH PUBLIC LIMITED PLC",
+        "isin": "IE0001827041",
+        "weightPct": 0.09995
+      },
+      {
+        "name": "WW GRAINGER INC",
+        "isin": "US3848021040",
+        "weightPct": 0.09946
+      },
+      {
+        "name": "CARDINAL HEALTH",
+        "isin": "US14149Y1082",
+        "weightPct": 0.09805
+      },
+      {
+        "name": "ROBINHOOD MARKETS CLASS A",
+        "isin": "US7707001027",
+        "weightPct": 0.0978
+      },
+      {
+        "name": "CUMMINS INC",
+        "isin": "US2310211063",
+        "weightPct": 0.0972
+      },
+      {
+        "name": "NXP SEMICONDUCTORS NV",
+        "isin": "NL0009538784",
+        "weightPct": 0.09711
+      },
+      {
+        "name": "DIGITAL REALTY TRUST REIT",
+        "isin": "US2538681030",
+        "weightPct": 0.09666
+      },
+      {
+        "name": "DOMINION ENERGY",
+        "isin": "US25746U1097",
+        "weightPct": 0.09662
+      },
+      {
+        "name": "FASTENAL",
+        "isin": "US3119001044",
+        "weightPct": 0.09586
+      },
+      {
+        "name": "TRUIST FINANCIAL",
+        "isin": "US89832Q1094",
+        "weightPct": 0.09582
+      },
+      {
+        "name": "TE CONNECTIVITY PLC",
+        "isin": "IE000IVNQZ81",
+        "weightPct": 0.09404
+      },
+      {
+        "name": "KINDER MORGAN",
+        "isin": "US49456B1017",
+        "weightPct": 0.09338
+      },
+      {
+        "name": "DATADOG INC CLASS A",
+        "isin": "US23804L1035",
+        "weightPct": 0.0924
+      },
+      {
+        "name": "HEWLETT PACKARD ENTERPRISE",
+        "isin": "US42824C1099",
+        "weightPct": 0.09223
+      },
+      {
+        "name": "TARGA RESOURCES",
+        "isin": "US87612G1013",
+        "weightPct": 0.0918
+      },
+      {
+        "name": "EDWARDS LIFESCIENCES",
+        "isin": "US28176E1082",
+        "weightPct": 0.09158
+      },
+      {
+        "name": "BECTON DICKINSON",
+        "isin": "US0758871091",
+        "weightPct": 0.09155
+      },
+      {
+        "name": "PUBLIC STORAGE REIT",
+        "isin": "US74460D1090",
+        "weightPct": 0.09002
+      },
+      {
+        "name": "AUTODESK",
+        "isin": "US0527691069",
+        "weightPct": 0.0894
+      },
+      {
+        "name": "AFLAC",
+        "isin": "US0010551028",
+        "weightPct": 0.08864
+      },
+      {
+        "name": "REALTY INCOME REIT",
+        "isin": "US7561091049",
+        "weightPct": 0.08863
+      },
+      {
+        "name": "NUCOR",
+        "isin": "US6703461052",
+        "weightPct": 0.08774
+      },
+      {
+        "name": "MONOLITHIC POWER SYSTEMS INC",
+        "isin": "US6098391054",
+        "weightPct": 0.08766
+      },
+      {
+        "name": "APOLLO GLOBAL MANAGEMENT",
+        "isin": "US03769M1062",
+        "weightPct": 0.08723
+      },
+      {
+        "name": "PACCAR INC",
+        "isin": "US6937181088",
+        "weightPct": 0.08655
+      },
+      {
+        "name": "ONEOK",
+        "isin": "US30609A1097",
+        "weightPct": 0.08588
+      },
+      {
+        "name": "AUTOZONE",
+        "isin": "US0533321024",
+        "weightPct": 0.08506
+      },
+      {
+        "name": "METLIFE",
+        "isin": "US59156R1086",
+        "weightPct": 0.0838
+      },
+      {
+        "name": "IDEXX LABORATORIES",
+        "isin": "US45168D1046",
+        "weightPct": 0.08346
+      },
+      {
+        "name": "SEMPRA",
+        "isin": "US8168511090",
+        "weightPct": 0.08222
+      },
+      {
+        "name": "CARVANA CLASS A",
+        "isin": "US1468691027",
+        "weightPct": 0.08201
+      },
+      {
+        "name": "ENTERGY CORP",
+        "isin": "US29364G1031",
+        "weightPct": 0.08102
+      },
+      {
+        "name": "AMETEK INC",
+        "isin": "US0311001004",
+        "weightPct": 0.08063
+      },
+      {
+        "name": "DELTA AIR LINES",
+        "isin": "US2473617023",
+        "weightPct": 0.07991
+      },
+      {
+        "name": "PAYPAL HOLDINGS",
+        "isin": "US70450Y1038",
+        "weightPct": 0.07937
+      },
+      {
+        "name": "XCEL ENERGY INC",
+        "isin": "US98389B1008",
+        "weightPct": 0.07915
+      },
+      {
+        "name": "KEURIG DR PEPPER INC",
+        "isin": "US49271V1008",
+        "weightPct": 0.07914
+      },
+      {
+        "name": "HUMANA",
+        "isin": "US4448591028",
+        "weightPct": 0.07825
+      },
+      {
+        "name": "BLOOM ENERGY CLASS A",
+        "isin": "US0937121079",
+        "weightPct": 0.07788
+      },
+      {
+        "name": "EBAY",
+        "isin": "US2786421030",
+        "weightPct": 0.07769
+      },
+      {
+        "name": "FORD MOTOR CO",
+        "isin": "US3453708600",
+        "weightPct": 0.07722
+      },
+      {
+        "name": "REPUBLIC SERVICES INC",
+        "isin": "US7607591002",
+        "weightPct": 0.07692
+      },
+      {
+        "name": "FIFTH THIRD BANCORP",
+        "isin": "US3167731005",
+        "weightPct": 0.07665
+      },
+      {
+        "name": "ROPER TECHNOLOGIES",
+        "isin": "US7766961061",
+        "weightPct": 0.07642
+      },
+      {
+        "name": "AGILENT TECHNOLOGIES INC",
+        "isin": "US00846U1016",
+        "weightPct": 0.07635
+      },
+      {
+        "name": "EXELON CORP",
+        "isin": "US30161N1019",
+        "weightPct": 0.07575
+      },
+      {
+        "name": "L3HARRIS TECHNOLOGIES",
+        "isin": "US5024311095",
+        "weightPct": 0.07571
+      },
+      {
+        "name": "MSCI",
+        "isin": "US55354G1004",
+        "weightPct": 0.07531
+      },
+      {
+        "name": "NIKE CLASS B",
+        "isin": "US6541061031",
+        "weightPct": 0.0751
+      },
+      {
+        "name": "GARMIN",
+        "isin": "CH0114405324",
+        "weightPct": 0.07477
+      },
+      {
+        "name": "HONEYWELL AEROSPACE INC",
+        "isin": "US43849R1059",
+        "weightPct": 0.07471
+      },
+      {
+        "name": "WESTINGHOUSE AIR BRAKE TECHNOLOGIE",
+        "isin": "US9297401088",
+        "weightPct": 0.07432
+      },
+      {
+        "name": "NASDAQ INC",
+        "isin": "US6311031081",
+        "weightPct": 0.07425
+      },
+      {
+        "name": "DEVON ENERGY",
+        "isin": "US25179M1036",
+        "weightPct": 0.07422
+      },
+      {
+        "name": "VIVMARK RESIDENTIAL",
+        "isin": "US29476L1070",
+        "weightPct": 0.0739
+      },
+      {
+        "name": "VEEVA SYSTEMS CLASS A",
+        "isin": "US9224751084",
+        "weightPct": 0.07294
+      },
+      {
+        "name": "VYLOR",
+        "isin": "US92892R1086",
+        "weightPct": 0.07232
+      },
+      {
+        "name": "BAKER HUGHES CLASS A",
+        "isin": "US05722G1004",
+        "weightPct": 0.07228
+      },
+      {
+        "name": "FERGUSON ENTERPRISES",
+        "isin": "US31488V1070",
+        "weightPct": 0.07202
+      },
+      {
+        "name": "VENTAS REIT",
+        "isin": "US92276F1003",
+        "weightPct": 0.07192
+      },
+      {
+        "name": "BLOCK CLASS A",
+        "isin": "US8522341036",
+        "weightPct": 0.07154
+      },
+      {
+        "name": "STATE STREET",
+        "isin": "US8574771031",
+        "weightPct": 0.07144
+      },
+      {
+        "name": "YUM BRANDS",
+        "isin": "US9884981013",
+        "weightPct": 0.07134
+      },
+      {
+        "name": "LUMENTUM HOLDINGS",
+        "isin": "US55024U1097",
+        "weightPct": 0.07113
+      },
+      {
+        "name": "AMERIPRISE FINANCE INC",
+        "isin": "US03076C1062",
+        "weightPct": 0.07082
+      },
+      {
+        "name": "CONSOLIDATED EDISON",
+        "isin": "US2091151041",
+        "weightPct": 0.0706
+      },
+      {
+        "name": "CHIPOTLE MEXICAN GRILL",
+        "isin": "US1696561059",
+        "weightPct": 0.0705
+      },
+      {
+        "name": "KEYSIGHT TECHNOLOGIES",
+        "isin": "US49338L1035",
+        "weightPct": 0.07039
+      },
+      {
+        "name": "WATERS CORP",
+        "isin": "US9418481035",
+        "weightPct": 0.06997
+      },
+      {
+        "name": "CARRIER GLOBAL",
+        "isin": "US14448C1045",
+        "weightPct": 0.06907
+      },
+      {
+        "name": "IQVIA HOLDINGS INC",
+        "isin": "US46266C1053",
+        "weightPct": 0.06862
+      },
+      {
+        "name": "ROCKWELL AUTOMATION INC",
+        "isin": "US7739031091",
+        "weightPct": 0.06686
+      },
+      {
+        "name": "PRUDENTIAL FINANCIAL INC",
+        "isin": "US7443201022",
+        "weightPct": 0.06673
+      },
+      {
+        "name": "AMERICAN INTERNATIONAL GROUP",
+        "isin": "US0268747849",
+        "weightPct": 0.0666
+      },
+      {
+        "name": "OCCIDENTAL PETROLEUM CORP",
+        "isin": "US6745991058",
+        "weightPct": 0.06475
+      },
+      {
+        "name": "WORKDAY CLASS A",
+        "isin": "US98138H1014",
+        "weightPct": 0.06333
+      },
+      {
+        "name": "D R HORTON",
+        "isin": "US23331A1097",
+        "weightPct": 0.06314
+      },
+      {
+        "name": "KROGER",
+        "isin": "US5010441013",
+        "weightPct": 0.06213
+      },
+      {
+        "name": "CBRE GROUP CLASS A",
+        "isin": "US12504L1098",
+        "weightPct": 0.06115
+      },
+      {
+        "name": "WEC ENERGY GROUP",
+        "isin": "US92939U1060",
+        "weightPct": 0.06089
+      },
+      {
+        "name": "CROWN CASTLE INC",
+        "isin": "US22822V1017",
+        "weightPct": 0.06089
+      },
+      {
+        "name": "PAYCHEX",
+        "isin": "US7043261079",
+        "weightPct": 0.06021
+      },
+      {
+        "name": "GE HEALTHCARE TECHNOLOGIES",
+        "isin": "US36266G1076",
+        "weightPct": 0.05954
+      },
+      {
+        "name": "CARNIVAL CORP LTD",
+        "isin": "BMG2004J1036",
+        "weightPct": 0.05932
+      },
+      {
+        "name": "ARCH CAPITAL GROUP",
+        "isin": "BMG0450A1053",
+        "weightPct": 0.05912
+      },
+      {
+        "name": "TAKE TWO INTERACTIVE SOFTWARE",
+        "isin": "US8740541094",
+        "weightPct": 0.05903
+      },
+      {
+        "name": "HARTFORD INSURANCE GROUP",
+        "isin": "US4165151048",
+        "weightPct": 0.05844
+      },
+      {
+        "name": "VULCAN MATERIALS",
+        "isin": "US9291601097",
+        "weightPct": 0.05844
+      },
+      {
+        "name": "DIAMONDBACK ENERGY",
+        "isin": "US25278X1090",
+        "weightPct": 0.0578
+      },
+      {
+        "name": "CENTENE CORP",
+        "isin": "US15135B1017",
+        "weightPct": 0.0577
+      },
+      {
+        "name": "CBOE GLOBAL MARKETS",
+        "isin": "US12503M1080",
+        "weightPct": 0.0575
+      },
+      {
+        "name": "PUBLIC SERVICE ENTERPRISE GROUP",
+        "isin": "US7445731067",
+        "weightPct": 0.05743
+      },
+      {
+        "name": "BIOGEN",
+        "isin": "US09062X1037",
+        "weightPct": 0.05676
+      },
+      {
+        "name": "SYSCO",
+        "isin": "US8718291078",
+        "weightPct": 0.05672
+      },
+      {
+        "name": "UNITED AIRLINES HOLDINGS",
+        "isin": "US9100471096",
+        "weightPct": 0.05646
+      },
+      {
+        "name": "VISTRA",
+        "isin": "US92840M1027",
+        "weightPct": 0.0564
+      },
+      {
+        "name": "MICROCHIP TECHNOLOGY INC",
+        "isin": "US5950171042",
+        "weightPct": 0.05547
+      },
+      {
+        "name": "RESMED",
+        "isin": "US7611521078",
+        "weightPct": 0.05434
+      },
+      {
+        "name": "ARCHER DANIELS MIDLAND",
+        "isin": "US0394831020",
+        "weightPct": 0.05364
+      },
+      {
+        "name": "COMFORT SYSTEMS USA",
+        "isin": "US1999081045",
+        "weightPct": 0.05342
+      },
+      {
+        "name": "ZOETIS INC CLASS A",
+        "isin": "US98978V1035",
+        "weightPct": 0.0534
+      },
+      {
+        "name": "METTLER TOLEDO",
+        "isin": "US5926881054",
+        "weightPct": 0.05333
+      },
+      {
+        "name": "EXTRA SPACE STORAGE REIT",
+        "isin": "US30225T1025",
+        "weightPct": 0.05332
+      },
+      {
+        "name": "FISERV INC",
+        "isin": "US3377381088",
+        "weightPct": 0.05267
+      },
+      {
+        "name": "TERADYNE",
+        "isin": "US8807701029",
+        "weightPct": 0.0526
+      },
+      {
+        "name": "COHERENT",
+        "isin": "US19247G1076",
+        "weightPct": 0.05239
+      },
+      {
+        "name": "NETAPP INC",
+        "isin": "US64110D1046",
+        "weightPct": 0.05226
+      },
+      {
+        "name": "INTERACTIVE BROKERS GROUP INC CLAS",
+        "isin": "US45841N1072",
+        "weightPct": 0.05188
+      },
+      {
+        "name": "CIENA",
+        "isin": "US1717793095",
+        "weightPct": 0.05141
+      },
+      {
+        "name": "MARTIN MARIETTA MATERIALS",
+        "isin": "US5732841060",
+        "weightPct": 0.05018
+      },
+      {
+        "name": "DEXCOM INC",
+        "isin": "US2521311074",
+        "weightPct": 0.05016
+      },
+      {
+        "name": "OLD DOMINION FREIGHT LINE",
+        "isin": "US6795801009",
+        "weightPct": 0.05012
+      },
+      {
+        "name": "M&T BANK",
+        "isin": "US55261F1049",
+        "weightPct": 0.04996
+      },
+      {
+        "name": "EQT",
+        "isin": "US26884L1098",
+        "weightPct": 0.04987
+      },
+      {
+        "name": "ILLUMINA INC",
+        "isin": "US4523271090",
+        "weightPct": 0.04983
+      },
+      {
+        "name": "HUNTINGTON BANCSHARES INC",
+        "isin": "US4461501045",
+        "weightPct": 0.04979
+      },
+      {
+        "name": "IRON MOUNTAIN INC",
+        "isin": "US46284V1017",
+        "weightPct": 0.04938
+      },
+      {
+        "name": "NORTHERN TRUST",
+        "isin": "US6658591044",
+        "weightPct": 0.04936
+      },
+      {
+        "name": "EVERPURE INC CLASS A",
+        "isin": "US74624M1027",
+        "weightPct": 0.04927
+      },
+      {
+        "name": "AMEREN",
+        "isin": "US0236081024",
+        "weightPct": 0.04923
+      },
+      {
+        "name": "EXPEDIA GROUP",
+        "isin": "US30212P3038",
+        "weightPct": 0.04922
+      },
+      {
+        "name": "WILLIS TOWERS WATSON",
+        "isin": "IE00BDB6Q211",
+        "weightPct": 0.04919
+      },
+      {
+        "name": "AXON ENTERPRISE",
+        "isin": "US05464C1018",
+        "weightPct": 0.04913
+      },
+      {
+        "name": "TWILIO CLASS A",
+        "isin": "US90138F1021",
+        "weightPct": 0.04853
+      },
+      {
+        "name": "COINBASE GLOBAL CLASS A",
+        "isin": "US19260Q1076",
+        "weightPct": 0.0482
+      },
+      {
+        "name": "DOLLAR GENERAL CORP",
+        "isin": "US2566771059",
+        "weightPct": 0.04807
+      },
+      {
+        "name": "WILLIAMS SONOMA INC",
+        "isin": "US9699041011",
+        "weightPct": 0.04802
+      },
+      {
+        "name": "AMERICAN WATER WORKS",
+        "isin": "US0304201033",
+        "weightPct": 0.04768
+      },
+      {
+        "name": "OTIS WORLDWIDE",
+        "isin": "US68902V1070",
+        "weightPct": 0.04752
+      },
+      {
+        "name": "ARES MANAGEMENT CLASS A",
+        "isin": "US03990B1017",
+        "weightPct": 0.04716
+      },
+      {
+        "name": "COGNIZANT TECHNOLOGY SOLUTIONS CLA",
+        "isin": "US1924461023",
+        "weightPct": 0.04715
+      },
+      {
+        "name": "STEEL DYNAMICS INC",
+        "isin": "US8581191009",
+        "weightPct": 0.04697
+      },
+      {
+        "name": "ATMOS ENERGY",
+        "isin": "US0495601058",
+        "weightPct": 0.04655
+      },
+      {
+        "name": "LABCORP HOLDINGS",
+        "isin": "US5049221055",
+        "weightPct": 0.04633
+      },
+      {
+        "name": "CORPAY",
+        "isin": "US2199481068",
+        "weightPct": 0.04608
+      },
+      {
+        "name": "PG&E CORP",
+        "isin": "US69331C1080",
+        "weightPct": 0.04588
+      },
+      {
+        "name": "CINCINNATI FINANCIAL",
+        "isin": "US1720621010",
+        "weightPct": 0.04549
+      },
+      {
+        "name": "LIVE NATION ENTERTAINMENT",
+        "isin": "US5380341090",
+        "weightPct": 0.04541
+      },
+      {
+        "name": "RAYMOND JAMES",
+        "isin": "US7547301090",
+        "weightPct": 0.04509
+      },
+      {
+        "name": "OKTA CLASS A",
+        "isin": "US6792951054",
+        "weightPct": 0.04481
+      },
+      {
+        "name": "VERALTO",
+        "isin": "US92338C1036",
+        "weightPct": 0.04472
+      },
+      {
+        "name": "INGERSOLL RAND",
+        "isin": "US45687V1061",
+        "weightPct": 0.04448
+      },
+      {
+        "name": "DTE ENERGY",
+        "isin": "US2333311072",
+        "weightPct": 0.04426
+      },
+      {
+        "name": "QUEST DIAGNOSTICS INC",
+        "isin": "US74834L1008",
+        "weightPct": 0.04423
+      },
+      {
+        "name": "VICI PPTYS INC",
+        "isin": "US9256521090",
+        "weightPct": 0.04411
+      },
+      {
+        "name": "ULTA BEAUTY INC",
+        "isin": "US90384S3031",
+        "weightPct": 0.04397
+      },
+      {
+        "name": "WEST PHARMACEUTICAL SERVICES",
+        "isin": "US9553061055",
+        "weightPct": 0.04375
+      },
+      {
+        "name": "VERISK ANALYTICS",
+        "isin": "US92345Y1064",
+        "weightPct": 0.0437
+      },
+      {
+        "name": "PPG INDUSTRIES",
+        "isin": "US6935061076",
+        "weightPct": 0.04335
+      },
+      {
+        "name": "TELEDYNE TECHNOLOGIES",
+        "isin": "US8793601050",
+        "weightPct": 0.04321
+      },
+      {
+        "name": "DOVER",
+        "isin": "US2600031080",
+        "weightPct": 0.04317
+      },
+      {
+        "name": "COPART INC",
+        "isin": "US2172041061",
+        "weightPct": 0.04305
+      },
+      {
+        "name": "EVERSOURCE ENERGY",
+        "isin": "US30040W1080",
+        "weightPct": 0.04273
+      },
+      {
+        "name": "PPL CORP",
+        "isin": "US69351T1060",
+        "weightPct": 0.04271
+      },
+      {
+        "name": "HP INC",
+        "isin": "US40434L1052",
+        "weightPct": 0.0427
+      },
+      {
+        "name": "CITIZENS FINANCIAL GROUP INC",
+        "isin": "US1746101054",
+        "weightPct": 0.04231
+      },
+      {
+        "name": "TAPESTRY",
+        "isin": "US8760301072",
+        "weightPct": 0.0421
+      },
+      {
+        "name": "HALLIBURTON",
+        "isin": "US4062161017",
+        "weightPct": 0.04207
+      },
+      {
+        "name": "ESTEE LAUDER INC CLASS A",
+        "isin": "US5184391044",
+        "weightPct": 0.04176
+      },
+      {
+        "name": "DOLLAR TREE INC",
+        "isin": "US2567461080",
+        "weightPct": 0.04174
+      },
+      {
+        "name": "CENTERPOINT ENERGY",
+        "isin": "US15189T1079",
+        "weightPct": 0.04169
+      },
+      {
+        "name": "CHURCH AND DWIGHT INC",
+        "isin": "US1713401024",
+        "weightPct": 0.04163
+      },
+      {
+        "name": "HERSHEY FOODS",
+        "isin": "US4278661081",
+        "weightPct": 0.04126
+      },
+      {
+        "name": "EMCOR GROUP",
+        "isin": "US29084Q1004",
+        "weightPct": 0.04124
+      },
+      {
+        "name": "DARDEN RESTAURANTS INC",
+        "isin": "US2371941053",
+        "weightPct": 0.04087
+      },
+      {
+        "name": "CASEYS GENERAL STORES INC",
+        "isin": "US1475281036",
+        "weightPct": 0.04028
+      },
+      {
+        "name": "VERISIGN",
+        "isin": "US92343E1029",
+        "weightPct": 0.03992
+      },
+      {
+        "name": "PULTEGROUP",
+        "isin": "US7458671010",
+        "weightPct": 0.03988
+      },
+      {
+        "name": "FLEX LTD",
+        "isin": "SG9999000020",
+        "weightPct": 0.039
+      },
+      {
+        "name": "STERIS",
+        "isin": "IE00BFY8C754",
+        "weightPct": 0.03898
+      },
+      {
+        "name": "JABIL",
+        "isin": "US4663131039",
+        "weightPct": 0.03897
+      },
+      {
+        "name": "EXPEDITORS INTERNATIONAL OF WASHIN",
+        "isin": "US3021301094",
+        "weightPct": 0.03896
+      },
+      {
+        "name": "FIRSTENERGY CORP",
+        "isin": "US3379321074",
+        "weightPct": 0.03876
+      },
+      {
+        "name": "ON SEMICONDUCTOR CORP",
+        "isin": "US6821891057",
+        "weightPct": 0.03851
+      },
+      {
+        "name": "REGIONS FINANCIAL",
+        "isin": "US7591EP1005",
+        "weightPct": 0.03825
+      },
+      {
+        "name": "SYNCHRONY FINANCIAL",
+        "isin": "US87165B1035",
+        "weightPct": 0.03793
+      },
+      {
+        "name": "OMNICOM GROUP INC",
+        "isin": "US6819191064",
+        "weightPct": 0.0376
+      },
+      {
+        "name": "EDISON INTERNATIONAL",
+        "isin": "US2810201077",
+        "weightPct": 0.03693
+      },
+      {
+        "name": "XYLEM INC",
+        "isin": "US98419M1009",
+        "weightPct": 0.03676
+      },
+      {
+        "name": "T ROWE PRICE GROUP",
+        "isin": "US74144T1088",
+        "weightPct": 0.03673
+      },
+      {
+        "name": "SMURFIT WESTROCK PLC",
+        "isin": "IE00028FXN24",
+        "weightPct": 0.03669
+      },
+      {
+        "name": "DOW",
+        "isin": "US2605571031",
+        "weightPct": 0.03634
+      },
+      {
+        "name": "EQUIFAX",
+        "isin": "US2944291051",
+        "weightPct": 0.03627
+      },
+      {
+        "name": "QNITY ELECTRONICS",
+        "isin": "US74743L1008",
+        "weightPct": 0.03623
+      },
+      {
+        "name": "BROADRIDGE FINANCIAL SOLUTIONS INC",
+        "isin": "US11133T1034",
+        "weightPct": 0.03519
+      },
+      {
+        "name": "HUBBELL INC",
+        "isin": "US4435106079",
+        "weightPct": 0.03508
+      },
+      {
+        "name": "CMS ENERGY",
+        "isin": "US1258961002",
+        "weightPct": 0.03489
+      },
+      {
+        "name": "PACKAGING CORP OF AMERICA",
+        "isin": "US6951561090",
+        "weightPct": 0.03481
+      },
+      {
+        "name": "INTERNATIONAL FLAVORS & FRAGRANCES",
+        "isin": "US4595061015",
+        "weightPct": 0.03471
+      },
+      {
+        "name": "PRINCIPAL FINANCIAL GROUP INC",
+        "isin": "US74251V1026",
+        "weightPct": 0.03471
+      },
+      {
+        "name": "KRAFT HEINZ",
+        "isin": "US5007541064",
+        "weightPct": 0.03467
+      },
+      {
+        "name": "SOUTHWEST AIRLINES",
+        "isin": "US8447411088",
+        "weightPct": 0.0345
+      },
+      {
+        "name": "VIATRIS",
+        "isin": "US92556V1061",
+        "weightPct": 0.03429
+      },
+      {
+        "name": "CONSTELLATION BRANDS CLASS A",
+        "isin": "US21036P1084",
+        "weightPct": 0.03422
+      },
+      {
+        "name": "AMCOR PLC",
+        "isin": "JE00BV7DQ550",
+        "weightPct": 0.03373
+      },
+      {
+        "name": "BROWN & BROWN INC",
+        "isin": "US1152361010",
+        "weightPct": 0.03369
+      },
+      {
+        "name": "NISOURCE",
+        "isin": "US65473P1057",
+        "weightPct": 0.03357
+      },
+      {
+        "name": "PTC",
+        "isin": "US69370C1009",
+        "weightPct": 0.03322
+      },
+      {
+        "name": "GLOBAL PAYMENTS INC",
+        "isin": "US37940X1028",
+        "weightPct": 0.03322
+      },
+      {
+        "name": "FIRST SOLAR",
+        "isin": "US3364331070",
+        "weightPct": 0.03301
+      },
+      {
+        "name": "SBA COMMUNICATIONS REIT CORP CLASS",
+        "isin": "US78410G1040",
+        "weightPct": 0.03242
+      },
+      {
+        "name": "ZIMMER BIOMET HOLDINGS",
+        "isin": "US98956P1021",
+        "weightPct": 0.03205
+      },
+      {
+        "name": "EVERGY",
+        "isin": "US30034W1062",
+        "weightPct": 0.03177
+      },
+      {
+        "name": "INCYTE CORP",
+        "isin": "US45337C1027",
+        "weightPct": 0.03163
+      },
+      {
+        "name": "FORTIVE",
+        "isin": "US34959J1088",
+        "weightPct": 0.03147
+      },
+      {
+        "name": "DUPONT DE NEMOURS",
+        "isin": "US26614N2018",
+        "weightPct": 0.03122
+      },
+      {
+        "name": "CDW",
+        "isin": "US12514G1085",
+        "weightPct": 0.03116
+      },
+      {
+        "name": "EXPAND ENERGY",
+        "isin": "US1651677353",
+        "weightPct": 0.03109
+      },
+      {
+        "name": "BEST BUY",
+        "isin": "US0865161014",
+        "weightPct": 0.031
+      },
+      {
+        "name": "GENERAL MILLS INC",
+        "isin": "US3703341046",
+        "weightPct": 0.03078
+      },
+      {
+        "name": "ALLIANT ENERGY CORP",
+        "isin": "US0188021085",
+        "weightPct": 0.03023
+      },
+      {
+        "name": "TRACTOR SUPPLY",
+        "isin": "US8923561067",
+        "weightPct": 0.03015
+      },
+      {
+        "name": "SNAP ON INC",
+        "isin": "US8330341012",
+        "weightPct": 0.02996
+      },
+      {
+        "name": "KEYCORP",
+        "isin": "US4932671088",
+        "weightPct": 0.02987
+      },
+      {
+        "name": "SKYWORKS SOLUTIONS",
+        "isin": "US83088M1027",
+        "weightPct": 0.02916
+      },
+      {
+        "name": "LOEWS",
+        "isin": "US5404241086",
+        "weightPct": 0.02896
+      },
+      {
+        "name": "INTERNATIONAL PAPER",
+        "isin": "US4601461035",
+        "weightPct": 0.02856
+      },
+      {
+        "name": "CF INDUSTRIES HOLDINGS INC",
+        "isin": "US1252691001",
+        "weightPct": 0.02819
+      },
+      {
+        "name": "LENNAR A CLASS A",
+        "isin": "US5260571048",
+        "weightPct": 0.02789
+      },
+      {
+        "name": "F5",
+        "isin": "US3156161024",
+        "weightPct": 0.02772
+      },
+      {
+        "name": "BALL CORP",
+        "isin": "US0584981064",
+        "weightPct": 0.0277
+      },
+      {
+        "name": "STANLEY BLACK & DECKER",
+        "isin": "US8545021011",
+        "weightPct": 0.02767
+      },
+      {
+        "name": "ESSEX PROPERTY TRUST REIT",
+        "isin": "US2971781057",
+        "weightPct": 0.02752
+      },
+      {
+        "name": "KIMCO REALTY REIT CORP",
+        "isin": "US49446R1095",
+        "weightPct": 0.02745
+      },
+      {
+        "name": "WR BERKLEY",
+        "isin": "US0844231029",
+        "weightPct": 0.02738
+      },
+      {
+        "name": "JACOBS SOLUTIONS INC",
+        "isin": "US46982L1089",
+        "weightPct": 0.02735
+      },
+      {
+        "name": "GENUINE PARTS",
+        "isin": "US3724601055",
+        "weightPct": 0.02733
+      },
+      {
+        "name": "REVVITY",
+        "isin": "US7140461093",
+        "weightPct": 0.02695
+      },
+      {
+        "name": "TYSON FOODS INC CLASS A",
+        "isin": "US9024941034",
+        "weightPct": 0.02693
+      },
+      {
+        "name": "LEIDOS HOLDINGS",
+        "isin": "US5253271028",
+        "weightPct": 0.0268
+      },
+      {
+        "name": "NRG ENERGY INC",
+        "isin": "US6293775085",
+        "weightPct": 0.02676
+      },
+      {
+        "name": "HOST HOTELS & RESORTS REIT",
+        "isin": "US44107P1049",
+        "weightPct": 0.02657
+      },
+      {
+        "name": "NORDSON",
+        "isin": "US6556631025",
+        "weightPct": 0.02614
+      },
+      {
+        "name": "MASCO",
+        "isin": "US5745991068",
+        "weightPct": 0.02601
+      },
+      {
+        "name": "IDEX",
+        "isin": "US45167R1041",
+        "weightPct": 0.02598
+      },
+      {
+        "name": "GEN DIGITAL",
+        "isin": "US6687711084",
+        "weightPct": 0.02594
+      },
+      {
+        "name": "HASBRO",
+        "isin": "US4180561072",
+        "weightPct": 0.02584
+      },
+      {
+        "name": "TYLER TECHNOLOGIES",
+        "isin": "US9022521051",
+        "weightPct": 0.02577
+      },
+      {
+        "name": "NVR",
+        "isin": "US62944T1051",
+        "weightPct": 0.02565
+      },
+      {
+        "name": "JB HUNT TRANSPORT SERVICES",
+        "isin": "US4456581077",
+        "weightPct": 0.02554
+      },
+      {
+        "name": "ALLEGION PLC",
+        "isin": "IE00BFRT3W74",
+        "weightPct": 0.02537
+      },
+      {
+        "name": "TEXAS PACIFIC LAND",
+        "isin": "US88262P1021",
+        "weightPct": 0.02535
+      },
+      {
+        "name": "LYONDELLBASELL INDUSTRIES CLASS A",
+        "isin": "NL0009434992",
+        "weightPct": 0.02514
+      },
+      {
+        "name": "WEYERHAEUSER REIT",
+        "isin": "US9621661043",
+        "weightPct": 0.02472
+      },
+      {
+        "name": "BUNGE GLOBAL SA",
+        "isin": "CH1300646267",
+        "weightPct": 0.02446
+      },
+      {
+        "name": "APA",
+        "isin": "US03743Q1085",
+        "weightPct": 0.02433
+      },
+      {
+        "name": "ZEBRA TECHNOLOGIES CORP CLASS A",
+        "isin": "US9892071054",
+        "weightPct": 0.02419
+      },
+      {
+        "name": "FAIR ISAAC",
+        "isin": "US3032501047",
+        "weightPct": 0.02405
+      },
+      {
+        "name": "FIDELITY NATIONAL INFORMATION SERV",
+        "isin": "US31620M1062",
+        "weightPct": 0.02403
+      },
+      {
+        "name": "SUPER MICRO COMPUTER INC",
+        "isin": "US86800U3023",
+        "weightPct": 0.02402
+      },
+      {
+        "name": "GODADDY CLASS A",
+        "isin": "US3802371076",
+        "weightPct": 0.02394
+      },
+      {
+        "name": "ASSURANT INC",
+        "isin": "US04621X1081",
+        "weightPct": 0.02388
+      },
+      {
+        "name": "CH ROBINSON WORLDWIDE",
+        "isin": "US12541W2098",
+        "weightPct": 0.0236
+      },
+      {
+        "name": "CHARLES RIVER LABORATORIES INTERNA",
+        "isin": "US1598641074",
+        "weightPct": 0.0235
+      },
+      {
+        "name": "EVEREST GROUP",
+        "isin": "BMG3223R1088",
+        "weightPct": 0.02345
+      },
+      {
+        "name": "FEDEX FREIGHT HOLDING COMPANY INC",
+        "isin": "US3143521058",
+        "weightPct": 0.02344
+      },
+      {
+        "name": "INVITATION HOMES",
+        "isin": "US46187W1071",
+        "weightPct": 0.02324
+      },
+      {
+        "name": "RALPH LAUREN CLASS A",
+        "isin": "US7512121010",
+        "weightPct": 0.02323
+      },
+      {
+        "name": "TEXTRON INC",
+        "isin": "US8832031012",
+        "weightPct": 0.02289
+      },
+      {
+        "name": "AVERY DENNISON CORP",
+        "isin": "US0536111091",
+        "weightPct": 0.02275
+      },
+      {
+        "name": "MID AMERICA APARTMENT COMMUNITIES",
+        "isin": "US59522J1034",
+        "weightPct": 0.02253
+      },
+      {
+        "name": "JM SMUCKER",
+        "isin": "US8326964058",
+        "weightPct": 0.02235
+      },
+      {
+        "name": "CHARTER COMMUNICATIONS CLASS A",
+        "isin": "US16119P1084",
+        "weightPct": 0.02214
+      },
+      {
+        "name": "HEALTHPEAK PROPERTIES INC",
+        "isin": "US42250P1030",
+        "weightPct": 0.02188
+      },
+      {
+        "name": "REDDIT CLASS A",
+        "isin": "US75734B1008",
+        "weightPct": 0.02159
+      },
+      {
+        "name": "FOX CLASS A",
+        "isin": "US35137L1052",
+        "weightPct": 0.02146
+      },
+      {
+        "name": "BAXTER INTERNATIONAL",
+        "isin": "US0718131099",
+        "weightPct": 0.02083
+      },
+      {
+        "name": "COSTAR GROUP",
+        "isin": "US22160N1090",
+        "weightPct": 0.02065
+      },
+      {
+        "name": "JACK HENRY AND ASSOCIATES INC",
+        "isin": "US4262811015",
+        "weightPct": 0.02055
+      },
+      {
+        "name": "MCCORMICK & CO NON-VOTING",
+        "isin": "US5797802064",
+        "weightPct": 0.01991
+      },
+      {
+        "name": "REGENCY CENTERS REIT CORP",
+        "isin": "US7588491032",
+        "weightPct": 0.0198
+      },
+      {
+        "name": "SOLVENTUM",
+        "isin": "US83444M1018",
+        "weightPct": 0.0198
+      },
+      {
+        "name": "TRIMBLE INC",
+        "isin": "US8962391004",
+        "weightPct": 0.01972
+      },
+      {
+        "name": "GARTNER",
+        "isin": "US3666511072",
+        "weightPct": 0.01969
+      },
+      {
+        "name": "PINNACLE WEST",
+        "isin": "US7234841010",
+        "weightPct": 0.01969
+      },
+      {
+        "name": "ECHOSTAR CLASS A",
+        "isin": "US2787681061",
+        "weightPct": 0.01963
+      },
+      {
+        "name": "FACTSET RESEARCH SYSTEMS",
+        "isin": "US3030751057",
+        "weightPct": 0.01956
+      },
+      {
+        "name": "GLOBE LIFE",
+        "isin": "US37959E1029",
+        "weightPct": 0.01951
+      },
+      {
+        "name": "COOPER",
+        "isin": "US2166485019",
+        "weightPct": 0.0194
+      },
+      {
+        "name": "CLOROX",
+        "isin": "US1890541097",
+        "weightPct": 0.01899
+      },
+      {
+        "name": "INVESCO LTD",
+        "isin": "BMG491BT1088",
+        "weightPct": 0.01888
+      },
+      {
+        "name": "DECKERS OUTDOOR",
+        "isin": "US2435371073",
+        "weightPct": 0.0188
+      },
+      {
+        "name": "ROLLINS INC",
+        "isin": "US7757111049",
+        "weightPct": 0.01861
+      },
+      {
+        "name": "LULULEMON ATHLETICA",
+        "isin": "US5500211090",
+        "weightPct": 0.01845
+      },
+      {
+        "name": "ALBEMARLE CORP",
+        "isin": "US0126531013",
+        "weightPct": 0.01833
+      },
+      {
+        "name": "BIO TECHNE",
+        "isin": "US09073M1045",
+        "weightPct": 0.01816
+      },
+      {
+        "name": "TKO GROUP HOLDINGS INC CLASS A",
+        "isin": "US87256C1018",
+        "weightPct": 0.01783
+      },
+      {
+        "name": "DOMINOS PIZZA",
+        "isin": "US25754A2015",
+        "weightPct": 0.01781
+      },
+      {
+        "name": "HUNTINGTON INGALLS INDUSTRIES",
+        "isin": "US4464131063",
+        "weightPct": 0.01779
+      },
+      {
+        "name": "AKAMAI TECHNOLOGIES INC",
+        "isin": "US00971T1016",
+        "weightPct": 0.01758
+      },
+      {
+        "name": "LENNOX INTERNATIONAL",
+        "isin": "US5261071071",
+        "weightPct": 0.01745
+      },
+      {
+        "name": "PENTAIR",
+        "isin": "IE00BLS09M33",
+        "weightPct": 0.01737
+      },
+      {
+        "name": "INSULET",
+        "isin": "US45784P1012",
+        "weightPct": 0.01734
+      },
+      {
+        "name": "UDR REIT",
+        "isin": "US9026531049",
+        "weightPct": 0.01697
+      },
+      {
+        "name": "ALIGN TECHNOLOGY",
+        "isin": "US0162551016",
+        "weightPct": 0.0168
+      },
+      {
+        "name": "AES",
+        "isin": "US00130H1059",
+        "weightPct": 0.01675
+      },
+      {
+        "name": "LAS VEGAS SANDS",
+        "isin": "US5178341070",
+        "weightPct": 0.01667
+      },
+      {
+        "name": "UNIVERSAL HEALTH SERVICES CLASS B",
+        "isin": "US9139031002",
+        "weightPct": 0.01654
+      },
+      {
+        "name": "CAMDEN PROPERTY TRUST REIT",
+        "isin": "US1331311027",
+        "weightPct": 0.01645
+      },
+      {
+        "name": "BXP",
+        "isin": "US1011211018",
+        "weightPct": 0.01641
+      },
+      {
+        "name": "GENERAC HOLDINGS",
+        "isin": "US3687361044",
+        "weightPct": 0.01591
+      },
+      {
+        "name": "NEWS CLASS A",
+        "isin": "US65249B1098",
+        "weightPct": 0.01542
+      },
+      {
+        "name": "FRANKLIN TEMPLETON",
+        "isin": "US3546131018",
+        "weightPct": 0.01537
+      },
+      {
+        "name": "FEDERAL REALTY INVESTMENT TRUST RE",
+        "isin": "US3137451015",
+        "weightPct": 0.01437
+      },
+      {
+        "name": "APTIV PLC",
+        "isin": "JE00BTDN8H13",
+        "weightPct": 0.01371
+      },
+      {
+        "name": "HENRY SCHEIN",
+        "isin": "US8064071025",
+        "weightPct": 0.01286
+      },
+      {
+        "name": "NORWEGIAN CRUISE LINE HOLDINGS",
+        "isin": "BMG667211046",
+        "weightPct": 0.0128
+      },
+      {
+        "name": "FOX CLASS B",
+        "isin": "US35137L2043",
+        "weightPct": 0.01268
+      },
+      {
+        "name": "ERIE INDEMNITY CLASS A",
+        "isin": "US29530P1021",
+        "weightPct": 0.01196
+      },
+      {
+        "name": "A O SMITH",
+        "isin": "US8318652091",
+        "weightPct": 0.0114
+      },
+      {
+        "name": "MOSAIC",
+        "isin": "US61945C1036",
+        "weightPct": 0.01121
+      },
+      {
+        "name": "ALEXANDRIA REAL ESTATE EQUITIES RE",
+        "isin": "US0152711091",
+        "weightPct": 0.01104
+      },
+      {
+        "name": "HORMEL FOODS CORP",
+        "isin": "US4404521001",
+        "weightPct": 0.01041
+      },
+      {
+        "name": "DAVITA INC",
+        "isin": "US23918K1088",
+        "weightPct": 0.01038
+      },
+      {
+        "name": "WYNN RESORTS",
+        "isin": "US9831341071",
+        "weightPct": 0.00911
+      },
+      {
+        "name": "MGM RESORTS INTERNATIONAL",
+        "isin": "US5529531015",
+        "weightPct": 0.00902
+      },
+      {
+        "name": "BROWN FORMAN CLASS B",
+        "isin": "US1156372096",
+        "weightPct": 0.00886
+      },
+      {
+        "name": "SKYDANCE SHS CLASS B",
+        "isin": "US69932A2042",
+        "weightPct": 0.00702
+      },
+      {
+        "name": "NEWS CLASS B",
+        "isin": "US65249B2088",
+        "weightPct": 0.00566
+      }
+    ],
+    "synthetic": false
+  }
+}

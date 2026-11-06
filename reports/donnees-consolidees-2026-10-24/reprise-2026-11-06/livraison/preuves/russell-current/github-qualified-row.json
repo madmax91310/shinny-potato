@@ -1,0 +1,204 @@
+{
+  "run": 42270867568,
+  "job": 128074760736,
+  "artifact": 13528739719,
+  "validatedHead": "7cb5f93a2faa85f28ac14a28136e2c8653c9727b",
+  "row": {
+    "id": "russell-1000",
+    "name": "Russell 1000",
+    "errors": [],
+    "unavailable": [
+      "monthly holdings: individual weights absent from monthly factsheet; quarterly membership weights collected separately with their own date"
+    ],
+    "holdings": {
+      "asOf": "2026-06-30",
+      "rows": [
+        [
+          "Nvidia Corp",
+          6.732
+        ],
+        [
+          "Apple Inc",
+          6.034
+        ],
+        [
+          "Microsoft Corp",
+          3.997
+        ],
+        [
+          "Amazon Com Inc",
+          3.335
+        ],
+        [
+          "Alphabet Inc Cl A",
+          3.003
+        ],
+        [
+          "Broadcom Inc",
+          2.535
+        ],
+        [
+          "Alphabet Inc Cl C",
+          2.423
+        ],
+        [
+          "Micron Technology Inc",
+          1.877
+        ],
+        [
+          "Meta Platforms Inc",
+          1.786
+        ],
+        [
+          "Tesla Inc",
+          1.772
+        ]
+      ],
+      "membershipCount": 1023,
+      "basis": "index",
+      "method": "Poids officiels trimestriels du Russell 1000 exact ; top dix des lignes, classes d’actions séparées. Photographie indépendante des secteurs mensuels.",
+      "source": {
+        "url": "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000",
+        "checkedAt": "2026-11-06",
+        "sha256": "5da48894939e99dbe2b9c3c3295c53cb6b8bf28b157b289aa34662c95c5e9f29",
+        "label": "FTSE Russell · ESMA Quarterly Membership Weights · Russell 1000"
+      }
+    },
+    "facts": {
+      "index": "Russell 1000",
+      "asOf": "2026-10-31",
+      "constituents": 1022,
+      "sectorExtractionProof": {
+        "qualifiedScales": [
+          2,
+          1
+        ],
+        "attempts": [
+          {
+            "scale": 2,
+            "status": "qualified"
+          },
+          {
+            "scale": 3,
+            "status": "unreadable",
+            "reason": "Russell printed weight ambiguous"
+          },
+          {
+            "scale": 1,
+            "status": "qualified"
+          }
+        ],
+        "minimumOcrConfidence": 75,
+        "maxGeometryDifferencePctPoints": 0.5,
+        "weightsFromPrintedLabelsOnly": true
+      },
+      "sectorMethod": "ICB industries · printed Russell 1000 chart",
+      "countries": [
+        [
+          "🇺🇸 États-Unis",
+          100
+        ]
+      ],
+      "sectors": [
+        [
+          "⚡ Énergie",
+          4.02
+        ],
+        [
+          "🏠 Immobilier",
+          2.04
+        ],
+        [
+          "🏥 Santé",
+          9.88
+        ],
+        [
+          "🏦 Finance",
+          9.92
+        ],
+        [
+          "🏭 Industrie",
+          11.72
+        ],
+        [
+          "💡 Services publics",
+          2.31
+        ],
+        [
+          "💻 Technologie",
+          40.51
+        ],
+        [
+          "📡 Communication",
+          2.07
+        ],
+        [
+          "🛍️ Consommation cyclique",
+          12.27
+        ],
+        [
+          "🛒 Consommation de base",
+          3.7
+        ],
+        [
+          "🪨 Matériaux",
+          1.58
+        ]
+      ],
+      "holdings": [],
+      "source": {
+        "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open",
+        "checkedAt": "2026-11-06",
+        "sha256": "f137eb024d3f95f901fb5ca0719ffb11b5d348bd6b8b82a951928c3f55a67943",
+        "label": "Fiche officielle FTSE Russell"
+      },
+      "provenance": "Indice Russell 1000 exact. Comptage natif ; secteurs imprimés lus à deux résolutions, associés aux couleurs de légende et contrôlés géométriquement. Les poids ne sont jamais déduits des surfaces. États-Unis : univers des sociétés américaines de l’indice, pas domicile juridique individuel. Poids du top dix absents de la publication ; aucune substitution ETF."
+    },
+    "returns": {
+      "asOf": "2026-10-30",
+      "currency": "USD",
+      "variant": "TOTAL",
+      "values": [
+        [
+          2025,
+          17.4
+        ],
+        [
+          2024,
+          24.5
+        ],
+        [
+          2023,
+          26.5
+        ],
+        [
+          2022,
+          -19.1
+        ],
+        [
+          2021,
+          26.5
+        ],
+        [
+          2020,
+          21.0
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=D41430&isManual=False",
+        "checkedAt": "2026-11-06",
+        "sha256": "681e5cf724ca4fe288df5c7c57f1b953f05dfc240108fc693439f0b3fc7ec152",
+        "label": "Rendements calendaires officiels automatisés · Russell 1000"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "Russell 1000 · USD · dividendes réinvestis",
+        "date": "2026-10-30"
+      }
+    }
+  },
+  "readOnly": true,
+  "recordingAndPublicationNotInferred": true
+}

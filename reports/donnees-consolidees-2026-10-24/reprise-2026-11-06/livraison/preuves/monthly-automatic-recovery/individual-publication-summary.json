@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-11-06T19:17:00.767907+00:00",
+  "capturedBuild": {
+    "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+    "dataSha": "f212ab74eebaf825b930a67e636da03bebb32638",
+    "lane": "validated-data",
+    "builtAt": "2026-11-06T18:17:53.186Z"
+  },
+  "expected": 717,
+  "validatedInRun": 716,
+  "validatedMatchingPublishedDigestAndPeriod": 716,
+  "notMatchedNotAssumedMissing": [],
+  "wtI": {
+    "series_id": "etc_wti_crude_oilNav",
+    "producer_run": 42242620055,
+    "status_in_run": "validated",
+    "source_state": "unchanged-verified",
+    "source_digest": "2b6b34e43143e7189516adcacc37073e806763e3a48663934495427a5933ca29",
+    "period_in_run": "2026-10",
+    "published_registry": "src/data/automated-etf-monthly.json",
+    "published_blob": "84bb024c2b616ab6fbbccd5adb1faf75eb50b57b",
+    "published_digest": "2b6b34e43143e7189516adcacc37073e806763e3a48663934495427a5933ca29",
+    "published_period": "2026-10",
+    "published_control_date": "2026-11-06",
+    "same_published_digest_and_period": true,
+    "instrument_explicitly_controlled": "GB00B15KXV33",
+    "fields_explicitly_controlled": "[\"tabular.entityID\", \"tabular.entityGroup\", \"tabular.wtListingID\", \"tabular.currency\", \"tabular.levelType\", \"gro10k.wtTypeID\", \"gro10k.wtListingID\", \"gro10k.tickerA\", \"gro10k.name\", \"gro10k.currency\", \"gro10k.baseCCY\", \"gro10k.entityInceptionDt\", \"gro10k.levelType\", \"gro10k.shiftTicker\", \"gro10k.cntCheck\", \"gro10k.cobDate\", \"gro10k.officialLevel\"]",
+    "controlled_calendar_years": "[\"2016\", \"2017\", \"2018\", \"2019\", \"2020\", \"2021\", \"2022\", \"2023\", \"2024\", \"2025\"]",
+    "scope_not_inferred_from_global_success": true,
+    "source_checks_do_not_certify_other_fields": true
+  },
+  "allFieldsNotCertifiedByAggregateSuccess": true
+}

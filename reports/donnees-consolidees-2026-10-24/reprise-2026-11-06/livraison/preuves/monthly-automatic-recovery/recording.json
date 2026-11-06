@@ -1,0 +1,22 @@
+{
+  "runId": 42242620055,
+  "jobId": 127976530370,
+  "event": "workflow_dispatch",
+  "automaticRecovery": true,
+  "commit": "5739c1c16cb3452af46322b4f547faf2b159bc48",
+  "recordingStepConclusion": "success",
+  "scopeCount": 717,
+  "validatedCount": 716,
+  "failed": [
+    "etfIE00BDVPNG13Nav"
+  ],
+  "ngas": {
+    "responseSha256": "19643dc420b4d2cae76cac8fae2030cba910dbdd56f6f9ccd70a10f268cd1dd2",
+    "checkedAt": "2026-11-06",
+    "periodEnd": "2026-10",
+    "currency": "USD",
+    "convention": "Rendement total NAV officiel de la part exacte en USD, net des frais ; unités de performance sans ajout de distributions ; ancienne cotation conservée séparément"
+  },
+  "wtaiLastValidDatePreserved": "2026-11-04",
+  "publicationNotInferred": true
+}

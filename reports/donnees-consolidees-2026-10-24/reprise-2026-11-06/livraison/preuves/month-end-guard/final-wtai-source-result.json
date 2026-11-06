@@ -1,0 +1,65 @@
+{
+  "runId": 42291553949,
+  "jobId": 128145990166,
+  "event": "push",
+  "artifactId": 13542897334,
+  "observation": {
+    "checkedAt": "2026-11-06T21:19:13.350582+00:00",
+    "scope": {
+      "requestedIds": [
+        "etfIE00BDVPNG13Nav"
+      ],
+      "expectedIds": [
+        "etfIE00BDVPNG13Nav"
+      ],
+      "selection": "failed-or-missing"
+    },
+    "series": [
+      {
+        "id": "etfIE00BDVPNG13Nav",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "77e54f58769cc7a89a559cd40b50dfe85c7ad9909c8d407dafe83a94a0b16173",
+        "controlScope": {
+          "controlledInstrument": "IE00BDVPNG13",
+          "controlledFields": [
+            "tabular.entityID",
+            "tabular.entityGroup",
+            "tabular.wtListingID",
+            "tabular.currency",
+            "tabular.levelType",
+            "gro10k.wtTypeID",
+            "gro10k.wtListingID",
+            "gro10k.tickerA",
+            "gro10k.name",
+            "gro10k.currency",
+            "gro10k.baseCCY",
+            "gro10k.entityInceptionDt",
+            "gro10k.levelType",
+            "gro10k.shiftTicker",
+            "gro10k.cntCheck",
+            "gro10k.cobDate",
+            "gro10k.officialLevel"
+          ],
+          "requestedStart": "2018-12-01",
+          "controlledCalendarYears": [
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ]
+        }
+      }
+    ]
+  },
+  "recordCommit": "5a8a07527eb8c44f3450cc2e76a87dc9c79a4743",
+  "publication": {
+    "state": "verified",
+    "proof": "final-monthly-publication.json",
+    "financialPointsUnchanged": true
+  }
+}

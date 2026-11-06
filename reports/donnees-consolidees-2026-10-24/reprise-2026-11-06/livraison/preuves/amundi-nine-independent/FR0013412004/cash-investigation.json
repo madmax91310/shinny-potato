@@ -1,0 +1,22 @@
+{
+  "isin": "FR0013412004",
+  "sourceControlObservedAt": "2026-11-06T11:54:57.132613+00:00",
+  "classificationCorrectedAt": "2026-11-06T11:58:24.115954+00:00",
+  "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+  "responseSha256": "c7908bf69906ef857be973e88bea4038ee57b08bda9078b209ea1a289662f4f4",
+  "policy": "Capitalisation and/or distribution",
+  "historicalFieldRowCounts": {
+    "officialNav": 492,
+    "countervalorisedAdjustedNAV": 490,
+    "navCurrency": 492,
+    "dividendAmount": null,
+    "dividendCurrency": null
+  },
+  "cashFields": {
+    "dividendAmount": null,
+    "dividendCurrency": null
+  },
+  "monthlyUseRestored": false,
+  "missingEvidence": "Explicit, complete dividend amount/currency history or independently qualified reinvested-return convention for this exact share. Null is unavailable, never zero.",
+  "localProbeFailureExplained": "The first probe incorrectly called len(None); this classification reads the already saved real body without making a new request or refreshing its observation date."
+}

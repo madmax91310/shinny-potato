@@ -1,0 +1,130 @@
+{
+  "generatedAt": "2026-11-06T23:07:26.616232+00:00",
+  "finalPublicationCaptured": true,
+  "initialDiagnostics": 10413,
+  "finalDiagnostics": 10596,
+  "initialKinds": {
+    "failure": 70,
+    "connection": 154,
+    "monitoring": 372,
+    "qualification": 2620,
+    "due": 9,
+    "editorial": 28,
+    "archive": 4877,
+    "waiting": 831,
+    "not-applicable": 430,
+    "history": 1022
+  },
+  "finalKinds": {
+    "failure": 43,
+    "connection": 268,
+    "monitoring": 371,
+    "qualification": 2552,
+    "due": 2,
+    "editorial": 28,
+    "archive": 5002,
+    "waiting": 834,
+    "not-applicable": 430,
+    "history": 1066
+  },
+  "allInitialIdentitiesRetained": true,
+  "historicalInitialRowsRetained": 661,
+  "catalogFields": 4921,
+  "nativeInventoryEntities": 1645,
+  "nativeInventoryEntityTypes": {
+    "instrument": 693,
+    "series": 778,
+    "scpi": 8,
+    "reference": 11,
+    "actor": 11,
+    "broker": 8,
+    "index": 56,
+    "household": 29,
+    "lexicon": 44,
+    "insurance": 7
+  },
+  "externalConsumerEntities": 2098,
+  "entitiesNotCountedAsDistinctFinancialAssets": true,
+  "toolsWithDeclaredDataConsumers": 21,
+  "dataUsageMatrixRows": 33989,
+  "nativeContractsWithoutFieldDetails": [],
+  "consumerUsageSummaryDeclaredNotCertified": {
+    "tools": 21,
+    "usages": 33989,
+    "required": 30304,
+    "connected": 24709,
+    "blocked": 1231,
+    "unconfirmed": 4364,
+    "unmapped": 0
+  },
+  "financialComparisonsPreserved": 90,
+  "refusedWindowsInConstant79Scope": 9,
+  "newMonthlyWindowsAdmittedInThisLot": 0,
+  "noAbsenceInterpretedAsResolution": true,
+  "activeToolsRetainedInPerToolReport": 26,
+  "actions19StatusesPreserved": {
+    "partiellement corrigée": 5,
+    "corrigée": 10,
+    "périmètre supprimé": 2,
+    "bloquée": 1,
+    "déjà résolue": 1
+  },
+  "specificInitialDiagnosticRowsWithNewProof": 37,
+  "evidenceDoesNotCertifyUnrelatedFields": true,
+  "completedAutomationClaimed": false,
+  "financialPublicCapture": {
+    "sha": "2850b220841fa19e4aa561804b474e5e280a956d",
+    "dataSha": "ad419ccfcc929e2b67a794255ef9c04caa60e579",
+    "lane": "validated-data",
+    "builtAt": "2026-11-06T14:39:59.270Z"
+  },
+  "financialPublicConsumersVerified": true,
+  "financialNumericalRepairs": 2,
+  "publishedPriceReviewRecords": 113,
+  "priceUsageRestrictionsExplicitlyAttachedToNativeMatrixRows": 126,
+  "newMonthlyWindowsInConstant79Scope": 0,
+  "usageRowsWithPublishedFreshnessPolicy": 19732,
+  "usageRowsWithoutExplicitPublishedFreshnessMapping": 14257,
+  "missingUnitNotCountedAsSourceOutage": true,
+  "operationalControlsMasterRef": "b641e888850898e6fdf392e62540e45c96ccb3d9",
+  "workflowFiles": 53,
+  "registeredWorkflowEntries": 24,
+  "workflowFilesWithCron": 24,
+  "registeredManualWorkflows": [
+    "update-editorial-radar.yml"
+  ],
+  "concurrentRadarStopPreserved": [
+    "1188",
+    "1189"
+  ],
+  "sourcePRsDelivered": [
+    1180,
+    1181,
+    1182,
+    1183,
+    1185,
+    1187,
+    1190,
+    1191,
+    1192,
+    1193,
+    1195
+  ],
+  "lateDeliveryPublicProofs": {
+    "GlobalX": true,
+    "Russell": true,
+    "ScpiGuard": true
+  },
+  "finalPublicBuild": {
+    "sha": "b641e888850898e6fdf392e62540e45c96ccb3d9",
+    "builtAt": "2026-11-06T22:19:37Z"
+  },
+  "finalMonitorGitBlob": "4dd3beaaebd6ad423349db89b5a07997dae450ff",
+  "final14ControlsProof": "preuves/postmerge-nested-full-gate.json",
+  "finalPublicationProof": "preuves/postmerge-publication-verified.json",
+  "latestMonthlyIndividualResults": {
+    "etfIE00BDVPNG13Nav": "unchanged-verified; actual source control,17fields; publication verified",
+    "etc_natural_gasNav": "failed403; failure published; qualified financial points conserved; bounded recovery unchanged"
+  },
+  "lateProofKeysAreNotDistinctRepairCauses": true
+}

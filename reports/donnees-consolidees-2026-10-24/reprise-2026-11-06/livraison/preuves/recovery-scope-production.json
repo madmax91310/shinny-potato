@@ -1,0 +1,76 @@
+{
+  "checkedAt": "2026-11-06T17:16:49.921856+00:00",
+  "pr": 1190,
+  "validatedHead": "789e66a4ff88ac989ae005faabce38e3dc52898f",
+  "mergeCommit": "651f35a27bd24909b354ab6f795625a81f23f2b8",
+  "mergedAt": "2026-11-06T17:13:16Z",
+  "exact14GatesSuccessful": true,
+  "fiveSourceFilesMatchValidatedHead": true,
+  "monthlyRecordingAncestorPreserved": "5739c1c16cb3452af46322b4f547faf2b159bc48",
+  "ordinaryMonitorProductionNotYetObserved": false,
+  "targetedProductionPostNotObserved": false,
+  "transientMergeabilityCheckDidNotStopShell": true,
+  "postMergeVerificationCompleted": true,
+  "ordinaryMonitorRun": 42259620849,
+  "ordinaryMonitorCheckout": "ed5264e2202b034c48f434e9ae30336f26c67663",
+  "ordinaryMonitorJob": 128043686401,
+  "ordinaryMonitorConclusion": "success",
+  "ordinaryMonitorAggregateAutomationTests": 172,
+  "ordinaryMonitorProducerContractTests": 62,
+  "ordinaryMonitorCommand": "python scripts/publish_automation_status.py --backfill",
+  "ordinaryMonitorCompletedAt": "2026-11-06T17:40:44Z",
+  "targetedRecoveryPostObserved": {
+    "monitorReadAt": "2026-11-06T20:35:04.595562+00:00",
+    "automaticRetryRun": 42288297918,
+    "actor": "github-actions[bot]",
+    "createdAt": "2026-11-06T20:25:57Z",
+    "origin": {
+      "at": "2026-11-06T20:24:51.108442+00:00",
+      "reason": "recording-failed",
+      "sourceRunId": 42280175362,
+      "status": "dispatched",
+      "ref": "master",
+      "inputs": {
+        "series": "etc_natural_gasNav"
+      },
+      "error": null
+    },
+    "dispatchScope": {
+      "file": "monthly-observation.json",
+      "reportSha256": "8600657f9b4cf75be4a4e58c15ee81eb401094cee311bef3ba9b85bc8a35397d",
+      "scopeSha256": "8c1e132819ca9ae023dc4417f204ee936e45a8db83a1ffca1a75bc0eff7f2500",
+      "expectedIdsCount": 1,
+      "requestedIdsCount": 1,
+      "sourceRunId": 42280175362,
+      "sourceAttempt": 1,
+      "oldReportQualificationUnchanged": true
+    },
+    "originalReportSha256Verified": true,
+    "requestedScopeCount": 1,
+    "expectedScopeCount": 1,
+    "dispatchInputs": {
+      "series": "etc_natural_gasNav"
+    },
+    "limit": "Actual automatic POST and persisted scope observed; retry collection/recording/publication still followed separately",
+    "actualProducerScopeVerified": {
+      "requestedIds": [
+        "etc_natural_gasNav"
+      ],
+      "expectedIds": [
+        "etc_natural_gasNav"
+      ],
+      "selection": "explicit"
+    },
+    "actualResults": [
+      {
+        "id": "etc_natural_gasNav",
+        "status": "failed",
+        "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n\nNode.js v20.20.2\n"
+      }
+    ],
+    "recordingOutcome": "refused correctly after1195 changed guard/test/source inputs while observation was in flight",
+    "publicationOutcome": "not run for that refused observation; fresh ordinary target requested20:56"
+  },
+  "targetFuturePostNotYetExercised": false,
+  "targetedRecoveryPostObservedAt": "2026-11-06T20:25:57Z"
+}

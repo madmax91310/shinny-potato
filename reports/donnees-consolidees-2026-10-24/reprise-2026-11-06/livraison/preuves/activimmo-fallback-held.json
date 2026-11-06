@@ -1,0 +1,14 @@
+{
+  "observedAt": "2026-11-06T12:55:04.917318+00:00",
+  "runId": 42208631454,
+  "fallbackBuildJob": 127894503910,
+  "publishedCode": "9b31bb7ae4edd82d0e0780ad2f341276bfb0d5c8",
+  "dataSha": "ea4f6d0850010e7eddf73f1c530f8105a914b0af",
+  "heldFile": "src/data/automated-scpi.json",
+  "newKeysNotKnownToOldCode": [
+    "geographyEvidence",
+    "imageSha256"
+  ],
+  "result": "safe hold, not a source or recording failure; new code already merged in fa930db1 must pass ordinary full publication. No guard disabled.",
+  "publicRegistryStillOldAtObservation": true
+}

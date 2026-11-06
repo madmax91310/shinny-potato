@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-11-06T22:07:27.584602+00:00",
+  "runId": 42279131940,
+  "jobId": 128168322634,
+  "gateCodeSha": "74ccfbd9fd5176e17861780a16f7b80e8dc6abec",
+  "required14Controls": "success",
+  "buildAndSmoke": "success",
+  "failureStep": "actions/deploy-pages@v5.0.1",
+  "providerState": "syncing_files",
+  "failure": "600000ms upstream deployment timeout; automatic action abortion",
+  "failedAt": "2026-11-06T22:06:01Z",
+  "noTimeoutOrQualityThresholdChanged": true,
+  "retry": {
+    "requestedAt": "2026-11-06T22:07:50.267864+00:00",
+    "mode": "GitHub ordinary failed job rerun",
+    "endpoint": "actions/jobs/128168322634/rerun",
+    "boundedAttempts": 1,
+    "productionQueue": "max; no existing run cancelled",
+    "latestRunState": {
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 2,
+      "jobId": 128202912950,
+      "pagesStep": "skipped"
+    }
+  },
+  "ordinaryIndependentRetry": {
+    "runId": 42278834427,
+    "selectedCodeSha": "b641e888850898e6fdf392e62540e45c96ccb3d9",
+    "all14ControlsSuccess": true,
+    "gateProof": "postmerge-nested-full-gate.json",
+    "publication": {
+      "jobId": 128202036797,
+      "status": "completed",
+      "conclusion": "success",
+      "publicCodeSha": "b641e888850898e6fdf392e62540e45c96ccb3d9",
+      "checkedAt": "2026-11-06T22:54:46.003507+00:00",
+      "publicProofs": [
+        "globalx-ordinary-production/publication.json",
+        "russell-production/publication.json",
+        "month-end-guard/final-monthly-publication.json"
+      ]
+    }
+  }
+}

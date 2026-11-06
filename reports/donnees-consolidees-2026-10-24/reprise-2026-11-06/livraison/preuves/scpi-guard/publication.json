@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-11-06T21:26:56.118910+00:00",
+  "build": {
+    "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+    "dataSha": "346a6835c3d2a4ded76ea56c741c2011db15de1c",
+    "lane": "validated-data",
+    "builtAt": "2026-11-06T21:18:53.812Z"
+  },
+  "registryBlob": "f4ddbce68f9de6f9838cd647c5f4ef6f4291bc8b",
+  "sourceProductionRun": 42291553774,
+  "recordingCommit": "346a6835c3d2a4ded76ea56c741c2011db15de1c",
+  "stablePublication": true,
+  "products": {
+    "iroko-zen": {
+      "financialFieldsAndObservationDatesUnchanged": true,
+      "normalizedBusinessSha256": "fefe1b785e28f43a6beb4d1456764830ee04dac0e1b2df9603c7d65b4560d418",
+      "quarterDate": "2026-09-30"
+    },
+    "remake-live": {
+      "financialFieldsAndObservationDatesUnchanged": true,
+      "normalizedBusinessSha256": "4de4623b79eb0a2a05febfb9f4a645fed04bec29ef22c530d8900c506024f0f8",
+      "quarterDate": "2026-09-30"
+    },
+    "corum-origin": {
+      "financialFieldsAndObservationDatesUnchanged": true,
+      "normalizedBusinessSha256": "0b34693ba9afcac7996c82cc5c1a9191003c756e47ace657b0af18ac4c7e0f40",
+      "quarterDate": "2026-09-30"
+    },
+    "corum-xl": {
+      "financialFieldsAndObservationDatesUnchanged": true,
+      "normalizedBusinessSha256": "93c77a2dc7a6bd5436a7b9d730a53c701066df5a1bacba68fe71f0946a8efa7c",
+      "quarterDate": "2026-09-30"
+    },
+    "corum-eurion": {
+      "financialFieldsAndObservationDatesUnchanged": true,
+      "normalizedBusinessSha256": "324683c0dd2b0b33c1fa8c82aac0b6c3f10c0976a01db2538dd435e8cb5b6080",
+      "quarterDate": "2026-09-30"
+    },
+    "transitions-europe": {
+      "financialFieldsAndObservationDatesUnchanged": true,
+      "normalizedBusinessSha256": "15e8476004065fc68fd00332e7bc03a7caed7bca9f526ef0391be6e83b38670c",
+      "quarterDate": "2026-09-30"
+    },
+    "activimmo": {
+      "financialFieldsAndObservationDatesUnchanged": true,
+      "normalizedBusinessSha256": "f6a07f33619b0a0d120fab4e85acddbb2a07d2e3295d1826c83d13eb45389168",
+      "quarterDate": "2026-09-30"
+    },
+    "epargne-pierre": {
+      "financialFieldsAndObservationDatesUnchanged": true,
+      "normalizedBusinessSha256": "37eb1ad74de87c216e6d8328a1d63e7e3374b4146accb143df3cb8d2c26f2dcf",
+      "quarterDate": "2026-09-30"
+    }
+  },
+  "ignoredControlAndSourceMetadataKeys": [
+    "checkedAt",
+    "collectedAt",
+    "collectionStatus",
+    "identitySha256",
+    "imageSha256",
+    "modifiedAt",
+    "pageSha256",
+    "responseSha256",
+    "retrievedAt",
+    "sha256",
+    "sourceChecks",
+    "sourceUrl",
+    "sourceUrls"
+  ],
+  "scope": "All eight unchanged business records and their real observation dates preserved after recording rebase; new source controls and provenance remain separately recorded. This does not certify unchanged financial data independently."
+}

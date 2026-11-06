@@ -1,0 +1,22 @@
+{
+  "run": 42288297918,
+  "job": 128134769578,
+  "artifact": 13540940356,
+  "scope": {
+    "requestedIds": [
+      "etc_natural_gasNav"
+    ],
+    "expectedIds": [
+      "etc_natural_gasNav"
+    ],
+    "selection": "explicit"
+  },
+  "series": [
+    {
+      "id": "etc_natural_gasNav",
+      "status": "failed",
+      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n\nNode.js v20.20.2\n"
+    }
+  ],
+  "recording": "refused after1195 code changes; no blind republish"
+}

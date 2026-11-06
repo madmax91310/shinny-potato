@@ -1,0 +1,996 @@
+{
+  "producerStarted": "producer-results-v1",
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "listing:SE0021921269",
+          "instrument": "SE0021921269",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US18915M1071",
+          "instrument": "US18915M1071",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US98980G1022",
+          "instrument": "US98980G1022",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US19260Q1076",
+          "instrument": "US19260Q1076",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US75734B1008",
+          "instrument": "US75734B1008",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:NL0009805522",
+          "instrument": "NL0009805522",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:KYG6683N1034",
+          "instrument": "KYG6683N1034",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US36828A1016",
+          "instrument": "US36828A1016",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US7731211089",
+          "instrument": "US7731211089",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US8334451098",
+          "instrument": "US8334451098",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US23804L1035",
+          "instrument": "US23804L1035",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US83406F1021",
+          "instrument": "US83406F1021",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US21037T1097",
+          "instrument": "US21037T1097",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US00217D1000",
+          "instrument": "US00217D1000",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:LU1778762911",
+          "instrument": "LU1778762911",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US5949724083",
+          "instrument": "US5949724083",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US26603R1068",
+          "instrument": "US26603R1068",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US92537N1081",
+          "instrument": "US92537N1081",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:CA13321L1085",
+          "instrument": "CA13321L1085",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US58733R1023",
+          "instrument": "US58733R1023",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US7707001027",
+          "instrument": "US7707001027",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:directory:us-other",
+          "instrument": "directory:us-other",
+          "fields": [
+            "primary-directory"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:FR0010524777",
+          "instrument": "FR0010524777",
+          "fields": [
+            "issuer listing table"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:JE00B1VS3770",
+          "instrument": "JE00B1VS3770",
+          "fields": [
+            "issuer listing table"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:GB00BJYDH287",
+          "instrument": "GB00BJYDH287",
+          "fields": [
+            "issuer listing table"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:GB00BLD4ZM24",
+          "instrument": "GB00BLD4ZM24",
+          "fields": [
+            "issuer listing table"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:FR0013416716",
+          "instrument": "FR0013416716",
+          "fields": [
+            "issuer listing table"
+          ],
+          "selected": true
+        }
+      ],
+      "mode": "full",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "refresh_qualified_listings",
+      "reportStem": "listing-observation",
+      "declaredAt": "2026-11-06T14:41:41.447278+00:00",
+      "nonce": "506926ec-9006-4d31-ac21-a2c1a998f814",
+      "codeSha": "56dbb33bb97add3550e586a4e668ee11a6cfceab",
+      "durablePlan": true,
+      "runId": "42235436731",
+      "attempt": "1",
+      "sha256": "064b9bc64dc9ae16112e34de5f77f3c5303053c661aa642028466a87c41348fd"
+    },
+    "scope": {
+      "kind": "refresh_qualified_listings",
+      "mode": "full",
+      "expectedIds": [
+        "listing:SE0021921269",
+        "listing:US18915M1071",
+        "listing:US98980G1022",
+        "listing:US19260Q1076",
+        "listing:US75734B1008",
+        "listing:NL0009805522",
+        "listing:KYG6683N1034",
+        "listing:US36828A1016",
+        "listing:US7731211089",
+        "listing:US8334451098",
+        "listing:US23804L1035",
+        "listing:US83406F1021",
+        "listing:US21037T1097",
+        "listing:US00217D1000",
+        "listing:LU1778762911",
+        "listing:US5949724083",
+        "listing:US26603R1068",
+        "listing:US92537N1081",
+        "listing:CA13321L1085",
+        "listing:US58733R1023",
+        "listing:US7707001027",
+        "listing:directory:us-other",
+        "listing:FR0010524777",
+        "listing:JE00B1VS3770",
+        "listing:GB00BJYDH287",
+        "listing:GB00BLD4ZM24",
+        "listing:FR0013416716"
+      ],
+      "requestedIds": [
+        "listing:SE0021921269",
+        "listing:US18915M1071",
+        "listing:US98980G1022",
+        "listing:US19260Q1076",
+        "listing:US75734B1008",
+        "listing:NL0009805522",
+        "listing:KYG6683N1034",
+        "listing:US36828A1016",
+        "listing:US7731211089",
+        "listing:US8334451098",
+        "listing:US23804L1035",
+        "listing:US83406F1021",
+        "listing:US21037T1097",
+        "listing:US00217D1000",
+        "listing:LU1778762911",
+        "listing:US5949724083",
+        "listing:US26603R1068",
+        "listing:US92537N1081",
+        "listing:CA13321L1085",
+        "listing:US58733R1023",
+        "listing:US7707001027",
+        "listing:directory:us-other",
+        "listing:FR0010524777",
+        "listing:JE00B1VS3770",
+        "listing:GB00BJYDH287",
+        "listing:GB00BLD4ZM24",
+        "listing:FR0013416716"
+      ],
+      "items": [
+        {
+          "id": "listing:SE0021921269",
+          "instrument": "SE0021921269",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US18915M1071",
+          "instrument": "US18915M1071",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US98980G1022",
+          "instrument": "US98980G1022",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US19260Q1076",
+          "instrument": "US19260Q1076",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US75734B1008",
+          "instrument": "US75734B1008",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:NL0009805522",
+          "instrument": "NL0009805522",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:KYG6683N1034",
+          "instrument": "KYG6683N1034",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US36828A1016",
+          "instrument": "US36828A1016",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US7731211089",
+          "instrument": "US7731211089",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US8334451098",
+          "instrument": "US8334451098",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US23804L1035",
+          "instrument": "US23804L1035",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US83406F1021",
+          "instrument": "US83406F1021",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US21037T1097",
+          "instrument": "US21037T1097",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US00217D1000",
+          "instrument": "US00217D1000",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:LU1778762911",
+          "instrument": "LU1778762911",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US5949724083",
+          "instrument": "US5949724083",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US26603R1068",
+          "instrument": "US26603R1068",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US92537N1081",
+          "instrument": "US92537N1081",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:CA13321L1085",
+          "instrument": "CA13321L1085",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US58733R1023",
+          "instrument": "US58733R1023",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:US7707001027",
+          "instrument": "US7707001027",
+          "fields": [
+            "listing-identity"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:directory:us-other",
+          "instrument": "directory:us-other",
+          "fields": [
+            "primary-directory"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:FR0010524777",
+          "instrument": "FR0010524777",
+          "fields": [
+            "issuer listing table"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:JE00B1VS3770",
+          "instrument": "JE00B1VS3770",
+          "fields": [
+            "issuer listing table"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:GB00BJYDH287",
+          "instrument": "GB00BJYDH287",
+          "fields": [
+            "issuer listing table"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:GB00BLD4ZM24",
+          "instrument": "GB00BLD4ZM24",
+          "fields": [
+            "issuer listing table"
+          ],
+          "selected": true
+        },
+        {
+          "id": "listing:FR0013416716",
+          "instrument": "FR0013416716",
+          "fields": [
+            "issuer listing table"
+          ],
+          "selected": true
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-11-06T14:41:41.447278+00:00",
+      "planSha256": "064b9bc64dc9ae16112e34de5f77f3c5303053c661aa642028466a87c41348fd",
+      "attemptedIds": [],
+      "attemptUnknownIds": [
+        "listing:SE0021921269",
+        "listing:US18915M1071",
+        "listing:US98980G1022",
+        "listing:US19260Q1076",
+        "listing:US75734B1008",
+        "listing:NL0009805522",
+        "listing:KYG6683N1034",
+        "listing:US36828A1016",
+        "listing:US7731211089",
+        "listing:US8334451098",
+        "listing:US23804L1035",
+        "listing:US83406F1021",
+        "listing:US21037T1097",
+        "listing:US00217D1000",
+        "listing:LU1778762911",
+        "listing:US5949724083",
+        "listing:US26603R1068",
+        "listing:US92537N1081",
+        "listing:CA13321L1085",
+        "listing:US58733R1023",
+        "listing:US7707001027",
+        "listing:directory:us-other",
+        "listing:FR0010524777",
+        "listing:JE00B1VS3770",
+        "listing:GB00BJYDH287",
+        "listing:GB00BLD4ZM24",
+        "listing:FR0013416716"
+      ],
+      "networkRequestedIds": [],
+      "networkAttemptUnknownIds": [
+        "listing:SE0021921269",
+        "listing:US18915M1071",
+        "listing:US98980G1022",
+        "listing:US19260Q1076",
+        "listing:US75734B1008",
+        "listing:NL0009805522",
+        "listing:KYG6683N1034",
+        "listing:US36828A1016",
+        "listing:US7731211089",
+        "listing:US8334451098",
+        "listing:US23804L1035",
+        "listing:US83406F1021",
+        "listing:US21037T1097",
+        "listing:US00217D1000",
+        "listing:LU1778762911",
+        "listing:US5949724083",
+        "listing:US26603R1068",
+        "listing:US92537N1081",
+        "listing:CA13321L1085",
+        "listing:US58733R1023",
+        "listing:US7707001027",
+        "listing:directory:us-other",
+        "listing:FR0010524777",
+        "listing:JE00B1VS3770",
+        "listing:GB00BJYDH287",
+        "listing:GB00BLD4ZM24",
+        "listing:FR0013416716"
+      ],
+      "runId": "42235436731",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "506926ec-9006-4d31-ac21-a2c1a998f814"
+    },
+    "outcomes": [
+      {
+        "id": "listing:SE0021921269",
+        "instrument": "SE0021921269",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:US18915M1071",
+        "instrument": "US18915M1071",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:US98980G1022",
+        "instrument": "US98980G1022",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:US19260Q1076",
+        "instrument": "US19260Q1076",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:US75734B1008",
+        "instrument": "US75734B1008",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:NL0009805522",
+        "instrument": "NL0009805522",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:KYG6683N1034",
+        "instrument": "KYG6683N1034",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:US36828A1016",
+        "instrument": "US36828A1016",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:US7731211089",
+        "instrument": "US7731211089",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:US8334451098",
+        "instrument": "US8334451098",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:US23804L1035",
+        "instrument": "US23804L1035",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:US83406F1021",
+        "instrument": "US83406F1021",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:US21037T1097",
+        "instrument": "US21037T1097",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:US00217D1000",
+        "instrument": "US00217D1000",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:LU1778762911",
+        "instrument": "LU1778762911",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:US5949724083",
+        "instrument": "US5949724083",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:US26603R1068",
+        "instrument": "US26603R1068",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:US92537N1081",
+        "instrument": "US92537N1081",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:CA13321L1085",
+        "instrument": "CA13321L1085",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:US58733R1023",
+        "instrument": "US58733R1023",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:US7707001027",
+        "instrument": "US7707001027",
+        "fields": [
+          "listing-identity"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : listing-identity",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:directory:us-other",
+        "instrument": "directory:us-other",
+        "fields": [
+          "primary-directory"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : primary-directory",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:FR0010524777",
+        "instrument": "FR0010524777",
+        "fields": [
+          "issuer listing table"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : issuer listing table",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:JE00B1VS3770",
+        "instrument": "JE00B1VS3770",
+        "fields": [
+          "issuer listing table"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : issuer listing table",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:GB00BJYDH287",
+        "instrument": "GB00BJYDH287",
+        "fields": [
+          "issuer listing table"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : issuer listing table",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:GB00BLD4ZM24",
+        "instrument": "GB00BLD4ZM24",
+        "fields": [
+          "issuer listing table"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : issuer listing table",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "listing:FR0013416716",
+        "instrument": "FR0013416716",
+        "fields": [
+          "issuer listing table"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : issuer listing table",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-11-06T22:11:43.863Z",
+  "before": {
+    "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+    "dataSha": "35d7afac809c282b8404419f813655ca89427dd7",
+    "lane": "validated-data",
+    "builtAt": "2026-11-06T21:33:08.774Z"
+  },
+  "after": {
+    "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+    "dataSha": "35d7afac809c282b8404419f813655ca89427dd7",
+    "lane": "validated-data",
+    "builtAt": "2026-11-06T21:33:08.774Z"
+  },
+  "stableBuild": true,
+  "records": [
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/financial-reconciliation.json",
+      "status": 200,
+      "bytes": 417677,
+      "sha256": "239134c456e2764723cd55fbdfc10b5e10e94d845442f031c285d4e2f053eae4"
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/publication-manifest.json",
+      "status": 200,
+      "bytes": 32838,
+      "sha256": "65a89280f6e0f3d3dae8fec84c1a1a2d28010fceae38d262d1b62d927ec4f4fd"
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/data-review-inbox.json",
+      "status": 200,
+      "bytes": 1902200,
+      "sha256": "eedf19891d905bc9a13b432650ce965d34b43fb20b29af4a4e1c84542f5c9231"
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/financial-reconciliation.json",
+      "status": 200,
+      "bytes": 417677,
+      "sha256": "239134c456e2764723cd55fbdfc10b5e10e94d845442f031c285d4e2f053eae4"
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/asset-field-coverage.json",
+      "status": 200,
+      "bytes": 3865513,
+      "sha256": "0ef3f774581b2090c3d4d53e777a1e992b853c8d7ea580b518793b65b688cba1"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/madmax91310/shinny-potato/automation-status/automation-status.json",
+      "status": 200,
+      "bytes": 32334137,
+      "sha256": "dc0dda1a76a4149ac99f9c4db4724ada5bb49d33e8cbf2606807cc37e88141e6"
+    }
+  ],
+  "errors": []
+}

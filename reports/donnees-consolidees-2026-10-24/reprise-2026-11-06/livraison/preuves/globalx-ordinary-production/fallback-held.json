@@ -1,0 +1,15 @@
+{
+  "run": 42278834412,
+  "job": 128115248058,
+  "code": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+  "recordingCommit": "16bdfc9e90c522729b06744d7471e530cfe62a60",
+  "observedBranch": "fallback held required producer file, needs_code; no source publication inferred from successful job",
+  "boundedLogEvidence": [
+    "2026-11-06T20:07:38.6464845Z A newer data snapshot is already public.",
+    "2026-11-06T20:07:38.7337540Z Data needs the full code gate for changed financial consumers: src/pages/test.jsx",
+    "2026-11-06T20:08:20.5441417Z Fallback snapshot: code 02cfde6b (published) + 144 automation data file(s) from 16bdfc9e.",
+    "2026-11-06T20:08:58.0453794Z \u001b[36;1mfor(const [path,blob] of Object.entries(required))assert.equal(execFileSync('git',['hash-object',path],{encoding:'utf8'}).trim(),blob,'Required data was held back or changed during generation: '+path)\u001b[0m",
+    "2026-11-06T20:08:58.1813017Z AssertionError [ERR_ASSERTION]: Required data was held back or changed during generation: src/data/dca-complete-holdings.json",
+    "2026-11-06T20:08:59.8878079Z Set output 'needs_code'"
+  ]
+}

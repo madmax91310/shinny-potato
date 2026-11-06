@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "id": "IE0003UVYC20",
+  "type": "instrument",
+  "name": "JPM Global Equity Premium Income Active UCITS ETF USD (Dist)",
+  "aliases": [
+    "IE0003UVYC20",
+    "JEPG"
+  ],
+  "consumers": [
+    {
+      "tool": "Présentation ETF",
+      "path": "/fiches-etf"
+    },
+    {
+      "tool": "Comparatif ETF",
+      "path": "/comparatif-etf"
+    }
+  ],
+  "fields": [
+    {
+      "label": "Identité",
+      "registry": "src/data/instruments.js",
+      "value": {
+        "name": "JPM Global Equity Premium Income Active UCITS ETF USD (Dist)"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-11",
+        "currency": null,
+        "scope": "Part IE0003UVYC20",
+        "method": "Publication officielle de l’émetteur identifiée par ISIN",
+        "note": "Données variables collectées automatiquement ; devise de rendement distincte de celle de cotation.",
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Frais annuels (%)",
+      "registry": "src/data/etf-ter.js",
+      "value": "0,35",
+      "metadata": {
+        "sourceUrls": [
+          "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-11-06",
+        "currency": null,
+        "scope": "Part IE0003UVYC20",
+        "method": "TER publié sur le profil de la part, consulté par ISIN",
+        "note": "Frais observés au contrôle ; aucune date d’entrée en vigueur déduite de la consultation.",
+        "dateStatus": "not-published",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Caractéristiques",
+      "registry": "src/data/instrument-facts.js",
+      "value": {
+        "distribution": "Distribuant",
+        "location": "Irlande, Physique, sans couverture de change",
+        "benchmark": "MSCI World Index (Total Return Net), référence de comparaison",
+        "incomePolicy": "distributing",
+        "replicationMethod": "Physique",
+        "domicile": "Ireland",
+        "currencyHedge": false,
+        "reviewedAt": "11/10/2026",
+        "instrumentType": "ETF",
+        "positionsLabel": "Exposition suivie : actions mondiales et vente d’options",
+        "characteristicsSource": {
+          "url": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+          "checkedAt": "2026-10-11"
+        },
+        "automatedFields": {
+          "distribution": {
+            "checkedAt": "2026-11-03",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0003UVYC20",
+            "sha256": "9e49e3ea129a2880bedd188fc52866296243212f02022839f74ea57687d683ee"
+          },
+          "domicile": {
+            "checkedAt": "2026-11-05",
+            "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+            "sha256": "28511239949fdb8e00ed7c7f9d544c164d3c7d1b50f6e2b89f05d8fca5712dd7"
+          },
+          "replicationMethod": {
+            "checkedAt": "2026-10-24",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0003UVYC20",
+            "sha256": "228e151dfaf6ba98160613589fa90aa74eda9055b702ded0f5827cc9159c6c2d"
+          },
+          "currencyHedge": {
+            "checkedAt": "2026-11-03",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0003UVYC20",
+            "sha256": "9e49e3ea129a2880bedd188fc52866296243212f02022839f74ea57687d683ee"
+          }
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-10-11",
+        "currency": null,
+        "scope": "Part IE0003UVYC20",
+        "method": "Caractéristiques de la part ; aucune inférence sur la cotation.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Éligibilité PEA",
+      "registry": "src/data/instrument-pea.js",
+      "value": false,
+      "metadata": {
+        "sourceUrls": [
+          "https://www.quantalys.com/Fonds/2112744"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-11-05",
+        "currency": null,
+        "scope": "Part IE0003UVYC20",
+        "method": "Explicit exact-share PEA statement collected automatically.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Encours",
+      "registry": "src/data/instrument-aum.js",
+      "value": {
+        "sheet": "Fonds : 1 717,57 M$ au 05/11/2026",
+        "index": "Fonds : 1 717,57 M$ au 05/11/2026",
+        "source": {
+          "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+          "sha256": "255a9f3c3724d9842f16fbcbb7305def29692c61298beca76be5f25f2f1f59bf",
+          "amount": 1717570208,
+          "currency": "USD",
+          "scope": "Actif net du fonds",
+          "asOf": "2026-11-05",
+          "sourceComponent": "fundData.aum.value",
+          "checkedAt": "2026-11-06",
+          "modifiedAt": "2026-11-06",
+          "amountMillions": 1717.570208,
+          "url": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false"
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false"
+        ],
+        "asOf": "2026-11-05",
+        "checkedAt": "2026-11-06",
+        "currency": "USD",
+        "scope": "Actif net du fonds",
+        "method": null,
+        "note": "Date publiée par l’émetteur ; la consultation reste distincte.",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": "2026-11-06"
+      }
+    },
+    {
+      "label": "Cotation ETFP",
+      "registry": "src/data/instrument-listings.js",
+      "value": {
+        "ticker": "JEPG",
+        "mic": "ETFP",
+        "exchange": "Borsa Italiana",
+        "currency": "EUR",
+        "excerpt": "IE0003UVYC20 | Borsa Italiana JEPG EUR JEPG IM JEPG.MI BRBKJ88",
+        "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+        "checkedAt": "2026-11-05",
+        "sha256": "28511239949fdb8e00ed7c7f9d544c164d3c7d1b50f6e2b89f05d8fca5712dd7",
+        "evidenceId": "IE0003UVYC20-ETFP-JEPG-EUR"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-11-05",
+        "currency": "EUR",
+        "scope": "Part IE0003UVYC20 ; Borsa Italiana",
+        "method": "Devise de négociation, distincte de celle des rendements.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Rendements 2020–2025",
+      "registry": "src/data/instrument-returns.js",
+      "value": [
+        null,
+        null,
+        null,
+        null,
+        8.08,
+        12.35
+      ],
+      "metadata": {
+        "sourceUrls": [
+          "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf"
+        ],
+        "asOf": "2025-12-31",
+        "checkedAt": "2026-11-06",
+        "currency": "USD",
+        "scope": "Part IE0003UVYC20",
+        "method": "Rendements calendaires NAV de la part exacte ; années complètes uniquement",
+        "note": null,
+        "dateStatus": "dated",
+        "periodStart": "2024-01-01",
+        "periodEnd": "2025-12-31",
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": "2026-10-11"
+      }
+    }
+  ]
+}

@@ -1,0 +1,507 @@
+{
+  "schemaVersion": 1,
+  "id": "IE00BMH5Y871",
+  "type": "instrument",
+  "name": "Global X Cybersecurity UCITS ETF USD Acc",
+  "aliases": [
+    "IE00BMH5Y871",
+    "BUG",
+    "BUG",
+    "BUG",
+    "BUGG",
+    "BUGU"
+  ],
+  "consumers": [
+    {
+      "tool": "Présentation ETF",
+      "path": "/fiches-etf"
+    },
+    {
+      "tool": "Générateur de portefeuilles",
+      "path": "/generateur-portefeuilles"
+    },
+    {
+      "tool": "Duels de portefeuilles",
+      "path": "/duels-portefeuilles"
+    },
+    {
+      "tool": "Comparatif ETF",
+      "path": "/comparatif-etf"
+    }
+  ],
+  "fields": [
+    {
+      "label": "Identité",
+      "registry": "src/data/instruments.js",
+      "value": {
+        "name": "Global X Cybersecurity UCITS ETF USD Acc"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/bug/"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-11-06",
+        "currency": null,
+        "scope": "Part IE00BMH5Y871",
+        "method": "Collecte automatisée des sources officielles, identité et ventilation datée contrôlées",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Frais annuels (%)",
+      "registry": "src/data/etf-ter.js",
+      "value": "0,50",
+      "metadata": {
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/bug/"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-11-06",
+        "currency": null,
+        "scope": "Part IE00BMH5Y871",
+        "method": "TER publié sur le profil de la part, consulté par ISIN",
+        "note": "Frais observés au contrôle ; aucune date d’entrée en vigueur déduite de la consultation.",
+        "dateStatus": "not-published",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Indice suivi",
+      "registry": "src/data/automated-etf.js",
+      "value": "Indxx Cybersecurity v2 Index",
+      "metadata": {
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/bug/"
+        ],
+        "asOf": "2026-11-05",
+        "checkedAt": "2026-11-06",
+        "currency": null,
+        "scope": "Part IE00BMH5Y871",
+        "method": "Objectif de la part exacte ; preuve propre à ce champ, distincte du contrôle des frais et des compositions.",
+        "note": null,
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Éligibilité PEA",
+      "registry": "src/data/instrument-pea.js",
+      "value": false,
+      "metadata": {
+        "sourceUrls": [
+          "https://www.quantalys.com/Fonds/2043794"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-11-06",
+        "currency": null,
+        "scope": "Part IE00BMH5Y871",
+        "method": "Explicit exact-share PEA statement collected automatically.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Encours",
+      "registry": "src/data/instrument-aum.js",
+      "value": {
+        "sheet": "Fonds : 109,84 M$ au 05/11/2026",
+        "index": "Fonds : 109,84 M$ au 05/11/2026",
+        "source": {
+          "amount": 109843360.8,
+          "currency": "USD",
+          "scope": "Actif net du fonds",
+          "asOf": "2026-11-05",
+          "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+          "sha256": "38b62f3c836beca6d930ac2c1363e4d4eeec287e210687d7ffe9f138f9943717",
+          "checkedAt": "2026-11-06",
+          "modifiedAt": "2026-11-06",
+          "amountMillions": 109.8433608,
+          "url": "https://globalxetfs.eu/funds/bug/"
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/bug/"
+        ],
+        "asOf": "2026-11-05",
+        "checkedAt": "2026-11-06",
+        "currency": "USD",
+        "scope": "Actif net du fonds",
+        "method": null,
+        "note": "Date publiée par l’émetteur ; la consultation reste distincte.",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": "2026-11-06"
+      }
+    },
+    {
+      "label": "Cotation ETFP",
+      "registry": "src/data/instrument-listings.js",
+      "value": {
+        "ticker": "BUG",
+        "mic": "ETFP",
+        "exchange": "Borsa Italiana",
+        "currency": "EUR",
+        "excerpt": "IE00BMH5Y871 | Borsa Italiana | EUR | BUG IM | 18 Nov 2021 | BP6JFL1",
+        "sourceUrl": "https://globalxetfs.eu/funds/bug",
+        "checkedAt": "2026-11-06",
+        "sha256": "19d42467e47f5b7b159d3c9ce2ecbdba233981f46ef997c3e9eafc58df9577e1",
+        "evidenceId": "IE00BMH5Y871-ETFP-BUG-EUR"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/bug"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-11-06",
+        "currency": "EUR",
+        "scope": "Part IE00BMH5Y871 ; Borsa Italiana",
+        "method": "Devise de négociation, distincte de celle des rendements.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Cotation XETR",
+      "registry": "src/data/instrument-listings.js",
+      "value": {
+        "ticker": "BUG",
+        "mic": "XETR",
+        "exchange": "Xetra",
+        "currency": "EUR",
+        "excerpt": "IE00BMH5Y871 | Deutsche Börse Xetra | EUR | BUG GY | 18 Nov 2021 | BP6JFJ9",
+        "sourceUrl": "https://globalxetfs.eu/funds/bug",
+        "checkedAt": "2026-11-06",
+        "sha256": "19d42467e47f5b7b159d3c9ce2ecbdba233981f46ef997c3e9eafc58df9577e1",
+        "evidenceId": "IE00BMH5Y871-XETR-BUG-EUR"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/bug"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-11-06",
+        "currency": "EUR",
+        "scope": "Part IE00BMH5Y871 ; Xetra",
+        "method": "Devise de négociation, distincte de celle des rendements.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Cotation XLON",
+      "registry": "src/data/instrument-listings.js",
+      "value": {
+        "ticker": "BUG",
+        "mic": "XLON",
+        "exchange": "London Stock Exchange",
+        "currency": "USD",
+        "excerpt": "IE00BMH5Y871 | London Stock Exchange | USD | BUG LN | 18 Nov 2021 | BP6JFG6",
+        "sourceUrl": "https://globalxetfs.eu/funds/bug",
+        "checkedAt": "2026-11-06",
+        "sha256": "19d42467e47f5b7b159d3c9ce2ecbdba233981f46ef997c3e9eafc58df9577e1",
+        "evidenceId": "IE00BMH5Y871-XLON-BUG-USD"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/bug"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-11-06",
+        "currency": "USD",
+        "scope": "Part IE00BMH5Y871 ; London Stock Exchange",
+        "method": "Devise de négociation, distincte de celle des rendements.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Cotation XLON",
+      "registry": "src/data/instrument-listings.js",
+      "value": {
+        "ticker": "BUGG",
+        "mic": "XLON",
+        "exchange": "London Stock Exchange",
+        "currency": "GBP",
+        "excerpt": "IE00BMH5Y871 | London Stock Exchange | GBP | BUGG LN | 18 Nov 2021 | BP6JFH7",
+        "sourceUrl": "https://globalxetfs.eu/funds/bug",
+        "checkedAt": "2026-11-06",
+        "sha256": "19d42467e47f5b7b159d3c9ce2ecbdba233981f46ef997c3e9eafc58df9577e1",
+        "evidenceId": "IE00BMH5Y871-XLON-BUGG-GBP"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/bug"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-11-06",
+        "currency": "GBP",
+        "scope": "Part IE00BMH5Y871 ; London Stock Exchange",
+        "method": "Devise de négociation, distincte de celle des rendements.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Cotation XSWX",
+      "registry": "src/data/instrument-listings.js",
+      "value": {
+        "ticker": "BUGU",
+        "mic": "XSWX",
+        "exchange": "SIX Swiss Exchange",
+        "currency": "CHF",
+        "excerpt": "IE00BMH5Y871 | SIX Swiss Exchange | CHF | BUGU SW | 06 Dec 2021 | BP6JFK0",
+        "sourceUrl": "https://globalxetfs.eu/funds/bug",
+        "checkedAt": "2026-11-06",
+        "sha256": "19d42467e47f5b7b159d3c9ce2ecbdba233981f46ef997c3e9eafc58df9577e1",
+        "evidenceId": "IE00BMH5Y871-XSWX-BUGU-CHF"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/bug"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-11-06",
+        "currency": "CHF",
+        "scope": "Part IE00BMH5Y871 ; SIX Swiss Exchange",
+        "method": "Devise de négociation, distincte de celle des rendements.",
+        "note": null,
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Rendements annuels de cotation",
+      "registry": "src/data/market-calendar-performance.js",
+      "value": [
+        [
+          2022,
+          -34.86300879891265
+        ],
+        [
+          2023,
+          44.06677282960849
+        ],
+        [
+          2024,
+          9.300198200945253
+        ],
+        [
+          2025,
+          -4.868182452224845
+        ]
+      ],
+      "metadata": {
+        "sourceUrls": [
+          "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+          "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits"
+        ],
+        "asOf": "2025-12-31",
+        "checkedAt": "2026-11-06",
+        "currency": "USD",
+        "scope": "Part exacte IE00BMH5Y871 ; cotation IE00BMH5Y871-XLON-BUG-USD",
+        "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+        "note": "Rendements calculés depuis les cours ajustés de la part exacte, distributions réinvesties. La devise est celle de la cotation ; ces rendements diffèrent du calendrier NAV de l’émetteur.",
+        "dateStatus": "dated",
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Performance 1 mois",
+      "registry": "src/data/automated-etf.js",
+      "value": {
+        "label": "1 mois",
+        "value": 7.04,
+        "asOf": "2026-10-31"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/bug/"
+        ],
+        "asOf": "2026-10-31",
+        "checkedAt": "2026-11-06",
+        "currency": "USD",
+        "scope": "Part IE00BMH5Y871",
+        "method": "Rendement cumulé NAV sur la période explicitement publiée",
+        "note": "",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Performance 3 mois",
+      "registry": "src/data/automated-etf.js",
+      "value": {
+        "label": "3 mois",
+        "value": 29.59,
+        "asOf": "2026-10-31"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/bug/"
+        ],
+        "asOf": "2026-10-31",
+        "checkedAt": "2026-11-06",
+        "currency": "USD",
+        "scope": "Part IE00BMH5Y871",
+        "method": "Rendement cumulé NAV sur la période explicitement publiée",
+        "note": "",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Performance 1 an",
+      "registry": "src/data/automated-etf.js",
+      "value": {
+        "label": "1 an",
+        "value": 43.42,
+        "asOf": "2026-10-31"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/bug/"
+        ],
+        "asOf": "2026-10-31",
+        "checkedAt": "2026-11-06",
+        "currency": "USD",
+        "scope": "Part IE00BMH5Y871",
+        "method": "Rendement cumulé NAV sur la période explicitement publiée",
+        "note": "",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Performance Depuis janvier",
+      "registry": "src/data/automated-etf.js",
+      "value": {
+        "label": "Depuis janvier",
+        "value": 62.1,
+        "asOf": "2026-10-31"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/bug/"
+        ],
+        "asOf": "2026-10-31",
+        "checkedAt": "2026-11-06",
+        "currency": "USD",
+        "scope": "Part IE00BMH5Y871",
+        "method": "Rendement cumulé NAV sur la période explicitement publiée",
+        "note": "",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Performance Depuis le lancement",
+      "registry": "src/data/automated-etf.js",
+      "value": {
+        "label": "Depuis le lancement",
+        "value": 46.78,
+        "asOf": "2026-10-31"
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/bug/"
+        ],
+        "asOf": "2026-10-31",
+        "checkedAt": "2026-11-06",
+        "currency": "USD",
+        "scope": "Part IE00BMH5Y871",
+        "method": "Rendement cumulé NAV sur la période explicitement publiée",
+        "note": "",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,505 @@
+{
+  "checkedAt": "2026-11-06T20:54:50.402789+00:00",
+  "run": 42291553774,
+  "job": 128145989314,
+  "event": "push",
+  "runtimeCheckout": "dbbaff13885be91e2eacd834d60d51e0f61c951e",
+  "sourceObservations": {
+    "observations": [
+      {
+        "id": "iroko-zen",
+        "name": "Iroko Zen",
+        "status": "success",
+        "checkedAt": "2026-11-06T20:50:23.119406+00:00",
+        "sourceUrl": "https://www.iroko.eu/scpi/zen"
+      },
+      {
+        "id": "iroko-zen:snapshot",
+        "name": "Iroko Zen · Répartition trimestrielle",
+        "status": "success",
+        "checkedAt": "2026-11-06T20:50:23.119416+00:00",
+        "asOf": "2026-09-30"
+      },
+      {
+        "id": "remake-live",
+        "name": "Remake Live",
+        "status": "success",
+        "checkedAt": "2026-11-06T20:50:29.079439+00:00",
+        "sourceUrl": "https://www.remake.fr/remake-live"
+      },
+      {
+        "id": "corum-origin",
+        "name": "CORUM Origin",
+        "status": "success",
+        "checkedAt": "2026-11-06T20:50:31.509408+00:00",
+        "sourceUrl": "https://www.corum.fr/nos-scpi/corum-origin"
+      },
+      {
+        "id": "corum-xl",
+        "name": "CORUM XL",
+        "status": "success",
+        "checkedAt": "2026-11-06T20:50:36.094011+00:00",
+        "sourceUrl": "https://www.corum.fr/nos-scpi/corum-xl"
+      },
+      {
+        "id": "corum-eurion",
+        "name": "CORUM Eurion",
+        "status": "success",
+        "checkedAt": "2026-11-06T20:50:40.861339+00:00",
+        "sourceUrl": "https://www.corum.fr/nos-scpi/eurion"
+      },
+      {
+        "id": "transitions-europe",
+        "name": "Transitions Europe",
+        "status": "success",
+        "checkedAt": "2026-11-06T20:50:45.132696+00:00",
+        "sourceUrl": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe"
+      },
+      {
+        "id": "activimmo",
+        "name": "ActivImmo",
+        "status": "success",
+        "checkedAt": "2026-11-06T20:50:55.224945+00:00",
+        "sourceUrl": "https://alderan.fr/scpi-activimmo/"
+      },
+      {
+        "id": "epargne-pierre",
+        "name": "Épargne Pierre",
+        "status": "success",
+        "checkedAt": "2026-11-06T20:50:58.332335+00:00",
+        "sourceUrl": "https://atland-voisin.com/scpi/epargne-pierre/"
+      }
+    ],
+    "resultContract": {
+      "schemaVersion": 1,
+      "protocol": "producer-results-v1",
+      "inputPlan": {
+        "items": [
+          {
+            "id": "iroko-zen",
+            "instrument": "iroko-zen",
+            "fields": [
+              "SCPI bulletin",
+              "subscription/withdrawal price",
+              "distribution",
+              "publication state"
+            ],
+            "selected": true
+          },
+          {
+            "id": "remake-live",
+            "instrument": "remake-live",
+            "fields": [
+              "SCPI bulletin",
+              "subscription/withdrawal price",
+              "distribution",
+              "publication state"
+            ],
+            "selected": true
+          },
+          {
+            "id": "corum-origin",
+            "instrument": "corum-origin",
+            "fields": [
+              "SCPI bulletin",
+              "subscription/withdrawal price",
+              "distribution",
+              "publication state"
+            ],
+            "selected": true
+          },
+          {
+            "id": "corum-xl",
+            "instrument": "corum-xl",
+            "fields": [
+              "SCPI bulletin",
+              "subscription/withdrawal price",
+              "distribution",
+              "publication state"
+            ],
+            "selected": true
+          },
+          {
+            "id": "corum-eurion",
+            "instrument": "corum-eurion",
+            "fields": [
+              "SCPI bulletin",
+              "subscription/withdrawal price",
+              "distribution",
+              "publication state"
+            ],
+            "selected": true
+          },
+          {
+            "id": "transitions-europe",
+            "instrument": "transitions-europe",
+            "fields": [
+              "SCPI bulletin",
+              "subscription/withdrawal price",
+              "distribution",
+              "publication state"
+            ],
+            "selected": true
+          },
+          {
+            "id": "activimmo",
+            "instrument": "activimmo",
+            "fields": [
+              "SCPI bulletin",
+              "subscription/withdrawal price",
+              "distribution",
+              "publication state"
+            ],
+            "selected": true
+          },
+          {
+            "id": "epargne-pierre",
+            "instrument": "epargne-pierre",
+            "fields": [
+              "SCPI bulletin",
+              "subscription/withdrawal price",
+              "distribution",
+              "publication state"
+            ],
+            "selected": true
+          },
+          {
+            "id": "iroko-zen:snapshot",
+            "instrument": "iroko-zen",
+            "fields": [
+              "quarterly portfolio snapshot"
+            ],
+            "selected": true,
+            "dependsOn": "iroko-zen"
+          }
+        ],
+        "mode": "full",
+        "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+        "emptyReason": null,
+        "cacheRequested": false,
+        "producer": "collect_scpi",
+        "reportStem": "scpi-observation",
+        "declaredAt": "2026-11-06T20:50:20.720847+00:00",
+        "nonce": "6f6f69bc-9c23-453a-8ff2-6b5d11220770",
+        "codeSha": "dbbaff13885be91e2eacd834d60d51e0f61c951e",
+        "durablePlan": true,
+        "runId": "42291553774",
+        "attempt": "1",
+        "sha256": "182eb850a87fd051e31bb074b841d150e81693a1f4092d077b4be26209763240"
+      },
+      "scope": {
+        "kind": "collect_scpi",
+        "mode": "full",
+        "expectedIds": [
+          "iroko-zen",
+          "remake-live",
+          "corum-origin",
+          "corum-xl",
+          "corum-eurion",
+          "transitions-europe",
+          "activimmo",
+          "epargne-pierre",
+          "iroko-zen:snapshot"
+        ],
+        "requestedIds": [
+          "iroko-zen",
+          "remake-live",
+          "corum-origin",
+          "corum-xl",
+          "corum-eurion",
+          "transitions-europe",
+          "activimmo",
+          "epargne-pierre",
+          "iroko-zen:snapshot"
+        ],
+        "items": [
+          {
+            "id": "iroko-zen",
+            "instrument": "iroko-zen",
+            "fields": [
+              "SCPI bulletin",
+              "subscription/withdrawal price",
+              "distribution",
+              "publication state"
+            ],
+            "selected": true
+          },
+          {
+            "id": "remake-live",
+            "instrument": "remake-live",
+            "fields": [
+              "SCPI bulletin",
+              "subscription/withdrawal price",
+              "distribution",
+              "publication state"
+            ],
+            "selected": true
+          },
+          {
+            "id": "corum-origin",
+            "instrument": "corum-origin",
+            "fields": [
+              "SCPI bulletin",
+              "subscription/withdrawal price",
+              "distribution",
+              "publication state"
+            ],
+            "selected": true
+          },
+          {
+            "id": "corum-xl",
+            "instrument": "corum-xl",
+            "fields": [
+              "SCPI bulletin",
+              "subscription/withdrawal price",
+              "distribution",
+              "publication state"
+            ],
+            "selected": true
+          },
+          {
+            "id": "corum-eurion",
+            "instrument": "corum-eurion",
+            "fields": [
+              "SCPI bulletin",
+              "subscription/withdrawal price",
+              "distribution",
+              "publication state"
+            ],
+            "selected": true
+          },
+          {
+            "id": "transitions-europe",
+            "instrument": "transitions-europe",
+            "fields": [
+              "SCPI bulletin",
+              "subscription/withdrawal price",
+              "distribution",
+              "publication state"
+            ],
+            "selected": true
+          },
+          {
+            "id": "activimmo",
+            "instrument": "activimmo",
+            "fields": [
+              "SCPI bulletin",
+              "subscription/withdrawal price",
+              "distribution",
+              "publication state"
+            ],
+            "selected": true
+          },
+          {
+            "id": "epargne-pierre",
+            "instrument": "epargne-pierre",
+            "fields": [
+              "SCPI bulletin",
+              "subscription/withdrawal price",
+              "distribution",
+              "publication state"
+            ],
+            "selected": true
+          },
+          {
+            "id": "iroko-zen:snapshot",
+            "instrument": "iroko-zen",
+            "fields": [
+              "quarterly portfolio snapshot"
+            ],
+            "selected": true,
+            "dependsOn": "iroko-zen"
+          }
+        ],
+        "emptyReason": null,
+        "declaredAt": "2026-11-06T20:50:20.720847+00:00",
+        "planSha256": "182eb850a87fd051e31bb074b841d150e81693a1f4092d077b4be26209763240",
+        "attemptedIds": [
+          "iroko-zen",
+          "remake-live",
+          "corum-origin",
+          "corum-xl",
+          "corum-eurion",
+          "transitions-europe",
+          "activimmo",
+          "epargne-pierre",
+          "iroko-zen:snapshot"
+        ],
+        "attemptUnknownIds": [],
+        "networkRequestedIds": [
+          "iroko-zen",
+          "remake-live",
+          "corum-origin",
+          "corum-xl",
+          "corum-eurion",
+          "transitions-europe",
+          "activimmo",
+          "epargne-pierre",
+          "iroko-zen:snapshot"
+        ],
+        "networkAttemptUnknownIds": [],
+        "runId": "42291553774",
+        "attempt": "1",
+        "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+        "nonce": "6f6f69bc-9c23-453a-8ff2-6b5d11220770"
+      },
+      "outcomes": [
+        {
+          "id": "iroko-zen",
+          "instrument": "iroko-zen",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "checkedAt": "2026-11-06T20:50:23.119406+00:00",
+          "sourceUrl": "https://www.iroko.eu/scpi/zen",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "remake-live",
+          "instrument": "remake-live",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "checkedAt": "2026-11-06T20:50:29.079439+00:00",
+          "sourceUrl": "https://www.remake.fr/remake-live",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "corum-origin",
+          "instrument": "corum-origin",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "checkedAt": "2026-11-06T20:50:31.509408+00:00",
+          "sourceUrl": "https://www.corum.fr/nos-scpi/corum-origin",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "corum-xl",
+          "instrument": "corum-xl",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "checkedAt": "2026-11-06T20:50:36.094011+00:00",
+          "sourceUrl": "https://www.corum.fr/nos-scpi/corum-xl",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "corum-eurion",
+          "instrument": "corum-eurion",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "checkedAt": "2026-11-06T20:50:40.861339+00:00",
+          "sourceUrl": "https://www.corum.fr/nos-scpi/eurion",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "transitions-europe",
+          "instrument": "transitions-europe",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "checkedAt": "2026-11-06T20:50:45.132696+00:00",
+          "sourceUrl": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "activimmo",
+          "instrument": "activimmo",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "checkedAt": "2026-11-06T20:50:55.224945+00:00",
+          "sourceUrl": "https://alderan.fr/scpi-activimmo/",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "epargne-pierre",
+          "instrument": "epargne-pierre",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true,
+          "status": "succeeded",
+          "checkedAt": "2026-11-06T20:50:58.332335+00:00",
+          "sourceUrl": "https://atland-voisin.com/scpi/epargne-pierre/",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        },
+        {
+          "id": "iroko-zen:snapshot",
+          "instrument": "iroko-zen",
+          "fields": [
+            "quarterly portfolio snapshot"
+          ],
+          "selected": true,
+          "dependsOn": "iroko-zen",
+          "status": "succeeded",
+          "checkedAt": "2026-11-06T20:50:23.119416+00:00",
+          "asOf": "2026-09-30",
+          "operationAttempted": true,
+          "sourceAttempted": true
+        }
+      ],
+      "issues": [],
+      "unscopedFailures": []
+    }
+  },
+  "recordingCommit": "346a6835c3d2a4ded76ea56c741c2011db15de1c",
+  "sourceRegistryBlob": "f4ddbce68f9de6f9838cd647c5f4ef6f4291bc8b",
+  "recording": "success after real rebase and financial revalidation",
+  "upstreamActorsCommitPreserved": "74ccfbd9fd5176e17861780a16f7b80e8dc6abec",
+  "actualIndependentRebasePaths": [
+    "src/data/automated-presentation-actors.json"
+  ],
+  "newEtfExemptionObservedInProduction": false,
+  "newEtfExemptionProof": "105 real Git regressions including exact c9e5798 refusal fixture, passed locally and GitHub; no artificial production race",
+  "publication": "verified exact public registry and stable build",
+  "publicationProof": "publication.json"
+}

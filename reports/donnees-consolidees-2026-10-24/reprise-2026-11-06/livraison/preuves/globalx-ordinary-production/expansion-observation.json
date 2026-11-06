@@ -1,0 +1,261 @@
+{
+  "run": 42278834427,
+  "artifact": 13534972942,
+  "checkedAt": "2026-11-06T19:34:31.000707+00:00",
+  "row": {
+    "isin": "IE00BMH5Y871",
+    "status": "validated",
+    "record": {
+      "currency": "USD",
+      "productId": "IE00BMH5Y871",
+      "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+      "provider": "Global X",
+      "aum": {
+        "amount": 109843360.8,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-11-05",
+        "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+        "sha256": "59fc880df44e69d748affa0c1e799d48bd6ce674fe8c09fcf2bb83dd87dd84fb",
+        "checkedAt": "2026-11-06",
+        "modifiedAt": "2026-11-06"
+      },
+      "sectors": {
+        "rows": [
+          {
+            "name": "Information Technology",
+            "weightPct": 99.5,
+            "label": "Information Technology"
+          },
+          {
+            "name": "Materials",
+            "weightPct": 0.5,
+            "label": "Materials"
+          }
+        ],
+        "asOf": "2026-10-31",
+        "basis": "fund",
+        "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+        "sha256": "59fc880df44e69d748affa0c1e799d48bd6ce674fe8c09fcf2bb83dd87dd84fb",
+        "checkedAt": "2026-11-06",
+        "modifiedAt": "2026-11-06"
+      },
+      "countries": {
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 88.3
+          },
+          {
+            "name": "Israel",
+            "weightPct": 5.1
+          },
+          {
+            "name": "Japan",
+            "weightPct": 4.6
+          },
+          {
+            "name": "South Korea",
+            "weightPct": 1.2
+          },
+          {
+            "name": "Britain",
+            "weightPct": 0.9
+          }
+        ],
+        "asOf": "2026-10-31",
+        "basis": "fund",
+        "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+        "sha256": "59fc880df44e69d748affa0c1e799d48bd6ce674fe8c09fcf2bb83dd87dd84fb",
+        "checkedAt": "2026-11-06",
+        "modifiedAt": "2026-11-06"
+      },
+      "holdings": {
+        "rows": [
+          {
+            "name": "OKTA INC",
+            "isin": "US6792951054",
+            "weightPct": 8.547
+          },
+          {
+            "name": "CROWDSTRIKE HOLDINGS INC - A",
+            "isin": "US22788C1053",
+            "weightPct": 7.166
+          },
+          {
+            "name": "PALO ALTO NETWORKS INC",
+            "isin": "US6974351057",
+            "weightPct": 6.457
+          },
+          {
+            "name": "QUALYS INC",
+            "isin": "US74758T3032",
+            "weightPct": 6.304
+          },
+          {
+            "name": "NETSKOPE INC-CL A",
+            "isin": "US64119N6085",
+            "weightPct": 5.981
+          },
+          {
+            "name": "TENABLE HOLDINGS INC",
+            "isin": "US88025T1025",
+            "weightPct": 5.814
+          },
+          {
+            "name": "ZSCALER INC",
+            "isin": "US98980G1022",
+            "weightPct": 5.707
+          },
+          {
+            "name": "RUBRIK INC-A",
+            "isin": "US7811541090",
+            "weightPct": 5.464
+          },
+          {
+            "name": "FORTINET INC",
+            "isin": "US34959E1091",
+            "weightPct": 5.324
+          },
+          {
+            "name": "VARONIS SYSTEMS INC",
+            "isin": "US9222801022",
+            "weightPct": 5.102
+          }
+        ],
+        "asOf": "2026-11-05",
+        "basis": "fund",
+        "sourceUrl": "https://globalxetfs.eu/api/funds/bug/topholdingscsv",
+        "sha256": "76879c3635a63dce8e744d27469b39dc5e5ad98ce6386fa733f7ec4c3c4136c5",
+        "identitySourceUrl": "https://globalxetfs.eu/funds/bug/",
+        "identitySha256": "59fc880df44e69d748affa0c1e799d48bd6ce674fe8c09fcf2bb83dd87dd84fb",
+        "method": "Ten largest identified physical equities in the complete exact-fund portfolio; original fund NAV weights, cash excluded, no renormalisation",
+        "settlementCashProof": {
+          "method": "Published signed settlement cash netted only for validation; equity weights unchanged",
+          "netAssetsFromPublishedMarketValues": "80576648.31",
+          "netCashWeightPct": 0.204,
+          "publishedTotalWeightPct": 100.0,
+          "normalizationApplied": false,
+          "cashRows": [
+            {
+              "NAME": "CASH",
+              "NET_ASSETS": "33.897",
+              "MARKET_VALUE": "27312790.39",
+              "AS_OF_DATE": "2026-11-05"
+            },
+            {
+              "NAME": "JAPANESE YEN",
+              "NET_ASSETS": "0",
+              "MARKET_VALUE": "3.22",
+              "AS_OF_DATE": "2026-11-05"
+            },
+            {
+              "NAME": "BRITISH STERLING POUND",
+              "NET_ASSETS": "0",
+              "MARKET_VALUE": "2.51",
+              "AS_OF_DATE": "2026-11-05"
+            },
+            {
+              "NAME": "CANADIAN DOLLAR",
+              "NET_ASSETS": "0",
+              "MARKET_VALUE": "0.21",
+              "AS_OF_DATE": "2026-11-05"
+            },
+            {
+              "NAME": "OTHER PAYABLE & RECEIVABLES",
+              "NET_ASSETS": "-33.693",
+              "MARKET_VALUE": "-27148928.53",
+              "AS_OF_DATE": "2026-11-05"
+            }
+          ]
+        },
+        "checkedAt": "2026-11-06",
+        "modifiedAt": "2026-11-06"
+      },
+      "characteristics": {
+        "asOf": "2026-11-05",
+        "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+        "sha256": "59fc880df44e69d748affa0c1e799d48bd6ce674fe8c09fcf2bb83dd87dd84fb",
+        "terPct": 0.5,
+        "index": "Indxx Cybersecurity v2 Index",
+        "checkedAt": "2026-11-06",
+        "modifiedAt": "2026-11-06"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "years": {},
+        "observations": [
+          {
+            "label": "1 mois",
+            "value": 7.04,
+            "asOf": "2026-10-31"
+          },
+          {
+            "label": "3 mois",
+            "value": 29.59,
+            "asOf": "2026-10-31"
+          },
+          {
+            "label": "1 an",
+            "value": 43.42,
+            "asOf": "2026-10-31"
+          },
+          {
+            "label": "Depuis janvier",
+            "value": 62.1,
+            "asOf": "2026-10-31"
+          },
+          {
+            "label": "Depuis le lancement",
+            "value": 46.78,
+            "asOf": "2026-10-31"
+          }
+        ],
+        "asOf": "2026-10-31",
+        "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+        "sha256": "59fc880df44e69d748affa0c1e799d48bd6ce674fe8c09fcf2bb83dd87dd84fb",
+        "note": "",
+        "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
+        "months": {
+          "2026-09": 7.4,
+          "2026-10": 7.04
+        },
+        "monthEvidence": {
+          "2026-09": {
+            "asOf": "2026-09-30",
+            "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+            "sha256": "480bb2684f07c11f422ed97614587c9fb7dc42b5054c7612d5a2877e5ea29f1f",
+            "checkedAt": "2026-11-03",
+            "method": "Published exact-share one-month NAV total return at calendar month end"
+          },
+          "2026-10": {
+            "asOf": "2026-10-31",
+            "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+            "sha256": "59fc880df44e69d748affa0c1e799d48bd6ce674fe8c09fcf2bb83dd87dd84fb",
+            "checkedAt": "2026-11-06",
+            "method": "Published exact-share one-month NAV total return at calendar month end"
+          }
+        },
+        "checkedAt": "2026-11-06",
+        "modifiedAt": "2026-11-06"
+      },
+      "characteristicChecks": {
+        "terPct": {
+          "checkedAt": "2026-11-06",
+          "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+          "asOf": "2026-11-05"
+        },
+        "index": {
+          "checkedAt": "2026-11-06",
+          "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+          "asOf": "2026-11-05"
+        }
+      }
+    },
+    "retainedFields": [],
+    "unavailable": [],
+    "collectionErrors": [],
+    "sourceAttempts": []
+  }
+}

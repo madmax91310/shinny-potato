@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-11-06T09:11:45.142768+00:00",
+  "scope": "Two remaining unidentified Mining stock positions; no weights or identity cache changed",
+  "instrument": "IE00BDFBTQ78",
+  "fundSnapshot": "2026-11-05",
+  "blockedWeightPct": 0.07,
+  "positions": [
+    {
+      "ticker": "USA CN",
+      "currency": "CAD",
+      "name": "Americas Gold & Silver Corp",
+      "weightPct": 0.04,
+      "nativeCusip": "492914106.00",
+      "independentCandidateIsin": "CA03062D8035"
+    },
+    {
+      "ticker": "ARU AU",
+      "currency": "AUD",
+      "name": "Arafura Resources Ltd",
+      "weightPct": 0.03,
+      "nativeCusip": "82934H101",
+      "independentCandidateIsin": "AU000000ARU5"
+    }
+  ],
+  "newEvidence": [
+    "Official same-date VanEck full workbook independently downloaded; the same ISIN fields are blank ( -- ).",
+    "Official same-date State Street full portfolio provides candidate ISINs and legal names/currencies, but not the native Bloomberg ticker binding.",
+    "Fresh OpenFIGI batch: exact ticker and candidate ISIN queries agree on listing/composite/share-class FIGIs; supplied native CUSIP queries return No identifier found."
+  ],
+  "conclusion": "The existing native-identifier guard remains applicable. No supplied CUSIP is silently discarded. Missing evidence: issuer correction or an exact qualified crosswalk of the supplied identifiers. No wrong-identifier cause claimed from an empty lookup.",
+  "usage": "Country/sector capabilities stay separate; complete company overlap remains refused while these identities are unqualified.",
+  "notARepair": true,
+  "artifacts": [
+    "request.json",
+    "download.bin",
+    "rows.json",
+    "spyi-reference-proof.json",
+    "spyi-reference.xlsx",
+    "native-cusip-crosscheck.json"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-11-06T15:00:09.209346+00:00",
+  "buildAtStart": {
+    "sha": "2850b220841fa19e4aa561804b474e5e280a956d",
+    "dataSha": "ad419ccfcc929e2b67a794255ef9c04caa60e579",
+    "lane": "validated-data",
+    "builtAt": "2026-11-06T14:39:59.270Z"
+  },
+  "buildAtEnd": {
+    "sha": "2850b220841fa19e4aa561804b474e5e280a956d",
+    "dataSha": "ad419ccfcc929e2b67a794255ef9c04caa60e579",
+    "lane": "validated-data",
+    "builtAt": "2026-11-06T14:39:59.270Z"
+  },
+  "financialBlobsUnchanged": true,
+  "ordinaryTargetedProduction": {
+    "runId": 42227576144,
+    "jobId": 127924874405,
+    "event": "workflow_dispatch",
+    "commit": "ad419ccfcc929e2b67a794255ef9c04caa60e579",
+    "recordedAtUtc": "2026-11-06T14:30:10.4693059Z",
+    "commitObjectDateIsNotPushDate": true,
+    "scope": {
+      "requestedIds": [
+        "etf_timber_ishares",
+        "etfLU1829219390"
+      ],
+      "expectedIds": [
+        "etf_timber_ishares",
+        "etfLU1829219390"
+      ],
+      "selection": "explicit"
+    },
+    "sourceResults": [
+      {
+        "id": "etf_timber_ishares",
+        "status": "validated",
+        "sourceState": "succeeded",
+        "periodEnd": "2026-10",
+        "responseSha256": "864307b2984213707933bdc612aafef0e30d599a8ee35df2ca7da1353241de98"
+      },
+      {
+        "id": "etfLU1829219390",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "1bcd853dcae89d9885c7ed3435b24c3621b7b2b3798877cdbff1a3718fa567fb"
+      }
+    ],
+    "recordingStepConclusion": "success",
+    "directGitHubLogPushConfirmed": true
+  },
+  "calculatorCases": 16,
+  "consumerCases": 19,
+  "rankingBoundaryCards": 4,
+  "independentRankingValues": 12,
+  "identityBoundaryCases": 16,
+  "anniversaryProtectionCases": 10,
+  "independentMath": [
+    "independent-calculator-check.json",
+    "independent-ranking-check.json"
+  ],
+  "nineRefusedWindowsStillRefused": true,
+  "notAnExplanationOfAllOldDivergences": true
+}

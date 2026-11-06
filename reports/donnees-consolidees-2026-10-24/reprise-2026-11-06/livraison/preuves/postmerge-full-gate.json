@@ -1,0 +1,139 @@
+{
+  "checkedAt": "2026-11-06T21:37:47.570204+00:00",
+  "run": 42279131940,
+  "workflowEventCommit": "026f95cbe2fff011341889deb6d541b4fb7c81d4",
+  "actualSelectedCode": "74ccfbd9fd5176e17861780a16f7b80e8dc6abec",
+  "snapshotSelectionJob": 128147680896,
+  "gateDefinitionFingerprint": "5105fedb902c8e50d3ef600f91f5b9ebb44b260a82a956f6d1a47a59365e5f02",
+  "containsMerged1195AndBudget1194": true,
+  "required14Success": true,
+  "requiredJobs": {
+    "current-snapshot": {
+      "id": 128147680896,
+      "name": "current-snapshot",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T20:52:49Z",
+      "completed_at": "2026-11-06T20:53:00Z",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42279131940/job/128147680896"
+    },
+    "scope": {
+      "id": 128147795735,
+      "name": "scope",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T20:53:03Z",
+      "completed_at": "2026-11-06T20:53:45Z",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42279131940/job/128147795735"
+    },
+    "build": {
+      "id": 128147795740,
+      "name": "build",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T20:53:03Z",
+      "completed_at": "2026-11-06T21:03:19Z",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42279131940/job/128147795740"
+    },
+    "exposure-browser-check": {
+      "id": 128147795778,
+      "name": "exposure-browser-check",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T20:53:03Z",
+      "completed_at": "2026-11-06T20:54:11Z",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42279131940/job/128147795778"
+    },
+    "python-checks": {
+      "id": 128147795790,
+      "name": "python-checks",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T20:53:03Z",
+      "completed_at": "2026-11-06T20:55:36Z",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42279131940/job/128147795790"
+    },
+    "browser-checks (2)": {
+      "id": 128152696505,
+      "name": "browser-checks (2)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T21:03:22Z",
+      "completed_at": "2026-11-06T21:33:06Z",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42279131940/job/128152696505"
+    },
+    "browser-checks (0)": {
+      "id": 128152696507,
+      "name": "browser-checks (0)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T21:03:22Z",
+      "completed_at": "2026-11-06T21:35:58Z",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42279131940/job/128152696507"
+    },
+    "tweet-midi-checks (2)": {
+      "id": 128152696543,
+      "name": "tweet-midi-checks (2)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T21:03:22Z",
+      "completed_at": "2026-11-06T21:08:51Z",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42279131940/job/128152696543"
+    },
+    "smoke": {
+      "id": 128152696545,
+      "name": "smoke",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T21:03:22Z",
+      "completed_at": "2026-11-06T21:05:10Z",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42279131940/job/128152696545"
+    },
+    "tweet-midi-checks (0)": {
+      "id": 128152696550,
+      "name": "tweet-midi-checks (0)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T21:03:23Z",
+      "completed_at": "2026-11-06T21:13:10Z",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42279131940/job/128152696550"
+    },
+    "browser-checks (3)": {
+      "id": 128152696571,
+      "name": "browser-checks (3)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T21:03:22Z",
+      "completed_at": "2026-11-06T21:30:01Z",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42279131940/job/128152696571"
+    },
+    "tweet-midi-checks (3)": {
+      "id": 128152696579,
+      "name": "tweet-midi-checks (3)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T21:03:22Z",
+      "completed_at": "2026-11-06T21:13:51Z",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42279131940/job/128152696579"
+    },
+    "browser-checks (1)": {
+      "id": 128152696603,
+      "name": "browser-checks (1)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T21:03:22Z",
+      "completed_at": "2026-11-06T21:35:12Z",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42279131940/job/128152696603"
+    },
+    "tweet-midi-checks (1)": {
+      "id": 128152696665,
+      "name": "tweet-midi-checks (1)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-06T21:03:22Z",
+      "completed_at": "2026-11-06T21:11:04Z",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42279131940/job/128152696665"
+    }
+  },
+  "publication": "queued, actual server not yet verified"
+}

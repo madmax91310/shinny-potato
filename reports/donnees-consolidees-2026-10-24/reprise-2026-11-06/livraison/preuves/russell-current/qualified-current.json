@@ -1,0 +1,90 @@
+{
+  "index": "Russell 1000",
+  "asOf": "2026-10-31",
+  "constituents": 1022,
+  "sectorExtractionProof": {
+    "qualifiedScales": [
+      2,
+      1
+    ],
+    "attempts": [
+      {
+        "scale": 2,
+        "status": "qualified"
+      },
+      {
+        "scale": 3,
+        "status": "unreadable",
+        "reason": "Russell printed weight ambiguous"
+      },
+      {
+        "scale": 1,
+        "status": "qualified"
+      }
+    ],
+    "minimumOcrConfidence": 75,
+    "maxGeometryDifferencePctPoints": 0.5,
+    "weightsFromPrintedLabelsOnly": true
+  },
+  "sectorMethod": "ICB industries · printed Russell 1000 chart",
+  "countries": [
+    [
+      "🇺🇸 États-Unis",
+      100
+    ]
+  ],
+  "sectors": [
+    [
+      "⚡ Énergie",
+      4.02
+    ],
+    [
+      "🏠 Immobilier",
+      2.04
+    ],
+    [
+      "🏥 Santé",
+      9.88
+    ],
+    [
+      "🏦 Finance",
+      9.92
+    ],
+    [
+      "🏭 Industrie",
+      11.72
+    ],
+    [
+      "💡 Services publics",
+      2.31
+    ],
+    [
+      "💻 Technologie",
+      40.51
+    ],
+    [
+      "📡 Communication",
+      2.07
+    ],
+    [
+      "🛍️ Consommation cyclique",
+      12.27
+    ],
+    [
+      "🛒 Consommation de base",
+      3.7
+    ],
+    [
+      "🪨 Matériaux",
+      1.58
+    ]
+  ],
+  "holdings": [],
+  "source": {
+    "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open",
+    "checkedAt": "2026-11-06",
+    "sha256": "f137eb024d3f95f901fb5ca0719ffb11b5d348bd6b8b82a951928c3f55a67943",
+    "label": "Fiche officielle FTSE Russell"
+  },
+  "provenance": "Indice Russell 1000 exact. Comptage natif ; secteurs imprimés lus à deux résolutions, associés aux couleurs de légende et contrôlés géométriquement. Les poids ne sont jamais déduits des surfaces. États-Unis : univers des sociétés américaines de l’indice, pas domicile juridique individuel. Poids du top dix absents de la publication ; aucune substitution ETF."
+}

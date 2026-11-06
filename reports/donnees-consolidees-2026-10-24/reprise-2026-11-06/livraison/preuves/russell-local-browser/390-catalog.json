@@ -1,0 +1,603 @@
+{
+  "schemaVersion": 1,
+  "id": "russell-1000",
+  "type": "index",
+  "name": "Russell 1000",
+  "aliases": [
+    "russell-1000",
+    "Russell 1000"
+  ],
+  "consumers": [],
+  "fields": [
+    {
+      "label": "Positions trimestrielles · 2026-06-30",
+      "registry": "src/data/automated-indices.js",
+      "value": {
+        "asOf": "2026-06-30",
+        "rows": [
+          [
+            "Nvidia Corp",
+            6.732
+          ],
+          [
+            "Apple Inc",
+            6.034
+          ],
+          [
+            "Microsoft Corp",
+            3.997
+          ],
+          [
+            "Amazon Com Inc",
+            3.335
+          ],
+          [
+            "Alphabet Inc Cl A",
+            3.003
+          ],
+          [
+            "Broadcom Inc",
+            2.535
+          ],
+          [
+            "Alphabet Inc Cl C",
+            2.423
+          ],
+          [
+            "Micron Technology Inc",
+            1.877
+          ],
+          [
+            "Meta Platforms Inc",
+            1.786
+          ],
+          [
+            "Tesla Inc",
+            1.772
+          ]
+        ],
+        "membershipCount": 1023,
+        "basis": "index",
+        "method": "Poids officiels trimestriels du Russell 1000 exact ; top dix des lignes, classes d’actions séparées. Photographie indépendante des secteurs mensuels.",
+        "source": {
+          "url": "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000",
+          "checkedAt": "2026-11-06",
+          "sha256": "5da48894939e99dbe2b9c3c3295c53cb6b8bf28b157b289aa34662c95c5e9f29",
+          "label": "FTSE Russell · ESMA Quarterly Membership Weights · Russell 1000"
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000"
+        ],
+        "asOf": "2026-06-30",
+        "checkedAt": "2026-11-06",
+        "currency": null,
+        "scope": "Indice exact russell-1000 ; dix principales lignes trimestrielles",
+        "method": "Poids officiels trimestriels du Russell 1000 exact ; top dix des lignes, classes d’actions séparées. Photographie indépendante des secteurs mensuels.",
+        "note": "La date de ces positions est indépendante de celle des pays, secteurs et effectifs mensuels.",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Composition courante · 31 octobre 2026",
+      "registry": "src/data/index-facts.js",
+      "value": {
+        "index": "Russell 1000",
+        "asOf": "2026-10-31",
+        "constituents": 1022,
+        "sectorExtractionProof": {
+          "qualifiedScales": [
+            2,
+            1
+          ],
+          "attempts": [
+            {
+              "scale": 2,
+              "status": "qualified"
+            },
+            {
+              "scale": 3,
+              "status": "unreadable",
+              "reason": "Russell printed weight ambiguous"
+            },
+            {
+              "scale": 1,
+              "status": "qualified"
+            }
+          ],
+          "minimumOcrConfidence": 75,
+          "maxGeometryDifferencePctPoints": 0.5,
+          "weightsFromPrintedLabelsOnly": true
+        },
+        "sectorMethod": "ICB industries · printed Russell 1000 chart",
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            100
+          ]
+        ],
+        "sectors": [
+          [
+            "⚡ Énergie",
+            4.02
+          ],
+          [
+            "🏠 Immobilier",
+            2.04
+          ],
+          [
+            "🏥 Santé",
+            9.88
+          ],
+          [
+            "🏦 Finance",
+            9.92
+          ],
+          [
+            "🏭 Industrie",
+            11.72
+          ],
+          [
+            "💡 Services publics",
+            2.31
+          ],
+          [
+            "💻 Technologie",
+            40.51
+          ],
+          [
+            "📡 Communication",
+            2.07
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            12.27
+          ],
+          [
+            "🛒 Consommation de base",
+            3.7
+          ],
+          [
+            "🪨 Matériaux",
+            1.58
+          ]
+        ],
+        "holdings": [],
+        "source": {
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open",
+          "checkedAt": "2026-11-06",
+          "sha256": "f137eb024d3f95f901fb5ca0719ffb11b5d348bd6b8b82a951928c3f55a67943",
+          "label": "Fiche officielle FTSE Russell"
+        },
+        "provenance": "Indice Russell 1000 exact. Comptage natif ; secteurs imprimés lus à deux résolutions, associés aux couleurs de légende et contrôlés géométriquement. Les poids ne sont jamais déduits des surfaces. États-Unis : univers des sociétés américaines de l’indice, pas domicile juridique individuel. Poids du top dix absents de la publication ; aucune substitution ETF.",
+        "markets": "Russell 1000",
+        "snapshot": "31 octobre 2026",
+        "descriptionTemplates": {
+          "usa": "Les {{targetConstituents}} plus grandes valeurs US, ~93 % de la capitalisation du marché américain."
+        },
+        "targetConstituents": 1000,
+        "sectorClassification": "ICB",
+        "topWeight": 0,
+        "metadata": {
+          "sourceUrls": [
+            "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "currency": null,
+          "scope": "Russell 1000",
+          "method": "Composition d’indice",
+          "note": "Indice Russell 1000 exact. Comptage natif ; secteurs imprimés lus à deux résolutions, associés aux couleurs de légende et contrôlés géométriquement. Les poids ne sont jamais déduits des surfaces. États-Unis : univers des sociétés américaines de l’indice, pas domicile juridique individuel. Poids du top dix absents de la publication ; aucune substitution ETF.",
+          "dateStatus": "dated",
+          "periodStart": null,
+          "periodEnd": null,
+          "sourceStatus": "documented",
+          "sourceReason": null,
+          "reviewedAt": null,
+          "modifiedAt": null
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
+        ],
+        "asOf": "2026-10-31",
+        "checkedAt": "2026-11-06",
+        "currency": null,
+        "scope": "Russell 1000",
+        "method": "Composition d’indice",
+        "note": "Indice Russell 1000 exact. Comptage natif ; secteurs imprimés lus à deux résolutions, associés aux couleurs de légende et contrôlés géométriquement. Les poids ne sont jamais déduits des surfaces. États-Unis : univers des sociétés américaines de l’indice, pas domicile juridique individuel. Poids du top dix absents de la publication ; aucune substitution ETF.",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Photographie · 31 octobre 2026",
+      "registry": "src/data/index-facts.js",
+      "value": {
+        "index": "Russell 1000",
+        "asOf": "2026-10-31",
+        "constituents": 1022,
+        "sectorExtractionProof": {
+          "qualifiedScales": [
+            2,
+            1
+          ],
+          "attempts": [
+            {
+              "scale": 2,
+              "status": "qualified"
+            },
+            {
+              "scale": 3,
+              "status": "unreadable",
+              "reason": "Russell printed weight ambiguous"
+            },
+            {
+              "scale": 1,
+              "status": "qualified"
+            }
+          ],
+          "minimumOcrConfidence": 75,
+          "maxGeometryDifferencePctPoints": 0.5,
+          "weightsFromPrintedLabelsOnly": true
+        },
+        "sectorMethod": "ICB industries · printed Russell 1000 chart",
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            100
+          ]
+        ],
+        "sectors": [
+          [
+            "⚡ Énergie",
+            4.02
+          ],
+          [
+            "🏠 Immobilier",
+            2.04
+          ],
+          [
+            "🏥 Santé",
+            9.88
+          ],
+          [
+            "🏦 Finance",
+            9.92
+          ],
+          [
+            "🏭 Industrie",
+            11.72
+          ],
+          [
+            "💡 Services publics",
+            2.31
+          ],
+          [
+            "💻 Technologie",
+            40.51
+          ],
+          [
+            "📡 Communication",
+            2.07
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            12.27
+          ],
+          [
+            "🛒 Consommation de base",
+            3.7
+          ],
+          [
+            "🪨 Matériaux",
+            1.58
+          ]
+        ],
+        "holdings": [],
+        "source": {
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open",
+          "checkedAt": "2026-11-06",
+          "sha256": "f137eb024d3f95f901fb5ca0719ffb11b5d348bd6b8b82a951928c3f55a67943",
+          "label": "Fiche officielle FTSE Russell"
+        },
+        "provenance": "Indice Russell 1000 exact. Comptage natif ; secteurs imprimés lus à deux résolutions, associés aux couleurs de légende et contrôlés géométriquement. Les poids ne sont jamais déduits des surfaces. États-Unis : univers des sociétés américaines de l’indice, pas domicile juridique individuel. Poids du top dix absents de la publication ; aucune substitution ETF.",
+        "markets": "Russell 1000",
+        "snapshot": "31 octobre 2026",
+        "descriptionTemplates": {
+          "usa": "Les {{targetConstituents}} plus grandes valeurs US, ~93 % de la capitalisation du marché américain."
+        },
+        "targetConstituents": 1000,
+        "sectorClassification": "ICB",
+        "topWeight": 0,
+        "metadata": {
+          "sourceUrls": [
+            "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "currency": null,
+          "scope": "Russell 1000",
+          "method": "Composition d’indice",
+          "note": "Indice Russell 1000 exact. Comptage natif ; secteurs imprimés lus à deux résolutions, associés aux couleurs de légende et contrôlés géométriquement. Les poids ne sont jamais déduits des surfaces. États-Unis : univers des sociétés américaines de l’indice, pas domicile juridique individuel. Poids du top dix absents de la publication ; aucune substitution ETF.",
+          "dateStatus": "dated",
+          "periodStart": null,
+          "periodEnd": null,
+          "sourceStatus": "documented",
+          "sourceReason": null,
+          "reviewedAt": null,
+          "modifiedAt": null
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
+        ],
+        "asOf": "2026-10-31",
+        "checkedAt": "2026-11-06",
+        "currency": null,
+        "scope": "Russell 1000",
+        "method": "Composition d’indice",
+        "note": "Indice Russell 1000 exact. Comptage natif ; secteurs imprimés lus à deux résolutions, associés aux couleurs de légende et contrôlés géométriquement. Les poids ne sont jamais déduits des surfaces. États-Unis : univers des sociétés américaines de l’indice, pas domicile juridique individuel. Poids du top dix absents de la publication ; aucune substitution ETF. Clé : 2026-10-31",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Photographie · 31 août 2026",
+      "registry": "src/data/index-facts.js",
+      "value": {
+        "index": "Russell 1000",
+        "descriptionTemplates": {
+          "usa": "Les {{targetConstituents}} plus grandes valeurs US, ~93 % de la capitalisation du marché américain."
+        },
+        "targetConstituents": 1000,
+        "asOf": "2026-08-31",
+        "snapshot": "31 août 2026",
+        "constituents": 1017,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            100
+          ]
+        ],
+        "sectors": [
+          [
+            "💻 Technologie",
+            41.72
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            12.35
+          ],
+          [
+            "🏭 Industrie",
+            11.57
+          ],
+          [
+            "🏦 Finance",
+            10.17
+          ],
+          [
+            "🏥 Santé",
+            9
+          ],
+          [
+            "⚡ Énergie",
+            3.61
+          ],
+          [
+            "🛒 Consommation de base",
+            3.49
+          ],
+          [
+            "📡 Télécommunications",
+            2.24
+          ],
+          [
+            "💡 Services publics",
+            2.18
+          ],
+          [
+            "🏠 Immobilier",
+            2.04
+          ],
+          [
+            "🪨 Matériaux",
+            1.64
+          ]
+        ],
+        "sectorClassification": "ICB",
+        "markets": "Russell 1000",
+        "holdings": [],
+        "source": {
+          "label": "Composition de l’indice au 2026-08-31, contrôlée le 04/10/2026",
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open",
+          "checkedAt": "2026-10-04"
+        },
+        "provenance": "Composition relue dans la publication officielle : comptage, poids des pays et secteurs de l’indice, sans utiliser le portefeuille du fonds comme substitut. Poids lus sur le graphique ICB de la page 2 ; 1 017 titres, distincts de la cible nominale de 1 000 sociétés.",
+        "metadata": {
+          "sourceUrls": [
+            "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
+          ],
+          "asOf": "2026-08-31",
+          "checkedAt": "2026-10-04",
+          "currency": null,
+          "scope": "Russell 1000",
+          "method": "Composition d’indice",
+          "note": "Composition relue dans la publication officielle : comptage, poids des pays et secteurs de l’indice, sans utiliser le portefeuille du fonds comme substitut. Poids lus sur le graphique ICB de la page 2 ; 1 017 titres, distincts de la cible nominale de 1 000 sociétés.",
+          "dateStatus": "dated",
+          "periodStart": null,
+          "periodEnd": null,
+          "sourceStatus": "documented",
+          "sourceReason": null,
+          "reviewedAt": null,
+          "modifiedAt": null
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
+        ],
+        "asOf": "2026-08-31",
+        "checkedAt": "2026-10-04",
+        "currency": null,
+        "scope": "Russell 1000",
+        "method": "Composition d’indice",
+        "note": "Composition relue dans la publication officielle : comptage, poids des pays et secteurs de l’indice, sans utiliser le portefeuille du fonds comme substitut. Poids lus sur le graphique ICB de la page 2 ; 1 017 titres, distincts de la cible nominale de 1 000 sociétés. Clé : 2026-08-31",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Photographie · Méthodologie, sans photographie datée",
+      "registry": "src/data/index-facts.js",
+      "value": {
+        "index": "Russell 1000",
+        "asOf": null,
+        "snapshot": "Méthodologie, sans photographie datée",
+        "source": {
+          "label": "Méthodologie officielle consultée le 30/09/2026",
+          "url": "https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2025/ftse-russell-announces-first-russell-1000-index-fund-in-japan",
+          "checkedAt": "2026-09-30"
+        },
+        "provenance": "Périmètre nominal confirmé dans la publication officielle ; ce nombre cible ne constitue pas un comptage daté.",
+        "constituents": null,
+        "targetConstituents": 1000,
+        "descriptionTemplates": {
+          "usa": "Les {{targetConstituents}} plus grandes valeurs US, ~93 % de la capitalisation du marché américain."
+        },
+        "metadata": {
+          "sourceUrls": [
+            "https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2025/ftse-russell-announces-first-russell-1000-index-fund-in-japan"
+          ],
+          "asOf": null,
+          "checkedAt": "2026-09-30",
+          "currency": null,
+          "scope": "Russell 1000",
+          "method": "Périmètre nominal de méthodologie",
+          "note": "Périmètre nominal confirmé dans la publication officielle ; ce nombre cible ne constitue pas un comptage daté.",
+          "dateStatus": "not-applicable",
+          "periodStart": null,
+          "periodEnd": null,
+          "sourceStatus": "documented",
+          "sourceReason": null,
+          "reviewedAt": null,
+          "modifiedAt": null
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2025/ftse-russell-announces-first-russell-1000-index-fund-in-japan"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-09-30",
+        "currency": null,
+        "scope": "Russell 1000",
+        "method": "Périmètre nominal de méthodologie",
+        "note": "Périmètre nominal confirmé dans la publication officielle ; ce nombre cible ne constitue pas un comptage daté. Clé : methodology",
+        "dateStatus": "not-applicable",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Rendements d’indice · 2025-12-31",
+      "registry": "src/data/index-returns.js",
+      "value": {
+        "values": [
+          [
+            2023,
+            26.53
+          ],
+          [
+            2024,
+            24.51
+          ],
+          [
+            2025,
+            17.37
+          ]
+        ],
+        "performance": {
+          "kind": "indice",
+          "detail": "Russell 1000 · USD · dividendes réinvestis",
+          "date": "Années calendaires 2023–2025"
+        },
+        "source": {
+          "label": "Source officielle · performances de l’indice ou de l’actif",
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD"
+        },
+        "currency": "USD",
+        "method": "dividendes réinvestis",
+        "note": null,
+        "checkedAt": "2026-10-04",
+        "periodStart": "2023-01-01",
+        "periodEnd": "2025-12-31",
+        "metadata": {
+          "sourceUrls": [
+            "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD"
+          ],
+          "asOf": "2025-12-31",
+          "checkedAt": "2026-10-04",
+          "currency": "USD",
+          "scope": "Indice russell-1000",
+          "method": "Russell 1000 · USD · dividendes réinvestis",
+          "note": "Série historique d’indice ; ne remplace jamais le rendement d’une part.",
+          "dateStatus": "dated",
+          "periodStart": "2023-01-01",
+          "periodEnd": "2025-12-31",
+          "sourceStatus": "documented",
+          "sourceReason": null,
+          "reviewedAt": null,
+          "modifiedAt": null
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD"
+        ],
+        "asOf": "2025-12-31",
+        "checkedAt": "2026-10-04",
+        "currency": "USD",
+        "scope": "Indice russell-1000",
+        "method": "Russell 1000 · USD · dividendes réinvestis",
+        "note": "Série historique d’indice ; ne remplace jamais le rendement d’une part.",
+        "dateStatus": "dated",
+        "periodStart": "2023-01-01",
+        "periodEnd": "2025-12-31",
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    }
+  ]
+}

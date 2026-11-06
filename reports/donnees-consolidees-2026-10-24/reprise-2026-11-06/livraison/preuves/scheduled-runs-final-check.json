@@ -1,0 +1,109 @@
+{
+  "checkedAt": "2026-11-06T20:01:39.907293+00:00",
+  "workflows": {
+    "update-qualified-exposures.yml": [
+      {
+        "id": 42242712749,
+        "event": "schedule",
+        "created_at": "2026-11-06T15:24:13Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "head_sha": "19d8ad0b68b63abaa9381b078a1c2f0b51aed2a1"
+      },
+      {
+        "id": 42058877562,
+        "event": "schedule",
+        "created_at": "2026-11-05T15:49:27Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "head_sha": "70021e08c00710922d12d873b577d4cba1c76631"
+      },
+      {
+        "id": 41861404027,
+        "event": "schedule",
+        "created_at": "2026-11-04T15:47:32Z",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "head_sha": "6fb64d5c8de26b3691b5d97a392c037eef105aad"
+      }
+    ],
+    "update-market-monthly.yml": [
+      {
+        "id": 42235436731,
+        "event": "schedule",
+        "created_at": "2026-11-06T14:36:29Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "head_sha": "ad419ccfcc929e2b67a794255ef9c04caa60e579"
+      },
+      {
+        "id": 42049999280,
+        "event": "schedule",
+        "created_at": "2026-11-05T14:57:07Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "head_sha": "0ffd7ae829343ae52744b229a037187ca2c8db9f"
+      },
+      {
+        "id": 41851900526,
+        "event": "schedule",
+        "created_at": "2026-11-04T14:52:20Z",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "head_sha": "fa269245cba28bfea2230ebb978681125082ee26"
+      }
+    ],
+    "update-exposure-expansion.yml": [
+      {
+        "id": 42242779345,
+        "event": "schedule",
+        "created_at": "2026-11-06T15:24:38Z",
+        "status": "completed",
+        "conclusion": "failure",
+        "head_sha": "19d8ad0b68b63abaa9381b078a1c2f0b51aed2a1"
+      },
+      {
+        "id": 42058822228,
+        "event": "schedule",
+        "created_at": "2026-11-05T15:49:08Z",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "70021e08c00710922d12d873b577d4cba1c76631"
+      },
+      {
+        "id": 41861204351,
+        "event": "schedule",
+        "created_at": "2026-11-04T15:46:22Z",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "6fb64d5c8de26b3691b5d97a392c037eef105aad"
+      }
+    ],
+    "update-non-bond-expansion.yml": [
+      {
+        "id": 42238737026,
+        "event": "schedule",
+        "created_at": "2026-11-06T14:58:41Z",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "51dbc4740e14e74eac38e6f9932dca2d1c9e45bf"
+      },
+      {
+        "id": 42054710171,
+        "event": "schedule",
+        "created_at": "2026-11-05T15:24:47Z",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "b5efe910411172950cb95f411c1f0ba5386ea05a"
+      },
+      {
+        "id": 41857039235,
+        "event": "schedule",
+        "created_at": "2026-11-04T15:22:24Z",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "0c3fee0f6b51e78687797b3c9f0f1179b9a5b2c6"
+      }
+    ]
+  }
+}

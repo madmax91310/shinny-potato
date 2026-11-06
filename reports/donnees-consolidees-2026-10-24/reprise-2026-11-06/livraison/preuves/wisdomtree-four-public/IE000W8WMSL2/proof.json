@@ -1,0 +1,130 @@
+{
+  "checkedAt": "2026-11-06T21:21:03.165Z",
+  "cases": [
+    {
+      "width": 1440,
+      "before": {
+        "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+        "dataSha": "74ccfbd9fd5176e17861780a16f7b80e8dc6abec",
+        "lane": "validated-data",
+        "builtAt": "2026-11-06T20:58:55.766Z"
+      },
+      "after": {
+        "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+        "dataSha": "74ccfbd9fd5176e17861780a16f7b80e8dc6abec",
+        "lane": "validated-data",
+        "builtAt": "2026-11-06T20:58:55.766Z"
+      },
+      "sourceAsOf": "2026-11-05",
+      "checkedAt": "2026-11-06T15:13:10.899521+00:00",
+      "rows": 47,
+      "consolidated": [],
+      "identifiedPositionsOverlapOnly": 18.446640000000006,
+      "qualifiedFullOverlap": false,
+      "qualification": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.0001,
+        "identifiedCoverage": 100.0001,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.00010000000000331966
+      },
+      "peerQualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.95357999999997,
+        "identifiedCoverage": 99.95357999999997,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.04642000000002611
+      },
+      "scores": [
+        "Partiel"
+      ],
+      "receipts": [
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-24-Bn0Qt8qd.json",
+          "bucket": "24",
+          "blob": "1b0024d45630bfaf31d14d131326beae90ea1c1b",
+          "status": 200
+        },
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-14-B8c5G4CA.json",
+          "bucket": "14",
+          "blob": "82670bf0d16591ad81324f3291eeff9a9898a7ab",
+          "status": 200
+        }
+      ],
+      "png": "/tmp/automation-20261106/proofs/wisdomtree-four-public/IE000W8WMSL2/1440.png",
+      "pngSha256": "fd2fdc482a9d8d42d1e4be1ad8d2b5152d85a234195481ff5d2c17905fd6b8b9",
+      "previewEqualsExport": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "before": {
+        "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+        "dataSha": "74ccfbd9fd5176e17861780a16f7b80e8dc6abec",
+        "lane": "validated-data",
+        "builtAt": "2026-11-06T20:58:55.766Z"
+      },
+      "after": {
+        "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+        "dataSha": "74ccfbd9fd5176e17861780a16f7b80e8dc6abec",
+        "lane": "validated-data",
+        "builtAt": "2026-11-06T20:58:55.766Z"
+      },
+      "sourceAsOf": "2026-11-05",
+      "checkedAt": "2026-11-06T15:13:10.899521+00:00",
+      "rows": 47,
+      "consolidated": [],
+      "identifiedPositionsOverlapOnly": 18.446640000000006,
+      "qualifiedFullOverlap": false,
+      "qualification": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "La somme des poids publiés dépasse 100 % ; aucun taux intégral calculé."
+        ],
+        "sourceCoverage": 100.0001,
+        "identifiedCoverage": 100.0001,
+        "unidentifiedCoverage": 0,
+        "residualWeight": -0.00010000000000331966
+      },
+      "peerQualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.95357999999997,
+        "identifiedCoverage": 99.95357999999997,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.04642000000002611
+      },
+      "scores": [
+        "Partiel"
+      ],
+      "receipts": [
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-24-Bn0Qt8qd.json",
+          "bucket": "24",
+          "blob": "1b0024d45630bfaf31d14d131326beae90ea1c1b",
+          "status": 200
+        },
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-14-B8c5G4CA.json",
+          "bucket": "14",
+          "blob": "82670bf0d16591ad81324f3291eeff9a9898a7ab",
+          "status": 200
+        }
+      ],
+      "png": "/tmp/automation-20261106/proofs/wisdomtree-four-public/IE000W8WMSL2/390.png",
+      "pngSha256": "fd2fdc482a9d8d42d1e4be1ad8d2b5152d85a234195481ff5d2c17905fd6b8b9",
+      "previewEqualsExport": true,
+      "errors": []
+    }
+  ],
+  "scope": "Existing WisdomTree/SP500 consumers: exact currently published stock books and weights, independent company overlap and unchanged full/partial gate; PNG preview equals download. Country classification and historical performance are separate. This is a verification of preserved acquisitions, not a new source repair."
+}

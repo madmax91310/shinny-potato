@@ -1,0 +1,52 @@
+{
+  "verifiedAt": "2026-11-06T17:26:51.941070+00:00",
+  "build": {
+    "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+    "dataSha": "5739c1c16cb3452af46322b4f547faf2b159bc48",
+    "lane": "validated-data",
+    "builtAt": "2026-11-06T17:17:04.749Z"
+  },
+  "registryBlob": "84bb024c2b616ab6fbbccd5adb1faf75eb50b57b",
+  "registrySha256": "a58972ad799d11244e5cc811bd37f4fc6d84b64623c45e9c5833f624140df45e",
+  "ngas": {
+    "responseSha256": "19643dc420b4d2cae76cac8fae2030cba910dbdd56f6f9ccd70a10f268cd1dd2",
+    "checkedAt": "2026-11-06",
+    "periodEnd": "2026-10",
+    "currency": "USD",
+    "convention": "Rendement total NAV officiel de la part exacte en USD, net des frais ; unités de performance sans ajout de distributions ; ancienne cotation conservée séparément"
+  },
+  "recordingCommit": "5739c1c16cb3452af46322b4f547faf2b159bc48",
+  "sourceRun": 42242620055,
+  "stableBuild": true,
+  "financialComparisonToPreviousPublishedSnapshot": {
+    "etfLU1829219390": {
+      "points": true,
+      "currency": true,
+      "periodStart": true,
+      "periodEnd": true,
+      "anniversaryExcludedMonths": true,
+      "historyExcludedMonths": true,
+      "historyUnqualifiedReturnWindows": true
+    },
+    "etf_timber_ishares": {
+      "points": false,
+      "currency": true,
+      "periodStart": true,
+      "periodEnd": true,
+      "anniversaryExcludedMonths": true,
+      "historyExcludedMonths": true,
+      "historyUnqualifiedReturnWindows": true
+    },
+    "etc_natural_gasNav": {
+      "points": false,
+      "currency": true,
+      "periodStart": true,
+      "periodEnd": true,
+      "anniversaryExcludedMonths": true,
+      "historyExcludedMonths": true,
+      "historyUnqualifiedReturnWindows": true
+    }
+  },
+  "wtaiFailedSourceLastValidDatePreserved": "2026-11-04",
+  "newMonthlyUseNotInferred": true
+}

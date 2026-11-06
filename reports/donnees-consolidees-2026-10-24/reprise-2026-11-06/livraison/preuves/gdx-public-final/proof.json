@@ -1,0 +1,118 @@
+{
+  "checkedAt": "2026-11-06T09:43:51.918Z",
+  "cases": [
+    {
+      "width": 1440,
+      "before": {
+        "sha": "997a84064cdbf06f01a1902a71f57b5ab2beade8",
+        "builtAt": "2026-11-06T08:53:26Z"
+      },
+      "after": {
+        "sha": "997a84064cdbf06f01a1902a71f57b5ab2beade8",
+        "builtAt": "2026-11-06T08:53:26Z"
+      },
+      "sourceAsOf": "2026-11-05",
+      "checkedAt": "2026-11-06T08:27:27.781656+00:00",
+      "rows": 59,
+      "consolidated": [],
+      "identifiedPositionsOverlapOnly": 0.18788,
+      "qualifiedFullOverlap": true,
+      "qualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.98,
+        "identifiedCoverage": 99.98,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.01999999999999602
+      },
+      "peerQualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.96058000000015,
+        "identifiedCoverage": 99.96058000000015,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.039419999999850575
+      },
+      "scores": [
+        "0,19 %"
+      ],
+      "receipts": [
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-24-Bh_w09R8.json",
+          "bucket": "24",
+          "blob": "610febd668acd539b150745afdf22396a1b692c7",
+          "status": 200
+        },
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-19-_EyF0RgD.json",
+          "bucket": "19",
+          "blob": "5502c8562508b92ee835b6be5b8ed7b957494576",
+          "status": 200
+        }
+      ],
+      "png": "/tmp/automation-20261106/proofs/gdx-public-final/1440.png",
+      "pngSha256": "f66d6928312e9d14a67a092c84c194c9bb56bc2e61cbd2fb1c5504f4f4b6a7f5",
+      "previewEqualsExport": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "before": {
+        "sha": "997a84064cdbf06f01a1902a71f57b5ab2beade8",
+        "builtAt": "2026-11-06T08:53:26Z"
+      },
+      "after": {
+        "sha": "997a84064cdbf06f01a1902a71f57b5ab2beade8",
+        "builtAt": "2026-11-06T08:53:26Z"
+      },
+      "sourceAsOf": "2026-11-05",
+      "checkedAt": "2026-11-06T08:27:27.781656+00:00",
+      "rows": 59,
+      "consolidated": [],
+      "identifiedPositionsOverlapOnly": 0.18788,
+      "qualifiedFullOverlap": true,
+      "qualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.98,
+        "identifiedCoverage": 99.98,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.01999999999999602
+      },
+      "peerQualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.96058000000015,
+        "identifiedCoverage": 99.96058000000015,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.039419999999850575
+      },
+      "scores": [
+        "0,19 %"
+      ],
+      "receipts": [
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-24-Bh_w09R8.json",
+          "bucket": "24",
+          "blob": "610febd668acd539b150745afdf22396a1b692c7",
+          "status": 200
+        },
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-19-_EyF0RgD.json",
+          "bucket": "19",
+          "blob": "5502c8562508b92ee835b6be5b8ed7b957494576",
+          "status": 200
+        }
+      ],
+      "png": "/tmp/automation-20261106/proofs/gdx-public-final/390.png",
+      "pngSha256": "f66d6928312e9d14a67a092c84c194c9bb56bc2e61cbd2fb1c5504f4f4b6a7f5",
+      "previewEqualsExport": true,
+      "errors": []
+    }
+  ],
+  "scope": "Actually consumed complete GGRA/SP500 books, exact-ISIN consolidation, independent issuer-overlap sum, live text and native PNG; country exposure qualification remains separate."
+}

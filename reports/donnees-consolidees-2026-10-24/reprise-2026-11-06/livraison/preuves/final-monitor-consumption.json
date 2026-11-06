@@ -1,0 +1,3822 @@
+{
+  "capture": "2026-11-06T23:02:38.768Z",
+  "code": {
+    "sha": "b641e888850898e6fdf392e62540e45c96ccb3d9",
+    "builtAt": "2026-11-06T22:19:37Z"
+  },
+  "monitorGitBlob": "4dd3beaaebd6ad423349db89b5a07997dae450ff",
+  "selectedNativeRows": [
+    {
+      "name": "WisdomTree Natural Gas · VL",
+      "tools": [],
+      "impactScope": "asset",
+      "workflow": "update-market-monthly.yml",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42292584761",
+      "to": "/bibliotheque-donnees?id=history%3Aetc_natural_gasNav",
+      "lastSuccessAt": "2026-11-06T19:57:48.019399+00:00",
+      "completedAt": "2026-11-06T21:51:19Z",
+      "sourcePhaseCompletedAt": "2026-11-06T21:51:19Z",
+      "runId": 42288297918,
+      "attempt": 1,
+      "attemptedDataIds": [
+        "index-bitcoin-returns",
+        "index-ethereum-returns",
+        "index-sp500-pea-returns",
+        "listing:CA13321L1085",
+        "listing:FR0010524777",
+        "listing:FR0013416716",
+        "listing:GB00BJYDH287",
+        "listing:GB00BLD4ZM24",
+        "listing:JE00B1VS3770",
+        "listing:KYG6683N1034",
+        "listing:LU1778762911",
+        "listing:NL0009805522",
+        "listing:SE0021921269",
+        "listing:US00217D1000",
+        "listing:US18915M1071",
+        "listing:US19260Q1076",
+        "listing:US21037T1097",
+        "listing:US23804L1035",
+        "listing:US26603R1068",
+        "listing:US36828A1016",
+        "listing:US58733R1023",
+        "listing:US5949724083",
+        "listing:US75734B1008",
+        "listing:US7707001027",
+        "listing:US7731211089",
+        "listing:US8334451098",
+        "listing:US83406F1021",
+        "listing:US92537N1081",
+        "listing:US98980G1022",
+        "listing:directory:us-other"
+      ],
+      "cause": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n\nNode.js v20.20.2\n",
+      "field": "Historique mensuel",
+      "evidence": {
+        "scopeExplicit": true,
+        "scopePlanVerified": false,
+        "producerContract": null,
+        "file": "monthly-observation.json",
+        "sha256": "d94d0704c8ef21056658521f30378ae6ff810912da44a412451c1511ee71e3af",
+        "reportedAt": "2026-11-06T21:39:01.999253+00:00",
+        "schema": "series",
+        "artifactId": 13544320825,
+        "sourcePhaseStartedAt": "2026-11-06T21:36:48Z",
+        "sourcePhaseCompletedAt": "2026-11-06T21:51:19Z",
+        "scopeRef": "8c1e132819ca9ae023dc4417f204ee936e45a8db83a1ffca1a75bc0eff7f2500",
+        "scopeSummary": {
+          "expectedIdsCount": 1,
+          "requestedIdsCount": 1
+        }
+      },
+      "historicalDiscovery": true,
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k",
+        "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=tabular",
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
+      ],
+      "kind": "failure",
+      "dataId": "history:etc_natural_gasNav",
+      "id": "collection:update-market-monthly.yml:history:etc_natural_gasNav",
+      "firstSeenAt": "2026-11-06T21:00:19.858945+00:00",
+      "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+      "observations": [
+        {
+          "cause": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42288297918",
+          "completedAt": "2026-11-06T20:52:38Z",
+          "lastSuccessAt": "2026-11-06T19:57:48.019399+00:00",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=tabular",
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
+          ]
+        },
+        {
+          "cause": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n\nNode.js v20.20.2\n",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42292584761",
+          "completedAt": "2026-11-06T21:51:19Z",
+          "lastSuccessAt": "2026-11-06T19:57:48.019399+00:00",
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=tabular",
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
+          ]
+        }
+      ],
+      "members": [
+        "index-bitcoin-returns",
+        "index-ethereum-returns",
+        "index-sp500-pea-returns",
+        "listing:CA13321L1085",
+        "listing:FR0010524777",
+        "listing:FR0013416716",
+        "listing:GB00BJYDH287",
+        "listing:GB00BLD4ZM24",
+        "listing:JE00B1VS3770",
+        "listing:KYG6683N1034",
+        "listing:LU1778762911",
+        "listing:NL0009805522",
+        "listing:SE0021921269",
+        "listing:US00217D1000",
+        "listing:US18915M1071",
+        "listing:US19260Q1076",
+        "listing:US21037T1097",
+        "listing:US23804L1035",
+        "listing:US26603R1068",
+        "listing:US36828A1016",
+        "listing:US58733R1023",
+        "listing:US5949724083",
+        "listing:US75734B1008",
+        "listing:US7707001027",
+        "listing:US7731211089",
+        "listing:US8334451098",
+        "listing:US83406F1021",
+        "listing:US92537N1081",
+        "listing:US98980G1022",
+        "listing:directory:us-other"
+      ],
+      "impactQualified": false,
+      "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+      "collectorTools": [
+        "Calculateur",
+        "Performance depuis",
+        "Qui a vraiment gagné"
+      ],
+      "stage": "Donnée / collecte",
+      "key": "collection:update-market-monthly.yml:history:etc_natural_gasNav",
+      "attemptedAt": "2026-11-06T21:36:48Z",
+      "recovery": {
+        "attempts": [
+          {
+            "at": "2026-11-06T15:22:34.025336+00:00",
+            "reason": "recording-failed",
+            "sourceRunId": 42235436731,
+            "status": "dispatched",
+            "ref": "master",
+            "error": null
+          },
+          {
+            "at": "2026-11-06T20:24:51.108442+00:00",
+            "reason": "recording-failed",
+            "sourceRunId": 42280175362,
+            "status": "dispatched",
+            "ref": "master",
+            "inputs": {
+              "series": "etc_natural_gasNav"
+            },
+            "error": null
+          }
+        ],
+        "reason": "recording-failed",
+        "lastSuccessAt": "2026-11-03T14:41:07.533153+00:00",
+        "observedRunId": 42288297918,
+        "nextAttemptAt": "2026-11-07T00:24:51.108442+00:00",
+        "status": "awaiting-current-run"
+      },
+      "signals": [
+        {
+          "name": "WisdomTree Natural Gas · VL",
+          "tools": [],
+          "impactScope": "asset",
+          "workflow": "update-market-monthly.yml",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42292584761",
+          "to": "/bibliotheque-donnees?id=history%3Aetc_natural_gasNav",
+          "lastSuccessAt": "2026-11-06T19:57:48.019399+00:00",
+          "completedAt": "2026-11-06T21:51:19Z",
+          "sourcePhaseCompletedAt": "2026-11-06T21:51:19Z",
+          "runId": 42288297918,
+          "attempt": 1,
+          "attemptedDataIds": [
+            "index-bitcoin-returns",
+            "index-ethereum-returns",
+            "index-sp500-pea-returns",
+            "listing:CA13321L1085",
+            "listing:FR0010524777",
+            "listing:FR0013416716",
+            "listing:GB00BJYDH287",
+            "listing:GB00BLD4ZM24",
+            "listing:JE00B1VS3770",
+            "listing:KYG6683N1034",
+            "listing:LU1778762911",
+            "listing:NL0009805522",
+            "listing:SE0021921269",
+            "listing:US00217D1000",
+            "listing:US18915M1071",
+            "listing:US19260Q1076",
+            "listing:US21037T1097",
+            "listing:US23804L1035",
+            "listing:US26603R1068",
+            "listing:US36828A1016",
+            "listing:US58733R1023",
+            "listing:US5949724083",
+            "listing:US75734B1008",
+            "listing:US7707001027",
+            "listing:US7731211089",
+            "listing:US8334451098",
+            "listing:US83406F1021",
+            "listing:US92537N1081",
+            "listing:US98980G1022",
+            "listing:directory:us-other"
+          ],
+          "cause": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n\nNode.js v20.20.2\n",
+          "field": "Historique mensuel",
+          "evidence": {
+            "scopeExplicit": true,
+            "scopePlanVerified": false,
+            "producerContract": null,
+            "file": "monthly-observation.json",
+            "sha256": "d94d0704c8ef21056658521f30378ae6ff810912da44a412451c1511ee71e3af",
+            "reportedAt": "2026-11-06T21:39:01.999253+00:00",
+            "schema": "series",
+            "artifactId": 13544320825,
+            "sourcePhaseStartedAt": "2026-11-06T21:36:48Z",
+            "sourcePhaseCompletedAt": "2026-11-06T21:51:19Z",
+            "scopeRef": "8c1e132819ca9ae023dc4417f204ee936e45a8db83a1ffca1a75bc0eff7f2500",
+            "scopeSummary": {
+              "expectedIdsCount": 1,
+              "requestedIdsCount": 1
+            }
+          },
+          "historicalDiscovery": true,
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k",
+            "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=tabular",
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
+          ],
+          "kind": "failure",
+          "dataId": "history:etc_natural_gasNav",
+          "id": "collection:update-market-monthly.yml:history:etc_natural_gasNav",
+          "firstSeenAt": "2026-11-06T21:00:19.858945+00:00",
+          "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+          "observations": [
+            {
+              "cause": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42288297918",
+              "completedAt": "2026-11-06T20:52:38Z",
+              "lastSuccessAt": "2026-11-06T19:57:48.019399+00:00",
+              "sourceUrls": [
+                "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k",
+                "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=tabular",
+                "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
+              ]
+            },
+            {
+              "cause": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n\nNode.js v20.20.2\n",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42292584761",
+              "completedAt": "2026-11-06T21:51:19Z",
+              "lastSuccessAt": "2026-11-06T19:57:48.019399+00:00",
+              "sourceUrls": [
+                "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k",
+                "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=tabular",
+                "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
+              ]
+            }
+          ],
+          "members": [
+            "index-bitcoin-returns",
+            "index-ethereum-returns",
+            "index-sp500-pea-returns",
+            "listing:CA13321L1085",
+            "listing:FR0010524777",
+            "listing:FR0013416716",
+            "listing:GB00BJYDH287",
+            "listing:GB00BLD4ZM24",
+            "listing:JE00B1VS3770",
+            "listing:KYG6683N1034",
+            "listing:LU1778762911",
+            "listing:NL0009805522",
+            "listing:SE0021921269",
+            "listing:US00217D1000",
+            "listing:US18915M1071",
+            "listing:US19260Q1076",
+            "listing:US21037T1097",
+            "listing:US23804L1035",
+            "listing:US26603R1068",
+            "listing:US36828A1016",
+            "listing:US58733R1023",
+            "listing:US5949724083",
+            "listing:US75734B1008",
+            "listing:US7707001027",
+            "listing:US7731211089",
+            "listing:US8334451098",
+            "listing:US83406F1021",
+            "listing:US92537N1081",
+            "listing:US98980G1022",
+            "listing:directory:us-other"
+          ],
+          "impactQualified": false,
+          "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+          "collectorTools": [
+            "Calculateur",
+            "Performance depuis",
+            "Qui a vraiment gagné"
+          ],
+          "stage": "Donnée / collecte",
+          "key": "collection:update-market-monthly.yml:history:etc_natural_gasNav",
+          "attemptedAt": "2026-11-06T21:36:48Z",
+          "recovery": {
+            "attempts": [
+              {
+                "at": "2026-11-06T15:22:34.025336+00:00",
+                "reason": "recording-failed",
+                "sourceRunId": 42235436731,
+                "status": "dispatched",
+                "ref": "master",
+                "error": null
+              },
+              {
+                "at": "2026-11-06T20:24:51.108442+00:00",
+                "reason": "recording-failed",
+                "sourceRunId": 42280175362,
+                "status": "dispatched",
+                "ref": "master",
+                "inputs": {
+                  "series": "etc_natural_gasNav"
+                },
+                "error": null
+              }
+            ],
+            "reason": "recording-failed",
+            "lastSuccessAt": "2026-11-03T14:41:07.533153+00:00",
+            "observedRunId": 42288297918,
+            "nextAttemptAt": "2026-11-07T00:24:51.108442+00:00",
+            "status": "awaiting-current-run"
+          }
+        }
+      ]
+    },
+    {
+      "id": "[\"instrument:IE00BMH5Y871:performance\",\"connection\",\"Consommation\",null,null,null,null]",
+      "key": "instrument:IE00BMH5Y871:performance",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "asset": "IE00BMH5Y871",
+      "field": "Performances annuelles",
+      "kind": "connection",
+      "stage": "Consommation",
+      "consumerContract": {
+        "id": "[\"/bibliotheque-donnees\",\"IE00BMH5Y871\",\"coverage:performance\"]",
+        "tool": "Bibliothèque de données",
+        "asset": "IE00BMH5Y871",
+        "field": "coverage:performance",
+        "state": "blocked"
+      },
+      "impactState": "blocked",
+      "impact": "Ce contrat requis est bloqué ; les autres outils ne sont pas présumés affectés.",
+      "cause": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
+      "qualificationBlock": "not-published",
+      "present": false,
+      "action": "Surveiller la source et compléter uniquement lorsqu’une valeur du bon périmètre est publiée.",
+      "tools": [
+        "Bibliothèque de données",
+        "Présentation d'ETF"
+      ],
+      "checkedAt": null,
+      "sourceUrls": [
+        "https://globalxetfs.eu/funds/bug/"
+      ],
+      "to": "/bibliotheque-donnees?id=IE00BMH5Y871",
+      "signals": [
+        {
+          "id": "usage:/bibliotheque-donnees:IE00BMH5Y871:coverage:performance",
+          "key": "instrument:IE00BMH5Y871:performance",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performances annuelles",
+          "kind": "connection",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/bibliotheque-donnees\",\"IE00BMH5Y871\",\"coverage:performance\"]",
+            "tool": "Bibliothèque de données",
+            "asset": "IE00BMH5Y871",
+            "field": "coverage:performance",
+            "state": "blocked"
+          },
+          "impactState": "blocked",
+          "impact": "Ce contrat requis est bloqué ; les autres outils ne sont pas présumés affectés.",
+          "cause": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
+          "qualificationBlock": "not-published",
+          "present": false,
+          "action": "Surveiller la source et compléter uniquement lorsqu’une valeur du bon périmètre est publiée.",
+          "tools": [
+            "Bibliothèque de données"
+          ],
+          "checkedAt": null,
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/fiches-etf:IE00BMH5Y871:coverage:performance",
+          "key": "instrument:IE00BMH5Y871:performance",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performances annuelles",
+          "kind": "connection",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/fiches-etf\",\"IE00BMH5Y871\",\"coverage:performance\"]",
+            "tool": "Présentation d'ETF",
+            "asset": "IE00BMH5Y871",
+            "field": "coverage:performance",
+            "state": "blocked"
+          },
+          "impactState": "blocked",
+          "impact": "Ce contrat requis est bloqué ; les autres outils ne sont pas présumés affectés.",
+          "cause": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
+          "qualificationBlock": "not-published",
+          "present": false,
+          "action": "Surveiller la source et compléter uniquement lorsqu’une valeur du bon périmètre est publiée.",
+          "tools": [
+            "Présentation d'ETF"
+          ],
+          "checkedAt": null,
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        }
+      ]
+    },
+    {
+      "id": "[\"instrument:IE00BMH5Y871:performance\",\"connection\",\"Raccordement\",null,null,null,null]",
+      "key": "instrument:IE00BMH5Y871:performance",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "asset": "IE00BMH5Y871",
+      "field": "Performances annuelles",
+      "kind": "connection",
+      "cause": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
+      "action": "Surveiller la source et compléter uniquement lorsqu’une valeur du bon périmètre est publiée.",
+      "asOf": null,
+      "checkedAt": null,
+      "attemptedAt": null,
+      "lastSuccessAt": null,
+      "tools": [
+        "Bibliothèque de données",
+        "Présentation d'ETF"
+      ],
+      "sourceUrls": [
+        "https://globalxetfs.eu/funds/bug/"
+      ],
+      "to": "/bibliotheque-donnees?id=IE00BMH5Y871",
+      "stage": "Raccordement",
+      "signals": [
+        {
+          "id": "connection:instrument:IE00BMH5Y871:performance",
+          "key": "instrument:IE00BMH5Y871:performance",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performances annuelles",
+          "kind": "connection",
+          "cause": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
+          "action": "Surveiller la source et compléter uniquement lorsqu’une valeur du bon périmètre est publiée.",
+          "asOf": null,
+          "checkedAt": null,
+          "attemptedAt": null,
+          "lastSuccessAt": null,
+          "tools": [
+            "Bibliothèque de données",
+            "Présentation d'ETF"
+          ],
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871",
+          "stage": "Raccordement"
+        },
+        {
+          "id": "coverage:instrument:IE00BMH5Y871:performance",
+          "key": "instrument:IE00BMH5Y871:performance",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performances annuelles",
+          "kind": "connection",
+          "cause": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
+          "asOf": null,
+          "checkedAt": null,
+          "tools": [
+            "Bibliothèque de données",
+            "Présentation d'ETF"
+          ],
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871",
+          "stage": "Raccordement"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:IE00BMH5Y871:catalog:10\",\"qualification\",\"Consommation\",\"2025-12-31\",\"USD\",\"Part exacte IE00BMH5Y871 ; cotation IE00BMH5Y871-XLON-BUG-USD\",\"Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo\"]",
+      "key": "usage:IE00BMH5Y871:catalog:10",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "asset": "IE00BMH5Y871",
+      "field": "Rendements annuels de cotation",
+      "kind": "qualification",
+      "stage": "Consommation",
+      "consumerContract": {
+        "id": "[\"/bibliotheque-donnees\",\"IE00BMH5Y871\",\"catalog:10\"]",
+        "tool": "Bibliothèque de données",
+        "asset": "IE00BMH5Y871",
+        "field": "catalog:10",
+        "state": "qualification-needed"
+      },
+      "impactState": "unqualified",
+      "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+      "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+      "qualificationBlock": "field-certificate-missing",
+      "present": true,
+      "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+      "tools": [
+        "Bibliothèque de données",
+        "Comparatif ETF",
+        "Duel de portefeuilles",
+        "Générateur de portefeuilles",
+        "Présentation d'ETF"
+      ],
+      "asOf": "2025-12-31",
+      "checkedAt": "2026-11-06",
+      "attemptedAt": null,
+      "lastSuccessAt": "2026-11-06",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits"
+      ],
+      "scope": "Part exacte IE00BMH5Y871 ; cotation IE00BMH5Y871-XLON-BUG-USD",
+      "currency": "USD",
+      "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+      "to": "/bibliotheque-donnees?id=IE00BMH5Y871",
+      "signals": [
+        {
+          "id": "usage:/bibliotheque-donnees:IE00BMH5Y871:catalog:10",
+          "key": "usage:IE00BMH5Y871:catalog:10",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Rendements annuels de cotation",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/bibliotheque-donnees\",\"IE00BMH5Y871\",\"catalog:10\"]",
+            "tool": "Bibliothèque de données",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:10",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Bibliothèque de données"
+          ],
+          "asOf": "2025-12-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "scope": "Part exacte IE00BMH5Y871 ; cotation IE00BMH5Y871-XLON-BUG-USD",
+          "currency": "USD",
+          "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/comparatif-etf:IE00BMH5Y871:catalog:10",
+          "key": "usage:IE00BMH5Y871:catalog:10",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Rendements annuels de cotation",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/comparatif-etf\",\"IE00BMH5Y871\",\"catalog:10\"]",
+            "tool": "Comparatif ETF",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:10",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Comparatif ETF"
+          ],
+          "asOf": "2025-12-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "scope": "Part exacte IE00BMH5Y871 ; cotation IE00BMH5Y871-XLON-BUG-USD",
+          "currency": "USD",
+          "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/duels-portefeuilles:IE00BMH5Y871:catalog:10",
+          "key": "usage:IE00BMH5Y871:catalog:10",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Rendements annuels de cotation",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/duels-portefeuilles\",\"IE00BMH5Y871\",\"catalog:10\"]",
+            "tool": "Duel de portefeuilles",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:10",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Duel de portefeuilles"
+          ],
+          "asOf": "2025-12-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "scope": "Part exacte IE00BMH5Y871 ; cotation IE00BMH5Y871-XLON-BUG-USD",
+          "currency": "USD",
+          "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/generateur-portefeuilles:IE00BMH5Y871:catalog:10",
+          "key": "usage:IE00BMH5Y871:catalog:10",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Rendements annuels de cotation",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/generateur-portefeuilles\",\"IE00BMH5Y871\",\"catalog:10\"]",
+            "tool": "Générateur de portefeuilles",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:10",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Générateur de portefeuilles"
+          ],
+          "asOf": "2025-12-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "scope": "Part exacte IE00BMH5Y871 ; cotation IE00BMH5Y871-XLON-BUG-USD",
+          "currency": "USD",
+          "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/fiches-etf:IE00BMH5Y871:catalog:10",
+          "key": "usage:IE00BMH5Y871:catalog:10",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Rendements annuels de cotation",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/fiches-etf\",\"IE00BMH5Y871\",\"catalog:10\"]",
+            "tool": "Présentation d'ETF",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:10",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Présentation d'ETF"
+          ],
+          "asOf": "2025-12-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "scope": "Part exacte IE00BMH5Y871 ; cotation IE00BMH5Y871-XLON-BUG-USD",
+          "currency": "USD",
+          "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:IE00BMH5Y871:catalog:11\",\"qualification\",\"Consommation\",\"2026-10-31\",\"USD\",\"Part IE00BMH5Y871\",\"Rendement cumulé NAV sur la période explicitement publiée\"]",
+      "key": "usage:IE00BMH5Y871:catalog:11",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "asset": "IE00BMH5Y871",
+      "field": "Performance 1 mois",
+      "kind": "qualification",
+      "stage": "Consommation",
+      "consumerContract": {
+        "id": "[\"/bibliotheque-donnees\",\"IE00BMH5Y871\",\"catalog:11\"]",
+        "tool": "Bibliothèque de données",
+        "asset": "IE00BMH5Y871",
+        "field": "catalog:11",
+        "state": "qualification-needed"
+      },
+      "impactState": "unqualified",
+      "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+      "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+      "qualificationBlock": "field-certificate-missing",
+      "present": true,
+      "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+      "tools": [
+        "Bibliothèque de données",
+        "Comparatif ETF",
+        "Duel de portefeuilles",
+        "Générateur de portefeuilles",
+        "Présentation d'ETF"
+      ],
+      "asOf": "2026-10-31",
+      "checkedAt": "2026-11-06",
+      "attemptedAt": null,
+      "lastSuccessAt": "2026-11-06",
+      "sourceUrls": [
+        "https://globalxetfs.eu/funds/bug/"
+      ],
+      "scope": "Part IE00BMH5Y871",
+      "currency": "USD",
+      "method": "Rendement cumulé NAV sur la période explicitement publiée",
+      "to": "/bibliotheque-donnees?id=IE00BMH5Y871",
+      "signals": [
+        {
+          "id": "usage:/bibliotheque-donnees:IE00BMH5Y871:catalog:11",
+          "key": "usage:IE00BMH5Y871:catalog:11",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance 1 mois",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/bibliotheque-donnees\",\"IE00BMH5Y871\",\"catalog:11\"]",
+            "tool": "Bibliothèque de données",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:11",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Bibliothèque de données"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/comparatif-etf:IE00BMH5Y871:catalog:11",
+          "key": "usage:IE00BMH5Y871:catalog:11",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance 1 mois",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/comparatif-etf\",\"IE00BMH5Y871\",\"catalog:11\"]",
+            "tool": "Comparatif ETF",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:11",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Comparatif ETF"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/duels-portefeuilles:IE00BMH5Y871:catalog:11",
+          "key": "usage:IE00BMH5Y871:catalog:11",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance 1 mois",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/duels-portefeuilles\",\"IE00BMH5Y871\",\"catalog:11\"]",
+            "tool": "Duel de portefeuilles",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:11",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Duel de portefeuilles"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/generateur-portefeuilles:IE00BMH5Y871:catalog:11",
+          "key": "usage:IE00BMH5Y871:catalog:11",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance 1 mois",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/generateur-portefeuilles\",\"IE00BMH5Y871\",\"catalog:11\"]",
+            "tool": "Générateur de portefeuilles",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:11",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Générateur de portefeuilles"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/fiches-etf:IE00BMH5Y871:catalog:11",
+          "key": "usage:IE00BMH5Y871:catalog:11",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance 1 mois",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/fiches-etf\",\"IE00BMH5Y871\",\"catalog:11\"]",
+            "tool": "Présentation d'ETF",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:11",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Présentation d'ETF"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:IE00BMH5Y871:catalog:12\",\"qualification\",\"Consommation\",\"2026-10-31\",\"USD\",\"Part IE00BMH5Y871\",\"Rendement cumulé NAV sur la période explicitement publiée\"]",
+      "key": "usage:IE00BMH5Y871:catalog:12",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "asset": "IE00BMH5Y871",
+      "field": "Performance 3 mois",
+      "kind": "qualification",
+      "stage": "Consommation",
+      "consumerContract": {
+        "id": "[\"/bibliotheque-donnees\",\"IE00BMH5Y871\",\"catalog:12\"]",
+        "tool": "Bibliothèque de données",
+        "asset": "IE00BMH5Y871",
+        "field": "catalog:12",
+        "state": "qualification-needed"
+      },
+      "impactState": "unqualified",
+      "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+      "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+      "qualificationBlock": "field-certificate-missing",
+      "present": true,
+      "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+      "tools": [
+        "Bibliothèque de données",
+        "Comparatif ETF",
+        "Duel de portefeuilles",
+        "Générateur de portefeuilles",
+        "Présentation d'ETF"
+      ],
+      "asOf": "2026-10-31",
+      "checkedAt": "2026-11-06",
+      "attemptedAt": null,
+      "lastSuccessAt": "2026-11-06",
+      "sourceUrls": [
+        "https://globalxetfs.eu/funds/bug/"
+      ],
+      "scope": "Part IE00BMH5Y871",
+      "currency": "USD",
+      "method": "Rendement cumulé NAV sur la période explicitement publiée",
+      "to": "/bibliotheque-donnees?id=IE00BMH5Y871",
+      "signals": [
+        {
+          "id": "usage:/bibliotheque-donnees:IE00BMH5Y871:catalog:12",
+          "key": "usage:IE00BMH5Y871:catalog:12",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance 3 mois",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/bibliotheque-donnees\",\"IE00BMH5Y871\",\"catalog:12\"]",
+            "tool": "Bibliothèque de données",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:12",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Bibliothèque de données"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/comparatif-etf:IE00BMH5Y871:catalog:12",
+          "key": "usage:IE00BMH5Y871:catalog:12",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance 3 mois",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/comparatif-etf\",\"IE00BMH5Y871\",\"catalog:12\"]",
+            "tool": "Comparatif ETF",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:12",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Comparatif ETF"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/duels-portefeuilles:IE00BMH5Y871:catalog:12",
+          "key": "usage:IE00BMH5Y871:catalog:12",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance 3 mois",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/duels-portefeuilles\",\"IE00BMH5Y871\",\"catalog:12\"]",
+            "tool": "Duel de portefeuilles",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:12",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Duel de portefeuilles"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/generateur-portefeuilles:IE00BMH5Y871:catalog:12",
+          "key": "usage:IE00BMH5Y871:catalog:12",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance 3 mois",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/generateur-portefeuilles\",\"IE00BMH5Y871\",\"catalog:12\"]",
+            "tool": "Générateur de portefeuilles",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:12",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Générateur de portefeuilles"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/fiches-etf:IE00BMH5Y871:catalog:12",
+          "key": "usage:IE00BMH5Y871:catalog:12",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance 3 mois",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/fiches-etf\",\"IE00BMH5Y871\",\"catalog:12\"]",
+            "tool": "Présentation d'ETF",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:12",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Présentation d'ETF"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:IE00BMH5Y871:catalog:13\",\"qualification\",\"Consommation\",\"2026-10-31\",\"USD\",\"Part IE00BMH5Y871\",\"Rendement cumulé NAV sur la période explicitement publiée\"]",
+      "key": "usage:IE00BMH5Y871:catalog:13",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "asset": "IE00BMH5Y871",
+      "field": "Performance 1 an",
+      "kind": "qualification",
+      "stage": "Consommation",
+      "consumerContract": {
+        "id": "[\"/bibliotheque-donnees\",\"IE00BMH5Y871\",\"catalog:13\"]",
+        "tool": "Bibliothèque de données",
+        "asset": "IE00BMH5Y871",
+        "field": "catalog:13",
+        "state": "qualification-needed"
+      },
+      "impactState": "unqualified",
+      "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+      "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+      "qualificationBlock": "field-certificate-missing",
+      "present": true,
+      "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+      "tools": [
+        "Bibliothèque de données",
+        "Comparatif ETF",
+        "Duel de portefeuilles",
+        "Générateur de portefeuilles",
+        "Présentation d'ETF"
+      ],
+      "asOf": "2026-10-31",
+      "checkedAt": "2026-11-06",
+      "attemptedAt": null,
+      "lastSuccessAt": "2026-11-06",
+      "sourceUrls": [
+        "https://globalxetfs.eu/funds/bug/"
+      ],
+      "scope": "Part IE00BMH5Y871",
+      "currency": "USD",
+      "method": "Rendement cumulé NAV sur la période explicitement publiée",
+      "to": "/bibliotheque-donnees?id=IE00BMH5Y871",
+      "signals": [
+        {
+          "id": "usage:/bibliotheque-donnees:IE00BMH5Y871:catalog:13",
+          "key": "usage:IE00BMH5Y871:catalog:13",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance 1 an",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/bibliotheque-donnees\",\"IE00BMH5Y871\",\"catalog:13\"]",
+            "tool": "Bibliothèque de données",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:13",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Bibliothèque de données"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/comparatif-etf:IE00BMH5Y871:catalog:13",
+          "key": "usage:IE00BMH5Y871:catalog:13",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance 1 an",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/comparatif-etf\",\"IE00BMH5Y871\",\"catalog:13\"]",
+            "tool": "Comparatif ETF",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:13",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Comparatif ETF"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/duels-portefeuilles:IE00BMH5Y871:catalog:13",
+          "key": "usage:IE00BMH5Y871:catalog:13",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance 1 an",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/duels-portefeuilles\",\"IE00BMH5Y871\",\"catalog:13\"]",
+            "tool": "Duel de portefeuilles",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:13",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Duel de portefeuilles"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/generateur-portefeuilles:IE00BMH5Y871:catalog:13",
+          "key": "usage:IE00BMH5Y871:catalog:13",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance 1 an",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/generateur-portefeuilles\",\"IE00BMH5Y871\",\"catalog:13\"]",
+            "tool": "Générateur de portefeuilles",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:13",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Générateur de portefeuilles"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/fiches-etf:IE00BMH5Y871:catalog:13",
+          "key": "usage:IE00BMH5Y871:catalog:13",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance 1 an",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/fiches-etf\",\"IE00BMH5Y871\",\"catalog:13\"]",
+            "tool": "Présentation d'ETF",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:13",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Présentation d'ETF"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:IE00BMH5Y871:catalog:14\",\"qualification\",\"Consommation\",\"2026-10-31\",\"USD\",\"Part IE00BMH5Y871\",\"Rendement cumulé NAV sur la période explicitement publiée\"]",
+      "key": "usage:IE00BMH5Y871:catalog:14",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "asset": "IE00BMH5Y871",
+      "field": "Performance Depuis janvier",
+      "kind": "qualification",
+      "stage": "Consommation",
+      "consumerContract": {
+        "id": "[\"/bibliotheque-donnees\",\"IE00BMH5Y871\",\"catalog:14\"]",
+        "tool": "Bibliothèque de données",
+        "asset": "IE00BMH5Y871",
+        "field": "catalog:14",
+        "state": "qualification-needed"
+      },
+      "impactState": "unqualified",
+      "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+      "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+      "qualificationBlock": "field-certificate-missing",
+      "present": true,
+      "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+      "tools": [
+        "Bibliothèque de données",
+        "Comparatif ETF",
+        "Duel de portefeuilles",
+        "Générateur de portefeuilles",
+        "Présentation d'ETF"
+      ],
+      "asOf": "2026-10-31",
+      "checkedAt": "2026-11-06",
+      "attemptedAt": null,
+      "lastSuccessAt": "2026-11-06",
+      "sourceUrls": [
+        "https://globalxetfs.eu/funds/bug/"
+      ],
+      "scope": "Part IE00BMH5Y871",
+      "currency": "USD",
+      "method": "Rendement cumulé NAV sur la période explicitement publiée",
+      "to": "/bibliotheque-donnees?id=IE00BMH5Y871",
+      "signals": [
+        {
+          "id": "usage:/bibliotheque-donnees:IE00BMH5Y871:catalog:14",
+          "key": "usage:IE00BMH5Y871:catalog:14",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance Depuis janvier",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/bibliotheque-donnees\",\"IE00BMH5Y871\",\"catalog:14\"]",
+            "tool": "Bibliothèque de données",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:14",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Bibliothèque de données"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/comparatif-etf:IE00BMH5Y871:catalog:14",
+          "key": "usage:IE00BMH5Y871:catalog:14",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance Depuis janvier",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/comparatif-etf\",\"IE00BMH5Y871\",\"catalog:14\"]",
+            "tool": "Comparatif ETF",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:14",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Comparatif ETF"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/duels-portefeuilles:IE00BMH5Y871:catalog:14",
+          "key": "usage:IE00BMH5Y871:catalog:14",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance Depuis janvier",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/duels-portefeuilles\",\"IE00BMH5Y871\",\"catalog:14\"]",
+            "tool": "Duel de portefeuilles",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:14",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Duel de portefeuilles"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/generateur-portefeuilles:IE00BMH5Y871:catalog:14",
+          "key": "usage:IE00BMH5Y871:catalog:14",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance Depuis janvier",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/generateur-portefeuilles\",\"IE00BMH5Y871\",\"catalog:14\"]",
+            "tool": "Générateur de portefeuilles",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:14",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Générateur de portefeuilles"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/fiches-etf:IE00BMH5Y871:catalog:14",
+          "key": "usage:IE00BMH5Y871:catalog:14",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance Depuis janvier",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/fiches-etf\",\"IE00BMH5Y871\",\"catalog:14\"]",
+            "tool": "Présentation d'ETF",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:14",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Présentation d'ETF"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:IE00BMH5Y871:catalog:15\",\"qualification\",\"Consommation\",\"2026-10-31\",\"USD\",\"Part IE00BMH5Y871\",\"Rendement cumulé NAV sur la période explicitement publiée\"]",
+      "key": "usage:IE00BMH5Y871:catalog:15",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "asset": "IE00BMH5Y871",
+      "field": "Performance Depuis le lancement",
+      "kind": "qualification",
+      "stage": "Consommation",
+      "consumerContract": {
+        "id": "[\"/bibliotheque-donnees\",\"IE00BMH5Y871\",\"catalog:15\"]",
+        "tool": "Bibliothèque de données",
+        "asset": "IE00BMH5Y871",
+        "field": "catalog:15",
+        "state": "qualification-needed"
+      },
+      "impactState": "unqualified",
+      "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+      "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+      "qualificationBlock": "field-certificate-missing",
+      "present": true,
+      "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+      "tools": [
+        "Bibliothèque de données",
+        "Comparatif ETF",
+        "Duel de portefeuilles",
+        "Générateur de portefeuilles",
+        "Présentation d'ETF"
+      ],
+      "asOf": "2026-10-31",
+      "checkedAt": "2026-11-06",
+      "attemptedAt": null,
+      "lastSuccessAt": "2026-11-06",
+      "sourceUrls": [
+        "https://globalxetfs.eu/funds/bug/"
+      ],
+      "scope": "Part IE00BMH5Y871",
+      "currency": "USD",
+      "method": "Rendement cumulé NAV sur la période explicitement publiée",
+      "to": "/bibliotheque-donnees?id=IE00BMH5Y871",
+      "signals": [
+        {
+          "id": "usage:/bibliotheque-donnees:IE00BMH5Y871:catalog:15",
+          "key": "usage:IE00BMH5Y871:catalog:15",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance Depuis le lancement",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/bibliotheque-donnees\",\"IE00BMH5Y871\",\"catalog:15\"]",
+            "tool": "Bibliothèque de données",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:15",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Bibliothèque de données"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/comparatif-etf:IE00BMH5Y871:catalog:15",
+          "key": "usage:IE00BMH5Y871:catalog:15",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance Depuis le lancement",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/comparatif-etf\",\"IE00BMH5Y871\",\"catalog:15\"]",
+            "tool": "Comparatif ETF",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:15",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Comparatif ETF"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/duels-portefeuilles:IE00BMH5Y871:catalog:15",
+          "key": "usage:IE00BMH5Y871:catalog:15",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance Depuis le lancement",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/duels-portefeuilles\",\"IE00BMH5Y871\",\"catalog:15\"]",
+            "tool": "Duel de portefeuilles",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:15",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Duel de portefeuilles"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/generateur-portefeuilles:IE00BMH5Y871:catalog:15",
+          "key": "usage:IE00BMH5Y871:catalog:15",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance Depuis le lancement",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/generateur-portefeuilles\",\"IE00BMH5Y871\",\"catalog:15\"]",
+            "tool": "Générateur de portefeuilles",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:15",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Générateur de portefeuilles"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/fiches-etf:IE00BMH5Y871:catalog:15",
+          "key": "usage:IE00BMH5Y871:catalog:15",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Performance Depuis le lancement",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/fiches-etf\",\"IE00BMH5Y871\",\"catalog:15\"]",
+            "tool": "Présentation d'ETF",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:15",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Présentation d'ETF"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": "USD",
+          "method": "Rendement cumulé NAV sur la période explicitement publiée",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:IE00BMH5Y871:catalog:2\",\"qualification\",\"Consommation\",\"2026-11-05\",null,\"Part IE00BMH5Y871\",\"Objectif de la part exacte ; preuve propre à ce champ, distincte du contrôle des frais et des compositions.\"]",
+      "key": "usage:IE00BMH5Y871:catalog:2",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "asset": "IE00BMH5Y871",
+      "field": "Indice suivi",
+      "kind": "qualification",
+      "stage": "Consommation",
+      "consumerContract": {
+        "id": "[\"/bibliotheque-donnees\",\"IE00BMH5Y871\",\"catalog:2\"]",
+        "tool": "Bibliothèque de données",
+        "asset": "IE00BMH5Y871",
+        "field": "catalog:2",
+        "state": "qualification-needed"
+      },
+      "impactState": "unqualified",
+      "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+      "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+      "qualificationBlock": "field-certificate-missing",
+      "present": true,
+      "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+      "tools": [
+        "Bibliothèque de données",
+        "Comparatif ETF",
+        "Duel de portefeuilles",
+        "Générateur de portefeuilles",
+        "Présentation d'ETF"
+      ],
+      "asOf": "2026-11-05",
+      "checkedAt": "2026-11-06",
+      "attemptedAt": null,
+      "lastSuccessAt": "2026-11-06",
+      "sourceUrls": [
+        "https://globalxetfs.eu/funds/bug/"
+      ],
+      "scope": "Part IE00BMH5Y871",
+      "currency": null,
+      "method": "Objectif de la part exacte ; preuve propre à ce champ, distincte du contrôle des frais et des compositions.",
+      "to": "/bibliotheque-donnees?id=IE00BMH5Y871",
+      "signals": [
+        {
+          "id": "usage:/bibliotheque-donnees:IE00BMH5Y871:catalog:2",
+          "key": "usage:IE00BMH5Y871:catalog:2",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Indice suivi",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/bibliotheque-donnees\",\"IE00BMH5Y871\",\"catalog:2\"]",
+            "tool": "Bibliothèque de données",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:2",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Bibliothèque de données"
+          ],
+          "asOf": "2026-11-05",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": null,
+          "method": "Objectif de la part exacte ; preuve propre à ce champ, distincte du contrôle des frais et des compositions.",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/comparatif-etf:IE00BMH5Y871:catalog:2",
+          "key": "usage:IE00BMH5Y871:catalog:2",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Indice suivi",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/comparatif-etf\",\"IE00BMH5Y871\",\"catalog:2\"]",
+            "tool": "Comparatif ETF",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:2",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Comparatif ETF"
+          ],
+          "asOf": "2026-11-05",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": null,
+          "method": "Objectif de la part exacte ; preuve propre à ce champ, distincte du contrôle des frais et des compositions.",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/duels-portefeuilles:IE00BMH5Y871:catalog:2",
+          "key": "usage:IE00BMH5Y871:catalog:2",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Indice suivi",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/duels-portefeuilles\",\"IE00BMH5Y871\",\"catalog:2\"]",
+            "tool": "Duel de portefeuilles",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:2",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Duel de portefeuilles"
+          ],
+          "asOf": "2026-11-05",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": null,
+          "method": "Objectif de la part exacte ; preuve propre à ce champ, distincte du contrôle des frais et des compositions.",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/generateur-portefeuilles:IE00BMH5Y871:catalog:2",
+          "key": "usage:IE00BMH5Y871:catalog:2",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Indice suivi",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/generateur-portefeuilles\",\"IE00BMH5Y871\",\"catalog:2\"]",
+            "tool": "Générateur de portefeuilles",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:2",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Générateur de portefeuilles"
+          ],
+          "asOf": "2026-11-05",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": null,
+          "method": "Objectif de la part exacte ; preuve propre à ce champ, distincte du contrôle des frais et des compositions.",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        },
+        {
+          "id": "usage:/fiches-etf:IE00BMH5Y871:catalog:2",
+          "key": "usage:IE00BMH5Y871:catalog:2",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "asset": "IE00BMH5Y871",
+          "field": "Indice suivi",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/fiches-etf\",\"IE00BMH5Y871\",\"catalog:2\"]",
+            "tool": "Présentation d'ETF",
+            "asset": "IE00BMH5Y871",
+            "field": "catalog:2",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Présentation d'ETF"
+          ],
+          "asOf": "2026-11-05",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "scope": "Part IE00BMH5Y871",
+          "currency": null,
+          "method": "Objectif de la part exacte ; preuve propre à ce champ, distincte du contrôle des frais et des compositions.",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871"
+        }
+      ]
+    },
+    {
+      "id": "[\"instrument:IE00BMH5Y871:performance\",\"qualification\",\"Qualification\",null,null,null,null]",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "aliases": [
+        "IE00BMH5Y871"
+      ],
+      "field": "Performances annuelles",
+      "kind": "qualification",
+      "category": "automation-gap",
+      "impactScope": "asset",
+      "tools": [
+        "Bibliothèque de données",
+        "Présentation d'ETF"
+      ],
+      "sourceUrls": [
+        "https://globalxetfs.eu/funds/bug/"
+      ],
+      "checkedAt": null,
+      "lastSuccessAt": null,
+      "asOf": null,
+      "cause": "Automatisation ou qualification incomplète : La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
+      "to": "/bibliotheque-donnees?id=IE00BMH5Y871",
+      "firstSeenAt": "2026-10-24T15:48:49.350336+00:00",
+      "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+      "observations": [
+        {
+          "cause": "Automatisation ou qualification incomplète : La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        }
+      ],
+      "asset": "IE00BMH5Y871",
+      "impactQualified": true,
+      "collectorTools": [
+        "etf-sheets"
+      ],
+      "stage": "Qualification",
+      "key": "instrument:IE00BMH5Y871:performance",
+      "signals": [
+        {
+          "id": "field:gap:instrument:IE00BMH5Y871:performance",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "aliases": [
+            "IE00BMH5Y871"
+          ],
+          "field": "Performances annuelles",
+          "kind": "qualification",
+          "category": "automation-gap",
+          "impactScope": "asset",
+          "tools": [
+            "Bibliothèque de données",
+            "Présentation d'ETF"
+          ],
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "checkedAt": null,
+          "lastSuccessAt": null,
+          "asOf": null,
+          "cause": "Automatisation ou qualification incomplète : La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871",
+          "firstSeenAt": "2026-10-24T15:48:49.350336+00:00",
+          "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+          "observations": [
+            {
+              "cause": "Automatisation ou qualification incomplète : La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            }
+          ],
+          "asset": "IE00BMH5Y871",
+          "impactQualified": true,
+          "collectorTools": [
+            "etf-sheets"
+          ],
+          "stage": "Qualification",
+          "key": "instrument:IE00BMH5Y871:performance"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:radar:indices:russell-1000:count:count\",\"qualification\",\"Consommation\",\"2026-10-31\",null,\"Indice Russell 1000\",\"Observations exactes du lecteur Radar commun ; seuils et rapprochements existants, aucune observation nouvelle déduite de la génération du flux.\"]",
+      "key": "usage:radar:indices:russell-1000:count:count",
+      "name": "Russell 1000",
+      "asset": "radar:indices:russell-1000:count",
+      "field": "Nombre de titres",
+      "kind": "qualification",
+      "stage": "Consommation",
+      "consumerContract": {
+        "id": "[\"/bibliotheque-donnees\",\"radar:indices:russell-1000:count\",\"count\"]",
+        "tool": "Bibliothèque de données",
+        "asset": "radar:indices:russell-1000:count",
+        "field": "count",
+        "state": "scheduled-evidence"
+      },
+      "impactState": "unqualified",
+      "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+      "cause": "Lecture déclarée dans scripts/update-editorial-radar.mjs#collectObservationsSync ; le contrat de Nombre de titres ne référence pas de certificat source ciblé et publié. Une source et un contrôle affichés ne suffisent pas à démontrer cette liaison.",
+      "qualificationBlock": "targeted-field-certificate-unlinked",
+      "action": "Rapprocher les valeurs effectivement lues du certificat de la même identité, du même champ, de la même période et des fichiers publiés ; conserver leurs dates propres.",
+      "tools": [
+        "Bibliothèque de données",
+        "Radar éditorial"
+      ],
+      "asOf": "2026-10-31",
+      "checkedAt": "2026-11-06",
+      "sourceUrls": [
+        "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
+      ],
+      "scope": "Indice Russell 1000",
+      "method": "Observations exactes du lecteur Radar commun ; seuils et rapprochements existants, aucune observation nouvelle déduite de la génération du flux.",
+      "to": "/bibliotheque-donnees?id=radar%3Aindices%3Arussell-1000%3Acount",
+      "signals": [
+        {
+          "id": "usage:/bibliotheque-donnees:radar:indices:russell-1000:count:count",
+          "key": "usage:radar:indices:russell-1000:count:count",
+          "name": "Russell 1000",
+          "asset": "radar:indices:russell-1000:count",
+          "field": "Nombre de titres",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/bibliotheque-donnees\",\"radar:indices:russell-1000:count\",\"count\"]",
+            "tool": "Bibliothèque de données",
+            "asset": "radar:indices:russell-1000:count",
+            "field": "count",
+            "state": "scheduled-evidence"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Lecture déclarée dans scripts/update-editorial-radar.mjs#collectObservationsSync ; le contrat de Nombre de titres ne référence pas de certificat source ciblé et publié. Une source et un contrôle affichés ne suffisent pas à démontrer cette liaison.",
+          "qualificationBlock": "targeted-field-certificate-unlinked",
+          "action": "Rapprocher les valeurs effectivement lues du certificat de la même identité, du même champ, de la même période et des fichiers publiés ; conserver leurs dates propres.",
+          "tools": [
+            "Bibliothèque de données"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "sourceUrls": [
+            "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
+          ],
+          "scope": "Indice Russell 1000",
+          "method": "Observations exactes du lecteur Radar commun ; seuils et rapprochements existants, aucune observation nouvelle déduite de la génération du flux.",
+          "to": "/bibliotheque-donnees?id=radar%3Aindices%3Arussell-1000%3Acount"
+        },
+        {
+          "id": "usage:/radar-editorial:radar:indices:russell-1000:count:count",
+          "key": "usage:radar:indices:russell-1000:count:count",
+          "name": "Russell 1000",
+          "asset": "radar:indices:russell-1000:count",
+          "field": "Nombre de titres",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/radar-editorial\",\"radar:indices:russell-1000:count\",\"count\"]",
+            "tool": "Radar éditorial",
+            "asset": "radar:indices:russell-1000:count",
+            "field": "count",
+            "state": "scheduled-evidence"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Lecture déclarée dans scripts/update-editorial-radar.mjs#collectObservationsSync ; le contrat de Nombre de titres ne référence pas de certificat source ciblé et publié. Une source et un contrôle affichés ne suffisent pas à démontrer cette liaison.",
+          "qualificationBlock": "targeted-field-certificate-unlinked",
+          "action": "Rapprocher les valeurs effectivement lues du certificat de la même identité, du même champ, de la même période et des fichiers publiés ; conserver leurs dates propres.",
+          "tools": [
+            "Radar éditorial"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "sourceUrls": [
+            "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
+          ],
+          "scope": "Indice Russell 1000",
+          "method": "Observations exactes du lecteur Radar commun ; seuils et rapprochements existants, aucune observation nouvelle déduite de la génération du flux.",
+          "to": "/bibliotheque-donnees?id=radar%3Aindices%3Arussell-1000%3Acount"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:radar:indices:russell-1000:countries:countries\",\"qualification\",\"Consommation\",\"2026-10-31\",null,\"Indice Russell 1000\",\"Observations exactes du lecteur Radar commun ; seuils et rapprochements existants, aucune observation nouvelle déduite de la génération du flux.\"]",
+      "key": "usage:radar:indices:russell-1000:countries:countries",
+      "name": "Russell 1000",
+      "asset": "radar:indices:russell-1000:countries",
+      "field": "Poids du pays 🇺🇸 États-Unis",
+      "kind": "qualification",
+      "stage": "Consommation",
+      "consumerContract": {
+        "id": "[\"/bibliotheque-donnees\",\"radar:indices:russell-1000:countries\",\"countries\"]",
+        "tool": "Bibliothèque de données",
+        "asset": "radar:indices:russell-1000:countries",
+        "field": "countries",
+        "state": "scheduled-evidence"
+      },
+      "impactState": "unqualified",
+      "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+      "cause": "Lecture déclarée dans scripts/update-editorial-radar.mjs#collectObservationsSync ; le contrat de Poids du pays 🇺🇸 États-Unis ne référence pas de certificat source ciblé et publié. Une source et un contrôle affichés ne suffisent pas à démontrer cette liaison.",
+      "qualificationBlock": "targeted-field-certificate-unlinked",
+      "action": "Rapprocher les valeurs effectivement lues du certificat de la même identité, du même champ, de la même période et des fichiers publiés ; conserver leurs dates propres.",
+      "tools": [
+        "Bibliothèque de données",
+        "Radar éditorial"
+      ],
+      "asOf": "2026-10-31",
+      "checkedAt": "2026-11-06",
+      "sourceUrls": [
+        "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
+      ],
+      "scope": "Indice Russell 1000",
+      "method": "Observations exactes du lecteur Radar commun ; seuils et rapprochements existants, aucune observation nouvelle déduite de la génération du flux.",
+      "to": "/bibliotheque-donnees?id=radar%3Aindices%3Arussell-1000%3Acountries",
+      "signals": [
+        {
+          "id": "usage:/bibliotheque-donnees:radar:indices:russell-1000:countries:countries",
+          "key": "usage:radar:indices:russell-1000:countries:countries",
+          "name": "Russell 1000",
+          "asset": "radar:indices:russell-1000:countries",
+          "field": "Poids du pays 🇺🇸 États-Unis",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/bibliotheque-donnees\",\"radar:indices:russell-1000:countries\",\"countries\"]",
+            "tool": "Bibliothèque de données",
+            "asset": "radar:indices:russell-1000:countries",
+            "field": "countries",
+            "state": "scheduled-evidence"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Lecture déclarée dans scripts/update-editorial-radar.mjs#collectObservationsSync ; le contrat de Poids du pays 🇺🇸 États-Unis ne référence pas de certificat source ciblé et publié. Une source et un contrôle affichés ne suffisent pas à démontrer cette liaison.",
+          "qualificationBlock": "targeted-field-certificate-unlinked",
+          "action": "Rapprocher les valeurs effectivement lues du certificat de la même identité, du même champ, de la même période et des fichiers publiés ; conserver leurs dates propres.",
+          "tools": [
+            "Bibliothèque de données"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "sourceUrls": [
+            "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
+          ],
+          "scope": "Indice Russell 1000",
+          "method": "Observations exactes du lecteur Radar commun ; seuils et rapprochements existants, aucune observation nouvelle déduite de la génération du flux.",
+          "to": "/bibliotheque-donnees?id=radar%3Aindices%3Arussell-1000%3Acountries"
+        },
+        {
+          "id": "usage:/radar-editorial:radar:indices:russell-1000:countries:countries",
+          "key": "usage:radar:indices:russell-1000:countries:countries",
+          "name": "Russell 1000",
+          "asset": "radar:indices:russell-1000:countries",
+          "field": "Poids du pays 🇺🇸 États-Unis",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/radar-editorial\",\"radar:indices:russell-1000:countries\",\"countries\"]",
+            "tool": "Radar éditorial",
+            "asset": "radar:indices:russell-1000:countries",
+            "field": "countries",
+            "state": "scheduled-evidence"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Lecture déclarée dans scripts/update-editorial-radar.mjs#collectObservationsSync ; le contrat de Poids du pays 🇺🇸 États-Unis ne référence pas de certificat source ciblé et publié. Une source et un contrôle affichés ne suffisent pas à démontrer cette liaison.",
+          "qualificationBlock": "targeted-field-certificate-unlinked",
+          "action": "Rapprocher les valeurs effectivement lues du certificat de la même identité, du même champ, de la même période et des fichiers publiés ; conserver leurs dates propres.",
+          "tools": [
+            "Radar éditorial"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "sourceUrls": [
+            "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
+          ],
+          "scope": "Indice Russell 1000",
+          "method": "Observations exactes du lecteur Radar commun ; seuils et rapprochements existants, aucune observation nouvelle déduite de la génération du flux.",
+          "to": "/bibliotheque-donnees?id=radar%3Aindices%3Arussell-1000%3Acountries"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:radar:indices:russell-1000:sectors:sectors\",\"qualification\",\"Consommation\",\"2026-10-31\",null,\"Indice Russell 1000\",\"Observations exactes du lecteur Radar commun ; seuils et rapprochements existants, aucune observation nouvelle déduite de la génération du flux.\"]",
+      "key": "usage:radar:indices:russell-1000:sectors:sectors",
+      "name": "Russell 1000",
+      "asset": "radar:indices:russell-1000:sectors",
+      "field": "Poids du secteur ⚡ Énergie",
+      "kind": "qualification",
+      "stage": "Consommation",
+      "consumerContract": {
+        "id": "[\"/bibliotheque-donnees\",\"radar:indices:russell-1000:sectors\",\"sectors\"]",
+        "tool": "Bibliothèque de données",
+        "asset": "radar:indices:russell-1000:sectors",
+        "field": "sectors",
+        "state": "scheduled-evidence"
+      },
+      "impactState": "unqualified",
+      "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+      "cause": "Lecture déclarée dans scripts/update-editorial-radar.mjs#collectObservationsSync ; le contrat de Poids du secteur ⚡ Énergie ne référence pas de certificat source ciblé et publié. Une source et un contrôle affichés ne suffisent pas à démontrer cette liaison.",
+      "qualificationBlock": "targeted-field-certificate-unlinked",
+      "action": "Rapprocher les valeurs effectivement lues du certificat de la même identité, du même champ, de la même période et des fichiers publiés ; conserver leurs dates propres.",
+      "tools": [
+        "Bibliothèque de données",
+        "Radar éditorial"
+      ],
+      "asOf": "2026-10-31",
+      "checkedAt": "2026-11-06",
+      "sourceUrls": [
+        "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
+      ],
+      "scope": "Indice Russell 1000",
+      "method": "Observations exactes du lecteur Radar commun ; seuils et rapprochements existants, aucune observation nouvelle déduite de la génération du flux.",
+      "to": "/bibliotheque-donnees?id=radar%3Aindices%3Arussell-1000%3Asectors",
+      "signals": [
+        {
+          "id": "usage:/bibliotheque-donnees:radar:indices:russell-1000:sectors:sectors",
+          "key": "usage:radar:indices:russell-1000:sectors:sectors",
+          "name": "Russell 1000",
+          "asset": "radar:indices:russell-1000:sectors",
+          "field": "Poids du secteur ⚡ Énergie",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/bibliotheque-donnees\",\"radar:indices:russell-1000:sectors\",\"sectors\"]",
+            "tool": "Bibliothèque de données",
+            "asset": "radar:indices:russell-1000:sectors",
+            "field": "sectors",
+            "state": "scheduled-evidence"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Lecture déclarée dans scripts/update-editorial-radar.mjs#collectObservationsSync ; le contrat de Poids du secteur ⚡ Énergie ne référence pas de certificat source ciblé et publié. Une source et un contrôle affichés ne suffisent pas à démontrer cette liaison.",
+          "qualificationBlock": "targeted-field-certificate-unlinked",
+          "action": "Rapprocher les valeurs effectivement lues du certificat de la même identité, du même champ, de la même période et des fichiers publiés ; conserver leurs dates propres.",
+          "tools": [
+            "Bibliothèque de données"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "sourceUrls": [
+            "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
+          ],
+          "scope": "Indice Russell 1000",
+          "method": "Observations exactes du lecteur Radar commun ; seuils et rapprochements existants, aucune observation nouvelle déduite de la génération du flux.",
+          "to": "/bibliotheque-donnees?id=radar%3Aindices%3Arussell-1000%3Asectors"
+        },
+        {
+          "id": "usage:/radar-editorial:radar:indices:russell-1000:sectors:sectors",
+          "key": "usage:radar:indices:russell-1000:sectors:sectors",
+          "name": "Russell 1000",
+          "asset": "radar:indices:russell-1000:sectors",
+          "field": "Poids du secteur ⚡ Énergie",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/radar-editorial\",\"radar:indices:russell-1000:sectors\",\"sectors\"]",
+            "tool": "Radar éditorial",
+            "asset": "radar:indices:russell-1000:sectors",
+            "field": "sectors",
+            "state": "scheduled-evidence"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Lecture déclarée dans scripts/update-editorial-radar.mjs#collectObservationsSync ; le contrat de Poids du secteur ⚡ Énergie ne référence pas de certificat source ciblé et publié. Une source et un contrôle affichés ne suffisent pas à démontrer cette liaison.",
+          "qualificationBlock": "targeted-field-certificate-unlinked",
+          "action": "Rapprocher les valeurs effectivement lues du certificat de la même identité, du même champ, de la même période et des fichiers publiés ; conserver leurs dates propres.",
+          "tools": [
+            "Radar éditorial"
+          ],
+          "asOf": "2026-10-31",
+          "checkedAt": "2026-11-06",
+          "sourceUrls": [
+            "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
+          ],
+          "scope": "Indice Russell 1000",
+          "method": "Observations exactes du lecteur Radar commun ; seuils et rapprochements existants, aucune observation nouvelle déduite de la génération du flux.",
+          "to": "/bibliotheque-donnees?id=radar%3Aindices%3Arussell-1000%3Asectors"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:russell-1000:catalog:0\",\"qualification\",\"Consommation\",\"2026-06-30\",null,\"Indice exact russell-1000 ; dix principales lignes trimestrielles\",\"Poids officiels trimestriels du Russell 1000 exact ; top dix des lignes, classes d’actions séparées. Photographie indépendante des secteurs mensuels.\"]",
+      "key": "usage:russell-1000:catalog:0",
+      "name": "Russell 1000",
+      "asset": "russell-1000",
+      "field": "Positions trimestrielles · 2026-06-30",
+      "kind": "qualification",
+      "stage": "Consommation",
+      "consumerContract": {
+        "id": "[\"/bibliotheque-donnees\",\"russell-1000\",\"catalog:0\"]",
+        "tool": "Bibliothèque de données",
+        "asset": "russell-1000",
+        "field": "catalog:0",
+        "state": "qualification-needed"
+      },
+      "impactState": "unqualified",
+      "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+      "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+      "qualificationBlock": "field-certificate-missing",
+      "present": true,
+      "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+      "tools": [
+        "Bibliothèque de données"
+      ],
+      "asOf": "2026-06-30",
+      "checkedAt": "2026-11-06",
+      "attemptedAt": null,
+      "lastSuccessAt": "2026-11-06",
+      "sourceUrls": [
+        "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000"
+      ],
+      "scope": "Indice exact russell-1000 ; dix principales lignes trimestrielles",
+      "currency": null,
+      "method": "Poids officiels trimestriels du Russell 1000 exact ; top dix des lignes, classes d’actions séparées. Photographie indépendante des secteurs mensuels.",
+      "to": "/bibliotheque-donnees?id=russell-1000",
+      "signals": [
+        {
+          "id": "usage:/bibliotheque-donnees:russell-1000:catalog:0",
+          "key": "usage:russell-1000:catalog:0",
+          "name": "Russell 1000",
+          "asset": "russell-1000",
+          "field": "Positions trimestrielles · 2026-06-30",
+          "kind": "qualification",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/bibliotheque-donnees\",\"russell-1000\",\"catalog:0\"]",
+            "tool": "Bibliothèque de données",
+            "asset": "russell-1000",
+            "field": "catalog:0",
+            "state": "qualification-needed"
+          },
+          "impactState": "unqualified",
+          "impact": "La confirmation de ce contrat manque ; aucune panne ni valeur absente déduite.",
+          "cause": "Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.",
+          "qualificationBlock": "field-certificate-missing",
+          "present": true,
+          "action": "Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "tools": [
+            "Bibliothèque de données"
+          ],
+          "asOf": "2026-06-30",
+          "checkedAt": "2026-11-06",
+          "attemptedAt": null,
+          "lastSuccessAt": "2026-11-06",
+          "sourceUrls": [
+            "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000"
+          ],
+          "scope": "Indice exact russell-1000 ; dix principales lignes trimestrielles",
+          "currency": null,
+          "method": "Poids officiels trimestriels du Russell 1000 exact ; top dix des lignes, classes d’actions séparées. Photographie indépendante des secteurs mensuels.",
+          "to": "/bibliotheque-donnees?id=russell-1000"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:IE00BMH5Y871:catalog:10\",\"qualification\",\"Qualification\",\"2025-12-31\",null,null,null]",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "aliases": [
+        "IE00BMH5Y871"
+      ],
+      "field": "Rendements annuels de cotation",
+      "kind": "qualification",
+      "category": "automation-proof-missing",
+      "impactScope": "asset",
+      "tools": [],
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits"
+      ],
+      "checkedAt": "2026-11-06",
+      "lastSuccessAt": null,
+      "asOf": "2025-12-31",
+      "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+      "to": "/donnees-a-revoir",
+      "firstSeenAt": "2026-10-24T15:48:49.350336+00:00",
+      "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+      "observations": [
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-09-30",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        },
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2025-12-31",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ]
+        }
+      ],
+      "impactQualified": false,
+      "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+      "collectorTools": [
+        "Présentation d'ETF",
+        "Générateur de portefeuilles",
+        "Duel de portefeuilles",
+        "Comparatif ETF"
+      ],
+      "stage": "Qualification",
+      "key": "usage:IE00BMH5Y871:catalog:10",
+      "signals": [
+        {
+          "id": "field:gap:usage:IE00BMH5Y871:catalog:10",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "aliases": [
+            "IE00BMH5Y871"
+          ],
+          "field": "Rendements annuels de cotation",
+          "kind": "qualification",
+          "category": "automation-proof-missing",
+          "impactScope": "asset",
+          "tools": [],
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits"
+          ],
+          "checkedAt": "2026-11-06",
+          "lastSuccessAt": null,
+          "asOf": "2025-12-31",
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "to": "/donnees-a-revoir",
+          "firstSeenAt": "2026-10-24T15:48:49.350336+00:00",
+          "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+          "observations": [
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-09-30",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            },
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2025-12-31",
+              "sourceUrls": [
+                "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+                "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits"
+              ]
+            }
+          ],
+          "impactQualified": false,
+          "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+          "collectorTools": [
+            "Présentation d'ETF",
+            "Générateur de portefeuilles",
+            "Duel de portefeuilles",
+            "Comparatif ETF"
+          ],
+          "stage": "Qualification",
+          "key": "usage:IE00BMH5Y871:catalog:10"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:IE00BMH5Y871:catalog:11\",\"qualification\",\"Qualification\",\"2026-10-31\",null,null,null]",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "aliases": [
+        "IE00BMH5Y871"
+      ],
+      "field": "Performance 1 mois",
+      "kind": "qualification",
+      "category": "automation-proof-missing",
+      "impactScope": "asset",
+      "tools": [],
+      "sourceUrls": [
+        "https://globalxetfs.eu/funds/bug/"
+      ],
+      "checkedAt": "2026-11-06",
+      "lastSuccessAt": null,
+      "asOf": "2026-10-31",
+      "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+      "to": "/donnees-a-revoir",
+      "firstSeenAt": "2026-10-24T15:48:49.350336+00:00",
+      "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+      "observations": [
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-09-30",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        },
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-10-31",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        }
+      ],
+      "impactQualified": false,
+      "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+      "collectorTools": [
+        "Présentation d'ETF",
+        "Générateur de portefeuilles",
+        "Duel de portefeuilles",
+        "Comparatif ETF"
+      ],
+      "stage": "Qualification",
+      "key": "usage:IE00BMH5Y871:catalog:11",
+      "signals": [
+        {
+          "id": "field:gap:usage:IE00BMH5Y871:catalog:11",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "aliases": [
+            "IE00BMH5Y871"
+          ],
+          "field": "Performance 1 mois",
+          "kind": "qualification",
+          "category": "automation-proof-missing",
+          "impactScope": "asset",
+          "tools": [],
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "checkedAt": "2026-11-06",
+          "lastSuccessAt": null,
+          "asOf": "2026-10-31",
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "to": "/donnees-a-revoir",
+          "firstSeenAt": "2026-10-24T15:48:49.350336+00:00",
+          "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+          "observations": [
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-09-30",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            },
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-10-31",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            }
+          ],
+          "impactQualified": false,
+          "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+          "collectorTools": [
+            "Présentation d'ETF",
+            "Générateur de portefeuilles",
+            "Duel de portefeuilles",
+            "Comparatif ETF"
+          ],
+          "stage": "Qualification",
+          "key": "usage:IE00BMH5Y871:catalog:11"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:IE00BMH5Y871:catalog:12\",\"qualification\",\"Qualification\",\"2026-10-31\",null,null,null]",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "aliases": [
+        "IE00BMH5Y871"
+      ],
+      "field": "Performance 3 mois",
+      "kind": "qualification",
+      "category": "automation-proof-missing",
+      "impactScope": "asset",
+      "tools": [],
+      "sourceUrls": [
+        "https://globalxetfs.eu/funds/bug/"
+      ],
+      "checkedAt": "2026-11-06",
+      "lastSuccessAt": null,
+      "asOf": "2026-10-31",
+      "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+      "to": "/donnees-a-revoir",
+      "firstSeenAt": "2026-10-24T15:48:49.350336+00:00",
+      "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+      "observations": [
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-09-30",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        },
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-10-31",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        }
+      ],
+      "impactQualified": false,
+      "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+      "collectorTools": [
+        "Présentation d'ETF",
+        "Générateur de portefeuilles",
+        "Duel de portefeuilles",
+        "Comparatif ETF"
+      ],
+      "stage": "Qualification",
+      "key": "usage:IE00BMH5Y871:catalog:12",
+      "signals": [
+        {
+          "id": "field:gap:usage:IE00BMH5Y871:catalog:12",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "aliases": [
+            "IE00BMH5Y871"
+          ],
+          "field": "Performance 3 mois",
+          "kind": "qualification",
+          "category": "automation-proof-missing",
+          "impactScope": "asset",
+          "tools": [],
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "checkedAt": "2026-11-06",
+          "lastSuccessAt": null,
+          "asOf": "2026-10-31",
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "to": "/donnees-a-revoir",
+          "firstSeenAt": "2026-10-24T15:48:49.350336+00:00",
+          "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+          "observations": [
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-09-30",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            },
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-10-31",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            }
+          ],
+          "impactQualified": false,
+          "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+          "collectorTools": [
+            "Présentation d'ETF",
+            "Générateur de portefeuilles",
+            "Duel de portefeuilles",
+            "Comparatif ETF"
+          ],
+          "stage": "Qualification",
+          "key": "usage:IE00BMH5Y871:catalog:12"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:IE00BMH5Y871:catalog:13\",\"qualification\",\"Qualification\",\"2026-10-31\",null,null,null]",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "aliases": [
+        "IE00BMH5Y871"
+      ],
+      "field": "Performance 1 an",
+      "kind": "qualification",
+      "category": "automation-proof-missing",
+      "impactScope": "asset",
+      "tools": [],
+      "sourceUrls": [
+        "https://globalxetfs.eu/funds/bug/"
+      ],
+      "checkedAt": "2026-11-06",
+      "lastSuccessAt": null,
+      "asOf": "2026-10-31",
+      "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+      "to": "/donnees-a-revoir",
+      "firstSeenAt": "2026-10-24T15:48:49.350336+00:00",
+      "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+      "observations": [
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-09-30",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        },
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-10-31",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        }
+      ],
+      "impactQualified": false,
+      "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+      "collectorTools": [
+        "Présentation d'ETF",
+        "Générateur de portefeuilles",
+        "Duel de portefeuilles",
+        "Comparatif ETF"
+      ],
+      "stage": "Qualification",
+      "key": "usage:IE00BMH5Y871:catalog:13",
+      "signals": [
+        {
+          "id": "field:gap:usage:IE00BMH5Y871:catalog:13",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "aliases": [
+            "IE00BMH5Y871"
+          ],
+          "field": "Performance 1 an",
+          "kind": "qualification",
+          "category": "automation-proof-missing",
+          "impactScope": "asset",
+          "tools": [],
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "checkedAt": "2026-11-06",
+          "lastSuccessAt": null,
+          "asOf": "2026-10-31",
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "to": "/donnees-a-revoir",
+          "firstSeenAt": "2026-10-24T15:48:49.350336+00:00",
+          "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+          "observations": [
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-09-30",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            },
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-10-31",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            }
+          ],
+          "impactQualified": false,
+          "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+          "collectorTools": [
+            "Présentation d'ETF",
+            "Générateur de portefeuilles",
+            "Duel de portefeuilles",
+            "Comparatif ETF"
+          ],
+          "stage": "Qualification",
+          "key": "usage:IE00BMH5Y871:catalog:13"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:IE00BMH5Y871:catalog:14\",\"qualification\",\"Qualification\",\"2026-10-31\",null,null,null]",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "aliases": [
+        "IE00BMH5Y871"
+      ],
+      "field": "Performance Depuis janvier",
+      "kind": "qualification",
+      "category": "automation-proof-missing",
+      "impactScope": "asset",
+      "tools": [],
+      "sourceUrls": [
+        "https://globalxetfs.eu/funds/bug/"
+      ],
+      "checkedAt": "2026-11-06",
+      "lastSuccessAt": null,
+      "asOf": "2026-10-31",
+      "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+      "to": "/donnees-a-revoir",
+      "firstSeenAt": "2026-10-24T15:48:49.350336+00:00",
+      "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+      "observations": [
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-09-30",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        },
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-10-31",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        }
+      ],
+      "impactQualified": false,
+      "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+      "collectorTools": [
+        "Présentation d'ETF",
+        "Générateur de portefeuilles",
+        "Duel de portefeuilles",
+        "Comparatif ETF"
+      ],
+      "stage": "Qualification",
+      "key": "usage:IE00BMH5Y871:catalog:14",
+      "signals": [
+        {
+          "id": "field:gap:usage:IE00BMH5Y871:catalog:14",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "aliases": [
+            "IE00BMH5Y871"
+          ],
+          "field": "Performance Depuis janvier",
+          "kind": "qualification",
+          "category": "automation-proof-missing",
+          "impactScope": "asset",
+          "tools": [],
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "checkedAt": "2026-11-06",
+          "lastSuccessAt": null,
+          "asOf": "2026-10-31",
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "to": "/donnees-a-revoir",
+          "firstSeenAt": "2026-10-24T15:48:49.350336+00:00",
+          "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+          "observations": [
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-09-30",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            },
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-10-31",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            }
+          ],
+          "impactQualified": false,
+          "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+          "collectorTools": [
+            "Présentation d'ETF",
+            "Générateur de portefeuilles",
+            "Duel de portefeuilles",
+            "Comparatif ETF"
+          ],
+          "stage": "Qualification",
+          "key": "usage:IE00BMH5Y871:catalog:14"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:IE00BMH5Y871:catalog:15\",\"qualification\",\"Qualification\",\"2026-10-31\",null,null,null]",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "aliases": [
+        "IE00BMH5Y871"
+      ],
+      "field": "Performance Depuis le lancement",
+      "kind": "qualification",
+      "category": "automation-proof-missing",
+      "impactScope": "asset",
+      "tools": [],
+      "sourceUrls": [
+        "https://globalxetfs.eu/funds/bug/"
+      ],
+      "checkedAt": "2026-11-06",
+      "lastSuccessAt": null,
+      "asOf": "2026-10-31",
+      "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+      "to": "/donnees-a-revoir",
+      "firstSeenAt": "2026-11-01T21:49:49.671185+00:00",
+      "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+      "observations": [
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-09-30",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        },
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-10-31",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        }
+      ],
+      "impactQualified": false,
+      "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+      "collectorTools": [
+        "Présentation d'ETF",
+        "Générateur de portefeuilles",
+        "Duel de portefeuilles",
+        "Comparatif ETF"
+      ],
+      "stage": "Qualification",
+      "key": "usage:IE00BMH5Y871:catalog:15",
+      "signals": [
+        {
+          "id": "field:gap:usage:IE00BMH5Y871:catalog:15",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "aliases": [
+            "IE00BMH5Y871"
+          ],
+          "field": "Performance Depuis le lancement",
+          "kind": "qualification",
+          "category": "automation-proof-missing",
+          "impactScope": "asset",
+          "tools": [],
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "checkedAt": "2026-11-06",
+          "lastSuccessAt": null,
+          "asOf": "2026-10-31",
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "to": "/donnees-a-revoir",
+          "firstSeenAt": "2026-11-01T21:49:49.671185+00:00",
+          "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+          "observations": [
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-09-30",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            },
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-10-31",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            }
+          ],
+          "impactQualified": false,
+          "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+          "collectorTools": [
+            "Présentation d'ETF",
+            "Générateur de portefeuilles",
+            "Duel de portefeuilles",
+            "Comparatif ETF"
+          ],
+          "stage": "Qualification",
+          "key": "usage:IE00BMH5Y871:catalog:15"
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:IE00BMH5Y871:catalog:2\",\"qualification\",\"Qualification\",\"2026-11-05\",null,null,null]",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "aliases": [
+        "IE00BMH5Y871"
+      ],
+      "field": "Indice suivi",
+      "kind": "qualification",
+      "category": "automation-proof-missing",
+      "impactScope": "asset",
+      "tools": [],
+      "sourceUrls": [
+        "https://globalxetfs.eu/funds/bug/"
+      ],
+      "checkedAt": "2026-11-06",
+      "lastSuccessAt": null,
+      "asOf": "2026-11-05",
+      "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+      "to": "/donnees-a-revoir",
+      "firstSeenAt": "2026-11-01T21:49:49.671185+00:00",
+      "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+      "observations": [
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-10-30",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        },
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-11-02",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        },
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-11-03",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        },
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-11-04",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        },
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-11-05",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ]
+        }
+      ],
+      "impactQualified": false,
+      "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+      "collectorTools": [
+        "Présentation d'ETF",
+        "Générateur de portefeuilles",
+        "Duel de portefeuilles",
+        "Comparatif ETF"
+      ],
+      "stage": "Qualification",
+      "key": "usage:IE00BMH5Y871:catalog:2",
+      "signals": [
+        {
+          "id": "field:gap:usage:IE00BMH5Y871:catalog:2",
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "aliases": [
+            "IE00BMH5Y871"
+          ],
+          "field": "Indice suivi",
+          "kind": "qualification",
+          "category": "automation-proof-missing",
+          "impactScope": "asset",
+          "tools": [],
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug/"
+          ],
+          "checkedAt": "2026-11-06",
+          "lastSuccessAt": null,
+          "asOf": "2026-11-05",
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "to": "/donnees-a-revoir",
+          "firstSeenAt": "2026-11-01T21:49:49.671185+00:00",
+          "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+          "observations": [
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-10-30",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            },
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-11-02",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            },
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-11-03",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            },
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-11-04",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            },
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-11-05",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug/"
+              ]
+            }
+          ],
+          "impactQualified": false,
+          "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+          "collectorTools": [
+            "Présentation d'ETF",
+            "Générateur de portefeuilles",
+            "Duel de portefeuilles",
+            "Comparatif ETF"
+          ],
+          "stage": "Qualification",
+          "key": "usage:IE00BMH5Y871:catalog:2"
+        }
+      ]
+    },
+    {
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "tools": [],
+      "impactScope": "asset",
+      "workflow": "update-exposure-expansion.yml",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42242779345",
+      "to": "/bibliotheque-donnees?id=IE00BMH5Y871",
+      "lastSuccessAt": "2026-11-05T16:45:02.235077+00:00",
+      "completedAt": "2026-11-06T17:23:07Z",
+      "sourcePhaseCompletedAt": "2026-11-06T17:23:07Z",
+      "runId": 42278834427,
+      "attempt": 1,
+      "attemptedDataIds": [
+        "etf-exposure-expansion-DE0002635307",
+        "etf-exposure-expansion-FR0007054358",
+        "etf-exposure-expansion-FR0011869304",
+        "etf-exposure-expansion-FR0013346681",
+        "etf-exposure-expansion-FR0013412269",
+        "etf-exposure-expansion-IE0000QLH0G6",
+        "etf-exposure-expansion-IE0003XJA0J9",
+        "etf-exposure-expansion-IE000716YHJ7",
+        "etf-exposure-expansion-IE0008470928",
+        "etf-exposure-expansion-IE0008471009",
+        "etf-exposure-expansion-IE0009HF1MK9",
+        "etf-exposure-expansion-IE000NDWFGA5",
+        "etf-exposure-expansion-IE00B1YZSC51",
+        "etf-exposure-expansion-IE00B3RBWM25",
+        "etf-exposure-expansion-IE00B3XXRP09",
+        "etf-exposure-expansion-IE00B945VV12",
+        "etf-exposure-expansion-IE00BDVPNG13",
+        "etf-exposure-expansion-IE00BFMXXD54",
+        "etf-exposure-expansion-IE00BFY0GT14",
+        "etf-exposure-expansion-IE00BJ0KDQ92",
+        "etf-exposure-expansion-IE00BK1PV551",
+        "etf-exposure-expansion-IE00BK5BQV03",
+        "etf-exposure-expansion-IE00BK5BQX27",
+        "etf-exposure-expansion-IE00BKLF1R75",
+        "etf-exposure-expansion-IE00BKWQ0Q14",
+        "etf-exposure-expansion-IE00BLCHJB90",
+        "etf-exposure-expansion-IE00BMC38736",
+        "etf-exposure-expansion-IE00BMH5Y871",
+        "etf-exposure-expansion-LU0274209237",
+        "etf-exposure-expansion-LU0328475792",
+        "etf-exposure-expansion-LU0380865021",
+        "etf-exposure-expansion-LU1681038672",
+        "etf-exposure-expansion-LU1681040223",
+        "etf-exposure-expansion-LU1829219390",
+        "etf-exposure-expansion-LU2903252349",
+        "etf-exposure-expansion-LU3180074463"
+      ],
+      "evidence": {
+        "scopeExplicit": true,
+        "scopePlanVerified": true,
+        "producerContract": "producer-results-v1",
+        "file": "exposure-expansion.json",
+        "sha256": "7262916fde21201f122e3642f658948cb99d8a2ee4c88e408198dea633cc6d2d",
+        "reportedAt": "2026-11-06T17:21:48.009063+00:00",
+        "schema": "shares",
+        "artifactId": 13524542865,
+        "sourcePhaseStartedAt": "2026-11-06T17:20:42Z",
+        "sourcePhaseCompletedAt": "2026-11-06T17:23:07Z",
+        "scopeRef": "fb0af93e3e9babbca464c8c62752bc98af8d2847622d895c5fd65d4a151680d6",
+        "scopeSummary": {
+          "kind": "collect_exposure_expansion",
+          "expectedIdsCount": 36,
+          "requestedIdsCount": 36,
+          "networkRequestedIdsCount": 35
+        }
+      },
+      "cause": "Le rapport composite ne prouve pas le contrôle ciblé du champ ou de la branche initialement en échec. Erreur antérieure : Missing or ambiguous issuer Top Holdings",
+      "field": "Collecte ETF",
+      "sourceAttempted": null,
+      "unverifiedRecovery": true,
+      "unverifiedReason": "Le rapport composite ne prouve pas le contrôle ciblé du champ ou de la branche initialement en échec.",
+      "recoveryEvidence": {
+        "scopeExplicit": true,
+        "scopePlanVerified": true,
+        "producerContract": "producer-results-v1",
+        "file": "exposure-expansion.json",
+        "sha256": "be9606a196e47cdd725d0ed853e6ad0cbe59748ab98308e81109c92d6b9c3c2c",
+        "reportedAt": "2026-11-06T19:34:31.000707+00:00",
+        "schema": "shares",
+        "artifactId": 13534972942,
+        "sourcePhaseStartedAt": "2026-11-06T19:33:39Z",
+        "sourcePhaseCompletedAt": "2026-11-06T19:35:41Z",
+        "scopeRef": "06a9f6900ec7a0f7daa2daa135efcca390961023b861d809144a3c2ecc3c7754",
+        "scopeSummary": {
+          "kind": "collect_exposure_expansion",
+          "expectedIdsCount": 36,
+          "requestedIdsCount": 36,
+          "networkRequestedIdsCount": 36
+        }
+      },
+      "sourceUrls": [
+        "https://globalxetfs.eu/funds/bug",
+        "https://globalxetfs.eu/funds/bug/",
+        "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits",
+        "https://www.quantalys.com/Fonds/2043794"
+      ],
+      "kind": "qualification",
+      "originalKind": "collection",
+      "dataId": "etf-exposure-expansion-IE00BMH5Y871",
+      "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BMH5Y871",
+      "firstSeenAt": "2026-11-06T15:28:09.340807+00:00",
+      "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+      "observations": [
+        {
+          "cause": "Missing or ambiguous issuer Top Holdings",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42236100535",
+          "completedAt": "2026-11-06T15:22:59Z",
+          "lastSuccessAt": "2026-11-05T16:45:02.235077+00:00",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug",
+            "https://globalxetfs.eu/funds/bug/",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits",
+            "https://www.quantalys.com/Fonds/2043794"
+          ]
+        },
+        {
+          "cause": "Le rapport composite ne prouve pas le contrôle ciblé de la branche initialement en échec. Erreur antérieure : Missing or ambiguous issuer Top Holdings",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42236100535",
+          "completedAt": "2026-11-06T15:22:59Z",
+          "lastSuccessAt": "2026-11-05T16:45:02.235077+00:00",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug",
+            "https://globalxetfs.eu/funds/bug/",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits",
+            "https://www.quantalys.com/Fonds/2043794"
+          ]
+        },
+        {
+          "cause": "Missing or ambiguous issuer Top Holdings",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42236100535",
+          "completedAt": "2026-11-06T15:22:59Z",
+          "lastSuccessAt": "2026-11-05T16:45:02.235077+00:00",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug",
+            "https://globalxetfs.eu/funds/bug/",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits",
+            "https://www.quantalys.com/Fonds/2043794"
+          ]
+        },
+        {
+          "cause": "Missing or ambiguous issuer Top Holdings",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42242779345",
+          "completedAt": "2026-11-06T17:23:07Z",
+          "lastSuccessAt": "2026-11-05T16:45:02.235077+00:00",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug",
+            "https://globalxetfs.eu/funds/bug/",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits",
+            "https://www.quantalys.com/Fonds/2043794"
+          ]
+        },
+        {
+          "cause": "Le rapport composite ne prouve pas le contrôle ciblé de la branche initialement en échec. Erreur antérieure : Missing or ambiguous issuer Top Holdings",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42242779345",
+          "completedAt": "2026-11-06T17:23:07Z",
+          "lastSuccessAt": "2026-11-05T16:45:02.235077+00:00",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug",
+            "https://globalxetfs.eu/funds/bug/",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits",
+            "https://www.quantalys.com/Fonds/2043794"
+          ]
+        },
+        {
+          "cause": "Le rapport composite ne prouve pas le contrôle ciblé du champ ou de la branche initialement en échec. Erreur antérieure : Missing or ambiguous issuer Top Holdings",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42242779345",
+          "completedAt": "2026-11-06T17:23:07Z",
+          "lastSuccessAt": "2026-11-05T16:45:02.235077+00:00",
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug",
+            "https://globalxetfs.eu/funds/bug/",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits",
+            "https://www.quantalys.com/Fonds/2043794"
+          ]
+        }
+      ],
+      "members": [
+        "etf-exposure-expansion-DE0002635307",
+        "etf-exposure-expansion-FR0007054358",
+        "etf-exposure-expansion-FR0011869304",
+        "etf-exposure-expansion-FR0013346681",
+        "etf-exposure-expansion-FR0013412269",
+        "etf-exposure-expansion-IE0000QLH0G6",
+        "etf-exposure-expansion-IE0003XJA0J9",
+        "etf-exposure-expansion-IE000716YHJ7",
+        "etf-exposure-expansion-IE0008470928",
+        "etf-exposure-expansion-IE0008471009",
+        "etf-exposure-expansion-IE0009HF1MK9",
+        "etf-exposure-expansion-IE000NDWFGA5",
+        "etf-exposure-expansion-IE00B1YZSC51",
+        "etf-exposure-expansion-IE00B3RBWM25",
+        "etf-exposure-expansion-IE00B3XXRP09",
+        "etf-exposure-expansion-IE00B945VV12",
+        "etf-exposure-expansion-IE00BDVPNG13",
+        "etf-exposure-expansion-IE00BFMXXD54",
+        "etf-exposure-expansion-IE00BFY0GT14",
+        "etf-exposure-expansion-IE00BJ0KDQ92",
+        "etf-exposure-expansion-IE00BK1PV551",
+        "etf-exposure-expansion-IE00BK5BQV03",
+        "etf-exposure-expansion-IE00BK5BQX27",
+        "etf-exposure-expansion-IE00BKLF1R75",
+        "etf-exposure-expansion-IE00BKWQ0Q14",
+        "etf-exposure-expansion-IE00BLCHJB90",
+        "etf-exposure-expansion-IE00BMC38736",
+        "etf-exposure-expansion-IE00BMH5Y871",
+        "etf-exposure-expansion-LU0274209237",
+        "etf-exposure-expansion-LU0328475792",
+        "etf-exposure-expansion-LU0380865021",
+        "etf-exposure-expansion-LU1681038672",
+        "etf-exposure-expansion-LU1681040223",
+        "etf-exposure-expansion-LU1829219390",
+        "etf-exposure-expansion-LU2903252349",
+        "etf-exposure-expansion-LU3180074463"
+      ],
+      "impactQualified": false,
+      "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+      "collectorTools": [
+        "Comparatif ETF",
+        "Duels de portefeuilles",
+        "Générateur de portefeuilles",
+        "Présentation ETF"
+      ],
+      "stage": "Qualification",
+      "key": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BMH5Y871",
+      "attemptedAt": "2026-11-06T17:20:42Z",
+      "recovery": {
+        "attempts": [],
+        "reason": null,
+        "lastSuccessAt": "2026-10-28T15:05:02.097479+00:00",
+        "observedRunId": 42278834427,
+        "status": "idle",
+        "nextAttemptAt": null
+      },
+      "signals": [
+        {
+          "name": "Global X Cybersecurity UCITS ETF USD Acc",
+          "tools": [],
+          "impactScope": "asset",
+          "workflow": "update-exposure-expansion.yml",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42242779345",
+          "to": "/bibliotheque-donnees?id=IE00BMH5Y871",
+          "lastSuccessAt": "2026-11-05T16:45:02.235077+00:00",
+          "completedAt": "2026-11-06T17:23:07Z",
+          "sourcePhaseCompletedAt": "2026-11-06T17:23:07Z",
+          "runId": 42278834427,
+          "attempt": 1,
+          "attemptedDataIds": [
+            "etf-exposure-expansion-DE0002635307",
+            "etf-exposure-expansion-FR0007054358",
+            "etf-exposure-expansion-FR0011869304",
+            "etf-exposure-expansion-FR0013346681",
+            "etf-exposure-expansion-FR0013412269",
+            "etf-exposure-expansion-IE0000QLH0G6",
+            "etf-exposure-expansion-IE0003XJA0J9",
+            "etf-exposure-expansion-IE000716YHJ7",
+            "etf-exposure-expansion-IE0008470928",
+            "etf-exposure-expansion-IE0008471009",
+            "etf-exposure-expansion-IE0009HF1MK9",
+            "etf-exposure-expansion-IE000NDWFGA5",
+            "etf-exposure-expansion-IE00B1YZSC51",
+            "etf-exposure-expansion-IE00B3RBWM25",
+            "etf-exposure-expansion-IE00B3XXRP09",
+            "etf-exposure-expansion-IE00B945VV12",
+            "etf-exposure-expansion-IE00BDVPNG13",
+            "etf-exposure-expansion-IE00BFMXXD54",
+            "etf-exposure-expansion-IE00BFY0GT14",
+            "etf-exposure-expansion-IE00BJ0KDQ92",
+            "etf-exposure-expansion-IE00BK1PV551",
+            "etf-exposure-expansion-IE00BK5BQV03",
+            "etf-exposure-expansion-IE00BK5BQX27",
+            "etf-exposure-expansion-IE00BKLF1R75",
+            "etf-exposure-expansion-IE00BKWQ0Q14",
+            "etf-exposure-expansion-IE00BLCHJB90",
+            "etf-exposure-expansion-IE00BMC38736",
+            "etf-exposure-expansion-IE00BMH5Y871",
+            "etf-exposure-expansion-LU0274209237",
+            "etf-exposure-expansion-LU0328475792",
+            "etf-exposure-expansion-LU0380865021",
+            "etf-exposure-expansion-LU1681038672",
+            "etf-exposure-expansion-LU1681040223",
+            "etf-exposure-expansion-LU1829219390",
+            "etf-exposure-expansion-LU2903252349",
+            "etf-exposure-expansion-LU3180074463"
+          ],
+          "evidence": {
+            "scopeExplicit": true,
+            "scopePlanVerified": true,
+            "producerContract": "producer-results-v1",
+            "file": "exposure-expansion.json",
+            "sha256": "7262916fde21201f122e3642f658948cb99d8a2ee4c88e408198dea633cc6d2d",
+            "reportedAt": "2026-11-06T17:21:48.009063+00:00",
+            "schema": "shares",
+            "artifactId": 13524542865,
+            "sourcePhaseStartedAt": "2026-11-06T17:20:42Z",
+            "sourcePhaseCompletedAt": "2026-11-06T17:23:07Z",
+            "scopeRef": "fb0af93e3e9babbca464c8c62752bc98af8d2847622d895c5fd65d4a151680d6",
+            "scopeSummary": {
+              "kind": "collect_exposure_expansion",
+              "expectedIdsCount": 36,
+              "requestedIdsCount": 36,
+              "networkRequestedIdsCount": 35
+            }
+          },
+          "cause": "Le rapport composite ne prouve pas le contrôle ciblé du champ ou de la branche initialement en échec. Erreur antérieure : Missing or ambiguous issuer Top Holdings",
+          "field": "Collecte ETF",
+          "sourceAttempted": null,
+          "unverifiedRecovery": true,
+          "unverifiedReason": "Le rapport composite ne prouve pas le contrôle ciblé du champ ou de la branche initialement en échec.",
+          "recoveryEvidence": {
+            "scopeExplicit": true,
+            "scopePlanVerified": true,
+            "producerContract": "producer-results-v1",
+            "file": "exposure-expansion.json",
+            "sha256": "be9606a196e47cdd725d0ed853e6ad0cbe59748ab98308e81109c92d6b9c3c2c",
+            "reportedAt": "2026-11-06T19:34:31.000707+00:00",
+            "schema": "shares",
+            "artifactId": 13534972942,
+            "sourcePhaseStartedAt": "2026-11-06T19:33:39Z",
+            "sourcePhaseCompletedAt": "2026-11-06T19:35:41Z",
+            "scopeRef": "06a9f6900ec7a0f7daa2daa135efcca390961023b861d809144a3c2ecc3c7754",
+            "scopeSummary": {
+              "kind": "collect_exposure_expansion",
+              "expectedIdsCount": 36,
+              "requestedIdsCount": 36,
+              "networkRequestedIdsCount": 36
+            }
+          },
+          "sourceUrls": [
+            "https://globalxetfs.eu/funds/bug",
+            "https://globalxetfs.eu/funds/bug/",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits",
+            "https://www.quantalys.com/Fonds/2043794"
+          ],
+          "kind": "qualification",
+          "originalKind": "collection",
+          "dataId": "etf-exposure-expansion-IE00BMH5Y871",
+          "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BMH5Y871",
+          "firstSeenAt": "2026-11-06T15:28:09.340807+00:00",
+          "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+          "observations": [
+            {
+              "cause": "Missing or ambiguous issuer Top Holdings",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42236100535",
+              "completedAt": "2026-11-06T15:22:59Z",
+              "lastSuccessAt": "2026-11-05T16:45:02.235077+00:00",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug",
+                "https://globalxetfs.eu/funds/bug/",
+                "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+                "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits",
+                "https://www.quantalys.com/Fonds/2043794"
+              ]
+            },
+            {
+              "cause": "Le rapport composite ne prouve pas le contrôle ciblé de la branche initialement en échec. Erreur antérieure : Missing or ambiguous issuer Top Holdings",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42236100535",
+              "completedAt": "2026-11-06T15:22:59Z",
+              "lastSuccessAt": "2026-11-05T16:45:02.235077+00:00",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug",
+                "https://globalxetfs.eu/funds/bug/",
+                "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+                "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits",
+                "https://www.quantalys.com/Fonds/2043794"
+              ]
+            },
+            {
+              "cause": "Missing or ambiguous issuer Top Holdings",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42236100535",
+              "completedAt": "2026-11-06T15:22:59Z",
+              "lastSuccessAt": "2026-11-05T16:45:02.235077+00:00",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug",
+                "https://globalxetfs.eu/funds/bug/",
+                "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+                "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits",
+                "https://www.quantalys.com/Fonds/2043794"
+              ]
+            },
+            {
+              "cause": "Missing or ambiguous issuer Top Holdings",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42242779345",
+              "completedAt": "2026-11-06T17:23:07Z",
+              "lastSuccessAt": "2026-11-05T16:45:02.235077+00:00",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug",
+                "https://globalxetfs.eu/funds/bug/",
+                "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+                "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits",
+                "https://www.quantalys.com/Fonds/2043794"
+              ]
+            },
+            {
+              "cause": "Le rapport composite ne prouve pas le contrôle ciblé de la branche initialement en échec. Erreur antérieure : Missing or ambiguous issuer Top Holdings",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42242779345",
+              "completedAt": "2026-11-06T17:23:07Z",
+              "lastSuccessAt": "2026-11-05T16:45:02.235077+00:00",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug",
+                "https://globalxetfs.eu/funds/bug/",
+                "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+                "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits",
+                "https://www.quantalys.com/Fonds/2043794"
+              ]
+            },
+            {
+              "cause": "Le rapport composite ne prouve pas le contrôle ciblé du champ ou de la branche initialement en échec. Erreur antérieure : Missing or ambiguous issuer Top Holdings",
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42242779345",
+              "completedAt": "2026-11-06T17:23:07Z",
+              "lastSuccessAt": "2026-11-05T16:45:02.235077+00:00",
+              "sourceUrls": [
+                "https://globalxetfs.eu/funds/bug",
+                "https://globalxetfs.eu/funds/bug/",
+                "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1d&events=div%2Csplits",
+                "https://query2.finance.yahoo.com/v8/finance/chart/BUG.L?period1=1638316800&period2=1793491200&interval=1mo&events=div%2Csplits",
+                "https://www.quantalys.com/Fonds/2043794"
+              ]
+            }
+          ],
+          "members": [
+            "etf-exposure-expansion-DE0002635307",
+            "etf-exposure-expansion-FR0007054358",
+            "etf-exposure-expansion-FR0011869304",
+            "etf-exposure-expansion-FR0013346681",
+            "etf-exposure-expansion-FR0013412269",
+            "etf-exposure-expansion-IE0000QLH0G6",
+            "etf-exposure-expansion-IE0003XJA0J9",
+            "etf-exposure-expansion-IE000716YHJ7",
+            "etf-exposure-expansion-IE0008470928",
+            "etf-exposure-expansion-IE0008471009",
+            "etf-exposure-expansion-IE0009HF1MK9",
+            "etf-exposure-expansion-IE000NDWFGA5",
+            "etf-exposure-expansion-IE00B1YZSC51",
+            "etf-exposure-expansion-IE00B3RBWM25",
+            "etf-exposure-expansion-IE00B3XXRP09",
+            "etf-exposure-expansion-IE00B945VV12",
+            "etf-exposure-expansion-IE00BDVPNG13",
+            "etf-exposure-expansion-IE00BFMXXD54",
+            "etf-exposure-expansion-IE00BFY0GT14",
+            "etf-exposure-expansion-IE00BJ0KDQ92",
+            "etf-exposure-expansion-IE00BK1PV551",
+            "etf-exposure-expansion-IE00BK5BQV03",
+            "etf-exposure-expansion-IE00BK5BQX27",
+            "etf-exposure-expansion-IE00BKLF1R75",
+            "etf-exposure-expansion-IE00BKWQ0Q14",
+            "etf-exposure-expansion-IE00BLCHJB90",
+            "etf-exposure-expansion-IE00BMC38736",
+            "etf-exposure-expansion-IE00BMH5Y871",
+            "etf-exposure-expansion-LU0274209237",
+            "etf-exposure-expansion-LU0328475792",
+            "etf-exposure-expansion-LU0380865021",
+            "etf-exposure-expansion-LU1681038672",
+            "etf-exposure-expansion-LU1681040223",
+            "etf-exposure-expansion-LU1829219390",
+            "etf-exposure-expansion-LU2903252349",
+            "etf-exposure-expansion-LU3180074463"
+          ],
+          "impactQualified": false,
+          "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+          "collectorTools": [
+            "Comparatif ETF",
+            "Duels de portefeuilles",
+            "Générateur de portefeuilles",
+            "Présentation ETF"
+          ],
+          "stage": "Qualification",
+          "key": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BMH5Y871",
+          "attemptedAt": "2026-11-06T17:20:42Z",
+          "recovery": {
+            "attempts": [],
+            "reason": null,
+            "lastSuccessAt": "2026-10-28T15:05:02.097479+00:00",
+            "observedRunId": 42278834427,
+            "status": "idle",
+            "nextAttemptAt": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "[\"usage:russell-1000:catalog:0\",\"qualification\",\"Qualification\",\"2026-06-30\",null,null,null]",
+      "name": "Russell 1000",
+      "aliases": [
+        "russell-1000"
+      ],
+      "field": "Positions trimestrielles · 2026-06-30",
+      "kind": "qualification",
+      "category": "automation-proof-missing",
+      "impactScope": "asset",
+      "tools": [],
+      "sourceUrls": [
+        "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000"
+      ],
+      "checkedAt": "2026-11-06",
+      "lastSuccessAt": null,
+      "asOf": "2026-06-30",
+      "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+      "to": "/donnees-a-revoir",
+      "firstSeenAt": "2026-10-24T15:48:49.350336+00:00",
+      "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+      "observations": [
+        {
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "asOf": "2026-06-30",
+          "sourceUrls": [
+            "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000"
+          ]
+        }
+      ],
+      "impactQualified": false,
+      "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+      "collectorTools": [],
+      "stage": "Qualification",
+      "key": "usage:russell-1000:catalog:0",
+      "signals": [
+        {
+          "id": "field:gap:usage:russell-1000:catalog:0",
+          "name": "Russell 1000",
+          "aliases": [
+            "russell-1000"
+          ],
+          "field": "Positions trimestrielles · 2026-06-30",
+          "kind": "qualification",
+          "category": "automation-proof-missing",
+          "impactScope": "asset",
+          "tools": [],
+          "sourceUrls": [
+            "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000"
+          ],
+          "checkedAt": "2026-11-06",
+          "lastSuccessAt": null,
+          "asOf": "2026-06-30",
+          "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+          "to": "/donnees-a-revoir",
+          "firstSeenAt": "2026-10-24T15:48:49.350336+00:00",
+          "lastSeenAt": "2026-11-06T22:57:47.773056+00:00",
+          "observations": [
+            {
+              "cause": "Qualification ou contrôle nécessaire : Établir la preuve de renouvellement de ce champ précis ; le workflow du fichier ne suffit pas.",
+              "asOf": "2026-06-30",
+              "sourceUrls": [
+                "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000"
+              ]
+            }
+          ],
+          "impactQualified": false,
+          "impact": "Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.",
+          "collectorTools": [],
+          "stage": "Qualification",
+          "key": "usage:russell-1000:catalog:0"
+        }
+      ]
+    }
+  ],
+  "nativeKindsAreNotDistinctOutageCounts": true,
+  "independentFinancialAndPublicationProofsRequiredToResolve": true
+}

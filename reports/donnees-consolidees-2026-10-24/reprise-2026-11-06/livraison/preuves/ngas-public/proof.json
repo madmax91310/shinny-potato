@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-11-06T17:50:45.767143+00:00",
+  "context": {
+    "checkedAt": "2026-11-06T17:50:22.284724+00:00",
+    "build": {
+      "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+      "dataSha": "ed5264e2202b034c48f434e9ae30336f26c67663",
+      "lane": "validated-data",
+      "builtAt": "2026-11-06T17:38:44.573Z"
+    },
+    "registryBlob": "84bb024c2b616ab6fbbccd5adb1faf75eb50b57b",
+    "sourceHash": "19643dc420b4d2cae76cac8fae2030cba910dbdd56f6f9ccd70a10f268cd1dd2",
+    "knownProductionRecording": "5739c1c16cb3452af46322b4f547faf2b159bc48"
+  },
+  "after": {
+    "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+    "dataSha": "ed5264e2202b034c48f434e9ae30336f26c67663",
+    "lane": "validated-data",
+    "builtAt": "2026-11-06T17:38:44.573Z"
+  },
+  "stableBuild": true,
+  "cases": [
+    {
+      "key": "etc_natural_gasNav-2026-9-lump-1440",
+      "shown": "909",
+      "independentDecimal": "909.3882171855244006796406239",
+      "pngMatchesPreview": true
+    },
+    {
+      "key": "etc_natural_gasNav-2026-9-dca-1440",
+      "shown": "1909",
+      "independentDecimal": "1909.388217185524400679640624",
+      "pngMatchesPreview": true
+    },
+    {
+      "key": "etc_natural_gasNav-2026-9-lump-390",
+      "shown": "909",
+      "independentDecimal": "909.3882171855244006796406239",
+      "pngMatchesPreview": true
+    },
+    {
+      "key": "etc_natural_gasNav-2026-9-dca-390",
+      "shown": "1909",
+      "independentDecimal": "1909.388217185524400679640624",
+      "pngMatchesPreview": true
+    }
+  ],
+  "scope": "NGAS monthly September\u2013October 2026, USD, lump/DCA, desktop/mobile, copied text/preview/download"
+}

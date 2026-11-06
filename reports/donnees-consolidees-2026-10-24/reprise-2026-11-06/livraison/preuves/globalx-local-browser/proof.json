@@ -1,0 +1,118 @@
+{
+  "checkedAt": "2026-11-06T18:08:10.389Z",
+  "cases": [
+    {
+      "width": 1440,
+      "before": {
+        "localCode": "835a51945fa184dafb4e589f1d003100fc9c06e4",
+        "privateCollectedData": true
+      },
+      "after": {
+        "localCode": "835a51945fa184dafb4e589f1d003100fc9c06e4",
+        "privateCollectedData": true
+      },
+      "sourceAsOf": "2026-11-05",
+      "checkedAt": "2026-11-06T18:00:58.044833+00:00",
+      "rows": 30,
+      "consolidated": [],
+      "identifiedPositionsOverlapOnly": 0.96081,
+      "qualifiedFullOverlap": true,
+      "qualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.796,
+        "identifiedCoverage": 99.796,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.20399999999999352
+      },
+      "peerQualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.95357999999997,
+        "identifiedCoverage": 99.95357999999997,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.04642000000002611
+      },
+      "scores": [
+        "0,96 %"
+      ],
+      "receipts": [
+        {
+          "url": "http://127.0.0.1:4185/shinny-potato/assets/holdings-24-CxV_lXB-.json",
+          "bucket": "24",
+          "blob": "082db47828603d7b95d186b17a293a9698fbdb2d",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4185/shinny-potato/assets/holdings-13-D3t82bT7.json",
+          "bucket": "13",
+          "blob": "fd2fcc77ab6cb3a4ceeeca555805b1f13264d7aa",
+          "status": 200
+        }
+      ],
+      "png": "/tmp/automation-20261106/proofs/globalx-local-browser/1440.png",
+      "pngSha256": "1ce0f75601b02ffcaf61efb2755b78d5188fac13770dd731065402ffcd1c0cba",
+      "previewEqualsExport": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "before": {
+        "localCode": "835a51945fa184dafb4e589f1d003100fc9c06e4",
+        "privateCollectedData": true
+      },
+      "after": {
+        "localCode": "835a51945fa184dafb4e589f1d003100fc9c06e4",
+        "privateCollectedData": true
+      },
+      "sourceAsOf": "2026-11-05",
+      "checkedAt": "2026-11-06T18:00:58.044833+00:00",
+      "rows": 30,
+      "consolidated": [],
+      "identifiedPositionsOverlapOnly": 0.96081,
+      "qualifiedFullOverlap": true,
+      "qualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.796,
+        "identifiedCoverage": 99.796,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.20399999999999352
+      },
+      "peerQualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.95357999999997,
+        "identifiedCoverage": 99.95357999999997,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.04642000000002611
+      },
+      "scores": [
+        "0,96 %"
+      ],
+      "receipts": [
+        {
+          "url": "http://127.0.0.1:4185/shinny-potato/assets/holdings-24-CxV_lXB-.json",
+          "bucket": "24",
+          "blob": "082db47828603d7b95d186b17a293a9698fbdb2d",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4185/shinny-potato/assets/holdings-13-D3t82bT7.json",
+          "bucket": "13",
+          "blob": "fd2fcc77ab6cb3a4ceeeca555805b1f13264d7aa",
+          "status": 200
+        }
+      ],
+      "png": "/tmp/automation-20261106/proofs/globalx-local-browser/390.png",
+      "pngSha256": "1ce0f75601b02ffcaf61efb2755b78d5188fac13770dd731065402ffcd1c0cba",
+      "previewEqualsExport": true,
+      "errors": []
+    }
+  ],
+  "scope": "Actually consumed Global X Cybersecurity/SP500 books, exact published weights, net settlement cash proof, independent company overlap sum, live text and PNG; country/sector classification and top10 publication are separate."
+}

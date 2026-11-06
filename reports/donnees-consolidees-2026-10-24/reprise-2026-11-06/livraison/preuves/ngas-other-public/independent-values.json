@@ -1,0 +1,258 @@
+{
+  "checkedAt": "2026-11-06T18:33:49.705858+00:00",
+  "build": {
+    "sha": "02cfde6b5cf0184a10c024c74adfef6f04a9f009",
+    "dataSha": "f212ab74eebaf825b930a67e636da03bebb32638",
+    "lane": "validated-data",
+    "builtAt": "2026-11-06T18:17:53.186Z"
+  },
+  "exactPublishedBlobs": {
+    "automated-etf-monthly.json": "84bb024c2b616ab6fbbccd5adb1faf75eb50b57b",
+    "automated-monthly.json": "e2c4d1863dab6d4b42d1350ebd2c2d04bd648b71",
+    "monthly-fx.json": "2a3097e72e9dc3e78b6924e33062142640ae178f"
+  },
+  "importsApplicationCalculationCode": false,
+  "checks": [
+    {
+      "case": "performance-1440",
+      "year": "2022",
+      "currency": "USD",
+      "expectedPct": "17.5148680112314680674760916135605187367054520",
+      "shownPct": "17.5"
+    },
+    {
+      "case": "performance-1440",
+      "year": "2023",
+      "currency": "USD",
+      "expectedPct": "-65.9107654269326831867732922652595509560081534",
+      "shownPct": "-65.9"
+    },
+    {
+      "case": "performance-1440",
+      "year": "2024",
+      "currency": "USD",
+      "expectedPct": "-27.0121471281634108231710138245743544370384798",
+      "shownPct": "-27.0"
+    },
+    {
+      "case": "performance-1440",
+      "year": "2025",
+      "currency": "USD",
+      "expectedPct": "-24.6739567617117687007474918807116631419263560",
+      "shownPct": "-24.7"
+    },
+    {
+      "case": "comparison-1440",
+      "id": "apple",
+      "currency": "EUR",
+      "expectedPct": "5.18141177396711440611495525350195483791343700",
+      "shownPct": "5.18"
+    },
+    {
+      "case": "comparison-1440",
+      "id": "etc_natural_gasNav",
+      "currency": "EUR",
+      "expectedPct": "-7.57157889239500922200752519444123198234602660",
+      "shownPct": "-7.57"
+    },
+    {
+      "case": "annual-1440",
+      "id": "apple",
+      "currency": "EUR",
+      "expectedPct": "10.7918044309396030105505950458280796280333160",
+      "shownPct": "10.79"
+    },
+    {
+      "case": "annual-1440",
+      "id": "etc_natural_gasNav",
+      "currency": "EUR",
+      "expectedPct": "-32.1208922208552586353446599842363385588896379",
+      "shownPct": "-32.12"
+    },
+    {
+      "case": "annual-1440",
+      "id": "etc_natural_gasNav",
+      "year": 2022,
+      "currency": "EUR",
+      "expectedPct": "24.7865549498600794423621051579961030575591550",
+      "shownPct": "24.8"
+    },
+    {
+      "case": "annual-1440",
+      "id": "apple",
+      "year": 2023,
+      "currency": "EUR",
+      "expectedPct": "43.8298291476066899886860777957874909659408330",
+      "shownPct": "43.8"
+    },
+    {
+      "case": "annual-1440",
+      "id": "apple",
+      "year": 2024,
+      "currency": "EUR",
+      "expectedPct": "39.0213907766923759099274209752177364677207370",
+      "shownPct": "39.0"
+    },
+    {
+      "case": "annual-1440",
+      "id": "apple",
+      "year": 2025,
+      "currency": "EUR",
+      "expectedPct": "-3.57893370120704606257382598875323713369393410",
+      "shownPct": "-3.6"
+    },
+    {
+      "case": "annual-1440",
+      "id": "apple",
+      "year": 2022,
+      "currency": "EUR",
+      "expectedPct": "-21.8501733207091200010019416241604437292689872",
+      "shownPct": "-21.9"
+    },
+    {
+      "case": "annual-1440",
+      "id": "etc_natural_gasNav",
+      "year": 2023,
+      "currency": "EUR",
+      "expectedPct": "-67.0954048908293211647170982173084498187133905",
+      "shownPct": "-67.1"
+    },
+    {
+      "case": "annual-1440",
+      "id": "etc_natural_gasNav",
+      "year": 2024,
+      "currency": "EUR",
+      "expectedPct": "-22.3682958673795061696062857600872669678771009",
+      "shownPct": "-22.4"
+    },
+    {
+      "case": "annual-1440",
+      "id": "etc_natural_gasNav",
+      "year": 2025,
+      "currency": "EUR",
+      "expectedPct": "-33.3989563231849842580481440977628483728913117",
+      "shownPct": "-33.4"
+    },
+    {
+      "case": "performance-390",
+      "year": "2022",
+      "currency": "USD",
+      "expectedPct": "17.5148680112314680674760916135605187367054520",
+      "shownPct": "17.5"
+    },
+    {
+      "case": "performance-390",
+      "year": "2023",
+      "currency": "USD",
+      "expectedPct": "-65.9107654269326831867732922652595509560081534",
+      "shownPct": "-65.9"
+    },
+    {
+      "case": "performance-390",
+      "year": "2024",
+      "currency": "USD",
+      "expectedPct": "-27.0121471281634108231710138245743544370384798",
+      "shownPct": "-27.0"
+    },
+    {
+      "case": "performance-390",
+      "year": "2025",
+      "currency": "USD",
+      "expectedPct": "-24.6739567617117687007474918807116631419263560",
+      "shownPct": "-24.7"
+    },
+    {
+      "case": "comparison-390",
+      "id": "apple",
+      "currency": "EUR",
+      "expectedPct": "5.18141177396711440611495525350195483791343700",
+      "shownPct": "5.18"
+    },
+    {
+      "case": "comparison-390",
+      "id": "etc_natural_gasNav",
+      "currency": "EUR",
+      "expectedPct": "-7.57157889239500922200752519444123198234602660",
+      "shownPct": "-7.57"
+    },
+    {
+      "case": "annual-390",
+      "id": "apple",
+      "currency": "EUR",
+      "expectedPct": "10.7918044309396030105505950458280796280333160",
+      "shownPct": "10.79"
+    },
+    {
+      "case": "annual-390",
+      "id": "etc_natural_gasNav",
+      "currency": "EUR",
+      "expectedPct": "-32.1208922208552586353446599842363385588896379",
+      "shownPct": "-32.12"
+    },
+    {
+      "case": "annual-390",
+      "id": "etc_natural_gasNav",
+      "year": 2022,
+      "currency": "EUR",
+      "expectedPct": "24.7865549498600794423621051579961030575591550",
+      "shownPct": "24.8"
+    },
+    {
+      "case": "annual-390",
+      "id": "apple",
+      "year": 2023,
+      "currency": "EUR",
+      "expectedPct": "43.8298291476066899886860777957874909659408330",
+      "shownPct": "43.8"
+    },
+    {
+      "case": "annual-390",
+      "id": "apple",
+      "year": 2024,
+      "currency": "EUR",
+      "expectedPct": "39.0213907766923759099274209752177364677207370",
+      "shownPct": "39.0"
+    },
+    {
+      "case": "annual-390",
+      "id": "apple",
+      "year": 2025,
+      "currency": "EUR",
+      "expectedPct": "-3.57893370120704606257382598875323713369393410",
+      "shownPct": "-3.6"
+    },
+    {
+      "case": "annual-390",
+      "id": "apple",
+      "year": 2022,
+      "currency": "EUR",
+      "expectedPct": "-21.8501733207091200010019416241604437292689872",
+      "shownPct": "-21.9"
+    },
+    {
+      "case": "annual-390",
+      "id": "etc_natural_gasNav",
+      "year": 2023,
+      "currency": "EUR",
+      "expectedPct": "-67.0954048908293211647170982173084498187133905",
+      "shownPct": "-67.1"
+    },
+    {
+      "case": "annual-390",
+      "id": "etc_natural_gasNav",
+      "year": 2024,
+      "currency": "EUR",
+      "expectedPct": "-22.3682958673795061696062857600872669678771009",
+      "shownPct": "-22.4"
+    },
+    {
+      "case": "annual-390",
+      "id": "etc_natural_gasNav",
+      "year": 2025,
+      "currency": "EUR",
+      "expectedPct": "-33.3989563231849842580481440977628483728913117",
+      "shownPct": "-33.4"
+    }
+  ],
+  "annual2026NotAdmitted": true
+}

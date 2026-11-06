@@ -1,0 +1,53 @@
+[
+  {
+    "pr": 1192,
+    "validatedHead": "41bb1e36c229a8757a0857cc001d0da94aaeed31",
+    "mergeCommit": "6e22c6add7d87d89d91d8d1189d8dc5fba78cb23",
+    "exact14GatesSuccessful": true,
+    "mergedAtObserved": "2026-11-06T19:20:59.460615+00:00"
+  },
+  {
+    "pr": 1193,
+    "validatedHead": "7cb5f93a2faa85f28ac14a28136e2c8653c9727b",
+    "mergeCommit": "026f95cbe2fff011341889deb6d541b4fb7c81d4",
+    "exact14GatesSuccessful": true,
+    "mergedAtObserved": "2026-11-06T19:23:00.964391+00:00"
+  },
+  {
+    "checkedAt": "2026-11-06T20:49:11.249032+00:00",
+    "pr": 1195,
+    "validatedHead": "9465ea5ff80a6dafd5f2809020e48f90b57018e6",
+    "mergeCommit": "dbbaff13885be91e2eacd834d60d51e0f61c951e",
+    "requiredExactHeadChecks": 14,
+    "freshPullMergeable": true,
+    "previousMaster": "d79eec148f58368831521479512ad5294328b865",
+    "mergeResult": {
+      "sha": "dbbaff13885be91e2eacd834d60d51e0f61c951e",
+      "merged": true,
+      "message": "Pull Request successfully merged"
+    },
+    "fiveSourceBlobsMatchValidatedHead": true,
+    "postMergeMaster": "dbbaff13885be91e2eacd834d60d51e0f61c951e",
+    "pullBaseShaAtAPI": "10186161e4f1603573186f233698f4c0a60a3663",
+    "concurrentBudget1194Preserved": true,
+    "exactMergedFiles": [
+      "docs/data-operations-coordination.md",
+      "reports/donnees-consolidees-2026-10-24/reprise-2026-11-06/REPRISE-MENSUELLE.md",
+      "scripts/fixtures/russell-composition/facts-2026-09-30.json",
+      "scripts/fixtures/scpi-etf-recording-race-20261106.json",
+      "scripts/observation_rebase_guard.py",
+      "scripts/test_observation_rebase.py",
+      "scripts/test_russell_composition.py"
+    ],
+    "productionStateAtMerge": "not yet verified after merge",
+    "productionVerification": {
+      "run": 42291553774,
+      "sourceRecordingPublicationVerified": true,
+      "publicDataCommit": "346a6835c3d2a4ded76ea56c741c2011db15de1c",
+      "publicationProof": "publication.json",
+      "browserProof": "../scpi-guard-browser/proof.json",
+      "newEtfExemptionSpecificProductionRaceObserved": false,
+      "actualActorsRebaseObserved": true
+    }
+  }
+]

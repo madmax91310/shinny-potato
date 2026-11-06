@@ -1,0 +1,67 @@
+{
+  "run": 42242712749,
+  "event": "schedule",
+  "artifact": 13524088172,
+  "validatedCount": 199,
+  "selectedValidated": {
+    "IE00B4K6B022": {
+      "asOf": "2026-11-03",
+      "checkedAt": "2026-11-06T17:14:02.149423+00:00",
+      "basis": "fund",
+      "sourceUrl": "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/holdings",
+      "sourceUrls": [
+        "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/holdings",
+        "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/factsheet"
+      ],
+      "sha256": "09d8706ee53f086baa58efdc04ed1e97e4cc4ecda50e9ff405d60650b9a29d00",
+      "method": "Complete published physical equity securities; cash and non-equity positions excluded; original fund NAV weights, no renormalisation",
+      "identitySourceUrl": "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/factsheet",
+      "identitySha256": "5a541d31e8d1fab3c4f3b1b1477ef53dcc53eb4897b44e22684be48e3a45942d",
+      "completeFile": true,
+      "rows": 50,
+      "publishedEquityWeightPct": 99.1478,
+      "identifiedEquityWeightPct": 99.1478
+    },
+    "IE00BQQP9F84": {
+      "asOf": "2026-11-05",
+      "checkedAt": "2026-11-06T17:14:02.149423+00:00",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194719&pageid=233155&ticker=UCTGDX&reactlang=en&reactctr=uk",
+      "sha256": "7358e1dbc8d63de8950c5684f3fd09b40bd87062d1ac483f11f533d944a86e73",
+      "method": "Complete published physical equity securities; cash and non-equity positions excluded; original fund NAV weights, no renormalisation",
+      "identitySourceUrl": "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+      "identitySha256": "dbc345324752ba3a7009bb3acb511b8e3c9f1cfdea4b34e2c799175f4df4de6a",
+      "completeFile": true,
+      "rows": 59,
+      "publishedEquityWeightPct": 99.98,
+      "identifiedEquityWeightPct": 99.98
+    },
+    "IE00BDFBTQ78": {
+      "asOf": "2026-11-05",
+      "checkedAt": "2026-11-06T17:14:02.149423+00:00",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233154&ticker=UCTGDIG&reactlang=en&reactctr=uk",
+      "sha256": "07f6d1909190551b4c15ac055383b3355e4b1390ff6b64f6df67af522fbd7e95",
+      "method": "Complete published physical equity securities; cash and non-equity positions excluded; original fund NAV weights, no renormalisation",
+      "identitySourceUrl": "https://www.vaneck.com/uk/en/investments/mining-etf/",
+      "identitySha256": "de2df6464b1b2b727d69d89fa4d2acf60a7dc3cc867b98455416d4eb277f215d",
+      "completeFile": true,
+      "rows": 184,
+      "publishedEquityWeightPct": 99.97,
+      "identifiedEquityWeightPct": 99.9
+    }
+  },
+  "errors": [
+    {
+      "id": "dca-holdings:FR0011550193",
+      "field": "Composition complète",
+      "error": "Truncated economic index; top ten is not a full composition"
+    },
+    {
+      "id": "dca-holdings:IE00BMH5Y871",
+      "field": "Composition complète",
+      "error": "Invalid Global X NET_ASSETS at CSV record 36 (name='OTHER PAYABLE & RECEIVABLES', isin='', asOf='2026-11-05'): '-33.693'"
+    }
+  ],
+  "publication": "recorded/published separately; source success only on selected validated fields"
+}

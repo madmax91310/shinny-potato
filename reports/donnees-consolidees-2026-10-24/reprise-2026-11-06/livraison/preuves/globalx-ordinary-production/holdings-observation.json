@@ -1,0 +1,58 @@
+{
+  "run": 42278834412,
+  "artifact": 13536905131,
+  "key": "IE00BMH5Y871",
+  "row": {
+    "asOf": "2026-11-05",
+    "checkedAt": "2026-11-06T19:40:13.714513+00:00",
+    "basis": "fund",
+    "sourceUrl": "https://globalxetfs.eu/api/funds/bug/topholdingscsv",
+    "sha256": "76879c3635a63dce8e744d27469b39dc5e5ad98ce6386fa733f7ec4c3c4136c5",
+    "method": "Complete published physical equity securities; cash and non-equity positions excluded; original fund NAV weights, no renormalisation",
+    "identitySourceUrl": "https://globalxetfs.eu/funds/bug/",
+    "identitySha256": "c0a55f070ea08aa6b9925ebd163b6ce7631141a231639a536ac85b824aadacf8",
+    "settlementCashProof": {
+      "method": "Published signed settlement cash netted only for validation; equity weights unchanged",
+      "netAssetsFromPublishedMarketValues": "80576648.31",
+      "netCashWeightPct": 0.204,
+      "publishedTotalWeightPct": 100.0,
+      "normalizationApplied": false,
+      "cashRows": [
+        {
+          "NAME": "CASH",
+          "NET_ASSETS": "33.897",
+          "MARKET_VALUE": "27312790.39",
+          "AS_OF_DATE": "2026-11-05"
+        },
+        {
+          "NAME": "JAPANESE YEN",
+          "NET_ASSETS": "0",
+          "MARKET_VALUE": "3.22",
+          "AS_OF_DATE": "2026-11-05"
+        },
+        {
+          "NAME": "BRITISH STERLING POUND",
+          "NET_ASSETS": "0",
+          "MARKET_VALUE": "2.51",
+          "AS_OF_DATE": "2026-11-05"
+        },
+        {
+          "NAME": "CANADIAN DOLLAR",
+          "NET_ASSETS": "0",
+          "MARKET_VALUE": "0.21",
+          "AS_OF_DATE": "2026-11-05"
+        },
+        {
+          "NAME": "OTHER PAYABLE & RECEIVABLES",
+          "NET_ASSETS": "-33.693",
+          "MARKET_VALUE": "-27148928.53",
+          "AS_OF_DATE": "2026-11-05"
+        }
+      ]
+    },
+    "completeFile": true,
+    "rows": 30,
+    "publishedEquityWeightPct": 99.796,
+    "identifiedEquityWeightPct": 99.796
+  }
+}

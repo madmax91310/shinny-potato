@@ -1,0 +1,30 @@
+{
+  "runId": 42236100545,
+  "jobId": 127953987734,
+  "artifactId": 13514017377,
+  "event": "push",
+  "triggerHead": "bfcaf7deea5a5aa7aae10da24994cef36ab764da",
+  "commit": "6ca9360bfd1f51bf8fad861ea5f7cba1238b7730",
+  "recordingStep": "success",
+  "provedFields": [
+    "aum",
+    "holdings"
+  ],
+  "aum": {
+    "asOf": "2026-11-05",
+    "amount": 1717570208.0,
+    "currency": "USD",
+    "scope": "fund",
+    "sourceComponent": "fundData.aum.value",
+    "sha256": "255a9f3c3724d9842f16fbcbb7305def29692c61298beca76be5f25f2f1f59bf"
+  },
+  "holdings": {
+    "asOf": "2026-11-05",
+    "count": 10,
+    "complete": false,
+    "sha256": "255a9f3c3724d9842f16fbcbb7305def29692c61298beca76be5f25f2f1f59bf"
+  },
+  "countriesDateRetained": "2026-08-31",
+  "sectorsDateRetained": "2026-08-31",
+  "doesNotCertifyOtherFieldsOrProviders": true
+}

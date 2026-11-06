@@ -1,0 +1,3172 @@
+{
+  "producerStarted": "producer-results-v1",
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "funds:etf-issuer-IE000L2SA8K5",
+          "instrument": "IE000L2SA8K5",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "funds:etf-issuer-IE00BSPLC298",
+          "instrument": "IE00BSPLC298",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "funds:etf-issuer-JE00B78CGV99",
+          "instrument": "JE00B78CGV99",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "funds:etf-issuer-GB00B15KXV33",
+          "instrument": "GB00B15KXV33",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "funds:etf-issuer-JE00BN7KB334",
+          "instrument": "JE00BN7KB334",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "funds:etf-issuer-JE00BN7KB557",
+          "instrument": "JE00BN7KB557",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "funds:etf-issuer-JE00B2QXZK10",
+          "instrument": "JE00B2QXZK10",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "funds:etf-issuer-JE00BN7KB664",
+          "instrument": "JE00BN7KB664",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "funds:etf-issuer-IE00BSPLC413",
+          "instrument": "IE00BSPLC413",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "qualified:world-islamic",
+          "instrument": "IE00B27YCN58",
+          "fields": [
+            "qualified exposures"
+          ],
+          "selected": true
+        },
+        {
+          "id": "qualified:europe-banks",
+          "instrument": "DE000A0F5UJ7",
+          "fields": [
+            "qualified exposures"
+          ],
+          "selected": true
+        },
+        {
+          "id": "qualified:europe-insurance",
+          "instrument": "DE000A0H08K7",
+          "fields": [
+            "qualified exposures"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfNasdaqEqual",
+          "instrument": "IE000L2SA8K5",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfNasdaqEqual",
+          "instrument": "IE000L2SA8K5",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfSmallValueEurope",
+          "instrument": "IE00BSPLC298",
+          "fields": [
+            "monthly history",
+            "nav-total-return"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfSmallValueEurope",
+          "instrument": "IE00BSPLC298",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etc_brent_crude_oil",
+          "instrument": "JE00B78CGV99",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etc_brent_crude_oil",
+          "instrument": "JE00B78CGV99",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etc_wti_crude_oil",
+          "instrument": "GB00B15KXV33",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etc_wti_crude_oil",
+          "instrument": "GB00B15KXV33",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etc_natural_gas",
+          "instrument": "JE00BN7KB334",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etc_natural_gas",
+          "instrument": "JE00BN7KB334",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etc_coffee",
+          "instrument": "JE00BN7KB557",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etc_coffee",
+          "instrument": "JE00BN7KB557",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etc_cocoa",
+          "instrument": "JE00B2QXZK10",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etc_cocoa",
+          "instrument": "JE00B2QXZK10",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etc_wheat",
+          "instrument": "JE00BN7KB664",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etc_wheat",
+          "instrument": "JE00BN7KB664",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfWorldIslamic",
+          "instrument": "IE00B27YCN58",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfWorldIslamic",
+          "instrument": "IE00B27YCN58",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:nike",
+          "instrument": "nike",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-nike",
+          "instrument": "nike",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:disney",
+          "instrument": "disney",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-disney",
+          "instrument": "disney",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:procter-gamble",
+          "instrument": "procter-gamble",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-procter-gamble",
+          "instrument": "procter-gamble",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:johnson-johnson",
+          "instrument": "johnson-johnson",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-johnson-johnson",
+          "instrument": "johnson-johnson",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:exxonmobil",
+          "instrument": "exxonmobil",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-exxonmobil",
+          "instrument": "exxonmobil",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:jpmorgan",
+          "instrument": "jpmorgan",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-jpmorgan",
+          "instrument": "jpmorgan",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:caterpillar",
+          "instrument": "caterpillar",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-caterpillar",
+          "instrument": "caterpillar",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:waste-management",
+          "instrument": "waste-management",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-waste-management",
+          "instrument": "waste-management",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuropeBanks",
+          "instrument": "DE000A0F5UJ7",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuropeBanks",
+          "instrument": "DE000A0F5UJ7",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuropeInsurance",
+          "instrument": "DE000A0H08K7",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuropeInsurance",
+          "instrument": "DE000A0H08K7",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:mastercard",
+          "instrument": "mastercard",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-mastercard",
+          "instrument": "mastercard",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:adobe",
+          "instrument": "adobe",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-adobe",
+          "instrument": "adobe",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:home-depot",
+          "instrument": "home-depot",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-home-depot",
+          "instrument": "home-depot",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfWorldEurHedged",
+          "instrument": "IE00B441G979",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfWorldEurHedged",
+          "instrument": "IE00B441G979",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuroGovt57",
+          "instrument": "IE00B4WXJG34",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuroGovt57",
+          "instrument": "IE00B4WXJG34",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuropeProperty",
+          "instrument": "IE00B0M63284",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuropeProperty",
+          "instrument": "IE00B0M63284",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfIbondsEuro2029",
+          "instrument": "IE000SNLFDR7",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfIbondsEuro2029",
+          "instrument": "IE000SNLFDR7",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuropeUtilities",
+          "instrument": "DE000A0Q4R02",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuropeUtilities",
+          "instrument": "DE000A0Q4R02",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuropeTelecom",
+          "instrument": "DE000A0H08R2",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuropeTelecom",
+          "instrument": "DE000A0H08R2",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:booking",
+          "instrument": "booking",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-booking",
+          "instrument": "booking",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:totalenergies",
+          "instrument": "totalenergies",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-totalenergies",
+          "instrument": "totalenergies",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:vinci",
+          "instrument": "vinci",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-vinci",
+          "instrument": "vinci",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:sanofi",
+          "instrument": "sanofi",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-sanofi",
+          "instrument": "sanofi",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuropeFood",
+          "instrument": "DE000A0H08H3",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuropeFood",
+          "instrument": "DE000A0H08H3",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuropeMedia",
+          "instrument": "DE000A0H08L5",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuropeMedia",
+          "instrument": "DE000A0H08L5",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuropeRetail",
+          "instrument": "DE000A0H08P6",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuropeRetail",
+          "instrument": "DE000A0H08P6",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:pepsico",
+          "instrument": "pepsico",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-pepsico",
+          "instrument": "pepsico",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:unitedhealth",
+          "instrument": "unitedhealth",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-unitedhealth",
+          "instrument": "unitedhealth",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        }
+      ],
+      "mode": "full",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "refresh_non_bond_sources",
+      "reportStem": "non-bond",
+      "declaredAt": "2026-11-06T15:30:55.339445+00:00",
+      "nonce": "d3abc49b-4bf2-43b4-92ff-8cf05e2478f0",
+      "codeSha": "0f1e6c1f903108096596796ce3bf3920c50b6583",
+      "durablePlan": true,
+      "runId": "42238737026",
+      "attempt": "1",
+      "sha256": "dcf23b1847848d626bee39258e6904e84d3084fc95d95db65c17eed74955c224"
+    },
+    "scope": {
+      "kind": "refresh_non_bond_sources",
+      "mode": "full",
+      "expectedIds": [
+        "funds:etf-issuer-IE000L2SA8K5",
+        "funds:etf-issuer-IE00BSPLC298",
+        "funds:etf-issuer-JE00B78CGV99",
+        "funds:etf-issuer-GB00B15KXV33",
+        "funds:etf-issuer-JE00BN7KB334",
+        "funds:etf-issuer-JE00BN7KB557",
+        "funds:etf-issuer-JE00B2QXZK10",
+        "funds:etf-issuer-JE00BN7KB664",
+        "funds:etf-issuer-IE00BSPLC413",
+        "qualified:world-islamic",
+        "qualified:europe-banks",
+        "qualified:europe-insurance",
+        "monthly:etfNasdaqEqual",
+        "levels:anniversary-etfNasdaqEqual",
+        "monthly:etfSmallValueEurope",
+        "levels:anniversary-etfSmallValueEurope",
+        "monthly:etc_brent_crude_oil",
+        "levels:anniversary-etc_brent_crude_oil",
+        "monthly:etc_wti_crude_oil",
+        "levels:anniversary-etc_wti_crude_oil",
+        "monthly:etc_natural_gas",
+        "levels:anniversary-etc_natural_gas",
+        "monthly:etc_coffee",
+        "levels:anniversary-etc_coffee",
+        "monthly:etc_cocoa",
+        "levels:anniversary-etc_cocoa",
+        "monthly:etc_wheat",
+        "levels:anniversary-etc_wheat",
+        "monthly:etfWorldIslamic",
+        "levels:anniversary-etfWorldIslamic",
+        "monthly:nike",
+        "levels:anniversary-nike",
+        "monthly:disney",
+        "levels:anniversary-disney",
+        "monthly:procter-gamble",
+        "levels:anniversary-procter-gamble",
+        "monthly:johnson-johnson",
+        "levels:anniversary-johnson-johnson",
+        "monthly:exxonmobil",
+        "levels:anniversary-exxonmobil",
+        "monthly:jpmorgan",
+        "levels:anniversary-jpmorgan",
+        "monthly:caterpillar",
+        "levels:anniversary-caterpillar",
+        "monthly:waste-management",
+        "levels:anniversary-waste-management",
+        "monthly:etfEuropeBanks",
+        "levels:anniversary-etfEuropeBanks",
+        "monthly:etfEuropeInsurance",
+        "levels:anniversary-etfEuropeInsurance",
+        "monthly:mastercard",
+        "levels:anniversary-mastercard",
+        "monthly:adobe",
+        "levels:anniversary-adobe",
+        "monthly:home-depot",
+        "levels:anniversary-home-depot",
+        "monthly:etfWorldEurHedged",
+        "levels:anniversary-etfWorldEurHedged",
+        "monthly:etfEuroGovt57",
+        "levels:anniversary-etfEuroGovt57",
+        "monthly:etfEuropeProperty",
+        "levels:anniversary-etfEuropeProperty",
+        "monthly:etfIbondsEuro2029",
+        "levels:anniversary-etfIbondsEuro2029",
+        "monthly:etfEuropeUtilities",
+        "levels:anniversary-etfEuropeUtilities",
+        "monthly:etfEuropeTelecom",
+        "levels:anniversary-etfEuropeTelecom",
+        "monthly:booking",
+        "levels:anniversary-booking",
+        "monthly:totalenergies",
+        "levels:anniversary-totalenergies",
+        "monthly:vinci",
+        "levels:anniversary-vinci",
+        "monthly:sanofi",
+        "levels:anniversary-sanofi",
+        "monthly:etfEuropeFood",
+        "levels:anniversary-etfEuropeFood",
+        "monthly:etfEuropeMedia",
+        "levels:anniversary-etfEuropeMedia",
+        "monthly:etfEuropeRetail",
+        "levels:anniversary-etfEuropeRetail",
+        "monthly:pepsico",
+        "levels:anniversary-pepsico",
+        "monthly:unitedhealth",
+        "levels:anniversary-unitedhealth"
+      ],
+      "requestedIds": [
+        "funds:etf-issuer-IE000L2SA8K5",
+        "funds:etf-issuer-IE00BSPLC298",
+        "funds:etf-issuer-JE00B78CGV99",
+        "funds:etf-issuer-GB00B15KXV33",
+        "funds:etf-issuer-JE00BN7KB334",
+        "funds:etf-issuer-JE00BN7KB557",
+        "funds:etf-issuer-JE00B2QXZK10",
+        "funds:etf-issuer-JE00BN7KB664",
+        "funds:etf-issuer-IE00BSPLC413",
+        "qualified:world-islamic",
+        "qualified:europe-banks",
+        "qualified:europe-insurance",
+        "monthly:etfNasdaqEqual",
+        "levels:anniversary-etfNasdaqEqual",
+        "monthly:etfSmallValueEurope",
+        "levels:anniversary-etfSmallValueEurope",
+        "monthly:etc_brent_crude_oil",
+        "levels:anniversary-etc_brent_crude_oil",
+        "monthly:etc_wti_crude_oil",
+        "levels:anniversary-etc_wti_crude_oil",
+        "monthly:etc_natural_gas",
+        "levels:anniversary-etc_natural_gas",
+        "monthly:etc_coffee",
+        "levels:anniversary-etc_coffee",
+        "monthly:etc_cocoa",
+        "levels:anniversary-etc_cocoa",
+        "monthly:etc_wheat",
+        "levels:anniversary-etc_wheat",
+        "monthly:etfWorldIslamic",
+        "levels:anniversary-etfWorldIslamic",
+        "monthly:nike",
+        "levels:anniversary-nike",
+        "monthly:disney",
+        "levels:anniversary-disney",
+        "monthly:procter-gamble",
+        "levels:anniversary-procter-gamble",
+        "monthly:johnson-johnson",
+        "levels:anniversary-johnson-johnson",
+        "monthly:exxonmobil",
+        "levels:anniversary-exxonmobil",
+        "monthly:jpmorgan",
+        "levels:anniversary-jpmorgan",
+        "monthly:caterpillar",
+        "levels:anniversary-caterpillar",
+        "monthly:waste-management",
+        "levels:anniversary-waste-management",
+        "monthly:etfEuropeBanks",
+        "levels:anniversary-etfEuropeBanks",
+        "monthly:etfEuropeInsurance",
+        "levels:anniversary-etfEuropeInsurance",
+        "monthly:mastercard",
+        "levels:anniversary-mastercard",
+        "monthly:adobe",
+        "levels:anniversary-adobe",
+        "monthly:home-depot",
+        "levels:anniversary-home-depot",
+        "monthly:etfWorldEurHedged",
+        "levels:anniversary-etfWorldEurHedged",
+        "monthly:etfEuroGovt57",
+        "levels:anniversary-etfEuroGovt57",
+        "monthly:etfEuropeProperty",
+        "levels:anniversary-etfEuropeProperty",
+        "monthly:etfIbondsEuro2029",
+        "levels:anniversary-etfIbondsEuro2029",
+        "monthly:etfEuropeUtilities",
+        "levels:anniversary-etfEuropeUtilities",
+        "monthly:etfEuropeTelecom",
+        "levels:anniversary-etfEuropeTelecom",
+        "monthly:booking",
+        "levels:anniversary-booking",
+        "monthly:totalenergies",
+        "levels:anniversary-totalenergies",
+        "monthly:vinci",
+        "levels:anniversary-vinci",
+        "monthly:sanofi",
+        "levels:anniversary-sanofi",
+        "monthly:etfEuropeFood",
+        "levels:anniversary-etfEuropeFood",
+        "monthly:etfEuropeMedia",
+        "levels:anniversary-etfEuropeMedia",
+        "monthly:etfEuropeRetail",
+        "levels:anniversary-etfEuropeRetail",
+        "monthly:pepsico",
+        "levels:anniversary-pepsico",
+        "monthly:unitedhealth",
+        "levels:anniversary-unitedhealth"
+      ],
+      "items": [
+        {
+          "id": "funds:etf-issuer-IE000L2SA8K5",
+          "instrument": "IE000L2SA8K5",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "funds:etf-issuer-IE00BSPLC298",
+          "instrument": "IE00BSPLC298",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "funds:etf-issuer-JE00B78CGV99",
+          "instrument": "JE00B78CGV99",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "funds:etf-issuer-GB00B15KXV33",
+          "instrument": "GB00B15KXV33",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "funds:etf-issuer-JE00BN7KB334",
+          "instrument": "JE00BN7KB334",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "funds:etf-issuer-JE00BN7KB557",
+          "instrument": "JE00BN7KB557",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "funds:etf-issuer-JE00B2QXZK10",
+          "instrument": "JE00B2QXZK10",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "funds:etf-issuer-JE00BN7KB664",
+          "instrument": "JE00BN7KB664",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "funds:etf-issuer-IE00BSPLC413",
+          "instrument": "IE00BSPLC413",
+          "fields": [
+            "fund observations"
+          ],
+          "selected": true
+        },
+        {
+          "id": "qualified:world-islamic",
+          "instrument": "IE00B27YCN58",
+          "fields": [
+            "qualified exposures"
+          ],
+          "selected": true
+        },
+        {
+          "id": "qualified:europe-banks",
+          "instrument": "DE000A0F5UJ7",
+          "fields": [
+            "qualified exposures"
+          ],
+          "selected": true
+        },
+        {
+          "id": "qualified:europe-insurance",
+          "instrument": "DE000A0H08K7",
+          "fields": [
+            "qualified exposures"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfNasdaqEqual",
+          "instrument": "IE000L2SA8K5",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfNasdaqEqual",
+          "instrument": "IE000L2SA8K5",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfSmallValueEurope",
+          "instrument": "IE00BSPLC298",
+          "fields": [
+            "monthly history",
+            "nav-total-return"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfSmallValueEurope",
+          "instrument": "IE00BSPLC298",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etc_brent_crude_oil",
+          "instrument": "JE00B78CGV99",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etc_brent_crude_oil",
+          "instrument": "JE00B78CGV99",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etc_wti_crude_oil",
+          "instrument": "GB00B15KXV33",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etc_wti_crude_oil",
+          "instrument": "GB00B15KXV33",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etc_natural_gas",
+          "instrument": "JE00BN7KB334",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etc_natural_gas",
+          "instrument": "JE00BN7KB334",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etc_coffee",
+          "instrument": "JE00BN7KB557",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etc_coffee",
+          "instrument": "JE00BN7KB557",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etc_cocoa",
+          "instrument": "JE00B2QXZK10",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etc_cocoa",
+          "instrument": "JE00B2QXZK10",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etc_wheat",
+          "instrument": "JE00BN7KB664",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etc_wheat",
+          "instrument": "JE00BN7KB664",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfWorldIslamic",
+          "instrument": "IE00B27YCN58",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfWorldIslamic",
+          "instrument": "IE00B27YCN58",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:nike",
+          "instrument": "nike",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-nike",
+          "instrument": "nike",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:disney",
+          "instrument": "disney",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-disney",
+          "instrument": "disney",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:procter-gamble",
+          "instrument": "procter-gamble",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-procter-gamble",
+          "instrument": "procter-gamble",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:johnson-johnson",
+          "instrument": "johnson-johnson",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-johnson-johnson",
+          "instrument": "johnson-johnson",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:exxonmobil",
+          "instrument": "exxonmobil",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-exxonmobil",
+          "instrument": "exxonmobil",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:jpmorgan",
+          "instrument": "jpmorgan",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-jpmorgan",
+          "instrument": "jpmorgan",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:caterpillar",
+          "instrument": "caterpillar",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-caterpillar",
+          "instrument": "caterpillar",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:waste-management",
+          "instrument": "waste-management",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-waste-management",
+          "instrument": "waste-management",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuropeBanks",
+          "instrument": "DE000A0F5UJ7",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuropeBanks",
+          "instrument": "DE000A0F5UJ7",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuropeInsurance",
+          "instrument": "DE000A0H08K7",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuropeInsurance",
+          "instrument": "DE000A0H08K7",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:mastercard",
+          "instrument": "mastercard",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-mastercard",
+          "instrument": "mastercard",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:adobe",
+          "instrument": "adobe",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-adobe",
+          "instrument": "adobe",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:home-depot",
+          "instrument": "home-depot",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-home-depot",
+          "instrument": "home-depot",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfWorldEurHedged",
+          "instrument": "IE00B441G979",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfWorldEurHedged",
+          "instrument": "IE00B441G979",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuroGovt57",
+          "instrument": "IE00B4WXJG34",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuroGovt57",
+          "instrument": "IE00B4WXJG34",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuropeProperty",
+          "instrument": "IE00B0M63284",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuropeProperty",
+          "instrument": "IE00B0M63284",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfIbondsEuro2029",
+          "instrument": "IE000SNLFDR7",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfIbondsEuro2029",
+          "instrument": "IE000SNLFDR7",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuropeUtilities",
+          "instrument": "DE000A0Q4R02",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuropeUtilities",
+          "instrument": "DE000A0Q4R02",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuropeTelecom",
+          "instrument": "DE000A0H08R2",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuropeTelecom",
+          "instrument": "DE000A0H08R2",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:booking",
+          "instrument": "booking",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-booking",
+          "instrument": "booking",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:totalenergies",
+          "instrument": "totalenergies",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-totalenergies",
+          "instrument": "totalenergies",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:vinci",
+          "instrument": "vinci",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-vinci",
+          "instrument": "vinci",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:sanofi",
+          "instrument": "sanofi",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-sanofi",
+          "instrument": "sanofi",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuropeFood",
+          "instrument": "DE000A0H08H3",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuropeFood",
+          "instrument": "DE000A0H08H3",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuropeMedia",
+          "instrument": "DE000A0H08L5",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuropeMedia",
+          "instrument": "DE000A0H08L5",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:etfEuropeRetail",
+          "instrument": "DE000A0H08P6",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-etfEuropeRetail",
+          "instrument": "DE000A0H08P6",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:pepsico",
+          "instrument": "pepsico",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-pepsico",
+          "instrument": "pepsico",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        },
+        {
+          "id": "monthly:unitedhealth",
+          "instrument": "unitedhealth",
+          "fields": [
+            "monthly history",
+            "adjclose"
+          ],
+          "selected": true
+        },
+        {
+          "id": "levels:anniversary-unitedhealth",
+          "instrument": "unitedhealth",
+          "fields": [
+            "dated close"
+          ],
+          "selected": true
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-11-06T15:30:55.339445+00:00",
+      "planSha256": "dcf23b1847848d626bee39258e6904e84d3084fc95d95db65c17eed74955c224",
+      "attemptedIds": [],
+      "attemptUnknownIds": [
+        "funds:etf-issuer-IE000L2SA8K5",
+        "funds:etf-issuer-IE00BSPLC298",
+        "funds:etf-issuer-JE00B78CGV99",
+        "funds:etf-issuer-GB00B15KXV33",
+        "funds:etf-issuer-JE00BN7KB334",
+        "funds:etf-issuer-JE00BN7KB557",
+        "funds:etf-issuer-JE00B2QXZK10",
+        "funds:etf-issuer-JE00BN7KB664",
+        "funds:etf-issuer-IE00BSPLC413",
+        "qualified:world-islamic",
+        "qualified:europe-banks",
+        "qualified:europe-insurance",
+        "monthly:etfNasdaqEqual",
+        "levels:anniversary-etfNasdaqEqual",
+        "monthly:etfSmallValueEurope",
+        "levels:anniversary-etfSmallValueEurope",
+        "monthly:etc_brent_crude_oil",
+        "levels:anniversary-etc_brent_crude_oil",
+        "monthly:etc_wti_crude_oil",
+        "levels:anniversary-etc_wti_crude_oil",
+        "monthly:etc_natural_gas",
+        "levels:anniversary-etc_natural_gas",
+        "monthly:etc_coffee",
+        "levels:anniversary-etc_coffee",
+        "monthly:etc_cocoa",
+        "levels:anniversary-etc_cocoa",
+        "monthly:etc_wheat",
+        "levels:anniversary-etc_wheat",
+        "monthly:etfWorldIslamic",
+        "levels:anniversary-etfWorldIslamic",
+        "monthly:nike",
+        "levels:anniversary-nike",
+        "monthly:disney",
+        "levels:anniversary-disney",
+        "monthly:procter-gamble",
+        "levels:anniversary-procter-gamble",
+        "monthly:johnson-johnson",
+        "levels:anniversary-johnson-johnson",
+        "monthly:exxonmobil",
+        "levels:anniversary-exxonmobil",
+        "monthly:jpmorgan",
+        "levels:anniversary-jpmorgan",
+        "monthly:caterpillar",
+        "levels:anniversary-caterpillar",
+        "monthly:waste-management",
+        "levels:anniversary-waste-management",
+        "monthly:etfEuropeBanks",
+        "levels:anniversary-etfEuropeBanks",
+        "monthly:etfEuropeInsurance",
+        "levels:anniversary-etfEuropeInsurance",
+        "monthly:mastercard",
+        "levels:anniversary-mastercard",
+        "monthly:adobe",
+        "levels:anniversary-adobe",
+        "monthly:home-depot",
+        "levels:anniversary-home-depot",
+        "monthly:etfWorldEurHedged",
+        "levels:anniversary-etfWorldEurHedged",
+        "monthly:etfEuroGovt57",
+        "levels:anniversary-etfEuroGovt57",
+        "monthly:etfEuropeProperty",
+        "levels:anniversary-etfEuropeProperty",
+        "monthly:etfIbondsEuro2029",
+        "levels:anniversary-etfIbondsEuro2029",
+        "monthly:etfEuropeUtilities",
+        "levels:anniversary-etfEuropeUtilities",
+        "monthly:etfEuropeTelecom",
+        "levels:anniversary-etfEuropeTelecom",
+        "monthly:booking",
+        "levels:anniversary-booking",
+        "monthly:totalenergies",
+        "levels:anniversary-totalenergies",
+        "monthly:vinci",
+        "levels:anniversary-vinci",
+        "monthly:sanofi",
+        "levels:anniversary-sanofi",
+        "monthly:etfEuropeFood",
+        "levels:anniversary-etfEuropeFood",
+        "monthly:etfEuropeMedia",
+        "levels:anniversary-etfEuropeMedia",
+        "monthly:etfEuropeRetail",
+        "levels:anniversary-etfEuropeRetail",
+        "monthly:pepsico",
+        "levels:anniversary-pepsico",
+        "monthly:unitedhealth",
+        "levels:anniversary-unitedhealth"
+      ],
+      "networkRequestedIds": [],
+      "networkAttemptUnknownIds": [
+        "funds:etf-issuer-IE000L2SA8K5",
+        "funds:etf-issuer-IE00BSPLC298",
+        "funds:etf-issuer-JE00B78CGV99",
+        "funds:etf-issuer-GB00B15KXV33",
+        "funds:etf-issuer-JE00BN7KB334",
+        "funds:etf-issuer-JE00BN7KB557",
+        "funds:etf-issuer-JE00B2QXZK10",
+        "funds:etf-issuer-JE00BN7KB664",
+        "funds:etf-issuer-IE00BSPLC413",
+        "qualified:world-islamic",
+        "qualified:europe-banks",
+        "qualified:europe-insurance",
+        "monthly:etfNasdaqEqual",
+        "levels:anniversary-etfNasdaqEqual",
+        "monthly:etfSmallValueEurope",
+        "levels:anniversary-etfSmallValueEurope",
+        "monthly:etc_brent_crude_oil",
+        "levels:anniversary-etc_brent_crude_oil",
+        "monthly:etc_wti_crude_oil",
+        "levels:anniversary-etc_wti_crude_oil",
+        "monthly:etc_natural_gas",
+        "levels:anniversary-etc_natural_gas",
+        "monthly:etc_coffee",
+        "levels:anniversary-etc_coffee",
+        "monthly:etc_cocoa",
+        "levels:anniversary-etc_cocoa",
+        "monthly:etc_wheat",
+        "levels:anniversary-etc_wheat",
+        "monthly:etfWorldIslamic",
+        "levels:anniversary-etfWorldIslamic",
+        "monthly:nike",
+        "levels:anniversary-nike",
+        "monthly:disney",
+        "levels:anniversary-disney",
+        "monthly:procter-gamble",
+        "levels:anniversary-procter-gamble",
+        "monthly:johnson-johnson",
+        "levels:anniversary-johnson-johnson",
+        "monthly:exxonmobil",
+        "levels:anniversary-exxonmobil",
+        "monthly:jpmorgan",
+        "levels:anniversary-jpmorgan",
+        "monthly:caterpillar",
+        "levels:anniversary-caterpillar",
+        "monthly:waste-management",
+        "levels:anniversary-waste-management",
+        "monthly:etfEuropeBanks",
+        "levels:anniversary-etfEuropeBanks",
+        "monthly:etfEuropeInsurance",
+        "levels:anniversary-etfEuropeInsurance",
+        "monthly:mastercard",
+        "levels:anniversary-mastercard",
+        "monthly:adobe",
+        "levels:anniversary-adobe",
+        "monthly:home-depot",
+        "levels:anniversary-home-depot",
+        "monthly:etfWorldEurHedged",
+        "levels:anniversary-etfWorldEurHedged",
+        "monthly:etfEuroGovt57",
+        "levels:anniversary-etfEuroGovt57",
+        "monthly:etfEuropeProperty",
+        "levels:anniversary-etfEuropeProperty",
+        "monthly:etfIbondsEuro2029",
+        "levels:anniversary-etfIbondsEuro2029",
+        "monthly:etfEuropeUtilities",
+        "levels:anniversary-etfEuropeUtilities",
+        "monthly:etfEuropeTelecom",
+        "levels:anniversary-etfEuropeTelecom",
+        "monthly:booking",
+        "levels:anniversary-booking",
+        "monthly:totalenergies",
+        "levels:anniversary-totalenergies",
+        "monthly:vinci",
+        "levels:anniversary-vinci",
+        "monthly:sanofi",
+        "levels:anniversary-sanofi",
+        "monthly:etfEuropeFood",
+        "levels:anniversary-etfEuropeFood",
+        "monthly:etfEuropeMedia",
+        "levels:anniversary-etfEuropeMedia",
+        "monthly:etfEuropeRetail",
+        "levels:anniversary-etfEuropeRetail",
+        "monthly:pepsico",
+        "levels:anniversary-pepsico",
+        "monthly:unitedhealth",
+        "levels:anniversary-unitedhealth"
+      ],
+      "runId": "42238737026",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "d3abc49b-4bf2-43b4-92ff-8cf05e2478f0"
+    },
+    "outcomes": [
+      {
+        "id": "funds:etf-issuer-IE000L2SA8K5",
+        "instrument": "IE000L2SA8K5",
+        "fields": [
+          "fund observations"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund observations",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "funds:etf-issuer-IE00BSPLC298",
+        "instrument": "IE00BSPLC298",
+        "fields": [
+          "fund observations"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund observations",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "funds:etf-issuer-JE00B78CGV99",
+        "instrument": "JE00B78CGV99",
+        "fields": [
+          "fund observations"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund observations",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "funds:etf-issuer-GB00B15KXV33",
+        "instrument": "GB00B15KXV33",
+        "fields": [
+          "fund observations"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund observations",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "funds:etf-issuer-JE00BN7KB334",
+        "instrument": "JE00BN7KB334",
+        "fields": [
+          "fund observations"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund observations",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "funds:etf-issuer-JE00BN7KB557",
+        "instrument": "JE00BN7KB557",
+        "fields": [
+          "fund observations"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund observations",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "funds:etf-issuer-JE00B2QXZK10",
+        "instrument": "JE00B2QXZK10",
+        "fields": [
+          "fund observations"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund observations",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "funds:etf-issuer-JE00BN7KB664",
+        "instrument": "JE00BN7KB664",
+        "fields": [
+          "fund observations"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund observations",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "funds:etf-issuer-IE00BSPLC413",
+        "instrument": "IE00BSPLC413",
+        "fields": [
+          "fund observations"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund observations",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "qualified:world-islamic",
+        "instrument": "IE00B27YCN58",
+        "fields": [
+          "qualified exposures"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : qualified exposures",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "qualified:europe-banks",
+        "instrument": "DE000A0F5UJ7",
+        "fields": [
+          "qualified exposures"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : qualified exposures",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "qualified:europe-insurance",
+        "instrument": "DE000A0H08K7",
+        "fields": [
+          "qualified exposures"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : qualified exposures",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etfNasdaqEqual",
+        "instrument": "IE000L2SA8K5",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etfNasdaqEqual",
+        "instrument": "IE000L2SA8K5",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etfSmallValueEurope",
+        "instrument": "IE00BSPLC298",
+        "fields": [
+          "monthly history",
+          "nav-total-return"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, nav-total-return",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etfSmallValueEurope",
+        "instrument": "IE00BSPLC298",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etc_brent_crude_oil",
+        "instrument": "JE00B78CGV99",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etc_brent_crude_oil",
+        "instrument": "JE00B78CGV99",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etc_wti_crude_oil",
+        "instrument": "GB00B15KXV33",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etc_wti_crude_oil",
+        "instrument": "GB00B15KXV33",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etc_natural_gas",
+        "instrument": "JE00BN7KB334",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etc_natural_gas",
+        "instrument": "JE00BN7KB334",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etc_coffee",
+        "instrument": "JE00BN7KB557",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etc_coffee",
+        "instrument": "JE00BN7KB557",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etc_cocoa",
+        "instrument": "JE00B2QXZK10",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etc_cocoa",
+        "instrument": "JE00B2QXZK10",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etc_wheat",
+        "instrument": "JE00BN7KB664",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etc_wheat",
+        "instrument": "JE00BN7KB664",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etfWorldIslamic",
+        "instrument": "IE00B27YCN58",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etfWorldIslamic",
+        "instrument": "IE00B27YCN58",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:nike",
+        "instrument": "nike",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-nike",
+        "instrument": "nike",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:disney",
+        "instrument": "disney",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-disney",
+        "instrument": "disney",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:procter-gamble",
+        "instrument": "procter-gamble",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-procter-gamble",
+        "instrument": "procter-gamble",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:johnson-johnson",
+        "instrument": "johnson-johnson",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-johnson-johnson",
+        "instrument": "johnson-johnson",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:exxonmobil",
+        "instrument": "exxonmobil",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-exxonmobil",
+        "instrument": "exxonmobil",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:jpmorgan",
+        "instrument": "jpmorgan",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-jpmorgan",
+        "instrument": "jpmorgan",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:caterpillar",
+        "instrument": "caterpillar",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-caterpillar",
+        "instrument": "caterpillar",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:waste-management",
+        "instrument": "waste-management",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-waste-management",
+        "instrument": "waste-management",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etfEuropeBanks",
+        "instrument": "DE000A0F5UJ7",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etfEuropeBanks",
+        "instrument": "DE000A0F5UJ7",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etfEuropeInsurance",
+        "instrument": "DE000A0H08K7",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etfEuropeInsurance",
+        "instrument": "DE000A0H08K7",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:mastercard",
+        "instrument": "mastercard",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-mastercard",
+        "instrument": "mastercard",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:adobe",
+        "instrument": "adobe",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-adobe",
+        "instrument": "adobe",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:home-depot",
+        "instrument": "home-depot",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-home-depot",
+        "instrument": "home-depot",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etfWorldEurHedged",
+        "instrument": "IE00B441G979",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etfWorldEurHedged",
+        "instrument": "IE00B441G979",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etfEuroGovt57",
+        "instrument": "IE00B4WXJG34",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etfEuroGovt57",
+        "instrument": "IE00B4WXJG34",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etfEuropeProperty",
+        "instrument": "IE00B0M63284",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etfEuropeProperty",
+        "instrument": "IE00B0M63284",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etfIbondsEuro2029",
+        "instrument": "IE000SNLFDR7",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etfIbondsEuro2029",
+        "instrument": "IE000SNLFDR7",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etfEuropeUtilities",
+        "instrument": "DE000A0Q4R02",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etfEuropeUtilities",
+        "instrument": "DE000A0Q4R02",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etfEuropeTelecom",
+        "instrument": "DE000A0H08R2",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etfEuropeTelecom",
+        "instrument": "DE000A0H08R2",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:booking",
+        "instrument": "booking",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-booking",
+        "instrument": "booking",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:totalenergies",
+        "instrument": "totalenergies",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-totalenergies",
+        "instrument": "totalenergies",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:vinci",
+        "instrument": "vinci",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-vinci",
+        "instrument": "vinci",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:sanofi",
+        "instrument": "sanofi",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-sanofi",
+        "instrument": "sanofi",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etfEuropeFood",
+        "instrument": "DE000A0H08H3",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etfEuropeFood",
+        "instrument": "DE000A0H08H3",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etfEuropeMedia",
+        "instrument": "DE000A0H08L5",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etfEuropeMedia",
+        "instrument": "DE000A0H08L5",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:etfEuropeRetail",
+        "instrument": "DE000A0H08P6",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-etfEuropeRetail",
+        "instrument": "DE000A0H08P6",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:pepsico",
+        "instrument": "pepsico",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-pepsico",
+        "instrument": "pepsico",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "monthly:unitedhealth",
+        "instrument": "unitedhealth",
+        "fields": [
+          "monthly history",
+          "adjclose"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : monthly history, adjclose",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "levels:anniversary-unitedhealth",
+        "instrument": "unitedhealth",
+        "fields": [
+          "dated close"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : dated close",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

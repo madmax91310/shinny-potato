@@ -1,0 +1,122 @@
+{
+  "checkedAt": "2026-11-06T09:34:40.805Z",
+  "cases": [
+    {
+      "width": 1440,
+      "before": {
+        "sha": "997a84064cdbf06f01a1902a71f57b5ab2beade8",
+        "builtAt": "2026-11-06T08:53:26Z"
+      },
+      "after": {
+        "sha": "997a84064cdbf06f01a1902a71f57b5ab2beade8",
+        "builtAt": "2026-11-06T08:53:26Z"
+      },
+      "sourceAsOf": "2026-11-02",
+      "checkedAt": "2026-11-06T08:27:27.781656+00:00",
+      "rows": 50,
+      "consolidated": [],
+      "identifiedPositionsOverlapOnly": 0,
+      "qualifiedFullOverlap": false,
+      "qualification": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "Le poids couvert est insuffisant pour une comparaison intégrale."
+        ],
+        "sourceCoverage": 99.14935999999999,
+        "identifiedCoverage": 99.14935999999999,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.8506400000000127
+      },
+      "peerQualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.96058000000015,
+        "identifiedCoverage": 99.96058000000015,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.039419999999850575
+      },
+      "scores": [
+        "Partiel"
+      ],
+      "receipts": [
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-24-Bh_w09R8.json",
+          "bucket": "24",
+          "blob": "610febd668acd539b150745afdf22396a1b692c7",
+          "status": 200
+        },
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-7-DX_KN73g.json",
+          "bucket": "7",
+          "blob": "152142ababb55cc99b7adb1c63db8ad294420931",
+          "status": 200
+        }
+      ],
+      "png": "/tmp/automation-20261106/proofs/hsbc-public-final/1440.png",
+      "pngSha256": "bb168f7e197a7b7dbca506b3ec164a73acf42a9aeb83410a976e37e683968642",
+      "previewEqualsExport": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "before": {
+        "sha": "997a84064cdbf06f01a1902a71f57b5ab2beade8",
+        "builtAt": "2026-11-06T08:53:26Z"
+      },
+      "after": {
+        "sha": "997a84064cdbf06f01a1902a71f57b5ab2beade8",
+        "builtAt": "2026-11-06T08:53:26Z"
+      },
+      "sourceAsOf": "2026-11-02",
+      "checkedAt": "2026-11-06T08:27:27.781656+00:00",
+      "rows": 50,
+      "consolidated": [],
+      "identifiedPositionsOverlapOnly": 0,
+      "qualifiedFullOverlap": false,
+      "qualification": {
+        "valid": true,
+        "complete": false,
+        "reasons": [
+          "Le poids couvert est insuffisant pour une comparaison intégrale."
+        ],
+        "sourceCoverage": 99.14935999999999,
+        "identifiedCoverage": 99.14935999999999,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.8506400000000127
+      },
+      "peerQualification": {
+        "valid": true,
+        "complete": true,
+        "reasons": [],
+        "sourceCoverage": 99.96058000000015,
+        "identifiedCoverage": 99.96058000000015,
+        "unidentifiedCoverage": 0,
+        "residualWeight": 0.039419999999850575
+      },
+      "scores": [
+        "Partiel"
+      ],
+      "receipts": [
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-24-Bh_w09R8.json",
+          "bucket": "24",
+          "blob": "610febd668acd539b150745afdf22396a1b692c7",
+          "status": 200
+        },
+        {
+          "url": "https://madmax91310.github.io/shinny-potato/assets/holdings-7-DX_KN73g.json",
+          "bucket": "7",
+          "blob": "152142ababb55cc99b7adb1c63db8ad294420931",
+          "status": 200
+        }
+      ],
+      "png": "/tmp/automation-20261106/proofs/hsbc-public-final/390.png",
+      "pngSha256": "bb168f7e197a7b7dbca506b3ec164a73acf42a9aeb83410a976e37e683968642",
+      "previewEqualsExport": true,
+      "errors": []
+    }
+  ],
+  "scope": "Actually consumed complete GGRA/SP500 books, exact-ISIN consolidation, independent issuer-overlap sum, live text and native PNG; country exposure qualification remains separate."
+}

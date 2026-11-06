@@ -1,0 +1,497 @@
+{
+  "checkedAt": "2026-11-06T22:54:30.668212+00:00",
+  "build": {
+    "sha": "b641e888850898e6fdf392e62540e45c96ccb3d9",
+    "builtAt": "2026-11-06T22:19:37Z"
+  },
+  "blobs": {
+    "exposure-etf-expansion-records.json": "47a4fb4b0648f12a4d2427b41f22de8c76efd2a6",
+    "dca-complete-holdings.json": "9c691f783255103bb73f26ebc56eb358a30ef23d",
+    "automated-indices.json": "a3f58ea62d92bcfe4d57f6d6cce45e96c637de8d"
+  },
+  "stableBuild": true,
+  "record": {
+    "presentation": {
+      "currency": "USD",
+      "productId": "IE00BMH5Y871",
+      "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+      "provider": "Global X",
+      "aum": {
+        "amount": 109843360.8,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-11-05",
+        "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+        "sha256": "59fc880df44e69d748affa0c1e799d48bd6ce674fe8c09fcf2bb83dd87dd84fb",
+        "checkedAt": "2026-11-06",
+        "modifiedAt": "2026-11-06"
+      },
+      "sectors": {
+        "rows": [
+          {
+            "name": "Information Technology",
+            "weightPct": 99.5,
+            "label": "Information Technology"
+          },
+          {
+            "name": "Materials",
+            "weightPct": 0.5,
+            "label": "Materials"
+          }
+        ],
+        "asOf": "2026-10-31",
+        "basis": "fund",
+        "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+        "sha256": "59fc880df44e69d748affa0c1e799d48bd6ce674fe8c09fcf2bb83dd87dd84fb",
+        "checkedAt": "2026-11-06",
+        "modifiedAt": "2026-11-06"
+      },
+      "countries": {
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 88.3
+          },
+          {
+            "name": "Israel",
+            "weightPct": 5.1
+          },
+          {
+            "name": "Japan",
+            "weightPct": 4.6
+          },
+          {
+            "name": "South Korea",
+            "weightPct": 1.2
+          },
+          {
+            "name": "Britain",
+            "weightPct": 0.9
+          }
+        ],
+        "asOf": "2026-10-31",
+        "basis": "fund",
+        "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+        "sha256": "59fc880df44e69d748affa0c1e799d48bd6ce674fe8c09fcf2bb83dd87dd84fb",
+        "checkedAt": "2026-11-06",
+        "modifiedAt": "2026-11-06"
+      },
+      "holdings": {
+        "rows": [
+          {
+            "name": "OKTA INC",
+            "isin": "US6792951054",
+            "weightPct": 8.547
+          },
+          {
+            "name": "CROWDSTRIKE HOLDINGS INC - A",
+            "isin": "US22788C1053",
+            "weightPct": 7.166
+          },
+          {
+            "name": "PALO ALTO NETWORKS INC",
+            "isin": "US6974351057",
+            "weightPct": 6.457
+          },
+          {
+            "name": "QUALYS INC",
+            "isin": "US74758T3032",
+            "weightPct": 6.304
+          },
+          {
+            "name": "NETSKOPE INC-CL A",
+            "isin": "US64119N6085",
+            "weightPct": 5.981
+          },
+          {
+            "name": "TENABLE HOLDINGS INC",
+            "isin": "US88025T1025",
+            "weightPct": 5.814
+          },
+          {
+            "name": "ZSCALER INC",
+            "isin": "US98980G1022",
+            "weightPct": 5.707
+          },
+          {
+            "name": "RUBRIK INC-A",
+            "isin": "US7811541090",
+            "weightPct": 5.464
+          },
+          {
+            "name": "FORTINET INC",
+            "isin": "US34959E1091",
+            "weightPct": 5.324
+          },
+          {
+            "name": "VARONIS SYSTEMS INC",
+            "isin": "US9222801022",
+            "weightPct": 5.102
+          }
+        ],
+        "asOf": "2026-11-05",
+        "basis": "fund",
+        "sourceUrl": "https://globalxetfs.eu/api/funds/bug/topholdingscsv",
+        "sha256": "76879c3635a63dce8e744d27469b39dc5e5ad98ce6386fa733f7ec4c3c4136c5",
+        "identitySourceUrl": "https://globalxetfs.eu/funds/bug/",
+        "identitySha256": "59fc880df44e69d748affa0c1e799d48bd6ce674fe8c09fcf2bb83dd87dd84fb",
+        "method": "Ten largest identified physical equities in the complete exact-fund portfolio; original fund NAV weights, cash excluded, no renormalisation",
+        "settlementCashProof": {
+          "method": "Published signed settlement cash netted only for validation; equity weights unchanged",
+          "netAssetsFromPublishedMarketValues": "80576648.31",
+          "netCashWeightPct": 0.204,
+          "publishedTotalWeightPct": 100.0,
+          "normalizationApplied": false,
+          "cashRows": [
+            {
+              "NAME": "CASH",
+              "NET_ASSETS": "33.897",
+              "MARKET_VALUE": "27312790.39",
+              "AS_OF_DATE": "2026-11-05"
+            },
+            {
+              "NAME": "JAPANESE YEN",
+              "NET_ASSETS": "0",
+              "MARKET_VALUE": "3.22",
+              "AS_OF_DATE": "2026-11-05"
+            },
+            {
+              "NAME": "BRITISH STERLING POUND",
+              "NET_ASSETS": "0",
+              "MARKET_VALUE": "2.51",
+              "AS_OF_DATE": "2026-11-05"
+            },
+            {
+              "NAME": "CANADIAN DOLLAR",
+              "NET_ASSETS": "0",
+              "MARKET_VALUE": "0.21",
+              "AS_OF_DATE": "2026-11-05"
+            },
+            {
+              "NAME": "OTHER PAYABLE & RECEIVABLES",
+              "NET_ASSETS": "-33.693",
+              "MARKET_VALUE": "-27148928.53",
+              "AS_OF_DATE": "2026-11-05"
+            }
+          ]
+        },
+        "checkedAt": "2026-11-06",
+        "modifiedAt": "2026-11-06"
+      },
+      "characteristics": {
+        "asOf": "2026-11-05",
+        "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+        "sha256": "59fc880df44e69d748affa0c1e799d48bd6ce674fe8c09fcf2bb83dd87dd84fb",
+        "terPct": 0.5,
+        "index": "Indxx Cybersecurity v2 Index",
+        "checkedAt": "2026-11-06",
+        "modifiedAt": "2026-11-06"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "years": {},
+        "observations": [
+          {
+            "label": "1 mois",
+            "value": 7.04,
+            "asOf": "2026-10-31"
+          },
+          {
+            "label": "3 mois",
+            "value": 29.59,
+            "asOf": "2026-10-31"
+          },
+          {
+            "label": "1 an",
+            "value": 43.42,
+            "asOf": "2026-10-31"
+          },
+          {
+            "label": "Depuis janvier",
+            "value": 62.1,
+            "asOf": "2026-10-31"
+          },
+          {
+            "label": "Depuis le lancement",
+            "value": 46.78,
+            "asOf": "2026-10-31"
+          }
+        ],
+        "asOf": "2026-10-31",
+        "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+        "sha256": "59fc880df44e69d748affa0c1e799d48bd6ce674fe8c09fcf2bb83dd87dd84fb",
+        "note": "",
+        "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
+        "months": {
+          "2026-09": 7.4,
+          "2026-10": 7.04
+        },
+        "monthEvidence": {
+          "2026-09": {
+            "asOf": "2026-09-30",
+            "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+            "sha256": "480bb2684f07c11f422ed97614587c9fb7dc42b5054c7612d5a2877e5ea29f1f",
+            "checkedAt": "2026-11-03",
+            "method": "Published exact-share one-month NAV total return at calendar month end"
+          },
+          "2026-10": {
+            "asOf": "2026-10-31",
+            "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+            "sha256": "59fc880df44e69d748affa0c1e799d48bd6ce674fe8c09fcf2bb83dd87dd84fb",
+            "checkedAt": "2026-11-06",
+            "method": "Published exact-share one-month NAV total return at calendar month end"
+          }
+        },
+        "checkedAt": "2026-11-06",
+        "modifiedAt": "2026-11-06"
+      },
+      "characteristicChecks": {
+        "terPct": {
+          "checkedAt": "2026-11-06",
+          "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+          "asOf": "2026-11-05"
+        },
+        "index": {
+          "checkedAt": "2026-11-06",
+          "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+          "asOf": "2026-11-05"
+        }
+      }
+    },
+    "holdings": {
+      "rows": [
+        {
+          "isin": "US6792951054",
+          "name": "OKTA INC",
+          "weightPct": 8.547,
+          "sedol": "BDFZSP1"
+        },
+        {
+          "isin": "US22788C1053",
+          "name": "CROWDSTRIKE HOLDINGS INC - A",
+          "weightPct": 7.166,
+          "sedol": "BJJP138"
+        },
+        {
+          "isin": "US6974351057",
+          "name": "PALO ALTO NETWORKS INC",
+          "weightPct": 6.457,
+          "sedol": "B87ZMX0"
+        },
+        {
+          "isin": "US74758T3032",
+          "name": "QUALYS INC",
+          "weightPct": 6.304,
+          "sedol": "B7XJTN8"
+        },
+        {
+          "isin": "US64119N6085",
+          "name": "NETSKOPE INC-CL A",
+          "weightPct": 5.981,
+          "sedol": "BQT3J26"
+        },
+        {
+          "isin": "US88025T1025",
+          "name": "TENABLE HOLDINGS INC",
+          "weightPct": 5.814,
+          "sedol": "BF7J7N6"
+        },
+        {
+          "isin": "US98980G1022",
+          "name": "ZSCALER INC",
+          "weightPct": 5.707,
+          "sedol": "BZ00V34"
+        },
+        {
+          "isin": "US7811541090",
+          "name": "RUBRIK INC-A",
+          "weightPct": 5.464,
+          "sedol": "BSLQK57"
+        },
+        {
+          "isin": "US34959E1091",
+          "name": "FORTINET INC",
+          "weightPct": 5.324,
+          "sedol": "B5B2106"
+        },
+        {
+          "isin": "US9222801022",
+          "name": "VARONIS SYSTEMS INC",
+          "weightPct": 5.102,
+          "sedol": "BJZ2ZR5"
+        },
+        {
+          "isin": "US78781J1097",
+          "name": "SAILPOINT INC",
+          "weightPct": 4.429,
+          "sedol": "BRXZ3P6"
+        },
+        {
+          "isin": "US2041661024",
+          "name": "COMMVAULT SYSTEMS INC",
+          "weightPct": 4.395,
+          "sedol": "B142B38"
+        },
+        {
+          "isin": "US6687711084",
+          "name": "GEN DIGITAL INC",
+          "weightPct": 4.358,
+          "sedol": "BJN4XN5"
+        },
+        {
+          "isin": "US81730H1095",
+          "name": "SENTINELONE INC -CLASS A",
+          "weightPct": 4.157,
+          "sedol": "BP7L1B8"
+        },
+        {
+          "isin": "IL0010824113",
+          "name": "CHECK POINT SOFTWARE TECH",
+          "weightPct": 3.606,
+          "sedol": "2181334"
+        },
+        {
+          "isin": "JP3637300009",
+          "name": "TREND MICRO INC",
+          "weightPct": 3.534,
+          "sedol": "6125286"
+        },
+        {
+          "isin": "US00971T1016",
+          "name": "AKAMAI TECHNOLOGIES INC",
+          "weightPct": 2.766,
+          "sedol": "2507457"
+        },
+        {
+          "isin": "US0021211018",
+          "name": "A10 NETWORKS INC",
+          "weightPct": 2.111,
+          "sedol": "BKQVBN6"
+        },
+        {
+          "isin": "IL0010834765",
+          "name": "RADWARE LTD",
+          "weightPct": 1.692,
+          "sedol": "2494548"
+        },
+        {
+          "isin": "US7534221046",
+          "name": "RAPID7 INC",
+          "weightPct": 1.339,
+          "sedol": "BZ22CY6"
+        },
+        {
+          "isin": "US68287N1000",
+          "name": "ONESPAN INC",
+          "weightPct": 1.054,
+          "sedol": "BFNSSD4"
+        },
+        {
+          "isin": "KR7053800009",
+          "name": "AHNLAB INC",
+          "weightPct": 1.053,
+          "sedol": "6406271"
+        },
+        {
+          "isin": "GB00B01QGK86",
+          "name": "NCC GROUP PLC",
+          "weightPct": 0.807,
+          "sedol": "B01QGK8"
+        },
+        {
+          "isin": "JP3549020000",
+          "name": "DIGITAL ARTS INC",
+          "weightPct": 0.626,
+          "sedol": "6543587"
+        },
+        {
+          "isin": "US87969B1017",
+          "name": "TELOS CORPORATION",
+          "weightPct": 0.476,
+          "sedol": "BLDDYL1"
+        },
+        {
+          "isin": "JP3166830004",
+          "name": "FFRI SECURITY INC",
+          "weightPct": 0.465,
+          "sedol": "BQJYQS4"
+        },
+        {
+          "isin": "JP3124490008",
+          "name": "AMIYA CORP",
+          "weightPct": 0.34,
+          "sedol": "BN6SNS7"
+        },
+        {
+          "isin": "JP3835150008",
+          "name": "HENNGE KK",
+          "weightPct": 0.338,
+          "sedol": "BKWBPS3"
+        },
+        {
+          "isin": "KYG4000K1756",
+          "name": "GORILLA TECHNOLOGY GROUP INC",
+          "weightPct": 0.229,
+          "sedol": "BPBRRM5"
+        },
+        {
+          "isin": "KYG0567U1278",
+          "name": "ARQIT QUANTUM INC",
+          "weightPct": 0.155,
+          "sedol": "BP092J4"
+        }
+      ],
+      "asOf": "2026-11-05",
+      "basis": "fund",
+      "complete": true,
+      "sourceUrl": "https://globalxetfs.eu/api/funds/bug/topholdingscsv",
+      "sha256": "76879c3635a63dce8e744d27469b39dc5e5ad98ce6386fa733f7ec4c3c4136c5",
+      "method": "Complete published physical equity securities; cash and non-equity positions excluded; original fund NAV weights, no renormalisation",
+      "unidentifiedSecurityCount": 0,
+      "unidentifiedWeightPct": 0,
+      "identitySourceUrl": "https://globalxetfs.eu/funds/bug/",
+      "identitySha256": "c0a55f070ea08aa6b9925ebd163b6ce7631141a231639a536ac85b824aadacf8",
+      "settlementCashProof": {
+        "method": "Published signed settlement cash netted only for validation; equity weights unchanged",
+        "netAssetsFromPublishedMarketValues": "80576648.31",
+        "netCashWeightPct": 0.204,
+        "publishedTotalWeightPct": 100.0,
+        "normalizationApplied": false,
+        "cashRows": [
+          {
+            "NAME": "CASH",
+            "NET_ASSETS": "33.897",
+            "MARKET_VALUE": "27312790.39",
+            "AS_OF_DATE": "2026-11-05"
+          },
+          {
+            "NAME": "JAPANESE YEN",
+            "NET_ASSETS": "0",
+            "MARKET_VALUE": "3.22",
+            "AS_OF_DATE": "2026-11-05"
+          },
+          {
+            "NAME": "BRITISH STERLING POUND",
+            "NET_ASSETS": "0",
+            "MARKET_VALUE": "2.51",
+            "AS_OF_DATE": "2026-11-05"
+          },
+          {
+            "NAME": "CANADIAN DOLLAR",
+            "NET_ASSETS": "0",
+            "MARKET_VALUE": "0.21",
+            "AS_OF_DATE": "2026-11-05"
+          },
+          {
+            "NAME": "OTHER PAYABLE & RECEIVABLES",
+            "NET_ASSETS": "-33.693",
+            "MARKET_VALUE": "-27148928.53",
+            "AS_OF_DATE": "2026-11-05"
+          }
+        ]
+      },
+      "checkedAt": "2026-11-06T19:40:13.714513+00:00"
+    }
+  }
+}

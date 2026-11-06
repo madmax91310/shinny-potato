@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-11-06T22:13:02.604412+00:00",
+  "acquiredSource": "shared-product-data.json.gz",
+  "sourceSha256": "255a9f3c3724d9842f16fbcbb7305def29692c61298beca76be5f25f2f1f59bf",
+  "sourceSha256AuthoritativeReceipt": "shared-product-data-proof.json",
+  "holdingsDate": "2026-11-05",
+  "types": {
+    "Common Stock": {
+      "count": 229,
+      "weightPct": "96.982540241538916"
+    },
+    "Fund - Real Estate Investment Trust": {
+      "count": 4,
+      "weightPct": "2.408077190083225"
+    },
+    "Cash": {
+      "count": 1,
+      "weightPct": "0.777009077367435"
+    },
+    "Option - Index": {
+      "count": 8,
+      "weightPct": "-0.167654535996834"
+    },
+    "Right": {
+      "count": 1,
+      "weightPct": "0.000028027007261"
+    }
+  },
+  "missingEquityCountries": [
+    {
+      "securityDescription": "ARCH CAPITAL GROUP LTD",
+      "securityIsin": "BMG0450A1053",
+      "securityType": "Common Stock",
+      "marketValuePercent": 0.143427842179479,
+      "country": null,
+      "sector": null
+    },
+    {
+      "securityDescription": "HKT TRUST AND HKT LTD-SS /HKD/",
+      "securityIsin": "HK0000093390",
+      "securityType": "Common Stock",
+      "marketValuePercent": 0.050446582457264,
+      "country": null,
+      "sector": null
+    }
+  ],
+  "sectorFieldsAllNull": true,
+  "notEquivalentToMonthlyOfficialAllocation": true,
+  "qualification": "Daily position countries exist, with unidentified country on an equity, signed index options and separate cash. No full or silently renormalized geographical allocation inferred. Monthly official primary/secondary API binding remains independently unqualified; no source control renewed by this offline examination."
+}

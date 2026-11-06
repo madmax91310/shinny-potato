@@ -1,0 +1,72 @@
+{
+  "run": 42278834412,
+  "event": "push",
+  "artifact": 13536905131,
+  "scope": "Exact Fund rankings physical stock observations, separate from country classification and performance histories",
+  "observations": {
+    "IE0002Y8CX98": {
+      "asOf": "2026-11-05",
+      "checkedAt": "2026-11-06T19:40:13.714513+00:00",
+      "basis": "fund",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+      "sha256": "ee6a87f1ca8b5711750c188745f20ac80ee2dfd75fa889ce23afcda6a63d0fd5",
+      "method": "Complete issuer Fund ranking (rankClassificationID 1); original published pct weights, no renormalisation; sector/country/index groups excluded; identities independently matched by exact SEDOL; access listings are document-qualified routes for the same ISIN, no trading-currency conversion of fund weights",
+      "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+      "identitySha256": "30ac82d29be5d8453df9ef0c390ac4d882749e6d6c1df6a85420ddc8d2e4c63b",
+      "identityAsOf": "2026-09-30",
+      "identityMethod": "Exact SEDOL to ISIN; identity-source weights never imported",
+      "completeFile": true,
+      "rows": 42,
+      "publishedEquityWeightPct": 99.99980000000001,
+      "identifiedEquityWeightPct": 99.99980000000001
+    },
+    "IE000W8WMSL2": {
+      "asOf": "2026-11-05",
+      "checkedAt": "2026-11-06T19:40:13.714513+00:00",
+      "basis": "fund",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WQTM%20LN&isoCode=en-GB",
+      "sha256": "62450417d1910d5f1d6d6b217e4b08b8b15cedb19000ab08903f765acfd9b28d",
+      "method": "Complete issuer Fund ranking (rankClassificationID 1); original published pct weights, no renormalisation; sector/country/index groups excluded; identities independently matched by exact SEDOL; access listings are document-qualified routes for the same ISIN, no trading-currency conversion of fund weights",
+      "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+      "identitySha256": "326008744e0620d65c217d18d5b5af9ada7812ef9ba63bbcd00a351f20dd4eaa",
+      "identityAsOf": "2026-09-30",
+      "identityMethod": "Exact SEDOL to ISIN; identity-source weights never imported",
+      "completeFile": true,
+      "rows": 47,
+      "publishedEquityWeightPct": 100.0001,
+      "identifiedEquityWeightPct": 100.0001
+    },
+    "IE00BDVPNG13": {
+      "asOf": "2026-11-05",
+      "checkedAt": "2026-11-06T19:40:13.714513+00:00",
+      "basis": "fund",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WTAI%20LN&isoCode=en-GB",
+      "sha256": "efe96cf0f75450c96e8d2e0c7f0f395a73898ec91929e696bf14a1cdaf166071",
+      "method": "Complete issuer Fund ranking (rankClassificationID 1); original published pct weights, no renormalisation; sector/country/index groups excluded; identities independently matched by exact SEDOL; access listings are document-qualified routes for the same ISIN, no trading-currency conversion of fund weights",
+      "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+      "identitySha256": "c2b37cfabe0b8d4edab266136c60dfa1ed4fe9ec300079766d78b3ea50ec7297",
+      "identityAsOf": "2026-09-30",
+      "identityMethod": "Exact SEDOL to ISIN; identity-source weights never imported",
+      "completeFile": true,
+      "rows": 58,
+      "publishedEquityWeightPct": 100.0002,
+      "identifiedEquityWeightPct": 100.0002
+    },
+    "IE00BZ56SW52": {
+      "asOf": "2026-11-05",
+      "checkedAt": "2026-11-06T19:40:13.714513+00:00",
+      "basis": "fund",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+      "sha256": "a01c13a409b6814d949f0df92e545f3da1b6fe1972affc25acdefcdae9aed457",
+      "method": "Complete issuer Fund ranking (rankClassificationID 1); original published pct weights, no renormalisation; sector/country/index groups excluded; identities independently matched by exact SEDOL; access listings are document-qualified routes for the same ISIN, no trading-currency conversion of fund weights; distinct native SEDOL positions of the same qualified ISIN summed with every original position retained in sourcePositions",
+      "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+      "identitySha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
+      "identityAsOf": "2026-09-30",
+      "identityMethod": "Exact SEDOL to ISIN; identity-source weights never imported",
+      "completeFile": true,
+      "rows": 439,
+      "publishedEquityWeightPct": 100.0008,
+      "identifiedEquityWeightPct": 100.0008
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "etfFR0013412004Nav",
+  "isin": "FR0013412004",
+  "label": "Amundi PEA Am\u00e9rique Latine Acc \u00b7 VL",
+  "instrumentType": "ETF",
+  "consumerScope": "catalog",
+  "currency": "EUR",
+  "periodStart": "2024-12",
+  "precision": 8,
+  "collectAnniversary": false,
+  "parser": "official-nav",
+  "field": "nav-total-return",
+  "valuationBasis": "fund-nav-total-return",
+  "method": "Voie distincte : rendement r\u00e9investi officiel de la part exacte capitalisante, recal\u00e9 sur sa NAV de m\u00eame date. Ancienne cotation conserv\u00e9e ; aucune substitution par un indice.",
+  "navProvider": "amundi",
+  "navCurrency": "EUR",
+  "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+}

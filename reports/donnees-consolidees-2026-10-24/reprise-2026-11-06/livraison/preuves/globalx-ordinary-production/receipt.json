@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-11-06T20:01:21.493474+00:00",
+  "expansion": {
+    "run": 42278834427,
+    "job": 128102138242,
+    "event": "push",
+    "runtimeCheckout": "026f95cbe2fff011341889deb6d541b4fb7c81d4",
+    "recordingCommit": "c9e5798fa9a3a540b20c75baf50dbe34a560b3d1",
+    "observation": "expansion-observation.json",
+    "artifact": 13534972942
+  },
+  "holdings": {
+    "run": 42278834412,
+    "job": 128102138135,
+    "event": "push",
+    "runtimeCheckout": "c9e5798fa9a3a540b20c75baf50dbe34a560b3d1",
+    "recordingCommit": "16bdfc9e90c522729b06744d7471e530cfe62a60",
+    "observation": "holdings-observation.json",
+    "artifact": 13536905131
+  },
+  "publication": {
+    "state": "verified actual public records and consumers",
+    "proof": "globalx-ordinary-production/publication.json",
+    "consumerProofs": [
+      "globalx-public/proof.json",
+      "globalx-presentation-public/proof.json"
+    ],
+    "codeSha": "b641e888850898e6fdf392e62540e45c96ccb3d9"
+  },
+  "publicationStateAtFirstReceipt": "not yet publicly verified; old frontend fallback retains old Global X fields; no closure inferred from successful publication job"
+}

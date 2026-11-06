@@ -1,0 +1,76 @@
+{
+  "capturedAt": "2026-11-06T14:47:34.040730+00:00",
+  "build": {
+    "sha": "2850b220841fa19e4aa561804b474e5e280a956d",
+    "dataSha": "ad419ccfcc929e2b67a794255ef9c04caa60e579",
+    "lane": "validated-data",
+    "builtAt": "2026-11-06T14:39:59.270Z"
+  },
+  "manifestFiles": {
+    "src/data/automated-monthly.json": {
+      "blob": "0f88d886754539364ea1c04220fc9c7217f56d20",
+      "sha256": "8bd34b018d4c52028d0e75a9d0f8fd5964a021fb79e19babf5808af49c546cf2",
+      "bytes": 7351573
+    },
+    "src/data/automated-etf-monthly.json": {
+      "blob": "72be7f020b28035cbb6eb661a8562b8e75a035b7",
+      "sha256": "c28a82ef24abac745d7651fae26e8618f4b3358b7eb54b3602e75b88e5d914dd",
+      "bytes": 4684919
+    },
+    "src/data/non-bond-monthly-records.json": {
+      "blob": "c1fdc6e5a528df07acb45d721e8a28583339efe4",
+      "sha256": "dce18533f839ae063b90faa0892160e703891ed82c6add8b205c7aaa668f8d28",
+      "bytes": 548205
+    },
+    "src/data/monthly-fx.json": {
+      "blob": "a72b7a41a5312f08d5bac63983257c0dfc56d47c",
+      "sha256": "1ab210d4bb1798f2c00157a47d2063a072cdece31b8e1cb549544faa0989df46",
+      "bytes": 632962
+    }
+  },
+  "sourceDataRef": "ad419ccfcc929e2b67a794255ef9c04caa60e579",
+  "stableBuild": true,
+  "unitRecordIds": [
+    "etfLU1829219390",
+    "etf_timber_ishares"
+  ],
+  "restrictionRecords": 114,
+  "liveProviderControlNotInferredFromThisPublicRead": true,
+  "ordinaryTargetedProduction": {
+    "runId": 42227576144,
+    "jobId": 127924874405,
+    "event": "workflow_dispatch",
+    "commit": "ad419ccfcc929e2b67a794255ef9c04caa60e579",
+    "recordedAtUtc": "2026-11-06T14:30:10.4693059Z",
+    "commitObjectDateIsNotPushDate": true,
+    "scope": {
+      "requestedIds": [
+        "etf_timber_ishares",
+        "etfLU1829219390"
+      ],
+      "expectedIds": [
+        "etf_timber_ishares",
+        "etfLU1829219390"
+      ],
+      "selection": "explicit"
+    },
+    "sourceResults": [
+      {
+        "id": "etf_timber_ishares",
+        "status": "validated",
+        "sourceState": "succeeded",
+        "periodEnd": "2026-10",
+        "responseSha256": "864307b2984213707933bdc612aafef0e30d599a8ee35df2ca7da1353241de98"
+      },
+      {
+        "id": "etfLU1829219390",
+        "status": "validated",
+        "sourceState": "unchanged-verified",
+        "periodEnd": "2026-10",
+        "responseSha256": "1bcd853dcae89d9885c7ed3435b24c3621b7b2b3798877cdbff1a3718fa567fb"
+      }
+    ],
+    "recordingStepConclusion": "success",
+    "directGitHubLogPushConfirmed": true
+  }
+}

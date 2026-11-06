@@ -1,0 +1,248 @@
+{
+  "checkedAt": "2026-11-06T13:39:12.522723+00:00",
+  "shares": [
+    {
+      "isin": "IE0003UVYC20",
+      "name": "JPM Global Equity Premium Income Active UCITS ETF USD (Dist)",
+      "documentName": "JPM Global Equity Premium Income Active UCITS ETF - USD (dist)",
+      "currency": "USD",
+      "provider": "J.P. Morgan",
+      "parser": "jpm-document",
+      "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+      "enabled": true,
+      "required": true,
+      "productId": "IE0003UVYC20",
+      "unavailable": [],
+      "characteristics": {
+        "asOf": "2026-08-31",
+        "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+        "sha256": "28511239949fdb8e00ed7c7f9d544c164d3c7d1b50f6e2b89f05d8fca5712dd7",
+        "terPct": 0.35
+      },
+      "aum": {
+        "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+        "sha256": "255a9f3c3724d9842f16fbcbb7305def29692c61298beca76be5f25f2f1f59bf",
+        "amount": 1717570208.0,
+        "currency": "USD",
+        "scope": "fund",
+        "asOf": "2026-11-05",
+        "sourceComponent": "fundData.aum.value"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "years": {
+          "2024": 8.08,
+          "2025": 12.35
+        },
+        "asOf": "2026-08-31",
+        "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+        "sha256": "28511239949fdb8e00ed7c7f9d544c164d3c7d1b50f6e2b89f05d8fca5712dd7",
+        "method": "calendar-year exact-share NAV total return, gross income reinvested, net of ongoing charges"
+      },
+      "countries": {
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 66.8
+          },
+          {
+            "name": "Japan",
+            "weightPct": 10.5
+          },
+          {
+            "name": "France",
+            "weightPct": 4.7
+          },
+          {
+            "name": "Germany",
+            "weightPct": 3.8
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 1.7
+          },
+          {
+            "name": "Spain",
+            "weightPct": 1.7
+          },
+          {
+            "name": "Singapore",
+            "weightPct": 1.4
+          },
+          {
+            "name": "Italy",
+            "weightPct": 1.3
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 1.2
+          },
+          {
+            "name": "Hong Kong",
+            "weightPct": 1.0
+          },
+          {
+            "name": "Others",
+            "weightPct": 4.5
+          },
+          {
+            "name": "Cash",
+            "weightPct": 1.4
+          }
+        ],
+        "asOf": "2026-08-31",
+        "basis": "fund",
+        "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+        "sha256": "28511239949fdb8e00ed7c7f9d544c164d3c7d1b50f6e2b89f05d8fca5712dd7"
+      },
+      "sectors": {
+        "rows": [
+          {
+            "name": "Information Technology",
+            "weightPct": 24.3
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 13.9
+          },
+          {
+            "name": "Financials",
+            "weightPct": 13.5
+          },
+          {
+            "name": "Communication Services",
+            "weightPct": 9.7
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 9.0
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 7.1
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 6.7
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 5.9
+          },
+          {
+            "name": "Materials",
+            "weightPct": 4.0
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 2.4
+          },
+          {
+            "name": "Energy",
+            "weightPct": 2.1
+          },
+          {
+            "name": "Cash",
+            "weightPct": 1.4
+          }
+        ],
+        "asOf": "2026-08-31",
+        "basis": "fund",
+        "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+        "sha256": "28511239949fdb8e00ed7c7f9d544c164d3c7d1b50f6e2b89f05d8fca5712dd7"
+      },
+      "holdings": {
+        "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+        "sha256": "255a9f3c3724d9842f16fbcbb7305def29692c61298beca76be5f25f2f1f59bf",
+        "rows": [
+          {
+            "isin": "US4781601046",
+            "name": "JOHNSON & JOHNSON",
+            "weightPct": 1.903610717975804
+          },
+          {
+            "isin": "JP3463000004",
+            "name": "TAKEDA PHARMACEUTICAL CO /JPY/",
+            "weightPct": 1.661836004153723
+          },
+          {
+            "isin": "US8425871071",
+            "name": "SOUTHERN CO/THE",
+            "weightPct": 1.647332684464781
+          },
+          {
+            "isin": "US5949181045",
+            "name": "MICROSOFT CORP",
+            "weightPct": 1.599726753750575
+          },
+          {
+            "isin": "US0846707026",
+            "name": "BERKSHIRE HATHAWAY INC-CL B",
+            "weightPct": 1.450757909813412
+          },
+          {
+            "isin": "US6200763075",
+            "name": "MOTOROLA SOLUTIONS INC",
+            "weightPct": 1.396983938696358
+          },
+          {
+            "isin": "US1912161007",
+            "name": "COCA-COLA CO/THE",
+            "weightPct": 1.320070594234953
+          },
+          {
+            "isin": "US03073E1055",
+            "name": "CENCORA INC",
+            "weightPct": 1.190388039901877
+          },
+          {
+            "isin": "US5801351017",
+            "name": "MCDONALDS CORP",
+            "weightPct": 1.151676263446286
+          },
+          {
+            "isin": "US00287Y1091",
+            "name": "ABBVIE INC",
+            "weightPct": 1.149171349453742
+          }
+        ],
+        "asOf": "2026-11-05",
+        "basis": "fund",
+        "complete": false,
+        "sourceComponent": "fundData.dailyHoldings",
+        "method": "Published top ten direct equity/REIT positions; native portfolio market-value weights, no renormalisation or complete-overlap inference"
+      },
+      "collectionErrors": [],
+      "sourceAttempts": [
+        {
+          "url": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+          "status": "validated",
+          "fields": [
+            "characteristics.terPct",
+            "performance",
+            "countries",
+            "sectors",
+            "aum",
+            "holdings"
+          ]
+        },
+        {
+          "url": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ]
+        },
+        {
+          "url": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+          "status": "validated",
+          "fields": [
+            "holdings"
+          ]
+        }
+      ]
+    }
+  ],
+  "proofLevel": "real local collector; not GitHub or publication"
+}

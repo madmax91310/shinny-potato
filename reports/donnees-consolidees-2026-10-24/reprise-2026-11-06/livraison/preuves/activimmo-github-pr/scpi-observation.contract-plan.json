@@ -1,0 +1,441 @@
+{
+  "producerStarted": "producer-results-v1",
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "iroko-zen",
+          "instrument": "iroko-zen",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true
+        },
+        {
+          "id": "remake-live",
+          "instrument": "remake-live",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true
+        },
+        {
+          "id": "corum-origin",
+          "instrument": "corum-origin",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true
+        },
+        {
+          "id": "corum-xl",
+          "instrument": "corum-xl",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true
+        },
+        {
+          "id": "corum-eurion",
+          "instrument": "corum-eurion",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true
+        },
+        {
+          "id": "transitions-europe",
+          "instrument": "transitions-europe",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true
+        },
+        {
+          "id": "activimmo",
+          "instrument": "activimmo",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true
+        },
+        {
+          "id": "epargne-pierre",
+          "instrument": "epargne-pierre",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true
+        },
+        {
+          "id": "iroko-zen:snapshot",
+          "instrument": "iroko-zen",
+          "fields": [
+            "quarterly portfolio snapshot"
+          ],
+          "selected": true,
+          "dependsOn": "iroko-zen"
+        }
+      ],
+      "mode": "full",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "collect_scpi",
+      "reportStem": "scpi-observation",
+      "declaredAt": "2026-11-06T10:12:37.790699+00:00",
+      "nonce": "f113840a-481c-486a-8a1e-b1d966c5f4a2",
+      "codeSha": "462fc034bf20790ef26665d2c5f8e0f709cd7c6c",
+      "durablePlan": true,
+      "runId": "42200738322",
+      "attempt": "1",
+      "sha256": "6e4a7b595c67cc6192c282107f6846222176f4f97083b7a7625c1a3b5511a46e"
+    },
+    "scope": {
+      "kind": "collect_scpi",
+      "mode": "full",
+      "expectedIds": [
+        "iroko-zen",
+        "remake-live",
+        "corum-origin",
+        "corum-xl",
+        "corum-eurion",
+        "transitions-europe",
+        "activimmo",
+        "epargne-pierre",
+        "iroko-zen:snapshot"
+      ],
+      "requestedIds": [
+        "iroko-zen",
+        "remake-live",
+        "corum-origin",
+        "corum-xl",
+        "corum-eurion",
+        "transitions-europe",
+        "activimmo",
+        "epargne-pierre",
+        "iroko-zen:snapshot"
+      ],
+      "items": [
+        {
+          "id": "iroko-zen",
+          "instrument": "iroko-zen",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true
+        },
+        {
+          "id": "remake-live",
+          "instrument": "remake-live",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true
+        },
+        {
+          "id": "corum-origin",
+          "instrument": "corum-origin",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true
+        },
+        {
+          "id": "corum-xl",
+          "instrument": "corum-xl",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true
+        },
+        {
+          "id": "corum-eurion",
+          "instrument": "corum-eurion",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true
+        },
+        {
+          "id": "transitions-europe",
+          "instrument": "transitions-europe",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true
+        },
+        {
+          "id": "activimmo",
+          "instrument": "activimmo",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true
+        },
+        {
+          "id": "epargne-pierre",
+          "instrument": "epargne-pierre",
+          "fields": [
+            "SCPI bulletin",
+            "subscription/withdrawal price",
+            "distribution",
+            "publication state"
+          ],
+          "selected": true
+        },
+        {
+          "id": "iroko-zen:snapshot",
+          "instrument": "iroko-zen",
+          "fields": [
+            "quarterly portfolio snapshot"
+          ],
+          "selected": true,
+          "dependsOn": "iroko-zen"
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-11-06T10:12:37.790699+00:00",
+      "planSha256": "6e4a7b595c67cc6192c282107f6846222176f4f97083b7a7625c1a3b5511a46e",
+      "attemptedIds": [],
+      "attemptUnknownIds": [
+        "iroko-zen",
+        "remake-live",
+        "corum-origin",
+        "corum-xl",
+        "corum-eurion",
+        "transitions-europe",
+        "activimmo",
+        "epargne-pierre",
+        "iroko-zen:snapshot"
+      ],
+      "networkRequestedIds": [],
+      "networkAttemptUnknownIds": [
+        "iroko-zen",
+        "remake-live",
+        "corum-origin",
+        "corum-xl",
+        "corum-eurion",
+        "transitions-europe",
+        "activimmo",
+        "epargne-pierre",
+        "iroko-zen:snapshot"
+      ],
+      "runId": "42200738322",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "f113840a-481c-486a-8a1e-b1d966c5f4a2"
+    },
+    "outcomes": [
+      {
+        "id": "iroko-zen",
+        "instrument": "iroko-zen",
+        "fields": [
+          "SCPI bulletin",
+          "subscription/withdrawal price",
+          "distribution",
+          "publication state"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : SCPI bulletin, subscription/withdrawal price, distribution, publication state",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "remake-live",
+        "instrument": "remake-live",
+        "fields": [
+          "SCPI bulletin",
+          "subscription/withdrawal price",
+          "distribution",
+          "publication state"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : SCPI bulletin, subscription/withdrawal price, distribution, publication state",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "corum-origin",
+        "instrument": "corum-origin",
+        "fields": [
+          "SCPI bulletin",
+          "subscription/withdrawal price",
+          "distribution",
+          "publication state"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : SCPI bulletin, subscription/withdrawal price, distribution, publication state",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "corum-xl",
+        "instrument": "corum-xl",
+        "fields": [
+          "SCPI bulletin",
+          "subscription/withdrawal price",
+          "distribution",
+          "publication state"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : SCPI bulletin, subscription/withdrawal price, distribution, publication state",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "corum-eurion",
+        "instrument": "corum-eurion",
+        "fields": [
+          "SCPI bulletin",
+          "subscription/withdrawal price",
+          "distribution",
+          "publication state"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : SCPI bulletin, subscription/withdrawal price, distribution, publication state",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "transitions-europe",
+        "instrument": "transitions-europe",
+        "fields": [
+          "SCPI bulletin",
+          "subscription/withdrawal price",
+          "distribution",
+          "publication state"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : SCPI bulletin, subscription/withdrawal price, distribution, publication state",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "activimmo",
+        "instrument": "activimmo",
+        "fields": [
+          "SCPI bulletin",
+          "subscription/withdrawal price",
+          "distribution",
+          "publication state"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : SCPI bulletin, subscription/withdrawal price, distribution, publication state",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "epargne-pierre",
+        "instrument": "epargne-pierre",
+        "fields": [
+          "SCPI bulletin",
+          "subscription/withdrawal price",
+          "distribution",
+          "publication state"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : SCPI bulletin, subscription/withdrawal price, distribution, publication state",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "iroko-zen:snapshot",
+        "instrument": "iroko-zen",
+        "fields": [
+          "quarterly portfolio snapshot"
+        ],
+        "selected": true,
+        "dependsOn": "iroko-zen",
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : quarterly portfolio snapshot",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}
