@@ -108,11 +108,21 @@ def parse_transitions(text,pages,note,url,today):
             'conditions':{'minimum':minimum*price,'enjoyment':'Premier jour du 6e mois suivant la souscription.','frequency':'trimestriels','subscriptionFee':entry,'subscriptionTax':'HT','subscriptionFeeMax':True,'managementFee':management,'managementTax':'HT','managementFeeMax':True,'managementBasis':'produits locatifs exigibles et encaissés HT hors charges refacturées et produits financiers nets','exit':'Prix de retrait minoré de la commission de souscription HT ; rachat soumis aux conditions de liquidité.','otherFees':'Commissions possibles sur les travaux et cessions ; détail dans la note d’information.','sourceUrl':url,'sourceUrls':[url]}}
 
 
-def parse_activimmo(text,pages,annual,note,price_note,url,annual_url,note_url,price_url,today):
+def parse_activimmo(text,pages,annual,note,price_note,url,annual_url,note_url,price_url,today,geography_loader=None):
     required(r'ACTIVIMMO',text)
     date=end_date(text,r'PATRIMOINE\s+AU (\d{2})\.(\d{2})\.(\d{4})')
     page=next(p for p in pages if any(w['text']=='TYPOLOGIQUE' for w in p['words']))
-    countries=allocation(page['words'],['Allemagne','Espagne','France','Irlande','Italie','Pays-Bas','Portugal'],lambda w:w['x']>280 and 380<w['y']<415,True,20)
+    geography_evidence=None
+    country_labels=['Allemagne','Espagne','France','Irlande','Italie','Pays-Bas','Portugal']
+    geography_region=lambda w:w['x']>280 and 380<w['y']<415
+    try:
+        countries=allocation(page['words'],country_labels,geography_region,True,20)
+    except ValueError:
+        # The qualified T3 map has no country labels. Do not let an alternate
+        # legend hide a partly readable or contradictory primary table.
+        labelled=any(phrase([w for w in page['words'] if geography_region(w)],label) for label in country_labels)
+        if geography_loader is None or labelled:raise
+        countries,geography_evidence=geography_loader(date)
     sectors=allocation(page['words'],['Entrepôt logistique','Locaux d’activités','Logistique urbaine','Transport','Autres'],lambda w:w['x']<250 and 235<w['y']<400,False,50)
     n=re.sub(r'\s+',' ',note);p=re.sub(r'\s+',' ',price_note)
     effective=required(r'compter du (\d+)(?:er)? juillet (\d{4})',p)
@@ -133,14 +143,14 @@ def parse_activimmo(text,pages,annual,note,price_note,url,annual_url,note_url,pr
     values=required(r'Taux de distribution sur valeur de marché\s+([\d,.]+)%\s+([\d,.]+)%\s+([\d,.]+)%\s+([\d,.]+)%\s+([\d,.]+)%',block)
     years=[{'year':y,'distribution':number(values[i+1])} for i,y in enumerate(periods)][-3:]
     annual_year=completed_year([r['year'] for r in years],today,count=3)
-    occ=number(required(r'([\d,.]+)% TOF',text)[1]);required(r'hors développements',text);required(r'indemnité de résiliation anticipée',text)
+    occ=number(required(r'([\d,.]+)\s*% TOF',text)[1]);required(r'hors développements',text);required(r'indemnité de résiliation anticipée',text)
     activity=next(p for p in pages if any(w['text']=='LOCATIF' for w in p['words']))
     portfolio={'occupancy':metric(occ,date,url,'Taux d’occupation financier','Hors développements ; inclut une indemnité de résiliation anticipée. Ce taux n’est pas un taux physique.'), 'tenants':metric(counter(activity['words'],'locataires',lambda w:w['x']>page['width']*.55 and w['y']<400),date,url,'Locataires')}
     assets=int(required(r'constitué un portefeuille de (\d+) actifs',a)[1])
     portfolio['buildings']=metric(assets,f'{annual_year}-12-31',annual_url,'Actifs immobiliers')
     price_values=required(r'Prix de souscription au 1er janvier.*?([\d,.]+)€\s+([\d,.]+)€\s+([\d,.]+)€\s+([\d,.]+)€\s+([\d,.]+)€',block)
     history={'years':[{'asOf':f'{y}-01-01','value':number(price_values[i+1])} for i,y in enumerate(periods)][-3:]+[{'asOf':price_date,'value':price}],'sourceUrl':annual_url,'sourceUrls':[annual_url,price_url],'dateNote':'Rapport : prix au 1er janvier de chaque année ; dernière valeur issue de l’annexe tarifaire.'}
-    return {'snapshot':{'asOf':date,'countries':countries,'sectors':sectors,'sourceUrls':[url]},'annual':{'years':years,'sourceUrl':annual_url},'price':{'value':price,'asOf':price_date,'sourceUrl':price_url},'priceHistory':history,'portfolio':portfolio,
+    return {'snapshot':{'asOf':date,'countries':countries,'sectors':sectors,'sourceUrls':list(dict.fromkeys([url]+(geography_evidence['sourceUrls'] if geography_evidence else []))),**({'geographyEvidence':geography_evidence} if geography_evidence else {})},'annual':{'years':years,'sourceUrl':annual_url},'price':{'value':price,'asOf':price_date,'sourceUrl':price_url},'priceHistory':history,'portfolio':portfolio,
             'conditions':{'minimum':price,'enjoyment':'Premier jour du 6e mois suivant la souscription et son règlement.','frequency':'mensuels','subscriptionFee':entry,'subscriptionTax':'HT','managementFee':management,'managementTax':'HT','managementBasis':'recettes locatives HT et produits financiers nets','exit':'Prix de retrait égal au prix de souscription moins la commission de souscription HT ; revente non garantie.','otherFees':'Commissions complémentaires possibles ; TVA récupérée par la SCPI selon la note d’information.','sourceUrl':note_url,'sourceUrls':[note_url,price_url]}}
 
 
@@ -198,7 +208,8 @@ def collect(id_,today):
         annual_url,_=latest_annual(links,r'Rapport-annuel-(?P<year>20\d{2})-ActivImmo',today)
         note_url=next(u for u in links if 'Note-dinformation-SCPI-ActivImmo-1' in u)
         price_url=max((u for u in links if 'Modification-des-prix-de-part' in u),key=lambda u:u.rsplit('/',1)[-1])
-        pdf=fetch(url);result=parse_activimmo(pdf_text(pdf),bbox_pages(pdf),pdf_text(fetch(annual_url)),pdf_text(fetch(note_url)),pdf_text(fetch(price_url)),url,annual_url,note_url,price_url,today)
+        from activimmo_scpi_geography import collect_geography
+        pdf=fetch(url);result=parse_activimmo(pdf_text(pdf),bbox_pages(pdf),pdf_text(fetch(annual_url)),pdf_text(fetch(note_url)),pdf_text(fetch(price_url)),url,annual_url,note_url,price_url,today,lambda date:collect_geography(date,fetch))
         linked_year=int(required(r'Rapport-annuel-(20\d{2})-ActivImmo',annual_url)[1])
         if result['annual']['years'][-1]['year']!=linked_year:raise ValueError('Annual URL and published columns disagree')
     result['snapshotPublication'] = bulletin_calendar(url,period_pattern,result['snapshot']['asOf'])

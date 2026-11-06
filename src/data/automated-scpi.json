@@ -1148,33 +1148,33 @@
       "id": "activimmo",
       "name": "ActivImmo",
       "sourceUrl": "https://alderan.fr/scpi-activimmo/",
-      "checkedAt": "2026-11-03",
+      "checkedAt": "2026-11-06",
       "snapshot": {
-        "asOf": "2026-06-30",
+        "asOf": "2026-09-30",
         "countries": [
           {
-            "label": "Allemagne",
-            "value": 3.3
+            "label": "France",
+            "value": 73.3
           },
           {
             "label": "Espagne",
-            "value": 12.9
-          },
-          {
-            "label": "France",
-            "value": 74.8
-          },
-          {
-            "label": "Irlande",
-            "value": 1.5
+            "value": 14.6
           },
           {
             "label": "Italie",
-            "value": 3.9
+            "value": 3.8
+          },
+          {
+            "label": "Allemagne",
+            "value": 3.2
           },
           {
             "label": "Pays-Bas",
             "value": 2.7
+          },
+          {
+            "label": "Irlande",
+            "value": 1.5
           },
           {
             "label": "Portugal",
@@ -1184,19 +1184,19 @@
         "sectors": [
           {
             "label": "Entrepôt logistique",
-            "value": 54.4
+            "value": 55.5
           },
           {
             "label": "Locaux d’activités",
-            "value": 30.2
+            "value": 29.6
           },
           {
             "label": "Logistique urbaine",
-            "value": 8.1
+            "value": 7.7
           },
           {
             "label": "Transport",
-            "value": 6.6
+            "value": 6.5
           },
           {
             "label": "Autres",
@@ -1204,8 +1204,21 @@
           }
         ],
         "sourceUrls": [
-          "https://alderan.fr/wp-content/uploads/2026/08/20260807-BTI-T2-2026-ActivImmo.pdf"
-        ]
+          "https://alderan.fr/wp-content/uploads/2026/11/BTI-T3-2026-ActivImmo.pdf",
+          "https://alderan.fr/scpi-activimmo/",
+          "https://alderan.fr/wp-content/uploads/2026/11/Repartition_Geographique_T3_2026-02-01.webp"
+        ],
+        "geographyEvidence": {
+          "asOf": "2026-09-30",
+          "sourceUrls": [
+            "https://alderan.fr/scpi-activimmo/",
+            "https://alderan.fr/wp-content/uploads/2026/11/Repartition_Geographique_T3_2026-02-01.webp"
+          ],
+          "basis": "issuer-labelled-geography-market-value",
+          "method": "printed-white-glyphs-tesseract-eng-psm6-and11-agree",
+          "pageSha256": "7f1f9112cb416fbd5dd9846b2db423c4a36873eadc9a3eeea05e0a9893de022d",
+          "imageSha256": "6521873838e3afa5fc28fd1859839046d17f2e3a972a2090ca31c34522dac318"
+        }
       },
       "annual": {
         "years": [
@@ -1262,16 +1275,16 @@
       },
       "portfolio": {
         "occupancy": {
-          "value": 93.3,
-          "asOf": "2026-06-30",
-          "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/08/20260807-BTI-T2-2026-ActivImmo.pdf",
+          "value": 91.5,
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/11/BTI-T3-2026-ActivImmo.pdf",
           "label": "Taux d’occupation financier",
           "basis": "Hors développements ; inclut une indemnité de résiliation anticipée. Ce taux n’est pas un taux physique."
         },
         "tenants": {
-          "value": 369,
-          "asOf": "2026-06-30",
-          "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/08/20260807-BTI-T2-2026-ActivImmo.pdf",
+          "value": 366,
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/11/BTI-T3-2026-ActivImmo.pdf",
           "label": "Locataires"
         },
         "buildings": {
@@ -1299,17 +1312,17 @@
         ]
       },
       "snapshotPublication": {
-        "asOf": "2026-06-30",
+        "asOf": "2026-09-30",
         "periodMonths": 3,
-        "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/08/20260807-BTI-T2-2026-ActivImmo.pdf",
+        "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/11/BTI-T3-2026-ActivImmo.pdf",
         "basis": "issuer-linked-bulletin-period",
         "issuerPublicationDeadline": null
       },
       "collectionStatus": {
-        "status": "failed",
+        "status": "waiting-publication",
         "lastAttemptAt": "2026-11-06",
-        "lastAccessSuccessAt": "2026-11-03",
-        "internalReviewDue": "2026-11-14",
+        "lastAccessSuccessAt": "2026-11-06",
+        "internalReviewDue": "2027-02-14",
         "issuerPublicationDeadline": null,
         "deadlineBasis": "internal-monitoring-policy",
         "publicationPeriodMonths": 3,

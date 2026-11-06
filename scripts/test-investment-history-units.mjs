@@ -29,7 +29,7 @@ for(const id of Object.keys(before)){
  assert.equal(comp.finalValue,d.result.finalValue);assert(buildTweetText(s,d).includes('Capital final'))
  assert(Number.isFinite(d.result.finalValue));assert.equal(d.result.totalInvested,mode==='lump'?1000:d.result.months.length*1000)
  }
- assert.equal(periodReturn(a,'2026-01','2026-10'),(a.points.at(-1).price/a.points.find(p=>p.date==='2026-01').price-1)*100)
+ assert.equal(periodReturn(a,'2026-01','2026-10'),(a.points.find(p=>p.date==='2026-10').price/a.points.find(p=>p.date==='2026-01').price-1)*100)
  assert.equal(getHistoricalPrice(id,'2026-02'),dict(record.anniversaryPoints)['2026-02'])
  assert.equal(qualifyHistoryWindow(MARKET_ASSETS.find(a=>a.id===id),'2026-01','2026-10').qualified,true)
  const converted=historyInCurrency(a,'EUR','2026-01','2026-10');assert(qualifyHistoryWindow(converted,'2026-01','2026-10').qualified)
@@ -40,7 +40,7 @@ for(const id of Object.keys(before)){
  assert(qualifyHistoryWindow(limited,'2026-03','2026-10').qualified)
  assert(qualifyHistoryWindow(limited,'2026-01','2026-01').qualified)
  assert.equal(qualifyHistoryWindow(historyInCurrency(limited,'EUR'),'2026-01','2026-10').qualified,false)
- const forged=structuredClone(record);if(forged.splitAdjustmentEvidence)forged.splitAdjustmentEvidence.ratio=40;else forged.historicalQuoteRepairEvidence.checks[0].officialClose=30
+ const forged=structuredClone(record);if(forged.splitAdjustmentEvidence)forged.splitAdjustmentEvidence.ratio=40;else forged.historicalQuoteRepairEvidence.monthlyChecks[0].officialClose=30
  assert.throws(()=>validateHistoryUnitEvidence(forged,proofs[id]))
 }
 function dict(p){return Object.fromEntries(p)}
@@ -52,6 +52,24 @@ assert(Math.abs(1000*(1+periodReturn(bank,'2020-01','2026-10')/100)-independentB
 const woodProof=records[wood.id].historicalQuoteRepairEvidence,woodRow=proofs[wood.id].proofRows.find(r=>r.date.startsWith('2026-02'))
 assert(Math.abs(dict(records[wood.id].points)['2026-02']-woodRow.value)<1e-6)
 assert.equal(dict(records[wood.id].anniversaryPoints)['2026-02'],woodProof.monthlyChecks[0].officialClose)
+// Isolated future month: extending a live series never changes a fixed window.
+const [lastYear,lastMonth]=wood.points.at(-1).date.split('-').map(Number)
+const followingMonth=new Date(Date.UTC(lastYear,lastMonth,1)).toISOString().slice(0,7)
+const extendedWood={...wood,points:[...wood.points,{date:followingMonth,price:wood.points.find(p=>p.date==='2026-10').price*1.05}]}
+assert.equal(periodReturn(extendedWood,'2026-01','2026-10'),periodReturn(wood,'2026-01','2026-10'))
+assert.notEqual(extendedWood.points.at(-1).price,wood.points.find(p=>p.date==='2026-10').price)
+// Isolated provider recovery: a fresh SIX check remains meaningful when Yahoo
+// already supplies the exact exchange close. No live observation is modified.
+const alreadyCorrect=structuredClone(records[wood.id]),alreadyProof=structuredClone(proofs[wood.id])
+for(const r of [alreadyCorrect,alreadyProof]){
+ const p=r.historicalQuoteRepairEvidence;p.checks=[];p.status='already-correct'
+ for(const c of p.monthlyChecks){c.providerClose=c.officialClose;c.changed=false}
+}
+validateHistoryUnitEvidence(alreadyCorrect,alreadyProof)
+const forgedAlreadyCorrect=structuredClone(alreadyCorrect)
+forgedAlreadyCorrect.historicalQuoteRepairEvidence.monthlyChecks[0].officialClose=30
+assert.throws(()=>validateHistoryUnitEvidence(forgedAlreadyCorrect,alreadyProof))
+
 assert.equal(inspectSeries(records[wood.id].points).filter(a=>['scale-break','isolated-scale-point'].includes(a.kind)).length,0)
 assert(inspectSeries(before[wood.id].points).some(a=>a.kind==='isolated-scale-point'&&a.month==='2026-02'))
 const extreme=[['2024-01',10],['2024-02',40],['2024-03',18]],snapshot=structuredClone(extreme)
@@ -103,7 +121,9 @@ for(const file of ['automated-monthly.json','automated-etf-monthly.json','non-bo
  if(recent)assert.equal(getHistoricalPrice(id,recent[0]),recent[1])
 }
 assert.throws(()=>getHistoricalPrice('apple','2020-07'),/réellement coté non certifié/)
-assert.equal(getHistoricalPrice('apple','2020-09'),ASSETS.apple.anniversaryPoints.find(p=>p.date==='2020-09').price)
+const recentApple=ASSETS.apple.anniversaryPoints.filter(p=>!ASSETS.apple.anniversaryExcludedMonths?.includes(p.date)).at(-1)
+if(recentApple)assert.equal(getHistoricalPrice('apple',recentApple.date),recentApple.price)
+else assert.deepEqual(getValidYearsBackOptions('apple',new Date()),[])
 console.log('Declared corporate actions: pre-event actual quote usage refused, recent quotes and all observed performance levels retained.')
 for(const mode of ['lump','dca']){
  assert.throws(()=>derive({assetId:bank.id,startYear:2015,startMonth:1,amountRaw:'1000',mode}),/lancement officiel de LU1829219390 le 2018-11-08.*continuité du prédécesseur non qualifiée/)
