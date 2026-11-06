@@ -44,6 +44,8 @@ PRIVATE_SERVICE_READERS = [
 ]
 
 
+SCPI_ETF_RACE = json.loads((ROOT/'scripts/fixtures/scpi-etf-recording-race-20261106.json').read_text())['changedPaths']
+
 ECONOMIC_PATH = 'src/data/automated-economic.json'
 
 def economic_fixture(name):
@@ -128,6 +130,7 @@ class ObservationRebaseTests(unittest.TestCase):
                      'src/pages/dca-profiles/holdings-8.json',
                      'src/pages/dca-profiles/holdings.json',
                      *CURRENT_REVIEW_OUTPUTS, *PRIVATE_SERVICE_READERS, *BUDGET_EDITORIAL_READERS,
+                     *SCPI_ETF_RACE, 'src/data/freshness-policy.json',
                      'src/pages/budget-profiles/data.js',
                      'src/pages/budget-profiles/lib.js',
                      'src/pages/budget-profiles/unqualified-context.json']:
@@ -139,6 +142,58 @@ class ObservationRebaseTests(unittest.TestCase):
         self.f.git(self.f.local, 'push', 'origin', 'master')
         self.f.git(self.f.other, 'pull', '--ff-only')
         (self.f.local / 'validated.json').write_text('validated update\n')
+
+    def scpi_etf_late_race(self, fail_validation=False):
+        script=self.f.root/'validate-scpi-independent-etf-race.py'
+        script.write_text(f"""from pathlib import Path
+import subprocess
+root=Path({str(self.f.root)!r});paths={SCPI_ETF_RACE!r}
+counter=root/'scpi-ETF-validation-count'
+attempt=int(counter.read_text())+1 if counter.exists()else 1
+counter.write_text(str(attempt))
+if attempt==1:
+    other=root/'other'
+    for name in paths:(other/name).write_text('new independent ETF observation\\n')
+    for args in [('add',*paths),('commit','-m','actual independent ETF output race'),('push','origin','master')]:
+        subprocess.run(['git','-C',str(other),*args],check=True)
+else:
+    for name in paths:assert Path(name).read_text()=='new independent ETF observation\\n'
+    if {fail_validation!r}:raise SystemExit(23)
+""")
+        return self.publish('scpi',f'{shlex.quote(sys.executable)} {shlex.quote(str(script))}')
+
+    def test_actual_scpi_etf_late_race_preserves_both_writers_and_revalidates(self):
+        result=self.scpi_etf_late_race()
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+        self.assertEqual((self.f.root/'scpi-ETF-validation-count').read_text(),'2')
+        self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'validated update')
+        for path in SCPI_ETF_RACE:self.assertEqual(self.f.git(self.f.remote,'show','master:'+path),'new independent ETF observation')
+
+    def test_scpi_etf_independence_never_bypasses_failed_combined_validation(self):
+        result=self.scpi_etf_late_race(fail_validation=True)
+        self.assertEqual(result.returncode,23,result.stdout+result.stderr)
+        self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'original')
+
+    def test_scpi_etf_outputs_never_hide_changed_scpi_inputs_or_other_files(self):
+        for path in ['scripts/collect_scpi.py','src/data/automated-scpi.json','src/data/freshness-policy.json','src/pages/dca-profiles/holdings-32.json','src/pages/dca-profiles/holdings-private.json']:
+            with self.subTest(path=path):
+                # A separate real Git fixture is required for each refusal.
+                f=harness.CommitValidatedData();f.setUp()
+                try:
+                    target=f.other/path;target.parent.mkdir(parents=True,exist_ok=True);target.write_text('changed input')
+                    for args in [('add',path),('commit','-m','protected input'),('push','origin','master')]:f.git(f.other,*args)
+                    command=f'{shlex.quote(sys.executable)} {shlex.quote(str(GUARD))} --kind scpi --base "$VALIDATED_DATA_ORIGINAL_BASE" --upstream HEAD^'
+                    (f.local/'validated.json').write_text('candidate')
+                    result=f.publish({'VALIDATED_DATA_CHECK':command})
+                    self.assertNotEqual(result.returncode,0)
+                    self.assertIn(path,result.stdout+result.stderr)
+                finally:f.doCleanups()
+
+    def test_scpi_dca_allowance_does_not_qualify_monthly_acquisition(self):
+        self.assert_refused('src/pages/dca-profiles/catalog.json','market')
+
+    def test_dca_view_allowance_does_not_extend_to_other_producers(self):
+        self.assert_refused('src/pages/dca-profiles/holdings-16.json','publication')
 
     def economic_late_race(self, after, fail_validation=False, kind='market'):
         before=economic_fixture('before')

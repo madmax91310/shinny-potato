@@ -1,0 +1,24 @@
+{
+  "sourceRun": 42280725727,
+  "producer": "scpi",
+  "collectionBase": "026f95cbe2fff011341889deb6d541b4fb7c81d4",
+  "upstream": "c9e5798fa9a3a540b20c75baf50dbe34a560b3d1",
+  "changedPaths": [
+    "src/data/exposure-etf-expansion-records.json",
+    "src/pages/dca-profiles/catalog.json",
+    "src/pages/dca-profiles/exposures-extra-0.json",
+    "src/pages/dca-profiles/exposures-extra-1.json",
+    "src/pages/dca-profiles/exposures-extra-2.json",
+    "src/pages/dca-profiles/exposures.json",
+    "src/pages/dca-profiles/holdings-0.json",
+    "src/pages/dca-profiles/holdings-16.json",
+    "src/pages/dca-profiles/holdings-18.json",
+    "src/pages/dca-profiles/holdings-2.json",
+    "src/pages/dca-profiles/holdings-21.json",
+    "src/pages/dca-profiles/holdings-24.json",
+    "src/pages/dca-profiles/holdings-4.json",
+    "src/pages/dca-profiles/holdings-8.json",
+    "src/pages/dca-profiles/holdings.json"
+  ],
+  "rootCause": "Independent ETF registry and derived DCA views not qualified for SCPI revalidation; no source SCPI input changed"
+}
