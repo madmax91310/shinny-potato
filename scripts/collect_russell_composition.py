@@ -66,6 +66,41 @@ def ocr(image, directory, name):
     result = subprocess.run(['tesseract', str(path), 'stdout', '--psm', '6' if name.startswith('legend') else '11', 'tsv'], capture_output=True, text=True, check=True, timeout=30)
     return list(csv.DictReader(io.StringIO(result.stdout), delimiter='\t'))
 
+def sector_disk(points):
+    """Fit the curved boundary, not the incomplete non-grey bounding box.
+
+    Grey/black sectors may occupy a cardinal extremum. The convex hull of
+    the remaining fill pixels still has points on the same outer circle.
+    Geometry only checks the independently printed/OCR weights below.
+    """
+    boundary = sorted(set(points))
+    def cross(o,a,b):
+        return (a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0])
+    lower, upper = [], []
+    for point in boundary:
+        while len(lower)>=2 and cross(lower[-2],lower[-1],point)<=0:lower.pop()
+        lower.append(point)
+    for point in reversed(boundary):
+        while len(upper)>=2 and cross(upper[-2],upper[-1],point)<=0:upper.pop()
+        upper.append(point)
+    hull = lower[:-1]+upper[:-1]
+    if len(hull)<20:reject('Russell curved disk boundary incomplete')
+    ox=sum(x for x,y in hull)/len(hull);oy=sum(y for x,y in hull)/len(hull)
+    centered=[(x-ox,y-oy)for x,y in hull]
+    aa=sum(x*x for x,y in centered);ab=sum(x*y for x,y in centered);bb=sum(y*y for x,y in centered)
+    az=sum(x*(x*x+y*y)for x,y in centered);bz=sum(y*(x*x+y*y)for x,y in centered)
+    determinant=aa*bb-ab*ab
+    if determinant<=0:reject('Russell disk geometry indeterminate')
+    fx=(az*bb-bz*ab)/determinant/2;fy=(bz*aa-az*ab)/determinant/2
+    cx,cy=ox+fx,oy+fy
+    radius=math.sqrt(sum((x-fx)**2+(y-fy)**2 for x,y in centered)/len(centered))
+    # Same four-pixel radius budget as the existing eight-pixel diameter
+    # shape guard. This is not the financial weight-disagreement threshold.
+    if max(abs(math.hypot(x-cx,y-cy)-radius)for x,y in hull)>4:
+        reject('Russell sector boundary is not a qualified circle')
+    return cx,cy,radius
+
+
 def read_chart(image, scale, directory):
     image = image.convert('RGB'); w,h = image.size
     if w < 1000 or h < 600 or not 1.6 < w/h < 1.9: reject('Russell sector chart dimensions changed')
@@ -92,7 +127,10 @@ def read_chart(image, scale, directory):
     if not points:reject('Russell sector disk absent')
     x0=min(x for x,y in points);x1=max(x for x,y in points);y0=min(y for x,y in points);y1=max(y for x,y in points)
     if abs((x1-x0)-(y1-y0))>8:reject('Russell disk shape changed')
-    cx=(x0+x1)/2;cy=(y0+y1)/2;radius=(x1-x0+y1-y0)/4
+    box=((x0+x1)/2,(y0+y1)/2,(x1-x0+y1-y0)/4)
+    cx,cy,radius=sector_disk(points)
+    if max(abs(a-b)for a,b in zip(box,(cx,cy,radius)))>4:
+        reject('Russell disk differs from the bounded raster geometry')
     if not .2*w<cx<.35*w or not .35*h<cy<.65*h:reject('Russell chart layout changed')
     def angle(x,y):return math.atan2(cy-y,x-cx)%(2*math.pi)
     fills={c:[] for c in palette}
@@ -147,16 +185,36 @@ def read_chart(image, scale, directory):
     if abs(sum(r['weightPct']for r in rows)-100)>.1:reject('Russell printed sector total invalid')
     return sorted([[SECTOR_LABELS.get(r['name'],r['name']),r['weightPct']]for r in rows])
 
-def printed_sectors(body):
+def qualify_chart(image, directory):
+    first=read_chart(image,2,directory)
+    attempts=[{'scale':2,'status':'qualified'}]
+    try:
+        second=read_chart(image,3,directory)
+        attempts.append({'scale':3,'status':'qualified'})
+        scales=[2,3]
+    except ValueError as error:
+        # One bounded native-resolution retry for an unreadable OCR token only.
+        # Never retry away a financial/geometry, identity or total disagreement.
+        if str(error)!='Russell printed weight ambiguous':raise
+        attempts.append({'scale':3,'status':'unreadable','reason':str(error)})
+        second=read_chart(image,1,directory)
+        attempts.append({'scale':1,'status':'qualified'})
+        scales=[2,1]
+    if first!=second:reject('Russell sector OCR readings disagree')
+    return first,{'qualifiedScales':scales,'attempts':attempts,
+                 'minimumOcrConfidence':75,'maxGeometryDifferencePctPoints':.5,
+                 'weightsFromPrintedLabelsOnly':True}
+
+
+def printed_sectors(body, *, with_proof=False):
     with tempfile.TemporaryDirectory() as directory:
         pdf=pathlib.Path(directory)/'source.pdf';pdf.write_bytes(body)
         subprocess.run(['pdfimages','-f','2','-l','2','-png',str(pdf),str(pathlib.Path(directory)/'chart')],capture_output=True,check=True,timeout=30)
         images=[p for p in pathlib.Path(directory).glob('chart-*.png') if 1.6<Image.open(p).width/Image.open(p).height<1.9]
         if len(images)!=1:reject('Russell printed sector chart missing/ambiguous')
         with Image.open(images[0])as image:
-            a=read_chart(image,2,directory);b=read_chart(image,3,directory)
-        if a!=b:reject('Russell sector OCR readings disagree')
-        return a
+            rows,proof=qualify_chart(image,directory)
+        return (rows,proof) if with_proof else rows
 
 def collect(config,now,fetch=download):
     body=fetch(config['sourceUrl']);text=pdf_text(body)
@@ -168,7 +226,8 @@ def collect(config,now,fetch=download):
     if len(counts)!=1:reject('Russell index/comparison count ambiguous')
     count=int(counts[0][0].replace(',',''))
     if not 500<count<1500 or 'largest US companies' not in text:reject('Russell universe/count changed')
-    return {'index':config['name'],'asOf':stamp,'constituents':count,'sectorMethod':'ICB industries · printed Russell 1000 chart',
-            'countries':[['🇺🇸 États-Unis',100]],'sectors':printed_sectors(body),'holdings':[],
+    sectors,extraction=printed_sectors(body,with_proof=True)
+    return {'index':config['name'],'asOf':stamp,'constituents':count,'sectorExtractionProof':extraction,'sectorMethod':'ICB industries · printed Russell 1000 chart',
+            'countries':[['🇺🇸 États-Unis',100]],'sectors':sectors,'holdings':[],
             'source':{'url':config['sourceUrl'],'checkedAt':now.date().isoformat(),'sha256':proof(body),'label':'Fiche officielle FTSE Russell'},
             'provenance':'Indice Russell 1000 exact. Comptage natif ; secteurs imprimés lus à deux résolutions, associés aux couleurs de légende et contrôlés géométriquement. Les poids ne sont jamais déduits des surfaces. États-Unis : univers des sociétés américaines de l’indice, pas domicile juridique individuel. Poids du top dix absents de la publication ; aucune substitution ETF.'}
