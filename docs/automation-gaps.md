@@ -1,4 +1,4 @@
-# Champs restant à automatiser — 2026-11-05
+# Champs restant à automatiser — 2026-11-06
 
 Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.
 
@@ -94,7 +94,7 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | iShares Physical Palladium ETC (IE00B4556L06) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Physical Palladium ETC (IE00B4556L06) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Calendrier annuel | Non publié | La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée. |
-| instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Pays | Non publié | La fiche ne publie que les cinq premiers pays (88.72 %). Le solde ne peut pas être attribué à des pays sans source complète. |
+| instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Pays | Non publié | La fiche ne publie que les cinq premiers pays (89.28 %). Le solde ne peut pas être attribué à des pays sans source complète. |
 | instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
