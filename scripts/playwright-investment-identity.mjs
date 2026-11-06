@@ -8,7 +8,8 @@ try{for(const width of [1440,390])for(const mode of ['lump','dca'])for(const yea
  const state={currency:'native',scenario:'standard',crisisId:'covid',assetId:'etfLU1829219390',startYear:year,startMonth:1,amountRaw:'1000',mode,customLabel:'',customStart:'',customEnd:'',overridePriceRaw:''}
  const c=await browser.newContext({viewport:{width,height:960}});await c.addInitScript(s=>localStorage.setItem('epargnant-publication:v1:investment-settings',JSON.stringify(s)),state)
  const p=await c.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(base+'/calculateur-investissement',{waitUntil:'networkidle'})
- await p.locator('.ic-card, .ic-error, [role=alert]').first().waitFor();const body=await p.locator('body').innerText(),key=`${year}-${mode}-${width}`
+ const preview=p.getByRole('button',{name:'Aperçu',exact:true});if(await preview.isVisible())await preview.click();
+ await p.waitForFunction(()=>document.body.innerText.includes('lancement officiel de LU1829219390')||Boolean(document.querySelector('.ic-hero-number'))); const body=await p.locator('body').innerText(),key=`${year}-${mode}-${width}`
  if(year===2015){assert.match(body,/lancement officiel de LU1829219390 le 2018-11-08/);assert.match(body,/continuité du prédécesseur non qualifiée/);assert.equal(await p.locator('.ic-hero-number').count(),0)}
  else{const expected=fmtEUR(derive(state).result.finalValue,'EUR');assert.equal(await p.locator('.ic-hero-number').innerText(),expected)}
  assert.deepEqual(errors,[]);assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await p.screenshot({path:`${out}/${key}.png`,fullPage:true});rows.push({key,state,width,url:p.url(),body,errors});writeFileSync(`${out}/results.json`,JSON.stringify(rows,null,2));await c.close()
