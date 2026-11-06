@@ -4069,9 +4069,10 @@
       "responseSha256": "e41995ade62cea78b9fec04cda01eb55cfd7549abf41c02d8abafa75f2f42934"
     },
     "etfIE00BDVPNG13Nav": {
-      "status": "failed",
-      "checkedAt": "2026-11-06T15:38:06.171774+00:00",
-      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=WTAI&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n\nNode.js v20.20.2\n"
+      "status": "validated",
+      "checkedAt": "2026-11-06T21:19:13.350582+00:00",
+      "periodEnd": "2026-10",
+      "responseSha256": "77e54f58769cc7a89a559cd40b50dfe85c7ad9909c8d407dafe83a94a0b16173"
     },
     "etfCloudWisdomtreeNav": {
       "status": "validated",
