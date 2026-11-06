@@ -4,7 +4,7 @@ import json
 import pathlib
 import re
 import unittest
-from broker_profiles import DOCUMENTS, SOURCES, parse, collect_profiles
+from broker_profiles import DOCUMENTS, SOURCES, parse, collect_profiles, clean
 from broker_profile_qualification import TARGETS, qualify
 
 FIXTURES=pathlib.Path(__file__).parent/'fixtures/broker-profiles'
@@ -19,6 +19,19 @@ class PeaCashOfficialAlternativeTests(unittest.TestCase):
         for wrong in [clause.replace('PEA','CTO'),clause.replace('n’est pas','est'), 'Les titres du PEA ne sont pas rémunérés.']:
             with self.assertRaises(ValueError): pea_cash_rule(wrong)
 
+
+class BoursoMarketsReviewedWordingTests(unittest.TestCase):
+    def test_actual_official_etf_row_keeps_purchase_and_sale_scope(self):
+        import gzip
+        raw=gzip.decompress((FIXTURES/'boursoMarkets-20261106.html.gz').read_bytes()).decode()
+        row=parse('bourso','boursomarkets',{'boursoMarkets':raw},'2026-11-06')
+        self.assertTrue(row['available'])
+        self.assertIn('achat',row['copy']['resume'])
+        self.assertIn('vente suit le tarif applicable',row['copy']['resume'])
+        self.assertIn('pastille',row['copy']['resume'])
+        for replacement in ['ETF Amundi Non Vide','ETF Amundi Oui Oui']:
+            with self.subTest(replacement=replacement),self.assertRaises(ValueError):
+                parse('bourso','boursomarkets',{'boursoMarkets':clean(raw).replace('ETF Amundi Oui Vide',replacement)},'2026-11-06')
 
 class BrokerProfilesTests(unittest.TestCase):
     def test_current_caidf_cto_clause_keeps_page_and_conditional_fees(self):

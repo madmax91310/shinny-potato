@@ -407,7 +407,7 @@
       "active": true
     }
   ],
-  "checkedAt": "2026-11-05",
+  "checkedAt": "2026-11-06",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
   "instruments": 283,
   "covered": {
@@ -1093,10 +1093,10 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "asOf": "2026-11-04",
-      "checkedAt": "2026-11-05",
+      "asOf": "2026-11-05",
+      "checkedAt": "2026-11-06",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "80c7c0d57fa25915a4b7d000dce09b2c7fe3886b595c3f948a6a6ab88a28b3a0",
+      "sha256": "8b195ed6bea1f0e9671e824f66baaf35d5271c158e3a5af964400d0462f8f789",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1156,36 +1156,36 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-11-05",
-      "asOf": "2026-09-30",
+      "checkedAt": "2026-11-06",
+      "asOf": "2026-10-31",
       "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
-      "sha256": "43ac17cfbd6ff218e06494094aa3b80b00c93549cf8f22fb1a5544afab9907e4",
-      "reason": "La fiche ne publie que les cinq premiers pays (88.72 %). Le solde ne peut pas être attribué à des pays sans source complète.",
+      "sha256": "3746ae8969ce086505485cc7c74176db1a1227baef6dd4dcc7038987140d77a7",
+      "reason": "La fiche ne publie que les cinq premiers pays (89.28 %). Le solde ne peut pas être attribué à des pays sans source complète.",
       "evidence": {
         "scope": "top-five-countries",
         "rows": [
           {
             "name": "United States",
-            "weightPct": 67.44
+            "weightPct": 69.95
           },
           {
             "name": "Japan",
-            "weightPct": 11.15
+            "weightPct": 9.79
           },
           {
             "name": "United Kingdom",
-            "weightPct": 3.72
+            "weightPct": 3.57
           },
           {
             "name": "Canada",
-            "weightPct": 3.42
+            "weightPct": 3.23
           },
           {
             "name": "Australia",
-            "weightPct": 2.99
+            "weightPct": 2.74
           }
         ],
-        "coveragePct": 88.72
+        "coveragePct": 89.28
       }
     },
     {
@@ -1830,9 +1830,9 @@
       "configured": true,
       "status": "unqualified",
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
-      "checkedAt": "2026-11-05",
+      "checkedAt": "2026-11-06",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "43275f0fa94b59bb0bf4aca5ad74175b5297a60c6a20bb4c8a93fbac04e32151",
+      "sha256": "60be537826c8e82c25fb34aadff27a15c0f2e52191dbf6d852329480087a35fc",
       "evidence": []
     },
     {
@@ -1844,9 +1844,9 @@
       "configured": true,
       "status": "unqualified",
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
-      "checkedAt": "2026-11-05",
+      "checkedAt": "2026-11-06",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "43275f0fa94b59bb0bf4aca5ad74175b5297a60c6a20bb4c8a93fbac04e32151",
+      "sha256": "60be537826c8e82c25fb34aadff27a15c0f2e52191dbf6d852329480087a35fc",
       "evidence": []
     },
     {
@@ -1858,9 +1858,9 @@
       "configured": true,
       "status": "unqualified",
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
-      "checkedAt": "2026-11-05",
+      "checkedAt": "2026-11-06",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "43275f0fa94b59bb0bf4aca5ad74175b5297a60c6a20bb4c8a93fbac04e32151",
+      "sha256": "60be537826c8e82c25fb34aadff27a15c0f2e52191dbf6d852329480087a35fc",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 31 Oct 2026",
@@ -1899,9 +1899,9 @@
       "configured": true,
       "status": "source-conflict",
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, MSFT, NVDA.",
-      "checkedAt": "2026-11-05",
+      "checkedAt": "2026-11-06",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "43275f0fa94b59bb0bf4aca5ad74175b5297a60c6a20bb4c8a93fbac04e32151",
+      "sha256": "60be537826c8e82c25fb34aadff27a15c0f2e52191dbf6d852329480087a35fc",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 03 Nov 2026",

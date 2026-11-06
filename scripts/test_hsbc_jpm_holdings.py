@@ -33,6 +33,30 @@ class FullSources(unittest.TestCase):
             with self.subTest(case=cases.index(case)),self.assertRaises(ValueError):parse_positions(case,'2026-10-15')
         with self.assertRaises(ValueError):parse_workbook(b'<html>Not a workbook</html>',NOW)
 
+    def test_current_hsbc_dividend_receivable_is_not_an_equity_or_reinvested_return(self):
+        raw=gzip.decompress((FIX/'hsbc-euro-stoxx-20261106.xls.gz').read_bytes())
+        now=dt.datetime(2026,11,6,tzinfo=dt.timezone.utc)
+        rows,stamp,excluded=parse_workbook(raw,now)
+        book=xlrd.open_workbook(file_contents=raw);sheet=book.sheet_by_index(0)
+        values=[sheet.row_values(i) for i in range(7,sheet.nrows)]
+        native=next(r for r in values if r[2]=='Eur Overseas Dividend Income Receivable')
+        account=next(r for r in excluded if r['name']==native[2])
+        self.assertEqual(account['kind'],'cash-receivable-payable')
+        self.assertEqual(account['weightPct'],native[7])
+        self.assertNotIn(native[2],[r['name'] for r in rows])
+        self.assertEqual(len(rows),50)
+        self.assertAlmostEqual(sum(r['weightPct'] for r in rows+excluded),sum(r[7] for r in values))
+        for r in rows:self.assertEqual(r['weightPct'],next(v[7] for v in values if v[0]==r['isin']))
+        self.assertEqual(parse_workbook(raw,now),(rows,stamp,excluded))
+        for change in ['unknown-account','security-identifier','weight','market-value','currency']:
+            bad=copy.deepcopy(values);target=next(r for r in bad if r[2]==native[2])
+            if change=='unknown-account':target[2]='Unqualified new account'
+            if change=='security-identifier':target[0]='FR0000120321'
+            if change=='weight':target[7]+=0.1
+            if change=='market-value':target[4]+=100000
+            if change=='currency':target[6]='JPY'
+            with self.subTest(change=change),self.assertRaises(ValueError):parse_positions(bad,stamp)
+
     def jpm(self):return json.loads((FIX/'jpm-daily.json').read_text())
 
     def test_jpm_full_list_excludes_option_overlay_without_renormalisation(self):

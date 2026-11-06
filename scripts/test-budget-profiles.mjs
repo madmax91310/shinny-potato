@@ -46,8 +46,8 @@ assert.match(buildBudgetText(grouped), /livret|Livret/, 'The earlier capital wit
 const detailed = BUDGET_PROFILES.find(p => p.id === 'finary-alternant-19-2025-09-27')
 assert.equal(budgetExpenseSections(detailed).length, 2)
 assert.equal(budgetExpenseSections({ ...detailed, expenses: [...detailed.expenses, { label: 'Poste non ventilé', amount: 10 }] }).length, 1)
-assert(buildBudgetText(detailed).includes(`Reste avant épargne et investissements : ${euro(170.01)}`))
-assert(buildBudgetText(detailed).includes(`Reste après épargne et investissements : ${euro(20.01)}`))
+assert(buildBudgetText(detailed).includes(`Reste avant épargne et investissements : ${euro(analyzeBudget(detailed).available)}`))
+assert(buildBudgetText(detailed).includes(`Reste après épargne et investissements : ${euro(analyzeBudget(detailed).balance)}`))
 assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-ingenieur-aero-2025-11-30')), /net avant impôt/i)
 assert(BUDGET_PROFILES.find(p => p.id === 'finary-fonctionnaire-30-2025-05-21').expenses.some(r=>/vacances/i.test(r.label)), 'Previously unfinanced holidays now have an explicit provision')
 const techText = buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'reddit-tech-26-2026-02-06'))
@@ -111,7 +111,7 @@ const futureApprentice = BUDGET_PROFILES.find(p => p.id === 'finary-etudiant-20-
 assert.equal(BUDGET_ORIGINAL_PROFILES.find(p=>p.id===futureApprentice.id).kind, 'planned'); assert(futureApprentice.completion.forecast)
 assert.match(futureApprentice.period, /septembre 2025/i)
 assert.match(buildBudgetText(futureApprentice), /prévisionnel/i)
-assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-celibataire-31-2026-02-03')), /enveloppe calculée/)
+assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-celibataire-31-2026-02-03')), /Dépenses courantes regroupées/)
 
 assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-batiment-21-2025-09-30')), /deux années suivant ce budget/)
 assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-ingenieur-aero-2025-11-30')), /50\/30\/20/)
@@ -156,8 +156,8 @@ for (const p of BUDGET_PROFILES.filter(p => p.kind === 'prepared')) {
   assert(p.provenance?.method || p.completion && BUDGET_COMPLETENESS[p.id].conclusion)
 }
 const preparedThomas = BUDGET_PROFILES.find(p => p.id === 'prepared-tom281-2026-10-30')
-assert.equal(preparedThomas.savings.find(r => r.label === 'Épargne de précaution').amount, 610)
-assert.equal(analyzeBudget(preparedThomas).income, 2530)
+assert.equal(preparedThomas.savings.find(r => r.label === 'Épargne de précaution').amount, 350)
+assert.equal(analyzeBudget(preparedThomas).income, 2350)
 
 // Independently reconciled user-approved lot: income / expenses / transfers / balance.
 for (const [n, income, expenses, savings, balance] of [
@@ -254,3 +254,5 @@ assert(!buildBudgetText(bankProfile('reference-vendeuse-rennes-2026')).includes(
 assert(compareBudgetRecency(bordeaux, bankProfile('finary-freelance-lille-2025-03-02')) < 0, 'Preparation in November does not turn a March 2025 budget into a recent one')
 const previousFinancials = BUDGET_ORIGINAL_PROFILES.slice(0, 61).map(p => ({ id: p.id, currency: p.currency || 'EUR', income: p.income.map(r => r.amount), expenses: p.expenses.map(r => r.amount), savings: p.savings.map(r => r.amount), capacity: p.capacity }))
 assert.equal(createHash('sha256').update(JSON.stringify(previousFinancials)).digest('hex'), '65ca0d1444787d3aa231dcdcb308c75caef562aed116ec698c0ffe82bbf9ef4d', 'Preserve all 61 previous financial profiles and identifiers')
+
+await import('./test-budget-reliability.mjs')

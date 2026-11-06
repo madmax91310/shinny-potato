@@ -105,6 +105,18 @@ class ScpiTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'structure'):remake_bulletin(shell+'<a href="/new-bulletin.pdf">Bulletin</a>',TODAY)
         with self.assertRaises(AwaitingPublication):remake_bulletin(shell+'<a href="https://other.test/REMAKELIVE_BT2_2026.pdf">PDF</a>',TODAY)
 
+    def test_official_remake_publication_month_does_not_replace_portfolio_quarter(self):
+        import gzip
+        from collect_scpi import remake_bulletin
+        html=gzip.decompress((pathlib.Path(__file__).parent/'fixtures/scpi-q3-20261030/remake-current-product-20261106.html.gz').read_bytes()).decode()
+        day=dt.date(2026,11,6)
+        url,period=remake_bulletin(html,day)
+        self.assertEqual(url,'https://www.remake.fr/wp-content/uploads/2026/11/REMAKE_LIVE_BT_T3-nov-2026.pdf')
+        self.assertEqual(period,'2026-09-30')
+        self.assertEqual(remake_bulletin(html+'<a href="'+url.replace('T3-nov','T4-nov')+'">Bulletin futur</a>',day),(url,period))
+        with self.assertRaisesRegex(ValueError,'structure'):
+            remake_bulletin(html.replace('T3-nov','T3-unknown'),day)
+
     def test_missing_bulletin_waits_until_next_edition_is_due(self):
         from collect_scpi import AwaitingPublication, next_bulletin_due
         self.assertEqual(next_bulletin_due('2026-06-30'),dt.date(2026,11,14))

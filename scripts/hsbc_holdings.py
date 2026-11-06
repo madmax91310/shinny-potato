@@ -12,6 +12,7 @@ NAME='HSBC EURO STOXX 50 UCITS ETF'
 ROOT='https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/'
 HEADERS=['ISIN','CUSIP','SecurityName','NumberOfShare','MarketValue','Country','LocalCurrencyCode','Weighting']
 CONTROL={'Capital Cash Ctrl','Capital Cash Ctrl Class B','Class Ffx Control','Class Ffx Control Class S',
+         'Eur Overseas Dividend Income Receivable',
          'Futures Liability','Capital Cash Ctrl Class J','Capital Cash Ctrl Class S',
          'Accrued Mgment Chg Capital Crystalised','Accrued Mgment Chg Capital B','Accrued Mgment Chg Capital J'}
 ACCOUNT=re.compile(r'(?:Eur|Gbp|Usd) (?:Capital Cash|Reclaimable Tax On Dividends|Initial Margin|Accrued Mgment Chg Capital S|Stocklending Commission Receivable|Futures Broker Account|Accrued Passive Hedging Fees S|Irrec Overseas Tax On Divs Receivable)')
@@ -46,6 +47,8 @@ def parse_positions(values, stamp):
         if not isin:
             if name not in CONTROL and not ACCOUNT.fullmatch(name):raise ValueError('Unqualified HSBC account: '+name)
             excluded.append({'name':name,'weightPct':weight,'kind':'cash-receivable-payable'})
+        elif name in CONTROL or ACCOUNT.fullmatch(name):
+            raise ValueError('HSBC non-security account carries an ISIN: '+name)
         elif FUTURE.fullmatch(name):
             if not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',isin):raise ValueError('Invalid HSBC future identity')
             excluded.append({'isin':isin,'name':name,'weightPct':weight,'kind':'index-future'})
