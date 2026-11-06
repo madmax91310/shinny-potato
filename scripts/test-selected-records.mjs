@@ -26,10 +26,13 @@ try{
   .replace("'../../../lib/history-dates.js'",JSON.stringify(pathToFileURL(resolve('src/lib/history-dates.js')).href))
   .replace("'../../../lib/investment-series.js'",JSON.stringify(pathToFileURL(resolve('src/lib/investment-series.js')).href))
   .replace("'../../../data/history-browser.js'",JSON.stringify(loader))
+  .replace("'../../../data/anniversary-price-quality.js'",JSON.stringify(pathToFileURL(resolve('src/data/anniversary-price-quality.js')).href))
+  .replace("'../../../data/anniversary-levels.js'",JSON.stringify(pathToFileURL(resolve('src/data/anniversary-levels.js')).href))
   .replace("'../../../data/history-window-quality.js'",JSON.stringify(pathToFileURL(resolve('src/data/history-window-quality.js')).href))
  const projected=await import(uri(code)),p=anniversaryProjection()
  assert(Object.values(p.assets).every(asset=>!Object.hasOwn(asset,'points')&&!Object.hasOwn(asset,'anniversaryPoints')))
  assert.equal(requests.length,0)
+ for(const date of ['2026-10-17','2026-11-06'])assert.deepEqual(projected.getValidYearsBackOptions('etfLU1829219390',new Date(date)),canonical.getValidYearsBackOptions('etfLU1829219390',new Date(date)),'Projected selector preserves the official split window qualification')
  for(const asset of canonical.ANNIVERSAIRE_ELIGIBLE_ASSETS){
   const before=requests.length
   assert.deepEqual(projected.getValidYearsBackOptions(asset.id,new Date('2026-10-17')),canonical.getValidYearsBackOptions(asset.id,new Date('2026-10-17')))

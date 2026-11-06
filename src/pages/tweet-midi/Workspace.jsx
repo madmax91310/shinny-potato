@@ -1,3 +1,4 @@
+import {anniversaryPriceComparisonIssue} from '../../data/anniversary-price-quality.js'
 import { useSelectedRecords } from '../../lib/use-selected-records.js'
 import { lazy, Suspense } from 'react'
 const HistoricalContext = lazy(() => import('../../design-system/HistoricalContext.jsx'))
@@ -56,6 +57,10 @@ function secondaryOptionLabel(format, value) {
 
 export default function App({ initialFormat = FORMATS.ALEATOIRE, title, description, runtime }) {
   const { search } = useLocation();
+  const requested=new URLSearchParams(search).get('asset')
+  const excluded=initialFormat===FORMATS.ANNIVERSAIRE?runtime.ui?.ANNIVERSAIRE_EXCLUDED_ASSETS?.find(a=>a.id===requested):null
+  const issue=excluded?anniversaryPriceComparisonIssue(excluded,'1900-01',runtime.ui?.resolveAnniversaryLevel?.(requested,'')?.asOf??new Date()):null
+  if(issue)return <main><PageHeader title={title??'Il y a X ans'} /><p role="alert">{issue}</p><Link to={getSimulationHref(requested)}>Voir le rendement qualifié</Link><p><Link to="/il-y-a-x-ans">Choisir un autre support</Link></p></main>
   // A new link to the same tool must also update its controls and preview.
   return <TweetMidiWorkspace key={search} runtime={runtime} search={search} initialFormat={initialFormat} title={title} description={description} />;
 }
@@ -323,6 +328,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
               <details className="text-xs text-slate-400">
                 <summary>{ANNIVERSAIRE_ELIGIBLE_ASSETS.length} actifs disponibles · pourquoi certaines absences ?</summary>
                 <p className="mt-2">Les cours ajustés des dividendes demandent une série de prix comparable au cours actuel. Ces actifs restent dans « Performance depuis » : {ANNIVERSAIRE_EXCLUDED_ASSETS.map(a => a.label).join(', ')}.</p>
+                {ANNIVERSAIRE_EXCLUDED_ASSETS.filter(a=>a.anniversaryCorporateActions?.length).map(a=><p key={a.id} className="mt-2">{anniversaryPriceComparisonIssue(a,'1900-01',resolveAnniversaryLevel(a.id,'')?.asOf??new Date())}</p>)}
               </details>
             )}
 

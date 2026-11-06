@@ -1,3 +1,4 @@
+import {requireAnniversaryPriceComparison} from '../../data/anniversary-price-quality.js'
 import { instrumentSearchText } from '../../data/asset-selection.js'
 import { anniversaryReferenceDate } from '../../lib/anniversary-reference.js'
 import { compatibleIndexReturns } from '../../lib/return-convention.js'
@@ -397,7 +398,7 @@ function buildDilemmeText(item) {
 }
 
 function findAsset(assetId) {
-  return MARKET_ASSETS.find((a) => a.id === assetId) ?? ANNIVERSAIRE_ELIGIBLE_ASSETS.find((a) => a.id === assetId);
+  return MARKET_ASSETS.find((a) => a.id === assetId) ?? ANNIVERSAIRE_ELIGIBLE_ASSETS.find((a) => a.id === assetId) ?? ASSETS[assetId];
 }
 
 // Exportée pour App.jsx : les champs "niveau actuel" du mode Comparatif (Format A) doivent
@@ -417,6 +418,7 @@ function buildAnniversaireText(item, rawNiveauActuel) {
   const asset = findAsset(item.assetId);
   const observation = resolveAnniversaryLevel(item.assetId, rawNiveauActuel);
   const ym = ymForYearsBack(item.yearsBack, anniversaryReferenceDate([{asset,observation}],TODAY));
+  requireAnniversaryPriceComparison(asset,ym,observation?.asOf??TODAY);
   const historicalPrice = getHistoricalPrice(item.assetId, ym);
   const dateLabel = fmtYm(ym, { monthLabels: MONTHS_FULL });
 
@@ -480,6 +482,8 @@ function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNiveauActuel
   const obsB = resolveAnniversaryLevel(item.assetIdB, rawNiveauActuelB);
   const ym = ymForYearsBack(item.yearsBack, anniversaryReferenceDate([{asset:assetA,observation:obsA},{asset:assetB,observation:obsB}],TODAY));
   const dateLabel = fmtYm(ym, { monthLabels: MONTHS_FULL });
+  requireAnniversaryPriceComparison(assetA,ym,obsA?.asOf??TODAY);
+  requireAnniversaryPriceComparison(assetB,ym,obsB?.asOf??TODAY);
   const histA = getHistoricalPrice(item.assetIdA, ym);
   const histB = getHistoricalPrice(item.assetIdB, ym);
 

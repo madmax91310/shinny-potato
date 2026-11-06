@@ -12,7 +12,10 @@ export function applyMonthlyAutomation(baseline) {
     const record = records[id]
     if (!record) return [id, asset]
     if (record.currency !== asset.currency || record.periodStart !== asset.points[0].date) throw new Error(`Série incompatible : ${id}`)
-    return [id, { ...asset, ...(record.field === 'adjclose' ? { priceMethod: 'adjusted' } : {}), points: record.points.map(([date, price]) => ({ date, price })),
+    return [id, { ...asset,
+      ...(record.historyExcludedMonths?.length ? {historyExcludedMonths:record.historyExcludedMonths,historyExclusionReasons:record.historyExclusionReasons} : {}),
+      ...(record.historyUnqualifiedReturnWindows?.length ? {historyUnqualifiedReturnWindows:record.historyUnqualifiedReturnWindows} : {}),
+      ...(record.field === 'adjclose' ? { priceMethod: 'adjusted' } : {}), points: record.points.map(([date, price]) => ({ date, price })),
       ...(record.anniversaryPoints?.length ? { anniversaryPoints: record.anniversaryPoints.map(([date, price]) => ({ date, price })) } : {}) }]
   }))
 }

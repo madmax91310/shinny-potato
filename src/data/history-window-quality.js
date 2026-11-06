@@ -22,7 +22,7 @@ export function qualifyHistoryWindow(asset, start, end, { contiguous = true } = 
     if(!nested.qualified)return nested
   }
   const unqualified=asset.historyExcludedMonths?.find(month=>start<=month&&month<=end)
-  if(unqualified)return {qualified:false,code:'issuer-components-unreconciled',reason:`Composants officiels non rapprochés pour ${unqualified} ; seules les fenêtres utilisant ce mois sont refusées.`}
+  if(unqualified)return {qualified:false,code:'issuer-components-unreconciled',reason:asset.historyExclusionReasons?.[unqualified]??`Composants officiels non rapprochés pour ${unqualified} ; seules les fenêtres utilisant ce mois sont refusées.`}
   const returnWindows=asset.historyUnqualifiedReturnWindows??[]
   if(!Array.isArray(returnWindows)||returnWindows.some(w=>!w||!/^\d{4}-(0[1-9]|1[0-2])$/.test(w.start??'')||!/^\d{4}-(0[1-9]|1[0-2])$/.test(w.end??'')||w.start>=w.end||typeof w.reason!=='string'||!w.reason))return {qualified:false,code:'invalid-return-qualification',reason:'Contrat de qualification des rendements invalide.'}
   // Return intervals share a valuation at their boundary, not a return.

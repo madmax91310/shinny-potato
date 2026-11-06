@@ -10,6 +10,8 @@ export const AUTOMATED_EQUITY_HISTORY = globalThis.process?.env?.MONTHLY_ARCHIVE
     instrumentType: 'EQUITY', ticker: r.symbol, priceMethod: 'adjusted', returnNote: r.continuityNote ?? '',
     ...(r.isin ?? identities.get(id)?.isin ? {isin:r.isin ?? identities.get(id).isin} : {}),
     sourceCredit: 'Yahoo Finance · cours ajustés',
+    ...(r.historyExcludedMonths?.length ? {historyExcludedMonths:r.historyExcludedMonths,historyExclusionReasons:r.historyExclusionReasons} : {}),
+    ...(r.historyUnqualifiedReturnWindows?.length ? {historyUnqualifiedReturnWindows:r.historyUnqualifiedReturnWindows} : {}),
     points: r.points.map(([date, price]) => ({ date, price })),
     anniversaryPoints: r.anniversaryPoints.map(([date, price]) => ({ date, price })),
   }]),
