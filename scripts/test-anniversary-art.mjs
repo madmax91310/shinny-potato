@@ -86,6 +86,18 @@ try {
     }
     for(const [a,b] of [['apple','or'],['bitcoin','ethereum'],['asml','berkshire'],['nasdaq100','soxx'],['sp500','cac40'],['msciWorld','stoxx600'],['nvidia','amazon'],['google','meta'],['lvmh','airliquide'],['netflix','visa'],['cocacola','nvidia'],['costco','mcdonalds'],['intel','paypal'],['schneider','hermes'],['loreal','nestle'],['sap','msciEurope'],['msciUsa','msciIndia'],['russell2000','msciEmergingExChina'],['msciWorldMomentum','msciWorldQuality'],['msciWorldValue','ftseAllWorld']]){
       const common=getValidYearsBackOptions(a,TODAY).filter(year=>getValidYearsBackOptions(b,TODAY).includes(year))
+      if(!common.length){
+        // No qualified common period is a supported refusal, never an image
+        // fixture with undefined yearsBack. Require the exact data rejection.
+        const yearsBack=1,month=ymForYearsBack(yearsBack,TODAY),reasons=[]
+        for(const id of [a,b]){try{getHistoricalPrice(id,month)}catch(error){reasons.push(error.message)}}
+        if(!reasons.length)throw new Error(`${a}/${b}: empty options without a documented historical refusal`)
+        let refusal=null
+        try{await renderAnniversaryImage({mode:'comparatif',assetIdA:a,assetIdB:b,yearsBack},'150','75')}catch(error){refusal=error.message}
+        if(!reasons.includes(refusal))throw new Error(`${a}/${b}: unexpected comparison refusal: ${refusal}`)
+        records.push({name:`${a}-${b}`,refused:true,reason:refusal,month})
+        continue
+      }
       const yearsBack=common.filter(year=>year<=3).at(-1)??common[0], pastA=getHistoricalPrice(a,ymForYearsBack(yearsBack,TODAY)),pastB=getHistoricalPrice(b,ymForYearsBack(yearsBack,TODAY))
       labels=[];bounds=[]
       const canvas=await renderAnniversaryImage({mode:'comparatif',assetIdA:a,assetIdB:b,yearsBack},String(pastA*1.5),String(pastB*.75))
@@ -122,5 +134,5 @@ try {
   assert.deepEqual(await retry.evaluate(inspectApple), {names:2,png:true}, 'Missing logo must export a clean text fallback')
   await retry.unroute('**/asset-art/official-logos/apple.svg')
   assert.deepEqual(await retry.evaluate(inspectApple), {names:1,png:true}, 'Retry must restore the official logo')
-  console.log(`${records.length} anniversary exports: every eligible identity, units, ratios, comparisons, long levels, local resources and fallback/retry verified.`)
+  console.log(`${records.filter(r=>!r.refused).length} anniversary exports, ${records.filter(r=>r.refused).length} explicitly refused comparisons: every eligible identity, units, ratios, comparisons, long levels, local resources and fallback/retry verified.`)
 }finally{await browser?.close();server.kill('SIGTERM')}
