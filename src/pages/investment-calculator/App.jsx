@@ -300,6 +300,7 @@ function InvestmentEditor({state,setState}){
   // une date de départ antérieure au plancher calculait silencieusement sur ces points illustratifs.
   const assetMinDate = !isCustom ? getAssetMinDate(state.assetId) : null
   const startYm = state.startYear + '-' + (state.startMonth < 10 ? '0' + state.startMonth : state.startMonth)
+  const historyDateIssue = !isCustom ? ASSETS[state.assetId].historyExclusionReasons?.[startYm] : null
   const lastAvailableYm = isCustom ? null : ASSETS[state.assetId].points.at(-1).date
   const startDateAfterLast = !isCustom && ymIndex(startYm) > ymIndex(lastAvailableYm)
   const indexStartInvalid = monthlyIndex && state.startMonth !== 12
@@ -479,7 +480,8 @@ function InvestmentEditor({state,setState}){
                   className="ic-control"
                   value={state.startMonth}
                   onChange={(e) => set({ startMonth: parseInt(e.target.value, 10) })}
-                  aria-invalid={startDateInvalid}
+                  aria-invalid={startDateInvalid || Boolean(historyDateIssue)}
+                  aria-describedby={historyDateIssue ? 'ic-history-date-issue' : undefined}
                 >
                   {MONTHS_FULL.map((mn, i) => (
                     <option key={mn} value={i + 1}>
@@ -494,7 +496,8 @@ function InvestmentEditor({state,setState}){
                   className="ic-control"
                   value={state.startYear}
                   onChange={(e) => set({ startYear: parseInt(e.target.value, 10) })}
-                  aria-invalid={startDateInvalid}
+                  aria-invalid={startDateInvalid || Boolean(historyDateIssue)}
+                  aria-describedby={historyDateIssue ? 'ic-history-date-issue' : undefined}
                 >
                   {YEARS.map((yr) => (
                     <option key={yr} value={yr}>
@@ -516,6 +519,7 @@ function InvestmentEditor({state,setState}){
                 </button>
               ))}
             </div>
+            {historyDateIssue && <p id="ic-history-date-issue" className="ic-field-error">{historyDateIssue}</p>}
             {startDateInvalid && (
               <p className="ic-field-error">
                 {startDateAfterLast

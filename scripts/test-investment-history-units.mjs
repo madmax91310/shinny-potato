@@ -127,6 +127,7 @@ else assert.deepEqual(getValidYearsBackOptions('apple',new Date()),[])
 console.log('Declared corporate actions: pre-event actual quote usage refused, recent quotes and all observed performance levels retained.')
 for(const mode of ['lump','dca']){
  assert.throws(()=>derive({assetId:bank.id,startYear:2015,startMonth:1,amountRaw:'1000',mode}),/lancement officiel de LU1829219390 le 2018-11-08.*continuité du prédécesseur non qualifiée/)
+ assert.throws(()=>derive({assetId:bank.id,startYear:2015,startMonth:1,amountRaw:'1000',currency:'native',overridePriceRaw:'10',mode}),/continuité du prédécesseur non qualifiée/)
  assert(Number.isFinite(derive({assetId:bank.id,startYear:2019,startMonth:1,amountRaw:'1000',mode}).result.finalValue))
 }
 assert.throws(()=>getHistoricalPrice(bank.id,'2018-10'),/continuité du prédécesseur non qualifiée/)
