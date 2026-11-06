@@ -1,0 +1,410 @@
+{
+  "checkedAt": "2026-11-06T14:53:57.683133+00:00",
+  "previousDataSha": "d517425c4aec4635bc87ea2c2e2ea3c1077e6a8a",
+  "publicVersion": {
+    "sha": "2850b220841fa19e4aa561804b474e5e280a956d",
+    "dataSha": "ad419ccfcc929e2b67a794255ef9c04caa60e579",
+    "lane": "validated-data",
+    "builtAt": "2026-11-06T14:39:59.270Z"
+  },
+  "codeObjects": {
+    "src/pages/investment-calculator": "bcc769a5ce1b6e3d8c8e22b1eb7598d88c3ced4f",
+    "src/pages/tweet-midi": "98eaef2f01cbedbb05bd86af639db58e6083b879",
+    "src/lib/investment-series.js": "035af74bd7ff1b97a23ed39565a85bc8055fba4d",
+    "src/data/anniversary-price-quality.js": "0a14fc59f6b1d188da9bbc531ef27cd3fbe105e2",
+    "src/data/history-window-quality.js": "4ab78f299a05305459e15b5f9f6bec0679cea3ad",
+    "src/data/automated-equity-history.js": "7b9460851519ba7e228807b43896d7e7aaf54438",
+    "src/data/etf-monthly-history.js": "d1c62509ebbc5a529bfd847875032b965b0c5312",
+    "src/data/monthly-automation.js": "bf216f9f0e1bcb66c3e61769da1cd72021ddf8be",
+    "scripts/refresh_monthly_history.py": "474e37bdb133edbaa6478b0bebda2dd0ae1a5502",
+    "scripts/qualified_history_units.py": "3a5916a93d63bdffa242327a9e031782347283ce",
+    "scripts/qualify_anniversary_price_units.py": "885a8b99786317e010b68e2894a206bc8f3e4e36",
+    "scripts/lib/history-unit-proof.mjs": "eab4e9b3cd4d0d695e2849b250ea2a9a5f65fe74"
+  },
+  "allHistoricalQuoteObservationsAndWindowProtectionsUnchanged": true,
+  "bankReturnPointsAndOfficialChecksUnchanged": true,
+  "wood2026ReturnPointsAndOfficialChecksUnchanged": true,
+  "failedNaturalGasWholeRecordAndProofDateUnchanged": true,
+  "woodEarlierProviderMicrovariations": [
+    {
+      "month": "2016-02",
+      "before": 11.739936,
+      "after": 11.739935
+    },
+    {
+      "month": "2016-03",
+      "before": 13.431612,
+      "after": 13.431614
+    },
+    {
+      "month": "2016-04",
+      "before": 13.744891,
+      "after": 13.744886
+    },
+    {
+      "month": "2016-05",
+      "before": 13.976154,
+      "after": 13.976151
+    },
+    {
+      "month": "2016-06",
+      "before": 13.992077,
+      "after": 13.99208
+    },
+    {
+      "month": "2016-07",
+      "before": 13.992077,
+      "after": 13.99208
+    },
+    {
+      "month": "2016-08",
+      "before": 14.262837,
+      "after": 14.262844
+    },
+    {
+      "month": "2016-09",
+      "before": 14.430075,
+      "after": 14.430079
+    },
+    {
+      "month": "2016-10",
+      "before": 14.653059,
+      "after": 14.653058
+    },
+    {
+      "month": "2016-11",
+      "before": 15.03556,
+      "after": 15.035559
+    },
+    {
+      "month": "2016-12",
+      "before": 15.788938,
+      "after": 15.788936
+    },
+    {
+      "month": "2017-02",
+      "before": 16.782763,
+      "after": 16.782761
+    },
+    {
+      "month": "2017-03",
+      "before": 16.935041,
+      "after": 16.93504
+    },
+    {
+      "month": "2017-04",
+      "before": 17.672388,
+      "after": 17.672392
+    },
+    {
+      "month": "2017-06",
+      "before": 18.431097,
+      "after": 18.431101
+    },
+    {
+      "month": "2017-07",
+      "before": 18.682135,
+      "after": 18.682138
+    },
+    {
+      "month": "2017-08",
+      "before": 18.657841,
+      "after": 18.657845
+    },
+    {
+      "month": "2017-09",
+      "before": 20.018307,
+      "after": 20.018311
+    },
+    {
+      "month": "2018-01",
+      "before": 23.175789,
+      "after": 23.175787
+    },
+    {
+      "month": "2018-02",
+      "before": 22.980417,
+      "after": 22.980419
+    },
+    {
+      "month": "2018-03",
+      "before": 23.143225,
+      "after": 23.143227
+    },
+    {
+      "month": "2018-04",
+      "before": 24.258465,
+      "after": 24.258463
+    },
+    {
+      "month": "2018-05",
+      "before": 23.996229,
+      "after": 23.996223
+    },
+    {
+      "month": "2018-08",
+      "before": 23.63489,
+      "after": 23.634888
+    },
+    {
+      "month": "2018-10",
+      "before": 19.85725,
+      "after": 19.857243
+    },
+    {
+      "month": "2018-11",
+      "before": 18.913589,
+      "after": 18.913588
+    },
+    {
+      "month": "2018-12",
+      "before": 17.200974,
+      "after": 17.200972
+    },
+    {
+      "month": "2019-01",
+      "before": 20.098284,
+      "after": 20.098286
+    },
+    {
+      "month": "2019-02",
+      "before": 19.632721,
+      "after": 19.632719
+    },
+    {
+      "month": "2019-03",
+      "before": 19.449821,
+      "after": 19.44982
+    },
+    {
+      "month": "2019-04",
+      "before": 19.379154,
+      "after": 19.379152
+    },
+    {
+      "month": "2019-05",
+      "before": 16.655802,
+      "after": 16.655806
+    },
+    {
+      "month": "2019-07",
+      "before": 18.026367,
+      "after": 18.026365
+    },
+    {
+      "month": "2019-09",
+      "before": 18.064604,
+      "after": 18.064606
+    },
+    {
+      "month": "2019-10",
+      "before": 19.623798,
+      "after": 19.6238
+    },
+    {
+      "month": "2019-12",
+      "before": 20.705908,
+      "after": 20.705904
+    },
+    {
+      "month": "2020-03",
+      "before": 14.668679,
+      "after": 14.668678
+    },
+    {
+      "month": "2020-04",
+      "before": 16.816275,
+      "after": 16.816273
+    },
+    {
+      "month": "2020-05",
+      "before": 16.692238,
+      "after": 16.692236
+    },
+    {
+      "month": "2020-06",
+      "before": 17.281902,
+      "after": 17.281906
+    },
+    {
+      "month": "2020-07",
+      "before": 18.731863,
+      "after": 18.731865
+    },
+    {
+      "month": "2020-08",
+      "before": 20.845846,
+      "after": 20.845844
+    },
+    {
+      "month": "2020-09",
+      "before": 20.314106,
+      "after": 20.314104
+    },
+    {
+      "month": "2020-10",
+      "before": 19.860182,
+      "after": 19.860184
+    },
+    {
+      "month": "2020-11",
+      "before": 22.375301,
+      "after": 22.375299
+    },
+    {
+      "month": "2021-01",
+      "before": 24.892355,
+      "after": 24.892357
+    },
+    {
+      "month": "2021-03",
+      "before": 26.539967,
+      "after": 26.539963
+    },
+    {
+      "month": "2021-05",
+      "before": 28.513737,
+      "after": 28.513739
+    },
+    {
+      "month": "2021-06",
+      "before": 27.259903,
+      "after": 27.259905
+    },
+    {
+      "month": "2021-08",
+      "before": 28.250696,
+      "after": 28.250698
+    },
+    {
+      "month": "2021-09",
+      "before": 27.00563,
+      "after": 27.005629
+    },
+    {
+      "month": "2021-10",
+      "before": 26.606682,
+      "after": 26.606684
+    },
+    {
+      "month": "2021-11",
+      "before": 26.889017,
+      "after": 26.889015
+    },
+    {
+      "month": "2021-12",
+      "before": 28.917707,
+      "after": 28.917709
+    },
+    {
+      "month": "2022-03",
+      "before": 28.441408,
+      "after": 28.441406
+    },
+    {
+      "month": "2022-05",
+      "before": 28.095743,
+      "after": 28.095741
+    },
+    {
+      "month": "2022-07",
+      "before": 25.253792,
+      "after": 25.253796
+    },
+    {
+      "month": "2022-08",
+      "before": 24.826599,
+      "after": 24.826601
+    },
+    {
+      "month": "2022-10",
+      "before": 22.528757,
+      "after": 22.528759
+    },
+    {
+      "month": "2022-12",
+      "before": 23.463919,
+      "after": 23.463921
+    },
+    {
+      "month": "2023-03",
+      "before": 22.703516,
+      "after": 22.703514
+    },
+    {
+      "month": "2023-04",
+      "before": 22.640146,
+      "after": 22.640148
+    },
+    {
+      "month": "2023-05",
+      "before": 22.06782,
+      "after": 22.067818
+    },
+    {
+      "month": "2023-08",
+      "before": 24.385145,
+      "after": 24.385147
+    },
+    {
+      "month": "2023-11",
+      "before": 25.039623,
+      "after": 25.039625
+    },
+    {
+      "month": "2023-12",
+      "before": 26.55562,
+      "after": 26.555622
+    },
+    {
+      "month": "2024-05",
+      "before": 26.909044,
+      "after": 26.909046
+    },
+    {
+      "month": "2024-07",
+      "before": 26.747938,
+      "after": 26.74794
+    },
+    {
+      "month": "2024-08",
+      "before": 26.899567,
+      "after": 26.899569
+    },
+    {
+      "month": "2024-09",
+      "before": 28.496387,
+      "after": 28.496389
+    },
+    {
+      "month": "2025-03",
+      "before": 24.727783,
+      "after": 24.727785
+    },
+    {
+      "month": "2025-04",
+      "before": 23.863743,
+      "after": 23.863745
+    }
+  ],
+  "eightReplayedPublicCalculatorCasesIdenticalIncludingPNG": true,
+  "restrictionPublicResponseBindings": [
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/512c893cf285c5422ae6.json",
+      "sha256": "512c893cf285c5422ae6d4f9b5e05d07c68cae65aa06efc29024c4bb702bed02",
+      "sameAsEarlierPublicRecipe": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/906d154c91fd6b502404.json",
+      "sha256": "906d154c91fd6b50240497b850ced6d6c041993094fe29d2386c667fc16e4d4b",
+      "sameAsEarlierPublicRecipe": true
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/7f4faafa96d3fb466921.json",
+      "sha256": "7f4faafa96d3fb4669217b6692429082e88bf095b8c57a289c59aca79d763438",
+      "sameAsEarlierPublicRecipe": true
+    }
+  ],
+  "restrictionCasesReused": 22,
+  "method": "Unchanged consumer/collector code, unchanged raw historical quote observations and exclusions, and identical freshly fetched public response bytes for the three assets used by the 22 restriction cases."
+}

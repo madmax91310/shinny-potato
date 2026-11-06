@@ -1,0 +1,647 @@
+{
+  "run": 42227576144,
+  "checkedAt": "2026-11-06T14:55:54.032Z",
+  "jobs": [
+    {
+      "id": 127924874405,
+      "name": "refresh",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 42227576144,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Install issuer PDF parser",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run python -m pip install -c scripts/python-constraints.txt beautifulsoup4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_abtc_nav_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_amundi_nav_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_amundi_distributing_nav.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_amundi_anniversary_prices.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_blackrock_income_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_dws_income_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_nav_export.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_performance_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_landg_nav_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_bnp_nav_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Run node scripts/test-bnp-nav-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Run node scripts/test-dws-income-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        },
+        {
+          "name": "Run node scripts/test-qualified-return-windows.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Run node scripts/test-wisdomtree-nav-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Run node scripts/test-income-nav-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_monthly_automation.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_yahoo_terminal_monthly_quote.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_nasdaq_month_close.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_monthly_split_comparison.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_monthly*units.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32
+        },
+        {
+          "name": "Run node scripts/test-investment-history-units.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_monthly_qualification.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_ranking_sources.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_h10_fx.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 38
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_market_transport.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 39
+        },
+        {
+          "name": "Run node scripts/test-nasdaq-total-return.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 40
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_data_automation.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 41
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_qualified_listings.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 42
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_exchange_listing_refresh.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 43
+        },
+        {
+          "name": "Refresh exact issuer listing tables",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 44
+        },
+        {
+          "name": "Validate shared identity consumers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 45
+        },
+        {
+          "name": "Run node scripts/build-equity-history-links.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 46
+        },
+        {
+          "name": "Refresh exact ranking histories and ECB conversion",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 47
+        },
+        {
+          "name": "Qualify missing equity histories",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 48
+        },
+        {
+          "name": "Qualify missing exact-share monthly histories",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 49
+        },
+        {
+          "name": "Run node scripts/export-monthly-baseline.mjs > \"$RUNNER_TEMP/baseline.json\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 50
+        },
+        {
+          "name": "Collect observations: collect",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 51
+        },
+        {
+          "name": "Run node scripts/build-equity-history-links.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 52
+        },
+        {
+          "name": "Run node scripts/build-ranking-annual.mjs && node scripts/test-performance-rankings.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 53
+        },
+        {
+          "name": "Run node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 54
+        },
+        {
+          "name": "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 55
+        },
+        {
+          "name": "Validate observations: python -m unittest discover -s scripts -p  test_remaining_index_sources.py",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 56
+        },
+        {
+          "name": "Validate observations: python -m unittest discover -s scripts -p  test_index_extensions.py",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 57
+        },
+        {
+          "name": "Validate observations: npm run audit:index-facts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 58
+        },
+        {
+          "name": "Validate observations: node scripts test-automated-indices.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 59
+        },
+        {
+          "name": "Validate observations: npm run audit:calculator-series",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 60
+        },
+        {
+          "name": "Validate observations: node scripts test-monthly-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 61
+        },
+        {
+          "name": "Validate observations: node scripts test-etf-tool-connections.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 62
+        },
+        {
+          "name": "Validate observations: npm run audit:data-catalog",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 63
+        },
+        {
+          "name": "Validate observations: npm run audit:data-provenance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 64
+        },
+        {
+          "name": "Validate observations: npm run verify:tweet-midi",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 65
+        },
+        {
+          "name": "Validate observations: npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 66
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 67
+        },
+        {
+          "name": "Validate collected observations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 68
+        },
+        {
+          "name": "Verify histories reach all publication tools",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 69
+        },
+        {
+          "name": "Commit validated observations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 70
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 138
+        },
+        {
+          "name": "Post Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 139
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 140
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 141
+        }
+      ]
+    },
+    {
+      "id": 127924876974,
+      "name": "official-nav-source-controls",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 42227576144,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 127948464599,
+      "name": "deploy / publish",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 42227576144,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run node scripts/test-validated-data-publisher.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run node scripts/prepare-validated-data.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run node scripts/compose-fallback-snapshot.mjs --published \"2850b220841fa19e4aa561804b474e5e280a956d\" --data \"ad419ccfcc929e2b67a794255ef9c04caa60e579\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run npm run audit:data-catalog",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Require the producer's exact validated observations after all generators",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Seal actual composite data",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Record actual code and data identities",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Run node scripts/smoke-data-routes.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Run actions/configure-pages@v6.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Run actions/upload-pages-artifact@v5.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Restore source identity for the publication order guard",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Run bash scripts/check-pages-head.sh",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Run actions/deploy-pages@v5.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Verify actual public data",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 43
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 44
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 45
+        }
+      ]
+    },
+    {
+      "id": 127955978524,
+      "name": "deploy / publish-code",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 42227576144,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 127955980602,
+      "name": "report-failures",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 42227576144,
+      "logs_url": null,
+      "steps": null
+    }
+  ]
+}

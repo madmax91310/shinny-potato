@@ -12,6 +12,8 @@ Relevé du 6 novembre 2026. Le rapport principal expose le résultat final et le
 - `public-record-bindings.json`, `reused-proof-applicability.json` : concordance exacte des observations servies avec le registre source annoncé et applicabilité des preuves officielles déjà valides ;
 - `ordinary-collection-receipt.json`, `ordinary-monthly-jobs-final.json` et `radar-incident-summary.json` : conservation après panne et signalements distincts de la correction des prix.
 
+Le dernier snapshot public observé est `ad419ccfcc929e2b67a794255ef9c04caa60e579`, sur le même code `2850b22`. Les dossiers et reçus `latest-*` conservent sa publication suivante, huit parcours financiers rejoués, le recalcul Decimal et la preuve de réutilisation des 22 restrictions. Le premier snapshot `d517425` reste archivé comme relevé antérieur.
+
 Les scripts de recette sont archivés avec les reçus. Ils utilisent les observations servies, sans importer le moteur financier. `independent-public-check.py` recalcule en `Decimal` depuis les réponses brutes ; `bind-public-records.py` vérifie leur concordance avec le registre Git du `dataSha`. Les chemins `/workspace/...` désignent l’environnement de cette exécution et sont à adapter pour un rejeu ailleurs.
 
 Les images inspectées conservent la maquette existante. Les arrondis propres aux formats sont conservés : capital du calculateur à l’unité, prix anniversaire à l’unité dans le texte et avec décimales dans l’illustration. Ces affichages proviennent des mêmes observations qualifiées.
