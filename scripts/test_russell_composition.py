@@ -1,7 +1,7 @@
 import base64,copy,datetime as dt,io,json,pathlib,shutil,tempfile,unittest
 from unittest.mock import patch
 from PIL import Image
-from collect_russell_composition import read_chart,collect,quarterly_holdings,collect_quarterly_holdings,WEIGHTS_URL
+from collect_russell_composition import read_chart,collect,quarterly_holdings,collect_quarterly_holdings,WEIGHTS_URL,sector_disk,qualify_chart
 from refresh_index_sources import merge_records,collect_one as refresh_index
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 FIX=ROOT/'scripts/fixtures/russell-composition'
@@ -48,6 +48,35 @@ class RussellTests(unittest.TestCase):
   with patch('collect_russell_composition.collect_quarterly_holdings',side_effect=ValueError('quarterly offline')),patch('collect_russell_composition.collect',return_value=json.loads((ROOT/'src/data/automated-indices.json').read_text())['russell-1000']['facts']):
    result=refresh_index(config,now)
   self.assertIn('facts',result);self.assertNotIn('holdings',result);self.assertEqual(result['errors'][0]['field'],'holdings')
+ def test_circle_boundary_is_not_a_collinear_or_distorted_shape(self):
+  import math
+  points=[(round(380+160*math.cos(t/100)),round(410+160*math.sin(t/100)))for t in range(629)]
+  cx,cy,r=sector_disk(points)
+  self.assertAlmostEqual(cx,380,delta=1);self.assertAlmostEqual(cy,410,delta=1);self.assertAlmostEqual(r,160,delta=1)
+  with self.assertRaises(ValueError):sector_disk([(x,10)for x in range(100)])
+  with self.assertRaises(ValueError):sector_disk([(x,y*1.4)for x,y in points])
+ @unittest.skipUnless(shutil.which('tesseract'),'Live OCR exercised in dedicated workflow')
+ def test_current_chart_grey_extremum_preserves_printed_weights_and_threshold(self):
+  image=Image.open(FIX/'chart-2026-10-31.png')
+  with image,tempfile.TemporaryDirectory()as directory:
+   # Reproduce the old non-grey bounding-box center, not a changed financial value.
+   with patch('collect_russell_composition.sector_disk',return_value=(383.0,413.0,160.0)):
+    with self.assertRaisesRegex(ValueError,'printed weight disagrees'):read_chart(image,2,directory)
+   a,proof=qualify_chart(image,directory)
+  self.assertEqual(proof['qualifiedScales'],[2,1]);self.assertEqual(proof['attempts'][1]['status'],'unreadable')
+  self.assertEqual(len(a),11)
+  self.assertEqual(dict(a)['💻 Technologie'],40.51)
+  self.assertAlmostEqual(sum(v for _,v in a),100,delta=.1)
+ def test_unreadable_retry_is_bounded_and_never_votes_away_financial_conflicts(self):
+  values=[['Technology',40.51]]
+  with patch('collect_russell_composition.read_chart',side_effect=[values,ValueError('Russell printed weight ambiguous'),values])as reader:
+   rows,p=qualify_chart(None,'unused');self.assertEqual(rows,values);self.assertEqual(reader.call_count,3)
+  for error in ['Russell printed weight disagrees with sector geometry','Russell sector total invalid']:
+   with patch('collect_russell_composition.read_chart',side_effect=[values,ValueError(error)])as reader:
+    with self.assertRaisesRegex(ValueError,error):qualify_chart(None,'unused')
+    self.assertEqual(reader.call_count,2)
+  with patch('collect_russell_composition.read_chart',side_effect=[values,ValueError('Russell printed weight ambiguous'),[['Technology',40.52]]]):
+   with self.assertRaisesRegex(ValueError,'readings disagree'):qualify_chart(None,'unused')
  def fixture(self):
   data=json.loads((FIX/'chart-2026-09-30.json').read_text())
   return Image.open(io.BytesIO(base64.b64decode(data['png'])))
@@ -67,7 +96,7 @@ class RussellTests(unittest.TestCase):
  def test_exact_metadata_and_unweighted_holdings(self):
   config=next(c for c in json.loads((ROOT/'scripts/index-automation.json').read_text())['indices']if c['id']=='russell-1000')
   text=(FIX/'factsheet-2026-09-30.txt').read_text();now=dt.datetime(2026,10,9,tzinfo=dt.timezone.utc)
-  with patch('collect_russell_composition.pdf_text',return_value=text),patch('collect_russell_composition.printed_sectors',return_value=[['Technology',100]]):
+  with patch('collect_russell_composition.pdf_text',return_value=text),patch('collect_russell_composition.printed_sectors',return_value=([['Technology',100]],{})):
    facts=collect(config,now,fetch=lambda _:b'source')
   self.assertEqual(facts['constituents'],1022);self.assertEqual(facts['holdings'],[]);self.assertEqual(facts['asOf'],'2026-09-30')
   for bad in [text.replace('Russell 1000 Index','Russell 1000 Equal Weight'),text.replace('1,022','2,996'),text.replace('(As of 9/30/2026)','(As of 8/31/2026)',1)]:
