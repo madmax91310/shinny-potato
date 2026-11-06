@@ -29,7 +29,7 @@ export function budgetRowSymbol(row, section = 'expenses') {
 }
 export function budgetQualification(profile) {
   if (profile.kind === 'participant') return ''
-  if (profile.completion) return profile.completion.forecast ? 'Budget reconstitué, prévisionnel' : 'Budget reconstitué'
+  if (profile.completion) return profile.completion.forecast ? 'Budget reconstitué, prévisionnel' : /^budget-conseil-/.test(profile.id) ? 'Budget reconstitué de référence' : 'Budget reconstitué'
   return profile.kind === 'planned' ? 'Budget prévu' : profile.kind === 'prepared' ? (/^(budget-conseil|reference-)/.test(profile.id) ? profile.household.match(/budget[^·]*de référence/i)?.[0] || 'Budget de référence' : 'Budget reconstitué') : ''
 }
 export function budgetPublicContext(value) {

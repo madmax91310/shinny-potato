@@ -16,6 +16,7 @@ export default function SourceEvidencePanel({ profile, onCopy }) {
     {review && <details><summary>Complétude, hypothèses et rapprochement des montants</summary>
       <p>Revue éditoriale du {dateLabel(review.reviewedAt)}, distincte de la période et de la vérification de la source.</p>
       <p>{review.conclusion}</p>{review.scopeChange && <p>{review.scopeChange}</p>}
+      {review.reliability && <p>Limites du périmètre : {review.reliability.remainingSummary}</p>}
       <table className="budget-audit-table"><thead><tr><th>Montants mensuels</th><th>Avant</th><th>Version affichée</th></tr></thead><tbody>{[['income','Ressources'],['expenses','Dépenses et provisions'],['available','Reste avant versements'],['savings','Versements'],['balance','Reste après versements']].map(([key,label]) => <tr key={key}><th>{label}</th><td>{amounts(before[key])}</td><td>{amounts(after[key])}</td></tr>)}</tbody></table>
       <p>Les compléments et réallocations sont des hypothèses éditoriales, pas de nouvelles déclarations de la personne source. Aucun nouveau salaire, aide ou patrimoine n’est créé.</p>
       <pre className="budget-provenance">{JSON.stringify(review, null, 2)}</pre>
