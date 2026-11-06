@@ -5,6 +5,7 @@ Chart levels are performance units. An immutable, previously qualified same-day
 NAV anchors their scale; it is not a fresh quote or a successful source check.
 """
 import gzip
+import datetime as dt
 import hashlib
 import json
 import math
@@ -82,6 +83,26 @@ def anchor_for(source):
     if values != [anchor['nav']]:
         raise ValueError('Historical NAV anchor changed')
     return anchor
+
+
+def trailing_month_qualification(points, now):
+    """Withhold an unfinished source snapshot, without guessing holidays.
+
+    A later-month observation witnesses that the feed crossed the boundary.
+    An observation on the calendar month's actual final day also suffices.
+    A Friday before a weekend/holiday can be valid, but this adapter cannot
+    prove that calendar: defer until the next published observation instead.
+    Existing historical coverage and return-convention checks still apply.
+    """
+    last_closed = now.date().replace(day=1) - dt.timedelta(days=1)
+    month = last_closed.strftime('%Y-%m')
+    end = max(points)
+    if end[:7] != month or end == last_closed.isoformat():
+        return {}
+    return {'monthlyEndExclusive': month,
+            'withheldMonthlyEnds': [{'month': month, 'returnAsOf': end,
+                'reason': 'Trailing source snapshot has not demonstrated the month-end valuation; awaiting a calendar-end or later-month observation'}],
+            'historyExcludedMonths': [month], 'anniversaryExcludedMonths': [month]}
 
 
 def parse(graph, table, source, anchor, now):
@@ -187,6 +208,7 @@ def parse(graph, table, source, anchor, now):
         'scaleProof': {'anchor': anchor, 'sourcePerformanceLevel': points[anchor['date']], 'factor': scale,
             'method': 'Official exact-product NAV(TR) performance units anchored to independently qualified same-day per-share NAV; no raw historical price claim',
             'anchorIsFreshSourceCheck': False}}
+    proof.update(trailing_month_qualification(points, now))
     return normalized, proof
 
 

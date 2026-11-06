@@ -9,3 +9,11 @@ Le format compacté et le format développé existants sont acceptés. Une séle
 La fixture est une extraction de métadonnées du moniteur `b030093f4c1fbe78135044e106e83f5a308388bd`, artefact13514506419 : aucun résultat financier n’y est fabriqué. La qualification `scopePlanVerified=false` d’origine reste fausse. Les tests exercent le cas réel NGAS, la réservation/POST, les deux formats, les versions/tentatives étrangères, l’ambiguïté, l’intégrité des empreintes, les identifiants invalides, la conservation du dernier succès et l’absence de fuite de paramètres entre deux incidents.
 
 La preuve en production de cette nouvelle sélection nécessite une prochaine reprise d’enregistrement réellement éligible : aucune panne volontaire ni relance massive pour la fabriquer. Les exécutions ordinaires du moniteur peuvent démontrer le plan sur l’état existant sans qu’une nouvelle panne soit provoquée. Les preuves de collecte et les refus financiers restent indépendants.
+
+## Clôture mensuelle WisdomTree — complément du 6 novembre
+
+La collecte publiée du 2 novembre utilisait, pour NGAS, une photographie arrêtée au 29 octobre : octobre 4,24195266 USD. La collecte réelle 42242620055 du 6 novembre, enregistrée dans 5739c1c et publiée, contient octobre 4,21602288 USD et des observations du mois suivant. L’ancienne admission mensuelle était prématurée ; ce constat n’explique pas l’ancienne divergence annuelle.
+
+L’adaptateur diffère désormais uniquement le dernier mois clos dont le flux n’a pas encore démontré la fin : observation au dernier jour calendaire ou au mois suivant requise. Il ne déduit aucun calendrier de jours fériés. Le vendredi précédant un week-end peut donc attendre l’observation suivante. La preuve existante `withheldMonthlyEnds` conserve date et motif, `monthlyEndExclusive` préserve les mois antérieurs et la sélection ordinaire reprend le dernier mois absent. Aucun niveau, seuil, revenu ou cours n’est fabriqué. Les neuf fenêtres historiques refusées restent distinctes.
+
+Régressions : photographie NGAS reproduite avec les fichiers de source existants, conservation intégrale des mois antérieurs, incident du 29 octobre, vendredi avant week-end, reprise par observation du mois suivant, fin décembre et publication différée. L’exécution et la publication réelles du nouveau code restent à vérifier avant annonce.
