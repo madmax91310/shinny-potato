@@ -9,10 +9,10 @@ mkdirSync(out,{recursive:true});const browser=await chromium.launch({headless:tr
 try{for(const width of [1440,390]){
  const context=await browser.newContext({viewport:{width,height:1000}}),page=await context.newPage(),errors=[]
  page.on('pageerror',e=>errors.push(e.message))
- for(const id of ['etfLU1829219390','etfImie','booking']){
+ for(const id of ['etfLU1829219390','etfImie','booking','etfLU1875395870Nav']){
   await page.goto(`${base}/il-y-a-x-ans?asset=${id}`,{waitUntil:'networkidle'})
   const reason=await page.getByRole('alert').innerText()
-  assert(reason.includes(id==='etfLU1829219390'?'division des parts par 80':ASSETS[id].anniversaryExclusionReason))
+  assert(reason.includes(id==='etfLU1829219390'?'division des parts par 80':ASSETS[id].anniversaryExclusionReason??'Période anniversaire non qualifiée.'))
   assert.equal(await page.locator('pre, .publication-image-stage img').count(),0)
   results.push({width,id,url:page.url(),reason});await page.screenshot({path:`${out}/${id}-${width}.png`,fullPage:true})
  }

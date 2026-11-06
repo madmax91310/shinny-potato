@@ -84,8 +84,16 @@ try {
       await window.saveAnniversaryExport({name:asset.id,png:canvas.toDataURL(),labels:[...labels]})
       records.push({name:asset.id})
     }
-    for(const [a,b] of [['apple','or'],['bitcoin','ethereum'],['asml','berkshire'],['nasdaq100','soxx'],['sp500','cac40'],['msciWorld','stoxx600'],['nvidia','amazon'],['google','meta'],['lvmh','airliquide'],['netflix','visa'],['cocacola','nvidia'],['costco','mcdonalds'],['intel','paypal'],['schneider','hermes'],['loreal','nestle'],['sap','msciEurope'],['msciUsa','msciIndia'],['russell2000','msciEmergingExChina'],['msciWorldMomentum','msciWorldQuality'],['msciWorldValue','ftseAllWorld']]){
+    for(const [a,b] of [['apple','or'],['bitcoin','ethereum'],['asml','berkshire'],['nasdaq100','soxx'],['sp500','cac40'],['msciWorld','stoxx600'],['nvidia','amazon'],['google','meta'],['lvmh','airliquide'],['lvmh','microsoft'],['netflix','visa'],['cocacola','nvidia'],['costco','mcdonalds'],['intel','paypal'],['schneider','hermes'],['loreal','nestle'],['sap','msciEurope'],['msciUsa','msciIndia'],['russell2000','msciEmergingExChina'],['msciWorldMomentum','msciWorldQuality'],['msciWorldValue','ftseAllWorld']]){
       const common=getValidYearsBackOptions(a,TODAY).filter(year=>getValidYearsBackOptions(b,TODAY).includes(year))
+      if(!common.length){
+        const unavailable=[a,b].find(id=>!getValidYearsBackOptions(id,TODAY).length)
+        const reason=getMarketAsset(unavailable)?.anniversaryExclusionReason
+        if(!reason)throw new Error(`No qualified comparison and no financial reason: ${a}/${b}`)
+        let actual;try{await renderAnniversaryImage({mode:'comparatif',assetIdA:a,assetIdB:b,yearsBack:1},'100','100')}catch(error){actual=error.message}
+        if(actual!==reason)throw new Error(`Expected precise financial refusal: ${a}/${b}: ${actual}`)
+        records.push({name:`${a}-${b}`,financialRefusal:true,reason});continue
+      }
       const yearsBack=common.filter(year=>year<=3).at(-1)??common[0], pastA=getHistoricalPrice(a,ymForYearsBack(yearsBack,TODAY)),pastB=getHistoricalPrice(b,ymForYearsBack(yearsBack,TODAY))
       labels=[];bounds=[]
       const canvas=await renderAnniversaryImage({mode:'comparatif',assetIdA:a,assetIdB:b,yearsBack},String(pastA*1.5),String(pastB*.75))
@@ -122,5 +130,5 @@ try {
   assert.deepEqual(await retry.evaluate(inspectApple), {names:2,png:true}, 'Missing logo must export a clean text fallback')
   await retry.unroute('**/asset-art/official-logos/apple.svg')
   assert.deepEqual(await retry.evaluate(inspectApple), {names:1,png:true}, 'Retry must restore the official logo')
-  console.log(`${records.length} anniversary exports: every eligible identity, units, ratios, comparisons, long levels, local resources and fallback/retry verified.`)
+  console.log(`${records.filter(r=>!r.financialRefusal).length} anniversary exports and ${records.filter(r=>r.financialRefusal).length} explicit financial comparison refusals: every eligible identity, units, ratios, comparisons, long levels, local resources and fallback/retry verified.`)
 }finally{await browser?.close();server.kill('SIGTERM')}

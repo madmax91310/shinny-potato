@@ -133,3 +133,5 @@ assert.throws(()=>anniversarySelection.pickForSelection({format:'anniversaire',m
 assert.throws(()=>performanceSelection.pickForSelection({format:'performance-depuis',subjectId:'etfLU1829219390',secondaryId:2016,history:[]}),/continuité du prédécesseur non qualifiée/)
 assert.equal(performanceSelection.pickForSelection({format:'performance-depuis',subjectId:'etfLU1829219390',secondaryId:2020,history:[]}).item.assetId,'etfLU1829219390')
 console.log('Stale manual subjects and years refuse explicitly; no substitution with another asset or another period.')
+
+assert.throws(()=>anniversarySelection.pickForSelection({format:'anniversaire',mode:'comparatif',subjectId:'lvmh',subjectIdB:'airliquide',secondaryId:1,history:[]}),{message:ASSETS.airliquide.anniversaryExclusionReason})

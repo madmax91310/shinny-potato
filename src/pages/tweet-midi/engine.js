@@ -325,14 +325,18 @@ function buildPouvoirAchatItem({ amount, startYear, paMode, posteId, growthPct }
 
 // A stale manual selection must fail rather than silently publish another
 // asset or a different qualified year. The random controls still use the pool.
+function manualSelection(pool){
+  return {item:pool[Math.floor(Math.random()*pool.length)],addToHistory:false}
+}
+
 function rejectHistorySelection(format,ids,year){
   const reason=ids.map(id=>{
     const asset=findAsset(id)
     return format===FORMATS.ANNIVERSAIRE
       ? asset?.anniversaryExclusionReason??anniversaryPriceComparisonIssue(asset,'1900-01',TODAY)
-      : asset?.historyExclusionReasons?.[`${Number(year)-1}-12`]
+      : asset?.historyExclusionReasons?.[`${year-1}-12`]
   }).find(Boolean)
-  throw Error(reason??'Période non qualifiée. Choisis une période proposée.')
+  throw Error(reason??'Choisis une période qualifiée.')
 }
 
 function pickForSelection({ format, mode = MODES.SIMPLE, subjectId, subjectIdB, secondaryId, history, pouvoirAchat }) {
@@ -360,10 +364,8 @@ function pickForSelection({ format, mode = MODES.SIMPLE, subjectId, subjectIdB, 
     if (format === FORMATS.PERFORMANCE_DEPUIS && hasA && hasB && !compatibleIndexReturns([findAsset(subjectId), findAsset(subjectIdB)])) throw new Error('Choisis deux indices avec la même convention de dividendes : nets ou bruts.');
     const byPair = pool.filter((item) => matchesPair(item, subjectId, subjectIdB));
     const bySecondary = hasSecondary ? byPair.filter((item) => matchesSecondary(item, secondaryId)) : byPair;
-    if(!bySecondary.length)rejectHistorySelection(format,[subjectId,subjectIdB],secondaryId)
-    const candidates = bySecondary;
-    const item = candidates[Math.floor(Math.random() * candidates.length)];
-    return { item, addToHistory: false };
+    if(!bySecondary.length)rejectHistorySelection(format,[subjectId,subjectIdB].filter(id=>!getSecondaryOptionsForFormat(format,MODES.SIMPLE,id).some(y=>!hasSecondary||y===+secondaryId)),secondaryId)
+    return manualSelection(bySecondary);
   }
 
   const hasSubject = subjectId && subjectId !== SUBJECT_ALEATOIRE;
@@ -375,8 +377,7 @@ function pickForSelection({ format, mode = MODES.SIMPLE, subjectId, subjectIdB, 
   const pool = hasSecondary ? bySubject.filter((item) => matchesSecondary(item, secondaryId)) : bySubject;
   if(isHistoryFormat&&!pool.length)rejectHistorySelection(format,[subjectId],secondaryId)
   const candidates = pool.length > 0 ? pool : bySubject.length > 0 ? bySubject : poolForFormat(format, mode);
-  const item = candidates[Math.floor(Math.random() * candidates.length)];
-  return { item, addToHistory: false };
+  return manualSelection(candidates);
 }
 
 // "1 an" / "5 ans" déjà accordé — jamais {years} substitué seul dans un gabarit qui code "ans" en
