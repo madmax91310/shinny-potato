@@ -1,0 +1,32 @@
+{
+  "base": "3477a9190b0557713f1b2870df112ebc0aaa0cbd",
+  "cause": "The future-date guard used the opposite sign and discarded old source reviews after60days, changing a static provenance inventory as time passed.",
+  "observedFailure": {
+    "run": 42080468744,
+    "job": 127439037520,
+    "step": "Run npm run audit:source-inventory",
+    "oldMissing": [
+      {
+        "tool": "duel-indices",
+        "file": "src/data/index-comparisons.js",
+        "name": "\ud83c\udf0d Monde large",
+        "reviewedAt": null,
+        "status": "source_url_documented_without_date",
+        "sourceNamed": true,
+        "sourceUrls": [
+          "https://fund-docs.vanguard.com/ie00bk5bqt80-en.pdf"
+        ]
+      }
+    ]
+  },
+  "correctedMissing": [],
+  "sourceClockRenewed": false,
+  "financialDataModified": false,
+  "freshnessThresholdChanged": false,
+  "validation": [
+    "npm run audit:source-inventory",
+    "npm run build",
+    "36 month/year rollover cases and explicit real September/November review case"
+  ],
+  "productionVerified": false
+}
