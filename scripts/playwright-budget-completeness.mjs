@@ -4,7 +4,7 @@ import { mkdirSync, readFileSync } from 'node:fs'
 import { chromium } from 'playwright'
 import { expect } from 'playwright/test'
 import { waitPreview } from './wait-preview.mjs'
-import { BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES, BUDGET_COMPLETENESS, BUDGET_EDITORIAL_CREATIONS } from '../src/pages/budget-profiles/data.js'
 import { buildBudgetText } from '../src/pages/budget-profiles/lib.js'
 import { budgetFinancialReference } from '../src/pages/budget-profiles/completion.js'
 import { WORKSPACE_KEY } from '../src/pages/budget-profiles/storage.js'
@@ -41,9 +41,10 @@ try{
   await upload(page,legacy);await expect(page.getByRole('region',{name:'Aperçu de l’import'})).toContainText('conflit');await page.getByRole('button',{name:'Appliquer cet import',exact:true}).click();await expect(warning).toHaveCount(0)
   await upload(page,legacy);await page.getByLabel('Gestion des conflits',{exact:true}).selectOption('use-imported');await page.getByRole('button',{name:'Appliquer cet import',exact:true}).click();await expect(text).toHaveValue(custom);await expect(warning).toBeVisible();await statuses()
   await page.getByText('Source et vérification du profil',{exact:true}).click()
-  const photo=page.locator('details').filter({has:page.locator('summary',{hasText:/^Photographie conservée avant compléments$/})}).last()
+  const photo=page.locator('details').filter({has:page.locator('summary',{hasText:/^Photographie source$/})}).last()
   await photo.locator('summary').click();assert.deepEqual(JSON.parse(await photo.locator('pre').textContent()),source)
-  const review=page.locator('details').filter({has:page.locator('summary',{hasText:/^Complétude, hypothèses et rapprochement des montants$/})}).last();await review.locator('summary').click();await expect(review).toContainText('hypothèses éditoriales');assert.equal((await review.locator('tbody tr').count()),5)
+  const review=page.locator('details').filter({has:page.locator('summary',{hasText:/^Rapprochement avec la source$/})}).last();await review.locator('summary').click();assert.deepEqual(JSON.parse(await review.locator('pre').textContent()),BUDGET_COMPLETENESS[profile.id]);
+  const creation=page.locator('details').filter({has:page.locator('summary',{hasText:/^Créations éditoriales et provenance$/})}).last();await expect(creation).toContainText('pas un témoignage reçu');assert.deepEqual(JSON.parse(await creation.locator('pre').textContent()),BUDGET_EDITORIAL_CREATIONS[profile.id]);assert.equal((await review.locator('tbody tr').count()),5)
   await page.getByRole('button',{name:'Rétablir le texte',exact:true}).click();await expect(text).toHaveValue(buildBudgetText(profile));await expect(warning).toHaveCount(0);await statuses()
   await page.reload();await expect(text).toHaveValue(buildBudgetText(profile));await expect(warning).toHaveCount(0)
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))

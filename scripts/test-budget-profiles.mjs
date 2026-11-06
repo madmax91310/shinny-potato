@@ -53,7 +53,7 @@ assert(BUDGET_PROFILES.find(p => p.id === 'finary-fonctionnaire-30-2025-05-21').
 const techText = buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'reddit-tech-26-2026-02-06'))
 assert(techText.includes(`Reste avant épargne : ${euro(830)}`))
 assert(techText.includes(`Reste après épargne : ${euro(230)}`))
-assert(!techText.includes('Épargne déjà constituée'), 'Missing assets are not invented')
+assert(techText.includes('2 400 €'), 'The created starting reserve is explicit in the editorial story')
 const generatedDraft = { profile: structuredClone(BUDGET_PROFILES[0]), text: 'Ancien texte généré', edited: false }
 assert.equal(refreshBudgetDraft(generatedDraft).text, buildBudgetText(BUDGET_PROFILES[0]))
 assert.equal(refreshBudgetDraft({ ...generatedDraft, text: 'Mon texte personnel', edited: true }).text, 'Mon texte personnel')
@@ -110,8 +110,8 @@ assert(!validBudget({ ...swiss, currency: null }))
 const futureApprentice = BUDGET_PROFILES.find(p => p.id === 'finary-etudiant-20-2025-03-19')
 assert.equal(BUDGET_ORIGINAL_PROFILES.find(p=>p.id===futureApprentice.id).kind, 'planned'); assert(futureApprentice.completion.forecast)
 assert.match(futureApprentice.period, /septembre 2025/i)
-assert.match(buildBudgetText(futureApprentice), /prévisionnel/i)
-assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-celibataire-31-2026-02-03')), /Dépenses courantes regroupées/)
+assert.match(buildBudgetText(futureApprentice), /budget prévu/i)
+assert.equal(analyzeBudget(BUDGET_PROFILES.find(p => p.id === 'finary-celibataire-31-2026-02-03')).expenses,1775, 'Detailed editorial expenses preserve the combined envelopes')
 
 assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-batiment-21-2025-09-30')), /deux années suivant ce budget/)
 assert.match(buildBudgetText(BUDGET_PROFILES.find(p => p.id === 'finary-ingenieur-aero-2025-11-30')), /50\/30\/20/)
@@ -256,3 +256,5 @@ const previousFinancials = BUDGET_ORIGINAL_PROFILES.slice(0, 61).map(p => ({ id:
 assert.equal(createHash('sha256').update(JSON.stringify(previousFinancials)).digest('hex'), '65ca0d1444787d3aa231dcdcb308c75caef562aed116ec698c0ffe82bbf9ef4d', 'Preserve all 61 previous financial profiles and identifiers')
 
 await import('./test-budget-reliability.mjs')
+
+await import('./test-budget-editorial-lives.mjs')

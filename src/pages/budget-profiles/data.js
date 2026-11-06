@@ -1,3 +1,5 @@
+import editorialLives from './editorial-lives-2026-11-06.json' with { type: 'json' }
+import { createEditorialProfile, createEditorialContext } from './editorial-lives.js'
 import bankProfiles from './qualified-profiles-bank-2026-11-02.json' with { type: 'json' }
 import completeness from './completeness-2026-11-03.json' with { type: 'json' }
 import reliability from './reliability-2026-11-06.json' with { type: 'json' }
@@ -31,7 +33,10 @@ export const BUDGET_ORIGINAL_PROFILES = sourceProfiles.map(profile => {
 export const BUDGET_PREVIOUS_COMPLETENESS = completeness
 export const BUDGET_PREVIOUS_PROFILES = BUDGET_ORIGINAL_PROFILES.map(profile => prepareBudgetProfile(profile, completeness[profile.id]))
 export const BUDGET_COMPLETENESS = Object.fromEntries(sourceProfiles.map(p => [p.id, reviseCompletionReview(completeness[p.id], reliability[p.id])]))
-export const BUDGET_PROFILES = BUDGET_ORIGINAL_PROFILES.map(profile => prepareBudgetProfile(profile, BUDGET_COMPLETENESS[profile.id]))
+export const BUDGET_RELIABLE_PROFILES = BUDGET_ORIGINAL_PROFILES.map(profile => prepareBudgetProfile(profile, BUDGET_COMPLETENESS[profile.id]))
+
+export const BUDGET_EDITORIAL_CREATIONS = editorialLives
+export const BUDGET_PROFILES = BUDGET_RELIABLE_PROFILES.map(p => createEditorialProfile(p, editorialLives[p.id]))
 
 export const EXPENSE_CATEGORIES = [
   { id: 'housing', label: 'Logement', emoji: '🏠' },
@@ -45,10 +50,14 @@ export const EXPENSE_CATEGORIES = [
 ]
 
 export const BUDGET_ORIGINAL_EDITORIAL = Object.fromEntries(sourceProfiles.map(p => [p.id, { ...editorial[p.id], ...profileEditorial[p.id], ...newQualifiedEditorial[p.id], ...bankEditorial[p.id] }]))
-export const BUDGET_EDITORIAL = Object.fromEntries(sourceProfiles.map(p => [p.id, { ...BUDGET_ORIGINAL_EDITORIAL[p.id], ...BUDGET_COMPLETENESS[p.id].public?.display }]))
+export const BUDGET_RELIABLE_EDITORIAL = Object.fromEntries(sourceProfiles.map(p => [p.id, { ...BUDGET_ORIGINAL_EDITORIAL[p.id], ...BUDGET_COMPLETENESS[p.id].public?.display }]))
+
+export const BUDGET_EDITORIAL = Object.fromEntries(sourceProfiles.map(p => [p.id, { ...BUDGET_RELIABLE_EDITORIAL[p.id], ...editorialLives[p.id].display }]))
 
 // Publication copy and its evidence; public labels may be shared by text and image.
 // The original photographs stay intact; prepared views explicitly carry the completion audit.
 export const BUDGET_ORIGINAL_PUBLICATION_CONTEXT = publicationContext
 export const BUDGET_PREVIOUS_PUBLICATION_CONTEXT = Object.fromEntries(sourceProfiles.map(p => [p.id, prepareBudgetContext(publicationContext[p.id], completeness[p.id])]))
-export const BUDGET_PUBLICATION_CONTEXT = Object.fromEntries(sourceProfiles.map(p => [p.id, reliability[p.id]?.public ? prepareBudgetContext(BUDGET_PREVIOUS_PUBLICATION_CONTEXT[p.id], { ...BUDGET_COMPLETENESS[p.id], public: reliability[p.id].public }) : BUDGET_PREVIOUS_PUBLICATION_CONTEXT[p.id]]))
+export const BUDGET_RELIABLE_PUBLICATION_CONTEXT = Object.fromEntries(sourceProfiles.map(p => [p.id, reliability[p.id]?.public ? prepareBudgetContext(BUDGET_PREVIOUS_PUBLICATION_CONTEXT[p.id], { ...BUDGET_COMPLETENESS[p.id], public: reliability[p.id].public }) : BUDGET_PREVIOUS_PUBLICATION_CONTEXT[p.id]]))
+
+export const BUDGET_PUBLICATION_CONTEXT = Object.fromEntries(sourceProfiles.map(p => [p.id, createEditorialContext(BUDGET_RELIABLE_PUBLICATION_CONTEXT[p.id], editorialLives[p.id])]))
