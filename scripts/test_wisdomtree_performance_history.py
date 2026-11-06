@@ -1,6 +1,6 @@
 import copy,datetime as dt,gzip,json,pathlib,unittest
 from collect_official_share_history import collect_one,configurations
-from wisdomtree_performance_history import parse,anchor_for
+from wisdomtree_performance_history import parse,anchor_for,trailing_month_qualification
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 FIX=ROOT/'scripts/fixtures/wisdomtree-performance'
 NOW=dt.datetime(2026,10,29,8,tzinfo=dt.timezone.utc)
@@ -75,6 +75,40 @@ class OfficialPerformance(unittest.TestCase):
   self.assertGreater(proof['excludedPreWindowObservations'],0)
   self.assertEqual(min(points),'2021-12-01')
   self.assertEqual(proof['suppliedExactSecurityStart'],'2021-12-01')
+class TrailingMonth(unittest.TestCase):
+ def test_real_feed_shape_withholds_october_and_preserves_earlier_months(self):
+  from issuer_nav_history import monthly
+  s=next(s for s in configurations()if s.get('wisdomTicker')=='NGAS')
+  graph=json.loads(fixture(s,'graph'));table=json.loads(fixture(s,'tabular'))
+  now=dt.datetime(2026,11,2,tzinfo=dt.timezone.utc)
+  points,proof=parse(graph,table,s,anchor_for(s),now)
+  self.assertEqual(proof['sourceSnapshotDate'],'2026-10-27')
+  self.assertEqual(proof['monthlyEndExclusive'],'2026-10')
+  result,_=monthly(points,'USD','USD',s['periodStart'],now,end_exclusive=proof['monthlyEndExclusive'])
+  old,_=monthly(points,'USD','USD',s['periodStart'],NOW)
+  self.assertEqual(result,old)
+  self.assertEqual(result[-1][0],'2026-09')
+  self.assertEqual(proof['historyExcludedMonths'],['2026-10'])
+ def test_observed_incident_and_recovery_without_changing_levels(self):
+  now=dt.datetime(2026,11,2,tzinfo=dt.timezone.utc)
+  points={'2026-09-30':4.63610898,'2026-10-29':4.24195266}
+  self.assertEqual(trailing_month_qualification(points,now)['monthlyEndExclusive'],'2026-10')
+  # A Friday cannot be assumed to be the final session without a calendar.
+  points['2026-10-30']=4.21602288
+  self.assertIn('monthlyEndExclusive',trailing_month_qualification(points,now))
+  points['2026-11-02']=4.3
+  self.assertEqual(trailing_month_qualification(points,now),{})
+  self.assertEqual(points['2026-10-30'],4.21602288)
+ def test_actual_month_end_and_year_boundary_and_delayed_publication(self):
+  jan=dt.datetime(2027,1,4,tzinfo=dt.timezone.utc)
+  self.assertEqual(trailing_month_qualification({'2026-12-31':10},jan),{})
+  deferred=trailing_month_qualification({'2026-11-30':9,'2026-12-30':10},jan)
+  self.assertEqual(deferred['monthlyEndExclusive'],'2026-12')
+  # No fabricated holiday/session, interpolation or zero distribution.
+  self.assertEqual(trailing_month_qualification({'2026-12-30':10,'2027-01-04':11},jan),{})
+  # Missing an entire month remains the existing coverage/staleness failure.
+  self.assertEqual(trailing_month_qualification({'2026-11-30':9},jan),{})
+
 class ExistingBlockedShares(unittest.TestCase):
  def test_five_exact_existing_shares_retain_dates_units_and_all_calendar_gates(self):
   sources=[s for s in configurations()if s.get('wisdomTicker')in('WTAI','WCLD','COCO','NGAS','WEAT')]
