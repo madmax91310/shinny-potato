@@ -112,3 +112,24 @@ for(const mode of ['lump','dca']){
 assert.throws(()=>getHistoricalPrice(bank.id,'2018-10'),/continuité du prédécesseur non qualifiée/)
 assert.equal(qualifyHistoryWindow(ASSETS[bank.id],'2018-11','2026-10').qualified,true)
 console.log('BNKE launch boundary: prelaunch identity unconfirmed, raw observations preserved, subsequent lump/DCA and anniversary windows retained.')
+
+assert.deepEqual(JSON.parse(readFileSync('scripts/history-consumer-capabilities.json')).features,['instrument-identity-windows','isolated-observation-windows','quoted-price-windows','split-price-comparability'])
+
+for(const assetId of ['apple','etfImie','booking']){
+ const yearsBack=new Date().getUTCFullYear()-Number(ASSETS[assetId].anniversaryExcludedMonths.at(-1).slice(0,4))+1
+ const saved=JSON.parse(JSON.stringify({mode:'simple',assetId,yearsBack}))
+ const reason=ASSETS[assetId].anniversaryExclusionReason
+ assert.throws(()=>buildAnniversaireText(saved,'100'),{message:reason})
+ await assert.rejects(()=>renderAnniversaryImage(saved,'100'),{message:reason})
+}
+console.log('Serialized historical publication items cannot bypass price qualification in copied text or PNG rendering.')
+
+const anniversarySelection=await import('../src/pages/tweet-midi/engines/anniversaire.js')
+const performanceSelection=await import('../src/pages/tweet-midi/engines/performance.js')
+for(const subjectId of ['etfLU1829219390','etfImie','booking'])assert.throws(()=>anniversarySelection.pickForSelection({format:'anniversaire',subjectId,history:[]}),/division des parts|prix historique réellement coté non certifié/)
+const staleYear=new Date().getUTCFullYear()-Number(ASSETS.apple.anniversaryExcludedMonths.at(-1).slice(0,4))+1
+assert.throws(()=>anniversarySelection.pickForSelection({format:'anniversaire',subjectId:'apple',secondaryId:staleYear,history:[]}),{message:ASSETS.apple.anniversaryExclusionReason})
+assert.throws(()=>anniversarySelection.pickForSelection({format:'anniversaire',mode:'comparatif',subjectId:'apple',subjectIdB:'microsoft',secondaryId:staleYear,history:[]}),/prix historique réellement coté non certifié/)
+assert.throws(()=>performanceSelection.pickForSelection({format:'performance-depuis',subjectId:'etfLU1829219390',secondaryId:2016,history:[]}),/continuité du prédécesseur non qualifiée/)
+assert.equal(performanceSelection.pickForSelection({format:'performance-depuis',subjectId:'etfLU1829219390',secondaryId:2020,history:[]}).item.assetId,'etfLU1829219390')
+console.log('Stale manual subjects and years refuse explicitly; no substitution with another asset or another period.')

@@ -3,6 +3,7 @@ import { execFileSync } from 'node:child_process'
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
+import {automationPaths,classify} from './classify-deploy-scope.mjs'
 import { compose, fallbackFiles, introducedIdentifiers, isIsin } from './compose-fallback-snapshot.mjs'
 await import('./test-published-mentions.mjs')
 
@@ -131,3 +132,35 @@ try {
   assert.throws(() => execFileSync('node', ['build.mjs'], { cwd: unknown, stdio: 'pipe' }), /Produit inconnu : IE000U9ODG19/)
 } finally { rmSync(unknown, { recursive: true, force: true }) }
 console.log('Fallback snapshot: published code + fresh automation data composed; unrelated history refused; assets unknown to the published code wait for it.')
+
+// A known asset and familiar JSON keys do not imply that an old consumer applies
+// new financial refusals. Reject before checkout; never silently republish old data.
+assert.equal(classify(['scripts/history-consumer-capabilities.json'],automationPaths()).dataOnly,false,'Financial consumer capabilities require the full code gate')
+const financial = mkdtempSync(path.join(tmpdir(), 'fallback-history-contract-'))
+try {
+  const git=(...args)=>execFileSync('git',args,{cwd:financial,encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim()
+  const write=(file,value)=>{mkdirSync(path.dirname(path.join(financial,file)),{recursive:true});writeFileSync(path.join(financial,file),typeof value==='string'?value:JSON.stringify(value)+'\n')}
+  const commit=()=>{git('add','.');git('commit','-qm','fixture');return git('rev-parse','HEAD')}
+  const contractPath='scripts/history-consumer-capabilities.json'
+  const capability=JSON.parse(readFileSync(new URL('./history-consumer-capabilities.json',import.meta.url)))
+  const history={bank:{points:[['2026-09',4.9175],['2026-10',4.3505]],historyExcludedMonths:['2015-01'],anniversaryExcludedMonths:['2026-09']}}
+  git('init','-q');git('config','user.email','t@t');git('config','user.name','t')
+  write('app.js','// Known asset, but this old consumer ignores all financial masks.\n')
+  write('data/history.json',history);const old=commit()
+  write(contractPath,capability);write('app.js','// Qualified consumer; detailed behavior is tested with the real history engines.\n')
+  const qualified=commit()
+  assert.throws(()=>compose({published:old,data:qualified,cwd:financial,allowed:['data/history.json']}),/Publication refusée.*restrictions financières/)
+  assert.equal(git('rev-parse','HEAD'),qualified,'Rejected composition must not change checkout')
+  assert.deepEqual(JSON.parse(readFileSync(path.join(financial,'data/history.json'))),history)
+  history.bank.points.push(['2026-11',4.5]);write('data/history.json',history);const next=commit()
+  const result=compose({published:qualified,data:next,cwd:financial,allowed:['data/history.json']})
+  assert.deepEqual(result.heldBack,[]);assert.deepEqual(JSON.parse(readFileSync(path.join(financial,'data/history.json'))),history)
+  assert.equal(readFileSync(path.join(financial,contractPath),'utf8'),JSON.stringify(capability)+'\n','Capabilities come from validated code, never the data overlay')
+  git('reset','--hard',next)
+  write(contractPath,{...capability,features:[...capability.features,'future-financial-rule']});const future=commit()
+  assert.throws(()=>compose({published:qualified,data:future,cwd:financial,allowed:['data/history.json',contractPath]}),/future-financial-rule/)
+  assert.equal(git('rev-parse','HEAD'),future)
+  write(contractPath,{schemaVersion:1,features:[]});const malformed=commit()
+  assert.throws(()=>compose({published:qualified,data:malformed,cwd:financial,allowed:[]}))
+} finally {rmSync(financial,{recursive:true,force:true})}
+console.log('Financial publication contract: unsupported old code refused before overlay; compatible code retains all masks and fresh valid observations.')

@@ -145,7 +145,17 @@ class HistoryUnits(unittest.TestCase):
     def test_failed_collection_keeps_last_verified_values_and_dates(self):
         previous=json.loads((ROOT/'src/data/automated-etf-monthly.json').read_text())[self.bank['id']]
         with patch('qualified_history_units.download',side_effect=OSError('official source unavailable')):
-            merged,report=refresh({'series':[self.bank]},{self.bank['id']:previous},{},NOW,collect=lambda c,n:collect_yahoo(c,n,lambda u:self.responses[u]))
+            merged,report=refresh({'series':[self.bank]},{self.bank['id']:previous},{},NOW+dt.timedelta(days=1),collect=lambda c,n:collect_yahoo(c,n,lambda u:self.responses[u]))
         self.assertEqual(merged[self.bank['id']],previous);self.assertEqual(report['series'][0]['status'],'failed');self.assertEqual(report['series'][0]['reason'],'official source unavailable')
+
+    def test_failed_exchange_collection_keeps_wood_proof_clock(self):
+        previous=json.loads((ROOT/'src/data/automated-etf-monthly.json').read_text())[self.wood['id']]
+        def fetch(url):
+            if url==SIX_ID:raise OSError('SIX unavailable')
+            return self.responses[url]
+        merged,report=refresh({'series':[self.wood]},{self.wood['id']:previous},{},NOW+dt.timedelta(days=1),collect=lambda c,n:collect_yahoo(c,n,fetch))
+        self.assertEqual(merged[self.wood['id']],previous)
+        self.assertEqual(report['series'][0]['status'],'failed')
+        self.assertEqual(report['series'][0]['reason'],'SIX unavailable')
 
 if __name__=='__main__':unittest.main()

@@ -47,6 +47,18 @@ try{
    assert.equal(projected.getHistoricalPrice(asset.id,ym),expected,asset.id+' '+ym)
   }
  }
+ // Whole-asset selector exclusions still permit qualified recent months, while
+ // deferred records must refuse every affected old-price interval explicitly.
+ for(const asset of canonical.MARKET_ASSETS.filter(a=>a.anniversaryExclusionReason)){
+  await projected.anniversaryRecords.load(asset.id)
+  const month=asset.anniversaryExcludedMonths[0]
+  assert.throws(()=>projected.getHistoricalPrice(asset.id,month),{message:asset.anniversaryExclusionReason})
+  const recent=asset.points.filter(p=>!asset.anniversaryExcludedMonths.includes(p.date)).at(-1)?.date
+  if(recent)assert.equal(projected.getHistoricalPrice(asset.id,recent),canonical.getHistoricalPrice(asset.id,recent))
+ }
+ await projected.anniversaryRecords.load('etfLU1829219390')
+ assert.throws(()=>projected.getHistoricalPrice('etfLU1829219390','2018-10'),/continuité du prédécesseur non qualifiée/)
+ assert.equal(projected.getHistoricalPrice('etfLU1829219390','2019-01'),canonical.getHistoricalPrice('etfLU1829219390','2019-01'))
  const exposure=await import(uri(plugin.transform('',resolve('src/pages/dca-profiles/records.js')).code))
  assert(!Object.values(exposure.references).some(r=>r.countries||r.sectors||r.equitySleeve))
  const beforeNonEquity=requests.length

@@ -274,12 +274,13 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   // aucune paire correspondante et retombait silencieusement sur une paire aléatoire différente,
   // sans que l'utilisateur s'en rende compte (cf. audit du 29/08/2026).
   function renderSubjectSelect(id, value, onChange, excludeId) {
-    return <AssetPicker id={id} label={id === 'subject-select-b' ? 'Actif B' : id === 'subject-select-a' ? 'Actif A' : 'Sujet'}
+    const periodReason=format===FORMATS.ANNIVERSAIRE?getMarketAsset(value)?.anniversaryExclusionReason:null
+    return <><AssetPicker id={id} label={id === 'subject-select-b' ? 'Actif B' : id === 'subject-select-a' ? 'Actif A' : 'Sujet'}
       className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
       value={value} onChange={onChange} emptyOption={{ id: SUBJECT_ALEATOIRE, label: 'Aléatoire' }}
       items={subjectGroups.flatMap(group => group.items.filter(item => item.id !== excludeId).map(item => ({
         ...item, group: group.categorie ?? exposureGroup(item),
-      })))} />
+      })))} />{periodReason&&<p role="note" className="mt-2 text-xs text-slate-400">{periodReason}</p>}</>
   }
 
   return (
@@ -327,7 +328,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
             {format === FORMATS.ANNIVERSAIRE && (
               <details className="text-xs text-slate-400">
                 <summary>{ANNIVERSAIRE_ELIGIBLE_ASSETS.length} actifs disponibles · pourquoi certaines absences ?</summary>
-                <p className="mt-2">Les cours ajustés des dividendes demandent une série de prix comparable au cours actuel. Ces actifs restent dans « Performance depuis » : {ANNIVERSAIRE_EXCLUDED_ASSETS.map(a => a.label).join(', ')}.</p>
+                <p className="mt-2">Les périodes non qualifiées sont retirées des choix. Autres usages selon les historiques disponibles : {ANNIVERSAIRE_EXCLUDED_ASSETS.map(a => a.label).join(', ')}.</p>
                 {ANNIVERSAIRE_EXCLUDED_ASSETS.filter(a=>a.anniversaryCorporateActions?.length||a.anniversaryExclusionReason).map(a=><p key={a.id} className="mt-2">{a.anniversaryExclusionReason??anniversaryPriceComparisonIssue(a,'1900-01',resolveAnniversaryLevel(a.id,'')?.asOf??new Date())}</p>)}
               </details>
             )}

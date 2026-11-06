@@ -1,4 +1,4 @@
-import {requireAnniversaryPriceComparison} from '../../data/anniversary-price-quality.js'
+import {requireAnniversaryPriceComparison,anniversaryPriceComparisonIssue} from '../../data/anniversary-price-quality.js'
 import { instrumentSearchText } from '../../data/asset-selection.js'
 import { anniversaryReferenceDate } from '../../lib/anniversary-reference.js'
 import { compatibleIndexReturns } from '../../lib/return-convention.js'
@@ -323,6 +323,18 @@ function buildPouvoirAchatItem({ amount, startYear, paMode, posteId, growthPct }
   };
 }
 
+// A stale manual selection must fail rather than silently publish another
+// asset or a different qualified year. The random controls still use the pool.
+function rejectHistorySelection(format,ids,year){
+  const reason=ids.map(id=>{
+    const asset=findAsset(id)
+    return format===FORMATS.ANNIVERSAIRE
+      ? asset?.anniversaryExclusionReason??anniversaryPriceComparisonIssue(asset,'1900-01',TODAY)
+      : asset?.historyExclusionReasons?.[`${Number(year)-1}-12`]
+  }).find(Boolean)
+  throw Error(reason??'Période non qualifiée. Choisis une période proposée.')
+}
+
 function pickForSelection({ format, mode = MODES.SIMPLE, subjectId, subjectIdB, secondaryId, history, pouvoirAchat }) {
   if (format === FORMATS.ALEATOIRE) {
     const item = pickNext(format, history);
@@ -333,7 +345,8 @@ function pickForSelection({ format, mode = MODES.SIMPLE, subjectId, subjectIdB, 
     return { item: buildPouvoirAchatItem(pouvoirAchat), addToHistory: false };
   }
 
-  const isComparatif = mode === MODES.COMPARATIF && (format === FORMATS.ANNIVERSAIRE || format === FORMATS.PERFORMANCE_DEPUIS);
+  const isHistoryFormat=format===FORMATS.ANNIVERSAIRE||format===FORMATS.PERFORMANCE_DEPUIS;
+  const isComparatif = mode === MODES.COMPARATIF && isHistoryFormat;
   const hasSecondary = secondaryId !== undefined && secondaryId !== null && secondaryId !== SUBJECT_ALEATOIRE;
 
   if (isComparatif) {
@@ -347,7 +360,8 @@ function pickForSelection({ format, mode = MODES.SIMPLE, subjectId, subjectIdB, 
     if (format === FORMATS.PERFORMANCE_DEPUIS && hasA && hasB && !compatibleIndexReturns([findAsset(subjectId), findAsset(subjectIdB)])) throw new Error('Choisis deux indices avec la même convention de dividendes : nets ou bruts.');
     const byPair = pool.filter((item) => matchesPair(item, subjectId, subjectIdB));
     const bySecondary = hasSecondary ? byPair.filter((item) => matchesSecondary(item, secondaryId)) : byPair;
-    const candidates = bySecondary.length > 0 ? bySecondary : byPair.length > 0 ? byPair : pool;
+    if(!bySecondary.length)rejectHistorySelection(format,[subjectId,subjectIdB],secondaryId)
+    const candidates = bySecondary;
     const item = candidates[Math.floor(Math.random() * candidates.length)];
     return { item, addToHistory: false };
   }
@@ -359,6 +373,7 @@ function pickForSelection({ format, mode = MODES.SIMPLE, subjectId, subjectIdB, 
   }
   const bySubject = hasSubject ? poolForFormat(format, mode).filter((item) => matchesSubject(item, subjectId)) : poolForFormat(format, mode);
   const pool = hasSecondary ? bySubject.filter((item) => matchesSecondary(item, secondaryId)) : bySubject;
+  if(isHistoryFormat&&!pool.length)rejectHistorySelection(format,[subjectId],secondaryId)
   const candidates = pool.length > 0 ? pool : bySubject.length > 0 ? bySubject : poolForFormat(format, mode);
   const item = candidates[Math.floor(Math.random() * candidates.length)];
   return { item, addToHistory: false };

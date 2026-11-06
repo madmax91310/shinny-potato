@@ -162,6 +162,10 @@ s'alimente seule sans qu'un test sans rapport retienne les données :
   (`build-info.json` porte `sha` du code et `dataSha` des données). Les contrôles en échec restent rouges.
   Un fichier de données qui nomme un actif inconnu du code publié (ISIN valide ou clé absente
   de tout l'arbre publié) garde sa version publiée : ces actifs attendent le nouveau code.
+  Les restrictions financières des historiques ont aussi un contrat de consommateurs
+  (`scripts/history-consumer-capabilities.json`). Une composition avec un code publié
+  qui ignore ce contrat est refusée avant checkout : conserver un ancien JSON ne suffit
+  pas à protéger ses périodes non qualifiées. Le nouveau code doit passer le portail complet.
 - **Règles de fraîcheur** : un seul registre, `src/data/freshness-policy.json` (seuils par
   famille de champs et calendriers de sources). Ne jamais réécrire un seuil en dur.
 - **Voies d'accès émetteurs** : `scripts/issuer-access-routes.json` (portails VanEck, API
