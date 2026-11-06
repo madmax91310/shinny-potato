@@ -13,6 +13,9 @@ for(const [i,p]of BUDGET_PROFILES.entries()){
  assert.deepEqual(p.editorialCreation.finance,r.created.filter(e=>['financial-stock','project'].includes(e.type)));
  assert.equal(p.id,old.id);assert.equal(r.nature,'editorial-character');assert.equal(r.sourceConsultationClaim,false);assert(r.reason&&r.coherence)
  assert.equal(c.editorialCreation,r)
+ assert.deepEqual(c.paragraphs.map(e=>e.text),r.paragraphs,'Publication and editorial audit must agree')
+ assert.deepEqual(c.questions.map(e=>e.text),r.questions,'Questions and their reviewed provenance must agree')
+ assert.deepEqual(c.evidence.at(-1).created,r.created,'The evidence panel must retain the current creation inventory')
  assert(!forbidden.test(text),p.id)
  assert(!/abonné|m’a confié|nous a envoyé|témoignage/.test(text),p.id)
  const view=budgetPublicPresentation(p)
