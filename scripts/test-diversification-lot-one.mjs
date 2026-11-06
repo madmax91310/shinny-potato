@@ -12,6 +12,7 @@ import { ETF_ART } from '../src/pages/etf-sheets/visualIdentity.js';
 import { getInstrumentPeaStatus } from '../src/data/instruments.js';
 import { getInstrumentReturnValues } from '../src/data/instrument-returns.js';
 import { FAMILIES } from '../src/data/index-comparisons.js';
+import { getCurrentIndexComposition } from '../src/data/index-facts.js';
 import { SHEETS } from '../src/data/index-factsheets.js';
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js';
 import { getIndexComparisonPerformance } from '../src/data/index-comparison-performance.js';
@@ -73,7 +74,8 @@ assert.match(allocationAngle([{id:'acwi_imi_spdr',pct:40},{id:'fonds_euros',pct:
 const family=FAMILIES.find(f=>f.id==='monde-toutes-tailles');const rows=getIndexComparisonPerformance(family);
 assert(rows.every(row=>row.currency==='USD'&&row.method==='dividendes nets réinvestis'));
 assert.equal(rows[2].y2025,22.06);assert.notEqual(rows[2].y2025,getAnnualPerformance(card).values[5]);
-const sheet=SHEETS.find(s=>s.id==='acwi-imi');assert.equal(sheet.constituents,8036);
+const sheet=SHEETS.find(s=>s.id==='acwi-imi');assert.equal(sheet.constituents,getCurrentIndexComposition('acwi-imi','2026-09-30').constituents);
+assert(Number.isInteger(sheet.constituents) && sheet.constituents > 0);
 assert.equal(sheet.countries.reduce((s,[,v])=>s+v,0),100);assert(!/undefined|NaN/.test(buildFactsheetTweet(sheet)));
 assert.equal(DEFAULT_THEMES.filter(t=>['monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde'].includes(t.id)).length,3);
 assert.equal(ALLOCATION_CASES.filter(c=>['world-ex-usa-chiffre','world-small-chiffre','world-acwi-imi-chiffre'].includes(c.id)).length,3);
