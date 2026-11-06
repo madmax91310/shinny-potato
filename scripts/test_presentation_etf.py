@@ -88,4 +88,144 @@ class PresentationSources(unittest.TestCase):
         s=copy.deepcopy(r);s['performance']['observations'].append(s['performance']['observations'][0])
         with self.assertRaises(ValueError):merge_collection({**report,'shares':[s]},first,{})
 
+class JpmLivePresentation(unittest.TestCase):
+    now = dt.datetime(2026, 11, 6, tzinfo=UTC)
+
+    def raw(self, change=None):
+        import gzip
+        value = json.loads(gzip.decompress((FIX/'jpm-live-api.json.gz').read_bytes()))
+        if change:
+            change(value['fundData'])
+        return json.dumps(value).encode()
+
+    def live(self, raw=None):
+        from jpm_live_presentation import parse_live
+        return parse_live(self.raw() if raw is None else raw, share('IE0003UVYC20'), self.now)
+
+    def collect(self, document=None, fetch=None):
+        from jpm_live_presentation import collect
+        return collect(share('IE0003UVYC20'), self.now,
+                       document=document or parse_jpm,
+                       fetch=fetch or (lambda *a, **kw: self.raw()))
+
+    def test_fund_aum_is_not_share_class_assets_or_the_position_market_value_total(self):
+        result = self.live()
+        self.assertEqual(result['aum']['amount'], 1717570208)
+        self.assertEqual(result['aum']['scope'], 'fund')
+        self.assertEqual(result['aum']['currency'], 'USD')
+        self.assertEqual(result['aum']['asOf'], '2026-11-05')
+        self.assertEqual(result['aum']['sourceComponent'], 'fundData.aum.value')
+
+    def test_top_ten_preserves_weights_identities_and_its_own_date(self):
+        result = self.live()
+        fund = json.loads(self.raw())['fundData']
+        rows = result['holdings']['rows']
+        self.assertEqual(len(rows), 10)
+        self.assertFalse(result['holdings']['complete'])
+        self.assertEqual(result['holdings']['asOf'], '2026-11-05')
+        self.assertLess(sum(r['weightPct'] for r in rows), 20)
+        for row, native in zip(rows, fund['dailyHoldings']['data']):
+            self.assertEqual(row['isin'], native['securityIsin'])
+            self.assertEqual(row['weightPct'], native['marketValuePercent'])
+        result = self.live(self.raw(lambda f: f['aum'].update(date='2026-11-06')))
+        self.assertEqual(result['aum']['asOf'], '2026-11-06')
+        self.assertEqual(result['holdings']['asOf'], '2026-11-05')
+
+    def test_rejects_wrong_share_class_currency_and_fund_state(self):
+        for change in [
+            lambda f: f['shareClass'].update(cusip='IE0000000000'),
+            lambda f: f['shareClass'].update(distributingCode='ACC'),
+            lambda f: f['shareClass'].update(currencyCode='EUR'),
+            lambda f: f.update(isLiquidatedOrMergedAway=True),
+        ]:
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                self.live(self.raw(change))
+
+    def test_top_ten_and_aum_do_not_require_a_complete_book(self):
+        result = self.live(self.raw(lambda f: f.update(dailyHoldingsAll=None)))
+        self.assertEqual(len(result['holdings']['rows']), 10)
+        self.assertIn('aum', result)
+        self.assertNotIn('collectionErrors', result)
+
+    def test_bad_top_ten_preserves_it_and_still_renews_the_healthy_aum(self):
+        old = merge_collection({'checkedAt':self.now.isoformat(),'shares':[self.collect()]}, {}, {})
+        raw = self.raw(lambda f: f['dailyHoldings']['data'].pop())
+        result = self.collect(fetch=lambda *a, **kw: raw)
+        self.assertEqual(result['collectionErrors'][0]['field'], 'holdings-current-source')
+        new = merge_collection({'checkedAt':'2026-11-07','shares':[result]}, old, {})
+        self.assertEqual(new['IE0003UVYC20']['holdings'], old['IE0003UVYC20']['holdings'])
+        self.assertEqual(new['IE0003UVYC20']['aum']['checkedAt'], '2026-11-07')
+        duplicate = self.live(self.raw(lambda f: f['dailyHoldings']['data'].__setitem__(1, f['dailyHoldings']['data'][0])))
+        self.assertNotIn('holdings', duplicate)
+        self.assertIn('aum', duplicate)
+
+    def test_rejects_invalid_aum_currency_numbers_and_future_observation(self):
+        for change in [
+            lambda f: f['aum'].update(value=True),
+            lambda f: f['aum'].update(value=float('nan')),
+            lambda f: f['aum'].update(value=0),
+            lambda f: f['aum'].update(currencyCode='EUR'),
+            lambda f: f.update(isDisplayAumInUsd=False),
+            lambda f: f['aum'].update(date='2027-01-01'),
+        ]:
+            with self.subTest(change=change):
+                result = self.live(self.raw(change))
+                self.assertNotIn('aum', result)
+                self.assertEqual(len(result['holdings']['rows']), 10)
+                self.assertEqual(result['collectionErrors'][0]['field'], 'aum-current-source')
+
+    def test_keeps_pdf_conventions_dates_and_proprietary_api_classifications_separate(self):
+        result = self.collect()
+        pdf = parse_jpm()
+        for field in ['characteristics', 'performance', 'countries', 'sectors']:
+            self.assertEqual(result[field], pdf[field])
+        self.assertEqual(result['aum']['asOf'], '2026-11-05')
+        self.assertEqual(result['sectors']['asOf'], '2026-08-31')
+        self.assertEqual([a['fields'] for a in result['sourceAttempts'][-2:]], [['aum'], ['holdings']])
+
+    def test_pdf_failure_does_not_renew_retained_pdf_financial_fields(self):
+        def unavailable():
+            raise OSError('document unavailable')
+        old = merge_collection({'checkedAt':'2026-10-11','shares':[parse_jpm()]}, {}, {})
+        result = self.collect(document=unavailable)
+        self.assertTrue(result['exposureOnly'])
+        self.assertEqual(len(result['collectionErrors']), 4)
+        new = merge_collection({'checkedAt':self.now.isoformat(),'shares':[result]}, old, {})
+        for field in ['characteristics', 'performance', 'countries', 'sectors']:
+            self.assertEqual(new['IE0003UVYC20'][field], old['IE0003UVYC20'][field])
+        self.assertEqual(new['IE0003UVYC20']['aum']['checkedAt'], '2026-11-06')
+
+    def test_api_failure_retains_newer_values_and_their_original_proof_dates(self):
+        old = merge_collection({'checkedAt':self.now.isoformat(),'shares':[self.collect()]}, {}, {})
+        def unavailable(*args, **kwargs):
+            raise OSError('API unavailable')
+        result = self.collect(fetch=unavailable)
+        self.assertEqual(len(result['collectionErrors']), 2)
+        new = merge_collection({'checkedAt':'2026-11-07','shares':[result]}, old, {})
+        for field in ['aum', 'holdings']:
+            self.assertEqual(new['IE0003UVYC20'][field], old['IE0003UVYC20'][field])
+
+    def test_real_source_check_without_change_never_moves_the_observation_period(self):
+        old = merge_collection({'checkedAt':self.now.isoformat(),'shares':[self.collect()]}, {}, {})
+        new = merge_collection({'checkedAt':'2026-11-07','shares':[self.collect()]}, old, {})
+        for field in ['aum', 'holdings']:
+            self.assertEqual(new['IE0003UVYC20'][field]['checkedAt'], '2026-11-07')
+            self.assertEqual(new['IE0003UVYC20'][field]['asOf'], '2026-11-05')
+
+    def test_out_of_order_aum_does_not_refresh_the_newer_value(self):
+        old = merge_collection({'checkedAt':self.now.isoformat(),'shares':[self.collect()]}, {}, {})
+        raw = self.raw(lambda f: f['aum'].update(date='2026-11-04'))
+        result = self.collect(fetch=lambda *a, **kw: raw)
+        new = merge_collection({'checkedAt':'2026-11-07','shares':[result]}, old, {})
+        self.assertEqual(new['IE0003UVYC20']['aum'], old['IE0003UVYC20']['aum'])
+
+    def test_empty_response_and_both_sources_unavailable_are_not_success(self):
+        with self.assertRaises(ValueError):
+            self.live(b'')
+        def unavailable(*args, **kwargs):
+            raise OSError('network failure')
+        with self.assertRaisesRegex(ValueError, 'JPM document:.*current API:'):
+            self.collect(document=unavailable, fetch=unavailable)
+
+
 if __name__ == '__main__': unittest.main()
