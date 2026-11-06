@@ -1,3 +1,4 @@
+import {sameRadarDocument} from './radar-dws-redirects.mjs'
 import { requestRadarSource, sourceFailureKind, assertRadarAccess } from './radar-source-health.mjs'
 import { unexplainedOfferOmissions } from './radar-offer-watch.mjs'
 import { consumerRejection } from './radar-consumer.mjs'
@@ -245,9 +246,11 @@ export async function collectPublications(now = new Date(), request = fetch, pre
   sources=sources.map(source=>({...source,parserVersion:Math.max(source.parserVersion??0,parserVersion(source)??0)}))
   const requestContent = async (url, cached, limit = 2500000, body = null) => {
     const response = await requestRadarSource(request,url, { ...(body?{method:'POST',body:JSON.stringify(body)}:{}), signal: AbortSignal.timeout(25000), headers: { ...(body?{'Content-Type':'application/json'}:{}), 'User-Agent': 'EpargnantLibre-Radar/2.0', Accept: body?'application/json':'application/rss+xml, application/xml, application/json, text/html, application/pdf', ...(cached?.etag ? {'If-None-Match': cached.etag} : {}), ...(cached?.lastModified ? {'If-Modified-Since': cached.lastModified} : {}) } },()=>metrics.requests++)
+    // A redirected 304 is still a source response: validate its identity before
+    // renewing a cache control. No cross-domain generic fallback is permitted.
+    if (!sameRadarDocument(url,response.url)) throw new Error('Redirection hors du domaine officiel')
     if (response.status === 304) { metrics.notModified++; return { unchanged: true } }
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
-    if (response.url && new URL(response.url).hostname !== new URL(url).hostname) throw new Error('Redirection hors du domaine officiel')
     const bytes = await response.arrayBuffer()
     metrics.bytes += bytes.byteLength
     if (bytes.byteLength > limit) throw new Error(`Source trop volumineuse (${bytes.byteLength})`)
