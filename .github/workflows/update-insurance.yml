@@ -4,10 +4,10 @@ on:
     - cron: '25 7 * * *'
   workflow_dispatch:
   pull_request:
-    paths: ['.github/workflows/update-insurance.yml', 'scripts/*insurance*', 'scripts/collect_scpi.py', 'scripts/test_scpi.py', 'scripts/fixtures/linxea-vie-essential.txt', 'scripts/fixtures/insurance/**', 'scripts/publication_periods.py', 'scripts/test_publication_periods.py', 'scripts/test_presentation_expansion.py', 'scripts/fixtures/presentation-expansion/**', 'src/data/*insurance*', 'src/pages/insurance-presentation/**']
+    paths: ['scripts/accepted-source-wording.json', 'scripts/accepted_wording.py', '.github/workflows/update-insurance.yml', 'scripts/*insurance*', 'scripts/collect_scpi.py', 'scripts/test_scpi.py', 'scripts/fixtures/linxea-vie-essential.txt', 'scripts/fixtures/insurance/**', 'scripts/publication_periods.py', 'scripts/test_publication_periods.py', 'scripts/test_presentation_expansion.py', 'scripts/fixtures/presentation-expansion/**', 'src/data/*insurance*', 'src/pages/insurance-presentation/**']
   push:
     branches: [master]
-    paths: ['scripts/publication_periods.py', 'scripts/test_publication_periods.py', '.github/workflows/update-insurance.yml', 'scripts/collect_insurance.py', 'scripts/collect_other_insurance.py', 'scripts/insurance_literal.py', 'scripts/collect_scpi.py', 'scripts/fixtures/linxea-vie-essential.txt']
+    paths: ['scripts/accepted-source-wording.json', 'scripts/accepted_wording.py', 'scripts/publication_periods.py', 'scripts/test_publication_periods.py', '.github/workflows/update-insurance.yml', 'scripts/collect_insurance.py', 'scripts/collect_other_insurance.py', 'scripts/insurance_literal.py', 'scripts/collect_scpi.py', 'scripts/fixtures/linxea-vie-essential.txt']
 permissions:
   contents: read
 jobs:

@@ -89,6 +89,29 @@ N 0 900
         source='window.__NUXT__=(function(a){x.rendement={subtitle:"UC encours",data:a};return x}([1,2]));'
         self.assertEqual(nuxt_returns(source)['data'],[1,2])
         with self.assertRaises(ValueError):nuxt_returns(source.replace('return x','y.rendement={};return x'))
+    def test_current_nuxt_tables_are_bound_to_the_exact_contract(self):
+        import gzip
+        html=gzip.decompress((ROOT/'scripts/fixtures/presentation-expansion/placement-direct-vie-20261106.html.gz').read_bytes()).decode()
+        from bs4 import BeautifulSoup
+        source=next(s.get_text() for s in BeautifulSoup(html,'html.parser').select('script') if s.get_text().startswith('window.__NUXT__='))
+        result=nuxt_returns(source)
+        last=next(row for row in result['data'] if row['year']==2025)
+        values=[item[1] for tier in last['rows'] for item in tier]
+        self.assertEqual((min(values),max(values)),(1.9,3.45))
+        self.assertEqual(len(last['rows']),2)
+        for changed in [source.replace('contract-/assurance-vie/placement-direct-vie','contract-/assurance-vie/placement-direct-euro-plus'),source.replace('Placement-direct Vie','Different contract')]:
+            with self.assertRaises(ValueError):nuxt_returns(changed)
+
+    def test_inline_duplicate_rates_must_agree_in_full(self):
+        def publication(second=None):
+            rate={'subtitle':'UC encours','data':[1,2]}
+            bound={'contract':{'name':'Placement-direct Vie','path':'/assurance-vie/placement-direct-vie','information':{'rendement':rate}}}
+            root={'rendement':rate if second is None else second,'ssrRefs':{'contract-/assurance-vie/placement-direct-vie':bound}}
+            return 'window.__NUXT__=(function(a){return '+json.dumps(root)+'}(null));'
+        self.assertEqual(nuxt_returns(publication())['data'],[1,2])
+        for wrong in [{'subtitle':'UC encours','data':[1,3]},{'subtitle':'Different method','data':[1,2]},{}]:
+            with self.assertRaisesRegex(ValueError,'Contradictory'):nuxt_returns(publication(wrong))
+
     def placement_html(self):
         values=[{'year':y,'rows':[[['Part d’UC ≥ 60 %',3.25],['Part d’UC 40 à 60 %',2.4],['Part d’UC < 40 %',1.9]],[['Part d’UC ≥ 60 %',3.45],['Part d’UC 40 à 60 %',2.6],['Part d’UC < 40 %',2.1]]]} for y in [2023,2024,2025]]
         pub=json.dumps({'subtitle':'selon la part d’unités de compte et les encours','data':values},ensure_ascii=False)

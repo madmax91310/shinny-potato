@@ -228,7 +228,7 @@ def remake_bulletin(html, today):
         url=urllib.parse.urljoin(REMAKE,a['href']);parsed=urllib.parse.urlsplit(url)
         if parsed.scheme!='https' or parsed.netloc!='www.remake.fr' or parsed.query or parsed.fragment:continue
         old=re.search(r'remake-live-bulletin-information-(\d{2})-(\d{2})-(\d{4})\.pdf$',parsed.path,re.I)
-        new=re.search(r'/REMAKELIVE_BT([1-4])_(20\d{2})\.pdf$',parsed.path,re.I)or re.search(r'/REMAKE_LIVE_BT_T([1-4])-(20\d{2})\.pdf$',parsed.path,re.I)
+        new=re.search(r'/REMAKELIVE_BT([1-4])_(20\d{2})\.pdf$',parsed.path,re.I)or re.search(r'/REMAKE_LIVE_BT_T([1-4])-(?:(?:janv?|fevr?|mars|avr|mai|juin|juil|aout|sept?|oct|nov|dec)-)?(20\d{2})\.pdf$',parsed.path,re.I)
         if old:
             day,month,year=map(int,old.groups());stamp=dt.date(year,month,day);expected=None
         elif new:
