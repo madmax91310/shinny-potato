@@ -373,7 +373,10 @@ def collect_one(config, now):
     if config['parser'] == 'official-nav':
         from collect_official_share_history import collect_one as collect_nav
         return collect_nav(config, now)
-    if config['parser'] == 'yahoo': result=collect_yahoo(config, now)
+    if config['parser'] == 'yahoo':
+        result=collect_yahoo(config, now)
+        from qualify_anniversary_price_units import qualify as qualify_anniversary_units
+        result=qualify_anniversary_units(config,result,now)
     elif config['parser'] == 'msci': result=collect_msci(config, now)
     elif config['parser'] == 'fred': result=collect_fred(config,now)
     elif config['parser'] == 'stoxx': result=collect_stoxx(config,now)

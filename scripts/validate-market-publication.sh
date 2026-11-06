@@ -7,7 +7,7 @@ if [[ -n "${VALIDATED_DATA_ORIGINAL_BASE:-}" && "$(git rev-parse HEAD^)" == "$VA
 fi
 npm ci --ignore-scripts
 python -m unittest discover -s scripts -p 'test_monthly_automation.py'
-python -m unittest discover -s scripts -p 'test_monthly_history_units.py'
+python -m unittest discover -s scripts -p 'test_monthly*units.py'
 python -m unittest discover -s scripts -p 'test_ranking_sources.py'
 python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'
 python -m unittest discover -s scripts -p 'test_market_transport.py'

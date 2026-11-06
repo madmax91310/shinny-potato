@@ -93,23 +93,33 @@ Le garde commun refuse donc uniquement les comparaisons de prix qui franchissent
 
 Le registre porte aussi un masque de compatibilité `anniversaryExcludedMonths`, limité aux mois de l’ancienne unité et identifié par `anniversaryPriceUnitExclusions`. Ainsi un futur instantané de données construit avec un ancien code publié ne peut pas réintroduire le récit de perte. Le nouveau code utilise la preuve officielle pour remplacer ce masque conservateur par le garde précis entre les deux dates. Les restrictions indépendantes des autres parts ne sont jamais levées.
 
+## Extension : prix historiques ajustés par le fournisseur
+
+La lecture des ruptures de cours seule ne repère pas un historique déjà ajusté d’un split. L’audit complémentaire contrôle donc les déclarations d’opérations des **664 sources Yahoo** avec anniversaires effectivement offertes ; **664 réponses obtenues, aucune panne, 111 actifs avec déclaration**. IMIE est ajouté à partir de sa preuve officielle existante (25:1 le 23/02/2026), que Yahoo omet de ses événements. Les 107 autres actifs du calculateur utilisent d’autres sources/conventions ou n’ont pas de série anniversaire Yahoo ; ils restent dans l’audit mensuel général, pas artificiellement dans ce contrôle de déclarations.
+
+Les niveaux `close` Yahoo anciens peuvent être ajustés des divisions de parts : ils ne constituent pas nécessairement le cours réellement coté. Pour ces **112 actifs**, le collecteur `qualify_anniversary_price_units.py` refuse seulement les mois antérieurs à la dernière opération déclarée tant que le cours d’époque n’est pas certifié. Aucun ratio fournisseur n’est appliqué aux données. Le tableau détaillé [par actif et période](investment-history-units-2026-11-06/anniversary-price-windows.md) distingue la preuve officielle IMIE et les déclarations fournisseur. Dates, ratios, sources, réponses complètes et empreintes sont archivés. Les distributions/bonus et scissions éventuellement décrites comme « splits » par Yahoo ne sont pas requalifiés en divisions officielles sans preuve primaire.
+
+Cette restriction concerne « Il y a X ans » (choix de période, texte simple/comparatif, PNG), sans toucher aux rendements ajustés, à l’unique/DCA, aux classements ou à Performance depuis. Apple conserve par exemple les fenêtres postérieures à août 2020 ; IMIE et Booking restent disponibles au calculateur mais n’ont pas encore un anniversaire annuel certifié après leur opération récente. Le prix et la date initiaux restent archivés ; la date de revue est séparée. Le sondage de chaque prochaine collecte va jusqu’au jour présent pour détecter aussi une opération du mois courant, même si les prix mensuels s’arrêtent au dernier mois terminé. Une erreur de sondage échoue la collecte de cet actif et conserve sa dernière version validée.
+
+Le contrôle corrige aussi le défaut de sérialisation remonté par la CI : un champ facultatif non renseigné n’est plus ajouté comme `undefined` aux historiques. Le test de compression reste strictement sans perte. Les tests d’actions tiennent désormais compte des fenêtres d’anniversaire effectivement certifiées, tout en vérifiant les rendements de chaque action et tous les refus avec leur raison exacte.
+
 ## Collectes suivantes, refus et préservation
 
 Plusieurs reprises réelles du producteur ordinaire ont été effectuées avec `--only etfLU1829219390 etf_timber_ishares`, export de baseline et `--apply`. Le dernier passage retrouve les prix corrigés : `sourceState=unchanged-verified`, preuves réellement relues, pas de nouveau facteur ajouté. Les anciennes réponses Yahoo restent dans les fixtures, les nouvelles réponses et le HTML officiel réellement consommé dans `next-evidence.json.gz`.
 
 Les tests rejouent un fournisseur entièrement réparé ainsi qu’une seconde application du même traitement. Une mauvaise part/devise/place, un ratio ou une date différents, un prix SIX non concordant, un facteur de revenus changeant ou une source officielle indisponible ne sont pas admis. Un mois Amundi absent reçoit une restriction précise ; le reste du calendrier demeure utilisable. Une panne conserve le dernier registre validé et ses dates. Le reçu d’échec de test `incomplete: Missing mandatory source-control scope: requestedStart` est un test négatif attendu, pas une panne réelle de collecte.
 
-Contrôle structurel avant/après : **281 autres enregistrements ETF** et **715 autres preuves** identiques au master de départ. Les réponses brutes restent immuables. Pas de correction manuelle des chiffres publiés, de cours interpolé, de lissage, d’extension de devise, de changement d’instrument ou d’exemption financière générale. Les projections régénérées par le build sont écartées du commit suivant les consignes du dépôt.
+Contrôle structurel final : toutes les observations numériques des autres actifs et leurs empreintes/dates de contrôle de prix sont inchangées. 112 actifs portent désormais des métadonnées de refus du prix historique, avec une date de revue distincte ; cette revue ne rajeunit jamais les preuves de prix. Le reçu `numeric-preservation.json.gz` compare chaque registre à master. Les réponses brutes restent immuables. Pas de correction manuelle des chiffres publiés, de cours interpolé, de lissage, d’extension de devise, de changement d’instrument ou d’exemption financière générale. Les projections régénérées par le build sont écartées du commit suivant les consignes du dépôt.
 
 Le précédent IMIE #1058 est conservé : `qualified_split_comparison.py` continue à ne normaliser que les unités de comparaison. Un accord quotidien/mensuel ne qualifie pas à lui seul la série ajustée. La réparation de prix et sa preuve primaire sont dans le nouveau module distinct `qualified_history_units.py` et le garde de publication vérifie leurs équations.
 
-PR examinées : #1058, #1149, #1159 (qualification financière), #1157/#1172 (collectes et identités), #1162 (enregistrement) et les travaux d’automatisation déjà fusionnés sont dans la base. Les PR ouvertes #1061, #1178 et #1179 sont relevées ; aucun de leurs fichiers d’encours ou de prose/contrôles des guides n’est modifié. Les historiques NAV, restrictions, champs signés et contrats d’enregistrement concurrents restent conservés. La PR ajoute uniquement les nouveaux tests et contrôles de source à leurs portails existants, sans relever de seuil ni changer une autorisation de rebase.
+PR examinées : #1058, #1149, #1159 (qualification financière), #1157/#1172 (collectes et identités), #1162 (enregistrement) et les travaux d’automatisation déjà fusionnés sont dans la base. Les PR #1061, #1178 et #1179 sont relevées ; aucun de leurs fichiers d’encours ou de prose/contrôles des guides n’est modifié. Les PR #1178 et #1179 ont été fusionnées pendant le chantier : la branche est rebasée sur master `560525cd5c8bf8a3760b261a97478f6998571b0a`, en conservant leurs changements. Les historiques NAV, restrictions, champs signés et contrats d’enregistrement concurrents restent conservés. La PR ajoute uniquement les nouveaux tests et contrôles de source à leurs portails existants, sans relever de seuil ni changer une autorisation de rebase.
 
 ## Validation et preuves
 
 - `npm run build` : réussi, budgets existants inchangés, **4 583 certificats et 42 fichiers publics** rapprochés.
 - `npm run audit:calculator-series` : réussi, **754 historiques automatisés** vérifiés et archives conservées.
-- Tests Python mensuels : réussis ; **11 nouvelles régressions** des unités et de la collecte, dont les réponses réelles, le fournisseur réparé, le double ajustement, la quarantaine du vrai point WOOD sans preuve primaire, une variation extrême légitime, les refus et l’absence d’interpolation.
+- Tests Python mensuels : réussis ; **17 régressions des unités**, dont six nouvelles protections des prix historiques déclarés ajustés, et des unités et de la collecte, dont les réponses réelles, le fournisseur réparé, le double ajustement, la quarantaine du vrai point WOOD sans preuve primaire, une variation extrême légitime, les refus et l’absence d’interpolation.
 - Tests des consommateurs mensuels, fenêtres financières, classements, comparatif/crise, preuve IMIE et calcul indépendant `Decimal` : réussis. Les restrictions financières antérieures restent testées dans calculateur, vidéo, classements, FX, anniversaires et projections annuelles.
 - **100 tests d’enregistrement/rebase** et **17 contrats de workflow** : réussis.
 - `npm run lint` : réussi, avertissements préexistants conservés ; aucun seuil modifié.
@@ -122,7 +132,7 @@ Commandes de reproduction ciblées :
 ```sh
 node scripts/audit-investment-history-units.mjs /tmp/unit-alerts.json
 PYTHONPATH=scripts python scripts/investigate-investment-unit-alerts.py /tmp/unit-alerts.json /tmp/unit-sources
-python -m unittest discover -s scripts -p 'test_monthly_history_units.py'
+python -m unittest discover -s scripts -p 'test_monthly*units.py'
 node scripts/test-investment-history-units.mjs
 python scripts/independent-investment-unit-check.py /tmp/unit-results.json
 node scripts/export-monthly-baseline.mjs > /tmp/monthly-baseline.json
