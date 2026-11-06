@@ -30,12 +30,11 @@ export default function App() {
     finally { if (!signal?.aborted) setLoading(false) }
   }, [])
   useEffect(() => {
-    let controller
-    function poll() { controller?.abort(); controller = new AbortController(); refresh(controller.signal) }
+    const controller = new AbortController()
     const updateRead = () => {setRead(readIds());setTreatments(editorialTreatments())}
-    poll(); const timer = setInterval(poll, 300000)
+    refresh(controller.signal)
     window.addEventListener(EDITORIAL_EVENT,updateRead); window.addEventListener(READ_EVENT, updateRead); window.addEventListener('storage', updateRead)
-    return () => { clearInterval(timer); controller?.abort(); window.removeEventListener(EDITORIAL_EVENT,updateRead); window.removeEventListener(READ_EVENT, updateRead); window.removeEventListener('storage', updateRead) }
+    return () => { controller.abort(); window.removeEventListener(EDITORIAL_EVENT,updateRead); window.removeEventListener(READ_EVENT, updateRead); window.removeEventListener('storage', updateRead) }
   }, [refresh])
   useEffect(() => {
     if (!subject || !feed) return
@@ -71,7 +70,7 @@ export default function App() {
   return <div className="radar-page">
     <PageHeader title="Radar éditorial" subtitle="Les changements concrets qui méritent un post." />
 
-    <div className="radar-status"><p>Dernier contrôle : {date(feed?.checkedAt)}. Veille toutes les 30 minutes de 8 h à 20 h (Europe/Paris), selon les délais du planificateur, et après les collectes raccordées.</p><Button onClick={() => refresh()}>Actualiser</Button></div>
+    <div className="radar-status"><p>Dernier contrôle : {date(feed?.checkedAt)}. Veille automatique arrêtée. Les signaux enregistrés restent consultables ; une nouvelle collecte nécessite un lancement manuel.</p><Button onClick={() => refresh()}>Recharger les signaux enregistrés</Button></div>
     {loading && <p role="status">Chargement des derniers signaux…</p>}
     {error && <p role="alert" className="radar-warning">{error}{feed ? ' Les derniers signaux chargés restent affichés.' : ''}</p>}
     {feed && staleFeed(feed) && <p role="status" className="radar-warning">Le dernier contrôle date de plus de 36 heures. Le radar ne peut pas confirmer l’absence de nouveautés.</p>}
@@ -79,7 +78,7 @@ export default function App() {
     <p className="radar-selection-note">{view === 'selection' ? `Jusqu’à 5 sujets à exploiter parmi les 14 derniers jours. Tous les autres sujets exploitables restent accessibles dans leur onglet. La sélection limite la place d’une même source.` : view === 'watch' ? 'Annonces à compléter et lancements annoncés. Un lancement ne garantit pas une disponibilité chez ton courtier.' : view === 'secondary' ? 'Variations techniques, révisions et extensions de couverture. Les évolutions majeures de composition peuvent être prioritaires.' : view === 'other' ? 'Les autres faits fiables et exploitables, classés avec les mêmes critères. Aucun sujet utile n’est caché derrière les cinq premières cartes.' : view==='dismissed'?'Les sujets écartés restent retrouvables. Annuler leur traitement les remet dans les sujets à traiter, sans modifier la lecture.':view==='used'?'Les sujets déjà exploités restent consultables. Leur traitement peut être annulé séparément de la lecture.':'Tous les signaux conservés dans le flux, y compris les anciens sujets.'}</p>
     <details className="radar-filter-panel" onToggle={e=>setFiltersOpen(e.currentTarget.open)}><summary>Filtrer les sujets</summary>{filtersOpen&&<Suspense fallback={<p>Chargement…</p>}><RadarFilters {...{family,setFamily,topic,setTopic,mode,setMode,search,setSearch,displayedIds,onRead,read}}/></Suspense>}</details>
     <p role="status">{message}</p>
-    {feed && !filtered.length && <section className="radar-empty"><h2>{events.length ? 'Aucun signal pour cette sélection' : 'Le radar est en veille'}</h2><p>{events.length ? 'Aucun sujet ne correspond à cette vue et à ces filtres. Les annonces à compléter et les variations secondaires restent accessibles dans leurs onglets.' : 'Le premier relevé sert de référence. Les prochains changements pertinents apparaîtront ici automatiquement.'}</p></section>}
+    {feed && !filtered.length && <section className="radar-empty"><h2>{events.length ? 'Aucun signal pour cette sélection' : 'Le radar est en veille'}</h2><p>{events.length ? 'Aucun sujet ne correspond à cette vue et à ces filtres. Les annonces à compléter et les variations secondaires restent accessibles dans leurs onglets.' : 'Le premier relevé sert de référence. Les nouveaux changements pertinents apparaîtront après une collecte lancée manuellement.'}</p></section>}
     {subject && <p><a href={`#subject-${subject}`}>Aller au sujet de la notification</a> · Les filtres permettent de retrouver les autres sujets.</p>}
     {feed?.calendar?.length > 0 && <details className="radar-coverage" onToggle={e=>setCalendarOpen(e.currentTarget.open)}><summary>Calendrier des dates annoncées</summary>{calendarOpen&&<Suspense fallback={<p>Chargement…</p>}><CalendarDetails feed={feed}/></Suspense>}</details>}
     <div className="radar-list">{displayed.map(group => <PublicationCard key={group.id} group={group} read={read} onRead={onRead} treatment={statusOf(group)} onTreatment={onTreatment} />)}</div>

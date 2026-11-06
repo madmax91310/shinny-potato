@@ -53,6 +53,8 @@ try{
   const other=await context.newPage();await other.clock.setFixedTime(now)
   const salary=events.find(e=>e.entity==='salary-median'),salaryGroup=publicationSelection(events,{now:+now}).groups.find(g=>g.events.some(e=>e.id===salary.id))
   await other.goto(url+`radar-editorial?subject=${salary.id}`)
+  await other.getByText(/Veille automatique arrêtée/).waitFor()
+  assert.equal(await other.getByRole('button',{name:'Recharger les signaux enregistrés',exact:true}).count(),1)
   const card=other.locator(`#subject-${salaryGroup.event.id}`);await card.getByRole('heading',{name:/Salaire médian/}).waitFor()
   assert.match(await card.innerText(),/2\s*238|2 238/);assert.match(await card.innerText(),/2025/)
   assert.match(await card.innerText(),/Publication originale : 2026-10-22/)
@@ -120,7 +122,7 @@ try{
   failure=true;await page.evaluate(()=>window.dispatchEvent(new Event('focus')))
   await page.getByLabel('Radar indisponible : nombre de sujets non lus inconnu',{exact:true}).first().waitFor({state:'attached'})
   await home.getByText(/momentanément indisponible/).waitFor()
-  await other.getByRole('button',{name:'Actualiser',exact:true}).click();await other.getByRole('alert').waitFor()
+  await other.getByRole('button',{name:'Recharger les signaux enregistrés',exact:true}).click();await other.getByRole('alert').waitFor()
   assert.ok(await other.getByRole('heading',{name:'Radar éditorial',exact:true}).count())
   failure=false;feed={...feed,events:[]}
   await page.evaluate(()=>window.dispatchEvent(new Event('focus')))

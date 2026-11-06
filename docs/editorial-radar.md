@@ -1,3 +1,7 @@
+> **État depuis le 6 novembre 2026 : veille automatique arrêtée.** Les anciens calendriers décrits ci-dessous sont historiques. La collecte en production ne se lance que par `workflow_dispatch` sur `master`. Les événements `schedule`, `push` et `workflow_run` ont été retirés ; les validations de pull request en lecture seule sont conservées. Le registre indique `automatic: false` : le moniteur ne relance plus le Radar après silence, erreur transitoire ou échec d’enregistrement et n’attend plus de cadence périodique. Les incidents de données restent visibles. Les rafraîchissements périodiques du client ont été retirés ; le bouton recharge uniquement les signaux enregistrés. La branche `radar-data`, son historique, les accusés de notification et le suivi #880 sont conservés. Les collecteurs financiers et leurs protections restent inchangés.
+>
+> **Tokens :** l’inspection du workflow, des scripts de publication/collecte et de leurs dépendances locales n’a trouvé aucun appel explicite à OpenAI/Codex ni de dépendance SDK correspondante. Une exécution GitHub Actions ne démontre pas une consommation du quota ChatGPT. L’historique de consommation du compte et les intégrations externes ne sont pas observables depuis ces fichiers ; aucune causalité n’est établie.
+
 > Évolution particuliers : [périmètre, exclusions, sources et recette](editorial-radar-particuliers.md). Les preuves ci-dessous décrivent le lot initial ; les nouveaux connecteurs ne sont pas encore déployés.
 
 # Radar éditorial — fonctionnement proposé le 24 octobre 2026

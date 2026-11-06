@@ -117,7 +117,9 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
         for filename, warning in row.get('reportQualifications', {}).items():
             add('scope:' + workflow + ':' + filename, {**base, **warning, 'kind': 'qualification', 'field': 'Complétude du périmètre tenté', 'cause': warning['cause'] + ' Rapport : ' + filename})
         completed = timestamp(row.get('completedAt'))
-        if not completed or completed > current:
+        if config.get('automatic') is False:
+            pass  # An intentionally manual producer has no heartbeat deadline.
+        elif not completed or completed > current:
             add('unobserved:' + workflow, {**base, 'kind': 'unobserved', 'field': 'Exécution', 'cause': 'Aucune exécution terminée avec une date exploitable.'})
         elif (current - completed).total_seconds() > config['maxAgeHours'] * 3600:
             add('overdue:' + workflow, {**base, 'kind': 'overdue', 'field': 'Fréquence de collecte', 'cause': f"Aucune exécution terminée depuis plus de {config['maxAgeHours']} heures.", 'lastSuccessAt': row.get('lastCollectionSuccessAt')})
@@ -228,6 +230,8 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             field = re.search(r'\) : (.+?)\. Dernière observation', error['reason'])
             add(key, {**details, 'conflictId':identifier, 'kind': 'conflict', 'field': field.group(1) if field else 'Concordance des sources', 'cause': error['reason']})
     def retired_reason(row):
+        if registry.get(row.get('workflow'), {}).get('automatic') is False and row.get('id', '').startswith(('overdue:', 'unobserved:')):
+            return 'Collecte passée sur demande ; échéance automatique retirée, sans réparation de donnée déduite.'
         if row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES:return REMOVED_SCOPE_REASON
         if row.get('workflow') in RETIRED_WORKFLOWS:return RETIRED_WORKFLOWS[row['workflow']]['reason']
         withdrawal = workflows.get(row.get('workflow'), {}).get('retiredDataFailures', {}).get(row.get('dataId'))

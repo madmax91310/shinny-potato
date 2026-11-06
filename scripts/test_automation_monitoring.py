@@ -12,6 +12,22 @@ def evaluate(state, context=CONTEXT, now=NOW, radar=None):
     return evaluate_monitoring(state, context, REGISTRY, now, {'errors': []} if radar is None else radar)
 
 class MonitoringTests(unittest.TestCase):
+    def test_manual_producer_has_no_deadline_but_keeps_source_failures(self):
+        config = {'x.yml': {**REGISTRY['x.yml'], 'automatic': False}}
+        state = copy.deepcopy(STATE)
+        state['workflows']['x.yml'].update(completedAt='2026-01-01T00:00:00Z', dataFailures={'world': {'cause':'HTTP 503', 'name':'World'}})
+        state['monitoring'] = {'active': {'overdue:x.yml': {'id':'overdue:x.yml', 'workflow':'x.yml', 'kind':'overdue'}}}
+        result = evaluate_monitoring(state, CONTEXT, config, NOW, {'errors':[]})
+        self.assertNotIn('overdue:x.yml', result['active'])
+        self.assertNotIn('unobserved:x.yml', result['active'])
+        self.assertIn('collection:x.yml:world', result['active'])
+        self.assertEqual(len(result['retired']), 1)
+        self.assertIn('sans réparation', result['retired'][0]['retirementReason'])
+        self.assertEqual(result['resolved'], [])
+        result = evaluate_monitoring({'workflows':{}}, CONTEXT, config, NOW, {'errors':[]})
+        self.assertNotIn('unobserved:x.yml', result['active'])
+        self.assertIn('overdue:x.yml', evaluate_monitoring(state, CONTEXT, REGISTRY, NOW, {'errors':[]})['active'])
+
     def test_exact_return_window_recovery_uses_ordinary_qualified_history_not_generic_source_success(self):
         identifier='automated-etf-monthly:etc_wti_crude_oilNav'
         key='history:'+identifier+':return-window:2020-12:2021-12'

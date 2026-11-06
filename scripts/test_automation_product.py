@@ -164,7 +164,9 @@ class ProductContracts(unittest.TestCase):
                         continue  # Explicitly non-applicable: this control does not publish data.
                     if fault=='unobserved':
                         m=evaluate_monitoring({},CTX,{workflow:config},NOW,{'errors':[]})
-                        self.assertIn('unobserved:'+workflow,m['active']);continue
+                        if config.get('automatic') is False:self.assertNotIn('unobserved:'+workflow,m['active'])
+                        else:self.assertIn('unobserved:'+workflow,m['active'])
+                        continue
                     if fault=='monitor-outage':
                         m=evaluate_monitoring({'observerErrors':{workflow:{'cause':'network'}}},CTX,{workflow:config},NOW,{'errors':[]})
                         self.assertIn('monitor:'+workflow,m['active']);continue

@@ -26,6 +26,8 @@ def stamp(value):
 
 
 def recovery_reason(row, config, now):
+    if config.get('automatic') is False:
+        return None
     completed = stamp(row.get('completedAt'))
     if completed and completed > now:
         return None
