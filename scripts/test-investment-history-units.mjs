@@ -91,3 +91,17 @@ assert.throws(()=>buildAnniversaireComparatifText({assetIdA:bank.id,assetIdB:woo
 await assert.rejects(()=>renderAnniversaryImage({assetId:bank.id,yearsBack:1,mode:'simple'},'5'),/division des parts par 80/)
 assert.equal(getHistoricalPrice(bank.id,'2026-09'),dict(records[bank.id].anniversaryPoints)['2026-09'],'Quoted history is retained; only incomparable price narratives are refused')
 console.log('Anniversary: cross-split simple/comparative text and PNG refused; raw quotes, pre/pre and post/post windows and qualified performance retained.')
+
+// Provider-declared corporate actions protect actual-quote uses only. No ratio
+// from Yahoo declarations is used to rewrite observed prices or adjusted returns.
+const allUnitProofs=Object.assign({},...['monthly-lifestrategy.json','monthly-automated-round4.json','monthly-automated.json','non-bond-monthly-active.json'].map(f=>JSON.parse(readFileSync('scripts/source-snapshots/'+f))))
+for(const file of ['automated-monthly.json','automated-etf-monthly.json','non-bond-monthly-records.json'])for(const [id,r]of Object.entries(JSON.parse(readFileSync('src/data/'+file))))if(r.anniversaryPriceReview){
+ const proof=allUnitProofs[id];validateHistoryUnitEvidence(r,proof)
+ assert.deepEqual(ASSETS[id].points,r.points.map(([date,price])=>({date,price})))
+ for(const month of r.anniversaryExcludedMonths)assert.throws(()=>getHistoricalPrice(id,month),{message:r.anniversaryExclusionReason})
+ const recent=r.anniversaryPoints.filter(([month])=>!r.anniversaryExcludedMonths.includes(month)).at(-1)
+ if(recent)assert.equal(getHistoricalPrice(id,recent[0]),recent[1])
+}
+assert.throws(()=>getHistoricalPrice('apple','2020-07'),/réellement coté non certifié/)
+assert.equal(getHistoricalPrice('apple','2020-09'),ASSETS.apple.anniversaryPoints.find(p=>p.date==='2020-09').price)
+console.log('Declared corporate actions: pre-event actual quote usage refused, recent quotes and all observed performance levels retained.')

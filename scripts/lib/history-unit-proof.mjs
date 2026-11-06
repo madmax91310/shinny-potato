@@ -3,6 +3,17 @@ const bnke='https://www.webdisclosure.fr/press-release/lyxor-sp-500-ucits-etf-ac
 const six='https://www.six-group.com/fqs/charts.json?select=ValorId&where=ValorId=IE00B27YCF74USD4&netting=1440&fromdate=20260220&todate=20260331'
 const near=(a,b,t=1e-10)=>assert(Math.abs(a-b)<=Math.max(1e-8,Math.abs(b)*t),`${a} != ${b}`)
 export function validateHistoryUnitEvidence(record,evidence){
+ if(record.anniversaryPriceReview){
+  const p=record.anniversaryPriceReview;assert.deepEqual(p,evidence.anniversaryPriceReview)
+  assert.equal(p.historicalQuoteValidation,false);assert.match(p.sha256,/^[a-f0-9]{64}$/)
+  assert.match(p.checkedAt,/^\d{4}-\d{2}-\d{2}$/);assert(p.events.length>0)
+  assert(record.sourceUrls.includes(p.sourceUrl));assert(record.anniversaryExclusionReason.includes('prix historique réellement coté non certifié'))
+  assert.deepEqual(record.anniversaryExcludedMonths,evidence.anniversaryExcludedMonths)
+  const last=p.events.map(e=>e.exDate).sort().at(-1)
+  for(const e of p.events){assert(e.ratio>0&&e.ratio!==1);assert(['provider-declaration-only','official-operation; historical-quote-unconfirmed'].includes(e.corporateActionValidation));assert(e.sourceUrl)}
+  assert.deepEqual(p.excludedMonths,evidence.proofRows.filter(r=>r.date<last).map(r=>r.date.slice(0,7)))
+  for(const month of p.excludedMonths)assert(record.anniversaryExcludedMonths.includes(month))
+ }
  if(record.splitAdjustmentNotice){
   assert.deepEqual([record.isin,record.symbol,record.mic,record.currency,record.field],['LU1829219390','BNKE.PA','XPAR','EUR','adjclose'])
   const p=record.splitAdjustmentEvidence;assert.deepEqual(p,evidence.splitAdjustmentEvidence)

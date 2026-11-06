@@ -62,7 +62,7 @@ export function getHistoricalPrice(assetId, ym) {
   if(ASSETS[assetId]?.anniversaryAvailable===false)throw Error('Prix historique hors distributions non qualifié pour cet actif');
   const minDate = getAssetMinDate(assetId);
   const clampedYm = ymIndex(ym) < ymIndex(minDate) ? minDate : ym;
-  if(ASSETS[assetId].anniversaryExcludedMonths?.includes(clampedYm))throw Error(`Valeur liquidative historique non qualifiée pour ${clampedYm}`);
+  if(ASSETS[assetId].anniversaryExcludedMonths?.includes(clampedYm))throw Error(ASSETS[assetId].anniversaryExclusionReason??`Valeur liquidative historique non qualifiée pour ${clampedYm}`);
   requireHistoryWindow(ASSETS[assetId], clampedYm, clampedYm);
   return interpolatePrice(ASSETS[assetId].anniversaryPoints ?? assetPoints(assetId), clampedYm);
 }
@@ -217,6 +217,7 @@ export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
   historyExcludedMonths: ASSETS[id]?.historyExcludedMonths,
   historyExclusionReasons: ASSETS[id]?.historyExclusionReasons,
   anniversaryExcludedMonths: ASSETS[id]?.anniversaryExcludedMonths,
+  anniversaryExclusionReason: ASSETS[id]?.anniversaryExclusionReason,
   priceUnit: ASSETS[id].priceUnit,
   instrumentType: ASSETS[id].instrumentType,
   isin: ASSETS[id].isin,
@@ -241,6 +242,7 @@ export const ANNIVERSAIRE_ELIGIBLE_ASSETS = [
   historyExcludedMonths: ASSETS[id]?.historyExcludedMonths,
   historyExclusionReasons: ASSETS[id]?.historyExclusionReasons,
   anniversaryExcludedMonths: ASSETS[id]?.anniversaryExcludedMonths,
+  anniversaryExclusionReason: ASSETS[id]?.anniversaryExclusionReason,
   })),
 ].filter(asset => getValidYearsBackOptions(asset.id, new Date()).length > 0);
 
