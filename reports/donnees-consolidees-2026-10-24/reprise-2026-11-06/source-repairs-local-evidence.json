@@ -391,5 +391,29 @@
     "fixtureRawSha256": "a31879e9d60966b9b0578977f4bde2f587f411ad3078da382db3c3b1068fa5d1",
     "scope": "Selected Amundi ETF purchases only; sale follows applicable tariff; not all ETFs or newly mentioned crypto ETNs."
   },
-  "productionVerified": false
+  "productionVerified": false,
+  "saxo": {
+    "source": "https://www.home.saxo/fr-fr/accounts/pea/terms-and-conditions",
+    "rawSha256": "ab5e5086a5dcb79e03558df85f3b1306c64e653a74373b772087e0f2ed18688a",
+    "record": {
+      "asOf": null,
+      "checkedAt": "2026-11-06",
+      "sourceUrl": "https://www.home.saxo/fr-fr/accounts/pea/terms-and-conditions",
+      "sha256": "787c9a69c8345417f8e2f41145e244baf8f7311f1193a490c1dd8050a5028ac1",
+      "page": null,
+      "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+      "dateStatus": "not-published",
+      "scope": "saxo ; offerPea ; conditions explicites de la page officielle",
+      "values": {
+        "count": 70.0
+      },
+      "copy": {
+        "resume": "70 actions européennes sans courtage à l’achat et à la vente pour les nouveaux PEA éligibles, ouverts ou transférés. Les commissions de change restent dues.",
+        "full": "70 actions européennes sans courtage à l’achat et à la vente pour les nouveaux PEA éligibles, ouverts ou transférés. Les commissions de change restent dues."
+      },
+      "until": "2027-12-31",
+      "start": "2026-10-01"
+    },
+    "proofLevel": "actual official response parsed locally, not yet production"
+  }
 }

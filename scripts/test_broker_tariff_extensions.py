@@ -9,6 +9,20 @@ from broker_tariff_extensions import parse, parse_supplement, SUPPLEMENT_SOURCES
 FIXTURES=pathlib.Path(__file__).parent/'fixtures/broker-tariffs'
 TODAY='2026-10-08'
 def fixture(name):return (FIXTURES/name).read_text()
+class SaxoCurrentOfferTests(unittest.TestCase):
+ def test_actual_official_repeated_prefix_and_ordinal_date(self):
+  import gzip
+  from broker_profiles import clean
+  raw=gzip.decompress((FIXTURES/'saxo-pea-offer-20261106.html.gz').read_bytes()).decode()
+  text=clean(raw)
+  row=parse_supplement('saxo_offer',text,'2026-11-06')[2]
+  self.assertEqual(row['start'],'2026-10-01')
+  self.assertEqual(row['until'],'2027-12-31')
+  self.assertEqual(row['values']['count'],70)
+  self.assertIn('commissions de change',str(row))
+  for wrong in [text+' L’offre s’applique entre le 1 octobre 2026 et le 30 décembre 2027',text.replace('1er octobre 2026','31er février 2026'),text.replace('exclusivement sur les comptes PEA','exclusivement sur les comptes CTO')]:
+   with self.subTest(wrong=wrong[-100:]),self.assertRaises(ValueError):parse_supplement('saxo_offer',wrong,'2026-11-06')
+
 class BrokerTariffTests(unittest.TestCase):
  def test_bourso_etf_minimum_requires_matching_account_columns(self):
   from collect_broker_tariffs import parse as parse_tariff

@@ -331,8 +331,11 @@ def parse_supplement(key,s,today):
  elif key=='saxo_offer':
   require(s,'exclusivement sur les comptes PEA','ordres d’achat et de vente','commissions de change','ouverts ou transférés')
   count=get(r'sélection de ([\d]+) actions européennes',s)
-  d=re.search(r's.applique entre le (\d+) (\w+) (\d{4}) et le (\d+) (\w+) (\d{4})',s)
-  if not d:raise ValueError('Période offre PEA absente')
+  # The official page currently duplicates "entre le" and uses "1er".
+  # Keep one unambiguous interval, including both complete dates.
+  periods=list(re.finditer(r's.applique (?:entre le\s+){1,2}(\d+)(?:er)? (\w+) (\d{4}) et le (\d+)(?:er)? (\w+) (\d{4})',s))
+  if len(periods)!=1:raise ValueError('Période offre PEA absente ou ambiguë')
+  d=periods[0]
   months=MONTHS;start=dt.date(int(d[3]),months[d[2]],int(d[1])).isoformat();end=dt.date(int(d[6]),months[d[5]],int(d[4])).isoformat()
   v={'count':count};full=f"{fmt(count)} actions européennes sans courtage à l’achat et à la vente pour les nouveaux PEA éligibles, ouverts ou transférés. Les commissions de change restent dues."
  else:
