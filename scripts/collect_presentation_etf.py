@@ -46,6 +46,7 @@ def globalx_physical(text, share, now, *, holdings_fetch=None):
             table = only([t for t in page.tables if title + ' As of' in t['context'] and t['rows'][0] == current_header], title)
             from collect_physical_holdings import globalx_page, _globalx_csv
             import csv, io
+            from decimal import Decimal
             url = globalx_page(text, share)
             raw = (holdings_fetch or download)(url)
             equities, stamp, cash = _globalx_csv(raw, now)
@@ -58,7 +59,7 @@ def globalx_physical(text, share, now, *, holdings_fetch=None):
                     matches = [r for r in published if r.get('NAME') == row[2]]
                     if len(matches) != 1 or not re.fullmatch(r'\d+(?:\.\d{1,2})?', row[0]):
                         reject('Global X visible/full-book position identity or rounding changed')
-                    if abs(float(matches[0]['NET_ASSETS']) - float(row[0])) > .005000001:
+                    if abs(Decimal(matches[0]['NET_ASSETS']) - Decimal(row[0])) > Decimal('0.005'):
                         reject('Global X visible/full-book same-date weight conflict')
             selected = sorted(equities, key=lambda r: (-r['weightPct'], r['isin']))[:10]
             result[field] = dict(rows=validated_rows([dict(name=r['name'], isin=r['isin'], weightPct=r['weightPct']) for r in selected], complete=False),
