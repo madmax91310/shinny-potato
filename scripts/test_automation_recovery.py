@@ -3,6 +3,8 @@ import datetime as dt
 import base64
 import json
 import unittest
+from pathlib import Path
+from automation_recovery import recovery_reason
 from automation_recovery import plan_recovery, dispatch_recovery, persist_and_dispatch
 
 NOW = dt.datetime(2026, 10, 19, 12, tzinfo=dt.timezone.utc)
@@ -18,6 +20,37 @@ class RecoveryTests(unittest.TestCase):
 
     def plan(self, state, now=NOW, runs=None, registry=REGISTRY):
         return plan_recovery(state, registry, now, {'update-test.yml': runs or []})
+
+    def test_manual_radar_never_recovers_even_with_old_reservations(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / 'src/data/automation-workflows.json').read_text())
+        config = registry['update-editorial-radar.yml']
+        self.assertIs(config['automatic'], False)
+        for updates in [dict(completedAt='2026-01-01T00:00:00Z'),
+                        dict(recordingStatus='failure', failures=[{'step':'Commit validated observations'}]),
+                        dict(status='failure', failures=[{'step':'HTTP 503 timeout'}])]:
+            row = self.state(**updates)['workflows']['update-test.yml']
+            self.assertIsNone(recovery_reason(row, config, NOW))
+            state = {'workflows': {'update-editorial-radar.yml': row},
+                     'recovery': {'update-editorial-radar.yml': {'status':'waiting', 'attempts':[{'at':'2026-10-18T00:00:00Z'}]}}}
+            ledger, plans = plan_recovery(state, registry, NOW, {})
+            self.assertNotIn('update-editorial-radar.yml', plans)
+            self.assertEqual(ledger['update-editorial-radar.yml']['status'], 'idle')
+            self.assertIsNone(ledger['update-editorial-radar.yml']['nextAttemptAt'])
+        # The same temporary failure still recovers on a financial collector.
+        self.assertEqual(self.plan(self.state())[1], ['update-test.yml'])
+
+    def test_radar_only_manual_production_and_read_only_pr_validation(self):
+        root = Path(__file__).resolve().parents[1]
+        text = (root / '.github/workflows/update-editorial-radar.yml').read_text()
+        events = text.split('on:\n', 1)[1].split('permissions:', 1)[0]
+        self.assertEqual(__import__('re').findall(r'^  ([a-z_]+):', events, __import__('re').M), ['workflow_dispatch', 'pull_request'])
+        update = text.split('  update:\n', 1)[1].split('  report-failures:', 1)[0]
+        self.assertIn("if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master'", update)
+        self.assertIn('ref: master', update)
+        self.assertIn("if: github.event_name == 'pull_request'", text.split('  update:', 1)[0])
+        self.assertNotIn('publish-editorial-radar.mjs', text.split('  update:', 1)[0])
+        self.assertIn('contents: read', text.split('jobs:', 1)[0])
 
     def test_fresh_dispatch_and_durable_reservation(self):
         state = self.state()

@@ -55,6 +55,7 @@ export default function AutomationFailures({review}) {
       <div className="dr-list">{rows.map(row => <article className="dr-item" key={row.id}>
         <span className={`dr-badge ${row.state === 'success' ? 'dr-current' : row.state === 'failure' ? 'dr-expired' : 'dr-undated'}`}>{row.state === 'success' ? 'Collecte réussie' : row.state === 'failure' ? row.validationStatus === 'failure' ? 'Validation en échec' : row.recordingStatus === 'failure' ? 'Enregistrement en échec' : row.collectionStatus === 'success' && row.publicationStatus === 'failure' ? 'Publication en échec' : row.collectionStatus === 'failure' ? 'Collecte en échec' : 'Exécution en échec' : row.state === 'qualification'?'Exécution passée · périmètre à qualifier':row.state === 'overdue' ? 'Contrôle en retard' : 'État non documenté'}</span>
         <h3>{row.name}</h3>
+        {row.automatic === false && <p>Actualisation sur demande. Les lancements et reprises automatiques sont arrêtés ; les résultats antérieurs restent consultables.</p>}
         {row.state === 'overdue' && <p>Aucune exécution terminée depuis plus de {row.maxAgeHours} heures. Le dernier succès ne prouve pas que la collecte fonctionne encore.</p>}
         {row.validationStatus === 'failure' && <p>Les contrôles de validation des observations ont échoué. Leur enregistrement est bloqué.</p>}
         {row.recordingStatus === 'failure' && <p>L’enregistrement des données validées a échoué. Les données validées n’ont pas été enregistrées ; leur publication reste à reprendre.</p>}

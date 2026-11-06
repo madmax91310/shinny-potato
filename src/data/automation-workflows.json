@@ -21,7 +21,8 @@
     ]
   },
   "update-editorial-radar.yml": {
-    "name": "Radar éditorial quotidien",
+    "name": "Radar éditorial · sur demande",
+    "automatic": false,
     "workflowName": "Update editorial radar",
     "collectionJob": "update",
     "maxAgeHours": 18,

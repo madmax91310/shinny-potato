@@ -15,14 +15,15 @@ export function automationOverview(status, now = new Date()) {
     if (!value || typeof value !== 'object' || typeof value.name !== 'string') value={name:registry[id]?.name??id,status:'unknown',failures:[{job:'Lecture du statut',step:'Format invalide ; autres producteurs conservés'}]}
     if ((value.failures!=null&&!Array.isArray(value.failures))||(value.dataFailures!=null&&(typeof value.dataFailures!=='object'||Array.isArray(value.dataFailures)||Object.values(value.dataFailures).some(v=>!v||typeof v!=='object')))) value={name:value.name,status:'unknown',failures:[{job:'Lecture du statut',step:'Résultats malformés ; autres producteurs conservés'}]}
     const failures = Object.keys(value.dataFailures ?? {}).length
-    const maxAge = registry[id]?.maxAgeHours
+    const automatic = registry[id]?.automatic !== false
+    const maxAge = automatic ? registry[id]?.maxAgeHours : null
     const completed = Date.parse(value.completedAt)
     const validCompleted = Number.isFinite(completed) && completed <= now.getTime()
     const overdue = validCompleted && maxAge && now.getTime() - completed > maxAge * 3600000
     const state = value.status === 'failure' || failures ? 'failure'
       : overdue ? 'overdue' : (validCompleted&&missingProducerReports(registry[id],value)||value.legacyReportCoverage?.length||Object.keys(value.reportQualifications??{}).length||Object.keys(value.proofFailures??{}).length||value.publicationStatus==='unverified')?'qualification': validCompleted && (value.collectionStatus === 'success'||(registry[id]?.validationOnly||registry[id]?.controlOnly)&&value.validationStatus==='success') ? 'success' : 'unknown'
     const cause = [...(value.failures ?? []).map(failure => `${failure.job} : ${failure.step}`), ...Object.values(value.dataFailures ?? {}).map(data => data.cause).filter(Boolean)]
-    return { ...value, recovery: status.recovery?.[id] ?? null, id, state, failureCount: failures, maxAgeHours: maxAge, paths: registry[id]?.paths ?? [], age: relativeAge(value.completedAt, now), cause: [...new Set(cause)].join(' ; ') || null }
+    return { ...value, recovery: automatic ? status.recovery?.[id] ?? null : null, automatic, id, state, failureCount: failures, maxAgeHours: maxAge, paths: registry[id]?.paths ?? [], age: relativeAge(value.completedAt, now), cause: [...new Set(cause)].join(' ; ') || null }
   }).sort((a, b) => a.name.localeCompare(b.name, 'fr'))
 }
 

@@ -80,3 +80,11 @@ assert.equal(automationOverview({schemaVersion:1,workflows:{'update-bitcoin-mont
   row.reportEvidenceHistory.pop()
   assert.equal(state(),'qualification','A missing companion report remains visible')
 }
+
+// Stopping automatic collection keeps old failures, without a deadline or retry claim.
+const manualId='update-editorial-radar.yml'
+for(const status of ['success','failure']) {
+ const row=automationOverview({schemaVersion:1,workflows:{[manualId]:{name:'Radar',status,collectionStatus:status,completedAt:'2026-01-01T00:00:00Z'}},recovery:{[manualId]:{status:'waiting'}}},now).find(r=>r.id===manualId)
+ assert.equal(row.automatic,false);assert.equal(row.maxAgeHours,null);assert.equal(row.recovery,null)
+ assert.equal(row.state,status)
+}

@@ -5,7 +5,7 @@ import { READ_EVENT,cacheSignalGroups } from './radar-read-state.js'
 
 export const RADAR_OVERVIEW_URL='https://raw.githubusercontent.com/madmax91310/shinny-potato/radar-data/summary.json'
 const listeners=new Set()
-let state={status:'loading',data:null,error:null,revision:0},flight=null,timer=null
+let state={status:'loading',data:null,error:null,revision:0},flight=null
 const emit=()=>{for(const listener of listeners)listener()}
 const changed=()=>{state={...state,revision:state.revision+1};emit()}
 export async function refreshRadarOverview() {
@@ -29,12 +29,11 @@ function subscribe(listener) {
   if(listeners.size===1){
     window.addEventListener(EDITORIAL_EVENT,changed);window.addEventListener(READ_EVENT,changed);window.addEventListener('storage',changed);window.addEventListener('focus',focus)
     document.addEventListener('visibilitychange',focus)
-    timer=setInterval(focus,300000)
     if(!state.data||state.status==='error')refreshRadarOverview()
   }
   return()=>{
     listeners.delete(listener)
-    if(!listeners.size){clearInterval(timer);window.removeEventListener(EDITORIAL_EVENT,changed);window.removeEventListener(READ_EVENT,changed);window.removeEventListener('storage',changed);window.removeEventListener('focus',focus);document.removeEventListener('visibilitychange',focus)}
+    if(!listeners.size){window.removeEventListener(EDITORIAL_EVENT,changed);window.removeEventListener(READ_EVENT,changed);window.removeEventListener('storage',changed);window.removeEventListener('focus',focus);document.removeEventListener('visibilitychange',focus)}
   }
 }
 export default function useRadarOverview(){return useSyncExternalStore(subscribe,()=>state,()=>state)}
