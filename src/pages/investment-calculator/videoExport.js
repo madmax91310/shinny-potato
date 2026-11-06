@@ -55,6 +55,14 @@ const FONTS = {
   footer: "22px -apple-system, 'Segoe UI', Arial, sans-serif",
 }
 
+// Keep the existing typeface and layout; long exact-share names must fit in
+// their allotted line instead of disappearing beyond the exported frame.
+function fitLabel(ctx, text, font, width) {
+  ctx.font = font
+  const measured = ctx.measureText(text).width
+  if (measured > width) ctx.font = font.replace(/(\d+)px/, (_, size) => `${Number(size) * width / measured}px`)
+}
+
 function roundRectPath(ctx, x, y, w, h, r) {
   ctx.beginPath()
   ctx.moveTo(x + r, y)
@@ -372,7 +380,7 @@ function drawFrame(ctx, params, elapsedMs) {
   ctx.fillStyle = COLORS.teal
   ctx.fillText('SIMULATION D’INVESTISSEMENT', PAD, PAD)
 
-  ctx.font = FONTS.title
+  fitLabel(ctx, assetLabel, FONTS.title, W - PAD * 2)
   ctx.fillStyle = COLORS.ink
   ctx.fillText(assetLabel, PAD, PAD + 44)
 
@@ -409,11 +417,14 @@ function drawFrame(ctx, params, elapsedMs) {
 
   const legendY = chartY + chartH + 26
   ctx.font = FONTS.legend
+  const capitalWidth = ctx.measureText('Capital investi').width
+  fitLabel(ctx, assetLabel, FONTS.legend, chartW - 32 - 40 - capitalWidth)
   ctx.fillStyle = COLORS.teal
   ctx.fillRect(chartX, legendY + 8, 22, 4)
   ctx.fillStyle = COLORS.inkDim
   ctx.fillText(assetLabel, chartX + 32, legendY)
   const investedLegendX = chartX + 32 + ctx.measureText(assetLabel).width + 40
+  ctx.font = FONTS.legend
   ctx.fillStyle = COLORS.investedLine
   ctx.fillRect(investedLegendX - 32, legendY + 8, 22, 4)
   ctx.fillStyle = COLORS.inkDim
@@ -526,11 +537,15 @@ function drawComparativeFrame(ctx, params, elapsedMs) {
   // séries peuvent désormais avoir un mode différent, une pastille unique serait donc trompeuse dès
   // que mode1Label ≠ mode2Label. Fonctionne identiquement quand les deux modes sont égaux (cas
   // classique de duel entre deux actifs différents) — juste un peu plus verbeux dans ce cas.
-  ctx.font = FONTS.titleSmall
+  ctx.font = FONTS.legend
+  const mode1Width = ctx.measureText(`· ${mode1Label}`).width
+  const mode2Width = ctx.measureText(`· ${mode2Label}`).width
+  fitLabel(ctx, asset1Label, FONTS.titleSmall, W - PAD * 2 - 30 - 14 - mode1Width)
   dot(PAD + 9, PAD + 40 + 17, color1)
   ctx.fillStyle = COLORS.ink
   ctx.fillText(asset1Label, PAD + 30, PAD + 40)
   const asset1LabelW = ctx.measureText(asset1Label).width
+  fitLabel(ctx, asset2Label, FONTS.titleSmall, W - PAD * 2 - 30 - 14 - mode2Width)
   dot(PAD + 9, PAD + 84 + 17, color2)
   ctx.fillStyle = COLORS.ink
   ctx.fillText(asset2Label, PAD + 30, PAD + 84)

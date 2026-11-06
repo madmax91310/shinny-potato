@@ -37,6 +37,12 @@ on:
       - 'scripts/test_nasdaq_month_close.py'
       - 'scripts/fixtures/starbucks-month-close-20261101/**'
       - 'scripts/qualified_split_comparison.py'
+      - 'scripts/qualified_history_units.py'
+      - 'scripts/test_monthly_history_units.py'
+      - 'scripts/test-investment-history-units.mjs'
+      - 'scripts/audit-investment-history-units.mjs'
+      - 'scripts/lib/history-unit-proof.mjs'
+      - 'scripts/fixtures/investment-units-20261106/**'
       - 'scripts/lib/split-comparison-proof.mjs'
       - 'scripts/test-split-comparison-proof.mjs'
       - 'scripts/fixtures/imie-split-2026/**'
@@ -91,6 +97,12 @@ on:
       - 'scripts/test_nasdaq_month_close.py'
       - 'scripts/fixtures/starbucks-month-close-20261101/**'
       - 'scripts/qualified_split_comparison.py'
+      - 'scripts/qualified_history_units.py'
+      - 'scripts/test_monthly_history_units.py'
+      - 'scripts/test-investment-history-units.mjs'
+      - 'scripts/audit-investment-history-units.mjs'
+      - 'scripts/lib/history-unit-proof.mjs'
+      - 'scripts/fixtures/investment-units-20261106/**'
       - 'scripts/lib/split-comparison-proof.mjs'
       - 'scripts/test-split-comparison-proof.mjs'
       - 'scripts/fixtures/imie-split-2026/**'
@@ -151,6 +163,20 @@ jobs:
           path: ${{ runner.temp }}/nasdaq-close-source-control.json
           if-no-files-found: error
           retention-days: 35
+      - name: Recollect BNKE and WOOD with current primary unit evidence (read-only)
+        id: units
+        continue-on-error: true
+        run: |
+          node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/unit-baseline.json"
+          python scripts/refresh_monthly_history.py --only etfLU1829219390 etf_timber_ishares --baseline "$RUNNER_TEMP/unit-baseline.json" --output "$RUNNER_TEMP/unit-source-control.json" --evidence-output "$RUNNER_TEMP/unit-source-evidence.json"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: investment-unit-source-controls
+          path: |
+            ${{ runner.temp }}/unit-source-control.json
+            ${{ runner.temp }}/unit-source-evidence.json
+          if-no-files-found: error
       - name: Verify exact IMIE split comparison against current real sources
         run: |
           node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/imie-baseline.json"
@@ -174,7 +200,7 @@ jobs:
           retention-days: 35
       - name: Preserve a failed qualification after its evidence upload
         if: always()
-        run: test "${{ steps.collect.outcome }}" = 'success' && test "${{ steps.collectfx.outcome }}" = 'success' && test "${{ steps.nasdaqclose.outcome }}" = 'success'
+        run: test "${{ steps.units.outcome }}" = 'success' && test "${{ steps.collect.outcome }}" = 'success' && test "${{ steps.collectfx.outcome }}" = 'success' && test "${{ steps.nasdaqclose.outcome }}" = 'success'
   refresh:
     concurrency:
       # Serialize writers of automated-indices.json; keep PR validations independent.
@@ -230,6 +256,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_yahoo_terminal_monthly_quote.py'
       - run: python -m unittest discover -s scripts -p 'test_nasdaq_month_close.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_split_comparison.py'
+      - run: python -m unittest discover -s scripts -p 'test_monthly_history_units.py'
+      - run: node scripts/test-investment-history-units.mjs
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
       - run: python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'
       - run: python -m unittest discover -s scripts -p 'test_ranking_sources.py'

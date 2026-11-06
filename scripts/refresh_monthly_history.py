@@ -92,6 +92,10 @@ def collect_yahoo(config, now, fetch=get_json):
         raw[interval], urls[interval] = chart_response(urls[interval], fetch)
     daily, zone = yahoo_chart(raw['1d'], config, '1d')
     monthly, monthly_zone = yahoo_chart(raw['1mo'], config, '1mo')
+    from qualified_history_units import wood_quotes
+    daily, monthly, quote_units, quote_raw = wood_quotes(config, daily, monthly, now, fetch)
+    if quote_units:
+        raw['quoteUnitCorroboration'] = quote_raw
     if zone != monthly_zone:
         reject('Yahoo granularities have different exchange timezones')
     final = {}
@@ -241,6 +245,11 @@ def collect_yahoo(config, now, fetch=get_json):
     if config.get('distributionEvidence'):
         from qualified_distributions import reconcile_adjustments
         result=reconcile_adjustments(config,result,daily,now)
+    if quote_units:
+        result['historicalQuoteRepairEvidence'] = quote_units
+        result['sourceUrls'].extend(quote_units['sourceUrls'])
+    from qualified_history_units import bnke_split, withhold_isolated_scale_points
+    result = withhold_isolated_scale_points(bnke_split(config, result, now))
     return result
 
 
