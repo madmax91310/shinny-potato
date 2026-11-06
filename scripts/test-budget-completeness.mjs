@@ -43,7 +43,13 @@ for (const [i,p] of BUDGET_RELIABLE_PROFILES.entries()) {
   for(const row of p.expenses.filter(r=>/^Provision\b|mensualis|^Enveloppe.*vacances/i.test(r.label)))assert(budgetImageExpenses(p,'summary').some(x=>x.label===row.label && x.amount===row.amount),'A summary cannot disguise an annual provision as ordinary monthly spending')
   const c=publicationContextFor(p), old=BUDGET_ORIGINAL_PUBLICATION_CONTEXT[p.id]
   assert.deepEqual(c.review,old.review,'An editorial review is not a new source consultation')
-  for(const q of c.questions)if(!old.questions.some(x=>x.text===q.text)){assert.equal(q.origin,'editorial');assert(q.adaptedFrom.length)}
+  for(const q of c.questions)if(!old.questions.some(x=>x.text===q.text)){
+    if(q.origin==='editorial')assert(q.adaptedFrom.length)
+    else {
+      assert.equal(q.origin,'expressed')
+      assert(old.questions.some(x=>x.origin==='expressed' && x.text===q.adaptedFrom?.text),'A faithful rewording retains an existing sourced question, never invents its origin')
+    }
+  }
   const personal={profile:structuredClone(original),text:'Mon texte personnel avec mes anciens chiffres.',edited:true}
   const refreshed=refreshBudgetDraft(personal), current=BUDGET_PROFILES.find(x=>x.id===p.id)
   assert.equal(refreshed.text,personal.text)

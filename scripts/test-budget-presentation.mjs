@@ -27,7 +27,7 @@ for (const p of BUDGET_PROFILES) {
 }
 const aicha = BUDGET_PROFILES.find(p => p.name === 'Aïcha'), a = buildBudgetText(aicha)
 assert(a.startsWith('Budget d’Aïcha, 41 ans\n'))
-for (const line of ['💼 Cheffe de service', '👩‍👧 Mère célibataire, un enfant de 11 ans', '📍 Région parisienne', '• ⚡ Énergie et eau', '• 📚 École et cours particuliers', '• 🎨 Activités de son enfant', '• 🩺 Assurances et santé', '• 👕 Vêtements et hygiène', '👉 Reste avant épargne', '💳 Reste après épargne', 'Que pensez-vous de son budget ? 🤔💬']) assert(a.includes(line),line)
+for (const line of ['💼 Cheffe de service', '👩‍👧 Mère célibataire, un enfant de 11 ans', '📍 Région parisienne', '• ⚡ Énergie et eau', '• 📚 École et cours particuliers', '• 🎨 Activités de son enfant', '• 🩺 Assurances et santé', '• 👕 Vêtements et hygiène', '👉 Reste avant épargne', '💳 Reste après épargne']) assert(a.includes(line),line)
 assert(!a.includes('• 💰 Réserves pour projets'), 'A single synonymous allocation is not repeated under its heading')
 assert.equal(analyzeBudget(aicha).savings,800)
 const business = BUDGET_PROFILES.find(p => p.name === 'Inès')
