@@ -1,0 +1,132 @@
+{
+  "checkedAt": "2026-11-06T07:41:32.886796+00:00",
+  "source": "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/holdings",
+  "instrument": "IE00B4K6B022",
+  "financialPeriod": "2026-11-02",
+  "scope": "Full physical fund holdings, published NAV weights; receivables, accounts and futures retained separately and not treated as equity",
+  "rawSha256": "f608b67171f8c96cf88e378f4f23b662569153728c9f2d76226d35942c127e6d",
+  "equities": 50,
+  "unknownSecurities": 0,
+  "excludedPositions": [
+    {
+      "isin": "DE000F0GDJX7",
+      "name": "Euro Stoxx 50 Future Dec 26",
+      "weightPct": 0.63318,
+      "kind": "index-future"
+    },
+    {
+      "name": "Capital Cash Ctrl",
+      "weightPct": 6.54035,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Capital Cash Ctrl Class B",
+      "weightPct": -6.51971,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Futures Liability",
+      "weightPct": -0.63318,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Class Ffx Control",
+      "weightPct": -0.59913,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Class Ffx Control Class S",
+      "weightPct": 0.59913,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Capital Cash",
+      "weightPct": 0.42457,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Reclaimable Tax On Dividends",
+      "weightPct": 0.34661,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Initial Margin",
+      "weightPct": 0.04457,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Overseas Dividend Income Receivable",
+      "weightPct": 0.03837,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Capital Cash Ctrl Class J",
+      "weightPct": -0.01448,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Capital Cash Ctrl Class S",
+      "weightPct": -0.00617,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Accrued Mgment Chg Capital B",
+      "weightPct": -0.0053,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Gbp Capital Cash",
+      "weightPct": 0.00517,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Usd Reclaimable Tax On Dividends",
+      "weightPct": 0.00487,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Futures Broker Account",
+      "weightPct": -0.0027,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Irrec Overseas Tax On Divs Receivable",
+      "weightPct": -0.00214,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Accrued Mgment Chg Capital J",
+      "weightPct": -0.00211,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Accrued Mgment Chg Capital S",
+      "weightPct": -0.00133,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Accrued Passive Hedging Fees S",
+      "weightPct": -0.00027,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Eur Stocklending Commission Receivable",
+      "weightPct": 0.00026,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Usd Capital Cash",
+      "weightPct": 5e-05,
+      "kind": "cash-receivable-payable"
+    },
+    {
+      "name": "Usd Irrec Overseas Tax On Divs Receivable",
+      "weightPct": 0.0,
+      "kind": "cash-receivable-payable"
+    }
+  ],
+  "localActualCollection": true,
+  "productionVerified": false,
+  "financialHistoryChanged": false,
+  "tests": "8 test_hsbc_jpm_holdings tests incl actual source, no renormalisation, idempotence, wrong identifier, unknown account, weights, market value and currency"
+}
