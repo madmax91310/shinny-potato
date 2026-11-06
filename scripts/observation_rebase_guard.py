@@ -98,6 +98,18 @@ ETF_INDEPENDENT = {'src/data/worldbank-gold-monthly.json',
                    'src/data/automated-insurance.json', 'src/data/automated-scpi.json',
                    'src/data/anniversary-levels.json', 'src/data/purchasing-power-observations.json',
                    'src/data/automated-broker-tariffs.json', 'src/data/automated-regulatory.json'}
+# Actual SCPI recording refusal42280725727 across ETF commitc9e5798.
+# SCPI acquisition never reads these
+# bounded generated DCA views. Keep the latest upstream versions and rebuild /
+# financially validate the combined tree. Collector code/config, policies and
+# the upstream ETF calendars themselves are NOT projection outputs.
+DCA_EXPOSURE_VIEWS = {
+    'src/pages/dca-profiles/catalog.json',
+    'src/pages/dca-profiles/exposures.json',
+    'src/pages/dca-profiles/holdings.json',
+    *(f'src/pages/dca-profiles/exposures-extra-{i}.json' for i in range(3)),
+    *(f'src/pages/dca-profiles/holdings-{i}.json' for i in range(32)),
+}
 # This saved INSEE source receipt is not read by actor, anniversary or monthly
 # acquisition. The active inflation-monthly.js remains a protected input.
 INFLATION_RECEIPT = 'scripts/source-snapshots/inflation-automated.json'
@@ -124,7 +136,7 @@ ALLOWED = {
     'insurance': {'src/data/worldbank-gold-monthly.json','src/data/automated-broker-tariffs.json','src/data/automated-regulatory.json','src/data/automated-scpi.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
     # Run41115036012: actor/publication observations do not feed SCPI acquisition.
     # Exact outputs only; combined-tree build, audits and non-mutation still required.
-    'scpi': INDEPENDENT | {'src/data/automated-presentation-actors.json', 'src/data/worldbank-gold-monthly.json','src/data/anniversary-levels.json',
+    'scpi': INDEPENDENT | DCA_EXPOSURE_VIEWS | {'src/data/exposure-etf-expansion-records.json', 'src/data/automated-presentation-actors.json', 'src/data/worldbank-gold-monthly.json','src/data/anniversary-levels.json',
                          'src/data/anniversary-index-history.json',
                          'src/data/purchasing-power-observations.json',
                          'scripts/source-snapshots/anniversary-indices.json'},
