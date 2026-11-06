@@ -1,0 +1,9 @@
+Run 42196264678, refresh job 127820147114; report-failures job 127829026085.
+2026-11-06T09:53:56.9028301Z Source failed: unavailable — HTTP 403
+2026-11-06T09:53:56.9029251Z Source field failed: unavailable performance — HTTP 502
+2026-11-06T09:55:42.9179550Z Source failed: IE0002Y8CX98 — Missing or ambiguous issuer overview date
+2026-11-06T09:55:42.9181005Z Source recovered: IE00BZ56SW52 — https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52
+2026-11-06T09:55:42.9181867Z Source field failed: IE00BZ56SW52 countries — Unqualified country label
+2026-11-06T09:56:11.0825636Z Index source failed: russell-1000 composition — Russell printed weight disagrees with sector geometry: Technology printed 40.51, arc 41.042, radius 0.6
+2026-11-06T09:56:11.0827968Z Index source failed: sp-global-dividend-aristocrats composition — Direct S&P source control failed: HTTP Error 403: Forbidden; previously qualified composition retained without renewing its source clock (2026-11-06T07:41:58.011148+00:00).
+2026-11-06T09:56:11.0830845Z Index source failed: sp-euro-dividend-aristocrats composition — Direct S&P source control failed: HTTP Error 403: Forbidden; previously qualified composition retained without renewing its source clock (2026-11-06T07:41:58.011148+00:00).

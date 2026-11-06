@@ -224,6 +224,7 @@ jobs:
       - run: npm run audit:calculator-series
       - run: node scripts/test-gold-consumers.mjs
       - run: node scripts/test-monthly-consumers.mjs
+      - run: node scripts/test-investment-history-units.mjs
       - run: node scripts/test-equity-monthly.mjs
       - run: node scripts/test-investment-crisis.mjs
       # Derive shortcuts from this snapshot before testing newly qualified histories.
@@ -392,6 +393,7 @@ jobs:
       - name: Install the official PDF reader for split qualification regressions
         run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: python -m unittest discover -s scripts -p 'test_monthly_split_comparison.py'
+      - run: python -m unittest discover -s scripts -p 'test_monthly*units.py'
       - run: python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'
       - run: node scripts/test-nasdaq-total-return.mjs
       - run: python -m unittest discover -s scripts -p 'test_roadmap_assets.py'

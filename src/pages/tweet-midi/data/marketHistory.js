@@ -1,3 +1,5 @@
+import {anniversaryPriceComparisonIssue} from '../../../data/anniversary-price-quality.js'
+import {resolveAnniversaryLevel} from '../../../data/anniversary-levels.js'
 import { qualifyHistoryWindow, requireHistoryWindow } from '../../../data/history-window-quality.js';
 import { ANNIVERSARY_INDEX_VARIANTS } from '../../../data/index-history-conventions.js'
 export { ANNIVERSARY_INDEX_VARIANTS } from '../../../data/index-history-conventions.js'
@@ -60,7 +62,7 @@ export function getHistoricalPrice(assetId, ym) {
   if(ASSETS[assetId]?.anniversaryAvailable===false)throw Error('Prix historique hors distributions non qualifié pour cet actif');
   const minDate = getAssetMinDate(assetId);
   const clampedYm = ymIndex(ym) < ymIndex(minDate) ? minDate : ym;
-  if(ASSETS[assetId].anniversaryExcludedMonths?.includes(clampedYm))throw Error(`Valeur liquidative historique non qualifiée pour ${clampedYm}`);
+  if(ASSETS[assetId].anniversaryExcludedMonths?.includes(clampedYm))throw Error(ASSETS[assetId].anniversaryExclusionReason??`Valeur liquidative historique non qualifiée pour ${clampedYm}`);
   requireHistoryWindow(ASSETS[assetId], clampedYm, clampedYm);
   return interpolatePrice(ASSETS[assetId].anniversaryPoints ?? assetPoints(assetId), clampedYm);
 }
@@ -139,7 +141,7 @@ export function getAnnualReturns(assetId, startYear) {
 // CET actif. `today` est un objet Date réel (jamais codé en dur : passé par l'appelant à partir
 // de `new Date()` au moment du clic, pour rester exact indéfiniment).
 function isQualifiedMonth(assetId, ym) { return !ASSETS[assetId].anniversaryExcludedMonths?.includes(ym) && qualifyHistoryWindow(ASSETS[assetId], ym, ym).qualified; }
-export const getValidYearsBackOptions = createAnniversaryYearOptions({ getAssetMinDate, getAssetMaxDate, isQualifiedMonth })
+export const getValidYearsBackOptions = createAnniversaryYearOptions({ getAssetMinDate, getAssetMaxDate, isQualifiedMonth, isQualifiedComparison:(id,ym,today)=>!anniversaryPriceComparisonIssue(ASSETS[id],ym,resolveAnniversaryLevel(id,'',today)?.asOf??today) })
 
 // Mode Comparatif, Format B uniquement : la date de fin partagée par les deux actifs, pour que la
 // fenêtre de comparaison soit rigoureusement identique des deux côtés — jamais la propre dernière
@@ -211,8 +213,11 @@ export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
   sourceCredit: ASSETS[id].sourceCredit,
   anniversaryVariant: ANNIVERSARY_INDEX_VARIANTS[id] ?? ASSETS[id]?.anniversaryVariant,
   anniversaryValuationBasis: ASSETS[id]?.anniversaryValuationBasis,
+  anniversaryCorporateActions: ASSETS[id]?.anniversaryCorporateActions,
   historyExcludedMonths: ASSETS[id]?.historyExcludedMonths,
+  historyExclusionReasons: ASSETS[id]?.historyExclusionReasons,
   anniversaryExcludedMonths: ASSETS[id]?.anniversaryExcludedMonths,
+  anniversaryExclusionReason: ASSETS[id]?.anniversaryExclusionReason,
   priceUnit: ASSETS[id].priceUnit,
   instrumentType: ASSETS[id].instrumentType,
   isin: ASSETS[id].isin,
@@ -233,8 +238,11 @@ export const ANNIVERSAIRE_ELIGIBLE_ASSETS = [
     currency: asset.currency, sourceCredit: asset.sourceCredit, priceUnit: 'points',
     anniversaryVariant: ANNIVERSARY_INDEX_VARIANTS[id] ?? ASSETS[id]?.anniversaryVariant,
   anniversaryValuationBasis: ASSETS[id]?.anniversaryValuationBasis,
+  anniversaryCorporateActions: ASSETS[id]?.anniversaryCorporateActions,
   historyExcludedMonths: ASSETS[id]?.historyExcludedMonths,
+  historyExclusionReasons: ASSETS[id]?.historyExclusionReasons,
   anniversaryExcludedMonths: ASSETS[id]?.anniversaryExcludedMonths,
+  anniversaryExclusionReason: ASSETS[id]?.anniversaryExclusionReason,
   })),
 ].filter(asset => getValidYearsBackOptions(asset.id, new Date()).length > 0);
 

@@ -85,10 +85,10 @@ export function historyAlerts(today, entities = [], checks = {}) {
     if(unqualified.length){
       checks[id].periods=checks[id].periods.filter(period=>!unqualified.includes(period))
       alerts.push({...base,tools:historyConsumerTools({ id, dataId, record, cadence, entities, today, excludedMonths:unqualified }),id:`${id}:qualification`,kind:'history',invalidPeriods:unqualified,
-        cause:`Composants officiels non rapprochés : ${unqualified.join(', ')}. Les fenêtres utilisant ces mois sont refusées ; les autres périodes restent qualifiables.`})
+        cause:record.historyExclusionReasons?unqualified.map(m=>record.historyExclusionReasons[m]??`Mois non qualifié : ${m}`).join(' '):`Composants officiels non rapprochés : ${unqualified.join(', ')}. Les fenêtres utilisant ces mois sont refusées ; les autres périodes restent qualifiables.`})
     }
     if(record.anniversaryExcludedMonths?.length)alerts.push({...base,id:`${id}:anniversary-qualification`,kind:'history',tools:['Il y a X ans'],invalidPeriods:record.anniversaryExcludedMonths,
-      cause:`NAV historiques non rapprochées pour Il y a X ans : ${record.anniversaryExcludedMonths.join(', ')}. La série de rendement réinvesti est traitée séparément.`})
+      cause:record.anniversaryExclusionReason??(record.anniversaryPriceUnitExclusions?.length?`Comparaison anniversaire de prix refusée à travers le split officiel de la part : ${record.splitAdjustmentEvidence?.ratio} parts pour une ancienne part le ${record.splitAdjustmentEvidence?.exDate}. Prix historiques conservés ; rendements qualifiés disponibles.`:`NAV historiques non rapprochées pour Il y a X ans : ${record.anniversaryExcludedMonths.join(', ')}. La série de rendement réinvesti est traitée séparément.`)})
     if (check.missingPeriods.length || check.invalidPeriods.length) alerts.push({ ...base, id: `${id}:gaps`, kind: 'history',
       missingPeriods: check.missingPeriods, invalidPeriods: check.invalidPeriods,
       cause: [check.missingPeriods.length && `Périodes absentes dans la plage documentée de l’historique : ${check.missingPeriods.join(', ')}.`, check.invalidPeriods.length && `Valeurs non exploitables : ${check.invalidPeriods.join(', ')}.`].filter(Boolean).join(' ') })

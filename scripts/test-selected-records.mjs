@@ -26,10 +26,13 @@ try{
   .replace("'../../../lib/history-dates.js'",JSON.stringify(pathToFileURL(resolve('src/lib/history-dates.js')).href))
   .replace("'../../../lib/investment-series.js'",JSON.stringify(pathToFileURL(resolve('src/lib/investment-series.js')).href))
   .replace("'../../../data/history-browser.js'",JSON.stringify(loader))
+  .replace("'../../../data/anniversary-price-quality.js'",JSON.stringify(pathToFileURL(resolve('src/data/anniversary-price-quality.js')).href))
+  .replace("'../../../data/anniversary-levels.js'",JSON.stringify(pathToFileURL(resolve('src/data/anniversary-levels.js')).href))
   .replace("'../../../data/history-window-quality.js'",JSON.stringify(pathToFileURL(resolve('src/data/history-window-quality.js')).href))
  const projected=await import(uri(code)),p=anniversaryProjection()
  assert(Object.values(p.assets).every(asset=>!Object.hasOwn(asset,'points')&&!Object.hasOwn(asset,'anniversaryPoints')))
  assert.equal(requests.length,0)
+ for(const date of ['2026-10-17','2026-11-06'])assert.deepEqual(projected.getValidYearsBackOptions('etfLU1829219390',new Date(date)),canonical.getValidYearsBackOptions('etfLU1829219390',new Date(date)),'Projected selector preserves the official split window qualification')
  for(const asset of canonical.ANNIVERSAIRE_ELIGIBLE_ASSETS){
   const before=requests.length
   assert.deepEqual(projected.getValidYearsBackOptions(asset.id,new Date('2026-10-17')),canonical.getValidYearsBackOptions(asset.id,new Date('2026-10-17')))
@@ -40,10 +43,22 @@ try{
   for(const years of [1,3,5,10]){
    const ym=canonical.ymForYearsBack(years,new Date('2026-10-17'))
    let expected
-   try {expected=canonical.getHistoricalPrice(asset.id,ym)} catch(error) {assert.match(error.message,/cours reportés|rapprochement financier non résolu/);assert.throws(()=>projected.getHistoricalPrice(asset.id,ym),{message:error.message});continue}
+   try {expected=canonical.getHistoricalPrice(asset.id,ym)} catch(error) {assert.match(error.message,/cours reportés|rapprochement financier non résolu|prix historique réellement coté non certifié/);assert.throws(()=>projected.getHistoricalPrice(asset.id,ym),{message:error.message});continue}
    assert.equal(projected.getHistoricalPrice(asset.id,ym),expected,asset.id+' '+ym)
   }
  }
+ // Whole-asset selector exclusions still permit qualified recent months, while
+ // deferred records must refuse every affected old-price interval explicitly.
+ for(const asset of canonical.MARKET_ASSETS.filter(a=>a.anniversaryExclusionReason)){
+  await projected.anniversaryRecords.load(asset.id)
+  const month=asset.anniversaryExcludedMonths[0]
+  assert.throws(()=>projected.getHistoricalPrice(asset.id,month),{message:asset.anniversaryExclusionReason})
+  const recent=asset.points.filter(p=>!asset.anniversaryExcludedMonths.includes(p.date)).at(-1)?.date
+  if(recent)assert.equal(projected.getHistoricalPrice(asset.id,recent),canonical.getHistoricalPrice(asset.id,recent))
+ }
+ await projected.anniversaryRecords.load('etfLU1829219390')
+ assert.throws(()=>projected.getHistoricalPrice('etfLU1829219390','2018-10'),/continuité du prédécesseur non qualifiée/)
+ assert.equal(projected.getHistoricalPrice('etfLU1829219390','2019-01'),canonical.getHistoricalPrice('etfLU1829219390','2019-01'))
  const exposure=await import(uri(plugin.transform('',resolve('src/pages/dca-profiles/records.js')).code))
  assert(!Object.values(exposure.references).some(r=>r.countries||r.sectors||r.equitySleeve))
  const beforeNonEquity=requests.length

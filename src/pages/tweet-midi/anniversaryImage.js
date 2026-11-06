@@ -1,3 +1,4 @@
+import {requireAnniversaryPriceComparison} from '../../data/anniversary-price-quality.js'
 import { currencySymbol } from '../../lib/investment-series.js'
 import { downloadPublicationBlob } from '../../design-system/downloadBlob.js'
 import { resolveAnniversaryLevel } from '../../data/anniversary-levels.js'
@@ -18,6 +19,7 @@ function snapshot(item, raw, assetId, reference) {
   const asset = getMarketAsset(assetId), art = ANNIVERSARY_ART[assetId]
   if (!asset || !art) throw new Error('Actif sans visuel vérifié')
   const date = ymForYearsBack(item.yearsBack, reference)
+  requireAnniversaryPriceComparison(asset,date,observation.asOf??TODAY)
   return { assetId, asset, art, past: getHistoricalPrice(assetId, date), current: observation.value, currentLabel: observation.label, dateLabel: fmtYm(date, { monthLabels: MONTHS_FULL }) }
 }
 const level = (value, snap) => `${number(value)} ${snap.art.unit || currencySymbol(snap.asset.currency)}`

@@ -1,15 +1,16 @@
 import assert from 'node:assert/strict'
 import { readFileSync, writeFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
-import { ANNIVERSAIRE_ELIGIBLE_ASSETS } from '../src/pages/tweet-midi/data/marketHistory.js'
+import { ANNIVERSAIRE_ELIGIBLE_ASSETS, ANNIVERSAIRE_EXCLUDED_ASSETS } from '../src/pages/tweet-midi/data/marketHistory.js'
 
 // Keep provenance in public/; only filenames and optical bounds enter the JS bundle.
 const root = new URL('../', import.meta.url)
 const sources = JSON.parse(readFileSync(new URL('public/asset-art/official-logos/sources.json', root)))
 const runtime = {}
-const eligible = new Set(ANNIVERSAIRE_ELIGIBLE_ASSETS.map(asset => asset.id))
+// A temporary financial window refusal does not invalidate approved branding.
+const registered = new Set([...ANNIVERSAIRE_ELIGIBLE_ASSETS,...ANNIVERSAIRE_EXCLUDED_ASSETS].map(asset => asset.id))
 for (const [id, source] of Object.entries(sources)) {
-  assert.ok(eligible.has(id), `${id}: logo must belong to an eligible asset`)
+  assert.ok(registered.has(id), `${id}: logo must belong to a registered anniversary asset`)
   assert.match(source.page, /^https:\/\//, `${id}: official publication page missing`)
   assert.match(source.source, /^https:\/\//, `${id}: original download missing`)
   assert.ok(!source.file.includes('..') && !source.file.startsWith('/'), `${id}: non-local logo path`)

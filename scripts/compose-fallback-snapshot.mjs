@@ -29,6 +29,7 @@ import { StringDecoder } from 'node:string_decoder'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { automationPaths, classify } from './classify-deploy-scope.mjs'
+import { requireHistoryPublicationCompatibility } from './history-publication-compatibility.mjs'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const ISIN = /(?<![A-Z0-9])[A-Z]{2}[A-Z0-9]{9}[0-9](?![A-Z0-9])/g
@@ -216,6 +217,9 @@ export function compose({ published, data = 'HEAD', cwd = ROOT, allowed }) {
   const dataSha = git('rev-parse', '--verify', `${data}^{commit}`)
   const codeSha = git('rev-parse', '--verify', `${published}^{commit}`)
   git('merge-base', '--is-ancestor', codeSha, dataSha) // throws when histories diverge
+  // Check immutable commits before checkout or overlay. Keeping an old file is
+  // insufficient when its old code would still publish an unqualified history.
+  requireHistoryPublicationCompatibility({codeSha, dataSha, git})
   // Paths are read from the NEW snapshot's workflows: they define what its data is.
   const paths = allowed ?? automationPaths(path.join(cwd, '.github/workflows'))
   const files = fallbackFiles(git('ls-tree', '-r', '--name-only', dataSha).split('\n').filter(Boolean), paths)

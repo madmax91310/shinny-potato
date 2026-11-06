@@ -1,3 +1,4 @@
+import {ANNIVERSAIRE_ELIGIBLE_ASSETS,ANNIVERSAIRE_EXCLUDED_ASSETS} from '../src/pages/tweet-midi/data/marketHistory.js'
 import {mockRadarChrome,isRadarChromeRequest} from './lib/browser-radar-chrome.mjs'
 import assert from 'node:assert/strict'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
@@ -92,6 +93,7 @@ try {
   })), { base, sources })
   await preflightContext.close()
   console.log(`${preflight.length} hosted logo files decode and export from the production Pages base path.`)
+  const qualified=new Set(ANNIVERSAIRE_ELIGIBLE_ASSETS.map(a=>a.id)),excluded=new Map(ANNIVERSAIRE_EXCLUDED_ASSETS.map(a=>[a.id,a]))
   const allCases = [...Object.keys(sources), 'broadcom']
   const cases = process.env.LOGO_TEST_ASSETS ? allCases.filter(id => process.env.LOGO_TEST_ASSETS.split(',').includes(id)) : allCases
   const deviceChecks = await Promise.allSettled([['desktop', { viewport: { width: 1440, height: 1000 } }], ['mobile', devices['iPhone 13']]].map(async ([device, options]) => {
@@ -106,6 +108,13 @@ try {
       // Bound decoded PNG/document memory across the growing catalogue.
       const { ctx, page } = await trackedPage()
       await page.goto(`${base}il-y-a-x-ans?asset=${id}`)
+      if(!qualified.has(id)){
+        const reason=excluded.get(id)?.anniversaryExclusionReason
+        assert(reason,`${id}: precise financial refusal required`)
+        await expect(page.getByRole('alert')).toHaveText(reason)
+        await expect(page.locator('.publication-image-stage img')).toHaveCount(0)
+        results.push({device,id,financialRefusal:true,reason});await ctx.close();continue
+      }
       await showImage(page)
       const img = await ready(page), src = await img.getAttribute('src'), expected = await pixels(page, src)
       await writeFile(`${out}/${device}-${id}-rendered.png`, Buffer.from(src.split(',')[1], 'base64'))
@@ -196,5 +205,5 @@ try {
   }
   assert.deepEqual(failures, [])
   await writeFile(`${out}/results.json`, JSON.stringify({ base, preflight, results, checks: ['both PNG download buttons match exact logo pixels and text/layout commands; full hashes retained as diagnostics', 'desktop and mobile picker changes; stale render ignored', 'delayed logo blocks PNG completion', 'missing and corrupt logos fall back and recover', 'contain, centring, margins, unchanged alpha/colour', 'all requests under GitHub Pages base path'], failures }, null, 2) + '\n')
-  console.log(`${results.length} built-Pages previews; ${results.length * 2} real PNG downloads match preview logo pixels and text/layout; picker changes, delayed load, missing/corrupt logo and retry passed.`)
+  console.log(`${results.filter(r=>!r.financialRefusal).length} built-Pages previews; ${results.filter(r=>!r.financialRefusal).length * 2} real PNG downloads match preview logo pixels and text/layout; picker changes, delayed load, missing/corrupt logo and retry passed.`)
 } finally { await browser?.close(); server?.kill('SIGTERM') }

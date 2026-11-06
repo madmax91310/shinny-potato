@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-06T11:53:49.205Z",
+  "bundleSha256": "1e566ba940c5850177df500b323a992900ba631e169727938037df073fd7595d",
+  "partitionCount": 4,
+  "requestedScope": {
+    "bundleSha256": "1e566ba940c5850177df500b323a992900ba631e169727938037df073fd7595d",
+    "poolSize": 4060462,
+    "partitions": [
+      {
+        "index": 0,
+        "count": 4,
+        "expectedEntries": 1015116
+      },
+      {
+        "index": 1,
+        "count": 4,
+        "expectedEntries": 1015116
+      },
+      {
+        "index": 2,
+        "count": 4,
+        "expectedEntries": 1015115
+      },
+      {
+        "index": 3,
+        "count": 4,
+        "expectedEntries": 1015115
+      }
+    ]
+  },
+  "poolSize": 4060462,
+  "totalChecked": 4060462,
+  "results": [
+    {
+      "index": 0,
+      "code": 0,
+      "signal": null,
+      "reports": [
+        {
+          "shardIndex": 0,
+          "shardCount": 4,
+          "poolSize": 4060462,
+          "checked": 1015116,
+          "failures": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "index": 1,
+      "code": 0,
+      "signal": null,
+      "reports": [
+        {
+          "shardIndex": 1,
+          "shardCount": 4,
+          "poolSize": 4060462,
+          "checked": 1015116,
+          "failures": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "index": 2,
+      "code": 0,
+      "signal": null,
+      "reports": [
+        {
+          "shardIndex": 2,
+          "shardCount": 4,
+          "poolSize": 4060462,
+          "checked": 1015115,
+          "failures": 0
+        }
+      ],
+      "issues": []
+    },
+    {
+      "index": 3,
+      "code": 0,
+      "signal": null,
+      "reports": [
+        {
+          "shardIndex": 3,
+          "shardCount": 4,
+          "poolSize": 4060462,
+          "checked": 1015115,
+          "failures": 0
+        }
+      ],
+      "issues": []
+    }
+  ],
+  "errors": [],
+  "succeeded": true
+}

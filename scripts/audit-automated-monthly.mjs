@@ -1,3 +1,4 @@
+import {validateHistoryUnitEvidence} from './lib/history-unit-proof.mjs'
 import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
 import {comparisonClose} from './lib/split-comparison-proof.mjs'
 import assert from 'node:assert/strict';
@@ -20,6 +21,7 @@ for (const source of config.series.filter(source => source.consumerScope === 'ca
 for (const [id, record] of Object.entries(records)) {
   const source = config.series.find(s => s.id === id);
   assert(source, `Unknown series ${id}`);
+  validateHistoryUnitEvidence(record,evidence[id]);
   const catalog = record.consumerScope === 'catalog';
   const asset = catalog ? ETF_MONTHLY_HISTORIES[id] : ASSETS[id];
   assert(asset, `Missing active history ${id}`);
@@ -70,7 +72,7 @@ for (const [id, record] of Object.entries(records)) {
     if (record.parser === 'msci') assert(Math.abs(row.value-row.monthlyValue)<=.0001);
     assert.deepEqual(asset.points[i], { date, price });
     if (record.anniversaryPoints?.length) {
-      assert.equal(record.anniversaryPoints[i][1], Math.round((record.anniversaryValuationBasis==='fund-nav-price'?row.anniversaryValue:record.parser==='official-nav'?row.value:row.close)*10**record.precision)/10**record.precision);
+      assert.equal(record.anniversaryPoints[i][1], Math.round((row.anniversaryValue??(record.parser==='official-nav'?row.value:row.close))*10**record.precision)/10**record.precision);
       assert.deepEqual(ASSETS[id].anniversaryPoints[i], {date,price:record.anniversaryPoints[i][1]});
     }
   }

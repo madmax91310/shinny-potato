@@ -69,7 +69,11 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
     continue
   }
   const options = getValidYearsBackOptions(id, clock)
-  if (!options.length) assert(asset.anniversaryPoints[0].date > `${clock.getUTCFullYear()-1}-09`, `${id}: unexpected missing anniversary history`)
+  if (!options.length) {
+    if(asset.anniversaryExclusionReason){assert(asset.anniversaryExcludedMonths.length);for(const month of asset.anniversaryExcludedMonths)assert.throws(()=>getHistoricalPrice(id,month),{message:asset.anniversaryExclusionReason})}
+    else if(asset.anniversaryCorporateActions?.length)assert(asset.anniversaryCorporateActions.every(e=>e.sourceUrl&&e.ratio>0))
+    else assert(asset.anniversaryPoints[0].date > `${clock.getUTCFullYear()-1}-09`, `${id}: unexpected missing anniversary history`)
+  }
   for (const back of options) {
     const ym = ymForYearsBack(back, clock)
     assert(ym >= start)
@@ -92,8 +96,9 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
 }
 // Distributed income belongs to performance, never to the historical price story.
 assert(ASSETS.etfWqdv.points.some((p, i) => Math.abs(p.price - ASSETS.etfWqdv.anniversaryPoints[i].price) > .01))
-const comparative = buildAnniversaireComparatifText({ format: FORMATS.ANNIVERSAIRE, mode: MODES.COMPARATIF, assetIdA: 'etfImie', assetIdB: 'etfVwce', yearsBack: 1 }, '100', '200')
-assert(comparative.includes(ASSETS.etfImie.label) && comparative.includes(ASSETS.etfVwce.label))
+assert.throws(()=>buildAnniversaireComparatifText({ format: FORMATS.ANNIVERSAIRE, mode: MODES.COMPARATIF, assetIdA: 'etfImie', assetIdB: 'etfVwce', yearsBack: 1 }, '100', '200'),{message:ASSETS.etfImie.anniversaryExclusionReason})
+const comparative = buildAnniversaireComparatifText({ format: FORMATS.ANNIVERSAIRE, mode: MODES.COMPARATIF, assetIdA: 'etfMinVol', assetIdB: 'etfVwce', yearsBack: 1 }, '100', '200')
+assert(comparative.includes(ASSETS.etfMinVol.label) && comparative.includes(ASSETS.etfVwce.label))
 console.log(`${Object.keys(ETF_MONTHLY_HISTORIES).length} ETF/ETC: exact shares, lump/DCA, complete annual returns, raw anniversary prices, daily closes, comparisons and visual identities validated.`)
 
 // New commodity labels must reach the actual copied presentation text.

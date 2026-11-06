@@ -92,6 +92,10 @@ def collect_yahoo(config, now, fetch=get_json):
         raw[interval], urls[interval] = chart_response(urls[interval], fetch)
     daily, zone = yahoo_chart(raw['1d'], config, '1d')
     monthly, monthly_zone = yahoo_chart(raw['1mo'], config, '1mo')
+    from qualified_history_units import wood_quotes
+    daily, monthly, quote_units, quote_raw = wood_quotes(config, daily, monthly, now, fetch)
+    if quote_units:
+        raw['quoteUnitCorroboration'] = quote_raw
     if zone != monthly_zone:
         reject('Yahoo granularities have different exchange timezones')
     final = {}
@@ -241,6 +245,11 @@ def collect_yahoo(config, now, fetch=get_json):
     if config.get('distributionEvidence'):
         from qualified_distributions import reconcile_adjustments
         result=reconcile_adjustments(config,result,daily,now)
+    if quote_units:
+        result['historicalQuoteRepairEvidence'] = quote_units
+        result['sourceUrls'].extend(quote_units['sourceUrls'])
+    from qualified_history_units import bnke_split, withhold_isolated_scale_points
+    result = withhold_isolated_scale_points(bnke_split(config, result, now))
     return result
 
 
@@ -364,7 +373,10 @@ def collect_one(config, now):
     if config['parser'] == 'official-nav':
         from collect_official_share_history import collect_one as collect_nav
         return collect_nav(config, now)
-    if config['parser'] == 'yahoo': result=collect_yahoo(config, now)
+    if config['parser'] == 'yahoo':
+        result=collect_yahoo(config, now)
+        from qualify_anniversary_price_units import qualify as qualify_anniversary_units
+        result=qualify_anniversary_units(config,result,now)
     elif config['parser'] == 'msci': result=collect_msci(config, now)
     elif config['parser'] == 'fred': result=collect_fred(config,now)
     elif config['parser'] == 'stoxx': result=collect_stoxx(config,now)
@@ -418,6 +430,8 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
                 dt.date.fromisoformat(scope['requestedStart'])
             old=baseline.get(source['id'])
             prior=current.get(source['id'])
+            from qualify_anniversary_price_units import retain_prior_review
+            result=retain_prior_review(prior,result)
             # The isolated non-bond producer has a company-only baseline. A
             # reviewed NAV migration already has its own validated prior series;
             # use that coverage, never authorize a new NAV bootstrap implicitly.

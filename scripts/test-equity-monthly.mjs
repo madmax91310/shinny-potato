@@ -5,7 +5,7 @@ import { PERFORMANCE_ART } from '../src/pages/tweet-midi/performanceArt.js'
 import { ANNIVERSARY_ART } from '../src/pages/tweet-midi/anniversaryArt.js'
 import { NEON_ASSET_ART } from '../src/pages/tweet-midi/stylizedArt.js'
 import { ASSETS, ASSET_ORDER } from '../src/data/market-history.js'
-import { MARKET_ASSETS, ANNIVERSAIRE_ELIGIBLE_ASSETS, getHistoricalPrice } from '../src/pages/tweet-midi/data/marketHistory.js'
+import { MARKET_ASSETS, ANNIVERSAIRE_ELIGIBLE_ASSETS, getValidYearsBackOptions, getHistoricalPrice } from '../src/pages/tweet-midi/data/marketHistory.js'
 import { derive, currencySymbol } from '../src/pages/investment-calculator/lib.js'
 import { resolveAnniversaryLevel } from '../src/data/anniversary-levels.js'
 const configs=JSON.parse(readFileSync('scripts/monthly-automation.json')).series.filter(s=>s.consumerScope==='equity')
@@ -22,7 +22,9 @@ for (const config of configs) {
   const asset=ASSETS[id]
   assert.equal(asset.currency,config.currency)
   assert.equal(asset.priceMethod,'adjusted')
-  assert(ASSET_ORDER.includes(id) && MARKET_ASSETS.some(a=>a.id===id) && ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===id))
+  assert(ASSET_ORDER.includes(id) && MARKET_ASSETS.some(a=>a.id===id))
+  assert.equal(ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===id),getValidYearsBackOptions(id,new Date()).length>0)
+  for(const month of record.anniversaryExcludedMonths??[])assert.throws(()=>getHistoricalPrice(id,month),{message:record.anniversaryExclusionReason})
   const start=asset.points[0], end=asset.points.at(-1)
   const result=derive({assetId:id,amountRaw:'1000',mode:'lump',startYear:+start.date.slice(0,4),startMonth:+start.date.slice(5),overridePriceRaw:''})
   assert(Math.abs(result.result.finalValue-1000*end.price/start.price)<1e-6)

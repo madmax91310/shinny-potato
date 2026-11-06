@@ -959,7 +959,9 @@
       "mic": "XSWX",
       "listingEvidenceId": "IE00B27YCF74-XSWX-WOOD-USD",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251912/?siteEntryPassthrough=true&switchLocale=y",
-      "timezone": "Europe/Zurich"
+      "timezone": "Europe/Zurich",
+      "historicalQuoteRepairSource": "https://www.six-group.com/fqs/charts.json?select=ValorId&where=ValorId=IE00B27YCF74USD4&netting=1440&fromdate=20260220&todate=20260331",
+      "sourceCredit": "Yahoo Finance / SIX Swiss Exchange"
     },
     {
       "id": "etfIndustrials",
@@ -13828,7 +13830,9 @@
       "collectAnniversary": true,
       "yahooInstrumentType": "ETF",
       "periodStart": "2015-01",
-      "verifyMonthlyDisagreements": true
+      "verifyMonthlyDisagreements": true,
+      "splitAdjustmentNotice": "https://www.webdisclosure.fr/press-release/lyxor-sp-500-ucits-etf-acc-etr-multi-units-luxembourg-notice-to-the-shareholders-Oftu9lO8NCy",
+      "sourceCredit": "Yahoo Finance / Amundi"
     },
     {
       "id": "etfLU1834983634",

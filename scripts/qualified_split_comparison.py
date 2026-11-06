@@ -1,6 +1,8 @@
 """Qualify an issuer split solely to reconcile comparison quote units.
 
-Never rescale the collected daily prices, infer a split from a price ratio,
+This comparison-only IMIE proof does not qualify the provider adjusted series.
+Exact-share price repairs live in qualified_history_units, with independent sources.
+Never rescale the collected daily prices here, infer a split from a price ratio,
 or infer a dividend adjustment. Other instruments keep their existing guards.
 """
 import datetime as dt
