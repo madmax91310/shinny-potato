@@ -11771,6 +11771,17 @@
         "label": "Réfrigérateur",
         "targetAmount": 450,
         "alternativeRepair": 120
+      },
+      {
+        "type": "calculated",
+        "description": "Comparaison du remplacement avec la réserve créée, en supposant deux mois sans autre imprévu. Les 60 € restent une enveloppe de dépenses, pas une épargne déjà réalisée.",
+        "reserve": 350,
+        "monthlyProvision": 60,
+        "newAppliance": 450,
+        "repair": 120,
+        "months": 2,
+        "afterReplacement": 20,
+        "afterRepair": 230
       }
     ],
     "profilePatch": {
@@ -11789,20 +11800,20 @@
     },
     "paragraphs": [
       "Michel a 350 € sur Livret A. Son réfrigérateur est en panne : il compare une réparation à 120 € avec un appareil à 450 €.",
-      "Les 60 € prévus pour les imprévus peuvent aider, mais payer l’appareil neuf laisserait presque tout le livret vide. Il préfère décider sans toucher à l’argent du loyer ou de la santé."
+      "Le neuf dépasse sa réserve actuelle. Même en réservant les 60 € d’imprévus pendant deux mois, il ne resterait que 20 € de côté après l’achat. La réparation à 120 € lui laisserait 230 € sur le livret, sans attendre ni toucher à l’argent du loyer ou de la santé."
     ],
     "questions": [
       "Vous répareriez pour 120 € ou vous prépareriez l’achat à 450 € ?",
       "Quel minimum laisseriez-vous sur son livret ?"
     ],
     "budgetQuestion": "Que pensez-vous de ce budget ? 🤔💬",
-    "coherence": "Revenus, dépenses, versements, devise et période conservés ; stocks distincts des flux. Les déclarations sources restent dans la photographie originale. Les nouveaux stocks et projets sont des créations autorisées ; aucune nouvelle recette ne sert à effacer un déficit. Les éléments narratifs créés restent propres au personnage éditorial ; les faits conservés gardent leur provenance antérieure.",
+    "coherence": "Revenus, dépenses, versements, devise et période conservés ; stocks distincts des flux. Les déclarations sources restent dans la photographie originale. Les nouveaux stocks et projets sont des créations autorisées ; aucune nouvelle recette ne sert à effacer un déficit. Les éléments narratifs créés restent propres au personnage éditorial ; les faits conservés gardent leur provenance antérieure. Le neuf exige au moins deux mois de l’enveloppe imprévus sans autre incident : 350 + 2 × 60 − 450 = 20 € ; réparation immédiate : 350 − 120 = 230 €.",
     "sourceConsultationClaim": false,
     "publicationPolicy": "Personnage éditorial inspiré de données publiques ; aucun témoignage reçu, aucune création attribuée aux auteurs sources. Nature et provenance dans la fiche uniquement.",
     "publicProfile": {
       "household": "Locataire",
       "incomeNote": "",
-      "context": "Michel a 350 € sur Livret A. Son réfrigérateur est en panne : il compare une réparation à 120 € avec un appareil à 450 €.\n\nLes 60 € prévus pour les imprévus peuvent aider, mais payer l’appareil neuf laisserait presque tout le livret vide. Il préfère décider sans toucher à l’argent du loyer ou de la santé.",
+      "context": "Michel a 350 € sur Livret A. Son réfrigérateur est en panne : il compare une réparation à 120 € avec un appareil à 450 €.\n\nLe neuf dépasse sa réserve actuelle. Même en réservant les 60 € d’imprévus pendant deux mois, il ne resterait que 20 € de côté après l’achat. La réparation à 120 € lui laisserait 230 € sur le livret, sans attendre ni toucher à l’argent du loyer ou de la santé.",
       "question": "Vous répareriez pour 120 € ou vous prépareriez l’achat à 450 € ?\nQuel minimum laisseriez-vous sur son livret ?"
     },
     "finance": [
@@ -11838,7 +11849,7 @@
           ]
         },
         {
-          "text": "Les 60 € prévus pour les imprévus peuvent aider, mais payer l’appareil neuf laisserait presque tout le livret vide. Il préfère décider sans toucher à l’argent du loyer ou de la santé.",
+          "text": "Le neuf dépasse sa réserve actuelle. Même en réservant les 60 € d’imprévus pendant deux mois, il ne resterait que 20 € de côté après l’achat. La réparation à 120 € lui laisserait 230 € sur le livret, sans attendre ni toucher à l’argent du loyer ou de la santé.",
           "evidence": [
             1
           ],
@@ -11907,6 +11918,17 @@
             "label": "Réfrigérateur",
             "targetAmount": 450,
             "alternativeRepair": 120
+          },
+          {
+            "type": "calculated",
+            "description": "Comparaison du remplacement avec la réserve créée, en supposant deux mois sans autre imprévu. Les 60 € restent une enveloppe de dépenses, pas une épargne déjà réalisée.",
+            "reserve": 350,
+            "monthlyProvision": 60,
+            "newAppliance": 450,
+            "repair": 120,
+            "months": 2,
+            "afterReplacement": 20,
+            "afterRepair": 230
           }
         ],
         "sourceConsultationClaim": false

@@ -45,3 +45,8 @@ for(const [i,p]of BUDGET_PROFILES.entries()){
 const adrien=BUDGET_PROFILES.find(p=>p.id==='finary-cyber-24-2026-08-27')
 assert.equal(analyzeBudget(adrien).expenses,1190);assert.equal(analyzeBudget(adrien).savings,1450);assert.equal(analyzeBudget(adrien).balance,160)
 console.log(`Editorial lives: ${BUDGET_PROFILES.length} reviewed, neutral public copy, separate creations, independent ledgers and customized drafts verified.`)
+
+const michel=BUDGET_EDITORIAL_CREATIONS['websourd-retraite-normandie-2026-10-02'].created.find(e=>e.type==='calculated')
+assert(michel.reserve<michel.newAppliance,'Replacing the appliance is not immediately affordable from the reserve')
+assert.equal(michel.reserve+michel.monthlyProvision*michel.months-michel.newAppliance,michel.afterReplacement)
+assert.equal(michel.reserve-michel.repair,michel.afterRepair)
