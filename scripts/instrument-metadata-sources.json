@@ -7363,17 +7363,6 @@
         },
         {
           "ticker": "XDWM",
-          "exchange": "London Stock Exchange",
-          "mic": "XLON",
-          "currency": "USD",
-          "symbol": "XDWM.L",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "checkedAt": "2026-11-06",
-          "evidenceId": "IE00BM67HS53-XLON-XDWM-USD",
-          "excerpt": "IE00BM67HS53 | London Stock Exchange | XDWM | USD | XDWM.L"
-        },
-        {
-          "ticker": "XDWM",
           "exchange": "Borsa Italiana",
           "mic": "ETFP",
           "currency": "EUR",
@@ -7382,6 +7371,17 @@
           "checkedAt": "2026-11-06",
           "evidenceId": "IE00BM67HS53-ETFP-XDWM-EUR",
           "excerpt": "IE00BM67HS53 | Borsa Italiana | XDWM | EUR | XDWM.MI"
+        },
+        {
+          "ticker": "XDWM",
+          "exchange": "London Stock Exchange",
+          "mic": "XLON",
+          "currency": "USD",
+          "symbol": "XDWM.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-06",
+          "evidenceId": "IE00BM67HS53-XLON-XDWM-USD",
+          "excerpt": "IE00BM67HS53 | London Stock Exchange | XDWM | USD | XDWM.L"
         },
         {
           "ticker": "XSMW",
@@ -8049,11 +8049,10 @@
         "checkedAt": "2026-11-05"
       },
       "urls": [
-        "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf",
+        "https://www.vaneck.com/fr/en/library/fact-sheets/qntm-fact-sheet.pdf",
         "https://www.justetf.com/en/etf-profile.html?isin=IE0007Y8Y157",
         "https://www.francetransactions.com/bourse/etf/vaneck-quantum-computing-ucits-etf-a-ie0007y8y157.html",
         "https://www.justetf.com/fr/etf-profile.html?isin=IE0007Y8Y157",
-        "https://www.vaneck.com/fr/en/library/fact-sheets/qntm-fact-sheet.pdf",
         "https://www.boursedirect.fr/fr/marche/london-stock-exchange/vaneck-ucits-etfs-plc-vaneck-q-IE0007Y8Y157-QNTM-USD-XLON/seance"
       ]
     },

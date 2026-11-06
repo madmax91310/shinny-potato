@@ -6,12 +6,12 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 |---|---:|---:|---:|---:|
 | Positions intégrales | 203/283 | 203 | 0 | 0 |
 | Frais | 280/283 | 280 | 0 | 0 |
-| Encours | 280/283 | 279 | 0 | 1 |
+| Encours | 280/283 | 280 | 0 | 0 |
 | Performances annuelles | 260/283 | 260 | 0 | 0 |
 | Historique mensuel | 280/283 | 280 | 0 | 0 |
 | Pays | 254/283 | 253 | 0 | 1 |
 | Secteurs | 254/283 | 253 | 0 | 1 |
-| Principales positions | 256/283 | 255 | 0 | 1 |
+| Principales positions | 256/283 | 256 | 0 | 0 |
 | Distribution | 280/283 | 280 | 0 | 0 |
 | Domicile | 280/283 | 280 | 0 | 0 |
 | Réplication | 280/283 | 280 | 0 | 0 |
