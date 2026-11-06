@@ -105,3 +105,10 @@ for(const file of ['automated-monthly.json','automated-etf-monthly.json','non-bo
 assert.throws(()=>getHistoricalPrice('apple','2020-07'),/réellement coté non certifié/)
 assert.equal(getHistoricalPrice('apple','2020-09'),ASSETS.apple.anniversaryPoints.find(p=>p.date==='2020-09').price)
 console.log('Declared corporate actions: pre-event actual quote usage refused, recent quotes and all observed performance levels retained.')
+for(const mode of ['lump','dca']){
+ assert.throws(()=>derive({assetId:bank.id,startYear:2015,startMonth:1,amountRaw:'1000',mode}),/lancement officiel de LU1829219390 le 2018-11-08.*continuité du prédécesseur non qualifiée/)
+ assert(Number.isFinite(derive({assetId:bank.id,startYear:2019,startMonth:1,amountRaw:'1000',mode}).result.finalValue))
+}
+assert.throws(()=>getHistoricalPrice(bank.id,'2018-10'),/continuité du prédécesseur non qualifiée/)
+assert.equal(qualifyHistoryWindow(ASSETS[bank.id],'2018-11','2026-10').qualified,true)
+console.log('BNKE launch boundary: prelaunch identity unconfirmed, raw observations preserved, subsequent lump/DCA and anniversary windows retained.')

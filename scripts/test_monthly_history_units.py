@@ -42,6 +42,16 @@ class HistoryUnits(unittest.TestCase):
         n={c['date'][:7]:c['officialAdjustedNav']for c in r['splitAdjustmentEvidence']['checks']}
         self.assertLess(abs((p['2026-10']/p['2020-01']-n['2026-10']/n['2020-01'])*100),1)
 
+    def test_prelaunch_identity_is_separate_from_split_units(self):
+        r=self.bank_result();p=r['splitAdjustmentEvidence']
+        self.assertEqual(p['identityStart'],'2018-11-08')
+        self.assertEqual(p['identityUnqualifiedMonths'][0],'2015-01')
+        self.assertEqual(p['identityUnqualifiedMonths'][-1],'2018-10')
+        self.assertTrue(set(p['identityUnqualifiedMonths'])<=set(r['historyExcludedMonths']))
+        self.assertNotIn('2018-11',r['historyExcludedMonths'])
+        self.assertTrue(all('continuité du prédécesseur' in r['historyExclusionReasons'][m]for m in p['identityUnqualifiedMonths']))
+        self.assertEqual(dict(r['points'])['2026-09'],4.9175)
+
     def test_next_collection_and_already_adjusted_provider_do_not_double_adjust(self):
         before=self.bank_result();responses=copy.deepcopy(self.responses)
         for u,b in responses.items():

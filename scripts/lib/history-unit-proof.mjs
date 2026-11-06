@@ -20,6 +20,9 @@ export function validateHistoryUnitEvidence(record,evidence){
   assert.deepEqual([p.isin,p.symbol,p.mic,p.currency],[record.isin,record.symbol,record.mic,record.currency]);assert.equal(p.navSourceUrl,'https://www.amundietf.fr/mapi/ProductAPI/getProductsData');assert.equal(record.splitAdjustmentNotice,bnke);assert.equal(p.sourceUrl,bnke);assert.equal(p.ratio,80);assert.equal(p.exDate,'2026-10-27');assert.equal(p.noticeDate,'2026-09-25')
   assert.match(p.sha256,/^[a-f0-9]{64}$/);assert.match(p.navSha256,/^[a-f0-9]{64}$/);assert.equal(p.checkedAt,record.checkedAt);near(p.scaleFactor,1/80)
   assert.equal(p.checks.length+p.unverifiedMonths.length,record.points.length)
+  assert.equal(p.identityStart,'2018-11-08')
+  assert.deepEqual(p.identityUnqualifiedMonths,evidence.proofRows.filter(r=>r.date<p.identityStart).map(r=>r.date.slice(0,7)))
+  for(const m of p.identityUnqualifiedMonths)assert(record.historyExcludedMonths.includes(m))
   for(const c of p.checks){
    assert([1,80].includes(c.divisor));assert([1,80].includes(c.historicalMultiplier))
    if(c.date>=p.exDate)assert.equal(c.divisor,1)
