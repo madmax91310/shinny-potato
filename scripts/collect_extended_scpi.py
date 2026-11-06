@@ -113,10 +113,15 @@ def parse_activimmo(text,pages,annual,note,price_note,url,annual_url,note_url,pr
     date=end_date(text,r'PATRIMOINE\s+AU (\d{2})\.(\d{2})\.(\d{4})')
     page=next(p for p in pages if any(w['text']=='TYPOLOGIQUE' for w in p['words']))
     geography_evidence=None
+    country_labels=['Allemagne','Espagne','France','Irlande','Italie','Pays-Bas','Portugal']
+    geography_region=lambda w:w['x']>280 and 380<w['y']<415
     try:
-        countries=allocation(page['words'],['Allemagne','Espagne','France','Irlande','Italie','Pays-Bas','Portugal'],lambda w:w['x']>280 and 380<w['y']<415,True,20)
+        countries=allocation(page['words'],country_labels,geography_region,True,20)
     except ValueError:
-        if geography_loader is None:raise
+        # The qualified T3 map has no country labels. Do not let an alternate
+        # legend hide a partly readable or contradictory primary table.
+        labelled=any(phrase([w for w in page['words'] if geography_region(w)],label) for label in country_labels)
+        if geography_loader is None or labelled:raise
         countries,geography_evidence=geography_loader(date)
     sectors=allocation(page['words'],['Entrepôt logistique','Locaux d’activités','Logistique urbaine','Transport','Autres'],lambda w:w['x']<250 and 235<w['y']<400,False,50)
     n=re.sub(r'\s+',' ',note);p=re.sub(r'\s+',' ',price_note)

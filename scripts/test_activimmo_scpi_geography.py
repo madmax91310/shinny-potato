@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import subprocess
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 from activimmo_scpi_geography import collect_geography, legend_url, parse_legend, read_legend
 
 FIXTURES = Path(__file__).parent / 'fixtures/activimmo-geography'
@@ -42,6 +42,17 @@ class ActivimmoGeographyTests(unittest.TestCase):
         self.assertEqual(r['snapshot']['countries'],parse_legend(TEXT))
         with self.assertRaises(ValueError):
             parse_activimmo(b['text'],b['pages'],a['text'],n['text'],p['text'],b['url'],a['url'],n['url'],p['url'],dt.date(2026,11,6))
+    def test_alternative_never_overrides_a_partly_readable_primary(self):
+        from collect_extended_scpi import parse_activimmo
+        docs=json.load(gzip.open(FIXTURES/'documents.json.gz','rt'))
+        b,a,n,p=(docs[k] for k in ('bulletin','annual','note','annex'))
+        pages=copy.deepcopy(b['pages'])
+        page=next(p for p in pages if any(w['text']=='TYPOLOGIQUE' for w in p['words']))
+        page['words'].append({'text':'France','x':300,'right':330,'y':390})
+        fallback=Mock(return_value=(parse_legend(TEXT),{'asOf':DATE,'sourceUrls':[]}))
+        with self.assertRaises(ValueError):
+            parse_activimmo(b['text'],pages,a['text'],n['text'],p['text'],b['url'],a['url'],n['url'],p['url'],dt.date(2026,11,6),fallback)
+        fallback.assert_not_called()
     def test_different_identity_date_period_scope_or_host_fails(self):
         for old,new in [(b'FOCUS SUR LE PATRIMOINE AU 30.09.2026',b'FOCUS SUR LE PATRIMOINE AU 30.06.2026'),
                         (b'Repartition_Geographique_T3_2026',b'Repartition_Geographique_T2_2026'),
