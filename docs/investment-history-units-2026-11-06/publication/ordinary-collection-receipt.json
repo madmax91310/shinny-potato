@@ -1,0 +1,61 @@
+{
+  "ordinaryRun": 42220596074,
+  "refreshJob": 127901371570,
+  "artifact": 13505205854,
+  "artifactSHA256": "d83f13598f709270743d761bc543fc40897fd0adc25fc1c884e4e7cbd03c73a5",
+  "observation": {
+    "checkedAt": "2026-11-06T12:52:17.793447+00:00",
+    "scope": {
+      "requestedIds": [
+        "etc_natural_gasNav"
+      ],
+      "expectedIds": [
+        "etc_natural_gasNav"
+      ],
+      "selection": "failed-or-missing"
+    },
+    "series": [
+      {
+        "id": "etc_natural_gasNav",
+        "status": "failed",
+        "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n\nNode.js v20.20.2\n"
+      }
+    ]
+  },
+  "retainedRecords": {
+    "etfLU1829219390": {
+      "wholeRecordIdentical": true,
+      "recordSHA256": "2578d8f1c422885e921159240c3c77971a9bf5d2cc022f89f7c8d3f031e058b0",
+      "checkedAt": "2026-11-06",
+      "responseSha256": "8fd18ebb646fa3df892836f42bc90a9dee4fbf9c5eb450261b404161c098809d",
+      "periodEnd": "2026-10",
+      "lastPoint": [
+        "2026-10",
+        4.3505
+      ]
+    },
+    "etf_timber_ishares": {
+      "wholeRecordIdentical": true,
+      "recordSHA256": "8a5192b12467812c2a68a4ad32c3b0b64a623e894cf4195f66a8c699d0eb2109",
+      "checkedAt": "2026-11-06",
+      "responseSha256": "12debcdaf84454708e4156034779bdba9dd5518460a61d634998bfb2b66f4631",
+      "periodEnd": "2026-10",
+      "lastPoint": [
+        "2026-10",
+        21.98
+      ]
+    },
+    "etc_natural_gasNav": {
+      "wholeRecordIdentical": true,
+      "recordSHA256": "9fe6b405c9113d82fb07b53c3be72fe3ed36f7ff9b0be5eccc710e3630ce81c3",
+      "checkedAt": "2026-11-02",
+      "responseSha256": "131b099d1e0aff7d45774bab2cc24ea14708a51b6a3c5f6a71aa212d8a0b20d1",
+      "periodEnd": "2026-10",
+      "lastPoint": [
+        "2026-10",
+        4.24195266
+      ]
+    }
+  },
+  "interpretation": "Actual collection scope contains only etc_natural_gasNav. BNKE/WOOD were already validated for the current period; this is preservation evidence, not a new official source control for those two assets."
+}

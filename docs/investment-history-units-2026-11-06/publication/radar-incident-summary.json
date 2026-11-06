@@ -1,0 +1,919 @@
+{
+  "run": 42220595927,
+  "reportFailuresJob": 127902894326,
+  "updateJobConclusion": "success",
+  "reportFailuresConclusion": "failure",
+  "artifact": 13503272575,
+  "artifactSHA256": "b27132518733ade367fecec2420b16d72f75d7316a7b39f05d4ac700ec7f62ef",
+  "sourceRevision": "fa930db1a89fb36cca3bcacef901012544d7ac46",
+  "checkedAt": "2026-11-06T12:52:30.117Z",
+  "errorCount": 173,
+  "failedContractIds": [
+    "radar-source:revolut-news",
+    "radar-source:bnp-bank",
+    "radar-source:lbp-bank",
+    "radar-source:bpce-bank",
+    "radar-source:wisdomtree",
+    "radar-source:dares",
+    "radar-source:drees"
+  ],
+  "targetErrors": [
+    {
+      "family": "etf",
+      "entity": "IE00B27YCF74",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "b3836dcf3a1ca4857e8fa92c"
+    }
+  ],
+  "errors": [
+    {
+      "family": "pouvoir-achat",
+      "entity": "Revolut · annonces concernant la France",
+      "reason": "HTTP 403"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "BNP Paribas · groupe",
+      "reason": "HTTP 403"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "La Banque Postale · communiqués",
+      "reason": "Archive La Banque Postale page 2 : HTTP 403"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "BPCE · Banque Populaire et Caisse d’Épargne",
+      "reason": "Date de la carte officielle absente ou invalide"
+    },
+    {
+      "family": "etf",
+      "entity": "WisdomTree · communiqués européens",
+      "reason": "HTTP 403"
+    },
+    {
+      "family": "economie",
+      "entity": "DARES",
+      "reason": "Accès refusé ou page anti-robot, même si HTTP 200"
+    },
+    {
+      "family": "economie",
+      "entity": "DREES",
+      "reason": "fetch failed"
+    },
+    {
+      "family": "economie",
+      "entity": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/panoramas-de-la-drees/261014-les-retraites-et-les-retraites-edition-2026",
+      "reason": "fetch failed"
+    },
+    {
+      "family": "economie",
+      "entity": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/etudes-et-resultats/261008-prestation-compensation-handicap-beneficiaires-50-ans",
+      "reason": "fetch failed"
+    },
+    {
+      "family": "economie",
+      "entity": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/etudes-et-resultats/261008-prestation-compensation-handicap-montant-beneficiaire-2022",
+      "reason": "fetch failed"
+    },
+    {
+      "family": "economie",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2023t2",
+      "reason": "Graphique BDF : bornes différentes du trimestre demandé"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-8",
+      "reason": "HTTP 429"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-0",
+      "reason": "HTTP 429"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-amf-met-en-garde-le-public-contre-les-activites-de-plusieurs-14",
+      "reason": "The operation was aborted due to timeout"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-amf-et-lautorite-de-controle-prudentiel-et-de-resolution-acpr-10",
+      "reason": "HTTP 503"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-met-en-garde-le-public-contre-le-demarchage-agressif-appele-technique-de-la-bouilloire-0",
+      "reason": "The operation was aborted due to timeout"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-amf-met-en-garde-le-public-contre-les-activites-de-plusieurs-6",
+      "reason": "HTTP 503"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-amf-met-en-garde-le-public-contre-les-activites-de-plusieurs-7",
+      "reason": "HTTP 503"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-la-societe-naftoil",
+      "reason": "HTTP 503"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "https://www.energie-info.fr/heures-pleines-creuses-experimentation-tarifaire",
+      "reason": "fetch failed"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-noires-et-mises-en-garde",
+      "reason": "Date de publication non extractible ; lastmod et collecte non substitués"
+    },
+    {
+      "family": "economie",
+      "entity": "https://www.insee.fr/fr/statistiques/8974566",
+      "reason": "Résumé statistique chiffré absent : extraction à adapter"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "https://www.afg.asso.fr/fr/publication/oee-indice-performance-epargne-financiere-des-menages-17-septembre-2026",
+      "reason": "Résumé de l’article absent ; page accessible mais extraction non qualifiée"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-noires-et-mises-en-garde?conditions%5Bcategorie%5D=226&page=0",
+      "reason": "Date de publication non extractible ; lastmod et collecte non substitués"
+    },
+    {
+      "family": "economie",
+      "entity": "https://www.insee.fr/fr/statistiques/9090671",
+      "reason": "Résumé statistique chiffré absent : extraction à adapter"
+    },
+    {
+      "family": "economie",
+      "entity": "https://www.insee.fr/fr/statistiques/9090689",
+      "reason": "Résumé statistique chiffré absent : extraction à adapter"
+    },
+    {
+      "family": "economie",
+      "entity": "https://www.insee.fr/fr/statistiques/9100795",
+      "reason": "Résumé statistique chiffré absent : extraction à adapter"
+    },
+    {
+      "family": "economie",
+      "entity": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/etudes-et-resultats/261027-les-d%C3%A9penses-nettes-de-protection-sociale-dans-les-pays-de-union-europeenne",
+      "reason": "fetch failed"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "https://presse.credit-agricole.com/le-credit-agricole-et-la-bei-sengagent-pour-le-renforcement-de-la-base-industrielle-de-defense-francaise",
+      "reason": "Page canonique différente du document demandé"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BLNMYC90",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HK77",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HS53",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BTJRMP35",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HV82",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HQ30",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BG0J4C88",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "95ba15b2cad3fe84036771d5"
+    },
+    {
+      "family": "etf",
+      "entity": "IE0000N55FP4",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "2edbe790694852d39f7b1b78"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00B3T9LM79",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "aefaffb8762d857d299b2ba0"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00B02KXK85",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "592a9486abc29222f4c412c1"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00B3WJKG14",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "f5337e3d7b26e93efc182053"
+    },
+    {
+      "family": "etf",
+      "entity": "IE0002XZSHO1",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "9f2ce4ec2115dd3594c904a5"
+    },
+    {
+      "family": "etf",
+      "entity": "IE000UL6CLP7",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "cc717ae64bdee5da725a7a01"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BF4RFH31",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "3f709c2e5bd3626c6cde6bb0"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BYZK4776",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "3be8620c11b6440e4c43e1d0"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00B1XNHC34",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "7465390ba87a06ed62b2dbb3"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00B3F81G20",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "2945cf5cdb3b16305531885c"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00B27YCF74",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "b3836dcf3a1ca4857e8fa92c"
+    },
+    {
+      "family": "etf",
+      "entity": "DE000A0Q4R02",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "b8ea570170e0b2b3dc91ea15"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00B441G979",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "68819e7cec10017bf8c500e5"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00B3VWMM18",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "5f2728b6a1bda365a5973a50"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00B2QWCY14",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "05fd12d21bf36b6d9d42d0f2"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BJ5JPJ87",
+      "reason": "Composition en attente : Catégories absentes : une disparition de ligne ne prouve pas une réallocation.",
+      "reviewId": "9501c39e9e4a758b059fb2ad"
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "field": "countries",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "reason": "Classification incomplète (Non classé: 1.593147 %) : aucun zéro déduit pour Poids du pays Uruguay ; observations précédentes conservées avec leurs dates."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BTJRMP35",
+      "field": "countries",
+      "phase": "qualification",
+      "sourceAttempted": false,
+      "reason": "Classification incomplète (Non classé: 0.213447 %) : aucun zéro déduit pour Poids du pays Singapore, Poids du pays Australia, Poids du pays Cayman Islands ; observations précédentes conservées avec leurs dates."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BLNMYC90",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Encours. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:aum:dce2bcc59fa83619761391f4:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Encours. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:aum:ff29120defbd5b90fd27091c:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "LU0290358497",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Encours. Dernière observation conservée ; propositions archivées (etf:LU0290358497:aum:806d8107edf0b4cf9de305ec:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Encours. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:aum:2133cd1fafe1613badd1560f:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BGV5VN51",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Encours. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:aum:b9b882182d0f407d92fd6b16:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HS53",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Encours. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:aum:e467a22389672d1db9a4a05e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BTJRMP35",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Encours. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:aum:cfc507fa44c97309fc1001ac:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HQ30",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Encours. Dernière observation conservée ; propositions archivées (etf:IE00BM67HQ30:aum:c9a5deed8e581beda660ac7d:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00B3T9LM79",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BLNMYC90",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:United States:8abd3910625177898532bf9d:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BLNMYC90",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Ireland:8abd3910625177898532bf9d:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BLNMYC90",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du secteur Industrials. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:sectors:Industrials:8abd3910625177898532bf9d:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BLNMYC90",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du secteur Information Technology. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:sectors:Information Technology:8abd3910625177898532bf9d:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BLNMYC90",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du secteur Materials. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:sectors:Materials:8abd3910625177898532bf9d:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BLNMYC90",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du secteur Communication Services. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:sectors:Communication Services:8abd3910625177898532bf9d:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Canada:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:United Kingdom:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Switzerland:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays France. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:France:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Germany. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Germany:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Australia:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Netherlands:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Italy. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Italy:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Sweden. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Sweden:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Singapore:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Hong Kong:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Belgium. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Belgium:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Luxembourg. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Luxembourg:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Norway. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Norway:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Ireland:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:United States:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:China:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Brazil:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Chile. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Chile:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Zambia. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Zambia:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Macao. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Macao:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Jersey. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Jersey:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Korea, Republic of. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Korea, Republic of:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United States:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Taiwan. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Taiwan:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Canada:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United Kingdom:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:China:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Korea, Republic of. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Korea, Republic of:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Switzerland:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays France. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:France:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Germany. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Germany:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Australia:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Netherlands:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Italy. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Italy:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Brazil:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Ireland:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Hong Kong:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays South Africa. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:South Africa:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Singapore:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Mexico. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Mexico:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Belgium. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Belgium:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Luxembourg. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Luxembourg:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Norway. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Norway:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Chile. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Chile:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Greece. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Greece:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Romania. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Romania:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Macao. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Macao:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Bermuda. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Bermuda:630657e8b950b3715e6c0f9a:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BGV5VN51",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:United States:f9b8ebfcd2d4a3f0bd10cd4f:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BGV5VN51",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:China:f9b8ebfcd2d4a3f0bd10cd4f:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BGV5VN51",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Ireland:f9b8ebfcd2d4a3f0bd10cd4f:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HK77",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:United States:e02e00a632cb2b9e9ddccd1e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HK77",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Switzerland:e02e00a632cb2b9e9ddccd1e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HK77",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:United Kingdom:e02e00a632cb2b9e9ddccd1e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HK77",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Netherlands:e02e00a632cb2b9e9ddccd1e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HK77",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Belgium. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Belgium:e02e00a632cb2b9e9ddccd1e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HK77",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Australia:e02e00a632cb2b9e9ddccd1e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HK77",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Ireland:e02e00a632cb2b9e9ddccd1e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HS53",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:United States:9e8222db7f15caa14c54cb45:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HS53",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Australia:9e8222db7f15caa14c54cb45:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HS53",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Canada:9e8222db7f15caa14c54cb45:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HS53",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Ireland:9e8222db7f15caa14c54cb45:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HS53",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Switzerland:9e8222db7f15caa14c54cb45:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HS53",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:United Kingdom:9e8222db7f15caa14c54cb45:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HS53",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Brazil:9e8222db7f15caa14c54cb45:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HS53",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Chile. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Chile:9e8222db7f15caa14c54cb45:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HS53",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Zambia. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Zambia:9e8222db7f15caa14c54cb45:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HS53",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Norway. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Norway:9e8222db7f15caa14c54cb45:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BTJRMP35",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Taiwan. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Taiwan:9a89e0e64273d8294b2dae58:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BTJRMP35",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:China:9a89e0e64273d8294b2dae58:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BTJRMP35",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Brazil:9a89e0e64273d8294b2dae58:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BTJRMP35",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays South Africa. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:South Africa:9a89e0e64273d8294b2dae58:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BTJRMP35",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Mexico. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Mexico:9a89e0e64273d8294b2dae58:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BTJRMP35",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Greece. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Greece:9a89e0e64273d8294b2dae58:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BTJRMP35",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Ireland:9a89e0e64273d8294b2dae58:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BTJRMP35",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Switzerland:9a89e0e64273d8294b2dae58:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BTJRMP35",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Hong Kong:9a89e0e64273d8294b2dae58:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BTJRMP35",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:United States:9a89e0e64273d8294b2dae58:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BTJRMP35",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Netherlands:9a89e0e64273d8294b2dae58:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HV82",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:United States:f5d10aa5ac6de524b51ebc86:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HV82",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays France. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:France:f5d10aa5ac6de524b51ebc86:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HV82",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:United Kingdom:f5d10aa5ac6de524b51ebc86:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HV82",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:Canada:f5d10aa5ac6de524b51ebc86:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HV82",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:Australia:f5d10aa5ac6de524b51ebc86:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HV82",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:Ireland:f5d10aa5ac6de524b51ebc86:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HV82",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:Netherlands:f5d10aa5ac6de524b51ebc86:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HV82",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:Hong Kong:f5d10aa5ac6de524b51ebc86:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HV82",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:China:f5d10aa5ac6de524b51ebc86:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HV82",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du secteur Industrials. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:sectors:Industrials:f5d10aa5ac6de524b51ebc86:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HQ30",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HQ30:countries:United States:3a04d557f1a28239d5f13db5:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HQ30",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE00BM67HQ30:countries:Canada:3a04d557f1a28239d5f13db5:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BLNMYC90",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Switzerland:8abd3910625177898532bf9d:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BLNMYC90",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:United Kingdom:8abd3910625177898532bf9d:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BLNMYC90",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Bermuda. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Bermuda:8abd3910625177898532bf9d:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BLNMYC90",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Canada:8abd3910625177898532bf9d:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BLNMYC90",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Singapore:8abd3910625177898532bf9d:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Mexico. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Mexico:896eb444159fd8c94545e70e:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BGV5VN51",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Australia:f9b8ebfcd2d4a3f0bd10cd4f:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BGV5VN51",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Hong Kong:f9b8ebfcd2d4a3f0bd10cd4f:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HS53",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du pays Mexico. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Mexico:9e8222db7f15caa14c54cb45:2026-11-04)."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HV82",
+      "reason": "Valeur contradictoire pour la même période (2026-11-04) : Poids du secteur Unassigned. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:sectors:Unassigned:f5d10aa5ac6de524b51ebc86:2026-11-04)."
+    }
+  ],
+  "classification": "External or existing producer qualification failures. The WOOD item concerns missing composition categories, not the same-listing SIX monthly price repair."
+}

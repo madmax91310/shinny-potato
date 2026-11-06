@@ -1,0 +1,39 @@
+{
+  "method": "Decimal cash/units arithmetic on actual browser response bodies; no application or collector imports",
+  "results": [
+    {
+      "key": "etfLU1829219390-lump-1440",
+      "currency": "EUR",
+      "start": "2020-01",
+      "end": "2026-10",
+      "payments": 1,
+      "invested": "1000",
+      "finalValue": "50.93665608539252614951288378",
+      "displayed": "51 €",
+      "publicVersion": {
+        "sha": "9b31bb7ae4edd82d0e0780ad2f341276bfb0d5c8",
+        "dataSha": "ea4f6d0850010e7eddf73f1c530f8105a914b0af",
+        "lane": "fallback",
+        "builtAt": "2026-11-06T12:35:04Z"
+      },
+      "sourceSha256": "a952d2916cc89c68fcf175e8f6e568194d97f9357ef1b50758caf88c4877b7d1"
+    },
+    {
+      "key": "etf_timber_ishares-lump-1440",
+      "currency": "USD",
+      "start": "2026-02",
+      "end": "2026-10",
+      "payments": 1,
+      "invested": "1000",
+      "finalValue": "8.365588627539611541707436035",
+      "displayed": "8 $",
+      "publicVersion": {
+        "sha": "9b31bb7ae4edd82d0e0780ad2f341276bfb0d5c8",
+        "dataSha": "ea4f6d0850010e7eddf73f1c530f8105a914b0af",
+        "lane": "fallback",
+        "builtAt": "2026-11-06T12:35:04Z"
+      },
+      "sourceSha256": "4b3bf40efff7682b5aa7cd3d658926e1807192672c53403d6198810e04ce1580"
+    }
+  ]
+}

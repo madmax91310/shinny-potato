@@ -1,0 +1,19 @@
+{
+  "completedAt": "2026-11-06T14:35:42.911035+00:00",
+  "version": {
+    "sha": "2850b220841fa19e4aa561804b474e5e280a956d",
+    "dataSha": "d517425c4aec4635bc87ea2c2e2ea3c1077e6a8a",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-06T14:24:06.146Z"
+  },
+  "calculatorCases": 8,
+  "restrictionCases": 22,
+  "independentDecimalVerified": 8,
+  "status": "success",
+  "restrictionFirstAttempt": {
+    "completed": 15,
+    "issue": "Browser page.goto networkidle timeout 30000ms on mobile BNKE anniversary",
+    "replayedUnmodified": true,
+    "finalCompleted": 22
+  }
+}

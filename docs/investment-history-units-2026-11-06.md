@@ -162,8 +162,97 @@ Le dernier commit de la livraison précédente, `39152c129e3b084d0f121f5f37cdafe
 
 Les contrôles GitHub du **commit de livraison** sont suivis dans [les checks de la PR #1181](https://github.com/madmax91310/shinny-potato/pull/1181/checks) et leur bilan, avec SHA, runs et incidents, est actualisé dans [la description de PR](https://github.com/madmax91310/shinny-potato/pull/1181) après la fin des jobs. Les succès locaux ci-dessus et les anciens runs ne sont pas attribués à sa CI. Le portail complet (build, Python, quatre partitions exhaustives, navigateurs et smoke) reste exigé. Les signalements `report-failures` sont distincts : conformément à CLAUDE.md, les sources refusées gardent leur dernière observation valide et leur échec reste visible ; ils ne constituent pas une autorisation de lever les restrictions financières.
 
-Les **93 alertes restantes** sont des détections automatiques, pas 93 erreurs financières confirmées. Aucun krach ou envolée réel n'est modifié pour rendre l'audit vert. Aucun merge de la PR dans master et aucun déploiement ne sont effectués.
+Les **93 alertes restantes** sont des détections automatiques, pas 93 erreurs financières confirmées. Aucun krach ou envolée réel n'est modifié pour rendre l'audit vert. Lors de cette préparation, aucune fusion dans master ni aucun déploiement n’a été exécuté par l’assistant. La PR a ensuite été fusionnée extérieurement sous le compte `madmax91310`, le 06/11/2026 à 12:49:16 UTC, dans `fa930db1a89fb36cca3bcacef901012544d7ac46`. La vérification de publication est consignée ci-dessous.
 
 Le [rapport de la livraison précédente](investment-history-units-2026-11-06/finalization/previous-delivery-report.md.gz) conserve les étapes historiques. Le [dossier de preuves](investment-history-units-2026-11-06/) contient aussi les captures publiques et locales initiales, les fixtures officielles intégrales, les sondages des 664 historiques Yahoo, les 43 investigations quotidiennes et les cinq documents primaires sur les fortes variations réelles.
 
-Pour rejouer le corpus exactement, décompresser `finalization/final-verifier.mjs.xz` dans `test-artifacts/tweet-midi-verifier.mjs`, puis exécuter `verifyPartitions` de `scripts/tweet-midi-parallel.mjs` avec `count: 4` et un nouveau reçu. Le programme contient les données et sa date de référence ; les empreintes de ses entrées sont archivées séparément. Les vidéos complètes de la recette sont produites dans l’artifact navigateur CI ; les tailles, empreintes, sondages ffprobe et dernières images des six exports locaux sont conservés ici.
+Pour rejouer le corpus exactement, décompresser `finalization/final-verifier.mjs.xz` dans `test-artifacts/tweet-midi-verifier.mjs`, puis exécuter `verifyPartitions` de `scripts/tweet-midi-parallel.mjs` avec `count: 4` et un nouveau reçu. Le programme contient les données et sa date de référence ; les empreintes de ses entrées sont archivées séparément. Les six vidéos sont réellement générées et téléchargées pendant la recette. Les tailles, empreintes, sondages ffprobe et dernières images des six exports locaux sont conservés ici. **Précision sur la rétention :** le workflow ne téléverse les médias de diagnostic qu’en cas d’échec ; une suite CI verte conserve ses logs et ses durées, pas les fichiers vidéo complets. Le contrôle post-fusion confirme de nouveau les six exports dans ses logs.
+
+## Vérification de publication — reprise du 6 novembre 2026
+
+Cette reprise ne recrée pas #1181 et ne déclenche pas un nouveau déploiement. La tête de PR `5c2d5450008be3cab31920d5e1605614e34073d8` a terminé son portail complet avec succès : quatre partitions totalisant **4 060 462 entrées**, suite Python, build, smoke, quatre groupes navigateur dont 64 cas financiers et six vidéos. Le bilan final attaché à la PR est de **28 checks réussis, 16 non applicables et un signalement `report-failures` hors chantier**. Ce dernier n’est pas présenté comme une CI entièrement verte.
+
+### Relevé public initial de cette reprise
+
+Le 06/11 à **13:05 UTC**, `build-info.json` annonce :
+
+- `sha` : `9b31bb7ae4edd82d0e0780ad2f341276bfb0d5c8` ;
+- `dataSha` : `ea4f6d0850010e7eddf73f1c530f8105a914b0af` ;
+- `lane` : `fallback` ; `builtAt` : `2026-11-06T12:35:04Z`.
+
+Il s’agit encore d’un code antérieur à #1181. Deux parcours réels sur ordinateur le confirment : BNKE, 1 000 EUR depuis janvier 2020, versement unique **50,936656 EUR** (image : 51 EUR) ; WOOD, 1 000 USD depuis février 2026, versement unique **8,365589 USD** (image : 8 USD). Ces valeurs sont recalculées à partir des JSON de prix effectivement chargés, dont les empreintes correspondent aux noms de fichiers de la publication. Le texte réellement copié, l’aperçu et le PNG téléchargé concordent avec ces données anciennes. Ce relevé ne constitue donc pas une validation de mise en ligne du correctif.
+
+### File automatique observée
+
+Le workflow post-fusion [42220595863](https://github.com/madmax91310/shinny-potato/actions/runs/42220595863), déclenché automatiquement par le push de `fa930db`, est initialement `pending`, sans job commencé. La file de validation est occupée par [42208631141](https://github.com/madmax91310/shinny-potato/actions/runs/42208631141), un workflow SCPI antérieur dont la phase `publish-code` qualifie `ea4f6d0`. Cette ancienne définition de portail ne peut pas adopter le nouveau code de #1181. Aucun second déploiement n’est lancé pour contourner cette file.
+
+### Méthode de recette publique finale
+
+Les valeurs attendues proviennent des fichiers JSON réellement chargés par chaque page, jamais des résultats datés du rapport : versement unique = montant × niveau final / niveau initial ; DCA = somme des quantités achetées à chaque clôture observée × niveau final. Aucun mois manquant n’est interpolé. Chaque scénario conserve la version publique avant/après, l’ISIN, la devise, le fichier et son empreinte, les bornes, le montant calculé indépendamment, le texte lu dans le presse-papiers, l’empreinte de l’aperçu et celle du PNG téléchargé. Une publication qui change pendant la recette impose un nouveau relevé cohérent.
+
+Les restrictions sont vérifiées sur ordinateur et mobile : BNKE octobre/novembre 2018, unique et DCA ; refus anniversaire BNKE traversant le split ; refus de prix d’époque IMIE et Booking ; périodes anniversaire autorisées Apple et Nvidia, absence des périodes non qualifiées et maintien de leurs rendements ajustés. Les fichiers de l’illustration et le squelette éditorial restent inchangés.
+
+### Réutilisation des preuves de collecte
+
+Au début de cette reprise, les collecteurs `refresh_monthly_history.py`, `qualified_history_units.py`, `qualified_split_comparison.py`, le validateur `history-unit-proof.mjs` et le registre mensuel ETF sont identiques entre la tête validée et master `2850b220841fa19e4aa561804b474e5e280a956d`. Les preuves déjà validées restent applicables : contrôle officiel GitHub BNKE/WOOD **2/2** (run `42214204985`, job `127880055880`, artifact `13500292680`, ZIP SHA-256 `baefbb5f9e116c6d1680de0a8296711e400bc06845cd53a2c9cef1263bb4f5e7`), tests de fournisseur déjà ajusté et pannes au jour suivant. La fraîcheur des preuves ne sera pas renouvelée artificiellement par cette réutilisation.
+
+Le 06/11 à **13:38 UTC**, l’ancienne validation se termine avec succès et le site annonce `sha=ea4f6d0850010e7eddf73f1c530f8105a914b0af`, `builtAt=2026-11-06T13:04:20Z`, **sans `dataSha` ni `lane`**. Ce code reste antérieur au correctif ; la date de construction ne suffit pas à qualifier la présence de #1181.
+
+À **13:38:39 UTC**, le sélecteur du workflow post-fusion `42220595863` choisit le snapshot **`2850b220841fa19e4aa561804b474e5e280a956d`** pour son portail complet. Ce commit descend de `fa930db` et ajoute uniquement des observations datées ; les collecteurs et historiques mensuels concernés sont inchangés. La qualification et la publication automatiques de ce snapshot restent suivies jusqu’à leur terme.
+
+### Collecte ordinaire après fusion
+
+Le workflow mensuel [42220596074](https://github.com/madmax91310/shinny-potato/actions/runs/42220596074), déclenché par le même push, a terminé son job de collecte `127901371570` avec succès. Les deux validations exhaustives de ce job atteignent chacune **4 060 462 / 4 060 462**. Son périmètre réel est une reprise `failed-or-missing` portant uniquement sur `etc_natural_gasNav` ; il ne constitue pas une nouvelle collecte officielle BNKE/WOOD. L’accès public WisdomTree échoue en HTTP 403. La dernière observation Natural Gas est conservée intégralement, avec son `checkedAt=2026-11-02` et sa même empreinte de réponse. Les messages synthétiques de tests négatifs dans les logs ne sont pas comptés comme des pannes de cette collecte.
+
+L’artifact `monthly-market-observation` **13505205854** a été téléchargé et son ZIP vérifié (SHA-256 `d83f13598f709270743d761bc543fc40897fd0adc25fc1c884e4e7cbd03c73a5`). Les commits de données `6edd862695abba85a3db91fd01d305c5571396a9` puis `c7768a06813822e5dad2edbc842d3e0dddaaafb3` préservent à l’identique le registre ETF complet et les collecteurs concernés, notamment les preuves BNKE/WOOD datées du 6 novembre. Le reçu [ordinary-collection-receipt.json](investment-history-units-2026-11-06/publication/ordinary-collection-receipt.json) distingue cette conservation des contrôles officiels antérieurs effectivement rejoués. Aucun double ajustement et aucune réintroduction de 2 627,430176 / 2 666 ne sont observés.
+
+### Signalements distincts du portail Pages
+
+Le `report-failures` ETF/indices de la tête de PR (`42214205003`, job `127884461564`) reste rouge ; il n’est ni relancé ni masqué. Après fusion, un autre signalement rouge existe dans le [workflow Radar `42220595927`](https://github.com/madmax91310/shinny-potato/actions/runs/42220595927/job/127902894326). Son job principal réussit, mais conserve des observations précédentes lorsque les sources bancaires, économiques ou de composition sont refusées ou non qualifiables. L’artifact `13503272575` a été téléchargé et vérifié (SHA-256 ZIP `b27132518733ade367fecec2420b16d72f75d7316a7b39f05d4ac700ec7f62ef`).
+
+La réserve Radar `IE00B27YCF74` concerne des **catégories de composition absentes**, pas le cours SIX de février ; elle reste conservée. Les sept erreurs du contrat de sources identifient Revolut, BNP, La Banque Postale, BPCE, WisdomTree, DARES et DREES. Il serait donc inexact d’affirmer que l’ensemble des workflows post-fusion est vert ou que seul le signalement de PR existe encore. Ces incidents de collecte restent séparés du portail et de la réparation d’unités. Le détail est archivé dans [radar-incident-summary.json](investment-history-units-2026-11-06/publication/radar-incident-summary.json).
+
+Le workflow mensuel `42220596074` termine aussi avec son [signalement `127947698942`](https://github.com/madmax91310/shinny-potato/actions/runs/42220596074/job/127947698942) rouge : il rend visible le 403 WisdomTree de `etc_natural_gasNav` décrit plus haut. Ses validations exhaustives réussissent, ses données valides sont couvertes par la publication suivante et sa tentative de nouveau portail est correctement non applicable puisque le snapshot est déjà publié. Il ne déclenche pas de second déploiement. Ce troisième signalement est distinct du cours WOOD et du split BNKE.
+
+### Publication effectivement terminée
+
+Le [workflow Pages post-fusion `42220595863`](https://github.com/madmax91310/shinny-potato/actions/runs/42220595863) est **terminé avec succès le 06/11/2026 à 14:28:26 UTC** : **15 jobs réussis, 3 non applicables, aucun échec**. Le portail complet qualifie `2850b220841fa19e4aa561804b474e5e280a956d` : build, Python, exposition navigateur, smoke, quatre groupes navigateur et **4 060 462 / 4 060 462 cas exhaustifs**. Le groupe financier repasse ses 64 cas, les six vidéos, les PNG des consommateurs partagés, les réglages mémorisés et les refus bornés. Les logs et les statuts sont archivés dans `publication/`.
+
+Le [job de déploiement `127944246805`](https://github.com/madmax91310/shinny-potato/actions/runs/42220595863/job/127944246805) reconstruit ensuite le même code avec les données de `d517425c4aec4635bc87ea2c2e2ea3c1077e6a8a`, qui comprennent les collectes concurrentes. Contrôle des fichiers primaires, audit, build et smoke réussis. Le vérificateur public du job réussit à **14:28:21 UTC** : **382 empreintes de sources au manifeste et 42 fichiers publics effectivement téléchargés et vérifiés**. Reçu officiel `verified-publication`, artifact **13510883062**, ZIP SHA-256 **`89cd87063b55886e9706a6698bbf222affff431d6e737f034bc8f0e24ed943cd`**, téléchargé et vérifié pendant cette reprise.
+
+Le `build-info.json` réellement servi pendant la recette annonce exactement :
+
+```json
+{"sha":"2850b220841fa19e4aa561804b474e5e280a956d","dataSha":"d517425c4aec4635bc87ea2c2e2ea3c1077e6a8a","lane":"validated-code-data","builtAt":"2026-11-06T14:24:06.146Z"}
+```
+
+Le code descend de la fusion `fa930db`. Le HTML, les ressources initiales, le manifeste et les JSON chargés par les pages ont été conservés avec leurs empreintes. Les observations de rendement, les prix d’époque, devises, bornes et `checkedAt` de chaque JSON BNKE/WOOD servi correspondent exactement au registre du `dataSha` annoncé. Les six fichiers de collecteurs, qualification et registre ETF restent identiques au commit de PR validé, y compris les preuves d’origine. Aucun commit du chantier n’a été ajouté pour obtenir cette publication ; aucune relance ou publication manuelle n’a été exécutée.
+
+### Résultats publics sur les observations servies
+
+Les huit parcours Chromium réels, **1440 et 390 px**, réussissent : deux actifs × unique/DCA × ordinateur/mobile. Le recalcul Python `Decimal`, indépendant du moteur de l’application et du collecteur, confirme les huit capitaux ; les textes copiés confirment montant, capital, gain/perte et nombre de versements. Les empreintes de l’aperçu et du PNG réellement téléchargé sont identiques dans chaque cas. Les quatre images financières ont aussi été inspectées visuellement ; le style et le squelette sont conservés.
+
+| Actif et bornes réellement servies | Versement unique de 1 000 | DCA de 1 000 chaque clôture mensuelle | Total DCA versé |
+|---|---:|---:|---:|
+| BNKE EUR, janvier 2020 → octobre 2026 | **4 074,932678 EUR** ; affiché **4 075 EUR**, contre **51 EUR** avant publication | **253 551,111327 EUR** ; affiché **253 551 EUR** | **82 000 EUR**, 82 versements |
+| WOOD USD, février 2026 → octobre 2026 | **836,558855 USD** ; affiché **837 USD**, contre **8 USD** avant publication | **8 458,400978 USD** ; affiché **8 458 USD** | **9 000 USD**, 9 versements |
+
+Ces valeurs sont le résultat du relevé public, pas des constantes imposées au collecteur. Les cours corrigés effectivement chargés sont BNKE septembre `4.9175`, octobre `4.3505` ; WOOD janvier `25.106445`, février `26.274302`, mars `23.480318`, avec prix historique de février `26.66`. La baisse réelle de WOOD reste visible ; elle n’est pas remplacée par un résultat artificiellement positif. Le détail avant/après et l’incertitude sur le mécanisme interne du fournisseur restent dans les tableaux d’anomalies en tête du rapport.
+
+### Restrictions publiques finales et bilan
+
+Les **22 contrôles de restrictions** réussissent sur les mêmes versions code/données que les huit scénarios financiers. Un premier passage s’est arrêté après 15 contrôles sur un délai de chargement `page.goto/networkidle` de 30 secondes, à l’ouverture de l’anniversaire BNKE sur mobile. La suite est rejouée **sans changement d’assertions** et réussit intégralement ; le reçu conserve cet incident de navigation. Aucune relance du déploiement n’a été nécessaire.
+
+| Usage public vérifié à 1440 et 390 px | Résultat réellement observé |
+|---|---|
+| BNKE, octobre 2018, unique et DCA, sélection mémorisée | Refus près des champs de date, groupe d’année signalé invalide ; motif : lancement officiel le 08/11/2018 et continuité du prédécesseur non qualifiée. Aucune autre date ou valeur substituée. |
+| BNKE, novembre 2018, unique et DCA | Autorisés ; **4 058 EUR** et **312 350 EUR** affichés, vérifiés indépendamment sur les observations chargées. |
+| URL anniversaire BNKE | Refus de comparaison traversant la division par 80 du 27/10/2026 ; aucun texte/image généré. |
+| URL anniversaire IMIE et Booking | Refus motivé du prix historique réellement coté non certifié ; aucun texte/image généré. |
+| Apple, anniversaire | Choix **1 à 6 ans** conservés ; novembre 2025 `278.850006 USD` et novembre 2020 `119.050003 USD` chargés, texte copié vérifié et quatre PNG téléchargés sur ordinateur/mobile. Les mois **2015-01 à 2020-07** sont refusés et expliqués par le sélecteur. |
+| Nvidia, anniversaire | Choix **1 à 2 ans** conservés ; novembre 2025 `177 USD` et novembre 2024 `138.25 USD` chargés, texte copié vérifié et quatre PNG téléchargés sur ordinateur/mobile. Les mois **2015-01 à 2024-05** sont refusés et expliqués par le sélecteur. |
+| Apple et Nvidia, rendement ajusté depuis janvier 2020 | Toujours autorisés : respectivement **4 627 USD** et **34 858 USD** pour 1 000 USD, recalculés depuis les points réellement chargés. Les refus de prix d’époque ne bloquent pas ces usages. |
+
+Les restrictions de prix d’époque des **112 actifs** restent limitées aux fenêtres non certifiées. Les protections du moteur, des projections différées, des éléments sérialisés et de compatibilité avec un ancien code ont repassé la CI post-fusion ; les refus mémorisés, URL directes et sélecteurs sont aussi contrôlés sur le site public. Les preuves de collecte suivantes, d’absence de double ajustement et de panne au jour suivant restent réutilisées parce que leurs entrées et leur code sont inchangés ; le reçu d’applicabilité compare aussi le `dataSha` finalement publié.
+
+**Bilan au 06/11/2026 à 14:35:42 UTC : correctifs #1181 déployés et recette publique terminée.** Le run Pages est vert ; les signalements `report-failures` ETF/indices, Radar et mensuel WisdomTree restent visibles, hors réparation des unités. Aucun test n’a été désactivé. Les **93 alertes automatiques** ne sont toujours pas requalifiées en erreurs financières confirmées. Aucune publication sur X, aucune nouvelle PR de correction, aucune fusion ni relance manuelle de déploiement n’a été effectuée dans cette vérification.
