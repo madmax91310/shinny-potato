@@ -7,7 +7,7 @@ La voie publique `FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=
 - `fundData.aum.value` : 1 717 570 208 USD au 5 novembre. Le drapeau d’affichage USD et l’identité/devise du fonds sont contrôlés. Les 1 591 637 806 d’actifs de la part sont un autre champ, non utilisé comme encours du fonds.
 - `fundData.dailyHoldings` : dix positions au 5 novembre, identifiants exacts et poids natifs en valeur de marché. Aucune renormalisation, aucun recouvrement complet inféré. Le total des valeurs de marché du portefeuille est encore une métrique distincte de l’encours ; il n’est pas forcé à lui être égal.
 
-L’identité commune à `jpm_holdings.py` est extraite sans changer ses conditions. Le portefeuille complet conserve ses contrôles ; ces deux champs n’exigent pas sa disponibilité. Leur validation est indépendante : une donnée AUM invalide ne bloque pas un top 10 valide, et inversement.
+L’identité commune à `jpm_holdings.py` est extraite sans changer ses conditions. Le libellé de méthode du portefeuille complet décrit désormais les poids natifs de marché, sans les qualifier à tort de poids recalculés sur la NAV ; aucune valeur n’est changée. Le portefeuille complet conserve ses contrôles ; ces deux champs n’exigent pas sa disponibilité. Leur validation est indépendante : une donnée AUM invalide ne bloque pas un top 10 valide, et inversement.
 
 Les valeurs PDF gardent leur source et leur période. Les classifications propriétaires de l’API ne sont pas substituées à celles du PDF. Une panne du PDF ne renouvelle aucun champ PDF conservé ; une panne de l’API n’écrase ni ne redate ses dernières valeurs valides. Les erreurs individuelles et tentatives de chaque source restent dans le compte rendu existant.
 

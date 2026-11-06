@@ -59,7 +59,7 @@ def collect(share,now):
     if share.get('isin')!=ISIN or share.get('currency')!='USD':raise ValueError('Unsupported JPM exact share')
     raw=download(URL,max_bytes=6_000_000);rows,stamp,excluded=parse(json.loads(raw),now)
     result=observation(rows,stamp,URL,raw,excludedPositions=excluded,scope='direct-equity-securities')
-    result['method']='Complete direct equity and listed REIT positions in dailyHoldingsAll; index options, cash and rights retained separately, with original NAV weights; no option look-through or renormalisation'
+    result['method']='Complete direct equity and listed REIT positions in dailyHoldingsAll; index options, cash and rights retained separately, with native portfolio market-value weights; headline AUM is a separate metric; no option look-through or renormalisation'
     result['snapshotDates']={'holdings':stamp,'headlineValuationRaw':json.loads(raw)['fundData'].get('fundValuationDate'),
                              'headlineValuationUsedInCalculation':False}
     return result
