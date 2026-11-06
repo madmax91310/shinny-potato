@@ -18,4 +18,4 @@ try{
   assert.equal(result.status,0,`${command}: ${result.error??'failed'}`)
  }
 }finally{server?.kill('SIGTERM')}
-console.log('Investment final built validation: lump/DCA, copied text, preview/download PNG, three videos, shared consumers, persisted settings and bounded refusals passed.')
+console.log('Investment final built validation: lump/DCA, copied text, preview/download PNG, six videos, shared consumers, persisted settings and bounded refusals passed.')
