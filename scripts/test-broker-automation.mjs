@@ -15,13 +15,25 @@ for (const [id,o] of Object.entries(BROKER_TARIFFS)) {
   if (field.startsWith('offer')) assert.equal(OFFICIAL_SOURCES[`${id}Automated${field}`].reviewUntil,value.until)
  }
 }
-assert.equal(brokerOffers('saxo','2026-02-22').length,1)
-assert.equal(brokerOffers('saxo','2026-12-31').length,2)
-assert.equal(brokerOffers('saxo','2027-01-01').length,0)
-assert.match(brokerFieldCopies('saxo',BROKER_TARIFFS,'2026-12-31').entrant,/150 €.*31 décembre 2026/)
-assert.doesNotMatch(brokerFieldCopies('saxo',BROKER_TARIFFS,'2027-01-01').entrant,/remboursés jusqu’à/)
-assert.match(brokerFieldCopies('saxo',BROKER_TARIFFS,'2027-01-01').entrant,/expirée/)
-assert.equal(brokerFieldCopies('saxo',BROKER_TARIFFS,'2025-01-05').entrant,undefined)
+// Exercise expiry independently of campaigns which the supplier may renew.
+const datedOffers=structuredClone(BROKER_TARIFFS)
+Object.assign(datedOffers.saxo.fields.offerPea,{start:'2026-02-23',until:'2026-12-31'})
+Object.assign(datedOffers.saxo.fields.offerAmundi,{start:null,until:'2026-12-31'})
+Object.assign(datedOffers.saxo.fields.entrant,{start:'2025-01-06',until:'2026-12-31',copy:{full:'Test : remboursement jusqu’à 150 € jusqu’au 31 décembre 2026.'},after:'Test : offre expirée.'})
+assert.equal(brokerOffers('saxo','2026-02-22',datedOffers).length,1)
+assert.equal(brokerOffers('saxo','2026-12-31',datedOffers).length,2)
+assert.equal(brokerOffers('saxo','2027-01-01',datedOffers).length,0)
+assert.match(brokerFieldCopies('saxo',datedOffers,'2026-12-31').entrant,/150 €.*31 décembre 2026/)
+assert.doesNotMatch(brokerFieldCopies('saxo',datedOffers,'2027-01-01').entrant,/remboursés jusqu’à/)
+assert.match(brokerFieldCopies('saxo',datedOffers,'2027-01-01').entrant,/expirée/)
+assert.equal(brokerFieldCopies('saxo',datedOffers,'2025-01-05').entrant,undefined)
+// Live records still drive every offer and its exact current inclusive bounds.
+for(const[field,o]of Object.entries(BROKER_TARIFFS.saxo.fields)){
+ if(!field.startsWith('offer'))continue
+ assert(brokerOffers('saxo',o.until).includes(o.copy.full))
+ const after=new Date(o.until+'T00:00:00Z');after.setUTCDate(after.getUTCDate()+1)
+ assert(!brokerOffers('saxo',after.toISOString().slice(0,10)).includes(o.copy.full))
+}
 assert.equal(BROKER_EVIDENCE.ibkr.change.status,'partiel')
 assert.equal(BROKER_EVIDENCE.tr.garde.status,'corroboré')
 for (const id of ['tr', 'caidf']) {
@@ -35,7 +47,7 @@ assert.equal(transferConditionStatus({values:{perLine:15,maximum:150}}), 'confir
 assert.match(BROKERS.find(b=>b.id==='tr').garde.detail,/0 €.*PEA/)
 assert.doesNotMatch(BROKER_EDITORIAL.tr.garde,/aucun ✅/)
 for(const id of ['xtb','caidf','saxo']) assert(BROKER_EVIDENCE[id].transfert.summary.includes(BROKER_EDITORIAL[id].entrant.split('✅').at(-1).split('❌')[0].trim().slice(0,8)) || BROKER_EVIDENCE[id].transfert.summary.includes('Transfert entrant') || BROKER_EVIDENCE[id].transfert.summary.includes('antériorité'))
-const changed=structuredClone(BROKER_TARIFFS)
+const changed=structuredClone(datedOffers)
 changed.saxo.fields.change.copy.full='0,30 %.'
 changed.saxo.fields.offerPea.until='2026-10-01'
 assert.equal(brokerFieldCopies('saxo',changed,'2026-10-08').change,'0,30 %.')
