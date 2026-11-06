@@ -1,8 +1,8 @@
 {
   "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
-  "checkedAt": "2026-11-04",
+  "checkedAt": "2026-11-06",
   "convention": "Units of currency per EUR, final ECB reference observation in each completed month",
-  "sha256": "d1d0153b7728ea6d0737934324e1b8c78214f4a90717aadf588935cbdeb7c6bf",
+  "sha256": "577bf4de398c90a849ca2aa07c0bb581fff98c92f26e2fc2f3160b523157a96b",
   "months": {
     "1999-01": {
       "asOf": "1999-01-29",
@@ -12739,9 +12739,9 @@
       "sourceUrl": "https://www.federalreserve.gov/releases/h10/data/FRB_h10_xml.zip",
       "series": "DEXTAUS",
       "secondarySourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
-      "checkedAt": "2026-11-04",
+      "checkedAt": "2026-11-06",
       "sha256": "1c312d2fc1de99f174c26178a2cb1f0f0f6a4a08b6dce25b043603fec9a3f24a",
-      "secondarySha256": "d1d0153b7728ea6d0737934324e1b8c78214f4a90717aadf588935cbdeb7c6bf",
+      "secondarySha256": "577bf4de398c90a849ca2aa07c0bb581fff98c92f26e2fc2f3160b523157a96b",
       "sourceSeries": "H10/H10/RXI_N.B.TA",
       "sourceDiscoveryUrl": "https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm",
       "sourceFormat": "Official complete H.10 SDMX XML ZIP",
@@ -26148,7 +26148,7 @@
       },
       "sourceAttempts": [
         {
-          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-11-04",
+          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-11-06",
           "error": "The read operation timed out"
         },
         {
