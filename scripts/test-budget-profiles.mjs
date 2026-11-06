@@ -258,3 +258,5 @@ assert.equal(createHash('sha256').update(JSON.stringify(previousFinancials)).dig
 await import('./test-budget-reliability.mjs')
 
 await import('./test-budget-editorial-lives.mjs')
+
+await import('./test-budget-narrative.mjs')

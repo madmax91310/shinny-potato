@@ -21,7 +21,8 @@ for (const profile of BUDGET_PROFILES) {
   assert(['consulted', 'inaccessible'].includes(c.review.access), profile.id)
   assert(c.paragraphs.length <= 3, 'A budget that already says everything needs no repetitive narrative')
   assert(c.questions.length >= 1 && c.questions.length <= 2)
-  assert(c.budgetQuestion.endsWith('🤔💬'))
+  assert(!c.budgetQuestion || c.budgetQuestion.endsWith('🤔💬'))
+  assert(c.questions.length + Number(Boolean(c.budgetQuestion)) <= 2, 'One or two useful questions, without an automatic third conclusion')
   if (/budget personnel/i.test([profile.household, profile.incomeNote, BUDGET_PUBLICATION_CONTEXT[profile.id].review.limit].join(' '))) {
     assert(!c.budgetQuestion.includes('budget de ce foyer'), 'Living with a partner does not make a personal ledger a household budget')
   }
