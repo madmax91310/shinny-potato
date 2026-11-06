@@ -1,5 +1,5 @@
 """Bounded fresh-master dispatches; never replay an obsolete workflow snapshot."""
-from automation_status_storage import encode_status
+from automation_status_storage import encode_status, scope_key, restore_results
 from automation_status_git import write_status
 import copy
 import datetime as dt
@@ -48,6 +48,76 @@ def recovery_reason(row, config, now):
     return None
 
 
+def monthly_recording_scope(state, row, reason):
+    """Reuse an explicit parent selection, never reconstruct it from successes.
+
+    This only supplies acquisition inputs to a NEW run on master. It neither
+    qualifies the old report nor changes any financial/publication guard.
+    Unknown historical scopes keep the existing ordinary recovery behaviour.
+    """
+    if reason != 'recording-failed' or state.get('reportScopeSchemaVersion', 1) != 1:
+        return None
+    scopes = {}
+    history = row.get('reportEvidenceHistory', [])
+    registry = state.get('reportScopes', {})
+    if not isinstance(history, list) or not isinstance(registry, dict):
+        return None
+    for raw in history:
+        if (not isinstance(raw, dict) or raw.get('file') != 'monthly-observation.json'
+                or raw.get('schema') != 'series' or raw.get('scopeExplicit') is not True
+                or raw.get('runId') != row.get('runId')
+                or raw.get('attempt', 1) != row.get('attempt', 1)
+                or not re.fullmatch(r'[a-f0-9]{64}', str(raw.get('sha256', '')))):
+            continue
+        try:
+            entry = restore_results(raw)
+        except (ValueError, TypeError):
+            continue
+        todo = [entry]
+        while todo:
+            proof = todo.pop()
+            if isinstance(proof, list):
+                todo.extend(proof)
+                continue
+            if not isinstance(proof, dict):
+                continue
+            todo.extend(v for v in proof.values() if isinstance(v, (dict, list)))
+            if (proof.get('file') != raw['file'] or proof.get('sha256') != raw['sha256']
+                    or proof.get('scopeExplicit') is not True):
+                continue
+            scope = proof.get('scope')
+            ref = proof.get('scopeRef')
+            if ref:
+                if not isinstance(ref, str):
+                    return None
+                scope = registry.get(ref)
+                if not isinstance(scope, dict) or scope_key(scope) != ref:
+                    return None
+            if not isinstance(scope, dict):
+                continue
+            ids, requested = scope.get('expectedIds'), scope.get('requestedIds')
+            if (not isinstance(ids, list) or not isinstance(requested, list)
+                    or any(not isinstance(v, str) or not re.fullmatch(r'[A-Za-z0-9_.:-]+', v) for v in ids + requested)
+                    or len(set(ids)) != len(ids) or len(set(requested)) != len(requested)
+                    or not set(requested) <= set(ids) or len(','.join(requested)) > 50000):
+                return None
+            if requested:
+                inputs = {'series': ','.join(requested)}
+            elif scope.get('selection') == 'failed-or-missing':
+                # A deliberately empty retry selection must not become a full
+                # universe run. Re-evaluate current needs on fresh master.
+                inputs = {'retry_failed': True}
+            else:
+                return None  # No inferred justification for an empty old scope.
+            scopes[(scope_key(scope), raw['sha256'])] = {'inputs': inputs,
+                                       'file': raw['file'], 'reportSha256': raw['sha256'],
+                                       'scopeSha256': scope_key(scope), 'expectedIdsCount': len(ids),
+                                       'requestedIdsCount': len(requested),
+                                       'sourceRunId': raw['runId'], 'sourceAttempt': raw.get('attempt', 1),
+                                       'oldReportQualificationUnchanged': True}
+    return next(iter(scopes.values())) if len(scopes) == 1 else None
+
+
 def plan_recovery(state, registry, now, active_runs):
     """Reserve before POST so crashes cannot dispatch twice on the next monitor tick.
 
@@ -67,6 +137,7 @@ def plan_recovery(state, registry, now, active_runs):
         attempts = [a for a in previous.get('attempts', []) if (at := stamp(a.get('at'))) and (now-at).total_seconds() < WINDOW]
         entry = {**previous, 'attempts': attempts, 'reason': reason,
                  'lastSuccessAt': row.get('lastCollectionSuccessAt'), 'observedRunId': row.get('runId')}
+        entry.pop('dispatchScope', None)
         ledger[workflow] = entry
         if not reason:
             entry.update(status='idle', nextAttemptAt=None)
@@ -91,6 +162,10 @@ def plan_recovery(state, registry, now, active_runs):
             entry['status'] = 'waiting'
             continue
         attempt = {'at': now.isoformat(), 'reason': reason, 'sourceRunId': row.get('runId'), 'status': 'reserved', 'ref': 'master'}
+        scope = monthly_recording_scope(state, row, reason) if workflow == 'update-market-monthly.yml' else None
+        if scope:
+            attempt['inputs'] = scope['inputs']
+            entry['dispatchScope'] = {k: v for k, v in scope.items() if k != 'inputs'}
         entry['attempts'].append(attempt)
         entry.update(status='reserved', nextAttemptAt=(now + dt.timedelta(seconds=DELAYS[min(len(attempts), 2)])).isoformat())
         plans.append(workflow)
@@ -102,7 +177,10 @@ def dispatch_recovery(api, ledger, plans):
     for workflow in plans:
         entry = ledger[workflow]
         try:
-            api(f'/actions/workflows/{workflow}/dispatches', 'POST', {'ref': 'master'})
+            payload = {'ref': 'master'}
+            if 'inputs' in entry['attempts'][-1]:
+                payload['inputs'] = entry['attempts'][-1]['inputs']
+            api(f'/actions/workflows/{workflow}/dispatches', 'POST', payload)
             status, error = 'dispatched', None
         except Exception as exception:
             status, error = 'dispatch-failed', f'{type(exception).__name__}: {exception}'[:300]

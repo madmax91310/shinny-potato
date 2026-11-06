@@ -4,8 +4,9 @@ import base64
 import json
 import unittest
 from pathlib import Path
-from automation_recovery import recovery_reason
-from automation_recovery import plan_recovery, dispatch_recovery, persist_and_dispatch
+from automation_status_storage import scope_key, expand_report_scopes
+from automation_recovery import (recovery_reason, plan_recovery, dispatch_recovery,
+                                 persist_and_dispatch, monthly_recording_scope)
 
 NOW = dt.datetime(2026, 10, 19, 12, tzinfo=dt.timezone.utc)
 REGISTRY = {'update-test.yml': {'maxAgeHours': 48}}
@@ -163,6 +164,114 @@ class RecoveryTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             persist_and_dispatch(conflict, 'automation-status.json', payload, state, plans)
         self.assertEqual(len(calls), 1, 'No dispatch follows a refused reservation write')
+
+
+SCOPE_WORKFLOW = 'update-market-monthly.yml'
+SCOPE_NOW = dt.datetime(2026, 11, 6, 17, tzinfo=dt.timezone.utc)
+
+
+class MonthlyRecoveryScope(unittest.TestCase):
+    def setUp(self):
+        self.state = json.loads((Path(__file__).parent / 'fixtures/monthly-recovery-scope-20261106.json').read_text())['state']
+
+    def dispatch(self, state=None):
+        state = self.state if state is None else state
+        ledger, plans = plan_recovery(state, {SCOPE_WORKFLOW: {'maxAgeHours': 48}}, SCOPE_NOW, {SCOPE_WORKFLOW: []})
+        self.assertEqual(plans, [SCOPE_WORKFLOW])
+        # This is the exact durable reservation, not mutable state read at POST.
+        reserved = json.loads(json.dumps(ledger))
+        calls = []
+        dispatch_recovery(lambda *args: calls.append(args), reserved, plans)
+        self.assertEqual(calls[0][:2], ('/actions/workflows/'+SCOPE_WORKFLOW+'/dispatches', 'POST'))
+        self.assertEqual(reserved[SCOPE_WORKFLOW]['status'], 'dispatched')
+        self.assertEqual(reserved[SCOPE_WORKFLOW]['lastSuccessAt'], ledger[SCOPE_WORKFLOW]['lastSuccessAt'])
+        return calls[0][2], ledger
+
+    def row(self):
+        return self.state['workflows'][SCOPE_WORKFLOW]
+
+    def test_actual_ngas_failure_recollects_exactly_one_series_on_master(self):
+        original = copy.deepcopy(self.state)
+        payload, ledger = self.dispatch()
+        self.assertEqual(payload, {'ref': 'master', 'inputs': {'series': 'etc_natural_gasNav'}})
+        self.assertEqual(ledger[SCOPE_WORKFLOW]['dispatchScope']['sourceRunId'], 42235436731)
+        self.assertEqual(ledger[SCOPE_WORKFLOW]['dispatchScope']['expectedIdsCount'], 1)
+        self.assertTrue(ledger[SCOPE_WORKFLOW]['dispatchScope']['oldReportQualificationUnchanged'])
+        self.assertEqual(original, self.state)
+        self.assertFalse(self.row()['reportEvidenceHistory'][0]['scopePlanVerified'])
+
+    def test_empty_justified_retry_and_partition_keep_their_selection(self):
+        for scope, expected in [
+                ({'expectedIds': [], 'requestedIds': [], 'selection': 'failed-or-missing'}, {'retry_failed': True}),
+                ({'expectedIds': ['x', 'deferred'], 'requestedIds': ['x'], 'selection': 'partitioned'}, {'series': 'x'})]:
+            state = copy.deepcopy(self.state)
+            proof = state['workflows'][SCOPE_WORKFLOW]['reportEvidenceHistory'][0]['successes'][0]['evidence']
+            ref = scope_key(scope);proof['scopeRef'] = ref;state['reportScopes'] = {ref: scope}
+            payload, ledger = self.dispatch(state)
+            self.assertEqual(payload, {'ref': 'master', 'inputs': expected})
+            self.assertEqual(ledger[SCOPE_WORKFLOW]['dispatchScope']['requestedIdsCount'], len(scope['requestedIds']))
+            self.assertEqual(ledger[SCOPE_WORKFLOW]['dispatchScope']['expectedIdsCount'], len(scope['expectedIds']))
+
+    def test_existing_inline_reader_contract_and_packed_contract_agree(self):
+        inline = expand_report_scopes(self.state)
+        self.assertEqual(self.dispatch(inline)[0], self.dispatch()[0])
+
+    def test_scope_is_not_derived_from_success_or_failure_instrument_ids(self):
+        self.row()['validatedDataIds'] = ['history:some-other-success']
+        self.row()['attemptedDataIds'] = ['history:some-other-attempt']
+        self.assertEqual(self.dispatch()[0]['inputs']['series'], 'etc_natural_gasNav')
+
+    def test_stale_runs_and_other_attempts_do_not_supply_a_scope(self):
+        for key, value in [('runId', 1), ('attempt', 2)]:
+            with self.subTest(key=key):
+                state = copy.deepcopy(self.state)
+                state['workflows'][SCOPE_WORKFLOW]['reportEvidenceHistory'][0][key] = value
+                self.assertEqual(self.dispatch(state)[0], {'ref': 'master'})
+
+    def test_missing_unknown_tampered_or_empty_scope_is_not_invented(self):
+        cases = []
+        for value in [{}, {'expectedIds': [], 'requestedIds': []},
+                      {'expectedIds': ['x'], 'requestedIds': ['different']},
+                      {'expectedIds': ['x', 'x'], 'requestedIds': ['x', 'x']},
+                      {'expectedIds': ['x,y'], 'requestedIds': ['x,y']},
+                      {'expectedIds': [True], 'requestedIds': [True]}]:
+            state = copy.deepcopy(self.state)
+            proof = state['workflows'][SCOPE_WORKFLOW]['reportEvidenceHistory'][0]['successes'][0]['evidence']
+            ref = scope_key(value); proof['scopeRef'] = ref; state['reportScopes'] = {ref: value}
+            cases.append(state)
+        state = copy.deepcopy(self.state);state['workflows'][SCOPE_WORKFLOW]['reportEvidenceHistory'][0]['schema'] = 'unknown';cases.append(state)
+        state = copy.deepcopy(self.state);state['workflows'][SCOPE_WORKFLOW]['reportEvidenceHistory'][0]['scopeExplicit'] = False;cases.append(state)
+        state = copy.deepcopy(self.state);state['workflows'][SCOPE_WORKFLOW]['reportEvidenceHistory'][0]['successes'][0]['evidence']['scopeRef'] = ['malformed'];cases.append(state)
+        state = copy.deepcopy(self.state);state['reportScopes'] = None;cases.append(state)
+        state = copy.deepcopy(self.state);state['reportScopes'] = {};cases.append(state)
+        state = copy.deepcopy(self.state);next(iter(state['reportScopes'].values()))['expectedIds'] = ['tampered'];cases.append(state)
+        state = copy.deepcopy(self.state);state['reportScopeSchemaVersion'] = 2;cases.append(state)
+        state = copy.deepcopy(self.state);state['workflows'][SCOPE_WORKFLOW]['reportEvidenceHistory'] = [];cases.append(state)
+        for i, state in enumerate(cases):
+            with self.subTest(case=i):
+                self.assertEqual(self.dispatch(state)[0], {'ref': 'master'})
+                self.assertNotIn('dispatchScope', self.dispatch(state)[1][SCOPE_WORKFLOW])
+
+    def test_no_old_dispatch_inputs_leak_into_a_later_unknown_run(self):
+        _, ledger = self.dispatch()
+        self.state['recovery'] = ledger
+        self.row()['runId'] += 1
+        # Outside retry cooldown, but before rolling budget expires.
+        ledger, plans = plan_recovery(self.state, {SCOPE_WORKFLOW: {'maxAgeHours': 48}}, SCOPE_NOW+dt.timedelta(hours=2), {SCOPE_WORKFLOW: []})
+        self.assertEqual(plans, [SCOPE_WORKFLOW]);self.assertNotIn('dispatchScope', ledger[SCOPE_WORKFLOW])
+        calls=[];dispatch_recovery(lambda *args:calls.append(args),ledger,plans)
+        self.assertEqual(calls[0][2], {'ref': 'master'})
+
+    def test_other_reasons_keep_their_ordinary_selection(self):
+        for reason in ['silent-collector', 'transient-source', 'transient-run', None]:
+            self.assertIsNone(monthly_recording_scope(self.state, self.row(), reason))
+
+    def test_ambiguous_current_report_versions_do_not_choose_a_selection(self):
+        other = copy.deepcopy(self.row()['reportEvidenceHistory'][0]);other['sha256']='b'*64
+        other['successes'][0]['evidence']['sha256']='b'*64
+        self.row()['reportEvidenceHistory'].append(other)
+        self.assertEqual(self.dispatch()[0], {'ref':'master'})
+
 
 
 if __name__ == '__main__':

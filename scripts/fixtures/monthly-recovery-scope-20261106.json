@@ -1,0 +1,71 @@
+{
+  "origin": {
+    "monitorBranchCommit": "b030093f4c1fbe78135044e106e83f5a308388bd",
+    "artifactId": 13514506419,
+    "sourceRunId": 42235436731,
+    "scopeOnlyExtract": true,
+    "financialResultsNotCopied": true
+  },
+  "state": {
+    "reportScopeSchemaVersion": 1,
+    "reportScopes": {
+      "71b9ff5fb6e19d8146a6bf7e3541e72dc4a58da6676c24add7f0bd0a1fbde9ea": {
+        "requestedIds": [
+          "etc_natural_gasNav"
+        ],
+        "expectedIds": [
+          "etc_natural_gasNav"
+        ],
+        "selection": "failed-or-missing"
+      }
+    },
+    "workflows": {
+      "update-market-monthly.yml": {
+        "runId": 42235436731,
+        "attempt": 1,
+        "completedAt": "2026-11-06T15:05:41Z",
+        "recordingStatus": "failure",
+        "lastCollectionSuccessAt": "2026-11-03T14:41:07.533153+00:00",
+        "dataFailures": {},
+        "failures": [
+          {
+            "step": "Commit validated observations"
+          }
+        ],
+        "reportEvidenceHistory": [
+          {
+            "file": "monthly-observation.json",
+            "sha256": "cade86a7ed4f4905bc1c4fde0919b6114572f5eb897d9a95779d6ef14be8d10f",
+            "runId": 42235436731,
+            "attempt": 1,
+            "schema": "series",
+            "scopeExplicit": true,
+            "scopePlanVerified": false,
+            "successes": [
+              {
+                "id": "report-read:monthly-observation:run:42235436731:attempt:1",
+                "evidence": {
+                  "scopeExplicit": true,
+                  "scopePlanVerified": false,
+                  "producerContract": null,
+                  "file": "monthly-observation.json",
+                  "sha256": "cade86a7ed4f4905bc1c4fde0919b6114572f5eb897d9a95779d6ef14be8d10f",
+                  "reportedAt": "2026-11-06T14:41:55.923136+00:00",
+                  "schema": "series",
+                  "artifactId": 13514506419,
+                  "sourcePhaseStartedAt": "2026-11-06T14:39:01Z",
+                  "sourcePhaseCompletedAt": "2026-11-06T15:05:34Z",
+                  "scopeRef": "71b9ff5fb6e19d8146a6bf7e3541e72dc4a58da6676c24add7f0bd0a1fbde9ea",
+                  "scopeSummary": {
+                    "expectedIdsCount": 1,
+                    "requestedIdsCount": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
