@@ -1,0 +1,30 @@
+[
+  {
+    "command": "node scripts/playwright-investment-anomalies.mjs",
+    "base": "http://127.0.0.1:4173/shinny-potato",
+    "status": 0,
+    "seconds": 73.92,
+    "error": null
+  },
+  {
+    "command": "node scripts/playwright-investment-unit-consumers.mjs",
+    "base": "http://127.0.0.1:4173/shinny-potato",
+    "status": 0,
+    "seconds": 214.935,
+    "error": null
+  },
+  {
+    "command": "node scripts/playwright-investment-identity.mjs",
+    "base": "http://127.0.0.1:4173/shinny-potato",
+    "status": 0,
+    "seconds": 33.061,
+    "error": null
+  },
+  {
+    "command": "node scripts/playwright-investment-protections.mjs",
+    "base": "http://127.0.0.1:4173/shinny-potato",
+    "status": 0,
+    "seconds": 29.311,
+    "error": null
+  }
+]

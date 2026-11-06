@@ -1,0 +1,634 @@
+{
+  "referenceDate": "2026-11-06T11:12:10.285Z",
+  "bundleSha256": "1e566ba940c5850177df500b323a992900ba631e169727938037df073fd7595d",
+  "inputs": [
+    {
+      "path": "src/pages/tweet-midi/constants.js",
+      "sha256": "7a1bd15a9dec950ebe9b22b0239bd6a2fcef90a4dd1eb43b4a6e1a0667023147"
+    },
+    {
+      "path": "src/data/ranking-histories.json",
+      "sha256": "1bd8d8445fc6b5e7a1337a2b1b7ab699c549ced6a45f57bd45f86c58a4bd5024"
+    },
+    {
+      "path": "src/data/shared-qualified-histories.js",
+      "sha256": "35ed025180309dcfbb8e97b84ad1fe4903d094998266d222a32c2d4e1b12ee08"
+    },
+    {
+      "path": "src/data/anniversary-index-history.json",
+      "sha256": "72a4ca3ea03b24c7bab7ad4b5809019bb6e82bbf89d7d9dc42877ac9df831d91"
+    },
+    {
+      "path": "src/data/freshness-policy.json",
+      "sha256": "ea991521107342c0180b36d10913cbed71813cdd6d5ecdbfe05fa1c099a63075"
+    },
+    {
+      "path": "src/data/evidence-freshness.js",
+      "sha256": "c4f77011545c8d99c10fa76a9c576d302662ef7e6d862b86dcc6ee98494177dd"
+    },
+    {
+      "path": "src/data/index-history-identities.js",
+      "sha256": "5427b1e646347688b74e5a5e3170e2efa7174e08a6a2765fe1a506765f35202a"
+    },
+    {
+      "path": "src/lib/performance-conventions.js",
+      "sha256": "2ac74b3051326226288d885598f58b9ecfb15c294babb7ad88372b0c93f090aa"
+    },
+    {
+      "path": "src/data/certified-monthly-indices.js",
+      "sha256": "9be698248b04100edbabe5fca80e1142415c00f0cc149d83f1c1639daaec5baa"
+    },
+    {
+      "path": "src/data/automated-monthly.json",
+      "sha256": "8bd34b018d4c52028d0e75a9d0f8fd5964a021fb79e19babf5808af49c546cf2"
+    },
+    {
+      "path": "src/data/global-equities.json",
+      "sha256": "4aebd32880caa64481c343012063b430d63cd7f2453745de1395a035c93dd843"
+    },
+    {
+      "path": "src/data/automated-equity-history.js",
+      "sha256": "3fc9cdb0f275318ff85ea983944889635216c24f640a5a185507437094f896d9"
+    },
+    {
+      "path": "src/data/inflation-monthly.js",
+      "sha256": "7ae21a8cb00ae0281c76d9d455c7b3919dd1a36123b6feef171fc1242444975d"
+    },
+    {
+      "path": "src/lib/annual-inflation.js",
+      "sha256": "f21c4f622883ac3fc5435140278dd3272d9818e7c29ad28fde010a0ba6ef09c3"
+    },
+    {
+      "path": "src/lib/history-dates.js",
+      "sha256": "d1294b1454b879d3f8e6761b1f97bb8d72031f6f7ee96c0c039ce92c4d198996"
+    },
+    {
+      "path": "src/data/equity-history-links.json",
+      "sha256": "6c748cc8bcbfe70e5842d714910c49df29763cafc32512400f2ddc1a7e0d5afc"
+    },
+    {
+      "path": "src/data/non-bond-monthly-records.json",
+      "sha256": "dce18533f839ae063b90faa0892160e703891ed82c6add8b205c7aaa668f8d28"
+    },
+    {
+      "path": "src/data/automated-etf-monthly.json",
+      "sha256": "1c459058594a1e6697f9509b3587c5e5726ae62de63d86ceea2e3c10209a549b"
+    },
+    {
+      "path": "src/data/monthly-automation.js",
+      "sha256": "5507538a3f4006c93df0725f2f7679f35e35ab7b7b65cb4b8b12ee54481cd4ce"
+    },
+    {
+      "path": "src/data/automated-economic.json",
+      "sha256": "9f23700d1922725afcd5104fb273dc56f787aabb5d7252c149a2e43643a306f0"
+    },
+    {
+      "path": "src/data/annual-window.js",
+      "sha256": "ab867cf681269efdfe1a44c56db2a03a37d28cf26903850796fad1e41a1b6bd8"
+    },
+    {
+      "path": "src/data/economic-data.js",
+      "sha256": "a30eaebff5d14eb494fcae3a52e00e37560e7b28e8f315a74816ffeefc3f8c5e"
+    },
+    {
+      "path": "src/data/bitcoin-yahoo-monthly.json",
+      "sha256": "9610a37c9a34a7ada9acd0be38fd415ac4f23ace22b90651697c9bf4269f6301"
+    },
+    {
+      "path": "src/data/diversification-history.js",
+      "sha256": "76dde8b6ca226d1fbf8b1adf65bb8696dc6200b3650f031f58349c878caed25f"
+    },
+    {
+      "path": "src/data/worldbank-gold-monthly.json",
+      "sha256": "a919b71c8b9a81d15223dab3627c15c0462dfae49a2073deae7ec67855c747ee"
+    },
+    {
+      "path": "src/data/monthly-history-additions.js",
+      "sha256": "4ba33c88a3839a3319f745a28a1e1230183698539bf29cd6afe41c53d3395a4a"
+    },
+    {
+      "path": "src/data/msci-history.js",
+      "sha256": "6c74a1ccfd502b3b402dac0bcc52e9f5601696ec3cd822504de33f7c574e0134"
+    },
+    {
+      "path": "src/data/non-bond-company-histories.json",
+      "sha256": "059009e05b32afeabe7ba3d44b1045a69d927f2eb2069bbf992679f7de142726"
+    },
+    {
+      "path": "src/data/company-history-additions.js",
+      "sha256": "4e9918ab091fa0c812707d271262e585554e25b6fc0deb7491aadd65ca1a6ac8"
+    },
+    {
+      "path": "src/data/company-history.js",
+      "sha256": "cbb77b7d18dcbe8262ffddb280d25fc88390eecef7b4d414ba0dccb854019b58"
+    },
+    {
+      "path": "src/data/shared-index-history.js",
+      "sha256": "53688792cdad6973193d1d696d960762c6e70f04be4dc0e00775537cc12314ac"
+    },
+    {
+      "path": "src/data/auto-history-identities.json",
+      "sha256": "ee4cc3fe94831d2c00afafa1bdee0292417facc2fe82b43b68ce0a712a58e60e"
+    },
+    {
+      "path": "src/data/new-instrument-identities.json",
+      "sha256": "9e6d52ae7074f73027fbe95c537ee23b9190bcd25428f0cbbabc3d1e37f25bb6"
+    },
+    {
+      "path": "scripts/non-bond-expansion-sources.json",
+      "sha256": "ff5b6062e27b1e5b5381f469f1bb63ef194b97e46292879fe575b1c2d31a6351"
+    },
+    {
+      "path": "src/data/etf-history-identities.js",
+      "sha256": "cb9180e54ba695414807b0ee035f162b52d699fe2830fa874284aa6880de08aa"
+    },
+    {
+      "path": "src/data/etf-monthly-history.js",
+      "sha256": "4a63047dd3c38ad7c80b87c541ab4ec4ecfaed5b71fc61b2e0e54eb8226407d1"
+    },
+    {
+      "path": "src/data/investment-presets.js",
+      "sha256": "a5c684929625e940eeeb894ba9ba6df6c2fdd2e68d180cbe9eab48e7b449642b"
+    },
+    {
+      "path": "src/data/market-history.js",
+      "sha256": "b9a91a2cd7cde6820a4d9e822668140f608f9d50345f52079ed47af1de8714c4"
+    },
+    {
+      "path": "src/data/anniversary-price-quality.js",
+      "sha256": "bdd0464357ca5a51be6af95c1d23fff35c319a5cbc9b99492fe6a3bc1e215942"
+    },
+    {
+      "path": "src/data/anniversary-levels.json",
+      "sha256": "35566b6e383ae5a0b41c605b3bfbb02741e31b728591fb2d79592a460b6027b5"
+    },
+    {
+      "path": "src/data/non-bond-levels.json",
+      "sha256": "cdaffe5926e804bb81ccd8dd0a28e354d7f94ea813b6c757e6c56cef40196b19"
+    },
+    {
+      "path": "src/data/anniversary-levels.js",
+      "sha256": "bc5c9d68e01b2f6065c8b481c5b4889cfbd2e05cce7afcfc31b8a2af65e246ac"
+    },
+    {
+      "path": "src/data/history-window-restrictions.json",
+      "sha256": "ab0492f6fcd8667bdf4ee80082eaad2fb4ee8091900647b86b245ee2403bf132"
+    },
+    {
+      "path": "src/data/financial-history-restrictions.json",
+      "sha256": "4899a929c915e704b4b5146ddc06d4c5c56062c1baa38f2d121598fa181296b5"
+    },
+    {
+      "path": "src/data/history-window-quality.js",
+      "sha256": "4887ef7f3342724ee80aa41145564958e0488e75e657a4ef7157da22ea06b7b5"
+    },
+    {
+      "path": "src/data/index-history-conventions.js",
+      "sha256": "13068ca13c454a44a8b0c22a60b0dc1c586c87bad66e1fca4c8c290c3a512921"
+    },
+    {
+      "path": "src/lib/format-currency.js",
+      "sha256": "126e053e573d9647d9af3fa0175c21533e09a779f391e466077ce6fa3bf86dec"
+    },
+    {
+      "path": "src/data/history-parameters.js",
+      "sha256": "b1442a51dad7a31217350d148f6dc09eec62d2019186d25647136403b147dc53"
+    },
+    {
+      "path": "src/lib/investment-series.js",
+      "sha256": "634086158bf631aa32210923b4ac292622e1bae316b09dd17ed655b8a3b7b3db"
+    },
+    {
+      "path": "src/pages/tweet-midi/data/marketHistory.js",
+      "sha256": "144e91169f7d827149c8018a28ab8c19e2c74e786a18c1eccc44643326519967"
+    },
+    {
+      "path": "src/data/aum-observations.js",
+      "sha256": "e7346f37cd00a1eeec373d156aa1bf6f2cb58cf8d4c973eb7849c10b1a88b9ec"
+    },
+    {
+      "path": "src/data/french-characteristics.json",
+      "sha256": "53dffa1947804408640ba991ebc3bbd09482d3343d1848be2e1386683964de60"
+    },
+    {
+      "path": "src/data/french-characteristics.js",
+      "sha256": "a2ed7228bc654b2420e575bbc5d9c89d5b0d61d69d53f26565c5de4dfb8d1a20"
+    },
+    {
+      "path": "src/data/automated-characteristics.js",
+      "sha256": "c4ee0f0e2246e0f78fe6a5e14f5e744e2c6e9f6de34f2c050739aca28e0daa54"
+    },
+    {
+      "path": "src/data/automated-instrument-metadata.json",
+      "sha256": "65ccdd333c3c53c4c515777d1ef487655bd213b523f11570cc1bb77657ee6e9c"
+    },
+    {
+      "path": "src/data/instrument-characteristic-metadata.js",
+      "sha256": "925f6a1c30c6b84e086842036eabbc04d68577fac09e7a5aff132b43495931b1"
+    },
+    {
+      "path": "src/data/instrument-metadata.js",
+      "sha256": "c70f72bee8af895b33ba65333b22777a7691e9d19fdd2bb770b479486005ef89"
+    },
+    {
+      "path": "src/data/exposure-etf-expansion-records.json",
+      "sha256": "51b31ba82778bfe66837f330a66fa58ad76fa07fdd6d9784babddcd561ed0c46"
+    },
+    {
+      "path": "src/data/non-bond-etf-records.json",
+      "sha256": "79005b9a4f9a00c377f21fc42ac24e76c2a3fe24cfe0af4107e565fa576ae89b"
+    },
+    {
+      "path": "src/data/lifestrategy.json",
+      "sha256": "6da15a62a060f33cf5b3e70a7478aba3f7b34f643c58eb05925baceb33219184"
+    },
+    {
+      "path": "src/data/lifestrategy.js",
+      "sha256": "b90ace5fcd26171a774c4f60067191f6e992186a45f56a2a1bb445bcc7695d0d"
+    },
+    {
+      "path": "src/data/benchmark-changes.json",
+      "sha256": "aeff50bb9ded70200af9f1cce8f928337b00e248dde6b372137d4f4868260ba7"
+    },
+    {
+      "path": "src/data/benchmark-changes.js",
+      "sha256": "570a89c6c5f9403ea403a90689c146bc34124d92138c13b019064cee4baa96bf"
+    },
+    {
+      "path": "src/data/automated-etf.json",
+      "sha256": "55e83ff7b4fe5a0208bb9db6ab50830f35d05cd2055e640278c2e1f3c5c86de9"
+    },
+    {
+      "path": "src/data/qualified-exposure-etfs.json",
+      "sha256": "6dd948c3f4e555052ee64fd9bc3c4b2210a4d68a847b36ccd371233f8768a112"
+    },
+    {
+      "path": "scripts/qualified-exposure-sources.json",
+      "sha256": "08db7605dd7621e20b042bc8cb48ded1bae11e4df1ea69e0dd6f8f977cc74223"
+    },
+    {
+      "path": "scripts/non-bond-qualified-sources.json",
+      "sha256": "2def53edf33ce4303629e96a54ecf1045704e2b25a455558f22e076dcd53a0fb"
+    },
+    {
+      "path": "src/data/non-bond-qualified-records.json",
+      "sha256": "6a16c8b59aabbdbc98c6e372ffe66e492a2c663634de7a2448e91b83bf0c43dd"
+    },
+    {
+      "path": "src/data/qualified-exposure-sheets.js",
+      "sha256": "47ef5e7b27dea2479045b0e738420cd9ff2ed0a377bbd75d60eecdf7c3ec4189"
+    },
+    {
+      "path": "src/data/automated-etf.js",
+      "sha256": "3d668e5a2f619018d31bff56b3e24ba9d9f21cb0ea40e20b23d9d15c7852bb16"
+    },
+    {
+      "path": "src/data/automated-indices.json",
+      "sha256": "96c3a78dac25a415d530437bc8e76b35ca8b7be928e87a40a8f70a14b253b7af"
+    },
+    {
+      "path": "src/data/routing-presentations.js",
+      "sha256": "6b0f5100deecb27ce6560428cfa35937cb8e784ec4186c58d93d9c8afa4202f0"
+    },
+    {
+      "path": "src/data/new-instrument-copy.json",
+      "sha256": "1836f7228a627e1474fb7c53833ccef5958dc0f1be27d08491c92efdcdfa0b7b"
+    },
+    {
+      "path": "src/data/new-instrument-sheets.js",
+      "sha256": "97c8c2d74f64a4661fcd3415b0b863d875f76ae9068c210378547a94a789ba9b"
+    },
+    {
+      "path": "src/data/routing-presentation-facts.js",
+      "sha256": "5283a97d86e04fc86b7ab5c9af09a393da876d91553265992427f797285e5d78"
+    },
+    {
+      "path": "src/data/new-instrument-facts.js",
+      "sha256": "8a23d49ecee60a3a9534a836ae1658fa6e8046762f15d024685cf612f4ae9d49"
+    },
+    {
+      "path": "src/data/pea-sector-completion.js",
+      "sha256": "6b2d0c4feb8897d41f1fd66f273bbbeda52a70bf09825abff66cc065ea339b5b"
+    },
+    {
+      "path": "src/data/non-bond-expansion.js",
+      "sha256": "b8e56ea4e24ec69a0be469495da88b48b70e8d1fe226c1efa8a552651d10ab6e"
+    },
+    {
+      "path": "src/data/round3-fund-sheets.js",
+      "sha256": "777e872ef878cef3b436fa35f2551688be7f30be18a98f464057b99597771c61"
+    },
+    {
+      "path": "src/data/presentation-etf-additions.js",
+      "sha256": "a38b1e63ef8bba7983fcb4442d3af6e51763cb48a4d76caa56a30c4e6149ebcc"
+    },
+    {
+      "path": "src/data/exposure-additions.js",
+      "sha256": "9a90df33915b60587c3fdd1fbafef4cf6f4192f179fa2c3953dee8f68edbd525"
+    },
+    {
+      "path": "src/data/qualified-listing-records.json",
+      "sha256": "60717c67f48bda351402b194168e52f8a2417dd634b8196573ff79d17e1d4a7c"
+    },
+    {
+      "path": "scripts/listing-source-hosts.json",
+      "sha256": "e2d23ba9afd3aff49effa14eb897f76025d957328a0a60b31f3e1694dd650cdc"
+    },
+    {
+      "path": "src/data/qualified-listings.js",
+      "sha256": "647670a5e62429a5524c1089c7b4dc4ecb150cc9745c5b52ebc3cf86f8902386"
+    },
+    {
+      "path": "src/data/instrument-listings.js",
+      "sha256": "1ec4b69a8b342f2ef257f16d3fb70028a6adc68ecf023d5e3cb62e57fe98658a"
+    },
+    {
+      "path": "src/data/instrument-facts.js",
+      "sha256": "8c00e48bcbb937110d51865f337435e5dffa468bef0a1ba1bd0ebd237c52f6e1"
+    },
+    {
+      "path": "src/data/presentation-etf-expansion.js",
+      "sha256": "4f40f24fbe60c3a9c50e7ace81eea0310702bf6b8652342ec89e04fd46f58293"
+    },
+    {
+      "path": "src/data/instrument-aum.js",
+      "sha256": "7ad7c0099e86f19c304ea6e7a7d55683f0ad576a6460b2653d59903f72bac5d3"
+    },
+    {
+      "path": "src/data/vanguard-equity-underliers.json",
+      "sha256": "450b3a032b101bc6f9d848a0caf7f4b7a17ba45b58bb08d3d2789c0070f4e9cd"
+    },
+    {
+      "path": "src/data/exposure-etf-expansion.js",
+      "sha256": "90a74a382afda985b0d1545e9f1baa5e1efd3ef0372ae1cd6d22aa7b22d9802a"
+    },
+    {
+      "path": "src/data/instrument-pea.js",
+      "sha256": "fe94341f0ba132ed7cc051e6ac90d0dd3b354e0910c04cdf64035559c20fb95b"
+    },
+    {
+      "path": "src/data/instruments.js",
+      "sha256": "ada59da24797889702f561fb36176c3bc29d1fb8720caff4d50ade3d9f783cf7"
+    },
+    {
+      "path": "src/data/etf-ter.js",
+      "sha256": "aa8419700811d736ba16712ba2cdced33d3b93e3f2ec300ff6bb1046de67debe"
+    },
+    {
+      "path": "src/data/etf-cards.js",
+      "sha256": "b3441650ee0ba2514a36dfb211e15b3ec3d6c3661c86897c3f092b9c48d00984"
+    },
+    {
+      "path": "src/data/qualified-annual-calendars.js",
+      "sha256": "1dc79e27079a19182c4a7ca824568fa513806a5251d195c6fbd40bfdf6c40eef"
+    },
+    {
+      "path": "src/lib/return-convention.js",
+      "sha256": "0db48612e208897d56419775148a3eda8036ee798b8cfb8fca7d1e11943f1324"
+    },
+    {
+      "path": "src/pages/tweet-midi/data/performanceHistory.js",
+      "sha256": "d121e2ada86ecd525df249d0dcb9f5a01bcaa946f9bbbb76152015f70a623435"
+    },
+    {
+      "path": "src/data/history-selection.js",
+      "sha256": "c677c87b47b662bb0182558d9361f69588756b49618fc29b41f49ff7f534c59c"
+    },
+    {
+      "path": "src/pages/tweet-midi/anniversaryEditorial.js",
+      "sha256": "14aca127f607b192843a6bffd2781ff4f2f97ef2431868edb51872f6bf6253df"
+    },
+    {
+      "path": "src/pages/tweet-midi/data/dilemmes-data.json",
+      "sha256": "466e49dade77c255337183cc4a51f690fc85d195a90b7f097656c1fb13a6f9ec"
+    },
+    {
+      "path": "src/pages/tweet-midi/data/dilemmes.js",
+      "sha256": "f8faec0fdc0471fc81f7f85f911874d1ce88fa0785e43d9da5eedf5e9d61ed96"
+    },
+    {
+      "path": "src/data/automated-regulatory.json",
+      "sha256": "83d8d2962c809bf6990c835767f692a2662544efac6b2297aa4d187eea8a14ae"
+    },
+    {
+      "path": "src/data/regulatory-data.js",
+      "sha256": "90bfbec90a10fd322270e0558f359de1e1583d9f088eaf9070d467644a3bedc3"
+    },
+    {
+      "path": "src/data/financial-lexicon.js",
+      "sha256": "2626c7acbe400c838775bb4d1a2c81246db5ee4f469d338d028908fd7b81bcb1"
+    },
+    {
+      "path": "src/pages/tweet-midi/data/ficheLexiqueEditorial.js",
+      "sha256": "4aa662e22e4ffde787d6af4ed8526b86694ff11bf499cc2eebb6b60a50b37906"
+    },
+    {
+      "path": "src/pages/tweet-midi/data/ficheLexique.js",
+      "sha256": "23847cd681a8db7c40ab687a8e097b0513e643a87bcbc5682728ff92820c597f"
+    },
+    {
+      "path": "src/data/selection-search.js",
+      "sha256": "be90a05336c9f198124a91bca5e31e63e4bc996295936136ed6fd1f4b078102f"
+    },
+    {
+      "path": "src/data/new-instrument-comparisons.json",
+      "sha256": "640cbcd362944edac613a2148e72cef77398997fafcee11392f2fa5b5ef13e05"
+    },
+    {
+      "path": "src/data/publication-selections.js",
+      "sha256": "ff803cf60b8780c3db338dca353aa365b327f886c9546733629323af157cc121"
+    },
+    {
+      "path": "src/data/distinct-asset-selections.js",
+      "sha256": "4220392b84ad89a7744aca4d9fb9f799cc0c6c9c3cf0976c103e63df76cc0858"
+    },
+    {
+      "path": "src/data/resource-selections.js",
+      "sha256": "341f3f15c08547acaa474e9f91288d34745d6dba7d4aead3d0075ea88fa9c363"
+    },
+    {
+      "path": "src/data/qualified-etf-comparisons.js",
+      "sha256": "ebebf512fd7b1962ff0f411427285f1a936ce0acdb284e67f1412526e8778fe9"
+    },
+    {
+      "path": "src/data/preferred-instrument-tickers.js",
+      "sha256": "6e855e35ea98d755dded1e16b6335fd0e10753ddf2f070e80a37a558f1b591bf"
+    },
+    {
+      "path": "src/data/search-text.js",
+      "sha256": "08fb6f5f3b8227a77c869f1bf2cc532923a1488b01ae31654c01f8964ddb2f19"
+    },
+    {
+      "path": "src/data/asset-labels.js",
+      "sha256": "ca0fd5434cda36dac05a05d097c0fba0fd99d4d09b8874e726d461988adcca88"
+    },
+    {
+      "path": "src/data/asset-selection.js",
+      "sha256": "9ed86ca1cadd4d28c903d9e0a8c2bb6c1617a881736119250961ffcae2a9813a"
+    },
+    {
+      "path": "src/data/etf-themes.js",
+      "sha256": "116a06f8ad6a3a40cd4cc630a53dec5064638d21441a6bbacde6fe4ab2a316af"
+    },
+    {
+      "path": "src/data/exposure-observations.js",
+      "sha256": "c8b97fffbbe8aa91d546b167f074cac69bff55b9c9489e32c2bff0a4307f3c78"
+    },
+    {
+      "path": "src/pages/etf-tweets/lib/comparisonPolicy.js",
+      "sha256": "fddfd94b7c37008edf552e0ba803cc2d418f0d309de5aa3a439db2838e3b44ba"
+    },
+    {
+      "path": "src/data/monthly-fx.json",
+      "sha256": "1ab210d4bb1798f2c00157a47d2063a072cdece31b8e1cb549544faa0989df46"
+    },
+    {
+      "path": "src/lib/fx-rate.js",
+      "sha256": "694f1f8ee52c31bbdd450a152b1b513f47269ee100db1bd7785838ec0be4a5e8"
+    },
+    {
+      "path": "src/data/calendar-fx.js",
+      "sha256": "33080ca6b3e29b5852dfbdd3771c06aef0b76b4bc44a2b7c443ea1fa0fd9313f"
+    },
+    {
+      "path": "src/data/annual-performance-currency.js",
+      "sha256": "9f784e7763c8b7db3749de4b7d3bcb7becedd542acf8bde05e1b372676e71306"
+    },
+    {
+      "path": "src/data/instrument-performance-review.js",
+      "sha256": "f346be1c7feb2a5272e39c9403fa80022f62a329b74827e018b1216455557246"
+    },
+    {
+      "path": "src/data/simulation-proxies.js",
+      "sha256": "c4022ca8cd763cac3b2aeb872c48a05445775068411403425415eb56190d23ce"
+    },
+    {
+      "path": "src/data/verified-returns.js",
+      "sha256": "1b376cc721558ea303ef36e13f399d721648e20c1a256783adac980cfa03290c"
+    },
+    {
+      "path": "src/data/monthly-duel-returns.json",
+      "sha256": "5047fe9fe7adae73981b7c0f57d1d9ee8f371a9b62d321c7352c1622372b0374"
+    },
+    {
+      "path": "src/data/market-calendar-performance.js",
+      "sha256": "793e47c2eb0a89edba3b215a76db2bb10b89f58095523c1408cdf82004b84b23"
+    },
+    {
+      "path": "src/data/instrument-returns.js",
+      "sha256": "af71703ac8ed316e008cf2b44b47d2556d5fcf62c009e0fbc89f3c5560ac9cfe"
+    },
+    {
+      "path": "src/data/instrument-comparator-returns.js",
+      "sha256": "86981b7fbe188a2b4f6c8b16cb6182edb365c7e97e18c26f638f70ff200375b0"
+    },
+    {
+      "path": "src/data/comparator-return-evidence.js",
+      "sha256": "772a4be724d0bf9e821c1f9d49e26ffd51d8f324963d87fe98e4b204e631da5c"
+    },
+    {
+      "path": "src/data/comparison-etf-details.js",
+      "sha256": "3515cd543d64066bb4c20daba718d9e285010a1871206c0122c5598889d9efa4"
+    },
+    {
+      "path": "src/pages/tweet-midi/comparisonPerformance.js",
+      "sha256": "2a8fd680d4d3c5acaba53eb26c9e2685d601255caa3882983435617a7bed63c4"
+    },
+    {
+      "path": "src/data/qualified-exposure-metrics.js",
+      "sha256": "8e975f55cbbb41d434f74507befc19046093ed1a20cf4a328018901ad76c4f63"
+    },
+    {
+      "path": "src/data/etf-metric-copy.js",
+      "sha256": "f702b0516841c4d8da5ce64f068a59f485bcec1c2e38ab58f06696f77b261d4a"
+    },
+    {
+      "path": "src/data/commodity-publication-data.js",
+      "sha256": "ff6d04d77c97c3086ea9d4cec6bcada3b5da623c3bac50dc5541256c17f03eb6"
+    },
+    {
+      "path": "src/data/commodity-allocation.js",
+      "sha256": "8120aeecb10a38de61f2788b319fb68c812e9daf824c688493dd5ea1ddde70ed"
+    },
+    {
+      "path": "src/pages/etf-tweets/lib/comparisonDetails.js",
+      "sha256": "0d94538bb21b2ae8bebc0ae7a472d27ff92363434892302a40da5c1e1c5371f7"
+    },
+    {
+      "path": "src/pages/etf-tweets/lib/comparisonComposition.js",
+      "sha256": "34488eb075fb65a4b89c935be6696730203742aa51f78e0cdfe11220124bcf9f"
+    },
+    {
+      "path": "src/pages/etf-tweets/lib/exposureCopy.js",
+      "sha256": "dc66178707f86d557b8a71c20e693a44e2fad349667ae38e0f94da1321c8ff2b"
+    },
+    {
+      "path": "src/lib/publication-length.js",
+      "sha256": "094ccea2ab74bbac1fdd8fcd5487ecb6b1a5d489696b120fb3363049ebd1bbf8"
+    },
+    {
+      "path": "src/pages/etf-tweets/lib/tweetFormat.js",
+      "sha256": "724a56cc90edd0f5c26173cfaab97e6dbdb53bd0543c5ae6e9717411ce65c989"
+    },
+    {
+      "path": "src/pages/tweet-midi/data/comparatifEtf.js",
+      "sha256": "8c310c6db08321af0b1caa3b44da1d4beb0c4fb95a6c7b90d23e13d5a7143b4d"
+    },
+    {
+      "path": "src/data/purchasing-power-observations.json",
+      "sha256": "aeb3a4a985aa12993f3aa8c89ac870794d197024e2b6806da98e14b6a4ae3da2"
+    },
+    {
+      "path": "src/data/purchasing-power.js",
+      "sha256": "b91e4c2895e8d96cd4d036e34f25859ec910d8c5ecda7239bb3299484e3dbba3"
+    },
+    {
+      "path": "src/pages/purchasing-power/lib.js",
+      "sha256": "e86b58ada534955a0e6de3db6e13c88aead76a481e793a9ef0fff7804ad59794"
+    },
+    {
+      "path": "src/lib/anniversary-reference.js",
+      "sha256": "9171b3df0235165b13566eda3b06bc86d6f808ee020d352b75d6e8b8439d007f"
+    },
+    {
+      "path": "src/data/official-performance-currencies.json",
+      "sha256": "51e00ac1a9ed8e341c5653aeba73ab5965f0f2e497dd07ff05da7d54add76823"
+    },
+    {
+      "path": "src/pages/tweet-midi/performanceCurrency.js",
+      "sha256": "90b2cf792cca44602ae4cf70179c24fc9392941ea177baabf6dc30948e31f9d2"
+    },
+    {
+      "path": "src/pages/tweet-midi/performanceFormat.js",
+      "sha256": "8a5ba21fde68faa599f02cd49d500b345b600fe80266643bc3e67a91618949be"
+    },
+    {
+      "path": "src/pages/tweet-midi/engine.js",
+      "sha256": "2735550f5b4bd0479f923a2dfc17b5a1b38782e3babf345a300c36e1683ec347"
+    },
+    {
+      "path": "src/pages/tweet-midi/engines/comparatif.js",
+      "sha256": "5d19bbc4e638dbf47404b10caf7594be970a3f98a2c89a785cde76b44e98af35"
+    },
+    {
+      "path": "src/pages/tweet-midi/lib.js",
+      "sha256": "3aa2a92e99f9491ddce70a4553e89e16c89f1df5a1f14d9d419db7c78c112bdf"
+    },
+    {
+      "path": "scripts/tweet-midi-shards.mjs",
+      "sha256": "2040a310ef2fdf2b4b5b3b107d365f33ad341543c6302a04c138e7f638393663"
+    },
+    {
+      "path": "scripts/test-anniversary-editorial.mjs",
+      "sha256": "f992e421763ef7025c31ffb6ec6e93aa68f1429a1147d641291c96c382964480"
+    },
+    {
+      "path": "scripts/test-lexicon-editorial.mjs",
+      "sha256": "98e920395373528bfbf88b424178db9556ab65628fa3f96c8ad96ec5a9a31af0"
+    },
+    {
+      "path": "scripts/verify-tweet-midi.mjs",
+      "sha256": "19fc84439f60b9e421b63f76c69188f2142aa5530bbb450133a950fabf1310c7"
+    }
+  ]
+}

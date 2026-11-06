@@ -14,6 +14,7 @@ try{for(const width of [1440,390])for(const mode of ['lump','dca'])for(const [ye
  if(beforeLaunch){await issue.waitFor({state:'visible'});assert.match(await issue.innerText(),/lancement officiel de LU1829219390 le 2018-11-08.*continuité du prédécesseur non qualifiée/);assert.equal(await yearPicker.getAttribute('aria-invalid'),'true');assert.equal(await monthPicker.getAttribute('aria-describedby'),'ic-history-date-issue')}
  else{assert.equal(await issue.count(),0);assert.equal(await yearPicker.getAttribute('aria-invalid'),'false')}
  if(year===2018&&month===10){await choose(monthPicker,'11');await issue.waitFor({state:'detached'});assert.equal(await monthPicker.getAttribute('aria-invalid'),'false');await choose(monthPicker,'10');await issue.waitFor({state:'visible'})}
+ if(year===2018&&month===10&&mode==='lump')await p.screenshot({path:`${out}/2018-10-lump-${width}-settings.png`,fullPage:true})
  const preview=p.getByRole('button',{name:'Aperçu',exact:true});if(await preview.isVisible())await preview.click();
  await p.waitForFunction(()=>document.body.innerText.includes('lancement officiel de LU1829219390')||Boolean(document.querySelector('.ic-hero-number'))); const body=await p.locator('body').innerText(),key=`${year}-${month}-${mode}-${width}`
  if(year<2018||(year===2018&&month<11)){assert.match(body,/lancement officiel de LU1829219390 le 2018-11-08/);assert.match(body,/continuité du prédécesseur non qualifiée/);assert.equal(await p.locator('.ic-hero-number').count(),0)}
