@@ -165,3 +165,6 @@ const replay304=advanceRadar(advanceRadar(null,unchanged.observations,{now}).sta
 assert.equal(replay304.newEvents.length,0)
 const noCache304=await collectPublications(now,async url=>new Response(url.includes('/flux/')?rss:null,{status:url.includes('/flux/')?200:304}),{},[source('insee-publications')],1)
 assert.match(noCache304.errors[0].reason,/304 sans extraction/)
+
+// The ordinary publication collector and CI exercise the bounded DWS transport.
+await import('./test-radar-dws-redirects.mjs')

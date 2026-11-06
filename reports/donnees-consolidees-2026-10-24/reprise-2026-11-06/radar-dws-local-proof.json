@@ -1,0 +1,84 @@
+{
+  "checkedAt": "2026-11-06T08:22:21.887Z",
+  "scope": "Two first-party press listings and two exact articles via ordinary collectPublications, local two-document budget",
+  "sources": [
+    {
+      "id": "xtrackers",
+      "name": "Xtrackers · salle de presse",
+      "url": "https://etf.dws.com/en-gb/about-us/press-releases/",
+      "method": "extra-links",
+      "depth": "Table datée de la salle de presse ETF, année courante rendue",
+      "attemptedAt": "2026-11-06T08:22:21.887Z",
+      "discovered": 10,
+      "archiveWarning": null,
+      "discoveryFailures": [],
+      "expectedListingItems": 10,
+      "discoveryDateEvidence": [],
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-11-06T08:22:21.887Z",
+      "lastSuccessAt": "2026-11-06T08:22:21.887Z",
+      "status": "ok",
+      "nextCheckAt": "2026-11-06T09:22:21.887Z",
+      "queue": {
+        "pending": 9,
+        "done": 1,
+        "error": 0,
+        "rejected": 0,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "silentBaselines": 0,
+      "lastExtractionSuccessAt": "2026-11-06T08:22:21.887Z"
+    },
+    {
+      "id": "dws",
+      "name": "DWS / Xtrackers · communiqués",
+      "url": "https://www.dws.com/en-gb/Our-Profile/media/media-releases/",
+      "method": "dws-model",
+      "depth": "Résultats du modèle officiel rendu ; archive limitée à ce modèle",
+      "attemptedAt": "2026-11-06T08:22:21.887Z",
+      "discovered": 5,
+      "archiveWarning": null,
+      "discoveryFailures": [],
+      "expectedListingItems": 5,
+      "discoveryDateEvidence": [],
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-11-06T08:22:21.887Z",
+      "lastSuccessAt": "2026-11-06T08:22:21.887Z",
+      "status": "ok",
+      "nextCheckAt": "2026-11-06T09:22:21.887Z",
+      "queue": {
+        "pending": 4,
+        "done": 1,
+        "error": 0,
+        "rejected": 0,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "silentBaselines": 0,
+      "lastExtractionSuccessAt": "2026-11-06T08:22:21.887Z"
+    }
+  ],
+  "observations": [
+    {
+      "sourceUrl": "https://etf.dws.com/en-gb/about-us/press-releases/dws-expands-xtrackers-fixed-income-etf-offering-with-first-global-credit-etfs",
+      "publishedAt": "2026-08-04",
+      "checkedAt": "2026-11-06T08:22:21.887Z",
+      "label": "DWS expands Xtrackers Fixed Income ETF offering with first Global Credit ETFs",
+      "backfill": true
+    },
+    {
+      "sourceUrl": "https://www.dws.com/en-gb/our-profile/media/media-releases/2026/dws-xtrackers-middle-east-sales-appointment",
+      "publishedAt": "2026-07-07",
+      "checkedAt": "2026-11-06T08:22:21.887Z",
+      "label": "DWS strengthens Xtrackers presence in the Middle East with senior sales appointment",
+      "backfill": true
+    }
+  ],
+  "errors": [],
+  "productionVerified": false,
+  "plannedTriggerObserved": false,
+  "restriction": "Only dws.com → respective deutsche-am.com host, exact press path/query, optional canonical trailing slash. All other redirects rejected including foreign304; no source clock renewed on failure. No generic host whitelist, no notification sent."
+}
