@@ -164,6 +164,15 @@ def bnke_split(config, result, now, fetch_notice=None, fetch_nav=None):
     if unverified:
         out['historyExcludedMonths']=sorted(set(out.get('historyExcludedMonths',[])+unverified))
         out['historyExclusionReasons']={**out.get('historyExclusionReasons',{}),**{m:'BNKE.PA : unités historiques non corroborées par Amundi pour '+m+' ; continuité du prédécesseur non qualifiée.'for m in unverified}}
+    # Exact-share launch is independent from the units check: a historical
+    # NAV returned under today's product does not prove a predecessor transfer.
+    launch=nav['products'][0]['characteristics']['LAUNCH_DATE']
+    dt.date.fromisoformat(launch)
+    identity_unqualified=[r['date'][:7]for r in out['proofRows']if r['date']<launch]
+    if identity_unqualified:
+        out['historyExcludedMonths']=sorted(set(out.get('historyExcludedMonths',[])+identity_unqualified))
+        out['historyExclusionReasons']={**out.get('historyExclusionReasons',{}),**{
+            m:'BNKE.PA : fenêtre antérieure au lancement officiel de LU1829219390 le '+launch+' ; continuité du prédécesseur non qualifiée. Observations conservées ; périodes postérieures disponibles.'for m in identity_unqualified}}
     # Existing deployed consumers understand this month-level restriction.
     # Carry it in data too, so a validated-data/fallback publication cannot
     # reintroduce the false anniversary loss on an older code snapshot.
@@ -176,6 +185,7 @@ def bnke_split(config, result, now, fetch_notice=None, fetch_nav=None):
         sourceUrl=BNKE_NOTICE,sha256=hashlib.sha256(body).hexdigest(),checkedAt=now.date().isoformat(),
         exDate=exdate,noticeDate='2026-09-25',ratio=80,navSourceUrl=API,navSha256=digest(nav),
         scaleAnchor=anchor,scaleFactor=scale,checks=checks,unverifiedMonths=unverified,
+        identityStart=launch,identityUnqualifiedMonths=identity_unqualified,
         method='Official exact-share split and independent issuer NAV scale; each monthly price checked; raw historical quote kept separately')
     out['sourceUrls']=list(dict.fromkeys(out['sourceUrls']+[BNKE_NOTICE,API]))
     out['rawResponse']['splitUnitCorroboration']={'noticeSha256':hashlib.sha256(body).hexdigest(),'request':request,'nav':nav,'noticeHtml':body.decode('utf-8')}
