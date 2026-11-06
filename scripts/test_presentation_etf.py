@@ -1,5 +1,6 @@
 """Guards for exact shares, cumulative versus calendar returns, and issuer layouts."""
 import copy
+import gzip
 import datetime as dt
 import json
 from pathlib import Path
@@ -24,6 +25,24 @@ def parse_jpm(replace=None):
         return jpm_document(b'%PDF-fixture', share('IE0003UVYC20'), NOW)
 
 class PresentationSources(unittest.TestCase):
+    def test_current_cybersecurity_top_equities_use_full_book_not_visible_cash_table(self):
+        folder=ROOT/'scripts/fixtures/physical-holdings'
+        text=gzip.decompress((folder/'globalx-bug-20261106.html.gz').read_bytes()).decode()
+        raw=(folder/'globalx-bug-20261105.csv').read_bytes()
+        now=dt.datetime(2026,11,6,tzinfo=UTC);s=next(x for x in json.loads((ROOT/'scripts/exposure-etf-expansion.json').read_text())['instruments']if x['isin']=='IE00BMH5Y871')
+        r=globalx_physical(text,s,now,holdings_fetch=lambda url:raw)
+        self.assertEqual(r['holdings']['asOf'],'2026-11-05')
+        self.assertEqual(len(r['holdings']['rows']),10)
+        self.assertTrue(all(x['name']!='CASH'and x['isin']for x in r['holdings']['rows']))
+        self.assertAlmostEqual(r['holdings']['rows'][0]['weightPct'],8.547)
+        self.assertEqual(r['countries']['asOf'],'2026-10-31')
+        self.assertEqual(r['sectors']['asOf'],'2026-10-31')
+        self.assertFalse(r['holdings']['settlementCashProof']['normalizationApplied'])
+        for altered in [text.replace('8.55','9.55'),text.replace('USD Accumulating','USD Distributing')]:
+            with self.assertRaises(ValueError):globalx_physical(altered,s,now,holdings_fetch=lambda url:raw)
+        with self.assertRaisesRegex(ValueError,'offline'):
+            globalx_physical(text,s,now,holdings_fetch=lambda url:(_ for _ in ()).throw(ValueError('offline')))
+
     def test_copper_management_style_after_distributions(self):
         text = (FIX/'copx.html').read_text()
         # A section may move without changing the explicitly labelled strategy.

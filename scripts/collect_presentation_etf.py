@@ -9,7 +9,7 @@ from issuer_documents import public_page, download, pdf_text, proof, document_da
 from data_automation import reject
 
 
-def globalx_physical(text, share, now):
+def globalx_physical(text, share, now, *, holdings_fetch=None):
     page = Page(text)
     block = '\n'.join(page.tokens)
     qualified = {'IE0003Z9E2Y3':'COPX', 'IE00BLCHJB90':'BOTZ', 'IE000NDWFGA5':'URNU', 'IE00BMH5Y871':'BUG'}
@@ -37,7 +37,37 @@ def globalx_physical(text, share, now):
     for field, title, header in [('countries', 'Country Breakdown', ['', 'Country', 'Weight (%)']),
                                  ('sectors', 'Sector Breakdown', ['', 'Sector', 'Weight (%)']),
                                  ('holdings', 'Top Holdings', ['Net Assets (%)', 'Ticker', 'Name', 'Country', 'SEDOL', 'Market Price ($)', 'Shares Held', 'Market Value ($)'])]:
-        table = only([t for t in page.tables if title + ' As of' in t['context'] and t['rows'][0] == header], title)
+        tables = [t for t in page.tables if title + ' As of' in t['context'] and t['rows'][0] == header]
+        if field == 'holdings' and not tables:
+            # The current dated table omits SEDOL and includes cash in its ten
+            # largest assets. Derive ten EQUITIES from the exact full book,
+            # never treat its nine visible equities as an exhaustive top ten.
+            current_header = [h for h in header if h != 'SEDOL']
+            table = only([t for t in page.tables if title + ' As of' in t['context'] and t['rows'][0] == current_header], title)
+            from collect_physical_holdings import globalx_page, _globalx_csv
+            import csv, io
+            url = globalx_page(text, share)
+            raw = (holdings_fetch or download)(url)
+            equities, stamp, cash = _globalx_csv(raw, now)
+            if any(not r.get('isin') for r in equities) or len(equities) < 10:
+                reject('Global X full-book equity top ten is not independently identified')
+            table_date = document_date(only(re.findall(r'As of (\d+ [A-Za-z]+ \d{4})', table['context'].split(title, 1)[1]), title + ' date'), now)
+            if stamp == table_date:
+                published = list(csv.DictReader(io.StringIO(raw.decode('utf-8-sig'))))
+                for row in table['rows'][1:]:
+                    matches = [r for r in published if r.get('NAME') == row[2]]
+                    if len(matches) != 1 or not re.fullmatch(r'\d+(?:\.\d{1,2})?', row[0]):
+                        reject('Global X visible/full-book position identity or rounding changed')
+                    if abs(float(matches[0]['NET_ASSETS']) - float(row[0])) > .005000001:
+                        reject('Global X visible/full-book same-date weight conflict')
+            selected = sorted(equities, key=lambda r: (-r['weightPct'], r['isin']))[:10]
+            result[field] = dict(rows=validated_rows([dict(name=r['name'], isin=r['isin'], weightPct=r['weightPct']) for r in selected], complete=False),
+                asOf=stamp, basis='fund', sourceUrl=url, sha256=proof(raw),
+                identitySourceUrl=share['sourceUrl'], identitySha256=digest,
+                method='Ten largest identified physical equities in the complete exact-fund portfolio; original fund NAV weights, cash excluded, no renormalisation',
+                **({'settlementCashProof': cash} if cash else {}))
+            continue
+        table = only(tables, title)
         date = document_date(only(re.findall(r'As of (\d+ [A-Za-z]+ \d{4})', table['context'].split(title, 1)[1]), title + ' date'), now)
         rows = [dict(name=r[2], weightPct=float(r[0])) if field == 'holdings' else dict(name=r[1], weightPct=float(r[2])) for r in table['rows'][1:]]
         result[field] = dict(rows=validated_rows(rows, complete=field != 'holdings'), asOf=date, basis='fund', sourceUrl=share['sourceUrl'], sha256=digest)
