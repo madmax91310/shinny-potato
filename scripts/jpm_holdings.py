@@ -9,7 +9,7 @@ ISIN='IE0003UVYC20'
 URL='https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false'
 NAME='JPM Global Equity Premium Income Active UCITS ETF - USD (dist)'
 
-def parse(body,now):
+def qualified_fund(body):
     fund=body['fundData'];share=fund['shareClass']
     if (body.get('error') or share.get('cusip')!=ISIN or share.get('headerTicker')!=ISIN
             or share.get('name')!=NAME or share.get('currencyCode')!='USD'
@@ -18,6 +18,11 @@ def parse(body,now):
             or fund.get('fundTypeCode')!='N_ETF' or fund.get('isLiquidatedOrMergedAway') is not False
             or fund.get('isCriticalDataMissing') is not False):
         raise ValueError('Wrong JPM exact share, currency, strategy or fund state')
+    return fund
+
+
+def parse(body,now):
+    fund=qualified_fund(body)
     full=fund['dailyHoldingsAll'];stamp=document_date(full['effectiveDate'],now)
     positions=full['data']
     count=fund['numberOfHoldings']

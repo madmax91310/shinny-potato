@@ -121,4 +121,5 @@ def collect_one(share, now):
         return globalx_physical(public_page(share['sourceUrl']), share, now)
     expected = 'https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf'
     if parsed.scheme != 'https' or share['sourceUrl'] != expected: reject('Unexpected JPMorgan official source')
-    return jpm_document(download(expected), share, now)
+    from jpm_live_presentation import collect
+    return collect(share, now, document=lambda: jpm_document(download(expected), share, now))
