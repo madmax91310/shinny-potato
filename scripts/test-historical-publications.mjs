@@ -17,9 +17,13 @@ assert.match(performanceBasis('msciWorld'), /bruts réinvestis/)
 assert.match(performanceBasis('stoxx600'), /nets réinvestis/)
 for (const id of ['apple','microsoft','broadcom','tesla']) {
   assert.equal(ASSETS[id].anniversaryPoints.length, ASSETS[id].points.length)
-  for (const point of ASSETS[id].anniversaryPoints) assert.equal(getHistoricalPrice(id, point.date), point.price)
+  for (const point of ASSETS[id].anniversaryPoints) {
+    if(ASSETS[id].anniversaryExcludedMonths?.includes(point.date))assert.throws(()=>getHistoricalPrice(id,point.date),{message:ASSETS[id].anniversaryExclusionReason})
+    else assert.equal(getHistoricalPrice(id, point.date), point.price)
+  }
 }
-assert.notEqual(getHistoricalPrice('apple','2020-01'), ASSETS.apple.points.find(p=>p.date==='2020-01').price)
+assert.throws(()=>getHistoricalPrice('apple','2020-01'),{message:ASSETS.apple.anniversaryExclusionReason})
+assert.notEqual(getHistoricalPrice('apple','2020-09'), ASSETS.apple.points.find(p=>p.date==='2020-09').price)
 const growth = rows => rows.reduce((v, r) => v * (1 + r.pct / 100), 1)
 let windows = 0
 for (const assetId of ASSET_ORDER) for (const year of getAnnualReturnStartYears(assetId)) {
