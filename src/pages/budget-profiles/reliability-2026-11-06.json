@@ -1398,7 +1398,13 @@
           "iCloud"
         ]
       },
-      "budgetQuestion": "Ce budget vous laisse-t-il assez de souplesse au quotidien ? 🤔💬"
+      "budgetQuestion": "Ce budget vous laisse-t-il assez de souplesse au quotidien ? 🤔💬",
+      "budget": {
+        "incomeLabels": {
+          "Bonus déclaré": "Bonus, fréquence non précisée"
+        },
+        "incomeNote": "Le bonus de 150 € est compté ici, mais on ne sait pas s’il revient chaque mois."
+      }
     },
     "questionsReview": "Questions et récit relus dans leur intégralité : sens source conservé, aucun ancien solde présenté comme montant courant.",
     "resourcesReview": "Ressources et devise inchangées.",
