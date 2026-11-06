@@ -50,7 +50,7 @@ def globalx_physical(text, share, now, *, holdings_fetch=None):
             url = globalx_page(text, share)
             raw = (holdings_fetch or download)(url)
             equities, stamp, cash = _globalx_csv(raw, now)
-            if any(not r.get('isin') for r in equities) or len(equities) < 10:
+            if len(equities) < 10:
                 reject('Global X full-book equity top ten is not independently identified')
             table_date = document_date(only(re.findall(r'As of (\d+ [A-Za-z]+ \d{4})', table['context'].split(title, 1)[1]), title + ' date'), now)
             if stamp == table_date:
@@ -61,12 +61,16 @@ def globalx_physical(text, share, now, *, holdings_fetch=None):
                         reject('Global X visible/full-book position identity or rounding changed')
                     if abs(Decimal(matches[0]['NET_ASSETS']) - Decimal(row[0])) > Decimal('0.005'):
                         reject('Global X visible/full-book same-date weight conflict')
-            selected = sorted(equities, key=lambda r: (-r['weightPct'], r['isin']))[:10]
+            selected = sorted(equities, key=lambda r: (-r['weightPct'], r.get('isin') or r['name']))[:10]
+            unknown = [r for r in equities if not r.get('isin')]
+            if any(r['weightPct'] >= selected[-1]['weightPct'] for r in unknown):
+                reject('Global X unidentified position can enter or tie the top ten')
             result[field] = dict(rows=validated_rows([dict(name=r['name'], isin=r['isin'], weightPct=r['weightPct']) for r in selected], complete=False),
                 asOf=stamp, basis='fund', sourceUrl=url, sha256=proof(raw),
                 identitySourceUrl=share['sourceUrl'], identitySha256=digest,
                 method='Ten largest identified physical equities in the complete exact-fund portfolio; original fund NAV weights, cash excluded, no renormalisation',
-                **({'settlementCashProof': cash} if cash else {}))
+                **({'settlementCashProof': cash} if cash else {}),
+                **({'unidentifiedOutsideTopTen': {'count':len(unknown),'weightPct':sum(r['weightPct']for r in unknown)}} if unknown else {}))
             continue
         table = only(tables, title)
         date = document_date(only(re.findall(r'As of (\d+ [A-Za-z]+ \d{4})', table['context'].split(title, 1)[1]), title + ' date'), now)

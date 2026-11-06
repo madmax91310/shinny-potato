@@ -43,6 +43,24 @@ class PresentationSources(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'offline'):
             globalx_physical(text,s,now,holdings_fetch=lambda url:(_ for _ in ()).throw(ValueError('offline')))
 
+    def test_small_unidentified_position_does_not_disqualify_identified_top_ten(self):
+        import csv,io
+        from decimal import Decimal
+        folder=ROOT/'scripts/fixtures/physical-holdings'
+        text=gzip.decompress((folder/'globalx-bug-20261106.html.gz').read_bytes()).decode()
+        reader=csv.DictReader(io.StringIO((folder/'globalx-bug-20261105.csv').read_text()))
+        fields=reader.fieldnames;rows=list(reader)
+        known=min((r for r in rows if r.get('ISIN')),key=lambda r:Decimal(r['NET_ASSETS']))
+        split=copy.deepcopy(known);split.update(ISIN='',SEDOL='',TICKER='',NET_ASSETS='0.004',MARKET_VALUE='3223.07')
+        known['NET_ASSETS']=str(Decimal(known['NET_ASSETS'])-Decimal('.004'))
+        known['MARKET_VALUE']=str(Decimal(known['MARKET_VALUE'])-Decimal('3223.07'))
+        rows.append(split);stream=io.StringIO();writer=csv.DictWriter(stream,fieldnames=fields);writer.writeheader();writer.writerows(rows)
+        source=next(x for x in json.loads((ROOT/'scripts/exposure-etf-expansion.json').read_text())['instruments']if x['isin']=='IE00BMH5Y871')
+        result=globalx_physical(text,source,dt.datetime(2026,11,6,tzinfo=UTC),holdings_fetch=lambda url:stream.getvalue().encode())
+        self.assertEqual(len(result['holdings']['rows']),10)
+        self.assertEqual(result['holdings']['unidentifiedOutsideTopTen'],{'count':1,'weightPct':.004})
+        self.assertTrue(all(r['isin']for r in result['holdings']['rows']))
+
     def test_copper_management_style_after_distributions(self):
         text = (FIX/'copx.html').read_text()
         # A section may move without changing the explicitly labelled strategy.
