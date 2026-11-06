@@ -1,6 +1,6 @@
 # Raccordements par actif et par outil
 
-Généré le 2026-11-05 par `node scripts/audit-asset-tool-routing.mjs --write`. Le JSON associé contient les sources automatiques, dates, devises et motifs détaillés.
+Généré le 2026-11-06 par `node scripts/audit-asset-tool-routing.mjs --write`. Le JSON associé contient les sources automatiques, dates, devises et motifs détaillés.
 
 « Sans objet » ne signifie pas donnée manquante. « Complète » décrit la table collectée, pas la possibilité de calculer un recouvrement intégral : identification, fraîcheur et compatibilité restent contrôlées par le moteur. Un candidat historique possède une cotation documentée, mais sa série doit encore passer la collecte et les contrôles. Les actifs utilisés sont conservés.
 
@@ -82,7 +82,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Crédit Agricole | FR0000045072 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Hermès | FR0000052292 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Safran | FR0000073272 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| Air Liquide | FR0000120073 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Air Liquide | FR0000120073 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
 | Carrefour | FR0000120172 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | TotalEnergies | FR0000120271 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | L’Oréal | FR0000120321 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -155,7 +155,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | CoinShares Ethereum Staking ETP | GB00BLD4ZM24 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / — / Oui | — |
 | GSK | GB00BN7SWP63 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Shell | GB00BP6MXD84 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| Unilever | GB00BVZK7T90 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Unilever | GB00BVZK7T90 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
 | AIA Group | HK0000069689 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | HKEX | HK0388045442 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | iShares MSCI Europe Small Cap UCITS ETF | IE0000N55FP4 | Oui | Oui | automatic | Oui / Oui | Complète | — / — / — | — |
@@ -223,7 +223,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | iShares MSCI EMU Small Cap UCITS ETF | IE00B3VWMM18 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | iShares S&P 500 Information Technology Sector UCITS ETF | IE00B3WJKG14 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Vanguard S&P 500 UCITS ETF Distributing | IE00B3XXRP09 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| State Street SPDR MSCI All Country World Investable Market UCITS ETF (Acc) | IE00B3YLTY66 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| State Street SPDR MSCI All Country World Investable Market UCITS ETF (Acc) | IE00B3YLTY66 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / — | — |
 | iShares S&P 500 Consumer Staples Sector UCITS ETF | IE00B40B8R38 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | iShares S&P 500 Energy Sector UCITS ETF | IE00B42NKQ00 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares S&P 500 Health Care Sector UCITS ETF | IE00B43HR379 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
@@ -377,7 +377,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | State Bank of India | INE062A01020 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | ICICI Bank | INE090A01021 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | ITC | INE154A01025 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| Kotak Mahindra Bank | INE237A01036 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Kotak Mahindra Bank | INE237A01036 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
 | Axis Bank | INE238A01034 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Bajaj Finance | INE296A01032 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Bharti Airtel | INE397D01024 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -395,17 +395,17 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | WisdomTree Coffee | JE00BN7KB557 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
 | WisdomTree Wheat | JE00BN7KB664 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
 | Advantest | JP3122400009 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| Itochu | JP3143600009 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Itochu | JP3143600009 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
 | Keyence | JP3236200006 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Shin-Etsu Chemical | JP3371200001 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Sony | JP3435000009 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| SoftBank Group | JP3436100006 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| SoftBank Group | JP3436100006 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
 | Takeda | JP3463000004 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Daiichi Sankyo | JP3475350009 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | KDDI | JP3496400007 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Chugai Pharmaceutical | JP3519400000 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Disco | JP3548600000 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| Tokyo Electron | JP3571400005 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Tokyo Electron | JP3571400005 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
 | Toyota | JP3633400001 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Nidec | JP3734800000 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | NTT | JP3735400008 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -414,7 +414,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Fast Retailing | JP3802300008 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Hoya | JP3837800006 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Honda | JP3854600008 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| Sumitomo Mitsui Financial | JP3890350006 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Sumitomo Mitsui Financial | JP3890350006 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
 | Mitsui & Co. | JP3893600001 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Mitsubishi Corporation | JP3898400001 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Mitsubishi Electric | JP3902400005 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -447,7 +447,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Amundi S&P Global Luxury UCITS ETF | LU1681048630 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Amundi FTSE EPRA NAREIT Global UCITS ETF Dist | LU1737652823 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Spotify | LU1778762911 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| Amundi Euro Stoxx Banks UCITS ETF Acc | LU1829219390 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| Amundi Euro Stoxx Banks UCITS ETF Acc | LU1829219390 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / — | — |
 | Amundi STOXX Europe 600 Basic Resources UCITS ETF | LU1834983550 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi STOXX Europe 600 Basic Materials UCITS ETF | LU1834983634 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
 | Amundi STOXX Europe 600 Healthcare UCITS ETF | LU1834986900 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
@@ -510,7 +510,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Best Buy | US0865161014 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | BlackRock | US09290D1019 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Boeing | US0970231058 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| Booking Holdings | US09857L1089 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Booking Holdings | US09857L1089 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
 | Boston Scientific | US1011371077 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Bristol Myers Squibb | US1101221083 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Broadridge | US11133T1034 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -531,11 +531,11 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Coinbase | US19260Q1076 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Colgate-Palmolive | US1941621039 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Comfort Systems USA | US1999081045 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| Comcast | US20030N1019 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Comcast | US20030N1019 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
 | ConocoPhillips | US20825C1045 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Constellation Energy | US21037T1097 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Costco | US22160K1051 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| CrowdStrike | US22788C1053 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| CrowdStrike | US22788C1053 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
 | Cummins | US2310211063 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | D.R. Horton | US23331A1097 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Danaher | US2358511028 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -558,7 +558,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Meta | US30303M1027 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | FactSet | US3030751057 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Fair Isaac | US3032501047 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| FedEx | US31428X1063 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| FedEx | US31428X1063 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
 | F5 | US3156161024 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Fortinet | US34959E1091 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Freeport-McMoRan | US35671D8570 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -574,7 +574,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Hershey | US4278661081 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Hilton | US43300A2033 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Home Depot | US4370761029 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| Honeywell | US4385162056 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Honeywell | US4385162056 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
 | Hormel Foods | US4404521001 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | J.B. Hunt | US4456581077 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | ITT | US45073V1089 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -589,7 +589,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | ETF Semi-conducteurs (SOXX) · hors dividendes | US4642875235 | — | — | missing | Absent / Absent | — | Oui / Oui / — | — |
 | JPMorgan Chase | US46625H1005 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Johnson & Johnson | US4781601046 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| KLA | US4824801009 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| KLA | US4824801009 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
 | Keysight Technologies | US49338L1035 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Kimberly-Clark | US4943681035 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | LKQ | US5018892084 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -655,11 +655,11 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Rocket Lab | US7731211089 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Rollins | US7757111049 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Ross Stores | US7782961038 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| S&P Global | US78409V1044 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| S&P Global | US78409V1044 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
 | Salesforce | US79466L3024 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Henry Schein | US8064071025 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Charles Schwab | US8085131055 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| ServiceNow | US81762P1021 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| ServiceNow | US81762P1021 | — | — | manual | Oui / Oui | — | Oui / Oui / — | — |
 | Sherwin-Williams | US8243481061 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Skyworks | US83088M1027 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | A. O. Smith | US8318652091 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
