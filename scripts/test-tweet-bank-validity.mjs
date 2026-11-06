@@ -45,3 +45,15 @@ try {
   else AUTOMATED_ETF[fixtureIsin] = previous
 }
 console.log(`${guides.length} product guides bounded by registry control dates; ${TWEETS.length} tweets in the bank.`)
+
+// A guide can be rechecked without an artificial text edit. The explicit review
+// still certifies the exact text/date pair and expires with its original policy.
+for (const tweet of TWEETS.filter(tweet => tweet.category === 'Guide ETF' && reviewPolicy(tweet).kind !== 'general')) {
+  const today = '2030-01-10'
+  const draft = { text: tweet.text, asOf: today, checkedAt: today, verifiedText: tweet.text, verifiedAsOf: today }
+  assert.equal(contentValidity(tweet, draft, today).ready, true, `${tweet.id}: explicit guide review unlocks copy`)
+  assert.equal(contentValidity(tweet, { ...draft, checkedAt: null }, today).ready, false)
+  assert.equal(contentValidity(tweet, { ...draft, text: tweet.text + ' édition' }, today).ready, false)
+  assert.equal(contentValidity(tweet, { ...draft, asOf: '2030-01-11' }, today).ready, false)
+  assert.match(renderBankCopy(tweet, draft, today), /2030-01-10/)
+}

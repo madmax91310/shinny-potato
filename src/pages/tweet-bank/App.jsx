@@ -167,7 +167,8 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
       </figure>}
       {!isQuestion && (!validity.ready || draft) && <div className="tb-review">
         <p>{reviewPolicy(tweet).kind === 'personal' ? 'Actualise ton bilan ou replace-le explicitement dans sa période d’origine.' : 'Vérifie les chiffres, la période, les hypothèses et les sources avant de réutiliser ce texte.'}</p>
-        <label>Date de référence <input type="date" value={draft?.asOf ?? ''} max={bankToday()} onChange={event => updateDraft({ asOf: event.target.value })} /></label>
+        <label>Date de référence <input type="date" value={draft?.asOf ?? ''} max={today} onInput={event => updateDraft({ asOf: event.currentTarget.value })} /></label>
+        <Button type="button" variant="secondary" onClick={() => updateDraft({ asOf: today })}>Utiliser la date d’aujourd’hui</Button>
         <label><input type="checkbox" checked={validity.ready && Boolean(draft?.checkedAt)} disabled={!draft?.asOf || !text.trim() || draft.asOf > bankToday()} onChange={event => onDraftChange(tweet.id, { ...draft, text, checkedAt: event.target.checked ? bankToday() : null, verifiedText: event.target.checked ? text : null, verifiedAsOf: event.target.checked ? draft.asOf : null })} /> J’ai vérifié ce texte et sa date de référence.</label>
         <small>{tweet.timeline ? 'Les preuves et la date de relecture restent séparées du récit copié.' : 'La date de référence sera ajoutée au texte copié. Les bilans et chiffres de marché sont à revérifier le jour de leur réutilisation.'}</small>
         {draft && <Button type="button" variant="ghost" onClick={() => onDraftChange(tweet.id, null)}>Revenir au texte archivé</Button>}
@@ -207,7 +208,7 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
           value={lastPublished || ''}
           max={todayStr()}
           title="Corriger ou saisir la date de dernière publication"
-          onChange={(e) => onSetDate(tweet.id, e.target.value)}
+          onInput={(e) => onSetDate(tweet.id, e.currentTarget.value)}
         />
         {lastPublished && (
           <Button type="button" variant="ghost" onClick={() => onClearDate(tweet.id)}>

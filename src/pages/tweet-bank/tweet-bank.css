@@ -156,3 +156,6 @@
 
 /* The bank’s Thursday guide slot does not describe its Sunday questions. */
 .tb-scope.is-sunday .workspace-page-schedule { display:none; }
+
+.tb-review input[type="date"], .tb-date-input { min-height: 44px; font-size: 16px; }
+.tb-review input[type="checkbox"] { width: 20px; height: 20px; }

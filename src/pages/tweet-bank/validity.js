@@ -89,7 +89,7 @@ export function contentValidity(tweet, draft, today = bankToday()) {
   if (!edited && !draft?.checkedAt && policy.kind === 'historical' && policy.checkedAt <= today) return { ready: true, label: `Récit historique relu le ${policy.checkedAt} · pilote, ton à valider` }
   if (!edited && !draft?.checkedAt && policy.kind === 'general') return { ready: true, label: 'Texte général' }
   if (!edited && !draft?.checkedAt && policy.kind === 'reviewed' && age(policy.checkedAt, today) >= 0 && age(policy.checkedAt, today) <= policy.maxAge) return { ready: true, label: policy.evidence ? `Relu le ${policy.reviewedAt} · données contrôlées le ${policy.evidence}` : `Relu le ${policy.checkedAt}` }
-  if (['personal', 'market'].includes(policy.kind) && !edited) return { ready: false, label: 'Actualise le texte avant vérification' }
+  if (policy.kind === 'personal' && !edited) return { ready: false, label: 'Actualise le texte avant vérification' }
   const checked = draft?.checkedAt
   const asOf = draft?.asOf
   // A checkbox saved on an old draft cannot certify a newly edited text.
