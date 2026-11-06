@@ -36,8 +36,7 @@ assert.match(buildFactsheetTweet(SHEETS.find(s=>s.id===ids[1])),/pas une couvert
 const family = FAMILIES.find(f=>f.id==='monde-facteurs'), rows = getIndexComparisonPerformance(family)
 assert.equal(family.indices.length,4)
 assert.deepEqual(family.indices.map(i=>i.indexFacts),
- ['world','msci-world-sector-neutral-quality',...ids].map(id=>getCurrentIndexFacts(id,'2026-09-30')),
- 'Les compositions du comparatif suivent les photographies qualifiées du registre')
+ ['world','msci-world-sector-neutral-quality',...ids].map(id=>getCurrentIndexFacts(id,'2026-09-30')))
 assert(rows.every(r=>r.kind==='indice' && r.currency==='USD' && r.method==='dividendes nets réinvestis'))
 assert.deepEqual(family.etfGroups.map(g=>g.funds[0].isin),['IE0002XZSHO1','IE00BP3QZ601','IE00BP3QZ825','IE00B8FHGS14'])
 const theme = DEFAULT_THEMES.find(t=>t.id==='world-minvol')
