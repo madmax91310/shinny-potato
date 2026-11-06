@@ -1,6 +1,8 @@
 import base64
 import json
 import unittest
+import pathlib
+import re
 import urllib.error
 from propose_source_revision import proposal, apply, run
 from accepted_wording import accepted_clause_match, literal_pattern
@@ -26,6 +28,16 @@ class Api:
         return {}
 
 class SourceRevisionTests(unittest.TestCase):
+    def test_reviewed_wording_changes_trigger_the_real_producers(self):
+        root=pathlib.Path(__file__).resolve().parents[1]
+        for file in ['update-regulatory-data.yml','update-insurance.yml']:
+            text=(root/'.github/workflows'/file).read_text()
+            for event in ['push','pull_request']:
+                block=re.search(r'^  '+event+r':\n(.*?)(?=^  [a-z_]+:|^permissions:)',text,re.M|re.S)
+                self.assertIsNotNone(block,(file,event))
+                for dependency in ['scripts/accepted-source-wording.json','scripts/accepted_wording.py']:
+                    self.assertIn(dependency,block[1],(file,event,dependency))
+
     def test_proposals_need_complete_evidence(self):
         self.assertEqual(proposal(CLAUSE)[:3], ('clauses', PATTERN, 'le compte du Client sera débité de la contre-valeur en euros'))
         self.assertEqual(proposal(TITLE)[:3], ('titles', 'linxea-avenir-2', 'Linxea Avenir 2 (fermé)'))
