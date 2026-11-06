@@ -1,0 +1,175 @@
+{
+  "id": "activimmo",
+  "name": "ActivImmo",
+  "sourceUrl": "https://alderan.fr/scpi-activimmo/",
+  "checkedAt": "2026-11-06",
+  "snapshot": {
+    "asOf": "2026-09-30",
+    "countries": [
+      {
+        "label": "France",
+        "value": 73.3
+      },
+      {
+        "label": "Espagne",
+        "value": 14.6
+      },
+      {
+        "label": "Italie",
+        "value": 3.8
+      },
+      {
+        "label": "Allemagne",
+        "value": 3.2
+      },
+      {
+        "label": "Pays-Bas",
+        "value": 2.7
+      },
+      {
+        "label": "Irlande",
+        "value": 1.5
+      },
+      {
+        "label": "Portugal",
+        "value": 0.9
+      }
+    ],
+    "sectors": [
+      {
+        "label": "Entrepôt logistique",
+        "value": 55.5
+      },
+      {
+        "label": "Locaux d’activités",
+        "value": 29.6
+      },
+      {
+        "label": "Logistique urbaine",
+        "value": 7.7
+      },
+      {
+        "label": "Transport",
+        "value": 6.5
+      },
+      {
+        "label": "Autres",
+        "value": 0.7
+      }
+    ],
+    "sourceUrls": [
+      "https://alderan.fr/wp-content/uploads/2026/11/BTI-T3-2026-ActivImmo.pdf",
+      "https://alderan.fr/scpi-activimmo/",
+      "https://alderan.fr/wp-content/uploads/2026/11/Repartition_Geographique_T3_2026-02-01.webp"
+    ],
+    "geographyEvidence": {
+      "asOf": "2026-09-30",
+      "sourceUrls": [
+        "https://alderan.fr/scpi-activimmo/",
+        "https://alderan.fr/wp-content/uploads/2026/11/Repartition_Geographique_T3_2026-02-01.webp"
+      ],
+      "basis": "issuer-labelled-geography-market-value",
+      "method": "printed-white-glyphs-tesseract-eng-psm6-and11-agree",
+      "pageSha256": "4eabcd9d17e543a009c77dea64e3af6997df67ee41cd638fc066e2049835bd5b",
+      "imageSha256": "6521873838e3afa5fc28fd1859839046d17f2e3a972a2090ca31c34522dac318"
+    }
+  },
+  "annual": {
+    "years": [
+      {
+        "year": 2023,
+        "distribution": 5.52
+      },
+      {
+        "year": 2024,
+        "distribution": 5.5
+      },
+      {
+        "year": 2025,
+        "distribution": 5.49
+      }
+    ],
+    "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/04/20250410-Rapport-annuel-2025-ActivImmo.pdf",
+    "publication": {
+      "latestPublishedYear": 2025,
+      "expectedYear": 2025,
+      "awaitingPublication": false
+    }
+  },
+  "price": {
+    "value": 613.5,
+    "asOf": "2026-07-01",
+    "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/07/2026-07-01-Annexe-Note-dinformation-SCPI-ActivImmo-Modification-des-prix-de-part.pdf"
+  },
+  "priceHistory": {
+    "years": [
+      {
+        "asOf": "2023-01-01",
+        "value": 610.0
+      },
+      {
+        "asOf": "2024-01-01",
+        "value": 610.0
+      },
+      {
+        "asOf": "2025-01-01",
+        "value": 610.0
+      },
+      {
+        "asOf": "2026-07-01",
+        "value": 613.5
+      }
+    ],
+    "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/04/20250410-Rapport-annuel-2025-ActivImmo.pdf",
+    "sourceUrls": [
+      "https://alderan.fr/wp-content/uploads/2026/04/20250410-Rapport-annuel-2025-ActivImmo.pdf",
+      "https://alderan.fr/wp-content/uploads/2026/07/2026-07-01-Annexe-Note-dinformation-SCPI-ActivImmo-Modification-des-prix-de-part.pdf"
+    ],
+    "dateNote": "Rapport : prix au 1er janvier de chaque année ; dernière valeur issue de l’annexe tarifaire."
+  },
+  "portfolio": {
+    "occupancy": {
+      "value": 91.5,
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/11/BTI-T3-2026-ActivImmo.pdf",
+      "label": "Taux d’occupation financier",
+      "basis": "Hors développements ; inclut une indemnité de résiliation anticipée. Ce taux n’est pas un taux physique."
+    },
+    "tenants": {
+      "value": 366,
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/11/BTI-T3-2026-ActivImmo.pdf",
+      "label": "Locataires"
+    },
+    "buildings": {
+      "value": 179,
+      "asOf": "2025-12-31",
+      "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/04/20250410-Rapport-annuel-2025-ActivImmo.pdf",
+      "label": "Actifs immobiliers"
+    }
+  },
+  "conditions": {
+    "minimum": 613.5,
+    "enjoyment": "Premier jour du 6e mois suivant la souscription et son règlement.",
+    "frequency": "mensuels",
+    "subscriptionFee": 10.6,
+    "subscriptionTax": "HT",
+    "managementFee": 10.0,
+    "managementTax": "HT",
+    "managementBasis": "recettes locatives HT et produits financiers nets",
+    "exit": "Prix de retrait égal au prix de souscription moins la commission de souscription HT ; revente non garantie.",
+    "otherFees": "Commissions complémentaires possibles ; TVA récupérée par la SCPI selon la note d’information.",
+    "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/06/20260427-Note-dinformation-SCPI-ActivImmo-1.pdf",
+    "sourceUrls": [
+      "https://alderan.fr/wp-content/uploads/2026/06/20260427-Note-dinformation-SCPI-ActivImmo-1.pdf",
+      "https://alderan.fr/wp-content/uploads/2026/07/2026-07-01-Annexe-Note-dinformation-SCPI-ActivImmo-Modification-des-prix-de-part.pdf"
+    ]
+  },
+  "snapshotPublication": {
+    "asOf": "2026-09-30",
+    "periodMonths": 3,
+    "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/11/BTI-T3-2026-ActivImmo.pdf",
+    "basis": "issuer-linked-bulletin-period",
+    "issuerPublicationDeadline": null
+  }
+}

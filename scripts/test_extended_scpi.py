@@ -32,7 +32,7 @@ class ExtendedScpiTests(unittest.TestCase):
         for key in ('countries','sectors'):self.assertEqual(sum(v['value'] for v in r['snapshot'][key]),100)
         with self.assertRaises(ValueError):parse_transitions(text.replace('2023 2024 2025','2022 2023 2024'),pages('transitions'),note,URL,TODAY)
     def test_activimmo_current_annex_not_old_minimum(self):
-        text='ACTIVIMMO PATRIMOINE AU 30.06.2026 93,3% TOF hors développements indemnité de résiliation anticipée'
+        text='ACTIVIMMO PATRIMOINE AU 30.06.2026 93,3 % TOF hors développements indemnité de résiliation anticipée'
         annual='2021 2022 2023 2024 2025 Prix de souscription au 1er janvier (2019) 610,00€ 610,00€ 610,00€ 610,00€ 610,00€ Taux de distribution sur valeur de marché 6,02% 5,50% 5,52% 5,50% 5,49% Report à nouveau cumulé par part constitué un portefeuille de 179 actifs versement d’un dividende mensuel'
         note='Gestion perçoit définitivement 10% HT sur loyers et produits financiers nets. Minimum : 10 parts avant mai 2026 ; le minimum sera d’une (1) part. Jouissance au premier jour du sixième mois.'
         annex='A compter du 1er juillet 2026, (613,50 €) par part ; commission de souscription incluse : 10,6% hors taxes'
@@ -136,5 +136,7 @@ class BulletinPublicationCalendar(unittest.TestCase):
         self.assertEqual(next_bulletin_due('2026-12-31',6).isoformat(),'2027-08-14')
         with self.assertRaises(ValueError):next_bulletin_due('2026-06-29',3)
         with self.assertRaises(ValueError):next_bulletin_due('2026-09-30',6)
+
+from test_activimmo_scpi_geography import ActivimmoGeographyTests
 
 if __name__=='__main__':unittest.main()
