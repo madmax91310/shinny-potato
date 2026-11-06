@@ -45,7 +45,7 @@ class RussellTests(unittest.TestCase):
   with patch('collect_russell_composition.collect_quarterly_holdings',return_value={'asOf':'2026-06-30'}),patch('collect_russell_composition.collect',side_effect=ValueError('monthly offline')):
    result=refresh_index(config,now)
   self.assertIn('holdings',result);self.assertNotIn('facts',result);self.assertEqual(result['errors'][0]['field'],'composition')
-  with patch('collect_russell_composition.collect_quarterly_holdings',side_effect=ValueError('quarterly offline')),patch('collect_russell_composition.collect',return_value=json.loads((ROOT/'src/data/automated-indices.json').read_text())['russell-1000']['facts']):
+  with patch('collect_russell_composition.collect_quarterly_holdings',side_effect=ValueError('quarterly offline')),patch('collect_russell_composition.collect',return_value=json.loads((FIX/'facts-2026-09-30.json').read_text())):
    result=refresh_index(config,now)
   self.assertIn('facts',result);self.assertNotIn('holdings',result);self.assertEqual(result['errors'][0]['field'],'holdings')
  def test_circle_boundary_is_not_a_collinear_or_distorted_shape(self):
