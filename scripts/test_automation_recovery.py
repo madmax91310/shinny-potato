@@ -47,6 +47,11 @@ class RecoveryTests(unittest.TestCase):
         self.assertEqual(__import__('re').findall(r'^  ([a-z_]+):', events, __import__('re').M), ['workflow_dispatch', 'pull_request'])
         update = text.split('  update:\n', 1)[1].split('  report-failures:', 1)[0]
         self.assertIn("if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master'", update)
+        self.assertIn('&& inputs.collect == true', update)
+        dispatch = text.split('  workflow_dispatch:', 1)[1].split('  pull_request:', 1)[0]
+        self.assertIn('type: boolean', dispatch)
+        self.assertIn('default: false', dispatch)
+        self.assertIn('required: true', dispatch)
         self.assertIn('ref: master', update)
         self.assertIn("if: github.event_name == 'pull_request'", text.split('  update:', 1)[0])
         self.assertNotIn('publish-editorial-radar.mjs', text.split('  update:', 1)[0])

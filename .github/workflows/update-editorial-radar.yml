@@ -2,6 +2,12 @@ name: Update editorial radar
 on:
   # Production updates are manual only; PR validation stays read-only.
   workflow_dispatch:
+    inputs:
+      collect:
+        description: 'Lancer explicitement une collecte du Radar éditorial'
+        type: boolean
+        required: true
+        default: false
   pull_request:
     paths:
       - '.github/workflows/update-editorial-radar.yml'
@@ -185,7 +191,7 @@ jobs:
       group: editorial-radar-production
       cancel-in-progress: false
       queue: max
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master' && inputs.collect == true
     runs-on: ubuntu-26.04
     timeout-minutes: 10
     permissions:
