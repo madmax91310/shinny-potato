@@ -1,7 +1,7 @@
 import copy,datetime as dt,gzip,json,unittest
 from pathlib import Path
 from unittest.mock import patch
-from qualify_anniversary_price_units import qualify,probe_url
+from qualify_anniversary_price_units import qualify,probe_url,retain_prior_review
 from refresh_monthly_history import collect_one
 ROOT=Path(__file__).resolve().parents[1]
 NOW=dt.datetime(2026,11,6,tzinfo=dt.timezone.utc)
@@ -41,6 +41,17 @@ class AnniversaryUnitReview(unittest.TestCase):
         r=qualify(self.config,self.record,NOW,probe=body)
         self.assertEqual(r['anniversaryExcludedMonths'],['2020-07'])
         self.assertEqual(r['anniversaryPriceReview']['events'][0]['corporateActionValidation'],'official-operation; historical-quote-unconfirmed')
+    def test_disappearing_declaration_does_not_lift_price_refusal(self):
+        prior=qualify(self.config,self.record,NOW,probe=self.body)
+        empty=copy.deepcopy(self.body);empty['chart']['result'][0]['events']={}
+        fresh=qualify(self.config,self.record,NOW+dt.timedelta(days=1),probe=empty)
+        r=retain_prior_review(prior,fresh)
+        self.assertEqual(r['anniversaryExcludedMonths'],prior['anniversaryExcludedMonths'])
+        self.assertEqual(r['anniversaryPriceReview']['checkedAt'],prior['anniversaryPriceReview']['checkedAt'])
+        self.assertEqual(r['anniversaryPriceReview']['retainedFromPriorObservation'],'original-price-hash')
+        self.assertEqual(r['points'],fresh['points'])
+        current=qualify(self.config,self.record,NOW,probe=self.body)
+        self.assertIs(retain_prior_review(prior,current),current)
     def test_independently_qualified_bank_quotes_are_preserved(self):
         self.record['splitAdjustmentEvidence']={'ratio':80}
         self.assertIs(qualify(self.config,self.record,NOW,fetch=lambda _:self.fail('Unnecessary probe')),self.record)

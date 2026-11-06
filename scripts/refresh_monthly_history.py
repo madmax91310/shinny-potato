@@ -430,6 +430,8 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
                 dt.date.fromisoformat(scope['requestedStart'])
             old=baseline.get(source['id'])
             prior=current.get(source['id'])
+            from qualify_anniversary_price_units import retain_prior_review
+            result=retain_prior_review(prior,result)
             # The isolated non-bond producer has a company-only baseline. A
             # reviewed NAV migration already has its own validated prior series;
             # use that coverage, never authorize a new NAV bootstrap implicitly.

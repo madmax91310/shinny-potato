@@ -65,6 +65,25 @@ def qualify(config,result,now,fetch=None,probe=None,source_url=None):
     return result
 
 
+def retain_prior_review(previous,result):
+    """A missing/older provider declaration cannot certify old quote units."""
+    old=(previous or {}).get('anniversaryPriceReview')
+    new=result.get('anniversaryPriceReview')
+    if not old:return result
+    latest=lambda p:max(e['exDate']for e in p['events'])
+    if new and latest(new)>=latest(old):return result
+    result=copy.deepcopy(result)
+    retained=copy.deepcopy(old)
+    retained['excludedMonths']=[r['date'][:7]for r in result['proofRows']if r['date']<latest(old)]
+    retained['retainedFromPriorObservation']=previous['responseSha256']
+    result['anniversaryPriceReview']=retained
+    result['anniversaryExcludedMonths']=sorted(set(result.get('anniversaryExcludedMonths',[])+retained['excludedMonths']))
+    result['anniversaryExclusionReason']=previous['anniversaryExclusionReason']
+    result['sourceUrls']=list(dict.fromkeys(result.get('sourceUrls',[])+[old['sourceUrl']]))
+    if 'rawResponse'in result:result['rawResponse']['retainedAnniversaryPriceReview']=old
+    return result
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--probe-dir',type=pathlib.Path,required=True,help='Actual archived provider responses and receipts; never relabelled as a fresh source check')
