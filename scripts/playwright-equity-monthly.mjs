@@ -4,6 +4,7 @@ import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
 import { readFileSync } from 'node:fs'
 import { ASSETS } from '../src/data/market-history.js'
+import {getValidYearsBackOptions} from '../src/pages/tweet-midi/data/marketHistory.js'
 const port=4359,base=`http://127.0.0.1:${port}/shinny-potato`
 const ids=JSON.parse(readFileSync('scripts/monthly-automation.json')).series.filter(s=>s.consumerScope==='equity').map(s=>s.id)
 const samples={roche:'CHF','rolls-royce':'GBp',catl:'¥','hdfc-bank':'₹',dbs:'$',xiaomi:'$',keyence:'¥',netflix:'$',rheinmetall:'€',walmart:'$',airbus:'€',samsung:'₩','sk-hynix':'₩',thales:'€',tsmc:'$',novartis:'CHF','novo-nordisk':'kr',nintendo:'¥',tencent:'$'}
@@ -20,8 +21,9 @@ try {
     await picker.waitFor()
     const more=picker.getByRole('button',{name:/^Afficher davantage/})
     while(await more.count()) await more.click()
-    for(const id of ids) assert.equal(await picker.locator(`[data-option][data-value="${id}"]`).count(),1,`${route}: ${id} available`)
+    for(const id of ids) assert.equal(await picker.locator(`[data-option][data-value="${id}"]`).count(),route==='il-y-a-x-ans'&&!getValidYearsBackOptions(id,new Date()).length?0:1,`${route}: ${id} qualified availability`)
     for(const [id,symbol] of Object.entries(samples)) {
+      if(route==='il-y-a-x-ans'&&!getValidYearsBackOptions(id,new Date()).length)continue
       console.log(`Checking ${route}/${id}`)
       await choose(picker,id)
       if(route!=='calculateur-investissement') {
@@ -46,10 +48,16 @@ try {
       if(route!=='performance-depuis') assert(await page.evaluate(symbol=>window.__painted.some(t=>t.includes(symbol)),symbol),`${route}/${id}: currency on exported image`)
       await page.getByRole('tab',{name:'Texte',exact:true}).click()
     }
+    if(route==='il-y-a-x-ans')for(const id of ids.filter(id=>!getValidYearsBackOptions(id,new Date()).length)){
+      assert(ASSETS[id].anniversaryExclusionReason,`${id}: financial reason required`)
+      await page.goto(`${base}/${route}?asset=${id}`,{waitUntil:'networkidle'})
+      assert.equal(await page.getByRole('alert').innerText(),ASSETS[id].anniversaryExclusionReason)
+      assert.equal(await page.locator('.publication-image-stage img').count(),0)
+    }
     await page.setViewportSize({width:390,height:844})
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${route}: mobile overflow`)
     await page.setViewportSize({width:1280,height:900})
   }
   assert.deepEqual(errors,[])
-  console.log(`Browser: ${ids.length} equities in all 3 tools; ${Object.keys(samples).length*3} PNGs, all quote currencies and mobile verified.`)
+  console.log(`Browser: ${ids.length} equities checked against qualified availability in all 3 tools; sample PNGs and explicit price-window refusals, all quote currencies and mobile verified.`)
 } finally {await browser?.close();server.kill()}
