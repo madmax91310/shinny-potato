@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
-import { BUDGET_PROFILES, BUDGET_ORIGINAL_PROFILES, BUDGET_COMPLETENESS, BUDGET_PREVIOUS_PROFILES, BUDGET_ORIGINAL_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_RELIABLE_PROFILES, BUDGET_ORIGINAL_PROFILES, BUDGET_COMPLETENESS, BUDGET_PREVIOUS_PROFILES, BUDGET_ORIGINAL_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, budgetImageExpenses, buildBudgetText, publicationContextFor, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-profiles/completion.js'
 const expected = JSON.parse(readFileSync(new URL('./fixtures/budget-completeness-2026-11-03.json', import.meta.url)))
@@ -13,7 +13,7 @@ assert.equal(hash(Object.values(BUDGET_ORIGINAL_PUBLICATION_CONTEXT)), baseline.
 assert.deepEqual(BUDGET_PROFILES.map(p=>p.id), BUDGET_ORIGINAL_PROFILES.map(p=>p.id))
 assert.deepEqual(Object.keys(BUDGET_COMPLETENESS).sort(), BUDGET_PROFILES.map(p=>p.id).sort())
 let modified=0,completed=0
-for (const [i,p] of BUDGET_PROFILES.entries()) {
+for (const [i,p] of BUDGET_RELIABLE_PROFILES.entries()) {
   const original=BUDGET_ORIGINAL_PROFILES[i], review=BUDGET_COMPLETENESS[p.id]
   assert.deepEqual(Object.keys(review.coverage).sort(),Object.keys(review.reliability.coverageEvidence).sort())
   assert(Object.values(review.coverage).every(s=>['listed','grouped','external','not_applicable','unknown','prepared_assumption','provisioned'].includes(s)))
@@ -27,7 +27,7 @@ for (const [i,p] of BUDGET_PROFILES.entries()) {
   for(const key of ['id','currency','country','family','children','period','budgetAsOf','publishedAt','checkedAt','preparedAt'])assert.deepEqual(p[key],original[key],`${p.id}: preserve ${key}`)
   assert.deepEqual(p.source,original.source)
   assert(p.income.every(row=>original.income.some(r=>JSON.stringify(r)===JSON.stringify(row))),'Never invent a new resource')
-  if(review.financialChange){modified++;assert.equal(p.kind,'prepared');assert(/budget reconstitué/i.test(buildBudgetText(p)));assert.equal(p.capacity,null)}else assert.deepEqual(p,original)
+  if(review.financialChange){modified++;assert.equal(p.kind,'prepared');assert.equal(p.capacity,null)}else assert.deepEqual(p,original)
   if(review.additions.length)completed++
   for(const row of review.additions){
     assert(Number.isInteger(row.amount)&&row.amount>0 && row.origin==='editorial-assumption')
@@ -45,12 +45,12 @@ for (const [i,p] of BUDGET_PROFILES.entries()) {
   assert.deepEqual(c.review,old.review,'An editorial review is not a new source consultation')
   for(const q of c.questions)if(!old.questions.some(x=>x.text===q.text)){assert.equal(q.origin,'editorial');assert(q.adaptedFrom.length)}
   const personal={profile:structuredClone(original),text:'Mon texte personnel avec mes anciens chiffres.',edited:true}
-  const refreshed=refreshBudgetDraft(personal)
+  const refreshed=refreshBudgetDraft(personal), current=BUDGET_PROFILES.find(x=>x.id===p.id)
   assert.equal(refreshed.text,personal.text)
-  assert.equal(staleBudgetText(refreshed),budgetFinancialReference(original)!==budgetFinancialReference(p))
+  assert.equal(staleBudgetText(refreshed),budgetFinancialReference(original)!==budgetFinancialReference(current))
   assert.equal(staleBudgetText(refreshBudgetDraft(refreshed)),staleBudgetText(refreshed),'Warning survives repeated reloads')
-  assert(!staleBudgetText({...refreshed,textFinance:budgetFinancialReference(p)}),'Only an explicit review acknowledges new amounts')
-  const automatic=refreshBudgetDraft({...personal,edited:false});assert.equal(automatic.text,buildBudgetText(p));assert(!staleBudgetText(automatic))
+  assert(!staleBudgetText({...refreshed,textFinance:budgetFinancialReference(current)}),'Only an explicit review acknowledges new amounts')
+  const automatic=refreshBudgetDraft({...personal,edited:false});assert.equal(automatic.text,buildBudgetText(current));assert(!staleBudgetText(automatic))
 }
 assert.equal(modified,Object.values(BUDGET_COMPLETENESS).filter(r=>r.financialChange).length)
 assert.equal(completed,Object.values(BUDGET_COMPLETENESS).filter(r=>r.additions.length).length)

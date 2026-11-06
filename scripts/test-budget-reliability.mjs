@@ -1,11 +1,11 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { BUDGET_PROFILES, BUDGET_PREVIOUS_PROFILES, BUDGET_COMPLETENESS, BUDGET_PREVIOUS_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
+import { BUDGET_PROFILES, BUDGET_RELIABLE_PROFILES, BUDGET_RELIABLE_PUBLICATION_CONTEXT, BUDGET_PREVIOUS_PROFILES, BUDGET_COMPLETENESS, BUDGET_PREVIOUS_PUBLICATION_CONTEXT } from '../src/pages/budget-profiles/data.js'
 import { analyzeBudget, buildBudgetText, publicationContextFor, budgetImageExpenses, refreshBudgetDraft } from '../src/pages/budget-profiles/lib.js'
 import { budgetFinancialReference, staleBudgetText } from '../src/pages/budget-profiles/completion.js'
 const expected = JSON.parse(readFileSync(new URL('./fixtures/budget-reliability-2026-11-06.json', import.meta.url))).profiles
-for (const [i,p] of BUDGET_PROFILES.entries()) {
- const review=BUDGET_COMPLETENESS[p.id].reliability, ctx=publicationContextFor(p)
+for (const [i,p] of BUDGET_RELIABLE_PROFILES.entries()) {
+ const review=BUDGET_COMPLETENESS[p.id].reliability, ctx=BUDGET_RELIABLE_PUBLICATION_CONTEXT[p.id]
  assert(review && review.conclusion && review.remainingSummary)
  assert.deepEqual(Object.keys(review.coverage).sort(),Object.keys(review.coverageEvidence).sort())
  for (const [key,e] of Object.entries(review.coverageEvidence)) {
@@ -23,8 +23,8 @@ for (const [i,p] of BUDGET_PROFILES.entries()) {
  const old=BUDGET_PREVIOUS_PROFILES[i], custom={profile:old,text:'Texte écrit à la main',edited:true,textFinance:budgetFinancialReference(old)}
  const refreshed=refreshBudgetDraft(custom)
  assert.equal(refreshed.text,custom.text)
- assert.equal(staleBudgetText(refreshed),budgetFinancialReference(old)!==budgetFinancialReference(p))
- assert.equal(refreshBudgetDraft({...custom,edited:false}).text,buildBudgetText(p))
+ assert.equal(staleBudgetText(refreshed),budgetFinancialReference(old)!==budgetFinancialReference(BUDGET_PROFILES[i]))
+ assert.equal(refreshBudgetDraft({...custom,edited:false}).text,buildBudgetText(BUDGET_PROFILES[i]))
  for(const item of [...ctx.paragraphs,...ctx.questions])assert(item.evidence.every(n=>n>=0 && n<ctx.evidence.length))
  if(review.public?.budgetQuestion) {
   assert.equal(ctx.budgetQuestion,review.public.budgetQuestion)

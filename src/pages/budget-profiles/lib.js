@@ -5,7 +5,7 @@ import { BUDGET_EDITORIAL, BUDGET_PROFILES, BUDGET_PUBLICATION_CONTEXT, EXPENSE_
 export const MAX_BUDGET_LINES = 24
 export const euro = (value, currency = 'EUR') => Number(value).toLocaleString('fr-FR', { style: 'currency', currency, minimumFractionDigits: Number.isInteger(Math.round(Number(value) * 100) / 100) ? 0 : 2, maximumFractionDigits: 2 })
 export const dateLabel = date => new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${date}T12:00:00Z`))
-export const budgetKind = profile => profile.kind === 'prepared' ? budgetQualification(profile) : profile.kind === 'planned' ? 'Budget prévu' : profile.kind === 'participant' ? 'Budget communiqué' : 'Budget déclaré'
+export const budgetKind = profile => profile.kind === 'participant' ? 'Budget communiqué' : profile.editorialCreation ? 'Version éditoriale' : profile.kind === 'prepared' ? budgetQualification(profile) : profile.kind === 'planned' ? 'Budget prévu' : 'Budget déclaré'
 const cents = value => Math.round(value * 100)
 const validAmount = value => typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 10000000
 const safeText = (value, max) => typeof value === 'string' && value.length <= max
