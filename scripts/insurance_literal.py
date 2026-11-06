@@ -69,6 +69,24 @@ def nuxt_returns(serialized):
     arguments = LiteralReader('['+serialized[serialized.rfind('}(')+2:-3]+']').read()
     names = params[1].split(',')
     if len(names) != len(arguments): raise ValueError('Publication aliases changed')
-    blocks = list(re.finditer(r'\.rendement\s*=\s*(?=\{)', serialized))
-    if len(blocks) != 1: raise ValueError('Ambiguous insurance return publication')
-    return LiteralReader(serialized[blocks[0].end():], dict(zip(names,arguments))).read()
+    legacy = list(re.finditer(r'\.rendement\s*=\s*(?=\{)', serialized))
+    inline = list(re.finditer(r'(?<![\w.])(?:rendement|"rendement")\s*:\s*(?=\{)', serialized))
+    aliases = dict(zip(names, arguments))
+    if not inline:
+        if len(legacy) != 1: raise ValueError('Ambiguous insurance return publication')
+        return LiteralReader(serialized[legacy[0].end():], aliases).read()
+    # Current Nuxt duplicates the complete page state and its SSR contract.
+    # Bind to the exact contract route/name, then require every table to agree.
+    refs = list(re.finditer(r'"contract-/assurance-vie/placement-direct-vie"\s*:', serialized))
+    if len(refs) != 1: raise ValueError('Missing or ambiguous exact insurance contract state')
+    state = LiteralReader(serialized[refs[0].end():], aliases).read()
+    contract = state.get('contract', {}) if isinstance(state, dict) else {}
+    if (not isinstance(contract, dict) or contract.get('name') != 'Placement-direct Vie'
+            or contract.get('path') != '/assurance-vie/placement-direct-vie'):
+        raise ValueError('Wrong insurance return contract identity')
+    publication = contract.get('information', {}).get('rendement')
+    if not isinstance(publication, dict): raise ValueError('Missing exact contract return table')
+    tables = [LiteralReader(serialized[block.end():], aliases).read() for block in legacy + inline]
+    if not tables or any(table != publication for table in tables):
+        raise ValueError('Contradictory insurance return publications')
+    return publication
