@@ -1,0 +1,11 @@
+# Même suivi #881 — Global X Cybersecurity, 6 novembre
+
+CSV officiel https://globalxetfs.eu/api/funds/bug/topholdingscsv, photographie du 5 novembre, empreinte SHA256 76879c3635a63dce8e744d27469b39dc5e5ad98ce6386fa733f7ec4c3c4136c5. Identité de la page exacte IE00BMH5Y871 conservée. Il s’agit de Cybersecurity, pas d’Uranium (IE000NDWFGA5).
+
+Le rejet porte sur OTHER PAYABLE & RECEIVABLES -33,693%, compensé par CASH +33,897%. Les 30 actions totalisent 99,796%, toutes les lignes totalisent 100%. Les valeurs monétaires publiées totalisent 80 576 648,31 USD. Elles reproduisent chaque poids publié à son arrondi de 0,001 point ; liquidités nettes 0,204%.
+
+Le correctif qualifie uniquement cette ligne de règlement signée sans ISIN, SEDOL ni ticker, sur preuve du portefeuille monétaire intégral. Les bornes de trésorerie nette (-5 à100), poids des actions, identité, date, exhaustivité et total restent inchangés. La compensation n’est ni une renormalisation des actions ni une admission d’action négative. Les lignes signées et le dénominateur monétaire restent dans settlementCashProof du registre et du rapport producteur.
+
+Régressions : réponse publique réelle, conservation exacte des 30 poids, preuve du collecteur, rejet d’identité/ticker/SEDOL de sécurité, passif inconnu, montant absent/non fini/incohérent, poids contradictoire, action négative et dates mixtes. Pannes/rétention existantes testées. Collecte GitHub ordinaire, publication et consommation restent à démontrer avant annonce de rétablissement.
+
+Le même relevé découvre le second défaut de raccordement : la table web datée courante omet SEDOL et contient CASH33,90% parmi ses dix lignes. L’adaptateur de présentation reconnaît uniquement cette structure précise, valide la page de la part physique capitalisante et son lien CSV, puis choisit les dix plus grandes actions identifiées du portefeuille complet. Le tableau visible est rapproché des poids CSV à son arrondi lorsqu’il porte la même date ; les conflits demeurent refusés. Ni le prototype vide « Loading » ni les dix actifs incluant CASH ne deviennent un top10 d’actions complet. La source/date propre du CSV est conservée ; pays/secteurs restent issus de leur photographie indépendante. Le consommateur partagé de l’expansion ETF bénéficie automatiquement du raccord.

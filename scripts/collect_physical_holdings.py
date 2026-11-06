@@ -79,7 +79,7 @@ def globalx_page(page, share):
     return expected
 
 
-def globalx_csv(raw, now):
+def _globalx_csv(raw, now):
     reader = csv.DictReader(io.StringIO(raw.decode('utf-8-sig')))
     if reader.fieldnames != ['AS_OF_DATE', 'SEDOL', 'NAME', 'NET_ASSETS', 'TICKER',
                             'MARKET_PRICE', 'SHARES_HELD', 'MARKET_VALUE', 'ISIN', 'COUNTRY']:
@@ -87,6 +87,7 @@ def globalx_csv(raw, now):
     published = list(reader)
     identified_names = {r['NAME'] for r in published if ISIN.fullmatch(r.get('ISIN') or '')}
     rows, dates, total = [], set(), 0
+    cash_total, cash_rows, settlement_rows = 0, [], []
     cash = {'US DOLLAR', 'U.S. DOLLAR', 'EURO', 'BRITISH STERLING POUND', 'JAPANESE YEN',
             'NORWEGIAN KRONE', 'HONG KONG DOLLAR', 'CANADIAN DOLLAR', 'SWISS FRANC',
             'AUSTRALIAN DOLLAR', 'SOUTH KOREAN WON', 'KOREAN WON', 'SWEDISH KRONA',
@@ -115,11 +116,19 @@ def globalx_csv(raw, now):
             weight = float(value)
         except ValueError as exc:
             raise ValueError(f'Invalid {context}: {value!r}') from exc
-        if not math.isfinite(weight) or not -5 <= weight <= 100:
+        settlement = (row['NAME'] == 'OTHER PAYABLE & RECEIVABLES'
+                      and not any(row.get(k) for k in ('ISIN', 'TICKER', 'SEDOL')))
+        if not math.isfinite(weight) or weight > 100 or (weight < -5 and not settlement):
             raise ValueError(f'Invalid {context}: {value!r}')
+        if settlement and weight < -5:
+            settlement_rows.append(row)
         total += weight
         if not row['ISIN']:
             if row['NAME'] in cash and not row['TICKER']:
+                if row['SEDOL']:
+                    raise ValueError('Identified security cannot be treated as Global X cash')
+                cash_total += weight
+                cash_rows.append(row)
                 continue
             # Separate unlisted/restricted lines can share a name with a listed
             # security. Preserve their weights and unknown identity; never copy
@@ -133,7 +142,42 @@ def globalx_csv(raw, now):
             rows[-1]['identityStatus'] = 'unpublished-separate-position'
     if len(dates) != 1 or not 99 <= total <= 100.5:
         raise ValueError('Truncated or mixed-date Global X portfolio')
-    return checked_rows(rows, minimum=11, allow_unidentified=True), dates.pop()
+    proof = None
+    if settlement_rows:
+        # Signed settlement amounts offset the separately published cash. The
+        # existing -5..100 bound applies to NET cash, never to a short equity.
+        # Require the entire monetary book as independent denominator evidence.
+        # No weight, NAV, identity or rounding threshold is patched.
+        from decimal import Decimal, InvalidOperation
+        try:
+            positions = [r for r in published if r.get('NAME')]
+            amounts = [Decimal(r['MARKET_VALUE']) for r in positions]
+            if any(not v.is_finite() for v in amounts):
+                raise ValueError('Non-finite Global X monetary portfolio')
+            net_assets = sum(amounts)
+            net_cash = sum(Decimal(r['NET_ASSETS']) for r in cash_rows)
+            if net_assets <= 0 or not -5 <= net_cash <= 100:
+                raise ValueError('Invalid Global X net settlement cash')
+            for r in positions:
+                value = r['NET_ASSETS']
+                if not re.fullmatch(r'-?\d+(?:\.\d{1,3})?', value):
+                    raise ValueError('Unqualified Global X published weight precision')
+                implied = Decimal(r['MARKET_VALUE']) / net_assets * 100
+                if abs(implied - Decimal(value)) > Decimal('0.0005'):
+                    raise ValueError('Global X published monetary/weight units disagree')
+            proof = {'method': 'Published signed settlement cash netted only for validation; equity weights unchanged',
+                     'netAssetsFromPublishedMarketValues': str(net_assets),
+                     'netCashWeightPct': float(net_cash),
+                     'publishedTotalWeightPct': float(sum(Decimal(r['NET_ASSETS']) for r in positions)), 'normalizationApplied': False,
+                     'cashRows': [{k:r[k] for k in ('NAME','NET_ASSETS','MARKET_VALUE','AS_OF_DATE')} for r in cash_rows]}
+        except (InvalidOperation, KeyError, TypeError) as error:
+            raise ValueError('Missing or invalid Global X settlement monetary proof') from error
+    return checked_rows(rows, minimum=11, allow_unidentified=True), dates.pop(), proof
+
+
+def globalx_csv(raw, now):
+    rows, stamp, _ = _globalx_csv(raw, now)
+    return rows, stamp
 
 
 def collect_globalx(share, now):
@@ -142,13 +186,14 @@ def collect_globalx(share, now):
     raw = download(url)
     source_proof(share, 'globalx', raw)
     try:
-        rows, stamp = globalx_csv(raw, now)
+        rows, stamp, cash_proof = _globalx_csv(raw, now)
     except HoldingsSourceError as error:
         error.diagnostic.update(subjectIsin=share['isin'],sourceUrl=url,sha256=digest(raw),
                                 checkedAt=now.isoformat())
         raise
     return observation(rows, stamp, url, raw, allow_unidentified=True,
-                       identitySourceUrl=share['sourceUrl'], identitySha256=digest(page))
+                       identitySourceUrl=share['sourceUrl'], identitySha256=digest(page),
+                       **({'settlementCashProof': cash_proof} if cash_proof else {}))
 
 
 def collect_avantis(share, now):

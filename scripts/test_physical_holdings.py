@@ -52,6 +52,41 @@ class PhysicalHoldingsTest(unittest.TestCase):
         writer.writeheader(); writer.writerows(rows)
         return out.getvalue().encode()
 
+    def settlement_book(self, change=None):
+        raw=(pathlib.Path(__file__).parent/'fixtures/physical-holdings/globalx-bug-20261105.csv').read_bytes()
+        if change is None:return raw
+        reader=csv.DictReader(io.StringIO(raw.decode()));fields=reader.fieldnames;rows=list(reader)
+        change(rows)
+        stream=io.StringIO();writer=csv.DictWriter(stream,fieldnames=fields);writer.writeheader();writer.writerows(rows)
+        return stream.getvalue().encode()
+
+    def test_globalx_signed_settlement_cash_reconciles_real_monetary_book(self):
+        from collect_physical_holdings import _globalx_csv
+        raw=self.settlement_book();now=dt.datetime(2026,11,6,tzinfo=dt.timezone.utc)
+        rows,stamp,proof=_globalx_csv(raw,now)
+        self.assertEqual((len(rows),stamp),(30,'2026-11-05'))
+        self.assertAlmostEqual(sum(r['weightPct']for r in rows),99.796)
+        self.assertEqual(proof['netAssetsFromPublishedMarketValues'],'80576648.31')
+        self.assertEqual(proof['netCashWeightPct'],.204)
+        self.assertEqual(proof['publishedTotalWeightPct'],100)
+        self.assertFalse(proof['normalizationApplied'])
+        self.assertEqual(len(proof['cashRows']),5)
+        published={r['ISIN']:float(r['NET_ASSETS'])for r in csv.DictReader(io.StringIO(raw.decode()))if r.get('ISIN')}
+        self.assertEqual({r['isin']:r['weightPct']for r in rows},published)
+        # The public collector retains the exact identity gate and cash proof.
+        share={'isin':'IE00BMH5Y871','sourceUrl':'https://globalxetfs.eu/funds/bug/'}
+        with patch('collect_physical_holdings.public_page',return_value='identity'),patch('collect_physical_holdings.globalx_page',return_value='https://globalxetfs.eu/api/funds/bug/topholdingscsv'),patch('collect_physical_holdings.download',return_value=raw):
+            result=collect_globalx(share,now)
+        self.assertEqual(result['settlementCashProof'],proof)
+        self.assertEqual(result['rows'],rows)
+
+    def test_globalx_settlement_exception_never_admits_unproved_or_short_securities(self):
+        now=dt.datetime(2026,11,6,tzinfo=dt.timezone.utc)
+        def set_pay(rows,key,value):next(r for r in rows if r['NAME']=='OTHER PAYABLE & RECEIVABLES')[key]=value
+        changes=[lambda r:set_pay(r,'NAME','UNKNOWN LIABILITY'),lambda r:set_pay(r,'ISIN','US0000000001'),lambda r:set_pay(r,'SEDOL','1234567'),lambda r:set_pay(r,'TICKER','PAY'),lambda r:set_pay(r,'MARKET_VALUE',''),lambda r:set_pay(r,'MARKET_VALUE','NaN'),lambda r:set_pay(r,'MARKET_VALUE','-27000000'),lambda r:set_pay(r,'NET_ASSETS','-33.694'),lambda r:r[0].update(NET_ASSETS='-1'),lambda r:r[0].update(MARKET_VALUE='0'),lambda r:r[0].update(AS_OF_DATE='2026-11-04')]
+        for i,change in enumerate(changes):
+            with self.subTest(i=i),self.assertRaises(ValueError):globalx_csv(self.settlement_book(change),now)
+
     def test_globalx_current_uranium_original_nav_and_unknown_identities(self):
         now = NOW.replace(day=29)
         rows, stamp = globalx_csv(self.uranium_current(), now)
