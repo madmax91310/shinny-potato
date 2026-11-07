@@ -9,7 +9,7 @@ SOURCES = {
  'saxo':'https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale-2026.pdf',
  'caidf':'https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf',
  'ibkr':'https://www.interactivebrokers.ie/en/pricing/commissions-stocks.php',
- 'tr':'https://support.traderepublic.com/fr-fr/784-Are-there-commissions-for-order-execution',
+ 'tr':'https://support.traderepublic.com/fr-fr/784-Are-there-commissions-for-order-execution?web_view=true',
  'bd':'https://www.boursedirect.fr/pdf/tarifs_bd.pdf',
 }
 MONTHS={m:i for i,m in enumerate(['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'],1)}
@@ -188,10 +188,10 @@ SUPPLEMENT_SOURCES={
  'tr_pea_transfer':('tr','entrant','https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf'),
  'tr_pea_transfer_out':('tr','sortant','https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf'),
  'xtb_pea_transfer':('xtb','entrant','https://www.xtb.com/fr/pea'),
- 'tr_direct':('tr','directPrice','https://support.traderepublic.com/fr-fr/835f9deb-b864-4587-b428-7facfc55296c'),
+ 'tr_direct':('tr','directPrice','https://support.traderepublic.com/fr-fr/835f9deb-b864-4587-b428-7facfc55296c?web_view=true'),
  'saxo_transfer':('saxo','entrant','https://www.home.saxo/fr-fr/accounts/pea'),
- 'tr_garde_cto':('tr','gardeCto','https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account'),
- 'tr_transfer_cto':('tr','sortantCto','https://support.traderepublic.com/fr-fr/825-How-long-does-a-securities-account-transfer-from-Trade-Republic-to-a-third_party-custody-account-take'),
+ 'tr_garde_cto':('tr','gardeCto','https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account?web_view=true'),
+ 'tr_transfer_cto':('tr','sortantCto','https://support.traderepublic.com/fr-fr/825-How-long-does-a-securities-account-transfer-from-Trade-Republic-to-a-third_party-custody-account-take?web_view=true'),
  'ibkr_pea_garde':('ibkr','garde','https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php'),
  'ibkr_pea_transfer':('ibkr','sortant','https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php'),
  'ibkr_fx':('ibkr','change','https://www.interactivebrokers.ie/fr/pricing/commissions-spot-currencies.php'),
