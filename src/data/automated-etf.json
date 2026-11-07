@@ -23841,17 +23841,6 @@
       "listings": [
         {
           "ticker": "XDWM",
-          "exchange": "Borsa Italiana",
-          "mic": "ETFP",
-          "currency": "EUR",
-          "symbol": "XDWM.MI",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "checkedAt": "2026-11-07",
-          "evidenceId": "IE00BM67HS53-ETFP-XDWM-EUR",
-          "excerpt": "IE00BM67HS53 | Borsa Italiana | XDWM | EUR | XDWM.MI"
-        },
-        {
-          "ticker": "XDWM",
           "exchange": "Xetra",
           "mic": "XETR",
           "currency": "EUR",
@@ -23860,6 +23849,17 @@
           "checkedAt": "2026-11-07",
           "evidenceId": "IE00BM67HS53-XETR-XDWM-EUR",
           "excerpt": "IE00BM67HS53 | XETRA | XDWM | EUR | XDWM.DE"
+        },
+        {
+          "ticker": "XDWM",
+          "exchange": "Borsa Italiana",
+          "mic": "ETFP",
+          "currency": "EUR",
+          "symbol": "XDWM.MI",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-07",
+          "evidenceId": "IE00BM67HS53-ETFP-XDWM-EUR",
+          "excerpt": "IE00BM67HS53 | Borsa Italiana | XDWM | EUR | XDWM.MI"
         },
         {
           "ticker": "XDWM",
@@ -27777,7 +27777,7 @@
   "IE00BDFBTQ78": {
     "currency": "USD",
     "productId": "IE00BDFBTQ78",
-    "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+    "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf",
     "provider": "VanEck",
     "aum": {
       "amount": 2063600000.0,
@@ -27790,7 +27790,7 @@
     "countries": {
       "asOf": "2026-10-31",
       "basis": "fund",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf",
       "rows": [
         {
           "name": "Australia",
@@ -27835,7 +27835,7 @@
     "holdings": {
       "asOf": "2026-10-31",
       "basis": "fund",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf",
       "rows": [
         {
           "name": "BHP GROUP LTD",
@@ -27889,7 +27889,7 @@
       "replicationMethod": "Physical",
       "asOf": "2026-10-31",
       "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf",
-      "sha256": "9b1d2da085af2538c09f103e7a9ef073fed3b253e8e738e7fab2026bb727dbea",
+      "sha256": "22ae5160030302fe2a9e1a178f94ab386df05746aea73bde082872407036d74b",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -27938,16 +27938,8 @@
     "characteristicChecks": {
       "terPct": {
         "checkedAt": "2026-11-07",
-        "asOf": "2026-10-31",
-        "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
-        "sourceAsOf": "2026-10-31",
-        "sha256": "9cd898df005aadc7e54996febb169acec294ab9888e65857948051197daf954b",
-        "controlMethod": "unchanged-fee-corroboration",
-        "observationEvidence": {
-          "checkedAt": "2026-11-07",
-          "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf",
-          "asOf": "2026-10-31"
-        }
+        "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf",
+        "asOf": "2026-10-31"
       },
       "index": {
         "checkedAt": "2026-11-02",
@@ -34354,7 +34346,7 @@
       ],
       "nonNativeListingsExcluded": 1,
       "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
-      "sha256": "06058d9ee7457974116db5e384bbedfb8caef3206b84f33fccad117f70d623ae",
+      "sha256": "734d845a44d0046bbacce18a67c82e5b346ea364a6dca274260c2a2f4961cb0f",
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
       "identitySha256": "49ef74415799fcbce3e4327caf91421cc14fdc3af7dc78133d01df9ce7fbd2d1",
       "identityAsOf": "2026-09-30",
@@ -34417,7 +34409,7 @@
       ],
       "nonNativeListingsExcluded": 1,
       "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
-      "sha256": "06058d9ee7457974116db5e384bbedfb8caef3206b84f33fccad117f70d623ae",
+      "sha256": "734d845a44d0046bbacce18a67c82e5b346ea364a6dca274260c2a2f4961cb0f",
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
       "identitySha256": "95ebfd8527743eb82559f322974f45e67c7f8ab980eea6b3fc30b87a15d4b637",
       "identityAsOf": "2026-09-30",
@@ -34448,7 +34440,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
-      "sha256": "2a46599e2082006a61a27bfb4c3517af97ed8430276fd58c3e48b3571f33f1d4",
+      "sha256": "5c875af0ff8ded43162228da403518e8b989501cefe22e4618b5915e5b4dd72a",
       "method": "Issuer product_details.total_nav; native USD product assets, not NAV-times-units",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
@@ -34456,7 +34448,7 @@
     "characteristics": {
       "terPct": 1.49,
       "sourceUrl": "https://api.primary.21shares.com/api/product_details/ABTC",
-      "sha256": "2a46599e2082006a61a27bfb4c3517af97ed8430276fd58c3e48b3571f33f1d4",
+      "sha256": "5c875af0ff8ded43162228da403518e8b989501cefe22e4618b5915e5b4dd72a",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -34473,7 +34465,7 @@
       },
       "asOf": "2026-11-06",
       "sourceUrl": "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
-      "sha256": "8fcbb83b1c8601d4df168c9797e8335a06dc2f098ce46bee500a82ea4a8014e7",
+      "sha256": "cfbe575d099bd57a87e1664359a4dbe38964c6363ed7ea055b0ea5e67ed5232e",
       "method": "calendar-year exact ETP USD NAV return, net of fees, issuer-adjusted for share splits; monthly issuer returns cross-checked; derived from rounded issuer NAV levels",
       "validationSources": [
         "https://api.primary.21shares.com/api/product_details/ABTC",
@@ -35875,14 +35867,14 @@
       "scope": "share-class",
       "asOf": "2026-11-07",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "f202d9b5dbe1361b4435e00af61df6d60feb9efb865dac423a48da62fedc0f84",
+      "sha256": "c43be5c7165de4ede5fea96ee190a5a0db6089a11ec831469b68797ddade1b54",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
     "characteristics": {
       "asOf": "2026-11-07",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "f202d9b5dbe1361b4435e00af61df6d60feb9efb865dac423a48da62fedc0f84",
+      "sha256": "c43be5c7165de4ede5fea96ee190a5a0db6089a11ec831469b68797ddade1b54",
       "terPct": 2.0,
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
@@ -35899,7 +35891,7 @@
       },
       "asOf": "2026-11-07",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "f202d9b5dbe1361b4435e00af61df6d60feb9efb865dac423a48da62fedc0f84",
+      "sha256": "c43be5c7165de4ede5fea96ee190a5a0db6089a11ec831469b68797ddade1b54",
       "method": "calendar-year exact ETP NAV total return, net of fees",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
@@ -35928,7 +35920,7 @@
       ],
       "nonNativeListingsExcluded": 1,
       "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
-      "sha256": "06058d9ee7457974116db5e384bbedfb8caef3206b84f33fccad117f70d623ae",
+      "sha256": "734d845a44d0046bbacce18a67c82e5b346ea364a6dca274260c2a2f4961cb0f",
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
       "identitySha256": "c89045facb7d2abef28fae55bf8e85684e926edfa9c3373b7fcb55d606c8cca0",
       "identityAsOf": "2026-09-30",
@@ -36191,7 +36183,7 @@
       ],
       "nonNativeListingsExcluded": 1,
       "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
-      "sha256": "06058d9ee7457974116db5e384bbedfb8caef3206b84f33fccad117f70d623ae",
+      "sha256": "734d845a44d0046bbacce18a67c82e5b346ea364a6dca274260c2a2f4961cb0f",
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
       "identitySha256": "326008744e0620d65c217d18d5b5af9ada7812ef9ba63bbcd00a351f20dd4eaa",
       "identityAsOf": "2026-09-30",
@@ -36388,7 +36380,7 @@
       ],
       "nonNativeListingsExcluded": 1,
       "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
-      "sha256": "06058d9ee7457974116db5e384bbedfb8caef3206b84f33fccad117f70d623ae",
+      "sha256": "734d845a44d0046bbacce18a67c82e5b346ea364a6dca274260c2a2f4961cb0f",
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
       "identitySha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
       "identityAsOf": "2026-09-30",
@@ -36458,7 +36450,7 @@
       "rankClassificationID": 2,
       "method": "Exact issuer Fund Sector ranking; original percentages, not country or index groups",
       "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
-      "sha256": "1356c15ca25e437c8591f80a5002b2250dd1deb71a609d471edd28e4db3d0387",
+      "sha256": "9e318854d3fba1d4a598059c4620968e7ef0d9db0bb15020226a8ccb34b62270",
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
       "identitySha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
       "identityAsOf": "2026-09-30",
@@ -36637,7 +36629,7 @@
       "scope": "top-10",
       "method": "Top ten of the exact issuer Fund ranking; original fund weights, not renormalised",
       "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
-      "sha256": "1356c15ca25e437c8591f80a5002b2250dd1deb71a609d471edd28e4db3d0387",
+      "sha256": "9e318854d3fba1d4a598059c4620968e7ef0d9db0bb15020226a8ccb34b62270",
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
       "identitySha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
       "identityAsOf": "2026-09-30",
@@ -36692,14 +36684,14 @@
       "scope": "fund",
       "asOf": "2026-11-06",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "f589b9bedef8f7455f39dbebc3cdfd5b17143c231263b4f54b4c2527530cc787",
+      "sha256": "4c7ca1996fcf9513fae60ea89beee73156df07bff1d910d0edf4cc39a94a7246",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
     "characteristics": {
       "asOf": "2026-11-06",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "f589b9bedef8f7455f39dbebc3cdfd5b17143c231263b4f54b4c2527530cc787",
+      "sha256": "4c7ca1996fcf9513fae60ea89beee73156df07bff1d910d0edf4cc39a94a7246",
       "terPct": 0.45,
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
@@ -36710,7 +36702,7 @@
         "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
         "checkedAt": "2026-11-07",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "f589b9bedef8f7455f39dbebc3cdfd5b17143c231263b4f54b4c2527530cc787",
+        "sha256": "4c7ca1996fcf9513fae60ea89beee73156df07bff1d910d0edf4cc39a94a7246",
         "evidence": []
       },
       "countries": {
@@ -36718,7 +36710,7 @@
         "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
         "checkedAt": "2026-11-07",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "f589b9bedef8f7455f39dbebc3cdfd5b17143c231263b4f54b4c2527530cc787",
+        "sha256": "4c7ca1996fcf9513fae60ea89beee73156df07bff1d910d0edf4cc39a94a7246",
         "evidence": []
       },
       "holdings": {
@@ -36726,7 +36718,7 @@
         "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, MSFT, NVDA.",
         "checkedAt": "2026-11-07",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "f589b9bedef8f7455f39dbebc3cdfd5b17143c231263b4f54b4c2527530cc787",
+        "sha256": "4c7ca1996fcf9513fae60ea89beee73156df07bff1d910d0edf4cc39a94a7246",
         "evidence": [
           "Top 10 Reference Index Constituents",
           "As of 03 Nov 2026",
@@ -36800,7 +36792,7 @@
         "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
         "checkedAt": "2026-11-07",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "f589b9bedef8f7455f39dbebc3cdfd5b17143c231263b4f54b4c2527530cc787",
+        "sha256": "4c7ca1996fcf9513fae60ea89beee73156df07bff1d910d0edf4cc39a94a7246",
         "evidence": [
           "Reference Index Sector Breakdown",
           "As of 31 Oct 2026",
@@ -36873,7 +36865,7 @@
       },
       "asOf": "2026-11-06",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZL17%40%25,ISIN_KEYSTATS_GB00BLD4ZL17",
-      "sha256": "677a7e19cf7edf96484e6659861b0f8f428bfd78e42bc04a4a254eeca3d308db",
+      "sha256": "431da8b20e7886492904b0e993999aec677a8ad22cd64e9dbf8fa74367075eba",
       "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
@@ -36919,7 +36911,7 @@
       },
       "asOf": "2026-11-06",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZM24%40%25,ISIN_KEYSTATS_GB00BLD4ZM24",
-      "sha256": "a1815a6ed120cef7837b4335f93f197d3762d27dce88c0b6f3fe443b2595427d",
+      "sha256": "cacb662b07a7a60f090e6183d3c9e5c5ecfac363e7972d76488f06ff1aebed00",
       "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
@@ -38704,7 +38696,7 @@
       ],
       "nonNativeListingsExcluded": 1,
       "sourceUrl": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
-      "sha256": "06058d9ee7457974116db5e384bbedfb8caef3206b84f33fccad117f70d623ae",
+      "sha256": "734d845a44d0046bbacce18a67c82e5b346ea364a6dca274260c2a2f4961cb0f",
       "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
       "identitySha256": "7ab5627948d2b2b95c578d10e741db9738894ca076bb8ce4d67713fac91219ee",
       "identityAsOf": "2026-09-30",
@@ -39208,7 +39200,7 @@
       "scope": "fund",
       "asOf": "2026-11-06",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "95505333b09c1921838d3e9a3937208cebeafcc192cf8a5edcd0001247bfd07e",
+      "sha256": "3e98d1078a41f4440c431926f6b74ba6038c480102c4ea379f18cc72f5d79d04",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -39228,7 +39220,7 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "95505333b09c1921838d3e9a3937208cebeafcc192cf8a5edcd0001247bfd07e",
+      "sha256": "3e98d1078a41f4440c431926f6b74ba6038c480102c4ea379f18cc72f5d79d04",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -39286,7 +39278,7 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "95505333b09c1921838d3e9a3937208cebeafcc192cf8a5edcd0001247bfd07e",
+      "sha256": "3e98d1078a41f4440c431926f6b74ba6038c480102c4ea379f18cc72f5d79d04",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -39336,14 +39328,14 @@
       "asOf": "2026-11-06",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "95505333b09c1921838d3e9a3937208cebeafcc192cf8a5edcd0001247bfd07e",
+      "sha256": "3e98d1078a41f4440c431926f6b74ba6038c480102c4ea379f18cc72f5d79d04",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
     "characteristics": {
       "asOf": "2026-11-06",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "95505333b09c1921838d3e9a3937208cebeafcc192cf8a5edcd0001247bfd07e",
+      "sha256": "3e98d1078a41f4440c431926f6b74ba6038c480102c4ea379f18cc72f5d79d04",
       "terPct": 0.55,
       "index": "Solactive Global Copper Miners v2 Index",
       "checkedAt": "2026-11-07",
@@ -39420,7 +39412,7 @@
     "provider": "J.P. Morgan",
     "aum": {
       "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
-      "sha256": "362af9aa2d8d021dd0451760b195c6cab645d8c6aec117a624115aded0cd6d6b",
+      "sha256": "e8e11cb8127d46c1a229d1ee66ab731a9ab926f745e5e0484c82418e5f53721a",
       "amount": 1695033918.18,
       "currency": "USD",
       "scope": "fund",
@@ -39559,7 +39551,7 @@
     },
     "holdings": {
       "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
-      "sha256": "362af9aa2d8d021dd0451760b195c6cab645d8c6aec117a624115aded0cd6d6b",
+      "sha256": "e8e11cb8127d46c1a229d1ee66ab731a9ab926f745e5e0484c82418e5f53721a",
       "rows": [
         {
           "isin": "US4781601046",
@@ -40120,17 +40112,6 @@
       "listings": [
         {
           "ticker": "XDWU",
-          "exchange": "Borsa Italiana",
-          "mic": "ETFP",
-          "currency": "EUR",
-          "symbol": "XDWU.MI",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
-          "checkedAt": "2026-11-07",
-          "evidenceId": "IE00BM67HQ30-ETFP-XDWU-EUR",
-          "excerpt": "IE00BM67HQ30 | Borsa Italiana | XDWU | EUR | XDWU.MI"
-        },
-        {
-          "ticker": "XDWU",
           "exchange": "Xetra",
           "mic": "XETR",
           "currency": "EUR",
@@ -40139,6 +40120,17 @@
           "checkedAt": "2026-11-07",
           "evidenceId": "IE00BM67HQ30-XETR-XDWU-EUR",
           "excerpt": "IE00BM67HQ30 | XETRA | XDWU | EUR | XDWU.DE"
+        },
+        {
+          "ticker": "XDWU",
+          "exchange": "Borsa Italiana",
+          "mic": "ETFP",
+          "currency": "EUR",
+          "symbol": "XDWU.MI",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-07",
+          "evidenceId": "IE00BM67HQ30-ETFP-XDWU-EUR",
+          "excerpt": "IE00BM67HQ30 | Borsa Italiana | XDWU | EUR | XDWU.MI"
         },
         {
           "ticker": "XDWU",
@@ -40390,14 +40382,14 @@
       "scope": "fund",
       "asOf": "2026-11-06",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "41bc0696c90111910a90d1ea22d82592c1ec14ab0cb315d267784c51eeba64aa",
+      "sha256": "006e286c3f4611e31ae42dee7aee829a20a6e8f03781cd514cb95da531fdae80",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
     "characteristics": {
       "asOf": "2026-11-06",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "41bc0696c90111910a90d1ea22d82592c1ec14ab0cb315d267784c51eeba64aa",
+      "sha256": "006e286c3f4611e31ae42dee7aee829a20a6e8f03781cd514cb95da531fdae80",
       "terPct": 0.65,
       "index": "Solactive Global Silver Miners Total Return v2 Index",
       "checkedAt": "2026-11-07",
@@ -40409,7 +40401,7 @@
       "years": {},
       "asOf": "2026-10-31",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "41bc0696c90111910a90d1ea22d82592c1ec14ab0cb315d267784c51eeba64aa",
+      "sha256": "006e286c3f4611e31ae42dee7aee829a20a6e8f03781cd514cb95da531fdae80",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "observations": [
         {
@@ -40453,7 +40445,7 @@
         "2026-10": {
           "asOf": "2026-10-31",
           "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-          "sha256": "41bc0696c90111910a90d1ea22d82592c1ec14ab0cb315d267784c51eeba64aa",
+          "sha256": "006e286c3f4611e31ae42dee7aee829a20a6e8f03781cd514cb95da531fdae80",
           "checkedAt": "2026-11-07",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -40495,7 +40487,7 @@
       "asOf": "2026-10-31",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "41bc0696c90111910a90d1ea22d82592c1ec14ab0cb315d267784c51eeba64aa",
+      "sha256": "006e286c3f4611e31ae42dee7aee829a20a6e8f03781cd514cb95da531fdae80",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -40545,7 +40537,7 @@
       "asOf": "2026-11-06",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "41bc0696c90111910a90d1ea22d82592c1ec14ab0cb315d267784c51eeba64aa",
+      "sha256": "006e286c3f4611e31ae42dee7aee829a20a6e8f03781cd514cb95da531fdae80",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -40555,7 +40547,7 @@
         "asOf": "2026-11-06",
         "checkedAt": "2026-11-07",
         "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-        "sha256": "41bc0696c90111910a90d1ea22d82592c1ec14ab0cb315d267784c51eeba64aa",
+        "sha256": "006e286c3f4611e31ae42dee7aee829a20a6e8f03781cd514cb95da531fdae80",
         "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
         "evidence": {
           "datedCountryTable": true,
@@ -57937,7 +57929,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9",
+      "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -58007,7 +57999,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9",
+      "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -58037,7 +58029,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9",
+      "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -58068,7 +58060,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9",
+      "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -58128,7 +58120,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9",
+      "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -58158,7 +58150,7 @@
       "productStructure": "Physical",
       "terPct": 0.5,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9",
+      "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -58221,58 +58213,58 @@
         "2025": 14.25
       },
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9",
+      "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761",
       "asOf": "2025-12-31",
       "yearEvidence": {
         "2016": {
           "asOf": "2016-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9"
+          "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761"
         },
         "2017": {
           "asOf": "2017-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9"
+          "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761"
         },
         "2018": {
           "asOf": "2018-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9"
+          "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761"
         },
         "2019": {
           "asOf": "2019-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9"
+          "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761"
         },
         "2020": {
           "asOf": "2020-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9"
+          "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761"
         },
         "2021": {
           "asOf": "2021-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9"
+          "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761"
         },
         "2022": {
           "asOf": "2022-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9"
+          "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761"
         },
         "2023": {
           "asOf": "2023-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9"
+          "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761"
         },
         "2024": {
           "asOf": "2024-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9"
+          "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761"
         },
         "2025": {
           "asOf": "2025-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "32e8d09b0f7ef0acb36a33f45dc84320d13ba050eb8ccca9a0b48fdae64941f9"
+          "sha256": "1be6de57de76f839d88b2d967b137e93db5b9da37ced8a1dfc0ffa208ba9e761"
         }
       },
       "checkedAt": "2026-11-07",
@@ -58290,7 +58282,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013",
+      "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -58335,7 +58327,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013",
+      "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -58361,7 +58353,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013",
+      "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -58388,7 +58380,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013",
+      "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -58448,7 +58440,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013",
+      "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -58478,7 +58470,7 @@
       "productStructure": "Physical",
       "terPct": 0.65,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013",
+      "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -58541,58 +58533,58 @@
         "2025": 55.14
       },
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013",
+      "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba",
       "asOf": "2025-12-31",
       "yearEvidence": {
         "2016": {
           "asOf": "2016-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013"
+          "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba"
         },
         "2017": {
           "asOf": "2017-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013"
+          "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba"
         },
         "2018": {
           "asOf": "2018-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013"
+          "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba"
         },
         "2019": {
           "asOf": "2019-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013"
+          "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba"
         },
         "2020": {
           "asOf": "2020-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013"
+          "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba"
         },
         "2021": {
           "asOf": "2021-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013"
+          "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba"
         },
         "2022": {
           "asOf": "2022-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013"
+          "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba"
         },
         "2023": {
           "asOf": "2023-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013"
+          "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba"
         },
         "2024": {
           "asOf": "2024-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013"
+          "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba"
         },
         "2025": {
           "asOf": "2025-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253734&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "83dc68fe7762459f9d818211f453b16f99032a4489b76c8aaf29367be83e7013"
+          "sha256": "2410ba13393653cf6060dfdfc6c411c18190b80bbe7e1ef51fdecd2dbb470fba"
         }
       },
       "checkedAt": "2026-11-07",
@@ -59296,7 +59288,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490",
+      "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -59346,7 +59338,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490",
+      "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -59372,7 +59364,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490",
+      "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -59399,7 +59391,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490",
+      "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -59459,7 +59451,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490",
+      "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -59489,7 +59481,7 @@
       "productStructure": "Physical",
       "terPct": 0.65,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490",
+      "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -59552,58 +59544,58 @@
         "2025": 76.85
       },
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490",
+      "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2",
       "asOf": "2025-12-31",
       "yearEvidence": {
         "2016": {
           "asOf": "2016-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490"
+          "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2"
         },
         "2017": {
           "asOf": "2017-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490"
+          "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2"
         },
         "2018": {
           "asOf": "2018-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490"
+          "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2"
         },
         "2019": {
           "asOf": "2019-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490"
+          "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2"
         },
         "2020": {
           "asOf": "2020-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490"
+          "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2"
         },
         "2021": {
           "asOf": "2021-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490"
+          "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2"
         },
         "2022": {
           "asOf": "2022-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490"
+          "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2"
         },
         "2023": {
           "asOf": "2023-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490"
+          "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2"
         },
         "2024": {
           "asOf": "2024-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490"
+          "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2"
         },
         "2025": {
           "asOf": "2025-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251877&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8c2f072f51aafdeeb626b3d6ace2c303bc1b32c0306560c3d2c3673d29106490"
+          "sha256": "e9050a3f9dfb9625d6ab23ff626e959b267b4fb2896765f75849a825b781d5c2"
         }
       },
       "checkedAt": "2026-11-07",
@@ -59937,7 +59929,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad",
+      "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -59982,7 +59974,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad",
+      "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -60012,7 +60004,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad",
+      "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -60043,7 +60035,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad",
+      "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -60103,7 +60095,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad",
+      "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -60133,7 +60125,7 @@
       "productStructure": "Physical",
       "terPct": 0.74,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad",
+      "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -60196,58 +60188,58 @@
         "2025": -2.94
       },
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad",
+      "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14",
       "asOf": "2025-12-31",
       "yearEvidence": {
         "2016": {
           "asOf": "2016-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad"
+          "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14"
         },
         "2017": {
           "asOf": "2017-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad"
+          "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14"
         },
         "2018": {
           "asOf": "2018-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad"
+          "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14"
         },
         "2019": {
           "asOf": "2019-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad"
+          "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14"
         },
         "2020": {
           "asOf": "2020-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad"
+          "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14"
         },
         "2021": {
           "asOf": "2021-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad"
+          "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14"
         },
         "2022": {
           "asOf": "2022-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad"
+          "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14"
         },
         "2023": {
           "asOf": "2023-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad"
+          "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14"
         },
         "2024": {
           "asOf": "2024-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad"
+          "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14"
         },
         "2025": {
           "asOf": "2025-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251879&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "8a18052ced3afc50fff22ce6a2c08b241c516c9730f18c8b6b1536ddbe8041ad"
+          "sha256": "6313678f43e6d293713180d3eec784f28e2ca2ccdeeed5d38bea85c3dce53b14"
         }
       },
       "checkedAt": "2026-11-07",
@@ -60265,7 +60257,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461",
+      "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -60335,7 +60327,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461",
+      "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -60405,7 +60397,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461",
+      "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -60532,7 +60524,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461",
+      "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -60592,7 +60584,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461",
+      "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -60622,7 +60614,7 @@
       "productStructure": "Physical",
       "terPct": 0.4,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461",
+      "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -60685,58 +60677,58 @@
         "2025": 12.93
       },
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461",
+      "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546",
       "asOf": "2025-12-31",
       "yearEvidence": {
         "2016": {
           "asOf": "2016-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461"
+          "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546"
         },
         "2017": {
           "asOf": "2017-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461"
+          "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546"
         },
         "2018": {
           "asOf": "2018-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461"
+          "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546"
         },
         "2019": {
           "asOf": "2019-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461"
+          "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546"
         },
         "2020": {
           "asOf": "2020-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461"
+          "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546"
         },
         "2021": {
           "asOf": "2021-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461"
+          "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546"
         },
         "2022": {
           "asOf": "2022-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461"
+          "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546"
         },
         "2023": {
           "asOf": "2023-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461"
+          "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546"
         },
         "2024": {
           "asOf": "2024-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461"
+          "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546"
         },
         "2025": {
           "asOf": "2025-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251380&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "d0e62fcc47bcd0cc73399cc22a22d872999a5f9aa3a45f8ad46b5bfa78350461"
+          "sha256": "3786ab0375ee913590e69ca81dbd55fdb5e687db44f3139e51b00f234f243546"
         }
       },
       "checkedAt": "2026-11-07",
@@ -60754,7 +60746,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999",
+      "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -60824,7 +60816,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999",
+      "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -60898,7 +60890,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999",
+      "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -60981,7 +60973,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999",
+      "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -61041,7 +61033,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999",
+      "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -61071,7 +61063,7 @@
       "productStructure": "Physical",
       "terPct": 0.25,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999",
+      "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -61134,58 +61126,58 @@
         "2025": 11.87
       },
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999",
+      "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1",
       "asOf": "2025-12-31",
       "yearEvidence": {
         "2016": {
           "asOf": "2016-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999"
+          "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1"
         },
         "2017": {
           "asOf": "2017-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999"
+          "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1"
         },
         "2018": {
           "asOf": "2018-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999"
+          "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1"
         },
         "2019": {
           "asOf": "2019-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999"
+          "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1"
         },
         "2020": {
           "asOf": "2020-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999"
+          "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1"
         },
         "2021": {
           "asOf": "2021-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999"
+          "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1"
         },
         "2022": {
           "asOf": "2022-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999"
+          "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1"
         },
         "2023": {
           "asOf": "2023-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999"
+          "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1"
         },
         "2024": {
           "asOf": "2024-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999"
+          "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1"
         },
         "2025": {
           "asOf": "2025-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251381&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "02e00b0deade847c83d94c07d49359f60db94c7e3e8b861b7fd510e64653e999"
+          "sha256": "10680f9785cd2a368bb6ee9de01a0cd6337dbaf8ba4d33076b081f21b5826ec1"
         }
       },
       "checkedAt": "2026-11-07",
@@ -61203,7 +61195,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6",
+      "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -61273,7 +61265,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6",
+      "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -61303,7 +61295,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6",
+      "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -61334,7 +61326,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6",
+      "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -61394,7 +61386,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6",
+      "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -61424,7 +61416,7 @@
       "productStructure": "Physical",
       "terPct": 0.58,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6",
+      "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -61487,58 +61479,58 @@
         "2025": 28.27
       },
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6",
+      "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748",
       "asOf": "2025-12-31",
       "yearEvidence": {
         "2016": {
           "asOf": "2016-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6"
+          "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748"
         },
         "2017": {
           "asOf": "2017-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6"
+          "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748"
         },
         "2018": {
           "asOf": "2018-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6"
+          "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748"
         },
         "2019": {
           "asOf": "2019-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6"
+          "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748"
         },
         "2020": {
           "asOf": "2020-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6"
+          "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748"
         },
         "2021": {
           "asOf": "2021-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6"
+          "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748"
         },
         "2022": {
           "asOf": "2022-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6"
+          "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748"
         },
         "2023": {
           "asOf": "2023-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6"
+          "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748"
         },
         "2024": {
           "asOf": "2024-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6"
+          "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748"
         },
         "2025": {
           "asOf": "2025-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251870&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "046b8185de03834ccfddb55111367b50399cb1c89436e74c931c6f9a72360ca6"
+          "sha256": "5fb27c1137a11e8840027012a3bd7d1471fd7f68e1c104636cb5fbe70b85d748"
         }
       },
       "checkedAt": "2026-11-07",
@@ -61870,7 +61862,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059",
+      "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -61890,7 +61882,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059",
+      "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -61920,7 +61912,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059",
+      "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -61951,7 +61943,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059",
+      "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -62011,7 +62003,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059",
+      "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -62052,7 +62044,7 @@
       "productStructure": "Physical",
       "terPct": 0.07,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059",
+      "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -62115,58 +62107,58 @@
         "2025": 8.27
       },
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059",
+      "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365",
       "asOf": "2025-12-31",
       "yearEvidence": {
         "2016": {
           "asOf": "2016-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059"
+          "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365"
         },
         "2017": {
           "asOf": "2017-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059"
+          "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365"
         },
         "2018": {
           "asOf": "2018-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059"
+          "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365"
         },
         "2019": {
           "asOf": "2019-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059"
+          "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365"
         },
         "2020": {
           "asOf": "2020-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059"
+          "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365"
         },
         "2021": {
           "asOf": "2021-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059"
+          "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365"
         },
         "2022": {
           "asOf": "2022-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059"
+          "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365"
         },
         "2023": {
           "asOf": "2023-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059"
+          "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365"
         },
         "2024": {
           "asOf": "2024-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059"
+          "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365"
         },
         "2025": {
           "asOf": "2025-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251716&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "b600d68dff4696d9e70ef6c0a8d8bbc23c0979fe8f2c40a8a4cdc4ff7cef1059"
+          "sha256": "1836031b7511321c6b8eac9581c4aea29047ad700f0f322600fa7742a5664365"
         }
       },
       "checkedAt": "2026-11-07",
@@ -62184,7 +62176,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a",
+      "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -62204,7 +62196,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a",
+      "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -62242,7 +62234,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a",
+      "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -62281,7 +62273,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a",
+      "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -62341,7 +62333,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a",
+      "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -62382,7 +62374,7 @@
       "productStructure": "Physical",
       "terPct": 0.07,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a",
+      "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -62445,58 +62437,58 @@
         "2025": 4.4
       },
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a",
+      "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325",
       "asOf": "2025-12-31",
       "yearEvidence": {
         "2016": {
           "asOf": "2016-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a"
+          "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325"
         },
         "2017": {
           "asOf": "2017-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a"
+          "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325"
         },
         "2018": {
           "asOf": "2018-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a"
+          "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325"
         },
         "2019": {
           "asOf": "2019-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a"
+          "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325"
         },
         "2020": {
           "asOf": "2020-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a"
+          "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325"
         },
         "2021": {
           "asOf": "2021-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a"
+          "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325"
         },
         "2022": {
           "asOf": "2022-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a"
+          "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325"
         },
         "2023": {
           "asOf": "2023-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a"
+          "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325"
         },
         "2024": {
           "asOf": "2024-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a"
+          "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325"
         },
         "2025": {
           "asOf": "2025-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272124&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "0930f3e1168571887abc2e004744c3ff99864ffe5d9b17a2834596eb8d9a6b3a"
+          "sha256": "ce91a501f5b4730a60019eba9b2294abd6c461df5dfb78870a5909eeca995325"
         }
       },
       "checkedAt": "2026-11-07",
@@ -62514,7 +62506,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4",
+      "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -62534,7 +62526,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4",
+      "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -62556,7 +62548,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4",
+      "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -62579,7 +62571,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4",
+      "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -62639,7 +62631,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4",
+      "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -62680,7 +62672,7 @@
       "productStructure": "Physical",
       "terPct": 0.1,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4",
+      "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -62743,58 +62735,58 @@
         "2025": 6.86
       },
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4",
+      "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35",
       "asOf": "2025-12-31",
       "yearEvidence": {
         "2016": {
           "asOf": "2016-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4"
+          "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35"
         },
         "2017": {
           "asOf": "2017-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4"
+          "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35"
         },
         "2018": {
           "asOf": "2018-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4"
+          "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35"
         },
         "2019": {
           "asOf": "2019-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4"
+          "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35"
         },
         "2020": {
           "asOf": "2020-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4"
+          "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35"
         },
         "2021": {
           "asOf": "2021-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4"
+          "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35"
         },
         "2022": {
           "asOf": "2022-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4"
+          "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35"
         },
         "2023": {
           "asOf": "2023-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4"
+          "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35"
         },
         "2024": {
           "asOf": "2024-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4"
+          "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35"
         },
         "2025": {
           "asOf": "2025-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251714&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "c48c074991819b0bf5bdf0929f9c11b3bb2fb90193e95f1eb63a316c7e0bf5d4"
+          "sha256": "7594eaac4bf3e9f9ba58f0f23d8690d1b60d8646f7be6d0de4161207928b1a35"
         }
       },
       "checkedAt": "2026-11-07",
@@ -62812,7 +62804,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "be9d481cde7dae441bad8340a34abc1fe11498563b44917669e75be992fb47d1",
+      "sha256": "511b5ed0c26e5502f80ecddf1ff099d8f8ac9f52688bea369f5c99946c7fadd1",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -62932,7 +62924,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "be9d481cde7dae441bad8340a34abc1fe11498563b44917669e75be992fb47d1",
+      "sha256": "511b5ed0c26e5502f80ecddf1ff099d8f8ac9f52688bea369f5c99946c7fadd1",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63014,7 +63006,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "be9d481cde7dae441bad8340a34abc1fe11498563b44917669e75be992fb47d1",
+      "sha256": "511b5ed0c26e5502f80ecddf1ff099d8f8ac9f52688bea369f5c99946c7fadd1",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63105,7 +63097,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "sha256": "be9d481cde7dae441bad8340a34abc1fe11498563b44917669e75be992fb47d1",
+      "sha256": "511b5ed0c26e5502f80ecddf1ff099d8f8ac9f52688bea369f5c99946c7fadd1",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63165,7 +63157,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "be9d481cde7dae441bad8340a34abc1fe11498563b44917669e75be992fb47d1",
+      "sha256": "511b5ed0c26e5502f80ecddf1ff099d8f8ac9f52688bea369f5c99946c7fadd1",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63206,7 +63198,7 @@
       "productStructure": "Physical",
       "terPct": 0.1,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "be9d481cde7dae441bad8340a34abc1fe11498563b44917669e75be992fb47d1",
+      "sha256": "511b5ed0c26e5502f80ecddf1ff099d8f8ac9f52688bea369f5c99946c7fadd1",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63267,48 +63259,48 @@
         "2025": 5.09
       },
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "be9d481cde7dae441bad8340a34abc1fe11498563b44917669e75be992fb47d1",
+      "sha256": "511b5ed0c26e5502f80ecddf1ff099d8f8ac9f52688bea369f5c99946c7fadd1",
       "asOf": "2025-12-31",
       "yearEvidence": {
         "2018": {
           "asOf": "2018-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "be9d481cde7dae441bad8340a34abc1fe11498563b44917669e75be992fb47d1"
+          "sha256": "511b5ed0c26e5502f80ecddf1ff099d8f8ac9f52688bea369f5c99946c7fadd1"
         },
         "2019": {
           "asOf": "2019-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "be9d481cde7dae441bad8340a34abc1fe11498563b44917669e75be992fb47d1"
+          "sha256": "511b5ed0c26e5502f80ecddf1ff099d8f8ac9f52688bea369f5c99946c7fadd1"
         },
         "2020": {
           "asOf": "2020-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "be9d481cde7dae441bad8340a34abc1fe11498563b44917669e75be992fb47d1"
+          "sha256": "511b5ed0c26e5502f80ecddf1ff099d8f8ac9f52688bea369f5c99946c7fadd1"
         },
         "2021": {
           "asOf": "2021-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "be9d481cde7dae441bad8340a34abc1fe11498563b44917669e75be992fb47d1"
+          "sha256": "511b5ed0c26e5502f80ecddf1ff099d8f8ac9f52688bea369f5c99946c7fadd1"
         },
         "2022": {
           "asOf": "2022-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "be9d481cde7dae441bad8340a34abc1fe11498563b44917669e75be992fb47d1"
+          "sha256": "511b5ed0c26e5502f80ecddf1ff099d8f8ac9f52688bea369f5c99946c7fadd1"
         },
         "2023": {
           "asOf": "2023-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "be9d481cde7dae441bad8340a34abc1fe11498563b44917669e75be992fb47d1"
+          "sha256": "511b5ed0c26e5502f80ecddf1ff099d8f8ac9f52688bea369f5c99946c7fadd1"
         },
         "2024": {
           "asOf": "2024-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "be9d481cde7dae441bad8340a34abc1fe11498563b44917669e75be992fb47d1"
+          "sha256": "511b5ed0c26e5502f80ecddf1ff099d8f8ac9f52688bea369f5c99946c7fadd1"
         },
         "2025": {
           "asOf": "2025-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288500&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "be9d481cde7dae441bad8340a34abc1fe11498563b44917669e75be992fb47d1"
+          "sha256": "511b5ed0c26e5502f80ecddf1ff099d8f8ac9f52688bea369f5c99946c7fadd1"
         }
       },
       "checkedAt": "2026-11-07",
@@ -63326,7 +63318,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "49391f3551aaa0aaca59c9d02f08283bb33a16290e7235ef0d3f1f0a3dc46fcd",
+      "sha256": "5299a1d01b4f1ec33c1af8b9f6ab12181bc1d9d064f99ef94d1e91b5f3027aa9",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63346,7 +63338,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "49391f3551aaa0aaca59c9d02f08283bb33a16290e7235ef0d3f1f0a3dc46fcd",
+      "sha256": "5299a1d01b4f1ec33c1af8b9f6ab12181bc1d9d064f99ef94d1e91b5f3027aa9",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63388,7 +63380,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "49391f3551aaa0aaca59c9d02f08283bb33a16290e7235ef0d3f1f0a3dc46fcd",
+      "sha256": "5299a1d01b4f1ec33c1af8b9f6ab12181bc1d9d064f99ef94d1e91b5f3027aa9",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63439,7 +63431,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "sha256": "49391f3551aaa0aaca59c9d02f08283bb33a16290e7235ef0d3f1f0a3dc46fcd",
+      "sha256": "5299a1d01b4f1ec33c1af8b9f6ab12181bc1d9d064f99ef94d1e91b5f3027aa9",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63499,7 +63491,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "49391f3551aaa0aaca59c9d02f08283bb33a16290e7235ef0d3f1f0a3dc46fcd",
+      "sha256": "5299a1d01b4f1ec33c1af8b9f6ab12181bc1d9d064f99ef94d1e91b5f3027aa9",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63540,7 +63532,7 @@
       "productStructure": "Physical",
       "terPct": 0.5,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "49391f3551aaa0aaca59c9d02f08283bb33a16290e7235ef0d3f1f0a3dc46fcd",
+      "sha256": "5299a1d01b4f1ec33c1af8b9f6ab12181bc1d9d064f99ef94d1e91b5f3027aa9",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63600,43 +63592,43 @@
         "2025": 5.89
       },
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "49391f3551aaa0aaca59c9d02f08283bb33a16290e7235ef0d3f1f0a3dc46fcd",
+      "sha256": "5299a1d01b4f1ec33c1af8b9f6ab12181bc1d9d064f99ef94d1e91b5f3027aa9",
       "asOf": "2025-12-31",
       "yearEvidence": {
         "2019": {
           "asOf": "2019-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "49391f3551aaa0aaca59c9d02f08283bb33a16290e7235ef0d3f1f0a3dc46fcd"
+          "sha256": "5299a1d01b4f1ec33c1af8b9f6ab12181bc1d9d064f99ef94d1e91b5f3027aa9"
         },
         "2020": {
           "asOf": "2020-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "49391f3551aaa0aaca59c9d02f08283bb33a16290e7235ef0d3f1f0a3dc46fcd"
+          "sha256": "5299a1d01b4f1ec33c1af8b9f6ab12181bc1d9d064f99ef94d1e91b5f3027aa9"
         },
         "2021": {
           "asOf": "2021-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "49391f3551aaa0aaca59c9d02f08283bb33a16290e7235ef0d3f1f0a3dc46fcd"
+          "sha256": "5299a1d01b4f1ec33c1af8b9f6ab12181bc1d9d064f99ef94d1e91b5f3027aa9"
         },
         "2022": {
           "asOf": "2022-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "49391f3551aaa0aaca59c9d02f08283bb33a16290e7235ef0d3f1f0a3dc46fcd"
+          "sha256": "5299a1d01b4f1ec33c1af8b9f6ab12181bc1d9d064f99ef94d1e91b5f3027aa9"
         },
         "2023": {
           "asOf": "2023-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "49391f3551aaa0aaca59c9d02f08283bb33a16290e7235ef0d3f1f0a3dc46fcd"
+          "sha256": "5299a1d01b4f1ec33c1af8b9f6ab12181bc1d9d064f99ef94d1e91b5f3027aa9"
         },
         "2024": {
           "asOf": "2024-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "49391f3551aaa0aaca59c9d02f08283bb33a16290e7235ef0d3f1f0a3dc46fcd"
+          "sha256": "5299a1d01b4f1ec33c1af8b9f6ab12181bc1d9d064f99ef94d1e91b5f3027aa9"
         },
         "2025": {
           "asOf": "2025-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=297675&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "49391f3551aaa0aaca59c9d02f08283bb33a16290e7235ef0d3f1f0a3dc46fcd"
+          "sha256": "5299a1d01b4f1ec33c1af8b9f6ab12181bc1d9d064f99ef94d1e91b5f3027aa9"
         }
       },
       "checkedAt": "2026-11-07",
@@ -63654,7 +63646,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "43d87a7163888e0d56c7246c20acf9c98ff74cd222998f81767fdf6890fb5b33",
+      "sha256": "ce7896fbc8a9c568a086329ea16baae28cc100d5e8ea90391d603de30f62b03e",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63679,7 +63671,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "43d87a7163888e0d56c7246c20acf9c98ff74cd222998f81767fdf6890fb5b33",
+      "sha256": "ce7896fbc8a9c568a086329ea16baae28cc100d5e8ea90391d603de30f62b03e",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63705,7 +63697,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "43d87a7163888e0d56c7246c20acf9c98ff74cd222998f81767fdf6890fb5b33",
+      "sha256": "ce7896fbc8a9c568a086329ea16baae28cc100d5e8ea90391d603de30f62b03e",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63732,7 +63724,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "sha256": "43d87a7163888e0d56c7246c20acf9c98ff74cd222998f81767fdf6890fb5b33",
+      "sha256": "ce7896fbc8a9c568a086329ea16baae28cc100d5e8ea90391d603de30f62b03e",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63792,7 +63784,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "43d87a7163888e0d56c7246c20acf9c98ff74cd222998f81767fdf6890fb5b33",
+      "sha256": "ce7896fbc8a9c568a086329ea16baae28cc100d5e8ea90391d603de30f62b03e",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63833,7 +63825,7 @@
       "productStructure": "Physical",
       "terPct": 0.35,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "43d87a7163888e0d56c7246c20acf9c98ff74cd222998f81767fdf6890fb5b33",
+      "sha256": "ce7896fbc8a9c568a086329ea16baae28cc100d5e8ea90391d603de30f62b03e",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63892,38 +63884,38 @@
         "2025": 4.58
       },
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "43d87a7163888e0d56c7246c20acf9c98ff74cd222998f81767fdf6890fb5b33",
+      "sha256": "ce7896fbc8a9c568a086329ea16baae28cc100d5e8ea90391d603de30f62b03e",
       "asOf": "2025-12-31",
       "yearEvidence": {
         "2020": {
           "asOf": "2020-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "43d87a7163888e0d56c7246c20acf9c98ff74cd222998f81767fdf6890fb5b33"
+          "sha256": "ce7896fbc8a9c568a086329ea16baae28cc100d5e8ea90391d603de30f62b03e"
         },
         "2021": {
           "asOf": "2021-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "43d87a7163888e0d56c7246c20acf9c98ff74cd222998f81767fdf6890fb5b33"
+          "sha256": "ce7896fbc8a9c568a086329ea16baae28cc100d5e8ea90391d603de30f62b03e"
         },
         "2022": {
           "asOf": "2022-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "43d87a7163888e0d56c7246c20acf9c98ff74cd222998f81767fdf6890fb5b33"
+          "sha256": "ce7896fbc8a9c568a086329ea16baae28cc100d5e8ea90391d603de30f62b03e"
         },
         "2023": {
           "asOf": "2023-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "43d87a7163888e0d56c7246c20acf9c98ff74cd222998f81767fdf6890fb5b33"
+          "sha256": "ce7896fbc8a9c568a086329ea16baae28cc100d5e8ea90391d603de30f62b03e"
         },
         "2024": {
           "asOf": "2024-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "43d87a7163888e0d56c7246c20acf9c98ff74cd222998f81767fdf6890fb5b33"
+          "sha256": "ce7896fbc8a9c568a086329ea16baae28cc100d5e8ea90391d603de30f62b03e"
         },
         "2025": {
           "asOf": "2025-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=308851&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "43d87a7163888e0d56c7246c20acf9c98ff74cd222998f81767fdf6890fb5b33"
+          "sha256": "ce7896fbc8a9c568a086329ea16baae28cc100d5e8ea90391d603de30f62b03e"
         }
       },
       "checkedAt": "2026-11-07",
@@ -63941,7 +63933,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "df8ed7316498ad06af97a4181baed050ec55ba78ff734eb9c37f321d9b468c45",
+      "sha256": "bc65124b8a1321d5cab3420b6bfc5c2536c67a519f4899457e8fee0c3385d651",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63961,7 +63953,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "df8ed7316498ad06af97a4181baed050ec55ba78ff734eb9c37f321d9b468c45",
+      "sha256": "bc65124b8a1321d5cab3420b6bfc5c2536c67a519f4899457e8fee0c3385d651",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -63991,7 +63983,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "df8ed7316498ad06af97a4181baed050ec55ba78ff734eb9c37f321d9b468c45",
+      "sha256": "bc65124b8a1321d5cab3420b6bfc5c2536c67a519f4899457e8fee0c3385d651",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -64022,7 +64014,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "sha256": "df8ed7316498ad06af97a4181baed050ec55ba78ff734eb9c37f321d9b468c45",
+      "sha256": "bc65124b8a1321d5cab3420b6bfc5c2536c67a519f4899457e8fee0c3385d651",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -64092,7 +64084,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "df8ed7316498ad06af97a4181baed050ec55ba78ff734eb9c37f321d9b468c45",
+      "sha256": "bc65124b8a1321d5cab3420b6bfc5c2536c67a519f4899457e8fee0c3385d651",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -64133,7 +64125,7 @@
       "productStructure": "Physical",
       "terPct": 0.28,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "df8ed7316498ad06af97a4181baed050ec55ba78ff734eb9c37f321d9b468c45",
+      "sha256": "bc65124b8a1321d5cab3420b6bfc5c2536c67a519f4899457e8fee0c3385d651",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -64195,53 +64187,53 @@
         "2025": 8.33
       },
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "df8ed7316498ad06af97a4181baed050ec55ba78ff734eb9c37f321d9b468c45",
+      "sha256": "bc65124b8a1321d5cab3420b6bfc5c2536c67a519f4899457e8fee0c3385d651",
       "asOf": "2025-12-31",
       "yearEvidence": {
         "2017": {
           "asOf": "2017-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "df8ed7316498ad06af97a4181baed050ec55ba78ff734eb9c37f321d9b468c45"
+          "sha256": "bc65124b8a1321d5cab3420b6bfc5c2536c67a519f4899457e8fee0c3385d651"
         },
         "2018": {
           "asOf": "2018-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "df8ed7316498ad06af97a4181baed050ec55ba78ff734eb9c37f321d9b468c45"
+          "sha256": "bc65124b8a1321d5cab3420b6bfc5c2536c67a519f4899457e8fee0c3385d651"
         },
         "2019": {
           "asOf": "2019-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "df8ed7316498ad06af97a4181baed050ec55ba78ff734eb9c37f321d9b468c45"
+          "sha256": "bc65124b8a1321d5cab3420b6bfc5c2536c67a519f4899457e8fee0c3385d651"
         },
         "2020": {
           "asOf": "2020-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "df8ed7316498ad06af97a4181baed050ec55ba78ff734eb9c37f321d9b468c45"
+          "sha256": "bc65124b8a1321d5cab3420b6bfc5c2536c67a519f4899457e8fee0c3385d651"
         },
         "2021": {
           "asOf": "2021-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "df8ed7316498ad06af97a4181baed050ec55ba78ff734eb9c37f321d9b468c45"
+          "sha256": "bc65124b8a1321d5cab3420b6bfc5c2536c67a519f4899457e8fee0c3385d651"
         },
         "2022": {
           "asOf": "2022-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "df8ed7316498ad06af97a4181baed050ec55ba78ff734eb9c37f321d9b468c45"
+          "sha256": "bc65124b8a1321d5cab3420b6bfc5c2536c67a519f4899457e8fee0c3385d651"
         },
         "2023": {
           "asOf": "2023-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "df8ed7316498ad06af97a4181baed050ec55ba78ff734eb9c37f321d9b468c45"
+          "sha256": "bc65124b8a1321d5cab3420b6bfc5c2536c67a519f4899457e8fee0c3385d651"
         },
         "2024": {
           "asOf": "2024-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "df8ed7316498ad06af97a4181baed050ec55ba78ff734eb9c37f321d9b468c45"
+          "sha256": "bc65124b8a1321d5cab3420b6bfc5c2536c67a519f4899457e8fee0c3385d651"
         },
         "2025": {
           "asOf": "2025-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=283722&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "df8ed7316498ad06af97a4181baed050ec55ba78ff734eb9c37f321d9b468c45"
+          "sha256": "bc65124b8a1321d5cab3420b6bfc5c2536c67a519f4899457e8fee0c3385d651"
         }
       },
       "checkedAt": "2026-11-07",
@@ -64259,7 +64251,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674",
+      "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -64279,7 +64271,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674",
+      "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -64321,7 +64313,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674",
+      "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -64368,7 +64360,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674",
+      "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -64428,7 +64420,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674",
+      "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -64469,7 +64461,7 @@
       "productStructure": "Physical",
       "terPct": 0.2,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674",
+      "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -64532,58 +64524,58 @@
         "2025": 6.45
       },
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674",
+      "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3",
       "asOf": "2025-12-31",
       "yearEvidence": {
         "2016": {
           "asOf": "2016-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674"
+          "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3"
         },
         "2017": {
           "asOf": "2017-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674"
+          "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3"
         },
         "2018": {
           "asOf": "2018-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674"
+          "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3"
         },
         "2019": {
           "asOf": "2019-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674"
+          "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3"
         },
         "2020": {
           "asOf": "2020-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674"
+          "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3"
         },
         "2021": {
           "asOf": "2021-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674"
+          "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3"
         },
         "2022": {
           "asOf": "2022-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674"
+          "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3"
         },
         "2023": {
           "asOf": "2023-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674"
+          "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3"
         },
         "2024": {
           "asOf": "2024-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674"
+          "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3"
         },
         "2025": {
           "asOf": "2025-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251753&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "babf75e6d256c60487dee75e70630ed055360fd045b55efb24351b18d653f674"
+          "sha256": "7fb4b00f9f070e326186e576579b68fb0edf990da771448df5a078a0007390d3"
         }
       },
       "checkedAt": "2026-11-07",
@@ -64601,7 +64593,7 @@
       "scope": "share-class",
       "asOf": "2026-11-06",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e",
+      "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -64621,7 +64613,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.sector",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e",
+      "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -64663,7 +64655,7 @@
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e",
+      "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -64714,7 +64706,7 @@
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
-      "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e",
+      "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -64774,7 +64766,7 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e",
+      "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -64815,7 +64807,7 @@
       "productStructure": "Physical",
       "terPct": 0.15,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e",
+      "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a",
       "checkedAt": "2026-11-07",
       "modifiedAt": "2026-11-07"
     },
@@ -64878,58 +64870,58 @@
         "2025": -11.22
       },
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e",
+      "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a",
       "asOf": "2025-12-31",
       "yearEvidence": {
         "2016": {
           "asOf": "2016-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e"
+          "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a"
         },
         "2017": {
           "asOf": "2017-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e"
+          "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a"
         },
         "2018": {
           "asOf": "2018-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e"
+          "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a"
         },
         "2019": {
           "asOf": "2019-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e"
+          "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a"
         },
         "2020": {
           "asOf": "2020-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e"
+          "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a"
         },
         "2021": {
           "asOf": "2021-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e"
+          "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a"
         },
         "2022": {
           "asOf": "2022-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e"
+          "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a"
         },
         "2023": {
           "asOf": "2023-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e"
+          "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a"
         },
         "2024": {
           "asOf": "2024-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e"
+          "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a"
         },
         "2025": {
           "asOf": "2025-12-31",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=272122&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "sha256": "f65a0322024c5311757b644678102b70ce8fe308eedf2ba86dc2c98dd2f8231e"
+          "sha256": "10c9edc5fde399e5f33d425621de6ae31db774e87dbf2b081a1e6789c0fd062a"
         }
       },
       "checkedAt": "2026-11-07",
