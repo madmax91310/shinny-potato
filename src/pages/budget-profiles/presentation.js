@@ -35,10 +35,7 @@ export function budgetPublicContext(value) {
   return value.replace(/(^| · )budget personnel(?: avec |\.?(?: · |$))/gi, '$1').replace(/ · $/, '')
 }
 export function budgetPublicBasis(profile, basis) {
-  let result = basis.replace(/Moyennes\s+20\d{2}/g, 'Moyennes').replace(/(net moyen)\s+20\d{2}\b/gi, '$1')
-  if (/salaire.*20\d{2}.*dépenses.*20\d{2}/i.test(profile.period)) {
-    result = 'Dépenses moyennes d’une autre période'
-  }
+  const result = basis.replace(/Moyennes\s+20\d{2}/g, 'Moyennes').replace(/(net moyen)\s+20\d{2}\b/gi, '$1')
   return result
 }
 export function budgetIntroduction(profile, p) {
