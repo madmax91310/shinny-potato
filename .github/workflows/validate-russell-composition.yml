@@ -23,19 +23,49 @@ jobs:
       - run: python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
       - run: python -m unittest discover -s scripts -p 'test_russell_composition.py'
-      - name: Validate live official Russell 1000 count and printed sectors
+      - name: Validate live monthly facts and coherent official quarter independently
         run: |
           python - <<'PY'
-          import datetime as dt, json, pathlib, sys
+          import datetime as dt, gzip, hashlib, json, os, pathlib, sys
           sys.path.insert(0, 'scripts')
-          from collect_russell_composition import collect
+          from collect_russell_composition import collect, collect_quarterly_holdings, collect_coherent_quarter
+          from issuer_documents import download
           configurations = json.loads(pathlib.Path('scripts/index-automation.json').read_text())['indices']
           config = next(c for c in configurations if c['id'] == 'russell-1000')
-          facts = collect(config, dt.datetime.now(dt.timezone.utc))
-          assert len(facts['sectors']) == 11
-          assert facts['holdings'] == []
-          print(facts['asOf'], facts['constituents'], facts['sectors'])
+          now = dt.datetime.now(dt.timezone.utc)
+          folder = pathlib.Path(os.environ['RUNNER_TEMP'])/'russell-live'
+          folder.mkdir()
+          report = {'checkedAt':now.isoformat(),'sources':[],'kind':'real GitHub read-only source qualification; not publication or scheduled collection'}
+          def fetch(url):
+              body=download(url)
+              sha=hashlib.sha256(body).hexdigest()
+              (folder/(sha+'.gz')).write_bytes(gzip.compress(body))
+              report['sources'].append({'url':url,'sha256':sha,'bytes':len(body)})
+              return body
+          try:
+              facts=collect(config,now,fetch)
+              assert len(facts['sectors'])==11 and facts['holdings']==[]
+              report['facts']=facts
+              holdings=collect_quarterly_holdings(config,now,fetch)
+              report['holdings']=holdings
+              quarter=collect_coherent_quarter(config,holdings,now,fetch)
+              assert quarter['asOf']==holdings['asOf'] and len(quarter['holdings'])==10
+              assert facts['holdings']==[]
+              report['quarterlyFacts']=quarter
+              print('Monthly:',facts['asOf'],facts['constituents'],'; independent quarter:',quarter['asOf'],quarter['constituents'])
+          except Exception as error:
+              report['error']=str(error)
+              raise
+          finally:
+              (folder/'observation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
           PY
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: russell-live-source-qualification
+          path: ${{ runner.temp }}/russell-live/
+          if-no-files-found: error
+          retention-days: 35
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20

@@ -12,6 +12,8 @@ class RussellTests(unittest.TestCase):
   self.assertEqual(result['asOf'],'2026-06-30');self.assertEqual(result['membershipCount'],1023)
   self.assertEqual(result['rows'][0],['Nvidia Corp',6.732]);self.assertEqual(len(result['rows']),10)
   self.assertIn(['Alphabet Inc Cl A',3.003],result['rows']);self.assertIn(['Alphabet Inc Cl C',2.423],result['rows'])
+  self.assertEqual(result['countries'],[['United States',99.963],['United Kingdom',.021],['Canada',.014]])
+  self.assertEqual(result['countryRowsCount'],1023);self.assertEqual(result['publishedMembershipWeightPct'],99.998);self.assertEqual(result['weightRemainderPct'],.002)
   bads=[text.replace('Russell 1000®','Russell 1000® Growth'),text.replace('June 30, 2026','September 30, 2026',1),
         text.replace('6.732 United States','6.7320 United States'),text.replace('6.732 United States','96.732 United States'),
         text.replace('Apple Inc\n6.034','Nvidia Corp\n6.034'),text.replace('June 30, 2026','June 29, 2026')]
@@ -127,6 +129,8 @@ class CoherentQuarterTests(unittest.TestCase):
   self.assertEqual(len(result['sectors']),11);self.assertEqual(dict(result['sectors'])['💻 Technologie'],41.92)
   self.assertEqual(result['holdings'],self.holdings['rows']);self.assertLess(sum(w for _,w in result['holdings']),100)
   self.assertEqual(result['holdingsSource']['asOf'],result['asOf'])
+  self.assertEqual(result['countries'],[['🇺🇸 États-Unis',99.963],['🇬🇧 Royaume-Uni',.021],['🇨🇦 Canada',.014]])
+  self.assertEqual(result['weightRemainderPct'],.002);self.assertEqual(result['publishedMembershipWeightPct'],99.998)
   self.assertEqual(result['source']['sha256'],'ed4349fbe1714f43c4924d70fcbdecc139c00d37745a232084d3805b1f10dc93')
   prior={'russell-1000':{'facts':{'asOf':'2026-10-31','sectors':[['Technology',40.51]],'holdings':[]}}}
   merged=merge_records(prior,[{'id':'russell-1000','quarterlyFacts':result}])
@@ -164,3 +168,22 @@ class CoherentQuarterTests(unittest.TestCase):
   report=_normalize_report(native)
   self.assertNotIn(identifier,[r['id']for r in report['successes']])
   self.assertEqual(report['errors'][0]['id'],identifier)
+  from producer_report_contract import finish,normalize_contract
+  # The real predeclared selected operation is absent, although monthly facts
+  # and annual returns succeeded: a green enclosing job must not certify it.
+  omitted={'indices':[{'id':'russell-1000','facts':{'asOf':'2026-10-31'},'returns':{'asOf':'2026-10-30'},'errors':[]}]}
+  import hashlib
+  execution={**plan,'producer':'refresh_index_sources','reportStem':'index-observation','declaredAt':'2026-11-07T08:00:00Z','nonce':'isolated-regression'}
+  execution['sha256']=hashlib.sha256(json.dumps(execution,sort_keys=True).encode()).hexdigest()
+  normalized=normalize_contract(finish(omitted,execution)['resultContract'])
+  failures=[r for r in normalized['errors']if r.get('expectedId')==identifier]
+  self.assertEqual(len(failures),1);self.assertEqual(failures[0]['kind'],'omission')
+  self.assertIsNone(failures[0]['sourceAttempted'])
+
+ def test_native_country_coverage_unknown_country_and_remainder_never_turn_into_us_100(self):
+  from collect_russell_composition import collect_coherent_quarter
+  sectors=json.loads((FIX/'coherent-quarter-2026-06-30.json').read_text())['sectors']
+  for update in [{'countryRowsCount':1022},{'countries':[['Unknown',99.998]]},
+                 {'countries':[['United States',100]]},{'weightRemainderPct':0}]:
+   with self.subTest(update=update),patch('collect_russell_composition.read_chart',return_value=sectors),self.assertRaises(ValueError):
+    collect_coherent_quarter(self.config,{**self.holdings,**update},self.now,self.fetch)

@@ -8,10 +8,11 @@ import pathlib
 import re
 import subprocess
 import tempfile
+from decimal import Decimal
 from PIL import Image, ImageFilter, ImageOps
 from data_automation import reject
 from issuer_documents import download, pdf_text, proof, document_date, validated_rows
-from collect_index_documents import ICB_INDUSTRIES, SECTOR_LABELS
+from collect_index_documents import ICB_INDUSTRIES, SECTOR_LABELS, COUNTRY_LABELS
 
 NAMES = set(ICB_INDUSTRIES.values())
 WEIGHTS_URL = 'https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000'
@@ -43,15 +44,22 @@ def quarterly_holdings(text, now):
         for name, weight, country in matches:
             if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9 .!&/()\'-]+', name.strip()) or not country.strip():
                 reject('Russell membership name/country changed')
-            rows.append({'name': name.strip(), 'weightPct': float(weight)})
+            rows.append({'name': name.strip(), 'weightPct': float(weight), 'country':country.strip()})
     # Some smaller share classes have identical issuer labels in this report.
     # Never aggregate them; require unambiguous names for every returned top row.
     if any(not 0 <= r['weightPct'] <= 100 for r in rows) or not 900 <= len(rows) <= 1200 or abs(sum(r['weightPct'] for r in rows)-100) > .1:
         reject('Russell quarterly membership incomplete')
     top = sorted(rows, key=lambda r: (-r['weightPct'], r['name']))[:10]
     validated_rows(top, complete=False)
+    countries = {}
+    for row in rows:
+        countries[row['country']] = countries.get(row['country'], Decimal(0)) + Decimal(str(row['weightPct']))
+    total = sum(countries.values())
     return {'asOf': stamp, 'rows': [[r['name'], r['weightPct']] for r in top],
             'membershipCount': len(rows), 'basis': 'index',
+            'countries':[[name,float(weight)] for name,weight in sorted(countries.items(),key=lambda item:(-item[1],item[0]))],
+            'countryRowsCount':len(rows),'publishedMembershipWeightPct':float(total),
+            'weightRemainderPct':float(Decimal(100)-total),
             'method': 'Poids officiels trimestriels du Russell 1000 exact ; top dix des lignes, classes d’actions séparées. Photographie indépendante des secteurs mensuels.'}
 
 def collect_quarterly_holdings(config, now, fetch=download):
@@ -300,12 +308,27 @@ def collect_coherent_quarter(config, holdings, now, fetch=download):
         if sectors!=independent:reject('Russell independent sector segmentations disagree')
     rows=validated_rows([{'name':name,'weightPct':weight} for name,weight in holdings['rows']],complete=False)
     if len(rows)!=10:reject('Russell quarterly top ten incomplete')
+    if holdings.get('countryRowsCount')!=holdings['membershipCount']:
+        reject('Russell quarterly countries do not cover all published members')
+    countries=[]
+    for name,weight in holdings.get('countries',[]):
+        if name not in COUNTRY_LABELS:reject('Unqualified Russell publisher country: '+name)
+        countries.append({'name':COUNTRY_LABELS[name],'weightPct':weight})
+    countries=validated_rows(countries)
+    country_total=sum(Decimal(str(row['weightPct'])) for row in countries)
+    if country_total!=Decimal(str(holdings['publishedMembershipWeightPct'])) or Decimal(100)-country_total!=Decimal(str(holdings['weightRemainderPct'])):
+        reject('Russell country totals/remainder disagree with complete published membership')
     return {'index':config['name'],'asOf':stamp,'constituents':holdings['membershipCount'],
-            'countries':[['🇺🇸 États-Unis',100]],'sectors':sectors,'holdings':holdings['rows'],
+            'countries':[[row['name'],row['weightPct']] for row in countries],'sectors':sectors,'holdings':holdings['rows'],
+            'countryMethod':f"Pays natifs des {holdings['membershipCount']} lignes du rapport ESMA ; aucune déduction depuis le nom ou le domicile juridique",
+            'publishedMembershipWeightPct':holdings['publishedMembershipWeightPct'],
+            'weightRemainderPct':holdings['weightRemainderPct'],
             'collectionBasis':'same-date-exact-index-quarter','sectorMethod':'ICB',
             'sectorExtractionProof':{'readers':['whole-chart-psm11-2x','isolated-lines-psm7-2x'],
                 'minimumOcrConfidence':75,'maxGeometryDifferencePctPoints':.5,'weightsFromPrintedLabelsOnly':True},
             'holdingsSource':{**source,'asOf':stamp},
             'source':{'url':url,'checkedAt':now.date().isoformat(),'sha256':proof(body),'label':'FTSE Russell · fiche archivée à la date des positions trimestrielles',
-                      'archiveUrl':ARCHIVES_URL,'archiveSha256':proof(archive_body)},
-            'provenance':'Russell 1000 exact : fiche officielle et top dix du rapport ESMA de même date. Classes séparées, aucun poids renormalisé. États-Unis : univers des sociétés américaines de l’indice, pas domicile juridique individuel. Photographie trimestrielle distincte des secteurs mensuels ; pas de portefeuille complet identifié pour le recouvrement.'}
+                      'archiveUrl':ARCHIVES_URL,'archiveSha256':proof(archive_body),
+                      'sourceUrls':[url,WEIGHTS_URL,ARCHIVES_URL],
+                      'rawSourceHashes':{url:proof(body),WEIGHTS_URL:source['sha256'],ARCHIVES_URL:proof(archive_body)}},
+            'provenance':'Russell 1000 exact : fiche officielle et rapport ESMA de même date. Pays agrégés depuis toutes les lignes et leurs poids natifs ; résidu de poids conservé, aucune renormalisation. Top dix des lignes, classes séparées. Photographie trimestrielle distincte des secteurs mensuels ; pas de portefeuille complet identifié pour le recouvrement.'}
