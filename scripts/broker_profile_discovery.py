@@ -56,8 +56,12 @@ def allowed(broker, url):
         return False
     path = unquote(p.path)
     if any(part in ('.','..') for part in path.split('/')):return False
+    # The public article view retains its ID and language. No arbitrary query
+    # or generic traderepublic.com/support landing page is accepted.
+    from broker_profile_tr import article_id
+    query_allowed = not p.query or (broker == 'tr' and p.query == 'web_view=true' and article_id(url))
     return bool(pattern and p.scheme == 'https' and not p.username and not p.password
-                and port in (None, 443) and not p.query
+                and port in (None, 443) and query_allowed
                 and re.fullmatch(pattern, path, re.I))
 
 

@@ -60,14 +60,22 @@ def parse(name, content, today, previous=None):
 def fetch_content(url):
  from broker_public_faq import PREFIX, read_answer
  from broker_profile_discovery import POLICIES,allowed
+ from broker_profile_tr import HOST as TR_SUPPORT_HOST, article_id, same_article, validate_article
  from broker_document_sources import SourceDocument
  if url.startswith(PREFIX):
   return SourceDocument(read_answer(url),url)
  owners=[broker for broker in POLICIES if allowed(broker,url)]
  validator=(lambda target:any(allowed(broker,target) for broker in owners)) if owners else None
+ tr_article=urllib.parse.urlparse(url).hostname==TR_SUPPORT_HOST
+ if tr_article:
+  # An official domain alone cannot establish article, country or fee identity.
+  # Keep the registered web_view=true FX source inside the same redirect guard.
+  if not article_id(url):raise ValueError('Trade Republic article URL outside evidence scope: '+url)
+  validator=lambda target:same_article(url,target)
  if url==SUPPLEMENT_SOURCES['fortuneo_amundi'][2]:
   validator=lambda target:target==SUPPLEMENT_SOURCES['fortuneo_amundi'][2]
  raw,actual_url=download(url,url_validator=validator,return_source=True)
+ if tr_article:validate_article(url,actual_url,raw.decode('utf-8'))
  # WordPress download pages expose a rotating, public link to the real PDF.
  if 'groupe.boursedirect.fr/download/' in url and not raw.startswith(b'%PDF'):
   soup=BeautifulSoup(raw.decode('utf-8'),'html.parser')
