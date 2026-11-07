@@ -8,8 +8,8 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 
 | Domaine | Couverture active | Fréquence |
 |---|---|---|
-| Historiques mensuels des simulateurs | 771/771 séries ; 451 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
-| Parts ETF mensuelles raccordées | 303 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
+| Historiques mensuels des simulateurs | 772/772 séries ; 451 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
+| Parts ETF mensuelles raccordées | 304 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
 | ETF/ETC/ETP | 280/283 instruments, au moins un champ | Quotidienne |
 | Actions individuelles (secteur et pays) | 410/410 actions ; secteur GICS et pays de risque issus des compositions complètes iShares ; données du 2026-11-05 | Quotidienne ; une action sortie des fonds sources garde sa dernière classification datée |
 | Comparatif ETF | 277/277 parts raccordées dans 156 blocs ; 259 calendriers actifs, 20 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
