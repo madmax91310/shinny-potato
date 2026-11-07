@@ -2,18 +2,21 @@
 import csv
 import datetime as dt
 import io
+import json
 import math
 import pathlib
 import re
 import subprocess
 import tempfile
-from PIL import Image, ImageFilter
+from PIL import Image, ImageFilter, ImageOps
 from data_automation import reject
 from issuer_documents import download, pdf_text, proof, document_date, validated_rows
 from collect_index_documents import ICB_INDUSTRIES, SECTOR_LABELS
 
 NAMES = set(ICB_INDUSTRIES.values())
 WEIGHTS_URL = 'https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000'
+ARCHIVES_URL = 'https://research.ftserussell.com/Analytics/FactSheets/Home/GetIssueListByCode?issueName=US1000USD'
+ARCHIVE_PDF_URL = 'https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssueByDate?IssueName=US1000USD&IssueDate={date}&IsManual=id'
 
 def quarterly_holdings(text, now):
     """Read the exact-index quarterly membership report, not an ETF basket."""
@@ -66,6 +69,29 @@ def ocr(image, directory, name):
     result = subprocess.run(['tesseract', str(path), 'stdout', '--psm', '6' if name.startswith('legend') else '11', 'tsv'], capture_output=True, text=True, check=True, timeout=30)
     return list(csv.DictReader(io.StringIO(result.stdout), delimiter='\t'))
 
+
+def isolated_weight_ocr(image, directory, name):
+    """Independent line segmentation; never supply the candidate's digits to OCR."""
+    rows = ocr(image, directory, name)
+    if name.startswith('legend'):
+        return rows
+    for index, word in enumerate(rows):
+        if word['level'] != '5' or not word['text'].strip():
+            continue
+        x, y, width, height = (int(word[k]) for k in ('left', 'top', 'width', 'height'))
+        crop = image.crop((max(0,x-3), max(0,y-3), min(image.width,x+width+3), min(image.height,y+height+3)))
+        path = pathlib.Path(directory) / ('isolated-weight-' + str(index) + '.png')
+        ImageOps.expand(crop, border=20, fill='white').save(path)
+        result = subprocess.run(['tesseract', str(path), 'stdout', '--psm', '7', 'tsv'],
+                                capture_output=True, text=True, check=True, timeout=30)
+        tokens = [r for r in csv.DictReader(io.StringIO(result.stdout), delimiter='\t')
+                  if r['level']=='5' and r['text'].strip()]
+        # No character whitelist, numeric correction, confidence relaxation or
+        # copied candidate value. Geometry and totals are checked again below.
+        word['text'] = ''.join(r['text'] for r in tokens)
+        word['conf'] = str(min((float(r['conf']) for r in tokens), default=-1))
+    return rows
+
 def sector_disk(points):
     """Fit the curved boundary, not the incomplete non-grey bounding box.
 
@@ -101,12 +127,12 @@ def sector_disk(points):
     return cx,cy,radius
 
 
-def read_chart(image, scale, directory):
+def read_chart(image, scale, directory, reader=ocr):
     image = image.convert('RGB'); w,h = image.size
     if w < 1000 or h < 600 or not 1.6 < w/h < 1.9: reject('Russell sector chart dimensions changed')
     # Legend text occupies the right side; colored swatches remain outside the OCR crop.
     left = int(w*.61); legend = image.crop((left,0,w,h)); groups={}
-    for word in ocr(legend.resize((legend.width*scale,h*scale)),directory,'legend'+str(scale)):
+    for word in reader(legend.resize((legend.width*scale,h*scale)),directory,'legend'+str(scale)):
         if word['level'] != '5' or not word['text'].strip(): continue
         key=tuple(word[k] for k in ['block_num','par_num','line_num']);groups.setdefault(key,[]).append(word)
     palette={};pixels=image.load()
@@ -150,7 +176,7 @@ def read_chart(image, scale, directory):
             if max(pixels[x,y])<35 or math.hypot(x-cx,y-cy)<radius+7:m[x,y]=255
     clean=image.copy();clean.paste('white',(0,0),mask.filter(ImageFilter.MaxFilter(7)))
     clean=clean.crop((0,0,int(w*.53),h));labels=[]
-    for word in ocr(clean.resize((clean.width*scale,h*scale)),directory,'weights'+str(scale)):
+    for word in reader(clean.resize((clean.width*scale,h*scale)),directory,'weights'+str(scale)):
         if word['level']!='5' or not word['text'].strip():continue
         match=re.fullmatch(r'(\d{1,2}\.\d{2})%',word['text'].strip())
         if not match or float(word['conf'])<75:reject('Russell printed weight ambiguous')
@@ -231,3 +257,55 @@ def collect(config,now,fetch=download):
             'countries':[['🇺🇸 États-Unis',100]],'sectors':sectors,'holdings':[],
             'source':{'url':config['sourceUrl'],'checkedAt':now.date().isoformat(),'sha256':proof(body),'label':'Fiche officielle FTSE Russell'},
             'provenance':'Indice Russell 1000 exact. Comptage natif ; secteurs imprimés lus à deux résolutions, associés aux couleurs de légende et contrôlés géométriquement. Les poids ne sont jamais déduits des surfaces. États-Unis : univers des sociétés américaines de l’indice, pas domicile juridique individuel. Poids du top dix absents de la publication ; aucune substitution ETF.'}
+
+
+def collect_coherent_quarter(config, holdings, now, fetch=download):
+    """Join two official reports only at the exact same quarter-end; keep monthly facts separate."""
+    if config['id'] != 'russell-1000' or holdings.get('basis') != 'index':
+        reject('Unexpected Russell quarterly composition identity')
+    stamp = document_date(holdings['asOf'], now, max_age=180)
+    date = dt.date.fromisoformat(stamp)
+    if (date.month,date.day) not in ((3,31),(6,30),(9,30),(12,31)):
+        reject('Russell coherent composition must be quarter-end')
+    source = holdings.get('source', {})
+    if source.get('url') != WEIGHTS_URL or not re.fullmatch('[a-f0-9]{64}',source.get('sha256','')):
+        reject('Missing independently qualified Russell membership source')
+    archive_body = fetch(ARCHIVES_URL)
+    issues = json.loads(archive_body)
+    key = stamp.replace('-','')
+    if not isinstance(issues,list) or len([r for r in issues if isinstance(r,dict) and r.get('ShortDate')==key])!=1:
+        reject('Exact Russell quarter absent or ambiguous in official archive')
+    url = ARCHIVE_PDF_URL.format(date=key)
+    body = fetch(url)
+    text = pdf_text(body)
+    if not re.search(r'^Russell 1000 Index\s*$',text,re.M) or 'Russell 1000 Equal Weight' in text:
+        reject('Wrong Russell archived index identity')
+    dates = re.findall(r'\(As of (\d{1,2}/\d{1,2}/20\d{2})\)',text)
+    if not dates or len(set(dates))!=1 or dt.datetime.strptime(dates[0],'%m/%d/%Y').date()!=date:
+        reject('Russell monthly/quarterly snapshot mismatch')
+    counts = re.findall(r'Number of Holdings\s+([\d,]+)\s+([\d,]+)',text)
+    if len(counts)!=1 or int(counts[0][0].replace(',',''))!=holdings.get('membershipCount') or 'largest US companies' not in text:
+        reject('Russell quarterly constituent count disagrees with archived facts')
+    with tempfile.TemporaryDirectory() as directory:
+        path=pathlib.Path(directory);pdf=path/'source.pdf';pdf.write_bytes(body)
+        subprocess.run(['pdfimages','-f','2','-l','2','-png',str(pdf),str(path/'chart')],capture_output=True,check=True,timeout=30)
+        images=[]
+        for candidate in path.glob('chart-*.png'):
+            with Image.open(candidate) as image:
+                if 1.6<image.width/image.height<1.9:images.append(candidate)
+        if len(images)!=1:reject('Russell archived sector chart missing/ambiguous')
+        with Image.open(images[0]) as image:
+            sectors=read_chart(image,2,directory)
+            independent=read_chart(image,2,directory,reader=isolated_weight_ocr)
+        if sectors!=independent:reject('Russell independent sector segmentations disagree')
+    rows=validated_rows([{'name':name,'weightPct':weight} for name,weight in holdings['rows']],complete=False)
+    if len(rows)!=10:reject('Russell quarterly top ten incomplete')
+    return {'index':config['name'],'asOf':stamp,'constituents':holdings['membershipCount'],
+            'countries':[['🇺🇸 États-Unis',100]],'sectors':sectors,'holdings':holdings['rows'],
+            'collectionBasis':'same-date-exact-index-quarter','sectorMethod':'ICB',
+            'sectorExtractionProof':{'readers':['whole-chart-psm11-2x','isolated-lines-psm7-2x'],
+                'minimumOcrConfidence':75,'maxGeometryDifferencePctPoints':.5,'weightsFromPrintedLabelsOnly':True},
+            'holdingsSource':{**source,'asOf':stamp},
+            'source':{'url':url,'checkedAt':now.date().isoformat(),'sha256':proof(body),'label':'FTSE Russell · fiche archivée à la date des positions trimestrielles',
+                      'archiveUrl':ARCHIVES_URL,'archiveSha256':proof(archive_body)},
+            'provenance':'Russell 1000 exact : fiche officielle et top dix du rapport ESMA de même date. Classes séparées, aucun poids renormalisé. Photographie trimestrielle distincte des secteurs mensuels ; pas de portefeuille complet identifié pour le recouvrement.'}

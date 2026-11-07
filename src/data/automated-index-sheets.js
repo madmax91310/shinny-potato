@@ -49,31 +49,50 @@ export function completeAutomatedFacts({ facts, returns } = {}) {
 export function completeAutomatedRecord(record, now = new Date()) {
   return completeAutomatedFacts(record) && latestCommonYears([Object.fromEntries(record.returns.values)], { length: 5, now }).length === 5
 }
+export function factsForIndexSheet(id, record, now = new Date()) {
+  if (completeAutomatedFacts(record)) return record.facts
+  // Russell's monthly facts have no top ten. A coherent, explicitly dated
+  // quarterly snapshot may serve this format; never mix its weights with the
+  // more recent monthly sectors, or treat it as identified complete holdings.
+  const facts = record?.quarterlyFacts
+  if (id !== 'russell-1000' || facts?.collectionBasis !== 'same-date-exact-index-quarter' ||
+      !completeAutomatedFacts({ facts, returns: record?.returns }) ||
+      !/^\d{4}-(?:03-31|06-30|09-30|12-31)$/.test(facts.asOf) ||
+      facts.holdingsSource?.asOf !== facts.asOf ||
+      facts.holdingsSource?.url !== 'https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000' ||
+      !/^[a-f0-9]{64}$/.test(facts.holdingsSource?.sha256 ?? '') || !facts.holdingsSource?.checkedAt) return null
+  const age = (Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) - Date.parse(facts.asOf)) / 86400000
+  return age >= 0 && age <= 180 ? facts : null
+}
 export const AUTOMATED_SHEET_DEFINITIONS = EDITORIAL_SHEET_DEFINITIONS
 // Complete records that neither an editorial definition nor an archive sheet covers get a sheet
 // titled by the canonical index name (18/10/2026); the caller passes the ids it already covers.
 // A derived sheet also needs the registry's index scope (markets): without it the sheet is not built.
 export function derivedSheetDefinitions(coveredIds, observations = records, now = new Date()) {
-  return Object.entries(observations).filter(([id, record]) => !coveredIds.includes(id) && completeAutomatedRecord(record, now) && typeof getCurrentIndexFacts(id, record.facts.asOf)?.markets === 'string')
-    .sort(([a], [b]) => a.localeCompare(b)).map(([id, record]) => ({ id, title: getCurrentIndexFacts(id, record.facts.asOf).index ?? id, derived: true }))
+  return Object.entries(observations).filter(([id, record]) => {
+    const facts = factsForIndexSheet(id, record, now)
+    return !coveredIds.includes(id) && facts && completeAutomatedRecord({ facts, returns: record.returns }, now) && typeof getCurrentIndexFacts(id, facts.asOf)?.markets === 'string'
+  }).sort(([a], [b]) => a.localeCompare(b)).map(([id, record]) => ({ id, title: getCurrentIndexFacts(id, factsForIndexSheet(id, record, now).asOf).index ?? id, derived: true }))
 }
 
 export function buildAutomatedIndexSheets(observations = records, now = new Date(), definitions = AUTOMATED_SHEET_DEFINITIONS) {
   return definitions.map(definition => {
-    const { facts, returns } = observations[definition.id] ?? {}
+    const record = observations[definition.id] ?? {}
+    const facts = factsForIndexSheet(definition.id, record, now)
+    const { returns } = record
     if (!completeAutomatedFacts({ facts, returns })) throw new Error(`Données automatisées complètes exigées : ${definition.id}`)
     const years = latestCommonYears([Object.fromEntries(returns.values)], { length: 5, now })
     if (years.length !== 5) throw new Error(`Cinq années complètes exigées : ${definition.id}`)
     const values = returns.values.filter(([year]) => years.includes(year)).sort((a, b) => b[0] - a[0])
     const snapshot = new Date(`${facts.asOf}T00:00:00Z`).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
     const canonical = getCurrentIndexFacts(definition.id, records[definition.id].facts.asOf)
-    const indexFacts = observations === records ? canonical : {
+    const indexFacts = observations === records && facts === record.facts ? canonical : {
       ...buildAutomatedIndexSnapshot(facts, canonical), snapshot,
       metadata: normalizeEvidence({ ...facts.source, asOf: facts.asOf, scope: definition.title, method: 'Composition officielle automatisée' }) }
     const { constituents, markets, marketCap, countries, sectors, holdings, topWeight } = indexFacts
     return { ...definition, index: indexFacts.index, indexFacts, snapshot: indexFacts.snapshot,
       constituents, markets, marketCap, countries, sectors, holdings, topWeight,
-      source: [facts.source, returns.source], returns: values,
+      source: [facts.source, ...(facts.holdingsSource ? [facts.holdingsSource] : []), returns.source], returns: values,
       performance: { kind: 'indice', detail: returns.performance.detail, date: returns.performance.date },
     }
   })

@@ -44,6 +44,15 @@ def _collect_one(config, now, fetch=download):
             result['holdings'] = collect_quarterly_holdings(config, now, fetch)
         except Exception as error:
             result['errors'].append({'field':'holdings','reason':str(error),'url':config['holdingsSourceUrl']})
+    if config.get('collectCoherentQuarterlyComposition'):
+        try:
+            from collect_russell_composition import collect_coherent_quarter
+            if 'holdings' not in result:
+                raise ValueError('Qualified quarterly membership unavailable; no cross-date composition assembled')
+            result['quarterlyFacts'] = collect_coherent_quarter(config, result['holdings'], now, fetch)
+        except Exception as error:
+            result['errors'].append({'field':'quarterly-composition','reason':str(error),
+                                     'url':config['holdingsSourceUrl']})
     if config.get('collectComposition', True):
         try:
             if config.get('compositionParser') == 'russell-printed-composition':
@@ -142,7 +151,7 @@ def merge_records(current, observations):
     merged=copy.deepcopy(current)
     for observation in observations:
         record=merged.setdefault(observation['id'],{})
-        for field in ['facts','returns','holdings']:
+        for field in ['facts','returns','holdings','quarterlyFacts']:
             incoming=observation.get(field)
             if not incoming:continue
             old=record.get(field)

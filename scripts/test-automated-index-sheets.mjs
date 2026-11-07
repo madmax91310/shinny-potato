@@ -45,3 +45,43 @@ for (const definition of AUTOMATED_SHEET_DEFINITIONS) {
   assert.throws(() => buildAutomatedIndexSheets(missing), /complètes exigées/)
 }
 console.log(`${AUTOMATED_SHEET_DEFINITIONS.length} fully automated index sheets: exact observations, future composition/year propagation, incomplete and Price Return data refused.`)
+
+// Exact-index quarterly weights may be presented only with same-date sectors;
+// the more recent monthly observation remains untouched and available elsewhere.
+{
+  const { readFileSync } = await import('node:fs')
+  const { factsForIndexSheet, derivedSheetDefinitions } = await import('../src/data/automated-index-sheets.js')
+  const observations = structuredClone(records), id = 'russell-1000', now = new Date('2026-11-07T12:00:00Z')
+  const originalMonthly = structuredClone(observations[id].facts)
+  const quarterly = JSON.parse(readFileSync('scripts/fixtures/russell-composition/coherent-quarter-2026-06-30.json'))
+  observations[id].quarterlyFacts = quarterly
+  const definitions = derivedSheetDefinitions([], observations, now)
+  const definition = definitions.find(r => r.id === id)
+  assert(definition, 'Qualified quarterly composition restores the existing index format')
+  const sheet = buildAutomatedIndexSheets(observations, now, [definition])[0]
+  assert.equal(sheet.indexFacts.asOf, '2026-06-30')
+  assert.equal(sheet.snapshot, '30 juin 2026')
+  assert.equal(sheet.constituents, 1023)
+  assert.deepEqual(sheet.sectors, quarterly.sectors)
+  assert.deepEqual(sheet.holdings, quarterly.holdings)
+  assert.equal(sheet.topWeight, quarterly.holdings.reduce((s,[,w]) => s+w, 0))
+  assert(sheet.topWeight < 100)
+  assert(sheet.source.some(s => s.url === quarterly.holdingsSource.url))
+  assert.deepEqual(observations[id].facts, originalMonthly, 'Monthly sectors/count keep their own date')
+  assert.equal(factsForIndexSheet(id, records[id], now), null)
+  const text = buildFactsheetTweet(sheet)
+  assert.match(text, /Nvidia : 6,73 %/)
+  assert.match(text, /1\s023 titres/)
+  assert(!/NaN|undefined/.test(text))
+  for (const mutation of [q => {q.holdingsSource.asOf='2026-09-30'}, q => {q.holdingsSource.sha256=''},
+    q => {q.asOf='2026-06-29'}, q => {q.collectionBasis='fund'}, q => {q.holdings=[]}]) {
+    const bad = structuredClone(observations); mutation(bad[id].quarterlyFacts)
+    assert.equal(factsForIndexSheet(id,bad[id],now),null)
+    assert(!derivedSheetDefinitions([],bad,now).some(d=>d.id===id))
+  }
+  assert.equal(factsForIndexSheet(id,observations[id],new Date('2026-06-29')),null)
+  assert.equal(factsForIndexSheet(id,observations[id],new Date('2027-01-01')),null)
+  assert.equal(factsForIndexSheet('other-index',observations[id],now),null)
+  assert.throws(()=>buildAutomatedIndexSheets(observations,new Date('2027-01-01'),[definition]),/complètes exigées/)
+  console.log('Russell: coherent dated quarter restores the sheet; mixed dates, absent weights, stale quarters and substitute funds remain refused.')
+}

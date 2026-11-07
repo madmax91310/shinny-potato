@@ -174,11 +174,11 @@ def _normalize_report(report):
         successes, errors = [], []
         for item in report['indices']:
             if item.get('status') in ('cached', 'unchanged', 'waiting', 'not-attempted'):continue
-            for field in ['composition', 'returns']:
+            for field in ['composition', 'returns', 'quarterly-composition']:
                 id_ = 'index-' + item['id'] + '-' + field
                 failed = [e for e in item.get('errors', []) if e['field'] == field]
                 errors.extend({'id': id_, 'name': item.get('name', item['id']) + ' · ' + field, 'error': e['reason']} for e in failed)
-                if not failed and item.get('facts' if field == 'composition' else 'returns'):
+                if not failed and item.get({'composition':'facts','returns':'returns','quarterly-composition':'quarterlyFacts'}[field]):
                     successes.append({'id': id_})
         return {'successes': successes, 'errors': errors}
     if 'shares' in report:
