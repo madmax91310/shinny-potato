@@ -53,7 +53,7 @@ const roster = BUDGET_PROFILES.filter((_, index) => index % partitions === parti
 const port = partition * 10 + (widths.length === 1 ? ({ 1440: 4470, 390: 4471, 320: 4472 })[widths[0]] : 4470)
 const base = process.env.BUDGET_PUBLIC_BASE ?? `http://127.0.0.1:${port}/shinny-potato`
 const server = process.env.BUDGET_PUBLIC_BASE ? null : spawn(process.execPath, ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', String(port), '--strictPort'], { stdio: 'ignore' })
-const output = 'test-artifacts/budget-profiles'; mkdirSync(output, { recursive: true })
+const output = process.env.BUDGET_ARTIFACTS || 'test-artifacts/budget-profiles'; mkdirSync(output, { recursive: true })
 let browser
 try {
   if (server) await waitPreview(server, base)
@@ -109,6 +109,7 @@ try {
       await page.getByRole('button', { name: 'Copier la source pour une réponse', exact: true }).click()
       assert.equal(await page.evaluate(() => navigator.clipboard.readText()), sourceReply(profile))
       assert(!/prépar|compléments|arrondis|prénoms? fictifs?|l’auteur|sa femme|vérification|\.json|PR\s*#/i.test(sourceReply(profile)), 'The optional copied source also excludes production notes')
+      await sourceDetails.locator('summary').first().click() // Capture the publication view without the expanded private audit.
       await expect(page.getByRole('checkbox', { name: 'Profil publié', exact: true })).not.toBeChecked()
       assert.deepEqual(await page.evaluate(key => JSON.parse(localStorage.getItem(key)).published, WORKSPACE_KEY), [], 'Copying and exporting never declare publication')
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}: no horizontal overflow`)
