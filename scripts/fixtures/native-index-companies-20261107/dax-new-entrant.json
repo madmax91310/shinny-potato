@@ -1,0 +1,113 @@
+{
+  "facts": {
+    "index": "DAX",
+    "asOf": "2026-10-31",
+    "constituents": 40,
+    "countries": [
+      [
+        "Allemagne",
+        100.0
+      ]
+    ],
+    "sectors": [
+      [
+        "Industrie",
+        33.73
+      ],
+      [
+        "Finance",
+        21.77
+      ],
+      [
+        "Technologies de l'info.",
+        15.72
+      ],
+      [
+        "Santé",
+        6.7
+      ],
+      [
+        "Conso Cyclique",
+        5.97
+      ],
+      [
+        "Services de communication",
+        5.29
+      ],
+      [
+        "Services publics",
+        4.7
+      ],
+      [
+        "Matériaux",
+        4.41
+      ],
+      [
+        "Conso non Cyclique",
+        1.07
+      ],
+      [
+        "Immobilier",
+        0.65
+      ]
+    ],
+    "holdings": [
+      [
+        "SAP SE / XETRA",
+        11.77
+      ],
+      [
+        "SIEMENS AG-REG",
+        11.26
+      ],
+      [
+        "ALLIANZ SE-REG",
+        9.37
+      ],
+      [
+        "SIEMENS ENERGY AG",
+        6.58
+      ],
+      [
+        "AIRBUS SE-BERLIN",
+        6.48
+      ],
+      [
+        "DEUTSCHE TELEKOM NAM (XETRA)",
+        4.97
+      ],
+      [
+        "MUENCHENER RUECKVER AG-REG",
+        3.96
+      ],
+      [
+        "INFINEON TECHNOLOGIES AG",
+        3.95
+      ],
+      [
+        "DEUTSCHE BANK NAMEN",
+        3.34
+      ],
+      [
+        "DEUTSCHE BOERSE AG",
+        3.29
+      ]
+    ],
+    "source": {
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0252633754/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-11-07",
+      "sha256": "286de9e00ece3ab0ecc0e731d5cff9c88a46456bf725d9ee88f945d9611dc113",
+      "label": "Composition de l’indice publiée par Amundi"
+    },
+    "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+  },
+  "identity": {
+    "sourceUrl": "https://live.deutsche-boerse.com/equity/deutsche-boerse-ag",
+    "checkedAt": "2026-11-07T18:58:08.775232+00:00",
+    "sha256": "eb1d57aaabe3afc11fcd0e7e00a928a9febac5592594d6aba2200f3a8d25fc44",
+    "officialTitle": "Deutsche Börse AG Equity | 581005 | DE0005810055 | Share Price",
+    "reviewedSourceLabel": "DEUTSCHE BOERSE AG",
+    "isin": "DE0005810055",
+    "review": "Exact exchange company name and ISIN, independently corroborated by qualified Invesco native index rows. Explicit reviewed alias only; no dynamic name matching."
+  }
+}

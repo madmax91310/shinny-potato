@@ -13,8 +13,9 @@ import qualified from '../src/data/index-company-qualified.json' with { type: 'j
 import config from './index-company-sources.json' with { type: 'json' }
 import identities from '../src/data/index-company-identities.json' with { type: 'json' }
 import { calculateConcentration, retainQualifiedComposition, qualifyPhysicalProxyIdentity } from '../src/data/index-concentration-core.js'
+import {nativeIndexCompanyView,retainIndexCompanyView} from './lib/native-index-company-view.mjs'
 
-const expectedIndexIds = [...new Set([...SHEETS.map(d=>d.id),...config.additionalIndices.map(d=>d.id),...Object.keys(config.physicalProxies)])]
+const expectedIndexIds = [...new Set([...SHEETS.map(d=>d.id),...config.additionalIndices.map(d=>d.id),...Object.keys(config.physicalProxies),...Object.keys(config.nativeReferences??{})])]
 const contractReportAt=process.argv.indexOf('--report')
 const individualContract=contractReportAt>=0?producerContract('index-company-qualification','index-company-qualification-observations',expectedIndexIds.map(id=>({id:'qualification:'+id,instrument:id,fields:['company-composition'],selected:true}))):null
 if(individualContract)individualContract.start(process.argv[contractReportAt+1])
@@ -25,6 +26,10 @@ for (const definition of [...SHEETS, ...config.additionalIndices.map(c => ({ ...
   const id = definition.id, extra = config.additionalIndices.find(row => row.id === id)
   const original = extra ? observations[id]?.facts : definition.indexFacts
   output[id] = missing('Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.')
+  if(config.nativeReferences?.[id]) {
+    output[id]=nativeIndexCompanyView(definition,config.nativeReferences[id],holdings,holdingsStatus,identities)
+    continue
+  }
   const native = extra && observations[id]?.companyFund
   if (native) {
     const result = native.classificationAsOf === native.asOf && native.basis === 'physical-creation-basket'
@@ -87,11 +92,16 @@ for (const definition of [...SHEETS, ...config.additionalIndices.map(c => ({ ...
 const failures = []
 for (const [id, candidate] of Object.entries(output)) {
   const previous = qualified[id]?.companies
-  output[id] = retainQualifiedComposition(candidate, previous)
+  output[id] = candidate.sourceBasis==='qualified-native-index'||previous?.sourceBasis==='qualified-native-index'
+    ? retainIndexCompanyView(candidate,previous) : retainQualifiedComposition(candidate, previous)
   if (!candidate.available && previous?.available) failures.push({ id, field: 'company-composition', error: candidate.reason })
-  if (process.argv.includes('--apply') && candidate.available && (!previous || candidate.asOf >= previous.asOf)) {
+  if(candidate.available&&output[id].retained&&output[id].refresh?.status==='failed'&&
+      (candidate.sourceBasis==='qualified-native-index'||previous?.sourceBasis==='qualified-native-index'))
+    failures.push({id,field:'company-composition',error:output[id].refresh.error})
+  if (process.argv.includes('--apply') && candidate.available && !output[id].retained &&
+      (!previous || candidate.asOf >= previous.asOf || output[id].sourcePromotion)) {
     const record = qualified[id] ??= {}
-    record.companies = candidate
+    record.companies = output[id]
     ;(record.companiesHistory ??= {})[candidate.asOf] ??= candidate
   }
 }

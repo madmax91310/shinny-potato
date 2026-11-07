@@ -35,7 +35,7 @@ try {
   await page.keyboard.press('Home')
   assert.equal(await page.getByRole('tab',{name:'Coulisses des indices',exact:true}).getAttribute('aria-selected'),'true')
 
-  const cases=[['cac40','CAC 40'],['nasdaq-pea','Nasdaq-100'],['dow-jones','Dow Jones Industrial Average'],['sp500-pea','S&P 500'],['world','MSCI World'],['acwi','MSCI ACWI'],['dax','DAX'],['msci-korea','MSCI Korea'],['russell-2000','Russell 2000']]
+  const cases=[['cac40','CAC 40'],['nasdaq-pea','Nasdaq-100'],['dow-jones','Dow Jones Industrial Average'],['sp500-pea','S&P 500'],['world','MSCI World'],['acwi','MSCI ACWI'],['dax','DAX'],['msci-korea','MSCI Korea'],['russell-2000','Russell 2000'],['topix','TOPIX'],['stoxx600','STOXX Europe 600'],['mscieurope','MSCI Europe'],['em-standard','MSCI Emerging Markets']]
   for(const [id,title] of cases){
     await select(id,title)
     await page.getByRole('tab',{name:'Composition top 10',exact:true}).click()
@@ -51,7 +51,7 @@ try {
     assert.equal(digest(await readFile(`${directory}/${id}.png`)),digest(expected),'Downloaded PNG equals preview bytes')
     assert.equal(expected.subarray(1,4).toString(),'PNG')
     const w=expected.readUInt32BE(16), h=expected.readUInt32BE(20)
-    assert.equal(w,1200);assert.ok(h>=1000 && h<=2000,`${id} ${w}x${h}`)
+    assert.equal(w,1200);assert.ok(h>=1000,`${id} ${w}x${h}`);assert.equal(h,await preview.evaluate(i=>i.naturalHeight),'PNG height follows the unchanged wrapping layout')
     // Original image and its explicit download remain available for every selection.
     await page.getByRole('tab',{name:'Coulisses des indices',exact:true}).click()
     await page.getByRole('tab',{name:'Image',exact:true}).click()
@@ -134,7 +134,7 @@ try {
             if(Math.min(x.x+x.w,y.x+y.w)-Math.max(x.x,y.x)>2&&Math.min(x.y+x.h,y.y+y.h)-Math.max(x.y,y.y)>2)throw new Error(sheet.id+' overlap '+x.value+' / '+y.value)
           }
           text=[];boxes=[];await renderFactsheetImage(compositionImageSheet(sheet,c))
-          if(!text.includes('Poids des 10 premières entreprises'))throw new Error(sheet.id+' missing top-ten box')
+          if(c.capabilities?.mainFactsheet!==false&&!text.includes('Poids des 10 premières entreprises'))throw new Error(sheet.id+' missing top-ten box')
           count++
         }
         const sheet=SHEETS.find(s=>s.id==='world'), c=getIndexConcentration('world')

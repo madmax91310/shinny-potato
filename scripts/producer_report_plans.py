@@ -78,6 +78,9 @@ def build_plan(producer, args, report_stem=None, module=None):
                 applicable=not(f=='composition'and c.get('collectComposition')is False)
                 add('index-'+c['id']+'-'+f,c['id'],[f],selected and applicable,
                     'Non applicable : composition explicitly disabled'if not applicable else 'Outside requested index partition'if not selected else None, **({'phase':'validation','sourceAttempted':False}if c.get('parser')=='monthly-derived'else{}))
+            if producer=='refresh_index_companies' and c.get('physicalComposition'):
+                add('index-'+c['id']+'-company-fund',c['id'],['physical creation basket','same-date classification','company identities'],selected,
+                    None if selected else 'Outside requested index partition')
             if producer=='refresh_index_sources' and c.get('collectCoherentQuarterlyComposition'):
                 quarterly=selected and '--only-derived'not in args
                 add('index-'+c['id']+'-quarterly-composition',c['id'],
