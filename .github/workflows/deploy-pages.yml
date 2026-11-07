@@ -276,6 +276,8 @@ jobs:
       - run: node scripts/test-format-loading.mjs
       - run: node scripts/test-history-pool-initialization.mjs
       - run: npm run build
+      # The ordinary build generates the index-company projection used by this check.
+      - run: node scripts/test-index-logo-review-scope.mjs
       - run: node scripts/build-app-inventory.mjs --check
       - run: node scripts/test-format-loading.mjs --built
       - run: node scripts/test-practical-sheets.mjs
