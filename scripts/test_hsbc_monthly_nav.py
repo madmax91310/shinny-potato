@@ -152,3 +152,11 @@ class HsbcMonthlyNav(unittest.TestCase):
             h.qualify(shifted,p,d,c,SOURCE,NOW)
         # A documented distribution is not itself an unexplained loss.
         h.guard_raw_nav_steps({'2026-09-01':100,'2026-09-02':70},[{'exDate':'2026-09-02','amount':30}])
+
+    def test_unused_prefix_does_not_block_qualified_return_windows(self):
+        nav,p,d,c=inputs();base=max(day for day in nav if day[:7]==SOURCE['periodStart'])
+        shifted={day:value*(2 if day<base else 1)for day,value in nav.items()}
+        expected,_=h.qualify(nav,p,d,c,SOURCE,NOW)
+        result,_=h.qualify(shifted,p,d,c,SOURCE,NOW)
+        self.assertEqual({day:value for day,value in result.items()if day>=base},
+                         {day:value for day,value in expected.items()if day>=base})

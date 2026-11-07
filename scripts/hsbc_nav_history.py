@@ -265,7 +265,10 @@ def qualify(nav,periods,declared,current,source,now,prior=None):
     if end<max(nav):raise ValueError('Cash coverage gap before latest NAV; last-two table cannot certify the omitted period')
     used=[e for e in events if min(nav)<e['exDate']<=max(nav)]
     if any(e['exDate']not in nav for e in used):raise ValueError('Exact ex-date NAV absent; no interpolation')
-    guard_raw_nav_steps(nav,used)
+    # The first month contributes its final NAV only. Earlier daily rows are
+    # outside the supplied return window and cannot invalidate that window.
+    first_month_end=max(day for day in nav if day[:7]==source['periodStart'])
+    guard_raw_nav_steps({day:value for day,value in nav.items()if day>=first_month_end},used)
     factor=1.0;levels={};cash_checks=[];by_day={e['exDate']:e for e in used}
     for day,value in nav.items():
         if day in by_day:
