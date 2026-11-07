@@ -174,7 +174,8 @@ def collect_one(config, now, fetch=download, *, previous=None):
     return result
 
 
-def merge_records(current, observations):
+def merge_records(current, observations, *, now=None):
+    now = now or dt.datetime.now(UTC)
     merged=copy.deepcopy(current)
     for observation in observations:
         record=merged.setdefault(observation['id'],{})
@@ -190,8 +191,20 @@ def merge_records(current, observations):
             previous = copy.deepcopy(old) if old else None
             if previous: previous.get('source', {}).pop('checkedAt', None)
             if comparable == previous:
-                if field == 'holdings':
-                    record[field]['source']['checkedAt'] = incoming['source']['checkedAt']
+                source = incoming.get('source', {})
+                error_field = {'facts':'composition', 'returns':'returns', 'holdings':'holdings', 'quarterlyFacts':'quarterly-composition'}[field]
+                # Only carry the producer's successful source clock forward.
+                # Parsing a retained handoff or a failed field is no new check;
+                # neither the financial period nor immutable history is renewed.
+                if source.get('transport') != 'official-response-handoff' and not any(e.get('field') == error_field for e in observation.get('errors', [])):
+                    def timestamp(value):
+                        parsed = dt.datetime.fromisoformat(value.replace('Z', '+00:00'))
+                        return parsed.replace(tzinfo=UTC) if parsed.tzinfo is None else parsed
+                    checked, before = source.get('checkedAt'), old.get('source', {}).get('checkedAt')
+                    if checked and before:
+                        control = timestamp(checked)
+                        if control > now: raise ValueError('Future index source-control date')
+                        if control > timestamp(before): record[field]['source']['checkedAt'] = checked
                 continue
             record[field]=incoming
             record.setdefault(field+'History', {}).setdefault(incoming['asOf'], copy.deepcopy(incoming))
@@ -256,7 +269,7 @@ def main():
     write_json_atomic(args.output,report)
     if qualification_errors: raise ValueError('; '.join(qualification_errors))
     if args.apply:
-        merged=merge_records(old,observations)
+        merged=merge_records(old,observations,now=now)
         if old!=merged:write_json_atomic(path,merged)
     failures=sum(len(o['errors'])for o in observations)
     print(f"Indices: {sum('facts'in o for o in observations)} compositions, {sum('returns'in o for o in observations)} calendar histories; {failures} explicit exceptions.")

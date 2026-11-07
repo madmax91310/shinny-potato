@@ -1,0 +1,382 @@
+{
+  "origin": {
+    "productionBaseline": "d907d3594c252c62af353ba0e1811897306de6d0",
+    "ordinaryProducerRun": 42362103164,
+    "headSha": "c3bc8880da1064adddba351a46b1f70aaee236d3",
+    "kind": "real ordinary producer on PR; not production recording or cron"
+  },
+  "previous": {
+    "facts": {
+      "index": "NASDAQ-100 Notional Net Total Return",
+      "asOf": "2026-09-30",
+      "constituents": 101,
+      "countries": [
+        [
+          "États-Unis",
+          94.81
+        ],
+        [
+          "Irlande",
+          1.79
+        ],
+        [
+          "Pays-Bas",
+          1.38
+        ],
+        [
+          "Canada",
+          0.91
+        ],
+        [
+          "Royaume-Uni",
+          0.73
+        ],
+        [
+          "Autres pays",
+          0.39
+        ]
+      ],
+      "sectors": [
+        [
+          "Technologies de l'info.",
+          59.65
+        ],
+        [
+          "Services de communication",
+          15.08
+        ],
+        [
+          "Conso Cyclique",
+          10.03
+        ],
+        [
+          "Conso non Cyclique",
+          5.67
+        ],
+        [
+          "Santé",
+          3.83
+        ],
+        [
+          "Industrie",
+          3.16
+        ],
+        [
+          "Services publics",
+          1.03
+        ],
+        [
+          "Matériaux",
+          0.92
+        ],
+        [
+          "Énergie",
+          0.45
+        ],
+        [
+          "Finance",
+          0.19
+        ]
+      ],
+      "holdings": [
+        [
+          "NVIDIA CORP",
+          8.34
+        ],
+        [
+          "APPLE INC",
+          7.32
+        ],
+        [
+          "MICROSOFT CORP",
+          5.75
+        ],
+        [
+          "MICRON TECHNOLOGY INC",
+          5.05
+        ],
+        [
+          "ADVANCED MICRO DEVICES",
+          4.17
+        ],
+        [
+          "AMAZON.COM INC",
+          4.05
+        ],
+        [
+          "META PLATFORMS INC-CLASS A",
+          3.34
+        ],
+        [
+          "ALPHABET INC CL A",
+          3.05
+        ],
+        [
+          "ALPHABET INC CL C",
+          2.84
+        ],
+        [
+          "TESLA INC",
+          2.82
+        ]
+      ],
+      "source": {
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF",
+        "checkedAt": "2026-10-11",
+        "sha256": "0e4c59822afbc99c23b25cc9ccb955119c8086d38d64118c62b63a6d04cd9efd",
+        "label": "Composition de l’indice publiée par Amundi"
+      },
+      "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+    },
+    "factsHistory": {
+      "2026-09-30": {
+        "index": "NASDAQ-100 Notional Net Total Return",
+        "asOf": "2026-09-30",
+        "constituents": 101,
+        "countries": [
+          [
+            "États-Unis",
+            94.81
+          ],
+          [
+            "Irlande",
+            1.79
+          ],
+          [
+            "Pays-Bas",
+            1.38
+          ],
+          [
+            "Canada",
+            0.91
+          ],
+          [
+            "Royaume-Uni",
+            0.73
+          ],
+          [
+            "Autres pays",
+            0.39
+          ]
+        ],
+        "sectors": [
+          [
+            "Technologies de l'info.",
+            59.65
+          ],
+          [
+            "Services de communication",
+            15.08
+          ],
+          [
+            "Conso Cyclique",
+            10.03
+          ],
+          [
+            "Conso non Cyclique",
+            5.67
+          ],
+          [
+            "Santé",
+            3.83
+          ],
+          [
+            "Industrie",
+            3.16
+          ],
+          [
+            "Services publics",
+            1.03
+          ],
+          [
+            "Matériaux",
+            0.92
+          ],
+          [
+            "Énergie",
+            0.45
+          ],
+          [
+            "Finance",
+            0.19
+          ]
+        ],
+        "holdings": [
+          [
+            "NVIDIA CORP",
+            8.34
+          ],
+          [
+            "APPLE INC",
+            7.32
+          ],
+          [
+            "MICROSOFT CORP",
+            5.75
+          ],
+          [
+            "MICRON TECHNOLOGY INC",
+            5.05
+          ],
+          [
+            "ADVANCED MICRO DEVICES",
+            4.17
+          ],
+          [
+            "AMAZON.COM INC",
+            4.05
+          ],
+          [
+            "META PLATFORMS INC-CLASS A",
+            3.34
+          ],
+          [
+            "ALPHABET INC CL A",
+            3.05
+          ],
+          [
+            "ALPHABET INC CL C",
+            2.84
+          ],
+          [
+            "TESLA INC",
+            2.82
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF",
+          "checkedAt": "2026-10-11",
+          "sha256": "0e4c59822afbc99c23b25cc9ccb955119c8086d38d64118c62b63a6d04cd9efd",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      }
+    }
+  },
+  "observation": {
+    "id": "nasdaq-pea",
+    "facts": {
+      "index": "NASDAQ-100 Notional Net Total Return",
+      "asOf": "2026-09-30",
+      "constituents": 101,
+      "countries": [
+        [
+          "États-Unis",
+          94.81
+        ],
+        [
+          "Irlande",
+          1.79
+        ],
+        [
+          "Pays-Bas",
+          1.38
+        ],
+        [
+          "Canada",
+          0.91
+        ],
+        [
+          "Royaume-Uni",
+          0.73
+        ],
+        [
+          "Autres pays",
+          0.39
+        ]
+      ],
+      "sectors": [
+        [
+          "Technologies de l'info.",
+          59.65
+        ],
+        [
+          "Services de communication",
+          15.08
+        ],
+        [
+          "Conso Cyclique",
+          10.03
+        ],
+        [
+          "Conso non Cyclique",
+          5.67
+        ],
+        [
+          "Santé",
+          3.83
+        ],
+        [
+          "Industrie",
+          3.16
+        ],
+        [
+          "Services publics",
+          1.03
+        ],
+        [
+          "Matériaux",
+          0.92
+        ],
+        [
+          "Énergie",
+          0.45
+        ],
+        [
+          "Finance",
+          0.19
+        ]
+      ],
+      "holdings": [
+        [
+          "NVIDIA CORP",
+          8.34
+        ],
+        [
+          "APPLE INC",
+          7.32
+        ],
+        [
+          "MICROSOFT CORP",
+          5.75
+        ],
+        [
+          "MICRON TECHNOLOGY INC",
+          5.05
+        ],
+        [
+          "ADVANCED MICRO DEVICES",
+          4.17
+        ],
+        [
+          "AMAZON.COM INC",
+          4.05
+        ],
+        [
+          "META PLATFORMS INC-CLASS A",
+          3.34
+        ],
+        [
+          "ALPHABET INC CL A",
+          3.05
+        ],
+        [
+          "ALPHABET INC CL C",
+          2.84
+        ],
+        [
+          "TESLA INC",
+          2.82
+        ]
+      ],
+      "source": {
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF",
+        "checkedAt": "2026-11-07",
+        "sha256": "0e4c59822afbc99c23b25cc9ccb955119c8086d38d64118c62b63a6d04cd9efd",
+        "label": "Composition de l’indice publiée par Amundi"
+      },
+      "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+    },
+    "errors": []
+  }
+}

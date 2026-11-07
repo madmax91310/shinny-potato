@@ -77,6 +77,50 @@ class CompositionGateTests(unittest.TestCase):
             with self.subTest(offset=offset), self.assertRaisesRegex(ValueError, 'future or stale'):
                 validate_composition(facts, self.config['world'], NOW)
 
+    def test_actual_unchanged_nasdaq_source_control_is_recorded_without_rewriting_history(self):
+        fixture = json.loads((ROOT / 'scripts/fixtures/index-control-clocks/nasdaq-pea-real-20261107.json').read_text())
+        old = {'nasdaq-pea': fixture['previous']}
+        untouched = copy.deepcopy(old)
+        observation = fixture['observation']
+        verified_at = dt.datetime(2026, 11, 7, 12, tzinfo=dt.timezone.utc)
+        merged = merge_records(old, [observation], now=verified_at)
+        self.assertEqual(old, untouched)
+        self.assertEqual(merged['nasdaq-pea']['facts']['source']['checkedAt'], '2026-11-07')
+        self.assertEqual(merged['nasdaq-pea']['factsHistory'], old['nasdaq-pea']['factsHistory'])
+        expected = copy.deepcopy(old['nasdaq-pea']['facts'])
+        expected['source']['checkedAt'] = '2026-11-07'
+        self.assertEqual(merged['nasdaq-pea']['facts'], expected)
+        self.assertEqual(merge_records(merged, [observation], now=verified_at), merged)
+
+    def test_each_field_keeps_its_period_and_independent_control_at_year_roll(self):
+        now = dt.datetime(2026, 1, 1, 12, tzinfo=dt.timezone.utc)
+        mapping = {'facts':'composition', 'returns':'returns', 'holdings':'holdings', 'quarterlyFacts':'quarterly-composition'}
+        for field, error_field in mapping.items():
+            old = {'asOf':'2025-11-30', 'currency':'USD', 'variant':'TOTAL',
+                   'source':{'url':'https://issuer.example/exact', 'sha256':'a'*64, 'checkedAt':'2025-12-31'}}
+            baseline = {'exact':{field:old, field+'History':{'2025-11-30':copy.deepcopy(old)}}}
+            incoming = copy.deepcopy(old); incoming['source']['checkedAt'] = '2026-01-01'
+            for errors in [[], [{'field':error_field, 'reason':'network failed; previous value retained'}], [{'field':'unrelated', 'reason':'separate source failed'}]]:
+                with self.subTest(field=field, errors=errors):
+                    result = merge_records(baseline, [{'id':'exact', field:incoming, 'errors':errors}], now=now)['exact']
+                    expected = '2025-12-31' if errors and errors[0]['field']==error_field else '2026-01-01'
+                    self.assertEqual(result[field]['source']['checkedAt'], expected)
+                    self.assertEqual(result[field]['asOf'], '2025-11-30')
+                    self.assertEqual(result[field+'History'], baseline['exact'][field+'History'])
+
+    def test_cached_older_and_future_source_clocks_cannot_create_a_successful_refresh(self):
+        old = copy.deepcopy(self.fixture['facts'])
+        old['source']['checkedAt'] = '2026-10-13'
+        for transport, stamp in [('official-response-handoff','2026-10-14'), (None,'2026-10-12')]:
+            previous = copy.deepcopy(old)
+            if transport: previous['source']['transport'] = transport
+            incoming = copy.deepcopy(previous); incoming['source']['checkedAt'] = stamp
+            result = merge_records({'world':{'facts':previous}}, [{'id':'world','facts':incoming}], now=NOW)
+            self.assertEqual(result['world']['facts'], previous)
+        incoming = copy.deepcopy(old); incoming['source']['checkedAt'] = '2026-10-15'
+        with self.assertRaisesRegex(ValueError, 'Future index source-control date'):
+            merge_records({'world':{'facts':old}}, [{'id':'world','facts':incoming}], now=NOW)
+
     def test_quarterly_conflicts_preserve_last_valid_snapshot_and_other_results(self):
         quarter = json.loads((ROOT / 'scripts/fixtures/russell-composition/coherent-quarter-2026-06-30.json').read_text())
         baseline = {'quarterlyFacts': copy.deepcopy(quarter)}
