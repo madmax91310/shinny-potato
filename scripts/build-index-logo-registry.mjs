@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto'
 import assert from 'node:assert/strict'
 import { SHEETS } from '../src/pages/factsheet-tweets/data.js'
 import { getIndexConcentration } from '../src/data/index-company-compositions.js'
+import { reviewedLogoSheets } from './index-logo-review-scope.mjs'
 import { sortedRows } from '../src/pages/factsheet-tweets/editorial.js'
 const read = path => JSON.parse(readFileSync(path, 'utf8'))
 const flagSources = read('public/asset-art/index-flags/sources.json')
@@ -24,7 +25,7 @@ for (const [id, record] of Object.entries(aliases)) for (const isin of record.se
 }
 const archived = process.argv.includes('--check') ? read(`${reportDir}/logo-coverage.json`) : null
 const uses = []
-for (const sheet of SHEETS) {
+for (const sheet of reviewedLogoSheets(SHEETS, archived)) {
   const composition = getIndexConcentration(sheet.id)
   const entries = archived ? archived.uses.filter(row => row.sheet === sheet.id) : [
     ...sortedRows(sheet.holdings).slice(0, 4).map(([name]) => ({name, mode:'main', evidence: sheet.source})),
