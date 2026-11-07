@@ -207,13 +207,29 @@ class DocumentedWidgetPath(unittest.TestCase):
 
 
 class RemainingIssuerWidgets(unittest.TestCase):
- def test_five_successful_incident_routes_keep_exact_shared_identity_and_modes(self):
+ def test_four_successful_incident_routes_keep_exact_shared_identity_and_modes(self):
   from wisdomtree_performance_history import urls
-  sources=[s for s in configurations()if s.get('wisdomTicker')in {'COPA','COCO','COFF','NGAS','WEAT'}]
-  self.assertEqual(len(sources),5)
+  sources=[s for s in configurations()if s.get('wisdomTicker')in {'COPA','COCO','COFF','WEAT'}]
+  self.assertEqual(len(sources),4)
   ordinary={s['id']:s for s in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']}
   for s in sources:
    with self.subTest(isin=s['isin']):
     self.assertEqual(urls(s),[f"https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity={s['wisdomTicker']}&mode={m}"for m in ['gro10k','tabular']])
     self.assertEqual(urls(s),urls(ordinary[s['id']]))
     with self.assertRaises(ValueError):urls({**ordinary[s['id']],'navCurrency':'EUR'})
+
+ def test_ngas_uses_the_current_native_widget_canonical_route_in_both_producers(self):
+  from wisdomtree_performance_history import urls
+  evidence=json.loads((FIX/'NGAS-canonical-route-20261107.json').read_text())
+  source=next(s for s in configurations()if s['id']=='etc_natural_gasNav')
+  ordinary=next(s for s in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']if s['id']==source['id'])
+  self.assertEqual(source['isin'],evidence['isin'])
+  self.assertEqual(source['sourceUrl'],evidence['productPageUrl'])
+  self.assertEqual(source['wisdomPerformancePathStyle'],'canonical')
+  expected=[f'https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode={m}'for m in ['gro10k','tabular']]
+  self.assertEqual(urls(source),expected)
+  self.assertEqual(urls(ordinary),expected,'The ordinary registry must reuse the shared exact-share route')
+  self.assertIn(expected[0],[r['url']for r in evidence['nativeWidgetResponses']])
+  self.assertEqual(evidence['controlledResponses'],expected)
+  for key,value in [('isin','GB00B15KY104'),('wisdomClassId',1),('wisdomTicker','WEAT'),('navCurrency','EUR')]:
+   with self.subTest(key=key),self.assertRaises(ValueError):urls({**ordinary,key:value})

@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-11-07T07:56:11.782348+00:00",
+  "isin": "JE00BN7KB334",
+  "productPageUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-natural-gas",
+  "nativeWidgetResponses": [
+    {
+      "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=gro10k",
+      "status": 200,
+      "bytes": 5811845,
+      "sha256": "8c44eb68f72d74202d4a221a0f87f2fb6865e122e5c1fbd07f3c0b3f05f78eb6"
+    },
+    {
+      "url": "https://dataspanapi.wisdomtree.com/funddetails/calendar_year_performance/?isin=JE00BN7KB334",
+      "status": 200,
+      "bytes": 3731,
+      "sha256": "ad082f0bbb114acf243f8d8cf93732aa68fa2902c7b3a11062a0c7ddfd5d0fc1"
+    },
+    {
+      "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=gro10k",
+      "status": 200,
+      "bytes": 5811845,
+      "sha256": "8c44eb68f72d74202d4a221a0f87f2fb6865e122e5c1fbd07f3c0b3f05f78eb6"
+    }
+  ],
+  "controlledResponses": [
+    "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=gro10k",
+    "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=tabular"
+  ],
+  "sha256": {
+    "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=gro10k": "8c44eb68f72d74202d4a221a0f87f2fb6865e122e5c1fbd07f3c0b3f05f78eb6",
+    "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=tabular": "ee7f33ff8ccd6ac0abff4b2e20c9c8c7136a302c4ea0fca6d0ee196aabfcabc8"
+  },
+  "scope": "Route metadata captured from the ordinary issuer page and two real public HTTP responses; not a substitute for financial qualification or a scheduled-run proof."
+}
