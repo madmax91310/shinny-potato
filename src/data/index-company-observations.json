@@ -104,7 +104,7 @@
       ],
       "source": {
         "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013380607/FRA/FRA/INSTITUTIONNEL/ETF",
-        "checkedAt": "2026-11-06",
+        "checkedAt": "2026-11-07",
         "sha256": "4b72ac4f75e19171c244b4f45703eca637a7645e546e1e20dbc2c475b3746b03",
         "label": "Composition de l’indice publiée par Amundi"
       },
@@ -333,8 +333,8 @@
       }
     },
     "status": {
-      "checkedAt": "2026-11-06T14:38:29.044635+00:00",
-      "lastSuccessAt": "2026-11-06T14:38:29.044635+00:00",
+      "checkedAt": "2026-11-07T13:30:47.485594+00:00",
+      "lastSuccessAt": "2026-11-07T13:30:47.485594+00:00",
       "status": "validated",
       "asOf": "2026-10-31"
     }
@@ -432,7 +432,7 @@
       ],
       "source": {
         "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/INSTITUTIONNEL/ETF",
-        "checkedAt": "2026-11-06",
+        "checkedAt": "2026-11-07",
         "sha256": "288ab1e7658c02d9bf0bd11b943d657eea206c557fb33aaca20554ca43d78839",
         "label": "Composition de l’indice publiée par Amundi"
       },
@@ -539,8 +539,8 @@
       }
     },
     "status": {
-      "checkedAt": "2026-11-06T14:38:29.044635+00:00",
-      "lastSuccessAt": "2026-11-06T14:38:29.044635+00:00",
+      "checkedAt": "2026-11-07T13:30:47.485594+00:00",
+      "lastSuccessAt": "2026-11-07T13:30:47.485594+00:00",
       "status": "validated",
       "asOf": "2026-09-30"
     }
@@ -642,7 +642,7 @@
       ],
       "source": {
         "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0252633754/FRA/FRA/INSTITUTIONNEL/ETF",
-        "checkedAt": "2026-11-06",
+        "checkedAt": "2026-11-07",
         "sha256": "286de9e00ece3ab0ecc0e731d5cff9c88a46456bf725d9ee88f945d9611dc113",
         "label": "Composition de l’indice publiée par Amundi"
       },
@@ -855,8 +855,8 @@
       }
     },
     "status": {
-      "checkedAt": "2026-11-06T14:38:29.044635+00:00",
-      "lastSuccessAt": "2026-11-06T14:38:29.044635+00:00",
+      "checkedAt": "2026-11-07T13:30:47.485594+00:00",
+      "lastSuccessAt": "2026-11-07T13:30:47.485594+00:00",
       "status": "validated",
       "asOf": "2026-10-31"
     }
@@ -958,7 +958,7 @@
       ],
       "source": {
         "url": "https://www.msci.com/documents/10199/255599/msci-korea-index.pdf",
-        "checkedAt": "2026-11-06",
+        "checkedAt": "2026-11-07",
         "label": "Composition officielle automatisée · MSCI Korea",
         "sha256": "0a35cb250962f195c7dc2d87bf4640fdbd5075b6a8d06f2209f700359f3c2ebb"
       },
@@ -1171,10 +1171,11 @@
       }
     },
     "status": {
-      "checkedAt": "2026-11-06T14:38:29.044635+00:00",
-      "lastSuccessAt": "2026-11-06T14:38:29.044635+00:00",
-      "status": "validated",
-      "asOf": "2026-10-30"
+      "checkedAt": "2026-11-07T13:30:47.485594+00:00",
+      "lastSuccessAt": "2026-11-07T13:30:47.485594+00:00",
+      "status": "failed",
+      "asOf": "2026-10-30",
+      "error": "Portfolio and classification dates differ"
     },
     "companyFund": {
       "asOf": "2026-11-05",
@@ -6822,10 +6823,11 @@
       }
     },
     "companyStatus": {
-      "checkedAt": "2026-11-06T14:38:29.044635+00:00",
+      "checkedAt": "2026-11-07T13:30:47.485594+00:00",
       "lastSuccessAt": "2026-11-06T14:38:29.044635+00:00",
-      "status": "validated",
-      "asOf": "2026-11-05"
+      "status": "failed",
+      "asOf": "2026-11-05",
+      "error": "Portfolio and classification dates differ"
     }
   }
 }
