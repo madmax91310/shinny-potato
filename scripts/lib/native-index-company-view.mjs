@@ -60,6 +60,8 @@ export function retainIndexCompanyView(candidate,previous) {
  if(candidate.available&&native&&previous?.available&&previous.approximation===true)
   return {...candidate,sourcePromotion:{from:'physical-fund-approximation',previousAsOf:previous.asOf,
    previousSourceUrl:previous.sourceUrl,to:basis,reason:'Référence exacte qualifiée; photographie du proxy distincte et conservée dans son historique.'}}
+ if(candidate.available&&native&&wasNative&&previous.available&&Date.parse(candidate.checkedAt)<Date.parse(previous.checkedAt))
+  return {...previous,retained:true,refresh:{...previous.refresh,status:'failed',error:'Contrôle source en recul; dernière preuve native valide conservée.'}}
  if(candidate.available&&native&&wasNative&&previous.available&&
      (candidate.sourceIndexId!==previous.sourceIndexId||candidate.asOf===previous.asOf&&
       (candidate.weightVectorSha256!==previous.weightVectorSha256||candidate.issuerGroupingSha256!==previous.issuerGroupingSha256)))

@@ -86,3 +86,7 @@ assert(daxView.available,daxView.reason)
 assert.equal(daxView.top.find(r=>r.securities.includes('DE0005810055')).weightPct,3.29)
 const missingAlias=calculateConcentration({rows:daxRows.map(r=>r.isin===dax.identity.isin?{...r,isin:undefined}:r),complete:false,topCompaniesCertified:true},identities)
 assert.equal(missingAlias.available,false,'Unreviewed entrants must still block a new photograph')
+
+const oldSourceControl=retainIndexCompanyView({...candidate,checkedAt:'2026-11-06T14:26:22Z'},candidate)
+assert(oldSourceControl.retained);assert.equal(oldSourceControl.checkedAt,candidate.checkedAt)
+assert.equal(oldSourceControl.refresh.status,'failed')
