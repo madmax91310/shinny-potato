@@ -74,3 +74,15 @@ const report=indexQualificationReport({world:failed},[{id:'world',error:failed.r
 assert.equal(report.sourceAttempted,false);assert.deepEqual(report.scope.networkRequestedIds,[])
 assert.equal(report.outcomes[0].status,'failed');assert.equal(report.outcomes[0].checkedAt,candidate.checkedAt)
 console.log('Seven exact native-index company views: independent Decimal oracles, original rounded weights, no name joins, no source-clock renewal, full-book/identity/age rejection, order invariance and scope-aware retention.')
+
+// The October DAX top ten contains a newly entered issuer. An explicit
+// exchange-verified alias renews this table; no guessed names or zero weights.
+const dax=JSON.parse(readFileSync(new URL('./fixtures/native-index-companies-20261107/dax-new-entrant.json',import.meta.url)))
+assert(dax.identity.officialTitle.includes(dax.identity.isin))
+assert.equal(routes.reviewedSecurityLabels[dax.identity.reviewedSourceLabel],dax.identity.isin)
+const daxRows=dax.facts.holdings.map(([name,weightPct])=>({name,weightPct,isin:routes.reviewedSecurityLabels[name]}))
+const daxView=calculateConcentration({rows:daxRows,asOf:dax.facts.asOf,checkedAt:dax.facts.source.checkedAt,sourceUrl:dax.facts.source.url,sha256:dax.facts.source.sha256,complete:false,topCompaniesCertified:true},identities)
+assert(daxView.available,daxView.reason)
+assert.equal(daxView.top.find(r=>r.securities.includes('DE0005810055')).weightPct,3.29)
+const missingAlias=calculateConcentration({rows:daxRows.map(r=>r.isin===dax.identity.isin?{...r,isin:undefined}:r),complete:false,topCompaniesCertified:true},identities)
+assert.equal(missingAlias.available,false,'Unreviewed entrants must still block a new photograph')
