@@ -76,4 +76,6 @@ class NavRefreshSafety(unittest.TestCase):
         self.assertEqual(result['example']['periodEnd'],old['periodEnd'],'The NAV period is never renewed by a check')
         self.assertEqual(result['example']['points'],old['points'])
         self.assertEqual(old['checkedAt'],'2026-02-01','Original proof object is not mutated')
+# The ordinary full publication gate exercises the new provider in isolation.
+from test_hsbc_monthly_nav import HsbcMonthlyNav
 if __name__=='__main__':unittest.main()

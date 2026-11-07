@@ -447,7 +447,20 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
                           and source.get('symbol') and source.get('timezone') and source.get('label')
                           and source.get('parser') == 'yahoo' and source.get('field') == 'adjclose'
                           and source.get('collectAnniversary') is True)
-                if not equity and (source.get('consumerScope') != 'catalog' or source.get('parser') != 'yahoo'
+                # One reviewed independent raw-NAV/cash route. The exact
+                # source identity, cash coverage and initial annual oracles are
+                # mandatory; this does not admit other official-NAV bootstraps.
+                hsbc=(source.get('id')=='etfIE00B4K6B022Nav' and source.get('isin')=='IE00B4K6B022'
+                    and source.get('navProvider')=='hsbc' and source.get('parser')=='official-nav'
+                    and source.get('currency')==source.get('navCurrency')=='EUR'
+                    and source.get('periodStart')=='2023-12' and source.get('consumerScope')=='catalog'
+                    and source.get('navHistoryKind')=='official-nav-and-gross-cash'
+                    and source.get('valuationBasis')=='fund-nav-total-return'
+                    and scope.get('constructedIncomeIndex') is True
+                    and scope.get('hsbcCashQualification',{}).get('coveredUntil')==result.get('lastOfficialValuation')
+                    and {2024,2025}<={c.get('year')for c in scope.get('checks',[])}
+                    and scope.get('controlledInstrument')==source['isin'])
+                if not equity and not hsbc and (source.get('consumerScope') != 'catalog' or source.get('parser') != 'yahoo'
                         or source.get('field') != 'adjclose' or not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]', source.get('isin',''))
                         or not source.get('listingEvidenceId')):
                     reject('Unregistered monthly history bootstrap')

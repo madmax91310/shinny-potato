@@ -122,7 +122,7 @@ def configurations():
             **({'navCalendarSource':prior['navCalendarSource']}if 'navCalendarSource'in prior else{}),
             **extras[id]}.items()})
     remainder = json.loads((ROOT/'scripts/official-nav-remainder-sources.json').read_text())
-    return result + remainder + json.loads((ROOT/'scripts/new-instrument-nav-sources.json').read_text()) + json.loads((ROOT/'scripts/new-distributing-nav-sources.json').read_text())
+    return result + remainder + [s for s in old.values() if s.get('navProvider')=='hsbc'] + json.loads((ROOT/'scripts/new-instrument-nav-sources.json').read_text()) + json.loads((ROOT/'scripts/new-distributing-nav-sources.json').read_text())
 
 
 def daily_nav_fx_factor(native, currency, latest, body):
@@ -191,6 +191,11 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
             anniversary_nav,price_proof=anniversary_price_history(body,source,now,nav)
             calendar_proof.update(price_proof)
         credit='Amundi'
+    elif kind=='hsbc':
+        from hsbc_nav_history import collect as hsbc_collect
+        large=lambda url: document_fetch(url,max_bytes=20_000_000) if document_fetch is download else document_fetch(url)
+        nav,anniversary_nav,years,calendar_proof=hsbc_collect(source,now,document,large)
+        calendar_precision=1;credit='HSBC Asset Management / FCA NSM'
     elif kind=='blackrock':
         query=urllib.parse.urlencode(dict(appSubType='ISHARES',appType='PRODUCT_PAGE',component='keyFundFacts,performance',locale='en_GB',portfolioId=source['productId'],targetSite='ishares-uk',userType='individual',excludeContent='true',includeConfig='true'))
         body=data(source['sourceUrl']+'?'+query);parsed=blackrock_nav(body,isin,native,now)
@@ -462,7 +467,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     result={**source,'points':points,**({'anniversaryPoints':anniversary_points}if source.get('collectAnniversary') is not False else {'anniversaryAvailable':False}),**({'anniversaryValuationBasis':'fund-nav-price','anniversaryVariant':'Valeurs liquidatives publiées · hors distributions'}if anniversary_nav else{}),'checkedAt':now.date().isoformat(),
             'periodEnd':points[-1][0],'sourceUrls':urls,'sourceCredit':credit,
             'latestLevel':latest_level,'nativeValuationCurrency':native,'lastOfficialValuation':max(nav),
-            'financialConvention':('exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim'if source.get('navHistoryKind')or source.get('navHistoryTransport')=='official-dataspan-nav-tr'else'exact-share accumulated net NAV; no exchange-price claim'),
+            'financialConvention':('internally computed total return from exact-share official raw NAV and explicit gross cash reinvested once at ex-date NAV; not an issuer-published adjusted series or exchange quote'if kind=='hsbc'else'exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim'if source.get('navHistoryKind')or source.get('navHistoryTransport')=='official-dataspan-nav-tr'else'exact-share accumulated net NAV; no exchange-price claim'),
             'calendarProof':{**calendar_proof,'checks':checks},
             **({key:calendar_proof[key]for key in ['historyExcludedMonths','anniversaryExcludedMonths','historyUnqualifiedReturnWindows']if key in calendar_proof}),
             'proofRows':proof_rows,
