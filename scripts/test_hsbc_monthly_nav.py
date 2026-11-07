@@ -5,6 +5,7 @@ import datetime as dt
 import hashlib
 import io
 import json
+import math
 import pathlib
 import unittest
 import zipfile
@@ -39,6 +40,9 @@ class HsbcMonthlyNav(unittest.TestCase):
         self.assertAlmostEqual(100*(levels['2024-12-31']/levels['2023-12-29']-1),11.571110862628764)
         self.assertAlmostEqual(100*(levels['2025-12-31']/levels['2024-12-31']-1),21.760279017250973)
         self.assertEqual(levels[max(levels)],nav[max(nav)])
+        from issuer_nav_history import monthly
+        points,_=monthly(levels,'EUR','EUR','2023-12',NOW)
+        self.assertEqual([[m,math.floor(v*10**8+.5)/10**8]for m,v in points],json.loads((F/'monthly-record.json').read_text())['points'],'Node consumer fixture is independently reconstructed from raw NAV and cash')
         from issuer_nav_history import monthly,calendar_checks
         checks=calendar_checks(levels,{'2024':11.6,'2025':21.8},1,NOW)
         self.assertEqual([r['year']for r in checks],[2024,2025]);self.assertEqual(len(monthly(levels,'EUR','EUR','2023-12',NOW)[0]),35)
