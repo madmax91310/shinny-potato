@@ -4028,9 +4028,9 @@
     },
     "etfGB00B15KXQ89Nav": {
       "status": "validated",
-      "checkedAt": "2026-11-06T15:38:06.171774+00:00",
+      "checkedAt": "2026-11-07T09:16:30.778641+00:00",
       "periodEnd": "2026-10",
-      "responseSha256": "ddee884ea1e7fe116a85b1dc98fdd27bb1223c236ca04371a296d2ec53ce7ca2"
+      "responseSha256": "29ae102f8ca0e5eac79fbb86c7e1a14bd141385263c6f8b8266291d800732bba"
     },
     "etc_brent_crude_oilNav": {
       "status": "validated",
@@ -4046,9 +4046,9 @@
     },
     "etc_coffeeNav": {
       "status": "validated",
-      "checkedAt": "2026-11-06T15:38:06.171774+00:00",
+      "checkedAt": "2026-11-07T09:16:30.778641+00:00",
       "periodEnd": "2026-10",
-      "responseSha256": "155dacb9fd302101c2a9089ee4c3ca3c48e847dbb9a3e5c05d5d684fc6e5942f"
+      "responseSha256": "1cb9129eb7ff52fee08c6e59b695cc0d14947568ef8ac60948afb60a60232bc1"
     },
     "etfIE00BK5BCD43Nav": {
       "status": "validated",
@@ -4082,14 +4082,15 @@
     },
     "etc_cocoaNav": {
       "status": "validated",
-      "checkedAt": "2026-11-06T15:38:06.171774+00:00",
+      "checkedAt": "2026-11-07T09:16:30.778641+00:00",
       "periodEnd": "2026-10",
-      "responseSha256": "499185a5a64f3da2a9f570ed035819a7cd841aff6a1b0b72181a398ca5170714"
+      "responseSha256": "77213a362c2ffdd41a429410e0eeb6827915122620afb93aa2145f4544992b38"
     },
     "etc_natural_gasNav": {
-      "status": "failed",
-      "checkedAt": "2026-11-06T21:39:01.999253+00:00",
-      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18\n  if(!response?.ok()||response.url()!==url)throw Error(`Official browser performance unavailable: ${response?.status()} ${response?.url()} (expected ${url})`)\n                                                 ^\n\nError: Official browser performance unavailable: 403 https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k (expected https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k)\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:18:50\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n\nNode.js v20.20.2\n"
+      "status": "validated",
+      "checkedAt": "2026-11-07T09:16:30.778641+00:00",
+      "periodEnd": "2026-10",
+      "responseSha256": "1223da67a2eb521ba20cb44e5981ea95a91336d4fd86cc5514f54d7f35263cb1"
     },
     "etc_wheatNav": {
       "status": "validated",

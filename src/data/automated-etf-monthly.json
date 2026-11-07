@@ -210717,11 +210717,11 @@
       ]
     ],
     "anniversaryAvailable": false,
-    "checkedAt": "2026-11-06",
+    "checkedAt": "2026-11-07",
     "periodEnd": "2026-10",
     "sourceUrls": [
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=gro10k",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=tabular",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=gro10k",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=tabular",
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
     ],
     "sourceCredit": "WisdomTree",
@@ -210905,25 +210905,25 @@
       "actualNavTransport": "public-widget-http",
       "accessAttempts": [
         {
-          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=gro10k",
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=gro10k",
           "transport": "public-widget-http",
           "status": "received"
         },
         {
-          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=tabular",
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=tabular",
           "transport": "public-widget-http",
           "status": "received"
         }
       ],
       "sourceRuntime": {
-        "runId": "42242620055",
+        "runId": "42358605123",
         "attempt": "1",
         "event": "workflow_dispatch",
-        "codeRevision": "19d8ad0b68b63abaa9381b078a1c2f0b51aed2a1",
+        "codeRevision": "1dbfdd9122c0a69c44fe909b5f6c35d281e93ac7",
         "kind": "github"
       },
       "calendarRegistry": "src/data/automated-etf.json",
-      "calendarRegistryPerformanceHash": "ee56a906b708eabfc85aeb7d5e9156be279c108ce17d7e2d2848fc9f99206a79",
+      "calendarRegistryPerformanceHash": "ba81b30368a33335c6f61bbc161fd5753150aa35a427ce546895b4f6e212587b",
       "calendarSource": {
         "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
         "sha256": "c89045facb7d2abef28fae55bf8e85684e926edfa9c3373b7fcb55d606c8cca0",
@@ -211063,10 +211063,10 @@
       ]
     },
     "historyUnqualifiedReturnWindows": [],
-    "responseSha256": "ddee884ea1e7fe116a85b1dc98fdd27bb1223c236ca04371a296d2ec53ce7ca2",
+    "responseSha256": "29ae102f8ca0e5eac79fbb86c7e1a14bd141385263c6f8b8266291d800732bba",
     "rawSourceHashes": {
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=gro10k": "bc51b8385c7452d891653c856637ef9c614ee5fd93d6332ff9af91ee2f95faa3",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COPA&mode=tabular": "e173e9057e0b6e54b312ff01e5c52ca4436141299c04cf444e7dc27a722cfa7e",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=gro10k": "bc51b8385c7452d891653c856637ef9c614ee5fd93d6332ff9af91ee2f95faa3",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=tabular": "e173e9057e0b6e54b312ff01e5c52ca4436141299c04cf444e7dc27a722cfa7e",
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89": "c89045facb7d2abef28fae55bf8e85684e926edfa9c3373b7fcb55d606c8cca0"
     }
   },
@@ -212468,11 +212468,11 @@
       ]
     ],
     "anniversaryAvailable": false,
-    "checkedAt": "2026-11-06",
+    "checkedAt": "2026-11-07",
     "periodEnd": "2026-10",
     "sourceUrls": [
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=gro10k",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=tabular",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular",
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
     ],
     "sourceCredit": "WisdomTree",
@@ -212596,21 +212596,21 @@
       "actualNavTransport": "public-widget-http",
       "accessAttempts": [
         {
-          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=gro10k",
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k",
           "transport": "public-widget-http",
           "status": "received"
         },
         {
-          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=tabular",
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular",
           "transport": "public-widget-http",
           "status": "received"
         }
       ],
       "sourceRuntime": {
-        "runId": "42242620055",
+        "runId": "42358605123",
         "attempt": "1",
         "event": "workflow_dispatch",
-        "codeRevision": "19d8ad0b68b63abaa9381b078a1c2f0b51aed2a1",
+        "codeRevision": "1dbfdd9122c0a69c44fe909b5f6c35d281e93ac7",
         "kind": "github"
       },
       "calendarRegistry": "src/data/non-bond-etf-records.json",
@@ -212688,10 +212688,10 @@
       ]
     },
     "historyUnqualifiedReturnWindows": [],
-    "responseSha256": "155dacb9fd302101c2a9089ee4c3ca3c48e847dbb9a3e5c05d5d684fc6e5942f",
+    "responseSha256": "1cb9129eb7ff52fee08c6e59b695cc0d14947568ef8ac60948afb60a60232bc1",
     "rawSourceHashes": {
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=gro10k": "7be41fd341b4d25f1a4e49d83e9a1c674d0761b1e20195ef00c0bd5170d6f22f",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COFF&mode=tabular": "de94abc62d3e38c39003ad8c7be1c5ecd5a476a6eb521a2231d57ce120cdca51",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k": "7be41fd341b4d25f1a4e49d83e9a1c674d0761b1e20195ef00c0bd5170d6f22f",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular": "de94abc62d3e38c39003ad8c7be1c5ecd5a476a6eb521a2231d57ce120cdca51",
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557": "f0deee10717cc07e2d23608b6412cf32356173d5e30c61f08296948a3ddd7593"
     }
   },
@@ -216512,11 +216512,11 @@
       ]
     ],
     "anniversaryAvailable": false,
-    "checkedAt": "2026-11-06",
+    "checkedAt": "2026-11-07",
     "periodEnd": "2026-10",
     "sourceUrls": [
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COCO&mode=gro10k",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COCO&mode=tabular",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=gro10k",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=tabular",
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10"
     ],
     "sourceCredit": "WisdomTree",
@@ -216702,21 +216702,21 @@
       "actualNavTransport": "public-widget-http",
       "accessAttempts": [
         {
-          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COCO&mode=gro10k",
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=gro10k",
           "transport": "public-widget-http",
           "status": "received"
         },
         {
-          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COCO&mode=tabular",
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=tabular",
           "transport": "public-widget-http",
           "status": "received"
         }
       ],
       "sourceRuntime": {
-        "runId": "42242620055",
+        "runId": "42358605123",
         "attempt": "1",
         "event": "workflow_dispatch",
-        "codeRevision": "19d8ad0b68b63abaa9381b078a1c2f0b51aed2a1",
+        "codeRevision": "1dbfdd9122c0a69c44fe909b5f6c35d281e93ac7",
         "kind": "github"
       },
       "calendarRegistry": "src/data/non-bond-etf-records.json",
@@ -216860,10 +216860,10 @@
       ]
     },
     "historyUnqualifiedReturnWindows": [],
-    "responseSha256": "499185a5a64f3da2a9f570ed035819a7cd841aff6a1b0b72181a398ca5170714",
+    "responseSha256": "77213a362c2ffdd41a429410e0eeb6827915122620afb93aa2145f4544992b38",
     "rawSourceHashes": {
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COCO&mode=gro10k": "116423cea4da5c010fbd601867ab4e495cb5387afcba8584ec4cf04b76f1c577",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=COCO&mode=tabular": "0ee43cc265167e86c52ebfdc40ea7d6e5c640c73afcfdc7b3e5541fb2f65d1f8",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=gro10k": "116423cea4da5c010fbd601867ab4e495cb5387afcba8584ec4cf04b76f1c577",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=tabular": "0ee43cc265167e86c52ebfdc40ea7d6e5c640c73afcfdc7b3e5541fb2f65d1f8",
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10": "d111eb277740a11231a9c42f8d0bd16f82d2e651dba0d4d06374676a44685976"
     }
   },
@@ -217135,11 +217135,11 @@
       ]
     ],
     "anniversaryAvailable": false,
-    "checkedAt": "2026-11-06",
+    "checkedAt": "2026-11-07",
     "periodEnd": "2026-10",
     "sourceUrls": [
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=tabular",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=gro10k",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=tabular",
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
     ],
     "sourceCredit": "WisdomTree",
@@ -217265,21 +217265,21 @@
       "actualNavTransport": "public-widget-http",
       "accessAttempts": [
         {
-          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k",
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=gro10k",
           "transport": "public-widget-http",
           "status": "received"
         },
         {
-          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=tabular",
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=tabular",
           "transport": "public-widget-http",
           "status": "received"
         }
       ],
       "sourceRuntime": {
-        "runId": "42242620055",
+        "runId": "42358605123",
         "attempt": "1",
         "event": "workflow_dispatch",
-        "codeRevision": "19d8ad0b68b63abaa9381b078a1c2f0b51aed2a1",
+        "codeRevision": "1dbfdd9122c0a69c44fe909b5f6c35d281e93ac7",
         "kind": "github"
       },
       "calendarRegistry": "src/data/non-bond-etf-records.json",
@@ -217357,10 +217357,10 @@
       ]
     },
     "historyUnqualifiedReturnWindows": [],
-    "responseSha256": "19643dc420b4d2cae76cac8fae2030cba910dbdd56f6f9ccd70a10f268cd1dd2",
+    "responseSha256": "1223da67a2eb521ba20cb44e5981ea95a91336d4fd86cc5514f54d7f35263cb1",
     "rawSourceHashes": {
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=gro10k": "8c44eb68f72d74202d4a221a0f87f2fb6865e122e5c1fbd07f3c0b3f05f78eb6",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=NGAS&mode=tabular": "ee7f33ff8ccd6ac0abff4b2e20c9c8c7136a302c4ea0fca6d0ee196aabfcabc8",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=gro10k": "8c44eb68f72d74202d4a221a0f87f2fb6865e122e5c1fbd07f3c0b3f05f78eb6",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=tabular": "ee7f33ff8ccd6ac0abff4b2e20c9c8c7136a302c4ea0fca6d0ee196aabfcabc8",
       "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334": "d545d7e1b1dac8df3a205575802edf60f1a7fc1ba9ab09021d637f9bb8f13d2d"
     }
   },
