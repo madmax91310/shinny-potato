@@ -260,3 +260,5 @@ await import('./test-budget-reliability.mjs')
 await import('./test-budget-editorial-lives.mjs')
 
 await import('./test-budget-narrative.mjs')
+
+await import('./test-budget-final-copy.mjs')
