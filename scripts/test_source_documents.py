@@ -85,7 +85,10 @@ class Documents(unittest.TestCase):
         facts={'asOf':'2026-08-31','constituents':100,'source':{'checkedAt':'2026-10-01'}}
         old={'a':{'facts':facts,'factsHistory':{'2026-08-31':copy.deepcopy(facts)}}}
         same={**facts,'source':{'checkedAt':'2026-10-05'}}
-        self.assertEqual(merge_records(old,[{'id':'a','facts':same}]),old)
+        checked=merge_records(old,[{'id':'a','facts':same}],now=NOW)
+        self.assertEqual(checked['a']['facts'],same)
+        self.assertEqual(checked['a']['factsHistory'],old['a']['factsHistory'])
+        self.assertEqual(old['a']['facts']['source']['checkedAt'],'2026-10-01')
         self.assertEqual(merge_records(old,[{'id':'a','facts':{**facts,'asOf':'2026-07-31'}}]),old)
         revised={**facts,'constituents':101}
         merged=merge_records(old,[{'id':'a','facts':revised}])
