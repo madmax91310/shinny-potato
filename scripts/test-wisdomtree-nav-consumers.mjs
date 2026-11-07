@@ -66,3 +66,6 @@ for(const {record:old} of archive.series){
 }
 assert.equal(targets,7);assert.equal(oldRefusals,6)
 console.log(`Four exact ETCs: seven initial targets, six original export refusals preserved as historical evidence, ${currentRefusals} active refusals. Active source proofs, units, DCA, FX, monitoring and anniversary exclusions checked.`)
+
+// Exercise the bounded public-page transport without contacting a supplier.
+await import('./test-wisdomtree-performance-browser.mjs')

@@ -159,7 +159,8 @@ class OrdinaryBrowserTransport(unittest.TestCase):
   import urllib.error,subprocess,base64
   from wisdomtree_performance_history import acquire,urls
   s=SOURCES[0];endpoints=urls(s)
-  payload={'results':[{'url':u,'status':200,'body':base64.b64encode(b'[]').decode()}for u in endpoints]}
+  payload={'results':[{'url':u,'status':200,'body':base64.b64encode(b'[]').decode()}for u in endpoints],
+           'publicProductPage':{'url':s['sourceUrl'],'isin':s['isin'],'status':200,'checkedAt':'2026-11-07T08:00:00Z'}}
   with patch('wisdomtree_performance_history.download',side_effect=urllib.error.HTTPError(endpoints[0],403,'denied',None,None)),patch('wisdomtree_performance_history.subprocess.run',return_value=subprocess.CompletedProcess([],0,json.dumps(payload).encode(),b''))as browser:
    bodies,proof=acquire(s)
   browser.assert_called_once();self.assertEqual(browser.call_args.kwargs['timeout'],100)
