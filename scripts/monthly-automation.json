@@ -16477,6 +16477,31 @@
       ],
       "incomeMonthEndPolicy": "withhold-trailing-unreconciled-month",
       "requireReconciledCashUnits": true
+    },
+    {
+      "id": "etfIE00B4K6B022Nav",
+      "isin": "IE00B4K6B022",
+      "label": "HSBC EURO STOXX 50 UCITS ETF EUR (Dist) · VL",
+      "instrumentType": "ETF",
+      "consumerScope": "catalog",
+      "currency": "EUR",
+      "periodStart": "2023-12",
+      "precision": 8,
+      "collectAnniversary": false,
+      "parser": "official-nav",
+      "field": "nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "method": "Rendement réinvesti calculé à partir des NAV officielles de la part EUR exacte et des distributions brutes officielles au détachement, réinvesties une seule fois à la NAV ex-dividende. NAV nette des frais du fonds ; aucun nouvel ajout de frais ni correction de cotation. Couverture des distributions contrôlée dans les comptes et déclarations de l’émetteur.",
+      "navProvider": "hsbc",
+      "navHistoryKind": "official-nav-and-gross-cash",
+      "sourceUrl": "https://www.assetmanagement.hsbc.co.uk/en/institutional-investor/funds/ie00b4k6b022",
+      "navCurrency": "EUR",
+      "cashAnnouncementUrls": [
+        "https://data.fca.org.uk/artefacts/NSM/RNS/5044235.html",
+        "https://data.fca.org.uk/artefacts/NSM/RNS/5281783.html",
+        "https://data.fca.org.uk/artefacts/NSM/RNS/5511025.html",
+        "https://data.fca.org.uk/artefacts/NSM/RNS/5750491.html"
+      ]
     }
   ]
 }
