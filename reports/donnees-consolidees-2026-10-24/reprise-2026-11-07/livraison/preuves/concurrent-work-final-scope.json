@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-11-07T19:08:21.296391+00:00",
+  "prs": [
+    {
+      "number": 1201,
+      "state": "open",
+      "merged": false,
+      "head": "6f0095f6fa06b60eb20c37a77517dc9f90167b33",
+      "files": [
+        "review-tr-20261107/README.md",
+        "review-tr-20261107/fixture-comparison.json",
+        "review-tr-20261107/github-collector-excerpt.txt",
+        "review-tr-20261107/http-receipts.json",
+        "review-tr-20261107/live-tr-qualification.json",
+        "review-tr-20261107/webview-receipts.json",
+        "scripts/broker_profile_discovery.py",
+        "scripts/broker_profile_sources.json",
+        "scripts/broker_profile_tr.py",
+        "scripts/broker_tariff_extensions.py",
+        "scripts/collect_broker_tariffs.py",
+        "scripts/test_broker_tariff_tr_identity.py"
+      ]
+    },
+    {
+      "number": 1061,
+      "state": "open",
+      "merged": false,
+      "head": "042f665560f152454644b2e29db88ac4ebd81b09",
+      "files": [
+        "docs/ishares-pea-live-aum-2026-10-29.md",
+        "scripts/additional-etf-sources.json",
+        "scripts/fixtures/ishares-pea-live-20261029/IE0002XZSHO1.html.gz",
+        "scripts/fixtures/ishares-pea-live-20261029/IE000DQLYVB9.html.gz",
+        "scripts/fixtures/ishares-pea-live-20261029/receipts.json",
+        "scripts/test_document_etf.py"
+      ]
+    }
+  ],
+  "ownHead": "d631d457da72af5a171dd3fbcef4a23d3d1a0925",
+  "conflict": "No overlapping source file among the listed concurrent PRs and the native-index routing/result-contract changes."
+}

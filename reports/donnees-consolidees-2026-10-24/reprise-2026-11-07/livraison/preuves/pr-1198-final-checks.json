@@ -1,0 +1,148 @@
+{
+  "checkedAt": "2026-11-07T10:42:07.145852+00:00",
+  "number": 1198,
+  "headSha": "c3bc8880da1064adddba351a46b1f70aaee236d3",
+  "baseSha": "1dbfdd9122c0a69c44fe909b5f6c35d281e93ac7",
+  "mergeable": true,
+  "mergeableState": "unstable",
+  "requiredChecks": [
+    {
+      "name": "browser-checks (0)",
+      "id": 128375295405,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42362103125/job/128375295405"
+    },
+    {
+      "name": "browser-checks (1)",
+      "id": 128375295290,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42362103125/job/128375295290"
+    },
+    {
+      "name": "browser-checks (2)",
+      "id": 128375295244,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42362103125/job/128375295244"
+    },
+    {
+      "name": "browser-checks (3)",
+      "id": 128375295387,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42362103125/job/128375295387"
+    },
+    {
+      "name": "build",
+      "id": 128372555212,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42362103125/job/128372555212"
+    },
+    {
+      "name": "current-snapshot",
+      "id": 128372505448,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42362103125/job/128372505448"
+    },
+    {
+      "name": "exposure-browser-check",
+      "id": 128372555462,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42362103125/job/128372555462"
+    },
+    {
+      "name": "python-checks",
+      "id": 128372555222,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42362103125/job/128372555222"
+    },
+    {
+      "name": "scope",
+      "id": 128372555251,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42362103125/job/128372555251"
+    },
+    {
+      "name": "smoke",
+      "id": 128375295264,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42362103125/job/128375295264"
+    },
+    {
+      "name": "tweet-midi-checks (0)",
+      "id": 128375295310,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42362103125/job/128375295310"
+    },
+    {
+      "name": "tweet-midi-checks (1)",
+      "id": 128375295267,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42362103125/job/128375295267"
+    },
+    {
+      "name": "tweet-midi-checks (2)",
+      "id": 128375295296,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42362103125/job/128375295296"
+    },
+    {
+      "name": "tweet-midi-checks (3)",
+      "id": 128375295225,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42362103125/job/128375295225"
+    }
+  ],
+  "otherChecks": [
+    {
+      "name": "validate",
+      "conclusion": "success"
+    },
+    {
+      "name": "official-nav-source-controls",
+      "conclusion": "success"
+    },
+    {
+      "name": "collect",
+      "conclusion": "success"
+    },
+    {
+      "name": "validate (ubuntu-26.04)",
+      "conclusion": "success"
+    },
+    {
+      "name": "refresh",
+      "conclusion": "success"
+    },
+    {
+      "name": "validate (macos-15)",
+      "conclusion": "success"
+    },
+    {
+      "name": "verify",
+      "conclusion": "success"
+    },
+    {
+      "name": "publish",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "report-failures",
+      "conclusion": "failure"
+    },
+    {
+      "name": "deploy",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "advisory-checks",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "fallback-build",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "deploy-fallback",
+      "conclusion": "skipped"
+    }
+  ]
+}

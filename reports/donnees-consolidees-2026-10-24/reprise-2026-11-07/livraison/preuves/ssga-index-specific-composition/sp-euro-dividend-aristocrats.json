@@ -1,0 +1,79 @@
+{
+  "id": "sp-euro-dividend-aristocrats",
+  "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
+  "checkedAt": "2026-11-07T17:03:04.719154+00:00",
+  "purpose": "New alternative scope investigation: seek explicitly index-labelled holdings/country/sector containers; never relabel ETF positions as index.",
+  "httpStatus": 200,
+  "finalUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
+  "sha256": "fe924e30e709265ff5c6fc70d5716f00ede45a41c55f093bb595f5082360c1cc",
+  "bytes": 211254,
+  "containers": [
+    {
+      "id": "fund-quick-info",
+      "label": "Fund Quick Info",
+      "asOf": "07 Nov 2026",
+      "containerKeys": [
+        "label",
+        "asOfDate",
+        "asOfDateSimple",
+        "attrs",
+        "childCompCodes"
+      ],
+      "attributeNames": [
+        "fund-investment-vehicle",
+        "fund-assetclass",
+        "fund-assetclass-en",
+        "investment-style",
+        "investment-geography",
+        "fund-exchange",
+        "fund-domicile",
+        "fund-domicile-simple",
+        "expense-ratio",
+        "fund-groups",
+        "umbrella-code",
+        "benchmark-family",
+        "fund-income-treatment",
+        "hedged-share-class",
+        "primary-exchange-name",
+        "asof-format",
+        "supported-country",
+        "supported-language",
+        "isin",
+        "base-fund-currency",
+        "fund-name",
+        "fund-name-simple",
+        "fund-name-en",
+        "inception-date"
+      ]
+    },
+    {
+      "id": "index-quick-info",
+      "label": "Index Quick Info",
+      "asOf": "07 Nov 2026",
+      "containerKeys": [
+        "label",
+        "asOfDate",
+        "asOfDateSimple",
+        "attrs"
+      ],
+      "attributeNames": [
+        "index-name",
+        "index-name-simple",
+        "index-inception-date"
+      ]
+    },
+    {
+      "id": "fund-sector-breakdown",
+      "label": "Fund Sector Allocation",
+      "asOf": "05 Nov 2026",
+      "containerKeys": [
+        "label",
+        "asOfDate",
+        "asOfDateSimple",
+        "attrArray"
+      ],
+      "attributeNames": []
+    }
+  ],
+  "qualifiedIndexComposition": false
+}

@@ -1,0 +1,312 @@
+{
+  "schemaVersion": 1,
+  "id": "history:etc_natural_gasNav",
+  "type": "series",
+  "name": "WisdomTree Natural Gas · VL",
+  "aliases": [
+    "etc_natural_gasNav"
+  ],
+  "consumers": [
+    {
+      "tool": "Calculateur",
+      "path": "/calculateur-investissement"
+    },
+    {
+      "tool": "Performance depuis",
+      "path": "/performance-depuis"
+    },
+    {
+      "tool": "Qui a vraiment gagné",
+      "path": "/classements-performances"
+    }
+  ],
+  "fields": [
+    {
+      "label": "Série historique",
+      "registry": "src/data/market-history.js",
+      "value": {
+        "id": "etc_natural_gasNav",
+        "label": "WisdomTree Natural Gas · VL",
+        "instrumentType": "ETC",
+        "tweetPhrase": "l’ETC WisdomTree Natural Gas · VL",
+        "icon": "🛢️",
+        "isin": "JE00BN7KB334",
+        "sourceCredit": "WisdomTree",
+        "levelUnit": "performance-points",
+        "allowPriceOverride": false,
+        "currency": "USD",
+        "priceMethod": "adjusted",
+        "valuationBasis": "fund-nav-total-return",
+        "historyConvention": "fund-nav-total-return",
+        "anniversaryAvailable": false,
+        "periodStart": "2021-12",
+        "periodEnd": "2026-10",
+        "checkedAt": "2026-11-07",
+        "method": "Rendement total NAV officiel de la part exacte en USD, net des frais ; unités de performance sans ajout de distributions ; ancienne cotation conservée séparément",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=gro10k",
+          "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=tabular",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
+        ],
+        "points": [
+          {
+            "date": "2021-12",
+            "price": 26.97655179
+          },
+          {
+            "date": "2022-01",
+            "price": 36.94343451
+          },
+          {
+            "date": "2022-02",
+            "price": 33.41312448
+          },
+          {
+            "date": "2022-03",
+            "price": 42.6133242
+          },
+          {
+            "date": "2022-04",
+            "price": 54.27403844
+          },
+          {
+            "date": "2022-05",
+            "price": 60.06873761
+          },
+          {
+            "date": "2022-06",
+            "price": 39.88535701
+          },
+          {
+            "date": "2022-07",
+            "price": 60.88891038
+          },
+          {
+            "date": "2022-08",
+            "price": 67.50378611
+          },
+          {
+            "date": "2022-09",
+            "price": 49.7630901
+          },
+          {
+            "date": "2022-10",
+            "price": 45.19865199
+          },
+          {
+            "date": "2022-11",
+            "price": 47.49870097
+          },
+          {
+            "date": "2022-12",
+            "price": 31.70145923
+          },
+          {
+            "date": "2023-01",
+            "price": 20.77176624
+          },
+          {
+            "date": "2023-02",
+            "price": 20.16555068
+          },
+          {
+            "date": "2023-03",
+            "price": 15.63677146
+          },
+          {
+            "date": "2023-04",
+            "price": 15.244515
+          },
+          {
+            "date": "2023-05",
+            "price": 13.42587116
+          },
+          {
+            "date": "2023-06",
+            "price": 15.86855954
+          },
+          {
+            "date": "2023-07",
+            "price": 15.11970647
+          },
+          {
+            "date": "2023-08",
+            "price": 15.38715346
+          },
+          {
+            "date": "2023-09",
+            "price": 14.37085246
+          },
+          {
+            "date": "2023-10",
+            "price": 16.30128497
+          },
+          {
+            "date": "2023-11",
+            "price": 12.02426388
+          },
+          {
+            "date": "2023-12",
+            "price": 10.8067848
+          },
+          {
+            "date": "2024-01",
+            "price": 9.78697316
+          },
+          {
+            "date": "2024-02",
+            "price": 8.7216029
+          },
+          {
+            "date": "2024-03",
+            "price": 7.68446225
+          },
+          {
+            "date": "2024-04",
+            "price": 7.8585206
+          },
+          {
+            "date": "2024-05",
+            "price": 8.80080258
+          },
+          {
+            "date": "2024-06",
+            "price": 8.72550308
+          },
+          {
+            "date": "2024-07",
+            "price": 6.86295925
+          },
+          {
+            "date": "2024-08",
+            "price": 6.65759097
+          },
+          {
+            "date": "2024-09",
+            "price": 7.81476089
+          },
+          {
+            "date": "2024-10",
+            "price": 6.30100431
+          },
+          {
+            "date": "2024-11",
+            "price": 7.15952677
+          },
+          {
+            "date": "2024-12",
+            "price": 7.88764019
+          },
+          {
+            "date": "2025-01",
+            "price": 7.77208119
+          },
+          {
+            "date": "2025-02",
+            "price": 9.75069345
+          },
+          {
+            "date": "2025-03",
+            "price": 10.33499883
+          },
+          {
+            "date": "2025-04",
+            "price": 8.48615539
+          },
+          {
+            "date": "2025-05",
+            "price": 8.06980881
+          },
+          {
+            "date": "2025-06",
+            "price": 8.01402916
+          },
+          {
+            "date": "2025-07",
+            "price": 7.15254674
+          },
+          {
+            "date": "2025-08",
+            "price": 6.58343167
+          },
+          {
+            "date": "2025-09",
+            "price": 6.54071217
+          },
+          {
+            "date": "2025-10",
+            "price": 6.68894072
+          },
+          {
+            "date": "2025-11",
+            "price": 7.44159397
+          },
+          {
+            "date": "2025-12",
+            "price": 5.94144726
+          },
+          {
+            "date": "2026-01",
+            "price": 8.28161642
+          },
+          {
+            "date": "2026-02",
+            "price": 5.6584498
+          },
+          {
+            "date": "2026-03",
+            "price": 5.67636977
+          },
+          {
+            "date": "2026-04",
+            "price": 5.14284442
+          },
+          {
+            "date": "2026-05",
+            "price": 5.56936083
+          },
+          {
+            "date": "2026-06",
+            "price": 5.38070218
+          },
+          {
+            "date": "2026-07",
+            "price": 4.63852917
+          },
+          {
+            "date": "2026-08",
+            "price": 4.63962909
+          },
+          {
+            "date": "2026-09",
+            "price": 4.63610898
+          },
+          {
+            "date": "2026-10",
+            "price": 4.21602288
+          }
+        ]
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=gro10k",
+          "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode=tabular",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-11-07",
+        "currency": "USD",
+        "scope": "etc_natural_gasNav",
+        "method": "Rendement total NAV officiel de la part exacte en USD, net des frais ; unités de performance sans ajout de distributions ; ancienne cotation conservée séparément",
+        "note": "Actualisation automatique ; dernière séance quotidienne validée sur la source officielle ou recoupée entre requêtes du même fournisseur. SHA-256 1223da67a2eb521ba20cb44e5981ea95a91336d4fd86cc5514f54d7f35263cb1.",
+        "dateStatus": "month-only",
+        "periodStart": "2021-12",
+        "periodEnd": "2026-10",
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    }
+  ]
+}

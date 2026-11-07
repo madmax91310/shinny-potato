@@ -1,0 +1,66 @@
+{
+  "checkedAt": "2026-11-07T20:44:13.472834+00:00",
+  "verificationKind": "Real local issuer document retrieval, not GitHub production collection or automated use",
+  "requests": [
+    {
+      "isin": "FR0010755611",
+      "requestedFiscalEnd": "20240628",
+      "url": "https://www.amundietf.fr/pdfDocuments/annual-report/FR0010755611/FRA/20240628",
+      "httpStatus": null,
+      "error": "HTTPError: HTTP Error 404: Not Found",
+      "sha256": null,
+      "bytes": null,
+      "isinPresent": null,
+      "financialQualified": false
+    },
+    {
+      "isin": "FR0013412004",
+      "requestedFiscalEnd": "20250630",
+      "url": "https://www.amundietf.fr/pdfDocuments/annual-report/FR0013412004/FRA/20250630",
+      "httpStatus": 200,
+      "error": null,
+      "sha256": "66bec48e75ba08ae188ff8e54e20a52c904e1878afd74847915e2e7852988be9",
+      "bytes": 6703407,
+      "isinPresent": true,
+      "financialQualified": false
+    },
+    {
+      "isin": "FR0013412004",
+      "requestedFiscalEnd": "20260630",
+      "url": "https://www.amundietf.fr/pdfDocuments/annual-report/FR0013412004/FRA/20260630",
+      "httpStatus": null,
+      "error": "HTTPError: HTTP Error 404: Not Found",
+      "sha256": null,
+      "bytes": null,
+      "isinPresent": null,
+      "financialQualified": false
+    },
+    {
+      "isin": "FR0013411998",
+      "requestedFiscalEnd": "20250630",
+      "url": "https://www.amundietf.fr/pdfDocuments/annual-report/FR0013411998/FRA/20250630",
+      "httpStatus": 200,
+      "error": null,
+      "sha256": "be17bcd7eab556a40a80ae605b2dd4f683876ff9500ffe1a3f8c77074616727c",
+      "bytes": 6305220,
+      "isinPresent": true,
+      "financialQualified": false
+    },
+    {
+      "isin": "FR0013411998",
+      "requestedFiscalEnd": "20260630",
+      "url": "https://www.amundietf.fr/pdfDocuments/annual-report/FR0013411998/FRA/20260630",
+      "httpStatus": null,
+      "error": "HTTPError: HTTP Error 404: Not Found",
+      "sha256": null,
+      "bytes": null,
+      "isinPresent": null,
+      "financialQualified": false
+    }
+  ],
+  "finding": "Correct short annual-report route returns actualJune2025reports for both exactshare ISINs; June2026routes return404. CL2fiscal2024end isJune28according to actual2025report, but this exactdate route also returns404.",
+  "missingPiece": "Complete exact-share cash/allocation and corporate-action coverage for the still uncovered fiscal halves; retrieved2025documents are not alone sufficient for calendar2025. No zero distribution inferred from blank cells.",
+  "newMonthlyWindowQualified": false,
+  "publicationChanged": false,
+  "originalReports": "Full publisher PDF originals retained privately; only source receipts and financial facts are archived."
+}

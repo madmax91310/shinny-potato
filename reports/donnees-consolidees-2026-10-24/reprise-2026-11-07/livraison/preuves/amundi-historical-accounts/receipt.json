@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-11-07T16:31:53.301135+00:00",
+  "instrument": "FR0010755611",
+  "method": "New narrowly targeted historical annual accounts, based on a confirmed working 2025 issuer URL; no mass URL scan.",
+  "results": [
+    {
+      "url": "https://www.amundietf.fr/pdfDocuments/annual-report/FR0010755611/FRA/20210630",
+      "attemptedAt": "2026-11-07T16:30:20.892589+00:00",
+      "purpose": "Financial allocation notes covering the disputed 2021/2024 periods; not evidence of a repaired producer or zero cash by blank cells.",
+      "downloadQualified": false,
+      "error": "HTTPError: HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.amundietf.fr/pdfDocuments/annual-report/FR0010755611/FRA/20220630",
+      "attemptedAt": "2026-11-07T16:30:20.285076+00:00",
+      "purpose": "Financial allocation notes covering the disputed 2021/2024 periods; not evidence of a repaired producer or zero cash by blank cells.",
+      "downloadQualified": false,
+      "error": "HTTPError: HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.amundietf.fr/pdfDocuments/annual-report/FR0010755611/FRA/20240630",
+      "attemptedAt": "2026-11-07T16:30:18.936546+00:00",
+      "purpose": "Financial allocation notes covering the disputed 2021/2024 periods; not evidence of a repaired producer or zero cash by blank cells.",
+      "downloadQualified": false,
+      "error": "HTTPError: HTTP Error 404: Not Found"
+    }
+  ],
+  "financialFinding": "The actual 2025 fiscal report allocates net income to capitalisation and realised gains to carry-forward; blank distribution cells are not converted to cash=0. Its fiscal period alone does not cover either complete disputed calendar year.",
+  "remainingPiece": "Full exact-share allocation notes covering both fiscal halves of each calendar2021/2024, explicit cash/corporate-action history, or another independently qualified return-level series; historical date routes returned404.",
+  "newWindowAdmitted": false
+}

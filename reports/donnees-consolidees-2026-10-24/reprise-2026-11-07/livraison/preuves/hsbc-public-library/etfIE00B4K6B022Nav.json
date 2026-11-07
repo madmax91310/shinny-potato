@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 1,
+  "id": "history:etfIE00B4K6B022Nav",
+  "type": "series",
+  "name": "HSBC EURO STOXX 50 UCITS ETF EUR (Dist) · VL",
+  "aliases": [
+    "etfIE00B4K6B022Nav"
+  ],
+  "consumers": [
+    {
+      "tool": "Calculateur",
+      "path": "/calculateur-investissement"
+    },
+    {
+      "tool": "Performance depuis",
+      "path": "/performance-depuis"
+    },
+    {
+      "tool": "Qui a vraiment gagné",
+      "path": "/classements-performances"
+    }
+  ],
+  "fields": [
+    {
+      "label": "Série historique",
+      "registry": "src/data/market-history.js",
+      "value": {
+        "id": "etfIE00B4K6B022Nav",
+        "label": "HSBC EURO STOXX 50 UCITS ETF EUR (Dist) · VL",
+        "instrumentType": "ETF",
+        "tweetPhrase": "l’ETF HSBC EURO STOXX 50 UCITS ETF EUR (Dist) · VL",
+        "icon": "📊",
+        "isin": "IE00B4K6B022",
+        "sourceCredit": "HSBC Asset Management / FCA NSM",
+        "currency": "EUR",
+        "priceMethod": "adjusted",
+        "valuationBasis": "fund-nav-total-return",
+        "historyConvention": "fund-nav-total-return",
+        "anniversaryValuationBasis": "fund-nav-price",
+        "anniversaryVariant": "Valeurs liquidatives publiées · hors distributions",
+        "anniversaryAvailable": false,
+        "periodStart": "2023-12",
+        "periodEnd": "2026-10",
+        "checkedAt": "2026-11-07",
+        "method": "Rendement réinvesti calculé à partir des NAV officielles de la part EUR exacte et des distributions brutes officielles au détachement, réinvesties une seule fois à la NAV ex-dividende. NAV nette des frais du fonds ; aucun nouvel ajout de frais ni correction de cotation. Couverture des distributions contrôlée dans les comptes et déclarations de l’émetteur.",
+        "sourceUrls": [
+          "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/presentation",
+          "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/fund-history",
+          "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/dividend-table",
+          "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/documents-table",
+          "https://data.fca.org.uk/artefacts/NSM/RNS/5044235.html",
+          "https://data.fca.org.uk/artefacts/NSM/RNS/5281783.html",
+          "https://data.fca.org.uk/artefacts/NSM/RNS/5511025.html",
+          "https://data.fca.org.uk/artefacts/NSM/RNS/5750491.html",
+          "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/annual%20report",
+          "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/semi%20annual%20report"
+        ],
+        "points": [
+          {
+            "date": "2023-12",
+            "price": 43.82032099
+          },
+          {
+            "date": "2024-01",
+            "price": 45.11882263
+          },
+          {
+            "date": "2024-02",
+            "price": 47.39935696
+          },
+          {
+            "date": "2024-03",
+            "price": 49.47166884
+          },
+          {
+            "date": "2024-04",
+            "price": 48.32651709
+          },
+          {
+            "date": "2024-05",
+            "price": 49.44615918
+          },
+          {
+            "date": "2024-06",
+            "price": 48.59552803
+          },
+          {
+            "date": "2024-07",
+            "price": 48.45193185
+          },
+          {
+            "date": "2024-08",
+            "price": 49.31781089
+          },
+          {
+            "date": "2024-09",
+            "price": 49.77449341
+          },
+          {
+            "date": "2024-10",
+            "price": 48.12095819
+          },
+          {
+            "date": "2024-11",
+            "price": 47.96365537
+          },
+          {
+            "date": "2024-12",
+            "price": 48.89081891
+          },
+          {
+            "date": "2025-01",
+            "price": 52.86583156
+          },
+          {
+            "date": "2025-02",
+            "price": 54.68880529
+          },
+          {
+            "date": "2025-03",
+            "price": 52.61112068
+          },
+          {
+            "date": "2025-04",
+            "price": 52.02865752
+          },
+          {
+            "date": "2025-05",
+            "price": 54.79045663
+          },
+          {
+            "date": "2025-06",
+            "price": 54.1884856
+          },
+          {
+            "date": "2025-07",
+            "price": 54.4338641
+          },
+          {
+            "date": "2025-08",
+            "price": 54.76218525
+          },
+          {
+            "date": "2025-09",
+            "price": 56.62756264
+          },
+          {
+            "date": "2025-10",
+            "price": 58.05203797
+          },
+          {
+            "date": "2025-11",
+            "price": 58.22018687
+          },
+          {
+            "date": "2025-12",
+            "price": 59.52959752
+          },
+          {
+            "date": "2026-01",
+            "price": 61.17774999
+          },
+          {
+            "date": "2026-02",
+            "price": 63.2090851
+          },
+          {
+            "date": "2026-03",
+            "price": 57.43611167
+          },
+          {
+            "date": "2026-04",
+            "price": 61.06014469
+          },
+          {
+            "date": "2026-05",
+            "price": 63.40450587
+          },
+          {
+            "date": "2026-06",
+            "price": 66.35705031
+          },
+          {
+            "date": "2026-07",
+            "price": 66.74101085
+          },
+          {
+            "date": "2026-08",
+            "price": 68.1111
+          },
+          {
+            "date": "2026-09",
+            "price": 65.9247
+          },
+          {
+            "date": "2026-10",
+            "price": 64.5591
+          }
+        ]
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/presentation",
+          "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/fund-history",
+          "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/dividend-table",
+          "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/documents-table",
+          "https://data.fca.org.uk/artefacts/NSM/RNS/5044235.html",
+          "https://data.fca.org.uk/artefacts/NSM/RNS/5281783.html",
+          "https://data.fca.org.uk/artefacts/NSM/RNS/5511025.html",
+          "https://data.fca.org.uk/artefacts/NSM/RNS/5750491.html",
+          "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/annual%20report",
+          "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/semi%20annual%20report"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-11-07",
+        "currency": "EUR",
+        "scope": "etfIE00B4K6B022Nav",
+        "method": "Rendement réinvesti calculé à partir des NAV officielles de la part EUR exacte et des distributions brutes officielles au détachement, réinvesties une seule fois à la NAV ex-dividende. NAV nette des frais du fonds ; aucun nouvel ajout de frais ni correction de cotation. Couverture des distributions contrôlée dans les comptes et déclarations de l’émetteur.",
+        "note": "Actualisation automatique ; dernière séance quotidienne validée sur la source officielle ou recoupée entre requêtes du même fournisseur. SHA-256 9be6c25f6ea3a6acf7d482ac1337168215b36debad2f058072f435980359c6fe.",
+        "dateStatus": "month-only",
+        "periodStart": "2023-12",
+        "periodEnd": "2026-10",
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    }
+  ]
+}

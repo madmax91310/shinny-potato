@@ -1,0 +1,644 @@
+{
+  "schemaVersion": 1,
+  "id": "history:etfGB00B15KXQ89Nav",
+  "type": "series",
+  "name": "WisdomTree Copper · VL",
+  "aliases": [
+    "etfGB00B15KXQ89Nav"
+  ],
+  "consumers": [
+    {
+      "tool": "Calculateur",
+      "path": "/calculateur-investissement"
+    },
+    {
+      "tool": "Performance depuis",
+      "path": "/performance-depuis"
+    },
+    {
+      "tool": "Qui a vraiment gagné",
+      "path": "/classements-performances"
+    }
+  ],
+  "fields": [
+    {
+      "label": "Série historique",
+      "registry": "src/data/market-history.js",
+      "value": {
+        "id": "etfGB00B15KXQ89Nav",
+        "label": "WisdomTree Copper · VL",
+        "instrumentType": "ETC",
+        "tweetPhrase": "l’ETC WisdomTree Copper · VL",
+        "icon": "📊",
+        "isin": "GB00B15KXQ89",
+        "sourceCredit": "WisdomTree",
+        "levelUnit": "performance-points",
+        "allowPriceOverride": false,
+        "currency": "USD",
+        "priceMethod": "adjusted",
+        "valuationBasis": "fund-nav-total-return",
+        "historyConvention": "fund-nav-total-return",
+        "anniversaryAvailable": false,
+        "periodStart": "2015-01",
+        "periodEnd": "2026-10",
+        "checkedAt": "2026-11-07",
+        "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=gro10k",
+          "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=tabular",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
+        ],
+        "points": [
+          {
+            "date": "2015-01",
+            "price": 25.38588707
+          },
+          {
+            "date": "2015-02",
+            "price": 27.37233905
+          },
+          {
+            "date": "2015-03",
+            "price": 27.84343036
+          },
+          {
+            "date": "2015-04",
+            "price": 29.28510007
+          },
+          {
+            "date": "2015-05",
+            "price": 27.65637981
+          },
+          {
+            "date": "2015-06",
+            "price": 26.44442946
+          },
+          {
+            "date": "2015-07",
+            "price": 23.88025668
+          },
+          {
+            "date": "2015-08",
+            "price": 23.61617681
+          },
+          {
+            "date": "2015-09",
+            "price": 23.5477663
+          },
+          {
+            "date": "2015-10",
+            "price": 23.29135595
+          },
+          {
+            "date": "2015-11",
+            "price": 20.48234431
+          },
+          {
+            "date": "2015-12",
+            "price": 21.33275587
+          },
+          {
+            "date": "2016-01",
+            "price": 20.64158449
+          },
+          {
+            "date": "2016-02",
+            "price": 21.25441535
+          },
+          {
+            "date": "2016-03",
+            "price": 21.74461517
+          },
+          {
+            "date": "2016-04",
+            "price": 22.64365632
+          },
+          {
+            "date": "2016-05",
+            "price": 20.76771408
+          },
+          {
+            "date": "2016-06",
+            "price": 21.69735613
+          },
+          {
+            "date": "2016-07",
+            "price": 21.94284564
+          },
+          {
+            "date": "2016-08",
+            "price": 20.39924347
+          },
+          {
+            "date": "2016-09",
+            "price": 21.69261559
+          },
+          {
+            "date": "2016-10",
+            "price": 21.62647548
+          },
+          {
+            "date": "2016-11",
+            "price": 25.69715874
+          },
+          {
+            "date": "2016-12",
+            "price": 24.43924672
+          },
+          {
+            "date": "2017-01",
+            "price": 26.59322938
+          },
+          {
+            "date": "2017-02",
+            "price": 26.3142278
+          },
+          {
+            "date": "2017-03",
+            "price": 25.70852851
+          },
+          {
+            "date": "2017-04",
+            "price": 25.11775689
+          },
+          {
+            "date": "2017-05",
+            "price": 24.8451571
+          },
+          {
+            "date": "2017-06",
+            "price": 25.98626833
+          },
+          {
+            "date": "2017-07",
+            "price": 27.71474955
+          },
+          {
+            "date": "2017-08",
+            "price": 29.48347096
+          },
+          {
+            "date": "2017-09",
+            "price": 28.11697944
+          },
+          {
+            "date": "2017-10",
+            "price": 29.50513069
+          },
+          {
+            "date": "2017-11",
+            "price": 28.96411
+          },
+          {
+            "date": "2017-12",
+            "price": 31.20485225
+          },
+          {
+            "date": "2018-01",
+            "price": 30.21825055
+          },
+          {
+            "date": "2018-02",
+            "price": 29.44428092
+          },
+          {
+            "date": "2018-03",
+            "price": 28.45324919
+          },
+          {
+            "date": "2018-04",
+            "price": 28.74866961
+          },
+          {
+            "date": "2018-05",
+            "price": 28.68159998
+          },
+          {
+            "date": "2018-06",
+            "price": 27.60646867
+          },
+          {
+            "date": "2018-07",
+            "price": 26.37287837
+          },
+          {
+            "date": "2018-08",
+            "price": 24.71021688
+          },
+          {
+            "date": "2018-09",
+            "price": 25.9693076
+          },
+          {
+            "date": "2018-10",
+            "price": 24.64116758
+          },
+          {
+            "date": "2018-11",
+            "price": 25.70219791
+          },
+          {
+            "date": "2018-12",
+            "price": 24.28544718
+          },
+          {
+            "date": "2019-01",
+            "price": 25.73299856
+          },
+          {
+            "date": "2019-02",
+            "price": 27.20849874
+          },
+          {
+            "date": "2019-03",
+            "price": 27.12796891
+          },
+          {
+            "date": "2019-04",
+            "price": 26.79387858
+          },
+          {
+            "date": "2019-05",
+            "price": 24.38796702
+          },
+          {
+            "date": "2019-06",
+            "price": 25.08074825
+          },
+          {
+            "date": "2019-07",
+            "price": 24.66509771
+          },
+          {
+            "date": "2019-08",
+            "price": 23.55526573
+          },
+          {
+            "date": "2019-09",
+            "price": 23.82259693
+          },
+          {
+            "date": "2019-10",
+            "price": 24.38783649
+          },
+          {
+            "date": "2019-11",
+            "price": 24.52178787
+          },
+          {
+            "date": "2019-12",
+            "price": 25.78163803
+          },
+          {
+            "date": "2020-01",
+            "price": 23.21074701
+          },
+          {
+            "date": "2020-02",
+            "price": 23.36245612
+          },
+          {
+            "date": "2020-03",
+            "price": 20.48461471
+          },
+          {
+            "date": "2020-04",
+            "price": 21.41553435
+          },
+          {
+            "date": "2020-05",
+            "price": 22.14343551
+          },
+          {
+            "date": "2020-06",
+            "price": 24.75233786
+          },
+          {
+            "date": "2020-07",
+            "price": 25.99587796
+          },
+          {
+            "date": "2020-08",
+            "price": 27.13567006
+          },
+          {
+            "date": "2020-09",
+            "price": 27.23132927
+          },
+          {
+            "date": "2020-10",
+            "price": 27.34352005
+          },
+          {
+            "date": "2020-11",
+            "price": 30.7606319
+          },
+          {
+            "date": "2020-12",
+            "price": 31.45756233
+          },
+          {
+            "date": "2021-01",
+            "price": 31.76531172
+          },
+          {
+            "date": "2021-02",
+            "price": 36.52041648
+          },
+          {
+            "date": "2021-03",
+            "price": 35.6210233
+          },
+          {
+            "date": "2021-04",
+            "price": 39.74242854
+          },
+          {
+            "date": "2021-05",
+            "price": 41.57438087
+          },
+          {
+            "date": "2021-06",
+            "price": 38.0315864
+          },
+          {
+            "date": "2021-07",
+            "price": 39.71340782
+          },
+          {
+            "date": "2021-08",
+            "price": 38.80664574
+          },
+          {
+            "date": "2021-09",
+            "price": 36.23876478
+          },
+          {
+            "date": "2021-10",
+            "price": 38.68141799
+          },
+          {
+            "date": "2021-11",
+            "price": 37.95622825
+          },
+          {
+            "date": "2021-12",
+            "price": 39.54740787
+          },
+          {
+            "date": "2022-01",
+            "price": 38.28692682
+          },
+          {
+            "date": "2022-02",
+            "price": 39.39215868
+          },
+          {
+            "date": "2022-03",
+            "price": 41.97745128
+          },
+          {
+            "date": "2022-04",
+            "price": 38.80136925
+          },
+          {
+            "date": "2022-05",
+            "price": 37.79009777
+          },
+          {
+            "date": "2022-06",
+            "price": 32.53648291
+          },
+          {
+            "date": "2022-07",
+            "price": 31.34939221
+          },
+          {
+            "date": "2022-08",
+            "price": 30.7921109
+          },
+          {
+            "date": "2022-09",
+            "price": 29.89837195
+          },
+          {
+            "date": "2022-10",
+            "price": 29.61311096
+          },
+          {
+            "date": "2022-11",
+            "price": 32.93068335
+          },
+          {
+            "date": "2022-12",
+            "price": 33.64434312
+          },
+          {
+            "date": "2023-01",
+            "price": 37.40181657
+          },
+          {
+            "date": "2023-02",
+            "price": 36.16547529
+          },
+          {
+            "date": "2023-03",
+            "price": 36.2655151
+          },
+          {
+            "date": "2023-04",
+            "price": 34.46938281
+          },
+          {
+            "date": "2023-05",
+            "price": 32.31169197
+          },
+          {
+            "date": "2023-06",
+            "price": 33.42488207
+          },
+          {
+            "date": "2023-07",
+            "price": 35.74627479
+          },
+          {
+            "date": "2023-08",
+            "price": 33.93341514
+          },
+          {
+            "date": "2023-09",
+            "price": 33.29261371
+          },
+          {
+            "date": "2023-10",
+            "price": 32.61911305
+          },
+          {
+            "date": "2023-11",
+            "price": 34.16808467
+          },
+          {
+            "date": "2023-12",
+            "price": 34.64444457
+          },
+          {
+            "date": "2024-01",
+            "price": 34.90514455
+          },
+          {
+            "date": "2024-02",
+            "price": 34.29983487
+          },
+          {
+            "date": "2024-03",
+            "price": 35.85237426
+          },
+          {
+            "date": "2024-04",
+            "price": 40.74656845
+          },
+          {
+            "date": "2024-05",
+            "price": 41.24110733
+          },
+          {
+            "date": "2024-06",
+            "price": 39.52222783
+          },
+          {
+            "date": "2024-07",
+            "price": 37.72450548
+          },
+          {
+            "date": "2024-08",
+            "price": 37.8262382
+          },
+          {
+            "date": "2024-09",
+            "price": 41.02191921
+          },
+          {
+            "date": "2024-10",
+            "price": 39.23218674
+          },
+          {
+            "date": "2024-11",
+            "price": 37.08811432
+          },
+          {
+            "date": "2024-12",
+            "price": 36.17280464
+          },
+          {
+            "date": "2025-01",
+            "price": 38.54995653
+          },
+          {
+            "date": "2025-02",
+            "price": 40.6799794
+          },
+          {
+            "date": "2025-03",
+            "price": 45.14144168
+          },
+          {
+            "date": "2025-04",
+            "price": 40.9734775
+          },
+          {
+            "date": "2025-05",
+            "price": 41.69897972
+          },
+          {
+            "date": "2025-06",
+            "price": 44.93085258
+          },
+          {
+            "date": "2025-07",
+            "price": 38.60464776
+          },
+          {
+            "date": "2025-08",
+            "price": 40.26263002
+          },
+          {
+            "date": "2025-09",
+            "price": 42.70362196
+          },
+          {
+            "date": "2025-10",
+            "price": 44.86888343
+          },
+          {
+            "date": "2025-11",
+            "price": 45.93944231
+          },
+          {
+            "date": "2025-12",
+            "price": 49.63359387
+          },
+          {
+            "date": "2026-01",
+            "price": 51.85231643
+          },
+          {
+            "date": "2026-02",
+            "price": 52.61222662
+          },
+          {
+            "date": "2026-03",
+            "price": 48.8475939
+          },
+          {
+            "date": "2026-04",
+            "price": 51.64686539
+          },
+          {
+            "date": "2026-05",
+            "price": 55.28284102
+          },
+          {
+            "date": "2026-06",
+            "price": 53.71033876
+          },
+          {
+            "date": "2026-07",
+            "price": 55.65689862
+          },
+          {
+            "date": "2026-08",
+            "price": 56.60533077
+          },
+          {
+            "date": "2026-09",
+            "price": 56.41110908
+          },
+          {
+            "date": "2026-10",
+            "price": 55.36281907
+          }
+        ]
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=gro10k",
+          "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=tabular",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-11-07",
+        "currency": "USD",
+        "scope": "etfGB00B15KXQ89Nav",
+        "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+        "note": "Actualisation automatique ; dernière séance quotidienne validée sur la source officielle ou recoupée entre requêtes du même fournisseur. SHA-256 29ae102f8ca0e5eac79fbb86c7e1a14bd141385263c6f8b8266291d800732bba.",
+        "dateStatus": "month-only",
+        "periodStart": "2015-01",
+        "periodEnd": "2026-10",
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    }
+  ]
+}

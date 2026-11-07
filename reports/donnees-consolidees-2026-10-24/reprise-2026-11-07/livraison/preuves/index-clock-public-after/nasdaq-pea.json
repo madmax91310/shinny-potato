@@ -1,0 +1,599 @@
+{
+  "schemaVersion": 1,
+  "id": "nasdaq-pea",
+  "type": "index",
+  "name": "NASDAQ-100 Notional Net Total Return",
+  "aliases": [
+    "nasdaq-pea",
+    "Nasdaq 100"
+  ],
+  "consumers": [
+    {
+      "tool": "Fiches pratiques",
+      "path": "/fiches-pratiques"
+    },
+    {
+      "tool": "Coulisses des indices",
+      "path": "/tweets-factsheets"
+    }
+  ],
+  "fields": [
+    {
+      "label": "Composition courante · 30 septembre 2026",
+      "registry": "src/data/index-facts.js",
+      "value": {
+        "index": "NASDAQ-100 Notional Net Total Return",
+        "asOf": "2026-09-30",
+        "constituents": 101,
+        "countries": [
+          [
+            "États-Unis",
+            94.81
+          ],
+          [
+            "Irlande",
+            1.79
+          ],
+          [
+            "Pays-Bas",
+            1.38
+          ],
+          [
+            "Canada",
+            0.91
+          ],
+          [
+            "Royaume-Uni",
+            0.73
+          ],
+          [
+            "Autres pays",
+            0.39
+          ]
+        ],
+        "sectors": [
+          [
+            "Technologies de l'info.",
+            59.65
+          ],
+          [
+            "Services de communication",
+            15.08
+          ],
+          [
+            "Conso Cyclique",
+            10.03
+          ],
+          [
+            "Conso non Cyclique",
+            5.67
+          ],
+          [
+            "Santé",
+            3.83
+          ],
+          [
+            "Industrie",
+            3.16
+          ],
+          [
+            "Services publics",
+            1.03
+          ],
+          [
+            "Matériaux",
+            0.92
+          ],
+          [
+            "Énergie",
+            0.45
+          ],
+          [
+            "Finance",
+            0.19
+          ]
+        ],
+        "holdings": [
+          [
+            "NVIDIA CORP",
+            8.34
+          ],
+          [
+            "APPLE INC",
+            7.32
+          ],
+          [
+            "MICROSOFT CORP",
+            5.75
+          ],
+          [
+            "MICRON TECHNOLOGY INC",
+            5.05
+          ],
+          [
+            "ADVANCED MICRO DEVICES",
+            4.17
+          ],
+          [
+            "AMAZON.COM INC",
+            4.05
+          ],
+          [
+            "META PLATFORMS INC-CLASS A",
+            3.34
+          ],
+          [
+            "ALPHABET INC CL A",
+            3.05
+          ],
+          [
+            "ALPHABET INC CL C",
+            2.84
+          ],
+          [
+            "TESLA INC",
+            2.82
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF",
+          "checkedAt": "2026-11-07",
+          "sha256": "0e4c59822afbc99c23b25cc9ccb955119c8086d38d64118c62b63a6d04cd9efd",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus.",
+        "markets": "grandes sociétés non financières cotées au Nasdaq",
+        "snapshot": "30 septembre 2026",
+        "descriptionTemplates": {
+          "usa": "Les {{targetConstituents}} plus grosses non-financières du Nasdaq : ultra tech."
+        },
+        "targetConstituents": 100,
+        "topWeight": 46.73,
+        "metadata": {
+          "sourceUrls": [
+            "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF"
+          ],
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-07",
+          "currency": null,
+          "scope": "NASDAQ-100 Notional Net Total Return",
+          "method": "Composition d’indice",
+          "note": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus.",
+          "dateStatus": "dated",
+          "periodStart": null,
+          "periodEnd": null,
+          "sourceStatus": "documented",
+          "sourceReason": null,
+          "reviewedAt": null,
+          "modifiedAt": null
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF"
+        ],
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-07",
+        "currency": null,
+        "scope": "NASDAQ-100 Notional Net Total Return",
+        "method": "Composition d’indice",
+        "note": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus.",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Photographie · 30 septembre 2026",
+      "registry": "src/data/index-facts.js",
+      "value": {
+        "index": "NASDAQ-100 Notional Net Total Return",
+        "asOf": "2026-09-30",
+        "constituents": 101,
+        "countries": [
+          [
+            "États-Unis",
+            94.81
+          ],
+          [
+            "Irlande",
+            1.79
+          ],
+          [
+            "Pays-Bas",
+            1.38
+          ],
+          [
+            "Canada",
+            0.91
+          ],
+          [
+            "Royaume-Uni",
+            0.73
+          ],
+          [
+            "Autres pays",
+            0.39
+          ]
+        ],
+        "sectors": [
+          [
+            "Technologies de l'info.",
+            59.65
+          ],
+          [
+            "Services de communication",
+            15.08
+          ],
+          [
+            "Conso Cyclique",
+            10.03
+          ],
+          [
+            "Conso non Cyclique",
+            5.67
+          ],
+          [
+            "Santé",
+            3.83
+          ],
+          [
+            "Industrie",
+            3.16
+          ],
+          [
+            "Services publics",
+            1.03
+          ],
+          [
+            "Matériaux",
+            0.92
+          ],
+          [
+            "Énergie",
+            0.45
+          ],
+          [
+            "Finance",
+            0.19
+          ]
+        ],
+        "holdings": [
+          [
+            "NVIDIA CORP",
+            8.34
+          ],
+          [
+            "APPLE INC",
+            7.32
+          ],
+          [
+            "MICROSOFT CORP",
+            5.75
+          ],
+          [
+            "MICRON TECHNOLOGY INC",
+            5.05
+          ],
+          [
+            "ADVANCED MICRO DEVICES",
+            4.17
+          ],
+          [
+            "AMAZON.COM INC",
+            4.05
+          ],
+          [
+            "META PLATFORMS INC-CLASS A",
+            3.34
+          ],
+          [
+            "ALPHABET INC CL A",
+            3.05
+          ],
+          [
+            "ALPHABET INC CL C",
+            2.84
+          ],
+          [
+            "TESLA INC",
+            2.82
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF",
+          "checkedAt": "2026-11-07",
+          "sha256": "0e4c59822afbc99c23b25cc9ccb955119c8086d38d64118c62b63a6d04cd9efd",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus.",
+        "markets": "grandes sociétés non financières cotées au Nasdaq",
+        "snapshot": "30 septembre 2026",
+        "descriptionTemplates": {
+          "usa": "Les {{targetConstituents}} plus grosses non-financières du Nasdaq : ultra tech."
+        },
+        "targetConstituents": 100,
+        "topWeight": 46.73,
+        "metadata": {
+          "sourceUrls": [
+            "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF"
+          ],
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-11-07",
+          "currency": null,
+          "scope": "NASDAQ-100 Notional Net Total Return",
+          "method": "Composition d’indice",
+          "note": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus.",
+          "dateStatus": "dated",
+          "periodStart": null,
+          "periodEnd": null,
+          "sourceStatus": "documented",
+          "sourceReason": null,
+          "reviewedAt": null,
+          "modifiedAt": null
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF"
+        ],
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-07",
+        "currency": null,
+        "scope": "NASDAQ-100 Notional Net Total Return",
+        "method": "Composition d’indice",
+        "note": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus. Clé : 2026-09-30",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Photographie · 31 août 2026",
+      "registry": "src/data/index-facts.js",
+      "value": {
+        "index": "NASDAQ-100 Notional Net Total Return",
+        "asOf": "2026-08-31",
+        "snapshot": "31 août 2026",
+        "source": {
+          "label": "Composition et performances de l’ETF, Amundi",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/RETAIL/ETF/20260831",
+          "checkedAt": "2026-09-30"
+        },
+        "provenance": "Migration de la fiche existante ; aucune nouvelle vérification externe. Publication officielle retrouvée le 30/09/2026, avec la date de photographie citée (ou la méthodologie nominale) ; cette consultation ne date pas les anciennes archives.",
+        "constituents": 102,
+        "markets": "grandes sociétés non financières cotées au Nasdaq",
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            94.78
+          ],
+          [
+            "🇮🇪 Irlande",
+            1.82
+          ],
+          [
+            "🇳🇱 Pays-Bas",
+            1.32
+          ],
+          [
+            "🇨🇦 Canada",
+            1
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            0.66
+          ],
+          [
+            "🌍 Autres",
+            0.42
+          ]
+        ],
+        "sectors": [
+          [
+            "💻 Technologie",
+            58.27
+          ],
+          [
+            "📡 Communication",
+            13.89
+          ],
+          [
+            "🛍️ Consommation discrétionnaire",
+            11.13
+          ],
+          [
+            "🛒 Consommation de base",
+            6.22
+          ],
+          [
+            "🏥 Santé",
+            4.01
+          ],
+          [
+            "🏭 Industrie",
+            3.62
+          ],
+          [
+            "💡 Services publics",
+            1.14
+          ],
+          [
+            "🪨 Matériaux",
+            1
+          ],
+          [
+            "⚡ Énergie",
+            0.52
+          ],
+          [
+            "🏦 Finance",
+            0.21
+          ]
+        ],
+        "holdings": [
+          [
+            "Nvidia",
+            8.41
+          ],
+          [
+            "Apple",
+            7.5
+          ],
+          [
+            "Microsoft",
+            6.09
+          ],
+          [
+            "Micron",
+            4.64
+          ],
+          [
+            "Amazon",
+            4.58
+          ],
+          [
+            "AMD",
+            3.35
+          ],
+          [
+            "Alphabet A",
+            3.22
+          ],
+          [
+            "Alphabet C",
+            2.99
+          ],
+          [
+            "Broadcom",
+            2.79
+          ],
+          [
+            "Tesla",
+            2.78
+          ]
+        ],
+        "topWeight": 46.35,
+        "targetConstituents": 100,
+        "descriptionTemplates": {
+          "usa": "Les {{targetConstituents}} plus grosses non-financières du Nasdaq : ultra tech."
+        },
+        "metadata": {
+          "sourceUrls": [
+            "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/RETAIL/ETF/20260831"
+          ],
+          "asOf": "2026-08-31",
+          "checkedAt": "2026-09-30",
+          "currency": null,
+          "scope": "NASDAQ-100 Notional Net Total Return",
+          "method": "Composition d’indice",
+          "note": "Migration de la fiche existante ; aucune nouvelle vérification externe. Publication officielle retrouvée le 30/09/2026, avec la date de photographie citée (ou la méthodologie nominale) ; cette consultation ne date pas les anciennes archives.",
+          "dateStatus": "dated",
+          "periodStart": null,
+          "periodEnd": null,
+          "sourceStatus": "documented",
+          "sourceReason": null,
+          "reviewedAt": null,
+          "modifiedAt": null
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/RETAIL/ETF/20260831"
+        ],
+        "asOf": "2026-08-31",
+        "checkedAt": "2026-09-30",
+        "currency": null,
+        "scope": "NASDAQ-100 Notional Net Total Return",
+        "method": "Composition d’indice",
+        "note": "Migration de la fiche existante ; aucune nouvelle vérification externe. Publication officielle retrouvée le 30/09/2026, avec la date de photographie citée (ou la méthodologie nominale) ; cette consultation ne date pas les anciennes archives. Clé : 2026-08-31",
+        "dateStatus": "dated",
+        "periodStart": null,
+        "periodEnd": null,
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    },
+    {
+      "label": "Rendements d’indice · 2025-12-31",
+      "registry": "src/data/index-returns.js",
+      "value": {
+        "values": [
+          [
+            2023,
+            55.13
+          ],
+          [
+            2024,
+            25.88
+          ],
+          [
+            2025,
+            21.02
+          ]
+        ],
+        "performance": {
+          "kind": "indice",
+          "detail": "Nasdaq-100 · USD · dividendes réinvestis",
+          "date": "Années calendaires 2023–2025"
+        },
+        "source": {
+          "label": "Source officielle · performances de l’indice ou de l’actif",
+          "url": "https://indexes.nasdaq.com/docs/FS_XNDX.pdf"
+        },
+        "currency": "USD",
+        "method": "dividendes réinvestis",
+        "note": "Version Total Return XNDX ; distincte de l’indice prix NDX et de la version nette suivie par certains ETF.",
+        "checkedAt": "2026-10-04",
+        "periodStart": "2023-01-01",
+        "periodEnd": "2025-12-31",
+        "metadata": {
+          "sourceUrls": [
+            "https://indexes.nasdaq.com/docs/FS_XNDX.pdf"
+          ],
+          "asOf": "2025-12-31",
+          "checkedAt": "2026-10-04",
+          "currency": "USD",
+          "scope": "Indice nasdaq-pea",
+          "method": "Nasdaq-100 · USD · dividendes réinvestis",
+          "note": "Version Total Return XNDX ; distincte de l’indice prix NDX et de la version nette suivie par certains ETF.",
+          "dateStatus": "dated",
+          "periodStart": "2023-01-01",
+          "periodEnd": "2025-12-31",
+          "sourceStatus": "documented",
+          "sourceReason": null,
+          "reviewedAt": null,
+          "modifiedAt": null
+        }
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://indexes.nasdaq.com/docs/FS_XNDX.pdf"
+        ],
+        "asOf": "2025-12-31",
+        "checkedAt": "2026-10-04",
+        "currency": "USD",
+        "scope": "Indice nasdaq-pea",
+        "method": "Nasdaq-100 · USD · dividendes réinvestis",
+        "note": "Version Total Return XNDX ; distincte de l’indice prix NDX et de la version nette suivie par certains ETF.",
+        "dateStatus": "dated",
+        "periodStart": "2023-01-01",
+        "periodEnd": "2025-12-31",
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "originalSourceFile": "reports/reliquat-2026-10-23/preuves/DE000A0H08P6-blackrock.json.gz",
+  "originalEvidencePreserved": true,
+  "checks": [
+    {
+      "date": "2019-10-15",
+      "amount": 0.086569,
+      "currency": "EUR ",
+      "before": "2019-10-14",
+      "after": "2019-10-15",
+      "navBefore": 31.8683,
+      "navAfter": 32.5545,
+      "observedFactor": 1.002723863017094,
+      "backAdjustedPreviousNavFactor": 1.0027238604467454,
+      "exDateReinvestFactor": 1.002659202260824
+    },
+    {
+      "date": "2019-07-15",
+      "amount": 0.374603,
+      "currency": "EUR ",
+      "before": "2019-07-12",
+      "after": "2019-07-15",
+      "navBefore": 31.3251,
+      "navAfter": 30.9668,
+      "observedFactor": 1.0120990293613583,
+      "backAdjustedPreviousNavFactor": 1.0121032951425626,
+      "exDateReinvestFactor": 1.0120969231564128
+    },
+    {
+      "date": "2019-04-15",
+      "amount": 0.075611,
+      "currency": "EUR ",
+      "before": "2019-04-12",
+      "after": "2019-04-15",
+      "navBefore": 32.2221,
+      "navAfter": 32.3806,
+      "observedFactor": 1.0023407310458916,
+      "backAdjustedPreviousNavFactor": 1.0023520764584897,
+      "exDateReinvestFactor": 1.002335070999302
+    },
+    {
+      "date": "2019-01-15",
+      "amount": 0.211425,
+      "currency": "EUR ",
+      "before": "2019-01-14",
+      "after": "2019-01-15",
+      "navBefore": 27.9044,
+      "navAfter": 27.6824,
+      "observedFactor": 1.0076346045685565,
+      "backAdjustedPreviousNavFactor": 1.0076346076938285,
+      "exDateReinvestFactor": 1.0076375242031037
+    }
+  ],
+  "originalSourceSha256": "e26ceaf480e0a1919426057ee249f78b27f89d3e09f1145224490a531592c559",
+  "analysisAt": "2026-11-07T09:54:57.802632+00:00",
+  "sourceControlRenewed": false,
+  "post2019IndependentScopes": [
+    {
+      "periodStart": "2019-12",
+      "kind": "replay of original issuer capture, not a new source consultation",
+      "originalSourceClockRenewed": false,
+      "result": "refused",
+      "reason": "Official cash adjustment not reconciled: 2024-04-15",
+      "effectOnExistingMarketSeries": "none; does not demonstrate a market-price defect in2024"
+    },
+    {
+      "periodStart": "2020-12",
+      "kind": "replay of original issuer capture, not a new source consultation",
+      "originalSourceClockRenewed": false,
+      "result": "refused",
+      "reason": "Official cash adjustment not reconciled: 2024-04-15",
+      "effectOnExistingMarketSeries": "none; does not demonstrate a market-price defect in2024"
+    },
+    {
+      "periodStart": "2021-12",
+      "kind": "replay of original issuer capture, not a new source consultation",
+      "originalSourceClockRenewed": false,
+      "result": "refused",
+      "reason": "Official cash adjustment not reconciled: 2024-04-15",
+      "effectOnExistingMarketSeries": "none; does not demonstrate a market-price defect in2024"
+    }
+  ]
+}

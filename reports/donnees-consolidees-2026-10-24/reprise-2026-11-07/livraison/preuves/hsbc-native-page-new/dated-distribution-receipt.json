@@ -1,0 +1,83 @@
+{
+  "attemptedAt": "2026-11-07T12:35:42.753Z",
+  "kind": "one ordinary anonymous public page; date option from its declared reportingDate payload, no credentials persisted",
+  "attempts": [
+    {
+      "reportingDateRequested": "2024-12-31",
+      "status": 200,
+      "sha256": "ff47d992f9b0e08c339fbebf0298e541e884c8671f67183faf072155de146d01",
+      "sourceRows": [
+        [
+          "Gross dividend per unit ( EUR )",
+          "1.1808",
+          "0.3420"
+        ],
+        [
+          "Ex date",
+          "06 Aug 2026",
+          "05 Feb 2026"
+        ],
+        [
+          "Payment date",
+          "28 Aug 2026",
+          "27 Feb 2026"
+        ],
+        [
+          "Record date",
+          "07 Aug 2026",
+          "06 Feb 2026"
+        ]
+      ],
+      "headings": [
+        "",
+        "Latest dividend payment",
+        "Previous dividend payment"
+      ],
+      "bytes": 393
+    },
+    {
+      "reportingDateRequested": "2024-02-02",
+      "status": 200,
+      "sha256": "ff47d992f9b0e08c339fbebf0298e541e884c8671f67183faf072155de146d01",
+      "sourceRows": [
+        [
+          "Gross dividend per unit ( EUR )",
+          "1.1808",
+          "0.3420"
+        ],
+        [
+          "Ex date",
+          "06 Aug 2026",
+          "05 Feb 2026"
+        ],
+        [
+          "Payment date",
+          "28 Aug 2026",
+          "27 Feb 2026"
+        ],
+        [
+          "Record date",
+          "07 Aug 2026",
+          "06 Feb 2026"
+        ]
+      ],
+      "headings": [
+        "",
+        "Latest dividend payment",
+        "Previous dividend payment"
+      ],
+      "bytes": 393
+    }
+  ],
+  "payloadKeys": [
+    "id",
+    "reportingDate",
+    "exchange",
+    "currency",
+    "performance",
+    "pageInformation"
+  ],
+  "workbookLink": "/api/v1/detail/fund-history",
+  "workbookFilename": "NAV_history _ IE00B4K6B022.xlsx",
+  "workbookSha256": "85d49ba32e52d1ccf10e3f14d449d91dd0afcf97f88904606c9a2efc1a928e20"
+}

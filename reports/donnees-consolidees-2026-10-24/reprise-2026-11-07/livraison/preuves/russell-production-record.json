@@ -1,0 +1,167 @@
+{
+  "checkedAt": "2026-11-07T10:51:02.163159+00:00",
+  "commit": "3fa7dd9bbc0a3153de842aba992e50bcfbe3a724",
+  "registrySha256": "d79762f81f527ffd5d934b0a677c13efde621d3dd85e01f1c538f49b22eae984",
+  "monthly": {
+    "asOf": "2026-10-31",
+    "constituents": 1022
+  },
+  "quarterly": {
+    "index": "Russell 1000",
+    "asOf": "2026-06-30",
+    "constituents": 1023,
+    "countries": [
+      [
+        "🇺🇸 États-Unis",
+        99.963
+      ],
+      [
+        "🇬🇧 Royaume-Uni",
+        0.021
+      ],
+      [
+        "🇨🇦 Canada",
+        0.014
+      ]
+    ],
+    "sectors": [
+      [
+        "⚡ Énergie",
+        3.11
+      ],
+      [
+        "🏠 Immobilier",
+        2.08
+      ],
+      [
+        "🏥 Santé",
+        8.58
+      ],
+      [
+        "🏦 Finance",
+        9.77
+      ],
+      [
+        "🏭 Industrie",
+        12.27
+      ],
+      [
+        "💡 Services publics",
+        2.38
+      ],
+      [
+        "💻 Technologie",
+        41.92
+      ],
+      [
+        "📡 Communication",
+        2.21
+      ],
+      [
+        "🛍️ Consommation cyclique",
+        12.64
+      ],
+      [
+        "🛒 Consommation de base",
+        3.48
+      ],
+      [
+        "🪨 Matériaux",
+        1.57
+      ]
+    ],
+    "holdings": [
+      [
+        "Nvidia Corp",
+        6.732
+      ],
+      [
+        "Apple Inc",
+        6.034
+      ],
+      [
+        "Microsoft Corp",
+        3.997
+      ],
+      [
+        "Amazon Com Inc",
+        3.335
+      ],
+      [
+        "Alphabet Inc Cl A",
+        3.003
+      ],
+      [
+        "Broadcom Inc",
+        2.535
+      ],
+      [
+        "Alphabet Inc Cl C",
+        2.423
+      ],
+      [
+        "Micron Technology Inc",
+        1.877
+      ],
+      [
+        "Meta Platforms Inc",
+        1.786
+      ],
+      [
+        "Tesla Inc",
+        1.772
+      ]
+    ],
+    "countryMethod": "Pays natifs des 1023 lignes du rapport ESMA ; aucune déduction depuis le nom ou le domicile juridique",
+    "countryRowsCount": 1023,
+    "publishedMembershipWeightPct": 99.998,
+    "weightRemainderPct": 0.002,
+    "collectionBasis": "same-date-exact-index-quarter",
+    "sectorMethod": "ICB",
+    "sectorExtractionProof": {
+      "readers": [
+        "whole-chart-psm11-2x",
+        "isolated-lines-psm7-2x"
+      ],
+      "minimumOcrConfidence": 75,
+      "maxGeometryDifferencePctPoints": 0.5,
+      "weightsFromPrintedLabelsOnly": true
+    },
+    "holdingsSource": {
+      "url": "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000",
+      "checkedAt": "2026-11-07",
+      "sha256": "5da48894939e99dbe2b9c3c3295c53cb6b8bf28b157b289aa34662c95c5e9f29",
+      "label": "FTSE Russell · ESMA Quarterly Membership Weights · Russell 1000",
+      "asOf": "2026-06-30"
+    },
+    "source": {
+      "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssueByDate?IssueName=US1000USD&IssueDate=20260630&IsManual=id",
+      "checkedAt": "2026-11-07",
+      "sha256": "ed4349fbe1714f43c4924d70fcbdecc139c00d37745a232084d3805b1f10dc93",
+      "label": "FTSE Russell · fiche archivée à la date des positions trimestrielles",
+      "archiveUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/GetIssueListByCode?issueName=US1000USD",
+      "archiveSha256": "301ca623fec5ca73915d4dd048542131c21a1d0e2df8b81ae3f3f60dd679199b",
+      "sourceUrls": [
+        "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssueByDate?IssueName=US1000USD&IssueDate=20260630&IsManual=id",
+        "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000",
+        "https://research.ftserussell.com/Analytics/FactSheets/Home/GetIssueListByCode?issueName=US1000USD"
+      ],
+      "rawSourceHashes": {
+        "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssueByDate?IssueName=US1000USD&IssueDate=20260630&IsManual=id": "ed4349fbe1714f43c4924d70fcbdecc139c00d37745a232084d3805b1f10dc93",
+        "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000": "5da48894939e99dbe2b9c3c3295c53cb6b8bf28b157b289aa34662c95c5e9f29",
+        "https://research.ftserussell.com/Analytics/FactSheets/Home/GetIssueListByCode?issueName=US1000USD": "301ca623fec5ca73915d4dd048542131c21a1d0e2df8b81ae3f3f60dd679199b"
+      }
+    },
+    "provenance": "Russell 1000 exact : fiche officielle et rapport ESMA de même date. Pays agrégés depuis toutes les lignes et leurs poids natifs ; résidu de poids conservé, aucune renormalisation. Top dix des lignes, classes séparées. Photographie trimestrielle distincte des secteurs mensuels ; pas de portefeuille complet identifié pour le recouvrement."
+  },
+  "nasdaqPEA": {
+    "asOf": "2026-09-30",
+    "source": {
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-10-11",
+      "sha256": "0e4c59822afbc99c23b25cc9ccb955119c8086d38d64118c62b63a6d04cd9efd",
+      "label": "Composition de l’indice publiée par Amundi"
+    }
+  },
+  "kind": "production registry inspected in Git; public consumption still separate"
+}

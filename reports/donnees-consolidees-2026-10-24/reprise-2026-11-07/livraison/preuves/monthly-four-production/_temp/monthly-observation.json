@@ -1,0 +1,188 @@
+{
+  "checkedAt": "2026-11-07T09:16:30.778641+00:00",
+  "scope": {
+    "requestedIds": [
+      "etfGB00B15KXQ89Nav",
+      "etc_coffeeNav",
+      "etc_cocoaNav",
+      "etc_natural_gasNav"
+    ],
+    "expectedIds": [
+      "etfGB00B15KXQ89Nav",
+      "etc_coffeeNav",
+      "etc_cocoaNav",
+      "etc_natural_gasNav"
+    ],
+    "selection": "explicit"
+  },
+  "series": [
+    {
+      "id": "etfGB00B15KXQ89Nav",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-10",
+      "responseSha256": "29ae102f8ca0e5eac79fbb86c7e1a14bd141385263c6f8b8266291d800732bba",
+      "controlScope": {
+        "controlledInstrument": "GB00B15KXQ89",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2015-01-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    },
+    {
+      "id": "etc_coffeeNav",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-10",
+      "responseSha256": "1cb9129eb7ff52fee08c6e59b695cc0d14947568ef8ac60948afb60a60232bc1",
+      "controlScope": {
+        "controlledInstrument": "JE00BN7KB557",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2021-12-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    },
+    {
+      "id": "etc_cocoaNav",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-10",
+      "responseSha256": "77213a362c2ffdd41a429410e0eeb6827915122620afb93aa2145f4544992b38",
+      "controlScope": {
+        "controlledInstrument": "JE00B2QXZK10",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2015-01-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    },
+    {
+      "id": "etc_natural_gasNav",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-10",
+      "responseSha256": "1223da67a2eb521ba20cb44e5981ea95a91336d4fd86cc5514f54d7f35263cb1",
+      "controlScope": {
+        "controlledInstrument": "JE00BN7KB334",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2021-12-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    }
+  ]
+}

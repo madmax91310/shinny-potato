@@ -1,0 +1,171 @@
+{
+  "base": "https://madmax91310.github.io/shinny-potato/",
+  "verifiedAt": "2026-11-07T21:01:29.027Z",
+  "results": [
+    {
+      "id": "topix",
+      "index": "TOPIX",
+      "sourceIndexId": "topix",
+      "sourceUrl": "https://www.jpx.co.jp/automation/markets/indices/topix/files/topixweight_j.csv",
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sourceRows": 1636,
+      "topWeight": 24.0941,
+      "otherWeight": 75.9059,
+      "publishedWeightSum": 99.99940000000008,
+      "normalizationApplied": false,
+      "sourceBasis": "qualified-native-index",
+      "sha256": "bd4f637891ac733ea2349e252f379e62d76b016a3426ee9db555e03be8b8e736",
+      "previewEqualsDownload": true,
+      "canvasWeightsVerified": true,
+      "sourceDateVisible": true,
+      "mobile": [
+        390
+      ]
+    },
+    {
+      "id": "stoxx600",
+      "index": "STOXX Europe 600",
+      "sourceIndexId": "stoxx600",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWW18/holdings/index?idType=isin&loadType=initial",
+      "asOf": "2026-10-28",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sourceRows": 600,
+      "topWeight": 20.503999999999998,
+      "otherWeight": 79.49600000000001,
+      "publishedWeightSum": 99.99990000000001,
+      "normalizationApplied": false,
+      "sourceBasis": "qualified-native-index",
+      "sha256": "cecaf067c63c3ece10f305ef3ce59218fdb8ba8fcffc70ee304c601bc2b515bb",
+      "previewEqualsDownload": true,
+      "canvasWeightsVerified": true,
+      "sourceDateVisible": true,
+      "mobile": [
+        390
+      ]
+    },
+    {
+      "id": "nasdaq-pea",
+      "index": "Nasdaq-100",
+      "sourceIndexId": "nasdaq100-notional-net",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BNRQM384/holdings/index?idType=isin&loadType=initial",
+      "asOf": "2026-11-05",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sourceRows": 101,
+      "topWeight": 49.58010000000001,
+      "otherWeight": 50.41989999999999,
+      "publishedWeightSum": 100.00020000000002,
+      "normalizationApplied": false,
+      "sourceBasis": "qualified-native-index",
+      "sha256": "7ff0903662139f432874449e4580147211788d307286863767faae20d75da093",
+      "previewEqualsDownload": true,
+      "canvasWeightsVerified": true,
+      "sourceDateVisible": true,
+      "mobile": [
+        390
+      ]
+    },
+    {
+      "id": "world",
+      "index": "MSCI World",
+      "sourceIndexId": "msci-world-net",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+      "asOf": "2026-09-23",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sourceRows": 1250,
+      "topWeight": 28.726800000000004,
+      "otherWeight": 71.2732,
+      "publishedWeightSum": 100.00030000000001,
+      "normalizationApplied": false,
+      "sourceBasis": "qualified-native-index",
+      "sha256": "aafe2aad2afde4025c08786217cf975f441c02c21b6c13645a5c8b77d8fa9a76",
+      "previewEqualsDownload": true,
+      "canvasWeightsVerified": true,
+      "sourceDateVisible": true,
+      "mobile": [
+        390
+      ]
+    },
+    {
+      "id": "mscieurope",
+      "index": "MSCI Europe",
+      "sourceIndexId": "msci-europe-net",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWY32/holdings/index?idType=isin&loadType=initial",
+      "asOf": "2026-09-23",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sourceRows": 387,
+      "topWeight": 21.7515,
+      "otherWeight": 78.2485,
+      "publishedWeightSum": 99.99919999999993,
+      "normalizationApplied": false,
+      "sourceBasis": "qualified-native-index",
+      "sha256": "01633e170bb3d2ef457b3519fb637f961bfa8ecc0298cf986ce2d7ad0616081d",
+      "previewEqualsDownload": true,
+      "canvasWeightsVerified": true,
+      "sourceDateVisible": true,
+      "mobile": [
+        390
+      ]
+    },
+    {
+      "id": "em-standard",
+      "index": "MSCI Emerging Markets",
+      "sourceIndexId": "msci-em-net",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B3DWVS88/holdings/index?idType=isin&loadType=initial",
+      "asOf": "2026-09-23",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sourceRows": 1165,
+      "topWeight": 40.0073,
+      "otherWeight": 59.9927,
+      "publishedWeightSum": 100.00000000000001,
+      "normalizationApplied": false,
+      "sourceBasis": "qualified-native-index",
+      "sha256": "ebf1cb17b0f684ed60c19557cda65f74f9b738e4ef91e5e8a8756c280efa0769",
+      "previewEqualsDownload": true,
+      "canvasWeightsVerified": true,
+      "sourceDateVisible": true,
+      "mobile": [
+        390
+      ]
+    },
+    {
+      "id": "russell-2000",
+      "index": "Russell 2000",
+      "sourceIndexId": "russell2000-equity-members",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX402/holdings/index?idType=isin&loadType=initial",
+      "asOf": "2026-11-05",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sourceRows": 1959,
+      "topWeight": 3.3306,
+      "otherWeight": 96.6694,
+      "publishedWeightSum": 99.99860000000007,
+      "normalizationApplied": false,
+      "sourceBasis": "qualified-native-index",
+      "sha256": "f7eb358a7c4512be04854261fa6b8be45df75b210069c4ba4153b25fa4accbe3",
+      "previewEqualsDownload": true,
+      "canvasWeightsVerified": true,
+      "sourceDateVisible": true,
+      "mobile": [
+        390
+      ]
+    },
+    {
+      "id": "dax",
+      "index": "DAX",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0252633754/FRA/FRA/INSTITUTIONNEL/ETF",
+      "asOf": "2026-10-31",
+      "checkedAt": "2026-11-07",
+      "topWeight": 64.97,
+      "otherWeight": 35.03,
+      "sourceBasis": "official-index-table",
+      "sha256": "324ca0f67a712cc2b8aa8b96c2318aec484afa373556267502fd709a0ef16228",
+      "previewEqualsDownload": true,
+      "canvasWeightsVerified": true,
+      "sourceDateVisible": true,
+      "mobile": [
+        390
+      ]
+    }
+  ],
+  "errors": []
+}

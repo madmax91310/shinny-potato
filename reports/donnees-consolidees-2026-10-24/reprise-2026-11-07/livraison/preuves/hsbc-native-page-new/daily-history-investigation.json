@@ -1,0 +1,36 @@
+{
+  "kind": "new real local official-source observation; full cash and NAV convention not yet admitted",
+  "asRetrieved": "2026-11-07T12:31:26.072Z",
+  "sourcePath": "/api/v1/detail/line-chart-series",
+  "isin": "IE00B4K6B022",
+  "exchangeSelection": "XPAR",
+  "currencySelection": "EUR",
+  "morningstarListingId": "0P0000M49M",
+  "nativeSeriesLabel": "Price",
+  "nativeDownloadLabel": "NAV_history _ IE00B4K6B022 .xls",
+  "observations": 4279,
+  "firstDate": "2009-10-05",
+  "lastDate": "2026-11-05",
+  "bounds": {
+    "2023-12-29": 47.4548,
+    "2024-12-31": 51.3764,
+    "2024-02-01": 48.5364,
+    "2024-07-31": 52.2323,
+    "2024-08-01": 51.0836,
+    "2024-08-07": 50.0523,
+    "2024-08-08": 48.7968,
+    "2026-11-05": 65.6115
+  },
+  "officialRnsIndependentLatestNav": {
+    "sourceUrl": "https://www.londonstockexchange.com/en/news/article/net-asset-value-s/30e8-07-a6-8a-d5-49d5bd",
+    "date": "2026-11-05",
+    "currency": "EUR",
+    "value": 65.6115,
+    "receiptKind": "search discovery, raw document not yet retrieved"
+  },
+  "hypothetical2024TotalReturnPct": 11.571110862628743,
+  "conventionAdmitted": false,
+  "sourceClockRenewedInApplication": false,
+  "runtimeSeriesChanged": false,
+  "missing": "Native historical ex-date scope and distributions completeness/convention; qualify this explicit NAV download versus the Price label before activating an independent total-return route."
+}

@@ -1,0 +1,27 @@
+{
+  "runId": "42394841513",
+  "sourceValidated": true,
+  "recordingVerified": true,
+  "publicationVerified": true,
+  "event": "workflow_dispatch",
+  "sourceCode": "e6ad6c3d58051472a689849a4ec3abe02e56b1ee",
+  "recordingCommit": "6153f2d6df463a5167799c483ed7a1c2a971659a",
+  "observedMaster": "6153f2d6df463a5167799c483ed7a1c2a971659a",
+  "recordPath": "src/data/automated-etf-monthly.json",
+  "responseSha256": "9be6c25f6ea3a6acf7d482ac1337168215b36debad2f058072f435980359c6fe",
+  "points": 35,
+  "periodEnd": "2026-10",
+  "sourceRuntime": {
+    "runId": "42394841513",
+    "event": "workflow_dispatch",
+    "codeRevision": "e6ad6c3d58051472a689849a4ec3abe02e56b1ee"
+  },
+  "verifiedAt": "2026-11-07T18:53:11.933809+00:00",
+  "publicBuild": {
+    "sha": "4a253821b4b84d52e0cfabfdde14da77ae61f4c6",
+    "dataSha": "62a9620babe23dbf5b49865884133cf55964b981",
+    "lane": "validated-data",
+    "builtAt": "2026-11-07T20:58:14.027Z"
+  },
+  "publicProof": "public-table-snapshot.json matches the canonical financial file to the public manifest; hsbc-public-library/receipt.json and browser PNG receipts verify its actual use."
+}

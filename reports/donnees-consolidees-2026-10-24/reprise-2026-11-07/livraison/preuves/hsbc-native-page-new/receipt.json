@@ -1,0 +1,155 @@
+{
+  "attemptedAt": "2026-11-07T12:29:58.028Z",
+  "url": "https://www.assetmanagement.hsbc.co.uk/en/institutional-investor/funds/ie00b4k6b022",
+  "kind": "ordinary local browser source exploration, not a production qualification",
+  "status": 200,
+  "sha256": "676277d5c6089f49617d85842fd0afea8a44e5f7b0eea04ae0cbe7f52b04299a",
+  "identityPresent": true,
+  "buttons": [
+    "                Accept optional cookies            ",
+    "                Decline optional cookies            ",
+    "                Manage cookies                            "
+  ],
+  "selects": [
+    {
+      "id": "share-class-select",
+      "name": "",
+      "options": [
+        {
+          "text": "EUR",
+          "value": "IE00B4K6B022"
+        },
+        {
+          "text": "EUR (Acc)",
+          "value": "IE000MWUQBJ0"
+        },
+        {
+          "text": "GBP Hedged(Acc)",
+          "value": "IE000QW9E395"
+        }
+      ]
+    },
+    {
+      "id": "performance-select",
+      "name": "",
+      "options": [
+        {
+          "text": "EUR",
+          "value": "EUR"
+        }
+      ]
+    },
+    {
+      "id": "exchange-select",
+      "name": "",
+      "options": [
+        {
+          "text": "LONDON STOCK EXCHANGE",
+          "value": "XLON"
+        },
+        {
+          "text": "NYSE EURONEXT - EURONEXT PARIS",
+          "value": "XPAR"
+        },
+        {
+          "text": "SIX SWISS EXCHANGE",
+          "value": "XSWX"
+        },
+        {
+          "text": "DEUTSCHE BOERSE AG-XETRA",
+          "value": "XETR"
+        },
+        {
+          "text": "DEUTSCHE BOERSE AG- XFRA",
+          "value": "XFRA"
+        },
+        {
+          "text": "BORSA ITALIANA SPA",
+          "value": "XMIL"
+        }
+      ]
+    },
+    {
+      "id": "excurrency-select",
+      "name": "",
+      "options": [
+        {
+          "text": "GBP",
+          "value": "0P0000M4AU"
+        }
+      ]
+    }
+  ],
+  "links": [],
+  "apiPaths": [
+    {
+      "path": "https://www.assetmanagement.hsbc.co.uk/api/v1/token/issue",
+      "queryNames": [],
+      "status": 200
+    },
+    {
+      "path": "https://www.assetmanagement.hsbc.co.uk/api/sitecore/TermsAndConditionsModal/GetInvestorSetting",
+      "queryNames": [
+        "country",
+        "investortype",
+        "language"
+      ],
+      "status": 200
+    },
+    {
+      "path": "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/presentation",
+      "queryNames": [],
+      "status": 200
+    },
+    {
+      "path": "https://www.assetmanagement.hsbc.co.uk/api/v1/token/issue",
+      "queryNames": [],
+      "status": 200
+    },
+    {
+      "path": "https://www.assetmanagement.hsbc.co.uk/api/v1/token/issue",
+      "queryNames": [],
+      "status": 200
+    },
+    {
+      "path": "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/key-information",
+      "queryNames": [],
+      "status": 200
+    },
+    {
+      "path": "https://www.assetmanagement.hsbc.co.uk/api/v1/token/issue",
+      "queryNames": [],
+      "status": 200
+    },
+    {
+      "path": "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/list",
+      "queryNames": [],
+      "status": 200
+    },
+    {
+      "path": "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/list",
+      "queryNames": [],
+      "status": 200
+    },
+    {
+      "path": "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/list",
+      "queryNames": [],
+      "status": 200
+    },
+    {
+      "path": "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/list",
+      "queryNames": [],
+      "status": 200
+    },
+    {
+      "path": "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/primary-identifier",
+      "queryNames": [],
+      "status": 200
+    },
+    {
+      "path": "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/list",
+      "queryNames": [],
+      "status": 200
+    }
+  ]
+}

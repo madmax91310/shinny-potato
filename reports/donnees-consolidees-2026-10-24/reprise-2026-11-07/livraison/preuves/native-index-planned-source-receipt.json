@@ -1,0 +1,116 @@
+{
+  "runId": 42381313295,
+  "event": "schedule",
+  "sourceVerified": true,
+  "recordingCommit": "6841e92c2054d43d6be377e0c95e55ba41cb4be1",
+  "records": [
+    {
+      "isin": "FR0013411980",
+      "indexId": "topix",
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sha256": "8471982993b59624d502aa50330e0eeb98892f89fb052d69ca42d43586aa4f1d",
+      "sourceUrl": "https://www.jpx.co.jp/automation/markets/indices/topix/files/topixweight_j.csv",
+      "rows": 1636
+    },
+    {
+      "isin": "FR0013411998",
+      "indexId": "topix",
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sha256": "8471982993b59624d502aa50330e0eeb98892f89fb052d69ca42d43586aa4f1d",
+      "sourceUrl": "https://www.jpx.co.jp/automation/markets/indices/topix/files/topixweight_j.csv",
+      "rows": 1636
+    },
+    {
+      "isin": "FR0011550193",
+      "indexId": "stoxx600",
+      "asOf": "2026-10-28",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sha256": "5bebb7c995fdac94af43b2cefc61b64ad8b457e0c54d14d0adb78a4b9fc4a0c8",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWW18/holdings/index?idType=isin&loadType=initial",
+      "rows": 600
+    },
+    {
+      "isin": "FR0011871110",
+      "indexId": "nasdaq100-notional-net",
+      "asOf": "2026-11-05",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sha256": "e5a5277b2c452cbe07c0a684d0307b776df48f4ef753a157e65a8b59452bb0c5",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BNRQM384/holdings/index?idType=isin&loadType=initial",
+      "rows": 101
+    },
+    {
+      "isin": "FR001400U5Q4",
+      "indexId": "msci-world-net",
+      "asOf": "2026-09-23",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sha256": "627a579700c4953d1bb91e55e0889e1df72499f7abc41f2fb97a9b157f8027d9",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+      "rows": 1250
+    },
+    {
+      "isin": "LU1681043599",
+      "indexId": "msci-world-net",
+      "asOf": "2026-09-23",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sha256": "627a579700c4953d1bb91e55e0889e1df72499f7abc41f2fb97a9b157f8027d9",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+      "rows": 1250
+    },
+    {
+      "isin": "IE0002XZSHO1",
+      "indexId": "msci-world-net",
+      "asOf": "2026-09-23",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sha256": "627a579700c4953d1bb91e55e0889e1df72499f7abc41f2fb97a9b157f8027d9",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+      "rows": 1250
+    },
+    {
+      "isin": "FR0013412038",
+      "indexId": "msci-europe-net",
+      "asOf": "2026-09-23",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sha256": "e69173bd1ac8966f2528d6f16bfe2573f1630532777507bafe25bef56d90035b",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SWY32/holdings/index?idType=isin&loadType=initial",
+      "rows": 387
+    },
+    {
+      "isin": "LU1681045370",
+      "indexId": "msci-em-net",
+      "asOf": "2026-09-23",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sha256": "0c4deaa5d6cb622062c0319a08aebdae602271e00f3545a6762620fd59fe080e",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B3DWVS88/holdings/index?idType=isin&loadType=initial",
+      "rows": 1165
+    },
+    {
+      "isin": "IE000QDFFK00",
+      "indexId": "nasdaq100-notional-net",
+      "asOf": "2026-11-05",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sha256": "e5a5277b2c452cbe07c0a684d0307b776df48f4ef753a157e65a8b59452bb0c5",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BNRQM384/holdings/index?idType=isin&loadType=initial",
+      "rows": 101
+    },
+    {
+      "isin": "IE00BD4TXV59",
+      "indexId": "msci-world-net",
+      "asOf": "2026-09-23",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sha256": "627a579700c4953d1bb91e55e0889e1df72499f7abc41f2fb97a9b157f8027d9",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX394/holdings/index?idType=isin&loadType=initial",
+      "rows": 1250
+    },
+    {
+      "isin": "LU1681038672",
+      "indexId": "russell2000-equity-members",
+      "asOf": "2026-11-05",
+      "checkedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sha256": "4cdb0fa6d4fa57e4f960056924bd5b95599acb3e0688df359942833b58ac554a",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B60SX402/holdings/index?idType=isin&loadType=initial",
+      "rows": 1959
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "checkedAt": "2026-11-07T17:08:16.002562+00:00",
+  "number": 1203,
+  "headSha": "ba5a2a9415dc8c1a96091f4ba9937121139e8f08",
+  "baseSha": "c3da57f0fedc43ddb89f5e186756848408b668ca",
+  "mergeable": true,
+  "mergeableState": "clean",
+  "requiredChecks": [
+    {
+      "name": "browser-checks (0)",
+      "id": 128461629153,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42390921651/job/128461629153"
+    },
+    {
+      "name": "browser-checks (1)",
+      "id": 128461629223,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42390921651/job/128461629223"
+    },
+    {
+      "name": "browser-checks (2)",
+      "id": 128461629165,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42390921651/job/128461629165"
+    },
+    {
+      "name": "browser-checks (3)",
+      "id": 128461629299,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42390921651/job/128461629299"
+    },
+    {
+      "name": "build",
+      "id": 128458226999,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42390921651/job/128458226999"
+    },
+    {
+      "name": "current-snapshot",
+      "id": 128458167054,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42390921651/job/128458167054"
+    },
+    {
+      "name": "exposure-browser-check",
+      "id": 128458226948,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42390921651/job/128458226948"
+    },
+    {
+      "name": "python-checks",
+      "id": 128458226994,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42390921651/job/128458226994"
+    },
+    {
+      "name": "scope",
+      "id": 128458227036,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42390921651/job/128458227036"
+    },
+    {
+      "name": "smoke",
+      "id": 128461629131,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42390921651/job/128461629131"
+    },
+    {
+      "name": "tweet-midi-checks (0)",
+      "id": 128461629151,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42390921651/job/128461629151"
+    },
+    {
+      "name": "tweet-midi-checks (1)",
+      "id": 128461629160,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42390921651/job/128461629160"
+    },
+    {
+      "name": "tweet-midi-checks (2)",
+      "id": 128461629261,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42390921651/job/128461629261"
+    },
+    {
+      "name": "tweet-midi-checks (3)",
+      "id": 128461629172,
+      "conclusion": "success",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42390921651/job/128461629172"
+    }
+  ],
+  "otherChecks": [
+    {
+      "name": "verify",
+      "conclusion": "success"
+    },
+    {
+      "name": "official-nav-source-controls",
+      "conclusion": "success"
+    },
+    {
+      "name": "refresh",
+      "conclusion": "success"
+    },
+    {
+      "name": "deploy",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "report-failures",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "fallback-build",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "deploy-fallback",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "advisory-checks",
+      "conclusion": "skipped"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-11-07T19:02:33.817001+00:00",
+  "codeHead": "42d997955063b5323cd48d502202566331c4f5ae",
+  "tests": [
+    {
+      "log": "native-unit.log",
+      "sha256": "a8c770aaa7a14e3cfc577f88f5042327adb71fb4983cf7b34c8e95919ecbc083",
+      "successfulEvidence": "Seven exact native-index"
+    },
+    {
+      "log": "native-browser.log",
+      "sha256": "62666df40820ec759f1b1eba8dc702633f6aace134a40d774f5165d8f4f646e8",
+      "successfulEvidence": "all canvas labels, geometry"
+    },
+    {
+      "log": "native-final-build.log",
+      "sha256": "6f08edefeb11f5a8925d3c44188e7a9adf2229996e8c783968d3ac269e6d68bd",
+      "successfulEvidence": "Publication manifest matches all 42"
+    }
+  ],
+  "note": "Final local build executed after freezing this code commit. All14requiredCI gates and actual public consumers remain separate proofs. Earlier browser captures use identical financial rendering sources; final public browser proof is still required.",
+  "finalCodeHead": "46181a7a0b5b2b880c33ec8c1fd7ce10308f6eee",
+  "finalLocalBuild": {
+    "codeAtExecution": "46181a7a0b5b2b880c33ec8c1fd7ce10308f6eee",
+    "exitCode": 0,
+    "command": "npm run build",
+    "logSha256": "3b8874d8601f653e8457a3fb3074384b13da4ac310e54b84f4bd6768ff43d940",
+    "manifestValidation": "All42builtpublicdatafiles verified;4583fieldcertificates agree; no local build-info emitted by this command."
+  },
+  "producerContractTests": {
+    "tests": 62,
+    "success": true,
+    "logSha256": "b73c32513654f72c073d5705510f91379f3a19abe903a482b022c1071ae262b1"
+  }
+}

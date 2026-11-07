@@ -1,0 +1,37 @@
+{
+  "failedQualificationsPreservedAsHistory": [
+    {
+      "runId": 42353953739,
+      "head": "d4be2914",
+      "result": "COPA/COFF/COCO HTTP403; NGAS/WEAT qualified; not a proof of complete supplier failure"
+    },
+    {
+      "runId": 42354897672,
+      "head": "ce66cdbc",
+      "result": "COPA/COFF/NGAS/WEAT qualified; COCO HTTP403; no false all-success receipt"
+    }
+  ],
+  "successfulReadOnlyQualification": {
+    "runId": 42355327597,
+    "head": "4e7d829be806b7639f0b7fe6b27f94b0d79f2ec8",
+    "exactSeries": 5,
+    "publication": false
+  },
+  "successfulOrdinaryProduction": {
+    "runId": 42358605123,
+    "codeCommit": "1dbfdd9122c0a69c44fe909b5f6c35d281e93ac7",
+    "dataCommit": "d907d3594c252c62af353ba0e1811897306de6d0",
+    "exactSeries": 4,
+    "sourceState": "unchanged-verified",
+    "publicConsumersVerified": true
+  },
+  "oldBranchDispatch": {
+    "runId": 42353952722,
+    "qualification": "workflow on branch checked out old master812da; no patched-source recording or publication proof"
+  },
+  "browserTransport": {
+    "isolation": "covered by mandatory tests",
+    "realGitHubSuccessfulQualification": "direct HTTP; browser fallback not exercised on this success",
+    "realLocalFallback": "ordinary public product page and same native widget URLs; no challenge/authentication; retain original403"
+  }
+}

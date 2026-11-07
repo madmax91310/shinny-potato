@@ -1,0 +1,56 @@
+{
+  "attemptedAt": "2026-11-07T11:53:02.429391+00:00",
+  "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251959&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+  "kind": "one targeted real local supplier request, all qualification scopes share the same response; not a GitHub production run",
+  "scopes": [
+    {
+      "requestedStart": "2015-01",
+      "distributionValidationYears": [
+        2019
+      ],
+      "status": "refused",
+      "reason": "Official cash adjustment not reconciled: 2019-07-15"
+    },
+    {
+      "requestedStart": "2019-12",
+      "distributionValidationYears": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "status": "refused",
+      "reason": "Official cash adjustment not reconciled: 2024-04-15"
+    },
+    {
+      "requestedStart": "2020-12",
+      "distributionValidationYears": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "status": "refused",
+      "reason": "Official cash adjustment not reconciled: 2024-04-15"
+    },
+    {
+      "requestedStart": "2021-12",
+      "distributionValidationYears": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "status": "refused",
+      "reason": "Official cash adjustment not reconciled: 2024-04-15"
+    }
+  ],
+  "responseSha256": "9590bc532d02e9855d48fe42f589a51e47fafd44fe1462c7039c9bb5f1200d81",
+  "bytes": 1167306,
+  "sourceAccessSucceeded": true,
+  "lastNavDate": "2026-11-06",
+  "lastIncomeDate": "2026-11-05"
+}

@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-11-07T21:01:16.861Z",
+  "build": {
+    "sha": "4a253821b4b84d52e0cfabfdde14da77ae61f4c6",
+    "dataSha": "62a9620babe23dbf5b49865884133cf55964b981",
+    "lane": "validated-data",
+    "builtAt": "2026-11-07T20:58:14.027Z"
+  },
+  "results": [
+    {
+      "id": "etfIE00B4K6B022Nav-lump",
+      "bytes": 1947341
+    },
+    {
+      "id": "etfIE00B4K6B022Nav-dca",
+      "bytes": 1973823
+    },
+    {
+      "id": "etfIE00B4K6B022Nav-performance",
+      "bytes": 156646
+    }
+  ],
+  "numericOracles": [
+    {
+      "id": "etfIE00B4K6B022Nav",
+      "mode": "lump",
+      "amount": 1000,
+      "start": "2023-12",
+      "end": "2026-10",
+      "expectedFinalValue": 1473.2685325315779
+    },
+    {
+      "id": "etfIE00B4K6B022Nav",
+      "mode": "dca",
+      "amountPerMonth": 1000,
+      "months": 35,
+      "start": "2023-12",
+      "end": "2026-10",
+      "expectedFinalValue": 41680.9693130561
+    }
+  ],
+  "errors": []
+}

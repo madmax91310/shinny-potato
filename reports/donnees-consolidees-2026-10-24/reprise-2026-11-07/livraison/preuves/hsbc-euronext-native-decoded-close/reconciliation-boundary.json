@@ -1,0 +1,29 @@
+{
+  "case": "IE00B4K6B022/2024",
+  "checkedAt": "2026-11-07T16:46:51.612480+00:00",
+  "isin": "IE00B4K6B022",
+  "mic": "XPAR",
+  "quoteCurrency": "EUR",
+  "date": "2024-12-31",
+  "officialSource": "https://live.euronext.com/en/product/etfs/IE00B4K6B022-XPAR",
+  "officialHistoricalRequest": "adjusted=N&startdate=2024-11-07&enddate=2024-12-31&nbSession=10",
+  "sourcePublicMinimum": "2024-11-07",
+  "sourceActualNativeDecodedCallbackHash": "a902fade8bd320b2bdb210e384b83e34888b1437eef577b2115d84578de0cf0f",
+  "originalMarketRawSha256": "762306d3ebb121e1ed86c33d8135d09154e0a9ccdeee8b2077d75df84b78672a",
+  "originalMarketClose": 51.40999984741211,
+  "officialHistoricalClose": 51.41,
+  "officialHistoricalLastTrade": 51.04,
+  "closeDifference": -1.5258788721439487e-07,
+  "lastTradeVsCloseDifferenceEUR": 0.36999999999999744,
+  "boundaryCloseCompatibleAtPublishedPrecision": true,
+  "componentExplained": "The former Euronext LAST51.04 versus Yahoo CLOSE51.41 comparison used distinct official financial columns. Official Euronext CLOSE51.41 corroborates the preserved Yahoo raw closing field at its published two-decimal precision.",
+  "notExplained": [
+    "Original duplicate-looking dividend adjustment in August2024",
+    "Residual market versus NAV return",
+    "Official starting CLOSE on29December2023 (outside current two-year public selector)"
+  ],
+  "priceSeriesChanged": false,
+  "originalDivergenceClosed": false,
+  "newMonthlyUseFromThisBoundaryProof": false,
+  "evidenceLevel": "Real local issuer-market native public interface with matching requested dates and decoded callback before competing DOM updates; not a new GitHub supplier run."
+}

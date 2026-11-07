@@ -1,0 +1,46 @@
+{
+  "instrument": "IE00B4556L06",
+  "id": "etcPalladium",
+  "month": "2014-12",
+  "existingDiagnostic": "history:automated-etf-monthly:etcPalladium:qualification",
+  "existingDiagnosticCategory": "connection",
+  "dataProof": "Existing recorded official components, not a new supplier collection",
+  "incomeTreatment": "No Income",
+  "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+  "sourceResponseSha256": "593ce7a5fa5681472466d3dbcd95bcbe0b875a4994bc1d9e7632d1ae383131fc",
+  "check": {
+    "month": "2014-12",
+    "returnAsOf": "2014-12-31",
+    "publishedNav": 23.584359,
+    "publishedIncomeIndex": 10012.1551,
+    "observedRatio": 424.52521605526783,
+    "expectedRatioAfterPublishedCash": 417.71565490685816,
+    "qualified": false
+  },
+  "relativeUnitDifferencePct": "1.630190553889597333238315600",
+  "referenceBefore": {
+    "month": "2014-11",
+    "returnAsOf": "2014-11-28",
+    "publishedNav": 23.918122,
+    "publishedIncomeIndex": 9990.974,
+    "observedRatio": 417.7156551003461,
+    "expectedRatioAfterPublishedCash": 417.71565490685816,
+    "qualified": true
+  },
+  "referenceAfter": {
+    "month": "2015-01",
+    "returnAsOf": "2015-01-30",
+    "publishedNav": 22.897066,
+    "publishedIncomeIndex": 9564.462899999999,
+    "observedRatio": 417.71565404930044,
+    "expectedRatioAfterPublishedCash": 417.71565490685816,
+    "qualified": true
+  },
+  "blockedMonthlyPairs": [
+    "2014-11→2014-12",
+    "2014-12→2015-01"
+  ],
+  "qualification": "Unresolved same-date official NAV / income-index unit disagreement. No distribution inferred or added: issuer explicitly No Income. Other periods remain qualified. No component selected by majority.",
+  "missingPiece": "Independent authoritative per-share valuation / income-index correction at2014-12-31, or exact same-instrument separately qualified price history for the affected bounds. The recent annual calendar starts2016 and cannot adjudicate2014.",
+  "checkedAt": "2026-11-07T20:22:30.723566+00:00"
+}

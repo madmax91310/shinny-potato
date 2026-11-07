@@ -1,0 +1,312 @@
+{
+  "schemaVersion": 1,
+  "id": "history:etc_coffeeNav",
+  "type": "series",
+  "name": "WisdomTree Coffee · VL",
+  "aliases": [
+    "etc_coffeeNav"
+  ],
+  "consumers": [
+    {
+      "tool": "Calculateur",
+      "path": "/calculateur-investissement"
+    },
+    {
+      "tool": "Performance depuis",
+      "path": "/performance-depuis"
+    },
+    {
+      "tool": "Qui a vraiment gagné",
+      "path": "/classements-performances"
+    }
+  ],
+  "fields": [
+    {
+      "label": "Série historique",
+      "registry": "src/data/market-history.js",
+      "value": {
+        "id": "etc_coffeeNav",
+        "label": "WisdomTree Coffee · VL",
+        "instrumentType": "ETC",
+        "tweetPhrase": "l’ETC WisdomTree Coffee · VL",
+        "icon": "🌾",
+        "isin": "JE00BN7KB557",
+        "sourceCredit": "WisdomTree",
+        "levelUnit": "performance-points",
+        "allowPriceOverride": false,
+        "currency": "USD",
+        "priceMethod": "adjusted",
+        "valuationBasis": "fund-nav-total-return",
+        "historyConvention": "fund-nav-total-return",
+        "anniversaryAvailable": false,
+        "periodStart": "2021-12",
+        "periodEnd": "2026-10",
+        "checkedAt": "2026-11-07",
+        "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k",
+          "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
+        ],
+        "points": [
+          {
+            "date": "2021-12",
+            "price": 31.03000029
+          },
+          {
+            "date": "2022-01",
+            "price": 32.24072204
+          },
+          {
+            "date": "2022-02",
+            "price": 31.8724908
+          },
+          {
+            "date": "2022-03",
+            "price": 30.95593973
+          },
+          {
+            "date": "2022-04",
+            "price": 30.34874125
+          },
+          {
+            "date": "2022-05",
+            "price": 31.58154044
+          },
+          {
+            "date": "2022-06",
+            "price": 31.40835064
+          },
+          {
+            "date": "2022-07",
+            "price": 29.65690165
+          },
+          {
+            "date": "2022-08",
+            "price": 32.73315119
+          },
+          {
+            "date": "2022-09",
+            "price": 30.86187004
+          },
+          {
+            "date": "2022-10",
+            "price": 24.78986888
+          },
+          {
+            "date": "2022-11",
+            "price": 24.17346765
+          },
+          {
+            "date": "2022-12",
+            "price": 23.85675809
+          },
+          {
+            "date": "2023-01",
+            "price": 25.97896972
+          },
+          {
+            "date": "2023-02",
+            "price": 26.69771887
+          },
+          {
+            "date": "2023-03",
+            "price": 24.47131844
+          },
+          {
+            "date": "2023-04",
+            "price": 26.97463928
+          },
+          {
+            "date": "2023-05",
+            "price": 25.98678977
+          },
+          {
+            "date": "2023-06",
+            "price": 23.721978
+          },
+          {
+            "date": "2023-07",
+            "price": 24.64197847
+          },
+          {
+            "date": "2023-08",
+            "price": 23.26910891
+          },
+          {
+            "date": "2023-09",
+            "price": 22.084148
+          },
+          {
+            "date": "2023-10",
+            "price": 25.36938874
+          },
+          {
+            "date": "2023-11",
+            "price": 28.68553005
+          },
+          {
+            "date": "2023-12",
+            "price": 29.34749015
+          },
+          {
+            "date": "2024-01",
+            "price": 30.35031213
+          },
+          {
+            "date": "2024-02",
+            "price": 29.55120089
+          },
+          {
+            "date": "2024-03",
+            "price": 30.37929164
+          },
+          {
+            "date": "2024-04",
+            "price": 35.29374215
+          },
+          {
+            "date": "2024-05",
+            "price": 36.36319247
+          },
+          {
+            "date": "2024-06",
+            "price": 37.13578197
+          },
+          {
+            "date": "2024-07",
+            "price": 37.66574212
+          },
+          {
+            "date": "2024-08",
+            "price": 40.93754363
+          },
+          {
+            "date": "2024-09",
+            "price": 45.47477614
+          },
+          {
+            "date": "2024-10",
+            "price": 41.51431607
+          },
+          {
+            "date": "2024-11",
+            "price": 53.93368756
+          },
+          {
+            "date": "2024-12",
+            "price": 54.37451976
+          },
+          {
+            "date": "2025-01",
+            "price": 64.43641212
+          },
+          {
+            "date": "2025-02",
+            "price": 65.31733034
+          },
+          {
+            "date": "2025-03",
+            "price": 66.65935496
+          },
+          {
+            "date": "2025-04",
+            "price": 70.97471341
+          },
+          {
+            "date": "2025-05",
+            "price": 60.8195008
+          },
+          {
+            "date": "2025-06",
+            "price": 53.76919979
+          },
+          {
+            "date": "2025-07",
+            "price": 53.14956843
+          },
+          {
+            "date": "2025-08",
+            "price": 71.09954621
+          },
+          {
+            "date": "2025-09",
+            "price": 69.20280367
+          },
+          {
+            "date": "2025-10",
+            "price": 72.57367551
+          },
+          {
+            "date": "2025-11",
+            "price": 75.19710832
+          },
+          {
+            "date": "2025-12",
+            "price": 68.96465133
+          },
+          {
+            "date": "2026-01",
+            "price": 65.83486415
+          },
+          {
+            "date": "2026-02",
+            "price": 56.53277169
+          },
+          {
+            "date": "2026-03",
+            "price": 60.20430391
+          },
+          {
+            "date": "2026-04",
+            "price": 58.64768364
+          },
+          {
+            "date": "2026-05",
+            "price": 54.65724917
+          },
+          {
+            "date": "2026-06",
+            "price": 62.11918359
+          },
+          {
+            "date": "2026-07",
+            "price": 69.75254712
+          },
+          {
+            "date": "2026-08",
+            "price": 69.95813638
+          },
+          {
+            "date": "2026-09",
+            "price": 65.14890555
+          },
+          {
+            "date": "2026-10",
+            "price": 64.52787021
+          }
+        ]
+      },
+      "metadata": {
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k",
+          "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
+        ],
+        "asOf": null,
+        "checkedAt": "2026-11-07",
+        "currency": "USD",
+        "scope": "etc_coffeeNav",
+        "method": "NAV officielle de cet ETC exact, nette des frais et sans distribution ; fenêtres de rendement qualifiées séparément ; ancienne cotation conservée, aucune substitution par un indice",
+        "note": "Actualisation automatique ; dernière séance quotidienne validée sur la source officielle ou recoupée entre requêtes du même fournisseur. SHA-256 1cb9129eb7ff52fee08c6e59b695cc0d14947568ef8ac60948afb60a60232bc1.",
+        "dateStatus": "month-only",
+        "periodStart": "2021-12",
+        "periodEnd": "2026-10",
+        "sourceStatus": "documented",
+        "sourceReason": null,
+        "reviewedAt": null,
+        "modifiedAt": null
+      }
+    }
+  ]
+}

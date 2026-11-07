@@ -1,0 +1,231 @@
+{
+  "runId": "42412754893",
+  "event": "workflow_dispatch",
+  "qualifiedIds": [
+    "em-standard",
+    "mscieurope",
+    "nasdaq-pea",
+    "russell-2000",
+    "stoxx600",
+    "topix",
+    "world"
+  ],
+  "recordingVerified": true,
+  "publicationVerified": true,
+  "observedMaster": "62a9620babe23dbf5b49865884133cf55964b981",
+  "recordingCommit": "62a9620babe23dbf5b49865884133cf55964b981",
+  "recordPath": "src/data/index-company-qualified.json",
+  "recordedCacheBlob": "c3a73190e0e15034e1d6d0446dd7667f16e51e4f",
+  "sourceProviderCron": 42381313295,
+  "sourceAcquisitionProof": "native-index-planned-source-receipt.json; exact dates/hashes from12parts/sevenindexcontracts, not metadata fields",
+  "sourceResults": [
+    {
+      "id": "index-cac40-composition",
+      "instrument": "cac40",
+      "fields": [
+        "composition"
+      ],
+      "selected": true,
+      "field": "facts",
+      "sourceAttempted": true,
+      "asOf": "2026-10-31",
+      "checkedAt": "2026-11-07",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013380607/FRA/FRA/INSTITUTIONNEL/ETF",
+      "sha256": "4b72ac4f75e19171c244b4f45703eca637a7645e546e1e20dbc2c475b3746b03",
+      "status": "succeeded",
+      "operationAttempted": true
+    },
+    {
+      "id": "index-dow-jones-composition",
+      "instrument": "dow-jones",
+      "fields": [
+        "composition"
+      ],
+      "selected": true,
+      "field": "facts",
+      "sourceAttempted": true,
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-11-07",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/INSTITUTIONNEL/ETF",
+      "sha256": "288ab1e7658c02d9bf0bd11b943d657eea206c557fb33aaca20554ca43d78839",
+      "status": "succeeded",
+      "operationAttempted": true
+    },
+    {
+      "id": "index-dax-composition",
+      "instrument": "dax",
+      "fields": [
+        "composition"
+      ],
+      "selected": true,
+      "field": "facts",
+      "sourceAttempted": true,
+      "asOf": "2026-10-31",
+      "checkedAt": "2026-11-07",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0252633754/FRA/FRA/INSTITUTIONNEL/ETF",
+      "sha256": "286de9e00ece3ab0ecc0e731d5cff9c88a46456bf725d9ee88f945d9611dc113",
+      "status": "succeeded",
+      "operationAttempted": true
+    },
+    {
+      "id": "index-msci-korea-composition",
+      "instrument": "msci-korea",
+      "fields": [
+        "composition"
+      ],
+      "selected": true,
+      "field": "facts",
+      "sourceAttempted": true,
+      "asOf": "2026-10-30",
+      "checkedAt": "2026-11-07",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-korea-index.pdf",
+      "sha256": "0a35cb250962f195c7dc2d87bf4640fdbd5075b6a8d06f2209f700359f3c2ebb",
+      "status": "succeeded",
+      "operationAttempted": true
+    },
+    {
+      "id": "index-msci-korea-company-fund",
+      "instrument": "msci-korea",
+      "fields": [
+        "physical creation basket",
+        "same-date classification",
+        "company identities"
+      ],
+      "selected": true,
+      "field": "companyFund",
+      "error": "Portfolio and classification dates differ",
+      "sourceAttempted": true,
+      "status": "failed",
+      "operationAttempted": true
+    }
+  ],
+  "qualifiedNativeViews": [
+    {
+      "id": "topix",
+      "indexId": "topix",
+      "asOf": "2026-09-30",
+      "sourceCheckedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sourceSubjectIsin": "FR0013411980",
+      "sha256": "8471982993b59624d502aa50330e0eeb98892f89fb052d69ca42d43586aa4f1d",
+      "sourceRows": 1636,
+      "topWeight": 24.0941,
+      "weightVectorSha256": "9464d40c4d2a582d9bc46f70f4dfd2b20dc086a6b8ae4790a6373ee6e8b393a3",
+      "projectionSourceAttempted": false,
+      "decimalOracleMatches": true
+    },
+    {
+      "id": "stoxx600",
+      "indexId": "stoxx600",
+      "asOf": "2026-10-28",
+      "sourceCheckedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sourceSubjectIsin": "FR0011550193",
+      "sha256": "5bebb7c995fdac94af43b2cefc61b64ad8b457e0c54d14d0adb78a4b9fc4a0c8",
+      "sourceRows": 600,
+      "topWeight": 20.503999999999998,
+      "weightVectorSha256": "f0d5321a10e4b7e239e08289f05ae68a03211670002c2caab3ee830541a389cf",
+      "projectionSourceAttempted": false,
+      "decimalOracleMatches": true
+    },
+    {
+      "id": "nasdaq-pea",
+      "indexId": "nasdaq100-notional-net",
+      "asOf": "2026-11-05",
+      "sourceCheckedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sourceSubjectIsin": "FR0011871110",
+      "sha256": "e5a5277b2c452cbe07c0a684d0307b776df48f4ef753a157e65a8b59452bb0c5",
+      "sourceRows": 101,
+      "topWeight": 49.58010000000001,
+      "weightVectorSha256": "880378848982ae8182d9601893d8a41700b3b23fef992cf86ac48010bb5a8eed",
+      "projectionSourceAttempted": false,
+      "decimalOracleMatches": true
+    },
+    {
+      "id": "world",
+      "indexId": "msci-world-net",
+      "asOf": "2026-09-23",
+      "sourceCheckedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sourceSubjectIsin": "FR001400U5Q4",
+      "sha256": "627a579700c4953d1bb91e55e0889e1df72499f7abc41f2fb97a9b157f8027d9",
+      "sourceRows": 1250,
+      "topWeight": 28.726800000000004,
+      "weightVectorSha256": "b58429db3a051ecdb18cf7b3d7f10b6e318eb8f99abded13c7e096decd9a5ab7",
+      "projectionSourceAttempted": false,
+      "decimalOracleMatches": true
+    },
+    {
+      "id": "mscieurope",
+      "indexId": "msci-europe-net",
+      "asOf": "2026-09-23",
+      "sourceCheckedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sourceSubjectIsin": "FR0013412038",
+      "sha256": "e69173bd1ac8966f2528d6f16bfe2573f1630532777507bafe25bef56d90035b",
+      "sourceRows": 387,
+      "topWeight": 21.7515,
+      "weightVectorSha256": "c8d097fe4befeabb274a8e5ae8aa22ee8c6617063ba94b3205f82d91f1ae434b",
+      "projectionSourceAttempted": false,
+      "decimalOracleMatches": true
+    },
+    {
+      "id": "em-standard",
+      "indexId": "msci-em-net",
+      "asOf": "2026-09-23",
+      "sourceCheckedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sourceSubjectIsin": "LU1681045370",
+      "sha256": "0c4deaa5d6cb622062c0319a08aebdae602271e00f3545a6762620fd59fe080e",
+      "sourceRows": 1165,
+      "topWeight": 40.0073,
+      "weightVectorSha256": "89cd4366f9ff73ff6a908521f52cb5fd13b90c15c4578d9f18768fa0468628bc",
+      "projectionSourceAttempted": false,
+      "decimalOracleMatches": true
+    },
+    {
+      "id": "russell-2000",
+      "indexId": "russell2000-equity-members",
+      "asOf": "2026-11-05",
+      "sourceCheckedAt": "2026-11-07T14:26:22.634011+00:00",
+      "sourceSubjectIsin": "LU1681038672",
+      "sha256": "4cdb0fa6d4fa57e4f960056924bd5b95599acb3e0688df359942833b58ac554a",
+      "sourceRows": 1959,
+      "topWeight": 3.3306,
+      "weightVectorSha256": "47b13d87d5a330d1a47bd51d94cfcf1408c07a5e03a6158c40230d701fea268b",
+      "projectionSourceAttempted": false,
+      "decimalOracleMatches": true
+    }
+  ],
+  "dax": {
+    "asOf": "2026-10-31",
+    "sourceCheckedAt": "2026-11-07",
+    "newEntrantIsin": "DE0005810055",
+    "weightPct": 3.29
+  },
+  "koreaComplementaryResult": {
+    "id": "index-msci-korea-company-fund",
+    "instrument": "msci-korea",
+    "fields": [
+      "physical creation basket",
+      "same-date classification",
+      "company identities"
+    ],
+    "selected": true,
+    "field": "companyFund",
+    "error": "Portfolio and classification dates differ",
+    "sourceAttempted": true,
+    "status": "failed",
+    "operationAttempted": true
+  },
+  "validatedAt": "2026-11-07T20:49:42.860963+00:00",
+  "method": "Individual ordinary results, new canonical record commit and independent Decimal aggregation from complete native holdings. Recording is distinct from publication; no source check inferred from local qualification.",
+  "existingCompanyHistorySnapshotsUnchanged": 324,
+  "sharedInputsUnchanged": {
+    "src/data/dca-complete-holdings.json": "ef93cc24d3243c1f19511cbf78d30fbc7f5e5913",
+    "src/data/index-company-identities.json": "8152d33cc38dd24f5e83107f11b1f09f12dd9ea1",
+    "src/data/automated-etf-monthly.json": "4c9a05331f2afdc4e715313be012630f3701d134",
+    "src/data/automated-monthly.json": "e2c4d1863dab6d4b42d1350ebd2c2d04bd648b71"
+  },
+  "publicBuild": {
+    "sha": "4a253821b4b84d52e0cfabfdde14da77ae61f4c6",
+    "dataSha": "62a9620babe23dbf5b49865884133cf55964b981",
+    "lane": "validated-data",
+    "builtAt": "2026-11-07T20:58:14.027Z"
+  }
+}

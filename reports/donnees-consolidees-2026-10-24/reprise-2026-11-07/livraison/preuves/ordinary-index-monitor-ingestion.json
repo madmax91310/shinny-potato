@@ -1,0 +1,46 @@
+{
+  "url": "https://raw.githubusercontent.com/madmax91310/shinny-potato/2ffbe536babf6851837ea557993e7560eacfaf61/automation-status.json",
+  "checkedAt": "2026-11-07T21:08:45.969051+00:00",
+  "monitorCommit": "2ffbe536babf6851837ea557993e7560eacfaf61",
+  "gitBlobVerified": "9249fc0a58656ce63805148159c4ae16a1a40463",
+  "decodedSha256Verified": "3af838cdf61a0993570ef14ef39e93cd7e6304ac6de77290283b6636b84f35aa",
+  "decodedBytes": 204742047,
+  "runId": 42412754893,
+  "runPresent": true,
+  "fundIdentityPresent": true,
+  "phases": {
+    "status": "failure",
+    "collectionStatus": "failure",
+    "validationStatus": "success",
+    "recordingStatus": "success",
+    "publicationStatus": "success"
+  },
+  "triggeredMonitorRun": 42413672184,
+  "livePageConsumptionVerified": true,
+  "nativeQualificationStatuses": {
+    "em-standard": "succeeded",
+    "mscieurope": "succeeded",
+    "nasdaq-pea": "succeeded",
+    "russell-2000": "succeeded",
+    "stoxx600": "succeeded",
+    "topix": "succeeded",
+    "world": "succeeded"
+  },
+  "daxQualificationStatus": "succeeded",
+  "daxActiveFailure": false,
+  "koreaComplementaryFailure": true,
+  "livePageProof": "public-final-complete/receipt.json + actual exported diagnostic rows",
+  "liveFundRows": [
+    {
+      "id": "collection:refresh-automated-index-sheets.yml:index-msci-korea-company-fund",
+      "key": "collection:refresh-automated-index-sheets.yml:index-msci-korea-company-fund",
+      "kind": "failure",
+      "field": "companyFund",
+      "stage": "Donnée / collecte",
+      "workflow": "refresh-automated-index-sheets.yml",
+      "runId": 42412754893,
+      "cause": "Portfolio and classification dates differ"
+    }
+  ],
+  "daxActiveFailureInLivePage": false
+}

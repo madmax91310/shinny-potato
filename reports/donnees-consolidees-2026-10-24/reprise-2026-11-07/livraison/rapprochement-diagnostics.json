@@ -1,0 +1,39 @@
+{
+  "initialRows": 10593,
+  "finalRows": 10602,
+  "initialCategories": {
+    "failure": 41,
+    "connection": 268,
+    "monitoring": 371,
+    "qualification": 2552,
+    "due": 2,
+    "editorial": 28,
+    "archive": 5004,
+    "waiting": 831,
+    "not-applicable": 430,
+    "history": 1066
+  },
+  "finalCategories": {
+    "failure": 38,
+    "connection": 268,
+    "monitoring": 372,
+    "qualification": 2540,
+    "due": 2,
+    "editorial": 28,
+    "archive": 5004,
+    "waiting": 832,
+    "not-applicable": 430,
+    "history": 1088
+  },
+  "initialRowsReconciled": 10593,
+  "initialIdentitiesAllPreserved": true,
+  "matchedFinalRows": 10470,
+  "newFinalIdentities": 435,
+  "limits": "Les catégories sont celles du lecteur public, pas une certification générale. Absence ou changement de catégorie ne constitue pas une preuve de réparation. Seules les réparations du lot portent des preuves nouvelles individuelles.",
+  "metricDefinitions": {
+    "initialRowsReconciled": "Toutes les lignes initiales sont conservées dans le CSV, y compris celles sans correspondance actuelle; cette conservation n’est pas une présence dans la boîte active.",
+    "matchedFinalRows": "Nombre de lignes initiales ayant au moins une correspondance finale par ID/identité stable. Ce n’est pas un nombre unique de lignes finales.",
+    "newFinalIdentities": "Lignes finales dont le couple ID exporté/identité ne figurait pas tel quel au départ. Inclut changements d’ID après renouvellement de preuve; pas un nombre de nouvelles causes.",
+    "nonAdditive": "matchedFinalRows et newFinalIdentities ne sont pas additionnables, car un ID peut changer tout en conservant la même identité de donnée."
+  }
+}

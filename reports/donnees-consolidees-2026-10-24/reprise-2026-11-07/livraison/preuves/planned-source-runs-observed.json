@@ -1,0 +1,80 @@
+{
+  "checkedAt": "2026-11-07T19:03:00.734467+00:00",
+  "producers": [
+    {
+      "workflow": "collect-etf-pilot.yml",
+      "runs": [
+        {
+          "id": 42379131215,
+          "event": "schedule",
+          "created_at": "2026-11-07T13:55:02Z",
+          "head_sha": "c9927d2b6c4683f39f11008f76df272456d918af",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42379131215"
+        },
+        {
+          "id": 42238454396,
+          "event": "schedule",
+          "created_at": "2026-11-06T14:56:46Z",
+          "head_sha": "51dbc4740e14e74eac38e6f9932dca2d1c9e45bf",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42238454396"
+        }
+      ]
+    },
+    {
+      "workflow": "update-market-monthly.yml",
+      "runs": [
+        {
+          "id": 42377424322,
+          "event": "schedule",
+          "created_at": "2026-11-07T13:32:25Z",
+          "head_sha": "c9927d2b6c4683f39f11008f76df272456d918af",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42377424322"
+        },
+        {
+          "id": 42235436731,
+          "event": "schedule",
+          "created_at": "2026-11-06T14:36:29Z",
+          "head_sha": "ad419ccfcc929e2b67a794255ef9c04caa60e579",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42235436731"
+        }
+      ]
+    },
+    {
+      "workflow": "update-qualified-exposures.yml",
+      "runs": [
+        {
+          "id": 42381313295,
+          "event": "schedule",
+          "created_at": "2026-11-07T14:22:40Z",
+          "head_sha": "9868de53929748da3308543bf9d2053b4f6612bb",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42381313295"
+        },
+        {
+          "id": 42242712749,
+          "event": "schedule",
+          "created_at": "2026-11-06T15:24:13Z",
+          "head_sha": "19d8ad0b68b63abaa9381b078a1c2f0b51aed2a1",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42242712749"
+        }
+      ]
+    }
+  ],
+  "individualEvidence": {
+    "42379131215": "Supplier index cron, individual quarterly Russell result succeeded, two S&Pprimary results failed; see index-observation.json",
+    "42377424322": "Monthly conditional retry with explicit empty expected scope; no source control of WisdomTree or HSBC proved",
+    "42381313295": "Native economic holdings, twelve exact parts / seven contracts, all twelve individual hashes/dates matched recorded holdings"
+  },
+  "note": "Manual/push supplier runs and local projections remain separate. Workflow success alone never certifies fields absent from an individual report."
+}

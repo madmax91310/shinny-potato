@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-11-07T13:13:48.626826+00:00",
+  "build": {
+    "sha": "d907d3594c252c62af353ba0e1811897306de6d0",
+    "dataSha": "ed8a84ffe66ef1c0a719dbe3719791937e9dedf9",
+    "lane": "fallback",
+    "builtAt": "2026-11-07T13:02:49Z"
+  },
+  "registry": "src/data/automated-indices.json",
+  "effectivePublicManifestBlob": "f1c80b141da1ad5459cf2299c5d37c824df42469",
+  "publishedCodeBlob": "f1c80b141da1ad5459cf2299c5d37c824df42469",
+  "claimedDataPrefixBlob": "c787d49882fab2b1d05701bb797bbed3afd8724d",
+  "libraryObservedControl": "2026-10-11",
+  "expectedRecordedControl": "2026-11-07",
+  "isPublicationOfRecordedCorrectionDemonstrated": false,
+  "finding": "Fallback dataSha names a candidate prefix, not proof that this primary file was promoted. Its effective public blob is still held back. Source code and consumer publication remain required; no guard disabled."
+}

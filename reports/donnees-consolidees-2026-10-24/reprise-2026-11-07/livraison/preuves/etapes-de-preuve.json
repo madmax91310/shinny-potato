@@ -1,0 +1,105 @@
+{
+  "checkedAt": "2026-11-07T21:18:37.754704+00:00",
+  "publicBuild": {
+    "sha": "4a253821b4b84d52e0cfabfdde14da77ae61f4c6",
+    "dataSha": "62a9620babe23dbf5b49865884133cf55964b981",
+    "lane": "validated-data",
+    "builtAt": "2026-11-07T20:58:14.027Z"
+  },
+  "wisdomtree": {
+    "producer": 42358605123,
+    "qualifiedInstruments": 4,
+    "publicMonthlyPoints": 402,
+    "publicPngs": 14,
+    "newDisputedWindows": 0,
+    "postCorrectionNonEmptySupplierCronObserved": false
+  },
+  "hsbc": {
+    "producerPush": 42385424874,
+    "guardProducer": {
+      "runId": "42394841513",
+      "sourceValidated": true,
+      "recordingVerified": true,
+      "publicationVerified": true,
+      "event": "workflow_dispatch",
+      "sourceCode": "e6ad6c3d58051472a689849a4ec3abe02e56b1ee",
+      "recordingCommit": "6153f2d6df463a5167799c483ed7a1c2a971659a",
+      "observedMaster": "6153f2d6df463a5167799c483ed7a1c2a971659a",
+      "recordPath": "src/data/automated-etf-monthly.json",
+      "responseSha256": "9be6c25f6ea3a6acf7d482ac1337168215b36debad2f058072f435980359c6fe",
+      "points": 35,
+      "periodEnd": "2026-10",
+      "sourceRuntime": {
+        "runId": "42394841513",
+        "event": "workflow_dispatch",
+        "codeRevision": "e6ad6c3d58051472a689849a4ec3abe02e56b1ee"
+      },
+      "verifiedAt": "2026-11-07T18:53:11.933809+00:00",
+      "publicBuild": {
+        "sha": "4a253821b4b84d52e0cfabfdde14da77ae61f4c6",
+        "dataSha": "62a9620babe23dbf5b49865884133cf55964b981",
+        "lane": "validated-data",
+        "builtAt": "2026-11-07T20:58:14.027Z"
+      },
+      "publicProof": "public-table-snapshot.json matches the canonical financial file to the public manifest; hsbc-public-library/receipt.json and browser PNG receipts verify its actual use."
+    },
+    "newMonthlyWindow": 2024,
+    "publicMonthlyPoints": 35,
+    "publicPngs": 7,
+    "oldQuoteCorrected": false,
+    "postCorrectionSupplierCronObserved": false
+  },
+  "russell": {
+    "sourceRun": 42362102987,
+    "productionRun": 42365065207,
+    "supplierCron": 42379131215,
+    "asOf": "2026-06-30",
+    "constituents": 1023,
+    "publicDesktopMobilePngs": 2,
+    "fullIdentifiedOverlapAdmitted": false
+  },
+  "unchangedSourceClocks": {
+    "producer": 42368743693,
+    "renewedGroups": 96,
+    "financialPayloadsUnchanged": 96,
+    "immutableHistoriesUnchanged": 96,
+    "publicExampleVerified": true
+  },
+  "monthlyScheduledEmptyRetry": {
+    "run": 42377424322,
+    "expectedIds": [],
+    "supplierControlForTheFiveRoutesProved": false
+  },
+  "remaining": {
+    "originalCases": 79,
+    "qualified": 71,
+    "refused": 8,
+    "oldDivergences": 77,
+    "residuals": 2
+  },
+  "scope": "No general catalogue certification. A green workflow or a successful cache read is not supplier or field proof.",
+  "nativeIndexCompanyFormats": {
+    "sourceProviderCron": 42381313295,
+    "qualifiedSourceParts": 12,
+    "nativeIndexContracts": 7,
+    "ordinaryProjectionRun": "42412754893",
+    "projectionSourceAttempted": false,
+    "recordingCommit": "62a9620babe23dbf5b49865884133cf55964b981",
+    "publishedCacheBlob": "c3a73190e0e15034e1d6d0446dd7667f16e51e4f",
+    "publishedCode": {
+      "sha": "4a253821b4b84d52e0cfabfdde14da77ae61f4c6",
+      "dataSha": "62a9620babe23dbf5b49865884133cf55964b981",
+      "lane": "validated-data",
+      "builtAt": "2026-11-07T20:58:14.027Z"
+    },
+    "newExactFormats": 7,
+    "newFormatTopix": 1,
+    "physicalProxiesReplaced": 6,
+    "publicPngsIncludingDax": 8,
+    "mobileCapturesIncludingDax": 8,
+    "existingCompanyHistorySnapshotsUnchanged": 324,
+    "monitorRun": 42413672184,
+    "monitorAndLivePageVerified": true,
+    "remainingSourceFailure": "index-msci-korea-company-fund"
+  }
+}

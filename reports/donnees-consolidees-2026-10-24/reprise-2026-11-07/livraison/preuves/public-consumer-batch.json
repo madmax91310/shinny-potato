@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-11-07T21:01:29.195425+00:00",
+  "beforeBuild": {
+    "sha": "4a253821b4b84d52e0cfabfdde14da77ae61f4c6",
+    "dataSha": "62a9620babe23dbf5b49865884133cf55964b981",
+    "lane": "validated-data",
+    "builtAt": "2026-11-07T20:58:14.027Z"
+  },
+  "afterBuild": {
+    "sha": "4a253821b4b84d52e0cfabfdde14da77ae61f4c6",
+    "dataSha": "62a9620babe23dbf5b49865884133cf55964b981",
+    "lane": "validated-data",
+    "builtAt": "2026-11-07T20:58:14.027Z"
+  },
+  "stablePublication": true,
+  "snapshotReceipt": "public-table-snapshot.json",
+  "results": [
+    {
+      "name": "russell",
+      "exitCode": 0,
+      "log": "/tmp/automation-priority-20261107/proofs/public-russell.log"
+    },
+    {
+      "name": "hsbc-calculator",
+      "exitCode": 0,
+      "log": "/tmp/automation-priority-20261107/proofs/public-hsbc-calculator.log"
+    },
+    {
+      "name": "hsbc-rankings",
+      "exitCode": 0,
+      "log": "/tmp/automation-priority-20261107/proofs/public-hsbc-rankings.log"
+    },
+    {
+      "name": "hsbc-library",
+      "exitCode": 0,
+      "log": "/tmp/automation-priority-20261107/proofs/public-hsbc-library.log"
+    },
+    {
+      "name": "native-indices",
+      "exitCode": 0,
+      "log": "/tmp/automation-priority-20261107/proofs/public-native-indices.log"
+    },
+    {
+      "name": "source-clock",
+      "exitCode": 0,
+      "log": "/tmp/automation-priority-20261107/proofs/public-source-clock.log"
+    }
+  ],
+  "allChecksSucceeded": true
+}

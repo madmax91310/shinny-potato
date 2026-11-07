@@ -1,0 +1,732 @@
+{
+  "checkedAt": "2026-11-07T19:07:46.348871+00:00",
+  "indices": [
+    {
+      "id": "cac40",
+      "name": "CAC 40",
+      "errors": [],
+      "unavailable": [],
+      "facts": {
+        "index": "CAC 40",
+        "asOf": "2026-10-31",
+        "constituents": 40,
+        "countries": [
+          [
+            "France",
+            98.68
+          ],
+          [
+            "Pays-Bas",
+            1.32
+          ]
+        ],
+        "sectors": [
+          [
+            "Industrie",
+            29.37
+          ],
+          [
+            "Finance",
+            13.41
+          ],
+          [
+            "Conso Cyclique",
+            10.84
+          ],
+          [
+            "Énergie",
+            9.82
+          ],
+          [
+            "Conso non Cyclique",
+            9.35
+          ],
+          [
+            "Santé",
+            8.77
+          ],
+          [
+            "Matériaux",
+            7.72
+          ],
+          [
+            "Services publics",
+            3.65
+          ],
+          [
+            "Technologies de l'info.",
+            3.61
+          ],
+          [
+            "Services de communication",
+            2.88
+          ],
+          [
+            "Immobilier",
+            0.6
+          ]
+        ],
+        "holdings": [
+          [
+            "TOTALENERGIES SE PARIS",
+            9.82
+          ],
+          [
+            "SCHNEIDER ELECT SE",
+            8.1
+          ],
+          [
+            "AIRBUS SE PARIS",
+            6.59
+          ],
+          [
+            "AIR LIQUIDE SA",
+            6.4
+          ],
+          [
+            "L OREAL (PARIS)",
+            5.75
+          ],
+          [
+            "LVMH MOET HENNESSY LOUIS VUI",
+            5.36
+          ],
+          [
+            "BNP PARIBAS",
+            5.18
+          ],
+          [
+            "SAFRAN SA",
+            4.95
+          ],
+          [
+            "SANOFI - PARIS",
+            4.94
+          ],
+          [
+            "AXA SA",
+            4.29
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013380607/FRA/FRA/INSTITUTIONNEL/ETF",
+          "checkedAt": "2026-11-07",
+          "sha256": "4b72ac4f75e19171c244b4f45703eca637a7645e546e1e20dbc2c475b3746b03",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      }
+    },
+    {
+      "id": "dow-jones",
+      "name": "Dow Jones Industrial Average",
+      "errors": [],
+      "unavailable": [],
+      "facts": {
+        "index": "Dow Jones Industrial Average",
+        "asOf": "2026-09-30",
+        "constituents": 30,
+        "countries": [
+          [
+            "États-Unis",
+            100.0
+          ]
+        ],
+        "sectors": [
+          [
+            "Finance",
+            26.46
+          ],
+          [
+            "Technologies de l'info.",
+            18.73
+          ],
+          [
+            "Industrie",
+            16.12
+          ],
+          [
+            "Santé",
+            14.07
+          ],
+          [
+            "Conso Cyclique",
+            9.31
+          ],
+          [
+            "Services de communication",
+            5.17
+          ],
+          [
+            "Conso non Cyclique",
+            3.96
+          ],
+          [
+            "Matériaux",
+            3.82
+          ],
+          [
+            "Énergie",
+            2.37
+          ]
+        ],
+        "holdings": [
+          [
+            "GOLDMAN SACHS GROUP INC",
+            10.61
+          ],
+          [
+            "CATERPILLAR INC",
+            9.57
+          ],
+          [
+            "MICROSOFT CORP",
+            5.89
+          ],
+          [
+            "AMGEN INC",
+            4.9
+          ],
+          [
+            "UNITEDHEALTH GROUP INC",
+            4.34
+          ],
+          [
+            "VISA INC-CLASS A SHARES",
+            4.23
+          ],
+          [
+            "TRAVELERS COMPANIES",
+            4.2
+          ],
+          [
+            "ALPHABET INC CL A",
+            3.95
+          ],
+          [
+            "JPMORGAN CHASE & CO",
+            3.88
+          ],
+          [
+            "SHERWIN-WILLIAMS CO/THE",
+            3.82
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/INSTITUTIONNEL/ETF",
+          "checkedAt": "2026-11-07",
+          "sha256": "288ab1e7658c02d9bf0bd11b943d657eea206c557fb33aaca20554ca43d78839",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      }
+    },
+    {
+      "id": "dax",
+      "name": "DAX",
+      "errors": [],
+      "unavailable": [],
+      "facts": {
+        "index": "DAX",
+        "asOf": "2026-10-31",
+        "constituents": 40,
+        "countries": [
+          [
+            "Allemagne",
+            100.0
+          ]
+        ],
+        "sectors": [
+          [
+            "Industrie",
+            33.73
+          ],
+          [
+            "Finance",
+            21.77
+          ],
+          [
+            "Technologies de l'info.",
+            15.72
+          ],
+          [
+            "Santé",
+            6.7
+          ],
+          [
+            "Conso Cyclique",
+            5.97
+          ],
+          [
+            "Services de communication",
+            5.29
+          ],
+          [
+            "Services publics",
+            4.7
+          ],
+          [
+            "Matériaux",
+            4.41
+          ],
+          [
+            "Conso non Cyclique",
+            1.07
+          ],
+          [
+            "Immobilier",
+            0.65
+          ]
+        ],
+        "holdings": [
+          [
+            "SAP SE / XETRA",
+            11.77
+          ],
+          [
+            "SIEMENS AG-REG",
+            11.26
+          ],
+          [
+            "ALLIANZ SE-REG",
+            9.37
+          ],
+          [
+            "SIEMENS ENERGY AG",
+            6.58
+          ],
+          [
+            "AIRBUS SE-BERLIN",
+            6.48
+          ],
+          [
+            "DEUTSCHE TELEKOM NAM (XETRA)",
+            4.97
+          ],
+          [
+            "MUENCHENER RUECKVER AG-REG",
+            3.96
+          ],
+          [
+            "INFINEON TECHNOLOGIES AG",
+            3.95
+          ],
+          [
+            "DEUTSCHE BANK NAMEN",
+            3.34
+          ],
+          [
+            "DEUTSCHE BOERSE AG",
+            3.29
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0252633754/FRA/FRA/INSTITUTIONNEL/ETF",
+          "checkedAt": "2026-11-07",
+          "sha256": "286de9e00ece3ab0ecc0e731d5cff9c88a46456bf725d9ee88f945d9611dc113",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      }
+    },
+    {
+      "id": "msci-korea",
+      "name": "MSCI Korea",
+      "errors": [
+        {
+          "field": "companyFund",
+          "reason": "Portfolio and classification dates differ"
+        }
+      ],
+      "unavailable": [],
+      "facts": {
+        "index": "MSCI Korea",
+        "asOf": "2026-10-30",
+        "constituents": 74,
+        "countries": [
+          [
+            "🇰🇷 Corée du Sud",
+            100.0
+          ]
+        ],
+        "sectors": [
+          [
+            "💻 Technologie",
+            70.76
+          ],
+          [
+            "🏭 Industrie",
+            11.28
+          ],
+          [
+            "🏦 Finance",
+            7.49
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            3.64
+          ],
+          [
+            "🏥 Santé",
+            2.08
+          ],
+          [
+            "📡 Communication",
+            1.74
+          ],
+          [
+            "🛒 Consommation de base",
+            1.09
+          ],
+          [
+            "🪨 Matériaux",
+            1.02
+          ],
+          [
+            "⚡ Énergie",
+            0.65
+          ],
+          [
+            "💡 Services publics",
+            0.25
+          ]
+        ],
+        "holdings": [
+          [
+            "SAMSUNG ELECTRONICS CO",
+            35.54
+          ],
+          [
+            "SK HYNIX",
+            26.45
+          ],
+          [
+            "SAMSUNG ELECTRONICS PREF",
+            4.72
+          ],
+          [
+            "SK SQUARE CO",
+            2.8
+          ],
+          [
+            "SAMSUNG ELECTRO-MECH. CO",
+            2.26
+          ],
+          [
+            "KB FINANCIAL GROUP",
+            1.77
+          ],
+          [
+            "HYUNDAI MOTOR CO",
+            1.27
+          ],
+          [
+            "SHINHAN FINANCIAL GROUP",
+            1.26
+          ],
+          [
+            "SAMSUNG SDI CO",
+            1.11
+          ],
+          [
+            "HANA FINANCIAL HOLDINGS",
+            1.09
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-korea-index.pdf",
+          "checkedAt": "2026-11-07",
+          "label": "Composition officielle automatisée · MSCI Korea",
+          "sha256": "0a35cb250962f195c7dc2d87bf4640fdbd5075b6a8d06f2209f700359f3c2ebb"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      }
+    }
+  ],
+  "errors": [
+    {
+      "id": "msci-korea",
+      "field": "companyFund",
+      "error": "Portfolio and classification dates differ"
+    }
+  ],
+  "contractResults": {
+    "successes": [
+      {
+        "id": "index-cac40-composition",
+        "field": "facts",
+        "sourceAttempted": true,
+        "asOf": "2026-10-31",
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013380607/FRA/FRA/INSTITUTIONNEL/ETF",
+        "sha256": "4b72ac4f75e19171c244b4f45703eca637a7645e546e1e20dbc2c475b3746b03"
+      },
+      {
+        "id": "index-dow-jones-composition",
+        "field": "facts",
+        "sourceAttempted": true,
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/INSTITUTIONNEL/ETF",
+        "sha256": "288ab1e7658c02d9bf0bd11b943d657eea206c557fb33aaca20554ca43d78839"
+      },
+      {
+        "id": "index-dax-composition",
+        "field": "facts",
+        "sourceAttempted": true,
+        "asOf": "2026-10-31",
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0252633754/FRA/FRA/INSTITUTIONNEL/ETF",
+        "sha256": "286de9e00ece3ab0ecc0e731d5cff9c88a46456bf725d9ee88f945d9611dc113"
+      },
+      {
+        "id": "index-msci-korea-composition",
+        "field": "facts",
+        "sourceAttempted": true,
+        "asOf": "2026-10-30",
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-korea-index.pdf",
+        "sha256": "0a35cb250962f195c7dc2d87bf4640fdbd5075b6a8d06f2209f700359f3c2ebb"
+      }
+    ],
+    "errors": [
+      {
+        "id": "index-msci-korea-company-fund",
+        "field": "companyFund",
+        "error": "Portfolio and classification dates differ",
+        "sourceAttempted": true
+      }
+    ]
+  },
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "index-cac40-composition",
+          "instrument": "cac40",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-dow-jones-composition",
+          "instrument": "dow-jones",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-dax-composition",
+          "instrument": "dax",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-korea-composition",
+          "instrument": "msci-korea",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-korea-company-fund",
+          "instrument": "msci-korea",
+          "fields": [
+            "physical creation basket",
+            "same-date classification",
+            "company identities"
+          ],
+          "selected": true
+        }
+      ],
+      "mode": "full",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "refresh_index_companies",
+      "reportStem": "index-company-observations",
+      "declaredAt": "2026-11-07T19:07:46.331977+00:00",
+      "nonce": "db98cfda-939e-4f5d-8015-ee1ba84aa6c8",
+      "codeSha": "c9c12a94a433d5891a3b7c4647c9866b6b2d39d4",
+      "durablePlan": true,
+      "runId": "42404602495",
+      "attempt": "1",
+      "sha256": "f8bb41b2a60195a61a3e8f0e7e6411a1207fa28f861468584f2b95a59754987d"
+    },
+    "scope": {
+      "kind": "refresh_index_companies",
+      "mode": "full",
+      "expectedIds": [
+        "index-cac40-composition",
+        "index-dow-jones-composition",
+        "index-dax-composition",
+        "index-msci-korea-composition",
+        "index-msci-korea-company-fund"
+      ],
+      "requestedIds": [
+        "index-cac40-composition",
+        "index-dow-jones-composition",
+        "index-dax-composition",
+        "index-msci-korea-composition",
+        "index-msci-korea-company-fund"
+      ],
+      "items": [
+        {
+          "id": "index-cac40-composition",
+          "instrument": "cac40",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-dow-jones-composition",
+          "instrument": "dow-jones",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-dax-composition",
+          "instrument": "dax",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-korea-composition",
+          "instrument": "msci-korea",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-korea-company-fund",
+          "instrument": "msci-korea",
+          "fields": [
+            "physical creation basket",
+            "same-date classification",
+            "company identities"
+          ],
+          "selected": true
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-11-07T19:07:46.331977+00:00",
+      "planSha256": "f8bb41b2a60195a61a3e8f0e7e6411a1207fa28f861468584f2b95a59754987d",
+      "attemptedIds": [
+        "index-cac40-composition",
+        "index-dow-jones-composition",
+        "index-dax-composition",
+        "index-msci-korea-composition",
+        "index-msci-korea-company-fund"
+      ],
+      "attemptUnknownIds": [],
+      "networkRequestedIds": [
+        "index-cac40-composition",
+        "index-dow-jones-composition",
+        "index-dax-composition",
+        "index-msci-korea-composition",
+        "index-msci-korea-company-fund"
+      ],
+      "networkAttemptUnknownIds": [],
+      "runId": "42404602495",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "db98cfda-939e-4f5d-8015-ee1ba84aa6c8"
+    },
+    "outcomes": [
+      {
+        "id": "index-cac40-composition",
+        "instrument": "cac40",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "field": "facts",
+        "sourceAttempted": true,
+        "asOf": "2026-10-31",
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013380607/FRA/FRA/INSTITUTIONNEL/ETF",
+        "sha256": "4b72ac4f75e19171c244b4f45703eca637a7645e546e1e20dbc2c475b3746b03",
+        "status": "succeeded",
+        "operationAttempted": true
+      },
+      {
+        "id": "index-dow-jones-composition",
+        "instrument": "dow-jones",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "field": "facts",
+        "sourceAttempted": true,
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/INSTITUTIONNEL/ETF",
+        "sha256": "288ab1e7658c02d9bf0bd11b943d657eea206c557fb33aaca20554ca43d78839",
+        "status": "succeeded",
+        "operationAttempted": true
+      },
+      {
+        "id": "index-dax-composition",
+        "instrument": "dax",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "field": "facts",
+        "sourceAttempted": true,
+        "asOf": "2026-10-31",
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0252633754/FRA/FRA/INSTITUTIONNEL/ETF",
+        "sha256": "286de9e00ece3ab0ecc0e731d5cff9c88a46456bf725d9ee88f945d9611dc113",
+        "status": "succeeded",
+        "operationAttempted": true
+      },
+      {
+        "id": "index-msci-korea-composition",
+        "instrument": "msci-korea",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "field": "facts",
+        "sourceAttempted": true,
+        "asOf": "2026-10-30",
+        "checkedAt": "2026-11-07",
+        "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-korea-index.pdf",
+        "sha256": "0a35cb250962f195c7dc2d87bf4640fdbd5075b6a8d06f2209f700359f3c2ebb",
+        "status": "succeeded",
+        "operationAttempted": true
+      },
+      {
+        "id": "index-msci-korea-company-fund",
+        "instrument": "msci-korea",
+        "fields": [
+          "physical creation basket",
+          "same-date classification",
+          "company identities"
+        ],
+        "selected": true,
+        "field": "companyFund",
+        "error": "Portfolio and classification dates differ",
+        "sourceAttempted": true,
+        "status": "failed",
+        "operationAttempted": true
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

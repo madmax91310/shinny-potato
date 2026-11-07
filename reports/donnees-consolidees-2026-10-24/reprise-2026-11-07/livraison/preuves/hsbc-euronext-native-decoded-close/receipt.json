@@ -1,0 +1,39 @@
+{
+  "isin": "IE00B4K6B022",
+  "mic": "XPAR",
+  "currency": "EUR",
+  "requestedStart": "2024-11-07",
+  "requestedEnd": "2024-12-31",
+  "attemptedAt": "2026-11-07T16:44:48.005Z",
+  "kind": "real local allowed-range official CLOSE; not a production series repair",
+  "url": "https://live.euronext.com/en/product/etfs/IE00B4K6B022-XPAR",
+  "sourceMinimum": "2024-11-07",
+  "httpStatus": 200,
+  "sourceRequestParameters": "adjusted=N&startdate=2024-11-07&enddate=2024-12-31&nbSession=10",
+  "originalResponseSha256": "123a6d29d638844fca1bcecc94a93d40e686453feb32f0b965401b41cff52a44",
+  "nativeDecodedResponseSha256": "a902fade8bd320b2bdb210e384b83e34888b1437eef577b2115d84578de0cf0f",
+  "decodedCallbackParameters": "adjusted=N&startdate=2024-11-07&enddate=2024-12-31&nbSession=10",
+  "sha256": "c2985a327f8aa126f4adcb1f36669fa76ef2e19f3ae25af2f7826781065f0d36",
+  "headers": [
+    "Date",
+    "Open",
+    "High",
+    "Low",
+    "Last",
+    "Close",
+    "Number of shares",
+    "Turnover"
+  ],
+  "rowCount": 36,
+  "yearEnd": [
+    "31/12/2024",
+    "51.37",
+    "51.40",
+    "51.04",
+    "51.04",
+    "51.41",
+    "301",
+    "15,383"
+  ],
+  "status": "official-close-observed"
+}

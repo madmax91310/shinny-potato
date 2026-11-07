@@ -1,0 +1,96 @@
+{
+  "checkedAt": "2026-11-07T12:21:03.747377+00:00",
+  "producers": [
+    {
+      "workflow": "collect-etf-pilot.yml",
+      "runs": [
+        {
+          "id": 42238454396,
+          "event": "schedule",
+          "created_at": "2026-11-06T14:56:46Z",
+          "updated_at": "2026-11-06T15:29:51Z",
+          "head_sha": "51dbc4740e14e74eac38e6f9932dca2d1c9e45bf",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42238454396"
+        },
+        {
+          "id": 42054359477,
+          "event": "schedule",
+          "created_at": "2026-11-05T15:22:43Z",
+          "updated_at": "2026-11-05T16:40:59Z",
+          "head_sha": "b5efe910411172950cb95f411c1f0ba5386ea05a",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477"
+        },
+        {
+          "id": 41856737272,
+          "event": "schedule",
+          "created_at": "2026-11-04T15:20:41Z",
+          "updated_at": "2026-11-04T19:21:34Z",
+          "head_sha": "0c3fee0f6b51e78687797b3c9f0f1179b9a5b2c6",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41856737272"
+        },
+        {
+          "id": 41659191162,
+          "event": "schedule",
+          "created_at": "2026-11-03T14:59:35Z",
+          "updated_at": "2026-11-03T15:12:11Z",
+          "head_sha": "c61e33f01cbbdcc60bdf81f9fe802d2a56bf66fc",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41659191162"
+        }
+      ]
+    },
+    {
+      "workflow": "update-market-monthly.yml",
+      "runs": [
+        {
+          "id": 42235436731,
+          "event": "schedule",
+          "created_at": "2026-11-06T14:36:29Z",
+          "updated_at": "2026-11-06T15:05:41Z",
+          "head_sha": "ad419ccfcc929e2b67a794255ef9c04caa60e579",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42235436731"
+        },
+        {
+          "id": 42049999280,
+          "event": "schedule",
+          "created_at": "2026-11-05T14:57:07Z",
+          "updated_at": "2026-11-05T16:37:45Z",
+          "head_sha": "0ffd7ae829343ae52744b229a037187ca2c8db9f",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42049999280"
+        },
+        {
+          "id": 41851900526,
+          "event": "schedule",
+          "created_at": "2026-11-04T14:52:20Z",
+          "updated_at": "2026-11-04T17:45:00Z",
+          "head_sha": "fa269245cba28bfea2230ebb978681125082ee26",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41851900526"
+        },
+        {
+          "id": 41847526362,
+          "event": "schedule",
+          "created_at": "2026-11-04T14:26:11Z",
+          "updated_at": "2026-11-04T15:09:53Z",
+          "head_sha": "50d70dcac36b89e1a79201cd4c0736d4bfbd86e2",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/41847526362"
+        }
+      ]
+    }
+  ],
+  "limit": "These are actual supplier schedules; compare their code ancestry with each correction, never infer post-correction success from an older run."
+}

@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-11-07T15:17:55.346897+00:00",
+  "scope": {
+    "requestedIds": [
+      "etfIE00B4K6B022Nav"
+    ],
+    "expectedIds": [
+      "etfIE00B4K6B022Nav"
+    ],
+    "selection": "failed-or-missing"
+  },
+  "series": [
+    {
+      "id": "etfIE00B4K6B022Nav",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-10",
+      "responseSha256": "291e18b06e6121921f8ef1613fdd053bec5e364859c77639feb9e15f6ed79de7",
+      "controlScope": {
+        "controlledInstrument": "IE00B4K6B022",
+        "controlledFields": [
+          "selected share/class",
+          "EUR base NAV context",
+          "NAV/shares/AUM units",
+          "complete paid-distribution notes",
+          "gross cash ex-dates",
+          "continuous cash coverage",
+          "shared exact-share annual NAV calendar"
+        ],
+        "requestedStart": "2023-12-01",
+        "controlledCalendarYears": [
+          "2024",
+          "2025"
+        ]
+      }
+    }
+  ]
+}
