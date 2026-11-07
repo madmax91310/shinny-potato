@@ -137,3 +137,18 @@ class HsbcMonthlyNav(unittest.TestCase):
         invalid=copy.deepcopy(record);invalid['calendarProof']['checks']=[]
         _,bad=refresh(config,{}, {},NOW,lambda *_:invalid)
         self.assertEqual(bad['series'][0]['status'],'failed','Missing required annual qualification cannot bootstrap')
+
+    def test_split_signal_cannot_be_mistaken_for_a_loss(self):
+        # A 2:1 split preserves every NAV/share/AUM row identity.
+        self.assertEqual(100*1000,50*2000)
+        with self.assertRaisesRegex(ValueError,'share-unit event'):
+            h.guard_raw_nav_steps({'2026-09-01':100,'2026-09-02':50},[])
+        with self.assertRaisesRegex(ValueError,'discontinuity'):
+            h.guard_raw_nav_steps({'2026-09-01':50,'2026-09-02':100},[])
+        nav,p,d,c=inputs()
+        shifted={day:value*(.5 if day>='2026-09-01'else 1)for day,value in nav.items()}
+        # 2024/2025 annual oracles cannot detect a unit event in 2026.
+        with self.assertRaisesRegex(ValueError,'discontinuity'):
+            h.qualify(shifted,p,d,c,SOURCE,NOW)
+        # A documented distribution is not itself an unexplained loss.
+        h.guard_raw_nav_steps({'2026-09-01':100,'2026-09-02':70},[{'exDate':'2026-09-02','amount':30}])
