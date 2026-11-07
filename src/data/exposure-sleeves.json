@@ -1,6 +1,6 @@
 {
   "IE00B441G979": {
-    "checkedAt": "2026-11-06",
+    "checkedAt": "2026-11-07",
     "equityNavPct": 98.54945,
     "excludedClasses": [
       "Cash",
@@ -12,7 +12,7 @@
     ],
     "countries": {
       "asOf": "2026-11-05",
-      "checkedAt": "2026-11-06",
+      "checkedAt": "2026-11-07",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
       "compatibility": "equity-holdings-countries",
@@ -114,7 +114,7 @@
     },
     "sectors": {
       "asOf": "2026-11-05",
-      "checkedAt": "2026-11-06",
+      "checkedAt": "2026-11-07",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
       "compatibility": "equity-holdings-sectors",
@@ -168,7 +168,7 @@
     }
   },
   "IE00BQT3WG13": {
-    "checkedAt": "2026-11-06",
+    "checkedAt": "2026-11-07",
     "equityNavPct": 99.89674,
     "excludedClasses": [
       "Cash",
@@ -179,7 +179,7 @@
     ],
     "countries": {
       "asOf": "2026-11-05",
-      "checkedAt": "2026-11-06",
+      "checkedAt": "2026-11-07",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=273192&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
       "compatibility": "equity-holdings-countries",
@@ -193,7 +193,7 @@
     },
     "sectors": {
       "asOf": "2026-11-05",
-      "checkedAt": "2026-11-06",
+      "checkedAt": "2026-11-07",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=273192&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "fund",
       "compatibility": "equity-holdings-sectors",
@@ -249,7 +249,7 @@
   "US8740391003": {
     "countries": {
       "asOf": "2026-11-05",
-      "checkedAt": "2026-11-06",
+      "checkedAt": "2026-11-07",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "equity",
       "compatibility": "issuer-countries",
@@ -263,7 +263,7 @@
     },
     "sectors": {
       "asOf": "2026-11-05",
-      "checkedAt": "2026-11-06",
+      "checkedAt": "2026-11-07",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "equity",
       "compatibility": "issuer-sectors",
@@ -279,9 +279,9 @@
   "IE000UL6CLP7": {
     "sectors": {
       "asOf": "2026-11-05",
-      "checkedAt": "2026-11-06",
+      "checkedAt": "2026-11-07",
       "sourceUrl": "https://lt.morningstar.com/1c6qh1t6k9/snapshotpdf/default.aspx?1=1&BaseCurrencyId=USD&ClientFund=0&Id=0P0001OWZV&InvestmentType=FO&LanguageId=en-GB&SecurityToken=0P0001OWZV%5D22%5D0%5DETEXG%24XLON",
-      "sha256": "dc9a8cfbf9c5f45e13386dac5b80bd865bf5e8db7f162eacf75da6a0e91b0e87",
+      "sha256": "bd2ecdbe97ad724dc0f6337469c0a47a2aaeca588b9c33a3fa806855cb2db675",
       "basis": "fund",
       "compatibility": "morningstar-equity-sectors",
       "classificationLabel": "Secteurs actions Morningstar",
@@ -337,8 +337,8 @@
   "IE0003R87OG3": {
     "countries": {
       "asOf": "2026-11-05",
-      "holdingsAsOf": "2026-11-05",
-      "checkedAt": "2026-11-06",
+      "holdingsAsOf": "2026-11-06",
+      "checkedAt": "2026-11-07",
       "sourceUrl": "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/",
       "sourceUrls": [
         "https://www.avantisinvestors.com/avantis-investments/en-us/total-holdings/119/?type=etf",
@@ -356,121 +356,121 @@
       "rows": [
         {
           "name": "United States",
-          "weightPct": 68.33065488147761
+          "weightPct": 68.70666264697043
         },
         {
           "name": "Japan",
-          "weightPct": 9.953796705504116
+          "weightPct": 9.466385287910786
         },
         {
           "name": "United Kingdom",
-          "weightPct": 3.786661309762959
+          "weightPct": 3.7684654808561944
         },
         {
           "name": "Canada",
-          "weightPct": 3.184009642426679
+          "weightPct": 3.2861018993066002
         },
         {
           "name": "Australia",
-          "weightPct": 2.922860586580958
+          "weightPct": 2.894181489297555
         },
         {
           "name": "Sweden",
-          "weightPct": 1.5066291683407
+          "weightPct": 1.5174354336247635
         },
         {
           "name": "Switzerland",
-          "weightPct": 1.2957010847730017
+          "weightPct": 1.2863028841322488
         },
         {
           "name": "Israel",
-          "weightPct": 1.0847730012053038
+          "weightPct": 1.1556627474625676
         },
         {
           "name": "Germany",
-          "weightPct": 1.0445962233828854
+          "weightPct": 1.0350718520751687
         },
         {
           "name": "France",
-          "weightPct": 1.0044194455604665
+          "weightPct": 1.0049241282283192
         },
         {
           "name": "Bermuda",
-          "weightPct": 0.8336681398151867
+          "weightPct": 0.8742839915586373
         },
         {
           "name": "Italy",
-          "weightPct": 0.7432703897147451
+          "weightPct": 0.7436438548889565
         },
         {
           "name": "Norway",
-          "weightPct": 0.6629168340699078
-        },
-        {
-          "name": "Denmark",
-          "weightPct": 0.5725190839694656
+          "weightPct": 0.6431514420661242
         },
         {
           "name": "Singapore",
-          "weightPct": 0.5624748895138609
+          "weightPct": 0.572806753090142
+        },
+        {
+          "name": "Denmark",
+          "weightPct": 0.5728067530901418
         },
         {
           "name": "Belgium",
-          "weightPct": 0.4419445560466051
+          "weightPct": 0.4421666164204602
         },
         {
           "name": "Spain",
-          "weightPct": 0.41181197267979114
+          "weightPct": 0.39192041000904426
         },
         {
           "name": "Hong Kong",
-          "weightPct": 0.38167938931297724
+          "weightPct": 0.381871168726761
         },
         {
           "name": "Netherlands",
-          "weightPct": 0.34150261149055855
+          "weightPct": 0.3416742035976283
         },
         {
           "name": "Austria",
-          "weightPct": 0.3415026114905585
+          "weightPct": 0.33162496231534516
         },
         {
           "name": "Finland",
-          "weightPct": 0.30132583366813986
+          "weightPct": 0.29142799718621243
         },
         {
           "name": "Ireland",
-          "weightPct": 0.08035355564483729
+          "weightPct": 0.08039393025826551
         },
         {
           "name": "Monaco",
-          "weightPct": 0.08035355564483729
+          "weightPct": 0.0803939302582655
         },
         {
           "name": "Portugal",
-          "weightPct": 0.06026516673362796
+          "weightPct": 0.060295447693699114
         },
         {
           "name": "New Zealand",
-          "weightPct": 0.020088388911209322
+          "weightPct": 0.020098482564566374
         }
       ],
       "unclassified": [
         {
           "isin": "SG1R43925234",
-          "weightPct": 0.020088388911209322
+          "weightPct": 0.020098482564566374
         },
         {
           "isin": "JP3105350007",
-          "weightPct": 0.010044194455604661
+          "weightPct": 0.010049241282283187
         },
         {
           "isin": "IT0001469383",
-          "weightPct": 0.010044194455604661
+          "weightPct": 0.010049241282283187
         },
         {
           "isin": "SE0007439443",
-          "weightPct": 0.010044194455604661
+          "weightPct": 0.010049241282283187
         },
         {
           "isin": "NO0010633951",
@@ -509,11 +509,11 @@
           "weightPct": 0.0
         },
         {
-          "isin": "BMG0534V1256",
+          "isin": "DK0010295922",
           "weightPct": 0.0
         },
         {
-          "isin": "DK0010295922",
+          "isin": "BMG0534V1256",
           "weightPct": 0.0
         },
         {
@@ -542,15 +542,15 @@
   "IE00BM8R0J59": {
     "underlierEvidence": {
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "checkedAt": "2026-11-06",
-      "sha256": "ab277788a0c3ae1939656c46f34635706866e8e933a899cf1e972c2044aff5a0",
+      "checkedAt": "2026-11-07",
+      "sha256": "3f3c4e7987a602c30b55d215839154eaca5240fdc40e7e84a28f4d7ca1eac20e",
       "underlier": "Nasdaq-100"
     }
   },
   "GB0009895292": {
     "countries": {
       "asOf": "2026-11-05",
-      "checkedAt": "2026-11-06",
+      "checkedAt": "2026-11-07",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "equity",
       "compatibility": "issuer-countries",
@@ -564,7 +564,7 @@
     },
     "sectors": {
       "asOf": "2026-11-05",
-      "checkedAt": "2026-11-06",
+      "checkedAt": "2026-11-07",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "basis": "equity",
       "compatibility": "issuer-sectors",
