@@ -42,12 +42,17 @@ def acquire(source):
     if process.returncode:raise ValueError('Ordinary public browser performance failed: '+process.stderr.decode(errors='replace')[-1200:])
     if len(process.stdout)>24_000_000:raise ValueError('Oversized browser performance response')
     result=json.loads(process.stdout)
+    page=result.get('publicProductPage',{})
+    if page.get('url')!=source['sourceUrl'] or page.get('isin')!=source['isin'] or page.get('status')!=200:
+        raise ValueError('Ordinary browser product page not independently verified')
+    dt.datetime.fromisoformat(page['checkedAt'].replace('Z','+00:00'))
     rows=result.get('results',[])
     if len(rows)!=2 or [r.get('url')for r in rows]!=endpoints or any(r.get('status')!=200 for r in rows):
         raise ValueError('Browser performance source scope changed')
     bodies={r['url']:base64.b64decode(r['body'],validate=True)for r in rows}
     if any(len(body)>8_000_000 for body in bodies.values()):raise ValueError('Oversized issuer performance payload')
     return bodies,{'actualNavTransport':'ordinary-public-browser-json',
+                   'publicProductPage':page,
                    'accessAttempts':attempts+[{'url':url,'transport':'ordinary-public-browser-json','status':'received'}for url in endpoints]}
 
 

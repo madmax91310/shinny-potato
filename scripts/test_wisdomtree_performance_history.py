@@ -151,7 +151,7 @@ class OrdinaryBrowserTransport(unittest.TestCase):
   with patch('wisdomtree_performance_history.download',return_value=b'[]')as fetch,patch('wisdomtree_performance_history.subprocess.run')as browser:
    bodies,proof=acquire(s)
   self.assertEqual(list(bodies),urls(s));browser.assert_not_called()
-  self.assertTrue(all(u.startswith('https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=') for u in bodies))
+  self.assertTrue(all(u.startswith('https://dataspanapi.wisdomtree.com/funddetails/historical_performance') for u in bodies))
   self.assertEqual(proof['actualNavTransport'],'public-widget-http')
   self.assertTrue(all(c.kwargs['headers']['Origin']=='https://www.wisdomtree.com'for c in fetch.call_args_list))
  def test_only_a_403_gets_one_fresh_bounded_browser_attempt(self):
@@ -159,7 +159,8 @@ class OrdinaryBrowserTransport(unittest.TestCase):
   import urllib.error,subprocess,base64
   from wisdomtree_performance_history import acquire,urls
   s=SOURCES[0];endpoints=urls(s)
-  payload={'results':[{'url':u,'status':200,'body':base64.b64encode(b'[]').decode()}for u in endpoints]}
+  payload={'results':[{'url':u,'status':200,'body':base64.b64encode(b'[]').decode()}for u in endpoints],
+           'publicProductPage':{'url':s['sourceUrl'],'isin':s['isin'],'status':200,'checkedAt':'2026-11-07T08:00:00Z'}}
   with patch('wisdomtree_performance_history.download',side_effect=urllib.error.HTTPError(endpoints[0],403,'denied',None,None)),patch('wisdomtree_performance_history.subprocess.run',return_value=subprocess.CompletedProcess([],0,json.dumps(payload).encode(),b''))as browser:
    bodies,proof=acquire(s)
   browser.assert_called_once();self.assertEqual(browser.call_args.kwargs['timeout'],100)
@@ -207,13 +208,47 @@ class DocumentedWidgetPath(unittest.TestCase):
 
 
 class RemainingIssuerWidgets(unittest.TestCase):
- def test_five_successful_incident_routes_keep_exact_shared_identity_and_modes(self):
+ def test_wheat_keeps_its_successful_exact_shared_route_and_modes(self):
   from wisdomtree_performance_history import urls
-  sources=[s for s in configurations()if s.get('wisdomTicker')in {'COPA','COCO','COFF','NGAS','WEAT'}]
-  self.assertEqual(len(sources),5)
+  sources=[s for s in configurations()if s.get('wisdomTicker')in {'WEAT'}]
+  self.assertEqual(len(sources),1)
   ordinary={s['id']:s for s in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']}
   for s in sources:
    with self.subTest(isin=s['isin']):
     self.assertEqual(urls(s),[f"https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity={s['wisdomTicker']}&mode={m}"for m in ['gro10k','tabular']])
     self.assertEqual(urls(s),urls(ordinary[s['id']]))
     with self.assertRaises(ValueError):urls({**ordinary[s['id']],'navCurrency':'EUR'})
+
+ def test_ngas_uses_the_current_native_widget_canonical_route_in_both_producers(self):
+  from wisdomtree_performance_history import urls
+  evidence=json.loads((FIX/'NGAS-canonical-route-20261107.json').read_text())
+  source=next(s for s in configurations()if s['id']=='etc_natural_gasNav')
+  ordinary=next(s for s in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']if s['id']==source['id'])
+  self.assertEqual(source['isin'],evidence['isin'])
+  self.assertEqual(source['sourceUrl'],evidence['productPageUrl'])
+  self.assertEqual(source['wisdomPerformancePathStyle'],'canonical')
+  expected=[f'https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=NGAS&mode={m}'for m in ['gro10k','tabular']]
+  self.assertEqual(urls(source),expected)
+  self.assertEqual(urls(ordinary),expected,'The ordinary registry must reuse the shared exact-share route')
+  self.assertIn(expected[0],[r['url']for r in evidence['nativeWidgetResponses']])
+  self.assertEqual(evidence['controlledResponses'],expected)
+  for key,value in [('isin','GB00B15KY104'),('wisdomClassId',1),('wisdomTicker','WEAT'),('navCurrency','EUR')]:
+   with self.subTest(key=key),self.assertRaises(ValueError):urls({**ordinary,key:value})
+
+class CurrentCanonicalIssuerWidgets(unittest.TestCase):
+ def test_each_current_native_route_is_shared_without_changing_the_exact_share_or_units(self):
+  from wisdomtree_performance_history import urls
+  evidence=json.loads((FIX/'current-canonical-routes-20261107.json').read_text())
+  ordinary={s['id']:s for s in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']}
+  self.assertEqual({e['ticker']for e in evidence},{'COPA','COFF','COCO'})
+  for e in evidence:
+   source=next(s for s in configurations()if s['id']==e['id'])
+   with self.subTest(isin=e['isin']):
+    self.assertEqual(source['isin'],e['isin']);self.assertEqual(source['sourceUrl'],e['productPageUrl'])
+    expected=[f"https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity={e['ticker']}&mode={m}"for m in ['gro10k','tabular']]
+    self.assertEqual(urls(source),expected);self.assertEqual(urls(ordinary[e['id']]),expected)
+    self.assertEqual(e['controlledResponses'],expected);self.assertTrue(e['monthlyValuesUnchanged'])
+    self.assertIn(expected[0],[r['url']for r in e['nativeWidgetResponses']if r['status']==200])
+    self.assertEqual(len(e['controlledFields']),17)
+    for patch in [{'isin':'JE00BN7KB334'},{'navCurrency':'EUR'},{'wisdomClassId':1},{'wisdomTicker':'NGAS'}]:
+     with self.assertRaises(ValueError):urls({**ordinary[e['id']],**patch})

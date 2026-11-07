@@ -1,0 +1,143 @@
+[
+  {
+    "isin": "GB00B15KXQ89",
+    "ticker": "COPA",
+    "id": "etfGB00B15KXQ89Nav",
+    "productPageUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-copper",
+    "checkedAt": "2026-11-07T08:14:35.941052+00:00",
+    "nativeWidgetResponses": [
+      {
+        "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=gro10k",
+        "status": 200,
+        "bytes": 5752405,
+        "sha256": "bc51b8385c7452d891653c856637ef9c614ee5fd93d6332ff9af91ee2f95faa3"
+      },
+      {
+        "url": "https://dataspanapi.wisdomtree.com/funddetails/calendar_year_performance/?isin=GB00B15KXQ89",
+        "status": 200,
+        "bytes": 3647,
+        "sha256": "37af0bfa9a2e8d9fa3ffa7e8a44b65ecf50fcd29da89b697d4801680e72605a4"
+      }
+    ],
+    "controlledResponses": [
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=gro10k",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=tabular"
+    ],
+    "sha256": {
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=gro10k": "bc51b8385c7452d891653c856637ef9c614ee5fd93d6332ff9af91ee2f95faa3",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COPA&mode=tabular": "e173e9057e0b6e54b312ff01e5c52ca4436141299c04cf444e7dc27a722cfa7e"
+    },
+    "controlledFields": [
+      "tabular.entityID",
+      "tabular.entityGroup",
+      "tabular.wtListingID",
+      "tabular.currency",
+      "tabular.levelType",
+      "gro10k.wtTypeID",
+      "gro10k.wtListingID",
+      "gro10k.tickerA",
+      "gro10k.name",
+      "gro10k.currency",
+      "gro10k.baseCCY",
+      "gro10k.entityInceptionDt",
+      "gro10k.levelType",
+      "gro10k.shiftTicker",
+      "gro10k.cntCheck",
+      "gro10k.cobDate",
+      "gro10k.officialLevel"
+    ],
+    "monthlyValuesUnchanged": true
+  },
+  {
+    "isin": "JE00BN7KB557",
+    "ticker": "COFF",
+    "id": "etc_coffeeNav",
+    "productPageUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-coffee",
+    "checkedAt": "2026-11-07T08:14:39.258717+00:00",
+    "nativeWidgetResponses": [
+      {
+        "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k",
+        "status": 200,
+        "bytes": 5751004,
+        "sha256": "7be41fd341b4d25f1a4e49d83e9a1c674d0761b1e20195ef00c0bd5170d6f22f"
+      },
+      {
+        "url": "https://dataspanapi.wisdomtree.com/funddetails/calendar_year_performance/?isin=JE00BN7KB557",
+        "status": 200,
+        "bytes": 3634,
+        "sha256": "fcb456aa9a8db8a4789c0c200a6b26b338af7f34fb1eb4cb00d1292f4984a8ba"
+      }
+    ],
+    "controlledResponses": [
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular"
+    ],
+    "sha256": {
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=gro10k": "7be41fd341b4d25f1a4e49d83e9a1c674d0761b1e20195ef00c0bd5170d6f22f",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COFF&mode=tabular": "de94abc62d3e38c39003ad8c7be1c5ecd5a476a6eb521a2231d57ce120cdca51"
+    },
+    "controlledFields": [
+      "tabular.entityID",
+      "tabular.entityGroup",
+      "tabular.wtListingID",
+      "tabular.currency",
+      "tabular.levelType",
+      "gro10k.wtTypeID",
+      "gro10k.wtListingID",
+      "gro10k.tickerA",
+      "gro10k.name",
+      "gro10k.currency",
+      "gro10k.baseCCY",
+      "gro10k.entityInceptionDt",
+      "gro10k.levelType",
+      "gro10k.shiftTicker",
+      "gro10k.cntCheck",
+      "gro10k.cobDate",
+      "gro10k.officialLevel"
+    ],
+    "monthlyValuesUnchanged": true
+  },
+  {
+    "isin": "JE00B2QXZK10",
+    "ticker": "COCO",
+    "id": "etc_cocoaNav",
+    "productPageUrl": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-cocoa",
+    "checkedAt": "2026-11-07T08:14:42.641582+00:00",
+    "nativeWidgetResponses": [
+      {
+        "url": "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=gro10k",
+        "status": 200,
+        "bytes": 4831798,
+        "sha256": "116423cea4da5c010fbd601867ab4e495cb5387afcba8584ec4cf04b76f1c577"
+      }
+    ],
+    "controlledResponses": [
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=gro10k",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=tabular"
+    ],
+    "sha256": {
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=gro10k": "116423cea4da5c010fbd601867ab4e495cb5387afcba8584ec4cf04b76f1c577",
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=COCO&mode=tabular": "0ee43cc265167e86c52ebfdc40ea7d6e5c640c73afcfdc7b3e5541fb2f65d1f8"
+    },
+    "controlledFields": [
+      "tabular.entityID",
+      "tabular.entityGroup",
+      "tabular.wtListingID",
+      "tabular.currency",
+      "tabular.levelType",
+      "gro10k.wtTypeID",
+      "gro10k.wtListingID",
+      "gro10k.tickerA",
+      "gro10k.name",
+      "gro10k.currency",
+      "gro10k.baseCCY",
+      "gro10k.entityInceptionDt",
+      "gro10k.levelType",
+      "gro10k.shiftTicker",
+      "gro10k.cntCheck",
+      "gro10k.cobDate",
+      "gro10k.officialLevel"
+    ],
+    "monthlyValuesUnchanged": true
+  }
+]
