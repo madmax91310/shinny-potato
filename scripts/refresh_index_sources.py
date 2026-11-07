@@ -45,14 +45,19 @@ def _collect_one(config, now, fetch=download):
         except Exception as error:
             result['errors'].append({'field':'holdings','reason':str(error),'url':config['holdingsSourceUrl']})
     if config.get('collectCoherentQuarterlyComposition'):
+        leg={'url':config['holdingsSourceUrl'],'phase':'validation','sourceAttempted':'holdings' in result}
+        def quarter_fetch(url):
+            leg.update(url=url,phase='collection',sourceAttempted=True)
+            body=fetch(url)
+            leg['phase']='validation'
+            return body
         try:
             from collect_russell_composition import collect_coherent_quarter
             if 'holdings' not in result:
-                raise ValueError('Qualified quarterly membership unavailable; no cross-date composition assembled')
-            result['quarterlyFacts'] = collect_coherent_quarter(config, result['holdings'], now, fetch)
+                raise ValueError('Qualified quarterly membership unavailable; archive not attempted and no cross-date composition assembled')
+            result['quarterlyFacts'] = collect_coherent_quarter(config, result['holdings'], now, quarter_fetch)
         except Exception as error:
-            result['errors'].append({'field':'quarterly-composition','reason':str(error),
-                                     'url':config['holdingsSourceUrl']})
+            result['errors'].append({'field':'quarterly-composition','reason':str(error),**leg})
     if config.get('collectComposition', True):
         try:
             if config.get('compositionParser') == 'russell-printed-composition':

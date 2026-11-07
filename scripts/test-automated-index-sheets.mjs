@@ -46,6 +46,19 @@ for (const definition of AUTOMATED_SHEET_DEFINITIONS) {
 }
 console.log(`${AUTOMATED_SHEET_DEFINITIONS.length} fully automated index sheets: exact observations, future composition/year propagation, incomplete and Price Return data refused.`)
 
+// Retained old quarters are allowed to age without renewing their source
+// clocks. Their stored qualification must nevertheless be structurally valid
+// at the actual control date; malformed data must not merely hide a selector.
+{
+  const {factsForIndexSheet} = await import('../src/data/automated-index-sheets.js')
+  for (const [id,record] of Object.entries(records)) if (record.quarterlyFacts) {
+    const checked = new Date(record.quarterlyFacts.source.checkedAt)
+    assert(Number.isFinite(checked.getTime()))
+    assert(checked <= new Date(), 'A future clock cannot certify an old composition')
+    assert(factsForIndexSheet(id,record,checked), `${id}: malformed stored quarterly qualification`)
+  }
+}
+
 // Exact-index quarterly weights may be presented only with same-date sectors;
 // the more recent monthly observation remains untouched and available elsewhere.
 {
@@ -78,7 +91,11 @@ console.log(`${AUTOMATED_SHEET_DEFINITIONS.length} fully automated index sheets:
   assert.match(text, /1\s023 titres/)
   assert(!/NaN|undefined/.test(text))
   for (const mutation of [q => {q.holdingsSource.asOf='2026-09-30'}, q => {q.holdingsSource.sha256=''},
-    q => {q.asOf='2026-06-29'}, q => {q.collectionBasis='fund'}, q => {q.holdings=[]}]) {
+    q => {q.asOf='2026-06-29'}, q => {q.collectionBasis='fund'}, q => {q.holdings=[]},
+    q => {q.countryRowsCount=1022},q => {q.countries=[['🇺🇸 États-Unis',100]]},q => {q.weightRemainderPct=0},
+    q => {q.index='S&P 500'},q => {q.source.url='https://another.invalid/'},
+    q => {q.source.checkedAt='2026-08-01'},q => {q.holdingsSource.checkedAt='2026-08-01'},
+    q => {q.source.checkedAt='2026-11-08'}]) {
     const bad = structuredClone(observations); mutation(bad[id].quarterlyFacts)
     assert.equal(factsForIndexSheet(id,bad[id],now),null)
     assert(!derivedSheetDefinitions([],bad,now).some(d=>d.id===id))

@@ -278,6 +278,18 @@ def collect_coherent_quarter(config, holdings, now, fetch=download):
     source = holdings.get('source', {})
     if source.get('url') != WEIGHTS_URL or not re.fullmatch('[a-f0-9]{64}',source.get('sha256','')):
         reject('Missing independently qualified Russell membership source')
+    rows=validated_rows([{'name':name,'weightPct':weight} for name,weight in holdings['rows']],complete=False)
+    if len(rows)!=10:reject('Russell quarterly top ten incomplete')
+    if holdings.get('countryRowsCount')!=holdings['membershipCount']:
+        reject('Russell quarterly countries do not cover all published members')
+    countries=[]
+    for name,weight in holdings.get('countries',[]):
+        if name not in COUNTRY_LABELS:reject('Unqualified Russell publisher country: '+name)
+        countries.append({'name':COUNTRY_LABELS[name],'weightPct':weight})
+    countries=validated_rows(countries)
+    country_total=sum(Decimal(str(row['weightPct'])) for row in countries)
+    if country_total!=Decimal(str(holdings['publishedMembershipWeightPct'])) or Decimal(100)-country_total!=Decimal(str(holdings['weightRemainderPct'])):
+        reject('Russell country totals/remainder disagree with complete published membership')
     archive_body = fetch(ARCHIVES_URL)
     issues = json.loads(archive_body)
     key = stamp.replace('-','')
@@ -306,21 +318,10 @@ def collect_coherent_quarter(config, holdings, now, fetch=download):
             sectors=read_chart(image,2,directory)
             independent=read_chart(image,2,directory,reader=isolated_weight_ocr)
         if sectors!=independent:reject('Russell independent sector segmentations disagree')
-    rows=validated_rows([{'name':name,'weightPct':weight} for name,weight in holdings['rows']],complete=False)
-    if len(rows)!=10:reject('Russell quarterly top ten incomplete')
-    if holdings.get('countryRowsCount')!=holdings['membershipCount']:
-        reject('Russell quarterly countries do not cover all published members')
-    countries=[]
-    for name,weight in holdings.get('countries',[]):
-        if name not in COUNTRY_LABELS:reject('Unqualified Russell publisher country: '+name)
-        countries.append({'name':COUNTRY_LABELS[name],'weightPct':weight})
-    countries=validated_rows(countries)
-    country_total=sum(Decimal(str(row['weightPct'])) for row in countries)
-    if country_total!=Decimal(str(holdings['publishedMembershipWeightPct'])) or Decimal(100)-country_total!=Decimal(str(holdings['weightRemainderPct'])):
-        reject('Russell country totals/remainder disagree with complete published membership')
     return {'index':config['name'],'asOf':stamp,'constituents':holdings['membershipCount'],
             'countries':[[row['name'],row['weightPct']] for row in countries],'sectors':sectors,'holdings':holdings['rows'],
             'countryMethod':f"Pays natifs des {holdings['membershipCount']} lignes du rapport ESMA ; aucune déduction depuis le nom ou le domicile juridique",
+            'countryRowsCount':holdings['countryRowsCount'],
             'publishedMembershipWeightPct':holdings['publishedMembershipWeightPct'],
             'weightRemainderPct':holdings['weightRemainderPct'],
             'collectionBasis':'same-date-exact-index-quarter','sectorMethod':'ICB',

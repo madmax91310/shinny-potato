@@ -114,6 +114,7 @@ class CoherentQuarterTests(unittest.TestCase):
   import gzip
   self.now=dt.datetime(2026,11,7,tzinfo=dt.timezone.utc)
   self.config=next(c for c in json.loads((ROOT/'scripts/index-automation.json').read_text())['indices']if c['id']=='russell-1000')
+  self.config.pop('returnSourceUrl',None) # Unit scenarios never query the separate annual-return supplier.
   self.holdings=json.loads((FIX/'membership-2026-06-30.json').read_text())
   self.pdf=gzip.decompress((FIX/'facts-2026-06-30.pdf.gz').read_bytes())
   self.archive=(FIX/'archives-20261107.json').read_bytes()
@@ -187,3 +188,19 @@ class CoherentQuarterTests(unittest.TestCase):
                  {'countries':[['United States',100]]},{'weightRemainderPct':0}]:
    with self.subTest(update=update),patch('collect_russell_composition.read_chart',return_value=sectors),self.assertRaises(ValueError):
     collect_coherent_quarter(self.config,{**self.holdings,**update},self.now,self.fetch)
+
+ def test_archive_collection_and_validation_failures_keep_the_actual_source_and_phase(self):
+  from collect_russell_composition import ARCHIVES_URL
+  from publish_automation_status import _normalize_report
+  facts=json.loads((FIX/'facts-2026-09-30.json').read_text())
+  for reason,phase,fetcher in [('offline','collection',lambda u:(_ for _ in ()).throw(ConnectionError('offline'))),
+                               ('Exact Russell quarter absent or ambiguous in official archive','validation',lambda u:b'[]')]:
+   with patch('collect_russell_composition.collect_quarterly_holdings',return_value=self.holdings),patch('collect_russell_composition.collect',return_value=facts):
+    result=refresh_index(self.config,self.now,fetch=fetcher)
+   error=next(e for e in result['errors']if e['field']=='quarterly-composition')
+   self.assertEqual(error['url'],ARCHIVES_URL);self.assertEqual(error['phase'],phase);self.assertTrue(error['sourceAttempted'])
+   self.assertEqual(error['reason'],reason)
+   normalized=_normalize_report({'indices':[result]})
+   failure=next(e for e in normalized['errors']if e['id']=='index-russell-1000-quarterly-composition')
+   self.assertEqual(failure['sourceUrl'],ARCHIVES_URL);self.assertEqual(failure['phase'],phase)
+   self.assertIn('facts',result);self.assertNotIn('quarterlyFacts',result)

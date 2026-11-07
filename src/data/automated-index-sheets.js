@@ -2,6 +2,7 @@ import records from './automated-indices.json' with { type: 'json' }
 import { latestCommonYears } from './annual-window.js'
 import { normalizeEvidence } from './evidence.js'
 import { getCurrentIndexFacts, buildAutomatedIndexSnapshot } from './index-facts.js'
+import freshness from './freshness-policy.json' with { type: 'json' }
 
 // These sheets have no numerical archive fallback: every displayed observation
 // comes from the validated records maintained by the daily issuer workflow.
@@ -55,12 +56,23 @@ export function factsForIndexSheet(id, record, now = new Date()) {
   // quarterly snapshot may serve this format; never mix its weights with the
   // more recent monthly sectors, or treat it as identified complete holdings.
   const facts = record?.quarterlyFacts
-  if (id !== 'russell-1000' || facts?.collectionBasis !== 'same-date-exact-index-quarter' ||
+  if (id !== 'russell-1000' || facts?.index !== 'Russell 1000' || facts?.collectionBasis !== 'same-date-exact-index-quarter' ||
       !completeAutomatedFacts({ facts, returns: record?.returns }) ||
       !/^\d{4}-(?:03-31|06-30|09-30|12-31)$/.test(facts.asOf) ||
       facts.holdingsSource?.asOf !== facts.asOf ||
+      facts.source?.url !== `https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssueByDate?IssueName=US1000USD&IssueDate=${facts.asOf.replaceAll('-','')}&IsManual=id` ||
       facts.holdingsSource?.url !== 'https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000' ||
       !/^[a-f0-9]{64}$/.test(facts.holdingsSource?.sha256 ?? '') || !facts.holdingsSource?.checkedAt) return null
+  const total = facts.countries.reduce((sum,[,weight])=>sum+weight,0)
+  if (facts.countryRowsCount !== facts.constituents || !Number.isFinite(facts.publishedMembershipWeightPct) ||
+      !Number.isFinite(facts.weightRemainderPct) || Math.abs(total-facts.publishedMembershipWeightPct)>1e-8 ||
+      Math.abs(100-total-facts.weightRemainderPct)>1e-8) return null
+  // The quarterly source's existing 180-day window does not renew a failed
+  // control. Keep the common index source-check policy for both documents.
+  if (![facts.source,facts.holdingsSource].every(source=>{
+    const checked=Date.parse(source.checkedAt),days=(now.getTime()-checked)/86400000
+    return Number.isFinite(days)&&days>=0&&days<=freshness.fields['index.facts'].checkDays
+  })) return null
   const age = (Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) - Date.parse(facts.asOf)) / 86400000
   return age >= 0 && age <= 180 ? facts : null
 }
