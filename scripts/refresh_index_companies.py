@@ -47,6 +47,26 @@ def refresh(previous, configs, now, collect=collect_one):
     return merged, observations
 
 
+
+def report_results(observations):
+    """Keep an optional basket failure separate from a successful index table."""
+    result = {'successes': [], 'errors': []}
+    for observation in observations:
+        identifier = 'index-' + observation['id']
+        errors = observation.get('errors', [])
+        for field, suffix in [('facts', '-composition'), ('companyFund', '-company-fund')]:
+            failures = [e['reason'] for e in errors if (e['field'] == 'companyFund') == (field == 'companyFund')]
+            if failures:
+                result['errors'].append({'id':identifier+suffix, 'field':field, 'error':'; '.join(failures), 'sourceAttempted':True})
+            elif observation.get(field):
+                record = observation[field]
+                source = record.get('source', record)
+                result['successes'].append({'id':identifier+suffix, 'field':field, 'sourceAttempted':True,
+                    **{k:v for k,v in {'asOf':record.get('asOf'), 'checkedAt':source.get('checkedAt'),
+                       'sourceUrl':source.get('url', source.get('sourceUrl')), 'sha256':source.get('sha256')}.items() if v is not None}})
+    return result
+
+
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--apply', action='store_true'); ap.add_argument('--output', type=Path, required=True)
     args = ap.parse_args(); now = dt.datetime.now(UTC)
@@ -56,7 +76,7 @@ def main():
     merged, observations = refresh(previous, configs, now)
     if args.apply: write_json_atomic(path, merged)
     errors = [{'id': o['id'], 'field': e['field'], 'error': e['reason']} for o in observations for e in o['errors']]
-    write_json_atomic(args.output, {'checkedAt': now.isoformat(), 'indices': observations, 'errors': errors})
+    write_json_atomic(args.output, {'checkedAt': now.isoformat(), 'indices': observations, 'errors': errors, 'contractResults': report_results(observations)})
     print(f'Index company compositions: {sum("facts" in o for o in observations)}/{len(configs)}; failures: {len(errors)}')
     if errors: raise SystemExit(1)
 
