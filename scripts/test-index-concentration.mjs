@@ -24,14 +24,23 @@ assert.equal(records['dow-jones'].approximation, false)
 assert.ok(Math.abs(records['dow-jones'].topWeight - observations['dow-jones'].facts.holdings.reduce((sum, [, weight]) => sum + weight, 0)) < 1e-10)
 assert.equal(records.dax.topWeight, records.dax.top.reduce((s,r)=>s+r.weightPct,0))
 assert.equal(records.world.top.find(r=>r.name==='Alphabet').securities.length, 2)
-if (!records.world.retained) assert.equal(records.world.topWeight, aggregateCompanies(full.IE00B4L5Y983.rows, identities).slice(0,10).reduce((s,r)=>s+r.weightPct,0))
+if (!records.world.retained) {
+ const source=records.world.sourceBasis==='qualified-native-index'?full[records.world.indexProofSubjectIsin]:full.IE00B4L5Y983
+ assert.equal(records.world.topWeight,aggregateCompanies([...source.rows].sort((a,b)=>a.isin.localeCompare(b.isin)),identities).slice(0,10).reduce((s,r)=>s+r.weightPct,0))
+}
 for(const id of Object.keys(records)) {
   const c=getIndexConcentration(id)
   if(!c.available) continue
   assert.equal(c.top.length,10,id)
   assert.equal(c.topWeight+c.otherWeight,100,id)
-  assert.ok(c.visualFacts.countries.length && c.visualFacts.sectors.length,id)
-  assert.equal(c.asOf,c.visualFacts.asOf,id)
+  if(c.sourceBasis==='qualified-native-index'){
+   assert.equal(c.approximation,false,id)
+   assert.equal(c.capabilities.mainFactsheet,false,id)
+   assert.equal(c.visualFacts,undefined,id)
+  }else{
+   assert.ok(c.visualFacts.countries.length && c.visualFacts.sectors.length,id)
+   assert.equal(c.asOf,c.visualFacts.asOf,id)
+  }
   const display=roundedComposition(c)
   assert.equal(Math.round(display.reduce((s,v)=>s+v,0)*100),10000,id)
   assert.equal(Math.round(display.slice(0,10).reduce((s,v)=>s+v,0)*100),Math.round(c.topWeight*100),id)
@@ -52,6 +61,7 @@ const sheet=SHEETS.find(s=>s.id==='world'), visual=compositionImageSheet(sheet,r
 assert.strictEqual(visual.returns,sheet.returns)
 assert.strictEqual(visual.performance,sheet.performance)
 assert.strictEqual(compositionImageSheet(sheet,{available:false}),sheet)
+if(records.world.sourceBasis==='qualified-native-index')assert.strictEqual(visual,sheet,'A composition-only native source cannot replace countries/sectors or performances')
 console.log('Concentration: company identities, complete/partial/absent data, own weights, Dow price weighting, precision, rounding, freshness and unchanged performance verified.')
 
 const retained=retainQualifiedComposition({available:false,reason:'Transport or validation failed'},records.world)
@@ -66,3 +76,4 @@ const eleven=[{isin:'US02079K3059',name:'Alphabet A',weightPct:4},{isin:'US02079
 const elevenResult=calculateConcentration({...record,rows:eleven,topCompaniesCertified:true},identities)
 assert.equal(elevenResult.top.length,10)
 assert.ok(elevenResult.top.some(r=>r.id===rows[8].isin))
+await import('./test-native-index-company-view.mjs')
