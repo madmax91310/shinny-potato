@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-07T13:56:56.460Z",
+  "checkedAt": "2026-11-07T15:34:39.538Z",
   "summary": {
     "instruments": 695,
     "sheets": 279,
@@ -10,7 +10,7 @@
     "dca": 694,
     "fullExposure": 607,
     "outsideExposure": 53,
-    "automaticHistories": 303,
+    "automaticHistories": 304,
     "historyCandidates": 0,
     "unused": 0,
     "blockers": {
@@ -4879,9 +4879,9 @@
         "date": "2026-09-30"
       },
       "holdings": {
-        "asOf": "2026-10-26",
+        "asOf": "2026-10-28",
         "complete": true,
-        "identifiedCoverage": 100.00080000000001,
+        "identifiedCoverage": 99.99989999999991,
         "automatic": true
       },
       "monthly": [
@@ -5507,9 +5507,9 @@
         "date": "2026-11-04"
       },
       "holdings": {
-        "asOf": "2026-09-22",
+        "asOf": "2026-09-23",
         "complete": true,
-        "identifiedCoverage": 100.00109999999985,
+        "identifiedCoverage": 99.99919999999989,
         "automatic": true
       },
       "monthly": [
@@ -5790,9 +5790,9 @@
         "date": "2026-11-04"
       },
       "holdings": {
-        "asOf": "2026-09-22",
+        "asOf": "2026-09-23",
         "complete": true,
-        "identifiedCoverage": 100.00010000000009,
+        "identifiedCoverage": 100.00030000000002,
         "automatic": true
       },
       "monthly": [
@@ -6983,9 +6983,9 @@
         "date": "2026-10-30"
       },
       "holdings": {
-        "asOf": "2026-09-22",
+        "asOf": "2026-09-23",
         "complete": true,
-        "identifiedCoverage": 100.00010000000009,
+        "identifiedCoverage": 100.00030000000002,
         "automatic": true
       },
       "monthly": [
@@ -7096,7 +7096,7 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.94977902772098,
+        "coverage": 99.94975379358894,
         "outside": 0,
         "reason": "Disponible",
         "date": "2026-11-05"
@@ -7109,9 +7109,9 @@
         "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
-        "identifiedCoverage": 99.56000000000155,
+        "identifiedCoverage": 99.51000000000161,
         "automatic": true
       },
       "monthly": [
@@ -7168,9 +7168,9 @@
         "date": "2026-08-31"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
-        "identifiedCoverage": 99.39061743162216,
+        "identifiedCoverage": 99.32858219877875,
         "automatic": true
       },
       "monthly": [
@@ -7285,7 +7285,7 @@
         "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
         "identifiedCoverage": 99.848,
         "automatic": true
@@ -7458,9 +7458,9 @@
         "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
-        "identifiedCoverage": 99.8,
+        "identifiedCoverage": 99.75000000000001,
         "automatic": true
       },
       "monthly": [
@@ -8037,9 +8037,9 @@
         "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
-        "identifiedCoverage": 91.11999999999999,
+        "identifiedCoverage": 91.21,
         "automatic": true
       },
       "monthly": [
@@ -8088,9 +8088,9 @@
         "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
-        "identifiedCoverage": 99.78899999999997,
+        "identifiedCoverage": 99.79899999999999,
         "automatic": true
       },
       "monthly": [
@@ -8408,9 +8408,9 @@
         "date": "2026-11-05"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
-        "identifiedCoverage": 99.95400000000004,
+        "identifiedCoverage": 99.957,
         "automatic": true
       },
       "monthly": [
@@ -8574,9 +8574,9 @@
         "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
-        "identifiedCoverage": 99.95,
+        "identifiedCoverage": 99.94999999999997,
         "automatic": true
       },
       "monthly": [
@@ -8640,9 +8640,9 @@
         "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
-        "identifiedCoverage": 100.00999999999999,
+        "identifiedCoverage": 99.47999999999998,
         "automatic": true
       },
       "monthly": [
@@ -10855,6 +10855,16 @@
           "performance": true,
           "simulation": true,
           "anniversary": true
+        },
+        {
+          "id": "etfIE00B4K6B022Nav",
+          "automatic": true,
+          "first": "2023-12",
+          "last": "2026-10",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": false
         }
       ],
       "historyCandidate": false,
@@ -12648,9 +12658,9 @@
         "date": "2026-09-30"
       },
       "holdings": {
-        "asOf": "2026-09-22",
+        "asOf": "2026-09-23",
         "complete": false,
-        "identifiedCoverage": 100.00010000000009,
+        "identifiedCoverage": 100.00030000000002,
         "automatic": true
       },
       "monthly": [
@@ -12782,9 +12792,9 @@
         "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
-        "identifiedCoverage": 99.90000000000008,
+        "identifiedCoverage": 99.93000000000002,
         "automatic": true
       },
       "monthly": [
@@ -15068,7 +15078,7 @@
         "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
         "identifiedCoverage": 99.717,
         "automatic": true
@@ -15406,9 +15416,9 @@
         "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
-        "identifiedCoverage": 99.96,
+        "identifiedCoverage": 99.98,
         "automatic": true
       },
       "monthly": [
@@ -15506,9 +15516,9 @@
         "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
-        "identifiedCoverage": 99.796,
+        "identifiedCoverage": 99.793,
         "automatic": true
       },
       "monthly": [
@@ -16143,9 +16153,9 @@
         "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
-        "identifiedCoverage": 99.98,
+        "identifiedCoverage": 99.96999999999998,
         "automatic": true
       },
       "monthly": [
@@ -16691,9 +16701,9 @@
         "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
-        "identifiedCoverage": 99.44,
+        "identifiedCoverage": 99.45999999999998,
         "automatic": true
       },
       "monthly": [
@@ -20590,9 +20600,9 @@
         "date": "2026-11-04"
       },
       "holdings": {
-        "asOf": "2026-09-22",
+        "asOf": "2026-09-23",
         "complete": true,
-        "identifiedCoverage": 100.00010000000009,
+        "identifiedCoverage": 100.00030000000002,
         "automatic": true
       },
       "monthly": [
@@ -20639,9 +20649,9 @@
         "date": "2026-11-04"
       },
       "holdings": {
-        "asOf": "2026-09-22",
+        "asOf": "2026-09-23",
         "complete": true,
-        "identifiedCoverage": 100.00019999999995,
+        "identifiedCoverage": 100.00000000000018,
         "automatic": true
       },
       "monthly": [
@@ -21850,9 +21860,9 @@
         "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
-        "identifiedCoverage": 99.27999999999996,
+        "identifiedCoverage": 99.29999999999997,
         "automatic": true
       },
       "monthly": [
@@ -22039,9 +22049,9 @@
         "date": "2026-10-31"
       },
       "holdings": {
-        "asOf": "2026-11-05",
+        "asOf": "2026-11-06",
         "complete": true,
-        "identifiedCoverage": 99.41999999999997,
+        "identifiedCoverage": 99.36999999999995,
         "automatic": true
       },
       "monthly": [

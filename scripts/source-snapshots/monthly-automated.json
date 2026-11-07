@@ -629969,148 +629969,6 @@
       "https://data.fca.org.uk/artefacts/NSM/RNS/5511025.html",
       "https://data.fca.org.uk/artefacts/NSM/RNS/5750491.html"
     ],
-    "points": [
-      [
-        "2023-12",
-        43.82032099
-      ],
-      [
-        "2024-01",
-        45.11882263
-      ],
-      [
-        "2024-02",
-        47.39935696
-      ],
-      [
-        "2024-03",
-        49.47166884
-      ],
-      [
-        "2024-04",
-        48.32651709
-      ],
-      [
-        "2024-05",
-        49.44615918
-      ],
-      [
-        "2024-06",
-        48.59552803
-      ],
-      [
-        "2024-07",
-        48.45193185
-      ],
-      [
-        "2024-08",
-        49.31781089
-      ],
-      [
-        "2024-09",
-        49.77449341
-      ],
-      [
-        "2024-10",
-        48.12095819
-      ],
-      [
-        "2024-11",
-        47.96365537
-      ],
-      [
-        "2024-12",
-        48.89081891
-      ],
-      [
-        "2025-01",
-        52.86583156
-      ],
-      [
-        "2025-02",
-        54.68880529
-      ],
-      [
-        "2025-03",
-        52.61112068
-      ],
-      [
-        "2025-04",
-        52.02865752
-      ],
-      [
-        "2025-05",
-        54.79045663
-      ],
-      [
-        "2025-06",
-        54.1884856
-      ],
-      [
-        "2025-07",
-        54.4338641
-      ],
-      [
-        "2025-08",
-        54.76218525
-      ],
-      [
-        "2025-09",
-        56.62756264
-      ],
-      [
-        "2025-10",
-        58.05203797
-      ],
-      [
-        "2025-11",
-        58.22018687
-      ],
-      [
-        "2025-12",
-        59.52959752
-      ],
-      [
-        "2026-01",
-        61.17774999
-      ],
-      [
-        "2026-02",
-        63.2090851
-      ],
-      [
-        "2026-03",
-        57.43611167
-      ],
-      [
-        "2026-04",
-        61.06014469
-      ],
-      [
-        "2026-05",
-        63.40450587
-      ],
-      [
-        "2026-06",
-        66.35705031
-      ],
-      [
-        "2026-07",
-        66.74101085
-      ],
-      [
-        "2026-08",
-        68.1111
-      ],
-      [
-        "2026-09",
-        65.9247
-      ],
-      [
-        "2026-10",
-        64.5591
-      ]
-    ],
     "anniversaryAvailable": false,
     "anniversaryValuationBasis": "fund-nav-price",
     "anniversaryVariant": "Valeurs liquidatives publiées · hors distributions",
@@ -630156,7 +630014,7 @@
       "checkedAt": "2026-11-07",
       "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
       "maxAgeDays": 7,
-      "sha256": "0d1a0c7a1ba357a5336930d9afa7fcf791dc576756fb484a771a146133a38285"
+      "sha256": "8b57b4bdabe4efcc467ca46114536868ef4ad9418bab521ec40986f78e9c30b6"
     },
     "nativeValuationCurrency": "EUR",
     "lastOfficialValuation": "2026-11-05",
@@ -630176,7 +630034,7 @@
             "references": [
               {
                 "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5044235.html",
-                "sourceSha256": "ec5f4c969c52c570263dd1b830ecfc4821cce1915586b354f8af6171d2fe9fd0",
+                "sourceSha256": "f538ac32bb4e8923211e203db87dfa428cc0d9a341f37e73dbd7f8ee95200457",
                 "sourceCheckedAt": "2026-11-07",
                 "kind": "explicit gross cash and ex-date, issuer RNS on FCA NSM"
               },
@@ -630185,6 +630043,12 @@
                 "sourceSha256": "4085f44b6bcac20f98eb450b37520c4b83410e5fd09c60d83618cdd799a1daf8",
                 "sourceCheckedAt": "2026-11-07",
                 "kind": "full financial-period issuer distribution note, EUR (Dist)"
+              },
+              {
+                "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5044235.html",
+                "sourceSha256": "ec5f4c969c52c570263dd1b830ecfc4821cce1915586b354f8af6171d2fe9fd0",
+                "sourceCheckedAt": "2026-11-07",
+                "kind": "explicit gross cash and ex-date, issuer RNS on FCA NSM"
               }
             ]
           },
@@ -630197,7 +630061,7 @@
             "references": [
               {
                 "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5281783.html",
-                "sourceSha256": "545bbda49294a5c29910e58d4d795ff574a91e412c8ac2ae43e0c07c1f082e15",
+                "sourceSha256": "a44815f4369ead0cbf0fa055022f5c70842d3f1cc00015e54689373477fe12f9",
                 "sourceCheckedAt": "2026-11-07",
                 "kind": "explicit gross cash and ex-date, issuer RNS on FCA NSM"
               },
@@ -630206,6 +630070,12 @@
                 "sourceSha256": "4085f44b6bcac20f98eb450b37520c4b83410e5fd09c60d83618cdd799a1daf8",
                 "sourceCheckedAt": "2026-11-07",
                 "kind": "full financial-period issuer distribution note, EUR (Dist)"
+              },
+              {
+                "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5281783.html",
+                "sourceSha256": "545bbda49294a5c29910e58d4d795ff574a91e412c8ac2ae43e0c07c1f082e15",
+                "sourceCheckedAt": "2026-11-07",
+                "kind": "explicit gross cash and ex-date, issuer RNS on FCA NSM"
               }
             ]
           },
@@ -630218,7 +630088,7 @@
             "references": [
               {
                 "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5511025.html",
-                "sourceSha256": "ba7613f8ea194fe0ad6adb0f95b12516e66d91a4f03c8c42602db0e38685dcbb",
+                "sourceSha256": "56463bda537f96bf2987b5fc8220358c9cf602b368aa920efc8c0fee8ff867e8",
                 "sourceCheckedAt": "2026-11-07",
                 "kind": "explicit gross cash and ex-date, issuer RNS on FCA NSM"
               },
@@ -630233,6 +630103,12 @@
                 "sourceSha256": "43a24298af7caeb6f2e2d2e5eeccf5854972a2cd320b02f90229616376dab7b9",
                 "sourceCheckedAt": "2026-11-07",
                 "kind": "full financial-period issuer distribution note, EUR (Dist)"
+              },
+              {
+                "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5511025.html",
+                "sourceSha256": "ba7613f8ea194fe0ad6adb0f95b12516e66d91a4f03c8c42602db0e38685dcbb",
+                "sourceCheckedAt": "2026-11-07",
+                "kind": "explicit gross cash and ex-date, issuer RNS on FCA NSM"
               }
             ]
           },
@@ -630245,7 +630121,7 @@
             "references": [
               {
                 "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5750491.html",
-                "sourceSha256": "52780a3ec334605221c9596aa0ac0ab6fcba3f8b042989002b9e815efbc8b915",
+                "sourceSha256": "7e2173cf5f507c116a7a13c989f062b079c897359ea0ad5cdd1b26826f8729fb",
                 "sourceCheckedAt": "2026-11-07",
                 "kind": "explicit gross cash and ex-date, issuer RNS on FCA NSM"
               },
@@ -630260,6 +630136,12 @@
                 "sourceSha256": "43a24298af7caeb6f2e2d2e5eeccf5854972a2cd320b02f90229616376dab7b9",
                 "sourceCheckedAt": "2026-11-07",
                 "kind": "full financial-period issuer distribution note, EUR (Dist)"
+              },
+              {
+                "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5750491.html",
+                "sourceSha256": "52780a3ec334605221c9596aa0ac0ab6fcba3f8b042989002b9e815efbc8b915",
+                "sourceCheckedAt": "2026-11-07",
+                "kind": "explicit gross cash and ex-date, issuer RNS on FCA NSM"
               }
             ]
           },
@@ -630374,7 +630256,7 @@
         ],
         "coveredUntil": "2026-11-05",
         "lastNavDate": "2026-11-05",
-        "retainedHistoricalReferenceUsed": false
+        "retainedHistoricalReferenceUsed": true
       },
       "cashChecks": [
         {
@@ -630386,7 +630268,7 @@
           "references": [
             {
               "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5044235.html",
-              "sourceSha256": "ec5f4c969c52c570263dd1b830ecfc4821cce1915586b354f8af6171d2fe9fd0",
+              "sourceSha256": "f538ac32bb4e8923211e203db87dfa428cc0d9a341f37e73dbd7f8ee95200457",
               "sourceCheckedAt": "2026-11-07",
               "kind": "explicit gross cash and ex-date, issuer RNS on FCA NSM"
             },
@@ -630395,6 +630277,12 @@
               "sourceSha256": "4085f44b6bcac20f98eb450b37520c4b83410e5fd09c60d83618cdd799a1daf8",
               "sourceCheckedAt": "2026-11-07",
               "kind": "full financial-period issuer distribution note, EUR (Dist)"
+            },
+            {
+              "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5044235.html",
+              "sourceSha256": "ec5f4c969c52c570263dd1b830ecfc4821cce1915586b354f8af6171d2fe9fd0",
+              "sourceCheckedAt": "2026-11-07",
+              "kind": "explicit gross cash and ex-date, issuer RNS on FCA NSM"
             }
           ],
           "exDateNav": 48.5364,
@@ -630410,7 +630298,7 @@
           "references": [
             {
               "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5281783.html",
-              "sourceSha256": "545bbda49294a5c29910e58d4d795ff574a91e412c8ac2ae43e0c07c1f082e15",
+              "sourceSha256": "a44815f4369ead0cbf0fa055022f5c70842d3f1cc00015e54689373477fe12f9",
               "sourceCheckedAt": "2026-11-07",
               "kind": "explicit gross cash and ex-date, issuer RNS on FCA NSM"
             },
@@ -630419,6 +630307,12 @@
               "sourceSha256": "4085f44b6bcac20f98eb450b37520c4b83410e5fd09c60d83618cdd799a1daf8",
               "sourceCheckedAt": "2026-11-07",
               "kind": "full financial-period issuer distribution note, EUR (Dist)"
+            },
+            {
+              "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5281783.html",
+              "sourceSha256": "545bbda49294a5c29910e58d4d795ff574a91e412c8ac2ae43e0c07c1f082e15",
+              "sourceCheckedAt": "2026-11-07",
+              "kind": "explicit gross cash and ex-date, issuer RNS on FCA NSM"
             }
           ],
           "exDateNav": 48.7968,
@@ -630434,7 +630328,7 @@
           "references": [
             {
               "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5511025.html",
-              "sourceSha256": "ba7613f8ea194fe0ad6adb0f95b12516e66d91a4f03c8c42602db0e38685dcbb",
+              "sourceSha256": "56463bda537f96bf2987b5fc8220358c9cf602b368aa920efc8c0fee8ff867e8",
               "sourceCheckedAt": "2026-11-07",
               "kind": "explicit gross cash and ex-date, issuer RNS on FCA NSM"
             },
@@ -630449,6 +630343,12 @@
               "sourceSha256": "43a24298af7caeb6f2e2d2e5eeccf5854972a2cd320b02f90229616376dab7b9",
               "sourceCheckedAt": "2026-11-07",
               "kind": "full financial-period issuer distribution note, EUR (Dist)"
+            },
+            {
+              "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5511025.html",
+              "sourceSha256": "ba7613f8ea194fe0ad6adb0f95b12516e66d91a4f03c8c42602db0e38685dcbb",
+              "sourceCheckedAt": "2026-11-07",
+              "kind": "explicit gross cash and ex-date, issuer RNS on FCA NSM"
             }
           ],
           "exDateNav": 56.0121,
@@ -630464,7 +630364,7 @@
           "references": [
             {
               "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5750491.html",
-              "sourceSha256": "52780a3ec334605221c9596aa0ac0ab6fcba3f8b042989002b9e815efbc8b915",
+              "sourceSha256": "7e2173cf5f507c116a7a13c989f062b079c897359ea0ad5cdd1b26826f8729fb",
               "sourceCheckedAt": "2026-11-07",
               "kind": "explicit gross cash and ex-date, issuer RNS on FCA NSM"
             },
@@ -630479,6 +630379,12 @@
               "sourceSha256": "43a24298af7caeb6f2e2d2e5eeccf5854972a2cd320b02f90229616376dab7b9",
               "sourceCheckedAt": "2026-11-07",
               "kind": "full financial-period issuer distribution note, EUR (Dist)"
+            },
+            {
+              "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5750491.html",
+              "sourceSha256": "52780a3ec334605221c9596aa0ac0ab6fcba3f8b042989002b9e815efbc8b915",
+              "sourceCheckedAt": "2026-11-07",
+              "kind": "explicit gross cash and ex-date, issuer RNS on FCA NSM"
             }
           ],
           "exDateNav": 55.8042,
@@ -630780,12 +630686,12 @@
         "2024-02-29"
       ],
       "inputKind": "raw per-share NAV verified against reported AUM and shares; not an adjusted return series",
-      "sourceControlStartedAt": "2026-11-07T14:19:11.485Z",
-      "sourceControlCompletedAt": "2026-11-07T14:19:24.904Z",
+      "sourceControlStartedAt": "2026-11-07T15:18:07.366Z",
+      "sourceControlCompletedAt": "2026-11-07T15:18:25.667Z",
       "sourceRuntime": {
-        "runId": "42380948341",
-        "event": "pull_request",
-        "codeRevision": "a296f8f8e452728297eb9703b9938322d213aa64"
+        "runId": "42385424874",
+        "event": "push",
+        "codeRevision": "8b03c8a4a06272db4e404e99c4947c834a5a918d"
       },
       "controlledInstrument": "IE00B4K6B022",
       "requestedStart": "2023-12-01",
@@ -631244,16 +631150,16 @@
         "anniversaryDate": "2026-10-30"
       }
     ],
-    "responseSha256": "dde43eb30aeffa6d9ca9ddc58ad2893064ecee406a6b9bf52e852a9c995a169f",
+    "responseSha256": "291e18b06e6121921f8ef1613fdd053bec5e364859c77639feb9e15f6ed79de7",
     "rawSourceHashes": {
       "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/presentation": "fa3cfa75e4907178b623a76e7dc08e55509d9302396de89b09860e03bee20d2a",
-      "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/fund-history": "5000d856aa4244a564d42125dc8bb13c6a833f603e2bbb9fa07b7833d573decb",
+      "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/fund-history": "53250272f05d25f011a74b1c1bfaa992a2ef754cbf6b90dd180d50fcc12d679f",
       "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/dividend-table": "ff47d992f9b0e08c339fbebf0298e541e884c8671f67183faf072155de146d01",
       "https://www.assetmanagement.hsbc.co.uk/api/v1/detail/documents-table": "80d6d862165f604dab20ac6e94b863032017a2117f5e770097fabd3e682bd185",
-      "https://data.fca.org.uk/artefacts/NSM/RNS/5044235.html": "ec5f4c969c52c570263dd1b830ecfc4821cce1915586b354f8af6171d2fe9fd0",
-      "https://data.fca.org.uk/artefacts/NSM/RNS/5281783.html": "545bbda49294a5c29910e58d4d795ff574a91e412c8ac2ae43e0c07c1f082e15",
-      "https://data.fca.org.uk/artefacts/NSM/RNS/5511025.html": "ba7613f8ea194fe0ad6adb0f95b12516e66d91a4f03c8c42602db0e38685dcbb",
-      "https://data.fca.org.uk/artefacts/NSM/RNS/5750491.html": "52780a3ec334605221c9596aa0ac0ab6fcba3f8b042989002b9e815efbc8b915",
+      "https://data.fca.org.uk/artefacts/NSM/RNS/5044235.html": "f538ac32bb4e8923211e203db87dfa428cc0d9a341f37e73dbd7f8ee95200457",
+      "https://data.fca.org.uk/artefacts/NSM/RNS/5281783.html": "a44815f4369ead0cbf0fa055022f5c70842d3f1cc00015e54689373477fe12f9",
+      "https://data.fca.org.uk/artefacts/NSM/RNS/5511025.html": "56463bda537f96bf2987b5fc8220358c9cf602b368aa920efc8c0fee8ff867e8",
+      "https://data.fca.org.uk/artefacts/NSM/RNS/5750491.html": "7e2173cf5f507c116a7a13c989f062b079c897359ea0ad5cdd1b26826f8729fb",
       "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/annual%20report": "4085f44b6bcac20f98eb450b37520c4b83410e5fd09c60d83618cdd799a1daf8",
       "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/semi%20annual%20report": "43a24298af7caeb6f2e2d2e5eeccf5854972a2cd320b02f90229616376dab7b9"
     }
