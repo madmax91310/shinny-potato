@@ -5,8 +5,11 @@ import { buildAutomatedIndexSheets, AUTOMATED_SHEET_DEFINITIONS } from '../src/d
 import { SHEETS } from '../src/data/index-factsheets.js'
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js'
 import { getIndexArt } from '../src/pages/factsheet-tweets/visualIdentity.js'
+import { DATA_CATALOG } from '../src/data/catalog.js'
 
 assert.equal(new Set(SHEETS.map(sheet => sheet.id)).size, SHEETS.length, 'Duplicate index sheet')
+for (const sheet of SHEETS) assert(DATA_CATALOG.find(row => row.type === 'index' && row.id === sheet.id)?.consumers
+  .some(consumer => consumer.tool === 'Coulisses des indices'), `${sheet.id}: actual sheet consumer missing from shared catalogue`)
 for (const definition of AUTOMATED_SHEET_DEFINITIONS) {
   const id = definition.id, source = config.indices.find(row => row.id === id)
   assert(source.enabled && source.requiredFields.includes('composition') && source.requiredFields.includes('returns'))
