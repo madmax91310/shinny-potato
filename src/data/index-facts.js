@@ -789,10 +789,18 @@ export const CURRENT_INDEX_SNAPSHOTS = {};
 for (const [id, record] of Object.entries(automatedIndices)) {
   const history = INDEX_FACTS[id];
   if (!history || !record.facts) continue;
-  const observations = { ...record.factsHistory, [record.facts.asOf]: record.facts };
+  const quarter = record.quarterlyFacts;
+  const quarterlyArchives = Object.fromEntries(Object.values({
+    ...(quarter ? { [quarter.asOf]: quarter } : {}), ...record.quarterlyFactsHistory,
+  }).filter(facts => facts.collectionBasis === 'same-date-exact-index-quarter').map(facts => [facts.asOf, facts]));
+  // Existing named monthly snapshots keep priority; dated quarters remain
+  // available after the publisher advances its current quarterly report.
+  const observations = { ...quarterlyArchives, ...record.factsHistory,
+    [record.facts.asOf]: record.facts };
   for (const facts of Object.values(observations)) {
     if (history[facts.asOf]) continue;
-    const baseline = Object.values(history).filter(f => f.asOf && f.asOf <= facts.asOf).sort((a,b) => b.asOf.localeCompare(a.asOf))[0];
+    const baseline = Object.values(history).filter(f => f.asOf && f.asOf <= facts.asOf).sort((a,b) => b.asOf.localeCompare(a.asOf))[0]
+      ?? (facts.collectionBasis === 'same-date-exact-index-quarter' ? history.methodology : null);
     if (!baseline) continue;
     history[facts.asOf] = buildAutomatedIndexSnapshot(facts, baseline);
   }

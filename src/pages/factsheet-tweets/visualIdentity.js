@@ -42,6 +42,7 @@ const identities = {
   'em-standard': ['emerging', 'Marchés émergents'],
   'em-esg': ['emerging', 'Marchés émergents · sélection ESG'],
   'russell-2000': ['small', 'Petites entreprises américaines'],
+  'russell-1000': ['america', 'Grandes et moyennes entreprises américaines'],
   // Fiches dérivées du registre (lot 7, 18/10/2026) : scènes sans numéral uniquement,
   // le nom exact de l'indice, les pays et les lignes viennent du registre.
   'ftse-china-50': ['emerging', 'Grandes entreprises chinoises cotées à Hong Kong'],
@@ -66,7 +67,7 @@ export function getIndexArt(sheet) {
 export function loadIndexArt(sheet) {
   const { scene } = getIndexArt(sheet)
   if (!images.has(scene)) images.set(scene, (async () => {
-    const reused = ['property', 'infrastructure', 'health', 'finance', 'energy'].includes(scene)
+    const reused = ['property', 'infrastructure', 'health', 'finance', 'energy', 'america'].includes(scene)
     const response = await fetch(`${import.meta.env.BASE_URL}asset-art/${reused ? `etf-night/${scene}.webp` : `index-ribbon/${scene}.webp.b64`}`)
     if (!response.ok) throw new Error(`Illustration indisponible : ${scene}`)
     const image = new Image()

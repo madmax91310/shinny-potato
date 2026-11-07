@@ -205,7 +205,8 @@
       "collectComposition": true,
       "qualificationIssue": "Monthly printed sectors and native count qualified independently; quarterly membership weights retain their own date.",
       "holdingsSourceUrl": "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000",
-      "compositionParser": "russell-printed-composition"
+      "compositionParser": "russell-printed-composition",
+      "collectCoherentQuarterlyComposition": true
     },
     {
       "id": "msci-em-asia-screened",

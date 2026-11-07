@@ -78,6 +78,11 @@ def build_plan(producer, args, report_stem=None, module=None):
                 applicable=not(f=='composition'and c.get('collectComposition')is False)
                 add('index-'+c['id']+'-'+f,c['id'],[f],selected and applicable,
                     'Non applicable : composition explicitly disabled'if not applicable else 'Outside requested index partition'if not selected else None, **({'phase':'validation','sourceAttempted':False}if c.get('parser')=='monthly-derived'else{}))
+            if producer=='refresh_index_sources' and c.get('collectCoherentQuarterlyComposition'):
+                quarterly=selected and '--only-derived'not in args
+                add('index-'+c['id']+'-quarterly-composition',c['id'],
+                    ['same-date official index countries','printed sectors','quarterly top ten','constituent count'],quarterly,
+                    None if quarterly else 'Outside requested quarterly index partition')
     elif producer=='collect_practical_sheets':
         for key in json.loads(mod().CONFIG.read_text()):add('practical:'+key,key,['official document body/hash','editorial review lock'])
     elif producer=='collect_insurance':

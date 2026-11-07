@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { verifyReliefLogos } from './test-index-relief-logos.mjs'
 import { chromium } from 'playwright'
+import { choose } from './card-selection.mjs'
 import { spawn } from 'node:child_process'
 import { mkdir, writeFile } from 'node:fs/promises'
 const port = 4328, base = `http://127.0.0.1:${port}/shinny-potato/`
@@ -67,6 +68,14 @@ try {
     }
     try {
       for (const sheet of SHEETS.filter(sheet => !sectorOnly || ['msci-world-health-care', 'msci-world-financials', 'msci-world-energy'].includes(sheet.id))) await check(sheet)
+      // Replay the real official same-date quarter even before its first
+      // production collection; no live registry is changed for this recipe.
+      const { buildAutomatedIndexSheets } = await import('/shinny-potato/src/data/automated-index-sheets.js')
+      const { AUTOMATED_INDICES } = await import('/shinny-potato/src/data/automated-indices.js')
+      const observations = structuredClone(AUTOMATED_INDICES)
+      observations['russell-1000'].quarterlyFacts = await (await fetch('/shinny-potato/scripts/fixtures/russell-composition/coherent-quarter-2026-06-30.json')).json()
+      const quarter = buildAutomatedIndexSheets(observations,new Date('2026-11-07'),[{id:'russell-1000',title:'Russell 1000',derived:true}])[0]
+      await check(quarter,'russell-coherent-quarter')
       // Layout-only fixtures: the real sources are never edited. New years,
       // sparse composition and missing count/date must remain exportable.
       const sample = SHEETS.find(sheet => sheet.id === 'stoxx600')
@@ -84,6 +93,16 @@ try {
   for (const width of [1280, 390]) {
     await page.setViewportSize({ width, height: 844 })
     await page.goto(`${base}tweets-factsheets`)
+    // Distinct observations can share a source URL. Changing the selected
+    // index must not retain an old link through duplicate React keys.
+    for (const id of ['msci-india','msci-usa']) {
+      await choose(page.locator('#factsheet-subject'),id)
+      const expected = await page.evaluate(async id => {
+        const {SHEETS} = await import('/shinny-potato/src/pages/factsheet-tweets/data.js')
+        return SHEETS.find(s=>s.id===id).source.map(s=>({url:s.url,label:s.label+' ↗'}))
+      },id)
+      assert.deepEqual(await page.locator('.fs-sources a').evaluateAll(as=>as.map(a=>({url:a.href,label:a.innerText}))),expected)
+    }
     if (width === 390) await page.getByRole('button', { name: 'Aperçu', exact: true }).click()
     await page.getByRole('tab', { name: 'Image', exact: true }).click()
     await page.locator('.fs-scope img').first().evaluate(i => i.decode())
