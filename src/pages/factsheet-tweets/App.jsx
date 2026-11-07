@@ -122,7 +122,7 @@ export default function App() {
       </div>
       {!base.compositionOnly && <p className="fs-warning">{sheet.performance.detail}{sheet.performance.currencyNote ? ` · ${sheet.performance.currencyNote}` : ''}</p>}
       <div className="fs-sources"><strong>Fiches officielles</strong>
-        {sheet.source.map((src) => <a key={src.url} target="_blank" rel="noopener noreferrer" href={src.url}>{src.label} ↗</a>)}
+        {sheet.source.map((src, index) => <a key={`${src.url}:${index}`} target="_blank" rel="noopener noreferrer" href={src.url}>{src.label} ↗</a>)}
       </div>
 
       <p className="fs-warning">Les compositions et performances correspondent aux dates affichées. Un contrôle récent de la source ne change pas la date de la composition ; relisez ces dates avant publication. La composition décrit l’indice sous-jacent, pas les titres détenus par un ETF synthétique.</p>

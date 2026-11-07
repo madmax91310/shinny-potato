@@ -308,4 +308,4 @@ def collect_coherent_quarter(config, holdings, now, fetch=download):
             'holdingsSource':{**source,'asOf':stamp},
             'source':{'url':url,'checkedAt':now.date().isoformat(),'sha256':proof(body),'label':'FTSE Russell · fiche archivée à la date des positions trimestrielles',
                       'archiveUrl':ARCHIVES_URL,'archiveSha256':proof(archive_body)},
-            'provenance':'Russell 1000 exact : fiche officielle et top dix du rapport ESMA de même date. Classes séparées, aucun poids renormalisé. Photographie trimestrielle distincte des secteurs mensuels ; pas de portefeuille complet identifié pour le recouvrement.'}
+            'provenance':'Russell 1000 exact : fiche officielle et top dix du rapport ESMA de même date. Classes séparées, aucun poids renormalisé. États-Unis : univers des sociétés américaines de l’indice, pas domicile juridique individuel. Photographie trimestrielle distincte des secteurs mensuels ; pas de portefeuille complet identifié pour le recouvrement.'}

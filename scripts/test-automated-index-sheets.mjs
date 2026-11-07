@@ -59,6 +59,7 @@ console.log(`${AUTOMATED_SHEET_DEFINITIONS.length} fully automated index sheets:
   const definition = definitions.find(r => r.id === id)
   assert(definition, 'Qualified quarterly composition restores the existing index format')
   const sheet = buildAutomatedIndexSheets(observations, now, [definition])[0]
+  assert.equal(getIndexArt(sheet).scene, 'america')
   assert.equal(sheet.indexFacts.asOf, '2026-06-30')
   assert.equal(sheet.snapshot, '30 juin 2026')
   assert.equal(sheet.constituents, 1023)

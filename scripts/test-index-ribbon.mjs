@@ -67,6 +67,14 @@ try {
     }
     try {
       for (const sheet of SHEETS.filter(sheet => !sectorOnly || ['msci-world-health-care', 'msci-world-financials', 'msci-world-energy'].includes(sheet.id))) await check(sheet)
+      // Replay the real official same-date quarter even before its first
+      // production collection; no live registry is changed for this recipe.
+      const { buildAutomatedIndexSheets } = await import('/shinny-potato/src/data/automated-index-sheets.js')
+      const { AUTOMATED_INDICES } = await import('/shinny-potato/src/data/automated-indices.js')
+      const observations = structuredClone(AUTOMATED_INDICES)
+      observations['russell-1000'].quarterlyFacts = await (await fetch('/shinny-potato/scripts/fixtures/russell-composition/coherent-quarter-2026-06-30.json')).json()
+      const quarter = buildAutomatedIndexSheets(observations,new Date('2026-11-07'),[{id:'russell-1000',title:'Russell 1000',derived:true}])[0]
+      await check(quarter,'russell-coherent-quarter')
       // Layout-only fixtures: the real sources are never edited. New years,
       // sparse composition and missing count/date must remain exportable.
       const sample = SHEETS.find(sheet => sheet.id === 'stoxx600')
