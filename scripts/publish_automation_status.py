@@ -178,8 +178,9 @@ def _normalize_report(report):
                 id_ = 'index-' + item['id'] + '-' + field
                 failed = [e for e in item.get('errors', []) if e['field'] == field]
                 errors.extend({'id': id_, 'name': item.get('name', item['id']) + ' · ' + field, 'error': e['reason'],
-                               **{key:e[key]for key in ('phase','sourceAttempted')if key in e},
-                               **({'sourceUrl':e['url']}if e.get('url')else{})} for e in failed)
+                               **({**{key:e[key]for key in ('phase','sourceAttempted')if key in e},
+                                   **({'sourceUrl':e['url']}if e.get('url')else{})}
+                                  if field=='quarterly-composition'else{})} for e in failed)
                 if not failed and item.get({'composition':'facts','returns':'returns','quarterly-composition':'quarterlyFacts'}[field]):
                     successes.append({'id': id_})
         return {'successes': successes, 'errors': errors}

@@ -77,6 +77,29 @@ class CompositionGateTests(unittest.TestCase):
             with self.subTest(offset=offset), self.assertRaisesRegex(ValueError, 'future or stale'):
                 validate_composition(facts, self.config['world'], NOW)
 
+    def test_quarterly_conflicts_preserve_last_valid_snapshot_and_other_results(self):
+        quarter = json.loads((ROOT / 'scripts/fixtures/russell-composition/coherent-quarter-2026-06-30.json').read_text())
+        baseline = {'quarterlyFacts': copy.deepcopy(quarter)}
+        for case in ['unchanged', 'changed', 'older-period', 'older-control']:
+            incoming = copy.deepcopy(quarter)
+            if case == 'changed': incoming['holdings'][0][1] += 0.01
+            if case == 'older-period': incoming['asOf'] = '2026-03-31'
+            if case == 'older-control': incoming['source']['checkedAt'] = '2026-01-01'
+            observation = {'id': 'russell-1000', 'quarterlyFacts': incoming,
+                           'returns': copy.deepcopy(self.records['russell-1000']['returns']), 'errors': []}
+            with self.subTest(case=case), patch('refresh_index_sources._collect_one', return_value=observation):
+                result = collect_one(self.config['russell-1000'], NOW, previous=baseline)
+                merged = merge_records({'russell-1000': baseline}, [result])['russell-1000']
+                self.assertEqual(merged['quarterlyFacts'], quarter)
+                self.assertEqual(merged['returns'], observation['returns'])
+                if case == 'unchanged':
+                    self.assertEqual(result['errors'], [])
+                else:
+                    self.assertNotIn('quarterlyFacts', result)
+                    self.assertEqual(result['unqualifiedQuarterlyFacts'], incoming)
+                    self.assertEqual(result['errors'][0]['field'], 'quarterly-composition')
+                    self.assertEqual(result['errors'][0]['phase'], 'validation')
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -131,7 +131,7 @@ def validate_composition(facts, config, now):
             raise ValueError('More principal holdings than constituents')
 
 
-def collect_one(config, now, fetch=download):
+def collect_one(config, now, fetch=download, *, previous=None):
     result = _collect_one(config, now, fetch)
     if 'facts' in result:
         try:
@@ -149,6 +149,28 @@ def collect_one(config, now, fetch=download):
         except (ValueError, TypeError, KeyError) as error:
             result.pop('facts')
             result['errors'].append({'field': 'composition', 'reason': str(error), 'url': config.get('sourceUrl', config.get('compositionSourceUrl'))})
+    incoming=result.get('quarterlyFacts')
+    prior=(previous or {}).get('quarterlyFacts')
+    if incoming and prior:
+        financial=('index','constituents','countries','sectors','holdings','publishedMembershipWeightPct','weightRemainderPct')
+        changed=[key for key in financial if incoming.get(key)!=prior.get(key)]
+        reason=None
+        if incoming['asOf']<prior['asOf']:
+            reason=f"Quarterly snapshot would regress from {prior['asOf']} to {incoming['asOf']}"
+        elif incoming['asOf']==prior['asOf'] and changed:
+            reason='Same-date quarterly composition changed: '+', '.join(changed)+'; explicit issuer revision/identity evidence required'
+        elif incoming['source']['checkedAt']<(prior.get('source',{}).get('checkedAt') or ''):
+            reason='Quarterly source-control date would regress'
+        if reason:
+            result['unqualifiedQuarterlyFacts']=result.pop('quarterlyFacts')
+            result['errors'].append({'field':'quarterly-composition','phase':'validation','sourceAttempted':True,
+                'url':incoming['source']['url'],'reason':reason})
+            holding,old_holding=result.get('holdings'),(previous or {}).get('holdings')
+            if holding and old_holding and (holding['asOf']<old_holding['asOf'] or
+                    holding['asOf']==old_holding['asOf'] and holding.get('rows')!=old_holding.get('rows')):
+                result['unqualifiedHoldings']=result.pop('holdings')
+                result['errors'].append({'field':'holdings','phase':'validation','sourceAttempted':True,
+                    'url':holding['source']['url'],'reason':reason})
     return result
 
 
@@ -219,7 +241,9 @@ def main():
         active = [{**c, 'allowPublicHandoff': False} for c in active]
     if args.only_derived:
         active = [{**c, 'collectComposition': False} for c in active]
-    with ThreadPoolExecutor(max_workers=4)as pool:observations=list(pool.map(lambda c:collect_one(c,now),active))
+    path=ROOT/'src/data/automated-indices.json'
+    old=json.loads(path.read_text())if path.exists()else{}
+    with ThreadPoolExecutor(max_workers=4)as pool:observations=list(pool.map(lambda c:collect_one(c,now,previous=old.get(c['id'])),active))
     qualification_errors = []
     if args.require_complete:
         for observation in observations:
@@ -232,7 +256,6 @@ def main():
     write_json_atomic(args.output,report)
     if qualification_errors: raise ValueError('; '.join(qualification_errors))
     if args.apply:
-        path=ROOT/'src/data/automated-indices.json';old=json.loads(path.read_text())if path.exists()else{}
         merged=merge_records(old,observations)
         if old!=merged:write_json_atomic(path,merged)
     failures=sum(len(o['errors'])for o in observations)
