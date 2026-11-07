@@ -210,6 +210,25 @@ def merge_events(groups):
     return [events[d]for d in sorted(events)]
 
 
+def guard_raw_nav_steps(nav,events):
+    """Hold an unexplained large step, never infer or apply a split.
+
+    This exact unleveraged share uses raw per-unit NAV. NAV × shares = AUM
+    still agrees across a split, so that check alone cannot qualify a return.
+    A 25% economic step is an investigation signal, not proof of corruption;
+    independently qualified corporate-action/valuation evidence is required.
+    Declared gross cash is included once when testing the step. Existing
+    calendar and numeric-reconciliation tolerances are unchanged.
+    """
+    cash={e['exDate']:e['amount']for e in events}
+    dates=sorted(nav)
+    for before,after in zip(dates,dates[1:]):
+        ratio=(nav[after]+cash.get(after,0))/nav[before]
+        if not .75<ratio<1.25:
+            raise ValueError('Unqualified raw NAV discontinuity '+before+' → '+after+
+                ': a possible share-unit event or exceptional valuation needs official corroboration; no split or price adjustment inferred')
+
+
 def qualify(nav,periods,declared,current,source,now,prior=None):
     prior=prior or {};retained=prior.get('hsbcCashQualification')
     if retained and (retained.get('schemaVersion')!=1 or retained.get('isin')!=ISIN or retained.get('currency')!='EUR'):raise ValueError('Retained HSBC cash identity changed')
@@ -246,6 +265,10 @@ def qualify(nav,periods,declared,current,source,now,prior=None):
     if end<max(nav):raise ValueError('Cash coverage gap before latest NAV; last-two table cannot certify the omitted period')
     used=[e for e in events if min(nav)<e['exDate']<=max(nav)]
     if any(e['exDate']not in nav for e in used):raise ValueError('Exact ex-date NAV absent; no interpolation')
+    # The first month contributes its final NAV only. Earlier daily rows are
+    # outside the supplied return window and cannot invalidate that window.
+    first_month_end=max(day for day in nav if day[:7]==source['periodStart'])
+    guard_raw_nav_steps({day:value for day,value in nav.items()if day>=first_month_end},used)
     factor=1.0;levels={};cash_checks=[];by_day={e['exDate']:e for e in used}
     for day,value in nav.items():
         if day in by_day:
