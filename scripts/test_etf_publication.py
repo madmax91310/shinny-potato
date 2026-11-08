@@ -37,6 +37,7 @@ class EtfPublication(unittest.TestCase):
                      'validate-etf-publication.sh']:
             (self.f.local / 'scripts' / name).write_bytes((ROOT / 'scripts' / name).read_bytes())
         (self.f.local/'scripts/export-etf-pilot-baseline.mjs').write_text('export const baseline = 1;\n')
+        (self.f.local/'scripts/build-automation-targets.mjs').write_text('export const targets = [];\n')
         self.f.git(self.f.local, 'add', '.')
         self.f.git(self.f.local, 'commit', '-m', 'ETF producer inputs')
         self.f.git(self.f.local, 'push', 'origin', 'master')

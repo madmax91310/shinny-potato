@@ -25,6 +25,7 @@ class ReaderRevalidation(unittest.TestCase):
         self.base = self.commit({
             reader.BASELINE: "import { ASSETS } from '../src/data/market-history.js';\n",
             reader.ETF_BASELINE: "import { ASSETS } from '../src/data/market-history.js';\n",
+            'scripts/build-automation-targets.mjs': 'export const targets = [];\n',
             'src/data/market-history.js': 'export const ASSETS = {};\n',
             'src/pages/budget-profiles/data.js': 'export const BUDGET_PROFILES = [];\n',
             reader.AUDIT_READER: '# workflow-reader contracts\n',
@@ -163,6 +164,14 @@ class ReaderRevalidation(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'dynamic baseline'):
             reader.check_etf(self.base, end)
 
+    def test_etf_target_generator_dependency_is_protected_too(self):
+        self.base = self.commit({'scripts/build-automation-targets.mjs':
+            "import './lib/data-qualification.mjs';\n",
+            'scripts/lib/data-qualification.mjs': 'export const required = 1;\n'})
+        end = self.commit({'scripts/lib/data-qualification.mjs': 'export const required = 2;\n'})
+        with self.assertRaisesRegex(ValueError, 'acquisition dependency'):
+            reader.check_etf(self.base, end)
+
     def test_etf_source_currency_and_unexamined_inputs_remain_protected(self):
         for path in ['scripts/collect_etf_pilot.py', 'scripts/etf-pilot.json',
                      'src/data/annual-fx.json', 'src/data/unexamined.json']:
@@ -204,6 +213,9 @@ class FinancialPublicationGate(unittest.TestCase):
             baseline.parent.mkdir(parents=True, exist_ok=True)
             baseline.write_text('export const source = 1;\n')
             f.git(f.local, 'add', reader.ETF_BASELINE)
+            targets = f.local/'scripts/build-automation-targets.mjs'
+            targets.write_text('export const targets = [];\n')
+            f.git(f.local, 'add', 'scripts/build-automation-targets.mjs')
         f.git(f.local, 'add', changed_reader)
         f.git(f.local, 'commit', '-m', 'acquisition base')
         f.git(f.local, 'push', 'origin', 'master')

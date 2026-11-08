@@ -50,6 +50,7 @@ ROLLOUT_FILES = {'scripts/market_reader_revalidation.py',
                  'scripts/test_market_reader_revalidation.py'}
 BASELINE = 'scripts/export-monthly-baseline.mjs'
 ETF_BASELINE = 'scripts/export-etf-pilot-baseline.mjs'
+ETF_ACQUISITION_ENTRIES = (ETF_BASELINE, 'scripts/build-automation-targets.mjs')
 # Refusal42488861255 after#1210. These are downstream qualification readers,
 # not the issuer acquisition baseline. Prove that separation on both trees;
 # retain the shared source guard and the complete merged-tree financial checks.
@@ -96,8 +97,9 @@ def check_etf(base, upstream='HEAD^'):
     permitted = paths & ETF_READERS
     if permitted:
         for ref in (base, upstream):
-            if baseline_dependencies(ref, ETF_BASELINE) & ETF_READERS:
-                raise ValueError('An ETF qualification reader is an acquisition dependency')
+            for entry in ETF_ACQUISITION_ENTRIES:
+                if baseline_dependencies(ref, entry) & ETF_READERS:
+                    raise ValueError('An ETF qualification reader is an acquisition dependency: ' + entry)
     return checked_readers('etf', base, upstream, permitted)
 
 
