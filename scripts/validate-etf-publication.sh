@@ -9,7 +9,7 @@ case "$mode" in
       echo 'Original ETF validation still applies; no upstream input changed.'
       exit 0
     fi
-    python3 scripts/observation_rebase_guard.py --kind etf --base "$VALIDATED_DATA_ORIGINAL_BASE"
+    python3 scripts/market_reader_revalidation.py --kind etf --base "$VALIDATED_DATA_ORIGINAL_BASE"
     ;;
   *) echo 'Usage: validate-etf-publication.sh validate|prepare|check' >&2; exit 2 ;;
 esac
@@ -25,6 +25,7 @@ if [[ "$mode" == prepare ]]; then
   exit 0
 fi
 node scripts/test-asset-field-coverage.mjs
+node scripts/test-data-qualification.mjs
 node scripts/test-field-diagnostics.mjs
 node scripts/test-automation-gap-inventory.mjs
 node scripts/test-priority-issuer-consumers.mjs
