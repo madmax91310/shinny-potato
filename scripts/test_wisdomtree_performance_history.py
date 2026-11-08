@@ -179,15 +179,14 @@ class OrdinaryBrowserTransport(unittest.TestCase):
   with patch('wisdomtree_performance_history.download',side_effect=error),patch('wisdomtree_performance_history.subprocess.run',return_value=subprocess.CompletedProcess([],1,b'',b'source403')),self.assertRaisesRegex(ValueError,'public browser performance failed'):acquire(s)
 
 
- def test_widget_result_requires_this_exact_fresh_pdf_and_preserves_primary_attempt_clock(self):
+ def test_api_navigation_requires_this_exact_fresh_pdf_and_no_fabricated_page_control(self):
   from unittest.mock import patch
   import urllib.error,subprocess,base64
   from wisdomtree_performance_history import acquire,urls
   s=SOURCES[0];endpoints=urls(s)
   binding={'kind':'official-exact-product-pdf-v1','isin':s['isin'],'currency':s['navCurrency'],'sourceUrl':s['factsheetUrl'],'sha256':'a'*64,'asOf':'2026-09-30','checkedAt':'2026-11-08T11:00:00Z'}
   payload={'results':[{'url':u,'status':200,'body':base64.b64encode(b'[]').decode()}for u in endpoints],
-   'publicProductPage':{'url':s['sourceUrl'],'status':403,'attemptedAt':'2026-11-08T11:00:01Z'},
-   'publicWidgetClient':{'url':'https://perfchart.wisdomtree.eu/','status':200,'checkedAt':'2026-11-08T11:00:02Z','demoTickerIsIdentity':False},'qualifiedIdentity':binding}
+   'publicApiNavigation':{'requestedUrls':endpoints,'checkedAt':'2026-11-08T11:00:02Z','productPageAttempted':False,'identityFrom':'fresh exact-product official PDF'},'qualifiedIdentity':binding}
   for altered in [False,True]:
    result=copy.deepcopy(payload)
    if altered:result['qualifiedIdentity']['isin']='GB0000000000'
@@ -196,8 +195,8 @@ class OrdinaryBrowserTransport(unittest.TestCase):
      with self.assertRaises(ValueError):acquire(s,qualified_identity=binding)
     else:
      bodies,proof=acquire(s,qualified_identity=binding)
-     self.assertEqual(list(bodies),endpoints);self.assertEqual(proof['actualNavTransport'],'ordinary-public-widget-json')
-     self.assertNotIn('checkedAt',proof['publicProductPage']);self.assertEqual(proof['publicProductPage']['status'],403)
+     self.assertEqual(list(bodies),endpoints);self.assertEqual(proof['actualNavTransport'],'ordinary-public-api-navigation')
+     self.assertNotIn('publicProductPage',proof);self.assertFalse(proof['publicApiNavigation']['productPageAttempted'])
      self.assertEqual(json.loads(browser.call_args.kwargs['input']),binding)
 
 if __name__=='__main__':unittest.main()

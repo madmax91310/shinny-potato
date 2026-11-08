@@ -44,27 +44,25 @@ def acquire(source, *, qualified_identity=None):
     result=json.loads(process.stdout)
     page=result.get('publicProductPage',{})
     product_ok=(page.get('url')==source['sourceUrl'] and page.get('isin')==source['isin'] and page.get('status')==200)
-    widget=result.get('publicWidgetClient',{})
+    navigation=result.get('publicApiNavigation',{})
     identity_ok=(isinstance(qualified_identity,dict) and qualified_identity.get('kind')=='official-exact-product-pdf-v1'
         and qualified_identity.get('isin')==source['isin'] and qualified_identity.get('currency')==source['navCurrency']
         and qualified_identity.get('sourceUrl')==source['factsheetUrl'] and len(qualified_identity.get('sha256',''))==64)
-    widget_ok=(identity_ok and result.get('qualifiedIdentity')==qualified_identity
-        and page.get('url')==source['sourceUrl'] and page.get('status')==403
-        and widget.get('url')=='https://perfchart.wisdomtree.eu/' and widget.get('status')==200
-        and widget.get('demoTickerIsIdentity') is False)
-    if not product_ok and not widget_ok:
-        raise ValueError('Ordinary browser product page or independently identified public widget not verified')
-    dt.datetime.fromisoformat(page['checkedAt' if product_ok else 'attemptedAt'].replace('Z','+00:00'))
-    if widget_ok:dt.datetime.fromisoformat(widget['checkedAt'].replace('Z','+00:00'))
+    navigation_ok=(identity_ok and result.get('qualifiedIdentity')==qualified_identity
+        and navigation.get('requestedUrls')==endpoints and navigation.get('productPageAttempted') is False
+        and navigation.get('identityFrom')=='fresh exact-product official PDF')
+    if not product_ok and not navigation_ok:
+        raise ValueError('Ordinary browser product page or PDF-bound public API navigation not verified')
+    dt.datetime.fromisoformat((navigation if navigation_ok else page)['checkedAt'].replace('Z','+00:00'))
     rows=result.get('results',[])
     if len(rows)!=2 or [r.get('url')for r in rows]!=endpoints or any(r.get('status')!=200 for r in rows):
         raise ValueError('Browser performance source scope changed')
     bodies={r['url']:base64.b64decode(r['body'],validate=True)for r in rows}
     if any(len(body)>8_000_000 for body in bodies.values()):raise ValueError('Oversized issuer performance payload')
-    return bodies,{'actualNavTransport':'ordinary-public-widget-json' if widget_ok else 'ordinary-public-browser-json',
-                   'publicProductPage':page,
-                   **({'publicWidgetClient':widget,'officialPdfIdentity':qualified_identity} if widget_ok else {}),
-                   'accessAttempts':attempts+[{'url':r['url'],**({'actualUrl':r['actualUrl'],'redirectQualification':r.get('redirectQualification')}if r.get('actualUrl')else{}),'transport':'ordinary-public-widget-json'if widget_ok else'ordinary-public-browser-json','status':'received'}for r in rows]}
+    return bodies,{'actualNavTransport':'ordinary-public-api-navigation' if navigation_ok else 'ordinary-public-browser-json',
+                   **({'publicApiNavigation':navigation,'officialPdfIdentity':qualified_identity} if navigation_ok else {'publicProductPage':page}),
+                   'accessAttempts':attempts+[{'url':r['url'],**({'actualUrl':r['actualUrl'],'redirectQualification':r.get('redirectQualification')}if r.get('actualUrl')else{}),'transport':'ordinary-public-api-navigation'if navigation_ok else'ordinary-public-browser-json','status':'received'}for r in rows]}
+
 
 
 def anchor_for(source):
