@@ -64,6 +64,10 @@ def composition(rows, stamp, share, digest, complete=True, basis='fund'):
             'sourceUrl':share['sourceUrl'], 'sha256':digest}
 
 
+class UnqualifiedOverviewDate(ValueError):
+    """Primary identity is checked, but its overview clock cannot be used."""
+
+
 def wisdomtree(text, share, now):
     page = Page(text)
     def table(title):
@@ -83,7 +87,10 @@ def wisdomtree(text, share, now):
         native=currencies[0]
     if fields.get('ISIN') != share['isin'] or native != share['currency']:
         reject('Wrong WisdomTree exact share/currency')
-    stamp = document_date(only(re.findall(r'As of (\d{2}/\d{2}/\d{4})', ' '.join(overview[0])), 'overview date'), now)
+    overview_dates = re.findall(r'As of (\d{2}/\d{2}/\d{4})', ' '.join(overview[0]))
+    if len(overview_dates) != 1:
+        raise UnqualifiedOverviewDate('Missing or ambiguous issuer overview date: ' + repr(overview_dates))
+    stamp = document_date(overview_dates[0], now)
     fees = table('Fees'); fees_stamp = document_date(fees[0][1].removeprefix('As of '), now)
     charges = dict(fees[1:])
     fee = charges.get('Total expense ratio (TER)', charges.get('Management Fee (MER)'))
@@ -272,7 +279,30 @@ def collect_one(share, now):
             return result
     else:
         text=download(share['sourceUrl'], max_bytes=12_000_000).decode('utf-8')
-    result = {'wisdomtree-html':wisdomtree,'globalx-html':globalx,'bitwise-html':bitwise}[share['parser']](text,share,now)
+    try:
+        result = {'wisdomtree-html':wisdomtree,'globalx-html':globalx,'bitwise-html':bitwise}[share['parser']](text,share,now)
+    except UnqualifiedOverviewDate as error:
+        # The HTML has already proved the exact share and currency. Its date
+        # remains unqualified: no allocation inherits it and no clock is made up.
+        # Independently reacquire and qualify the ordinary official PDF + API
+        # route, rather than treating a schema error as an HTTP outage.
+        if share['parser'] != 'wisdomtree-html':
+            raise
+        body = download(share['factsheetUrl'], headers={'User-Agent':'Mozilla/5.0','Accept':'application/pdf'})
+        result = wisdomtree_factsheet(body, share, now)
+        from wisdomtree_ranked_fields import augment_document
+        result = augment_document(result, share, now, body)
+        fields = [field for field in ('holdings','countries','sectors') if result.get(field)]
+        result.setdefault('sourceAttempts', []).extend([*access_attempts,
+            {'url':share['sourceUrl'], 'status':'failed', 'phase':'validation',
+             'reason':str(error), 'sha256':proof(text.encode()),
+             'qualifiedFallbackAvailable':bool(fields), 'qualifiedFields':fields},
+            {'url':share['factsheetUrl'], 'status':'validated', 'phase':'validation'}])
+        result.setdefault('collectionErrors', []).append({'field':'overview-date',
+            'url':share['sourceUrl'], 'phase':'validation', 'reason':str(error),
+            'qualifiedFallbackAvailable':bool(fields), 'qualifiedFields':fields})
+        from wisdomtree_directory_aum import augment_aum
+        return augment_aum(result, share, now, fetch=download)
     if share['parser'] == 'wisdomtree-html':
         if access_attempts:result['sourceAttempts']=[*access_attempts,{'sourceUrl':share['sourceUrl'],'status':'validated'}]
         try:

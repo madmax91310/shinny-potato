@@ -114,4 +114,45 @@ class CountryAllocation(unittest.TestCase):
         self.assertAlmostEqual(sum(r['weightPct'] for r in result['rows']),99.9999)
         self.assertNotEqual(sum(r['weightPct'] for r in result['rows']),100)
 
+
+    def _undated_overview(self, isin=None, currency=None, dates='As of '):
+        return ('<table><tr><th>Product Overview</th><th>'+dates+'</th></tr>'
+                '<tr><td>ISIN</td><td>'+(isin or self.share['isin'])+'</td></tr>'
+                '<tr><td>Base Currency</td><td>'+(currency or self.share['currency'])+'</td></tr></table>')
+
+    def test_missing_or_ambiguous_overview_reacquires_independent_pdf_and_api(self):
+        from collect_public_issuer import collect_one
+        share={**self.share,'parser':'wisdomtree-html'}
+        for dates in ('As of ', 'As of 28/10/2026 As of 29/10/2026'):
+            with self.subTest(dates=dates):
+                result={'isin':share['isin'],'unavailable':[],'characteristics':{'asOf':'2026-09-30'}}
+                api={'rows':[{'name':'United States','weightPct':92.5013}], 'asOf':'2026-10-23','basis':'fund'}
+                def augment(r,*args,**kwargs):
+                    r['countries']=copy.deepcopy(api);return r
+                with patch('collect_public_issuer.get_text',return_value=self._undated_overview(dates=dates)),patch('collect_public_issuer.download',return_value=b'new PDF acquired')as download,patch('collect_public_issuer.wisdomtree_factsheet',return_value=result)as pdf,patch('wisdomtree_ranked_fields.augment_document',side_effect=augment)as ranks,patch('wisdomtree_directory_aum.augment_aum',side_effect=lambda r,*a,**kw:r):
+                    actual=collect_one(share,NOW)
+                download.assert_called_once();pdf.assert_called_once();ranks.assert_called_once()
+                self.assertEqual(actual['countries'],api)
+                self.assertEqual(actual['characteristics']['asOf'],'2026-09-30')
+                issue=actual['collectionErrors'][0]
+                self.assertEqual(issue['field'],'overview-date');self.assertTrue(issue['qualifiedFallbackAvailable'])
+                self.assertEqual(issue['qualifiedFields'],['countries'])
+                self.assertIn('Missing or ambiguous',issue['reason'])
+                self.assertTrue(any(a['status']=='failed' for a in actual['sourceAttempts']))
+
+    def test_wrong_identity_currency_and_unrelated_schema_never_select_the_route(self):
+        from collect_public_issuer import collect_one
+        share={**self.share,'parser':'wisdomtree-html'}
+        for page in (self._undated_overview(isin='IE0000000000'),self._undated_overview(currency='EUR'),'<html>Temporarily unavailable</html>'):
+            with self.subTest(page=page),patch('collect_public_issuer.get_text',return_value=page),patch('collect_public_issuer.download')as fetch:
+                with self.assertRaises(ValueError):collect_one(share,NOW)
+                fetch.assert_not_called()
+
+    def test_failed_independent_pdf_cannot_renew_previous_fields(self):
+        from collect_public_issuer import collect_one
+        share={**self.share,'parser':'wisdomtree-html'}
+        with patch('collect_public_issuer.get_text',return_value=self._undated_overview()),patch('collect_public_issuer.download',side_effect=ConnectionError('PDF unavailable')),patch('wisdomtree_ranked_fields.augment_document')as ranks:
+            with self.assertRaisesRegex(ConnectionError,'PDF unavailable'):collect_one(share,NOW)
+            ranks.assert_not_called()
+
 if __name__=='__main__':unittest.main()
