@@ -16,6 +16,31 @@ from collect_amundi_index_exposure import collect_one as amundi_index
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 
 
+def format_source_attempt(attempt):
+    """Render diagnostics without changing their producer-specific schema.
+
+    Document collectors use url/reason; WisdomTree public routes use
+    sourceUrl/error. Retry receipts can carry only attempt/status/sha256.
+    Missing provenance stays explicit, never borrowed from the retained source.
+    """
+    if not isinstance(attempt, dict):
+        return 'Tentative invalide : ' + json.dumps(attempt, ensure_ascii=False)
+    urls = list(dict.fromkeys(str(attempt[key]) for key in ('url', 'sourceUrl') if attempt.get(key)))
+    source = ' / '.join(urls) if urls else 'URL non renseignée'
+    details = [str(attempt[key]) for key in ('status', 'reason', 'error') if attempt.get(key)]
+    metadata = {key: value for key, value in attempt.items()
+                if key not in ('url', 'sourceUrl', 'status', 'reason', 'error')}
+    if metadata:
+        details.append(json.dumps(metadata, ensure_ascii=False, sort_keys=True))
+    return source + ': ' + (' — '.join(details) if details else 'détail non renseigné')
+
+
+def source_attempts_text(observation):
+    source = observation.get('sourceUrl') or 'URL non renseignée'
+    attempts = ' ; '.join(format_source_attempt(a) for a in observation['sourceAttempts'])
+    return f"Tentatives de sources pour {observation['isin']} (source retenue : {source}) : {attempts}"
+
+
 def collect_one(share,now):
     if share['parser'] in ('globalx-priority', 'avantis-priority'):
         from collect_priority_issuer_etf import collect_one as priority
@@ -96,7 +121,7 @@ def main():
     print(f"ETF extension: {sum(o['status']=='validated'for o in report['shares'])}/{len(report['shares'])} shares validated; all exceptions recorded.")
     for observation in report['shares']:
         if observation.get('sourceAttempts'):
-            print(f"Source recovered: {observation['isin']} — {observation['sourceUrl']}")
+            print(source_attempts_text(observation))
         if observation['status'] == 'failed':
             print(f"Source failed: {observation['isin']} — {observation['reason']}")
         for error in observation.get('collectionErrors', []):
@@ -109,7 +134,7 @@ def main():
                 h.write(f"| {o['isin']} | {o['provider']} | {o['status']} | {o.get('reason',' ; '.join(o.get('unavailable',[]) + [e['field']+': '+e['reason'] for e in o.get('collectionErrors',[])]))} |\n")
             for o in report['shares']:
                 if o.get('sourceAttempts'):
-                    h.write(f"\nSource de secours utilisée pour {o['isin']} : {o['sourceUrl']}. Tentatives : " + ' ; '.join(a['url'] + ': ' + a.get('reason', a.get('status', '')) for a in o['sourceAttempts']) + '\n\n')
+                    h.write('\n' + source_attempts_text(o) + '\n\n')
     # Every enabled connector belongs to active coverage. A transport/parser
     # failure must reach the workflow signal, including recently added sources.
     # Valid records were applied above; missing published fields are not failures.
