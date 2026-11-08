@@ -1,50 +1,45 @@
-name: Verify remainder exact-share NAV routes
+name: Read-only qualification of existing exact-index S&P PDF route
 on:
   workflow_dispatch:
-    inputs:
-      only:
-        description: 'Exact configured remainder NAV IDs, separated by spaces; empty keeps the existing full qualification'
-        type: string
-        default: ''
-  push:
-    branches: [fix/reliquat-79-20261023]
-    paths:
-      - 'scripts/official-nav-remainder-sources.json'
-      - 'scripts/collect_official_share_history.py'
-      - '.github/workflows/verify-remainder-nav.yml'
 permissions:
   contents: read
 jobs:
   qualify:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          sparse-checkout: scripts
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
       - run: python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
       - run: python -m pip install -c scripts/python-constraints.txt beautifulsoup4
-      - name: Collect exact shares, verify identity, income, currency and annual bounds
-        env:
-          NAV_ONLY: ${{ inputs.only }}
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+      - name: Exercise the existing qualified PDF parser, no data writes or handoff cache
         run: |
           python - <<'PY'
-          import json, os, shlex, subprocess, sys
-          allowed = [r['id'] for r in json.load(open('scripts/official-nav-remainder-sources.json'))]
-          ids = shlex.split(os.environ.get('NAV_ONLY', '')) or allowed
-          if len(ids) != len(set(ids)) or any(i not in allowed for i in ids):
-              raise SystemExit('Unknown or repeated exact NAV target')
-          subprocess.run([sys.executable, 'scripts/collect_official_share_history.py', '--only', *ids,
-                          '--output', os.path.join(os.environ['RUNNER_TEMP'], 'nav.json'),
-                          '--capture-dir', os.path.join(os.environ['RUNNER_TEMP'], 'nav-raw')], check=True)
+          import sys, json, pathlib, datetime as dt
+          sys.path.insert(0,'scripts')
+          from collect_sp_composition import collect
+          expected=['sp-global-dividend-aristocrats','sp-euro-dividend-aristocrats']
+          configs={c['id']:c for c in json.load(open('scripts/index-automation.json'))['indices']}
+          report={'expectedIds':expected,'selection':'fixed existing indices before source access','readOnly':True,'checkedAt':dt.datetime.now(dt.timezone.utc).isoformat(),'outcomes':[]}
+          for id in expected:
+            c=dict(configs[id]); c.pop('compositionDataUrl',None)
+            try:
+              facts=collect(c,dt.datetime.now(dt.timezone.utc))
+              report['outcomes'].append({'id':id,'status':'validated-partial','sourceAttempted':True,'facts':facts,'fullPositionsQualified':False,'top10WeightsQualified':False})
+            except Exception as e:
+              report['outcomes'].append({'id':id,'status':'failed','sourceAttempted':True,'sourceUrl':c['sourceUrl'],'reason':str(e)})
+          pathlib.Path('/tmp/sp-pdf-qualification.json').write_text(json.dumps(report,indent=2))
+          print([(r['id'],r['status'],r.get('reason')) for r in report['outcomes']])
           PY
-      - name: Preserve real results even after a failure
+      - uses: actions/upload-artifact@v7.0.1
         if: always()
-        uses: actions/upload-artifact@v7.0.1
         with:
-          name: remainder-exact-share-nav
-          path: |
-            ${{ runner.temp }}/nav.json
-            ${{ runner.temp }}/nav-raw
+          name: exact-index-official-pdf-qualification
+          path: /tmp/sp-pdf-qualification.json
+          if-no-files-found: error
           retention-days: 35
