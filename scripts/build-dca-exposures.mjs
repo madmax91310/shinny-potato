@@ -1,4 +1,3 @@
-import { partialPublishedCountries } from './partial-published-countries.mjs'
 import {isSyntheticReplication,projectDcaHoldings} from './lib/dca-holdings-projection.mjs'
 import { deriveExposureSleeves } from './derive-exposure-sleeves.mjs'
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
@@ -45,7 +44,7 @@ const records = Object.fromEntries(Object.entries(allMapping).map(([asset,isin])
 
  for(const field of ['countries','sectors']){
   let observation=PORTFOLIO_EXPOSURES[isin]?.[field] ?? compositionOnlyFunds[isin]?.[field]
- if(field==='countries')observation=selectDcaCountryObservation(observation,exposureFunds[isin])??partialPublishedCountries(isin,exposureFunds[isin])
+ if(field==='countries')observation=selectDcaCountryObservation(observation,exposureFunds[isin])
   if(chartSleeves[isin]?.[field])observation=chartSleeves[isin][field]
   if(!observation)continue
   if(synthetic&&observation.basis==='fund')continue // Never use a synthetic ETF's substitute basket as economic exposure.
