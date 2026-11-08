@@ -342,7 +342,7 @@ class ReviewedNavPrefix(unittest.TestCase):
     def test_no_changed_or_missing_suffix_identity_or_uncorroborated_year_is_admitted(self):
         row=self.rows[0];id=row['id'];source=self.sources[id];prior=row['previous']
         baseline={id:{'currency':'USD','points':[{'date':m,'price':v}for m,v in prior['points']]}}
-        for mutation in ['changed','missing','year','identity','currency','policy','quote','empty']:
+        for mutation in ['changed','missing','year','identity','currency','policy','quote','duplicate','reordered','empty']:
             s=copy.deepcopy(source);r=copy.deepcopy(row['candidate']);old=copy.deepcopy(prior)
             if mutation=='changed':r['points'][-2][1]+=0.00000001
             elif mutation=='missing':r['points']=[p for p in r['points']if p[0]!=prior['points'][1][0]]
@@ -351,6 +351,8 @@ class ReviewedNavPrefix(unittest.TestCase):
             elif mutation=='currency':r['currency']='EUR'
             elif mutation=='policy':s.pop('reviewedHistoryPrefix')
             elif mutation=='quote':old['parser']='yahoo'
+            elif mutation=='duplicate':r['points'].insert(1,copy.deepcopy(r['points'][0]))
+            elif mutation=='reordered':r['points'][0],r['points'][1]=r['points'][1],r['points'][0]
             else:r['points']=[]
             with self.subTest(mutation=mutation):
                 merged,report=refresh({'series':[s]},{id:old},baseline,dt.datetime(2026,11,8,tzinfo=UTC),lambda *a:r)

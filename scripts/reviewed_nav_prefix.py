@@ -33,7 +33,11 @@ def qualified_prefix_extension(source, incoming, previous, baseline):
     if any(w.get('start','') < before and w.get('end','') > after
            for w in incoming.get('historyUnqualifiedReturnWindows', [])):
         return False
-    points = dict(incoming.get('points') or [])
+    pairs = incoming.get('points') or []
+    if ([month for month,value in pairs] != sorted({month for month,value in pairs})
+            or any(not isinstance(value,(int,float)) or isinstance(value,bool) or value <= 0 for month,value in pairs)):
+        return False
+    points = dict(pairs)
     old = previous.get('points') or []
     base = baseline.get('points') or []
     if (not old or not base or old[0][0] != before or base[0].get('date') != before

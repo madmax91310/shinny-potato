@@ -33,6 +33,7 @@ on:
       - 'scripts/refresh_index_sources.py'
       - 'scripts/index-automation.json'
       - 'scripts/refresh_monthly_history.py'
+      - 'scripts/reviewed_nav_prefix.py'
       - 'scripts/nasdaq_month_close.py'
       - 'scripts/test_nasdaq_month_close.py'
       - 'scripts/fixtures/starbucks-month-close-20261101/**'
