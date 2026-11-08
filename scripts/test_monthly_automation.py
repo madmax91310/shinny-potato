@@ -317,7 +317,9 @@ class ReviewedNavPrefix(unittest.TestCase):
     def setUpClass(cls):
         root=pathlib.Path(__file__).resolve().parent
         cls.rows=json.loads((root/'fixtures/wisdomtree-oil-2020-prefix-20261108.json').read_text())['series']
-        cls.sources={s['id']:s for s in json.loads((root/'monthly-automation.json').read_text())['series']}
+        from reviewed_nav_prefix import planned_prefix_sources
+        cls.registered=json.loads((root/'monthly-automation.json').read_text())
+        cls.sources={s['id']:s for s in planned_prefix_sources(cls.registered)['series']}
 
     def test_two_exact_live_captures_preserve_every_old_value_and_are_idempotent(self):
         for row in self.rows:
@@ -368,14 +370,30 @@ class ReviewedNavPrefix(unittest.TestCase):
         for r in self.rows:status['series'][r['id']]['periodStart']='2019-12'
         self.assertEqual(select_series(config,status,retry_failed=True,now=now)['series'],[])
 
-    def test_canonical_and_registered_sources_declare_only_the_two_reviewed_prefixes(self):
+    def test_configuration_is_recorded_only_with_its_individual_validated_observations(self):
+        from reviewed_nav_prefix import recorded_prefix_config
+        selected={'series':[self.sources[r['id']]for r in self.rows]}
+        reports=[]
+        for i,row in enumerate(self.rows):
+            reports.append({'id':row['id'],'status':'validated','record':row['candidate']} if i==0 else {'id':row['id'],'status':'failed','reason':'network unavailable'})
+        before=copy.deepcopy(self.registered)
+        after=recorded_prefix_config(before,selected,reports)
+        a={s['id']:s for s in after['series']};b={s['id']:s for s in before['series']}
+        self.assertEqual(a[self.rows[0]['id']],self.sources[self.rows[0]['id']])
+        self.assertEqual(a[self.rows[1]['id']],b[self.rows[1]['id']])
+        self.assertEqual(before,self.registered)
+        for id in set(a)-{self.rows[0]['id']}:self.assertEqual(a[id],b[id])
+        self.assertEqual(recorded_prefix_config(before,selected,[]),before)
+        self.assertEqual(recorded_prefix_config(before,selected,[{'id':r['id'],'status':'failed'}for r in self.rows]),before)
+
+    def test_canonical_plans_declare_only_the_two_reviewed_prefixes(self):
         root=pathlib.Path(__file__).resolve().parent
         canonical={s['id']:s for s in json.loads((root/'official-nav-remainder-sources.json').read_text())if s.get('reviewedHistoryPrefix')}
-        registered={id:s for id,s in self.sources.items()if s.get('reviewedHistoryPrefix')}
-        self.assertEqual(set(canonical),{r['id']for r in self.rows});self.assertEqual(set(registered),set(canonical))
+        planned={id:s for id,s in self.sources.items()if s.get('reviewedHistoryPrefix')}
+        self.assertEqual(set(canonical),{r['id']for r in self.rows});self.assertEqual(set(planned),set(canonical))
         for id,s in canonical.items():
             for key in ['periodStart','isin','currency','navProvider','navHistoryTransport','requiredQualifiedCalendarYears','reviewedHistoryPrefix']:
-                self.assertEqual(registered[id][key],s[key])
+                self.assertEqual(planned[id][key],s[key])
             self.assertIn(2020,s['requiredQualifiedCalendarYears'])
 
 if __name__=='__main__':unittest.main()

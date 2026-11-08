@@ -538,11 +538,16 @@ def main():
     # One clock governs selection and financial month-end validation, including
     # when an execution starts immediately before a month/year rollover.
     now=dt.datetime.now(UTC)
-    config=select_series(json.loads((ROOT/'scripts/monthly-automation.json').read_text()),status,args.only,args.retry_failed,now=now)
+    registered_config=json.loads((ROOT/'scripts/monthly-automation.json').read_text())
+    config=select_series(registered_config,status,args.only,args.retry_failed,now=now)
     merged,report=refresh(config,current,json.loads(args.baseline.read_text()),now=now)
+    from reviewed_nav_prefix import recorded_prefix_config
+    accepted_config=recorded_prefix_config(registered_config,config,report['series'])
     report['scope']={'requestedIds':[s['id']for s in config['series']],'expectedIds':[s['id']for s in config['series']],'selection':'failed-or-missing'if args.retry_failed else'explicit'if args.only is not None else'configured-universe'}
     if args.evidence_output:write_json_atomic(args.evidence_output,report)
     write_json_atomic(args.output,monitoring_report(report))
+    if args.apply and accepted_config != registered_config:
+        write_json_atomic(ROOT/'scripts/monthly-automation.json',accepted_config)
     if args.apply and report['series']:
         for observation in report['series']:
             status['series'][observation['id']]={
@@ -582,6 +587,8 @@ def main():
 
 
 def select_series(config,status,only=None,retry_failed=False,now=None):
+    from reviewed_nav_prefix import planned_prefix_sources
+    config=planned_prefix_sources(config)
     ids={s['id'] for s in config['series']}
     if only is not None and (not only or set(only)-ids):
         reject('Unknown or empty monthly series selection')

@@ -24,7 +24,7 @@ class OfficialPerformance(unittest.TestCase):
    self.assertEqual(r['periodEnd'],'2026-09')
    self.assertFalse(r['calendarProof']['scaleProof']['anchorIsFreshSourceCheck'])
    self.assertNotIn('shareInception',r['calendarProof'])
-   self.assertEqual(len(r['calendarProof']['checks']),10 if s['wisdomTicker']=='COPA' else 4 if s['wisdomTicker']=='COFF' else 5)
+   self.assertEqual(len(r['calendarProof']['checks']),10 if s['wisdomTicker']=='COPA' else 4 if s['wisdomTicker']=='COFF' else 6 if s.get('reviewedHistoryPrefix') else 5)
  def test_ordinary_refresh_retains_guards_serializes_scope_and_isolates_failure(self):
   from refresh_monthly_history import refresh,monitoring_report
   incoming={}

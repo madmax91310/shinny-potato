@@ -1,4 +1,8 @@
 """One reviewed earlier NAV prefix; never a quote migration or a changed suffix."""
+import copy
+import json
+import math
+from pathlib import Path
 
 
 def qualified_prefix_extension(source, incoming, previous, baseline):
@@ -35,7 +39,7 @@ def qualified_prefix_extension(source, incoming, previous, baseline):
         return False
     pairs = incoming.get('points') or []
     if ([month for month,value in pairs] != sorted({month for month,value in pairs})
-            or any(not isinstance(value,(int,float)) or isinstance(value,bool) or value <= 0 for month,value in pairs)):
+            or any(not isinstance(value,(int,float)) or isinstance(value,bool) or not math.isfinite(value) or value <= 0 for month,value in pairs)):
         return False
     points = dict(pairs)
     old = previous.get('points') or []
@@ -51,3 +55,35 @@ def qualified_prefix_extension(source, incoming, previous, baseline):
     if sorted(month for month in points if month < before) != expected:
         return False
     return True
+
+
+def planned_prefix_sources(config):
+    """Plan reviewed acquisition before results; leave registered consumers untouched."""
+    canonical = {s['id']:s for s in json.loads(Path(__file__).with_name('official-nav-remainder-sources.json').read_text()) if s.get('reviewedHistoryPrefix')}
+    rows = []
+    for source in config['series']:
+        declared = canonical.get(source['id'])
+        if not declared:
+            rows.append(source)
+            continue
+        policy = declared['reviewedHistoryPrefix']
+        identity = ['isin','currency','parser','navProvider','navHistoryTransport','valuationBasis','field','method']
+        if (any(source.get(k) != declared.get(k) for k in identity)
+                or source['periodStart'] not in [policy['previousStart'],policy['newStart']]):
+            raise ValueError('Reviewed NAV prefix does not match its registered source')
+        rows.append({**source, **{k:declared[k] for k in ['periodStart','requiredQualifiedCalendarYears','reviewedHistoryPrefix']}})
+    return {**config, 'series':rows}
+
+
+def recorded_prefix_config(registered, selected, observations):
+    """The ordinary producer records a configuration only with its valid data."""
+    selected = {s['id']:s for s in selected['series'] if s.get('reviewedHistoryPrefix')}
+    accepted = {}
+    for observation in observations:
+        if observation['status'] != 'validated' or observation['id'] not in selected:
+            continue
+        source = selected[observation['id']]
+        if any(observation['record'].get(k) != v for k,v in source.items()):
+            raise ValueError('Validated prefix record does not match its planned configuration')
+        accepted[observation['id']] = source
+    return {**registered, 'series':[copy.deepcopy(accepted.get(s['id'],s)) for s in registered['series']]}
