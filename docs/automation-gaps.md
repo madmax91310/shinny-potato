@@ -1,4 +1,4 @@
-# Champs restant à automatiser — 2026-11-07
+# Champs restant à automatiser — 2026-11-08
 
 Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.
 
