@@ -23,6 +23,10 @@ const personalIds = new Set(['story:dix-ans-moins-10000-patrimoine-79058', 'stor
 const marketIds = new Set([10, 15, 17, 21, 24, 27, 32, 37])
 export function reviewPolicy(tweet) {
   if (tweet.category === 'Question dimanche') return { kind: 'general', maxAge: null }
+  if ([10, 17, 21, 27, 32, 48].includes(tweet.id) && tweet.reviewedAt && tweet.dataContract?.kind === 'live-guide') {
+    // Existing free-text drafts of market guides retain their daily recheck rule.
+    return { ...reviewed(tweet, tweet.reviewedAt), ...(marketIds.has(tweet.id) ? { manualMaxAge: 0 } : {}) }
+  }
   // Exact accumulating shares, published EUR calendar returns and OCF: sources on the entry.
   if (tweet.id === 'guide:lifestrategy-court') return reviewed(tweet, '2026-10-29')
   // Liste explicite de textes historiques relus : la catégorie seule ne certifie rien.
@@ -91,11 +95,12 @@ export function contentValidity(tweet, draft, today = bankToday()) {
   if (!edited && !draft?.checkedAt && policy.kind === 'reviewed' && age(policy.checkedAt, today) >= 0 && age(policy.checkedAt, today) <= policy.maxAge) return { ready: true, label: policy.evidence ? `Relu le ${policy.reviewedAt} · données contrôlées le ${policy.evidence}` : `Relu le ${policy.checkedAt}` }
   // Guides can be rechecked unchanged; personal/current-event archives still require updating.
   if ((policy.kind === 'personal' || (policy.kind === 'market' && tweet.category !== 'Guide ETF')) && !edited) return { ready: false, label: 'Actualise le texte avant vérification' }
+  if (!draft?.checkedAt && !edited && tweet.reviewRestriction) return { ready: false, label: tweet.reviewRestriction }
   const checked = draft?.checkedAt
   const asOf = draft?.asOf
   // A checkbox saved on an old draft cannot certify a newly edited text.
   const verified = draft?.verifiedText === draft?.text && draft?.verifiedAsOf === asOf
-  if (!validDate(asOf) || asOf > today || !validDate(checked) || checked > today || !verified || age(checked, today) > (policy.maxAge ?? 180)) {
+  if (!validDate(asOf) || asOf > today || !validDate(checked) || checked > today || !verified || age(checked, today) > (policy.manualMaxAge ?? policy.maxAge ?? 180)) {
     return { ready: false, label: policy.kind === 'personal' ? 'Bilan personnel à actualiser' : 'À vérifier avant réutilisation' }
   }
   return { ready: true, label: `Vérifié le ${checked} · référence ${asOf}` }

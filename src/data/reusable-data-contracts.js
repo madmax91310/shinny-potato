@@ -1,7 +1,7 @@
 // Only explicit fee slots in reusable product guides are live. Historical posts,
 // personal figures and hypothetical examples retain their authored numbers.
 export function resolveGuideFees(tweet, records) {
-  if (!String(tweet.id).startsWith('guide:')) return tweet
+  if (!String(tweet.id).startsWith('guide:') && !tweet.liveGuideFees) return tweet
   const fields=[]
   const text=tweet.text.replace(/\b([A-Z]{2}[A-Z0-9]{9}\d)\b([\s\S]*?)(?=\b[A-Z]{2}[A-Z0-9]{9}\d\b|$)/g,(segment,isin,tail)=>{
     const r=records[isin],fee=r?.characteristics?.terPct
