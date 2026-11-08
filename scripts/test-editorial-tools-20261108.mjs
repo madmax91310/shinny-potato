@@ -28,7 +28,7 @@ const revised = TWEETS.find(t => t.id === 10)
 const oldDraft = {text:'Ancien texte personnalisé',asOf:'2026-11-07',checkedAt:'2026-11-07',verifiedText:'Ancien texte personnalisé',verifiedAsOf:'2026-11-07'}
 assert.equal(contentValidity(revised,oldDraft,'2026-11-08').ready,false,'La revue du nouveau guide ne prolonge pas celle d’un ancien brouillon')
 const old = TWEETS.find(t => t.id === 37)
-assert.match(old.text, /Archive transmise en août 2026/)
+assert.match(old.text, /Archive classée « Août 2026 »/)
 assert(!contentValidity(old, null, '2026-11-08').ready)
 const universe = {...RANKING_ASSETS, ...ANNUAL_ASSETS}
 for (const category of ALL_CATEGORIES) {

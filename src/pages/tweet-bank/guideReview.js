@@ -23,7 +23,7 @@ export function reviewLegacyGuide(tweet) {
     if (p?.sourceUrl && !sources.some(s => s.url === p.sourceUrl)) sources.push({label:`${isin} · frais de la part`,url:p.sourceUrl,checkedAt:p.checkedAt})
   }
   return {...tweet, sources, liveGuideFees: tweet.id === 50,
-    ...(tweet.id === 37 ? {text:'📚 Archive transmise en août 2026. Les dates de début et de fin du rendement sur un an et le périmètre du classement n’étaient pas fournis ; ces chiffres ne constituent pas un classement actuel.\n\n'+tweet.text} : {}),
+    ...(tweet.id === 37 ? {text:'📚 Archive classée « Août 2026 » dans la banque. Les dates de début et de fin du rendement sur un an et le périmètre du classement n’étaient pas fournis ; ces chiffres ne constituent pas un classement actuel.\n\n'+tweet.text} : {}),
     reviewRestriction: restrictions[tweet.id],
     ...(tweet.image ? {image:{...tweet.image,note:'Image d’archive : date de référence des frais non fournie. '+restrictions[tweet.id]}} : {}),
     reviewNotes: [restrictions[tweet.id], 'Les contrôles des parts présentes dans les registres communs sont conservés avec leurs dates. Les références manquantes ne sont pas ajoutées artificiellement au catalogue.'],

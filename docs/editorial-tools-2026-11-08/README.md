@@ -33,7 +33,7 @@ Le calendrier et les autres outils ne sont pas modifiés. Aucun ajout d’instru
 | 48, sept ETF PEA | Les sept ISIN sont conservés et rapprochés des frais, distributions et preuves PEA communes ; noms et cotations non recopiés en dur dans la nouvelle sortie. |
 | 49, vingt ETF | Image conservée et signalée comme archive. Seize parts raccordées aux registres ; Global X Data Center et Lithium relus sur les pages officielles (0,50/0,60 %). WisdomTree Cybersecurity et Global X Cloud restent à vérifier. |
 | 50, dividendes | Image conservée et signalée comme archive. Quatre parts communes et Global X SuperDividend officiel rapprochés (0,45 %, mensuel variable). Frais/parts Xtrackers, Fidelity et WisdomTree restent à vérifier. |
-| 37, ancien classement | Archive reçue en août 2026 explicitement identifiée ; bornes de rendement et univers inconnus conservés comme restriction. Aucun renouvellement des valeurs ni de leur période. |
+| 37, ancien classement | Archive classée « Août 2026 » explicitement identifiée (mois de classement, pas date des observations) ; bornes de rendement et univers inconnus conservés comme restriction. Aucun renouvellement des valeurs ni de leur période. |
 
 `sources.json` conserve URL, empreinte et champs effectivement relus. Les réponses 403/404, la page DWS générique et le HTML Fidelity sans preuve exploitable ne sont pas des succès financiers. Les preuves PEA et les caractéristiques absentes ne sont pas inventées. Les vérifications manuelles futures portent toujours sur le texte et la date exacts, jamais sur une simple ouverture de la page.
 
@@ -57,3 +57,11 @@ Chromium réel, build de production, **1440 et 390 px** : 17 textes/variantes af
 Inspection visuelle ciblée des PNG et aperçus : S&P 500 PEA, TOPIX couvert avec bloc dense, nom le plus long (technologie mondiale distribuante), covered call synthétique distribuant, Keysight dix ans, fonds ESE avec identité complète et « Aujourd’hui » ; les deux images statiques de guides ont été relues intégralement. Les autres rendus ont fait l’objet des contrôles automatisés décrits plus haut, pas d’une prétendue inspection humaine exhaustive. Les deux PNG et deux aperçus mobiles joints illustrent les cas longs et le doublon corrigé.
 
 Firefox et WebKit ne sont pas revendiqués dans cette recette locale. Le contrôle de production reste distinct du build local.
+
+### Rapprochement avec les collectes concurrentes et contrats de secours
+
+L’union avec `master` d451cd6, incluant #1211 et ses collectes, se fusionne sans conflit. Les sorties complètes des 17 guides et 279 présentations sont identiques à celles qualifiées ci-dessus. Build de l’union réussi avec ses propres dépendances et les budgets d’origine ; 30 PNG à nouveau téléchargés et comparés sur 1440/390 (`integration-browser.json`). Le lien vers les dépendances d’un autre checkout faussait les longueurs de modules préminifiés comptées par l’audit ; aucun budget ni fonction produit n’a été modifié pour contourner cette mesure.
+
+Le premier portail GitHub a relevé deux attentes obsolètes du double nom dans les tests de secours. Ces assertions exigent désormais un nom unique **par rendu**. La présence effective du logo lors de la reprise est également contrôlée, distinctement du compte des noms. La recette complète corrigée `test-anniversary-logos.mjs` passe sur le build isolé : 224 aperçus, 448 PNG réels, pixels et texte/layout concordants, logos manquants/corrompus, reprise et chargements retardés. Le scénario précis de `test-anniversary-art.mjs` a été rejoué avec son callback réel (`fallback-replay.json`) ; son ancien contrôle exigeant deux noms avait été atteint après les rendus exhaustifs dans GitHub. Une tentative locale complète a rencontré un rechargement du serveur de développement pendant une édition du mois d’archive ; elle n’est pas revendiquée comme réussie. La nouvelle CI doit rejouer intégralement ce contrôle sur un arbre immuable.
+
+Le mois « Août 2026 » du guide 37 reste une catégorie d’archive, sans prétendre dater la réception du document ou les deux bornes du rendement. Son avertissement et le refus de copie par défaut ont été vérifiés dans le build à 1440/390.
