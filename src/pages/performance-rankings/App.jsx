@@ -1,3 +1,4 @@
+import { selectionAssetLabel, selectionAssetName, selectionMethod } from './selectionLabels.js'
 import { instrumentSearchText } from '../../data/asset-selection.js'
 import { useCallback, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -161,7 +162,7 @@ export default function App() {
   const reference = SOURCES[otherIds[0]]
   const universe = bank === 'annual' ? Object.values(ANNUAL_ASSETS) : ELIGIBLE
   const options = universe.filter(a => !otherIds.includes(a.id) && !otherIds.some(id => ['index-net', 'index-gross'].includes(SOURCES[id]?.basis) && ['index-net', 'index-gross'].includes(a.basis) && SOURCES[id].basis !== a.basis) && (!reference || (bank !== 'annual' || a.basis === reference.basis)) && (currency !== 'original' || !reference || a.currency === reference.currency))
-    .map(a => ({ ...a, search: instrumentSearchText(a), label: a.shortLabel, name: a.label, detail: `${a.label} · ${a.currency} · ${a.frequency === 'annual' ? 'Calendrier NAV / indice officiel' : a.points[0].date + ' → ' + a.points.at(-1).date}`, badges: [a.instrumentType === 'EQUITY' ? 'Action' : a.instrumentType ?? (a.isin ? 'ETF' : a.priceUnit === 'points' ? 'Indice' : a.priceMethod === 'adjusted' ? 'Action' : 'Actif')] }))
+    .map(a => ({ ...a, search: instrumentSearchText(a), label: selectionAssetLabel(a), name: selectionAssetName(a), detail: `${selectionAssetName(a)} · ${a.currency} · ${selectionMethod(a)}${a.frequency === 'annual' ? '' : ' · ' + a.points[0].date + ' → ' + a.points.at(-1).date}`, badges: [a.instrumentType === 'EQUITY' ? 'Action' : a.instrumentType ?? (a.isin ? 'ETF' : a.priceUnit === 'points' ? 'Indice' : a.priceMethod === 'adjusted' ? 'Action' : 'Actif')] }))
   async function download() {
     setBusy(true); setStatus('')
     try {
@@ -215,13 +216,13 @@ export default function App() {
           {BENCHMARK_OPTIONS.map(option => <option key={option.id} value={option.id}>{option.label}</option>)}
         </ChoicePicker></label>}
         <div className="rk-selected" aria-label="Actifs sélectionnés">{selectedAssets.map((a, i) => <div key={a.id} style={{ '--rk-color': presentation === 'annual' ? a.rankingColor : COLORS[i] }}>
-          <span className="rk-dot" /><span><strong>{a.shortLabel}</strong><small>{a.currency} · {a.instrumentType === 'EQUITY' ? 'Action' : a.isin ? a.instrumentType ?? 'ETF' : a.priceUnit === 'points' ? 'Indice' : a.priceMethod === 'adjusted' ? 'Action' : 'Actif'}</small></span>
+          <span className="rk-dot" /><span><strong>{selectionAssetLabel(a)}</strong><small>{a.currency} · {a.instrumentType === 'EQUITY' ? 'Action' : a.isin ? a.instrumentType ?? 'ETF' : a.priceUnit === 'points' ? 'Indice' : a.priceMethod === 'adjusted' ? 'Action' : 'Actif'}</small></span>
           {(manual || presentation === 'annual') && <><button type="button" aria-label={`Modifier ${a.shortLabel}`} onClick={() => { setManual(true); setSlot(i); setManualMode('single') }}>Modifier</button><button type="button" aria-label={`Retirer ${a.shortLabel}`} disabled={presentation === 'annual' && ids.length <= 2} onClick={() => { applyIds(ids.filter((_, j) => i !== j)); setSlot(0) }}>×</button></>}
         </div>)}</div>
         {presentation === 'annual' && <button type="button" disabled={ids.length >= 6} onClick={() => { setManual(true); setSlot(ids.length); setManualMode('single') }}>Ajouter un actif au profil</button>}
         <button type="button" className="rk-text-button" aria-expanded={manual} onClick={() => setManual(!manual)}>{manual ? 'Fermer la sélection manuelle' : 'Personnaliser les actifs'}</button>
         {manual && <div className="rk-manual">
-          {presentation !== 'annual' && <label className="rk-field">Historique disponible<ChoicePicker aria-label="Historique disponible" value={bank} onChange={e => { setBank(e.target.value); applyIds([]); setSlot(0); setMode('years') }}><option value="monthly">Cotations mensuelles</option><option value="annual">Calendriers annuels officiels</option></ChoicePicker></label>}
+          {presentation !== 'annual' && <label className="rk-field">Historique disponible<ChoicePicker aria-label="Historique disponible" value={bank} onChange={e => { setBank(e.target.value); applyIds([]); setSlot(0); setMode('years') }}><option value="monthly">Historiques mensuels</option><option value="annual">Performances annuelles</option></ChoicePicker></label>}
           <div className="rk-inline">{presentation !== 'annual' && <button type="button" onClick={() => { applyIds([]); setSlot(0); setTitle('Ma sélection') }}>Nouvelle sélection</button>}<button type="button" disabled={ids.length >= 6} onClick={() => { setSlot(ids.length); setManualMode('single') }}>Ajouter un actif</button></div>
           {bank === 'monthly' && <fieldset className="rk-modes"><legend>Sélection manuelle</legend>
             <button type="button" aria-pressed={manualMode === 'batch'} onClick={() => setManualMode('batch')}>Cocher les actifs</button>

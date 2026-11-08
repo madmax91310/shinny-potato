@@ -1,0 +1,1971 @@
+{
+  "asOf": "2026-11-08",
+  "variants": 17,
+  "groups": 16,
+  "beforeBlockedGroups": 9,
+  "afterBlockedGroups": [
+    50,
+    49,
+    37
+  ],
+  "entries": [
+    {
+      "id": "guide:lifestrategy-court",
+      "title": "ETF multi-actifs : actions et obligations",
+      "changedText": false,
+      "policy": {
+        "kind": "reviewed",
+        "reviewedAt": "2026-10-29",
+        "checkedAt": "2026-10-29",
+        "evidence": "2026-11-08",
+        "maxAge": 30
+      },
+      "status": {
+        "ready": true,
+        "label": "Relu le 2026-10-29 · données contrôlées le 2026-11-08"
+      },
+      "notes": [],
+      "image": null,
+      "dataContract": {
+        "kind": "live-guide",
+        "fields": [],
+        "remaining": "Autres chiffres et rédaction soumis à la revue éditoriale existante."
+      },
+      "sources": [
+        {
+          "label": "Vanguard 20 % · KIID : années civiles 2024 et 2025 (p. 2)",
+          "url": "https://fund-docs.vanguard.com/ie00bmvb5k07-en.pdf",
+          "publishedAt": "2026-02-17",
+          "checkedAt": "2026-10-29",
+          "note": "Part capitalisante exacte. Performances publiées à une décimale, en EUR, frais courants inclus, revenus réinvestis, hors frais d’entrée/sortie. Aucun calcul ni estimation."
+        },
+        {
+          "label": "Vanguard 20 % · fiche : ISIN, frais courants, allocation et couverture obligataire",
+          "url": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+          "publishedAt": "2026-09-30",
+          "checkedAt": "2026-10-29",
+          "note": "0,25 % de frais courants annuels ; hors coûts de transaction du portefeuille et frais de courtage."
+        },
+        {
+          "label": "Vanguard 40 % · KIID : années civiles 2024 et 2025 (p. 2)",
+          "url": "https://fund-docs.vanguard.com/ie00bmvb5m21-en.pdf",
+          "publishedAt": "2026-02-17",
+          "checkedAt": "2026-10-29",
+          "note": "Part capitalisante exacte. Performances publiées à une décimale, en EUR, frais courants inclus, revenus réinvestis, hors frais d’entrée/sortie. Aucun calcul ni estimation."
+        },
+        {
+          "label": "Vanguard 40 % · fiche : ISIN, frais courants, allocation et couverture obligataire",
+          "url": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+          "publishedAt": "2026-09-30",
+          "checkedAt": "2026-10-29",
+          "note": "0,25 % de frais courants annuels ; hors coûts de transaction du portefeuille et frais de courtage."
+        },
+        {
+          "label": "Vanguard 60 % · KIID : années civiles 2024 et 2025 (p. 2)",
+          "url": "https://fund-docs.vanguard.com/ie00bmvb5p51-en.pdf",
+          "publishedAt": "2026-02-17",
+          "checkedAt": "2026-10-29",
+          "note": "Part capitalisante exacte. Performances publiées à une décimale, en EUR, frais courants inclus, revenus réinvestis, hors frais d’entrée/sortie. Aucun calcul ni estimation."
+        },
+        {
+          "label": "Vanguard 60 % · fiche : ISIN, frais courants, allocation et couverture obligataire",
+          "url": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+          "publishedAt": "2026-09-30",
+          "checkedAt": "2026-10-29",
+          "note": "0,25 % de frais courants annuels ; hors coûts de transaction du portefeuille et frais de courtage."
+        },
+        {
+          "label": "Vanguard 80 % · KIID : années civiles 2024 et 2025 (p. 2)",
+          "url": "https://fund-docs.vanguard.com/ie00bmvb5r75-en.pdf",
+          "publishedAt": "2026-02-17",
+          "checkedAt": "2026-10-29",
+          "note": "Part capitalisante exacte. Performances publiées à une décimale, en EUR, frais courants inclus, revenus réinvestis, hors frais d’entrée/sortie. Aucun calcul ni estimation."
+        },
+        {
+          "label": "Vanguard 80 % · fiche : ISIN, frais courants, allocation et couverture obligataire",
+          "url": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+          "publishedAt": "2026-09-30",
+          "checkedAt": "2026-10-29",
+          "note": "0,25 % de frais courants annuels ; hors coûts de transaction du portefeuille et frais de courtage."
+        }
+      ]
+    },
+    {
+      "id": "guide:sectoriels-thematiques-pea",
+      "title": "ETF sectoriels et thématiques sur PEA",
+      "changedText": false,
+      "policy": {
+        "kind": "reviewed",
+        "reviewedAt": "2026-10-24",
+        "checkedAt": "2026-10-24",
+        "evidence": "2026-11-08",
+        "maxAge": 30
+      },
+      "status": {
+        "ready": true,
+        "label": "Relu le 2026-10-24 · données contrôlées le 2026-11-08"
+      },
+      "notes": [],
+      "image": null,
+      "dataContract": {
+        "kind": "live-guide",
+        "fields": [
+          {
+            "isin": "IE00BMW42413",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=315818&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          {
+            "isin": "LU1834988518",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "LU1834986900",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "LU1829219390",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "LU1834983550",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          }
+        ],
+        "remaining": "Autres chiffres et rédaction soumis à la revue éditoriale existante."
+      },
+      "sources": [
+        {
+          "label": "Technologie Europe iShares — PEA, frais et encours",
+          "url": "https://www.blackrock.com/fr/particuliers/products/315818/ishares-msci-europe-information-technology-sector-ucits-etf",
+          "checkedAt": "2026-10-24"
+        },
+        {
+          "label": "Technologie — Amundi",
+          "url": "https://www.amundietf.fr/fr/professionnels/produits/equity/amundi-stoxx-europe-600-technology-ucits-etf-acc/lu1834988518",
+          "checkedAt": "2026-10-24"
+        },
+        {
+          "label": "Santé — Amundi",
+          "url": "https://www.amundietf.fr/fr/professionnels/produits/equity/amundi-stoxx-europe-600-healthcare-ucits-etf-acc/lu1834986900",
+          "checkedAt": "2026-10-24"
+        },
+        {
+          "label": "Banques Europe — Amundi",
+          "url": "https://www.amundietf.fr/fr/professionnels/produits/equity/amundi-stoxx-europe-600-banks-ucits-etf-acc/lu1834983477",
+          "checkedAt": "2026-10-24"
+        },
+        {
+          "label": "Banques zone euro — Amundi",
+          "url": "https://www.amundietf.fr/fr/professionnels/produits/equity/amundi-euro-stoxx-banks-ucits-etf-acc/lu1829219390",
+          "checkedAt": "2026-10-24"
+        },
+        {
+          "label": "Assurances — Amundi",
+          "url": "https://www.amundietf.fr/fr/professionnels/produits/equity/amundi-stoxx-europe-600-insurance-ucits-etf-acc/lu1834987973",
+          "checkedAt": "2026-10-24"
+        },
+        {
+          "label": "Industrie — Amundi",
+          "url": "https://www.amundietf.fr/fr/professionnels/produits/equity/amundi-stoxx-europe-600-industrials-ucits-etf-acc/lu1834987890",
+          "checkedAt": "2026-10-24"
+        },
+        {
+          "label": "Ressources — Amundi",
+          "url": "https://www.amundietf.fr/fr/professionnels/produits/equity/amundi-stoxx-europe-600-basic-resources-ucits-etf-acc/lu1834983550",
+          "checkedAt": "2026-10-24"
+        },
+        {
+          "label": "Services aux collectivités — Amundi",
+          "url": "https://www.amundietf.fr/fr/professionnels/produits/equity/amundi-stoxx-europe-600-utilities-ucits-etf-acc/lu1834988864",
+          "checkedAt": "2026-10-24"
+        },
+        {
+          "label": "Automobile — BlackRock",
+          "url": "https://www.blackrock.com/fr/particuliers/products/251932/ishares-stoxx-europe-600-automobiles-parts-ucits-etf-de-fund",
+          "checkedAt": "2026-10-24"
+        },
+        {
+          "label": "Défense — BNP : éligibilité PEA",
+          "url": "https://www.bnpparibas-am.com/en/press/mediaroom-en-bnp-paribas-asset-management-launches-europe-defense-etf/",
+          "checkedAt": "2026-10-24"
+        },
+        {
+          "label": "Défense — BNP : frais 0,35 % et encours au 31/08/2026",
+          "url": "https://docfinder.bnpparibas-am.com/api/files/195fa0c8-6687-406c-af87-5928930c2e51",
+          "checkedAt": "2026-10-24"
+        },
+        {
+          "label": "Infrastructures — Global X : PEA, frais, encours",
+          "url": "https://globalxetfs.eu/funds/brij",
+          "checkedAt": "2026-10-24"
+        },
+        {
+          "label": "Eau — Amundi : PEA, frais et encours au 30/09/2026",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011882364/FRA/FRA/RETAIL/ETF/20260930",
+          "checkedAt": "2026-10-24"
+        },
+        {
+          "label": "LU1834988518 — reporting officiel au 30/09/2026",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834988518/FRA/FRA/RETAIL/ETF/20260930",
+          "publishedAt": "2026-09-30",
+          "checkedAt": "2026-10-24",
+          "note": "ISIN, PEA (objectif de gestion), frais, capitalisation et actif géré contrôlés."
+        },
+        {
+          "label": "LU1834986900 — reporting officiel au 30/09/2026",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834986900/FRA/FRA/RETAIL/ETF/20260930",
+          "publishedAt": "2026-09-30",
+          "checkedAt": "2026-10-24",
+          "note": "ISIN, PEA (objectif de gestion), frais, capitalisation et actif géré contrôlés."
+        },
+        {
+          "label": "LU1834983477 — reporting officiel au 30/09/2026",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834983477/FRA/FRA/RETAIL/ETF/20260930",
+          "publishedAt": "2026-09-30",
+          "checkedAt": "2026-10-24",
+          "note": "ISIN, PEA (objectif de gestion), frais, capitalisation et actif géré contrôlés."
+        },
+        {
+          "label": "LU1829219390 — reporting officiel au 30/09/2026",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1829219390/FRA/FRA/RETAIL/ETF/20260930",
+          "publishedAt": "2026-09-30",
+          "checkedAt": "2026-10-24",
+          "note": "ISIN, PEA (objectif de gestion), frais, capitalisation et actif géré contrôlés."
+        },
+        {
+          "label": "LU1834987973 — reporting officiel au 30/09/2026",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834987973/FRA/FRA/RETAIL/ETF/20260930",
+          "publishedAt": "2026-09-30",
+          "checkedAt": "2026-10-24",
+          "note": "ISIN, PEA (objectif de gestion), frais, capitalisation et actif géré contrôlés."
+        },
+        {
+          "label": "LU1834987890 — reporting officiel au 30/09/2026",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834987890/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+          "publishedAt": "2026-09-30",
+          "checkedAt": "2026-10-24",
+          "note": "ISIN, PEA (objectif de gestion), frais, capitalisation et actif géré contrôlés."
+        },
+        {
+          "label": "LU1834983550 — reporting officiel au 30/09/2026",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834983550/FRA/FRA/RETAIL/ETF/20260930",
+          "publishedAt": "2026-09-30",
+          "checkedAt": "2026-10-24",
+          "note": "ISIN, PEA (objectif de gestion), frais, capitalisation et actif géré contrôlés."
+        },
+        {
+          "label": "LU1834988864 — reporting officiel au 30/09/2026",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834988864/FRA/FRA/RETAIL/ETF/20260930",
+          "publishedAt": "2026-09-30",
+          "checkedAt": "2026-10-24",
+          "note": "ISIN, PEA (objectif de gestion), frais, capitalisation et actif géré contrôlés."
+        },
+        {
+          "label": "FR0011882364 — reporting officiel au 30/09/2026",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011882364/FRA/FRA/RETAIL/ETF/20260930",
+          "publishedAt": "2026-09-30",
+          "checkedAt": "2026-10-24",
+          "note": "ISIN, PEA (objectif de gestion), frais, capitalisation et actif géré contrôlés."
+        },
+        {
+          "label": "Défense — BNP : communiqué officiel de lancement, PEA et classe capitalisante",
+          "url": "https://www.bnpparibas-am.com/wp-content/uploads/2025/05/bnp-paribas-asset-management-launches-europe-defense-etf-clean-finalpdf.pdf",
+          "publishedAt": "2025-05-27",
+          "checkedAt": "2026-10-24",
+          "note": "La tarification de lancement est expirée ; frais actuels contrôlés dans la gamme de septembre 2026."
+        }
+      ]
+    },
+    {
+      "id": "guide:active-etfs",
+      "title": "Comprendre les ETF actifs",
+      "changedText": false,
+      "policy": {
+        "kind": "reviewed",
+        "reviewedAt": "2026-10-13",
+        "checkedAt": "2026-10-13",
+        "evidence": null,
+        "maxAge": 30
+      },
+      "status": {
+        "ready": true,
+        "label": "Relu le 2026-10-13"
+      },
+      "notes": [],
+      "image": null,
+      "dataContract": {
+        "kind": "live-guide",
+        "fields": [],
+        "remaining": "Autres chiffres et rédaction soumis à la revue éditoriale existante."
+      },
+      "sources": [
+        {
+          "label": "JPMorgan — Global Research Enhanced : ISIN et frais",
+          "url": "https://am.jpmorgan.com/gb/en/asset-management/adv/products/jpm-global-research-enhanced-index-equity-active-ucits-etf-usd-acc-ie00bf4g6y48"
+        },
+        {
+          "label": "JPMorgan — US Research Enhanced : ISIN et frais",
+          "url": "https://am.jpmorgan.com/lu/en/asset-management/institutional/products/jpm-us-research-enhanced-index-equity-active-ucits-etf-usd-acc-ie00bf4g7076"
+        },
+        {
+          "label": "JPMorgan — recherche et gestion active",
+          "url": "https://www.personalinvesting.jpmorgan.com/how-we-invest/our-investments/"
+        },
+        {
+          "label": "ARK — Innovation UCITS : stratégie, ISIN et frais",
+          "url": "https://europe.ark-funds.com/funds/active-etfs/innovation/"
+        },
+        {
+          "label": "JPMorgan — EUR Ultra-Short Income : ISIN et frais",
+          "url": "https://am.jpmorgan.com/lu/en/asset-management/per/products/jpm-eur-ultra-short-income-active-ucits-etf-eur-acc-ie00bd9mmf62"
+        },
+        {
+          "label": "JPMorgan — gestion active des obligations très courtes",
+          "url": "https://am.jpmorgan.com/ch/en/asset-management/institutional/investment-strategies/etfs/ultra-short-income-etfs/"
+        }
+      ]
+    },
+    {
+      "id": "guide:leveraged-etfs",
+      "title": "Comprendre les ETF à levier",
+      "changedText": false,
+      "policy": {
+        "kind": "reviewed",
+        "reviewedAt": "2026-10-13",
+        "checkedAt": "2026-10-13",
+        "evidence": "2026-11-08",
+        "maxAge": 30
+      },
+      "status": {
+        "ready": true,
+        "label": "Relu le 2026-10-13 · données contrôlées le 2026-11-08"
+      },
+      "notes": [],
+      "image": null,
+      "dataContract": {
+        "kind": "live-guide",
+        "fields": [
+          {
+            "isin": "FR0010342592",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0010755611",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          }
+        ],
+        "remaining": "Autres chiffres et rédaction soumis à la revue éditoriale existante."
+      },
+      "sources": [
+        {
+          "label": "Amundi — LQQ : frais, PEA et levier quotidien",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010342592/FRA/FRA/INSTITUTIONNEL/ETF"
+        },
+        {
+          "label": "Amundi — CL2 : frais et éligibilité PEA",
+          "url": "https://www.amundietf.com/pdfDocuments/monthly-factsheet/FR0010755611/FRA/FRA/INSTITUTIONNEL/ETF"
+        },
+        {
+          "label": "Amundi — LVC : frais et éligibilité PEA",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010592014/FRA/FRA/INSTITUTIONNEL/ETF"
+        },
+        {
+          "label": "Amundi — LVE : frais et éligibilité PEA",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010468983/FRA/FRA/INSTITUTIONNEL/ETF"
+        },
+        {
+          "label": "DWS — S&P 500 ×2 : ISIN, ticker et frais",
+          "url": "https://etf.dws.com/de-de/LU0411078552-s-p-500-2x-leveraged-daily-swap-ucits-etf-1c/"
+        }
+      ]
+    },
+    {
+      "id": "guide:commodities",
+      "title": "Matières premières : ETF et ETC",
+      "changedText": false,
+      "policy": {
+        "kind": "reviewed",
+        "reviewedAt": "2026-10-12",
+        "checkedAt": "2026-10-12",
+        "evidence": "2026-11-08",
+        "maxAge": 30
+      },
+      "status": {
+        "ready": true,
+        "label": "Relu le 2026-10-12 · données contrôlées le 2026-11-08"
+      },
+      "notes": [],
+      "image": null,
+      "dataContract": {
+        "kind": "live-guide",
+        "fields": [
+          {
+            "isin": "IE00BD6FTQ80",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf"
+          },
+          {
+            "isin": "IE00BDFL4P12",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk&locale=en_GB&portfolioId=287254&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          {
+            "isin": "IE00B4ND3602",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258441&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          {
+            "isin": "IE00B4NCWG09",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258443&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          {
+            "isin": "GB00B15KXQ89",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
+          },
+          {
+            "isin": "GB00B15KXQ89",
+            "field": "annualSwapRatePct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
+          },
+          {
+            "isin": "GB00B15KXV33",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
+          },
+          {
+            "isin": "GB00B15KXV33",
+            "field": "annualSwapRatePct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
+          }
+        ],
+        "remaining": "Autres chiffres et rédaction soumis à la revue éditoriale existante."
+      },
+      "sources": []
+    },
+    {
+      "id": "guide:covered-call",
+      "title": "ETF covered call : revenus et contreparties",
+      "changedText": false,
+      "policy": {
+        "kind": "reviewed",
+        "reviewedAt": "2026-10-12",
+        "checkedAt": "2026-10-12",
+        "evidence": "2026-11-08",
+        "maxAge": 30
+      },
+      "status": {
+        "ready": true,
+        "label": "Relu le 2026-10-12 · données contrôlées le 2026-11-08"
+      },
+      "notes": [],
+      "image": null,
+      "dataContract": {
+        "kind": "live-guide",
+        "fields": [
+          {
+            "isin": "IE00BM8R0J59",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://globalxetfs.eu/funds/qyld/"
+          },
+          {
+            "isin": "IE0003UVYC20",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf"
+          }
+        ],
+        "remaining": "Autres chiffres et rédaction soumis à la revue éditoriale existante."
+      },
+      "sources": []
+    },
+    {
+      "id": "guide:multi-asset",
+      "title": "ETF multi-actifs : actions et obligations",
+      "changedText": false,
+      "policy": {
+        "kind": "reviewed",
+        "reviewedAt": "2026-10-12",
+        "checkedAt": "2026-10-12",
+        "evidence": "2026-11-08",
+        "maxAge": 30
+      },
+      "status": {
+        "ready": true,
+        "label": "Relu le 2026-10-12 · données contrôlées le 2026-11-08"
+      },
+      "notes": [],
+      "image": null,
+      "dataContract": {
+        "kind": "live-guide",
+        "fields": [
+          {
+            "isin": "IE00BMVB5K07",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf"
+          },
+          {
+            "isin": "IE00BMVB5M21",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf"
+          },
+          {
+            "isin": "IE00BMVB5P51",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf"
+          },
+          {
+            "isin": "IE00BMVB5R75",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf"
+          }
+        ],
+        "remaining": "Autres chiffres et rédaction soumis à la revue éditoriale existante."
+      },
+      "sources": []
+    },
+    {
+      "id": "guide:gold-ways",
+      "title": "Quatre façons d’investir dans l’or",
+      "changedText": false,
+      "policy": {
+        "kind": "reviewed",
+        "reviewedAt": "2026-10-12",
+        "checkedAt": "2026-10-12",
+        "evidence": "2026-11-08",
+        "maxAge": 30
+      },
+      "status": {
+        "ready": true,
+        "label": "Relu le 2026-10-12 · données contrôlées le 2026-11-08"
+      },
+      "notes": [],
+      "image": null,
+      "dataContract": {
+        "kind": "live-guide",
+        "fields": [
+          {
+            "isin": "IE00B4ND3602",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258441&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          {
+            "isin": "IE00B579F325",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf"
+          },
+          {
+            "isin": "IE00BQQP9F84",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/gdx-fact-sheet.pdf"
+          }
+        ],
+        "remaining": "Autres chiffres et rédaction soumis à la revue éditoriale existante."
+      },
+      "sources": []
+    },
+    {
+      "id": 50,
+      "title": "ETF à dividendes : cinq approches",
+      "changedText": false,
+      "policy": {
+        "kind": "verification",
+        "maxAge": 30
+      },
+      "status": {
+        "ready": false,
+        "label": "À vérifier : frais et parts Xtrackers LU0292096186, Fidelity IE00BYXVGZ48 et WisdomTree IE00BZ56RN96 de l’image d’archive."
+      },
+      "notes": [
+        "À vérifier : frais et parts Xtrackers LU0292096186, Fidelity IE00BYXVGZ48 et WisdomTree IE00BZ56RN96 de l’image d’archive.",
+        "Les contrôles des parts présentes dans les registres communs sont conservés avec leurs dates. Les références manquantes ne sont pas ajoutées artificiellement au catalogue."
+      ],
+      "image": {
+        "src": "tweet-bank/8-etf-dividendes.png",
+        "alt": "8 ETF à dividendes : 5 approches, ISIN et frais annuels",
+        "filename": "8-etf-dividendes.png",
+        "note": "Image d’archive : date de référence des frais non fournie. À vérifier : frais et parts Xtrackers LU0292096186, Fidelity IE00BYXVGZ48 et WisdomTree IE00BZ56RN96 de l’image d’archive."
+      },
+      "dataContract": {
+        "kind": "live-guide",
+        "fields": [
+          {
+            "isin": "IE00B8GKDB10",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Distributing_9506_EU_INT_UK_EN.pdf"
+          },
+          {
+            "isin": "NL0011683594",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/tdiv-fact-sheet.pdf"
+          },
+          {
+            "isin": "IE00BYYHSQ67",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288147&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          {
+            "isin": "IE00B9CQXS71",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.ssga.com/uk/en_gb/intermediary/etfs/spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy"
+          }
+        ],
+        "remaining": "Autres chiffres et rédaction soumis à la revue éditoriale existante."
+      },
+      "sources": [
+        {
+          "label": "Global X · SuperDividend : part IE00077FRP95, frais 0,45 %, distributions mensuelles variables",
+          "url": "https://globalxetfs.eu/funds/sdiv",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00B8GKDB10 · frais de la part",
+          "url": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Distributing_9506_EU_INT_UK_EN.pdf",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "NL0011683594 · frais de la part",
+          "url": "https://www.vaneck.com/fr/en/library/fact-sheets/tdiv-fact-sheet.pdf",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00BYYHSQ67 · frais de la part",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=288147&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00B9CQXS71 · frais de la part",
+          "url": "https://www.ssga.com/uk/en_gb/intermediary/etfs/spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
+          "checkedAt": "2026-11-08"
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "title": "Sept ETF pour découvrir le PEA",
+      "changedText": true,
+      "policy": {
+        "kind": "reviewed",
+        "reviewedAt": "2026-11-08",
+        "checkedAt": "2026-11-08",
+        "evidence": "2026-11-08",
+        "maxAge": 30
+      },
+      "status": {
+        "ready": true,
+        "label": "Relu le 2026-11-08 · données contrôlées le 2026-11-08"
+      },
+      "notes": [],
+      "image": null,
+      "dataContract": {
+        "kind": "live-guide",
+        "fields": [
+          {
+            "isin": "FR001400U5Q4",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR001400U5Q4",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR001400U5Q4"
+          },
+          {
+            "isin": "FR0013412020",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0013412020",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412020"
+          },
+          {
+            "isin": "FR0011550185",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30"
+          },
+          {
+            "isin": "FR0011550185",
+            "field": "pea",
+            "checkedAt": "2026-11-03",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550185"
+          },
+          {
+            "isin": "FR0011871110",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0011871110",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011871110"
+          },
+          {
+            "isin": "FR0011550193",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/2026-09-30"
+          },
+          {
+            "isin": "FR0011550193",
+            "field": "pea",
+            "checkedAt": "2026-11-03",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550193"
+          },
+          {
+            "isin": "FR0007054358",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0007054358",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-amundi-euro-stoxx-50-ii-ucits-etf-acc-MSE-FR0007054358-23"
+          },
+          {
+            "isin": "FR0013412012",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0013412012",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412012"
+          }
+        ],
+        "remaining": "Revue éditoriale du 08/11/2026 ; chaque champ conserve la date de sa propre preuve."
+      },
+      "sources": [
+        {
+          "label": "FR001400U5Q4 · frais et caractéristiques de la part",
+          "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR001400U5Q4 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR001400U5Q4",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0013412020 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412020",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0011550185 · frais et caractéristiques de la part",
+          "url": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0011550185 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550185",
+          "checkedAt": "2026-11-03"
+        },
+        {
+          "label": "FR0011871110 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011871110",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0011550193 · frais et caractéristiques de la part",
+          "url": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/2026-09-30",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0011550193 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550193",
+          "checkedAt": "2026-11-03"
+        },
+        {
+          "label": "FR0007054358 · statut PEA de la part",
+          "url": "https://bourse.fortuneo.fr/trackers/cours-amundi-euro-stoxx-50-ii-ucits-etf-acc-MSE-FR0007054358-23",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0013412012 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412012",
+          "checkedAt": "2026-11-08"
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "title": "Vingt ETF pour quatorze thématiques",
+      "changedText": false,
+      "policy": {
+        "kind": "verification",
+        "maxAge": 30
+      },
+      "status": {
+        "ready": false,
+        "label": "À vérifier : WisdomTree Cybersecurity et Global X Cloud Computing ; les frais de l’image d’archive ne sont pas tous qualifiés."
+      },
+      "notes": [
+        "À vérifier : WisdomTree Cybersecurity et Global X Cloud Computing ; les frais de l’image d’archive ne sont pas tous qualifiés.",
+        "Les contrôles des parts présentes dans les registres communs sont conservés avec leurs dates. Les références manquantes ne sont pas ajoutées artificiellement au catalogue."
+      ],
+      "image": {
+        "src": "tweet-bank/20-etf-14-themes.png",
+        "alt": "20 ETF à connaître : 14 secteurs et grandes thématiques, ISIN et frais annuels",
+        "filename": "20-etf-14-themes.png",
+        "note": "Image d’archive : date de référence des frais non fournie. À vérifier : WisdomTree Cybersecurity et Global X Cloud Computing ; les frais de l’image d’archive ne sont pas tous qualifiés."
+      },
+      "dataContract": {
+        "kind": "archive-or-editorial",
+        "fields": [],
+        "remaining": "Chiffres historiques, personnels et assertions générales conservés ; vérification éditoriale avant réemploi."
+      },
+      "sources": [
+        {
+          "label": "Global X · Data Center : part IE00BMH5Y327, frais 0,50 %",
+          "url": "https://globalxetfs.eu/funds/vpn",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "Global X · Lithium : part IE00BLCHJN13, frais 0,60 %",
+          "url": "https://globalxetfs.eu/funds/litu",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "WisdomTree Cybersecurity · document officiel à revérifier",
+          "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BLPK3577/"
+        },
+        {
+          "label": "IE00BDVPNG13 · frais de la part",
+          "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00BMC38736 · frais de la part",
+          "url": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE000I8KRLL9 · frais de la part",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00BYZK4552 · frais de la part",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00BLCHJB90 · frais de la part",
+          "url": "https://globalxetfs.eu/funds/botz/",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00BJGWQN72 · frais de la part",
+          "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE000M7V94E1 · frais de la part",
+          "url": "https://www.vaneck.com/fr/en/library/fact-sheets/nucl-fact-sheet.pdf",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE000NDWFGA5 · frais de la part",
+          "url": "https://globalxetfs.eu/funds/urnu/",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE000YYE6WK5 · frais de la part",
+          "url": "https://www.vaneck.com/fr/en/library/fact-sheets/dfns-fact-sheet.pdf",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00B1TXK627 · frais de la part",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00BYXG2H39 · frais de la part",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00BYZK4776 · frais de la part",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00BKLF1R75 · frais de la part",
+          "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE0003Z9E2Y3 · frais de la part",
+          "url": "https://globalxetfs.eu/funds/copx/",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00B1XNHC34 · frais de la part",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE000YU9K6K2 · frais de la part",
+          "url": "https://www.vaneck.com/fr/en/library/fact-sheets/jedi-fact-sheet.pdf",
+          "checkedAt": "2026-11-08"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Premiers ETF : exemples sur PEA et CTO",
+      "changedText": true,
+      "policy": {
+        "kind": "reviewed",
+        "reviewedAt": "2026-11-08",
+        "checkedAt": "2026-11-08",
+        "evidence": "2026-11-08",
+        "maxAge": 30,
+        "manualMaxAge": 0
+      },
+      "status": {
+        "ready": true,
+        "label": "Relu le 2026-11-08 · données contrôlées le 2026-11-08"
+      },
+      "notes": [],
+      "image": null,
+      "dataContract": {
+        "kind": "live-guide",
+        "fields": [
+          {
+            "id": "world",
+            "field": "indexComposition",
+            "asOf": "2026-10-30",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-index.pdf"
+          },
+          {
+            "id": "acwi",
+            "field": "indexComposition",
+            "asOf": "2026-10-30",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-acwi.pdf"
+          },
+          {
+            "isin": "FR001400U5Q4",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR001400U5Q4",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR001400U5Q4"
+          },
+          {
+            "isin": "IE00B4L5Y983",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          {
+            "isin": "IE00B4L5Y983",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-core-msci-world-ucits-etf-usd-acc-IWDA-IE00B4L5Y983-46"
+          },
+          {
+            "isin": "FR0013412020",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0013412020",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412020"
+          },
+          {
+            "isin": "IE00BTJRMP35",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium"
+          },
+          {
+            "isin": "IE00BTJRMP35",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium"
+          },
+          {
+            "isin": "FR0011550185",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30"
+          },
+          {
+            "isin": "FR0011550185",
+            "field": "pea",
+            "checkedAt": "2026-11-03",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550185"
+          },
+          {
+            "isin": "IE00B5BMR087",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          {
+            "isin": "IE00B5BMR087",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-core-s-p-500-ucits-etf-usd-acc-CSPX-IE00B5BMR087-46"
+          },
+          {
+            "isin": "FR0011871110",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0011871110",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011871110"
+          },
+          {
+            "isin": "IE00B53SZB19",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          {
+            "isin": "IE00B53SZB19",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-nasdaq-100-ucits-etf-usd-acc-CNDX-IE00B53SZB19-46"
+          },
+          {
+            "isin": "FR0011550193",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/2026-09-30"
+          },
+          {
+            "isin": "FR0011550193",
+            "field": "pea",
+            "checkedAt": "2026-11-03",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550193"
+          },
+          {
+            "isin": "LU0908500753",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "LU0908500753",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-amundi-core-stoxx-europe-600-ucits-etf-eur-acc-MEUD-LU0908500753-23"
+          },
+          {
+            "isin": "FR0007054358",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0007054358",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-amundi-euro-stoxx-50-ii-ucits-etf-acc-MSE-FR0007054358-23"
+          },
+          {
+            "isin": "IE0008471009",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          {
+            "isin": "IE0008471009",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-core-euro-stoxx-50-ucits-etf-eur-dist-dis-EUEA-IE0008471009-46"
+          },
+          {
+            "isin": "IE00B6R52259",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          {
+            "isin": "IE00B6R52259",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-acwi-ucits-etf-usd-acc-SSAC-IE00B6R52259-46"
+          },
+          {
+            "isin": "IE00BP3QZ825",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          {
+            "isin": "IE00BP3QZ825",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://extraetf.com/fr/etf-profile/IE00BP3QZ825"
+          }
+        ],
+        "remaining": "Revue éditoriale du 08/11/2026 ; chaque champ conserve la date de sa propre preuve."
+      },
+      "sources": [
+        {
+          "label": "MSCI World · composition au 2026-10-30",
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-index.pdf",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "MSCI ACWI · composition au 2026-10-30",
+          "url": "https://www.msci.com/documents/10199/255599/msci-acwi.pdf",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR001400U5Q4 · frais et caractéristiques de la part",
+          "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR001400U5Q4 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR001400U5Q4",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00B4L5Y983 · frais et caractéristiques de la part",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00B4L5Y983 · statut PEA de la part",
+          "url": "https://bourse.fortuneo.fr/trackers/cours-ishares-core-msci-world-ucits-etf-usd-acc-IWDA-IE00B4L5Y983-46",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0013412020 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412020",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00BTJRMP35 · frais et caractéristiques de la part",
+          "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00BTJRMP35 · statut PEA de la part",
+          "url": "https://etf.deutsche-am.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0011550185 · frais et caractéristiques de la part",
+          "url": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0011550185 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550185",
+          "checkedAt": "2026-11-03"
+        },
+        {
+          "label": "IE00B5BMR087 · frais et caractéristiques de la part",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00B5BMR087 · statut PEA de la part",
+          "url": "https://bourse.fortuneo.fr/trackers/cours-ishares-core-s-p-500-ucits-etf-usd-acc-CSPX-IE00B5BMR087-46",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0011871110 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011871110",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00B53SZB19 · frais et caractéristiques de la part",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00B53SZB19 · statut PEA de la part",
+          "url": "https://bourse.fortuneo.fr/trackers/cours-ishares-nasdaq-100-ucits-etf-usd-acc-CNDX-IE00B53SZB19-46",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0011550193 · frais et caractéristiques de la part",
+          "url": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/2026-09-30",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0011550193 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550193",
+          "checkedAt": "2026-11-03"
+        },
+        {
+          "label": "LU0908500753 · statut PEA de la part",
+          "url": "https://bourse.fortuneo.fr/trackers/cours-amundi-core-stoxx-europe-600-ucits-etf-eur-acc-MEUD-LU0908500753-23",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0007054358 · statut PEA de la part",
+          "url": "https://bourse.fortuneo.fr/trackers/cours-amundi-euro-stoxx-50-ii-ucits-etf-acc-MSE-FR0007054358-23",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE0008471009 · frais et caractéristiques de la part",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251781&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE0008471009 · statut PEA de la part",
+          "url": "https://bourse.fortuneo.fr/trackers/cours-ishares-core-euro-stoxx-50-ucits-etf-eur-dist-dis-EUEA-IE0008471009-46",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00B6R52259 · frais et caractéristiques de la part",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00B6R52259 · statut PEA de la part",
+          "url": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-acwi-ucits-etf-usd-acc-SSAC-IE00B6R52259-46",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00BP3QZ825 · frais et caractéristiques de la part",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00BP3QZ825 · statut PEA de la part",
+          "url": "https://extraetf.com/fr/etf-profile/IE00BP3QZ825",
+          "checkedAt": "2026-11-08"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "title": "ETF PEA classés par exposition",
+      "changedText": true,
+      "policy": {
+        "kind": "reviewed",
+        "reviewedAt": "2026-11-08",
+        "checkedAt": "2026-11-08",
+        "evidence": "2026-11-08",
+        "maxAge": 30,
+        "manualMaxAge": 0
+      },
+      "status": {
+        "ready": true,
+        "label": "Relu le 2026-11-08 · données contrôlées le 2026-11-08"
+      },
+      "notes": [
+        "LU1681046931 : ancienne affirmation PEA retirée. La fiche Amundi au 31/10/2026 documente le CAC 40 ESG et cite compte-titres/assurance-vie, sans preuve PEA explicite ; aucune non-éligibilité déduite."
+      ],
+      "image": null,
+      "dataContract": {
+        "kind": "live-guide",
+        "fields": [
+          {
+            "isin": "FR001400U5Q4",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR001400U5Q4",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR001400U5Q4"
+          },
+          {
+            "isin": "IE0002XZSHO1",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf"
+          },
+          {
+            "isin": "IE0002XZSHO1",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/fr/particuliers/products/335178/ishares-msci-world-swap-pea-ucits-etf"
+          },
+          {
+            "isin": "FR0011871128",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0011871128",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011871128"
+          },
+          {
+            "isin": "FR0011871110",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0011871110",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011871110"
+          },
+          {
+            "isin": "FR0011550193",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/2026-09-30"
+          },
+          {
+            "isin": "FR0011550193",
+            "field": "pea",
+            "checkedAt": "2026-11-03",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550193"
+          },
+          {
+            "isin": "LU1681047236",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "LU1681047236",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=LU1681047236"
+          },
+          {
+            "isin": "FR0013412038",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0013412038",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412038"
+          },
+          {
+            "isin": "FR0013412020",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0013412020",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412020"
+          },
+          {
+            "isin": "FR0013412012",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0013412012",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412012"
+          },
+          {
+            "isin": "FR0011869320",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0011869320",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011869320"
+          },
+          {
+            "isin": "FR0013411980",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0013411980",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013411980"
+          },
+          {
+            "isin": "FR0013411998",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0013411998",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013411998"
+          }
+        ],
+        "remaining": "Revue éditoriale du 08/11/2026 ; chaque champ conserve la date de sa propre preuve."
+      },
+      "sources": [
+        {
+          "label": "FR001400U5Q4 · frais et caractéristiques de la part",
+          "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR001400U5Q4 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR001400U5Q4",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE0002XZSHO1 · frais et caractéristiques de la part",
+          "url": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE0002XZSHO1 · statut PEA de la part",
+          "url": "https://www.blackrock.com/fr/particuliers/products/335178/ishares-msci-world-swap-pea-ucits-etf",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0011871128 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011871128",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0011871110 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011871110",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0011550193 · frais et caractéristiques de la part",
+          "url": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/2026-09-30",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0011550193 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550193",
+          "checkedAt": "2026-11-03"
+        },
+        {
+          "label": "LU1681047236 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=LU1681047236",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0013412038 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412038",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0013412020 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412020",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0013412012 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412012",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0011869320 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011869320",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0013411980 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013411980",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0013411998 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013411998",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "Amundi · CAC 40 ESG, fiche du 31/10/2026",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681046931/FRA/FRA/RETAIL/ETF/20261031",
+          "checkedAt": "2026-11-08"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "title": "MSCI Europe, STOXX 600 et EURO STOXX 50",
+      "changedText": true,
+      "policy": {
+        "kind": "reviewed",
+        "reviewedAt": "2026-11-08",
+        "checkedAt": "2026-11-08",
+        "evidence": "2026-11-08",
+        "maxAge": 30,
+        "manualMaxAge": 0
+      },
+      "status": {
+        "ready": true,
+        "label": "Relu le 2026-11-08 · données contrôlées le 2026-11-08"
+      },
+      "notes": [],
+      "image": null,
+      "dataContract": {
+        "kind": "live-guide",
+        "fields": [
+          {
+            "isin": "FR0011550193",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/2026-09-30"
+          },
+          {
+            "isin": "FR0011550193",
+            "field": "pea",
+            "checkedAt": "2026-11-03",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550193"
+          },
+          {
+            "isin": "IE00B53L3W79",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253712&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          {
+            "isin": "IE00B53L3W79",
+            "field": "pea",
+            "checkedAt": "2026-11-03",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B53L3W79"
+          },
+          {
+            "isin": "IE00B4K6B022",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/factsheet"
+          },
+          {
+            "isin": "IE00B4K6B022",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-hsbc-euro-stoxx-50-ucits-etf-dis-50E-IE00B4K6B022-23"
+          },
+          {
+            "isin": "FR0013412038",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0013412038",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412038"
+          },
+          {
+            "isin": "FR0013412038",
+            "field": "calendarReturns",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0011550193",
+            "field": "calendarReturns",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/2026-09-30"
+          },
+          {
+            "isin": "IE00B53L3W79",
+            "field": "calendarReturns",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253712&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          }
+        ],
+        "remaining": "Revue éditoriale du 08/11/2026 ; chaque champ conserve la date de sa propre preuve."
+      },
+      "sources": [
+        {
+          "label": "FR0011550193 · frais et caractéristiques de la part",
+          "url": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/2026-09-30",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0011550193 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550193",
+          "checkedAt": "2026-11-03"
+        },
+        {
+          "label": "IE00B53L3W79 · frais et caractéristiques de la part",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253712&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00B53L3W79 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B53L3W79",
+          "checkedAt": "2026-11-03"
+        },
+        {
+          "label": "IE00B4K6B022 · frais et caractéristiques de la part",
+          "url": "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/factsheet",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00B4K6B022 · statut PEA de la part",
+          "url": "https://bourse.fortuneo.fr/trackers/cours-hsbc-euro-stoxx-50-ucits-etf-dis-50E-IE00B4K6B022-23",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0013412038 · frais et caractéristiques de la part",
+          "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0013412038 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412038",
+          "checkedAt": "2026-11-08"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "title": "Choisir un ETF MSCI World sur PEA",
+      "changedText": true,
+      "policy": {
+        "kind": "reviewed",
+        "reviewedAt": "2026-11-08",
+        "checkedAt": "2026-11-08",
+        "evidence": "2026-11-08",
+        "maxAge": 30,
+        "manualMaxAge": 0
+      },
+      "status": {
+        "ready": true,
+        "label": "Relu le 2026-11-08 · données contrôlées le 2026-11-08"
+      },
+      "notes": [
+        "LU2655993207 (EUR Dist) et LU1681043672 (USD Acc) restent identifiées dans les sources de revue. Leurs fiches officielles confirment ces devises et distributions, mais ne suffisent pas à qualifier leur statut PEA. Anciennes affirmations PEA et encours non datés retirés, sans les transformer en parts non éligibles."
+      ],
+      "image": null,
+      "dataContract": {
+        "kind": "live-guide",
+        "fields": [
+          {
+            "isin": "FR001400U5Q4",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR001400U5Q4",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR001400U5Q4"
+          },
+          {
+            "isin": "IE0002XZSHO1",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf"
+          },
+          {
+            "isin": "IE0002XZSHO1",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/fr/particuliers/products/335178/ishares-msci-world-swap-pea-ucits-etf"
+          },
+          {
+            "isin": "LU1681043599",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "LU1681043599",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=LU1681043599"
+          }
+        ],
+        "remaining": "Revue éditoriale du 08/11/2026 ; chaque champ conserve la date de sa propre preuve."
+      },
+      "sources": [
+        {
+          "label": "FR001400U5Q4 · frais et caractéristiques de la part",
+          "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR001400U5Q4 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR001400U5Q4",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE0002XZSHO1 · frais et caractéristiques de la part",
+          "url": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE0002XZSHO1 · statut PEA de la part",
+          "url": "https://www.blackrock.com/fr/particuliers/products/335178/ishares-msci-world-swap-pea-ucits-etf",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "LU1681043599 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=LU1681043599",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "LU2655993207 · fiche officielle du 31/10/2026, devise et distribution",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2655993207/FRA/FRA/RETAIL/ETF/20261031",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "LU1681043672 · fiche officielle du 31/10/2026, devise et distribution",
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681043672/FRA/FRA/RETAIL/ETF/20261031",
+          "checkedAt": "2026-11-08"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "title": "MSCI World, ACWI et FTSE All-World",
+      "changedText": true,
+      "policy": {
+        "kind": "reviewed",
+        "reviewedAt": "2026-11-08",
+        "checkedAt": "2026-11-08",
+        "evidence": "2026-11-08",
+        "maxAge": 30,
+        "manualMaxAge": 0
+      },
+      "status": {
+        "ready": true,
+        "label": "Relu le 2026-11-08 · données contrôlées le 2026-11-08"
+      },
+      "notes": [
+        "Anciennes performances YTD, sur un an et annualisées sans bornes, poids et comptages non datés retirés. Composition actuelle issue des seuls registres d’indices ; aucun portefeuille de fonds substitué à un indice."
+      ],
+      "image": null,
+      "dataContract": {
+        "kind": "live-guide",
+        "fields": [
+          {
+            "id": "world",
+            "field": "indexComposition",
+            "asOf": "2026-10-30",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-index.pdf"
+          },
+          {
+            "isin": "FR001400U5Q4",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR001400U5Q4",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR001400U5Q4"
+          },
+          {
+            "id": "acwi",
+            "field": "indexComposition",
+            "asOf": "2026-10-30",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-acwi.pdf"
+          },
+          {
+            "isin": "FR0014017NX3",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          },
+          {
+            "isin": "FR0014017NX3",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0014017NX3"
+          },
+          {
+            "isin": "IE00B6R52259",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          },
+          {
+            "isin": "IE00B6R52259",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-acwi-ucits-etf-usd-acc-SSAC-IE00B6R52259-46"
+          },
+          {
+            "id": "ftse-all-world",
+            "field": "indexComposition",
+            "asOf": "2026-10-30",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open"
+          },
+          {
+            "isin": "IE00BK5BQT80",
+            "field": "terPct",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Accumulating_9679_EU_INT_UK_EN.pdf"
+          },
+          {
+            "isin": "IE00BK5BQT80",
+            "field": "pea",
+            "checkedAt": "2026-11-08",
+            "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-vanguard-ftse-all-world-ucits-etf-usd-acc-VWCE-IE00BK5BQT80-46"
+          }
+        ],
+        "remaining": "Revue éditoriale du 08/11/2026 ; chaque champ conserve la date de sa propre preuve."
+      },
+      "sources": [
+        {
+          "label": "MSCI World · composition au 2026-10-30",
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-index.pdf",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR001400U5Q4 · frais et caractéristiques de la part",
+          "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR001400U5Q4 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR001400U5Q4",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "MSCI ACWI · composition au 2026-10-30",
+          "url": "https://www.msci.com/documents/10199/255599/msci-acwi.pdf",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FR0014017NX3 · statut PEA de la part",
+          "url": "https://www.justetf.com/fr/etf-profile.html?isin=FR0014017NX3",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00B6R52259 · frais et caractéristiques de la part",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00B6R52259 · statut PEA de la part",
+          "url": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-acwi-ucits-etf-usd-acc-SSAC-IE00B6R52259-46",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "FTSE All-World · composition au 2026-10-30",
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00BK5BQT80 · frais et caractéristiques de la part",
+          "url": "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Accumulating_9679_EU_INT_UK_EN.pdf",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00BK5BQT80 · statut PEA de la part",
+          "url": "https://bourse.fortuneo.fr/trackers/cours-vanguard-ftse-all-world-ucits-etf-usd-acc-VWCE-IE00BK5BQT80-46",
+          "checkedAt": "2026-11-08"
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "title": "ETF PEA : classement historique des performances",
+      "changedText": true,
+      "policy": {
+        "kind": "market",
+        "maxAge": 0
+      },
+      "status": {
+        "ready": false,
+        "label": "Archive : bornes du rendement sur un an et univers du classement non documentés."
+      },
+      "notes": [
+        "Archive : bornes du rendement sur un an et univers du classement non documentés.",
+        "Les contrôles des parts présentes dans les registres communs sont conservés avec leurs dates. Les références manquantes ne sont pas ajoutées artificiellement au catalogue."
+      ],
+      "image": null,
+      "dataContract": {
+        "kind": "archive-or-editorial",
+        "fields": [],
+        "remaining": "Chiffres historiques, personnels et assertions générales conservés ; vérification éditoriale avant réemploi."
+      },
+      "sources": [
+        {
+          "label": "LU1834983550 · frais de la part",
+          "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-11-08"
+        },
+        {
+          "label": "IE00BMW42413 · frais de la part",
+          "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=315818&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-11-08"
+        }
+      ]
+    }
+  ]
+}

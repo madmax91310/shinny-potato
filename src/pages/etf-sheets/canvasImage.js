@@ -22,11 +22,11 @@ function wrap(ctx, text, width) {
   }
   return lines
 }
-function text(ctx, value, x, y, width, height, { size = 34, min = 25, weight = 600, sans = false, color = INK, align = 'left', relief = false, centered = false } = {}) {
+function text(ctx, value, x, y, width, height, { size = 34, min = 25, weight = 600, sans = false, color = INK, align = 'left', relief = false, centered = false, leading } = {}) {
   let lines, lineHeight
   for (; size >= min; size--) {
     ctx.font = `${weight} ${size}px ${sans ? 'Arial, sans-serif' : serif}`
-    lines = wrap(ctx, value, width); lineHeight = Math.ceil(size * (sans ? 1.22 : 1.4))
+    lines = wrap(ctx, value, width); lineHeight = Math.ceil(size * (leading ?? (sans ? 1.22 : 1.4)))
     if (lines.length * lineHeight <= height && lines.every(line => ctx.measureText(line).width <= width)) break
   }
   if (size < min) throw new Error(`Le texte est trop long pour l’image : ${value}`)
@@ -98,8 +98,8 @@ export async function renderETFImage(sourceEtf) {
   text(ctx, aum.label, 1100, 618, 390, 42, { size: 29, color: MUTED })
   if (aum.date) text(ctx, aum.date, 1100, 661, 390, 39, { size: 26, min: 23, color: MUTED })
   const facts = characteristics(etf)
-  text(ctx, facts.left.join('\n'), 628, 735, 485, 232, { size: 34, min: 24, centered: true })
-  text(ctx, facts.right.join('\n'), 1180, 735, 300, 232, { size: 32, min: 24, centered: true })
+  text(ctx, facts.left.join('\n'), 610, 724, 510, 232, { size: 36, min: 26, leading: 1.18, centered: true })
+  text(ctx, facts.right.join('\n'), 1160, 724, 330, 232, { size: 36, min: 26, leading: 1.18, centered: true })
   const annual = getAnnualPerformance(etf)
   if (annual) {
     text(ctx, performanceImageHeading(annual), 160, 1000, 1290, 65, { size: 43, min: 29, relief: true })

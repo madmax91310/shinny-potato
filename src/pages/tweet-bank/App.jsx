@@ -163,7 +163,7 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
         <a href={`${import.meta.env.BASE_URL}${tweet.image.src}`} target="_blank" rel="noreferrer" aria-label="Ouvrir l’image en taille réelle">
           <img src={`${import.meta.env.BASE_URL}${tweet.image.src}`} alt={tweet.image.alt} loading="lazy" width={1024} height={1536} />
         </a>
-        <figcaption><a href={`${import.meta.env.BASE_URL}${tweet.image.src}`} download={tweet.image.filename}>Télécharger l’image PNG</a></figcaption>
+        <figcaption>{tweet.image.note && <p>{tweet.image.note}</p>}<a href={`${import.meta.env.BASE_URL}${tweet.image.src}`} download={tweet.image.filename}>Télécharger l’image PNG</a></figcaption>
       </figure>}
       {!isQuestion && (!validity.ready || draft) && <div className="tb-review">
         <p>{reviewPolicy(tweet).kind === 'personal' ? 'Actualise ton bilan ou replace-le explicitement dans sa période d’origine.' : 'Vérifie les chiffres, la période, les hypothèses et les sources avant de réutiliser ce texte.'}</p>
@@ -185,9 +185,10 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
         <p><strong>Points non établis et limites</strong></p>
         <ul>{tweet.uncertainties.map(item => <li key={item}>{item}</li>)}</ul>
       </details>}
+      {tweet.reviewNotes?.length > 0 && <details className="tb-sources"><summary>Revue du guide et limites</summary><ul>{tweet.reviewNotes.map(note => <li key={note}>{note}</li>)}</ul></details>}
       {tweet.sources?.length > 0 && <details className="tb-sources">
         <summary>Sources de ce texte</summary>
-        <ul>{tweet.sources.map(source => <li key={source.url}>
+        <ul>{tweet.sources.map((source, index) => <li key={`${source.url}-${index}`}>
           <a href={source.url} target="_blank" rel="noreferrer">{source.id ? `${source.id} · ` : ''}{source.label} ↗</a>
           {source.note && <p>{source.note} Document : {source.publishedAt} · consulté le {source.checkedAt}.</p>}
         </li>)}</ul>
@@ -208,7 +209,15 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
           value={lastPublished || ''}
           max={todayStr()}
           title="Corriger ou saisir la date de dernière publication"
-          onInput={(e) => onSetDate(tweet.id, e.currentTarget.value)}
+          onInput={(e) => {
+            const field = e.currentTarget
+            if (tweet.category === 'Guide ETF' && field.validity.rangeOverflow) {
+              field.value = lastPublished || ''
+              notifyPublication('Choisis une date de publication au plus tard aujourd’hui.', 'error')
+              return
+            }
+            onSetDate(tweet.id, field.value)
+          }}
         />
         {lastPublished && (
           <Button type="button" variant="ghost" onClick={() => onClearDate(tweet.id)}>

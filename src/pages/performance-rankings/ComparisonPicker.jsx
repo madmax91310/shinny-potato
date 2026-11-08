@@ -1,3 +1,4 @@
+import { selectionAssetLabel, selectionCategoryLabel } from './selectionLabels.js'
 import { useState } from 'react'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { COMPARISON_FAMILIES, comparisonFamily, comparisonTags, filterComparisons } from './comparisonCatalog.js'
@@ -23,11 +24,11 @@ export default function ComparisonPicker({ categories, sources, value, onChange 
       </ChoicePicker></label>
       <label className="rk-field">Rechercher une comparaison<input type="search" value={query} onChange={e => setQuery(e.target.value)} placeholder="Nom, actif ou ISIN…" /></label>
     </div>
-    <p className="rk-note" aria-live="polite">{filtered.length} comparaison{filtered.length > 1 ? 's' : ''}{selected ? ` · Sélection actuelle : ${selected.label}` : ''}</p>
+    <p className="rk-note" aria-live="polite">{filtered.length} comparaison{filtered.length > 1 ? 's' : ''}{selected ? ` · Sélection actuelle : ${selectionCategoryLabel(selected)}` : ''}</p>
     <div className="rk-catalog-list" role="group" aria-label="Catégorie" data-value={value}>
       {filtered.map(c => <button type="button" key={c.id} data-option data-value={c.id} aria-pressed={value === c.id} onClick={() => onChange(c.id)}>
-        <strong>{c.label}</strong>
-        <span>{c.ids.map(id => sources[id]?.shortLabel ?? sources[id]?.label ?? id).join(' · ')}</span>
+        <strong>{selectionCategoryLabel(c)}</strong>
+        <span>{c.ids.map(id => sources[id] ? selectionAssetLabel(sources[id]) : id).join(' · ')}</span>
         <small>{comparisonTags(c, sources).join(' · ')}</small>
       </button>)}
       {!filtered.length && <p>Aucune comparaison pour ces filtres.</p>}

@@ -32,7 +32,7 @@ for (const width of [1440, 390]) {
     }
     // Guides previously kept copy disabled after checking an unchanged text.
     await page.goto(base + 'banque-tweets?category=Guide%20ETF')
-    const guide = page.locator('[data-tweet-id="10"]')
+    const guide = page.locator('[data-tweet-id="49"]')
     await guide.getByLabel('Date de référence', {exact:true}).fill(bankToday())
     await guide.getByLabel('J’ai vérifié ce texte et sa date de référence.').check()
     assert(await guide.getByRole('button', {name:'📋 Copier', exact:true}).isEnabled())
@@ -47,6 +47,10 @@ for (const width of [1440, 390]) {
     await guide.getByLabel('Date de dernière publication', {exact:true}).fill(bankToday())
     await page.reload()
     assert.equal(await guide.getByLabel('Date de dernière publication', {exact:true}).inputValue(), bankToday())
+    await guide.getByLabel('Date de dernière publication', {exact:true}).fill('2999-01-01')
+    assert.equal(await guide.getByLabel('Date de dernière publication', {exact:true}).inputValue(), bankToday(), 'future publication date rejected')
+    await page.reload()
+    assert.equal(await guide.getByLabel('Date de dernière publication', {exact:true}).inputValue(), bankToday(), 'previous date preserved after reload')
     await guide.getByLabel('Texte de la publication').fill('Guide modifié après vérification')
     assert(!(await guide.getByRole('button', {name:'📋 Copier', exact:true}).isEnabled()))
 

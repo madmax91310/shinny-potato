@@ -12,8 +12,8 @@ const groups = [
   }],
   [['sp500','sp500-spea','support-sp500_ishares','presentation-ie00b3xxrp09','presentation-ie00bfmxxd54','presentation-ie000xzsv718','presentation-fr0011550185'], {
     hook: 'Le S&P 500 rassemble de grandes entreprises américaines, dont beaucoup vendent dans le monde entier. Voici l’exposition derrière cet ETF 👇',
-    whatIs: 'L’indice sélectionne de grandes sociétés du marché américain, dans plusieurs secteurs. Il applique notamment des critères de taille, de liquidité et de bénéfices. Le poids de chaque société dépend de sa capitalisation disponible en Bourse.\n\nLe chiffre d’affaires international de ces groupes ne transforme pas l’indice en panier de marchés mondiaux.',
-    whyInteresting: 'Une ligne permet de consacrer une place au marché des grandes entreprises américaines. Elle sert aussi à distinguer cette exposition de celle des petites entreprises ou des autres régions.',
+    whatIs: 'Tu suis de grands groupes cotés aux États-Unis, dans plusieurs secteurs. Pour entrer dans le S&P 500, une entreprise doit notamment remplir des critères de taille, de facilité d’échange de ses actions et de bénéfices. Les plus grandes capitalisations disponibles en Bourse occupent le plus de place.\n\nCes groupes peuvent vendre partout dans le monde, mais l’indice reste centré sur le marché américain.',
+    whyInteresting: 'Tu investis dans ces grandes entreprises sans choisir chaque action. Si tu possèdes déjà un ETF mondial, tu en détiens probablement une partie : ajouter un S&P 500 renforce alors leur place dans ton portefeuille.',
     whatToKnow: 'Les plus grands groupes peuvent entraîner une part importante du résultat. Un recul de leurs bénéfices ou du prix que les investisseurs acceptent de payer peut peser sur le fonds. Pour une épargne en euros, le dollar ajoute un autre mouvement lorsque le change n’est pas couvert.',
     question: 'Quelle place les grandes entreprises américaines occupent-elles déjà dans tes autres fonds ?',
   }],

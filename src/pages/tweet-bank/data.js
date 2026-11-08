@@ -1,3 +1,5 @@
+import { reviewLegacyGuide } from './guideReview.js'
+import { reviseProductGuide } from './guideProducts.js'
 import { SUNDAY_QUESTIONS } from './sunday-questions.js'
 import { MARKET_STORIES } from './market-stories.js'
 import { AUTOMATED_ETF } from '../../data/automated-etf.js'
@@ -300,7 +302,7 @@ Il baisse ? J'accumule, sans regarder le prix.
 export const TWEETS = [...ARCHIVED_TWEETS, ...SUNDAY_QUESTIONS, ...MARKET_STORIES, ...EDITORIAL_CASES.map(item => ({
   ...item, id: `pedagogy:${item.id}`, month: 'Intemporel', category: 'Pédagogie',
   formats: ['Explication pédagogique'],
-}))].map(tweet=>{const resolved=resolveGuideFees(tweet,AUTOMATED_ETF);return {...resolved,dataContract:reusableContract(resolved)}})
+}))].map(tweet=>{const resolved=resolveGuideFees(reviewLegacyGuide(reviseProductGuide(tweet)),AUTOMATED_ETF);return {...resolved,dataContract:reusableContract(resolved)}})
 
 export function getTweet(id) {
   return TWEETS.find((t) => t.id === id)
