@@ -335,5 +335,240 @@ class RateLimitTests(unittest.TestCase):
             self.assertEqual(before, (directory / 'loeb.json').read_bytes())
             self.assertFalse((directory / 'archive' / 'loeb').exists())
 
+class PublicationTests(unittest.TestCase):
+    """Real isolated Git races; never mutate a production portfolio."""
+    @classmethod
+    def setUpClass(cls):
+        import subprocess
+        cls.subprocess = subprocess
+        cls.source = pathlib.Path(__file__).resolve().parent
+        spec = importlib.util.spec_from_file_location(
+            'investor_publication', cls.source / 'validate-investor-publication.py')
+        cls.publication = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(cls.publication)
+
+    def setUp(self):
+        import datetime as dt
+        import shutil
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.root = pathlib.Path(self.tmp.name) / 'work'
+        self.remote = pathlib.Path(self.tmp.name) / 'remote.git'
+        self.root.mkdir()
+        self.cmd(['git', 'init', '--bare', '-q', str(self.remote)])
+        self.git('init', '-q', '-b', 'master')
+        self.git('config', 'user.email', 'test@example.invalid')
+        self.git('config', 'user.name', 'Isolated regression')
+        (self.root / 'scripts').mkdir()
+        for name in ['update-investor-13f.py', 'producer_report_contract.py',
+                     'producer_report_plans.py', 'observation_rebase_guard.py',
+                     'validate-investor-publication.py', 'commit-validated-data.sh',
+                     'data_publication.py', 'stage_validated_projections.py']:
+            shutil.copyfile(self.source / name, self.root / 'scripts' / name)
+        (self.root / 'scripts/audit-investor-profiles.mjs').write_text(
+            "if(process.env.FORCE_AUDIT_FAILURE)process.exit(13);console.log('audited');")
+        directory = self.root / 'public/data/investors'
+        directory.mkdir(parents=True)
+        self.now = dt.datetime.now(dt.timezone.utc)
+        start_quarter = self.now.date().replace(
+            month=((self.now.month - 1) // 3) * 3 + 1, day=1)
+        self.period = (start_quarter - dt.timedelta(days=1)).isoformat()
+        self.old_clock = (self.now - dt.timedelta(days=1)).isoformat()
+        self.fresh_clock = (self.now - dt.timedelta(seconds=1)).isoformat()
+        self.reviews = []
+        self.report = {'checkedAt': self.now.isoformat(), 'status': 'validated',
+                       'readyToApply': True, 'managers': []}
+        for slug in module.MANAGERS:
+            data = portfolio(self.period, slug=slug)
+            data['as_of'] = self.old_clock
+            (directory / (slug + '.json')).write_text(json.dumps(data))
+            self.reviews.append({'as_of': self.old_clock,
+                                 'lastSuccessfulPollAt': self.old_clock,
+                                 'positionsCollectedAt': self.old_clock,
+                                 'data': {'identity': {'slug': slug},
+                                          'snapshot': {'periodEnd': self.period}}})
+            self.report['managers'].append({'slug': slug, 'status': 'validated',
+                                            'periodEnd': self.period, 'changed': False})
+        self.write_reviews()
+        self.git('add', '.')
+        self.git('commit', '-qm', 'Isolated collection base')
+        self.base = self.git('rev-parse', 'HEAD')
+        self.git('remote', 'add', 'origin', str(self.remote))
+        self.git('push', '-q', 'origin', 'master')
+        for review in self.reviews:
+            review['lastSuccessfulPollAt'] = self.fresh_clock
+        self.write_reviews()
+        self.report_path = pathlib.Path(self.tmp.name) / 'source-report.json'
+        self.report_path.write_text(json.dumps(self.report))
+
+    def cmd(self, args, **kwargs):
+        return self.subprocess.run(args, check=True, capture_output=True, text=True,
+                                   **kwargs).stdout.strip()
+
+    def git(self, *args):
+        return self.cmd(['git', '-C', str(self.root), *args])
+
+    def write_reviews(self):
+        (self.root / 'public/data/investors/review-metadata.json').write_text(
+            json.dumps(self.reviews))
+
+    def advance(self, path):
+        other = pathlib.Path(self.tmp.name) / ('other-' + str(len(list(
+            pathlib.Path(self.tmp.name).glob('other-*')))))
+        self.cmd(['git', 'clone', '-q', str(self.remote), str(other)])
+        self.cmd(['git', '-C', str(other), 'config', 'user.email', 'other@example.invalid'])
+        self.cmd(['git', '-C', str(other), 'config', 'user.name', 'Other writer'])
+        target = other / path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        if target.exists():
+            target.write_bytes(target.read_bytes() + b'\n')
+        else:
+            target.write_text('{"independent":true}\n')
+        self.cmd(['git', '-C', str(other), 'add', path])
+        self.cmd(['git', '-C', str(other), 'commit', '-qm', 'Concurrent observation'])
+        self.cmd(['git', '-C', str(other), 'push', '-q', 'origin', 'master'])
+
+    def record(self, fail_auditor=False):
+        import os
+        env = {**os.environ, 'VALIDATED_DATA_CHECK':
+               'python3 scripts/validate-investor-publication.py check --report '
+               + str(self.report_path), 'RUNNER_TEMP': self.tmp.name}
+        if fail_auditor:
+            env['FORCE_AUDIT_FAILURE'] = '1'
+        return self.subprocess.run(
+            ['bash', 'scripts/commit-validated-data.sh', 'Validated test polls',
+             'public/data/investors'], cwd=self.root, env=env,
+            capture_output=True, text=True)
+
+    def test_reviewed_source_fingerprints_are_current(self):
+        import hashlib
+        for path, digest in self.publication.ACQUISITION_SHA256.items():
+            self.assertEqual(hashlib.sha256(
+                (self.source.parent / path).read_bytes()).hexdigest(), digest)
+
+    def test_real_recording_preserves_three_independent_writers(self):
+        for path in sorted(self.publication.INDEPENDENT):
+            self.advance(path)
+        result = self.record()
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.git('fetch', '-q', 'origin', 'master')
+        for path in self.publication.INDEPENDENT:
+            self.assertIn('independent', self.git('show', 'origin/master:' + path))
+        review = json.loads(self.git('show',
+            'origin/master:public/data/investors/review-metadata.json'))[0]
+        self.assertEqual(review['lastSuccessfulPollAt'], self.fresh_clock)
+        self.assertEqual(review['positionsCollectedAt'], self.old_clock)
+        self.assertNotIn('investor-publication', self.publication.guard.ALLOWED)
+
+    def assert_remote_input_refused(self, path):
+        self.advance(path)
+        result = self.record()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('recollect', result.stdout + result.stderr)
+        self.assertIn(path, result.stdout + result.stderr)
+
+    def test_changed_acquisition_refuses(self):
+        self.assert_remote_input_refused('scripts/update-investor-13f.py')
+
+    def test_changed_own_holdings_refuse(self):
+        self.assert_remote_input_refused('public/data/investors/loeb.json')
+
+    def test_unknown_input_refuses(self):
+        self.assert_remote_input_refused('src/data/monthly-fx.json')
+
+    def test_failed_combined_financial_audit_prevents_push(self):
+        self.advance('src/data/automated-etf.json')
+        result = self.record(fail_auditor=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.git('fetch', '-q', 'origin', 'master')
+        reviews = json.loads(self.git('show',
+            'origin/master:public/data/investors/review-metadata.json'))
+        self.assertTrue(all(r['lastSuccessfulPollAt'] == self.old_clock for r in reviews))
+
+    def test_success_without_change_preserves_position_date(self):
+        result = self.publication.audit(self.root, self.report, self.base, self.now)
+        self.assertEqual(result['validated'], len(module.MANAGERS))
+        self.assertTrue(all(r['as_of'] == r['positionsCollectedAt'] == self.old_clock
+                            for r in self.reviews))
+
+    def test_missing_duplicate_and_unexpected_results_refuse(self):
+        variants = [[], self.report['managers'][1:],
+                    self.report['managers'] + [self.report['managers'][0]],
+                    self.report['managers'] + [{'slug': 'unknown', 'status': 'validated'}]]
+        for rows in variants:
+            with self.subTest(rows=len(rows)):
+                bad = {**self.report, 'managers': rows}
+                with self.assertRaisesRegex(ValueError, 'missing, duplicate or unexpected'):
+                    self.publication.audit(self.root, bad, self.base, self.now)
+
+    def test_partial_failure_keeps_file_and_dates_but_validates_others(self):
+        slug = self.report['managers'][0]['slug']
+        self.report['managers'][0] = {'slug': slug, 'status': 'failed', 'reason': 'offline'}
+        self.report['status'] = 'partial'
+        self.reviews[0]['lastSuccessfulPollAt'] = self.old_clock
+        self.write_reviews()
+        result = self.publication.audit(self.root, self.report, self.base, self.now)
+        self.assertEqual(result['retainedFailed'], 1)
+        self.reviews[0]['lastSuccessfulPollAt'] = self.fresh_clock
+        self.write_reviews()
+        with self.assertRaisesRegex(ValueError, 'renewed a retained date'):
+            self.publication.audit(self.root, self.report, self.base, self.now)
+        self.reviews[0]['lastSuccessfulPollAt'] = self.old_clock
+        self.write_reviews()
+        path = self.root / 'public/data/investors' / (slug + '.json')
+        payload = json.loads(path.read_text())
+        payload['data']['snapshot']['holdings'][0]['weight'] = .99
+        path.write_text(json.dumps(payload))
+        with self.assertRaisesRegex(ValueError, 'changed its retained holdings'):
+            self.publication.audit(self.root, self.report, self.base, self.now)
+
+    def test_all_sources_failed_preserves_every_clock_without_certifying_checks(self):
+        self.report['status'] = 'failed'
+        self.report['readyToApply'] = False
+        self.report['managers'] = [{'slug': slug, 'status': 'failed', 'reason': 'offline'}
+                                   for slug in module.MANAGERS]
+        for review in self.reviews:
+            review['lastSuccessfulPollAt'] = self.old_clock
+        self.write_reviews()
+        result = self.publication.audit(self.root, self.report, self.base, self.now)
+        self.assertEqual(result['validated'], 0)
+        self.assertEqual(result['retainedFailed'], len(module.MANAGERS))
+
+    def test_old_failed_filing_does_not_block_other_valid_managers(self):
+        slug = self.report['managers'][0]['slug']
+        path = self.root / 'public/data/investors' / (slug + '.json')
+        payload = json.loads(path.read_text())
+        payload['data']['snapshot']['periodEnd'] = '2020-12-31'
+        path.write_text(json.dumps(payload))
+        self.reviews[0]['data']['snapshot']['periodEnd'] = '2020-12-31'
+        for review in self.reviews:
+            review['lastSuccessfulPollAt'] = self.old_clock
+        self.write_reviews()
+        self.git('add', 'public/data/investors')
+        self.git('commit', '-qm', 'Isolated old retained filing')
+        self.base = self.git('rev-parse', 'HEAD')
+        for review in self.reviews[1:]:
+            review['lastSuccessfulPollAt'] = self.fresh_clock
+        self.write_reviews()
+        self.report['status'] = 'partial'
+        self.report['managers'][0] = {'slug': slug, 'status': 'failed', 'reason': 'offline'}
+        result = self.publication.audit(self.root, self.report, self.base, self.now)
+        self.assertEqual(result['retainedFailed'], 1)
+        self.assertEqual(result['validated'], len(module.MANAGERS) - 1)
+
+    def test_invalid_financial_payload_and_old_report_refuse(self):
+        import datetime as dt
+        old = {**self.report, 'checkedAt': (self.now - dt.timedelta(hours=1)).isoformat()}
+        with self.assertRaisesRegex(ValueError, 'job window'):
+            self.publication.audit(self.root, old, self.base, self.now)
+        slug = next(iter(module.MANAGERS))
+        path = self.root / 'public/data/investors' / (slug + '.json')
+        payload = json.loads(path.read_text())
+        payload['data']['snapshot']['holdings'][0]['weight'] = float('nan')
+        path.write_text(json.dumps(payload))
+        with self.assertRaises(ValueError):
+            self.publication.audit(self.root, self.report, self.base, self.now)
+
+
 if __name__ == '__main__':
     unittest.main()
