@@ -311,4 +311,89 @@ class ClosedMonthRecovery(unittest.TestCase):
         self.assertEqual(observed,[({'series':[CONFIG]},reference)])
 
 
+
+class ReviewedNavPrefix(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        root=pathlib.Path(__file__).resolve().parent
+        cls.rows=json.loads((root/'fixtures/wisdomtree-oil-2020-prefix-20261108.json').read_text())['series']
+        from reviewed_nav_prefix import planned_prefix_sources
+        cls.registered=json.loads((root/'monthly-automation.json').read_text())
+        cls.sources={s['id']:s for s in planned_prefix_sources(cls.registered)['series']}
+
+    def test_two_exact_live_captures_preserve_every_old_value_and_are_idempotent(self):
+        for row in self.rows:
+            with self.subTest(id=row['id']):
+                id=row['id'];before={id:copy.deepcopy(row['previous']),'unrelated':{'unchanged':True}}
+                baseline={id:{'currency':'USD','points':[{'date':m,'price':v}for m,v in row['previous']['points']]}}
+                snapshot=copy.deepcopy(before)
+                result,report=refresh({'series':[self.sources[id]]},before,baseline,dt.datetime(2026,11,8,tzinfo=UTC),lambda *a:copy.deepcopy(row['candidate']))
+                self.assertEqual(report['series'][0]['status'],'validated',report)
+                self.assertEqual(before,snapshot);self.assertEqual(result['unrelated'],before['unrelated'])
+                self.assertEqual(result[id]['periodStart'],'2019-12')
+                after=dict(result[id]['points'])
+                for month,value in before[id]['points']:self.assertEqual(after[month],value)
+                self.assertIn(2020,result[id]['calendarProof']['qualifiedCalendarYears'])
+                nextbase={id:{'currency':'USD','points':[{'date':m,'price':v}for m,v in result[id]['points']]}}
+                again,repeat=refresh({'series':[self.sources[id]]},result,nextbase,dt.datetime(2026,11,8,tzinfo=UTC),lambda *a:copy.deepcopy(row['candidate']))
+                self.assertEqual(repeat['series'][0]['status'],'validated',repeat)
+                self.assertEqual(repeat['series'][0]['sourceState'],'unchanged-verified')
+                self.assertEqual(again[id]['points'],result[id]['points'])
+                self.assertEqual(len(again[id]['points']),len(result[id]['points']))
+
+    def test_no_changed_or_missing_suffix_identity_or_uncorroborated_year_is_admitted(self):
+        row=self.rows[0];id=row['id'];source=self.sources[id];prior=row['previous']
+        baseline={id:{'currency':'USD','points':[{'date':m,'price':v}for m,v in prior['points']]}}
+        for mutation in ['changed','missing','year','identity','currency','policy','quote','duplicate','reordered','empty']:
+            s=copy.deepcopy(source);r=copy.deepcopy(row['candidate']);old=copy.deepcopy(prior)
+            if mutation=='changed':r['points'][-2][1]+=0.00000001
+            elif mutation=='missing':r['points']=[p for p in r['points']if p[0]!=prior['points'][1][0]]
+            elif mutation=='year':r['calendarProof']['checks']=[c for c in r['calendarProof']['checks']if c['year']!=2020]
+            elif mutation=='identity':r['isin']='GB0000000000'
+            elif mutation=='currency':r['currency']='EUR'
+            elif mutation=='policy':s.pop('reviewedHistoryPrefix')
+            elif mutation=='quote':old['parser']='yahoo'
+            elif mutation=='duplicate':r['points'].insert(1,copy.deepcopy(r['points'][0]))
+            elif mutation=='reordered':r['points'][0],r['points'][1]=r['points'][1],r['points'][0]
+            else:r['points']=[]
+            with self.subTest(mutation=mutation):
+                merged,report=refresh({'series':[s]},{id:old},baseline,dt.datetime(2026,11,8,tzinfo=UTC),lambda *a:r)
+                self.assertEqual(report['series'][0]['status'],'failed')
+                self.assertEqual(merged[id],old)
+
+    def test_pending_prefix_is_automatically_targeted_once_and_other_current_series_are_not(self):
+        sources=[self.sources[r['id']]for r in self.rows]+[CONFIG]
+        status={'series':{s['id']:{'status':'validated','periodEnd':'2026-10'}for s in sources}}
+        config={'series':sources};now=dt.datetime(2026,11,8,tzinfo=UTC)
+        chosen=select_series(config,status,retry_failed=True,now=now)
+        self.assertEqual({s['id']for s in chosen['series']},{r['id']for r in self.rows})
+        for r in self.rows:status['series'][r['id']]['periodStart']='2019-12'
+        self.assertEqual(select_series(config,status,retry_failed=True,now=now)['series'],[])
+
+    def test_configuration_is_recorded_only_with_its_individual_validated_observations(self):
+        from reviewed_nav_prefix import recorded_prefix_config
+        selected={'series':[self.sources[r['id']]for r in self.rows]}
+        reports=[]
+        for i,row in enumerate(self.rows):
+            reports.append({'id':row['id'],'status':'validated','record':row['candidate']} if i==0 else {'id':row['id'],'status':'failed','reason':'network unavailable'})
+        before=copy.deepcopy(self.registered)
+        after=recorded_prefix_config(before,selected,reports)
+        a={s['id']:s for s in after['series']};b={s['id']:s for s in before['series']}
+        self.assertEqual(a[self.rows[0]['id']],self.sources[self.rows[0]['id']])
+        self.assertEqual(a[self.rows[1]['id']],b[self.rows[1]['id']])
+        self.assertEqual(before,self.registered)
+        for id in set(a)-{self.rows[0]['id']}:self.assertEqual(a[id],b[id])
+        self.assertEqual(recorded_prefix_config(before,selected,[]),before)
+        self.assertEqual(recorded_prefix_config(before,selected,[{'id':r['id'],'status':'failed'}for r in self.rows]),before)
+
+    def test_canonical_plans_declare_only_the_two_reviewed_prefixes(self):
+        root=pathlib.Path(__file__).resolve().parent
+        canonical={s['id']:s for s in json.loads((root/'official-nav-remainder-sources.json').read_text())if s.get('reviewedHistoryPrefix')}
+        planned={id:s for id,s in self.sources.items()if s.get('reviewedHistoryPrefix')}
+        self.assertEqual(set(canonical),{r['id']for r in self.rows});self.assertEqual(set(planned),set(canonical))
+        for id,s in canonical.items():
+            for key in ['periodStart','isin','currency','navProvider','navHistoryTransport','requiredQualifiedCalendarYears','reviewedHistoryPrefix']:
+                self.assertEqual(planned[id][key],s[key])
+            self.assertIn(2020,s['requiredQualifiedCalendarYears'])
+
 if __name__=='__main__':unittest.main()

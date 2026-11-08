@@ -23,7 +23,7 @@ ORIGIN = 'https://dataspanapi.wisdomtree.com/funddetails/'
 PATH_STYLES = {row['id']: row for row in json.loads((ROOT/'scripts/official-nav-remainder-sources.json').read_text()) if row.get('wisdomPerformancePathStyle')}
 
 
-def acquire(source):
+def acquire(source, *, qualified_identity=None):
     """One bounded browser fallback after an HTTP403, never after invalid data."""
     endpoints=urls(source)
     headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
@@ -38,22 +38,32 @@ def acquire(source):
         if error.code!=403:raise
         attempts.append({'url':url,'transport':'public-widget-http','status':'unavailable','error':'HTTP403'})
     process=subprocess.run(['node',str(Path(__file__).with_name('download-wisdomtree-performance.mjs')),source['id']],
-                           capture_output=True,timeout=100)
+                           capture_output=True,timeout=100,input=json.dumps(qualified_identity).encode() if qualified_identity else b'')
     if process.returncode:raise ValueError('Ordinary public browser performance failed: '+process.stderr.decode(errors='replace')[-1200:])
     if len(process.stdout)>24_000_000:raise ValueError('Oversized browser performance response')
     result=json.loads(process.stdout)
     page=result.get('publicProductPage',{})
-    if page.get('url')!=source['sourceUrl'] or page.get('isin')!=source['isin'] or page.get('status')!=200:
-        raise ValueError('Ordinary browser product page not independently verified')
-    dt.datetime.fromisoformat(page['checkedAt'].replace('Z','+00:00'))
+    product_ok=(page.get('url')==source['sourceUrl'] and page.get('isin')==source['isin'] and page.get('status')==200)
+    navigation=result.get('publicApiNavigation',{})
+    identity_ok=(isinstance(qualified_identity,dict) and qualified_identity.get('kind')=='official-exact-product-pdf-v1'
+        and qualified_identity.get('isin')==source['isin'] and qualified_identity.get('currency')==source['navCurrency']
+        and qualified_identity.get('sourceUrl')==source['factsheetUrl'] and len(qualified_identity.get('sha256',''))==64)
+    navigation_ok=(identity_ok and result.get('qualifiedIdentity')==qualified_identity
+        and navigation.get('requestedUrls')==endpoints and navigation.get('productPageAttempted') is False
+        and navigation.get('identityFrom')=='fresh exact-product official PDF')
+    if not product_ok and not navigation_ok:
+        raise ValueError('Ordinary browser product page or PDF-bound public API navigation not verified')
+    dt.datetime.fromisoformat((navigation if navigation_ok else page)['checkedAt'].replace('Z','+00:00'))
     rows=result.get('results',[])
     if len(rows)!=2 or [r.get('url')for r in rows]!=endpoints or any(r.get('status')!=200 for r in rows):
         raise ValueError('Browser performance source scope changed')
     bodies={r['url']:base64.b64decode(r['body'],validate=True)for r in rows}
     if any(len(body)>8_000_000 for body in bodies.values()):raise ValueError('Oversized issuer performance payload')
-    return bodies,{'actualNavTransport':'ordinary-public-browser-json',
-                   'publicProductPage':page,
-                   'accessAttempts':attempts+[{'url':url,'transport':'ordinary-public-browser-json','status':'received'}for url in endpoints]}
+    return bodies,{'actualNavTransport':'ordinary-public-api-navigation' if navigation_ok else 'ordinary-public-browser-json',
+                   **({'publicApiNavigation':navigation,'officialPdfIdentity':qualified_identity} if navigation_ok else {'publicProductPage':page}),
+                   **({'failedApiNavigation':result['failedApiNavigation']}if result.get('failedApiNavigation')else{}),
+                   'accessAttempts':attempts+[{'url':r['url'],**({'actualUrl':r['actualUrl'],'redirectQualification':r.get('redirectQualification')}if r.get('actualUrl')else{}),'transport':'ordinary-public-api-navigation'if navigation_ok else'ordinary-public-browser-json','status':'received'}for r in rows]}
+
 
 
 def anchor_for(source):

@@ -287,14 +287,20 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         from wisdomtree_performance_history import urls as performance_urls,parse as performance_parse,anchor_for,acquire
         from collect_public_issuer import wisdomtree_factsheet
         graph_url,table_url=performance_urls(source)
+        # Reacquire and fully qualify the exact official product PDF before any
+        # browser alternative may use the publisher's generic chart client.
+        identity_body=document(source['factsheetUrl'])
+        fresh=wisdomtree_factsheet(identity_body,{
+            **source,'name':source['wisdomProductName'],'currency':native,'documentType':source.get('documentType','wisdomtree')},now)
+        identity_binding={'kind':'official-exact-product-pdf-v1','isin':isin,'currency':native,
+            'sourceUrl':source['factsheetUrl'],'sha256':hashlib.sha256(identity_body).hexdigest(),
+            'asOf':fresh['characteristics']['asOf'],'checkedAt':now.isoformat()}
         transport={}
         if document_fetch is download:
-            bodies,transport=acquire(source)
+            bodies,transport=acquire(source,qualified_identity=identity_binding)
             graph,table=[json.loads(document(url,supplied=bodies[url]))for url in (graph_url,table_url)]
         else:
             graph,table=[json.loads(document(url))for url in (graph_url,table_url)]
-        fresh=wisdomtree_factsheet(document(source['factsheetUrl']),{
-            **source,'name':source['wisdomProductName'],'currency':native,'documentType':source.get('documentType','wisdomtree')},now)
         registry=source['calendarRegistry']
         if registry not in ['src/data/automated-etf.json','src/data/non-bond-etf-records.json','src/data/exposure-etf-expansion-records.json']:
             raise ValueError('Unqualified WisdomTree calendar registry')
@@ -495,7 +501,8 @@ def main():
         # Once recorded, subsequent PRs do not retry old failures just to count them.
         sources=[s for s in sources if registered.get(s['id'],{}).get('parser')=='official-nav' and
                  (s['id']not in observed or (s.get('navHistoryTransport')=='official-dataspan-nav-tr' and
-                  active.get(s['id'],{}).get('calendarProof',{}).get('navHistoryTransport')!=s['navHistoryTransport']))]
+                  active.get(s['id'],{}).get('calendarProof',{}).get('navHistoryTransport')!=s['navHistoryTransport'])
+                  or (s.get('reviewedHistoryPrefix') and active.get(s['id'],{}).get('periodStart')!=s['periodStart']))]
     scope={'requestedIds':args.only or [s['id']for s in sources],'expectedIds':[s['id']for s in sources]}
     if args.missing_source_controls:
         scope['selection']='configured-official-nav-without-transport-qualification'
