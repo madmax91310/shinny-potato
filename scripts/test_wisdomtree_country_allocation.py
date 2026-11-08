@@ -57,11 +57,45 @@ class CountryAllocation(unittest.TestCase):
 
     def test_bad_api_country_preserves_the_other_qualified_fields(self):
         from wisdomtree_ranked_fields import parse_fields
-        for change in ({'pct':True},{'pct':float('nan')},{'pct':1.2},{'dt':'2026-11-01T00:00:00Z'},{'dt':'2026-10-22T00:00:00Z'},{'name':'Unknown'},{'rankClassification':'Aggregate Country'}):
+        for change in ({'pct':True},{'pct':float('nan')},{'pct':1.2},{'dt':'2026-11-01T00:00:00Z'},{'dt':'2026-10-22T00:00:00Z'},{'name':''},{'rankClassification':'Aggregate Country'}):
             data=copy.deepcopy(self.payload);next(r for r in data if r['rankClassificationID']==6).update(change)
             values,errors=parse_fields(data,self.share,NOW,'WCLD LN')
             self.assertEqual(set(values),{'sectors','holdings'})
             self.assertEqual([e['field'] for e in errors],['countries'])
+    def test_published_unknown_country_is_preserved_without_redistribution(self):
+        from collect_wisdomtree_holdings import known_shares
+        for isin,label in [('IE0002Y8CX98','defence'),('IE00BZ56SW52','quality-dividend')]:
+            with self.subTest(isin=isin):
+                share=next(s for s in known_shares() if s['isin']==isin)
+                page=gzip.decompress((FIX/'official-documents'/('wisdomtree-'+label+'-country-20261108.html.gz')).read_bytes()).decode()
+                rows=next(t['rows'][1:] for t in Page(page).tables if t['context'].endswith('Country Allocation') and t['rows'][0]==['Country','Weight (%)'])
+                result=primary_country(page,share,rows,dt.datetime(2026,11,8,tzinfo=dt.timezone.utc))
+                unknown=next(r for r in result['rows'] if r['name']=='Unknown')
+                self.assertGreater(unknown['weightPct'],0)
+                self.assertEqual(result['unclassifiedWeightPct'],unknown['weightPct'])
+                self.assertEqual(result['asOf'],'2026-11-05')
+                fixture=json.loads((FIX/'wisdomtree-country-consumers-20261108.json').read_text())[isin]
+                for key in ('rows','asOf','unclassifiedWeightPct'):
+                    self.assertEqual(result[key],fixture[key])
+                self.assertAlmostEqual(sum(r['weightPct'] for r in result['rows']),100,places=3)
+                if label=='defence':
+                    self.assertEqual(unknown['weightPct'],.2491)
+                    self.assertEqual(result['rows'][0],{'name':'France','weightPct':33.4966})
+
+    def test_api_unknown_and_cash_do_not_turn_into_countries_or_renormalisation(self):
+        data=copy.deepcopy(self.payload)
+        selected=next(r for r in data if r['rankClassificationID']==6)
+        residual=copy.deepcopy(selected);residual.update(name='Unknown',pct=.002491)
+        selected['pct']-=.002491
+        data.append(residual)
+        result=api_country(data,self.share,NOW)
+        self.assertEqual(result['unclassifiedWeightPct'],.2491)
+        self.assertEqual(next(r for r in result['rows'] if r['name']=='Unknown')['weightPct'],.2491)
+        residual['name']='Cash'
+        result=api_country(data,self.share,NOW)
+        self.assertNotIn('unclassifiedWeightPct',result)
+        self.assertEqual(next(r for r in result['rows'] if r['name']=='Cash')['weightPct'],.2491)
+
     def test_missing_primary_stream_does_not_borrow_nav_or_other_dates(self):
         with patch('wisdomtree_country_allocation.flight_values',return_value=iter([])):
             result=wisdomtree(self.page,self.share,NOW)
