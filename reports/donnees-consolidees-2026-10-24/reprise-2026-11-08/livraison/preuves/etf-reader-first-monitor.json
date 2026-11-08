@@ -1,0 +1,3451 @@
+{
+  "updatedAt": "2026-11-08T18:20:14Z",
+  "monitorGitBlob": "7b0b3f85e4c12ce474de8c9351c558c1a5eae213",
+  "workflow": {
+    "monitorVersion": 3,
+    "name": "ETF et compositions d\u2019indices",
+    "runId": 42508166410,
+    "attempt": 1,
+    "headSha": "08bbf0e6206557f4b7217062a8bffdc83d7fb94f",
+    "createdAt": "2026-11-08T18:05:01Z",
+    "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+    "completedAt": "2026-11-08T18:20:14Z",
+    "status": "failure",
+    "lastSuccessAt": "2026-10-23T11:36:53Z",
+    "collectionStatus": "failure",
+    "validationStatus": "success",
+    "recordingStatus": "success",
+    "publicationStatus": "success",
+    "lastCollectionSuccessAt": null,
+    "legacyLastCollectionSuccessAt": "2026-10-23T11:36:53Z",
+    "lastPublicationSuccessAt": "2026-11-08T18:18:55.499Z",
+    "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42508166410",
+    "publishedCodeSha": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
+    "publishedDataSha": "114c71f45a53aa96c47835746e7156fe312da1ff",
+    "publicationEvidence": {
+      "kind": "matching-public-source-fingerprints",
+      "checkedAt": "2026-11-08T18:23:04.790630+00:00",
+      "publishedAt": "2026-11-08T18:18:55.499Z",
+      "codeSha": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
+      "dataSha": "114c71f45a53aa96c47835746e7156fe312da1ff",
+      "receiptCommit": "114c71f45a53aa96c47835746e7156fe312da1ff",
+      "fileCount": 4
+    },
+    "publicationReceipt": {
+      "schemaVersion": 1,
+      "commit": "114c71f45a53aa96c47835746e7156fe312da1ff",
+      "files": {
+        "src/data/annual-fx.json": "f0811fa7d2ed876c1d4c5f5567417f1a8825a5ed",
+        "src/data/automated-etf.json": "92254ff4c5a684409b7cafb5f30c8329ff8e70bb",
+        "src/data/automated-indices.json": "7045cd0a2306331c553d10af9091a0f258978e39",
+        "src/data/official-performance-currencies.json": "beb96851b2c29a6117ab3c840262c153e3737aa1"
+      }
+    },
+    "dataFailures": {
+      "etf-observation-IE00B5BMR087": {
+        "name": "ETF IE00B5BMR087",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00B6R52259": {
+        "name": "ETF IE00B6R52259",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-additional-observation-IE0002Y8CX98": {
+        "name": "ETF IE0002Y8CX98",
+        "completedAt": "2026-11-08T18:11:13Z",
+        "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42508166410",
+        "cause": "Primary HTTP rankings unavailable; same exact-share public browser response acquired. Original error: HTTP Error 403: Forbidden ; Missing or ambiguous issuer overview date: []",
+        "field": "overview-date, rankings-primary-http",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98"
+        ],
+        "sourceAttempted": null
+      },
+      "etf-additional-observation-IE00BM8R0J59": {
+        "name": "ETF IE00BM8R0J59",
+        "completedAt": "2026-10-28T21:05:03Z",
+        "sourcePhaseCompletedAt": "2026-10-28T21:05:03Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "d4a0de0b9a53f0da35ba200dfd9e0700d7a32f6cf2dfabd537c3e5f6cece425e",
+          "reportedAt": "2026-10-28T21:02:26.122070+00:00",
+          "schema": "shares",
+          "artifactId": 12852165534,
+          "sourcePhaseStartedAt": "2026-10-28T20:59:43Z",
+          "sourcePhaseCompletedAt": "2026-10-28T21:05:03Z",
+          "scopeRef": "f2064c8c66920dea463b98f6736a5c1e33fe377a5bab1b2671bd5f7ebc7a9b6c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 105,
+            "requestedIdsCount": 105,
+            "networkRequestedIdsCount": 103
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40765217296",
+        "cause": "Unqualified Global X key-information boundary",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/qyld/"
+        ],
+        "sourceAttempted": null,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-observation-IE00B43HR379": {
+        "name": "ETF IE00B43HR379",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-additional-observation-GB00BLD4ZL17": {
+        "name": "ETF GB00BLD4ZL17",
+        "cause": "CoinShares graph/overview dates cannot be aligned",
+        "field": "performance",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40375386021",
+        "completedAt": "2026-10-26T18:30:53Z",
+        "sourcePhaseCompletedAt": "2026-10-26T18:30:53Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "41c845e227f8ed1bde86147c55241c8bd388ef90ef519c7e27d5a43be2579d3d",
+          "reportedAt": "2026-10-26T18:27:34.079806+00:00",
+          "schema": "shares",
+          "artifactId": 12678020051,
+          "sourcePhaseStartedAt": "2026-10-26T18:26:14Z",
+          "sourcePhaseCompletedAt": "2026-10-26T18:30:53Z",
+          "scopeRef": "2bfffe90e8c2d02120f3ad032cab65a530ea6da5a4cb7e74bfeb5ec08ce94fe8",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 105,
+            "requestedIdsCount": 105,
+            "networkRequestedIdsCount": 102
+          }
+        },
+        "sourceUrls": [
+          "https://coinshares.com/en/d/etp/factsheet/physical-btc/"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-GB00BLD4ZM24": {
+        "name": "ETF GB00BLD4ZM24",
+        "cause": "CoinShares graph/overview dates cannot be aligned",
+        "field": "performance",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40375386021",
+        "completedAt": "2026-10-26T18:30:53Z",
+        "sourcePhaseCompletedAt": "2026-10-26T18:30:53Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "41c845e227f8ed1bde86147c55241c8bd388ef90ef519c7e27d5a43be2579d3d",
+          "reportedAt": "2026-10-26T18:27:34.079806+00:00",
+          "schema": "shares",
+          "artifactId": 12678020051,
+          "sourcePhaseStartedAt": "2026-10-26T18:26:14Z",
+          "sourcePhaseCompletedAt": "2026-10-26T18:30:53Z",
+          "scopeRef": "2bfffe90e8c2d02120f3ad032cab65a530ea6da5a4cb7e74bfeb5ec08ce94fe8",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 105,
+            "requestedIdsCount": 105,
+            "networkRequestedIdsCount": 102
+          }
+        },
+        "sourceUrls": [
+          "https://coinshares.com/en/d/etp/factsheet/physical-ethereum/"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE000UL6CLP7": {
+        "name": "ETF IE000UL6CLP7",
+        "completedAt": "2026-10-28T21:05:03Z",
+        "sourcePhaseCompletedAt": "2026-10-28T21:05:03Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "d4a0de0b9a53f0da35ba200dfd9e0700d7a32f6cf2dfabd537c3e5f6cece425e",
+          "reportedAt": "2026-10-28T21:02:26.122070+00:00",
+          "schema": "shares",
+          "artifactId": 12852165534,
+          "sourcePhaseStartedAt": "2026-10-28T20:59:43Z",
+          "sourcePhaseCompletedAt": "2026-10-28T21:05:03Z",
+          "scopeRef": "f2064c8c66920dea463b98f6736a5c1e33fe377a5bab1b2671bd5f7ebc7a9b6c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 105,
+            "requestedIdsCount": 105,
+            "networkRequestedIdsCount": 103
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40765217296",
+        "cause": "Incomplete Silver Miners HTML: trading details missing",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://globalxetfs.eu/funds/silv/"
+        ],
+        "sourceAttempted": null,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE000W8WMSL2": {
+        "name": "ETF IE000W8WMSL2",
+        "completedAt": "2026-11-08T18:11:13Z",
+        "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42508166410",
+        "cause": "Primary HTTP rankings unavailable; same exact-share public browser response acquired. Original error: HTTP Error 403: Forbidden",
+        "field": "rankings-primary-http",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2"
+        ],
+        "sourceAttempted": null
+      },
+      "etf-additional-observation-IE00BZ56SW52": {
+        "name": "ETF IE00BZ56SW52",
+        "completedAt": "2026-11-08T18:11:13Z",
+        "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42508166410",
+        "cause": "Primary HTTP rankings unavailable; same exact-share public browser response acquired. Original error: HTTP Error 403: Forbidden",
+        "field": "rankings-primary-http",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52"
+        ],
+        "sourceAttempted": null
+      },
+      "etf-additional-observation-IE00BJGWQN72": {
+        "name": "ETF IE00BJGWQN72",
+        "completedAt": "2026-11-08T18:11:13Z",
+        "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42508166410",
+        "cause": "Primary HTTP rankings unavailable; same exact-share public browser response acquired. Original error: HTTP Error 403: Forbidden",
+        "field": "rankings-primary-http",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72"
+        ],
+        "sourceAttempted": null
+      },
+      "etf-additional-observation-IE00BYWQWR46": {
+        "name": "ETF IE00BYWQWR46",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/espo-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42398479144",
+        "completedAt": "2026-11-07T19:03:16Z",
+        "sourcePhaseCompletedAt": "2026-11-07T19:03:16Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "e47d525d5fc95ba1bf130244e3a4a1b48e46b3214bf4bee4df265dda7d7183f7",
+          "reportedAt": "2026-11-07T18:55:13.078763+00:00",
+          "schema": "shares",
+          "artifactId": 13586577430,
+          "sourcePhaseStartedAt": "2026-11-07T18:52:04Z",
+          "sourcePhaseCompletedAt": "2026-11-07T19:03:16Z",
+          "scopeRef": "749ae0dbc90fc23e56a131b5bee8f18d8e6dee2e1dc785a52abac6e0e468d04c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 116
+          }
+        },
+        "sourceUrls": [
+          "https://www.vaneck.com/fr/en/library/fact-sheets/espo-fact-sheet.pdf"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE0007Y8Y157": {
+        "name": "ETF IE0007Y8Y157",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42398479144",
+        "completedAt": "2026-11-07T19:03:16Z",
+        "sourcePhaseCompletedAt": "2026-11-07T19:03:16Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "e47d525d5fc95ba1bf130244e3a4a1b48e46b3214bf4bee4df265dda7d7183f7",
+          "reportedAt": "2026-11-07T18:55:13.078763+00:00",
+          "schema": "shares",
+          "artifactId": 13586577430,
+          "sourcePhaseStartedAt": "2026-11-07T18:52:04Z",
+          "sourcePhaseCompletedAt": "2026-11-07T19:03:16Z",
+          "scopeRef": "749ae0dbc90fc23e56a131b5bee8f18d8e6dee2e1dc785a52abac6e0e468d04c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 116
+          }
+        },
+        "sourceUrls": [
+          "https://www.vaneck.com/fr/en/library/fact-sheets/qntm-fact-sheet.pdf"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE000M7V94E1": {
+        "name": "ETF IE000M7V94E1",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/nucl-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42398479144",
+        "completedAt": "2026-11-07T19:03:16Z",
+        "sourcePhaseCompletedAt": "2026-11-07T19:03:16Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "e47d525d5fc95ba1bf130244e3a4a1b48e46b3214bf4bee4df265dda7d7183f7",
+          "reportedAt": "2026-11-07T18:55:13.078763+00:00",
+          "schema": "shares",
+          "artifactId": 13586577430,
+          "sourcePhaseStartedAt": "2026-11-07T18:52:04Z",
+          "sourcePhaseCompletedAt": "2026-11-07T19:03:16Z",
+          "scopeRef": "749ae0dbc90fc23e56a131b5bee8f18d8e6dee2e1dc785a52abac6e0e468d04c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 116
+          }
+        },
+        "sourceUrls": [
+          "https://www.vaneck.com/fr/en/library/fact-sheets/nucl-fact-sheet.pdf"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE000YU9K6K2": {
+        "name": "ETF IE000YU9K6K2",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/jedi-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42398479144",
+        "completedAt": "2026-11-07T19:03:16Z",
+        "sourcePhaseCompletedAt": "2026-11-07T19:03:16Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "e47d525d5fc95ba1bf130244e3a4a1b48e46b3214bf4bee4df265dda7d7183f7",
+          "reportedAt": "2026-11-07T18:55:13.078763+00:00",
+          "schema": "shares",
+          "artifactId": 13586577430,
+          "sourcePhaseStartedAt": "2026-11-07T18:52:04Z",
+          "sourcePhaseCompletedAt": "2026-11-07T19:03:16Z",
+          "scopeRef": "749ae0dbc90fc23e56a131b5bee8f18d8e6dee2e1dc785a52abac6e0e468d04c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 116
+          }
+        },
+        "sourceUrls": [
+          "https://www.vaneck.com/fr/en/library/fact-sheets/jedi-fact-sheet.pdf"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE000YYE6WK5": {
+        "name": "ETF IE000YYE6WK5",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/dfns-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42398479144",
+        "completedAt": "2026-11-07T19:03:16Z",
+        "sourcePhaseCompletedAt": "2026-11-07T19:03:16Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "e47d525d5fc95ba1bf130244e3a4a1b48e46b3214bf4bee4df265dda7d7183f7",
+          "reportedAt": "2026-11-07T18:55:13.078763+00:00",
+          "schema": "shares",
+          "artifactId": 13586577430,
+          "sourcePhaseStartedAt": "2026-11-07T18:52:04Z",
+          "sourcePhaseCompletedAt": "2026-11-07T19:03:16Z",
+          "scopeRef": "749ae0dbc90fc23e56a131b5bee8f18d8e6dee2e1dc785a52abac6e0e468d04c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 116
+          }
+        },
+        "sourceUrls": [
+          "https://www.vaneck.com/fr/en/library/fact-sheets/dfns-fact-sheet.pdf"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE00BDFBTQ78": {
+        "name": "ETF IE00BDFBTQ78",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/gdig-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42398479144",
+        "completedAt": "2026-11-07T19:03:16Z",
+        "sourcePhaseCompletedAt": "2026-11-07T19:03:16Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "e47d525d5fc95ba1bf130244e3a4a1b48e46b3214bf4bee4df265dda7d7183f7",
+          "reportedAt": "2026-11-07T18:55:13.078763+00:00",
+          "schema": "shares",
+          "artifactId": 13586577430,
+          "sourcePhaseStartedAt": "2026-11-07T18:52:04Z",
+          "sourcePhaseCompletedAt": "2026-11-07T19:03:16Z",
+          "scopeRef": "749ae0dbc90fc23e56a131b5bee8f18d8e6dee2e1dc785a52abac6e0e468d04c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 116
+          }
+        },
+        "sourceUrls": [
+          "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-NL0009690239": {
+        "name": "ETF NL0009690239",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/tret-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42398479144",
+        "completedAt": "2026-11-07T19:03:16Z",
+        "sourcePhaseCompletedAt": "2026-11-07T19:03:16Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "e47d525d5fc95ba1bf130244e3a4a1b48e46b3214bf4bee4df265dda7d7183f7",
+          "reportedAt": "2026-11-07T18:55:13.078763+00:00",
+          "schema": "shares",
+          "artifactId": 13586577430,
+          "sourcePhaseStartedAt": "2026-11-07T18:52:04Z",
+          "sourcePhaseCompletedAt": "2026-11-07T19:03:16Z",
+          "scopeRef": "749ae0dbc90fc23e56a131b5bee8f18d8e6dee2e1dc785a52abac6e0e468d04c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 116
+          }
+        },
+        "sourceUrls": [
+          "https://www.vaneck.com/fr/en/library/fact-sheets/tret-fact-sheet.pdf"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-NL0011683594": {
+        "name": "ETF NL0011683594",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/tdiv-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n; browser initialisation failed: Public VanEck gate controls: [{\"id\":\"\",\"role\":null,\"label\":\"I agree\",\"visible\":false}]\nfile:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:28:27\n\nNode.js v20.20.2\n",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42398479144",
+        "completedAt": "2026-11-07T19:03:16Z",
+        "sourcePhaseCompletedAt": "2026-11-07T19:03:16Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "e47d525d5fc95ba1bf130244e3a4a1b48e46b3214bf4bee4df265dda7d7183f7",
+          "reportedAt": "2026-11-07T18:55:13.078763+00:00",
+          "schema": "shares",
+          "artifactId": 13586577430,
+          "sourcePhaseStartedAt": "2026-11-07T18:52:04Z",
+          "sourcePhaseCompletedAt": "2026-11-07T19:03:16Z",
+          "scopeRef": "749ae0dbc90fc23e56a131b5bee8f18d8e6dee2e1dc785a52abac6e0e468d04c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 116
+          }
+        },
+        "sourceUrls": [
+          "https://www.vaneck.com/fr/en/library/fact-sheets/tdiv-fact-sheet.pdf"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE00BQQP9F84": {
+        "name": "ETF IE00BQQP9F84",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/gdx-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41:27\n\nNode.js v20.20.2\n; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41:27\n\nNode.js v20.20.2\n; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41:27\n\nNode.js v20.20.2\n",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41486688221",
+        "completedAt": "2026-11-02T19:00:50Z",
+        "sourcePhaseCompletedAt": "2026-11-02T19:00:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "20722db57b56e00760a350f3fcfc14da4dbb69d3ab11c328fa8569cf770386fe",
+          "reportedAt": "2026-11-02T18:53:16.683859+00:00",
+          "schema": "shares",
+          "artifactId": 13171450258,
+          "sourcePhaseStartedAt": "2026-11-02T18:50:27Z",
+          "sourcePhaseCompletedAt": "2026-11-02T19:00:50Z",
+          "scopeRef": "b41ace73a9307825290941a3e4e1e66343e49ba8322b634cb2da1618de8c199a",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 114
+          }
+        },
+        "sourceUrls": [
+          "https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-presentation-performance-IE0007Y8Y157": {
+        "name": "ETF IE0007Y8Y157",
+        "completedAt": "2026-11-04T19:34:07Z",
+        "sourcePhaseCompletedAt": "2026-11-04T19:34:07Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "presentation-performance.json",
+          "sha256": "d7a325bc3a2be0b11177ceb8684f52c9413891019516d015f16ed8f70279a4ee",
+          "reportedAt": "2026-11-04T19:32:09.865820+00:00",
+          "schema": "shares",
+          "artifactId": 13356413096,
+          "sourcePhaseStartedAt": "2026-11-04T19:27:32Z",
+          "sourcePhaseCompletedAt": "2026-11-04T19:34:07Z",
+          "scopeRef": "eb2ccb988aba4b8236cf868a3da8bb86525674a8b28c97d11c8bc30b23fa3203",
+          "scopeSummary": {
+            "kind": "collect_presentation_performance",
+            "expectedIdsCount": 4,
+            "requestedIdsCount": 4,
+            "networkRequestedIdsCount": 3
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41897106813",
+        "cause": "Older cumulative observation; active performance preserved",
+        "field": "Collecte ETF",
+        "sourceAttempted": null,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "presentation-performance.json",
+          "sha256": "2d6cfcf615fdd6de700940ad5c296830a1654e9d9324fcc0de874ae8508373b9",
+          "reportedAt": "2026-11-08T18:09:46.359532+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "5828ec105fb696ce54207c37e070a8dbe91176ee672cb05863e231d828b21ba8",
+          "scopeSummary": {
+            "kind": "collect_presentation_performance",
+            "expectedIdsCount": 4,
+            "requestedIdsCount": 4,
+            "networkRequestedIdsCount": 4
+          }
+        }
+      },
+      "etf-additional-observation-CH0454664001": {
+        "name": "ETF CH0454664001",
+        "completedAt": "2026-11-07T10:49:27Z",
+        "sourcePhaseCompletedAt": "2026-11-07T10:49:27Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "d400bddb21dfe9fec07dd2d77f4b64490fdf333eb4623dfc77b5aa9b3ddbd196",
+          "reportedAt": "2026-11-07T10:45:04.036344+00:00",
+          "schema": "shares",
+          "artifactId": 13571536737,
+          "sourcePhaseStartedAt": "2026-11-07T10:42:15Z",
+          "sourcePhaseCompletedAt": "2026-11-07T10:49:27Z",
+          "scopeRef": "6a7c0426ed9ec5c923a64a0416b3686932da5b659d9cfc5ea53c98abaf044c01",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 123
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42365065207",
+        "cause": "HTTP Error 410: Gone",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://api.primary.21shares.com/api/product_details/ABTC"
+        ],
+        "sourceAttempted": null,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "index-sp-global-dividend-aristocrats-composition": {
+        "name": "S&P Global Dividend Aristocrats Quality Income \u00b7 composition",
+        "completedAt": "2026-11-08T18:11:13Z",
+        "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "index-observation.json",
+          "sha256": "aee684a79f127fb53ec832a8efeaa24cb8d2f376b10aa1853c1ccb5a5497cef2",
+          "reportedAt": "2026-11-08T18:09:57.666796+00:00",
+          "schema": "indices",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "729e8b4f2d70990b5bff47b9cae5912bc82364159f477ee2931cbeab34bed09d",
+          "scopeSummary": {
+            "kind": "refresh_index_sources",
+            "expectedIdsCount": 113,
+            "requestedIdsCount": 109,
+            "networkRequestedIdsCount": 103
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42508166410",
+        "cause": "S&P direct download failed: HTTP Error 403: Forbidden; official handoff failed: S&P official handoff expired or future: retrieval must be within 48h",
+        "sourceAttempted": null
+      },
+      "index-sp-euro-dividend-aristocrats-composition": {
+        "name": "S&P Euro High Yield Dividend Aristocrats \u00b7 composition",
+        "completedAt": "2026-11-08T18:11:13Z",
+        "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "index-observation.json",
+          "sha256": "aee684a79f127fb53ec832a8efeaa24cb8d2f376b10aa1853c1ccb5a5497cef2",
+          "reportedAt": "2026-11-08T18:09:57.666796+00:00",
+          "schema": "indices",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "729e8b4f2d70990b5bff47b9cae5912bc82364159f477ee2931cbeab34bed09d",
+          "scopeSummary": {
+            "kind": "refresh_index_sources",
+            "expectedIdsCount": 113,
+            "requestedIdsCount": 109,
+            "networkRequestedIdsCount": 103
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42508166410",
+        "cause": "S&P direct download failed: HTTP Error 403: Forbidden; official handoff failed: S&P official handoff expired or future: retrieval must be within 48h",
+        "sourceAttempted": null
+      },
+      "etf-observation-IE00BDBRDM35": {
+        "name": "ETF IE00BDBRDM35",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-additional-observation-JE00B1VS3770": {
+        "name": "ETF JE00B1VS3770",
+        "completedAt": "2026-11-08T09:42:23Z",
+        "sourcePhaseCompletedAt": "2026-11-08T09:42:23Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "cd625d5cedaf699e64eeb3e8aa1688553e0749e89c7451102d16db39b2d8cadb",
+          "reportedAt": "2026-11-08T09:38:34.799093+00:00",
+          "schema": "shares",
+          "artifactId": 13612109082,
+          "sourcePhaseStartedAt": "2026-11-08T09:34:57Z",
+          "sourcePhaseCompletedAt": "2026-11-08T09:42:23Z",
+          "scopeRef": "724ce8e987ceccb51fc275952bccb3875320e2e7722d8714df86ec5fc8a923ea",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 119
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42467788644",
+        "cause": "Primary HTTP directory access failed: HTTP Error 403: Forbidden; exact native AUM independently qualified via the ordinary public browser",
+        "field": "aum-primary-http",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770"
+        ],
+        "sourceAttempted": null,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-GB00BJYDH287": {
+        "name": "ETF GB00BJYDH287",
+        "completedAt": "2026-11-08T09:42:23Z",
+        "sourcePhaseCompletedAt": "2026-11-08T09:42:23Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "cd625d5cedaf699e64eeb3e8aa1688553e0749e89c7451102d16db39b2d8cadb",
+          "reportedAt": "2026-11-08T09:38:34.799093+00:00",
+          "schema": "shares",
+          "artifactId": 13612109082,
+          "sourcePhaseStartedAt": "2026-11-08T09:34:57Z",
+          "sourcePhaseCompletedAt": "2026-11-08T09:42:23Z",
+          "scopeRef": "724ce8e987ceccb51fc275952bccb3875320e2e7722d8714df86ec5fc8a923ea",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 119
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42467788644",
+        "cause": "Primary HTTP directory access failed: HTTP Error 403: Forbidden; exact native AUM independently qualified via the ordinary public browser",
+        "field": "aum-primary-http",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287"
+        ],
+        "sourceAttempted": null,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-GB00B15KXQ89": {
+        "name": "ETF GB00B15KXQ89",
+        "completedAt": "2026-11-08T09:42:23Z",
+        "sourcePhaseCompletedAt": "2026-11-08T09:42:23Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "cd625d5cedaf699e64eeb3e8aa1688553e0749e89c7451102d16db39b2d8cadb",
+          "reportedAt": "2026-11-08T09:38:34.799093+00:00",
+          "schema": "shares",
+          "artifactId": 13612109082,
+          "sourcePhaseStartedAt": "2026-11-08T09:34:57Z",
+          "sourcePhaseCompletedAt": "2026-11-08T09:42:23Z",
+          "scopeRef": "724ce8e987ceccb51fc275952bccb3875320e2e7722d8714df86ec5fc8a923ea",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 119
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42467788644",
+        "cause": "Primary HTTP directory access failed: HTTP Error 403: Forbidden; exact native AUM independently qualified via the ordinary public browser",
+        "field": "aum-primary-http",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
+        ],
+        "sourceAttempted": null,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE00B1FZS913": {
+        "name": "ETF IE00B1FZS913",
+        "completedAt": "2026-11-03T09:52:04Z",
+        "sourcePhaseCompletedAt": "2026-11-03T09:52:04Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "f15573aa50380162ce6e3b5247f82ffd6de8ead4b31c5a2e0380932408df30b0",
+          "reportedAt": "2026-11-03T09:47:45.732221+00:00",
+          "schema": "shares",
+          "artifactId": 13220711257,
+          "sourcePhaseStartedAt": "2026-11-03T09:44:54Z",
+          "sourcePhaseCompletedAt": "2026-11-03T09:52:04Z",
+          "scopeRef": "e68ac46a1448ab8a7d1fa2ce277a162f7519206aebcb0ef68a0372d1b6196bca",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 119
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41613500362",
+        "cause": "Signed allocation and holdings dates disagree",
+        "field": "Collecte ETF",
+        "sourceAttempted": null,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE00B14X4S71": {
+        "name": "ETF IE00B14X4S71",
+        "completedAt": "2026-11-03T09:52:04Z",
+        "sourcePhaseCompletedAt": "2026-11-03T09:52:04Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "f15573aa50380162ce6e3b5247f82ffd6de8ead4b31c5a2e0380932408df30b0",
+          "reportedAt": "2026-11-03T09:47:45.732221+00:00",
+          "schema": "shares",
+          "artifactId": 13220711257,
+          "sourcePhaseStartedAt": "2026-11-03T09:44:54Z",
+          "sourcePhaseCompletedAt": "2026-11-03T09:52:04Z",
+          "scopeRef": "e68ac46a1448ab8a7d1fa2ce277a162f7519206aebcb0ef68a0372d1b6196bca",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 119
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41613500362",
+        "cause": "Signed allocation and holdings dates disagree",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://www.ishares.com/uk/individual/en/products/251715/?siteEntryPassthrough=true&switchLocale=y"
+        ],
+        "sourceAttempted": null,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE00BD4TXV59": {
+        "name": "ETF IE00BD4TXV59",
+        "completedAt": "2026-11-03T08:14:58Z",
+        "sourcePhaseCompletedAt": "2026-11-03T08:14:58Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "3e32ab870ea3688ea8fe9c3132131b149911e49fb068e44c2d613c4601366449",
+          "reportedAt": "2026-11-03T08:03:50.380444+00:00",
+          "schema": "shares",
+          "artifactId": 13215535366,
+          "sourcePhaseStartedAt": "2026-11-03T08:00:58Z",
+          "sourcePhaseCompletedAt": "2026-11-03T08:14:58Z",
+          "scopeRef": "8b2ff81a6b38e9b962ea09cd679f41c0fbf61596624cb9a036a5e6acd9473e08",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 123
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/41600148933",
+        "cause": "No current UBS exact-share factsheet published: https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf: <urlopen error timed out> ; https://www.swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20261031-en.pdf: <urlopen error timed out> ; https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf: <urlopen error timed out> ; https://www.swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf: <urlopen error timed out> ; https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-2026",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-{month_end}-en.pdf"
+        ],
+        "sourceAttempted": null,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-observation-IE00B3FH7618": {
+        "name": "ETF IE00B3FH7618",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-additional-observation-DE000A0H08Q4": {
+        "name": "ETF DE000A0H08Q4",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "628afbdb2baa9322a173e4035e9ca0bb702bc2113cd89e521b19cdabc6848fd8",
+          "reportedAt": "2026-11-05T16:35:19.728734+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "941a2203c3d8f40a6c970b4c46bf578573b0c956f7afb748d27f760e8317ce56",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 114
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE00B02KXK85": {
+        "name": "ETF IE00B02KXK85",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "628afbdb2baa9322a173e4035e9ca0bb702bc2113cd89e521b19cdabc6848fd8",
+          "reportedAt": "2026-11-05T16:35:19.728734+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "941a2203c3d8f40a6c970b4c46bf578573b0c956f7afb748d27f760e8317ce56",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 114
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE00B40B8R38": {
+        "name": "ETF IE00B40B8R38",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "628afbdb2baa9322a173e4035e9ca0bb702bc2113cd89e521b19cdabc6848fd8",
+          "reportedAt": "2026-11-05T16:35:19.728734+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "941a2203c3d8f40a6c970b4c46bf578573b0c956f7afb748d27f760e8317ce56",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 114
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE00B52SF786": {
+        "name": "ETF IE00B52SF786",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "628afbdb2baa9322a173e4035e9ca0bb702bc2113cd89e521b19cdabc6848fd8",
+          "reportedAt": "2026-11-05T16:35:19.728734+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "941a2203c3d8f40a6c970b4c46bf578573b0c956f7afb748d27f760e8317ce56",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 114
+          }
+        },
+        "sourceUrls": [
+          "https://www.ishares.com/uk/individual/en/products/253721/?siteEntryPassthrough=true&switchLocale=y"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE00B5WHFQ43": {
+        "name": "ETF IE00B5WHFQ43",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "628afbdb2baa9322a173e4035e9ca0bb702bc2113cd89e521b19cdabc6848fd8",
+          "reportedAt": "2026-11-05T16:35:19.728734+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "941a2203c3d8f40a6c970b4c46bf578573b0c956f7afb748d27f760e8317ce56",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 114
+          }
+        },
+        "sourceUrls": [
+          "https://www.ishares.com/uk/individual/en/products/253734/?siteEntryPassthrough=true&switchLocale=y"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE00B1FZS574": {
+        "name": "ETF IE00B1FZS574",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "628afbdb2baa9322a173e4035e9ca0bb702bc2113cd89e521b19cdabc6848fd8",
+          "reportedAt": "2026-11-05T16:35:19.728734+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "941a2203c3d8f40a6c970b4c46bf578573b0c956f7afb748d27f760e8317ce56",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 114
+          }
+        },
+        "sourceUrls": [
+          "https://www.ishares.com/uk/individual/en/products/251879/?siteEntryPassthrough=true&switchLocale=y"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE00B8KGV557": {
+        "name": "ETF IE00B8KGV557",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "628afbdb2baa9322a173e4035e9ca0bb702bc2113cd89e521b19cdabc6848fd8",
+          "reportedAt": "2026-11-05T16:35:19.728734+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "941a2203c3d8f40a6c970b4c46bf578573b0c956f7afb748d27f760e8317ce56",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 114
+          }
+        },
+        "sourceUrls": [
+          "https://www.ishares.com/uk/individual/en/products/251380/?siteEntryPassthrough=true&switchLocale=y"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE00BSKRJZ44": {
+        "name": "ETF IE00BSKRJZ44",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "628afbdb2baa9322a173e4035e9ca0bb702bc2113cd89e521b19cdabc6848fd8",
+          "reportedAt": "2026-11-05T16:35:19.728734+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "941a2203c3d8f40a6c970b4c46bf578573b0c956f7afb748d27f760e8317ce56",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 114
+          }
+        },
+        "sourceUrls": [
+          "https://www.ishares.com/uk/individual/en/products/272124/?siteEntryPassthrough=true&switchLocale=y"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE00BZ048462": {
+        "name": "ETF IE00BZ048462",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "628afbdb2baa9322a173e4035e9ca0bb702bc2113cd89e521b19cdabc6848fd8",
+          "reportedAt": "2026-11-05T16:35:19.728734+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "941a2203c3d8f40a6c970b4c46bf578573b0c956f7afb748d27f760e8317ce56",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 114
+          }
+        },
+        "sourceUrls": [
+          "https://www.ishares.com/uk/individual/en/products/288500/?siteEntryPassthrough=true&switchLocale=y"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE00BZ6V7883": {
+        "name": "ETF IE00BZ6V7883",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "628afbdb2baa9322a173e4035e9ca0bb702bc2113cd89e521b19cdabc6848fd8",
+          "reportedAt": "2026-11-05T16:35:19.728734+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "941a2203c3d8f40a6c970b4c46bf578573b0c956f7afb748d27f760e8317ce56",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 114
+          }
+        },
+        "sourceUrls": [
+          "https://www.ishares.com/uk/individual/en/products/283722/?siteEntryPassthrough=true&switchLocale=y"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-observation-IE00B4L5Y983": {
+        "name": "ETF IE00B4L5Y983",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00BKM4GZ66": {
+        "name": "ETF IE00BKM4GZ66",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00B4L5YX21": {
+        "name": "ETF IE00B4L5YX21",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00BF4RFH31": {
+        "name": "ETF IE00BF4RFH31",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00BZCQB185": {
+        "name": "ETF IE00BZCQB185",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00B1FZS467": {
+        "name": "ETF IE00B1FZS467",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE000I8KRLL9": {
+        "name": "ETF IE000I8KRLL9",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE000RDRMSD1": {
+        "name": "ETF IE000RDRMSD1",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00B0M62X26": {
+        "name": "ETF IE00B0M62X26",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00B1FZS350": {
+        "name": "ETF IE00B1FZS350",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00B3F81R35": {
+        "name": "ETF IE00B3F81R35",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00B4JNQZ49": {
+        "name": "ETF IE00B4JNQZ49",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00B4WXJJ64": {
+        "name": "ETF IE00B4WXJJ64",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00B53SZB19": {
+        "name": "ETF IE00B53SZB19",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00B66F4759": {
+        "name": "ETF IE00B66F4759",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00B8FHGS14": {
+        "name": "ETF IE00B8FHGS14",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00BYZK4776": {
+        "name": "ETF IE00BYZK4776",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00BYYHSQ67": {
+        "name": "ETF IE00BYYHSQ67",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00B1XNHC34": {
+        "name": "ETF IE00B1XNHC34",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE0000N55FP4": {
+        "name": "ETF IE0000N55FP4",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-observation-IE00BJ5JP329": {
+        "name": "ETF IE00BJ5JP329",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": null,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42054359477",
+        "completedAt": "2026-11-05T16:40:50Z",
+        "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "c24b883d3ce3e1c4184c41d5d45c30d2c0f744d58d75bb1fd3f59833f9863d53",
+          "reportedAt": "2026-11-05T16:31:39.887397+00:00",
+          "schema": "shares",
+          "artifactId": 13433068939,
+          "sourcePhaseStartedAt": "2026-11-05T16:29:32Z",
+          "sourcePhaseCompletedAt": "2026-11-05T16:40:50Z",
+          "scopeRef": "2a0140689c7d3cbe3c24f7588b821a74fb35087172adc28fd8d5d7c8d5c7a2d8",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 16
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "observation.json",
+          "sha256": "8b1a0a31269019b1e4dd90893f6d81f57ec118471bbad3322ed862b05e157197",
+          "reportedAt": "2026-11-08T18:07:13.567837+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "d8f39b60fa7c226c9cf46ec41ac4ebf0a68ddca86787b39b58aabf9682d5c8ed",
+          "scopeSummary": {
+            "kind": "collect_etf_pilot",
+            "expectedIdsCount": 42,
+            "requestedIdsCount": 42,
+            "networkRequestedIdsCount": 42
+          }
+        }
+      },
+      "etf-additional-observation-FR0011550185": {
+        "name": "ETF FR0011550185",
+        "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20261031: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found",
+        "field": "countries",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42238454396",
+        "completedAt": "2026-11-06T15:29:45Z",
+        "sourcePhaseCompletedAt": "2026-11-06T15:29:45Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "b72f1a7771eb3306414347b75f4f3772b6865ff54f2e5a062faf9faf94e66f85",
+          "reportedAt": "2026-11-06T15:26:02.744374+00:00",
+          "schema": "shares",
+          "artifactId": 13516927695,
+          "sourcePhaseStartedAt": "2026-11-06T15:23:02Z",
+          "sourcePhaseCompletedAt": "2026-11-06T15:29:45Z",
+          "scopeRef": "bc9e725e46ece6d6f38a6d628e77cb962dc2d00192fd4f8d5ec71aabdea655bc",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 121
+          }
+        },
+        "sourceUrls": [
+          "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-FR0011550193": {
+        "name": "ETF FR0011550193",
+        "completedAt": "2026-11-06T07:16:20Z",
+        "sourcePhaseCompletedAt": "2026-11-06T07:16:20Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "1a47814f1f1cbc9d766fe9e07e6d01e976b1279117e2eaf68255fabfe835962f",
+          "reportedAt": "2026-11-06T07:12:25.559531+00:00",
+          "schema": "shares",
+          "artifactId": 13484064623,
+          "sourcePhaseStartedAt": "2026-11-06T07:05:30Z",
+          "sourcePhaseCompletedAt": "2026-11-06T07:16:20Z",
+          "scopeRef": "386fd255df4706d28ecea76b7c5cd4bf36d129862118aa5c1ff6450f4a1c20c5",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 121
+          }
+        },
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42178574174",
+        "cause": "HTTP Error 503: Service Unavailable",
+        "field": "Collecte ETF",
+        "sourceAttempted": null,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE000QDFFK00": {
+        "name": "ETF IE000QDFFK00",
+        "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20261031: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found",
+        "field": "countries",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42238454396",
+        "completedAt": "2026-11-06T15:29:45Z",
+        "sourcePhaseCompletedAt": "2026-11-06T15:29:45Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "b72f1a7771eb3306414347b75f4f3772b6865ff54f2e5a062faf9faf94e66f85",
+          "reportedAt": "2026-11-06T15:26:02.744374+00:00",
+          "schema": "shares",
+          "artifactId": 13516927695,
+          "sourcePhaseStartedAt": "2026-11-06T15:23:02Z",
+          "sourcePhaseCompletedAt": "2026-11-06T15:29:45Z",
+          "scopeRef": "bc9e725e46ece6d6f38a6d628e77cb962dc2d00192fd4f8d5ec71aabdea655bc",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 121
+          }
+        },
+        "sourceUrls": [
+          "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-additional-observation-IE000DQLYVB9": {
+        "name": "ETF IE000DQLYVB9",
+        "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20261031: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found",
+        "field": "exposures",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42238454396",
+        "completedAt": "2026-11-06T15:29:45Z",
+        "sourcePhaseCompletedAt": "2026-11-06T15:29:45Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "b72f1a7771eb3306414347b75f4f3772b6865ff54f2e5a062faf9faf94e66f85",
+          "reportedAt": "2026-11-06T15:26:02.744374+00:00",
+          "schema": "shares",
+          "artifactId": 13516927695,
+          "sourcePhaseStartedAt": "2026-11-06T15:23:02Z",
+          "sourcePhaseCompletedAt": "2026-11-06T15:29:45Z",
+          "scopeRef": "bc9e725e46ece6d6f38a6d628e77cb962dc2d00192fd4f8d5ec71aabdea655bc",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 121
+          }
+        },
+        "sourceUrls": [
+          "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf"
+        ],
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "additional-observation.json",
+          "sha256": "87a1c225e99357c547e6f2193365f48af828293429bf3966aa9d921cc0b819c2",
+          "reportedAt": "2026-11-08T18:07:43.324240+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "7ecaae9920dfebca19d96deb09611d0aff13dd934e38f4eac0a68151ccc8678c",
+          "scopeSummary": {
+            "kind": "refresh_additional_etf",
+            "expectedIdsCount": 126,
+            "requestedIdsCount": 126,
+            "networkRequestedIdsCount": 122
+          }
+        }
+      },
+      "etf-presentation-performance-FR001400U5Q4": {
+        "name": "ETF FR001400U5Q4",
+        "cause": "HTTP Error 404: Not Found",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42238454396",
+        "completedAt": "2026-11-06T15:29:45Z",
+        "sourcePhaseCompletedAt": "2026-11-06T15:29:45Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "presentation-performance.json",
+          "sha256": "af78de1d36cb5242b531ff0ea67d12876d88c8e257ed594c162080e410ae36b5",
+          "reportedAt": "2026-11-06T15:27:42.131598+00:00",
+          "schema": "shares",
+          "artifactId": 13516927695,
+          "sourcePhaseStartedAt": "2026-11-06T15:23:02Z",
+          "sourcePhaseCompletedAt": "2026-11-06T15:29:45Z",
+          "scopeRef": "9717685a7b6dd5b71d3105fff3565c0a7b7020b29079fad400abafb6b3db7c37",
+          "scopeSummary": {
+            "kind": "collect_presentation_performance",
+            "expectedIdsCount": 4,
+            "requestedIdsCount": 4,
+            "networkRequestedIdsCount": 2
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "presentation-performance.json",
+          "sha256": "2d6cfcf615fdd6de700940ad5c296830a1654e9d9324fcc0de874ae8508373b9",
+          "reportedAt": "2026-11-08T18:09:46.359532+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "5828ec105fb696ce54207c37e070a8dbe91176ee672cb05863e231d828b21ba8",
+          "scopeSummary": {
+            "kind": "collect_presentation_performance",
+            "expectedIdsCount": 4,
+            "requestedIdsCount": 4,
+            "networkRequestedIdsCount": 4
+          }
+        }
+      },
+      "etf-presentation-performance-LU2970735911": {
+        "name": "ETF LU2970735911",
+        "cause": "HTTP Error 404: Not Found",
+        "field": "Collecte ETF",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/42238454396",
+        "completedAt": "2026-11-06T15:29:45Z",
+        "sourcePhaseCompletedAt": "2026-11-06T15:29:45Z",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "presentation-performance.json",
+          "sha256": "af78de1d36cb5242b531ff0ea67d12876d88c8e257ed594c162080e410ae36b5",
+          "reportedAt": "2026-11-06T15:27:42.131598+00:00",
+          "schema": "shares",
+          "artifactId": 13516927695,
+          "sourcePhaseStartedAt": "2026-11-06T15:23:02Z",
+          "sourcePhaseCompletedAt": "2026-11-06T15:29:45Z",
+          "scopeRef": "9717685a7b6dd5b71d3105fff3565c0a7b7020b29079fad400abafb6b3db7c37",
+          "scopeSummary": {
+            "kind": "collect_presentation_performance",
+            "expectedIdsCount": 4,
+            "requestedIdsCount": 4,
+            "networkRequestedIdsCount": 2
+          }
+        },
+        "sourceAttempted": null,
+        "historicalDiscovery": true,
+        "unverifiedRecovery": true,
+        "unverifiedReason": "Le rapport composite ne prouve pas le contr\u00f4le cibl\u00e9 du champ ou de la branche initialement en \u00e9chec.",
+        "recoveryEvidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "presentation-performance.json",
+          "sha256": "2d6cfcf615fdd6de700940ad5c296830a1654e9d9324fcc0de874ae8508373b9",
+          "reportedAt": "2026-11-08T18:09:46.359532+00:00",
+          "schema": "shares",
+          "artifactId": 13628382757,
+          "sourcePhaseStartedAt": "2026-11-08T18:05:04Z",
+          "sourcePhaseCompletedAt": "2026-11-08T18:11:13Z",
+          "scopeRef": "5828ec105fb696ce54207c37e070a8dbe91176ee672cb05863e231d828b21ba8",
+          "scopeSummary": {
+            "kind": "collect_presentation_performance",
+            "expectedIdsCount": 4,
+            "requestedIdsCount": 4,
+            "networkRequestedIdsCount": 4
+          }
+        }
+      }
+    }
+  }
+}

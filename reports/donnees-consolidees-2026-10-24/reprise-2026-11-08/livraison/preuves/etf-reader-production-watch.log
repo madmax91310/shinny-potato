@@ -1,0 +1,3118 @@
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push less than a minute ago
+
+JOBS
+* refresh (ID 128815230859)
+  ✓ Set up job
+  * Run actions/checkout@v7.0.1
+  * Run actions/setup-python@v7.0.0
+  * Run actions/setup-node@v7.0.0
+  * Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  * Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  * Check official HTML parser runtime before collecting
+  * Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  * Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  * Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  * Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  * Run npm ci
+  * Prepare the ordinary public issuer browser
+  * Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  * Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  * Run node scripts/test-comparison-automation.mjs
+  * Run node scripts/test-vaneck-document.mjs
+  * Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  * Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  * Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  * Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  * Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  * Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  * Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  * Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  * Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  * Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  * Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  * Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  * Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  * Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  * Run node scripts/test-presentation-etf.mjs
+  * Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  * Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  * Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  * Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  * Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  * Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  * Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  * Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  * Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  * Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  * Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  * Qualify the exact public AUM browser route without publication
+  * Run actions/upload-artifact@v7.0.1
+  * Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  * Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  * Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  * Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  * Run node scripts/test-annual-rollover.mjs
+  * Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  * Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  * Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  * Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  * Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  * Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  * Run node scripts/audit-comparison-automation.mjs
+  * Collect observations: ishares
+  * Collect observations: amundi
+  * Collect observations: ssga
+  * Collect observations: additional
+  * Collect observations: presentation_performance
+  * Collect observations: fx
+  * Collect observations: indices
+  * Run node scripts/build-automation-targets.mjs
+  * Run node scripts/report-automation-coverage.mjs --write
+  * Validate ETF observations and consumers
+  * Run actions/upload-artifact@v7.0.1
+  * Validate collected observations
+  * Commit validated observations
+  * Post Run actions/checkout@v7.0.1
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push less than a minute ago
+
+JOBS
+* refresh (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  * Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  * Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  * Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  * Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  * Run npm ci
+  * Prepare the ordinary public issuer browser
+  * Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  * Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  * Run node scripts/test-comparison-automation.mjs
+  * Run node scripts/test-vaneck-document.mjs
+  * Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  * Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  * Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  * Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  * Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  * Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  * Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  * Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  * Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  * Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  * Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  * Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  * Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  * Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  * Run node scripts/test-presentation-etf.mjs
+  * Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  * Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  * Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  * Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  * Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  * Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  * Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  * Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  * Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  * Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  * Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  * Qualify the exact public AUM browser route without publication
+  * Run actions/upload-artifact@v7.0.1
+  * Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  * Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  * Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  * Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  * Run node scripts/test-annual-rollover.mjs
+  * Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  * Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  * Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  * Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  * Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  * Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  * Run node scripts/audit-comparison-automation.mjs
+  * Collect observations: ishares
+  * Collect observations: amundi
+  * Collect observations: ssga
+  * Collect observations: additional
+  * Collect observations: presentation_performance
+  * Collect observations: fx
+  * Collect observations: indices
+  * Run node scripts/build-automation-targets.mjs
+  * Run node scripts/report-automation-coverage.mjs --write
+  * Validate ETF observations and consumers
+  * Run actions/upload-artifact@v7.0.1
+  * Validate collected observations
+  * Commit validated observations
+  * Post Run actions/setup-node@v7.0.0
+  * Post Run actions/setup-python@v7.0.0
+  * Post Run actions/checkout@v7.0.1
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 1 minute ago
+
+JOBS
+* refresh (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  * Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  * Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  * Run node scripts/test-comparison-automation.mjs
+  * Run node scripts/test-vaneck-document.mjs
+  * Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  * Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  * Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  * Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  * Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  * Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  * Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  * Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  * Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  * Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  * Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  * Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  * Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  * Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  * Run node scripts/test-presentation-etf.mjs
+  * Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  * Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  * Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  * Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  * Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  * Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  * Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  * Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  * Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  * Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  * Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  * Qualify the exact public AUM browser route without publication
+  * Run actions/upload-artifact@v7.0.1
+  * Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  * Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  * Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  * Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  * Run node scripts/test-annual-rollover.mjs
+  * Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  * Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  * Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  * Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  * Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  * Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  * Run node scripts/audit-comparison-automation.mjs
+  * Collect observations: ishares
+  * Collect observations: amundi
+  * Collect observations: ssga
+  * Collect observations: additional
+  * Collect observations: presentation_performance
+  * Collect observations: fx
+  * Collect observations: indices
+  * Run node scripts/build-automation-targets.mjs
+  * Run node scripts/report-automation-coverage.mjs --write
+  * Validate ETF observations and consumers
+  * Run actions/upload-artifact@v7.0.1
+  * Validate collected observations
+  * Commit validated observations
+  * Post Run actions/setup-node@v7.0.0
+  * Post Run actions/setup-python@v7.0.0
+  * Post Run actions/checkout@v7.0.1
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 1 minute ago
+
+JOBS
+* refresh (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  * Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  * Run node scripts/test-comparison-automation.mjs
+  * Run node scripts/test-vaneck-document.mjs
+  * Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  * Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  * Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  * Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  * Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  * Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  * Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  * Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  * Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  * Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  * Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  * Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  * Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  * Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  * Run node scripts/test-presentation-etf.mjs
+  * Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  * Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  * Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  * Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  * Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  * Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  * Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  * Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  * Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  * Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  * Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  * Qualify the exact public AUM browser route without publication
+  * Run actions/upload-artifact@v7.0.1
+  * Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  * Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  * Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  * Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  * Run node scripts/test-annual-rollover.mjs
+  * Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  * Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  * Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  * Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  * Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  * Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  * Run node scripts/audit-comparison-automation.mjs
+  * Collect observations: ishares
+  * Collect observations: amundi
+  * Collect observations: ssga
+  * Collect observations: additional
+  * Collect observations: presentation_performance
+  * Collect observations: fx
+  * Collect observations: indices
+  * Run node scripts/build-automation-targets.mjs
+  * Run node scripts/report-automation-coverage.mjs --write
+  * Validate ETF observations and consumers
+  * Run actions/upload-artifact@v7.0.1
+  * Validate collected observations
+  * Commit validated observations
+  * Post Run actions/setup-node@v7.0.0
+  * Post Run actions/setup-python@v7.0.0
+  * Post Run actions/checkout@v7.0.1
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 2 minutes ago
+
+JOBS
+* refresh (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  * Collect observations: ishares
+  * Collect observations: amundi
+  * Collect observations: ssga
+  * Collect observations: additional
+  * Collect observations: presentation_performance
+  * Collect observations: fx
+  * Collect observations: indices
+  * Run node scripts/build-automation-targets.mjs
+  * Run node scripts/report-automation-coverage.mjs --write
+  * Validate ETF observations and consumers
+  * Run actions/upload-artifact@v7.0.1
+  * Validate collected observations
+  * Commit validated observations
+  * Post Run actions/setup-node@v7.0.0
+  * Post Run actions/setup-python@v7.0.0
+  * Post Run actions/checkout@v7.0.1
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 2 minutes ago
+
+JOBS
+* refresh (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  * Collect observations: additional
+  * Collect observations: presentation_performance
+  * Collect observations: fx
+  * Collect observations: indices
+  * Run node scripts/build-automation-targets.mjs
+  * Run node scripts/report-automation-coverage.mjs --write
+  * Validate ETF observations and consumers
+  * Run actions/upload-artifact@v7.0.1
+  * Validate collected observations
+  * Commit validated observations
+  * Post Run actions/setup-node@v7.0.0
+  * Post Run actions/setup-python@v7.0.0
+  * Post Run actions/checkout@v7.0.1
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 3 minutes ago
+
+JOBS
+* refresh (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  * Collect observations: additional
+  * Collect observations: presentation_performance
+  * Collect observations: fx
+  * Collect observations: indices
+  * Run node scripts/build-automation-targets.mjs
+  * Run node scripts/report-automation-coverage.mjs --write
+  * Validate ETF observations and consumers
+  * Run actions/upload-artifact@v7.0.1
+  * Validate collected observations
+  * Commit validated observations
+  * Post Run actions/setup-node@v7.0.0
+  * Post Run actions/setup-python@v7.0.0
+  * Post Run actions/checkout@v7.0.1
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 3 minutes ago
+
+JOBS
+* refresh (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  * Collect observations: additional
+  * Collect observations: presentation_performance
+  * Collect observations: fx
+  * Collect observations: indices
+  * Run node scripts/build-automation-targets.mjs
+  * Run node scripts/report-automation-coverage.mjs --write
+  * Validate ETF observations and consumers
+  * Run actions/upload-artifact@v7.0.1
+  * Validate collected observations
+  * Commit validated observations
+  * Post Run actions/setup-node@v7.0.0
+  * Post Run actions/setup-python@v7.0.0
+  * Post Run actions/checkout@v7.0.1
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 4 minutes ago
+
+JOBS
+* refresh (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  * Collect observations: additional
+  * Collect observations: presentation_performance
+  * Collect observations: fx
+  * Collect observations: indices
+  * Run node scripts/build-automation-targets.mjs
+  * Run node scripts/report-automation-coverage.mjs --write
+  * Validate ETF observations and consumers
+  * Run actions/upload-artifact@v7.0.1
+  * Validate collected observations
+  * Commit validated observations
+  * Post Run actions/setup-node@v7.0.0
+  * Post Run actions/setup-python@v7.0.0
+  * Post Run actions/checkout@v7.0.1
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 4 minutes ago
+
+JOBS
+* refresh (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  * Collect observations: presentation_performance
+  * Collect observations: fx
+  * Collect observations: indices
+  * Run node scripts/build-automation-targets.mjs
+  * Run node scripts/report-automation-coverage.mjs --write
+  * Validate ETF observations and consumers
+  * Run actions/upload-artifact@v7.0.1
+  * Validate collected observations
+  * Commit validated observations
+  * Post Run actions/setup-node@v7.0.0
+  * Post Run actions/setup-python@v7.0.0
+  * Post Run actions/checkout@v7.0.1
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 5 minutes ago
+
+JOBS
+* refresh (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  * Validate ETF observations and consumers
+  * Run actions/upload-artifact@v7.0.1
+  * Validate collected observations
+  * Commit validated observations
+  * Post Run actions/setup-node@v7.0.0
+  * Post Run actions/setup-python@v7.0.0
+  * Post Run actions/checkout@v7.0.1
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 5 minutes ago
+
+JOBS
+* refresh (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  * Validate ETF observations and consumers
+  * Run actions/upload-artifact@v7.0.1
+  * Validate collected observations
+  * Commit validated observations
+  * Post Run actions/setup-node@v7.0.0
+  * Post Run actions/setup-python@v7.0.0
+  * Post Run actions/checkout@v7.0.1
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 6 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  * Run actions/checkout@v7.0.1
+  * Run actions/setup-node@v7.0.0
+  * Run node scripts/test-validated-data-publisher.mjs
+  * Run node scripts/prepare-validated-data.mjs
+  * Run node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
+  * Run npm ci
+  * Run npm run audit:data-catalog
+  * Run npm run build
+  * Require the producer's exact validated observations after all generators
+  * Seal actual composite data
+  * Record actual code and data identities
+  * Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 6 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  * Run actions/checkout@v7.0.1
+  * Run actions/setup-node@v7.0.0
+  * Run node scripts/test-validated-data-publisher.mjs
+  * Run node scripts/prepare-validated-data.mjs
+  * Run node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
+  * Run npm ci
+  * Run npm run audit:data-catalog
+  * Run npm run build
+  * Require the producer's exact validated observations after all generators
+  * Seal actual composite data
+  * Record actual code and data identities
+  * Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 7 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  * Run actions/checkout@v7.0.1
+  * Run actions/setup-node@v7.0.0
+  * Run node scripts/test-validated-data-publisher.mjs
+  * Run node scripts/prepare-validated-data.mjs
+  * Run node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
+  * Run npm ci
+  * Run npm run audit:data-catalog
+  * Run npm run build
+  * Require the producer's exact validated observations after all generators
+  * Seal actual composite data
+  * Record actual code and data identities
+  * Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 7 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  * Run actions/checkout@v7.0.1
+  * Run actions/setup-node@v7.0.0
+  * Run node scripts/test-validated-data-publisher.mjs
+  * Run node scripts/prepare-validated-data.mjs
+  * Run node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
+  * Run npm ci
+  * Run npm run audit:data-catalog
+  * Run npm run build
+  * Require the producer's exact validated observations after all generators
+  * Seal actual composite data
+  * Record actual code and data identities
+  * Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 8 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  * Run actions/checkout@v7.0.1
+  * Run actions/setup-node@v7.0.0
+  * Run node scripts/test-validated-data-publisher.mjs
+  * Run node scripts/prepare-validated-data.mjs
+  * Run node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
+  * Run npm ci
+  * Run npm run audit:data-catalog
+  * Run npm run build
+  * Require the producer's exact validated observations after all generators
+  * Seal actual composite data
+  * Record actual code and data identities
+  * Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 8 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  * Run actions/checkout@v7.0.1
+  * Run actions/setup-node@v7.0.0
+  * Run node scripts/test-validated-data-publisher.mjs
+  * Run node scripts/prepare-validated-data.mjs
+  * Run node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
+  * Run npm ci
+  * Run npm run audit:data-catalog
+  * Run npm run build
+  * Require the producer's exact validated observations after all generators
+  * Seal actual composite data
+  * Record actual code and data identities
+  * Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 9 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  * Run actions/checkout@v7.0.1
+  * Run actions/setup-node@v7.0.0
+  * Run node scripts/test-validated-data-publisher.mjs
+  * Run node scripts/prepare-validated-data.mjs
+  * Run node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
+  * Run npm ci
+  * Run npm run audit:data-catalog
+  * Run npm run build
+  * Require the producer's exact validated observations after all generators
+  * Seal actual composite data
+  * Record actual code and data identities
+  * Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 10 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  * Run actions/checkout@v7.0.1
+  * Run actions/setup-node@v7.0.0
+  * Run node scripts/test-validated-data-publisher.mjs
+  * Run node scripts/prepare-validated-data.mjs
+  * Run node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
+  * Run npm ci
+  * Run npm run audit:data-catalog
+  * Run npm run build
+  * Require the producer's exact validated observations after all generators
+  * Seal actual composite data
+  * Record actual code and data identities
+  * Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 10 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  * Run actions/checkout@v7.0.1
+  * Run actions/setup-node@v7.0.0
+  * Run node scripts/test-validated-data-publisher.mjs
+  * Run node scripts/prepare-validated-data.mjs
+  * Run node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
+  * Run npm ci
+  * Run npm run audit:data-catalog
+  * Run npm run build
+  * Require the producer's exact validated observations after all generators
+  * Seal actual composite data
+  * Record actual code and data identities
+  * Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 11 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  * Run actions/checkout@v7.0.1
+  * Run actions/setup-node@v7.0.0
+  * Run node scripts/test-validated-data-publisher.mjs
+  * Run node scripts/prepare-validated-data.mjs
+  * Run node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
+  * Run npm ci
+  * Run npm run audit:data-catalog
+  * Run npm run build
+  * Require the producer's exact validated observations after all generators
+  * Seal actual composite data
+  * Record actual code and data identities
+  * Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 11 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  * Run actions/checkout@v7.0.1
+  * Run actions/setup-node@v7.0.0
+  * Run node scripts/test-validated-data-publisher.mjs
+  * Run node scripts/prepare-validated-data.mjs
+  * Run node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
+  * Run npm ci
+  * Run npm run audit:data-catalog
+  * Run npm run build
+  * Require the producer's exact validated observations after all generators
+  * Seal actual composite data
+  * Record actual code and data identities
+  * Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 12 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  * Run actions/checkout@v7.0.1
+  * Run actions/setup-node@v7.0.0
+  * Run node scripts/test-validated-data-publisher.mjs
+  * Run node scripts/prepare-validated-data.mjs
+  * Run node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
+  * Run npm ci
+  * Run npm run audit:data-catalog
+  * Run npm run build
+  * Require the producer's exact validated observations after all generators
+  * Seal actual composite data
+  * Record actual code and data identities
+  * Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 12 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  * Run actions/checkout@v7.0.1
+  * Run actions/setup-node@v7.0.0
+  * Run node scripts/test-validated-data-publisher.mjs
+  * Run node scripts/prepare-validated-data.mjs
+  * Run node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
+  * Run npm ci
+  * Run npm run audit:data-catalog
+  * Run npm run build
+  * Require the producer's exact validated observations after all generators
+  * Seal actual composite data
+  * Record actual code and data identities
+  * Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 13 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run node scripts/test-validated-data-publisher.mjs
+  ✓ Run node scripts/prepare-validated-data.mjs
+  * Run node scripts/compose-fallback-snapshot.mjs --published "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12" --data "114c71f45a53aa96c47835746e7156fe312da1ff"
+  * Run npm ci
+  * Run npm run audit:data-catalog
+  * Run npm run build
+  * Require the producer's exact validated observations after all generators
+  * Seal actual composite data
+  * Record actual code and data identities
+  * Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/setup-node@v7.0.0
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 13 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run node scripts/test-validated-data-publisher.mjs
+  ✓ Run node scripts/prepare-validated-data.mjs
+  ✓ Run node scripts/compose-fallback-snapshot.mjs --published "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12" --data "114c71f45a53aa96c47835746e7156fe312da1ff"
+  ✓ Run npm ci
+  ✓ Run npm run audit:data-catalog
+  * Run npm run build
+  * Require the producer's exact validated observations after all generators
+  * Seal actual composite data
+  * Record actual code and data identities
+  * Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/setup-node@v7.0.0
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 14 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run node scripts/test-validated-data-publisher.mjs
+  ✓ Run node scripts/prepare-validated-data.mjs
+  ✓ Run node scripts/compose-fallback-snapshot.mjs --published "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12" --data "114c71f45a53aa96c47835746e7156fe312da1ff"
+  ✓ Run npm ci
+  ✓ Run npm run audit:data-catalog
+  ✓ Run npm run build
+  ✓ Require the producer's exact validated observations after all generators
+  ✓ Seal actual composite data
+  ✓ Record actual code and data identities
+  * Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/setup-node@v7.0.0
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 14 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* deploy / publish (ID 128816862554)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run node scripts/test-validated-data-publisher.mjs
+  ✓ Run node scripts/prepare-validated-data.mjs
+  ✓ Run node scripts/compose-fallback-snapshot.mjs --published "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12" --data "114c71f45a53aa96c47835746e7156fe312da1ff"
+  ✓ Run npm ci
+  ✓ Run npm run audit:data-catalog
+  ✓ Run npm run build
+  ✓ Require the producer's exact validated observations after all generators
+  ✓ Seal actual composite data
+  ✓ Record actual code and data identities
+  ✓ Run npx playwright install --with-deps chromium
+  * Run node scripts/smoke-data-routes.mjs
+  * Run actions/configure-pages@v6.0.0
+  * Run actions/upload-pages-artifact@v5.0.0
+  * Restore source identity for the publication order guard
+  * Run bash scripts/check-pages-head.sh
+  * Run actions/deploy-pages@v5.0.1
+  * Verify actual public data
+  * Run actions/upload-artifact@v7.0.1
+  * Run actions/upload-artifact@v7.0.1
+  * Post Run actions/setup-node@v7.0.0
+  * Post Run actions/checkout@v7.0.1
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* master Update active ETF issuer data · 42508166410
+Triggered via push about 15 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+✓ deploy / publish in 8m51s (ID 128816862554)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run node scripts/test-validated-data-publisher.mjs
+  ✓ Run node scripts/prepare-validated-data.mjs
+  ✓ Run node scripts/compose-fallback-snapshot.mjs --published "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12" --data "114c71f45a53aa96c47835746e7156fe312da1ff"
+  ✓ Run npm ci
+  ✓ Run npm run audit:data-catalog
+  ✓ Run npm run build
+  ✓ Require the producer's exact validated observations after all generators
+  ✓ Seal actual composite data
+  ✓ Record actual code and data identities
+  ✓ Run npx playwright install --with-deps chromium
+  ✓ Run node scripts/smoke-data-routes.mjs
+  ✓ Run actions/configure-pages@v6.0.0
+  ✓ Run actions/upload-pages-artifact@v5.0.0
+  ✓ Restore source identity for the publication order guard
+  ✓ Run bash scripts/check-pages-head.sh
+  ✓ Run actions/deploy-pages@v5.0.1
+  ✓ Verify actual public data
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+* report-failures (ID 128819206108)
+- deploy / publish-code in 0s (ID 128819206738)
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
+X master Update active ETF issuer data · 42508166410
+Triggered via push about 15 minutes ago
+
+JOBS
+✓ refresh in 6m9s (ID 128815230859)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-python@v7.0.0
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run python -m pip install --require-hashes -r scripts/python-installer-requirements.txt
+  ✓ Run python -m pip install -c scripts/python-constraints.txt Pillow==13.0.0 beautifulsoup4==4.15.0
+  ✓ Check official HTML parser runtime before collecting
+  ✓ Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+  ✓ Run python -m unittest discover -s scripts -p 'test_russell_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_composition.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
+  ✓ Run npm ci
+  ✓ Prepare the ordinary public issuer browser
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_publication.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_observation_rebase.py'
+  ✓ Run node scripts/test-comparison-automation.mjs
+  ✓ Run node scripts/test-vaneck-document.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_documents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_document_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_new_instruments.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_globalx_sections.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_publication_benchmarks.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_presentation_performance.py'
+  ✓ Run node scripts/test-presentation-etf.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_product_calendars.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_abtc_product_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_ranked_fields.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_rankings_transport.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_wisdomtree_directory_aum.py'
+  - Qualify the exact public AUM browser route without publication
+  - Run actions/upload-artifact@v7.0.1
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_extensions.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+  ✓ Run node scripts/test-annual-rollover.mjs
+  ✓ Run python -m unittest discover -s scripts -p 'test_active_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_source_incidents.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+  ✓ Run python -m unittest discover -s scripts -p 'test_data_refresh.py'
+  ✓ Run node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+  ✓ Run node scripts/audit-comparison-automation.mjs
+  ✓ Collect observations: ishares
+  ✓ Collect observations: amundi
+  ✓ Collect observations: ssga
+  ✓ Collect observations: additional
+  ✓ Collect observations: presentation_performance
+  ✓ Collect observations: fx
+  ✓ Collect observations: indices
+  ✓ Run node scripts/build-automation-targets.mjs
+  ✓ Run node scripts/report-automation-coverage.mjs --write
+  ✓ Validate ETF observations and consumers
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Validate collected observations
+  ✓ Commit validated observations
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/setup-python@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+✓ deploy / publish in 8m51s (ID 128816862554)
+  ✓ Set up job
+  ✓ Run actions/checkout@v7.0.1
+  ✓ Run actions/setup-node@v7.0.0
+  ✓ Run node scripts/test-validated-data-publisher.mjs
+  ✓ Run node scripts/prepare-validated-data.mjs
+  ✓ Run node scripts/compose-fallback-snapshot.mjs --published "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12" --data "114c71f45a53aa96c47835746e7156fe312da1ff"
+  ✓ Run npm ci
+  ✓ Run npm run audit:data-catalog
+  ✓ Run npm run build
+  ✓ Require the producer's exact validated observations after all generators
+  ✓ Seal actual composite data
+  ✓ Record actual code and data identities
+  ✓ Run npx playwright install --with-deps chromium
+  ✓ Run node scripts/smoke-data-routes.mjs
+  ✓ Run actions/configure-pages@v6.0.0
+  ✓ Run actions/upload-pages-artifact@v5.0.0
+  ✓ Restore source identity for the publication order guard
+  ✓ Run bash scripts/check-pages-head.sh
+  ✓ Run actions/deploy-pages@v5.0.1
+  ✓ Verify actual public data
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Run actions/upload-artifact@v7.0.1
+  ✓ Post Run actions/setup-node@v7.0.0
+  ✓ Post Run actions/checkout@v7.0.1
+  ✓ Complete job
+X report-failures in 2s (ID 128819206108)
+  ✓ Set up job
+  X Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> "$GITHUB_STEP_SUMMARY"
+  ✓ Complete job
+- deploy / publish-code in 0s (ID 128819206738)
+
+ANNOTATIONS
+X Process completed with exit code 1.
+refresh: .github#15
+
+X Process completed with exit code 1.
+refresh: .github#43
+
