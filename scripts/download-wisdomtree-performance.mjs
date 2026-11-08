@@ -24,13 +24,13 @@ export async function collectPublicPerformance(page, source, qualifiedIdentity=n
      i.kind!=='official-exact-product-pdf-v1'||i.isin!==source.isin||i.currency!==source.navCurrency||
      i.sourceUrl!==source.factsheetUrl||!i.sourceUrl.endsWith('/'+source.isin)||
      !/^[a-f0-9]{64}$/.test(i.sha256||'')||!/^\d{4}-\d{2}-\d{2}$/.test(i.asOf||'')||
-     !Number.isFinite(stamp)||age< -60000||age>300000)throw Error(`Official product page unavailable: ${landing?.status()}`)
+     !Number.isFinite(stamp)||age< -60000||age>300000)throw Error(`Official product page unavailable: ${landing?.status()} ${landing?.url()}`)
   const widget=await page.goto('https://perfchart.wisdomtree.eu/',{waitUntil:'domcontentloaded',timeout:30000})
   if(widget?.status()!==200||widget.url()!=='https://perfchart.wisdomtree.eu/'||await page.title()!=='WisdomTree | PRIIPS Chart')throw Error('Official public widget client unavailable')
   await page.waitForFunction(()=>typeof window.performanceChart==='object'&&document.querySelector('#performanceChart'),null,{timeout:5000})
   publicWidgetClient={url:widget.url(),status:200,checkedAt:new Date().toISOString(),identitySource:'fresh qualified official exact-share PDF',demoTickerIsIdentity:false}
  }else await page.waitForFunction(isin=>document.body?.innerText.includes(isin),source.isin,{timeout:5000})
- const publicProductPage={url:landing.url(),status:landing.status(),...(productOk?{isin:source.isin}:{}),checkedAt:new Date().toISOString()}
+ const publicProductPage={url:landing.url(),status:landing.status(),...(productOk?{isin:source.isin,checkedAt:new Date().toISOString()}:{attemptedAt:new Date().toISOString()})}
  const results=[]
  for(const mode of ['gro10k','tabular']){
   const url=`https://dataspanapi.wisdomtree.com/funddetails/${endpoint}?entity=${source.wisdomTicker}&mode=${mode}`

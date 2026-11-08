@@ -54,7 +54,7 @@ def acquire(source, *, qualified_identity=None):
         and widget.get('demoTickerIsIdentity') is False)
     if not product_ok and not widget_ok:
         raise ValueError('Ordinary browser product page or independently identified public widget not verified')
-    dt.datetime.fromisoformat(page['checkedAt'].replace('Z','+00:00'))
+    dt.datetime.fromisoformat(page['checkedAt' if product_ok else 'attemptedAt'].replace('Z','+00:00'))
     if widget_ok:dt.datetime.fromisoformat(widget['checkedAt'].replace('Z','+00:00'))
     rows=result.get('results',[])
     if len(rows)!=2 or [r.get('url')for r in rows]!=endpoints or any(r.get('status')!=200 for r in rows):
@@ -64,7 +64,7 @@ def acquire(source, *, qualified_identity=None):
     return bodies,{'actualNavTransport':'ordinary-public-widget-json' if widget_ok else 'ordinary-public-browser-json',
                    'publicProductPage':page,
                    **({'publicWidgetClient':widget,'officialPdfIdentity':qualified_identity} if widget_ok else {}),
-                   'accessAttempts':attempts+[{'url':url,'transport':'ordinary-public-browser-json','status':'received'}for url in endpoints]}
+                   'accessAttempts':attempts+[{'url':r['url'],**({'actualUrl':r['actualUrl'],'redirectQualification':r.get('redirectQualification')}if r.get('actualUrl')else{}),'transport':'ordinary-public-widget-json'if widget_ok else'ordinary-public-browser-json','status':'received'}for r in rows]}
 
 
 def anchor_for(source):

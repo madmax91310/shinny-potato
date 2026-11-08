@@ -29,7 +29,7 @@ console.log('WisdomTree browser: exact public product precedes its two widgets; 
 // The official client is transport only; its default demo is never instrument identity.
 const binding={kind:'official-exact-product-pdf-v1',isin:source.isin,currency:source.navCurrency,sourceUrl:source.factsheetUrl,sha256:'a'.repeat(64),asOf:'2026-10-31',checkedAt:new Date().toISOString()}
 const alternate=page({status:403}),via=await collectPublicPerformance(alternate,source,binding)
-assert.equal(via.publicProductPage.status,403);assert.equal(via.publicProductPage.isin,undefined)
+assert.equal(via.publicProductPage.status,403);assert.equal(via.publicProductPage.isin,undefined);assert.equal(via.publicProductPage.checkedAt,undefined);assert(via.publicProductPage.attemptedAt)
 assert.equal(via.publicWidgetClient.demoTickerIsIdentity,false);assert.equal(via.publicWidgetClient.status,200)
 assert.deepEqual(via.qualifiedIdentity,binding);assert.equal(via.results.length,2)
 assert.equal(alternate.calls.filter(c=>c[0]==='landing').length,2)
@@ -41,3 +41,8 @@ for(const options of [{status:500},{status:403,widgetStatus:403},{status:403,wid
  const p=page(options);await assert.rejects(()=>collectPublicPerformance(p,source,binding))
 }
 console.log('Official public widget alternative: fresh exact PDF binding, primary403 retained, wrong identity/currency/cache/future/source and challenge/redirect failures rejected; no demo data used.')
+
+const wti=sources.find(s=>s.wisdomTicker==='CRUD'),wtiBinding={...binding,isin:wti.isin,currency:wti.navCurrency,sourceUrl:wti.factsheetUrl}
+const redirects=page({status:403,landingUrl:wti.sourceUrl,rows:url=>({url:url.replace('/historical_performance?','/historical_performance/?'),status:200,body:'[]'})})
+const redirected=await collectPublicPerformance(redirects,wti,wtiBinding)
+assert(redirected.results.every(r=>r.actualUrl===r.url.replace('/historical_performance?','/historical_performance/?')))
