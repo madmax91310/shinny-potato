@@ -61,6 +61,7 @@ def acquire(source, *, qualified_identity=None):
     if any(len(body)>8_000_000 for body in bodies.values()):raise ValueError('Oversized issuer performance payload')
     return bodies,{'actualNavTransport':'ordinary-public-api-navigation' if navigation_ok else 'ordinary-public-browser-json',
                    **({'publicApiNavigation':navigation,'officialPdfIdentity':qualified_identity} if navigation_ok else {'publicProductPage':page}),
+                   **({'failedApiNavigation':result['failedApiNavigation']}if result.get('failedApiNavigation')else{}),
                    'accessAttempts':attempts+[{'url':r['url'],**({'actualUrl':r['actualUrl'],'redirectQualification':r.get('redirectQualification')}if r.get('actualUrl')else{}),'transport':'ordinary-public-api-navigation'if navigation_ok else'ordinary-public-browser-json','status':'received'}for r in rows]}
 
 

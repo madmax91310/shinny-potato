@@ -9,7 +9,17 @@ export async function collectPublicPerformance(page, source, qualifiedIdentity=n
  const registered=sources.find(s=>s.id===source?.id&&s.navHistoryTransport==='official-dataspan-nav-tr')
  if(!registered||!['COPA','BRNT','CRUD','COFF','WTAI','WCLD','COCO','NGAS','WEAT'].includes(registered.wisdomTicker)||
    ['isin','wisdomTicker','sourceUrl','wisdomListingId','wisdomClassId','navCurrency','wisdomPerformancePathStyle'].some(k=>source[k]!==registered[k]))throw Error('Unqualified issuer performance scope')
- if(qualifiedIdentity!==null)return collectPdfBoundApiNavigation(page,source,registered,qualifiedIdentity)
+ let failedApiNavigation
+ if(qualifiedIdentity!==null){
+  try{return await collectPdfBoundApiNavigation(page,source,registered,qualifiedIdentity)}
+  catch(error){
+   if(!error.publicApi403)throw error
+   // Preserve the already qualified product-page route when the independent
+   // public API navigation is refused. Never fall back after invalid data.
+   failedApiNavigation={url:error.requestedUrl,actualUrl:error.actualUrl,status:403,attemptedAt:new Date().toISOString(),reason:error.message}
+   if(page.setExtraHTTPHeaders)await page.setExtraHTTPHeaders({})
+  }
+ }
  const style=source.wisdomPerformancePathStyle??'canonical'
  if(!['canonical','issuer-widget'].includes(style))throw Error('Unqualified issuer performance path style')
  const endpoint='historical_performance'+(style==='canonical'?'/':'')
@@ -36,7 +46,7 @@ export async function collectPublicPerformance(page, source, qualifiedIdentity=n
   if(!Array.isArray(JSON.parse(result.body)))throw Error('Expected public issuer JSON array')
   results.push({url,status:200,body:Buffer.from(result.body).toString('base64')})
  }
- return {results,publicProductPage}
+ return {results,publicProductPage,...(failedApiNavigation?{failedApiNavigation}: {})}
 }
 
 async function collectPdfBoundApiNavigation(page,source,registered,identity){
@@ -48,6 +58,7 @@ async function collectPdfBoundApiNavigation(page,source,registered,identity){
  const style=source.wisdomPerformancePathStyle??'canonical'
  if(!['canonical','issuer-widget'].includes(style))throw Error('Unqualified issuer performance path style')
  const endpoint='historical_performance'+(style==='canonical'?'/':'')
+ if(page.setExtraHTTPHeaders)await page.setExtraHTTPHeaders(routes.wisdomtree.fundRankingsRequestHeaders)
  const results=[]
  // Same ordinary public JSON navigation already used by the qualified issuer
  // directory/rankings readers. No CORS workaround, challenge solving or cache.
@@ -55,7 +66,11 @@ async function collectPdfBoundApiNavigation(page,source,registered,identity){
   const url=`https://dataspanapi.wisdomtree.com/funddetails/${endpoint}?entity=${source.wisdomTicker}&mode=${mode}`
   const response=await page.goto(url,{waitUntil:'domcontentloaded',timeout:30000})
   const canonical=url.replace('/historical_performance?','/historical_performance/?')
-  if(response?.status()!==200||![url,canonical].includes(response.url()))throw Error(`Official public API navigation failed: ${response?.status()} ${response?.url()}`)
+  if(response?.status()!==200||![url,canonical].includes(response.url())){
+   const error=Error(`Official public API navigation failed: ${response?.status()} ${response?.url()}`)
+   if(response?.status()===403&&[url,canonical].includes(response.url()))Object.assign(error,{publicApi403:true,requestedUrl:url,actualUrl:response.url()})
+   throw error
+  }
   const contentType=response.headers()['content-type']??''
   if(!/^(application\/json|text\/plain)(?:;|$)/i.test(contentType))throw Error('Official API response is not JSON')
   const body=await response.body()
@@ -76,7 +91,7 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
  const executablePath=[process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,'/usr/bin/google-chrome','/usr/bin/chromium'].filter(Boolean).find(existsSync)
  const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),...(process.env.HTTPS_PROXY?{proxy:{server:process.env.HTTPS_PROXY}}:{})})
  try{
-  const context=await browser.newContext(qualifiedIdentity?{extraHTTPHeaders:routes.wisdomtree.fundRankingsRequestHeaders}:{}),page=await context.newPage()
+  const context=await browser.newContext(),page=await context.newPage()
   process.stdout.write(JSON.stringify(await collectPublicPerformance(page,source,qualifiedIdentity)))
  }finally{await browser.close()}
 }

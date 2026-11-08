@@ -43,3 +43,11 @@ const wti=sources.find(s=>s.wisdomTicker==='CRUD'),wtiBinding={...binding,isin:w
 const redirected=await collectPublicPerformance(apiPage({urlChange:u=>u.replace('/historical_performance?','/historical_performance/?')}),wti,wtiBinding)
 assert(redirected.results.every(r=>r.actualUrl===r.url.replace('/historical_performance?','/historical_performance/?')))
 console.log('PDF-bound ordinary public API navigation: exact scope, fresh identity, canonical redirect, empty/partial/invalid/oversize/network failures; no cached or demo identity admitted.')
+
+// A failed new API navigation must never remove the previously qualified path.
+const retained=page();retained.setExtraHTTPHeaders=async()=>{};const originalGoto=retained.goto
+retained.goto=async url=>url.startsWith('https://dataspanapi.wisdomtree.com/')?{status:()=>403,url:()=>url}:originalGoto(url)
+const legacy=await collectPublicPerformance(retained,source,binding)
+assert.equal(legacy.publicProductPage.status,200);assert.equal(legacy.failedApiNavigation.status,403)
+assert(legacy.failedApiNavigation.attemptedAt);assert.equal(legacy.failedApiNavigation.checkedAt,undefined)
+assert.equal(legacy.results.length,2);assert(!legacy.publicApiNavigation)
