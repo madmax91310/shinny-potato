@@ -12,6 +12,8 @@ from issuer_documents import document_date, validated_rows
 from wisdomtree_api_holdings import CLASS_CONFIG
 
 LABELS={6:'Incorporated Country',16:'Aggregate Country'}
+# Publisher residuals stay explicit, never attributed to a country or redistributed.
+UNCLASSIFIED={'unknown','other','others','unassigned'}
 
 
 def parsed_group(rows,share,now,*,api=False):
@@ -32,12 +34,15 @@ def parsed_group(rows,share,now,*,api=False):
         stamp=row.get('dt');name=row.get('name'if api else'constituentName');weight=row.get('pct'if api else'pctWeight')
         if not isinstance(stamp,str)or not re.fullmatch(r'20\d\d-\d\d-\d\dT00:00:00(?:\.0+)?Z?',stamp):raise ValueError('Invalid country observation date')
         dates.add(document_date(stamp[:10],now))
-        if not isinstance(name,str)or not name.strip()or name.strip().casefold()in {'unknown','other','others','unassigned','cash'}:raise ValueError('Unqualified country label')
+        if not isinstance(name,str)or not name.strip():raise ValueError('Unqualified country label')
         if type(weight)not in (int,float)or not math.isfinite(weight)or not 0<=weight<=1:raise ValueError('Invalid country fraction')
         values.append({'name':name.strip(),'weightPct':float(Decimal(str(weight))*100)})
     if len(dates)!=1:raise ValueError('Mixed country observation dates')
     return {'rows':validated_rows(values),'asOf':dates.pop(),'basis':'fund','rankClassificationID':classification,
-            'method':'Exact issuer '+LABELS[classification]+' allocation; original published percentages, no renormalisation'}
+            'method':'Exact issuer '+LABELS[classification]+' allocation; original published percentages, no renormalisation',
+            **({'unclassifiedWeightPct':float(sum((Decimal(str(r['weightPct'])) for r in values
+                 if r['name'].casefold() in UNCLASSIFIED), Decimal(0)))}
+               if any(r['name'].casefold() in UNCLASSIFIED for r in values) else {})}
 
 
 def primary_country(page,share,display_rows,now):
