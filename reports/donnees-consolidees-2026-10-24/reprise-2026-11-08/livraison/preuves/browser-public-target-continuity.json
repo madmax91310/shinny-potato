@@ -1,0 +1,17 @@
+{
+  "verifiedAt": "2026-11-08T20:47:24.876844+00:00",
+  "actualPublishedBuildAfterBrowserTests": {
+    "sha": "8245d0c5478c4df2d06a8fa11964c2a7a4968a95",
+    "builtAt": "2026-11-08T19:47:50Z"
+  },
+  "browserCode": "8245d0c5478c4df2d06a8fa11964c2a7a4968a95",
+  "expectedFinalSnapshot": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+  "changedFrontendSource": [],
+  "changedSrcPaths": [],
+  "browserProofs": [
+    "browser-etf-targets-public.json",
+    "browser-oil-prefix-public.json",
+    "browser-investor-public.json"
+  ],
+  "meaning": "Public regression runs include the concurrent editorial PR1212; the subsequently validated backend repair changes no frontend or financial source data. Final public primary hashes and runtime investor files are checked separately."
+}

@@ -1,0 +1,112 @@
+2026-11-08T21:24:19.432525+00:00 {'runId': 42518858181, 'collectionStatus': 'success', 'validationStatus': 'success', 'recordingStatus': 'success', 'publicationStatus': 'success'}
+New13Fsource/record/publication ingested; exporting actual public UI
+[
+  'Exporter les 671 diagnostics filtrés (JSON)',
+  'Exporter tous les 10598 diagnostics et preuves (JSON)'
+]
+Public full export saved, errors []
+Actual monitor: 3 individual source failures retained, recording+publication succeeded; previous success clock preserved 2026-11-08T12:17:20.406673+00:00
+Published explicit non-applicable: 2contracts, 4initialIDs; no active false gap
+Published code includes1211; ordinary record/publication and current UI absence of recording failure verified; five source fields exact; source errors retained
+Actual13Fsource,record,publication,monitor and publicconsumer verified {'expected': 28, 'validated': 28, 'failed': 0, 'changed': 0}
+Published actual readers 694 qualified full overlap 538 monthly routes 772 qualified79 71
+Consumer identities 772
+{
+  "canonicalMatrixUses": 7512,
+  "existingDynamicInvestorFieldUses": 113,
+  "existingDynamicInvestorIds": 28,
+  "fullOverlapIndividualAdmissions": 538,
+  "outsideCompanyOverlap": 53,
+  "fullFundIndexBooks": 127,
+  "generatedAt": "2026-11-08T21:25:21.109295+00:00",
+  "public": {
+    "sha": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+    "builtAt": "2026-11-08T20:42:11Z",
+    "dataSha": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+    "dataIdentityMode": "unified-git-snapshot"
+  },
+  "initialDiagnostics": 10602,
+  "finalDiagnostics": 10598,
+  "initialRowsReconciled": 10602,
+  "initialFamilies": {
+    "compositions-expositions": 1952,
+    "hors périmètre": 2040,
+    "historiques-performances": 3042,
+    "hors périmètre — Radar arrêté": 3568
+  },
+  "matrixUses": 7625,
+  "matrixUniqueAssets": 1160,
+  "matrixFamilies": {
+    "historiques-performances": 5024,
+    "compositions-expositions": 2601
+  },
+  "matrixStates": {
+    "connected": 6125,
+    "not-required": 216,
+    "qualification-needed": 335,
+    "scheduled-evidence": 338,
+    "excluded": 253,
+    "blocked": 245,
+    "consommateur dynamique existant ; complément à la matrice canonique, aucune extension de catalogue": 113
+  },
+  "monthlyRoutes": 772,
+  "monthlyCasesConstantScope": 79,
+  "monthlyCasesQualified": 71,
+  "monthlyCasesRefused": 8,
+  "newMonthlyCasesRestored": 0,
+  "additional2020MonthlyRoutesPublished": [
+    "etc_brent_crude_oilNav",
+    "etc_wti_crude_oilNav"
+  ],
+  "refusedMonthlyRouteIntervals": 645,
+  "refusedMonthlyRouteIds": 28,
+  "refusedRouteIntervalsWithNoQualifiedAlternative": 177,
+  "indexUsageRows": 87,
+  "indexReferencesAndEconomicContracts": 86,
+  "automatedReferenceRecords": 60,
+  "indexCurrentUsageRows": 56,
+  "indicesWithCompositionFacts": 56,
+  "nonApplicableCompositionReferences": [
+    "bitcoin",
+    "ethereum",
+    "gold-physical",
+    "silver-physical"
+  ],
+  "dcaReferences": 694,
+  "directEquities": 411,
+  "fundAndOtherSupports": 283,
+  "dcaUniqueIsins": 694,
+  "warning": "Neither configured workflows nor a successful composite run certify every field. Archives, hypotheses and non-applicable data are not failures. Original financial divergence cases remain distinct."
+}
+Deux bilans écrits 17649 21654
+{
+  "initialIdentities": 10602,
+  "initialReconciled": 10602,
+  "finalIdentities": 10598,
+  "allInitialIdsRetained": true,
+  "matrixRows": 7625,
+  "monthlyRoutes": 772,
+  "casesConstant79": {
+    "qualified": 71,
+    "refused": 8,
+    "priorQualifiedPreserved": 71
+  },
+  "indexUsageRows": 87,
+  "supportReferences": 694,
+  "fullOverlapQualifiedAtCurrentDate": 538,
+  "verifiedPublicDataModules": 275,
+  "public": {
+    "sha": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+    "builtAt": "2026-11-08T20:42:11Z",
+    "dataSha": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+    "dataIdentityMode": "unified-git-snapshot"
+  },
+  "meaning": "Internal report reconciliation and actual reader checks, not a source certificate."
+}
+28 existing managers +one archived snapshot reconciled,113 dynamic field/uses retained and source clocks independently verified
+[
+  [ 'etc_brent_crude_oilNav', -32.27463253707975, -37.99798076127081 ],
+  [ 'etc_wti_crude_oilNav', -51.91202455204562, -55.9758523199153 ]
+]
+Before 538 After 538 declines []
+FINAL DELIVERY DATA AND READER VERIFICATION COMPLETE

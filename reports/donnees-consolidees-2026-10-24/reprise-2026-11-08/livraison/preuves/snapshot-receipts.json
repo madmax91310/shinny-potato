@@ -1,14 +1,14 @@
 [
   {
     "path": "public/data/data-automation-inventory.json",
-    "expectedBlob": "51d2508903ba488e92c08a0de5d849eac669f8fc",
-    "actualBlob": "51d2508903ba488e92c08a0de5d849eac669f8fc",
+    "expectedBlob": "27689640e97714623e95670cda7b3aedd2f1d83f",
+    "actualBlob": "27689640e97714623e95670cda7b3aedd2f1d83f",
     "manifestMatched": true,
     "verification": "Git blob manifest match",
-    "bytes": 44334370,
+    "bytes": 44345169,
     "stored": "data-automation-inventory.json.gz",
-    "code": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
-    "data": "fe9acdda6eef146527e78f7b3fb7d70414888579"
+    "code": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+    "data": "38f580af5a5169d275c2d6bbf5b2bf4951387f03"
   },
   {
     "path": "public/data/asset-field-coverage.json",
@@ -18,8 +18,8 @@
     "verification": "Git blob manifest match",
     "bytes": 3861372,
     "stored": "asset-field-coverage.json.gz",
-    "code": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
-    "data": "fe9acdda6eef146527e78f7b3fb7d70414888579"
+    "code": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+    "data": "38f580af5a5169d275c2d6bbf5b2bf4951387f03"
   },
   {
     "path": "public/data/financial-reconciliation.json",
@@ -29,18 +29,18 @@
     "verification": "Git blob manifest match",
     "bytes": 418923,
     "stored": "financial-reconciliation.json.gz",
-    "code": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
-    "data": "fe9acdda6eef146527e78f7b3fb7d70414888579"
+    "code": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+    "data": "38f580af5a5169d275c2d6bbf5b2bf4951387f03"
   },
   {
     "path": "public/data/data-review-inbox.json",
     "expectedBlob": null,
-    "actualBlob": "2d98d0fc45dd0bbac3c5591c0281835930f87f58",
+    "actualBlob": "06a13df5cdcfef0a438dfe984bddd3751a8528c2",
     "manifestMatched": null,
     "verification": "Public generated inbox bound to exact inventory blob",
-    "bytes": 1894206,
+    "bytes": 1894241,
     "stored": "data-review-inbox.json.gz",
-    "code": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
-    "data": "fe9acdda6eef146527e78f7b3fb7d70414888579"
+    "code": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+    "data": "38f580af5a5169d275c2d6bbf5b2bf4951387f03"
   }
 ]

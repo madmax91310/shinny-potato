@@ -1,0 +1,43 @@
+{
+  "run": 42509840487,
+  "event": "workflow_dispatch",
+  "actor": "github-actions[bot]",
+  "createdAt": "2026-11-08T18:24:16Z",
+  "sourceHead": "d451cd6270ee2e441c2e70ffe3b318944885c1cd",
+  "record": "c955674fb2d2762601819ba844620e5f5ce2c3b5",
+  "monitorUpdatedAt": "2026-11-08T18:20:14Z",
+  "recoveryLedger": {
+    "attempts": [
+      {
+        "at": "2026-11-07T22:04:44.040590+00:00",
+        "reason": "transient-source",
+        "sourceRunId": 42408673996,
+        "status": "dispatched",
+        "ref": "master",
+        "error": null
+      },
+      {
+        "at": "2026-11-08T11:15:17.787898+00:00",
+        "reason": "transient-source",
+        "sourceRunId": 42473294954,
+        "status": "dispatched",
+        "ref": "master",
+        "error": null
+      },
+      {
+        "at": "2026-11-08T18:23:12.553896+00:00",
+        "reason": "transient-source",
+        "sourceRunId": 42508166410,
+        "status": "dispatched",
+        "ref": "master",
+        "error": null
+      }
+    ],
+    "reason": "transient-source",
+    "lastSuccessAt": null,
+    "observedRunId": 42508166410,
+    "nextAttemptAt": "2026-11-08T22:23:12.553896+00:00",
+    "status": "dispatched"
+  },
+  "meaning": "Automatic bot dispatch, not a supplier scheduled run. Current recovery ledger retained separately from source field and publication proofs."
+}

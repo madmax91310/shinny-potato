@@ -1,0 +1,36 @@
+{
+  "pr": 1213,
+  "merge": "8b34937014b53bae2c4525a255b836ad576b6b29",
+  "runId": 42518858181,
+  "recordSha": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+  "public": {
+    "sha": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+    "builtAt": "2026-11-08T20:42:11Z",
+    "dataSha": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+    "dataIdentityMode": "unified-git-snapshot"
+  },
+  "recordingVerified": true,
+  "publicationVerified": true,
+  "activeRecordingIncidentAbsent": true,
+  "sourceCounts": {
+    "expected": 28,
+    "validated": 28,
+    "failed": 0,
+    "changed": 0
+  },
+  "sourceProof": "investor-publication-production-source-proof.json",
+  "actualPublicMonitorStages": {
+    "runId": 42518858181,
+    "collectionStatus": "success",
+    "validationStatus": "success",
+    "recordingStatus": "success",
+    "publicationStatus": "success",
+    "publishedCodeSha": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+    "publishedDataSha": "38f580af5a5169d275c2d6bbf5b2bf4951387f03"
+  },
+  "actualPublicRootObservations": [],
+  "publicRuntimeFilesVerified": 30,
+  "browser": "browser-investor-public.json",
+  "postFixSupplierCronObserved": false,
+  "meaning": "Manual execution through ordinary production workflow. Source acquisition, strict validation, successful recording of polls, published runtime data and consumer verified separately. No new financial positions/quarters were manufactured."
+}

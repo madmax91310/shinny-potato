@@ -1,28 +1,31 @@
 {
+  "canonicalMatrixUses": 7512,
+  "existingDynamicInvestorFieldUses": 113,
+  "existingDynamicInvestorIds": 28,
   "fullOverlapIndividualAdmissions": 538,
   "outsideCompanyOverlap": 53,
   "fullFundIndexBooks": 127,
-  "generatedAt": "2026-11-08T16:46:29.439162+00:00",
+  "generatedAt": "2026-11-08T21:26:44.974606+00:00",
   "public": {
-    "sha": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
-    "dataSha": "fe9acdda6eef146527e78f7b3fb7d70414888579",
-    "lane": "validated-code-data",
-    "builtAt": "2026-11-08T16:33:23.063Z"
+    "sha": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+    "builtAt": "2026-11-08T20:42:11Z",
+    "dataSha": "38f580af5a5169d275c2d6bbf5b2bf4951387f03",
+    "dataIdentityMode": "unified-git-snapshot"
   },
   "initialDiagnostics": 10602,
-  "finalDiagnostics": 10600,
+  "finalDiagnostics": 10598,
   "initialRowsReconciled": 10602,
   "initialFamilies": {
-    "compositions-expositions": 1943,
+    "compositions-expositions": 1952,
     "hors périmètre": 2040,
-    "historiques-performances": 3051,
+    "historiques-performances": 3042,
     "hors périmètre — Radar arrêté": 3568
   },
-  "matrixUses": 7512,
-  "matrixUniqueAssets": 1132,
+  "matrixUses": 7625,
+  "matrixUniqueAssets": 1160,
   "matrixFamilies": {
     "historiques-performances": 5024,
-    "compositions-expositions": 2488
+    "compositions-expositions": 2601
   },
   "matrixStates": {
     "connected": 6125,
@@ -30,7 +33,8 @@
     "qualification-needed": 335,
     "scheduled-evidence": 338,
     "excluded": 253,
-    "blocked": 245
+    "blocked": 245,
+    "consommateur dynamique existant ; complément à la matrice canonique, aucune extension de catalogue": 113
   },
   "monthlyRoutes": 772,
   "monthlyCasesConstantScope": 79,
