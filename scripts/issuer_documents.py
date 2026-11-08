@@ -14,7 +14,7 @@ import urllib.parse
 from data_automation import UTC, reject, retry_delay, ResponseFormatError
 
 
-def download(url, max_bytes=8_000_000, headers=None, url_validator=None, return_source=False, *, timeout=25, max_attempts=3):
+def download(url, max_bytes=8_000_000, headers=None, url_validator=None, return_source=False, *, timeout=25, max_attempts=3, return_metadata=False):
     if type(max_attempts) is not int or not 1 <= max_attempts <= 5 or not 0 < timeout <= 90:
         raise ValueError("Invalid bounded download policy")
     # Issuer region redirects set cookies; keep them within this download chain.
@@ -44,6 +44,11 @@ def download(url, max_bytes=8_000_000, headers=None, url_validator=None, return_
                     title = re.search(br'<title[^>]*>(.*?)</title>', body, re.I | re.S)
                     label = title[1].decode('utf-8', errors='replace').strip()[:100] if title else 'non-PDF response'
                     raise ResponseFormatError(f'Expected official PDF at {url}; received {label} at {response.geturl()}')
+                if return_metadata:
+                    # Only public document metadata, never cookies or credentials.
+                    return body, {'url': response.geturl(), 'headers': {
+                        key: response.headers.get(key) for key in ('Content-Type', 'Content-Disposition', 'ETag', 'Last-Modified')
+                        if response.headers.get(key) is not None}}
                 return (body,response.geturl()) if return_source else body
         except urllib.error.HTTPError as error:
             if error.code not in (429, 500, 502, 503, 504) or attempt == max_attempts - 1:
