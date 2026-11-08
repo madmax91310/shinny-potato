@@ -15415,7 +15415,7 @@
       "instrumentType": "ETC",
       "consumerScope": "catalog",
       "currency": "USD",
-      "periodStart": "2020-12",
+      "periodStart": "2019-12",
       "precision": 8,
       "collectAnniversary": false,
       "parser": "official-nav",
@@ -15430,6 +15430,7 @@
       "calendarRegistry": "src/data/non-bond-etf-records.json",
       "returnWindowQualification": "corroborated-calendars",
       "requiredQualifiedCalendarYears": [
+        2020,
         2021,
         2023
       ],
@@ -15437,7 +15438,12 @@
       "wisdomProductName": "WisdomTree Brent Crude Oil",
       "wisdomListingId": 2741261,
       "wisdomInception": "2012-02-21",
-      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
+      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
+      "reviewedHistoryPrefix": {
+        "previousStart": "2020-12",
+        "newStart": "2019-12",
+        "qualifiedYear": 2020
+      }
     },
     {
       "id": "etc_wti_crude_oilNav",
@@ -15446,7 +15452,7 @@
       "instrumentType": "ETC",
       "consumerScope": "catalog",
       "currency": "USD",
-      "periodStart": "2020-12",
+      "periodStart": "2019-12",
       "precision": 8,
       "collectAnniversary": false,
       "parser": "official-nav",
@@ -15461,13 +15467,19 @@
       "calendarRegistry": "src/data/non-bond-etf-records.json",
       "returnWindowQualification": "corroborated-calendars",
       "requiredQualifiedCalendarYears": [
+        2020,
         2023
       ],
       "wisdomTicker": "CRUD",
       "wisdomProductName": "WisdomTree WTI Crude Oil",
       "wisdomListingId": 2740803,
       "wisdomInception": "2006-09-22",
-      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
+      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+      "reviewedHistoryPrefix": {
+        "previousStart": "2020-12",
+        "newStart": "2019-12",
+        "qualifiedYear": 2020
+      }
     },
     {
       "id": "etc_coffeeNav",

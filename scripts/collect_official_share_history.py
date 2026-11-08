@@ -495,7 +495,8 @@ def main():
         # Once recorded, subsequent PRs do not retry old failures just to count them.
         sources=[s for s in sources if registered.get(s['id'],{}).get('parser')=='official-nav' and
                  (s['id']not in observed or (s.get('navHistoryTransport')=='official-dataspan-nav-tr' and
-                  active.get(s['id'],{}).get('calendarProof',{}).get('navHistoryTransport')!=s['navHistoryTransport']))]
+                  active.get(s['id'],{}).get('calendarProof',{}).get('navHistoryTransport')!=s['navHistoryTransport'])
+                  or (s.get('reviewedHistoryPrefix') and active.get(s['id'],{}).get('periodStart')!=s['periodStart']))]
     scope={'requestedIds':args.only or [s['id']for s in sources],'expectedIds':[s['id']for s in sources]}
     if args.missing_source_controls:
         scope['selection']='configured-official-nav-without-transport-qualification'

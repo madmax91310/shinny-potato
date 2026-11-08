@@ -428,6 +428,7 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
                         or not isinstance(scope['controlledCalendarYears'],list)):
                     reject('Invalid exact source-control scope')
                 dt.date.fromisoformat(scope['requestedStart'])
+            extension=False
             old=baseline.get(source['id'])
             prior=current.get(source['id'])
             from qualify_anniversary_price_units import retain_prior_review
@@ -467,13 +468,20 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
                 if result['points'][0][0] != source['periodStart']:
                     reject('New history coverage differs from its registered start')
             else:
-                if old['currency'] != result['currency'] or result['points'][0][0] != old['points'][0]['date']:
+                from reviewed_nav_prefix import qualified_prefix_extension
+                extension = qualified_prefix_extension(source,result,prior,old)
+                if old['currency'] != result['currency'] or (result['points'][0][0] != old['points'][0]['date'] and not extension):
                     reject('Existing series currency or coverage changed')
+                if extension:
+                    result['calendarProof']['reviewedPrefixApplied'] = {
+                        **source['reviewedHistoryPrefix'], 'unchangedPriorPoints':len(prior['points']),
+                        'method':'Earlier independently corroborated exact NAV year; every prior and baseline monthly value identical, no quote replacement'}
                 if result['periodEnd'] < old['points'][-1]['date']:reject('History would regress')
             active={k:v for k,v in result.items() if k not in ['proofRows','rawResponse']}
             previous=current.get(source['id'])
             if previous:
-                if any(previous[k] != active[k] for k in ['parser','currency','method','periodStart']):reject('Existing return convention changed')
+                if any(previous[k] != active[k] for k in ['parser','currency','method']):reject('Existing return convention changed')
+                if previous['periodStart'] != active['periodStart'] and not extension:reject('Existing return convention changed')
                 if any(previous.get(key) != active.get(key) for key in ['symbol','variant','indexCode','isin','field','consumerScope','mic','ticker','valuationBasis','navCurrency','navProvider','productId','identityFrom','navHistoryKind','dwsIdentityBasis']):
                     reject('Existing exact series identity changed')
                 # A stale response can also rescale historical adjusted levels.
@@ -541,6 +549,7 @@ def main():
                 'status':observation['status'],'checkedAt':report['checkedAt'],
                 **({'reason':observation['reason']} if observation['status']=='failed' else {
                     'periodEnd':observation['record']['periodEnd'],
+                    'periodStart':observation['record']['periodStart'],
                     'responseSha256':observation['evidence']['responseSha256']})}
         write_json_atomic(status_path,status)
     if args.apply and merged!=current:
@@ -584,6 +593,10 @@ def select_series(config,status,only=None,retry_failed=False,now=None):
         previous=status.get('series') or {}
         selected={key for key in ids if previous.get(key,{}).get('status')!='validated'
                   or previous.get(key,{}).get('periodEnd')!=latest}
+        # A reviewed prefix is pending until its exact start is actually recorded.
+        # Missing old metadata does not select any other current series.
+        selected.update(s['id'] for s in config['series'] if s.get('reviewedHistoryPrefix')
+                        and previous.get(s['id'],{}).get('periodStart') != s['periodStart'])
         if only is not None:selected &= set(only)
     else:
         selected=set(only) if only is not None else ids

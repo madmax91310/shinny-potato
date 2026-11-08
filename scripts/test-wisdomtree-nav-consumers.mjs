@@ -64,8 +64,11 @@ for(const {record:old} of archive.series){
   assert(Math.abs(d.result.finalValue-oracle)<1e-6);assert(!/NaN|undefined/.test(buildTweetText(input,d)))
  }
 }
-assert.equal(targets,7);assert.equal(oldRefusals,6)
+const reviewedPrefixes=archive.series.filter(({record})=>{const r=records[record.id],p=r.reviewedHistoryPrefix;return p?.previousStart==='2020-12'&&p?.newStart==='2019-12'&&p?.qualifiedYear===2020&&r.requiredQualifiedCalendarYears.includes(2020)}).length
+assert.equal(targets,7+reviewedPrefixes);assert.equal(oldRefusals,6)
 console.log(`Four exact ETCs: seven initial targets, six original export refusals preserved as historical evidence, ${currentRefusals} active refusals. Active source proofs, units, DCA, FX, monitoring and anniversary exclusions checked.`)
 
 // Exercise the bounded public-page transport without contacting a supplier.
 await import('./test-wisdomtree-performance-browser.mjs')
+
+await import('./test-oil-prefix-consumers.mjs')
