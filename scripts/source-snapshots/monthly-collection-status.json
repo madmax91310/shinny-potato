@@ -2270,7 +2270,7 @@
     },
     "etfDE000A27Z304": {
       "status": "failed",
-      "checkedAt": "2026-11-08T13:23:08.593970+00:00",
+      "checkedAt": "2026-11-08T13:56:16.641885+00:00",
       "reason": "HTTP Error 400: Bad Request"
     },
     "etfGB00BLD4ZL17": {
@@ -4711,7 +4711,7 @@
     },
     "etc_wti_crude_oilNav": {
       "status": "failed",
-      "checkedAt": "2026-11-08T13:23:08.593970+00:00",
+      "checkedAt": "2026-11-08T13:56:16.641885+00:00",
       "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
     },
     "etc_coffeeNav": {
@@ -4772,8 +4772,8 @@
     },
     "etc_wheatNav": {
       "status": "failed",
-      "checkedAt": "2026-11-08T13:23:08.593970+00:00",
-      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
+      "checkedAt": "2026-11-08T13:56:16.641885+00:00",
+      "reason": "Ordinary public browser performance failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29\n if(landing?.status()!==200||landing.url()!==source.sourceUrl)throw Error(`Official product page unavailable: ${landing?.status()}`)\n                                                                    ^\n\nError: Official product page unavailable: 403\n    at collectPublicPerformance (file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:29:69)\n    at runNextTicks (node:internal/process/task_queues:60:5)\n    at process.processImmediate (node:internal/timers:454:9)\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\n    at async file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-wisdomtree-performance.mjs:95:39\n\nNode.js v20.20.2\n"
     },
     "etfFR0013412269": {
       "status": "validated",
