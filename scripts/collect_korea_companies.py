@@ -31,15 +31,20 @@ def parse_portfolio(body, now):
     blocks = re.findall(r'<tbody\b[^>]*data-target="fundHoldingsListTableBody"[^>]*>(.*?)</tbody>', page, re.S)
     counts = re.findall(r'data-target="pdfTotalCount">\s*(\d+)\s*</i>', page)
     if len(blocks) != 1 or len(counts) != 1: raise ValueError('Missing full portfolio table/count')
+    rows=parse_portfolio_rows(blocks[0],int(counts[0]))
+    return stamp, [r for r in rows if r['isin'] != 'KRD010010001']
+
+
+def parse_portfolio_rows(block,count):
     rows = []
-    for row in re.findall(r'<tr\b[^>]*>(.*?)</tr>', blocks[0], re.S):
+    for row in re.findall(r'<tr\b[^>]*>(.*?)</tr>', block, re.S):
         cells = [text(c) for c in re.findall(r'<t[dh]\b[^>]*>(.*?)</t[dh]>', row, re.S)]
         if len(cells) != 6 or int(cells[0]) != len(rows) + 1: raise ValueError('Incomplete or reordered portfolio rows')
         if not re.fullmatch(r'\d+(?:\.\d+)?', cells[5]): raise ValueError('Invalid published percentage')
         value, weight = int(cells[4].replace(',', '')), float(cells[5])
         if value < 0 or not math.isfinite(weight) or not 0 <= weight <= 100: raise ValueError('Invalid long-only position')
         rows.append({'isin': cells[1], 'name': cells[2], 'weightPct': weight, 'valuation': value})
-    if len(rows) != int(counts[0]) or len(rows) < 11 or len({r['isin'] for r in rows}) != len(rows):
+    if len(rows) != count or len(rows) < 11 or len({r['isin'] for r in rows}) != len(rows):
         raise ValueError('Incomplete or duplicated physical portfolio')
     if abs(sum(r['weightPct'] for r in rows) - 100) > .1: raise ValueError('Published portfolio weights inconsistent')
     # Only the issuer's explicit KRW cash code may be excluded from equities.
@@ -48,7 +53,7 @@ def parse_portfolio(body, now):
     total = sum(r['valuation'] for r in rows)
     if total <= 0 or any(abs(r['valuation'] / total * 100 - r['weightPct']) > .03 for r in rows):
         raise ValueError('Published weights disagree with portfolio valuations')
-    return stamp, [r for r in rows if r['isin'] != 'KRD010010001']
+    return rows
 
 
 def classify(body, rows, stamp):
@@ -78,16 +83,24 @@ def classify(body, rows, stamp):
     return result, sorted(countries.items(), key=lambda r: -r[1]), sorted(sectors.items(), key=lambda r: -r[1])
 
 
-def collect(config, now, fetch=download):
+def collect(config, now, fetch=download, fetch_export=None):
     page = fetch(config['url'])
     stamp, rows = parse_portfolio(page, now)
     document = fetch(config['prospectusUrl']); wording = ' '.join(pdf_text(document).split())
     if 'NH-Amundi HANARO MSCI KOREA Total Return' not in wording or 'MSCI KOREA Gross TR 지수를 완전복제' not in wording:
         raise ValueError('Exact benchmark and full physical replication not proved in issuer prospectus')
     attributes = fetch(config['classificationUrl'])
+    evidence={}
+    from korea_dated_basket import classification_date, dated_portfolio
+    attributes_stamp=classification_date(attributes,now)
+    if attributes_stamp!=stamp:
+        all_rows,evidence=dated_portfolio(config,attributes_stamp,stamp,now,parse_portfolio_rows,fetch,fetch_export)
+        rows=[r for r in all_rows if r['isin']!='KRD010010001']
+        evidence['cashWeightPct']=sum(r['weightPct'] for r in all_rows if r['isin']=='KRD010010001')
+        stamp=attributes_stamp
     rows, countries, sectors = classify(attributes, rows, stamp)
     return {'asOf': stamp, 'checkedAt': now.isoformat(), 'basis': 'physical-creation-basket', 'complete': True, 'rows': rows,
-        'countries': countries, 'sectors': sectors, 'sourceUrl': config['url'], 'sha256': proof(page),
+        'countries': countries, 'sectors': sectors, 'sourceUrl': config['url'], 'sha256': proof(page), **evidence,
         'sourceLabel': 'NH-Amundi HANARO MSCI Korea TR', 'sourceProductCode': 'KRX 332940',
         'identitySourceUrl': config['prospectusUrl'], 'identityCheckedAt': now.date().isoformat(), 'identitySha256': proof(document),
         'classificationSourceUrl': config['classificationUrl'], 'classificationSha256': proof(attributes),
