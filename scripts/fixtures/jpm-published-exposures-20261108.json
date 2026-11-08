@@ -1,0 +1,220 @@
+{
+  "countries": {
+    "rows": [
+      {
+        "name": "United States",
+        "weightPct": 67.6
+      },
+      {
+        "name": "Japan",
+        "weightPct": 10.8
+      },
+      {
+        "name": "France",
+        "weightPct": 4.5
+      },
+      {
+        "name": "Germany",
+        "weightPct": 3.8
+      },
+      {
+        "name": "Netherlands",
+        "weightPct": 1.7
+      },
+      {
+        "name": "Spain",
+        "weightPct": 1.7
+      },
+      {
+        "name": "Switzerland",
+        "weightPct": 1.5
+      },
+      {
+        "name": "Italy",
+        "weightPct": 1.2
+      },
+      {
+        "name": "Singapore",
+        "weightPct": 1.1
+      },
+      {
+        "name": "United Kingdom",
+        "weightPct": 0.9
+      },
+      {
+        "name": "Hong Kong",
+        "weightPct": 0.9
+      },
+      {
+        "name": "Belgium",
+        "weightPct": 0.7
+      },
+      {
+        "name": "Denmark",
+        "weightPct": 0.6
+      },
+      {
+        "name": "Canada",
+        "weightPct": 0.5
+      },
+      {
+        "name": "Australia",
+        "weightPct": 0.5
+      },
+      {
+        "name": "Ireland",
+        "weightPct": 0.5
+      },
+      {
+        "name": "Sweden",
+        "weightPct": 0.4
+      },
+      {
+        "name": "Israel",
+        "weightPct": 0.2
+      },
+      {
+        "name": "Finland",
+        "weightPct": 0.1
+      },
+      {
+        "name": "Norway",
+        "weightPct": 0.0
+      },
+      {
+        "name": "Austria",
+        "weightPct": 0.0
+      },
+      {
+        "name": "Portugal",
+        "weightPct": 0.0
+      },
+      {
+        "name": "Cash",
+        "weightPct": 0.8
+      }
+    ],
+    "asOf": "2026-10-31",
+    "basis": "fund",
+    "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+    "sha256": "eaee2f277d9fe9ca6257d7c3f007953779e8eb404fea80a25060651516942b02",
+    "sourceComponent": "fundData.emeaRegionalBreakdown",
+    "classification": "jpm-published-regional-v1",
+    "method": "Published JPMorgan regional allocation of the fund; issuer labels and cash retained, no country-of-risk equivalence inferred",
+    "checkedAt": "2026-11-08",
+    "modifiedAt": "2026-11-08"
+  },
+  "sectors": {
+    "rows": [
+      {
+        "name": "Pharm/Medtech",
+        "weightPct": 10.8,
+        "label": "Pharmacie et technologies médicales"
+      },
+      {
+        "name": "Technology - Semi & Hardware",
+        "weightPct": 10.2,
+        "label": "Semi-conducteurs et matériel"
+      },
+      {
+        "name": "Industrial Cyclicals",
+        "weightPct": 9.9,
+        "label": "Industries cycliques"
+      },
+      {
+        "name": "Consumer Staples",
+        "weightPct": 8.8,
+        "label": "Consommation de base"
+      },
+      {
+        "name": "Technology - Software",
+        "weightPct": 8.4,
+        "label": "Logiciels"
+      },
+      {
+        "name": "Telecommunications",
+        "weightPct": 7.7,
+        "label": "Télécommunications"
+      },
+      {
+        "name": "Utilities",
+        "weightPct": 7.5,
+        "label": "Services publics"
+      },
+      {
+        "name": "Retail",
+        "weightPct": 5.5,
+        "label": "Distribution"
+      },
+      {
+        "name": "Insurance",
+        "weightPct": 4.8,
+        "label": "Assurance"
+      },
+      {
+        "name": "Banks",
+        "weightPct": 3.9,
+        "label": "Banques"
+      },
+      {
+        "name": "Health Services & Systems",
+        "weightPct": 3.9,
+        "label": "Services et systèmes de santé"
+      },
+      {
+        "name": "Financial Services",
+        "weightPct": 3.3,
+        "label": "Services financiers"
+      },
+      {
+        "name": "Basic Industries",
+        "weightPct": 3.3,
+        "label": "Industries de base"
+      },
+      {
+        "name": "Energy",
+        "weightPct": 2.5,
+        "label": "Énergie"
+      },
+      {
+        "name": "Media",
+        "weightPct": 2.4,
+        "label": "Médias"
+      },
+      {
+        "name": "Property",
+        "weightPct": 2.4,
+        "label": "Immobilier"
+      },
+      {
+        "name": "Transportation",
+        "weightPct": 1.5,
+        "label": "Transports"
+      },
+      {
+        "name": "Automobiles & Auto Parts",
+        "weightPct": 1.4,
+        "label": "Automobiles et équipementiers"
+      },
+      {
+        "name": "Consumer Cyclical & Services",
+        "weightPct": 1.0,
+        "label": "Consommation cyclique et services"
+      },
+      {
+        "name": "Cash",
+        "weightPct": 0.8,
+        "label": "Liquidités"
+      }
+    ],
+    "asOf": "2026-10-31",
+    "basis": "fund",
+    "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+    "sha256": "eaee2f277d9fe9ca6257d7c3f007953779e8eb404fea80a25060651516942b02",
+    "sourceComponent": "fundData.emeaSectorBreakdown",
+    "classification": "jpm-proprietary-sectors-v1",
+    "method": "Published JPMorgan proprietary sector allocation of the fund; no GICS/ICB equivalence or regrouping",
+    "checkedAt": "2026-11-08",
+    "modifiedAt": "2026-11-08"
+  }
+}
