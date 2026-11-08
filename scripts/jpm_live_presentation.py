@@ -1,7 +1,7 @@
 """Renew JEPG's fund AUM/top ten from the already qualified public holdings API.
 
-Monthly PDF characteristics, calendar returns and classifications keep their own
-source and period. The API's proprietary classifications are not substituted.
+Monthly PDF characteristics and calendar returns keep their own source and period.
+API allocations have independent dates and explicitly distinct issuer taxonomies.
 """
 import json
 import math
@@ -21,11 +21,20 @@ def parse_live(body, share, now):
     fund = qualified_fund(document)
     result = {}
     errors = []
-    for field, reader in [('aum', parse_aum), ('holdings', parse_top_ten)]:
+    from jpm_published_exposures import allocation
+    for field, reader in [('aum', parse_aum), ('holdings', parse_top_ten),
+                          ('countries',lambda f,b,n:allocation(f,b,n,'countries')),
+                          ('sectors',lambda f,b,n:allocation(f,b,n,'sectors'))]:
         try:
             result[field] = reader(fund, body, now)
         except (ValueError, KeyError, TypeError) as error:
             errors.append({'field': field + '-current-source', 'url': URL, 'reason': str(error)})
+    if all(field in result for field in ('countries','sectors')) and result['countries']['asOf']==result['sectors']['asOf']:
+        cash=[next(r['weightPct']for r in result[field]['rows']if r['name']=='Cash') for field in ('countries','sectors')]
+        if cash[0]!=cash[1]:
+            for field in ('countries','sectors'):
+                result.pop(field)
+                errors.append({'field':field+'-current-source','url':URL,'reason':'Same-date JPM fund allocation cash weights disagree'})
     if not result:
         raise ValueError('; '.join(e['field'] + ': ' + e['reason'] for e in errors))
     if errors:
@@ -93,8 +102,8 @@ def collect(share, now, document, fetch=download):
             raise ValueError('JPM document: ' + str(document_error) + '; current API: ' + str(error)) from error
         result.setdefault('collectionErrors', []).extend(
             {'field': field + '-current-source', 'url': URL, 'reason': str(error)}
-            for field in ['aum', 'holdings'])
-        attempts.append({'url': URL, 'status': 'failed', 'fields': ['aum', 'holdings'], 'reason': str(error)})
+            for field in ['aum', 'holdings', 'countries', 'sectors'])
+        attempts.append({'url': URL, 'status': 'failed', 'fields': ['aum', 'holdings', 'countries', 'sectors'], 'reason': str(error)})
     else:
         if result is None:
             # The shared merge supports exposure-only partial observations;
@@ -105,7 +114,7 @@ def collect(share, now, document, fetch=download):
                 for field in ['characteristics.terPct', 'performance', 'countries', 'sectors']]
         result.update(fields)
         result.setdefault('collectionErrors', []).extend(field_errors)
-        for field in ['aum', 'holdings']:
+        for field in ['aum', 'holdings', 'countries', 'sectors']:
             error = next((e for e in field_errors if e['field'] == field + '-current-source'), None)
             attempts.append({'url': URL, 'status': 'failed' if error else 'validated', 'fields': [field],
                              **({'reason': error['reason']} if error else {})})

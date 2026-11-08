@@ -1,0 +1,40 @@
+{
+  "isin": "IE0003R87OG3",
+  "provider": "Avantis",
+  "fieldQualification": {
+    "countries": {
+      "status": "not-published",
+      "checkedAt": "2026-11-07",
+      "asOf": "2026-10-31",
+      "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
+      "sha256": "3746ae8969ce086505485cc7c74176db1a1227baef6dd4dcc7038987140d77a7",
+      "reason": "La fiche ne publie que les cinq premiers pays (89.28 %). Le solde ne peut pas être attribué à des pays sans source complète.",
+      "evidence": {
+        "scope": "top-five-countries",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 69.95
+          },
+          {
+            "name": "Japan",
+            "weightPct": 9.79
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 3.57
+          },
+          {
+            "name": "Canada",
+            "weightPct": 3.23
+          },
+          {
+            "name": "Australia",
+            "weightPct": 2.74
+          }
+        ],
+        "coveragePct": 89.28
+      }
+    }
+  }
+}

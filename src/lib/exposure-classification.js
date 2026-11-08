@@ -8,6 +8,8 @@ const broadSectors = new Set([
   'Liquidités et dérivés','Liquidités','Autres','Cash and/or Derivatives','Other',
 ])
 const methods = [
+  ['J.P. Morgan','countries','Published JPMorgan regional allocation of the fund; issuer labels and cash retained, no country-of-risk equivalence inferred','jpm-published-regional','Pays publiés · J.P. Morgan','issuer-regional'],
+  ['J.P. Morgan','sectors','Published JPMorgan proprietary sector allocation of the fund; no GICS/ICB equivalence or regrouping','jpm-proprietary-sectors','Secteurs émetteur · J.P. Morgan','issuer-sector'],
   ['iShares','countries','Country of risk, all published holdings including cash/derivatives, no renormalisation','ishares-risk-net','Pays de risque · iShares','country-of-risk'],
   ['iShares','sectors','Sector of all published holdings, signed cash/derivatives included, no renormalisation','ishares-holdings-sector-net','Secteurs des positions · iShares','sector'],
   ['DWS','countries','Full physical securities portfolio; registration country and industry; net cash/derivatives retained','dws-registration-net','Pays d’enregistrement · DWS','registration-country'],
@@ -18,6 +20,7 @@ const methods = [
   ['VanEck','sectors','Published SubIndustry weights, percent of net assets, no renormalisation','vaneck-subindustry','Sous-secteurs · VanEck','subindustry'],
 ]
 const issuerHosts = {
+ 'J.P. Morgan':['am.jpmorgan.com'],
  iShares:['blackrock.com','ishares.com'],DWS:['etf.dws.com'],Vanguard:['vanguard.co.uk','fund-docs.vanguard.com'],VanEck:['vaneck.com'],Amundi:['amundietf.fr','amundietf.com','amundi.com'],
 }
 const officialHost = (hostname,hosts=[]) => hosts.some(host=>hostname===host||hostname.endsWith('.'+host))
@@ -27,6 +30,7 @@ export function qualifyExposureClassification(observation, field) {
  let url
  try { url=new URL(observation.sourceUrl) } catch { return null }
  if(url.protocol!=='https:' || !officialHost(url.hostname,issuerHosts[observation.provider]))return null
+ if(observation.provider==='J.P. Morgan' && (url.href!=='https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false'||observation.sourceComponent!=='fundData.'+(field==='countries'?'emeaRegionalBreakdown':'emeaSectorBreakdown')))return null
  const published=methods.find(([provider,type,method])=>provider===observation.provider&&type===field&&method===observation.method)
  if(published) {
   const [, ,method,id,label,level]=published
