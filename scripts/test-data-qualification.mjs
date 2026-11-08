@@ -2,6 +2,9 @@ import {metadataFieldAttempt} from './report-asset-fields.mjs'
 import assert from 'node:assert/strict'
 import {fieldQualification,registryQualification,qualifyCoverage} from './lib/data-qualification.mjs'
 import {buildDataAutomationInventory} from './data-automation-inventory.mjs'
+import {outsideEquityClassification} from './lib/dca-asset-scope.mjs'
+import {references} from '../src/pages/dca-profiles/records.js'
+import {sharedPositions} from '../src/pages/dca-profiles/verification.js'
 await import('./test-holdings-consumer-qualification.mjs')
 const report=buildDataAutomationInventory()
 for(const row of report.connections.filter(row=>row.consumerQualification)){
@@ -50,3 +53,28 @@ assert.equal(registryQualification({path:'src/data/annual-window.js',mode:'manua
 const scoped={checkedAt:'2026-10-28',fields:{pea:{lastAttemptAt:'2026-10-27'}}}
 assert.equal(metadataFieldAttempt(scoped,'pea'),'2026-10-27')
 assert.equal(metadataFieldAttempt(scoped,'listings'),null,'A PEA retry never renews the listing attempt clock')
+
+// Reproduce the real consumer before qualifying its requirements. These exact
+// fixed-income shares are neutral, even though their names contain no "bond".
+for(const isin of ['IE00B1FZSC47','IE00BZ6V7883']){
+ const [asset,reference]=Object.entries(references).find(([,r])=>r.isin===isin)
+ assert.equal(reference.outsideClassification,'Obligations')
+ const line={asset,isin,label:reference.name,weight:100}
+ const unread=new Proxy({},{get(){throw Error('A non-applicable company book must not be read')}})
+ const actual=sharedPositions([line],references,new Date('2026-11-08'),unread)
+ assert.deepEqual(actual.qualification,[]);assert.deepEqual(actual.unavailable,[]);assert.deepEqual(actual.pairs,[])
+ const row={id:isin,name:reference.name,field:'completeHoldings',present:false,state:'missing',checkedAt:'2026-11-05'}
+ const qualified=qualifyCoverage(row)
+ assert.equal(qualified.actionState,'outside-equity-scope');assert.equal(qualified.requiresAction,false)
+ assert.equal(qualified.observationState,'missing');assert.equal(qualified.checkedAt,row.checkedAt)
+ assert.equal(outsideEquityClassification(isin,'A renamed exact share'),'Obligations','Identity, not a fund-name keyword')
+ const unknown=qualifyCoverage({...row,id:'IE9999999999'})
+ assert.equal(unknown.actionState,'connector-needed');assert(unknown.requiresAction,'An unqualified identity does not inherit the bond exemption')
+ const sourceFailure=qualifyCoverage({...row,field:'holdings',state:'collection-error',reason:'HTTP503'})
+ assert.equal(sourceFailure.actionState,'collection-error');assert(sourceFailure.requiresAction,'Other fields and actual producer failures remain visible')
+ const present=qualifyCoverage({...row,present:true,state:'current',unidentifiedWeightPct:100,unidentifiedSecurityCount:1})
+ assert.equal(present.actionState,'outside-equity-scope','An unused company-identity requirement remains non-applicable when positions exist')
+}
+assert.equal(qualifyCoverage({...retained,id:'US0378331005',present:false,state:'missing'}).actionState,'connector-needed')
+assert.equal(qualifyCoverage({...retained,id:'FR0010755611',present:false,state:'missing'},{record:{characteristics:{replicationMethod:'Synthetic'}}}).actionState,'tracked-index-needed')
+console.log('Exact TIPS/MBS consumer exclusions, unchanged source clocks, unknown identities and genuine source/equity/index gaps passed.')
