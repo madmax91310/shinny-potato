@@ -1,0 +1,241 @@
+{
+  "run": 42473294954,
+  "event": "push",
+  "head": "d94664d5737d6f74aae253ce43971b885d1c40c8",
+  "checkedAt": "2026-11-08T10:58:22.157182+00:00",
+  "isin": "IE0002Y8CX98",
+  "status": "validated",
+  "reason": null,
+  "sourceAttempts": [
+    {
+      "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+      "status": "validated",
+      "fields": [
+        "holdings",
+        "sectors",
+        "countries"
+      ],
+      "deferred": []
+    },
+    {
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "status": "unavailable",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "status": "failed",
+      "phase": "validation",
+      "reason": "Missing or ambiguous issuer overview date: []",
+      "sha256": "d83a4df8515d04e8ae8b0523de9b8a035101560788a05fbeb05f51e0f1c602cc",
+      "qualifiedFallbackAvailable": true,
+      "qualifiedFields": [
+        "holdings",
+        "countries",
+        "sectors"
+      ]
+    },
+    {
+      "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+      "status": "validated",
+      "phase": "validation"
+    },
+    {
+      "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+      "status": "validated",
+      "fields": [
+        "aum"
+      ],
+      "sharedCurrentResponse": true,
+      "transportAttempts": [
+        {
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "transport": "http",
+          "status": "downloaded"
+        }
+      ]
+    }
+  ],
+  "collectionErrors": [
+    {
+      "field": "overview-date",
+      "url": "https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "phase": "validation",
+      "reason": "Missing or ambiguous issuer overview date: []",
+      "qualifiedFallbackAvailable": true,
+      "qualifiedFields": [
+        "holdings",
+        "countries",
+        "sectors"
+      ]
+    }
+  ],
+  "record": {
+    "currency": "EUR",
+    "productId": "IE0002Y8CX98",
+    "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+    "provider": "WisdomTree",
+    "sectors": {
+      "rows": [
+        {
+          "name": "Industrials",
+          "weightPct": 97.5011,
+          "label": "Industrials"
+        },
+        {
+          "name": "Information Technology",
+          "weightPct": 2.1415,
+          "label": "Information Technology"
+        },
+        {
+          "name": "Communication Services",
+          "weightPct": 0.35729999999999995,
+          "label": "Communication"
+        }
+      ],
+      "asOf": "2026-11-05",
+      "basis": "fund",
+      "rankClassificationID": 2,
+      "method": "Exact issuer Fund Sector ranking; original percentages, not country or index groups",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+      "sha256": "ee6a87f1ca8b5711750c188745f20ac80ee2dfd75fa889ce23afcda6a63d0fd5",
+      "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+      "identitySha256": "30ac82d29be5d8453df9ef0c390ac4d882749e6d6c1df6a85420ddc8d2e4c63b",
+      "identityAsOf": "2026-09-30",
+      "checkedAt": "2026-11-08",
+      "modifiedAt": "2026-11-06"
+    },
+    "countries": {
+      "rows": [
+        {
+          "name": "France",
+          "weightPct": 33.4966
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 24.4285
+        },
+        {
+          "name": "Germany",
+          "weightPct": 15.6758
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 7.9436
+        },
+        {
+          "name": "Italy",
+          "weightPct": 7.6284
+        },
+        {
+          "name": "Norway",
+          "weightPct": 7.1798
+        },
+        {
+          "name": "Spain",
+          "weightPct": 1.6508
+        },
+        {
+          "name": "Czech Republic",
+          "weightPct": 0.6033
+        },
+        {
+          "name": "Cyprus",
+          "weightPct": 0.5034
+        },
+        {
+          "name": "Finland",
+          "weightPct": 0.2675
+        },
+        {
+          "name": "Unknown",
+          "weightPct": 0.2491
+        },
+        {
+          "name": "Denmark",
+          "weightPct": 0.2051
+        },
+        {
+          "name": "Luxembourg",
+          "weightPct": 0.1068
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 0.0486
+        },
+        {
+          "name": "Poland",
+          "weightPct": 0.0127
+        }
+      ],
+      "asOf": "2026-11-05",
+      "basis": "fund",
+      "rankClassificationID": 6,
+      "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation",
+      "unclassifiedWeightPct": 0.2491,
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+      "sha256": "ee6a87f1ca8b5711750c188745f20ac80ee2dfd75fa889ce23afcda6a63d0fd5",
+      "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+      "identitySha256": "30ac82d29be5d8453df9ef0c390ac4d882749e6d6c1df6a85420ddc8d2e4c63b",
+      "identityAsOf": "2026-09-30",
+      "checkedAt": "2026-11-08",
+      "modifiedAt": "2026-11-08"
+    },
+    "holdings": {
+      "rows": [
+        {
+          "name": "BAE Systems PLC",
+          "weightPct": 12.8092
+        },
+        {
+          "name": "Thales SA",
+          "weightPct": 12.667800000000002
+        },
+        {
+          "name": "Rheinmetall AG",
+          "weightPct": 10.5134
+        },
+        {
+          "name": "Airbus SE",
+          "weightPct": 7.744
+        },
+        {
+          "name": "SAAB AB-B SEK NPV",
+          "weightPct": 7.6055
+        },
+        {
+          "name": "Safran SA",
+          "weightPct": 7.0481
+        },
+        {
+          "name": "Leonardo Spa",
+          "weightPct": 6.8621
+        },
+        {
+          "name": "Rolls-Royce Holdings PLC",
+          "weightPct": 6.816800000000001
+        },
+        {
+          "name": "Kongsberg Gruppen Asa",
+          "weightPct": 6.6829
+        },
+        {
+          "name": "DASSAULT AVIATION EUR 0.8",
+          "weightPct": 4.7504
+        }
+      ],
+      "asOf": "2026-11-05",
+      "basis": "fund",
+      "rankClassificationID": 1,
+      "scope": "top-10",
+      "method": "Top ten of the exact issuer Fund ranking; original fund weights, not renormalised",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=WDEF%20LN&isoCode=en-GB",
+      "sha256": "ee6a87f1ca8b5711750c188745f20ac80ee2dfd75fa889ce23afcda6a63d0fd5",
+      "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+      "identitySha256": "30ac82d29be5d8453df9ef0c390ac4d882749e6d6c1df6a85420ddc8d2e4c63b",
+      "identityAsOf": "2026-09-30",
+      "checkedAt": "2026-11-08",
+      "modifiedAt": "2026-11-06"
+    }
+  }
+}

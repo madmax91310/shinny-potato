@@ -1,0 +1,11 @@
+{
+  "status": "failed",
+  "reason": "HTTP Error 400: Bad Request",
+  "trace": [
+    {
+      "url": "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1793491200&interval=1d&events=div%2Csplits",
+      "status": 400,
+      "body": "{\"chart\":{\"result\":null,\"error\":{\"code\":\"Bad Request\",\"description\":\"Data doesn't exist for startDate = 1593561600, endDate = 1793491200\"}}}"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "checkedAt": "2026-11-08T12:17:20.406673+00:00",
+  "scope": {
+    "requestedIds": [
+      "etc_brent_crude_oilNav",
+      "etc_wti_crude_oilNav"
+    ],
+    "expectedIds": [
+      "etc_brent_crude_oilNav",
+      "etc_wti_crude_oilNav"
+    ],
+    "selection": "failed-or-missing"
+  },
+  "series": [
+    {
+      "id": "etc_brent_crude_oilNav",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-10",
+      "responseSha256": "ddbcc03524dfb19c0561fb46559726337a2c150921d80e50a2479c6c5c6755ee",
+      "controlScope": {
+        "controlledInstrument": "JE00B78CGV99",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2019-12-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    },
+    {
+      "id": "etc_wti_crude_oilNav",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-10",
+      "responseSha256": "5c9110705defb4827b67066afbd49d966056e53908e5968f494f6714461557f5",
+      "controlScope": {
+        "controlledInstrument": "GB00B15KXV33",
+        "controlledFields": [
+          "tabular.entityID",
+          "tabular.entityGroup",
+          "tabular.wtListingID",
+          "tabular.currency",
+          "tabular.levelType",
+          "gro10k.wtTypeID",
+          "gro10k.wtListingID",
+          "gro10k.tickerA",
+          "gro10k.name",
+          "gro10k.currency",
+          "gro10k.baseCCY",
+          "gro10k.entityInceptionDt",
+          "gro10k.levelType",
+          "gro10k.shiftTicker",
+          "gro10k.cntCheck",
+          "gro10k.cobDate",
+          "gro10k.officialLevel"
+        ],
+        "requestedStart": "2019-12-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    }
+  ]
+}

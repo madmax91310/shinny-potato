@@ -1,0 +1,56 @@
+{
+  "source": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+  "checkedAt": "2026-11-08T15:21:22.515066+00:00",
+  "requestedExactShares": [
+    "FR0013411998",
+    "FR0013412004",
+    "FR0010755611"
+  ],
+  "products": [
+    {
+      "productId": "FR0013411998",
+      "characteristics": {
+        "ISIN": "FR0013411998",
+        "CURRENCY": "EUR",
+        "LAUNCH_DATE": "2019-04-25",
+        "DISTRIBUTION_POLICY": "Capitalisation and/or distribution",
+        "SHARE_MARKETING_NAME": "Amundi PEA Japon (TOPIX) UCITS ETF EUR Hedged Acc"
+      },
+      "currencies": {
+        "CURRENCY": "EUR",
+        "BASE_CURRENCY": "EUR",
+        "INDEX_CURRENCY": "EUR"
+      }
+    },
+    {
+      "productId": "FR0013412004",
+      "characteristics": {
+        "ISIN": "FR0013412004",
+        "CURRENCY": "EUR",
+        "LAUNCH_DATE": "2019-04-25",
+        "DISTRIBUTION_POLICY": "Capitalisation and/or distribution",
+        "SHARE_MARKETING_NAME": "Amundi PEA Amerique Latine (MSCI Emerging Latin America) Selection UCITS ETF - Acc"
+      },
+      "currencies": {
+        "CURRENCY": "EUR",
+        "BASE_CURRENCY": "EUR",
+        "INDEX_CURRENCY": "USD"
+      }
+    },
+    {
+      "productId": "FR0010755611",
+      "characteristics": {
+        "ISIN": "FR0010755611",
+        "CURRENCY": "EUR",
+        "LAUNCH_DATE": "2009-06-16",
+        "DISTRIBUTION_POLICY": "Capitalisation and/or distribution",
+        "SHARE_MARKETING_NAME": "Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc"
+      },
+      "currencies": {
+        "CURRENCY": "EUR",
+        "BASE_CURRENCY": "EUR",
+        "INDEX_CURRENCY": "EUR"
+      }
+    }
+  ]
+}

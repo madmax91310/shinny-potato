@@ -1,0 +1,39 @@
+{
+  "baselineRecord": "4f6d10f6d24124f8d67aa603a27defe41d4f972b",
+  "public": {
+    "sha": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
+    "dataSha": "fe9acdda6eef146527e78f7b3fb7d70414888579",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-08T16:33:23.063Z"
+  },
+  "results": [
+    {
+      "id": "etc_brent_crude_oilNav",
+      "financialFieldsExactlyEqual": [
+        "points",
+        "currency",
+        "periodStart",
+        "periodEnd",
+        "historyConvention",
+        "historyExcludedMonths",
+        "historyUnqualifiedReturnWindows"
+      ],
+      "points": 83,
+      "previousPublicPngRecipesStillSameFinancialInputs": true
+    },
+    {
+      "id": "etc_wti_crude_oilNav",
+      "financialFieldsExactlyEqual": [
+        "points",
+        "currency",
+        "periodStart",
+        "periodEnd",
+        "historyConvention",
+        "historyExcludedMonths",
+        "historyUnqualifiedReturnWindows"
+      ],
+      "points": 83,
+      "previousPublicPngRecipesStillSameFinancialInputs": true
+    }
+  ]
+}

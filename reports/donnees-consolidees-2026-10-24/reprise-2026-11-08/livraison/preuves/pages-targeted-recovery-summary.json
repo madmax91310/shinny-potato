@@ -1,0 +1,20 @@
+{
+  "run": 42493163816,
+  "attempt": 2,
+  "code": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
+  "previousIdleJob": 128780992838,
+  "previousJobCancelledBeforeRunnerStarted": true,
+  "normalCancellationThenForceCancellationUsed": true,
+  "newJob": 128786586522,
+  "newJobStatus": "success",
+  "newJobStartedAt": "2026-11-08T16:30:58Z",
+  "newJobCompletedAt": "2026-11-08T16:33:40Z",
+  "validation": "14 required validation jobs had succeeded before this targeted deployment-only rerun; no tests, sources, guards, locks or financial data changed by recovery",
+  "lesson": "Initial job was waiting in the shared publication queue; the manual rerun did not accelerate it. Ordinary producers and their publications were allowed to complete. Not a financial data repair.",
+  "public": {
+    "sha": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
+    "dataSha": "fe9acdda6eef146527e78f7b3fb7d70414888579",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-08T16:33:23.063Z"
+  }
+}

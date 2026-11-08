@@ -1,0 +1,63 @@
+{
+  "fullOverlapIndividualAdmissions": 538,
+  "outsideCompanyOverlap": 53,
+  "fullFundIndexBooks": 127,
+  "generatedAt": "2026-11-08T16:46:29.439162+00:00",
+  "public": {
+    "sha": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
+    "dataSha": "fe9acdda6eef146527e78f7b3fb7d70414888579",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-08T16:33:23.063Z"
+  },
+  "initialDiagnostics": 10602,
+  "finalDiagnostics": 10600,
+  "initialRowsReconciled": 10602,
+  "initialFamilies": {
+    "compositions-expositions": 1943,
+    "hors périmètre": 2040,
+    "historiques-performances": 3051,
+    "hors périmètre — Radar arrêté": 3568
+  },
+  "matrixUses": 7512,
+  "matrixUniqueAssets": 1132,
+  "matrixFamilies": {
+    "historiques-performances": 5024,
+    "compositions-expositions": 2488
+  },
+  "matrixStates": {
+    "connected": 6125,
+    "not-required": 216,
+    "qualification-needed": 335,
+    "scheduled-evidence": 338,
+    "excluded": 253,
+    "blocked": 245
+  },
+  "monthlyRoutes": 772,
+  "monthlyCasesConstantScope": 79,
+  "monthlyCasesQualified": 71,
+  "monthlyCasesRefused": 8,
+  "newMonthlyCasesRestored": 0,
+  "additional2020MonthlyRoutesPublished": [
+    "etc_brent_crude_oilNav",
+    "etc_wti_crude_oilNav"
+  ],
+  "refusedMonthlyRouteIntervals": 645,
+  "refusedMonthlyRouteIds": 28,
+  "refusedRouteIntervalsWithNoQualifiedAlternative": 177,
+  "indexUsageRows": 87,
+  "indexReferencesAndEconomicContracts": 86,
+  "automatedReferenceRecords": 60,
+  "indexCurrentUsageRows": 56,
+  "indicesWithCompositionFacts": 56,
+  "nonApplicableCompositionReferences": [
+    "bitcoin",
+    "ethereum",
+    "gold-physical",
+    "silver-physical"
+  ],
+  "dcaReferences": 694,
+  "directEquities": 411,
+  "fundAndOtherSupports": 283,
+  "dcaUniqueIsins": 694,
+  "warning": "Neither configured workflows nor a successful composite run certify every field. Archives, hypotheses and non-applicable data are not failures. Original financial divergence cases remain distinct."
+}

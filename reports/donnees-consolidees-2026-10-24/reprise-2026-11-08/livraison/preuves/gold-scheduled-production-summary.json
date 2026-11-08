@@ -1,0 +1,43 @@
+{
+  "run": 42489190863,
+  "event": "schedule",
+  "sourceReport": {
+    "schemaVersion": 1,
+    "scope": {
+      "requestedIds": [
+        "gold:monthly"
+      ],
+      "expectedIds": [
+        "gold:monthly"
+      ]
+    },
+    "successes": [
+      {
+        "id": "gold:monthly"
+      }
+    ],
+    "errors": [],
+    "outcomes": [
+      {
+        "id": "gold:monthly",
+        "status": "unchanged-verified",
+        "checkedAt": "2026-11-08",
+        "asOf": "2026-10",
+        "publicationDate": "2026-11-03",
+        "sourceUrl": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+        "responseSha256": "3c8d9d8dbb48342fdbf24777c39a8ce8964cc2fd0958f72f6779e6e4ad99cde2",
+        "unit": "USD per troy ounce"
+      }
+    ]
+  },
+  "recordingCommit": "f2a1b6d43700e6ebdd6053dbaed7c4c5c35592e6",
+  "publishedData": {
+    "sha": "745b051fc657dd4f907e83647eb7674a0d81a1b7",
+    "dataSha": "3d92ee4410344f395826b47e0b578be976633208",
+    "lane": "validated-data",
+    "builtAt": "2026-11-08T14:52:54.270Z"
+  },
+  "publicBlobVerified": "f81e6db5da8d7f0420f8b475f2daa89ba03be60c",
+  "method": "Monthly average of daily spot rates (not a month-end close)",
+  "meaning": "Source actually checked, no change; October monthly average preserved, not a month-end close"
+}

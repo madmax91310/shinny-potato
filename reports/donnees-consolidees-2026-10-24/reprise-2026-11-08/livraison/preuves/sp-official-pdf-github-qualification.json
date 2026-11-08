@@ -1,0 +1,25 @@
+{
+  "expectedIds": [
+    "sp-global-dividend-aristocrats",
+    "sp-euro-dividend-aristocrats"
+  ],
+  "selection": "fixed existing indices before source access",
+  "readOnly": true,
+  "checkedAt": "2026-11-08T16:19:32.604428+00:00",
+  "outcomes": [
+    {
+      "id": "sp-global-dividend-aristocrats",
+      "status": "failed",
+      "sourceAttempted": true,
+      "sourceUrl": "https://www.spglobal.com/spdji/en/idsenhancedfactsheet/file.pdf?calcFrequency=M&force_download=true&hostIdentifier=48190c8c-42c4-46af-8d1a-0cd5db894797&languageId=1&indexId=92388578",
+      "reason": "HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "sp-euro-dividend-aristocrats",
+      "status": "failed",
+      "sourceAttempted": true,
+      "sourceUrl": "https://www.spglobal.com/spdji/en/idsenhancedfactsheet/file.pdf?calcFrequency=M&force_download=true&hostIdentifier=48190c8c-42c4-46af-8d1a-0cd5db894797&languageId=1&indexId=5475610",
+      "reason": "HTTP Error 403: Forbidden"
+    }
+  ]
+}

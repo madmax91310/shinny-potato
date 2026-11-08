@@ -1,0 +1,46 @@
+[
+  {
+    "path": "public/data/data-automation-inventory.json",
+    "expectedBlob": "51d2508903ba488e92c08a0de5d849eac669f8fc",
+    "actualBlob": "51d2508903ba488e92c08a0de5d849eac669f8fc",
+    "manifestMatched": true,
+    "verification": "Git blob manifest match",
+    "bytes": 44334370,
+    "stored": "data-automation-inventory.json.gz",
+    "code": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
+    "data": "fe9acdda6eef146527e78f7b3fb7d70414888579"
+  },
+  {
+    "path": "public/data/asset-field-coverage.json",
+    "expectedBlob": "f297350dc476d69e455f1d1827f2c60a1676a115",
+    "actualBlob": "f297350dc476d69e455f1d1827f2c60a1676a115",
+    "manifestMatched": true,
+    "verification": "Git blob manifest match",
+    "bytes": 3861372,
+    "stored": "asset-field-coverage.json.gz",
+    "code": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
+    "data": "fe9acdda6eef146527e78f7b3fb7d70414888579"
+  },
+  {
+    "path": "public/data/financial-reconciliation.json",
+    "expectedBlob": "56ff506ef9bb97f981a5e78e6ec81ce612a21564",
+    "actualBlob": "56ff506ef9bb97f981a5e78e6ec81ce612a21564",
+    "manifestMatched": true,
+    "verification": "Git blob manifest match",
+    "bytes": 418923,
+    "stored": "financial-reconciliation.json.gz",
+    "code": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
+    "data": "fe9acdda6eef146527e78f7b3fb7d70414888579"
+  },
+  {
+    "path": "public/data/data-review-inbox.json",
+    "expectedBlob": null,
+    "actualBlob": "2d98d0fc45dd0bbac3c5591c0281835930f87f58",
+    "manifestMatched": null,
+    "verification": "Public generated inbox bound to exact inventory blob",
+    "bytes": 1894206,
+    "stored": "data-review-inbox.json.gz",
+    "code": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
+    "data": "fe9acdda6eef146527e78f7b3fb7d70414888579"
+  }
+]

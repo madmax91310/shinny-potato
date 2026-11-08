@@ -1,0 +1,684 @@
+{
+  "run": 42469157782,
+  "event": "push",
+  "head": "3ffc809d6a483e4ffa762c8049a6086a76d941ab",
+  "checkedAt": "2026-11-08T10:02:13.191854+00:00",
+  "shares": [
+    {
+      "isin": "IE0002Y8CX98",
+      "status": "failed",
+      "reason": "Missing or ambiguous issuer overview date",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "record": {}
+    },
+    {
+      "isin": "IE00BZ56SW52",
+      "status": "validated",
+      "unavailable": [
+        "countries: PDF publishes only ten countries; complete previous allocation preserved",
+        "HTML unavailable: current official PDF used; AUM independently collected from the official collective directory"
+      ],
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+      "collectionErrors": [],
+      "sourceAttempts": [
+        {
+          "url": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
+          "reason": "HTTP Error 403: Forbidden"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+          "status": "validated"
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+          "status": "validated",
+          "fields": [
+            "holdings",
+            "sectors",
+            "countries"
+          ],
+          "deferred": []
+        },
+        {
+          "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ],
+          "sharedCurrentResponse": true,
+          "transportAttempts": [
+            {
+              "url": "https://dataspanapi.wisdomtree.com/fundlist/data/?divisionId=2&wtRegion=GB&isoCode=en-GB&isLeveraged=-1&isFP=0",
+              "transport": "http",
+              "status": "downloaded"
+            }
+          ]
+        }
+      ],
+      "record": {
+        "currency": "USD",
+        "productId": "IE00BZ56SW52",
+        "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+        "provider": "WisdomTree",
+        "sectors": {
+          "rows": [
+            {
+              "name": "Health Care",
+              "weightPct": 20.677599999999998,
+              "label": "Health Care"
+            },
+            {
+              "name": "Industrials",
+              "weightPct": 19.4393,
+              "label": "Industrials"
+            },
+            {
+              "name": "Information Technology",
+              "weightPct": 18.2882,
+              "label": "Information Technology"
+            },
+            {
+              "name": "Consumer Discretionary",
+              "weightPct": 14.039299999999999,
+              "label": "Consumer Discretionary"
+            },
+            {
+              "name": "Financials",
+              "weightPct": 8.82,
+              "label": "Financials"
+            },
+            {
+              "name": "Consumer Staples",
+              "weightPct": 8.1875,
+              "label": "Consumer Staples"
+            },
+            {
+              "name": "Communication Services",
+              "weightPct": 3.8315,
+              "label": "Communication"
+            },
+            {
+              "name": "Materials",
+              "weightPct": 3.7433,
+              "label": "Materials"
+            },
+            {
+              "name": "Energy",
+              "weightPct": 2.2191,
+              "label": "Energy"
+            },
+            {
+              "name": "Utilities",
+              "weightPct": 0.7212,
+              "label": "Utilities"
+            },
+            {
+              "name": "Real Estate",
+              "weightPct": 0.0324,
+              "label": "Immobilier"
+            }
+          ],
+          "asOf": "2026-11-05",
+          "basis": "fund",
+          "rankClassificationID": 2,
+          "method": "Exact issuer Fund Sector ranking; original percentages, not country or index groups",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+          "sha256": "1356c15ca25e437c8591f80a5002b2250dd1deb71a609d471edd28e4db3d0387",
+          "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+          "identitySha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
+          "identityAsOf": "2026-09-30",
+          "checkedAt": "2026-11-08",
+          "modifiedAt": "2026-11-08"
+        },
+        "countries": {
+          "rows": [
+            {
+              "name": "United States",
+              "weightPct": 58.1911
+            },
+            {
+              "name": "Switzerland",
+              "weightPct": 6.563
+            },
+            {
+              "name": "France",
+              "weightPct": 6.3615
+            },
+            {
+              "name": "United Kingdom",
+              "weightPct": 6.3061
+            },
+            {
+              "name": "Japan",
+              "weightPct": 5.3597
+            },
+            {
+              "name": "Germany",
+              "weightPct": 3.0155
+            },
+            {
+              "name": "Canada",
+              "weightPct": 2.3648
+            },
+            {
+              "name": "Sweden",
+              "weightPct": 2.3055
+            },
+            {
+              "name": "Spain",
+              "weightPct": 1.5499
+            },
+            {
+              "name": "Denmark",
+              "weightPct": 1.176
+            },
+            {
+              "name": "Netherlands",
+              "weightPct": 1.1482
+            },
+            {
+              "name": "Italy",
+              "weightPct": 1.0599
+            },
+            {
+              "name": "Australia",
+              "weightPct": 0.8689
+            },
+            {
+              "name": "Finland",
+              "weightPct": 0.775
+            },
+            {
+              "name": "Ireland",
+              "weightPct": 0.7373
+            },
+            {
+              "name": "Singapore",
+              "weightPct": 0.4919
+            },
+            {
+              "name": "Belgium",
+              "weightPct": 0.4717
+            },
+            {
+              "name": "Norway",
+              "weightPct": 0.373
+            },
+            {
+              "name": "Austria",
+              "weightPct": 0.2633
+            },
+            {
+              "name": "Hong Kong",
+              "weightPct": 0.2087
+            },
+            {
+              "name": "Portugal",
+              "weightPct": 0.1102
+            },
+            {
+              "name": "Israel",
+              "weightPct": 0.0959
+            },
+            {
+              "name": "China",
+              "weightPct": 0.0955
+            },
+            {
+              "name": "Bermuda",
+              "weightPct": 0.058
+            },
+            {
+              "name": "Luxembourg",
+              "weightPct": 0.0377
+            },
+            {
+              "name": "Unknown",
+              "weightPct": 0.0117
+            }
+          ],
+          "asOf": "2026-11-05",
+          "basis": "fund",
+          "rankClassificationID": 6,
+          "method": "Exact issuer Incorporated Country allocation; original published percentages, no renormalisation",
+          "unclassifiedWeightPct": 0.0117,
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+          "sha256": "1356c15ca25e437c8591f80a5002b2250dd1deb71a609d471edd28e4db3d0387",
+          "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+          "identitySha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
+          "identityAsOf": "2026-09-30",
+          "checkedAt": "2026-11-08",
+          "modifiedAt": "2026-11-08"
+        },
+        "holdings": {
+          "rows": [
+            {
+              "name": "Microsoft Corp",
+              "weightPct": 5.0438
+            },
+            {
+              "name": "Nvidia Corp",
+              "weightPct": 3.6332000000000004
+            },
+            {
+              "name": "Apple Inc",
+              "weightPct": 3.5946
+            },
+            {
+              "name": "Johnson & Johnson",
+              "weightPct": 3.0449
+            },
+            {
+              "name": "AbbVie Inc",
+              "weightPct": 2.7276000000000002
+            },
+            {
+              "name": "Home Depot Inc",
+              "weightPct": 2.1821
+            },
+            {
+              "name": "Novartis AG",
+              "weightPct": 2.1555
+            },
+            {
+              "name": "Coca-Cola Co/The",
+              "weightPct": 2.0787
+            },
+            {
+              "name": "Roche Holding Ag",
+              "weightPct": 2.0616
+            },
+            {
+              "name": "Walmart Inc",
+              "weightPct": 1.9416
+            }
+          ],
+          "asOf": "2026-11-05",
+          "basis": "fund",
+          "rankClassificationID": 1,
+          "scope": "top-10",
+          "method": "Top ten of the exact issuer Fund ranking; original fund weights, not renormalised",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/funddetails/rankings/?ticker=GGRA%20LN&isoCode=en-GB",
+          "sha256": "1356c15ca25e437c8591f80a5002b2250dd1deb71a609d471edd28e4db3d0387",
+          "identitySourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+          "identitySha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
+          "identityAsOf": "2026-09-30",
+          "checkedAt": "2026-11-08",
+          "modifiedAt": "2026-11-08"
+        },
+        "performance": {
+          "currency": "USD",
+          "basis": "fund",
+          "years": {
+            "2017": 27.99,
+            "2018": -8.81,
+            "2019": 33.18,
+            "2020": 16.26,
+            "2021": 19.29,
+            "2022": -13.88,
+            "2023": 18.26,
+            "2024": 8.98,
+            "2025": 16.33
+          },
+          "method": "calendar-year exact-share NAV return, net of fees",
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+          "sha256": "4db03b2134f4024b58e6bcff96ff456149184a1146d7e7bc553bce5c300b004f",
+          "checkedAt": "2026-11-08",
+          "modifiedAt": "2026-10-26"
+        }
+      }
+    },
+    {
+      "isin": "IE0003UVYC20",
+      "status": "validated",
+      "unavailable": [],
+      "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+      "collectionErrors": [],
+      "sourceAttempts": [
+        {
+          "url": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+          "status": "validated",
+          "fields": [
+            "characteristics.terPct",
+            "performance",
+            "countries",
+            "sectors",
+            "aum",
+            "holdings"
+          ]
+        },
+        {
+          "url": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+          "status": "validated",
+          "fields": [
+            "aum"
+          ]
+        },
+        {
+          "url": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+          "status": "validated",
+          "fields": [
+            "holdings"
+          ]
+        },
+        {
+          "url": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+          "status": "validated",
+          "fields": [
+            "countries"
+          ]
+        },
+        {
+          "url": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+          "status": "validated",
+          "fields": [
+            "sectors"
+          ]
+        }
+      ],
+      "record": {
+        "currency": "USD",
+        "productId": "IE0003UVYC20",
+        "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+        "provider": "J.P. Morgan",
+        "sectors": {
+          "rows": [
+            {
+              "name": "Pharm/Medtech",
+              "weightPct": 10.8,
+              "label": "Pharmacie et technologies médicales"
+            },
+            {
+              "name": "Technology - Semi & Hardware",
+              "weightPct": 10.2,
+              "label": "Semi-conducteurs et matériel"
+            },
+            {
+              "name": "Industrial Cyclicals",
+              "weightPct": 9.9,
+              "label": "Industries cycliques"
+            },
+            {
+              "name": "Consumer Staples",
+              "weightPct": 8.8,
+              "label": "Consommation de base"
+            },
+            {
+              "name": "Technology - Software",
+              "weightPct": 8.4,
+              "label": "Logiciels"
+            },
+            {
+              "name": "Telecommunications",
+              "weightPct": 7.7,
+              "label": "Télécommunications"
+            },
+            {
+              "name": "Utilities",
+              "weightPct": 7.5,
+              "label": "Services publics"
+            },
+            {
+              "name": "Retail",
+              "weightPct": 5.5,
+              "label": "Distribution"
+            },
+            {
+              "name": "Insurance",
+              "weightPct": 4.8,
+              "label": "Assurance"
+            },
+            {
+              "name": "Banks",
+              "weightPct": 3.9,
+              "label": "Banques"
+            },
+            {
+              "name": "Health Services & Systems",
+              "weightPct": 3.9,
+              "label": "Services et systèmes de santé"
+            },
+            {
+              "name": "Financial Services",
+              "weightPct": 3.3,
+              "label": "Services financiers"
+            },
+            {
+              "name": "Basic Industries",
+              "weightPct": 3.3,
+              "label": "Industries de base"
+            },
+            {
+              "name": "Energy",
+              "weightPct": 2.5,
+              "label": "Énergie"
+            },
+            {
+              "name": "Media",
+              "weightPct": 2.4,
+              "label": "Médias"
+            },
+            {
+              "name": "Property",
+              "weightPct": 2.4,
+              "label": "Immobilier"
+            },
+            {
+              "name": "Transportation",
+              "weightPct": 1.5,
+              "label": "Transports"
+            },
+            {
+              "name": "Automobiles & Auto Parts",
+              "weightPct": 1.4,
+              "label": "Automobiles et équipementiers"
+            },
+            {
+              "name": "Consumer Cyclical & Services",
+              "weightPct": 1.0,
+              "label": "Consommation cyclique et services"
+            },
+            {
+              "name": "Cash",
+              "weightPct": 0.8,
+              "label": "Liquidités"
+            }
+          ],
+          "asOf": "2026-10-31",
+          "basis": "fund",
+          "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+          "sha256": "d63bd625651c6fbe1e5c2a0ce8e84735feccb20fa03b55fd74d1d3b2395e596e",
+          "sourceComponent": "fundData.emeaSectorBreakdown",
+          "classification": "jpm-proprietary-sectors-v1",
+          "method": "Published JPMorgan proprietary sector allocation of the fund; no GICS/ICB equivalence or regrouping",
+          "checkedAt": "2026-11-08",
+          "modifiedAt": "2026-11-08"
+        },
+        "countries": {
+          "rows": [
+            {
+              "name": "United States",
+              "weightPct": 67.6
+            },
+            {
+              "name": "Japan",
+              "weightPct": 10.8
+            },
+            {
+              "name": "France",
+              "weightPct": 4.5
+            },
+            {
+              "name": "Germany",
+              "weightPct": 3.8
+            },
+            {
+              "name": "Netherlands",
+              "weightPct": 1.7
+            },
+            {
+              "name": "Spain",
+              "weightPct": 1.7
+            },
+            {
+              "name": "Switzerland",
+              "weightPct": 1.5
+            },
+            {
+              "name": "Italy",
+              "weightPct": 1.2
+            },
+            {
+              "name": "Singapore",
+              "weightPct": 1.1
+            },
+            {
+              "name": "United Kingdom",
+              "weightPct": 0.9
+            },
+            {
+              "name": "Hong Kong",
+              "weightPct": 0.9
+            },
+            {
+              "name": "Belgium",
+              "weightPct": 0.7
+            },
+            {
+              "name": "Denmark",
+              "weightPct": 0.6
+            },
+            {
+              "name": "Canada",
+              "weightPct": 0.5
+            },
+            {
+              "name": "Australia",
+              "weightPct": 0.5
+            },
+            {
+              "name": "Ireland",
+              "weightPct": 0.5
+            },
+            {
+              "name": "Sweden",
+              "weightPct": 0.4
+            },
+            {
+              "name": "Israel",
+              "weightPct": 0.2
+            },
+            {
+              "name": "Finland",
+              "weightPct": 0.1
+            },
+            {
+              "name": "Norway",
+              "weightPct": 0.0
+            },
+            {
+              "name": "Austria",
+              "weightPct": 0.0
+            },
+            {
+              "name": "Portugal",
+              "weightPct": 0.0
+            },
+            {
+              "name": "Cash",
+              "weightPct": 0.8
+            }
+          ],
+          "asOf": "2026-10-31",
+          "basis": "fund",
+          "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+          "sha256": "d63bd625651c6fbe1e5c2a0ce8e84735feccb20fa03b55fd74d1d3b2395e596e",
+          "sourceComponent": "fundData.emeaRegionalBreakdown",
+          "classification": "jpm-published-regional-v1",
+          "method": "Published JPMorgan regional allocation of the fund; issuer labels and cash retained, no country-of-risk equivalence inferred",
+          "checkedAt": "2026-11-08",
+          "modifiedAt": "2026-11-08"
+        },
+        "holdings": {
+          "sourceUrl": "https://am.jpmorgan.com/FundsMarketingHandler/product-data?cusip=IE0003UVYC20&country=sg&role=per&language=en&userLoggedIn=false",
+          "sha256": "d63bd625651c6fbe1e5c2a0ce8e84735feccb20fa03b55fd74d1d3b2395e596e",
+          "rows": [
+            {
+              "isin": "US4781601046",
+              "name": "JOHNSON & JOHNSON",
+              "weightPct": 1.956479779912036
+            },
+            {
+              "isin": "US8425871071",
+              "name": "SOUTHERN CO/THE",
+              "weightPct": 1.651296380323395
+            },
+            {
+              "isin": "US5949181045",
+              "name": "MICROSOFT CORP",
+              "weightPct": 1.604851343220292
+            },
+            {
+              "isin": "JP3463000004",
+              "name": "TAKEDA PHARMACEUTICAL CO /JPY/",
+              "weightPct": 1.599788879029774
+            },
+            {
+              "isin": "US0846707026",
+              "name": "BERKSHIRE HATHAWAY INC-CL B",
+              "weightPct": 1.466298910118785
+            },
+            {
+              "isin": "US6200763075",
+              "name": "MOTOROLA SOLUTIONS INC",
+              "weightPct": 1.40866566699231
+            },
+            {
+              "isin": "US1912161007",
+              "name": "COCA-COLA CO/THE",
+              "weightPct": 1.336738670339554
+            },
+            {
+              "isin": "US03073E1055",
+              "name": "CENCORA INC",
+              "weightPct": 1.184443047613404
+            },
+            {
+              "isin": "US00287Y1091",
+              "name": "ABBVIE INC",
+              "weightPct": 1.176813315985392
+            },
+            {
+              "isin": "US5801351017",
+              "name": "MCDONALDS CORP",
+              "weightPct": 1.160569957606895
+            }
+          ],
+          "asOf": "2026-11-06",
+          "basis": "fund",
+          "complete": false,
+          "sourceComponent": "fundData.dailyHoldings",
+          "method": "Published top ten direct equity/REIT positions; native portfolio market-value weights, no renormalisation or complete-overlap inference",
+          "checkedAt": "2026-11-08",
+          "modifiedAt": "2026-11-08"
+        },
+        "performance": {
+          "currency": "USD",
+          "basis": "fund",
+          "years": {
+            "2024": 8.08,
+            "2025": 12.35
+          },
+          "asOf": "2026-08-31",
+          "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+          "sha256": "28511239949fdb8e00ed7c7f9d544c164d3c7d1b50f6e2b89f05d8fca5712dd7",
+          "method": "calendar-year exact-share NAV total return, gross income reinvested, net of ongoing charges",
+          "checkedAt": "2026-11-08",
+          "modifiedAt": "2026-10-11"
+        }
+      }
+    }
+  ],
+  "scope": "Exactly three shares and relevant composition fields, not certification of the entire mixed producer."
+}

@@ -1,0 +1,26 @@
+{
+  "run": 42467844036,
+  "event": "workflow_dispatch",
+  "sourcePhase": "real ordinary production",
+  "observedAt": "2026-11-08T09:43:31.445471+00:00",
+  "errors": [],
+  "companyFundErrors": [],
+  "asOf": "2026-11-05",
+  "checkedAt": "2026-11-08T09:43:31.445471+00:00",
+  "basis": "physical-creation-basket",
+  "completePhysicalBasket": true,
+  "equities": 74,
+  "equityWeightPct": 99.75,
+  "cashWeightPct": 0.23,
+  "proof": {
+    "requestedAsOf": "2026-11-05",
+    "serverFileName": "HANARO MSCI KOREA TR_PDF_2026.11.05.xlsx",
+    "fragmentUrl": "https://www.hanaroetf.com/api/v1/fund/CEBA1E927AC1478B/get-fund-holdings-list?baseDate=2026.11.05",
+    "fragmentSha256": "f831b993995fb7a3367ba3d7b394f8a3a49a9c107ea9c3ec0ba7ff441d2387c7",
+    "latestPublisherAsOf": "2026-11-06",
+    "publicationPageUrl": "https://www.hanaroetf.com/fund/CEBA1E927AC1478B",
+    "method": "Same-date physical basket explicitly confirmed by issuer download filename and every HTML/Excel position; latest mismatched basket excluded"
+  },
+  "exactIndex": false,
+  "publication": "to verify separately"
+}

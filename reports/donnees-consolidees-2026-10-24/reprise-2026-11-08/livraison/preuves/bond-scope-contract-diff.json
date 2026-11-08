@@ -1,0 +1,28 @@
+[
+  {
+    "key": "instrument:IE00B1FZSC47:completeHoldings",
+    "id": "IE00B1FZSC47",
+    "name": "iShares $ TIPS UCITS ETF",
+    "field": "completeHoldings",
+    "before": "connector-needed",
+    "after": "outside-equity-scope",
+    "requiredBefore": true,
+    "requiredAfter": false,
+    "asOf": null,
+    "checkedAt": null,
+    "reason": "Le moteur de recouvrement d’entreprises exclut ce support (Obligations) selon la classification commune de sa part exacte ; ses positions, contrôles source et autres usages sont conservés."
+  },
+  {
+    "key": "instrument:IE00BZ6V7883:completeHoldings",
+    "id": "IE00BZ6V7883",
+    "name": "iShares US Mortgage Backed Securities UCITS ETF",
+    "field": "completeHoldings",
+    "before": "connector-needed",
+    "after": "outside-equity-scope",
+    "requiredBefore": true,
+    "requiredAfter": false,
+    "asOf": null,
+    "checkedAt": null,
+    "reason": "Le moteur de recouvrement d’entreprises exclut ce support (Obligations) selon la classification commune de sa part exacte ; ses positions, contrôles source et autres usages sont conservés."
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "dataSha": "848c66e230d1e54493f5e00ade23890034f79c2b",
+  "url": "https://raw.githubusercontent.com/madmax91310/shinny-potato/848c66e230d1e54493f5e00ade23890034f79c2b/scripts/source-snapshots/monthly-collection-status.json",
+  "series": {
+    "etc_natural_gas": null,
+    "etc_natural_gasNav": {
+      "status": "validated",
+      "checkedAt": "2026-11-07T09:16:30.778641+00:00",
+      "periodEnd": "2026-10",
+      "responseSha256": "1223da67a2eb521ba20cb44e5981ea95a91336d4fd86cc5514f54d7f35263cb1"
+    },
+    "etc_brent_crude_oilNav": {
+      "status": "validated",
+      "checkedAt": "2026-11-06T15:38:06.171774+00:00",
+      "periodEnd": "2026-10",
+      "responseSha256": "27936657b70401e41543d5a001a5ea6c84de7d8e4530c0b0d100b615dfb2646d"
+    },
+    "etc_wti_crude_oilNav": {
+      "status": "validated",
+      "checkedAt": "2026-11-06T15:38:06.171774+00:00",
+      "periodEnd": "2026-10",
+      "responseSha256": "2b6b34e43143e7189516adcacc37073e806763e3a48663934495427a5933ca29"
+    }
+  }
+}

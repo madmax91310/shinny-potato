@@ -1,0 +1,227 @@
+{
+  "producerStarted": "producer-results-v1",
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "IE00BMVB5K07",
+          "instrument": "IE00BMVB5K07",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5M21",
+          "instrument": "IE00BMVB5M21",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5P51",
+          "instrument": "IE00BMVB5P51",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5R75",
+          "instrument": "IE00BMVB5R75",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification"
+          ],
+          "selected": true
+        }
+      ],
+      "mode": "full",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "collect_lifestrategy",
+      "reportStem": "lifestrategy",
+      "declaredAt": "2026-11-08T12:08:35.715111+00:00",
+      "nonce": "fc6828b0-27e5-4c9e-9b90-a18734803d98",
+      "codeSha": "848c66e230d1e54493f5e00ade23890034f79c2b",
+      "durablePlan": true,
+      "runId": "42478780839",
+      "attempt": "1",
+      "sha256": "f4a2777f3995c567eee579093cd860ccaee06103b9a6410f863f6a1448f222db"
+    },
+    "scope": {
+      "kind": "collect_lifestrategy",
+      "mode": "full",
+      "expectedIds": [
+        "IE00BMVB5K07",
+        "IE00BMVB5M21",
+        "IE00BMVB5P51",
+        "IE00BMVB5R75"
+      ],
+      "requestedIds": [
+        "IE00BMVB5K07",
+        "IE00BMVB5M21",
+        "IE00BMVB5P51",
+        "IE00BMVB5R75"
+      ],
+      "items": [
+        {
+          "id": "IE00BMVB5K07",
+          "instrument": "IE00BMVB5K07",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5M21",
+          "instrument": "IE00BMVB5M21",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5P51",
+          "instrument": "IE00BMVB5P51",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification"
+          ],
+          "selected": true
+        },
+        {
+          "id": "IE00BMVB5R75",
+          "instrument": "IE00BMVB5R75",
+          "fields": [
+            "fund characteristics",
+            "asset allocation",
+            "full holdings",
+            "fieldQualification"
+          ],
+          "selected": true
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-11-08T12:08:35.715111+00:00",
+      "planSha256": "f4a2777f3995c567eee579093cd860ccaee06103b9a6410f863f6a1448f222db",
+      "attemptedIds": [],
+      "attemptUnknownIds": [
+        "IE00BMVB5K07",
+        "IE00BMVB5M21",
+        "IE00BMVB5P51",
+        "IE00BMVB5R75"
+      ],
+      "networkRequestedIds": [],
+      "networkAttemptUnknownIds": [
+        "IE00BMVB5K07",
+        "IE00BMVB5M21",
+        "IE00BMVB5P51",
+        "IE00BMVB5R75"
+      ],
+      "runId": "42478780839",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "fc6828b0-27e5-4c9e-9b90-a18734803d98"
+    },
+    "outcomes": [
+      {
+        "id": "IE00BMVB5K07",
+        "instrument": "IE00BMVB5K07",
+        "fields": [
+          "fund characteristics",
+          "asset allocation",
+          "full holdings",
+          "fieldQualification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund characteristics, asset allocation, full holdings, fieldQualification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "IE00BMVB5M21",
+        "instrument": "IE00BMVB5M21",
+        "fields": [
+          "fund characteristics",
+          "asset allocation",
+          "full holdings",
+          "fieldQualification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund characteristics, asset allocation, full holdings, fieldQualification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "IE00BMVB5P51",
+        "instrument": "IE00BMVB5P51",
+        "fields": [
+          "fund characteristics",
+          "asset allocation",
+          "full holdings",
+          "fieldQualification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund characteristics, asset allocation, full holdings, fieldQualification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      },
+      {
+        "id": "IE00BMVB5R75",
+        "instrument": "IE00BMVB5R75",
+        "fields": [
+          "fund characteristics",
+          "asset allocation",
+          "full holdings",
+          "fieldQualification"
+        ],
+        "selected": true,
+        "status": "failed",
+        "sourceAttempted": null,
+        "operationAttempted": null,
+        "kind": "omission",
+        "phase": "reporting",
+        "field": "Compte rendu individuel : fund characteristics, asset allocation, full holdings, fieldQualification",
+        "error": "Producteur interrompu avant son compte rendu individuel"
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  }
+}

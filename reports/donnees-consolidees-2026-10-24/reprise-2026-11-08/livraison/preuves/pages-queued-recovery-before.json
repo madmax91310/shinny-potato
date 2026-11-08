@@ -1,0 +1,31 @@
+{
+  "ownRun": 42493163816,
+  "job": {
+    "id": 128780992838,
+    "run_id": 42493163816,
+    "workflow_name": "Deploy to GitHub Pages",
+    "head_branch": "master",
+    "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/42493163816",
+    "run_attempt": 1,
+    "node_id": "CR_kwDODBcmZM8AAAAd-_IBRg",
+    "head_sha": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
+    "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/128780992838",
+    "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/42493163816/job/128780992838",
+    "status": "pending",
+    "conclusion": null,
+    "created_at": "2026-11-08T15:51:00Z",
+    "started_at": "2026-11-08T15:51:00Z",
+    "completed_at": null,
+    "name": "deploy",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/128780992838",
+    "labels": [
+      "ubuntu-26.04"
+    ],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  },
+  "reason": "Only this idle pending deployment is cancelled; 14 validated jobs and all producers preserved"
+}

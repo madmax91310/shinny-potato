@@ -1,0 +1,142 @@
+[
+  {
+    "name": "recent-query2",
+    "url": "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?range=1mo&interval=1d&events=div%2Csplits",
+    "http": 200,
+    "meta": {
+      "currency": "EUR",
+      "symbol": "BTCE.DE",
+      "exchangeName": "GER",
+      "fullExchangeName": "XETRA",
+      "instrumentType": "EQUITY",
+      "firstTradeDate": 1793952000,
+      "regularMarketTime": 1793982960,
+      "hasPrePostMarketData": false,
+      "gmtoffset": 3600,
+      "timezone": "CET",
+      "exchangeTimezoneName": "Europe/Berlin",
+      "regularMarketPrice": 59.695,
+      "regularMarketChangePercent": -0.608,
+      "fulldayPrice": 59.695,
+      "fulldayChange": -0.365,
+      "fulldayChangePercent": -0.608,
+      "fiftyTwoWeekHigh": 59.9,
+      "fiftyTwoWeekLow": 58.93,
+      "regularMarketDayHigh": 59.9,
+      "regularMarketDayLow": 58.93,
+      "regularMarketVolume": 74618,
+      "longName": "Bitwise Physical Bitcoin ETC",
+      "shortName": "Bitwise Europe GmbH           O",
+      "chartPreviousClose": 60.06,
+      "priceHint": 2,
+      "currentTradingPeriod": {
+        "pre": {
+          "timezone": "CET",
+          "start": 1793944800,
+          "end": 1793952000,
+          "gmtoffset": 3600
+        },
+        "regular": {
+          "timezone": "CET",
+          "start": 1793952000,
+          "end": 1793982600,
+          "gmtoffset": 3600
+        },
+        "post": {
+          "timezone": "CET",
+          "start": 1793982600,
+          "end": 1793993400,
+          "gmtoffset": 3600
+        }
+      },
+      "dataGranularity": "1d",
+      "range": "1mo",
+      "validRanges": [
+        "1d",
+        "5d",
+        "ytd",
+        "max"
+      ]
+    },
+    "count": 1,
+    "firstTimestamp": 1793952000,
+    "lastTimestamp": 1793952000,
+    "error": null
+  },
+  {
+    "name": "max-query1",
+    "url": "https://query1.finance.yahoo.com/v8/finance/chart/BTCE.DE?range=max&interval=1mo&events=div%2Csplits",
+    "http": 200,
+    "meta": {
+      "currency": "EUR",
+      "symbol": "BTCE.DE",
+      "exchangeName": "GER",
+      "fullExchangeName": "XETRA",
+      "instrumentType": "EQUITY",
+      "firstTradeDate": 1793952000,
+      "regularMarketTime": 1793982960,
+      "hasPrePostMarketData": false,
+      "gmtoffset": 3600,
+      "timezone": "CET",
+      "exchangeTimezoneName": "Europe/Berlin",
+      "regularMarketPrice": 59.695,
+      "regularMarketChangePercent": -0.608,
+      "fulldayPrice": 59.695,
+      "fulldayChange": -0.365,
+      "fulldayChangePercent": -0.608,
+      "fiftyTwoWeekHigh": 59.9,
+      "fiftyTwoWeekLow": 58.93,
+      "regularMarketDayHigh": 59.9,
+      "regularMarketDayLow": 58.93,
+      "regularMarketVolume": 74618,
+      "longName": "Bitwise Physical Bitcoin ETC",
+      "shortName": "Bitwise Europe GmbH           O",
+      "chartPreviousClose": 59.34,
+      "previousClose": 60.06,
+      "scale": 3,
+      "priceHint": 2,
+      "currentTradingPeriod": {
+        "pre": {
+          "timezone": "CET",
+          "start": 1793944800,
+          "end": 1793952000,
+          "gmtoffset": 3600
+        },
+        "regular": {
+          "timezone": "CET",
+          "start": 1793952000,
+          "end": 1793982600,
+          "gmtoffset": 3600
+        },
+        "post": {
+          "timezone": "CET",
+          "start": 1793982600,
+          "end": 1793993400,
+          "gmtoffset": 3600
+        }
+      },
+      "tradingPeriods": [
+        [
+          {
+            "timezone": "CET",
+            "start": 1793952000,
+            "end": 1793982600,
+            "gmtoffset": 3600
+          }
+        ]
+      ],
+      "dataGranularity": "5m",
+      "range": "max",
+      "validRanges": [
+        "1d",
+        "5d",
+        "ytd",
+        "max"
+      ]
+    },
+    "count": 102,
+    "firstTimestamp": 1793952300,
+    "lastTimestamp": 1793982600,
+    "error": null
+  }
+]

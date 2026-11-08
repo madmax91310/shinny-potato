@@ -1,0 +1,57 @@
+{
+  "public": {
+    "sha": "745b051fc657dd4f907e83647eb7674a0d81a1b7",
+    "dataSha": "cd377f5e8eaa836032ab1399f807acd24bb00804",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-08T13:27:05.923Z"
+  },
+  "source": "Actual published modules verified against manifest, not the test fixture.",
+  "series": [
+    {
+      "id": "etc_brent_crude_oilNav",
+      "isin": "JE00B78CGV99",
+      "sourceConvention": "fund-nav-total-return",
+      "start": "2019-12",
+      "end": "2020-12",
+      "usdReturn": -32.27463253707975,
+      "eurReturn": -37.99798076127081,
+      "expectedEurFromHistoricalFx": -37.99798075870399,
+      "fxStart": 0.8901548869503294,
+      "fxEnd": 0.8149295085975062,
+      "calendar2020": {
+        "year": 2020,
+        "start": "2019-12-31",
+        "end": "2020-12-31",
+        "startValue": 30.98641352132102,
+        "endValue": 20.98566242176345,
+        "dailyDerived": -32.274632534275995,
+        "published": -32.27,
+        "publishedDecimalPlaces": 2
+      },
+      "lastCompleteYear": 2025
+    },
+    {
+      "id": "etc_wti_crude_oilNav",
+      "isin": "GB00B15KXV33",
+      "sourceConvention": "fund-nav-total-return",
+      "start": "2019-12",
+      "end": "2020-12",
+      "usdReturn": -51.91202455204562,
+      "eurReturn": -55.9758523199153,
+      "expectedEurFromHistoricalFx": -55.975852262686274,
+      "fxStart": 0.8901548869503294,
+      "fxEnd": 0.8149295085975062,
+      "calendar2020": {
+        "year": 2020,
+        "start": "2019-12-31",
+        "end": "2020-12-31",
+        "startValue": 9.009810555090851,
+        "endValue": 4.332635493271483,
+        "dailyDerived": -51.91202448953385,
+        "published": -51.91,
+        "publishedDecimalPlaces": 2
+      },
+      "lastCompleteYear": 2025
+    }
+  ]
+}

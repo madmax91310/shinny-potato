@@ -1,0 +1,13 @@
+{
+  "workflowRun": 42479279017,
+  "head": "745b051fc657dd4f907e83647eb7674a0d81a1b7",
+  "failedJob": 128729562715,
+  "name": "browser-checks (3)",
+  "case": "scripts/playwright-browser-portability.mjs:47",
+  "failure": "Simulated clipboard denial: expected local manual-copy error status not found within5000ms. All13otherrequiredchecks passed. Same frontend code passed all14PRchecks.",
+  "rerun": "Only failed job requested after entire workflow completed; no test or threshold changed.",
+  "requestedAt": "2026-11-08T13:01:26.013879+00:00",
+  "rerunJob": 128738640475,
+  "rerunConclusion": "success",
+  "appOrTestChanged": false
+}

@@ -1,0 +1,110 @@
+{
+  "pr": 1210,
+  "merge": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
+  "public": {
+    "sha": "2c23b244f9538a5bf1f43b4783f1e1b92d8bba12",
+    "dataSha": "fe9acdda6eef146527e78f7b3fb7d70414888579",
+    "lane": "validated-code-data",
+    "builtAt": "2026-11-08T16:33:23.063Z"
+  },
+  "inventoryGitBlob": "51d2508903ba488e92c08a0de5d849eac669f8fc",
+  "results": [
+    {
+      "isin": "IE00B1FZSC47",
+      "key": "instrument:IE00B1FZSC47:completeHoldings",
+      "publicConnection": {
+        "id": "IE00B1FZSC47",
+        "name": "iShares $ TIPS UCITS ETF",
+        "type": "instrument",
+        "field": "completeHoldings",
+        "label": "Positions int\u00e9grales",
+        "state": "not-applicable",
+        "present": false,
+        "checkedAt": null,
+        "asOf": null,
+        "sourceUrl": null,
+        "sourceUrls": [],
+        "automationConfigured": false,
+        "tools": [
+          "dca-profiles"
+        ],
+        "reason": "Le moteur de recouvrement d\u2019entreprises exclut ce support (Obligations) selon la classification commune de sa part exacte ; ses positions, contr\u00f4les source et autres usages sont conserv\u00e9s.",
+        "observationState": "not-applicable",
+        "actionState": "outside-equity-scope",
+        "requiresAction": false,
+        "priority": null,
+        "lastAttemptAt": null,
+        "lastSuccessAt": null,
+        "configuredSourceUrls": [],
+        "nextAction": "Conserver le statut et surveiller les prochaines publications."
+      },
+      "exportRows": [
+        {
+          "id": "[\"instrument:IE00B1FZSC47:completeHoldings\",\"archive\",\"Qualification historique\",null,null,null,null]",
+          "kind": "archive",
+          "stage": "Qualification historique",
+          "cause": "Automatisation ou qualification incompl\u00e8te : Source de positions int\u00e9grales et contr\u00f4le de l\u2019identit\u00e9 du fonds \u00e0 raccorder."
+        },
+        {
+          "id": "[\"instrument:IE00B1FZSC47:completeHoldings\",\"not-applicable\",\"Donn\u00e9e / collecte\",null,null,null,null]",
+          "kind": "not-applicable",
+          "stage": "Donn\u00e9e / collecte",
+          "cause": "Positions d\u2019entreprises hors p\u00e9rim\u00e8tre de la vue entreprises : Obligations. Les autres donn\u00e9es et usages de cet instrument restent contr\u00f4l\u00e9s."
+        }
+      ],
+      "initialIds": [
+        "[\"instrument:IE00B1FZSC47:completeHoldings\",\"connection\",\"Consommation\",null,null,null,null]",
+        "[\"instrument:IE00B1FZSC47:completeHoldings\",\"connection\",\"Raccordement\",null,null,null,null]"
+      ]
+    },
+    {
+      "isin": "IE00BZ6V7883",
+      "key": "instrument:IE00BZ6V7883:completeHoldings",
+      "publicConnection": {
+        "id": "IE00BZ6V7883",
+        "name": "iShares US Mortgage Backed Securities UCITS ETF",
+        "type": "instrument",
+        "field": "completeHoldings",
+        "label": "Positions int\u00e9grales",
+        "state": "not-applicable",
+        "present": false,
+        "checkedAt": null,
+        "asOf": null,
+        "sourceUrl": null,
+        "sourceUrls": [],
+        "automationConfigured": false,
+        "tools": [
+          "dca-profiles"
+        ],
+        "reason": "Le moteur de recouvrement d\u2019entreprises exclut ce support (Obligations) selon la classification commune de sa part exacte ; ses positions, contr\u00f4les source et autres usages sont conserv\u00e9s.",
+        "observationState": "not-applicable",
+        "actionState": "outside-equity-scope",
+        "requiresAction": false,
+        "priority": null,
+        "lastAttemptAt": null,
+        "lastSuccessAt": null,
+        "configuredSourceUrls": [],
+        "nextAction": "Conserver le statut et surveiller les prochaines publications."
+      },
+      "exportRows": [
+        {
+          "id": "[\"instrument:IE00BZ6V7883:completeHoldings\",\"archive\",\"Qualification historique\",null,null,null,null]",
+          "kind": "archive",
+          "stage": "Qualification historique",
+          "cause": "Automatisation ou qualification incompl\u00e8te : Source de positions int\u00e9grales et contr\u00f4le de l\u2019identit\u00e9 du fonds \u00e0 raccorder."
+        },
+        {
+          "id": "[\"instrument:IE00BZ6V7883:completeHoldings\",\"not-applicable\",\"Donn\u00e9e / collecte\",null,null,null,null]",
+          "kind": "not-applicable",
+          "stage": "Donn\u00e9e / collecte",
+          "cause": "Positions d\u2019entreprises hors p\u00e9rim\u00e8tre de la vue entreprises : Obligations. Les autres donn\u00e9es et usages de cet instrument restent contr\u00f4l\u00e9s."
+        }
+      ],
+      "initialIds": [
+        "[\"instrument:IE00BZ6V7883:completeHoldings\",\"connection\",\"Consommation\",null,null,null,null]",
+        "[\"instrument:IE00BZ6V7883:completeHoldings\",\"connection\",\"Raccordement\",null,null,null,null]"
+      ]
+    }
+  ],
+  "meaning": "Two consumer contracts explicitly non-applicable, four initial diagnostics retained; not a financial data repair"
+}

@@ -1,0 +1,944 @@
+{
+  "run": 42486774139,
+  "event": "schedule",
+  "recordingCommit": "fe54111ed841b7398cb71d39ac1a395aab37d4a4",
+  "sourceCheckedAt": "2026-11-08T13:52:20.733782+00:00",
+  "scope": {
+    "items": [
+      {
+        "id": "index-cac40-composition",
+        "instrument": "cac40",
+        "fields": [
+          "composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "index-dow-jones-composition",
+        "instrument": "dow-jones",
+        "fields": [
+          "composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "index-dax-composition",
+        "instrument": "dax",
+        "fields": [
+          "composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "index-msci-korea-composition",
+        "instrument": "msci-korea",
+        "fields": [
+          "composition"
+        ],
+        "selected": true
+      },
+      {
+        "id": "index-msci-korea-company-fund",
+        "instrument": "msci-korea",
+        "fields": [
+          "physical creation basket",
+          "same-date classification",
+          "company identities"
+        ],
+        "selected": true
+      }
+    ],
+    "mode": "full",
+    "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+    "emptyReason": null,
+    "cacheRequested": false,
+    "producer": "refresh_index_companies",
+    "reportStem": "index-company-observations",
+    "declaredAt": "2026-11-08T13:52:20.714305+00:00",
+    "nonce": "f911ebc6-4a92-4530-810f-a7f79e65f505",
+    "codeSha": "595944595a2e3925759eb2e4025684a1c4e69891",
+    "durablePlan": true,
+    "runId": "42486774139",
+    "attempt": "1",
+    "sha256": "d77eec1918a84afefcf4d26dfbb9e598e315469a155df62b56aa21b4af7f2e03"
+  },
+  "resultContract": {
+    "schemaVersion": 1,
+    "protocol": "producer-results-v1",
+    "inputPlan": {
+      "items": [
+        {
+          "id": "index-cac40-composition",
+          "instrument": "cac40",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-dow-jones-composition",
+          "instrument": "dow-jones",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-dax-composition",
+          "instrument": "dax",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-korea-composition",
+          "instrument": "msci-korea",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-korea-company-fund",
+          "instrument": "msci-korea",
+          "fields": [
+            "physical creation basket",
+            "same-date classification",
+            "company identities"
+          ],
+          "selected": true
+        }
+      ],
+      "mode": "full",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "emptyReason": null,
+      "cacheRequested": false,
+      "producer": "refresh_index_companies",
+      "reportStem": "index-company-observations",
+      "declaredAt": "2026-11-08T13:52:20.714305+00:00",
+      "nonce": "f911ebc6-4a92-4530-810f-a7f79e65f505",
+      "codeSha": "595944595a2e3925759eb2e4025684a1c4e69891",
+      "durablePlan": true,
+      "runId": "42486774139",
+      "attempt": "1",
+      "sha256": "d77eec1918a84afefcf4d26dfbb9e598e315469a155df62b56aa21b4af7f2e03"
+    },
+    "scope": {
+      "kind": "refresh_index_companies",
+      "mode": "full",
+      "expectedIds": [
+        "index-cac40-composition",
+        "index-dow-jones-composition",
+        "index-dax-composition",
+        "index-msci-korea-composition",
+        "index-msci-korea-company-fund"
+      ],
+      "requestedIds": [
+        "index-cac40-composition",
+        "index-dow-jones-composition",
+        "index-dax-composition",
+        "index-msci-korea-composition",
+        "index-msci-korea-company-fund"
+      ],
+      "items": [
+        {
+          "id": "index-cac40-composition",
+          "instrument": "cac40",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-dow-jones-composition",
+          "instrument": "dow-jones",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-dax-composition",
+          "instrument": "dax",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-korea-composition",
+          "instrument": "msci-korea",
+          "fields": [
+            "composition"
+          ],
+          "selected": true
+        },
+        {
+          "id": "index-msci-korea-company-fund",
+          "instrument": "msci-korea",
+          "fields": [
+            "physical creation basket",
+            "same-date classification",
+            "company identities"
+          ],
+          "selected": true
+        }
+      ],
+      "emptyReason": null,
+      "declaredAt": "2026-11-08T13:52:20.714305+00:00",
+      "planSha256": "d77eec1918a84afefcf4d26dfbb9e598e315469a155df62b56aa21b4af7f2e03",
+      "attemptedIds": [
+        "index-cac40-composition",
+        "index-dow-jones-composition",
+        "index-dax-composition",
+        "index-msci-korea-composition",
+        "index-msci-korea-company-fund"
+      ],
+      "attemptUnknownIds": [],
+      "networkRequestedIds": [
+        "index-cac40-composition",
+        "index-dow-jones-composition",
+        "index-dax-composition",
+        "index-msci-korea-composition",
+        "index-msci-korea-company-fund"
+      ],
+      "networkAttemptUnknownIds": [],
+      "runId": "42486774139",
+      "attempt": "1",
+      "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+      "nonce": "f911ebc6-4a92-4530-810f-a7f79e65f505"
+    },
+    "outcomes": [
+      {
+        "id": "index-cac40-composition",
+        "instrument": "cac40",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "field": "facts",
+        "sourceAttempted": true,
+        "asOf": "2026-10-31",
+        "checkedAt": "2026-11-08",
+        "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013380607/FRA/FRA/INSTITUTIONNEL/ETF",
+        "sha256": "4b72ac4f75e19171c244b4f45703eca637a7645e546e1e20dbc2c475b3746b03",
+        "status": "succeeded",
+        "operationAttempted": true
+      },
+      {
+        "id": "index-dow-jones-composition",
+        "instrument": "dow-jones",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "field": "facts",
+        "sourceAttempted": true,
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-11-08",
+        "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/INSTITUTIONNEL/ETF",
+        "sha256": "288ab1e7658c02d9bf0bd11b943d657eea206c557fb33aaca20554ca43d78839",
+        "status": "succeeded",
+        "operationAttempted": true
+      },
+      {
+        "id": "index-dax-composition",
+        "instrument": "dax",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "field": "facts",
+        "sourceAttempted": true,
+        "asOf": "2026-10-31",
+        "checkedAt": "2026-11-08",
+        "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0252633754/FRA/FRA/INSTITUTIONNEL/ETF",
+        "sha256": "286de9e00ece3ab0ecc0e731d5cff9c88a46456bf725d9ee88f945d9611dc113",
+        "status": "succeeded",
+        "operationAttempted": true
+      },
+      {
+        "id": "index-msci-korea-composition",
+        "instrument": "msci-korea",
+        "fields": [
+          "composition"
+        ],
+        "selected": true,
+        "field": "facts",
+        "sourceAttempted": true,
+        "asOf": "2026-10-30",
+        "checkedAt": "2026-11-08",
+        "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-korea-index.pdf",
+        "sha256": "0a35cb250962f195c7dc2d87bf4640fdbd5075b6a8d06f2209f700359f3c2ebb",
+        "status": "succeeded",
+        "operationAttempted": true
+      },
+      {
+        "id": "index-msci-korea-company-fund",
+        "instrument": "msci-korea",
+        "fields": [
+          "physical creation basket",
+          "same-date classification",
+          "company identities"
+        ],
+        "selected": true,
+        "field": "companyFund",
+        "sourceAttempted": true,
+        "asOf": "2026-11-05",
+        "checkedAt": "2026-11-08T13:52:20.733782+00:00",
+        "sourceUrl": "https://www.hanaroetf.com/fund/pdfExcelDownload/CEBA1E927AC1478B/2026.11.05",
+        "sha256": "9e08f87fcf480e5adb2aa6be6f1de09fb063e150b12dba86d61f3602745c0eb8",
+        "status": "succeeded",
+        "operationAttempted": true
+      }
+    ],
+    "issues": [],
+    "unscopedFailures": []
+  },
+  "errors": [],
+  "selected": {
+    "id": "msci-korea",
+    "name": "MSCI Korea",
+    "errors": [],
+    "unavailable": [],
+    "facts": {
+      "index": "MSCI Korea",
+      "asOf": "2026-10-30",
+      "constituents": 74,
+      "countries": [
+        [
+          "\ud83c\uddf0\ud83c\uddf7 Cor\u00e9e du Sud",
+          100.0
+        ]
+      ],
+      "sectors": [
+        [
+          "\ud83d\udcbb Technologie",
+          70.76
+        ],
+        [
+          "\ud83c\udfed Industrie",
+          11.28
+        ],
+        [
+          "\ud83c\udfe6 Finance",
+          7.49
+        ],
+        [
+          "\ud83d\udecd\ufe0f Consommation cyclique",
+          3.64
+        ],
+        [
+          "\ud83c\udfe5 Sant\u00e9",
+          2.08
+        ],
+        [
+          "\ud83d\udce1 Communication",
+          1.74
+        ],
+        [
+          "\ud83d\uded2 Consommation de base",
+          1.09
+        ],
+        [
+          "\ud83e\udea8 Mat\u00e9riaux",
+          1.02
+        ],
+        [
+          "\u26a1 \u00c9nergie",
+          0.65
+        ],
+        [
+          "\ud83d\udca1 Services publics",
+          0.25
+        ]
+      ],
+      "holdings": [
+        [
+          "SAMSUNG ELECTRONICS CO",
+          35.54
+        ],
+        [
+          "SK HYNIX",
+          26.45
+        ],
+        [
+          "SAMSUNG ELECTRONICS PREF",
+          4.72
+        ],
+        [
+          "SK SQUARE CO",
+          2.8
+        ],
+        [
+          "SAMSUNG ELECTRO-MECH. CO",
+          2.26
+        ],
+        [
+          "KB FINANCIAL GROUP",
+          1.77
+        ],
+        [
+          "HYUNDAI MOTOR CO",
+          1.27
+        ],
+        [
+          "SHINHAN FINANCIAL GROUP",
+          1.26
+        ],
+        [
+          "SAMSUNG SDI CO",
+          1.11
+        ],
+        [
+          "HANA FINANCIAL HOLDINGS",
+          1.09
+        ]
+      ],
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-korea-index.pdf",
+        "checkedAt": "2026-11-08",
+        "label": "Composition officielle automatis\u00e9e \u00b7 MSCI Korea",
+        "sha256": "0a35cb250962f195c7dc2d87bf4640fdbd5075b6a8d06f2209f700359f3c2ebb"
+      },
+      "provenance": "Publication officielle extraite automatiquement ; compositions d\u2019indice distinctes des portefeuilles ETF."
+    },
+    "companyFund": {
+      "asOf": "2026-11-05",
+      "checkedAt": "2026-11-08T13:52:20.733782+00:00",
+      "basis": "physical-creation-basket",
+      "complete": true,
+      "rows": [
+        {
+          "isin": "KR7005930003",
+          "name": "SAMSUNG ELECTRONICS LTD",
+          "sourceName": "\uc0bc\uc131\uc804\uc790",
+          "weightPct": 34.41
+        },
+        {
+          "isin": "KR7000660001",
+          "name": "SK HYNIX",
+          "sourceName": "SK\ud558\uc774\ub2c9\uc2a4",
+          "weightPct": 25.51
+        },
+        {
+          "isin": "KR7005931001",
+          "name": "SAMSUNG ELECTRONICS NON VOTING PRE",
+          "sourceName": "\uc0bc\uc131\uc804\uc790\uc6b0",
+          "weightPct": 4.7
+        },
+        {
+          "isin": "KR7402340004",
+          "name": "SK SQUARE",
+          "sourceName": "SK\uc2a4\ud018\uc5b4",
+          "weightPct": 2.74
+        },
+        {
+          "isin": "KR7009150004",
+          "name": "SAMSUNG ELECTRO MECHANICS",
+          "sourceName": "\uc0bc\uc131\uc804\uae30",
+          "weightPct": 1.94
+        },
+        {
+          "isin": "KR7105560007",
+          "name": "KB FINANCIAL GROUP",
+          "sourceName": "KB\uae08\uc735",
+          "weightPct": 1.93
+        },
+        {
+          "isin": "KR7005380001",
+          "name": "HYUNDAI MOTOR",
+          "sourceName": "\ud604\ub300\ucc28",
+          "weightPct": 1.42
+        },
+        {
+          "isin": "KR7055550008",
+          "name": "SHINHAN FINANCIAL GROUP",
+          "sourceName": "\uc2e0\ud55c\uc9c0\uc8fc",
+          "weightPct": 1.35
+        },
+        {
+          "isin": "KR7068270008",
+          "name": "CELLTRION",
+          "sourceName": "\uc140\ud2b8\ub9ac\uc628",
+          "weightPct": 1.19
+        },
+        {
+          "isin": "KR7086790003",
+          "name": "HANA FINANCIAL GROUP",
+          "sourceName": "\ud558\ub098\uae08\uc735\uc9c0\uc8fc",
+          "weightPct": 1.18
+        },
+        {
+          "isin": "KR7006400006",
+          "name": "SAMSUNG SDI LTD",
+          "sourceName": "\uc0bc\uc131SDI",
+          "weightPct": 1.13
+        },
+        {
+          "isin": "KR7035420009",
+          "name": "NAVER",
+          "sourceName": "NAVER",
+          "weightPct": 0.95
+        },
+        {
+          "isin": "KR7000270009",
+          "name": "KIA CORPORATION",
+          "sourceName": "\uae30\uc544",
+          "weightPct": 0.86
+        },
+        {
+          "isin": "KR7028260008",
+          "name": "SAMSUNG C&T CORP",
+          "sourceName": "\uc0bc\uc131\ubb3c\uc0b0",
+          "weightPct": 0.86
+        },
+        {
+          "isin": "KR7012450003",
+          "name": "HANWHA AEROSPACE LTD",
+          "sourceName": "\ud55c\ud654\uc5d0\uc5b4\ub85c\uc2a4\ud398\uc774\uc2a4",
+          "weightPct": 0.83
+        },
+        {
+          "isin": "KR7034020008",
+          "name": "DOOSAN ENERBILITY LTD",
+          "sourceName": "\ub450\uc0b0\uc5d0\ub108\ube4c\ub9ac\ud2f0",
+          "weightPct": 0.81
+        },
+        {
+          "isin": "KR7012330007",
+          "name": "HYUNDAI MOBIS LTD",
+          "sourceName": "\ud604\ub300\ubaa8\ube44\uc2a4",
+          "weightPct": 0.79
+        },
+        {
+          "isin": "KR7316140003",
+          "name": "WOORI FINANCIAL GROUP INC",
+          "sourceName": "\uc6b0\ub9ac\uae08\uc735\uc9c0\uc8fc",
+          "weightPct": 0.75
+        },
+        {
+          "isin": "KR7032830002",
+          "name": "SAMSUNG LIFE LTD",
+          "sourceName": "\uc0bc\uc131\uc0dd\uba85",
+          "weightPct": 0.72
+        },
+        {
+          "isin": "KR7005490008",
+          "name": "POSCO",
+          "sourceName": "POSCO\ud640\ub529\uc2a4",
+          "weightPct": 0.71
+        },
+        {
+          "isin": "KR7000810002",
+          "name": "SAMSUNG FIRE & MARINE INSURANCE LT",
+          "sourceName": "\uc0bc\uc131\ud654\uc7ac",
+          "weightPct": 0.7
+        },
+        {
+          "isin": "KR7207940008",
+          "name": "SAMSUNG BIOLOGICS",
+          "sourceName": "\uc0bc\uc131\ubc14\uc774\uc624\ub85c\uc9c1\uc2a4",
+          "weightPct": 0.65
+        },
+        {
+          "isin": "KR7034730002",
+          "name": "SK INC",
+          "sourceName": "SK",
+          "weightPct": 0.64
+        },
+        {
+          "isin": "KR7033780008",
+          "name": "KT&G CORP",
+          "sourceName": "KT&G",
+          "weightPct": 0.63
+        },
+        {
+          "isin": "KR7373220003",
+          "name": "LG ENERGY SOLUTION LTD",
+          "sourceName": "LG\uc5d0\ub108\uc9c0\uc194\ub8e8\uc158",
+          "weightPct": 0.59
+        },
+        {
+          "isin": "KR7066570003",
+          "name": "LG ELECTRONICS INC",
+          "sourceName": "LG\uc804\uc790",
+          "weightPct": 0.55
+        },
+        {
+          "isin": "KR7051910008",
+          "name": "LG CHEM LTD",
+          "sourceName": "LG\ud654\ud559",
+          "weightPct": 0.41
+        },
+        {
+          "isin": "KR7010140002",
+          "name": "SAMSUNG HEAVY INDUSTRIES LTD",
+          "sourceName": "\uc0bc\uc131\uc911\uacf5\uc5c5",
+          "weightPct": 0.41
+        },
+        {
+          "isin": "KR7196170005",
+          "name": "ALTEOGEN INC",
+          "sourceName": "\uc54c\ud14c\uc624\uc820",
+          "weightPct": 0.41
+        },
+        {
+          "isin": "KR7009540006",
+          "name": "HD KOREA SHIPBUILDING & OFFSHORE E",
+          "sourceName": "HD\ud55c\uad6d\uc870\uc120\ud574\uc591",
+          "weightPct": 0.38
+        },
+        {
+          "isin": "KR7035720002",
+          "name": "KAKAO",
+          "sourceName": "\uce74\uce74\uc624",
+          "weightPct": 0.36
+        },
+        {
+          "isin": "KR7010120004",
+          "name": "LS ELECTRIC LTD",
+          "sourceName": "LS ELECTRIC",
+          "weightPct": 0.36
+        },
+        {
+          "isin": "KR7267260008",
+          "name": "HD HYUNDAI ELECTRIC",
+          "sourceName": "HD\ud604\ub300\uc77c\ub809\ud2b8\ub9ad",
+          "weightPct": 0.34
+        },
+        {
+          "isin": "KR7298040007",
+          "name": "HYOSUNG HEAVY INDUSTRIES CORP",
+          "sourceName": "\ud6a8\uc131\uc911\uacf5\uc5c5",
+          "weightPct": 0.33
+        },
+        {
+          "isin": "KR7138040001",
+          "name": "MERITZ FINANCIAL GROUP INC",
+          "sourceName": "\uba54\ub9ac\uce20\uae08\uc735\uc9c0\uc8fc",
+          "weightPct": 0.33
+        },
+        {
+          "isin": "KR7329180004",
+          "name": "HD HYUNDAI HEAVY INDUSTRIES LTD",
+          "sourceName": "HD\ud604\ub300\uc911\uacf5\uc5c5",
+          "weightPct": 0.31
+        },
+        {
+          "isin": "KR7017670001",
+          "name": "SK TELECOM",
+          "sourceName": "SK\ud154\ub808\ucf64",
+          "weightPct": 0.3
+        },
+        {
+          "isin": "KR7015760002",
+          "name": "KOREA ELECTRIC POWER",
+          "sourceName": "\ud55c\uad6d\uc804\ub825",
+          "weightPct": 0.29
+        },
+        {
+          "isin": "KR7018260000",
+          "name": "SAMSUNG SDS",
+          "sourceName": "\uc0bc\uc131\uc5d0\uc2a4\ub514\uc5d0\uc2a4",
+          "weightPct": 0.29
+        },
+        {
+          "isin": "KR7003550001",
+          "name": "LG",
+          "sourceName": "LG",
+          "weightPct": 0.28
+        },
+        {
+          "isin": "KR7005830005",
+          "name": "DB INSURANCE LTD",
+          "sourceName": "DB\uc190\ud574\ubcf4\ud5d8",
+          "weightPct": 0.28
+        },
+        {
+          "isin": "KR7086280005",
+          "name": "HYUNDAI GLOVIS LTD",
+          "sourceName": "\ud604\ub300\uae00\ub85c\ube44\uc2a4",
+          "weightPct": 0.27
+        },
+        {
+          "isin": "KR7096770003",
+          "name": "SK INNOVATION LTD",
+          "sourceName": "SK\uc774\ub178\ubca0\uc774\uc158",
+          "weightPct": 0.26
+        },
+        {
+          "isin": "KR7086520004",
+          "name": "ECOPRO LTD",
+          "sourceName": "\uc5d0\ucf54\ud504\ub85c",
+          "weightPct": 0.26
+        },
+        {
+          "isin": "KR7042700005",
+          "name": "HANMI SEMICONDUCTOR",
+          "sourceName": "\ud55c\ubbf8\ubc18\ub3c4\uccb4",
+          "weightPct": 0.25
+        },
+        {
+          "isin": "KR7278470000",
+          "name": "APR LTD",
+          "sourceName": "\uc5d0\uc774\ud53c\uc54c",
+          "weightPct": 0.24
+        },
+        {
+          "isin": "KR7042660001",
+          "name": "HANWHA OCEAN LTD",
+          "sourceName": "\ud55c\ud654\uc624\uc158",
+          "weightPct": 0.23
+        },
+        {
+          "isin": "KR7047810007",
+          "name": "KOREA AEROSPACE INDUSTRIES",
+          "sourceName": "\ud55c\uad6d\ud56d\uacf5\uc6b0\uc8fc",
+          "weightPct": 0.22
+        },
+        {
+          "isin": "KR7071050009",
+          "name": "KOREA INVESTMENT HOLDINGS LTD",
+          "sourceName": "\ud55c\uad6d\uae08\uc735\uc9c0\uc8fc",
+          "weightPct": 0.22
+        },
+        {
+          "isin": "KR7000720003",
+          "name": "HYUNDAI ENGINEERING & CONSTRUCTION",
+          "sourceName": "\ud604\ub300\uac74\uc124",
+          "weightPct": 0.22
+        },
+        {
+          "isin": "KR7003670007",
+          "name": "POSCO FUTURE M LTD",
+          "sourceName": "\ud3ec\uc2a4\ucf54\ud4e8\ucc98\uc5e0",
+          "weightPct": 0.21
+        },
+        {
+          "isin": "KR7259960003",
+          "name": "KRAFTON",
+          "sourceName": "\ud06c\ub798\ud504\ud1a4",
+          "weightPct": 0.21
+        },
+        {
+          "isin": "KR7003490000",
+          "name": "KOREAN AIR LINES",
+          "sourceName": "\ub300\ud55c\ud56d\uacf5",
+          "weightPct": 0.2
+        },
+        {
+          "isin": "KR7267250009",
+          "name": "HD HYUNDAI LTD",
+          "sourceName": "HD\ud604\ub300",
+          "weightPct": 0.2
+        },
+        {
+          "isin": "KR7005382007",
+          "name": "HYUNDAI MOTOR S2 PREF",
+          "sourceName": "\ud604\ub300\ucc282\uc6b0B",
+          "weightPct": 0.2
+        },
+        {
+          "isin": "KR7003230000",
+          "name": "SAM YANG FOODS INC",
+          "sourceName": "\uc0bc\uc591\uc2dd\ud488",
+          "weightPct": 0.2
+        },
+        {
+          "isin": "KR7064350002",
+          "name": "HYUNDAI-ROTEM",
+          "sourceName": "\ud604\ub300\ub85c\ud15c",
+          "weightPct": 0.19
+        },
+        {
+          "isin": "KR7000150003",
+          "name": "DOOSAN CORP",
+          "sourceName": "\ub450\uc0b0",
+          "weightPct": 0.19
+        },
+        {
+          "isin": "KR7247540008",
+          "name": "ECOPRO BM LTD",
+          "sourceName": "\uc5d0\ucf54\ud504\ub85c\ube44\uc5e0",
+          "weightPct": 0.19
+        },
+        {
+          "isin": "KR7011200003",
+          "name": "HMM LTD",
+          "sourceName": "HMM",
+          "weightPct": 0.19
+        },
+        {
+          "isin": "KR7079550000",
+          "name": "LIG DEFENSE&AEROSPACE LTD",
+          "sourceName": "LIG\ub514\ud39c\uc2a4\uc564\uc5d0\uc5b4\ub85c\uc2a4\ud398\uc774\uc2a4",
+          "weightPct": 0.17
+        },
+        {
+          "isin": "KR7006800007",
+          "name": "MIRAE ASSET SECURITIES CO LTD",
+          "sourceName": "\ubbf8\ub798\uc5d0\uc14b\uc99d\uad8c",
+          "weightPct": 0.17
+        },
+        {
+          "isin": "KR7024110009",
+          "name": "INDUSTRIAL BANK OF KOREA",
+          "sourceName": "\uae30\uc5c5\uc740\ud589",
+          "weightPct": 0.17
+        },
+        {
+          "isin": "KR7010950004",
+          "name": "S-OIL",
+          "sourceName": "S-Oil",
+          "weightPct": 0.17
+        },
+        {
+          "isin": "KR7161390000",
+          "name": "HANKOOK TIRE & TECHNOLOGY LTD",
+          "sourceName": "\ud55c\uad6d\ud0c0\uc774\uc5b4\uc564\ud14c\ud06c\ub180\ub85c\uc9c0",
+          "weightPct": 0.16
+        },
+        {
+          "isin": "KR7000100008",
+          "name": "YUHAN",
+          "sourceName": "\uc720\ud55c\uc591\ud589",
+          "weightPct": 0.15
+        },
+        {
+          "isin": "KR7272210006",
+          "name": "HANWHA SYSTEMS LTD",
+          "sourceName": "\ud55c\ud654\uc2dc\uc2a4\ud15c",
+          "weightPct": 0.15
+        },
+        {
+          "isin": "KR7011070000",
+          "name": "LG INNOTEK LTD",
+          "sourceName": "LG\uc774\ub178\ud14d",
+          "weightPct": 0.14
+        },
+        {
+          "isin": "KR7090430000",
+          "name": "AMOREPACIFIC",
+          "sourceName": "\uc544\ubaa8\ub808\ud37c\uc2dc\ud53d",
+          "weightPct": 0.14
+        },
+        {
+          "isin": "KR7352820005",
+          "name": "HYBE",
+          "sourceName": "\ud558\uc774\ube0c",
+          "weightPct": 0.13
+        },
+        {
+          "isin": "KR7323410001",
+          "name": "KAKAOBANK",
+          "sourceName": "\uce74\uce74\uc624\ubc45\ud06c",
+          "weightPct": 0.13
+        },
+        {
+          "isin": "KR7005381009",
+          "name": "HYUNDAI MOTOR S1 PREF",
+          "sourceName": "\ud604\ub300\ucc28\uc6b0",
+          "weightPct": 0.12
+        },
+        {
+          "isin": "KR7005940002",
+          "name": "NH INVESTMENT & SECURITIES",
+          "sourceName": "NH\ud22c\uc790\uc99d\uad8c",
+          "weightPct": 0.12
+        },
+        {
+          "isin": "KR7032640005",
+          "name": "LG UPLUS",
+          "sourceName": "LG\uc720\ud50c\ub7ec\uc2a4",
+          "weightPct": 0.06
+        }
+      ],
+      "countries": [
+        [
+          "Cor\u00e9e du Sud",
+          99.75000000000001
+        ]
+      ],
+      "sectors": [
+        [
+          "\ud83d\udcbb Technologie",
+          68.37
+        ],
+        [
+          "\ud83c\udfed Industrie",
+          11.569999999999999
+        ],
+        [
+          "\ud83c\udfe6 Finance",
+          8.049999999999999
+        ],
+        [
+          "\ud83d\udecd\ufe0f Consommation cyclique",
+          4.1000000000000005
+        ],
+        [
+          "\ud83c\udfe5 Sant\u00e9",
+          2.4
+        ],
+        [
+          "\ud83d\udce1 Communication",
+          2.0100000000000002
+        ],
+        [
+          "\ud83d\uded2 Consommation de base",
+          1.21
+        ],
+        [
+          "\ud83e\udea8 Mat\u00e9riaux",
+          1.1199999999999999
+        ],
+        [
+          "\u26a1 \u00c9nergie",
+          0.63
+        ],
+        [
+          "\ud83d\udca1 Services publics",
+          0.29
+        ]
+      ],
+      "sourceUrl": "https://www.hanaroetf.com/fund/pdfExcelDownload/CEBA1E927AC1478B/2026.11.05",
+      "sha256": "9e08f87fcf480e5adb2aa6be6f1de09fb063e150b12dba86d61f3602745c0eb8",
+      "datedBasketProof": {
+        "requestedAsOf": "2026-11-05",
+        "serverFileName": "HANARO MSCI KOREA TR_PDF_2026.11.05.xlsx",
+        "fragmentUrl": "https://www.hanaroetf.com/api/v1/fund/CEBA1E927AC1478B/get-fund-holdings-list?baseDate=2026.11.05",
+        "fragmentSha256": "f831b993995fb7a3367ba3d7b394f8a3a49a9c107ea9c3ec0ba7ff441d2387c7",
+        "latestPublisherAsOf": "2026-11-06",
+        "publicationPageUrl": "https://www.hanaroetf.com/fund/CEBA1E927AC1478B",
+        "method": "Same-date physical basket explicitly confirmed by issuer download filename and every HTML/Excel position; latest mismatched basket excluded"
+      },
+      "cashWeightPct": 0.23,
+      "sourceLabel": "NH-Amundi HANARO MSCI Korea TR",
+      "sourceProductCode": "KRX 332940",
+      "identitySourceUrl": "https://www.hanaroetf.com/_upload/public/fund-new/CEBA1E927AC1478B/YAE75NANWDS6QR4.pdf",
+      "identityCheckedAt": "2026-11-08",
+      "identitySha256": "4838bb201f9e4d201ddcddfbff97958f0171bc39bf8686a69ad08cd82ca1d0b7",
+      "classificationSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "classificationSha256": "27da09d22822147b4106a4475f3bbfeacd979a3c65f1f1a06ec31151d15f31a8",
+      "classificationAsOf": "2026-11-05",
+      "classificationCheckedAt": "2026-11-08T13:52:20.733782+00:00",
+      "indexIdentitySourceUrl": "https://www.msci.com/indexes/index/941000/msci-korea-index",
+      "method": "Approximation par le panier physique de souscription publi\u00e9 par HANARO, ETF suivant le MSCI Korea Gross TR standard. Ce panier peut diff\u00e9rer des positions comptables du fonds. Poids conserv\u00e9s sans renormalisation ; liquidit\u00e9s dans le reste. Noms, pays et secteurs raccord\u00e9s par ISIN depuis le fichier iShares du m\u00eame jour. Aucun poids du MSCI Korea 20/35 n\u2019est utilis\u00e9."
+    }
+  },
+  "publication": {
+    "public": {
+      "sha": "745b051fc657dd4f907e83647eb7674a0d81a1b7",
+      "dataSha": "fe54111ed841b7398cb71d39ac1a395aab37d4a4",
+      "lane": "validated-data",
+      "builtAt": "2026-11-08T14:09:11.931Z"
+    },
+    "path": "src/data/index-company-observations.json",
+    "recordedBlob": "c79191f70c6082707da033a5765a028b14e87eb3",
+    "publicManifestBlob": "c79191f70c6082707da033a5765a028b14e87eb3",
+    "matched": true
+  },
+  "consumerRevalidation": "Same source asOf, basis, every security and weight, cash/residual as the earlier successful public PNG run; no new financial photo claimed."
+}

@@ -1,0 +1,273 @@
+{
+  "id": "sp-global-dividend-aristocrats",
+  "kind": "standalone official PDF parser, partial field evidence only",
+  "sourceUrl": "https://www.spglobal.com/spdji/en/idsenhancedfactsheet/file.pdf?calcFrequency=M&force_download=true&hostIdentifier=48190c8c-42c4-46af-8d1a-0cd5db894797&languageId=1&indexId=92388578",
+  "responseSha256": "58bc852be7097dc5aee9cc385fff74240aa3468f6a2d183c8d076658d6c51b35",
+  "asOf": "2026-10-30",
+  "sameDateAsRetained": true,
+  "constituents": 88,
+  "fullConsumerCompatible": false,
+  "missing": [
+    "individual weights of principal holdings"
+  ],
+  "fields": {
+    "countries": {
+      "newPdfRows": [
+        [
+          "🇺🇸 États-Unis",
+          54.2
+        ],
+        [
+          "🇨🇦 Canada",
+          9.1
+        ],
+        [
+          "🇬🇧 Royaume-Uni",
+          4.9
+        ],
+        [
+          "🇨🇳 Chine",
+          3.9
+        ],
+        [
+          "🇫🇷 France",
+          3.6
+        ],
+        [
+          "Italy",
+          3.2
+        ],
+        [
+          "🇨🇭 Suisse",
+          2.7
+        ],
+        [
+          "🇯🇵 Japon",
+          2.6
+        ],
+        [
+          "Hong Kong SAR, China",
+          2.5
+        ],
+        [
+          "🇰🇷 Corée du Sud",
+          2.3
+        ],
+        [
+          "Finland",
+          2.0
+        ],
+        [
+          "🇦🇺 Australie",
+          1.7
+        ],
+        [
+          "Norway",
+          1.2
+        ],
+        [
+          "Portugal",
+          1.2
+        ],
+        [
+          "United Arab Emirates",
+          1.0
+        ],
+        [
+          "🇲🇽 Mexique",
+          1.0
+        ],
+        [
+          "Saudi Arabia",
+          1.0
+        ],
+        [
+          "🇹🇼 Taïwan",
+          1.0
+        ],
+        [
+          "Belgium",
+          0.9
+        ]
+      ],
+      "retainedJsonRows": [
+        [
+          "🇺🇸 États-Unis",
+          54.2269
+        ],
+        [
+          "🇨🇦 Canada",
+          9.108
+        ],
+        [
+          "🇬🇧 Royaume-Uni",
+          4.8761
+        ],
+        [
+          "🇨🇳 Chine",
+          3.8874
+        ],
+        [
+          "🇫🇷 France",
+          3.5532
+        ],
+        [
+          "Italy",
+          3.1825
+        ],
+        [
+          "🇨🇭 Suisse",
+          2.6951
+        ],
+        [
+          "🇯🇵 Japon",
+          2.6218
+        ],
+        [
+          "Hong Kong SAR, China",
+          2.5316
+        ],
+        [
+          "🇰🇷 Corée du Sud",
+          2.3494
+        ],
+        [
+          "Finland",
+          2.0314
+        ],
+        [
+          "🇦🇺 Australie",
+          1.7129
+        ],
+        [
+          "Norway",
+          1.2112
+        ],
+        [
+          "Portugal",
+          1.1729
+        ],
+        [
+          "United Arab Emirates",
+          1.0113
+        ],
+        [
+          "🇲🇽 Mexique",
+          0.9933
+        ],
+        [
+          "Saudi Arabia",
+          0.9772
+        ],
+        [
+          "🇹🇼 Taïwan",
+          0.9504
+        ],
+        [
+          "Belgium",
+          0.9074
+        ]
+      ],
+      "commonRows": 19,
+      "maxAbsolutePpDifference": 0.04959999999999998,
+      "labelsExactlySame": true
+    },
+    "sectors": {
+      "newPdfRows": [
+        [
+          "🏦 Finance",
+          24.9
+        ],
+        [
+          "💡 Services publics",
+          16.6
+        ],
+        [
+          "🏠 Immobilier",
+          12.6
+        ],
+        [
+          "🏭 Industrie",
+          11.0
+        ],
+        [
+          "⚡ Énergie",
+          8.6
+        ],
+        [
+          "📡 Communication",
+          8.5
+        ],
+        [
+          "🛒 Consommation de base",
+          7.6
+        ],
+        [
+          "🏥 Santé",
+          4.1
+        ],
+        [
+          "🪨 Matériaux",
+          3.9
+        ],
+        [
+          "🛍️ Consommation cyclique",
+          1.2
+        ],
+        [
+          "💻 Technologie",
+          1.0
+        ]
+      ],
+      "retainedJsonRows": [
+        [
+          "🏦 Finance",
+          24.9296
+        ],
+        [
+          "💡 Services publics",
+          16.6173
+        ],
+        [
+          "🏠 Immobilier",
+          12.5995
+        ],
+        [
+          "🏭 Industrie",
+          10.9648
+        ],
+        [
+          "⚡ Énergie",
+          8.612
+        ],
+        [
+          "📡 Communication",
+          8.474
+        ],
+        [
+          "🛒 Consommation de base",
+          7.614
+        ],
+        [
+          "🏥 Santé",
+          4.1393
+        ],
+        [
+          "🪨 Matériaux",
+          3.9118
+        ],
+        [
+          "🛍️ Consommation cyclique",
+          1.1873
+        ],
+        [
+          "💻 Technologie",
+          0.9504
+        ]
+      ],
+      "commonRows": 11,
+      "maxAbsolutePpDifference": 0.04959999999999998,
+      "labelsExactlySame": true
+    }
+  }
+}

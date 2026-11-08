@@ -1,0 +1,272 @@
+{
+  "pr": 1210,
+  "head": "2d833018a96c8e35273ebef3c4df198cd5640811",
+  "initialDiagnostics": [
+    {
+      "id": "[\"instrument:IE00B1FZSC47:completeHoldings\",\"connection\",\"Consommation\",null,null,null,null]",
+      "key": "instrument:IE00B1FZSC47:completeHoldings",
+      "name": "iShares $ TIPS UCITS ETF",
+      "asset": "IE00B1FZSC47",
+      "field": "Positions intégrales",
+      "kind": "connection",
+      "stage": "Consommation",
+      "consumerContract": {
+        "id": "[\"/bibliotheque-donnees\",\"IE00B1FZSC47\",\"coverage:completeHoldings\"]",
+        "tool": "Bibliothèque de données",
+        "asset": "IE00B1FZSC47",
+        "field": "coverage:completeHoldings",
+        "state": "blocked"
+      },
+      "impactState": "blocked",
+      "impact": "Ce contrat requis est bloqué ; les autres outils ne sont pas présumés affectés.",
+      "cause": "Source de positions intégrales et contrôle de l’identité du fonds à raccorder.",
+      "qualificationBlock": "connector-needed",
+      "present": false,
+      "action": "Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.",
+      "tools": [
+        "Bibliothèque de données",
+        "Portefeuille & DCA"
+      ],
+      "checkedAt": null,
+      "sourceUrls": [],
+      "to": "/bibliotheque-donnees?id=IE00B1FZSC47",
+      "signals": [
+        {
+          "id": "usage:/bibliotheque-donnees:IE00B1FZSC47:coverage:completeHoldings",
+          "key": "instrument:IE00B1FZSC47:completeHoldings",
+          "name": "iShares $ TIPS UCITS ETF",
+          "asset": "IE00B1FZSC47",
+          "field": "Positions intégrales",
+          "kind": "connection",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/bibliotheque-donnees\",\"IE00B1FZSC47\",\"coverage:completeHoldings\"]",
+            "tool": "Bibliothèque de données",
+            "asset": "IE00B1FZSC47",
+            "field": "coverage:completeHoldings",
+            "state": "blocked"
+          },
+          "impactState": "blocked",
+          "impact": "Ce contrat requis est bloqué ; les autres outils ne sont pas présumés affectés.",
+          "cause": "Source de positions intégrales et contrôle de l’identité du fonds à raccorder.",
+          "qualificationBlock": "connector-needed",
+          "present": false,
+          "action": "Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.",
+          "tools": [
+            "Bibliothèque de données"
+          ],
+          "checkedAt": null,
+          "sourceUrls": [],
+          "to": "/bibliotheque-donnees?id=IE00B1FZSC47"
+        },
+        {
+          "id": "usage:/le-dca-de:IE00B1FZSC47:coverage:completeHoldings",
+          "key": "instrument:IE00B1FZSC47:completeHoldings",
+          "name": "iShares $ TIPS UCITS ETF",
+          "asset": "IE00B1FZSC47",
+          "field": "Positions intégrales",
+          "kind": "connection",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/le-dca-de\",\"IE00B1FZSC47\",\"coverage:completeHoldings\"]",
+            "tool": "Portefeuille & DCA",
+            "asset": "IE00B1FZSC47",
+            "field": "coverage:completeHoldings",
+            "state": "blocked"
+          },
+          "impactState": "blocked",
+          "impact": "Ce contrat requis est bloqué ; les autres outils ne sont pas présumés affectés.",
+          "cause": "Source de positions intégrales et contrôle de l’identité du fonds à raccorder.",
+          "qualificationBlock": "connector-needed",
+          "present": false,
+          "action": "Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.",
+          "tools": [
+            "Portefeuille & DCA"
+          ],
+          "checkedAt": null,
+          "sourceUrls": [],
+          "to": "/bibliotheque-donnees?id=IE00B1FZSC47"
+        }
+      ]
+    },
+    {
+      "id": "[\"instrument:IE00B1FZSC47:completeHoldings\",\"connection\",\"Raccordement\",null,null,null,null]",
+      "key": "instrument:IE00B1FZSC47:completeHoldings",
+      "name": "iShares $ TIPS UCITS ETF",
+      "asset": "IE00B1FZSC47",
+      "field": "Positions intégrales",
+      "kind": "connection",
+      "cause": "Source de positions intégrales et contrôle de l’identité du fonds à raccorder.",
+      "action": "Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.",
+      "asOf": null,
+      "checkedAt": null,
+      "attemptedAt": null,
+      "lastSuccessAt": null,
+      "tools": [
+        "Bibliothèque de données",
+        "Portefeuille & DCA"
+      ],
+      "sourceUrls": [],
+      "to": "/bibliotheque-donnees?id=IE00B1FZSC47",
+      "stage": "Raccordement",
+      "signals": [
+        {
+          "id": "connection:instrument:IE00B1FZSC47:completeHoldings",
+          "key": "instrument:IE00B1FZSC47:completeHoldings",
+          "name": "iShares $ TIPS UCITS ETF",
+          "asset": "IE00B1FZSC47",
+          "field": "Positions intégrales",
+          "kind": "connection",
+          "cause": "Source de positions intégrales et contrôle de l’identité du fonds à raccorder.",
+          "action": "Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.",
+          "asOf": null,
+          "checkedAt": null,
+          "attemptedAt": null,
+          "lastSuccessAt": null,
+          "tools": [
+            "Bibliothèque de données",
+            "Portefeuille & DCA"
+          ],
+          "sourceUrls": [],
+          "to": "/bibliotheque-donnees?id=IE00B1FZSC47",
+          "stage": "Raccordement"
+        }
+      ]
+    },
+    {
+      "id": "[\"instrument:IE00BZ6V7883:completeHoldings\",\"connection\",\"Consommation\",null,null,null,null]",
+      "key": "instrument:IE00BZ6V7883:completeHoldings",
+      "name": "iShares US Mortgage Backed Securities UCITS ETF",
+      "asset": "IE00BZ6V7883",
+      "field": "Positions intégrales",
+      "kind": "connection",
+      "stage": "Consommation",
+      "consumerContract": {
+        "id": "[\"/bibliotheque-donnees\",\"IE00BZ6V7883\",\"coverage:completeHoldings\"]",
+        "tool": "Bibliothèque de données",
+        "asset": "IE00BZ6V7883",
+        "field": "coverage:completeHoldings",
+        "state": "blocked"
+      },
+      "impactState": "blocked",
+      "impact": "Ce contrat requis est bloqué ; les autres outils ne sont pas présumés affectés.",
+      "cause": "Source de positions intégrales et contrôle de l’identité du fonds à raccorder.",
+      "qualificationBlock": "connector-needed",
+      "present": false,
+      "action": "Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.",
+      "tools": [
+        "Bibliothèque de données",
+        "Portefeuille & DCA"
+      ],
+      "checkedAt": null,
+      "sourceUrls": [],
+      "to": "/bibliotheque-donnees?id=IE00BZ6V7883",
+      "signals": [
+        {
+          "id": "usage:/bibliotheque-donnees:IE00BZ6V7883:coverage:completeHoldings",
+          "key": "instrument:IE00BZ6V7883:completeHoldings",
+          "name": "iShares US Mortgage Backed Securities UCITS ETF",
+          "asset": "IE00BZ6V7883",
+          "field": "Positions intégrales",
+          "kind": "connection",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/bibliotheque-donnees\",\"IE00BZ6V7883\",\"coverage:completeHoldings\"]",
+            "tool": "Bibliothèque de données",
+            "asset": "IE00BZ6V7883",
+            "field": "coverage:completeHoldings",
+            "state": "blocked"
+          },
+          "impactState": "blocked",
+          "impact": "Ce contrat requis est bloqué ; les autres outils ne sont pas présumés affectés.",
+          "cause": "Source de positions intégrales et contrôle de l’identité du fonds à raccorder.",
+          "qualificationBlock": "connector-needed",
+          "present": false,
+          "action": "Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.",
+          "tools": [
+            "Bibliothèque de données"
+          ],
+          "checkedAt": null,
+          "sourceUrls": [],
+          "to": "/bibliotheque-donnees?id=IE00BZ6V7883"
+        },
+        {
+          "id": "usage:/le-dca-de:IE00BZ6V7883:coverage:completeHoldings",
+          "key": "instrument:IE00BZ6V7883:completeHoldings",
+          "name": "iShares US Mortgage Backed Securities UCITS ETF",
+          "asset": "IE00BZ6V7883",
+          "field": "Positions intégrales",
+          "kind": "connection",
+          "stage": "Consommation",
+          "consumerContract": {
+            "id": "[\"/le-dca-de\",\"IE00BZ6V7883\",\"coverage:completeHoldings\"]",
+            "tool": "Portefeuille & DCA",
+            "asset": "IE00BZ6V7883",
+            "field": "coverage:completeHoldings",
+            "state": "blocked"
+          },
+          "impactState": "blocked",
+          "impact": "Ce contrat requis est bloqué ; les autres outils ne sont pas présumés affectés.",
+          "cause": "Source de positions intégrales et contrôle de l’identité du fonds à raccorder.",
+          "qualificationBlock": "connector-needed",
+          "present": false,
+          "action": "Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.",
+          "tools": [
+            "Portefeuille & DCA"
+          ],
+          "checkedAt": null,
+          "sourceUrls": [],
+          "to": "/bibliotheque-donnees?id=IE00BZ6V7883"
+        }
+      ]
+    },
+    {
+      "id": "[\"instrument:IE00BZ6V7883:completeHoldings\",\"connection\",\"Raccordement\",null,null,null,null]",
+      "key": "instrument:IE00BZ6V7883:completeHoldings",
+      "name": "iShares US Mortgage Backed Securities UCITS ETF",
+      "asset": "IE00BZ6V7883",
+      "field": "Positions intégrales",
+      "kind": "connection",
+      "cause": "Source de positions intégrales et contrôle de l’identité du fonds à raccorder.",
+      "action": "Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.",
+      "asOf": null,
+      "checkedAt": null,
+      "attemptedAt": null,
+      "lastSuccessAt": null,
+      "tools": [
+        "Bibliothèque de données",
+        "Portefeuille & DCA"
+      ],
+      "sourceUrls": [],
+      "to": "/bibliotheque-donnees?id=IE00BZ6V7883",
+      "stage": "Raccordement",
+      "signals": [
+        {
+          "id": "connection:instrument:IE00BZ6V7883:completeHoldings",
+          "key": "instrument:IE00BZ6V7883:completeHoldings",
+          "name": "iShares US Mortgage Backed Securities UCITS ETF",
+          "asset": "IE00BZ6V7883",
+          "field": "Positions intégrales",
+          "kind": "connection",
+          "cause": "Source de positions intégrales et contrôle de l’identité du fonds à raccorder.",
+          "action": "Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.",
+          "asOf": null,
+          "checkedAt": null,
+          "attemptedAt": null,
+          "lastSuccessAt": null,
+          "tools": [
+            "Bibliothèque de données",
+            "Portefeuille & DCA"
+          ],
+          "sourceUrls": [],
+          "to": "/bibliotheque-donnees?id=IE00BZ6V7883",
+          "stage": "Raccordement"
+        }
+      ]
+    }
+  ],
+  "contracts": 2,
+  "actualConsumer": "sharedPositions skips registered outsideClassification supports before any book lookup; reproduced with a throwing Proxy",
+  "notADataRepair": true,
+  "publication": "not yet verified"
+}
