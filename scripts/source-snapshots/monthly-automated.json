@@ -563880,7 +563880,7 @@
     "instrumentType": "ETC",
     "consumerScope": "catalog",
     "currency": "USD",
-    "periodStart": "2020-12",
+    "periodStart": "2019-12",
     "precision": 8,
     "collectAnniversary": false,
     "parser": "official-nav",
@@ -563895,6 +563895,7 @@
     "calendarRegistry": "src/data/non-bond-etf-records.json",
     "returnWindowQualification": "corroborated-calendars",
     "requiredQualifiedCalendarYears": [
+      2020,
       2021,
       2023
     ],
@@ -563903,13 +563904,18 @@
     "wisdomListingId": 2741261,
     "wisdomInception": "2012-02-21",
     "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
+    "reviewedHistoryPrefix": {
+      "previousStart": "2020-12",
+      "newStart": "2019-12",
+      "qualifiedYear": 2020
+    },
     "anniversaryAvailable": false,
-    "checkedAt": "2026-11-06",
+    "checkedAt": "2026-11-08",
     "periodEnd": "2026-10",
     "sourceUrls": [
+      "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
       "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=gro10k",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular",
-      "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular"
     ],
     "sourceCredit": "WisdomTree",
     "latestLevel": {
@@ -563957,15 +563963,25 @@
         "gro10k.cobDate",
         "gro10k.officialLevel"
       ],
-      "requestedStart": "2020-12-01",
+      "requestedStart": "2019-12-01",
       "incomeTreatment": "Issuer exact-product NAV (TR); no additional cash",
       "navHistoryTransport": "official-dataspan-nav-tr",
-      "dailyObservations": 1460,
+      "dailyObservations": 1708,
       "sourceSnapshotDate": "2026-11-05",
       "issuerProductInception": "2012-02-21",
       "issuerChartInception": "2012-02-21",
-      "tablePublicationDate": "2026-11-05",
+      "tablePublicationDate": "2026-11-06",
       "closedTableCalendarChecks": [
+        {
+          "year": 2020,
+          "start": "2019-12-31",
+          "end": "2020-12-31",
+          "startValue": 4411.28515625,
+          "endValue": 2987.55908203125,
+          "dailyDerived": -32.274632534275995,
+          "published": -32.27,
+          "publishedDecimalPlaces": 2
+        },
         {
           "year": 2021,
           "start": "2020-12-31",
@@ -564018,8 +564034,8 @@
         }
       ],
       "snapshotQualification": "Closed calendar dt/December valuation bounds matched individually at unchanged published two-decimal precision; current and rolling table returns are not used",
-      "excludedPreWindowObservations": 2181,
-      "suppliedExactSecurityStart": "2020-12-01",
+      "excludedPreWindowObservations": 1933,
+      "suppliedExactSecurityStart": "2019-12-01",
       "scaleProof": {
         "anchor": {
           "isin": "JE00B78CGV99",
@@ -564053,14 +564069,14 @@
         }
       ],
       "sourceRuntime": {
-        "runId": "42242620055",
+        "runId": "42479279177",
         "attempt": "1",
-        "event": "workflow_dispatch",
-        "codeRevision": "19d8ad0b68b63abaa9381b078a1c2f0b51aed2a1",
+        "event": "push",
+        "codeRevision": "745b051fc657dd4f907e83647eb7674a0d81a1b7",
         "kind": "github"
       },
       "calendarRegistry": "src/data/non-bond-etf-records.json",
-      "calendarRegistryPerformanceHash": "1a7c3ac8f2201085b86ca4121b5e82b551318c41c121f8df6cc9038b4175ae1d",
+      "calendarRegistryPerformanceHash": "606c2d9ca56c782f0f3dcfdb04f169ad3bd64ef6bcd552ce0765bcffd73882af",
       "calendarSource": {
         "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
         "sha256": "bad551694b390ebb1f748f06ddc6df1d4a335a0894c9d4e69bcb5cb056c33bc9",
@@ -564084,6 +564100,7 @@
       "productPageReferenceOnly": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-brent-crude-oil",
       "historyUnqualifiedReturnWindows": [],
       "qualifiedCalendarYears": [
+        2020,
         2021,
         2022,
         2023,
@@ -564092,6 +564109,16 @@
       ],
       "qualificationScope": "Only independent corroborated return intervals; unresolved official daily/calendar differences remain refused. No price interpolation or threshold change.",
       "checks": [
+        {
+          "year": 2020,
+          "start": "2019-12-31",
+          "end": "2020-12-31",
+          "startValue": 30.98641352132102,
+          "endValue": 20.98566242176345,
+          "dailyDerived": -32.274632534275995,
+          "published": -32.27,
+          "publishedDecimalPlaces": 2
+        },
         {
           "year": 2021,
           "start": "2020-12-31",
@@ -564142,10 +564169,125 @@
           "published": -7.78,
           "publishedDecimalPlaces": 2
         }
-      ]
+      ],
+      "reviewedPrefixApplied": {
+        "previousStart": "2020-12",
+        "newStart": "2019-12",
+        "qualifiedYear": 2020,
+        "unchangedPriorPoints": 71,
+        "method": "Earlier independently corroborated exact NAV year; every prior and baseline monthly value identical, no quote replacement"
+      }
     },
     "historyUnqualifiedReturnWindows": [],
     "proofRows": [
+      {
+        "date": "2019-12-31",
+        "nav": 30.98641352132102,
+        "navCurrency": "USD",
+        "value": 30.98641352132102,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-01-31",
+        "nav": 27.06002276342281,
+        "navCurrency": "USD",
+        "value": 27.06002276342281,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-02-28",
+        "nav": 23.832131302388696,
+        "navCurrency": "USD",
+        "value": 23.832131302388696,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-03-31",
+        "nav": 13.51915073416954,
+        "navCurrency": "USD",
+        "value": 13.51915073416954,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-04-30",
+        "nav": 12.059751006364941,
+        "navCurrency": "USD",
+        "value": 12.059751006364941,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-05-29",
+        "nav": 16.38618076017663,
+        "navCurrency": "USD",
+        "value": 16.38618076017663,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-06-30",
+        "nav": 17.70351231118297,
+        "navCurrency": "USD",
+        "value": 17.70351231118297,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-07-31",
+        "nav": 18.607041700817547,
+        "navCurrency": "USD",
+        "value": 18.607041700817547,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-08-28",
+        "nav": 19.424121502170816,
+        "navCurrency": "USD",
+        "value": 19.424121502170816,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-09-30",
+        "nav": 17.616100647539117,
+        "navCurrency": "USD",
+        "value": 17.616100647539117,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-10-30",
+        "nav": 15.621171358525512,
+        "navCurrency": "USD",
+        "value": 15.621171358525512,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-11-30",
+        "nav": 19.443081761009108,
+        "navCurrency": "USD",
+        "value": 19.443081761009108,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
       {
         "date": "2020-12-31",
         "nav": 20.98566242176345,
@@ -564786,11 +564928,11 @@
         "fxFactor": 1
       }
     ],
-    "responseSha256": "27936657b70401e41543d5a001a5ea6c84de7d8e4530c0b0d100b615dfb2646d",
+    "responseSha256": "ddbcc03524dfb19c0561fb46559726337a2c150921d80e50a2479c6c5c6755ee",
     "rawSourceHashes": {
+      "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99": "bad551694b390ebb1f748f06ddc6df1d4a335a0894c9d4e69bcb5cb056c33bc9",
       "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=gro10k": "f9d78f99bf127a0cdf8d990959a581fbc2ae82d7853b1f6fb2e202ed1bf2b39e",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular": "592f5d1041915c6354f77a2ad9d8edff5f2a9a317143c166d19f05ac93d434b4",
-      "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99": "bad551694b390ebb1f748f06ddc6df1d4a335a0894c9d4e69bcb5cb056c33bc9"
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance/?entity=BRNT&mode=tabular": "43af7646324f3c3b990f26131dd478420df4dc9e60f607ec65f73c92aca6d215"
     }
   },
   "etc_wti_crude_oilNav": {
@@ -564800,7 +564942,7 @@
     "instrumentType": "ETC",
     "consumerScope": "catalog",
     "currency": "USD",
-    "periodStart": "2020-12",
+    "periodStart": "2019-12",
     "precision": 8,
     "collectAnniversary": false,
     "parser": "official-nav",
@@ -564815,6 +564957,7 @@
     "calendarRegistry": "src/data/non-bond-etf-records.json",
     "returnWindowQualification": "corroborated-calendars",
     "requiredQualifiedCalendarYears": [
+      2020,
       2023
     ],
     "wisdomTicker": "CRUD",
@@ -564822,13 +564965,18 @@
     "wisdomListingId": 2740803,
     "wisdomInception": "2006-09-22",
     "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+    "reviewedHistoryPrefix": {
+      "previousStart": "2020-12",
+      "newStart": "2019-12",
+      "qualifiedYear": 2020
+    },
     "anniversaryAvailable": false,
-    "checkedAt": "2026-11-06",
+    "checkedAt": "2026-11-08",
     "periodEnd": "2026-10",
     "sourceUrls": [
+      "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
       "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular",
-      "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular"
     ],
     "sourceCredit": "WisdomTree",
     "latestLevel": {
@@ -564876,15 +565024,25 @@
         "gro10k.cobDate",
         "gro10k.officialLevel"
       ],
-      "requestedStart": "2020-12-01",
+      "requestedStart": "2019-12-01",
       "incomeTreatment": "Issuer exact-product NAV (TR); no additional cash",
       "navHistoryTransport": "official-dataspan-nav-tr",
-      "dailyObservations": 1458,
+      "dailyObservations": 1706,
       "sourceSnapshotDate": "2026-11-04",
       "issuerProductInception": "2006-09-22",
       "issuerChartInception": "2006-09-22",
-      "tablePublicationDate": "2026-11-05",
+      "tablePublicationDate": "2026-11-06",
       "closedTableCalendarChecks": [
+        {
+          "year": 2020,
+          "start": "2019-12-31",
+          "end": "2020-12-31",
+          "startValue": 2220.6552734375,
+          "endValue": 1067.8681640625,
+          "dailyDerived": -51.91202448953385,
+          "published": -51.91,
+          "publishedDecimalPlaces": 2
+        },
         {
           "year": 2021,
           "start": "2020-12-31",
@@ -564937,8 +565095,8 @@
         }
       ],
       "snapshotQualification": "Closed calendar dt/December valuation bounds matched individually at unchanged published two-decimal precision; current and rolling table returns are not used",
-      "excludedPreWindowObservations": 2718,
-      "suppliedExactSecurityStart": "2020-12-01",
+      "excludedPreWindowObservations": 2470,
+      "suppliedExactSecurityStart": "2019-12-01",
       "scaleProof": {
         "anchor": {
           "isin": "GB00B15KXV33",
@@ -564972,14 +565130,14 @@
         }
       ],
       "sourceRuntime": {
-        "runId": "42242620055",
+        "runId": "42479279177",
         "attempt": "1",
-        "event": "workflow_dispatch",
-        "codeRevision": "19d8ad0b68b63abaa9381b078a1c2f0b51aed2a1",
+        "event": "push",
+        "codeRevision": "745b051fc657dd4f907e83647eb7674a0d81a1b7",
         "kind": "github"
       },
       "calendarRegistry": "src/data/non-bond-etf-records.json",
-      "calendarRegistryPerformanceHash": "fde1468617d73d7d261d39007e8fc3d1ba2b104b8effbf3404c61eff097210dc",
+      "calendarRegistryPerformanceHash": "661b95876ac84af1196bae6ff4dffda4c3c195002369b7e3d7f9e5098e8659ba",
       "calendarSource": {
         "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
         "sha256": "e8bbd5f4a33949849d608477bf4783f42bde72b10b5c98db2c83082ce59679a8",
@@ -565003,6 +565161,7 @@
       "productPageReferenceOnly": "https://www.wisdomtree.com/ie/products/commodities/wisdomtree-wti-crude-oil",
       "historyUnqualifiedReturnWindows": [],
       "qualifiedCalendarYears": [
+        2020,
         2021,
         2022,
         2023,
@@ -565011,6 +565170,16 @@
       ],
       "qualificationScope": "Only independent corroborated return intervals; unresolved official daily/calendar differences remain refused. No price interpolation or threshold change.",
       "checks": [
+        {
+          "year": 2020,
+          "start": "2019-12-31",
+          "end": "2020-12-31",
+          "startValue": 9.009810555090851,
+          "endValue": 4.332635493271483,
+          "dailyDerived": -51.91202448953385,
+          "published": -51.91,
+          "publishedDecimalPlaces": 2
+        },
         {
           "year": 2021,
           "start": "2020-12-31",
@@ -565061,10 +565230,125 @@
           "published": -10.68,
           "publishedDecimalPlaces": 2
         }
-      ]
+      ],
+      "reviewedPrefixApplied": {
+        "previousStart": "2020-12",
+        "newStart": "2019-12",
+        "qualifiedYear": 2020,
+        "unchangedPriorPoints": 71,
+        "method": "Earlier independently corroborated exact NAV year; every prior and baseline monthly value identical, no quote replacement"
+      }
     },
     "historyUnqualifiedReturnWindows": [],
     "proofRows": [
+      {
+        "date": "2019-12-31",
+        "nav": 9.009810555090851,
+        "navCurrency": "USD",
+        "value": 9.009810555090851,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-01-31",
+        "nav": 7.647631765931605,
+        "navCurrency": "USD",
+        "value": 7.647631765931605,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-02-28",
+        "nav": 6.603262666594941,
+        "navCurrency": "USD",
+        "value": 6.603262666594941,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-03-31",
+        "nav": 3.0080367740210585,
+        "navCurrency": "USD",
+        "value": 3.0080367740210585,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-04-30",
+        "nav": 2.283977502135389,
+        "navCurrency": "USD",
+        "value": 2.283977502135389,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-05-29",
+        "nav": 3.4138663646600373,
+        "navCurrency": "USD",
+        "value": 3.4138663646600373,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-06-30",
+        "nav": 3.707156083462938,
+        "navCurrency": "USD",
+        "value": 3.707156083462938,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-07-31",
+        "nav": 3.796045931138347,
+        "navCurrency": "USD",
+        "value": 3.796045931138347,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-08-28",
+        "nav": 4.01611574173202,
+        "navCurrency": "USD",
+        "value": 4.01611574173202,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-09-30",
+        "nav": 3.708055994332752,
+        "navCurrency": "USD",
+        "value": 3.708055994332752,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-10-30",
+        "nav": 3.2939464312548323,
+        "navCurrency": "USD",
+        "value": 3.2939464312548323,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2020-11-30",
+        "nav": 4.0743355670801416,
+        "navCurrency": "USD",
+        "value": 4.0743355670801416,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
       {
         "date": "2020-12-31",
         "nav": 4.332635493271483,
@@ -565705,11 +565989,11 @@
         "fxFactor": 1
       }
     ],
-    "responseSha256": "2b6b34e43143e7189516adcacc37073e806763e3a48663934495427a5933ca29",
+    "responseSha256": "5c9110705defb4827b67066afbd49d966056e53908e5968f494f6714461557f5",
     "rawSourceHashes": {
+      "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33": "e8bbd5f4a33949849d608477bf4783f42bde72b10b5c98db2c83082ce59679a8",
       "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=gro10k": "2313dde249a86ba3bff81cbc65b775dcdc74a583b7f42f98d7d96937553ec040",
-      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular": "2aedc1d36b2b5083153a49feb82e11cc6661921b1b5d561a24a01fea1d196104",
-      "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33": "e8bbd5f4a33949849d608477bf4783f42bde72b10b5c98db2c83082ce59679a8"
+      "https://dataspanapi.wisdomtree.com/funddetails/historical_performance?entity=CRUD&mode=tabular": "b94ceafdcfea6a60e482000f4474495bb55ba5aaca9c31185712188219d62daa"
     }
   },
   "etc_coffeeNav": {
