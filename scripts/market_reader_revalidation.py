@@ -1,8 +1,8 @@
 """Qualify exact publication readers without weakening acquisition-input guards.
 
-Only the monthly writer uses this adapter. The shared guard and its financial
-calendar comparison remain authoritative; all accepted changes still require
-regeneration and the unchanged complete financial validation on the rebased tree.
+Monthly and ETF writers qualify their own narrow sets of downstream readers.
+The shared source guard and its financial calendar comparison stay authoritative;
+all accepted changes require regeneration and full validation on the rebased tree.
 """
 import argparse
 import json
@@ -49,6 +49,14 @@ NEW_PREPARE = OLD_PREPARE.replace(
 ROLLOUT_FILES = {'scripts/market_reader_revalidation.py',
                  'scripts/test_market_reader_revalidation.py'}
 BASELINE = 'scripts/export-monthly-baseline.mjs'
+ETF_BASELINE = 'scripts/export-etf-pilot-baseline.mjs'
+ETF_ACQUISITION_ENTRIES = (ETF_BASELINE, 'scripts/build-automation-targets.mjs')
+# Refusal42488861255 after#1210. These are downstream qualification readers,
+# not the issuer acquisition baseline. Prove that separation on both trees;
+# retain the shared source guard and the complete merged-tree financial checks.
+ETF_READERS = {'docs/data-operations-coordination.md',
+               'scripts/lib/data-qualification.mjs',
+               'scripts/test-data-qualification.mjs'}
 
 
 def at(ref, path):
@@ -56,9 +64,9 @@ def at(ref, path):
     return proc.stdout.decode('utf-8') if proc.returncode == 0 else None
 
 
-def baseline_dependencies(ref):
+def baseline_dependencies(ref, entrypoint=BASELINE):
     """Fail closed if the baseline starts reading one of these supposed readers."""
-    seen, todo = set(), [BASELINE]
+    seen, todo = set(), [entrypoint]
     while todo:
         path = todo.pop()
         if path in seen:
@@ -82,6 +90,31 @@ def baseline_dependencies(ref):
     return seen
 
 
+def check_etf(base, upstream='HEAD^'):
+    paths = set(filter(None, subprocess.check_output(
+        ['git', 'diff', '--name-only', '--no-renames', '-z', base, upstream],
+        text=True).split('\0')))
+    permitted = paths & ETF_READERS
+    if permitted:
+        for ref in (base, upstream):
+            for entry in ETF_ACQUISITION_ENTRIES:
+                if baseline_dependencies(ref, entry) & ETF_READERS:
+                    raise ValueError('An ETF qualification reader is an acquisition dependency: ' + entry)
+    return checked_readers('etf', base, upstream, permitted)
+
+
+def checked_readers(kind, base, upstream, permitted):
+    original = guard.ALLOWED[kind]
+    try:
+        guard.ALLOWED[kind] = original | permitted
+        changed = guard.check(kind, base, upstream)
+    finally:
+        guard.ALLOWED[kind] = original
+    return {'changedPaths': changed, 'qualifiedPublicationReaders': sorted(permitted),
+            'financialRevalidationRequired': True,
+            'sourceControlsRenewedByThisAdapter': False}
+
+
 def check(base, upstream='HEAD^'):
     paths = set(filter(None, subprocess.check_output(
         ['git', 'diff', '--name-only', '--no-renames', '-z', base, upstream],
@@ -103,20 +136,14 @@ def check(base, upstream='HEAD^'):
         runtime = Path(__file__).parent / Path(path).name
         if at(base, path) is None and runtime.is_file() and at(upstream, path) == runtime.read_text():
             permitted.add(path)
-    original = guard.ALLOWED['market']
-    try:
-        guard.ALLOWED['market'] = original | permitted
-        changed = guard.check('market', base, upstream)
-    finally:
-        guard.ALLOWED['market'] = original
-    return {'changedPaths': changed, 'qualifiedPublicationReaders': sorted(permitted),
-            'financialRevalidationRequired': True,
-            'sourceControlsRenewedByThisAdapter': False}
+    return checked_readers('market', base, upstream, permitted)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--base', required=True)
     parser.add_argument('--upstream', default='HEAD^')
+    parser.add_argument('--kind', choices=['market', 'etf'], default='market')
     args = parser.parse_args()
-    print(json.dumps(check(args.base, args.upstream), sort_keys=True))
+    operation = check_etf if args.kind == 'etf' else check
+    print(json.dumps(operation(args.base, args.upstream), sort_keys=True))
