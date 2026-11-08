@@ -14,7 +14,7 @@ const donut=donutData({countries:result},'countries')
 assert(donut.rows.some(r=>r.name==='Non ventilé ici'&&Math.abs(r.weight-10.72)<1e-9))
 assert(!q.rows.some(r=>r.name==='Unknown'),'The remainder is not invented as an issuer row')
 assert.equal(publishedExposure(lines,references,'countries',new Date('2027-03-01')).groups.length,0)
-for(const patch of [{status:'unqualified'},{asOf:'2027-01-01'},{sha256:''},{evidence:{...record.fieldQualification.countries.evidence,coveragePct:100}}]){
+for(const patch of [{checkedAt:'2027-01-01'},{checkedAt:'2026-10-01'},{status:'unqualified'},{asOf:'2027-01-01'},{sha256:''},{evidence:{...record.fieldQualification.countries.evidence,coveragePct:100}}]){
  assert.equal(partialPublishedCountries(isin,{...record,fieldQualification:{countries:{...record.fieldQualification.countries,...patch}}},now),null)
 }
 assert.equal(partialPublishedCountries('IE0000000000',record,now),null)
