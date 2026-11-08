@@ -209,7 +209,15 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
           value={lastPublished || ''}
           max={todayStr()}
           title="Corriger ou saisir la date de dernière publication"
-          onInput={(e) => onSetDate(tweet.id, e.currentTarget.value)}
+          onInput={(e) => {
+            const field = e.currentTarget
+            if (tweet.category === 'Guide ETF' && field.validity.rangeOverflow) {
+              field.value = lastPublished || ''
+              notifyPublication('Choisis une date de publication au plus tard aujourd’hui.', 'error')
+              return
+            }
+            onSetDate(tweet.id, field.value)
+          }}
         />
         {lastPublished && (
           <Button type="button" variant="ghost" onClick={() => onClearDate(tweet.id)}>

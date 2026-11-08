@@ -47,6 +47,10 @@ for (const width of [1440, 390]) {
     await guide.getByLabel('Date de dernière publication', {exact:true}).fill(bankToday())
     await page.reload()
     assert.equal(await guide.getByLabel('Date de dernière publication', {exact:true}).inputValue(), bankToday())
+    await guide.getByLabel('Date de dernière publication', {exact:true}).fill('2999-01-01')
+    assert.equal(await guide.getByLabel('Date de dernière publication', {exact:true}).inputValue(), bankToday(), 'future publication date rejected')
+    await page.reload()
+    assert.equal(await guide.getByLabel('Date de dernière publication', {exact:true}).inputValue(), bankToday(), 'previous date preserved after reload')
     await guide.getByLabel('Texte de la publication').fill('Guide modifié après vérification')
     assert(!(await guide.getByRole('button', {name:'📋 Copier', exact:true}).isEnabled()))
 
