@@ -1,4 +1,7 @@
 import assert from 'node:assert/strict'
+import {readFileSync} from 'node:fs'
+import {equityChartObservations} from './equity-chart-observations.mjs'
+import {references as currentReferences} from '../src/pages/dca-profiles/engine.js'
 import {partialPublishedCountries} from './partial-published-countries.mjs'
 import record from './fixtures/avantis-partial-countries-20261108.json' with {type:'json'}
 import {publishedExposure,exposureDisplay} from '../src/pages/dca-profiles/exposure.js'
@@ -20,3 +23,11 @@ for(const patch of [{checkedAt:'2027-01-01'},{checkedAt:'2026-10-01'},{status:'u
 assert.equal(partialPublishedCountries('IE0000000000',record,now),null)
 assert(!('holdings'in q)&&!('sectors'in q),'A partial geographic table cannot qualify holdings or sectors')
 console.log('Avantis: five original country weights, 89.28% covered, 10.72% grey remainder, expiry and exact share checked; full coverage stays unavailable.')
+
+const completeBook=JSON.parse(readFileSync('src/data/dca-complete-holdings.json'))[isin]
+const currentFull=equityChartObservations(completeBook)
+if(currentFull){
+ assert.equal(currentReferences[isin].countries.compatibility,'equity-holdings-countries','The existing complete route stays ahead of the new partial fallback')
+ assert.deepEqual(currentReferences[isin].countries.rows,currentFull.countries.rows)
+ assert.equal(currentReferences[isin].countries.asOf,currentFull.countries.asOf)
+}
