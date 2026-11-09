@@ -1,9 +1,60 @@
 {
-  "checkedAt": "2026-11-08T15:21:30.295Z",
+  "checkedAt": "2026-11-09T17:58:11.955Z",
   "total": 694,
   "outside": 53,
-  "complete": 641,
-  "gaps": [],
+  "complete": 639,
+  "gaps": [
+    {
+      "asset": "momentum",
+      "isin": "IE00BP3QZ825",
+      "name": "iShares Edge MSCI World Momentum Factor UCITS ETF (Acc)",
+      "kind": "etf",
+      "provider": "iShares",
+      "countries": {
+        "coverage": 99.99998000000001,
+        "eligible": 100,
+        "outside": false,
+        "missing": 0.000019999999992137418,
+        "reasons": [],
+        "asOf": "2026-11-06"
+      },
+      "sectors": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Poids signés incompatibles avec un donut"
+        ],
+        "asOf": null
+      }
+    },
+    {
+      "asset": "IE000XZSV718",
+      "isin": "IE000XZSV718",
+      "name": "SPDR S&P 500 UCITS ETF Acc",
+      "kind": "etf",
+      "provider": "State Street",
+      "countries": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Poids signés incompatibles avec un donut"
+        ],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 100,
+        "eligible": 100,
+        "outside": false,
+        "missing": 0,
+        "reasons": [],
+        "asOf": "2026-11-06"
+      }
+    }
+  ],
   "outsideAssets": [
     {
       "asset": "gold",
