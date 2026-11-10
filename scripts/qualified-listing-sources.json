@@ -134,6 +134,21 @@
           "symbol": "BTCE.PA"
         }
       ]
+    },
+    {
+      "isin": "IE00B4556L06",
+      "url": "https://www.ishares.com/uk/individual/en/products/256574/ishares-physical-palladium-etc-fund?siteEntryPassthrough=true&switchLocale=y",
+      "format": "blackrock-listings-html",
+      "rows": [
+        {
+          "pattern": "^London Stock Exchange IPDM USD 11/Apr/2011 B4556L0 IPDM LN (IPDM\\.L)$",
+          "ticker": "IPDM",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "listingDate": "2011-04-11"
+        }
+      ]
     }
   ]
 }
